@@ -42,11 +42,11 @@
 
 2. Q：js执行虚拟机初始化注入的native函数时程序崩溃
 
-   A：检查`JSVM_CallbackStruce`是否为栈上变量，跨函数使用时需保证`JSVM_CallbackStruct`生命周期 >`JSVM_Env`的生命周期
+   A：检查`JSVM_CallbackStruct`是否为栈上变量，跨函数使用时需保证`JSVM_CallbackStruct`生命周期 >`JSVM_Env`的生命周期
 
    ```
    func {
-   	...
+   	// ...
        JSVM_CallbackStruct param[] = {
            {.data = nullptr, .callback = ConsoleInfo},
            {.data = nullptr, .callback = Add},
@@ -58,9 +58,9 @@
        // create env, register native method, and open env scope
        JSVM_Env env;
        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-       ...
+      // ...
        OH_JSVM_DestroyEnv(env);
-       ...
+      // ...
    }
    ```
 
@@ -70,12 +70,12 @@
 
    A：检查是否同时有多个线程持有和释放`JSVM_Ref`，见 [多线程共享引擎实例](jsvm-guidelines.md#多线程共享引擎实例)
 
-4. Q:  在虚拟机引擎实例中创建JS类型实例崩溃（如`OH_JSVM_CreateDouble`），调用栈如下
+4. Q：在虚拟机引擎实例中创建JS类型实例崩溃（如`OH_JSVM_CreateDouble`），调用栈如下
 
    ```
-   #00 pc 0000000001d209e4/system/1ib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
+   #00 pc 0000000001d209e4/system/lib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
    #01 pc 0000000001408480/system/lib64/ndk/libjsvm.so(v8::Utils::ReportApiFailure(char const*,char const*)+124)
-   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::Handlescope::Extend(v8::internal::Isolate*+200)
+   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::HandleScope::Extend(v8::internal::Isolate*+200)
    ```
 
    A：检查HandleScope的使用是否正确，见[生命周期管理](jsvm-guidelines.md#生命周期管理)
@@ -90,6 +90,6 @@
 
    A：`JSVM_PENDING_EXCEPTION`表明当前虚拟机环境中存在未处理的异常，可能是由于本次调用产生的`JS`异常，也可能是之前调用产生的未被清理的异常。可以通过在函数调用前插入`OH_JSVM_GetAndClearLastException`排查之前是否有未清除的异常。如果为之前的未清理异常，检查是否有JSVM接口调用未处理异常返回值；如未本次产生的异常，需清理异常，避免影响后续的函数调用。获取并清理异常的函数为`OH_JSVM_GetAndClearLastException`
 
-3. Q:  JS执行时无法找到 `OH_JSVM_DefineClass` 定义的类
+3. Q：JS执行时无法找到 `OH_JSVM_DefineClass` 定义的类
 
    A：检查是否将定义的类绑定到上下文中，见[上下文绑定对象](jsvm-guidelines.md#上下文绑定对象)

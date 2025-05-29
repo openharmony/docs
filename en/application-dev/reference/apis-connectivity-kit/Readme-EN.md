@@ -28,6 +28,7 @@
   - [@ohos.bluetooth.constant (Bluetooth Constant Module) (Recommended) (System API)](js-apis-bluetooth-constant-sys.md)
   - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (Recommended) (System API)](js-apis-bluetooth-hfp-sys.md)
   - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](js-apis-bluetooth-hid-sys.md)
+  - [@ohos.bluetooth.opp (Bluetooth OPP Module) (Recommended) (System API)](js-apis-bluetooth-opp-sys.md)
   - [@ohos.bluetooth.pan (Bluetooth PAN Module) (Recommended) (System API)](js-apis-bluetooth-pan-sys.md)
   - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended) (System API)](js-apis-bluetooth-pbap-sys.md)
   - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended) (System API)](js-apis-bluetooth-map-sys.md)
@@ -40,6 +41,13 @@
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
+- C APIs<!--connectivity-c-->
+  - Modules<!--connectivity-module-->
+    - [Bluetooth](_bluetooth.md)
+    - [Wifi](_wifi.md)
+  - Header Files<!--connectivity-headerfile-->
+    - [oh_bluetooth.h](oh__bluetooth_8h.md)
+    - [oh_wifi.h](oh__wifi_8h.md)
 - Error Codes
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)

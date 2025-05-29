@@ -1,10 +1,10 @@
 # 建立应用侧与前端页面数据通道
 
 
-前端页面和应用侧之间可以用[createWebMessagePorts()](../reference/apis-arkweb/js-apis-webview.md#createwebmessageports)接口创建消息端口来实现两端的通信。
+前端页面和应用侧之间可以用[createWebMessagePorts()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#createwebmessageports)接口创建消息端口来实现两端的通信。
 
 
-在下面的示例中，应用侧页面中通过createWebMessagePorts方法创建消息端口，再把其中一个端口通过[postMessage()](../reference/apis-arkweb/js-apis-webview.md#postmessage)接口发送到前端页面，便可以在前端页面和应用侧之间互相发送消息。
+在下面的示例中，应用侧页面中通过createWebMessagePorts方法创建两个消息端口，再把其中一个端口通过[postMessage()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#postmessage)接口发送到前端页面，便可以在前端页面和应用侧之间互相发送消息。
 
 
 - 应用侧代码。
@@ -47,7 +47,7 @@
                 } else if (typeof (result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }
@@ -117,7 +117,7 @@
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }

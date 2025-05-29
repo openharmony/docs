@@ -1,6 +1,6 @@
 # StepperItem
 
-The **\<StepperItem>** component provides an element for the **\<Stepper>** component.
+The **StepperItem** component provides an element for the **Stepper** component.
 
 
 >  **NOTE**
@@ -19,13 +19,15 @@ StepperItem()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 ### prevLabel
 
 prevLabel(value: string)
 
-Sets the text label of the button on the left, which is not displayed on the first page. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.
+Sets the text label of the button on the left, which is not displayed on the first page. When the **Stepper** contains more than one page, the default value for all pages except the first page is **Back**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -35,7 +37,7 @@ Sets the text label of the button on the left, which is not displayed on the fir
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes| Text label of the button on the left.|
+| value | string | Yes| Text label of the button on the left. When the string is too long, it is scaled down, wrapped in two lines, and then clipped.|
 
 ### nextLabel
 
@@ -51,7 +53,7 @@ Sets the text label of the button on the right. The default value is **Start** f
 
 | Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string                          | Yes  | Text label of the button on the right.                                          |
+| value  | string                          | Yes  | Text label of the button on the right. When the string is too long, it is scaled down, wrapped in two lines, and then clipped.                       |
 
 ### status
 
@@ -71,16 +73,18 @@ Sets the display status of **nextLabel** in the stepper.
 
 >  **NOTE**
 >
->  - The **\<StepperItem>** component does not support setting of the universal width attribute. By default, its width is the same as that of the parent **\<Stepper>** component.
->  - The **\<StepperItem>** component does not support setting of the universal height attribute. Its height is the height of the parent **\<Stepper>** component minus the height of the label button.
->  - The **\<StepperItem>** component does not support setting of the **aspectRadio** or **constrainSize** attribute, which may affect the length and width.
+>  - The **StepperItem** component does not support setting of the universal width attribute. By default, its width is the same as that of the parent **Stepper** component.
+>  - The **StepperItem** component does not support setting of the universal height attribute. Its height is the height of the parent **Stepper** component minus the height of the label button.
+>  - The **StepperItem** component does not support setting of the **aspectRadio** or **constrainSize** attribute, which may affect the length and width.
 ## ItemState
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 |   Name   | Description|
 | -------- |-------- |
-| Normal |The button on the right is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
+| Normal |The button on the right is clickable and can navigate users to the next **StepperItem** when it is clicked.|
 | Disabled |The button on the right is disabled.|
 | Waiting | The button on the right is not displayed, and a progress bar is displayed instead.|
 | Skip |The button on the right reads "Skip" by default. You can define the processing logic for this state in the **onSkip** callback of the stepper.|

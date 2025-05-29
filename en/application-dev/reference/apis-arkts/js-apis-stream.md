@@ -18,17 +18,19 @@ import { stream  } from '@kit.ArkTS';
 
 Stream to which data can be written. A writable stream allows data to be written to a target, which can be a file, an HTTP response, a standard output, another stream, or the like.
 
-### Properties
+### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer. This value is not customizable currently. When you call [write()](#write), if the data volume in the buffer reaches this watermark, [write()](#write) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
-| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the readable stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
+| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the writable stream.|
+| writableCorked | number | Yes | No| Count of cork states of the writable stream. If the value is greater than 0, the writable stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork) to increment the count by one, call [uncork()](#uncork) to decrement the count by one, and call [end()](#end) to clear the count.|
 | writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the writable stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the writable stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
@@ -37,6 +39,8 @@ Stream to which data can be written. A writable stream allows data to be written
 constructor()
 
 A constructor used to create a **Writable** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -52,13 +56,15 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 Writes data to the buffer of the stream. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
+| chunk  | string \| Uint8Array | No| Data to write. It cannot be **null**, **undefined**, or an empty string.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
@@ -66,7 +72,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 
@@ -74,7 +80,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
@@ -101,7 +107,17 @@ writableStream.write('test', 'utf8');
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the writable stream. If the **chunk** parameter is passed in, it is written as the last data chunk. This API uses an asynchronous callback to return the result.
+Ends the writing process in a writable stream. This API uses an asynchronous callback to return the result.
+
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
+
+If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
+
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
+
+If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -125,7 +141,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 
 **Example**
@@ -159,6 +175,8 @@ setDefaultEncoding(encoding?: string): boolean
 
 Sets the default encoding format for the writable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -179,7 +197,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -204,6 +222,10 @@ console.info("Writable is result", result); // Writable is result true
 cork(): boolean
 
 Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
+
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -236,6 +258,10 @@ console.info("Writable cork result", result); // Writable cork result true
 uncork(): boolean
 
 Flushes all data buffered, and writes the data to the target.
+
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -275,13 +301,15 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 Registers an event processing callback to listen for different events on the writable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream is cleared.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes| Callback function used to return the event data.|
 
 **Error codes**
@@ -290,7 +318,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -320,14 +348,16 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 Unregisters an event processing callback used to listen for different events on the writable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
-| callback | string   | No| Callback function.|
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream is cleared.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | No| Callback function.|
 
 **Error codes**
 
@@ -335,7 +365,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -370,6 +400,8 @@ doInitialize(callback: Function): void
 
 You need to implement this API but do not call it directly. It is automatically called during the initialization of the writable stream. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -384,7 +416,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -409,6 +441,8 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 A data write API. You need to implement this API but do not call it directly. This API is automatically called when data is written. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -425,7 +459,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -451,6 +485,8 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 A batch data write API. You need to implement this API but do not call it directly. This API is automatically called when data is written. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -466,7 +502,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -497,6 +533,8 @@ writableStream.end();
 
 Describes the options used in the **Readable** constructor.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Mandatory| Description|
@@ -507,7 +545,9 @@ Describes the options used in the **Readable** constructor.
 
 Stream from which data can be read. A readable stream is used to read data from a source, such as a file or a network socket.
 
-### Properties
+### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -527,6 +567,8 @@ constructor()
 
 A constructor used to create a **Readable** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -541,6 +583,8 @@ constructor(options: ReadableOptions)
 
 A constructor used to create a **Readable** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -548,6 +592,14 @@ A constructor used to create a **Readable** object.
 | Name | Type| Mandatory| Description|
 | ------ | -------- | -------- | -------- |
 | options   | [ReadableOptions](#readableoptions)   | Yes| Options in the **Readable** constructor.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -563,6 +615,8 @@ let readableStream = new stream.Readable(option);
 read(size?: number): string | null
 
 Reads data from the buffer of the readable stream and returns the read data. If no data is read, **null** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -584,7 +638,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200038 | The doRead method has not been implemented. |
 
 **Example**
@@ -610,7 +664,9 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-Resumes an explicitly paused readable stream.
+Resumes an explicitly paused readable stream. You can use **isPaused** to check whether the stream is in flowing mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -634,14 +690,16 @@ class TestReadable extends stream.Readable {
 
 let readableStream = new TestReadable();
 readableStream.resume();
-console.info("Readable test resume", readableStream.isPaused()); // Readable test resume false
+console.info("Readable test resume", !readableStream.isPaused()); // After a successful switching, the log "Readable test resume true" is displayed.
 ```
 
 ### pause
 
 pause(): Readable
 
-Pauses the readable stream in flowing mode.
+Pauses the readable stream in flowing mode. You can use **isPaused** to check whether the stream is paused.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -674,6 +732,8 @@ setEncoding(encoding?: string): boolean
 
 Sets an encoding format for the readable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -694,7 +754,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -718,6 +778,8 @@ console.info("Readable result", result); // Readable result true
 isPaused(): boolean
 
 Checks whether the readable stream is paused. The stream is paused after [pause()](#pause) is called and resumes from the paused state after [resume()](#resume) is called.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -751,6 +813,8 @@ pipe(destination: Writable, options?: Object): Writable
 
 Attaches a writable stream to the readable stream to implement automatic data transmission.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -772,7 +836,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -810,6 +874,8 @@ unpipe(destination?: Writable): Readable
 
 Detaches a writable stream previously attached to the readable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -830,7 +896,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -863,6 +929,7 @@ readable.unpipe(writable);
 readable.on('data', () => {
   console.info("Readable test unpipe data event called");
 });
+// After successful detaching, the data event is not triggered and "Readable test unpipe data event called" is not printed.
 ```
 
 ### on
@@ -870,6 +937,8 @@ readable.on('data', () => {
 on(event: string, callback: Callback<emitter.EventData>): void
 
 Registers an event processing callback to listen for different events on the readable stream.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -886,7 +955,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -914,6 +983,8 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 Unregisters an event processing callback used to listen for different events on the readable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -921,7 +992,7 @@ Unregisters an event processing callback used to listen for different events on 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event    | string   | Yes| Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called.|
-| callback | string   | No| Callback function.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | No| Callback function.|
 
 **Error codes**
 
@@ -929,7 +1000,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -953,6 +1024,7 @@ readable.setEncoding('utf8');
 readable.on('readable', read);
 readable.off('readable');
 readable.push('test');
+// After off is used to unregister the listening of the readable stream events, the read function is not called and "read() called" is not printed.
 ```
 
 ### doInitialize
@@ -960,6 +1032,8 @@ readable.push('test');
 doInitialize(callback: Function): void
 
 You need to implement this API. It is called when the readable stream calls [on](#on-1) for the first time. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -975,7 +1049,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1001,6 +1075,8 @@ doRead(size: number): void
 
 A data read API that needs to be implemented in child classes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1015,7 +1091,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1041,6 +1117,8 @@ push(chunk:  Uint8Array | string | null, encoding?: string): boolean
 
 Pushes data into the buffer of the readable stream.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1054,7 +1132,7 @@ Pushes data into the buffer of the readable stream.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full. If **null** is passed, **false** is always returned, indicating that no data chunk is available for pushing.|
 
 **Error codes**
 
@@ -1062,7 +1140,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1085,20 +1163,22 @@ console.info("Readable push test", readable.readableLength); // Readable push te
 ## Duplex
 
 A stream that is both readable and writable. A duplex stream allows data to be transmitted in two directions, that is, data can be read and written.
-The **Duplex** class inherits from [Readable](# readable) and supports all the APIs in **Readable**.
+The **Duplex** class inherits from [Readable](#readable) and supports all the APIs in **Readable**.
 
-### Properties
+### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable side of the duplex stream works in object mode. The value **true** means that the writable side of the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer in the writable side of the duplex stream. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer of the duplex stream in write mode. This value is not customizable currently. When you call [write()](#write-1), if the data volume in the buffer reaches this watermark, [write()](#write-1) will return **false**. The default value is 16 x 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
 | writableLength | number | Yes| No | Number of bytes to be written in the buffer of the duplex stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
-| writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
+| writableCorked | number | Yes | No| Count of cork states of the duplex stream. If the value is greater than 0, the duplex stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork-1) to increment the count by one, call [uncork()](#uncork-1) to decrement the count by one, and call [end()](#end-1) to clear the count.|
+| writableEnded | boolean | Yes | No| Whether [end()](#end-1) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end-1) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
 ### constructor
@@ -1106,6 +1186,8 @@ The **Duplex** class inherits from [Readable](# readable) and supports all the A
 constructor()
 
 A constructor used to create a **Duplex** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1121,13 +1203,15 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 Writes data to the buffer of the stream. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
+| chunk  | string \| Uint8Array | No| Data to write. It cannot be **null**, **undefined**, or an empty string.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
@@ -1135,7 +1219,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 
@@ -1143,7 +1227,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
@@ -1174,7 +1258,17 @@ console.info("duplexStream result", result); // duplexStream result true
 
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
-Ends the duplex stream. If the **chunk** parameter is passed in, it is written as the last data chunk. This API uses an asynchronous callback to return the result.
+Ends the writing process in a duplex stream. This API uses an asynchronous callback to return the result.
+
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
+
+If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
+
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
+
+If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1198,7 +1292,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
 
 **Example**
@@ -1230,6 +1324,8 @@ setDefaultEncoding(encoding?: string): boolean
 
 Sets the default encoding format for the duplex stream so that characters can be correctly parsed when data is read.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1250,7 +1346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1279,6 +1375,10 @@ cork(): boolean
 
 Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
 
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -1300,6 +1400,10 @@ console.info("duplexStream cork result", result); // duplexStream cork result tr
 uncork(): boolean
 
 Flushes all data buffered, and writes the data to the target.
+
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1341,6 +1445,8 @@ doWrite(chunk: string | Uint8Array, encoding: string, callback: Function): void
 
 A data write API. You need to implement this API but do not call it directly. This API is automatically called when data is written. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1357,7 +1463,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1386,6 +1492,8 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 A batch data write API. You need to implement this API but do not call it directly. This API is automatically called when data is written. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1401,7 +1509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1442,6 +1550,8 @@ constructor()
 
 A constructor used to create a **Transform** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -1455,6 +1565,8 @@ let transform = new stream.Transform();
 doTransform(chunk: string, encoding: string, callback: Function): void
 
 Converts or processes input data chunks and uses a callback to notify that the processing is complete.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1472,7 +1584,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1500,6 +1612,8 @@ doFlush(callback: Function): void
 
 Called at the end of the stream to process the remaining data. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1514,7 +1628,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1539,5 +1653,3 @@ transform.on('data', (data) => {
   console.info("data is", data.data); // data is test
 });
 ```
-
- <!--no_check--> 

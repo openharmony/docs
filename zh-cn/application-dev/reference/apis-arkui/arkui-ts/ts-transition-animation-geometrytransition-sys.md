@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持，从API Version 10开始生效。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持，从API version 10开始生效。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](ts-explicit-animation.md)使用才有动画效果，动效时长、曲线跟随[animateTo](ts-explicit-animation.md)中的配置，不支持[animation](ts-animatorproperty.md)隐式动画。
 >
@@ -54,7 +54,7 @@ struct Index {
           .width(300)
           .height(400)
           .offset({ y: 100 })
-          .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+          .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
           .transition(TransitionEffect.OPACITY)
       } else {
         // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，
@@ -71,13 +71,13 @@ struct Index {
         // 则对容器本身有圆角同步而不会操作容器内部子组件的borderRadius
         .borderRadius(20)
         .clip(true)
-        .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+        .geometryTransition("picture", { hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE })
         // transition保证组件离场不被立即析构，可设置其他转场效果
         .transition(TransitionEffect.OPACITY)
       }
     }
     .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
+      this.getUIContext()?.animateTo({ duration: 1000 }, () => {
         this.isShow = !this.isShow
       })
     })

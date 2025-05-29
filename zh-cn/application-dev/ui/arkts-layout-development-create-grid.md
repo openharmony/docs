@@ -5,7 +5,7 @@
 
 网格布局是由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。网格布局具有较强的页面均分能力，子组件占比控制能力，是一种重要自适应布局，其使用场景有九宫格图片展示、日历、计算器等。
 
-ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用条件渲染、循环渲染、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
+ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../ui/state-management/arkts-rendering-control-ifelse.md)、[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)、[懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
 
 ## 布局与约束
@@ -54,7 +54,7 @@ rowsTemplate和columnsTemplate属性值是一个由多个空格和'数字+fr'间
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .rowsTemplate('1fr 1fr 1fr')
 .columnsTemplate('1fr 2fr 1fr')
@@ -67,7 +67,7 @@ Grid() {
 
 ### 设置子组件所占行列数
 
-除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，可以通过创建Grid时传入合适的[GridLayoutOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#gridlayoutoptions10)实现如图所示的单个网格横跨多行或多列的场景，其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用。
+除了大小相同的等比例网格布局，由不同大小的网格组成不均匀分布的网格布局场景在实际应用中十分常见，如下图所示。在Grid组件中，可以通过创建Grid时传入合适的[GridLayoutOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#gridlayoutoptions10对象说明)实现如图所示的单个网格横跨多行或多列的场景，其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用。
 
   **图4** 不均匀网格布局 
 
@@ -81,7 +81,7 @@ Grid() {
 
 在网格中，可以通过onGetRectByIndex返回的[rowStart,columnStart,rowSpan,columnSpan]来实现跨行跨列布局，其中rowStart和columnStart属性表示指定当前元素起始行号和起始列号，rowSpan和columnSpan属性表示指定当前元素的占用行数和占用列数。
 
-所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为5和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为4和3，rowSpan和columnSpan设为2和1即可。
+所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
 
 
 ```ts
@@ -89,9 +89,9 @@ layoutOptions: GridLayoutOptions = {
   regularSize: [1, 1],
   onGetRectByIndex: (index: number) => {
     if (index == key1) { // key1是“0”按键对应的index
-      return [5, 0, 1, 2]
+      return [6, 0, 1, 2];
     } else if (index == key2) { // key2是“=”按键对应的index
-      return [4, 3, 2, 1]
+      return [5, 3, 2, 1];
     }
     // ...
     // 这里需要根据具体布局返回其他item的位置
@@ -102,7 +102,7 @@ Grid(undefined, this.layoutOptions) {
   // ...
 }
 .columnsTemplate('1fr 1fr 1fr 1fr')
-.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
+.rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -119,7 +119,7 @@ Grid(undefined, this.layoutOptions) {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .maxCount(3)
 .layoutDirection(GridDirection.Row)
@@ -147,22 +147,22 @@ Grid组件可以通过二维布局的方式显示一组GridItem子组件。
 Grid() {
   GridItem() {
     Text('会议')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('签到')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('投票')
-      ...
+      // ...
   }
 
   GridItem() {
     Text('打印')
-      ...
+      // ...
   }
 }
 .rowsTemplate('1fr 1fr')
@@ -176,7 +176,7 @@ Grid() {
 @Entry
 @Component
 struct OfficeService {
-  @State services: Array<string> = ['会议', '投票', '签到', '打印']
+  @State services: Array<string> = ['会议', '投票', '签到', '打印'];
 
   build() {
     Column() {
@@ -208,7 +208,7 @@ struct OfficeService {
 
 ```ts
 Grid() {
-  ...
+  // ...
 }
 .columnsGap(10)
 .rowsGap(15)
@@ -232,7 +232,7 @@ Grid() {
 @Entry
 @Component
 struct Shopping {
-  @State services: Array<string> = ['直播', '进口']
+  @State services: Array<string> = ['直播', '进口'];
 
   build() {
     Column({ space: 5 }) {
@@ -259,11 +259,11 @@ struct Shopping {
 
 ![zh-cn_image_0000001562940549](figures/zh-cn_image_0000001562940549.gif)
 
-Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage)方法进行翻页。
+Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)对象，用于进行滚动控制，例如通过Scroller对象的[scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage9)方法进行翻页。
 
 
 ```ts
-private scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller();
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
@@ -275,30 +275,64 @@ Column({ space: 5 }) {
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 
-  Row({space: 20}) {
+  Row({ space: 20 }) {
     Button('上一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: false
-        })
+        });
       })
 
     Button('下一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: true
-        })
+        });
       })
   }
 }
 ```
 
 
+## 添加外置滚动条
+
+网格组件[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可与[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)组件配合使用，为网格添加外置滚动条。两者通过绑定同一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)滚动控制器对象实现联动。
+
+1. 首先，需要创建一个[Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller)类型的对象gridScroller。
+
+   ```ts
+   private gridScroller: Scroller = new Scroller();
+   ```
+
+2. 然后，通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-grid.md#接口)参数绑定滚动控制器。
+
+   ```ts
+   // gridScroller初始化Grid组件的scroller参数，绑定gridScroller与网格。
+   Grid({ scroller: this.gridScroller }) {
+   // ...
+   }
+   ```
+
+3. 最后，滚动条通过[scroller](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md#scrollbaroptions对象说明)参数绑定滚动控制器。
+
+   ```ts
+   // gridScroller初始化ScrollBar组件的scroller参数，绑定gridScroller与滚动条。
+   ScrollBar({ scroller: this.gridScroller })
+   ```
+
+  **图11** 网格的外置滚动条 
+
+![ScrollBar](figures/grid_scrollbar.gif)
+
+>**说明：**
+>- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
+>- 在圆形屏幕设备上，[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为网格添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
+
 ## 性能优化
 
-与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../quick-start/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升列表性能。
+与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升列表性能。
 
-关于按需加载优化的具体实现可参考[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染网格时，为了更好的滚动体验，减少滑动时出现白块，Grid组件中也可通过cachedCount属性设置GridItem的预加载数量，只在懒加载LazyForEach中生效。
 
@@ -325,3 +359,4 @@ Grid() {
 - [游戏2048（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
 
 - [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+<!--RP1--><!--RP1End-->

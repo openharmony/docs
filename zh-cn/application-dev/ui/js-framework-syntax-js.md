@@ -27,7 +27,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 应用对象
   | 属性 | 类型   | 描述                                                         |
   | ---- | ------ | ------------------------------------------------------------ |
-  | $def | Object | 使用`this.$app.$def`获取在app.js中暴露的对象。<br/>> **说明：**<br/>>&nbsp;应用对象不支持数据绑定，需主动触发UI更新。 |
+  | $def | Object | 使用`this.$app.$def`获取在app.js中暴露的对象。<br/>**说明：** <br/>应用对象不支持数据绑定，需主动触发UI更新。 |
 
   示例代码
 
@@ -74,12 +74,12 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 页面对象
   | 属性     | 类型            | 描述                                                         |
   | -------- | --------------- | ------------------------------------------------------------ |
-  | data     | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以\$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data与private和public不能重合使用。 |
+  | data     | Object/Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以\$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data字段不可与private/public字段同时使用。 |
   | $refs    | Object          | 持有注册过ref&nbsp;属性的DOM元素或子组件实例的对象。示例见[获取DOM元素](#获取dom元素)。 |
   | private  | Object          | 页面的数据模型，private下的数据属性只能由当前页面修改。      |
   | public   | Object          | 页面的数据模型，public下的数据属性的行为与data保持一致。     |
-  | props    | Array/Object    | props用于组件之间的通信，可以通过&lt;tag&nbsp;xxxx='value'&gt;方式传递给组件；props名称必须用小写，不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。目前props的数据类型不支持Function。示例见[自定义组件](../reference/apis-arkui/arkui-js/js-components-custom-props.md)。 |
-  | computed | Object          | 用于在读取或设置进行预先处理，计算属性的结果会被缓存。计算属性名不能以$或_开头，不要使用保留字。示例见[自定义组件](../reference/apis-arkui/arkui-js/js-components-custom-props.md)。 |
+  | props    | Array/Object    | props用于组件之间的通信，可以通过&lt;tag&nbsp;xxxx='value'&gt;方式传递给组件；props名称必须用小写，不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。目前props的数据类型不支持Function。示例见[Props](../reference/apis-arkui/arkui-js/js-components-custom-props.md#props)。 |
+  | computed | Object          | 用于在读取或设置进行预先处理，计算属性的结果会被缓存。计算属性名不能以$或_开头，不要使用保留字。示例见[computed](../reference/apis-arkui/arkui-js/js-components-custom-props.md#computed)。 |
 
 ## 方法
 
@@ -114,15 +114,15 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   | 方法         | 参数            | 描述                                                         |
   | ------------ | --------------- | ------------------------------------------------------------ |
   | $element     | id:&nbsp;string | 获得指定id的组件对象，如果无指定id，则返回根组件对象。示例见[获取DOM元素](#获取dom元素)。<br/>用法：<br/>&lt;div&nbsp;id='xxx'&gt;&lt;/div&gt;<br/>-&nbsp;`this.$element('xxx')`：获得id为xxx的组件对象。<br/>-&nbsp;`this.$element()`：获得根组件对象。 |
-  | $rootElement | 无              | 获取根组件对象。<br/>用法：this.\$rootElement().scrollTo({&nbsp;duration:&nbsp;500,&nbsp;position:&nbsp;300&nbsp;}),&nbsp;页面在500ms内滚动300px。 |
+  | $rootElement | 无              | 获取根组件对象。<br/>用法：<br/>this.\$rootElement().scrollTo({&nbsp;duration:&nbsp;500,&nbsp;position:&nbsp;300&nbsp;}),&nbsp;页面在500ms内滚动300px。 |
   | $root        | 无              | 获得顶级ViewModel实例。[获取ViewModel](#获取viewmodel)示例。 |
   | $parent      | 无              | 获得父级ViewModel实例。[获取ViewModel](#获取viewmodel)示例。 |
   | $child       | id:&nbsp;string | 获得指定id的子级自定义组件的ViewModel实例。[获取ViewModel](#获取viewmodel)示例。<br/>用法：<br/>this.\$child('xxx')&nbsp;：获取id为xxx的子级自定义组件的ViewModel实例。 |
 
 - 事件方法
-  | 方法                                       | 参数   | 描述   |
-  | ---------------------------------------- | ---- | ---- |
-  | $watch | data:&nbsp;string,&nbsp;callback:&nbsp;string&nbsp;\|&nbsp;Function | 观察data中的属性变化，如果属性值改变，触发绑定的事件。示例见[自定义组件](../reference/apis-arkui/arkui-js/js-components-custom-props.md)。<br/>用法：<br/>this.$watch('key',&nbsp;callback) |      |      |
+  | 方法   | 参数                                                         | 描述                                                         |
+  | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | $watch | data:&nbsp;string,&nbsp;callback:&nbsp;string&nbsp;\|&nbsp;Function | 观察data中的属性变化，如果属性值改变，触发绑定的事件。示例见[\$watch感知数据改变](../reference/apis-arkui/arkui-js/js-components-custom-props.md#watch感知数据改变)。<br/>用法：<br/>this.$watch('key',&nbsp;callback)：通过监听key属性值的变化，触发callback事件。 |
 
 - 页面方法
   | 方法                    | 参数                               | 描述                              |
@@ -131,19 +131,19 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 
   **表1** ScrollPageParam<sup>6+</sup>
 
-  | 名称             | 类型                      | 默认值  | 描述                                       |
-  | -------------- | ----------------------- | ---- | ---------------------------------------- |
-  | position       | number                  | -    | 指定滚动位置。                                  |
-  | id             | string                  | -    | 指定需要滚动到的元素id。                            |
-  | duration       | number                  | 300  | 指定滚动时长，单位为毫秒。                            |
-  | timingFunction | string                  | ease | 指定滚动动画曲线，可选值参考<br/>[动画样式animation-timing-function](../reference/apis-arkui/arkui-js/js-components-common-animation.md)。 |
-  | complete       | ()&nbsp;=&gt;&nbsp;void | -    | 指定滚动完成后需要执行的回调函数。                        |
+  | 名称           | 类型                    | 默认值 | 描述                                                         |
+  | -------------- | ----------------------- | ------ | ------------------------------------------------------------ |
+  | position       | number                  | -      | 指定滚动位置。                                               |
+  | id             | string                  | -      | 指定需要滚动到的元素id。                                     |
+  | duration       | number                  | 300    | 指定滚动时长，单位为毫秒。                                   |
+  | timingFunction | string                  | ease   | 指定滚动动画曲线，可选值参考<br/>[动画样式animation-timing-function](../reference/apis-arkui/arkui-js/js-components-common-animation.md)。 |
+  | complete       | ()&nbsp;=&gt;&nbsp;void | -      | 指定滚动完成后需要执行的回调函数。                           |
 
   示例：
 
   ```js
-  this.$rootElement().scrollTo({position: 0})
-  this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
+  this.$rootElement().scrollTo({ position: 0 });
+  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => void });
   ```
 
 

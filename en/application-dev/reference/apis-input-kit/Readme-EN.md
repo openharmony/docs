@@ -1,6 +1,6 @@
-# Input Kit API Reference
+# Input Kit<!--input-api-->
 
-- ArkTS API
+- ArkTS APIs<!--input-arkts-->
   - [@ohos.multimodalInput.inputDevice (Input Device)](js-apis-inputdevice.md)
   - [@ohos.multimodalInput.inputEvent (Input Event)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.intentionCode (Intention Code)](js-apis-intentioncode.md)
@@ -10,23 +10,40 @@
   - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](js-apis-multimodalinput-gestureevent.md)
   - [@ohos.multimodalInput.pointer (Mouse Pointer)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (Touch Event)](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.infraredEmitter (IR Management)](js-apis-infraredemitter.md)
+  - [@ohos.multimodalInput.inputConsumer (Global Shortcut Keys)](js-apis-inputconsumer.md)
   <!--Del-->
-  - [@ohos.multimodalInput.pointer (mouse pointer) (system interface)](js-apis-pointer-sys.md)
-  - [@ohos.multimodalInput.shortKey (Shortcut Key) (System API)](js-apis-shortKey-sys.md)
-  - [@ohos.multimodalInput.infraredEmitter (IR Management) (System API)](js-apis-infraredemitter-sys.md)
-  - [@ohos.multimodalInput.inputConsumer (Input Consumer) (System API)](js-apis-inputconsumer-sys.md)
-  - [@ohos.multimodalInput.inputDevice (Input Device) (System API)](js-apis-inputdevice-sys.md)
+  - [@ohos.multimodalInput.pointer (Mouse Pointer) (System API)](js-apis-pointer-sys.md)
+  - [@ohos.multimodalInput.shortKey (Preset Global Shortcut Keys) (System API)](js-apis-shortKey-sys.md)
+  - [@ohos.multimodalInput.shortKey (Global Shortcut Keys) (system API)](js-apis-inputconsumer-sys.md)
+  - [@ohos.multimodalInput.inputDevice (Input device) (system API)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (Input Event Injection) (System API)](js-apis-inputeventclient-sys.md)
   - [@ohos.multimodalInput.inputMonitor (Input Monitor) (System API)](js-apis-inputmonitor-sys.md)
-  - APIs No Longer Maintained
+  - [@ohos.multimodalInput.gestureEvent (Gesture Event) (System API)](js-apis-multimodalinput-gestureevent-sys.md)
+  - APIs No Longer Maintained<!--input-arkts-dep-->
     - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (System API)](js-apis-cooperate-sys.md)
   <!--DelEnd-->
-- C API
-  - Modules
-    - [Input](input.md)
-  - Header Files and Structs
-    - Header Files
-        - [oh_input_manager.h](oh__input__manager_8h.md)
-        - [oh_key_code.h](oh__key__code_8h.md)
-- Error Codes
-  - [Screen Hopping Error Codes](errorcode-multimodalinput.md)
+- C APIs<!--input-c-->
+  - Modules<!--input-module-->
+    - [input](capi-input.md)
+  - Header Files<!--input-headerfile-->
+    - [oh_axis_type.h](capi-oh-axis-type-h.md)
+    - [oh_input_manager.h](capi-oh-input-manager-h.md)
+    - [oh_key_code.h](capi-oh-key-code-h.md)
+  - Structs<!--input-struct-->
+    - [Input_InterceptorEventCallback](capi-input-interceptoreventcallback.md)
+    - [Input_DeviceListener](capi-input-devicelistener.md)
+    - [Input_KeyState](capi-input-keystate.md)
+    - [Input_KeyEvent](capi-input-keyevent.md)
+    - [Input_MouseEvent](capi-input-mouseevent.md)
+    - [Input_TouchEvent](capi-input-touchevent.md)
+    - [Input_AxisEvent](capi-input-axisevent.md)
+    - [Input_Hotkey](capi-input-hotkey.md)
+    - [Input_DeviceInfo](capi-input-deviceinfo.md)
+    - [Input_InterceptorOptions](capi-input-interceptoroptions.md)
+- Error Codes<!--input-arkts-errcode-->
+  - [Screen Hopping Error Codes](errorcode-cooperator.md)
+  - [Shortcut Key Error Codes](errorcode-inputconsumer.md)
+  - [Input Key Monitor Error Codes](errorcode-inputmonitor.md)
+  - [Input Device Error Codes](errorcode-inputdevice.md)
+  - [Mouse Pointer Error Codes](errorcode-pointer.md)

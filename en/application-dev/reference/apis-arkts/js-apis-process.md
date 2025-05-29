@@ -57,7 +57,7 @@ Checks whether this process is isolated.
 
 | Type   | Description                                                   |
 | ------- | ------------------------------------------------------- |
-| boolean | **true**: The process is isolated.<br>**false**: The process is not isolated.|
+| boolean | Check result. The value **true** means that the process is isolated, and **false** means the opposite.|
 
 **Example**
 
@@ -80,7 +80,7 @@ Checks whether this process is running in a 64-bit environment.
 
 | Type   | Description                                                       |
 | ------- | ----------------------------------------------------------- |
-| boolean | **true**: The process is running in a 64-bit environment.<br>**false**: The process is not running in a 64-bit environment.|
+| boolean | Check result. The value **true** means that the process is running in a 64-bit environment, and **false** means the opposite.|
 
 **Example**
 
@@ -101,9 +101,9 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
 
 **Return value**
 
-| Type  | Description                          |
-| ------ | ------------------------------ |
-| number | Duration obtained, in millisecond.|
+| Type  | Description                            |
+| ------ | -------------------------------- |
+| number | Duration obtained, in milliseconds.|
 
 **Example**
 
@@ -123,14 +123,14 @@ Obtains the CPU time (in milliseconds) from the time the process starts to the c
 
 **Return value**
 
-| Type  | Description                         |
-| ------ | ----------------------------- |
-| number | CPU time obtained, in millisecond.|
+| Type  | Description                           |
+| ------ | ------------------------------- |
+| number | CPU time obtained, in milliseconds.|
 
 **Example**
 
 ```js
-let result = process.getPastCpuTime() ;
+let result = process.getPastCpuTime();
 ```
 
 
@@ -197,13 +197,13 @@ Sends a signal to the specified process to terminate it.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
+| boolean | Signal sending result. The value **true** means that the signal is sent successfully, and **false** means the opposite.|
 
 **Example**
 
 ```js
-let pres = process.pid
-let result = process.kill(28, pres)
+let pres = process.pid;
+let result = process.kill(28, pres);
 ```
 
 
@@ -261,7 +261,7 @@ Obtains the UID of a user from the user database of the system based on the spec
 **Example**
 
 ```js
-let pres = process.getUidForName("tool")
+let pres = process.getUidForName("tool");
 ```
 
 
@@ -319,7 +319,7 @@ Checks whether a UID belongs to this application.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
+| boolean | Check result. The value **true** means that the UID belongs to the application, and **false** means the opposite.|
 
 **Example**
 
@@ -355,8 +355,8 @@ Obtains the system configuration.
 **Example**
 
 ```js
-let _SC_ARG_MAX = 0
-let pres = process.getSystemConfig(_SC_ARG_MAX)
+let _SC_ARG_MAX = 0;
+let pres = process.getSystemConfig(_SC_ARG_MAX);
 ```
 
 
@@ -387,7 +387,7 @@ Obtains the value of an environment variable.
 **Example**
 
 ```js
-let pres = process.getEnvironmentVar("PATH")
+let pres = process.getEnvironmentVar("PATH");
 ```
 
 
@@ -411,13 +411,13 @@ Checks whether a UID belongs to this application.
 
 | Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| v      | number | Yes  | UID.|
+| v      | number | Yes  | UID. which can be obtained by running **process.uid**.|
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
+| boolean | Check result. The value **true** means that the UID belongs to the application, and **false** means the opposite.|
 
 **Error codes**
 
@@ -431,7 +431,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 let pro = new process.ProcessManager();
-let result = pro.isAppUid(688);
+// Use process.uid to obtain the UID.
+let pres = process.uid;
+let result = pro.isAppUid(pres);
+console.log("result: " + result); // result: true
 ```
 
 
@@ -455,7 +458,7 @@ Obtains the UID of a user from the user database of the system based on the spec
 
 | Type  | Description         |
 | ------ | ------------- |
-| number | UID of the user.|
+| number | UID of the user. If the user does not exist, **-1** is returned.|
 
 **Error codes**
 
@@ -532,7 +535,7 @@ Obtains the system configuration.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | System configuration obtained.|
+| number | System configuration obtained. If the system configuration does not exist, **-1** is returned.|
 
 **Error codes**
 
@@ -556,6 +559,10 @@ let pres = pro.getSystemConfig(_SC_ARG_MAX);
 getEnvironmentVar(name: string): string
 
 Obtains the value of an environment variable.
+
+> **NOTE**
+>
+>  If the environment variable does not exist, **undefined** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -644,7 +651,7 @@ Sends a signal to the specified process to terminate it.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean |  **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
+| boolean | Signal sending result. The value **true** means that the signal is sent successfully, and **false** means the opposite.|
 
 **Error codes**
 

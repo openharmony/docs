@@ -50,7 +50,7 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 
 ## 单一手势
 
-通过上文的示例已经了解了如果将手势绑定在节点上，接下来将分别介绍不同手势的创建方法，并分别支持哪些事件回调。
+通过上文的示例已经了解了如何将手势绑定在节点上，接下来将分别介绍不同手势的创建方法。
 
 - 点击手势
   通过给组件绑定点击手势可在组件被点击时触发此回调，可指定触发回调需要的点击次数和手指个数。
@@ -88,7 +88,7 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
   ```
 
 - 滑动手势
-  通过给组件绑定滑动手势可在用户滑动组件时触发回调，可指定触发回调需要的手指个数（最小为1）、滑动方向、滑动速度（单位px/s）
+  通过给组件绑定滑动手势可在用户滑动组件时触发回调，可指定触发回调需要的手指个数（最小为1）、滑动方向、滑动速度（单位px/s）。
 
   ```
   ArkUI_GestureRecognizer* (*createSwipeGesture)(
@@ -98,14 +98,14 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 
 ## 组合手势
 
-组合手势由多种单一手势组合而成，通过在GroupGesture中使用不同的ArkUI_GroupGestureMode来声明该组合手势的类型，支持顺序识别、并行识别、互斥识别三种类型。
+可以将多个不同类型的手势组合在一起，形成一个手势组，这个手势组可以作为一个识别整体，达到对用户多个不同类型手势序列的识别目的。
 
-ArkUI_GroupGestureMode枚举类，用于声明该组合手势的类型。顺序识别SEQUENTIAL_GROUP，并行识别PARALLEL_GROUP，互斥识别EXCLUSIVE_GROUP。
+通过设置[ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode)来指定这个手势组的识别模式，即组内的手势之间的关系，包含顺序识别SEQUENTIAL_GROUP，并行识别PARALLEL_GROUP，互斥识别EXCLUSIVE_GROUP。
 
 
 ### 顺序识别
 
-顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应GESTURE_EVENT_ACTION_END。
+顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应[GESTURE_EVENT_ACTION_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_gestureeventactiontype)。
 
 以顺序识别长按和滑动手势为例：
 
@@ -513,33 +513,33 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### 自定义手势判定
 
-支持自定义手势判定，当组件触发手势时，可根据回调内容判定当前响应的手势是否继续执行。
+当用户的操作符合某个手势识别器，该识别器即将触发成功时，可通过自定义手势判定能力来动态决策，是否希望该识别器被系统认定为识别成功。通过setGestureInterrupterToNode接口，绑定一个回调在该组件上，但组件上的某个手势即将识别成功时，通过返回CONTUNUE或REJECT来决定是否将成功机会让给其它手势识别器。
 
 在上文绑定手势事件的示例中按照如下方式进行调整即可实现自定义手势判定。
 
 
 1. 创建自定义手势判定回调。
-   ```
-       auto onInterruptCallback = [](ArkUI_GestureInterruptInfo *info) -> ArkUI_GestureInterruptResult {
-           // 获取是否系统手势
-           auto systag = OH_ArkUI_GestureInterruptInfo_GetSystemFlag(info);
-           // 获取拦截的手势指针
-           auto recognizer = OH_ArkUI_GestureInterruptInfo_GetRecognizer(info);
-           // 获取系统手势类型
-           auto systemRecognizerType = OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(info);
-           // 获取手势事件
-           auto gestureEvent = OH_ArkUI_GestureInterruptInfo_GetGestureEvent(info);
-           auto inputevent = OH_ArkUI_GestureEvent_GetRawInputEvent(gestureEvent);
-   
-           if (systag) {
-               // 如果是系统手势则不拦截
-               return GESTURE_INTERRUPT_RESULT_CONTINUE;
-           } else {
-               // 不是系统手势则拒绝
-               return GESTURE_INTERRUPT_RESULT_REJECT;
-           }
-       };
-   ```
+    ```
+    auto onInterruptCallback = [](ArkUI_GestureInterruptInfo *info) -> ArkUI_GestureInterruptResult {
+        // 获取是否系统手势
+        auto systag = OH_ArkUI_GestureInterruptInfo_GetSystemFlag(info);
+        // 获取拦截的手势指针
+        auto recognizer = OH_ArkUI_GestureInterruptInfo_GetRecognizer(info);
+        // 获取系统手势类型
+        auto systemRecognizerType = OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(info);
+        // 获取手势事件
+        auto gestureEvent = OH_ArkUI_GestureInterruptInfo_GetGestureEvent(info);
+        auto inputevent = OH_ArkUI_GestureEvent_GetRawInputEvent(gestureEvent);
+
+        if (systag) {
+            // 如果是系统手势则不拦截
+            return GESTURE_INTERRUPT_RESULT_CONTINUE;
+        } else {
+            // 不是系统手势则拒绝
+            return GESTURE_INTERRUPT_RESULT_REJECT;
+        }
+    };
+    ```
 
 2. 绑定手势判定和节点。
    ```
@@ -548,3 +548,60 @@ ArkUI_NodeHandle testGestureExample() {
 
 
 经过上述修改，将原本可以生效的长按手势做了拦截，即，此时再对Column节点长按将不会触发长按的手势回调。
+
+## 获取事件信息
+
+[绑定手势事件](#绑定手势事件)已详细说明如何将手势绑定到节点上。在回调执行时，ArkUI框架提供了[OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口，可从手势事件中获取基础事件对象。之后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用依据获取的信息，在手势事件执行过程中实现差异化交互逻辑。
+
+   ```cpp
+   // 设置回调，在触发手势事件时执行回调处理手势事件
+   auto onActionCallback = [](ArkUI_GestureEvent *event, void *extraParams) {
+       // 从手势事件获取基础事件对象
+       auto *inputEvent = OH_ArkUI_GestureEvent_GetRawInputEvent(event);
+       // 从基础事件获取事件信息
+       auto x = OH_ArkUI_PointerEvent_GetX(inputEvent);
+       auto y = OH_ArkUI_PointerEvent_GetY(inputEvent);
+       auto displayX = OH_ArkUI_PointerEvent_GetDisplayX(inputEvent);
+       auto displayY = OH_ArkUI_PointerEvent_GetDisplayY(inputEvent);
+       auto windowX = OH_ArkUI_PointerEvent_GetWindowX(inputEvent);
+       auto windowY = OH_ArkUI_PointerEvent_GetWindowY(inputEvent);
+       auto pointerCount = OH_ArkUI_PointerEvent_GetPointerCount(inputEvent);
+       auto xByIndex = OH_ArkUI_PointerEvent_GetXByIndex(inputEvent, 0);
+       auto yByIndex = OH_ArkUI_PointerEvent_GetYByIndex(inputEvent, 0);
+       auto displayXByIndex = OH_ArkUI_PointerEvent_GetDisplayXByIndex(inputEvent, 0);
+       auto displayYByIndex = OH_ArkUI_PointerEvent_GetDisplayYByIndex(inputEvent, 0);
+       auto windowXByIndex = OH_ArkUI_PointerEvent_GetWindowXByIndex(inputEvent, 0);
+       auto windowYByIndex = OH_ArkUI_PointerEvent_GetWindowYByIndex(inputEvent, 0);
+       auto pointerId = OH_ArkUI_PointerEvent_GetPointerId(inputEvent, 0);
+       auto pressure = OH_ArkUI_PointerEvent_GetPressure(inputEvent, 0);
+       auto action = OH_ArkUI_UIInputEvent_GetAction(inputEvent);
+       auto eventTime = OH_ArkUI_UIInputEvent_GetEventTime(inputEvent);
+       auto sourceType = OH_ArkUI_UIInputEvent_GetSourceType(inputEvent);
+       auto type = OH_ArkUI_UIInputEvent_GetType(inputEvent);
+       std::string eventInfo =
+           "x: " + std::to_string(x) + ", y: " + std::to_string(y) +
+           ", displayX: " + std::to_string(displayX) + ", displayY: " + std::to_string(displayY) +
+           ", windowX: " + std::to_string(windowX) + ", windowY: " + std::to_string(windowY) + "\n" +
+           ", pointerCount: " + std::to_string(pointerCount) + ", xByIndex: " + std::to_string(xByIndex) +
+           ", yByIndex: " + std::to_string(yByIndex) +
+           ", displayXByIndex: " + std::to_string(displayXByIndex) +
+           ", displayYByIndex: " + std::to_string(displayYByIndex) +
+           ", windowXByIndex: " + std::to_string(windowXByIndex) +
+           ", windowYByIndex: " + std::to_string(windowYByIndex) + "\n" +
+           ", pointerId: " + std::to_string(pointerId) + ", pressure: " + std::to_string(pressure) +
+           ", action: " + std::to_string(action) + ", eventTime: " + std::to_string(eventTime) +
+           ", sourceType: " + std::to_string(sourceType) + ", type: " + std::to_string(type);
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfoOfCommonEvent", "eventInfo = %{public}s",
+                       eventInfo.c_str());
+   };
+   // 创建一个单指点击手势
+   auto TapGesture = gestureApi->createTapGesture(1, 1);
+   // 将事件回调绑定到TapGesture上，触发手势后，通过回调函数处理手势事件
+   gestureApi->setGestureEventTarget(TapGesture,
+                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
+                                           GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
+                                       column, onActionCallback);
+   // 将手势添加到colunm组件上，使column组件可以触发单指点击手势
+   gestureApi->addGestureToNode(column, TapGesture, ArkUI_GesturePriority::PARALLEL,
+                                           ArkUI_GestureMask::NORMAL_GESTURE_MASK);
+   ```

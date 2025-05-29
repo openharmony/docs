@@ -4,12 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The error codes of the file management subsystem include the following:
-- [Basic File IO Error Codes](#basic-file-io-error-codes)
-- [User Data Management Error Codes](#user-data-management-error-codes)
-- [User File Access Error Codes](#user-file-access-error-codes)
-- [Space Statistics Error Codes](#space-statistics-error-codes)
-- [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
+The error codes of the file management subsystem include the following:<br>- [Basic File IO Error Codes](#basic-file-io-error-codes)<br>- [User Data Management Error Codes](#user-data-management-error-codes)<br>- [User File Access Error Codes](#user-file-access-error-codes)<br>- [Space Statistics Error Codes](#space-statistics-error-codes)<br>- [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
 
 ## Basic File IO Error Codes
 
@@ -21,11 +16,15 @@ Operation not permitted
 
 **Possible Causes**
 
-The current operation on the file is not allowed.
+The caller does not have the permission to access the URI or path.
 
 **Solution**
 
-Check the permission for the file.
+1. Check whether the caller cannot use the URI shared by another application. For details, see [access control mechanisms](../../security/AccessToken/access-token-overview.md) of the system.
+
+2. Check whether the permission is obtained by Picker. The permission obtained by Picker is temporary. For details, see [System Pickers](../../application-models/system-app-startup.md).
+
+3. Check whether the URI is a concatenated path, which has no permission by default.
 
 ### 13900002 File or Directory Not Exist
 
@@ -49,7 +48,7 @@ No such process
 
 **Possible Causes**
 
-The process does not exist.
+This error code is reported if a process does not exist.
 
 **Solution**
 
@@ -85,7 +84,7 @@ The I/O request is invalid.
 
 **Solution**
 
-Initiate the I/O request again.
+Make the I/O request again.
 
 ### 13900006 Device or Address Not Exist
 
@@ -183,15 +182,17 @@ Permission denied
 
 **Possible Causes**
 
-1. You do not have the permission to operate the file.
+1. The operation is intercepted by DAC or SELinux.
 
 2. The file sandbox path is incorrect.
 
 **Solution**
 
-1. Check that the required permission is available.
+1. Check the UGO permission of the file.
 
-2. Check that the file sandbox path is correct.
+2. Check the kernel log for [AVC log information](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md). If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
+
+3. Check whether the file path is a [sandbox path](../../file-management/app-sandbox-directory.md). The File Management system does not allow operations on files outside the sandbox directory.
 
 ### 13900013 Incorrect Address
 
@@ -275,7 +276,7 @@ The specified directory is invalid.
 
 **Solution**
 
-Check that the specified directory is correct.
+Check that the specified data is correct.
 
 ### 13900019 The Specified Object Is a Directory
 
@@ -439,11 +440,11 @@ Filename too Long
 
 **Possible Causes**
 
-The length of the path or file name exceeds the limit.
+The file name length exceeds 256 bytes.
 
 **Solution**
 
-Modify the path or file name.
+Check the file name length.
 
 ### 13900031 Function Not Implemented
 
@@ -595,7 +596,7 @@ Quota exceeded
 
 **Possible Causes**
 
-The storage space is insufficient.
+Insufficient storage space.
 
 **Solution**
 
@@ -609,13 +610,41 @@ Unknown error
 
 **Possible Causes**
 
-The error is unidentified.
+Internal error
 
 **Solution**
 
 1. Call the API again.
 
 2. Restart the service.
+
+### 13900043 No Available Lock
+
+**Error Message**
+
+No record is locks available
+
+**Possible Causes**
+
+System resources are insufficient.
+
+**Solution**
+
+Wait until a lock is released and try again.
+
+### 2300007 Network Access Failure
+
+**Error Message**
+
+Network is unreachable
+
+**Possible Causes**
+
+A network error occurs.
+
+**Solution**
+
+Check the network status.
 
 ### 13900045 Connection Failed
 
@@ -655,7 +684,7 @@ The device goes offline, or the Wi-Fi or Bluetooth is disconnected.
 
 **Error Message**
 
-Invalid display name
+Invalid file name
 
 **Possible Causes**
 
@@ -669,7 +698,7 @@ Modify the file name.
 
 **Error Message**
 
-Invalid uri
+Invalid URI
 
 **Possible Causes**
 
@@ -697,7 +726,7 @@ Modify the file name extension.
 
 **Error Message**
 
-File has been put into trash bin
+File already in the recycle bin
 
 **Possible Causes**
 
@@ -755,7 +784,7 @@ Check whether the service is started.
 
 **Error Message**
 
-Not supported filesystem
+File system not supported
 
 **Possible Causes**
 
@@ -769,7 +798,7 @@ Use a supported file system.
 
 **Error Message**
 
-Failed to mount
+Mount failed
 
 **Possible Causes**
 
@@ -783,7 +812,7 @@ Remove the card and run the **mount** command again.
 
 **Error Message**
 
-Failed to unmount
+Unmount failed
 
 **Possible Causes**
 
@@ -811,7 +840,7 @@ Check whether the current volume state is correct.
 
 **Error Message**
 
-Prepare directory or node error
+Failed to create the drectory or node
 
 **Possible Causes**
 
@@ -825,7 +854,7 @@ Check whether the directory or node to be created already exists.
 
 **Error Message**
 
-Delete directory or node error
+Failed to delete the drectory or node
 
 **Possible Causes**
 
@@ -857,7 +886,7 @@ No such object
 
 **Error Message**
 
-User id out of range
+User ID out of range
 
 **Possible Causes**
 
@@ -889,7 +918,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Invalid uri
+Invalid URI
 
 **Possible Causes**
 
@@ -903,7 +932,7 @@ Check that the URI is in correct format.
 
 **Error Message**
 
-Fail to get fileextension info
+Failed to obtain the server ability information
 
 **Possible Causes**
 
@@ -911,13 +940,13 @@ The BMS interface is abnormal.
 
 **Solution**
 
-Check for basic system capability errors.
+Check for basic system capability errors. <!--RP1-->Please contact the OpenHarmony team for support.<!--RP1End-->
 
 ### 14300004 Incorrect Result Returned by js-server
 
 **Error Message**
 
-Get wrong result
+Incorrect result returned by js-server
 
 **Possible Causes**
 
@@ -931,7 +960,7 @@ Check the data returned by the server.
 
 **Error Message**
 
-Fail to register notification
+Failed to register Notify
 
 **Possible Causes**
 
@@ -947,7 +976,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Fail to remove notification
+Failed to unregister Notify
 
 **Possible Causes**
 
@@ -963,7 +992,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Fail to init notification agent
+Failed to initialize the Notify agent
 
 **Possible Causes**
 
@@ -971,13 +1000,13 @@ The specified Notify agent has not been registered.
 
 **Solution**
 
-Check whether the specified Notify agent is registered.
+Check whether the Notify agent has been registered.
 
 ### 14300008 Failed to Notify the Agent
 
 **Error Message**
 
-Fail to notify agent
+Failed to notify the agent
 
 **Possible Causes**
 
@@ -1005,9 +1034,9 @@ Cloud status not ready
 
 **Solution**
 
-1. Check that the user has logged in with a cloud account.
+1. Check whether the user has logged in using an account.
 
-2. Check that the cloud synchronization switch is enabled.
+2. Check whether the cloud synchronization switch is enabled.
 
 ### 22400002 Network Unavailable
 
@@ -1027,7 +1056,7 @@ Check the network status.
 
 **Error Message**
 
-Battery level warning
+Low battery level
 
 **Possible Causes**
 

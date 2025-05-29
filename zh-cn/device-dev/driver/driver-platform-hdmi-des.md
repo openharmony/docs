@@ -10,15 +10,15 @@ HDMI以主从方式工作，通常有一个Source端和一个Sink端。
 
 HDMI接口定义了完成HDMI传输的通用方法集合，包括：
 
-- HDMI控制器管理：打开或关闭HDMI控制器
+- HDMI控制器管理：打开或关闭HDMI控制器。
 
-- HDMI启动/停止传输：启动或停止HDMI传输
+- HDMI启动/停止传输：启动或停止HDMI传输。
 
-- HDMI控制器设置：设置音频、视频及HDR属性，设置色彩深度、声音图像消隐等
+- HDMI控制器设置：设置音频、视频及HDR属性，设置色彩深度、声音图像消隐等。
 
-- HDMI读取EDID：读取Sink端原始的EDID数据
+- HDMI读取EDID：读取Sink端原始的EDID数据。
 
-- HDMI热插拔：注册/注销热插拔回调函数
+- HDMI热插拔：注册/注销热插拔回调函数。
 
 ### 基本概念
 
@@ -78,7 +78,7 @@ HDMI具有体积小，传输速率高，传输带宽宽，兼容性好，能同�
 
 ### 接口说明
 
-HDMI模块提供的主要接口如下所示，具体API详见//drivers/hdf_core/framework/include/platform/hdmi_if.h。
+HDMI模块提供的主要接口如下所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/hdmi_if.h)。
 
 **表 1** HDMI驱动API接口功能介绍
 
@@ -224,7 +224,7 @@ int32_t HdmiSetAudioAttribute(DevHandle handle, struct HdmiAudioAttr *attr);
 | ------ | -------------- |
 | handle | DevHandle类型，HDMI控制器句柄 |
 | attr | 结构体指针，音频属性 |
-| 返回值 | 返回值描述 |
+| **返回值** | **返回值描述** |
 | HDF_SUCCESS | 设置成功 |
 | 负数 | 设置失败 |
 

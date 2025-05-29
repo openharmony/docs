@@ -1,6 +1,6 @@
 # @ohos.enterprise.deviceInfo（设备信息管理）
 
-本模块提供企业设备信息管理能力，包括获取设备序列号等。
+本模块提供企业设备信息管理能力，包括获取设备序列号、设备名称等。
 
 > **说明：**
 >
@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -30,8 +30,8 @@ getDeviceInfo(admin: Want, label: string): string
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| label  | string                                                  | 是   | 管理员的能力信息。<br/>- deviceName：设备名称。<br/>- deviceSerial：设备序列号。<br/>- simInfo：SIM卡信息。 <!--RP1--><!--RP1End-->|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| label  | string                                                  | 是   | 支持获取设备信息标签。<br/>- deviceName：设备名称。<br/>- deviceSerial：设备序列号。<br/>- simInfo：SIM卡信息。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -54,6 +54,7 @@ getDeviceInfo(admin: Want, label: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

@@ -1,4 +1,4 @@
-# @ohos.arkui.Theme (Theme)
+# @ohos.arkui.theme(Theme)
 
 You can define a custom theme to apply to components in your application.
 
@@ -20,9 +20,9 @@ Defines the **Theme** object in use, which can be obtained through [onWillApplyT
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type               | Read Only | Optional | Description      |
+| Name | Type               | Readable | Writable | Description      |
 | ------ |-------------------|-----|-----|----------|
-| colors | [Colors](#colors) | No  | No  |  Color resources of the theme.|
+| colors | [Colors](#colors) | No  | No  |  Color resources of the theme. |
 
 ## Colors
 
@@ -32,9 +32,9 @@ Defines the color resources of a theme.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                          | Type                                                | Read Only | Optional | Description              |
+| Name                          | Type                                                | Readable | Writable | Description              |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
-| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Brand color.          |
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Brand color.            |
 | warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Warning color.          |
 | alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Alert color.          |
 | confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Confirmation color.            |
@@ -43,20 +43,20 @@ Defines the color resources of a theme.
 | fontTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary font color.       |
 | fontFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level font color.       |
 | fontEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Emphasis font color.         |
-| fontOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary inverted font color used on color background.|
-| fontOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary inverted font color used on color background.|
-| fontOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary inverted font color used on color background.|
-| fontOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level inverted font color used on color background.|
+| fontOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary inverted font color used on color background. |
+| fontOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary inverted font color used on color background. |
+| fontOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary inverted font color used on color background. |
+| fontOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level inverted font color used on color background. |
 | iconPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary icon color.         |
 | iconSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary icon color.         |
 | iconTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary icon color.         |
 | iconFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level icon color.         |
 | iconEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Emphasis icon color.         |
 | iconSubEmphasize              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Color of the emphasis auxiliary icon.       |
-| iconOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary inverted icon color used on color background.|
-| iconOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary inverted icon color used on color background.|
-| iconOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary inverted icon color used on color background.|
-| iconOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level inverted icon color used on color background.|
+| iconOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary inverted icon color used on color background. |
+| iconOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary inverted icon color used on color background. |
+| iconOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary inverted icon color used on color background. |
+| iconOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Fourth-level inverted icon color used on color background. |
 | backgroundPrimary             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Primary background color (solid, opaque). |
 | backgroundSecondary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Secondary background color (solid, opaque). |
 | backgroundTertiary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | No  | No  | Tertiary background color (solid, opaque). |
@@ -96,7 +96,7 @@ Defines a custom theme object.
 
 | Name                          | Type                                                | Read Only | Optional | Description        |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------|
-| colors | [CustomColors](#customcolors) | No  | Yes  | Color resources of the custom theme.|
+| colors | [CustomColors](#customcolors) | No  | Yes  | Color resources of the custom theme. |
 
 ## CustomColors
 
@@ -110,7 +110,7 @@ Defines the color resources of a custom theme.
 
 | Type | Description          |
 |-----|--------------|
-| Partial<[Colors](#colors)>   | Color resources of the custom theme.|
+| Partial<[Colors](#colors)>   | Color resources of the custom theme. |
 
 ## ThemeControl
 
@@ -130,9 +130,9 @@ Sets a custom theme as the default, application-level theme so that it is applie
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                          | Mandatory| Description            |
+| Name      | Type                          | Mandatory | Description            |
 |--------------|------------------------------|------|----------------|
-| theme | [CustomTheme](#customtheme)  | Yes   | Custom theme to set.|
+| theme | [CustomTheme](#customtheme)  | Yes   | Custom theme to set. |
 
 **Example**
 

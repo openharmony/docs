@@ -42,18 +42,12 @@ You can obtain the MindSpore Lite model conversion tool in either of the followi
      -  CMake >= 3.18.3
      -  Git >= 2.28.0
 
-2. Obtain the [MindSpore Lite source code](https://gitee.com/openharmony/third_party_mindspore). The source code is managed in "compressed package + patch" mode. Run the following commands to decompress the source code package and install the patch:
-
-   ```bash
-   cd mindspore
-   python3 build_helper.py --in_zip_path=./mindspore-v1.8.1.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
-   ```
-
-   If the command execution is successful, the complete MindSpore Lite source code is generated in `mindspore-src/source/`.
+2. Obtain the [MindSpore Lite source code](https://gitee.com/openharmony/third_party_mindspore).
+   The complete source code of MindSpore Lite is available at `mindspore-src/source/`.
 
 3. Start building.
 
-   To obtain the conversion tool that supports PyTorch model conversion, run `export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL = on && export LIB_TORCH_PATH="/home/user/libtorch"` before you begin model building. Add the libtorch environment variable `export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"` before conversion. You can download the libtorch package of the CPU version and decompress it to `/home/user/libtorch`.
+   To obtain the conversion tool that supports PyTorch model conversion, run `export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL=on && export LIB_TORCH_PATH="/home/user/libtorch"` before you begin model building. Add the libtorch environment variable `export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"` before conversion. You can download the libtorch package of the CPU version and decompress it to `/home/user/libtorch`.
 
    ```bash
    cd mindspore-src/source/

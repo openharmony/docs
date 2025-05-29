@@ -8,7 +8,7 @@ OpenHarmony上的OpenSL ES接口，是早期SDK8版本开始提供，用于支�
 
 在SDK10版本，OpenHarmony推出了OHAudio接口，并将系统具备的所有音频功能都通过此接口开放。OHAudio接口已能够覆盖OpenSL ES在OpenHarmony中已提供的所有能力，并拓展支持音频焦点事件，低时延等新版本特性。
 
-OHAudio的开发指南见[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)
+OHAudio的开发指南见[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)。
 
 考虑到一些接入OpenHarmony较早的应用开发者，这里提供了一份OpenSL ES接口切换到OHAudio的对照参考[OpenSL ES接口切换OHAudio参考](replace-opensles-by-ohaudio.md)，便于开发者能够更快的在新版本切换到使用新接口。
 
@@ -20,14 +20,14 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 以下列表列举了OpenHarmony上已实现的OpenSL ES的接口，具体说明请参考[OpenSL ES](https://www.khronos.org/opensles/)规范：
 
-- **OpenHarmony上支持的SLInterfaceID**：
+- **OpenHarmony上支持的SLInterfaceID：**
 
   | SLInterfaceID | 说明 |
   | -------- | -------- |
-  | SL_IID_ENGINE | 通用引擎，提供创建播放对象接口 |
-  | SL_IID_PLAY | 提供播放状态接口 |
-  | SL_IID_VOLUME | 提供音频播放流音量调节和读取接口 |
-  | SL_IID_OH_BUFFERQUEUE | 提供音频播放流数据回调注册接口 |
+  | SL_IID_ENGINE | 通用引擎，提供创建播放对象接口。 |
+  | SL_IID_PLAY | 提供播放状态接口。 |
+  | SL_IID_VOLUME | 提供音频播放流音量调节和读取接口。 |
+  | SL_IID_OH_BUFFERQUEUE | 提供音频播放流数据回调注册接口。 |
 
 - **OpenHarmony上支持的Engine接口：**
   - SLresult (\*CreateAudioPlayer) (SLEngineItf self, SLObjectItf \* pPlayer, SLDataSource \*pAudioSrc, SLDataSink \*pAudioSnk, SLuint32 numInterfaces, const SLInterfaceID \* pInterfaceIds, const SLboolean \* pInterfaceRequired)
@@ -44,12 +44,12 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
   - SLresult (\*SetPlayState) (SLPlayItf self, SLuint32 state)
   - SLresult (\*GetPlayState) (SLPlayItf self, SLuint32 \*pState)
 
-- **OpenHarmony上支持的Volume控制接口**：
+- **OpenHarmony上支持的Volume控制接口：**
   - SLresult (\*SetVolumeLevel) (SLVolumeItf self, SLmillibel level)
   - SLresult (\*GetVolumeLevel) (SLVolumeItf self, SLmillibel \*pLevel)
   - SLresult (\*GetMaxVolumeLevel) (SLVolumeItf  self, SLmillibel \*pMaxLevel)
 
-- **OpenHarmony上支持的BufferQueue接口**：
+- **OpenHarmony上支持的BufferQueue接口：**
    
    以下接口需引入&lt;OpenSLES_OpenHarmony.h&gt;使用。
 
@@ -73,7 +73,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 1. 添加头文件。
      
-   ```c++
+   ```cpp
    #include "SLES/OpenSLES.h"
    #include "SLES/OpenSLES_OpenHarmony.h"
    #include "SLES/OpenSLES_Platform.h"
@@ -81,7 +81,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 2. 使用slCreateEngine接口和获取engine实例。
      
-   ```c++
+   ```cpp
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
@@ -89,25 +89,25 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 3. 获取接口SL_IID_ENGINE的engineEngine实例。
      
-   ```c++
+   ```cpp
    SLEngineItf engineEngine = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
    ```
 
 4. 配置播放器信息，创建AudioPlayer。
      
-   ```c++
+   ```cpp
    SLDataLocator_BufferQueue slBufferQueue = {
        SL_DATALOCATOR_BUFFERQUEUE,
        1
    };
    
-   // 具体参数需要根据音频文件格式进行适配
+   // 具体参数需要根据音频文件格式进行适配。
    SLDataFormat_PCM pcmFormat = {
        SL_DATAFORMAT_PCM,
-       2,                           // 通道数
-       SL_SAMPLINGRATE_48,          // 采样率
-       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式
+       2,                           // 通道数。
+       SL_SAMPLINGRATE_48,          // 采样率。
+       SL_PCMSAMPLEFORMAT_FIXED_16, // 音频采样格式。
        16,
        SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT,
        SL_BYTEORDER_LITTLEENDIAN
@@ -129,29 +129,29 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 5. 获取接口SL_IID_OH_BUFFERQUEUE的bufferQueueItf实例。
      
-   ```c++
+   ```cpp
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 6. 打开音频文件，注册BufferQueueCallback回调。
      
-   ```c++
+   ```cpp
    static void BufferQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
        SLuint8 *buffer = nullptr;
        SLuint32 pSize;
        (*bufferQueueItf)->GetBuffer(bufferQueueItf, &buffer, &pSize);
-       // 将待播放音频数据写入buffer
+       // 将待播放音频数据写入buffer。
        (*bufferQueueItf)->Enqueue(bufferQueueItf, buffer, size);
    }
-   void *pContext; // 可传入自定义的上下文信息，会在Callback内收到
+   void *pContext; // 可传入自定义的上下文信息，会在Callback内收到。
    (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, pContext);
    ```
 
 7. 获取接口SL_PLAYSTATE_PLAYING的playItf实例，开始播放。
      
-   ```c++
+   ```cpp
    SLPlayItf playItf = nullptr;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_PLAY, &playItf);
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
@@ -159,7 +159,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 8. 结束音频播放。
      
-   ```c++
+   ```cpp
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_STOPPED);
    (*pcmPlayerObject)->Destroy(pcmPlayerObject);
    (*engineObject)->Destroy(engineObject);

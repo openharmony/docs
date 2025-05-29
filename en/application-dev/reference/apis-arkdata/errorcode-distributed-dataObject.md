@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Create table failed.
+Failed to create the in-memory database.
 
 **Description**
 
@@ -16,8 +16,8 @@ The in-memory database fails to be created.
 
 **Possible Causes**
 
-An object with the same session ID already exists.
+The same session ID is set for another distributed data object.
 
 **Solution**
 
-Check for the object has been added to the same session.
+Use [genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid) to generate a random session ID to avoid using an existing session ID.

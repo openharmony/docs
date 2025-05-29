@@ -12,7 +12,7 @@
 
 ## 点击事件
 
-点击事件是指通过手指或手写笔做出一次完整的按下和抬起动作。当发生点击事件时，会触发以下回调函数：
+点击事件是指通过手指或手写笔完成一次按压和抬起的动作。发生点击事件时，会触发以下回调函数：
 
 
 
@@ -139,3 +139,5 @@ struct TouchExample {
 针对触屏事件开发，有以下相关实例可供参考：
 
 - [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+
+<!--RP1--><!--RP1End-->

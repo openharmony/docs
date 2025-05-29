@@ -261,13 +261,14 @@ clearChildren(): void
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -291,6 +292,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -298,7 +300,7 @@ struct Index {
         .width(200)
         .height(300)
       Button("clearChildren")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.clearChildren();
         })
     }.width("100%")
@@ -331,13 +333,14 @@ getChild(index: number): RenderNode | null
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -361,6 +364,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -368,10 +372,10 @@ struct Index {
         .width(200)
         .height(300)
       Button("getChild")
-        .onClick(()=>{
+        .onClick(() => {
           for (let i = 0; i < 11; i++) {
-            let childNode : RenderNode | null = renderNode.getChild(i);
-            if(childNode == null){
+            let childNode: RenderNode | null = renderNode.getChild(i);
+            if (childNode == null) {
               console.log(`the ${i} of renderNode's childNode is null`);
             } else {
               console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
@@ -610,7 +614,7 @@ set backgroundColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | 是   | 背景颜色值，ARGB格式。 |
+| color  | number | 是   | 背景颜色值，ARGB格式，示例：0xE5E5E5。 |
 
 get backgroundColor(): number
 
@@ -676,7 +680,7 @@ set clipToFrame(useClip: boolean)
 
 | 参数名  | 类型    | 必填 | 说明               |
 | ------- | ------- | ---- | ------------------ |
-| useClip | boolean | 是   | 设置是否进行剪裁。 |
+| useClip | boolean | 是   | 设置是否进行剪裁。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 get clipToFrame(): boolean
 
@@ -690,7 +694,7 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。<br/>true表示对当前RenderNode剪裁，false表示不对当前RenderNode剪裁。 |
 
 **示例：**
 ```ts
@@ -749,7 +753,7 @@ set opacity(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]。 |
+| value  | number | 是   | 将要设置的不透明度，数据范围为[0, 1]，值越大透明度越低。 |
 
 get opacity(): number
 
@@ -763,7 +767,7 @@ get opacity(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 获取当前RenderNode的不透明度，默认值为1。 |
+| number | 获取当前RenderNode的不透明度，默认值为1，不透明。 |
 
 **示例：**
 ```ts
@@ -952,7 +956,7 @@ set frame(frame: Frame)
 
 | 参数名 | 类型                                       | 必填 | 说明                             |
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
-| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置 |
+| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置。 |
 
 get frame(): Frame
 
@@ -1283,7 +1287,7 @@ struct Index {
 
 set transform(transform: Matrix4)
 
-设置当前RenderNode的变换信息。
+设置当前RenderNode的变换矩阵。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1293,11 +1297,11 @@ set transform(transform: Matrix4)
 
 | 参数名    | 类型                                           | 必填 | 说明                             |
 | --------- | ---------------------------------------------- | ---- | -------------------------------- |
-| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 是   | 将要设置的RenderNode的变换信息。 |
+| transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 是   | 将要设置的RenderNode的变换矩阵。 |
 
 get transform(): Matrix4
 
-获取当前RenderNode的变换信息。默认值为：
+获取当前RenderNode的变换矩阵。默认值为：
 ```ts
 [
   1, 0, 0, 0,
@@ -1315,7 +1319,7 @@ get transform(): Matrix4
 
 | 类型                                           | 说明                       |
 | ---------------------------------------------- | -------------------------- |
-| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 当前RenderNode的变换信息。 |
+| [Matrix4](./js-apis-arkui-graphics.md#matrix4) | 当前RenderNode的变换矩阵。 |
 
 **示例：**
 ```ts
@@ -1374,7 +1378,7 @@ set shadowColor(color: number)
 
 | 参数名 | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。 |
+| color  | number | 是   | 将要设置的RenderNode的阴影颜色，ARGB格式。<br/>取值范围是符合ARGB格式的颜色。 |
 
 get shadowColor(): number
 
@@ -1583,7 +1587,7 @@ set shadowAlpha(alpha: number)
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。 |
+| alpha  | number | 是   | 将要设置的RenderNode的阴影颜色的Alpha值。<br/> 取值范围是alpha值。 |
 
 get shadowAlpha(): number
 
@@ -1655,7 +1659,7 @@ set shadowElevation(elevation: number)
 
 | 参数名    | 类型   | 必填 | 说明                             |
 | --------- | ------ | ---- | -------------------------------- |
-| elevation | number | 是   | 将要设置的RenderNode的光照高度。 |
+| elevation | number | 是   | 将要设置的RenderNode的光照高度。<br/> 取值范围：[0, +∞) |
 
 get shadowElevation(): number
 
@@ -1669,7 +1673,7 @@ get shadowElevation(): number
 
 | 类型   | 说明                                  |
 | ------ | ------------------------------------- |
-| number | 当前RenderNode的阴影高度，默认值为0。 |
+| number | 当前RenderNode的阴影高度，默认值为0。 <br/> 取值范围：[0, +∞) |
 
 **示例：**
 
@@ -1728,7 +1732,7 @@ set shadowRadius(radius: number)
 
 | 参数名 | 类型   | 必填 | 说明                                 |
 | ------ | ------ | ---- | ------------------------------------ |
-| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。 |
+| radius | number | 是   | 将要设置的RenderNode的阴影模糊半径。<br/> 取值范围：[0, +∞) |
 
 get shadowRadius(): number
 
@@ -1742,20 +1746,26 @@ get shadowRadius(): number
 
 | 类型   | 说明                                      |
 | ------ | ----------------------------------------- |
-| number | 当前RenderNode的阴影模糊半径，默认值为0。 |
+| number | 当前RenderNode的阴影模糊半径，默认值为0。<br/> 取值范围：[0, +∞) |
 
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
-renderNode.backgroundColor = 0xff00ff00;
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.frame = {
+  x: 100,
+  y: 100,
+  width: 100,
+  height: 100
+};
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
+console.log(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -1793,6 +1803,10 @@ draw(context: DrawContext): void
 
 绘制方法，需要开发者进行实现。该方法会在RenderNode进行绘制时被调用。
 
+> **说明：**
+>
+> RenderNode初始化时，会调用两次draw方法。第一次调用是在首次创建FrameNode时触发Render流程，第二次调用是在首次设置modifier时触发绘制。后续绘制流程皆由modifier触发。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1809,13 +1823,20 @@ ArkTS侧代码：
 
 ```ts
 // Index.ets
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
@@ -1827,7 +1848,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      const renderNode = new MyRenderNode();
+      const renderNode = new MyRenderNode(uiContext);
       renderNode.size = { width: 100, height: 100 }
       rootRenderNode.appendChild(renderNode);
     }
@@ -1969,21 +1990,26 @@ invalidate(): void
 **示例：**
 
 ```ts
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
-const newNode = new MyRenderNode();
-newNode.size = { width: 100, height: 100 };
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
+  newNode: MyRenderNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -1991,7 +2017,9 @@ class MyNodeController extends NodeController {
     if (renderNode === null) {
       return this.rootNode;
     }
-    renderNode.appendChild(newNode);
+    this.newNode = new MyRenderNode(uiContext);
+    this.newNode.size = { width: 100, height: 100 };
+    renderNode.appendChild(this.newNode);
     return this.rootNode;
   }
 }
@@ -1999,14 +2027,16 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       Column() {
-        NodeContainer(new MyNodeController())
+        NodeContainer(this.myNodeController)
           .width('100%')
         Button('Invalidate')
           .onClick(() => {
-            newNode.invalidate()
+            this.myNodeController.newNode?.invalidate()
           })
       }
       .width('100%')
@@ -2184,6 +2214,8 @@ get borderColor(): Edges\<number>
 
 获取当前RenderNode的边框颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -2253,6 +2285,8 @@ set borderRadius(radius: BorderRadiuses)
 get borderRadius(): BorderRadiuses
 
 获取当前RenderNode的边框圆角。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2465,8 +2499,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -2487,9 +2521,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
@@ -2569,7 +2603,9 @@ struct Index {
 
 set markNodeGroup(isNodeGroup: boolean)
 
-标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。
+标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。设置效果如下：
+
+![markNodeGroup](./figures/renderNode-markNodeGroup.png)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2579,7 +2615,7 @@ set markNodeGroup(isNodeGroup: boolean)
 
 | 参数名    | 类型                                               | 必填 | 说明               |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。 |
+| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。<br/>true表示优先绘制节点及其子节点，false表示不是优先绘制节点及其子节点。 |
 
 get markNodeGroup(): boolean
 
@@ -2591,7 +2627,7 @@ get markNodeGroup(): boolean
 
 | 类型    | 说明                                        |
 | ------- | ------------------------------------------- |
-| boolean | 当前节点是否标记了优先绘制，默认值为false。 |
+| boolean | 当前节点是否标记了优先绘制。<br/>true表示当前节点标记了优先绘制，false表示当前节点没有标记优先绘制。<br/>默认值：false |
 
 **示例：**
 
@@ -2634,6 +2670,90 @@ class MyNodeController extends NodeController {
       rootRenderNode.appendChild(renderNode);
     }
 
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### lengthMetricsUnit<sup>12+</sup>
+
+set lengthMetricsUnit(unit: LengthMetricsUnit)
+
+设置RenderNode各个属性使用的单位。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                                 | 必填 | 说明                               |
+| ------ | -------------------------------------------------------------------- | ---- | ---------------------------------- |
+| unit   | [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   | 设置RenderNode各个属性使用的单位。 |
+
+get lengthMetricsUnit(): LengthMetricsUnit
+
+获取RenderNode各个属性使用的单位。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
+| [LengthMetricsUnit](./js-apis-arkui-graphics.md#lengthmetricsunit12) | 获取RenderNode各个属性使用的单位，默认值为LengthMetricsUnit.DEFAULT。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+import { LengthMetricsUnit } from '@ohos.arkui.node';
+
+class BaseRenderNode extends RenderNode {
+  constructor() {
+    super();
+    this.lengthMetricsUnit = LengthMetricsUnit.PX;
+  }
+}
+
+class MyRenderNode extends BaseRenderNode {
+  draw(context: DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.rotation = { x: 0, y: 0, z: 45 };
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
     return this.rootNode;
   }
 }

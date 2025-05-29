@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)(系统接口)
 
-AbilityManager模块提供获取、新增、修改Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取、新增、修改Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
@@ -13,30 +13,13 @@ AbilityManager模块提供获取、新增、修改Ability相关信息和状态�
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-## AbilityState
-
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)返回Ability的状态。
-
-**系统接口**: 该接口为系统接口。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为初始化状态。| 
-| FOCUS | 2 | 表示ability为获焦状态。 |
-| FOREGROUND | 9 | 表示ability为前台状态。  | 
-| BACKGROUND | 10 | 表示ability为后台状态。  | 
-| FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
-| BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
-
 ## UserStatus<sup>12+</sup>
 
 用户操作的断言调试结果，该类型为枚举。
 
-**系统接口**: 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -50,11 +33,11 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
  
 **参数**：
 
@@ -110,11 +93,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -173,17 +156,17 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取UIAbility运行相关信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -216,63 +199,17 @@ try {
 }
 ```
 
-## getAbilityRunningInfos
-
-getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
-
-获取UIAbility运行相关信息（Promise形式）。
-
-**系统接口**：该接口为系统接口。
-
-**需要权限**: ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
-| 16000050 | Internal error. |
-
-**示例**：
-
-```ts
-import { abilityManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
-    console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-  }).catch((err: BusinessError) => {
-    console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code: number = (paramError as BusinessError).code;
-  let message: string = (paramError as BusinessError).message;
-  console.error(`error.code: ${code}, error.message: ${message}`);
-}
-```
-
 ## getExtensionRunningInfos
 
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
 获取关于运行扩展能力的信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -320,11 +257,11 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 获取关于运行扩展能力的信息（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -375,9 +312,9 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -416,9 +353,9 @@ getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -454,9 +391,9 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -502,9 +439,9 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -557,7 +494,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -574,6 +511,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -619,7 +557,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -641,6 +579,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -674,13 +613,13 @@ try {
 }
 ```
 
-## abilityManager.on<sup>11+</sup>
+## abilityManager.on('abilityForegroundState')<sup>11+</sup>
 
 on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
 注册Ability的启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -691,7 +630,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
 
 **错误码**：
 
@@ -724,13 +663,13 @@ try {
 }
 ```
 
-## abilityManager.off<sup>11+</sup>
+## abilityManager.off('abilityForegroundState')<sup>11+</sup>
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -741,7 +680,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 
@@ -802,7 +741,7 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -846,7 +785,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 
@@ -929,7 +868,7 @@ export default class UiExtAbility extends UIExtensionAbility {
 }
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -1016,7 +955,7 @@ setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process |
+| 16200006 | The caller application can only set the resident status of the configured process. |
 
 **示例：**
 
@@ -1038,5 +977,74 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
   console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
+}
+```
+
+## AtomicServiceStartupRule<sup>18+</sup>
+
+嵌入式拉起原子化服务的规则。
+
+**系统接口**：该接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | ---------| ---- | ---- | --------- |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
+
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
+
+queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
+
+查询嵌入式拉起[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)的规则。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 嵌入式拉起EmbeddableUIAbility的调用方Context。<br>**说明**：目前仅支持[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。 |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not support. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { abilityManager, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    try {
+      abilityManager.queryAtomicServiceStartupRule(this.context, appId).then((data: abilityManager.AtomicServiceStartupRule) => {
+        console.info(`queryAtomicServiceStartupRule data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`queryAtomicServiceStartupRule failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
 }
 ```

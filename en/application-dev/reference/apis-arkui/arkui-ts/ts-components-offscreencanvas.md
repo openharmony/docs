@@ -14,25 +14,36 @@ Not supported
 
 ## APIs
 
-OffscreenCanvas(width: number, height: number)
+OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                             |
-| ------ | -------- | ---- | ------ | ------------------------------------- |
-| width  | number   | Yes  | 0      | Width of the offscreen canvas, in vp.|
-| height | number   | Yes  | 0      | Height of the offscreen canvas, in vp.|
+| Name| Type| Mandatory| Description                       |
+| ------ | -------- | ---- | ------------------------------------- |
+| width  | number   | Yes | Width of the offscreen canvas.<br>Default unit: vp|
+| height | number   | Yes | Height of the offscreen canvas.<br>Default unit: vp|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  |  Unit mode of the **OffscreenCanvas** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## Attributes
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 The following attributes are supported.
 
-| Name  | Type  | Default Value| Description                                                        |
-| ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | Width of the offscreen canvas, in vp. **Widget capability**: This API can be used in ArkTS widgets since API version 9.|
-| height | number | 0      | Height of the offscreen canvas, in vp. **Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| Name  | Type  | Read Only| Optional| Description|
+| ------ | ------ | ------ | ------- | ---- |
+| width  | number | No |  No | Width of the offscreen canvas.<br>Default unit: vp|
+| height | number | No |  No | Height of the offscreen canvas.<br>Default unit: vp|
 
 ### width
 
@@ -116,6 +127,10 @@ Creates an **ImageBitmap** object from the most recently rendered image of the o
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type                                              | Description                   |
@@ -158,7 +173,7 @@ struct OffscreenCanvasPage {
 }
 ```
 
-![zh-cn_image_0000001194032666](figures/offscreen_canvas_transferToImageBitmap.png)
+![en-us_image_0000001194032666](figures/offscreen_canvas_transferToImageBitmap.png)
 
 ### getContext<sup>10+</sup>
 
@@ -166,12 +181,16 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 Obtains the drawing context of the offscreen canvas.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name       | Type                                                        | Mandatory| Default Value| Description                                                        |
-| ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | Yes  | "2d"   | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.                      |
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No  | -      | Parameters of the **OffscreenCanvasRenderingContext2D** object. For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).|
+| Name | Type| Mandatory| Description   |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| contextType | string | Yes  | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No| Parameters of the **OffscreenCanvasRenderingContext2D** object. For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).<br>Default value: **null**|
 
 **Return value**
 
@@ -233,7 +252,7 @@ struct OffscreenCanvasExamplePage {
 
 ## Concurrent Thread Drawing
 
-Since API version 11, an application can call **postMessage** to pass an **OffscreenCanvas** instance to a worker thread for drawing, and call **onmessage** to receive the drawing result for display.
+Since API version 11, an application can call **postMessage** to pass an **OffscreenCanvas** instance to a [worker thread](../../../arkts-utils/worker-introduction.md) for drawing, and call **onmessage** to receive the drawing result for display.
 
 > **NOTE**
 >
@@ -242,11 +261,13 @@ Since API version 11, an application can call **postMessage** to pass an **Offsc
 > After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot use the **getContext** or **transferToImageBitmap** APIs. Otherwise, an exception is thrown.
 >
 > After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot be passed to any other thread through **postMessage**. Otherwise, an exception is thrown.
+>
+> The content drawn in the Worker thread cannot be previewed in DevEco Studio Previewer.
 
 **Example**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 @Entry
 @Component

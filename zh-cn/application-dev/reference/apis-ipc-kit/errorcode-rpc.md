@@ -10,7 +10,7 @@
 
 **错误信息**
 
-Call mmap function failed.
+Failed to call mmap.
 
 **错误描述**
 
@@ -23,14 +23,14 @@ Call mmap function failed.
 
 **处理步骤**
 
-1. 请检查调用Ashmem::create()时是否指定了超大内存；
+1. 请检查调用Ashmem::create()时是否指定了超大内存。
 2. 请检查执行映射时系统是否有足够的内存可用。
 
 ## 1900002 系统调用ioctl失败
 
 **错误信息**
 
-Call os ioctl function failed.
+Failed to call ioctl.
 
 **错误描述**
 
@@ -38,19 +38,19 @@ Call os ioctl function failed.
 
 **可能原因**
 
-1. 设置的参数为内核非法参数；
+1. 设置的参数为内核非法参数。
 2. 设置的类型超过了共享内存映射时指定的类型。
 
 **处理步骤**
 
-1. 请检查调用指定的参数是否来自Ashmem类的PROT_EXEC、PROT_READ和PROT_WRITE；
+1. 请检查调用指定的参数是否来自Ashmem类的PROT_EXEC、PROT_READ和PROT_WRITE。
 2. 请检查指定的参数是否为映射共享内存时所指类型的子集。
 
 ## 1900003 共享内存写数据失败
 
 **错误信息**
 
-Write to ashmem failed.
+Failed to write data to the shared memory.
 
 **错误描述**
 
@@ -58,19 +58,19 @@ Write to ashmem failed.
 
 **可能原因**
 
-1. 单次写或者连续写的总内容超过了映射的共享内存大小；
+1. 单次写或者连续写的总内容超过了映射的共享内存大小。
 2. 没有对共享内存设置PROT_WRITE模式。
 
 **处理步骤**
 
-1. 请检查当前向共享内存所写内容是否已经超过了映射的总大小；
+1. 请检查当前向共享内存所写内容是否已经超过了映射的总大小。
 2. 请检查是否设置了PROT_WRITE保护权限。
 
 ## 1900004 共享内存读数据失败
 
 **错误信息**
 
-Read from ashmem failed.
+Failed to read data from the shared memory.
 
 **错误描述**
 
@@ -78,19 +78,19 @@ Read from ashmem failed.
 
 **可能原因**
 
-1. 单次写或者连续写的总内容超过了映射的共享内存大小；
+1. 单次写或者连续写的总内容超过了映射的共享内存大小。
 2. 没有对共享内存设置PROT_READ模式。
 
 **处理步骤**
 
-1. 请检查当前向共享内存所写内容是否已经超过了映射的总大小；
+1. 请检查当前向共享内存所写内容是否已经超过了映射的总大小。
 2. 请检查是否设置了PROT_READ保护权限。
 
 ## 1900005 ipc对象权限错误
 
 **错误信息**
 
-Only proxy object permitted.
+Operation allowed only for the proxy object.
 
 **错误描述**
 
@@ -108,7 +108,7 @@ Only proxy object permitted.
 
 **错误信息**
 
-Only remote object permitted.
+Operation allowed only for the remote object.
 
 **错误描述**
 
@@ -134,19 +134,19 @@ Communication failed.
 
 **可能原因**
 
-1. 远端对象已经销毁；
+1. 远端对象已经销毁。
 2. 远端对象发生了销毁然后重新创建，本端持有的代理对象已经过期。
 
 **处理步骤**
 
-1. 请检查远端对象是否已经销毁；
+1. 请检查远端对象是否已经销毁。
 2. 请检查是否注册了死亡监听，并且远端对象发生析构又重新创建。
 
 ## 1900008 非法的ipc对象
 
 **错误信息**
 
-Proxy or remote object is invalid.
+The proxy or remote object is invalid.
 
 **错误描述**
 
@@ -154,19 +154,19 @@ Proxy or remote object is invalid.
 
 **可能原因**
 
-1. 代理对象已经失效；
+1. 代理对象已经失效。
 2. 远端对象已经销毁。
 
 **处理步骤**
 
-1. 请检查proxy对象获取过程是否有异常；
+1. 请检查proxy对象获取过程是否有异常。
 2. 请检查远端对象是否已经析构。
 
 ## 1900009 向MessageSequence写入数据失败
 
 **错误信息**
 
-Write data to message sequence failed.
+Failed to write data to the message sequence.
 
 **错误描述**
 
@@ -184,7 +184,7 @@ sequence默认空间已满。
 
 **错误信息**
 
-Read data from message sequence failed.
+Failed to read data from the message sequence.
 
 **错误描述**
 
@@ -202,7 +202,7 @@ Read data from message sequence failed.
 
 **错误信息**
 
-Sequence memory alloc failed.
+Memory allocation failed.
 
 **错误描述**
 
@@ -220,7 +220,7 @@ Sequence memory alloc failed.
 
 **错误信息**
 
-Call JS callback function failed.
+Failed to call the JS callback function.
 
 **错误描述**
 
@@ -238,7 +238,7 @@ Call JS callback function failed.
 
 **错误信息**
 
-Call os dup function failed.
+Failed to call dup.
 
 **错误描述**
 
@@ -246,10 +246,10 @@ Call os dup function failed.
 
 **可能原因**
 
-1. 进程的文件句柄资源已经耗尽；
+1. 进程的文件句柄资源已经耗尽。
 2. 入参fd已经被关闭。
 
 **处理步骤**
 
-1. 请检查入参fd是否依然有效；
+1. 请检查入参fd是否依然有效。
 2. 请排查进程是否已经耗尽了fd资源。

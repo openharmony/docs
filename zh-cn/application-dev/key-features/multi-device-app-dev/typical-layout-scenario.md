@@ -46,12 +46,16 @@
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 interface TabBar  {
   name: string
   icon: Resource
   selectIcon: Resource
+}
+interface marginGenerate {
+  top: number,
+  left?:number
 }
 
 @Entry
@@ -71,14 +75,37 @@ struct Home {
                                   icon: $r('app.media.ic_music_me_nor'),
                                   selectIcon: $r('app.media.ic_music_me_selected')
                                 }]
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compDirection: BreakpointState<FlexDirection> = BreakpointState.of({
+    sm: FlexDirection.Column,
+    md: FlexDirection.Row,
+    lg: FlexDirection.Column
+  });
+  @State compBarPose: BreakpointState<BarPosition> = BreakpointState.of({
+    sm: BarPosition.End,
+    md: BarPosition.End,
+    lg: BarPosition.Start
+  });
+  @State compVertical: BreakpointState<boolean> = BreakpointState.of({
+    sm: false,
+    md: false,
+    lg: true
+  });
+  @State compBarWidth: BreakpointState<string> = BreakpointState.of({
+    sm: '100%', md: '100%', lg: '96vp'
+  });
+  @State compBarHeight: BreakpointState<string> = BreakpointState.of({
+    sm: '72vp', md: '56vp', lg: '60%'
+  });
+  @State compMargin: BreakpointState<marginGenerate> = BreakpointState.of({
+    sm: ({ top: 4 } as marginGenerate),
+    md: ({ left: 8 } as marginGenerate),
+    lg: ({ top: 4 } as marginGenerate)
+  });
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
     Flex({
-      direction: new BreakPointType({
-        sm: FlexDirection.Column,
-        md: FlexDirection.Row,
-        lg: FlexDirection.Column
-      }).getValue(this.currentBreakpoint),
+      direction: this.compDirection.value,
       justifyContent: FlexAlign.Center,
       alignItems: ItemAlign.Center
     }) {
@@ -86,34 +113,37 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType<(Length|Padding)>({
-          sm: { top: 4 },
-          md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint)!)
+        .margin(this.compMargin.value)
         .fontSize(16)
     }
     .width('100%')
     .height('100%')
   }
-
-  @StorageLink('currentBreakpoint') currentBreakpoint: string = 'md'
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
-
   aboutToAppear() {
-    this.breakpointSystem.register()
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compDirection)
+    BreakpointSystem.getInstance().attach(this.compBarPose)
+    BreakpointSystem.getInstance().attach(this.compVertical)
+    BreakpointSystem.getInstance().attach(this.compBarWidth)
+    BreakpointSystem.getInstance().attach(this.compBarHeight)
+    BreakpointSystem.getInstance().attach(this.compMargin)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    this.breakpointSystem.unregister()
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compDirection)
+    BreakpointSystem.getInstance().detach(this.compBarPose)
+    BreakpointSystem.getInstance().detach(this.compVertical)
+    BreakpointSystem.getInstance().detach(this.compBarWidth)
+    BreakpointSystem.getInstance().detach(this.compBarHeight)
+    BreakpointSystem.getInstance().detach(this.compMargin)
+    BreakpointSystem.getInstance().stop()
   }
 
   build() {
     Tabs({
-      barPosition: new BreakPointType({
-        sm: BarPosition.End,
-        md: BarPosition.End,
-        lg: BarPosition.Start
-      }).getValue(this.currentBreakpoint)
+      barPosition:this.compBarPose.value
     }) {
       ForEach(this.tabs, (item:TabBar, index) => {
         TabContent() {
@@ -123,9 +153,9 @@ struct Home {
         }.tabBar(this.TabBarBuilder(index!, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint)!)
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint)!)
+    .vertical(this.compVertical.value)
+    .barWidth(this.compBarWidth.value)
+    .barHeight(this.compBarHeight.value)
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index
@@ -450,10 +480,38 @@ struct SideBarSample {
 **参考代码**
 
 ```ts
+
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "Moon",
+      "pageSourceFile": "src/main/ets/pages/Moon.ets",
+      "buildFunction": "MoonBuilder",
+      "data": {
+        "description": "this is Moon"
+      }
+    },
+    {
+      "name": "Sun",
+      "pageSourceFile": "src/main/ets/pages/Sun.ets",
+      "buildFunction": "SunBuilder"
+    }
+  ]
+}
+// Moon.ets
+@Builder
+export function MoonBuilder(name: string, param: Object) {
+  Moon()
+}
 @Component
-struct Details {
+export struct Moon {
   private imageSrc: Resource=$r('app.media.my_image_moon')
+  private label: string='moon'
   build() {
+    Column(){
+    NavDestination(){
     Column() {
       Image(this.imageSrc)
         .objectFit(ImageFit.Contain)
@@ -463,17 +521,60 @@ struct Details {
     .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
+     }.title(this.label)
+     }
   }
 }
-
+// Sun.ets
+@Builder
+export function SunBuilder(name: string, param: Object) {
+  Sun()
+}
 @Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
+export struct Sun {
+  private imageSrc: Resource=$r('app.media.my_image')
+  private label: string='Sun'
   build() {
-    NavRouter() {
-      Text(this.label)
+    Column(){
+    NavDestination(){
+    Column() {
+      Image(this.imageSrc)
+        .objectFit(ImageFit.Contain)
+        .height(300)
+        .width(300)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+     }.title(this.label)
+     }
+  }
+}
+//NavigationSample.ets
+interface arrSample{
+  label:string,
+  pagePath:string
+}
+
+@Entry
+@Component
+struct NavigationSample {
+  pageInfos: NavPathStack = new NavPathStack();
+  private arr:arrSample[]=[
+    {
+      label:'moon',
+      pagePath:'Moon'
+    },
+    {
+      label:'sun',
+      pagePath:'Sun'
+    }
+  ]
+  build() {
+    Navigation(this.pageInfos) {
+      Column({space: 30}) { 
+      ForEach(this.arr, (item: arrSample) => {
+         Text(item.label)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
         .borderRadius(5)
@@ -481,22 +582,11 @@ struct Item {
         .textAlign(TextAlign.Center)
         .width(180)
         .height(36)
-      NavDestination() {
-        Details({imageSrc: this.imageSrc})
-      }.title(this.label)
-      .backgroundColor('#FFFFFF')
-    }
-  }
-}
-
-@Entry
-@Component
-struct NavigationSample {
-  build() {
-    Navigation() {
-      Column({space: 30}) {
-        Item({label: 'moon', imageSrc: $r('app.media.my_image_moon')})
-        Item({label: 'sun', imageSrc: $r('app.media.my_image')})
+        .onClick(()=>{
+          this.pageInfos.clear();
+          this.pageInfos.pushPath({name:item.pagePath})
+        })
+        })
       }
       .justifyContent(FlexAlign.Center)
       .height('100%')
@@ -527,7 +617,7 @@ struct NavigationSample {
 
 **场景说明**
 
-为充分利用设备的屏幕尺寸优势，应用在大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现A+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
+为充分利用设备的屏幕尺寸优势，应用在大屏设备上常常有二分栏或三分栏的设计，即“A+C”，“B+C”或“A+B+C”的组合，其中A是侧边导航区，B是列表导航区，C是内容区。在用户动态改变窗口宽度时，当窗口宽度大于或等于840vp时页面呈现A+B+C三列，放大缩小优先变化C列；当窗口宽度小于840vp大于等于600vp时呈现B+C列，放大缩小时优先变化C列；当窗口宽度小于600vp大于等于360vp时，仅呈现C列。
 
 **实现方案**
 
@@ -536,11 +626,31 @@ struct NavigationSample {
 **参考代码**
 
 ```ts
-// MainAbility.ts
-import { window, display } from '@kit.ArkUI'
-import { Ability } from '@kit.AbilityKit'
 
-export default class MainAbility extends Ability {
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "B1Page",
+      "pageSourceFile": "src/main/ets/pages/B1Page.ets",
+      "buildFunction": "B1PageBuilder",
+      "data": {
+        "description": "this is B1Page"
+      }
+    },
+    {
+      "name": "B2Page",
+      "pageSourceFile": "src/main/ets/pages/B2Page.ets",
+      "buildFunction": "B2PageBuilder"
+    }
+  ]
+}
+// EntryAbility.ts
+import { window, display } from '@kit.ArkUI'
+import { Ability,UIAbility } from '@kit.AbilityKit'
+
+export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window
   private curBp?: string
   private myWidth?: number
@@ -584,7 +694,12 @@ export default class MainAbility extends Ability {
         this.updateBreakpoint(windowSize.width)
       })
     });
-   // ...
+   // ...应用启动页面
+   windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {      
+        return;
+      }
+    });
   }
     
   // 窗口销毁时，取消窗口尺寸变化监听
@@ -597,52 +712,78 @@ export default class MainAbility extends Ability {
 }
 
 
-// tripleColumn.ets
+// B1Page.ets
+@Builder
+export function B1PageBuilder() {
+  B1Page()
+}
 @Component
-struct Details {
-  private imageSrc: Resource=$r('app.media.startIcon')
+export struct B1Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B1"
   build() {
     Column() {
-      Image(this.imageSrc)
-        .objectFit(ImageFit.Contain)
-        .height(300)
-        .width(300)
-    }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
-  }
-}
-
-@Component
-struct Item {
-  private imageSrc?: Resource
-  private label?: string
-
-  build() {
-    NavRouter() {
-      Text(this.label)
-        .fontSize(24)
-        .fontWeight(FontWeight.Bold)
-        .backgroundColor('#66000000')
-        .textAlign(TextAlign.Center)
-        .width('100%')
-        .height('30%')
       NavDestination() {
-        Details({imageSrc: this.imageSrc})
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
       }.title(this.label)
-      .hideTitleBar(false)
-      .backgroundColor('#FFFFFF')
     }
-    .margin(10)
+  }
+}
+// B2Page.ets
+@Builder
+export function B2PageBuilder() {
+  B2Page()
+}
+@Component
+export struct B2Page {
+  private imageSrc: Resource = $r('app.media.startIcon');
+  private label: string = "B2"
+  build() {
+    Column() {
+      NavDestination() {
+        Column() {
+          Image(this.imageSrc)
+            .objectFit(ImageFit.Contain)
+            .height(300)
+            .width(300)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width('100%')
+        .height('100%')
+      }.title(this.label)
+    }
   }
 }
 
+//TripleColumnSample.ets
+interface arrSampleObj{
+  label:string,
+  pagePath:string
+}
 @Entry
 @Component
 struct TripleColumnSample {
-  @State arr: number[] = [1, 2, 3]
-  @StorageProp('myWidth') myWidth: number = 360
+  @State arr: number[] = [1, 2, 3];
+  @StorageProp('myWidth') myWidth: number = 360;
+  pageInfos:NavPathStack = new NavPathStack();
+  @State arrSample: arrSampleObj[] = [
+    {
+        label:'B1',
+        pagePath:'B1Page'
+    },
+    {
+        label:'B2',
+        pagePath:'B2Page'
+    }
+  ];
 
   @Builder NavigationTitle() {
     Column() {
@@ -660,12 +801,15 @@ struct TripleColumnSample {
     SideBarContainer() {
       Column() {
         List() {
-          ForEach(this.arr, (item:number, index) => {
+          ForEach(this.arr, (item: number, index) => {
             ListItem() {
-              Text('A'+item)
-                .width('100%').height("20%").fontSize(24)
+              Text('A' + item)
+                .width('100%')
+                .height("20%")
+                .fontSize(24)
                 .fontWeight(FontWeight.Bold)
-                .textAlign(TextAlign.Center).backgroundColor('#66000000')
+                .textAlign(TextAlign.Center)
+                .backgroundColor('#66000000')
             }
           })
         }.divider({ strokeWidth: 5, color: '#F1F3F5' })
@@ -675,12 +819,27 @@ struct TripleColumnSample {
       .backgroundColor('#F1F3F5')
 
       Column() {
-        Navigation() {
-          List(){
+        Navigation(this.pageInfos) {
+          List() {
             ListItem() {
               Column() {
-                Item({ label: 'B1', imageSrc: $r('app.media.startIcon') })
-                Item({ label: 'B2', imageSrc: $r('app.media.startIcon') })
+                ForEach(this.arrSample, (item: arrSampleObj, index) => {
+                  ListItem() {
+                    Text(item.label)
+                      .fontSize(24)
+                      .fontWeight(FontWeight.Bold)
+                      .backgroundColor('#66000000')
+                      .textAlign(TextAlign.Center)
+                      .width('100%')
+                      .height('30%')
+                      .margin({
+                        bottom:10
+                      })
+                  }.onClick(() => {
+                    this.pageInfos.clear();
+                    this.pageInfos.pushPath({ name: item.pagePath })
+                  })
+                })
               }
             }.width('100%')
           }
@@ -871,7 +1030,7 @@ struct CustomDialogB {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 |
+| 图片长宽比不变，最长边充满全屏。 | 图片长宽比不变，最长边充满全屏。 | 图片长宽比不变，最长边充满全屏。 |
 | ![大图浏览sm](figures/大图浏览sm.png) | ![大图浏览md](figures/大图浏览md.png) | ![大图浏览lg](figures/大图浏览lg.png) |
 
 **实现方案**
@@ -902,7 +1061,7 @@ struct BigImage {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 列表项尺寸固定，超出内容可滚动查看 | 列表项尺寸固定，剩余空间均分 | 列表项尺寸固定，剩余空间均分 |
+| 列表项尺寸固定，超出内容可滚动查看。 | 列表项尺寸固定，剩余空间均分。 | 列表项尺寸固定，剩余空间均分。 |
 | ![操作入口sm](figures/操作入口sm.png) | ![操作入口md](figures/操作入口md.png) | ![操作入口lg](figures/操作入口lg.png) |
 
 
@@ -967,7 +1126,7 @@ export default struct OperationEntries {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 标题和搜索框两行显示 | 标题和搜索框一行显示 | 标题和搜索框一行显示 |
+| 标题和搜索框两行显示。 | 标题和搜索框一行显示。 | 标题和搜索框一行显示。 |
 | ![顶部布局sm](figures/顶部布局sm.png) | ![顶部布局md](figures/顶部布局md.png) | ![顶部布局lg](figures/顶部布局lg.png) |
 
 **实现方案**
@@ -1045,7 +1204,7 @@ export default struct Header {
 
   | sm | md | lg | 
 | -------- | -------- | -------- |
-| 栅格总列数为4，内容占满所有列 | 栅格总列数为8，内容占中间6列。 | 栅格总列数为12，内容占中间8列。 | 
+| 栅格总列数为4，内容占满所有列。 | 栅格总列数为8，内容占中间6列。 | 栅格总列数为12，内容占中间8列。 | 
 | ![indent_sm](figures/indent_sm.jpg) | ![indent_md](figures/indent_md.jpg) | ![indent_lg](figures/indent_lg.jpg) | 
 
 
@@ -1135,7 +1294,7 @@ struct ItemContent {
 
   | sm | md | lg | 
 | -------- | -------- | -------- |
-| 图片和文字上下布局 | 图片和文字左右布局 | 图片和文字左右布局 | 
+| 图片和文字上下布局。 | 图片和文字左右布局。 | 图片和文字左右布局。 | 
 | ![diversion_sm](figures/diversion_sm.jpg) | ![diversion_md](figures/diversion_md.jpg) | ![diversion_lg](figures/diversion_lg.jpg) | 
 
 
@@ -1198,7 +1357,7 @@ struct DiversionSample {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 单列显示，共8个元素<br>可以通过上下滑动查看不同的元素 | 双列显示，共8个元素 | 双列显示，共8个元素 |
+| 单列显示，共8个元素<br>可以通过上下滑动查看不同的元素。 | 双列显示，共8个元素。 | 双列显示，共8个元素。 |
 | ![repeat_sm](figures/repeat_sm.jpg) | ![repeat_md](figures/repeat_md.jpg)  | ![repeat_lg](figures/repeat_lg.jpg) |
 
 

@@ -71,7 +71,7 @@ struct GpioMethod {
 | write | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号<br/>val：uint16_t类型，电平传入值 | 无 | HDF_STATUS相关状态 | GPIO引脚写入电平值 |
 | read | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号 | val：uint16_t类型指针，用于传出电平值。 | HDF_STATUS相关状态 | GPIO引脚读取电平值 |
 | setDir | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号<br/>dir：uint16_t类型，管脚方向传入值 | 无 | HDF_STATUS相关状态 | 设置GPIO引脚输入/输出方向 |
-| getDir | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号 | dir：uint16_t类型指针，用于传出管脚方向值 | HDF_STATUS相关状态 | 读GPIO引脚输入/输出方向 |
+| getDir | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号 | dir：uint16_t类型指针，用于传出管脚方向值。 | HDF_STATUS相关状态 | 读GPIO引脚输入/输出方向 |
 | setIrq | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号<br/>mode：uint16_t类型，表示触发模式（边沿或电平） | 无 | HDF_STATUS相关状态 | 将GPIO引脚设置为中断模式 |
 | unsetIrq | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号 | 无 | HDF_STATUS相关状态 | 取消GPIO中断设置 |
 | enableIrq | cntlr：结构体指针，核心层GPIO控制器<br/>local：uint16_t类型，GPIO端口标识号 | 无 | HDF_STATUS相关状态 | 使能GPIO管脚中断 |
@@ -271,7 +271,7 @@ GPIO模块适配包含以下四个步骤：
         };
         ```
 
-    - Init函数开发参考
+    - Init函数开发参考。
 
         入参：
 

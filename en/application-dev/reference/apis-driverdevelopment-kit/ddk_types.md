@@ -3,15 +3,13 @@
 
 ## Overview
 
-Defines the enum variables and structs used in the BASE DDK.
+Defines the enum variables and structs used in the Base DDK.
 
-**Since**
+**System capability**: SystemCapability.Driver.DDK.Extension
 
-12
+**Since**: 12
 
-**Related Modules**
-
-[BASE DDK](_base_ddk.md)
+**Related module**: [Base DDK](_base_ddk.md)
 
 
 ## Summary
@@ -28,7 +26,7 @@ Defines the enum variables and structs used in the BASE DDK.
 
 | Name| Description| 
 | -------- | -------- |
-| [DDK_RetCode](#ddk_retcode) &nbsp;{<br>DDK_SUCCESS&nbsp;=&nbsp;0,<br>DDK_FAILED&nbsp;=&nbsp;28600001,<br>DDK_INVALID_PARAMETER&nbsp;=&nbsp;28600002,<br>DDK_INVALID_OPERATION&nbsp;=&nbsp;28600003,<br>DDK_NULL_PTR&nbsp;=&nbsp;28600004<br>} | BASE DDK error code definitions. | 
+| [DDK_RetCode](#ddk_retcode) &nbsp;{<br>DDK_SUCCESS&nbsp;=&nbsp;0,<br>DDK_FAILED&nbsp;=&nbsp;28600001,<br>DDK_INVALID_PARAMETER&nbsp;=&nbsp;28600002,<br>DDK_INVALID_OPERATION&nbsp;=&nbsp;28600003,<br>DDK_NULL_PTR&nbsp;=&nbsp;28600004<br>} | Base DDK error code definitions. | 
 
 
 ## Enum Description
@@ -43,7 +41,7 @@ enum DDK_RetCode
 
 **Description**
 
-BASE DDK error code definitions.
+Base DDK error code definitions.
 
 | Value| Description|
 | -------- | -------- |

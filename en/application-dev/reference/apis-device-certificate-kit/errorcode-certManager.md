@@ -73,3 +73,17 @@ The user has not authorized the application to use the specified credential.
 **Solution**
 
 Check that the credential is correct, and authorize the application to use the credential.
+
+## 17500007 Device in Advanced Security Mode
+
+**Error Message**
+
+The device enters advanced security mode.
+
+**Possible Causes**
+
+The user has enabled the advanced security mode.
+
+**Solution**
+
+Guide the user to disable the advanced security mode on the application UI.

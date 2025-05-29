@@ -28,7 +28,7 @@
 - 将一个指定的任务切换到前台。
 
 
-一个UIAbility实例对应一个单独的任务，因此应用调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
+一个UIAbility实例对应一个单独的任务，因此应用调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility时，就是创建了一个任务。
 
 1. 桌面应用调用[missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md)的接口管理任务，需要申请`ohos.permission.MANAGE_MISSIONS`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
@@ -82,22 +82,25 @@
     // 1.注册任务变化通知
     this.listenerId = missionManager.on('mission', this.listener);
     promptAction.showToast({
-      message: $r('app.string.register_success_toast')
+      message: 'register_success_toast'
     });
     hilog.info(DOMAIN_NUMBER, TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
     ```
     ```ts
     // 2.获取系统最近20个任务
     missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'size = ' + missions.length);
-      hilog.info(DOMAIN_NUMBER, TAG, 'missions = ' + JSON.stringify(missions));
+      if (error.code) {
+        hilog.error(DOMAIN_NUMBER, TAG, `getMissionInfos is called, error code: ${error.code}, err msg: ${error.message}.`);
+        return;
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, `size = ${missions.length}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `missions = ${JSON.stringify(missions)}.`);
       
       // 判断系统最近任务中是否包含etsclock
       for (let i = 0;i < missions.length; i++) {
         if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
           promptAction.showToast({
-            message: $r('app.string.obtain_success_toast')
+            message: 'obtain_success_toast'
           });
           hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
           this.missionId = missions[i].missionId;
@@ -105,7 +108,7 @@
         }
       }
       promptAction.showToast({
-        message: $r('app.string.obtain_failed_toast')
+        message: 'obtain_failed_toast'
       });
     });
     ```
@@ -125,11 +128,11 @@
     missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.obtain_snapshot_success_toast')
+          message: 'obtain_snapshot_success_toast'
         });
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+      hilog.info(DOMAIN_NUMBER, TAG, `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
     })
     ```
     ```ts
@@ -137,18 +140,18 @@
     missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.obtain_low_snapshot_success_toast')
+          message: 'obtain_low_snapshot_success_toast'
         });
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
-      hilog.info(DOMAIN_NUMBER, TAG, 'bundleName = ' + snapshot.ability.bundleName);
+      hilog.info(DOMAIN_NUMBER, TAG, `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
+      hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
     })
     ```
     ```ts
     // 6-1 加锁任务
     missionManager.lockMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.lock_success_toast')
+        message: 'lock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'lockMission is called ');
     });
@@ -157,7 +160,7 @@
     // 6-2 解锁任务
     missionManager.unlockMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.unlock_success_toast')
+        message: 'unlock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'unlockMission is called ');
     });
@@ -172,7 +175,7 @@
     // 8.删除单个任务
     missionManager.clearMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.delete_success_toast')
+        message: 'delete_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'clearMission is called ');
     });
@@ -188,7 +191,7 @@
     missionManager.off('mission', this.listenerId, (error: BusinessError) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.unregister_success_toast')
+          message: 'unregister_success_toast'
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');

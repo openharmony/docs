@@ -9,6 +9,10 @@ AudioEncoder模块提供用于音频编码的函数。
 
 **起始版本：** 9
 
+**废弃版本：** 11
+
+**替代建议：** 当前模块下的接口均已废弃，开发者可使用[AudioCodec](_audio_codec.md)完成对应功能开发，单个接口的替代关系可查阅具体的接口说明。
+
 
 ## 汇总
 
@@ -17,7 +21,7 @@ AudioEncoder模块提供用于音频编码的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md) | 声明用于音频编码的Native API。 | 
+| [native_avcodec_audioencoder.h](native__avcodec__audioencoder_8h.md) | 音频编码Native API的声明。 | 
 
 
 ### 函数
@@ -30,13 +34,13 @@ AudioEncoder模块提供用于音频编码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_SetCallback](#oh_audioencoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，使应用可以响应音频编码器生成的事件。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Configure](#oh_audioencoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 要配置音频编码器，通常需要配置编码后的音轨的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Prepare](#oh_audioencoder_prepare) (OH_AVCodec \*codec) | 准备编码器的内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Start](#oh_audioencoder_start) (OH_AVCodec \*codec) | Prepare成功后调用此接口启动编码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Start](#oh_audioencoder_start) (OH_AVCodec \*codec) | 调用此接口启动编码器，在Prepare成功后执行。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Stop](#oh_audioencoder_stop) (OH_AVCodec \*codec) | 停止编码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Flush](#oh_audioencoder_flush) (OH_AVCodec \*codec) | 清除编码器中缓存的输入和输出数据。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Reset](#oh_audioencoder_reset) (OH_AVCodec \*codec) | 重置编码器。 | 
 | OH_AVFormat \* [OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec) | 获取编码器输出数据的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_SetParameter](#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置编码器的动态参数。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充有数据的输入缓冲区提交给音频编码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 通知音频编码器已完成对index所对应缓冲区进行输入数据的填充。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_FreeOutputData](#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_IsValid](#oh_audioencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前编码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测编码器有效状态。 | 
 
@@ -230,7 +234,7 @@ OH_AVFormat* OH_AudioEncoder_GetOutputDescription (OH_AVCodec *codec)
 
 **描述**
 
-获取编码器输出数据的描述信息。 需要注意的是，返回值所指向的OH_AVFormat实例的生命周期需要调用者手动释放。
+获取编码器输出数据的描述信息。需要注意的是，返回值所指向的OH_AVFormat实例的生命周期需要调用者手动释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioEncoder
 
@@ -274,7 +278,7 @@ OH_AVErrCode OH_AudioEncoder_IsValid (OH_AVCodec *codec, bool *isValid)
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向OH_AVCodec实例的指针。 | 
-| isValid | 指向布尔实例的指针，true：编码器实例有效，false：编码器实例无效。 | 
+| isValid | 指向布尔类型的指针，true：编码器实例有效，false：编码器实例无效。 | 
 
 **返回：**
 
@@ -318,9 +322,9 @@ OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 **描述**
 
-将填充有数据的输入缓冲区提交给音频编码器。
+通知音频编码器已完成对index所对应缓冲区进行输入数据的填充。
 
-[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调 将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频编码器，则无法再次访问此缓冲区， 直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
+[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频编码器，则无法再次访问此缓冲区，直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
 
 此外，对于某些编码器，需要在开始时向编码器输入特定配置参数，以初始化编码器的编码过程。
 
@@ -445,7 +449,7 @@ OH_AVErrCode OH_AudioEncoder_Start (OH_AVCodec *codec)
 
 **描述**
 
-Prepare成功后调用此接口启动编码器。启动后，编码器将开始上报OH_AVCodecOnNeedInputData事件。
+调用此接口启动编码器，在Prepare成功后执行。启动后，编码器将开始上报OH_AVCodecOnNeedInputData事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioEncoder
 

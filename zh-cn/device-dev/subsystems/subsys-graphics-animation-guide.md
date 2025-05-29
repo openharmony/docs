@@ -33,7 +33,7 @@ UI动画通过task处理机制每个tick调用一下用户设置的callback函�
 | AnimatorCallback | virtual&nbsp;void&nbsp;OnStop(UIView&amp;&nbsp;view)&nbsp;{} | 由用户实现，动画停止后的回调函数 | 
 | AnimatorManager | static&nbsp;AnimatorManager\*&nbsp;GetInstance() | 获取AnimatorManager实例 | 
 | AnimatorManager | void&nbsp;&nbsp;Add&nbsp;(Animator&nbsp;\*animator) | 添加动画 | 
-| AnimatorManager | void&nbsp;Remove(const&nbsp;Animator\*&nbsp;animator); | 删除动画 | 
+| AnimatorManager | void&nbsp;Remove(const&nbsp;Animator\*&nbsp;animator) | 删除动画 | 
 
 
 ## 开发步骤

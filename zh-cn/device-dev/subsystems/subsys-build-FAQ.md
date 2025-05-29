@@ -92,9 +92,9 @@
 
   1. 降低进程的权限等级。修改.cfg配置文件中的uid定义，非必需的场景下，不要定义uid为root或system。
 
-     *如果由于实现业务功能需要，进程必须要有root或system权限，只有在联系安全专家评审，通过安全审视后，方可修改产品的高权限进程管控列表，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/high_privilege_process_list.json`"。*
+     如果由于实现业务功能需要，进程必须要有root或system权限，只有在联系安全专家评审，通过安全审视后，方可修改产品的高权限进程管控列表，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/high_privilege_process_list.json`"。
 
-     *示例：rk3586的高权限进程配置文件位于`//vendor/hihope/rk3568/security_config/high_privilege_process_list.json`*
+     示例：rk3586的高权限进程配置文件位于`//vendor/hihope/rk3568/security_config/high_privilege_process_list.json`
 
 
 ### 提示“Error: some services do not match with critical whitelist”

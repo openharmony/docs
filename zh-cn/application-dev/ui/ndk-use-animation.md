@@ -7,17 +7,17 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 > **说明：**
 >
-> - 需要从ArkTS侧获取this.getUIContext()，传入到Native侧。
+> - 需要从ArkTS侧获取[this.getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，传入到Native侧。
 > 
 > - 在Native侧通过[OH_ArkUI_GetContextFromNapiValue](../reference/apis-arkui/native__node__napi_8h.md)方法获取context。
 > 
-> - 需要执行的动画属性变化必须写在ArkUI_ContextCallback中callback中。
+> - 需要执行的动画属性变化必须写在[ArkUI_ContextCallback](../reference/apis-arkui/_ark_u_i___context_callback.md)中callback中。
 > 
-> - 需要执行的动画属性,必须在执行动画之前设置过。
+> - 需要执行的动画属性，必须在执行动画之前设置过。
 
 提供全局animateTo显式动画接口，来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-1. 在.ets文件中获取UIContext，把this.getUIContext()当做参数输出到Native方法中。
+1. 在.ets文件中获取[UIContext](../reference//apis-arkui/js-apis-arkui-UIContext.md#uicontext)，把this.getUIContext()当做参数输出到Native方法中。
    ```ts
    // createNativeNode是Native侧暴露的方法
    nativeNode.createNativeNode("xcomponentId", this.getUIContext());
@@ -110,7 +110,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 组件内转场通过NODE_XX_TRANSITION属性（XX包括：OPACITY、TRANSLATE、SCALE、ROTATE、MOVE）配置转场参数，在组件插入和删除时显示过渡动效（通过NODE_TRANSFORM_CENTER属性设置NODE_SCALE_TRANSITION和NODE_ROTATE_ROTATE动效的中心点坐标）。主要用于容器组件中子组件插入和删除时，提升用户体验。
 
-1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。
+1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool flag = false;
@@ -118,11 +118,8 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
    ArkUI_NodeHandle childNode;
    ArkUI_NodeHandle buttonNode;
    
-   void mainViewMethod(OH_NativeXComponent *component)
+   void mainViewMethod(ArkUI_NodeContentHandle handle)
    {
-       if (!component) {
-           return;
-       }
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -156,7 +153,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
        parrentNode = column;
        buttonNode = buttonShow;
        nodeAPI->addChild(column, buttonShow);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 
@@ -227,3 +224,83 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
    ![zh-cn_image_0000001903284256](figures/zh-cn_image_0000001903284256.gif)
 
 
+
+## 使用关键帧动画
+
+[keyframeAnimateTo](../reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md#keyframeanimateto)接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
+
+该示例主要演示如何通过[keyframeAnimateTo](../reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md#keyframeanimateto)来设置关键帧动画，NDK接口开发的UI界面挂载到ArkTS主页面的完整流程可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+
+```
+auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+
+// 创建button，后续创建的关键帧动画作用在button组件上
+auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
+ArkUI_NumberValue widthValue0[] = {100};
+ArkUI_AttributeItem widthItem0 = {widthValue0, 1};
+ArkUI_NumberValue heightValue0[] = {100};
+ArkUI_AttributeItem heightItem0 = {heightValue0, 1};
+nodeAPI->setAttribute(button, NODE_WIDTH, &widthItem0);
+nodeAPI->setAttribute(button, NODE_HEIGHT, &heightItem0);
+ArkUI_NumberValue typeValue[] = {{.i32 = ArkUI_ButtonType::ARKUI_BUTTON_TYPE_CIRCLE}};
+ArkUI_AttributeItem typeItem = {typeValue, 1};
+nodeAPI->setAttribute(button, NODE_BUTTON_TYPE, &typeItem); // 设置button的形状为圆形
+
+static ArkUI_NodeHandle buttonSelf = button;
+static ArkUI_NativeNodeAPI_1 *nodeAPISelf = nodeAPI;
+
+// 注册点击事件到button上
+nodeAPI->registerNodeEvent(button, NODE_ON_CLICK, 1, nullptr);
+auto onTouch = [](ArkUI_NodeEvent *event) {
+    
+    // 点击button按钮时触发该逻辑
+    if (OH_ArkUI_NodeEvent_GetTargetId(event) == 1) {
+        
+        // 获取context对象
+        static ArkUI_ContextHandle context = nullptr;
+        context = OH_ArkUI_GetContextByNode(buttonSelf);
+        
+        // 获取ArkUI_NativeAnimateAPI接口
+        ArkUI_NativeAnimateAPI_1 *animateApi = nullptr;
+        OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_ANIMATE, ArkUI_NativeAnimateAPI_1, animateApi);
+        
+        // 以下代码为创建关键帧动画的关键流程，包括设置关键帧动画参数、开启关键帧动画
+        // 设置ArkUI_KeyframeAnimateOption参数，通过提供的C方法设置对应的参数
+        static ArkUI_KeyframeAnimateOption *option =  OH_ArkUI_KeyframeAnimateOption_Create(2); // 关键帧动画状态数
+        OH_ArkUI_KeyframeAnimateOption_SetDuration(option, 1000, 0); // 第一段关键帧动画的持续时间
+        OH_ArkUI_KeyframeAnimateOption_SetDuration(option, 2000, 1); // 第二段关键帧动画的持续时间
+        OH_ArkUI_KeyframeAnimateOption_SetIterations(option, 5); // 关键帧动画播放次数
+        OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(option, nullptr, [](void *user) {
+            ArkUI_NumberValue widthValue0[] = {150};
+            ArkUI_AttributeItem widthItem0 = {widthValue0, 1};
+            ArkUI_NumberValue heightValue0[] = {150};
+            ArkUI_AttributeItem heightItem0 = {heightValue0, 1};
+            nodeAPISelf->setAttribute(buttonSelf, NODE_WIDTH, &widthItem0);
+            nodeAPISelf->setAttribute(buttonSelf, NODE_HEIGHT, &heightItem0);
+        }, 0); // 第一段关键帧时刻状态的闭包函数
+        OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(option, nullptr, [](void *user) {
+            ArkUI_NumberValue widthValue0[] = {80};
+            ArkUI_AttributeItem widthItem0 = {widthValue0, 1};
+            ArkUI_NumberValue heightValue0[] = {80};
+            ArkUI_AttributeItem heightItem0 = {heightValue0, 1};
+            nodeAPISelf->setAttribute(buttonSelf, NODE_WIDTH, &widthItem0);
+            nodeAPISelf->setAttribute(buttonSelf, NODE_HEIGHT, &heightItem0);
+        }, 1); // 第二段关键帧时刻状态的闭包函数
+        OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(option, nullptr, [](void *user) {
+            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "keyframe animate finish");
+        }); // 关键帧动画结束回调
+        ArkUI_ExpectedFrameRateRange *range = new ArkUI_ExpectedFrameRateRange;
+        range->max = 120;
+        range->expected = 60;
+        range->min = 30;
+        OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(option, range); // 关键帧设置期望帧率
+        
+        // 执行对应的动画
+        animateApi->keyframeAnimateTo(context, option);
+    }
+};
+nodeAPI->registerNodeEventReceiver(onTouch);
+nodeAPI->addChild(column, button);
+```
+
+![zh-cn_image_0000001903284256](figures/zh-cn_image_keyframeAnimateTo.gif)

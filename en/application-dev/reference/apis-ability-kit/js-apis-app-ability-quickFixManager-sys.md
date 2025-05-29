@@ -19,7 +19,7 @@ Defines the quick fix information at the HAP file level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -33,7 +33,7 @@ Defines the quick fix information at the application level.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name       | Type                | Read-only| Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -54,7 +54,7 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -92,7 +92,7 @@ try {
     if (error) {
       console.error( `applyQuickFix failed with error: ${error}`);
     } else {
-      console.info( 'applyQuickFix success');
+      console.info(`applyQuickFix success`);
     }
   });
 } catch (paramError) {
@@ -110,7 +110,7 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -148,7 +148,7 @@ let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
 
 try {
   quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-    console.info('applyQuickFix success');
+    console.info(`applyQuickFix success`);
   }).catch((error: BusinessError) => {
     console.error(`applyQuickFix err: ${error}`);
   });
@@ -167,7 +167,7 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -185,7 +185,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The specified bundleName is invalid. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
 
 **Example**
@@ -218,7 +218,7 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -241,7 +241,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The specified bundleName is invalid. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
 
 **Example**
@@ -272,7 +272,7 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -290,20 +290,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 
 ```ts
 import { quickFixManager } from '@kit.AbilityKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName, (err) => {
-  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+  if (err.code) {
+    console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
+  }
 });
 ```
 
@@ -317,7 +319,7 @@ Revokes quick fix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -340,10 +342,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
 **Example**
 
@@ -351,13 +353,11 @@ If an error occurs during patch installation, the error code and message are ret
 import { quickFixManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
 
 quickFixManager.revokeQuickFix(bundleName).then(() => {
-  console.info("revokeQuickFix " + bundleName +" ok");
+  console.info(`revokeQuickFix ${bundleName} success.`);
 }).catch((err: BusinessError) => {
-  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+  console.error(`revokeQuickFix ${bundleName} failed, err code: ${err.code}, err msg: ${err.message}.`);
 });
 ```
-
- <!--no_check--> 

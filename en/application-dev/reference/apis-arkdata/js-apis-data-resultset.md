@@ -27,7 +27,7 @@ promise.then((resultSet) => {
 });
 ```
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

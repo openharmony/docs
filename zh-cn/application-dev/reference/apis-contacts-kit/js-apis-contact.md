@@ -2,9 +2,9 @@
 
 本模块提供联系人管理能力，包括添加联系人、删除联系人、更新联系人等。
 
->**说明：**
+> **说明：**
 >
->本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -19,7 +19,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 添加联系人，使用callback方式作为异步方法。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -35,6 +35,8 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -42,37 +44,42 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
-  contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
-    }, (err: BusinessError, data) => {
-      if (err) {
-        console.error(`Failed to addContact. Code:${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
+  }, (err: BusinessError, data) => {
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
-addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
+addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 添加联系人，使用callback方式作为异步方法。
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[addContact](#contactaddcontact10)替代。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -89,19 +96,20 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -111,7 +119,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -132,6 +140,8 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -139,28 +149,33 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
-  let promise = contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let promise = contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
-    console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
@@ -168,7 +183,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[addContact](#contactaddcontact10-1)替代。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -190,18 +205,19 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -232,20 +248,27 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context; 
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleteContact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
 ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -253,7 +276,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)替代。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -270,15 +293,15 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.deleteContact('xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleteContact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
   ```
-
 
 ## contact.deleteContact<sup>10+</sup>
 
@@ -312,19 +335,26 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
@@ -332,7 +362,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10-1)替代。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -354,14 +384,14 @@ deleteContact(key: string): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
 
 ## contact.updateContact<sup>10+</sup>
 
@@ -369,7 +399,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -390,28 +420,35 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updateContact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -419,9 +456,9 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -436,23 +473,23 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.updateContact(context, {
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updateContact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
-
 
 ## contact.updateContact<sup>10+</sup>
 
@@ -460,7 +497,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -482,30 +519,37 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updateContact.');
+    if (err) {
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -513,9 +557,9 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -531,25 +575,25 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updateContact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
-
 
 ## contact.updateContact<sup>10+</sup>
 
@@ -557,7 +601,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 更新联系人，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -584,29 +628,36 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -614,9 +665,9 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)替代。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -628,6 +679,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
+
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
@@ -636,24 +688,24 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
 
 ## contact.isLocalContact<sup>10+</sup>
 
@@ -675,6 +727,8 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -682,20 +736,27 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -703,7 +764,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -720,12 +781,13 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -754,6 +816,8 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -761,19 +825,26 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
@@ -781,7 +852,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -803,11 +874,12 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -831,6 +903,8 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -838,20 +912,27 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -859,7 +940,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[isMyCard](#contactismycard10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -876,15 +957,15 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
-
 
 ## contact.isMyCard<sup>10+</sup>
 
@@ -911,6 +992,8 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -918,19 +1001,26 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
@@ -938,7 +1028,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[isMyCard](#contactismycard10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -960,11 +1050,12 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -987,6 +1078,8 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -994,20 +1087,27 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1015,7 +1115,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1031,12 +1131,13 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1060,6 +1161,8 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1067,22 +1170,29 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1090,7 +1200,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1107,14 +1217,15 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1143,6 +1254,8 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1150,21 +1263,28 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1172,7 +1292,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1185,6 +1305,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
+
 | 类型                               | 说明                                    |
 | ---------------------------------- | --------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise对象。返回“我的名片”联系人对象。 |
@@ -1193,18 +1314,18 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1212,7 +1333,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)替代。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1226,17 +1347,17 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContact((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1244,7 +1365,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)替代。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1258,11 +1379,12 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1272,7 +1394,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1284,6 +1406,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
@@ -1292,12 +1416,13 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1307,7 +1432,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1322,11 +1447,12 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1336,7 +1462,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1344,10 +1470,12 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件。 |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数。成功返回选择的联系人对象数组；失败返回失败的错误码。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -1357,14 +1485,15 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts({
     isMultiSelect:false
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1374,7 +1503,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1382,7 +1511,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件。 |
 
 **返回值：**
 
@@ -1392,6 +1521,8 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
@@ -1400,11 +1531,12 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1428,6 +1560,8 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1435,20 +1569,27 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1456,7 +1597,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContact](#contactquerycontact10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1473,15 +1614,15 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
-
 
 ## contact.queryContact<sup>10+</sup>
 
@@ -1504,6 +1645,8 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1511,24 +1654,31 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1536,7 +1686,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContact](#contactquerycontact10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1554,16 +1704,17 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1588,6 +1739,8 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1595,22 +1748,29 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1618,7 +1778,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContact](#contactquerycontact10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1636,14 +1796,15 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1669,6 +1830,8 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1676,26 +1839,33 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1703,7 +1873,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-3)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContact](#contactquerycontact10-3)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1722,21 +1892,21 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
-
 
 ## contact.queryContact<sup>10+</sup>
 
@@ -1758,11 +1928,14 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。           |
 
 **返回值：**
+
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -1771,25 +1944,32 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1797,7 +1977,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-4)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContact](#contactquerycontact10-4)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1812,6 +1992,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。                    |
 
 **返回值：**
+
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise对象。返回查询到的联系人对象。 |
@@ -1820,17 +2001,18 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1853,6 +2035,8 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1860,20 +2044,27 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1881,7 +2072,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1897,12 +2088,13 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1926,6 +2118,8 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -1933,24 +2127,31 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1958,7 +2159,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1975,16 +2176,17 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2008,6 +2210,8 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2015,22 +2219,29 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2038,7 +2249,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2055,14 +2266,15 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2087,6 +2299,8 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2094,26 +2308,33 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2121,7 +2342,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-3)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-3)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2139,18 +2360,19 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2173,11 +2395,14 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表，不传默认查询所有联系人属性。               |
 
 **返回值：**
+
 | 类型                                            | 说明                                      |
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise对象。返回查询到的联系人数组对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -2186,25 +2411,32 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`queryContacts success: data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2212,7 +2444,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-4)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-4)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2235,17 +2467,18 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2269,6 +2502,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2276,20 +2511,27 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2297,7 +2539,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2314,15 +2556,15 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
-
 
 ## contact.queryContactsByPhoneNumber<sup>10+</sup>
 
@@ -2345,6 +2587,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2352,24 +2596,31 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2377,7 +2628,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2395,16 +2646,17 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2429,6 +2681,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2436,22 +2690,29 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2459,7 +2720,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2477,14 +2738,15 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2510,6 +2772,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2517,26 +2781,33 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2544,7 +2815,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2563,18 +2834,19 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2605,6 +2877,8 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2612,25 +2886,32 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2638,7 +2919,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2662,17 +2943,18 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2696,6 +2978,8 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2703,20 +2987,27 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2724,7 +3015,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2741,12 +3032,13 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2771,6 +3063,8 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2778,24 +3072,31 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2803,7 +3104,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2821,16 +3122,17 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2855,6 +3157,8 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2862,22 +3166,29 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2885,7 +3196,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2903,14 +3214,15 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2936,6 +3248,8 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -2943,26 +3257,33 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2970,7 +3291,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-3)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-3)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2989,18 +3310,19 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3031,6 +3353,8 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3038,25 +3362,32 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -3064,7 +3395,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-4)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-4)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3088,17 +3419,18 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3128,20 +3460,27 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryGroups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3149,7 +3488,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3165,12 +3504,13 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3194,6 +3534,8 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3201,24 +3543,31 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3226,7 +3575,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3243,16 +3592,17 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3281,6 +3631,8 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3288,23 +3640,30 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -3312,7 +3671,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3334,15 +3693,16 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3365,6 +3725,8 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3372,20 +3734,27 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3393,7 +3762,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3409,12 +3778,13 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryHolders((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3442,6 +3812,8 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3449,19 +3821,26 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3469,7 +3848,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryHolders](#contactqueryholders10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3485,11 +3864,12 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3513,6 +3893,8 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3520,20 +3902,27 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3541,7 +3930,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryKey](#contactquerykey10)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3558,12 +3947,13 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3588,6 +3978,8 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3595,24 +3987,31 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3620,7 +4019,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-1)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryKey](#contactquerykey10-1)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3638,16 +4037,17 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3677,6 +4077,8 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
@@ -3684,23 +4086,30 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  // 获取context
-  let context = getContext(this) as Context;
+  import { common } from '@kit.AbilityKit';
+
+  // 获取context。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
@@ -3708,7 +4117,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-2)
+> 从API version 7 开始支持，从API version 10 开始废弃，建议使用[queryKey](#contactquerykey10-2)替代。
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3731,74 +4140,290 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+## contact.addContactViaUI<sup>15+</sup>
+
+addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用新建联系人接口，打开新建联系人UI界面，新建完成。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../apis-contacts-kit/errorcode-contacts.md)。
+
+| 错误码ID                 | 错误信息                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
+```js
+import { common } from '@kit.AbilityKit';
+
+// 获取context。
+let contactInfo: contact.Contact = {
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let promise = contact.addContactViaUI(context, contactInfo);
+```
+
+## contact.saveToExistingContactViaUI<sup>15+</sup>
+
+saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用保存至已有联系人接口，选择联系人UI界面并完成编辑。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Contacts错误码](../apis-contacts-kit/errorcode-contacts.md)。
+
+| 错误码ID                 | 错误信息                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700101       | Failed to get value to contacts data. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
+```js
+import { common } from '@kit.AbilityKit';
+
+// 获取context。
+let contactInfo: contact.Contact = {
+  id: 1,
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+``` 
 
 ## ContactSelectionOptions<sup>10+</sup>
 
 选择联系人条件。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选     |
+|                名称               |                  类型                 | 只读  | 可选  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是   | 是否为多选，true:多选，false:单选。默认值为false。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。     |
+| maxSelectable<sup>15+</sup>         | number | 否   | 是   | 联系人选择数量上限。默认值为10000。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     | 
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是   | 是否按联系人姓名维度展示，true:按联系人姓名维度展示，false:按联系人号码维度展示。默认值为false。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 是   | 联系人查询过滤器。**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。     |
 
+## ContactSelectionFilter<sup>15+</sup>
 
+联系人查询过滤器。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 |  只读  | 可选    |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterClause        | [FilterClause](#filterclause15) |  否  |  否   |  过滤条件。     |
+| filterType        | [FilterType](#filtertype15) |  否  |  否    | 过滤类型。     |
+
+## FilterType<sup>15+</sup>
+
+枚举，联系人过滤类型。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
+
+## FilterClause<sup>15+</sup>
+
+联系人过滤条件。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 |   只读  | 可选     |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| id         | Array\<[FilterOptions](#filteroptions15)> | 否   | 是   | 联系人id。     |
+| name         | Array\<[FilterOptions](#filteroptions15)>  | 否   | 是   | 联系人姓名。     |
+| dataItem         | [DataFilter](#datafilter15) | 否   | 是   | 联系人数据过滤项。     |
+| focusModeList        | Array\<[FilterOptions](#filteroptions15)>  | 否   | 是   | 专注模式。     |
+
+## FilterOptions<sup>15+</sup>
+
+联系人过滤参数。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 |  只读  | 可选    |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | 否    |   否   | 过滤条件。     |
+| value        | string \| ValueType[] |  否    |   是   | 过滤值，默认为undefined。     |
+
+## FilterCondition<sup>15+</sup>
+
+枚举，过滤条件。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 | 对应字段不为空。 |
+| EQUAL_TO            | 1 | 对应字段等于某值。                 |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
+| IN | 3 | 对应字段值在某数组中。                     |
+| NOT_IN | 4 | 对应字段值不在某数组中。                     |
+| CONTAINS | 5 | 对应字段值包含某值。                     |
+
+## DataFilter<sup>15+</sup>
+
+联系人数据过滤项。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 |  只读  | 可选   |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | 否  | 否  | 联系人数据字段。     |
+| options         | Array\<[FilterOptions](#filteroptions15)> | 否  | 否  | 过滤参数。     |
+
+## DataField<sup>15+</sup>
+
+枚举，联系人数据字段。
+
+**原子化服务API**：从API version 15 开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 | 联系人邮箱。 |
+| PHONE            | 1 | 联系人电话。                 |
+| ORGANIZATION | 2 | 联系人单位。                     |
 
 ## Contact
 
 联系人对象类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称               | 值   | 说明             |
-| ------------------ | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   | 默认联系人的id。 |
-
+| 名称               | 类型   | 值   | 说明             |
+| ------------------ | ---- | ---- | ---------------- |
+| INVALID_CONTACT_ID | number   | -1   | 默认联系人的id。 |
 
 ### 属性
 
-|       名称        |                   类型                  | 可读 | 可写 | 说明                                   |
+|       名称        |                   类型                  | 只读 | 可选 | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
-| id                | number                                  | 是   | 否   | 联系人的id。                           |
-| key               | string                                  | 是   | 否   | 联系人的key。                          |
-| contactAttributes | [ContactAttributes](#contactattributes) | 是   | 是   | 联系人的属性列表。                     |
-| emails            | [Email](#email)[]                       | 是   | 是   | 联系人的邮箱地址列表。                 |
-| events            | [Event](#event)[]                       | 是   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
-| groups            | [Group](#group)[]                       | 是   | 是   | 联系人的群组列表。                     |
-| imAddresses       | [ImAddress](#imaddress)[]               | 是   | 是   | 联系人的即时消息地址列表。             |
-| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 是   | 是   | 联系人的电话号码列表。                 |
-| portrait          | [Portrait](#portrait)                   | 是   | 是   | 联系人的头像。                         |
-| postalAddresses   | [PostalAddress](#postaladdress)[]       | 是   | 是   | 联系人的邮政地址列表。                 |
-| relations         | [Relation](#relation)[]                 | 是   | 是   | 联系人的关系列表。                     |
-| sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
-| websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
-| name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
-| nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
-| note              | [Note](#note)                           | 是   | 是   | 联系人的备注。                         |
-| organization      | [Organization](#organization)           | 是   | 是   | 联系人的组织信息。                     |
-
+| id                | number                                  | 是   | 是   | 联系人的id。                           |
+| key               | string                                  | 是   | 是   | 联系人的key。                          |
+| contactAttributes | [ContactAttributes](#contactattributes) | 否   | 是   | 联系人的属性列表。                     |
+| emails            | [Email](#email)[]                       | 否   | 是   | 联系人的邮箱地址列表。                 |
+| events            | [Event](#event)[]                       | 否   | 是   | 联系人的生日、周年纪念等重要日期列表。 |
+| groups            | [Group](#group)[]                       | 否   | 是   | 联系人的群组列表。                     |
+| imAddresses       | [ImAddress](#imaddress)[]               | 否   | 是   | 联系人的即时消息地址列表。             |
+| phoneNumbers      | [PhoneNumber](#phonenumber)[]           | 否   | 是   | 联系人的电话号码列表。                 |
+| portrait          | [Portrait](#portrait)                   | 否   | 是   | 联系人的头像。                         |
+| postalAddresses   | [PostalAddress](#postaladdress)[]       | 否   | 是   | 联系人的邮政地址列表。                 |
+| relations         | [Relation](#relation)[]                 | 否   | 是   | 联系人的关系列表。                     |
+| sipAddresses      | [SipAddress](#sipaddress)[]             | 否   | 是   | 联系人的会话发起协议(SIP)地址列表。  |
+| websites          | [Website](#website)[]                   | 否   | 是   | 联系人的网站列表。                     |
+| name              | [Name](#name)                           | 否   | 是   | 联系人的姓名。                         |
+| nickName          | [NickName](#nickname)                   | 否   | 是   | 联系人的昵称。                         |
+| note              | [Note](#note)                           | 否   | 是   | 联系人的备注。                         |
+| organization      | [Organization](#organization)           | 否   | 是   | 联系人的组织信息。                     |
 
 **对象创建示例：**
 
-使用JSON格式创建联系人数据：
-
+使用JSON格式创建联系人数据。
 
 ```js
 let myContact: contact.Contact = {
@@ -3815,38 +4440,22 @@ let myContact: contact.Contact = {
 };
 ```
 
-
-  或使用new一个Contact对象的方式创建数据：
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
-
-
 ## ContactAttributes
 
 联系人属性列表，一般作为入参用来标识希望查询的联系人属性。
 当传入为null时，默认查询全部属性。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称       |            类型           | 可读 | 可写 | 说明             |
+| 名称       |            类型           | 只读 | 可选 | 说明             |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
-| attributes | [Attribute](#attribute)[] | 是   | 是   | 联系人属性列表。 |
-
+| attributes | [Attribute](#attribute)[] | 否   | 否   | 联系人属性列表。 |
 
 **对象创建示例：**
 
-使用JSON格式创建数据：
-
+使用JSON格式创建数据。
 
 ```js
 let contactAttributes: contact.ContactAttributes = {
@@ -3858,22 +4467,13 @@ let contactAttributes: contact.ContactAttributes = {
 };
 ```
 
-或使用new一个ContactAttributes对象的方式创建数据：
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
-```
-
-
 ## Attribute
 
 枚举，联系人属性列表。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 | 名称                  | 说明                               |
 | --------------------- | ---------------------------------- |
@@ -3889,51 +4489,47 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 | ATTR_PORTRAIT         | 联系人的头像。                     |
 | ATTR_POSTAL_ADDRESS   | 联系人的邮政地址。                 |
 | ATTR_RELATION         | 联系人的关系。                     |
-| ATTR_SIP_ADDRESS      | 联系人的会话发起协议（SIP）地址。  |
+| ATTR_SIP_ADDRESS      | 联系人的会话发起协议(SIP)地址。  |
 | ATTR_WEBSITE          | 联系人的网站。                     |
-
 
 **对象创建示例：**
 
-使用JSON格式创建数据：
+使用JSON格式创建数据。
 
 ```js
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
-
 ## Email
 
 联系人的邮箱。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称             | 值   | 说明             |
-| ---------------- | ---- | ---------------- |
-| CUSTOM_LABEL     | 0    | 自定义邮箱类型。 |
-| EMAIL_HOME       | 1    | 家庭邮箱类型。   |
-| EMAIL_WORK       | 2    | 工作邮箱类型。   |
-| EMAIL_OTHER      | 3    | 其它邮箱类型。   |
-| INVALID_LABEL_ID | -1   | 无效邮箱类型。   |
-
+| 名称             | 类型   | 值   | 说明             |
+| ---------------- | ---- | ---- | ---------------- |
+| CUSTOM_LABEL     | number    |  0    |自定义邮箱类型。 |
+| EMAIL_HOME       | number    | 1    | 家庭邮箱类型。   |
+| EMAIL_WORK       | number    | 2    | 工作邮箱类型。   |
+| EMAIL_OTHER      | number    | 3    | 其它邮箱类型。   |
+| INVALID_LABEL_ID | number    | -1   | 无效邮箱类型。   |
 
 ### 属性
 
-| 名称        |   类型   | 可读 | 可写 | 说明             |
+| 名称        |   类型   | 只读 | 可选 | 说明             |
 | ----------- | -------- | ---- | ---- | ---------------- |
-| email       | string   | 是   | 是   | 邮箱地址。       |
-| labelName   | string   | 是   | 是   | 邮箱的类型名称。 |
-| displayName | string   | 是   | 是   | 邮箱的显示名称。 |
-| labelId     | number   | 是   | 是   | 邮箱的类型。     |
-
+| email       | string   | 否   | 否   | 邮箱地址。       |
+| labelName   | string   | 否   | 是   | 邮箱的类型名称。 |
+| displayName | string   | 否   | 是   | 邮箱的显示名称。 |
+| labelId     | number   | 否   | 是   | 邮箱的类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let email: contact.Email = {
@@ -3943,30 +4539,28 @@ let email: contact.Email = {
 ```
 
 
-  或使用new一个Email对象的方式创建数据：
+  或使用new一个Email对象的方式创建数据。
 
 ```js
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
 
-
 ## Holder
 
 创建联系人的应用信息类。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称        | 类型   | 可读 | 可写 | 说明         |
+| 名称        | 类型   | 只读 | 可选 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
-| displayName | string | 是   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 应用ID。     |
-
+| displayName | string | 是   | 是   | 应用名称。   |
+| holderId    | number | 否   | 是   | 应用Id。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let holder: contact.Holder = {
@@ -3976,45 +4570,35 @@ let holder: contact.Holder = {
 };
 ```
 
-  或使用new一个Holder对象的方式创建数据：
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 1;
-```
-
-
 ## Event
 
 联系人事件类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称              | 值   | 说明               |
-| ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 0    | 自定义事件类型。   |
-| EVENT_ANNIVERSARY | 1    | 周年纪念事件类型。 |
-| EVENT_OTHER       | 2    | 其它事件类型。     |
-| EVENT_BIRTHDAY    | 3    | 生日事件类型。     |
-| INVALID_LABEL_ID  | -1   | 无效事件类型。     |
-
+| 名称              |   类型   |  值   | 说明               |
+| ----------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL      | number   | 0    | 自定义事件类型。   |
+| EVENT_ANNIVERSARY | number   | 1    | 周年纪念事件类型。 |
+| EVENT_OTHER       | number   | 2    | 其它事件类型。     |
+| EVENT_BIRTHDAY    | number   | 3    | 生日事件类型。     |
+| INVALID_LABEL_ID  | number   | -1   | 无效事件类型。     |
 
 ### 属性
 
-|    名称   |   类型   | 可读 | 可写 | 说明           |
+|    名称   |   类型   | 只读 | 可选 | 说明           |
 | --------- | -------- | ---- | ---- | -------------- |
-| eventDate | string   | 是   | 是   | 事件的日期。   |
-| labelName | string   | 是   | 是   | 事件类型名称。 |
-| labelId   | number   | 是   | 是   | 事件类型。     |
-
+| eventDate | string   | 否   | 否   | 事件的日期。   |
+| labelName | string   | 否   | 是   | 事件类型名称。 |
+| labelId   | number   | 否   | 是   | 事件类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let event: contact.Event = {
@@ -4022,31 +4606,29 @@ let event: contact.Event = {
 };
 ```
 
-  或使用new一个Event对象的方式创建数据：
+  或使用new一个Event对象的方式创建数据。
 
 ```js
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
 
-
 ## Group
 
 联系人的群组类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称    |   类型   | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 只读 | 可选 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
-| groupId | number   | 是   | 是   | 联系人群组的id。   |
-| title   | string   | 是   | 是   | 联系人群组的名称。 |
-
+| groupId | number   | 否   | 是   | 联系人群组的Id。   |
+| title   | string   | 否   | 否   | 联系人群组的名称。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let group: contact.Group = {
@@ -4055,49 +4637,39 @@ let group: contact.Group = {
 };
 ```
 
-  或使用new一个Group对象的方式创建数据：
-
-```js
-let group = new contact.Group();
-group.title = "title";
-```
-
-
 ## ImAddress
 
 联系人的即时消息地址。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称             | 值   | 说明                 |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | -1   | 自定义即时消息类型。 |
-| IM_AIM           | 0    | AIM即时消息类型。    |
-| IM_MSN           | 1    | MSN即时消息类型。    |
-| IM_YAHOO         | 2    | YAHOO即时消息类型。  |
-| IM_SKYPE         | 3    | SKYPE即时消息类型。  |
-| IM_QQ            | 4    | QQ即时消息类型。     |
-| IM_ICQ           | 6    | ICQ即时消息类型。    |
-| IM_JABBER        | 7    | JABBER即时消息类型。 |
-| INVALID_LABEL_ID | -2   | 无效的即时消息类型。 |
-
+| 名称             |   类型   | 值   | 说明                 |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | -1   | 自定义即时消息类型。 |
+| IM_AIM           | number   | 0    | AIM即时消息类型。    |
+| IM_MSN           | number   | 1    | MSN即时消息类型。    |
+| IM_YAHOO         | number   | 2    | YAHOO即时消息类型。  |
+| IM_SKYPE         | number   | 3    | SKYPE即时消息类型。  |
+| IM_QQ            | number   | 4    | QQ即时消息类型。     |
+| IM_ICQ           | number   | 6    | ICQ即时消息类型。    |
+| IM_JABBER        | number   | 7    | JABBER即时消息类型。 |
+| INVALID_LABEL_ID | number   | -2   | 无效的即时消息类型。 |
 
 ### 属性
 
-| 名称      |   类型   | 可读 | 可写 | 说明               |
+| 名称      |   类型   | 只读 | 可选 | 说明               |
 | --------- | -------- | ---- | ---- | ------------------ |
-| imAddress | string   | 是   | 是   | 即时消息地址。     |
-| labelName | string   | 是   | 是   | 即时消息类型名称。 |
-| labelId   | number   | 是   | 是   | 即时消息类型。     |
-
+| imAddress | string   | 否   | 否   | 即时消息地址。     |
+| labelName | string   | 否   | 是   | 即时消息类型名称。 |
+| labelId   | number   | 否   | 是   | 即时消息类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let imAddress: contact.ImAddress = {
@@ -4107,38 +4679,36 @@ let imAddress: contact.ImAddress = {
 ```
 
 
-  或使用new一个ImAddress对象的方式创建数据：
+  或使用new一个ImAddress对象的方式创建数据。
 
 ```js
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
 
-
 ## Name
 
 联系人的名字类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称               |   类型   | 可读 | 可写 | 说明                        |
+| 名称               |   类型   | 只读 | 可选 | 说明                        |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
-| familyName         | string   | 是   | 是   | 联系人的家庭姓名。          |
-| familyNamePhonetic | string   | 是   | 是   | 联系人的家庭姓名拼音。      |
-| fullName           | string   | 是   | 是   | 联系人的全名。              |
-| givenName          | string   | 是   | 是   | 联系人的名称（firstName）。 |
-| givenNamePhonetic  | string   | 是   | 是   | 联系人的名称拼音。          |
-| middleName         | string   | 是   | 是   | 联系人的中间名。            |
-| middleNamePhonetic | string   | 是   | 是   | 联系人的中间名拼音。        |
-| namePrefix         | string   | 是   | 是   | 联系人的姓名前缀。          |
-| nameSuffix         | string   | 是   | 是   | 联系人的姓名后缀。          |
-
+| familyName         | string   | 否   | 是   | 联系人的家庭姓名。          |
+| familyNamePhonetic | string   | 否   | 是   | 联系人的家庭姓名拼音。      |
+| fullName           | string   | 否   | 否   | 联系人的全名。              |
+| givenName          | string   | 否   | 是   | 联系人的名称(firstName)。 |
+| givenNamePhonetic  | string   | 否   | 是   | 联系人的名称拼音。          |
+| middleName         | string   | 否   | 是   | 联系人的中间名。            |
+| middleNamePhonetic | string   | 否   | 是   | 联系人的中间名拼音。        |
+| namePrefix         | string   | 否   | 是   | 联系人的姓名前缀。          |
+| nameSuffix         | string   | 否   | 是   | 联系人的姓名后缀。          |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let name: contact.Name = {
@@ -4147,31 +4717,21 @@ let name: contact.Name = {
 };
 ```
 
-  或使用new一个name对象的方式创建数据：
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
-
 ## NickName
 
 联系人的昵称类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称     |   类型   | 可读 | 可写 | 说明           |
+| 名称     |   类型   | 只读 | 可选 | 说明           |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | 是   | 是   | 联系人的昵称。 |
-
+| nickName | string   | 否   | 否   | 联系人的昵称。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let nickName: contact.NickName = {
@@ -4179,30 +4739,21 @@ let nickName: contact.NickName = {
 };
 ```
 
-  或使用new一个NickName对象的方式创建数据：
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
-
 ## Note
 
 联系人的备注类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称        |   类型   | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 只读 | 可选 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| noteContent | string   | 是   | 是   | 联系人的备注内容。 |
-
+| noteContent | string   | 否   | 否   | 联系人的备注内容。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let note: contact.Note = {
@@ -4210,31 +4761,22 @@ let note: contact.Note = {
 };
 ```
 
-  或使用new一个Note对象的方式创建数据：
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
-```
-
-
 ## Organization
 
 联系人的组织类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称  |   类型   | 可读 | 可写 | 说明       |
+| 名称  |   类型   | 只读 | 可选 | 说明       |
 | ----- | -------- | ---- | ---- | ---------- |
-| name  | string   | 是   | 是   | 单位名称。 |
-| title | string   | 是   | 是   | 职位名称。 |
-
+| name  | string   | 否   | 否   | 单位名称。 |
+| title | string   | 否   | 是   | 职位名称。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let organization: contact.Organization = {
@@ -4243,63 +4785,52 @@ let organization: contact.Organization = {
 };
 ```
 
-  或使用new一个Organization对象的方式创建数据：
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
-```
-
-
 ## PhoneNumber
 
 联系人电话号码类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称             | 值   | 说明                                             |
-| ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 0    | 自定义电话类型。                                 |
-| NUM_HOME         | 1    | 家庭电话类型。                                   |
-| NUM_MOBILE       | 2    | 移动电话类型。                                   |
-| NUM_WORK         | 3    | 工作电话类型。                                   |
-| NUM_FAX_WORK     | 4    | 工作传真电话类型。                               |
-| NUM_FAX_HOME     | 5    | 家庭传真电话类型。                               |
-| NUM_PAGER        | 6    | 寻呼机电话类型。                                 |
-| NUM_OTHER        | 7    | 其它电话类型。                                   |
-| NUM_CALLBACK     | 8    | 回呼电话类型。                                   |
-| NUM_CAR          | 9    | 车机电话类型。                                   |
-| NUM_COMPANY_MAIN | 10   | 公司电话类型。                                   |
-| NUM_ISDN         | 11   | 综合业务数字网（ISDN）电话类型。                 |
-| NUM_MAIN         | 12   | 主电话类型。                                     |
-| NUM_OTHER_FAX    | 13   | 其它传真类型。                                   |
-| NUM_RADIO        | 14   | 无线电话类型。                                   |
-| NUM_TELEX        | 15   | 电传电话类型。                                   |
-| NUM_TTY_TDD      | 16   | 电传打字机（TTY）或测试驱动开发（TDD）电话类型。 |
-| NUM_WORK_MOBILE  | 17   | 工作移动电话类型。                               |
-| NUM_WORK_PAGER   | 18   | 工作寻呼机电话类型。                             |
-| NUM_ASSISTANT    | 19   | 助理电话类型。                                   |
-| NUM_MMS          | 20   | 彩信电话类型。                                   |
-| INVALID_LABEL_ID | -1   | 无效电话类型。                                   |
-
+| 名称             |  类型  | 值   | 说明                                             |
+| ---------------- | ---- | ---- | ------------------------------------------------ |
+| CUSTOM_LABEL     |  number  | 0    | 自定义电话类型。                                 |
+| NUM_HOME         |  number  | 1    | 家庭电话类型。                                   |
+| NUM_MOBILE       |  number  | 2    | 移动电话类型。                                   |
+| NUM_WORK         |  number  | 3    | 工作电话类型。                                   |
+| NUM_FAX_WORK     |  number  | 4    | 工作传真电话类型。                               |
+| NUM_FAX_HOME     |  number  | 5    | 家庭传真电话类型。                               |
+| NUM_PAGER        |  number  | 6    | 寻呼机电话类型。                                 |
+| NUM_OTHER        |  number  | 7    | 其它电话类型。                                   |
+| NUM_CALLBACK     |  number  | 8    | 回呼电话类型。                                   |
+| NUM_CAR          |  number  | 9    | 车机电话类型。                                   |
+| NUM_COMPANY_MAIN |  number  | 10   | 公司电话类型。                                   |
+| NUM_ISDN         |  number  | 11   | 综合业务数字网(ISDN)电话类型。                 |
+| NUM_MAIN         |  number  | 12   | 主电话类型。                                     |
+| NUM_OTHER_FAX    |  number  | 13   | 其它传真类型。                                   |
+| NUM_RADIO        |  number  | 14   | 无线电话类型。                                   |
+| NUM_TELEX        |  number  | 15   | 电传电话类型。                                   |
+| NUM_TTY_TDD      |  number  | 16   | 电传打字机(TTY)或测试驱动开发(TDD)电话类型。 |
+| NUM_WORK_MOBILE  |  number  | 17   | 工作移动电话类型。                               |
+| NUM_WORK_PAGER   |  number  | 18   | 工作寻呼机电话类型。                             |
+| NUM_ASSISTANT    |  number  | 19   | 助理电话类型。                                   |
+| NUM_MMS          |  number  | 20   | 彩信电话类型。                                   |
+| INVALID_LABEL_ID |  number  | -1   | 无效电话类型。                                   |
 
 ### 属性
 
-| 名称        |   类型   | 可读 | 可写 | 说明               |
+| 名称        |   类型   | 只读 | 可选 | 说明               |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| labelName   | string   | 是   | 是   | 电话号码类型名称。 |
-| phoneNumber | string   | 是   | 是   | 电话号码。         |
-| labelId     | number   | 是   | 是   | 电话号码类型。     |
-
+| labelName   | string   | 否   | 是   | 电话号码类型名称。 |
+| phoneNumber | string   | 否   | 否   | 电话号码。         |
+| labelId     | number   | 否   | 是   | 电话号码类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let phoneNumber: contact.PhoneNumber = {
@@ -4308,30 +4839,28 @@ let phoneNumber: contact.PhoneNumber = {
 };
 ```
 
-  或使用new一个PhoneNumber对象的方式创建数据：
+  或使用new一个PhoneNumber对象的方式创建数据。
 
 ```js
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
 
-
 ## Portrait
 
 联系人的头像类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称 |   类型   | 可读 | 可写 | 说明           |
+| 名称 |   类型   | 只读 | 可选 | 说明           |
 | ---- | -------- | ---- | ---- | -------------- |
-| uri  | string   | 是   | 是   | 联系人的头像。 |
-
+| uri  | string   | 否   | 否   | 联系人的头像。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let portrait: contact.Portrait = {
@@ -4339,52 +4868,42 @@ let portrait: contact.Portrait = {
 };
 ```
 
-  或使用new一个Portrait对象的方式创建数据：
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
-```
-
-
 ## PostalAddress
 
 联系人的邮政地址类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称             | 值   | 说明                 |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 0    | 自定义邮政地址类型。 |
-| ADDR_HOME        | 1    | 家庭地址类型。       |
-| ADDR_WORK        | 2    | 工作地址类型。       |
-| ADDR_OTHER       | 3    | 其它地址类型。       |
-| INVALID_LABEL_ID | -1   | 无效地址类型。       |
-
+| 名称             |   类型   | 值   | 说明                 |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | 0    | 自定义邮政地址类型。 |
+| ADDR_HOME        | number   | 1    | 家庭地址类型。       |
+| ADDR_WORK        | number   | 2    | 工作地址类型。       |
+| ADDR_OTHER       | number   | 3    | 其它地址类型。       |
+| INVALID_LABEL_ID | number   | -1   | 无效地址类型。       |
 
 ### 属性
 
-| 名称          |   类型   | 可读 | 可写 | 说明                       |
+| 名称          |   类型   | 只读 | 可选 | 说明                       |
 | ------------- | -------- | ---- | ---- | -------------------------- |
-| city          | string   | 是   | 是   | 联系人所在的城市。         |
-| country       | string   | 是   | 是   | 联系人所在的国家。         |
-| labelName     | string   | 是   | 是   | 邮政地址类型名称。         |
-| neighborhood  | string   | 是   | 是   | 联系人的邻居。             |
-| pobox         | string   | 是   | 是   | 联系人的邮箱。             |
-| postalAddress | string   | 是   | 是   | 联系人的邮政地址。         |
-| postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
-| region        | string   | 是   | 是   | 联系人所在的区域。         |
-| street        | string   | 是   | 是   | 联系人所在的街道。         |
-| labelId       | number   | 是   | 是   | 邮政地址类型。             |
-
+| city          | string   | 否   | 是   | 联系人所在的城市。         |
+| country       | string   | 否   | 是   | 联系人所在的国家。         |
+| labelName     | string   | 否   | 是   | 邮政地址类型名称。         |
+| neighborhood  | string   | 否   | 是   | 联系人的邻居。             |
+| pobox         | string   | 否   | 是   | 联系人的邮箱。             |
+| postalAddress | string   | 否   | 否   | 联系人的邮政地址。         |
+| postcode      | string   | 否   | 是   | 联系人所在区域的邮政编码。 |
+| region        | string   | 否   | 是   | 联系人所在的区域。         |
+| street        | string   | 否   | 是   | 联系人所在的街道。         |
+| labelId       | number   | 否   | 是   | 邮政地址类型。             |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let postalAddress: contact.PostalAddress = {
@@ -4393,7 +4912,7 @@ let postalAddress: contact.PostalAddress = {
 };
 ```
 
-  或使用new一个PostalAddress对象的方式创建数据：
+  或使用new一个PostalAddress对象的方式创建数据。
 
 ```js
 let postalAddress = new contact.PostalAddress();
@@ -4401,49 +4920,46 @@ postalAddress.city = "city";
 postalAddress.postalAddress = "postalAddress";
 ```
 
-
 ## Relation
 
 联系人的关系类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称                      | 值   | 说明               |
-| ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 0    | 自定义关系类型。   |
-| RELATION_ASSISTANT        | 1    | 助手关系类型。     |
-| RELATION_BROTHER          | 2    | 兄弟关系类型。     |
-| RELATION_CHILD            | 3    | 子女关系类型。     |
-| RELATION_DOMESTIC_PARTNER | 4    | 同居同伴关系类型。 |
-| RELATION_FATHER           | 5    | 父亲关系类型。     |
-| RELATION_FRIEND           | 6    | 朋友关系类型。     |
-| RELATION_MANAGER          | 7    | 管理者关系类型。   |
-| RELATION_MOTHER           | 8    | 母亲关系类型。     |
-| RELATION_PARENT           | 9    | 父母关系类型。     |
-| RELATION_PARTNER          | 10   | 合作伙伴关系类型。 |
-| RELATION_REFERRED_BY      | 11   | 推荐人关系类型。   |
-| RELATION_RELATIVE         | 12   | 亲属关系类型。     |
-| RELATION_SISTER           | 13   | 姐妹关系类型。     |
-| RELATION_SPOUSE           | 14   | 配偶关系类型。     |
-| INVALID_LABEL_ID          | -1   | 无效的关系类型。   |
-
+| 名称                      |  类型   | 值   | 说明               |
+| ------------------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL              | number   | 0    | 自定义关系类型。   |
+| RELATION_ASSISTANT        | number   | 1    | 助手关系类型。     |
+| RELATION_BROTHER          | number   | 2    | 兄弟关系类型。     |
+| RELATION_CHILD            | number   | 3    | 子女关系类型。     |
+| RELATION_DOMESTIC_PARTNER | number   | 4    | 同居同伴关系类型。 |
+| RELATION_FATHER           | number   | 5    | 父亲关系类型。     |
+| RELATION_FRIEND           | number   | 6    | 朋友关系类型。     |
+| RELATION_MANAGER          | number   | 7    | 管理者关系类型。   |
+| RELATION_MOTHER           | number   | 8    | 母亲关系类型。     |
+| RELATION_PARENT           | number   | 9    | 父母关系类型。     |
+| RELATION_PARTNER          | number   | 10   | 合作伙伴关系类型。 |
+| RELATION_REFERRED_BY      | number   | 11   | 推荐人关系类型。   |
+| RELATION_RELATIVE         | number   | 12   | 亲属关系类型。     |
+| RELATION_SISTER           | number   | 13   | 姐妹关系类型。     |
+| RELATION_SPOUSE           | number   | 14   | 配偶关系类型。     |
+| INVALID_LABEL_ID          | number   | -1   | 无效的关系类型。   |
 
 ### 属性
 
-| 名称         |   类型   | 可读 | 可写 | 说明           |
+| 名称         |   类型   | 只读 | 可选 | 说明           |
 | ------------ | -------- | ---- | ---- | -------------- |
-| labelName    | string   | 是   | 是   | 关系类型名称。 |
-| relationName | string   | 是   | 是   | 关系名称。     |
-| labelId      | number   | 是   | 是   | 关系类型。     |
-
+| labelName    | string   | 否   | 是   | 关系类型名称。 |
+| relationName | string   | 否   | 否   | 关系名称。     |
+| labelId      | number   | 否   | 是   | 关系类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let relation: contact.Relation = {
@@ -4452,7 +4968,7 @@ let relation: contact.Relation = {
 };
 ```
 
-  或使用new一个Relation对象的方式创建数据：
+  或使用new一个Relation对象的方式创建数据。
 
 ```js
 let relation = new contact.Relation();
@@ -4460,37 +4976,35 @@ relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
 ```
 
-
 ## SipAddress
 
-联系人的会话发起协议（SIP）地址类。
+联系人的会话发起协议(SIP)地址类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 ### 常量
 
-| 名称             | 值   | 说明                                |
-| ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 0    | 自定义会话发起协议（SIP）地址类型。 |
-| SIP_HOME         | 1    | 家庭会话发起协议（SIP）地址类型。   |
-| SIP_WORK         | 2    | 工作会话发起协议（SIP）地址类型。   |
-| SIP_OTHER        | 3    | 其它会话发起协议（SIP）地址类型。   |
-| INVALID_LABEL_ID | -1   | 无效会话发起协议（SIP）地址类型。   |
-
+| 名称             |   类型   | 值   | 说明                                |
+| ---------------- | ---- | ---- | ----------------------------------- |
+| CUSTOM_LABEL     | number   | 0    | 自定义会话发起协议(SIP)地址类型。 |
+| SIP_HOME         | number   | 1    | 家庭会话发起协议(SIP)地址类型。   |
+| SIP_WORK         | number   | 2    | 工作会话发起协议(SIP)地址类型。   |
+| SIP_OTHER        | number   | 3    | 其它会话发起协议(SIP)地址类型。   |
+| INVALID_LABEL_ID | number   | -1   | 无效会话发起协议(SIP)地址类型。   |
 
 ### 属性
 
-| 名称       |   类型   | 可读 | 可写 | 说明                              |
+| 名称       |   类型   | 只读 | 可选 | 说明                              |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
-| labelName  | string   | 是   | 是   | 会话发起协议（SIP）地址类型名称。 |
-| sipAddress | string   | 是   | 是   | 会话发起协议（SIP）地址。         |
-| labelId    | number   | 是   | 是   | 会话发起协议（SIP）地址类型。     |
+| labelName  | string   | 否   | 是   | 会话发起协议(SIP)地址类型名称。 |
+| sipAddress | string   | 否   | 否   | 会话发起协议(SIP)地址。         |
+| labelId    | number   | 否   | 是   | 会话发起协议(SIP)地址类型。     |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let sipAddress: contact.SipAddress = {
@@ -4498,30 +5012,28 @@ let sipAddress: contact.SipAddress = {
 };
 ```
 
-  或使用new一个SipAddress对象的方式创建数据：
+  或使用new一个SipAddress对象的方式创建数据。
 
 ```js
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
 
-
 ## Website
 
 联系人的网站信息类。
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
-| 名称    |   类型   | 可读 | 可写 | 说明               |
+| 名称    |   类型   | 只读 | 可选 | 说明               |
 | ------- | -------- | ---- | ---- | ------------------ |
-| website | string   | 是   | 是   | 联系人的网站信息。 |
-
+| website | string   | 否   | 否   | 联系人的网站信息。 |
 
 **对象创建示例：**
 
-  使用JSON格式创建数据：
+  使用JSON格式创建数据。
 
 ```js
 let website: contact.Website = {
@@ -4529,9 +5041,3 @@ let website: contact.Website = {
 };
 ```
 
-  或使用new一个Website对象的方式创建数据：
-
-```js
-let website = new contact.Website();
-website.website = "website";
-```

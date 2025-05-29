@@ -3,11 +3,11 @@
 
 ## Overview
 
-Provides APIs for operating the **rawfile** directory, including traversing and closing the **rawfile** directory.
+Provides functions related to the **rawfile** directory. These functions include traversing and closing rawfile directories.
 
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary

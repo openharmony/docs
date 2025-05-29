@@ -1,15 +1,19 @@
-# Permissions for All Applications
+# Open system_grant Permissions
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+All the permissions in this topic are available to all applications and granted by the system.
 
+After an application requests this type of permissions, the system automatically grants the permissions to the application when the application is installed.
+
+<!--Del-->
 > **NOTE**
 > "Enable via ACL" is not involved for permissions of the normal level.
+<!--DelEnd-->
 
-## system_grant Permissions
+## Request Mode
 
 The [system_grant permissions](app-permission-mgmt-overview.md#system_grant-system-authorization) are permissions authorized by the system. For details about how to request this type of permissions, see [Declaring Permissions](declare-permissions.md).
 
-### ohos.permission.USE_BLUETOOTH
+## ohos.permission.USE_BLUETOOTH
 
 Allows an application to access Bluetooth configurations.
 
@@ -19,7 +23,7 @@ Allows an application to access Bluetooth configurations.
 
 **Valid since**: 8
 
-### ohos.permission.GET_BUNDLE_INFO
+## ohos.permission.GET_BUNDLE_INFO
 
 Allows an application to obtain basic information about another application.
 
@@ -29,7 +33,7 @@ Allows an application to obtain basic information about another application.
 
 **Valid since**: 7
 
-### ohos.permission.PREPARE_APP_TERMINATE
+## ohos.permission.PREPARE_APP_TERMINATE
 
 Allows an application to perform customized actions before being terminated.
 
@@ -39,7 +43,7 @@ Allows an application to perform customized actions before being terminated.
 
 **Valid since**: 10
 
-### ohos.permission.PRINT
+## ohos.permission.PRINT
 
 Allows an application to obtain the print framework capability.
 
@@ -49,7 +53,7 @@ Allows an application to obtain the print framework capability.
 
 **Valid since**: 10
 
-### ohos.permission.DISCOVER_BLUETOOTH
+## ohos.permission.DISCOVER_BLUETOOTH
 
 Allows an application to configure Bluetooth on a device, initiate or cancel a scan for Bluetooth devices, and pair with Bluetooth devices.
 
@@ -59,7 +63,7 @@ Allows an application to configure Bluetooth on a device, initiate or cancel a s
 
 **Valid since**: 8
 
-### ohos.permission.ACCELEROMETER
+## ohos.permission.ACCELEROMETER
 
 Allows an application to read data from an acceleration sensor, uncalibrated acceleration sensor, or linear acceleration sensor.
 
@@ -69,7 +73,7 @@ Allows an application to read data from an acceleration sensor, uncalibrated acc
 
 **Valid since**: 7
 
-### ohos.permission.ACCESS_BIOMETRIC
+## ohos.permission.ACCESS_BIOMETRIC
 
 Allows an application to use biometric recognition for identity authentication.
 
@@ -79,7 +83,7 @@ Allows an application to use biometric recognition for identity authentication.
 
 **Valid since**: 6
 
-### ohos.permission.ACCESS_NOTIFICATION_POLICY
+## ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 Allows an application to access the notification policy on the device.
 
@@ -91,7 +95,7 @@ This permission is required only when the ringtone needs to be changed from mute
 
 **Valid since**: 7
 
-### ohos.permission.GET_NETWORK_INFO
+## ohos.permission.GET_NETWORK_INFO
 
 Allows an application to obtain network information.
 
@@ -101,7 +105,19 @@ Allows an application to obtain network information.
 
 **Valid since**: 8
 
-### ohos.permission.GET_WIFI_INFO
+## ohos.permission.SET_NETWORK_INFO
+
+Allows an application to set data network information.
+
+With this permission, the application can activate or deactivate a network, and obtain and listen for network information.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 8
+
+## ohos.permission.GET_WIFI_INFO
 
 Allows an application to obtain Wi-Fi information.
 
@@ -111,7 +127,7 @@ Allows an application to obtain Wi-Fi information.
 
 **Valid since**: 8
 
-### ohos.permission.GYROSCOPE
+## ohos.permission.GYROSCOPE
 
 Allows an application to read data from a gyroscope sensor or uncalibrated gyroscope sensor.
 
@@ -121,7 +137,7 @@ Allows an application to read data from a gyroscope sensor or uncalibrated gyros
 
 **Valid since**: 7
 
-### ohos.permission.INTERNET
+## ohos.permission.INTERNET
 
 Allows an application to access the Internet.
 
@@ -131,7 +147,7 @@ Allows an application to access the Internet.
 
 **Valid since**: 9
 
-### ohos.permission.KEEP_BACKGROUND_RUNNING
+## ohos.permission.KEEP_BACKGROUND_RUNNING
 
 Allows a Service ability to keep running in the background.
 
@@ -141,7 +157,7 @@ Allows a Service ability to keep running in the background.
 
 **Valid since**: 8
 
-### ohos.permission.NFC_CARD_EMULATION
+## ohos.permission.NFC_CARD_EMULATION
 
 Allows an application to implement card emulation.
 
@@ -151,7 +167,7 @@ Allows an application to implement card emulation.
 
 **Valid since**: 8
 
-### ohos.permission.NFC_TAG
+## ohos.permission.NFC_TAG
 
 Allows an application to read and write NFC tags.
 
@@ -161,17 +177,19 @@ Allows an application to read and write NFC tags.
 
 **Valid since**: 7
 
-### ohos.permission.PRIVACY_WINDOW
+## ohos.permission.PRIVACY_WINDOW
 
 Allows an application to set screens that cannot be captured or recorded.
 
-**Permission level**: system_basic for API versions 9 to 10; normal for API version 11 and later
+**Permission level**: normal
 
 **Authorization mode**: system_grant
 
 **Valid since**: 9
 
-### ohos.permission.PUBLISH_AGENT_REMINDER
+**Changelog**: The permission level is system_basic in API versions 9 to 10 and changed to normal since API version 11.
+
+## ohos.permission.PUBLISH_AGENT_REMINDER
 
 Allows an application to use agent-powered reminders.
 
@@ -181,7 +199,7 @@ Allows an application to use agent-powered reminders.
 
 **Valid since**: 7
 
-### ohos.permission.SET_WIFI_INFO
+## ohos.permission.SET_WIFI_INFO
 
 Allows an application to set a Wi-Fi device.
 
@@ -191,7 +209,7 @@ Allows an application to set a Wi-Fi device.
 
 **Valid since**: 8
 
-### ohos.permission.VIBRATE
+## ohos.permission.VIBRATE
 
 Allows an application to control vibration.
 
@@ -201,7 +219,7 @@ Allows an application to control vibration.
 
 **Valid since**: 7
 
-### ohos.permission.CLEAN_BACKGROUND_PROCESSES
+## ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 Allows an application to clear background processes based on their bundle names.
 
@@ -211,7 +229,7 @@ Allows an application to clear background processes based on their bundle names.
 
 **Valid since**: 7
 
-### ohos.permission.COMMONEVENT_STICKY
+## ohos.permission.COMMONEVENT_STICKY
 
 Allows an application to publish sticky common events.
 
@@ -221,7 +239,7 @@ Allows an application to publish sticky common events.
 
 **Valid since**: 7
 
-### ohos.permission.MODIFY_AUDIO_SETTINGS
+## ohos.permission.MODIFY_AUDIO_SETTINGS
 
 Allows an application to modify audio settings.
 
@@ -231,7 +249,7 @@ Allows an application to modify audio settings.
 
 **Valid since**: 8
 
-### ohos.permission.RUNNING_LOCK
+## ohos.permission.RUNNING_LOCK
 
 Allows an application to obtain a running lock.
 
@@ -241,7 +259,7 @@ Allows an application to obtain a running lock.
 
 **Valid since**: 7
 
-### ohos.permission.SET_WALLPAPER
+## ohos.permission.SET_WALLPAPER
 
 Allows an application to set wallpapers.
 
@@ -251,7 +269,7 @@ Allows an application to set wallpapers.
 
 **Valid since**: 7
 
-### ohos.permission.ACCESS_CERT_MANAGER
+## ohos.permission.ACCESS_CERT_MANAGER
 
 Allows an application to query certificates and private credentials.
 
@@ -261,7 +279,7 @@ Allows an application to query certificates and private credentials.
 
 **Valid since**: 9
 
-### ohos.permission.hsdr.HSDR_ACCESS
+## ohos.permission.hsdr.HSDR_ACCESS
 
 Allows an application to access OpenHarmony Security Detection and Response Framework.
 
@@ -271,9 +289,11 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 **Valid since**: 10
 
-### ohos.permission.RUN_DYN_CODE
+## ohos.permission.RUN_DYN_CODE
 
-Allows an application to run dynamic code.
+Allows an application to run dynamically delivered ArkCompiler bytecode when the ArkCompiler runtime engine is in restricted mode.
+
+The APIs related to this permission are system APIs, and this permission is available only to specific system applications.
 
 **Permission level**: normal
 
@@ -281,7 +301,7 @@ Allows an application to run dynamic code.
 
 **Valid since**: 11
 
-### ohos.permission.READ_CLOUD_SYNC_CONFIG
+## ohos.permission.READ_CLOUD_SYNC_CONFIG
 
 Allows an application that has accessed the cloud to obtain its device-cloud synchronization configuration.
 
@@ -291,7 +311,7 @@ Allows an application that has accessed the cloud to obtain its device-cloud syn
 
 **Valid since**: 11
 
-### ohos.permission.STORE_PERSISTENT_DATA
+## ohos.permission.STORE_PERSISTENT_DATA
 
 Allows an application to store persistent data. The persistent data will be cleared only when the device's factory settings are restored or the system is reinstalled.
 
@@ -301,7 +321,7 @@ Allows an application to store persistent data. The persistent data will be clea
 
 **Valid since**: 11
 
-### ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 Allows an application to use enhanced functions of the devices connected to this device.
 
@@ -311,7 +331,7 @@ Allows an application to use enhanced functions of the devices connected to this
 
 **Valid since**: 11
 
-### ohos.permission.READ_ACCOUNT_LOGIN_STATE
+## ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
 Allows an application to read the login status of user accounts.
 
@@ -321,7 +341,7 @@ Allows an application to read the login status of user accounts.
 
 **Valid since**: 12
 
-### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
+## ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
 
 Allows an application to access the navigation service.
 
@@ -331,11 +351,11 @@ Allows an application to access the navigation service.
 
 **Valid since**: 12
 
-### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+## ohos.permission.PROTECT_SCREEN_LOCK_DATA
 
 Allows an application to protect its sensitive data from being accessed after the screen is locked.
 
-After the application obtains this permission, a directory in **/el5** will be automatically created. Access to the data in this directory is denied after the screen is locked. There is no API for this permission.
+After the application obtains this permission, a directory in **/el5** will be automatically created. Access to the data in this directory is denied after the screen is locked.
 
 **Permission level**: normal
 
@@ -343,196 +363,84 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 **Valid since**: 12
 
-## user_grant Permissions
+## ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
-The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
-
-### ohos.permission.ACCESS_BLUETOOTH
-
-Allows an application to access Bluetooth and use Bluetooth capabilities, such as pairing and connecting to peripheral devices.
+Allows an application to access the distributed travel service engine.
 
 **Permission level**: normal
 
-**Authorization mode**: user_grant
-
-**Valid since**: 10
-
-### ohos.permission.MEDIA_LOCATION
-
-Allows an application to access geographical locations in the user's media file.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.APP_TRACKING_CONSENT
-
-Allows an application to read the open anonymous device identifier (OAID).
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 9
-
-### ohos.permission.ACTIVITY_MOTION
-
-Allows an application to read the current workout status of the user, such as detecting whether the user is working out and recording the number of steps the user has taken.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.CAMERA
-
-Allows an application to use the camera.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 9
-
-### ohos.permission.DISTRIBUTED_DATASYNC
-
-Allows the application data to be exchanged between devices.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.LOCATION_IN_BACKGROUND
-
-Allows an application running in the background to obtain the device location.
-
-For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, direct the user to manually grant this permission on the **Settings** screen.
-
-**Procedure**:
-
-1. Request the foreground location permissions in the dialog box. You can request either of the following permissions:
-   - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location).
-   - Request [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) and [ohos.permission.LOCATION](#ohospermissionlocation).
-2. After the user grants the foreground location permissions, display a message to direct the user to go to the **Settings** screen to grant the ohos.permission.LOCATION_IN_BACKGROUND permission.
-3. The permission is granted to the application if the user selects **Always allow** on the **Settings** screen.
-
-   Paths:
-   <!--RP1-->
-   - Path 1: **Settings** > **Privacy** > **Permission manager** > **Permissions** > **Location** > *Target application*
-   - Path 2: **Settings** > **Privacy** > **Permission manager** > **Apps** > *Target application* > Location
-   <!--RP1End-->
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.LOCATION
-
-Allows an application to obtain the device location.
-
-**Prerequisites**: This permission must be requested with [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) together.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.APPROXIMATELY_LOCATION
-
-Allows an application to obtain the approximate location information of a device.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 9
-
-### ohos.permission.MICROPHONE
-
-Allows an application to access the microphone.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 8
-
-### ohos.permission.READ_CALENDAR
-
-Allows an application to read Calendar data.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 8
-
-### ohos.permission.WRITE_CALENDAR
-
-Allows an application to add, remove, and modify Calendar events.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 8
-
-### ohos.permission.READ_HEALTH_DATA
-
-Allows an application to read the health data of the user.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-### ohos.permission.ACCESS_NEARLINK
-
-Allows an application to use NearLink, such as device pairing and connecting to nearby devices.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
+**Authorization mode**: system_grant
 
 **Valid since**: 12
 
-### ohos.permission.READ_MEDIA
+## ohos.permission.WINDOW_TOPMOST
 
-Allows an application to read media files from the user's external storage.
-
-**Permission level**: normal
-
-**Authorization mode**: user_grant
-
-**Valid since**: 7
-
-**Deprecated from**: 12
-
-**Substitute**:
-
-See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
-
-### ohos.permission.WRITE_MEDIA
-
-Allows an application to read media files from and write media files into the user's external storage.
+Allows an application to set pinned windows.
 
 **Permission level**: normal
 
-**Authorization mode**: user_grant
+**Authorization mode**: system_grant
 
-**Valid since**: 7
+**Valid since**: 13
 
-**Deprecated from**: 12
+## ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
-**Substitute**:
+Allows a system application to use infrared interfaces.
 
-See the [alternative solution of the **Files** permission group](app-permission-group-list.md#filesdeprecated).
+With this permission, the application can obtain the maximum frequency supported by the infrared module and send infrared signals at a specific frequency.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 12
+
+**Changelog**: This permission is available to system applications in API versions 12 to 15, and becomes available to normal applications since API version 16.
+
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+Allows an application to set the status of keyboard function keys.
+
+With this permission, the application can turn on or off the function keys, such as **CapsLock**. This permission is available only to input method applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in **Task Center** and the shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.NDK_START_SELF_UI_ABILITY
+
+Allows an application to start its UIAbility by using C APIs.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.GET_FILE_ICON
+
+Allows an application to obtain the icon of the specified file type.
+
+With this permission, the application can obtain the icon of the specified file type.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 17

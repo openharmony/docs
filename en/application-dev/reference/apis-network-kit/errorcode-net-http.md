@@ -182,7 +182,8 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
 
@@ -258,7 +259,7 @@ The TCP connection or the read/write operation times out.
 
 **Solution**
 
-Rectify network faults.
+Check whether the network is stable and the signal strength is strong. If the network is normal, check whether the server is overloaded or service processing is slow.
 
 ## 2300047 Maximum Redirections Reached
 
@@ -511,6 +512,42 @@ The specified identity verification field does not match that on the server.
 **Solution**
 
 Check whether the specified identity verification field matches that on the server.
+
+## 2300997 Plaintext HTTP Access Intercepted
+
+**Error Message**
+
+Cleartext traffic not permitted.
+
+**Description**
+
+This error code is reported if plaintext HTTP access is intercepted.
+
+**Cause**
+
+The plaintext access is not allowed in the **network_config.json** file.
+
+**Solution**
+
+Check the setting of the **cleartextTrafficPermitted** field in the **network_config.json** file.
+
+## 2300998 Domain Access Denied
+
+**Error Message**
+
+It is not allowed to access this domain.
+
+**Description**
+
+This error code is reported if access to a certain domain is prohibited.
+
+**Cause**
+
+An incorrect server domain name is configured for the atomic service.
+
+**Solution**
+
+Configure a correct server domain name for the atomic service.
 
 ## 2300999 Unknown Error
 

@@ -8,11 +8,11 @@ This topic describes the general development process for using MindSpore Lite fo
 
 
 ## Available APIs
-The following table list some APIs for using MindSpore Lite for model training.
+The following table list some APIs for using MindSpore Lite for model training. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
 
 | API       | Description       |
 | ------------------ | ----------------- |
-|OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
+|OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object. This API must be used together with **OH_AI_ContextDestroy**.|
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|Destroys a context object.|
 |void OH_AI_ContextAddDeviceInfo(OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info)|Adds a runtime device information object.|
@@ -59,12 +59,12 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 The development process consists of the following main steps:
 
-1. Prepare the model.
+1. Prepare the required model.
 
-    The prepared model is in **.ms** format. This topic uses [lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/tree/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms) as an example. To use a custom model, perform the following steps:
+    The prepared model is in `.ms` format. This topic uses [lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/blob/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms) as an example. To use a custom model, perform the following steps:
 
-    - Use Python to create a network model based on the MindSpore architecture and export the model as a **.mindir** file. For details, see [Quick Start](https://www.mindspore.cn/tutorials/en/r2.1/beginner/quick_start.html).
-    - Convert the **.mindir** model file into an **.ms** file. For details about the conversion procedure, see [Converting MindSpore Lite Models](https://www.mindspore.cn/lite/docs/en/r2.1/use/converter_train.html). The **.ms** file can be imported to the device to implement training based on the MindSpore device framework.
+    - Use Python to create a network model based on the MindSpore architecture and export the model as a `.mindir` file. For details, see [Quick Start](https://www.mindspore.cn/tutorials/en/r2.1/beginner/quick_start.html).
+    - Convert the `.mindir` model file into an `.ms` file. For details about the conversion procedure, see [Converting MindSpore Lite Models](https://www.mindspore.cn/lite/docs/en/r2.1/use/converter_train.html). The `.ms` file can be imported to the device to implement training based on the MindSpore device framework.
 
 2. Create a context and set parameters such as the device type and training configuration.
 
@@ -112,6 +112,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_TrainModelBuildFromFile failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
     ```
@@ -126,6 +127,7 @@ The development process consists of the following main steps:
     if (inputs.handle_list == NULL) {
         printf("OH_AI_ModelGetInputs failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
 
@@ -134,6 +136,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("GenerateInputDataWithRandom failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
     ```
@@ -148,6 +151,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
 
@@ -156,6 +160,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_RunStep failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
     printf("Train Step Success.\n");
@@ -171,6 +176,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_ExportModel train failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
     printf("Export Train Model Success.\n");
@@ -180,6 +186,7 @@ The development process consists of the following main steps:
     if (ret != OH_AI_STATUS_SUCCESS) {
         printf("OH_AI_ExportModel inference failed, ret: %d.\n", ret);
         OH_AI_ModelDestroy(&model);
+        OH_AI_ContextDestroy(&context);
         return ret;
     }
     printf("Export Inference Model Success.\n");
@@ -190,8 +197,9 @@ The development process consists of the following main steps:
     If the MindSpore Lite inference framework is no longer needed, you need to destroy the created model.
 
     ```c
-    // Delete model.
+    // Delete model and context.
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     ```
 
 
@@ -303,6 +311,7 @@ int ModelPredict(char* model_file) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -311,6 +320,7 @@ int ModelPredict(char* model_file) {
   if (inputs.handle_list == NULL) {
     printf("OH_AI_ModelGetInputs failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -319,6 +329,7 @@ int ModelPredict(char* model_file) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("GenerateInputDataWithRandom failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -328,6 +339,7 @@ int ModelPredict(char* model_file) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("MSModelPredict failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -347,6 +359,7 @@ int ModelPredict(char* model_file) {
   }
 
   OH_AI_ModelDestroy(&model);
+  OH_AI_ContextDestroy(&context);
   return OH_AI_STATUS_SUCCESS;
 }
 
@@ -398,6 +411,7 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_TrainModelBuildFromFile failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -406,6 +420,7 @@ int TrainDemo(int argc, const char **argv) {
   if (inputs.handle_list == NULL) {
     printf("OH_AI_ModelGetInputs failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -414,6 +429,7 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("GenerateInputDataWithRandom failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -422,6 +438,7 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ModelSetTrainMode failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+	OH_AI_ContextDestroy(&context);
     return ret;
   }
 
@@ -430,6 +447,7 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_RunStep failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
   printf("Train Step Success.\n");
@@ -439,6 +457,7 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ExportModel train failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
   printf("Export Train Model Success.\n");
@@ -448,12 +467,14 @@ int TrainDemo(int argc, const char **argv) {
   if (ret != OH_AI_STATUS_SUCCESS) {
     printf("OH_AI_ExportModel inference failed, ret: %d.\n", ret);
     OH_AI_ModelDestroy(&model);
+    OH_AI_ContextDestroy(&context);
     return ret;
   }
   printf("Export Inference Model Success.\n");
 
-  // Delete model.
+  // Delete model and context.
   OH_AI_ModelDestroy(&model);
+  OH_AI_ContextDestroy(&context);
 
   // Use The Exported Model to predict
   ret = ModelPredict(strcat(export_infer_model, ".ms"));
@@ -467,4 +488,3 @@ int TrainDemo(int argc, const char **argv) {
 int main(int argc, const char **argv) { return TrainDemo(argc, argv); }
 
 ```
-<!--no_check-->

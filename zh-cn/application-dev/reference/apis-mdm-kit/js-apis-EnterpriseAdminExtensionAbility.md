@@ -2,7 +2,7 @@
 
 本模块提供企业设备管理扩展能力。
 
-企业管理员应用需要存在一个EnterpriseAdminExtensionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
+设备管理应用需要存在一个EnterpriseAdminExtensionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者解除激活的通知。
 
 > **说明：**
 > 
@@ -21,7 +21,7 @@ import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit'
 
 onAdminEnabled(): void
 
-设备管理员被激活事件回调。
+设备管理应用被激活事件回调。企业管理员或者员工部署设备管理应用，激活设备管理，系统通知设备管理应用已激活admin权限。设备管理应用可在此回调函数中进行初始化策略设置。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -40,7 +40,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAdminDisabled(): void
 
-设备管理员被去激活事件回调。
+设备管理应用被解除激活事件回调。企业管理员或者员工解除激活设备管理，系统通知设备管理应用已解除激活admin权限。设备管理应用可在此回调函数中通知企业管理员设备已脱管。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -59,7 +59,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleAdded(bundleName: string): void
 
-应用安装事件回调。
+应用安装事件回调，回调中包含应用包名。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_ADDED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用安装事件，端侧应用安装事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -69,7 +69,7 @@ onBundleAdded(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 安装应用Bundle名称。 |
+| bundleName | string | 是    | 被安装应用的包名。 |
 
 **示例：**
 
@@ -81,11 +81,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onBundleRemoved
+## EnterpriseAdminExtensionAbility.onBundleAdded<sup>14+</sup>
 
-onBundleRemoved(bundleName: string): void
+onBundleAdded(bundleName: string, accountId: number): void
 
-应用卸载事件回调。
+应用安装事件回调，回调中包含应用包名和账号ID。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_ADDED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用安装事件，端侧应用安装事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -95,7 +95,34 @@ onBundleRemoved(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 卸载应用Bundle名称。 |
+| bundleName | string | 是    | 被安装应用的包名。 |
+| accountId | number | 是    | 被安装应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+应用卸载事件回调，回调中包含应用包名。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_REMOVED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用卸载事件，端侧应用卸载事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 被卸载应用的包名。 |
 
 **示例：**
 
@@ -107,11 +134,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onAppStart
+## EnterpriseAdminExtensionAbility.onBundleRemoved<sup>14+</sup>
 
-onAppStart(bundleName: string): void
+onBundleRemoved(bundleName: string, accountId: number): void
 
-应用启动事件回调。
+应用卸载事件回调，回调中包含应用包名和账号ID。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_REMOVED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用卸载事件，端侧应用卸载事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -121,7 +148,34 @@ onAppStart(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 启动应用Bundle名称。 |
+| bundleName | string | 是    | 被卸载应用的包名。 |
+| accountId | number | 是    | 被卸载应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleRemoved(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAppStart
+
+onAppStart(bundleName: string): void
+
+应用启动事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_APP_START事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用启动事件，端侧应用启动事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 启动应用的包名。 |
 
 **示例：**
 
@@ -137,7 +191,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStop(bundleName: string): void
 
-应用停止事件回调。
+应用停止事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_APP_STOP事件才能收到此回调。企业设备管理场景下，设备管理应用订阅应用停止事件，端侧应用停止事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -147,7 +201,7 @@ onAppStop(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 停止应用Bundle名称。 |
+| bundleName | string | 是    | 停止应用的包名。 |
 
 **示例：**
 
@@ -162,7 +216,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
-系统更新事件回调。
+系统更新事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_SYSTEM_UPDATE事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统更新事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -201,6 +255,78 @@ EnterpriseAdminExtensionAbility启动事件回调。
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onStart() {
     console.info(`Succeeded in calling onStart callback.`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountAdded<sup>18+</sup>
+
+onAccountAdded(accountId: number): void
+
+系统账号新增事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_ADDED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号新增事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 新增的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountAdded(accountId: number) {
+    console.info(`Succeeded in calling onAccountAdded callback, added accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountSwitched<sup>18+</sup>
+
+onAccountSwitched(accountId: number): void
+
+系统账号切换事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_SWITCHED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号切换事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 切换后的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountSwitched(accountId: number) {
+    console.info(`Succeeded in calling onAccountSwitched callback, switched accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAccountRemoved<sup>18+</sup>
+
+onAccountRemoved(accountId: number): void
+
+系统账号删除事件回调。通过接口[adminManager.subscribeManagedEventSync](js-apis-enterprise-adminManager.md#adminmanagersubscribemanagedeventsync)注册MANAGED_EVENT_ACCOUNT_REMOVED事件才能收到此回调。企业设备管理场景下，设备管理应用订阅系统账号删除事件，端侧系统更新事件通知设备管理应用，设备管理应用可以在此回调函数中进行事件上报，通知企业管理员。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| accountId | number | 是    | 被删除的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAccountRemoved(accountId: number) {
+    console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
   }
 };
 ```

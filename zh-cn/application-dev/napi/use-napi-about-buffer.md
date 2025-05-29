@@ -17,9 +17,9 @@
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_create_buffer | 用于创建并获取一个指定大小的ArkTS Buffer。 |
-| napi_create_buffer_copy | 用于创建并获取一个指定大小的ArkTS Buffer，并以给定数据进行初始化。 |
+| napi_create_buffer_copy | 用于创建并获取一个指定大小的ArkTS Buffer，并以给定的入参数据对buffer的缓冲区进行初始化。 |
 | napi_create_external_buffer | 用于创建并获取一个指定大小的ArkTS Buffer，并以给定数据进行初始化，该接口可为Buffer附带额外数据。 |
-| napi_get_buffer_info | 获取ArkTS Buffer底层data及其长度。 |
+| napi_get_buffer_info | 获取ArkTS Buffer底层数据缓冲区及其长度。 |
 | napi_is_buffer | 判断给定ArkTS value是否为Buffer对象。 |
 | napi_create_external_arraybuffer | 用于分配一个附加有外部数据的ArkTS ArrayBuffer。外部ArrayBuffer是一个特殊类型的ArrayBuffer，它持有对外部数据的引用而不实际拥有数据存储。|
 
@@ -61,8 +61,8 @@ export const createBuffer: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_buffer: %{public}s', testNapi.createBuffer().toString());
 } catch (error) {
@@ -104,8 +104,8 @@ export const createBufferCopy: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_buffer_copy: %{public}s', testNapi.createBufferCopy().toString());
 } catch (error) {
@@ -115,7 +115,7 @@ try {
 
 ### napi_create_external_buffer
 
-当希望在ArkTS中使用现有的Node-API模块内存块，而不需要额外的拷贝时，可以使用napi_create_external_buffer。这将允许ArkTS层直接访问并操作该内存，从而提高性能并避免额外的内存分配和拷贝操作。
+当希望在ArkTS中使用现有的Node-API模块内存块，而不需要额外的拷贝时，可以使用napi_create_external_buffer。这将允许ArkTS层直接访问并操作该内存，避免额外的内存分配和拷贝操作。
 
 cpp部分代码
 
@@ -159,8 +159,8 @@ export const createExternalBuffer: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external_buffer: %{public}s', testNapi.createExternalBuffer()
     .toString());
@@ -211,8 +211,8 @@ export const getBufferInfo: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_buffer_info: %{public}s', testNapi.getBufferInfo().toString());
 } catch (error) {
@@ -238,11 +238,11 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     napi_create_buffer(env, strlen(str.data()), (void **)(str.data()), &buffer);
 
     // 调用napi_is_buffer接口判断创建的对象是否为buffer
-    bool reslut = false;
-    napi_is_buffer(env, buffer, &reslut);
+    bool result = false;
+    napi_is_buffer(env, buffer, &result);
     // 将结果返回出去
     napi_value returnValue = nullptr;
-    napi_get_boolean(env, reslut, &returnValue);
+    napi_get_boolean(env, result, &returnValue);
     return returnValue;
 }
 ```
@@ -257,8 +257,8 @@ export const isBuffer: () => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_buffer: %{public}s', JSON.stringify(testNapi.isBuffer()));
 } catch (error) {
@@ -295,6 +295,7 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
     // 创建一个有五个元素的C++数组
     uint8_t *dataArray = new uint8_t[5]{1, 2, 3, 4, 5};
     napi_value externalBuffer = nullptr;
+    BufferData *bufferData = new BufferData{dataArray, 5};
 
     // 使用napi_create_external_arraybuffer创建一个外部Array Buffer对象，并指定终结回调函数
     napi_status status =
@@ -326,8 +327,8 @@ export const createExternalArraybuffer: () => ArrayBuffer | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Node-API createExternalArraybuffer: %{public}s',
            JSON.stringify(testNapi.createExternalArraybuffer()));

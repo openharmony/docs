@@ -1,5 +1,5 @@
 # Starting a ServiceAbility
-
+<!--deprecated_code_no_check-->
 
 A ServiceAbility is started in the same way other abilities. You can start a ServiceAbility by calling **featureAbility.startAbility()** in the PageAbility or calling **particleAbility.startAbility()** in another ServiceAbility. For details about the startup rules, see [Component Startup Rules](component-startup-rules.md).
 
@@ -27,7 +27,7 @@ struct PageServiceAbility {
       };
       await featureAbility.startAbility({ want });
       promptAction.showToast({
-        message: $r('app.string.start_service_success_toast')
+        message: 'start_service_success_toast'
       });
       hilog.info(domain, TAG, `Start ability succeed`);
     } catch (error) {

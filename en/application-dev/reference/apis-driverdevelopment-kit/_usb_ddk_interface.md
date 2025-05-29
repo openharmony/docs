@@ -11,7 +11,9 @@ Defines a USB DDK interface, which is a collection of alternate settings for a p
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
+
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
 
 
 ## Summary

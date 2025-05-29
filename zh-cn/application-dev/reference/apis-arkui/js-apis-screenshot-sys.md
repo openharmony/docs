@@ -23,10 +23,12 @@ import { screenshot } from '@kit.ArkUI';
 
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
-| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
-| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
+| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认返回displayId所在逻辑屏的区域。                       |
+| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为displayId所在逻辑屏的大小。若screenRect小于imageSize，图像会拉伸至imageSize，反之则压缩至imageSize的大小。                       |
+| rotation               | number        | 否   | 表示截取图像后要旋转的角度，当前仅支持输入值为0，默认值为0。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
+| isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
+| isCaptureFullOfScreen<sup>19+</sup> | boolean        | 否   | 表示是否截取当前Screen上的所有display。对于一个Screen上有多个display的场景，为true表示截取整个Screen，false则只截取displayId所在逻辑屏的区域，默认值为false。 |
 
 ## Size
 
@@ -57,8 +59,8 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象，其大小为指定的imageSize大小，若未指定默认为displayId所在逻辑屏的大小。                                   |
 
 **错误码：**
 
@@ -67,7 +69,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
-| 202     | Permission denied, non-system app called system api.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
@@ -87,20 +89,18 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "width": 300,
     "height": 300 },
   "rotation": 0,
-  "displayId": 0
+  "displayId": 0,
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
-try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save
@@ -129,6 +129,7 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 
 **示例：**
 
@@ -136,18 +137,14 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-try {
-  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save
@@ -166,7 +163,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
+| options | [ScreenshotOptions](#screenshotoptions) | 否   | 要截取的图像信息。 |
 
 **返回值：**
 
@@ -182,6 +179,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
@@ -200,7 +198,9 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "width": 300,
     "height": 300 },
   "rotation": 0,
-  "displayId": 0
+  "displayId": 0,
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
 try {
   let promise = screenshot.save(screenshotOptions);

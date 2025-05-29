@@ -1,28 +1,34 @@
 # 自定义组件的自定义布局
 
-自定义组件的自定义布局用于通过数据计算的方式布局自定义组件内的子组件。
+自定义组件的自定义布局通过数据计算的方式布局自定义组件内的子组件。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
 
 ## onPlaceChildren<sup>10+</sup>
 
 onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
 
-ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名            | 类型                                                         | 说明               |
-|----------------|------------------------------------------------------------|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。         |
-| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   | 子组件布局信息。         |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+| 参数名            | 类型                                                         |必填| 说明               |
+|----------------|------------------------------------------------------------|---|------------------|
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            |是 |测量后的自身布局信息。         |
+| children       | Array&lt;[Layoutable](#layoutable10)&gt;                   |是 |测量后的子组件布局信息。         |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) |是 |父组件constraint信息。 |
+
+**示例：**
+
+示例请参考[自定义布局代码示例](#onmeasuresize10)。
 
 ## onMeasureSize<sup>10+</sup>
 
@@ -30,21 +36,21 @@ onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, 
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名         | 类型                                                       | 说明                                                         |
-| -------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。                                             |
-| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。                                       |
+| 参数名         | 类型                                                       | 必填|说明                                                         |
+| -------------- | ---------------------------------------------------------- | ---|------------------------------------------------------------ |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 是|测量后的自身布局信息。  <br/>**说明：** <br/>第一次布局时以自身设置的属性为准。                                    |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 是|测量后的子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是|父组件constraint信息。                                       |
 
 **返回值：** 
 
-| 类型                        | 描述           |
+| 类型                        | 说明           |
 | --------------------------- | -------------- |
 | [SizeResult](#sizeresult10) | 组件尺寸信息。 |
 
@@ -52,31 +58,29 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 父组件布局信息，继承自[SizeResult](#sizeresult10)。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性          | 类型      | 说明                  |
-|-------------|-----------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | 父组件边框宽度。<br>单位：vp            |
-| margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。 <br>单位：vp       |
-| padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。<br>单位：vp |
-| width  | number | 测量后的宽。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比宽。 |
-| height | number | 测量后的高。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比高。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+| 属性          | 类型      |只读|可选| 说明                  |
+|-------------|-----------|------|------|---------------------|
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) |否|否| 父组件边框宽度。<br>单位：vp            |
+| margin      | [Margin](ts-types.md#margin)       | 否|否|父组件margin信息。 <br>单位：vp       |
+| padding     | [Padding](ts-types.md#padding)   |否|否| 父组件padding信息。<br>单位：vp |
 
 ## Layoutable<sup>10+</sup>
 
 子组件布局信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
-| 属性         | 类型       | 必填      |  说明                                                      |
-|--------------|---------------------------------- | -----------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10)      |   是| 子组件测量后的尺寸信息,继承自[SizeResult](#sizeresult10)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
-
+| 名称         | 类型       | 只读|可选|  说明                                                      |
+|--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
+| measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
 
 ### layout
 
@@ -92,15 +96,17 @@ layout(position: Position)
 
 | 参数名         | 类型                                                    | 必填                 |说明         |
 |-----------------|---------------------------------------------------------|---------------------|-------------|
-|   position      | [Position](ts-types.md#position)                        | 是                  |   位置。   |
+|   position      | [Position](ts-types.md#position)                        | 是                  |   绝对位置。   |
 
 ### getMargin<sup>12+</sup>
 
 getMargin() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的margin信息。
+调用此方法获取子组件的margin信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -112,9 +118,11 @@ getMargin() : DirectionalEdgesT\<number>
 
 getPadding() : DirectionalEdgesT\<number>
 
- 调用此方法获得子组件的padding信息。
+ 调用此方法获取子组件的padding信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
  **返回值：**
 
@@ -126,33 +134,46 @@ getPadding() : DirectionalEdgesT\<number>
 
 getBorderWidth() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的boderWidth信息。
+调用此方法获取子组件的borderWidth信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的borderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
 子组件位置信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+### 属性
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型       | 必填      |  说明                                                      |
+|--------------|---------------------------------- | -----------------------------------------------|---------------------|
+| uniqueId<sup>18+</sup>| number | 否 | 系统为子组件分配的唯一标识UniqueID。|
 
 ### measure
 
  measure(constraint: ConstraintSizeOptions) : MeasureResult
 
- 调用此方法对子组件的尺寸范围进行限制。
+ 调用此方法限制子组件的尺寸范围。
+
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -170,7 +191,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  getMargin() : DirectionalEdgesT\<number\>
 
- 获取子组件的padding信息。
+ 获取子组件的margin信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -217,45 +238,41 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 
 ## MeasureResult<sup>10+</sup>
 
-测量后的组件布局信息。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+测量后的组件布局信息。继承自[SizeResult](#sizeresult10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性     | 类型   | 说明    |
-|--------|--------|-------|
-| width  | number | 测量后的宽。<br>单位：vp |
-| height | number | 测量后的高。<br>单位：vp |
-
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## SizeResult<sup>10+</sup>
 
 组件尺寸信息。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性     | 类型   | 说明    |
-|--------|--------|-------|
-| width  | number | 测量后的宽。<br>单位：vp |
-| height | number | 测量后的高。<br>单位：vp |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型   |只读|可选| 说明    |
+|--------|--------|------|------|-------|
+| width  | number | 否|否|测量后的宽。<br>单位：vp |
+| height | number | 否|否|测量后的高。<br>单位：vp |
 
 ## DirectionalEdgesT\<T><sup>12+</sup>
 
 全球化的边缘属性。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-| 属性   | 类型 | 说明             |
-| ------ | ---- | ---------------- |
-| start   | T    | 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
-| end    | T    | 终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
-| top  | T    | 顶部边缘的属性。 |
-| bottom | T    | 底部边缘的属性。 |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型 |只读|可选| 说明             |
+| ------ | ---- |------|------| ---------------- |
+| start   | T    |否|否| 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
+| end    | T    | 否|否|终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
+| top  | T    | 否|否|顶部边缘的属性。 |
+| bottom | T    | 否|否|底部边缘的属性。 |
 
 > **说明：**
 >
@@ -265,9 +282,101 @@ getBorderWidth() : DirectionalEdgesT\<number\>
 >- 子组件设置的位置信息，offset、position、markAnchor优先级大于onPlaceChildren设置的位置信息，其他位置设置属性不生效。
 >- 使用自定义布局方法时，需要同时调用onMeasureSize和onPlaceChildren方法，否则可能出现布局异常。
 
-**示例一：**
+## onLayout<sup>(deprecated)</sup>
+
+onLayout?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
+
+ArkUI框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
+
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onPlaceChildren](#onplacechildren10)替代。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                                                         | 必填|说明               |
+|------------|------------------------------------------------------------|------|------------------|
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                | 是  | 子组件布局信息。         |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是  |父组件constraint信息。 |
+
+## onMeasure<sup>(deprecated)</sup>
+
+onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
+
+ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
+
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10)替代。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                                                         |必填| 说明               |
+|------------|------------------------------------------------------------|------|------------------|
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | 是  |子组件布局信息。         |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是  |父组件constraint信息。 |
+
+## LayoutChild<sup>(deprecated)</sup>
+
+子组件布局信息。
+
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                                     | 只读|可选|说明                                   |
+| ---------- | ------------------------------------------------------------ | ------|------|-------------------------------------- |
+| name       | string                                                       | 否|否|子组件名称。                           |
+| id         | string                                                       | 否|否|子组件id。                             |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)   | 否|否|子组件约束尺寸。                       |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)              | 否|否|子组件border信息。                     |
+| position   | [Position](ts-types.md#position)                             | 否|否|子组件位置坐标。                       |
+| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;void |否|否| 调用此方法对子组件的尺寸范围进行限制。 |
+| layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated))&nbsp;=&gt;&nbsp;void | 否|否|调用此方法对子组件的位置信息进行限制。 |
+
+## LayoutBorderInfo<sup>(deprecated)</sup>
+
+子组件border信息。
+
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                                 | 只读|可选|描述                      |
+|-------------|--------------------------------------|------|------|-------------------------|
+| borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | 否|否|边框宽度类型，用于描述组件边框不同方向的宽度。 |
+| margin      | [Margin](ts-types.md#margin)         | 否|否|外边距类型，用于描述组件不同方向的外边距。   |
+| padding     | [Padding](ts-types.md#padding)       | 否|否|内边距类型，用于描述组件不同方向的内边距。   |
+
+## LayoutInfo<sup>(deprecated)</sup>
+
+子组件layout信息。
+
+从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                                   | 只读|可选|说明             |
+| ---------- | ---------------------------------------------------------- | ------|------|---------------- |
+| position   | [Position](ts-types.md#position)                           |否|否| 子组件位置坐标。 |
+| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 否|否|子组件约束尺寸。 |
+
+
+## 示例
+
+### 示例1（自定义布局代码示例）
 自定义布局代码示例。
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -332,9 +441,9 @@ struct CustomLayout {
 
 ![custom_layout10.png](figures/custom_layout10.png)
 
-**示例二：**
+### 示例2（判断是否参与布局计算）
 通过组件的位置灵活判断是否参与布局计算。
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -433,76 +542,151 @@ struct CustomLayout {
 
 ![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
-## onLayout<sup>(deprecated)</sup>
+### 示例3（获取子组件FrameNode并设置相关属性）
+通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)，并调用FrameNode的API接口修改尺寸、背景颜色。
+```ts
+import { FrameNode, NodeController } from '@kit.ArkUI';
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      CustomLayout()
+    }
+  }
+}
 
-onLayout?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext)
+    return this.rootNode
+  }
+}
 
-ArkUI框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
+@Component
+struct CustomLayout {
+  @Builder
+  childrenBuilder() {
+    ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
+      NodeContainer(new MyNodeController())
+    })
+  };
 
-该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onPlaceChildren](#onplacechildren10)替代。
+  @BuilderParam builder: () => void = this.childrenBuilder;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
 
-**参数：**
+  onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
+    let prev = 0;
+    children.forEach((child) => {
+      let pos = prev + 10;
+      prev = pos + child.measureResult.width
+      child.layout({ x: pos, y: 0 })
+    })
+  }
 
-| 参数名        | 类型                                                         | 说明               |
-|------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | 子组件布局信息。         |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+  onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
+    let size = 100;
+    children.forEach((child) => {
+      console.log("child uniqueId: ", child.uniqueId)
+      const uiContext = this.getUIContext()
+      if (uiContext) {
+        let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(child.uniqueId) // 获取NodeContainer组件的FrameNode
+        if (node) {
+          node.getChild(0)!.commonAttribute.width(100)
+          node.getChild(0)!.commonAttribute.height(100)
+          node.getChild(0)!.commonAttribute.backgroundColor(Color.Pink) // 修改FrameNode的尺寸与背景颜色
+        }
+      }
+      child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
+    })
+    this.result.width = 320;
+    this.result.height = 100;
+    return this.result;
+  }
 
-## onMeasure<sup>(deprecated)</sup>
+  build() {
+    this.builder()
+  }
+}
+```
+![custom_layout_demo3.jpg](figures/custom_layout_demo3.jpg)
 
-onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions): void
+### 示例4（子组件超过父组件大小约束）
+在自定义布局的自定义组件中，为子组件设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性。
+```ts
+@Entry
+@Component
+struct Index {
+  @Builder
+  ColumnChildrenText() {
+    Text("=====Text=====Text=====Text=====Text=====Text=====Text=====Text=====Text" )
+      .fontSize(16).fontColor(Color.Black)
+      .borderWidth(2).backgroundColor("#fff8dc")
+      .width(LayoutPolicy.fixAtIdealSize) //设置子组件宽度不受到父组件限制
+      .height(LayoutPolicy.fixAtIdealSize)  //设置子组件高度不受到父组件限制
+  }
 
-ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
+  build() {
+    Column() {
+      Column() {
+        CustomLayoutText({ builder: this.ColumnChildrenText })
+          .backgroundColor("#f0ffff").borderRadius(20).margin(10)
+      }
+      .width(300)
+      .height(150)
+      .margin(10)
+      .backgroundColor(Color.Pink)
+    }
+    .width(350)
+    .height(680)
+    .margin(20)
+    .alignItems(HorizontalAlign.Center)
+  }
+}
 
-该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10)替代。
+@Component
+struct CustomLayoutText {
+  @Builder
+  doSomethingBuilder() {
+  };
 
-**参数：**
+  @BuilderParam
+  builder: () => void = this.doSomethingBuilder;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
+  //自定义组件进行自定义布局
+  onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
+    let posY = 20;
+    children.forEach((child) => {
+      let posX = (selfLayoutInfo.width - child.measureResult.width) / 2;
+      child.layout({ x: posX, y: posY })
+      posY += child.measureResult.height + 30;
+    })
+  }
 
-| 参数名        | 类型                                                         | 说明               |
-|------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | 子组件布局信息。         |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+  onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
+    children.forEach((child) => {
+      let result: MeasureResult = child.measure({ maxWidth: 335, maxHeight: 50 }) //设置自定义组件子组件大小的限制
+    })
+    this.result.width = 200;
+    this.result.height = 130;
+    return this.result;
+  }
 
-## LayoutChild<sup>(deprecated)</sup>
+  build() {
+    this.builder()
+  }
+}
+```
+![custom_layout_demo4.jpg](figures/custom_layout_demo4.jpg)
 
-子组件布局信息。
-
-从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
-
-
-| 属性       | 类型                                                     | 说明                                   |
-| ---------- | ------------------------------------------------------------ | -------------------------------------- |
-| name       | string                                                       | 子组件名称。                           |
-| id         | string                                                       | 子组件id。                             |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)   | 子组件约束尺寸。                       |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)              | 子组件border信息。                     |
-| position   | [Position](ts-types.md#position)                             | 子组件位置坐标。                       |
-| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的尺寸范围进行限制。 |
-| layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
-
-## LayoutBorderInfo<sup>(deprecated)</sup>
-
-子组件border信息。
-
-从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
-
-| 属性          | 类型                                 | 描述                      |
-|-------------|--------------------------------------|-------------------------|
-| borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
-| margin      | [Margin](ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距。   |
-| padding     | [Padding](ts-types.md#padding)       | 内边距类型，用于描述组件不同方向的内边距。   |
-
-## LayoutInfo<sup>(deprecated)</sup>
-
-子组件layout信息。
-
-从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
-
-| 属性       | 类型                                                   | 说明             |
-| ---------- | ---------------------------------------------------------- | ---------------- |
-| position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
-| constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |
-
+### 示例5（通过layout修改布局）
 通过layout修改布局。
 ```ts
 // xxx.ets

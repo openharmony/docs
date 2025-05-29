@@ -34,7 +34,7 @@ The **Length** type is used to represent a size unit.
 
 | Type                   | Description                                    |
 | --------------------- | -------------------------------------- |
-| string                | String type. Specify the length unit explicitly, for example, **'10px'**, or provide the length in percentage, for example, **'100%'**.|
+| string                | String type. Specify the length [unit](ts-pixel-units.md) explicitly, for example, **'10px'**, or provide the length in percentage, for example, **'100%'**.<br>**NOTE**<br>If the unit is not specified, the default unit vp is used, in which case '10' is equivalent to 10 vp.|
 | number                | Number type. The default unit is vp.                               |
 | [Resource](#resource) | Size referenced from system or application resources.              |
 
@@ -123,27 +123,27 @@ The **EdgeWidths** type is used to describe the edge widths in different directi
 
 ## BorderRadiuses<sup>9+</sup>
 
-The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
+The **BorderRadiuses** type is used to describe the corner radius of a component's border.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Type               | Mandatory  | Description        |
 | ----------- | ----------------- | ---- | ---------- |
-| topLeft     | [Length](#length) | No   | Radius of the top left rounded corner of the component.|
-| topRight    | [Length](#length) | No   | Radius of the top right rounded corner of the component.|
-| bottomLeft  | [Length](#length) | No   | Radius of the bottom left rounded corner of the component.|
-| bottomRight | [Length](#length) | No   | Radius of the bottom right rounded corner of the component.|
+| topLeft     | [Length](#length) | No   | Radius of the upper left corner of the component.|
+| topRight    | [Length](#length) | No   | Radius of the upper right corner of the component.|
+| bottomLeft  | [Length](#length) | No   | Radius of the lower left corner of the component.|
+| bottomRight | [Length](#length) | No   | Radius of the lower right corner of the component.|
 
 ## LocalizedBorderRadiuses<sup>12+</sup>
 
-The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
+The **LocalizedBorderRadiuses** type is used to describe the corner radius of a component's border.
 
 | Name         | Type               | Mandatory  | Description        |
 | ----------- | ----------------- | ---- | ---------- |
-| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the top left rounded corner of the component.<br>Radius of the top right rounded corner of the component for right-to-left scripts.|
-| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the top right rounded corner of the component.<br>Radius of the top left rounded corner of the component for right-to-left scripts.|
-| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the bottom left rounded corner of the component.<br>Radius of the bottom right rounded corner of the component for right-to-left scripts.|
-| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the bottom right rounded corner of the component.<br>Radius of the bottom left rounded corner of the component for right-to-left scripts.|
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper left corner of the component.<br>For right-to-left scripts, this indicates the radius of the upper left right of the component.|
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper right corner of the component.<br>For right-to-left scripts, this indicates the radius of the upper left corner of the component.|
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower left corner of the component.<br>For right-to-left scripts, this indicates the radius of the lower right corner of the component.|
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower right corner of the component.<br>For right-to-left scripts, this indicates the radius of the lower left corner of the component.|
 
 ## EdgeColors<sup>9+</sup>
 
@@ -221,18 +221,6 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.      |
 
-## ColoringStrategy<sup>10+</sup>
-
-The **ColoringStrategy** type is used to describe the foreground and shadow colors.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name    | Description             |
-| ------ | --------------- |
-| INVERT | The foreground colors are the inverse of the component background colors.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
 ## LengthConstrain
 
 The **LengthConstrain** type is used to describe the maximum and minimum lengths of a component.
@@ -255,7 +243,7 @@ The **Font** type is used to set the text style.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0**|
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
-| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md)) are supported.|
+| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.|
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.<br>Default value: **FontStyle.Normal**            |
 
 ## Area<sup>8+</sup>
@@ -351,7 +339,7 @@ The **BorderOptions** type is used to provide border information.
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No   | Radius of the rounded corner border.|
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| No   | Border style.  |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| No   | Border style.  |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -361,7 +349,7 @@ The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4\*5 matrix. The input parameter is [m\*n], which is the matrix value in row m and column n. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -372,18 +360,17 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../quick-start/arkts-builder.md).|
 
-## PixelStretchEffectOptions<sup>10+</sup>
-
-The **PixelStretchEffectOptions** type is used to describe the pixel stretch effect options.
+## MarkStyle<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Type               | Mandatory  | Description            |
-| ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.|
-| right  | [Length](#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
-| top    | [Length](#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
-| bottom | [Length](#length) | No   | Length by which a pixel is stretched towards the bottom edge of the image.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name       | Type                                      | Mandatory| Default Value     | Description                                                        |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.White | Color of the mark.                                              |
+| size        | [Length](ts-types.md#length)               | No  | -           | Size of the mark, in vp. The default size is the same as the width of the check box.<br>This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| strokeWidth | [Length](ts-types.md#length)               | No  | 2           | Stroke width of the mark, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
 
 ## ModalTransition<sup>10+</sup>
 
@@ -484,30 +471,6 @@ The **MultiShadowOptions** type is used to describe the shadow style.
 | offsetX | number \| [Resource](#resource) | No| Offset on the x-axis.<br>Default value: **5**<br>Unit: vp|
 | offsetY | number \| [Resource](#resource) | No| Offset on the y-axis.<br>Default value: **5**<br>Unit: vp|
 
-## SwiperAnimationEvent<sup>10+</sup>
-
-Describes the animation information of the \<Swiper> component.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name           | Type      | Mandatory           | Description                                      |
-| ------------- | ---------------------- | ---------|------------------------------- |
-| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
-| velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
-
-## TabsAnimationEvent<sup>11+</sup>
-
-The **TabsAnimationEvent** type is used to describe the animation information of the **\<Tabs>** component.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name           | Type     |  Mandatory            | Description                                      |
-| ------------- | ---------------------- | ----------------|------------------------ |
-| currentOffset | number | Yes| Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| targetOffset | number | Yes| Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
-| velocity | number | Yes| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
-
 ## SafeAreaType<sup>10+</sup>
 
 The **SafeAreaType** type is used to describe the types of expanded safe areas.
@@ -533,16 +496,16 @@ The **SafeAreaEdge** type is used to define the edge for expanding the safe area
 | START  | Start edge.|
 | END    | End edge.|
 
-## KeyboardAvoidMode<sup>11+</sup>
+## KeyboardAvoidMode<sup>12+</sup>
 
-The **KeyboardAvoidMode** type is used to define the avoidance mode for the virtual keyboard.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Description      |
-| ------ | ---------- |
-| OFFSET | Avoid the virtual keyboard through offset.|
-| RESIZE | Avoid the virtual keyboard through resizing.|
+| Name   | Value  | Description                                            |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | Automatically avoids the soft keyboard and compresses the height when reaching the maximum limit.|
+| NONE    | 1    | Does not avoid the soft keyboard.                                  |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -572,32 +535,9 @@ The **TouchPoint** type is used to define the coordinates of the touch point.
 | X | [Dimension](#dimension10) | X coordinate of the touch point.|
 | Y | [Dimension](#dimension10) | Y coordinate of the touch point.|
 
-## TabContentAnimatedTransition<sup>11+</sup>
-
-The **TabContentAnimatedTransition** type is used to define the custom tab switching animation.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name           | Type        | Mandatory         | Description                                      |
-| ------------- | ---------------------- | ------------------|---------------------- |
-| timeout | number | No| Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **\<Tabs>** component considers that the custom animation has ended and performs subsequent operations.<br> Unit: ms<br>Default value: **1000**|
-| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Yes| Content of the custom tab switching animation.|
-
-## TabContentTransitionProxy<sup>11+</sup>
-
-Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>** component of the ending of the custom animation.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name           | Type    |  Mandatory             | Description                                      |
-| ------------- | ---------------------- | ----------------------|------------------ |
-| from | number | Yes| Index of the currently displayed tab before the animation starts.|
-| to | number | Yes| Index of the target tab to switch to.|
-| finishTransition() | void | Yes| Called to notify the **\<Tabs>** component that the custom animation ends.|
-
 ## PixelRoundPolicy<sup>11+</sup>
 
-The **PixelRoundPolicy** type is used to describe the rounding strategy for component pixel-level alignment.
+The **PixelRoundPolicy** type is used to describe the direction of pixel rounding at the component level.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -628,9 +568,11 @@ The **HoverCallback** type is used to represent the callback for the hover event
 
 type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name           | Type                 | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11)) => void | Callback for the hover event.|
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | Callback for the hover event.|
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -647,79 +589,13 @@ The **VisibleAreaEventOptions** type is used to describe visible area changes.
 
 The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.
 
-type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | The **VisibleAreaChangeCallback** type is used to represent a callback for visible area changes of the component.<br>- **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
-
-## StyledStringValue<sup>12+</sup>
-
-The **StyledStringValue** type is used to set the style for an attribute string.
-
-| Name  | Description      |
-| ------ | ---------- |
-| TextStyle | Text style.|
-| DecorationStyle | Text decorative line style.|
-| BaselineOffsetStyle | Text baseline offset style.|
-| LetterSpacingStyle | Text letter spacing style.|
-| LineHeightStyle | Text line height style.|
-| TextShadowStyle | Text shadow style.|
-| GestureStyle | Gesture style.|
-| ParagraphStyle | Text paragraph style.|
-| ImageAttachment | Image style.|
-| CustomSpan | Custom span style.|
-| UserDataSpan | User data span style.|
-
-## SubmitEvent<sup>11+</sup>
-
-The **SubmitEvent** type is used to define the user submission event.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name             | Type      | Mandatory| Description                                              |
-| ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | Yes  | Editing status of the text box.<br> When this API is called, the text box remains in editing state.|
-| text              | string     | Yes  | Text in the text box.                                  |
-
-## EnterKeyType
-
-| Name                  | Description              |
-| ---------------------- | ------------------ |
-| Go                     | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| Search                 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Send                   | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| Next                   | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Done                   | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| PREVIOUS<sup>11+</sup> | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| NEW_LINE<sup>11+</sup> | The Enter key is labeled "Return."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-
-## LengthMetrics<sup>12+</sup>
-
-The **LengthMetrics** type is used to describe the metrics of length.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Attributes**
-
-| Name             | Type      | Mandatory| Description                         |
-| ----------------- | ---------- | ---- | ----------------------------- |
-| value       | number | Yes| Value of the length attribute.  |
-| unit | [LengthUnit](#lengthunit12)     | Yes| Unit of the length attribute.|
-
-## LengthUnit<sup>12+</sup>
-
-Enumerates length units.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| [PX](#px10) | 0 | The **PX** type is used to represent a length in px.|
-| [VP](#vp10) | 1 | The **VP** type is used to represent a length in vp.|
-| [FP](#fp10) | 2 | The **FP** type is used to represent a length in fp.|
-| [PERCENT](#percentage10) | 3 | The **Percentage** type is used to represent a length in percentage.|
-| [LPX](#lpx10) | 4 | The **LPX** type is used to represent a length in lpx.|
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | Callback for visible area changes of the component.<br>- **isExpanding**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
 
 ## DividerStyleOptions<sup>12+</sup>
 
@@ -733,10 +609,11 @@ The **DividerStyleOptions** type is used to provide the information about the di
 | color  | [ResourceColor](#resourcecolor) | No | Color of the divider.        |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No | Distance between the divider and the start edge of the menu.|
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| No | Distance between the divider and the end edge of the menu.|
+| mode  | [DividerMode](#dividermode18)<sup>18+</sup>| No | Mode of the divider.|
 
 ## TextContentControllerBase<sup>10+</sup>
 
-The **TextContentControllerBase** type is used to represent the base controller for **\<TextInput>**, **\<TextArea>**, and **\<Search>** components.
+The **TextContentControllerBase** type is used to represent the base controller for **TextInput**, **TextArea**, and **Search** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -762,7 +639,7 @@ The **getTextContentRect** type is used to obtain the position of the edited tex
 >
 > - If no text is entered, the return value contains the position information, but the size is 0.
 > - The position information is the offset of the first character relative to the editable area.
-> - For the **\<Search>** component, the returned position information is the offset of the first character relative to the search icon in the component.
+> - For the **Search** component, the returned position information is the offset of the first character relative to the search icon in the component.
 > - If there is input, the width in the return value is the fixed width of the editable area.
 
 ### getTextContentLineCount<sup>10+</sup>
@@ -795,12 +672,228 @@ The **getCaretOffset** type is used to obtain the position information of the ca
 
 | Type                     | Description              |
 | ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11) | Position of the caret relative to the text box.|
+| [CaretOffset](#caretoffset11) | Position of the caret relative to the text box.|
 
 > **NOTE**
 >
 > - If this API is called when the caret position is updated in the current frame, it will not take effect.
-> - For the **\<Search>** component, the returned position information is the offset of the first character relative to the search icon in the component.
-> - If no text is entered in the **\<Search>** component, the return value contains the position information relative to the component.
+> - For the **Search** component, the returned position information is the offset of the first character relative to the search icon in the component.
+> - If no text is entered in the **Search** component, the return value contains the position information relative to the component.
 > - The location information in the return value is the location of the caret relative to the editable component.
-<!--no_check-->
+
+### addText<sup>15+</sup>
+
+addText(text: string, textOperationOptions?: TextContentControllerOptions): number
+
+Inserts text at a specified position in the editable content. If no position is specified, the text is appended to the end of the existing content.
+This API does not work when the text is being dragged.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| text | string | Yes   | Text to insert.|
+| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions15) | No   | Configuration option for inserting text. If this parameter is not provided, the text is appended to the end.|
+
+### deleteText<sup>15+</sup>
+
+deleteText(range?: TextRange): void
+
+Deletes text within a specified range in the editable content.
+This API does not work when the text is being dragged.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | No   | Range of the text to be deleted, including the start and end positions.<br>If the range is not specified, the entire text is deleted. If the start position is not specified, deletion starts from index 0. If the end position is not specified, deletion ends at the end of the text.|
+
+### getSelection<sup>15+</sup>
+
+getSelection(): TextRange
+
+Obtains the current text selection range.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                     | Description              |
+| ----------------------- | ---------------- |
+| [TextRange](ts-text-common.md#textrange12) | Current text selection range, or cursor position if no text is selected.|
+
+### clearPreviewText<sup>18+</sup>
+
+clearPreviewText(): void
+
+Clears the current preview text.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### getText<sup>18+</sup>
+
+getText(range?: TextRange): string
+
+Obtains the text content within a specified range.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | No   | Range of the text content to obtain, defined by start and end positions.<br>If the range is not specified, the entire text is obtained by default. If the start position is not specified, it defaults to index 0. If the end position is not specified, it defaults to the end of the text.|
+
+**Return value**
+
+| Type   | Description              |
+| ------ | ---------------- |
+| string | Text content within the specified range.|
+
+## TextDecorationOptions<sup>12+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Style of the text decorative line.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| color  |  [ResourceColor](#resourcecolor) | No  | Color of the text decorative line.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## SelectionOptions<sup>12+</sup>
+
+The **SelectionOptions** type is used to describe the configuration options for text selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type                                           | Mandatory| Description            |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | No  | Menu display policy.|
+
+## MenuPolicy<sup>12+</sup>
+
+The **MenuPolicy** type is used to describe the menu display policy.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|
+| HIDE    | 1    | The menu is always hidden.                  |
+| SHOW    | 2    | The menu is always displayed.                    |
+
+## CaretOffset<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type    | Description            |
+| ----- | ------ | -------------- |
+| index | number | Index of the caret position.   |
+| x     | number | X coordinate of the caret relative to the text box, in px.|
+| y     | number | Y coordinate of the caret relative to the text box, in px.|
+
+## InputCounterOptions<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name             | Type   | Description                                                        |
+| ------------------- | ------- | ------------------------------------------------------------ |
+| thresholdPercentage | number  | Threshold percentage for displaying the character counter. The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. When displayed, the character counter is in the following format: Number of characters that have been entered/Maximum number of characters allowed. It is visible when the number of characters entered is greater than the character limit multiplied by the threshold percentage value. Value range: [1, 100]<br>If the value is not an integer, it is rounded down to the nearest integer. If the value exceeds the valid value range, the character counter is not displayed. If the value is **undefined**, the character counter is displayed, but this parameter has no effect.|
+| highlightBorder     | boolean | Whether to highlight the text box border and character counter subscript in red. If **options** is not set, the text box border and character counter subscript turn red when the number of characters entered reaches the limit. If the character counter is displayed and **thresholdPercentage** is set to a valid value, the text box border and character counter subscript turn red when the number of entered characters exceeds the limit. The value **true** (default) means to highlight the text box border and character counter subscript in red.|
+
+## ChainWeightOptions<sup>14+</sup>
+
+The **ChainWeightOptions** type is used to describe the layout weight of a component within a chain.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type    | Description            |
+| ----- | ------ | -------------- |
+| horizontal | number | Layout weight of the component in the horizontal direction. It is effective when set to a value greater than 0.<br> Default value: **0**<br> Invalid values are treated as **0**. |
+| vertical     | number | Layout weight of the component in the vertical direction. It is effective when set to a value greater than 0.<br> Default value: **0**<br> Invalid values are treated as **0**.|
+
+## Configuration
+
+The **Configuration** type is used to describe the color mode and font scale.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Optional| Description      |
+| --------- | ------ | ---- | ---- | ---------- |
+| colorMode | string | Yes  | No  | Color mode.|
+| fontScale | number | Yes  | No  | Font scale.|
+
+## LayoutPolicy<sup>15+</sup>
+
+The **LayoutPolicy** type is used to set the layout strategy for linear layouts.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 15.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Description|
+| --------- | ------ | ---- |---------- |
+| MATCH_PARENT | LayoutPolicy | Yes| Adjusts the size to match the parent component's layout.|
+
+>  **NOTE**
+>
+>  - When the parent container of a linear layout component has its length set, the component will automatically adjust its size based on the parent container's size. If the parent container does not have a length set, the linear layout component will wait for all child components to complete their layout before adjusting its size to match the parent container's layout.
+> 
+>  - If multiple child components under the same parent are set to **MATCH_PARENT**, all these child components will be resized to the parent's size, potentially causing overflow.
+> 
+>  - Setting **MATCH_PARENT** will force the component to match the parent's size, overriding any other size constraints set on the component.
+
+## TextContentControllerOptions<sup>15+</sup>
+
+The **TextContentControllerOptions** type is used to configure the insertion of text into a text box.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Optional| Description      |
+| --------- | ------ | ---- | ---- | ---------- |
+| offset | number | Yes  | Yes  | Position where the text will be inserted.|
+
+## DividerMode<sup>18+</sup>
+
+The **DividerMode** type is used to configure the mode of the divider.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Value| Description                                      |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | The divider floats above the menu without affecting the layout height. This is the default mode.     |
+| EMBEDDED_IN_MENU   | 1 | The divider is embedded in the menu and affects the layout height.   |

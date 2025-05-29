@@ -5,12 +5,13 @@
 
 
 弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），这些接口围绕弹窗控制器实现各种弹窗控制。
+[OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
 
 
 ## 创建和销毁弹窗控制器
 
 - 创建弹窗控制器
-  ArkUI_NativeDialogHandle表示指向弹窗控制器的指针，可以通过调用ArkUI_NativeDialogAPI_x 的create接口创建一个弹窗控制器，
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
 
   该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```
@@ -66,7 +67,7 @@
    }
    ```
 
-2. 通过controller控制弹窗样式。
+2. 通过controller控制弹窗样式。弹窗接口清单和描述可查看[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
    ```
    void ShowDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -99,14 +100,14 @@
 
 可创建交互页面，打开或关闭弹窗。
 
-1. 创建一个可交互的界面，点击Button之后可以弹窗。
+1. 创建一个可交互的界面，点击Button之后可以弹窗。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool isShown = false;
    ArkUI_NativeDialogHandle dialogController;
    ArkUI_NodeHandle buttonNode;
    
-   void MainViewMethod(OH_NativeXComponent *component) {
+   void MainViewMethod(ArkUI_NodeContentHandle handle) {
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -135,7 +136,7 @@
        nodeAPI->registerNodeEvent(buttonNode, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
        nodeAPI->addNodeEventReceiver(buttonNode, OnButtonClicked);
        nodeAPI->addChild(column, buttonNode);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 
@@ -165,3 +166,70 @@
    ```
 
    ![zh-cn_image_0000001902966196](figures/zh-cn_image_0000001902966196.gif)
+
+
+## 弹窗的生命周期
+
+在弹窗显示前后和弹窗关闭前后，存在registerOnWillAppear、registerOnDidAppear、registerOnWillDisappear、registerOnDidDisappear这四个生命周期。
+这些生命周期方法需要在调用show方法之前调用，生命周期的时序如下：
+registerOnWillAppear -> 弹窗显示动画开始 -> 弹窗显示动画结束 ->registerOnDidAppear -> 弹窗显示完成 ->
+registerOnWillDisappear -> 弹窗关闭动画开始 ->  弹窗关闭动画结束 -> registerOnDidDisappear -> 弹窗关闭完成。
+
+创建一个弹窗，弹窗显示和关闭时会触发生命周期的回调函数。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+   ```
+    ArkUI_NodeHandle CreateDialogContent() {
+        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+        ArkUI_NodeHandle text = nodeAPI->createNode(ARKUI_NODE_TEXT);
+        ArkUI_NumberValue textWidthValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem textWidthItem = {.value = textWidthValue,
+                                             .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(text, NODE_WIDTH, &textWidthItem);
+        ArkUI_NumberValue textHeightValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem textHeightItem = {.value = textHeightValue,
+                                              .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(text, NODE_HEIGHT, &textHeightItem);
+        ArkUI_NodeHandle span = nodeAPI->createNode(ARKUI_NODE_SPAN);
+        ArkUI_AttributeItem spanItem = {.string = "这是一个弹窗"};
+        nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanItem);
+        ArkUI_NodeHandle imageSpan = nodeAPI->createNode(ARKUI_NODE_IMAGE_SPAN);
+        ArkUI_AttributeItem imageSpanItem = {.string = "/pages/common/sky.jpg"};
+        nodeAPI->setAttribute(imageSpan, NODE_IMAGE_SPAN_SRC, &imageSpanItem);
+        ArkUI_NumberValue imageSpanWidthValue[] = {{.f32 = 300}};
+        ArkUI_AttributeItem imageSpanWidthItem = {.value = imageSpanWidthValue,
+                                                  .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(imageSpan, NODE_WIDTH, &imageSpanWidthItem);
+        ArkUI_NumberValue imageSpanHeightValue[] = {{.f32 = 200}};
+        ArkUI_AttributeItem imageSpanHeightItem = {.value = imageSpanHeightValue,
+                                                   .size = sizeof(textWidthValue) / sizeof(ArkUI_NumberValue)};
+        nodeAPI->setAttribute(imageSpan, NODE_HEIGHT, &imageSpanHeightItem);
+        nodeAPI->addChild(text, span);
+        nodeAPI->addChild(text, imageSpan);
+        return text;
+    }
+    void OnWillAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillAppearCallBack");
+    }
+    void OnDidAppearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidAppearCallBack");
+    }
+    void OnWillDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnWillDisappearCallBack");
+    }
+    void OnDidDisappearCallBack(void* userdata) {
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "CustomDialogContentTest", "OnDidDisappearCallBack");
+    }
+    void ShowDialog() {
+        ArkUI_NativeDialogAPI_3 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_3 *>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_3"));
+        auto customDialog = dialogAPI->nativeDialogAPI1.create();
+        auto contentNode = CreateDialogContent();
+        dialogAPI->nativeDialogAPI1.setContent(customDialog, contentNode);
+        dialogAPI->nativeDialogAPI1.setAutoCancel(customDialog, true);
+        dialogAPI->registerOnWillAppear(customDialog, nullptr, OnWillAppearCallBack);
+        dialogAPI->registerOnDidAppear(customDialog, nullptr, OnDidAppearCallBack);
+        dialogAPI->registerOnWillDisappear(customDialog, nullptr, OnWillDisappearCallBack);
+        dialogAPI->registerOnDidDisappear(customDialog, nullptr, OnDidDisappearCallBack);
+        dialogAPI->nativeDialogAPI1.show(customDialog, false);
+    }
+   ```

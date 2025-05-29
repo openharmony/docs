@@ -1,4 +1,4 @@
- # MultiAppMode (系统接口)
+# MultiAppMode (系统接口)
 
 定义应用是否支持多开模式。
 
@@ -10,11 +10,12 @@
 
 ## 属性
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NOT_SUPPORTED | 应用不支持多开模式。 |
+| MULTI_INSTANCE<sup>14+</sup>  | 应用支持多实例模式。<br>**说明：** 只支持2in1设备。</br>  |
 | APP_CLONE | 应用支持分身模式。 |

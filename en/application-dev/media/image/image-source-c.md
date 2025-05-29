@@ -1,22 +1,22 @@
 # Using Image_NativeModule to Decode Images
 
-You can use the **ImageSource** class to create an image source, obtain the width and height of the pixel map, and release **ImageSource** instances.
+This topic describes how to create an ImageSource object, obtain the width and height of the PixelMap, and release the ImageSource object.
 
 ## How to Develop
 
 ### Adding a Link Library
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_source.so** and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_source.so**, **libpixelmap.so**, and and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so)
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixelmap.so)
 ```
 
 ### Calling the Native APIs
 
 For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
 
-Implement the C APIs in **hello.cpp**. Refer to the sample code below.
+Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 **Example of Using the Decoding APIs**
 
@@ -29,6 +29,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
 
       #include <hilog/log.h>
       #include <multimedia/image_framework/image/image_source_native.h>
+      #include <multimedia/image_framework/image/pixelmap_native.h>
 
       #undef LOG_DOMAIN
       #undef LOG_TAG
@@ -37,6 +38,13 @@ After creating an **ImageSource** instance, obtain and modify property values, c
 
       #define NUM_0 0
       #define NUM_1 1
+
+      // Process the NAPI return value.
+      napi_value getJsResult(napi_env env, int result) {
+          napi_value resultNapi = nullptr;
+          napi_create_int32(env, result, &resultNapi);
+          return resultNapi;
+      }
 
       static napi_value sourceTest(napi_env env, napi_callback_info info)
       {
@@ -56,7 +64,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           Image_ErrorCode errCode = OH_ImageSourceNative_CreateFromUri(name, nameSize, &source);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreateFromUri failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Create a structure object that defines the image information and obtain the image information.
@@ -65,7 +73,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           errCode = OH_ImageSourceNative_GetImageInfo(source, 0, imageInfo);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetImageInfo failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Obtain the values of the specified properties.
@@ -82,7 +90,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           errCode = OH_ImageSourceNative_GetImageProperty(source, &getKey, &getValue);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetImageProperty failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Modify the values of the specified properties.
@@ -96,29 +104,41 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           errCode = OH_ImageSourceNative_ModifyImageProperty(source, &setKey, &setValue);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_ModifyImageProperty failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Create a PixelMap object based on image decoding parameters.
           OH_DecodingOptions *ops = nullptr;
           OH_DecodingOptions_Create(&ops);
+          // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR PixelMap is obtained after decoding.
+          OH_DecodingOptions_SetDesiredDynamicRange(ops, IMAGE_DYNAMIC_RANGE_AUTO);
           OH_PixelmapNative *resPixMap = nullptr;
+
+          // A null pointer cannot be passed in to ops. If ops does not need to be set, you do not need to create a PixelMap object.
           errCode = OH_ImageSourceNative_CreatePixelmap(source, ops, &resPixMap);
           OH_DecodingOptions_Release(ops);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmap failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
+
+          // Check whether the PixelMap is the HDR content.
+          OH_Pixelmap_ImageInfo *pixelmapImageInfo = nullptr;
+          OH_PixelmapImageInfo_Create(&pixelmapImageInfo);
+          OH_PixelmapNative_GetImageInfo(resPixMap, pixelmapImageInfo);
+          bool pixelmapIsHdr;
+          OH_PixelmapImageInfo_GetDynamicRange(pixelmapImageInfo, &pixelmapIsHdr);
+          OH_PixelmapImageInfo_Release(pixelmapImageInfo);
 
           // Obtain the number of image frames.
           uint32_t frameCnt = 0;
           errCode = OH_ImageSourceNative_GetFrameCount(source, &frameCnt);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetFrameCount failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
-          // Create a Pixelmap list based on image decoding parameters.
+          // Create a PixelMap list based on image decoding parameters.
           OH_DecodingOptions *opts = nullptr;
           OH_DecodingOptions_Create(&opts);
           OH_PixelmapNative **resVecPixMap = new OH_PixelmapNative*[frameCnt];
@@ -128,7 +148,7 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           delete[] resVecPixMap;
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_CreatePixelmapList failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Obtain the image delay time list.
@@ -138,12 +158,12 @@ After creating an **ImageSource** instance, obtain and modify property values, c
           delete[] delayTimeList;
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest OH_ImageSourceNative_GetDelayTimeList failed, errCode: %{public}d.", errCode);
-              return errCode;
+              return getJsResult(env, errCode);
           }
 
           // Release the ImageSource instance.
           OH_ImageSourceNative_Release(source);
           OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
-          return IMAGE_SUCCESS;
+          return getJsResult(env, IMAGE_SUCCESS);
       }
    ```

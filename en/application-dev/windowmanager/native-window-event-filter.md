@@ -7,10 +7,10 @@ You can use the capability provided by the NativeWindowEventFilter module to int
 
 ## Available APIs
 
-| API | Description | 
+| API| Description| 
 | -------- | -------- |
-| OH_NativeWindowManager_RegisterKeyEventFilter (int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter); | Registers a key event filter for a window. | 
-| OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)| Unregisters the key event filter of a window. | 
+| OH_NativeWindowManager_RegisterKeyEventFilter (int32_t windowId, OH_NativeWindowManager_KeyEventFilter keyEventFilter) | Registers a key event filter for a window.| 
+| OH_NativeWindowManager_UnregisterKeyEventFilter(int32_t windowId)| Unregisters the key event filter of a window.| 
 
 ## How to Develop
 ### Linking the Dynamic Library in the CMake Script

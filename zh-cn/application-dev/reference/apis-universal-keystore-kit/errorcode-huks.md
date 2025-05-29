@@ -11,6 +11,7 @@
 The ``${messageInfo}`` is not supported.
 
 **可能原因**
+
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
 
 **处理步骤**
@@ -182,7 +183,7 @@ The entity does not exist.
 
 **错误信息**
 
-System external error.
+Device environment or input parameter abnormal.
 
 **可能原因**
 
@@ -215,14 +216,14 @@ The credential does not exist.
 - Insufficient memory.
 - Malloc failed.
 
-
 **可能原因**
 
-系统内存不足。
+系统内存不足，或出参缓存太小。
 
 **处理步骤**
 
-开发者释放部分内存或重启。
+1. 开发者释放部分内存或重启。
+2. 检查传入的出参缓存大小。
 
 ## 12000015 调用其他系统服务失败
 
@@ -251,3 +252,23 @@ A device password is required but not set.
 **处理步骤**
 
 设置锁屏密码，或更换密钥的使用限制。
+
+## 12000018 输入参数非法
+
+**错误信息**
+
+The input parameter is invalid.
+
+**可能原因**
+
+1. 必选参数没有传入。
+
+2. 参数类型错误（Type Error）。
+
+3. 空参数错误（Null Argument Error）。
+
+4. 参数值范围错误（Value Range Error）。
+
+**处理步骤**
+
+请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败原因，请阅读参数规格约束，按照可能原因进行排查。

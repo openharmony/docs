@@ -3,7 +3,7 @@
 
 ## Overview
 
-The AVSource module provides the functions for constructing audio and video resource objects.
+The AVSource module provides the functions for constructing media resource objects.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -17,7 +17,7 @@ The AVSource module provides the functions for constructing audio and video reso
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avsource.h](native__avsource_8h.md) | Declares the native APIs used for audio and video demuxing. | 
+| [native_avsource.h](native__avsource_8h.md) | Declares the APIs for parsing audio and video media data. | 
 
 
 ### Types
@@ -31,12 +31,13 @@ The AVSource module provides the functions for constructing audio and video reso
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**. | 
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**. |
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI. | 
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD). | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources. | 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource file. | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetCustomMetadataFormat](#oh_avsource_getcustommetadataformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about custom metadata.| 
 
 
 ## Type Description
@@ -80,7 +81,7 @@ Creates an **OH_AVSource** instance with a user-defined data source. You can rel
 
 **Returns**
 
-Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns NULL otherwise.
 
 The possible causes of an operation failure are as follows:
 
@@ -93,6 +94,7 @@ The possible causes of an operation failure are as follows:
 4. The memory is insufficient.
 
 5. The decoder engine is a null pointer.
+6. dataSource-&gt;readAt == nullptr.
 
 
 ### OH_AVSource_CreateWithFD()
@@ -107,7 +109,7 @@ Creates an **OH_AVSource** instance based on an FD.
 
 You can release the instance by calling **OH_AVSource_Destroy**.
 
-If **offset** is not the start position of the file or **size** is not the file size, undefined errors such as creation failure and demuxing failure may occur due to incomplete data obtained.
+If **offset** is not the start position of the file or **size** is not the file size, undefined errors such as creation failure and demultiplexing failure may occur due to incomplete data obtained.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -123,7 +125,7 @@ If **offset** is not the start position of the file or **size** is not the file 
 
 **Returns**
 
-Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns NULL otherwise.
 
 The possible causes of an operation failure are as follows:
 
@@ -160,7 +162,7 @@ Create an **OH_AVSource** instance based on a URI. You can release the instance 
 
 **Returns**
 
-Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns NULL otherwise.
 
 The possible causes of an operation failure are as follows:
 
@@ -195,9 +197,47 @@ An instance can be destroyed only once. The destroyed instance cannot be used un
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns either of the following result codes:
 
-If the value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance), **AV_ERR_INVALID_VAL** is returned.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The operation fails.
+    
+    1. The source pointer is invalid.
+    2. The pointer is null or does not point to an **OH_AVSource** instance.
+
+
+### OH_AVSource_GetCustomMetadataFormat()
+
+```
+OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source)
+```
+
+**Description**
+
+Obtains the basic information about custom metadata.
+
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
+
+**System capability**: SystemCapability.Multimedia.Media.Spliter
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| source | Pointer to an **OH_AVSource** instance.| 
+
+**Returns**
+
+Returns the basic information about the metadata if the operation is successful; returns NULL otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The source pointer is invalid.
+2. The pointer is null or does not point to an **OH_AVSource** instance.
+3. The source is not initialized.
 
 
 ### OH_AVSource_GetSourceFormat()
@@ -208,7 +248,9 @@ OH_AVFormat* OH_AVSource_GetSourceFormat (OH_AVSource *source)
 
 **Description**
 
-Obtains the basic information about a media resource.
+Obtains the basic information about a media resource file.
+
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -222,9 +264,13 @@ Obtains the basic information about a media resource.
 
 **Returns**
 
-Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+Returns the basic information about the file if the operation is successful; returns NULL otherwise.
 
-The possible causes of an operation failure are as follows: The value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance).
+The possible causes of an operation failure are as follows:
+
+1. The source pointer is invalid.
+2. The pointer is null or does not point to an **OH_AVSource** instance.
+3. The source is not initialized.
 
 
 ### OH_AVSource_GetTrackFormat()
@@ -236,6 +282,8 @@ OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackInde
 **Description**
 
 Obtains the basic information about a track.
+
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -250,10 +298,10 @@ Obtains the basic information about a track.
 
 **Returns**
 
-Returns the basic information about the track if the operation is successful; returns a null pointer otherwise.
+Returns the basic information about the track if the operation is successful; returns NULL otherwise.
 
 The possible causes of an operation failure are as follows:
 
 1. The value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance).
-
 2. The track index is out of range.
+3. The source is not initialized.

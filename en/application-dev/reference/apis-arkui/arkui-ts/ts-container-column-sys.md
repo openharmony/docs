@@ -1,6 +1,6 @@
 # Column (System API)
 
-The **\<Column>** component lays out child components vertically.
+The **Column** component lays out child components vertically.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **\<Column>** component lays out child components vertically.
 
 ## Attributes
 
-## pointLight
+### pointLight
 
 pointLight(value: PointLightStyle)
 

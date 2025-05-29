@@ -9,6 +9,7 @@ DRM插件的名称和UUID。
 
 **相关模块：**[Drm](_drm.md)
 
+**所在头文件：**[native_drm_common.h](native__drm__common_8h.md)
 
 ## 汇总
 

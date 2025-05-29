@@ -3,8 +3,17 @@
 
 ## When to Use
 
-In dynamic subscription mode, an application, when it is running, subscribes to a common event and then receives the event once it is published, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [Required Permissions](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#support).
+In dynamic subscription mode, an application, when it is running, subscribes to a common event and then receives the event once it is published, together with the parameters passed in the event.
 
+For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption.
+
+Certain system common events [require specific permissions](../../security/AccessToken/determine-application-mode.md) to subscribe to. For details, see [System Common Events](../../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md).
+
+> **NOTE**
+>
+> The lifecycle of the subscriber object needs to be managed by the application. If the subscriber object is no longer used, it needs to be destroyed and released to avoid memory leakage.
+> 
+> The callback of common events in dynamic subscription mode is affected by the application status. When the application is in the background, the callback cannot receive common events subscribed dynamically. When the application is switched from the background to the foreground, the callback can receive common events listened for within 30 seconds before the switch.
 
 ## Available APIs
 
@@ -14,7 +23,7 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
 | -------- | -------- |
 | createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#how-to-use)&gt;):&nbsp;void| Creates a subscriber. This API uses an asynchronous callback to return the result.|
 | createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise&lt;CommonEventSubscriber&gt; | Creates a subscriber. This API uses a promise to return the result.|
-| subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback): void | Subscribes to common events.|
+| subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback<CommonEventData\>):&nbsp;void | Subscribes to common events.|
 
 
 ## How to Develop
@@ -22,10 +31,8 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
 1. Import the **commonEventManager** module.
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -42,11 +49,11 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
    };
    ```
 
-3. Create a subscriber object and save the returned object for subsequent operations such as subscription and unsubscription.
+3. Create a subscriber object and save the returned object for subsequent operations such as subscription, unsubscription, and event callback.
    
    ```ts
    // Callback for subscriber creation.
-   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
+   commonEventManager.createSubscriber(subscribeInfo, (err: BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
        hilog.error(DOMAIN_NUMBER, TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
@@ -61,7 +68,7 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
    ```ts
    // Callback for common event subscription.
    if (subscriber !== null) {
-     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+     commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
@@ -72,3 +79,6 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
      hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
    }
    ```
+
+<!--RP1-->
+<!--RP1End-->

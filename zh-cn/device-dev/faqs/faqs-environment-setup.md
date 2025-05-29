@@ -199,18 +199,18 @@
 
 - **可能原因**
 
-  lsb\_release模块基于的python版本与现有python版本不一致
+  lsb\_release模块基于的python版本与现有python版本不一致。
 
 - **解决办法**
 
-  执行"find / -name lsb\_release"，找到lsb\_release位置并删除，如："sudo rm -rf /usr/bin/lsb\_release"
+  执行"find / -name lsb\_release"，找到lsb\_release位置并删除，如："sudo rm -rf /usr/bin/lsb\_release"。
 
 
 ### Linux编译服务器终端输入不识别的命令时提示“ImportError: No module named apt\_pkg”<a name="section510820516515"></a>
 
 - **现象描述**
 
-  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt\_pkg"
+  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt\_pkg"。
 
 
 - **可能原因**

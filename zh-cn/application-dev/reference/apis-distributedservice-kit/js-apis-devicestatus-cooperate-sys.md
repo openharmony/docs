@@ -210,7 +210,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 
 **示例：**
 
@@ -263,7 +263,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 
 **示例：**
 
@@ -708,10 +708,8 @@ try {
 | ---------      | -------------- | ---- | ---- | ------------------------       |
 | displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
 | displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
-| displayWidth   | number         | 是   | 否   | 屏幕宽度。                      |
-| displayHeight  | number         | 是   | 否   | 屏幕高度。                      |
-
-
+| displayWidth   | number         | 是   | 否   | 屏幕宽度，单位：px。                      |
+| displayHeight  | number         | 是   | 否   | 屏幕高度，单位：px。                      |
 
 ## CooperateState<sup>11+</sup>
 
@@ -743,8 +741,8 @@ try {
 | ---------     | -------------- | ---- | ---- | ------------------------ |
 | displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
 | displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
-| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度。 |
-| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度。 |
+| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度，单位：px。 |
+| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>
@@ -947,7 +945,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | Operation failed.|
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
@@ -1003,7 +1001,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | Operation failed.   |
+| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 

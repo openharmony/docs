@@ -5,9 +5,11 @@
 
 声明滤镜相关接口。
 
-开发者可以通过滤镜的接口快速实现基本的效果处理，也可以将滤镜添加到效果器中，组合成滤镜链串联执行。 系统提供了如“亮度”、“裁剪”等基本的效果处理滤镜。
+开发者可以通过滤镜的接口快速实现基本的效果处理，也可以将滤镜添加到效果器中，组合成滤镜链串联执行。系统提供了如“亮度”、“裁剪”等基本的效果处理滤镜。
 
 **库：** libimage_effect.so
+
+**引用文件**：&lt;multimedia/image_effect/image_effect_filter.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
@@ -37,7 +39,7 @@
 | -------- | -------- |
 | [OH_EFFECT_BRIGHTNESS_FILTER](_image_effect.md#oh_effect_brightness_filter)   "Brightness" | 亮度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为[EFFECT_DATA_TYPE_FLOAT](_image_effect.md)。 | 
 | [OH_EFFECT_CONTRAST_FILTER](_image_effect.md#oh_effect_contrast_filter)   "Contrast" | 对比度滤镜，对应的参数为OH_EFFECT_FILTER_INTENSITY_KEY，参数类型为[EFFECT_DATA_TYPE_FLOAT](_image_effect.md)。 | 
-| [OH_EFFECT_CROP_FILTER](_image_effect.md#oh_effect_crop_filter)   "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为[EFFECT_DATA_TYPE_PTR](_image_effect.md)， 参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。 | 
+| [OH_EFFECT_CROP_FILTER](_image_effect.md#oh_effect_crop_filter)   "Crop" | 裁剪滤镜，对应的参数为OH_EFFECT_FILTER_REGION_KEY，参数类型为[EFFECT_DATA_TYPE_PTR](_image_effect.md)，参数值为结构体 [ImageEffect_Region](_image_effect___region.md)。 | 
 | [OH_EFFECT_FILTER_INTENSITY_KEY](_image_effect.md#oh_effect_filter_intensity_key)   "FilterIntensity" | 强度参数。 | 
 | [OH_EFFECT_FILTER_REGION_KEY](_image_effect.md#oh_effect_filter_region_key)   "FilterRegion" | 图像区域参数。 | 
 

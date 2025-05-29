@@ -51,7 +51,7 @@ The number of token registration times has reached the upper limit.
 
 **Description**
 
-This error code is reported when the number of times that the **continuationManager.registerContinuation** API is called has reached the upper limit.
+This error code is reported when the number of times that the **continuationManager.registerContinuation** API is called has reached the upper limit (600).
 
 **Possible Causes**
 

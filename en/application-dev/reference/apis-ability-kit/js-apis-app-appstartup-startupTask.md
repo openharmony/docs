@@ -24,10 +24,10 @@ Called when the dependent startup task is complete.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| dependency | string | Yes | Name of the dependent startup task. |
-| result | Object | Yes | Execution result of the dependent startup task. |
+| dependency | string | Yes| Name of the dependent startup task.|
+| result | Object | Yes| Execution result of the dependent startup task.|
 
 **Example**
 
@@ -64,15 +64,15 @@ Initializes this startup task.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | Yes | Context of the ability stage. |
+| context | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | Yes| Context of the ability stage.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Object | void\> | Promise used to return the execution result. |
+| Promise\<Object \| void\> | Promise used to return the execution result.|
 
 **Example**
 
@@ -89,7 +89,7 @@ export default class StartupTask_001 extends StartupTask {
     hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
     // ...
     
-    return 'StartupTask_001';
+    return "StartupTask_001";
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {

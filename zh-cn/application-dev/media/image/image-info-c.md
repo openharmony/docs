@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在hello.cpp中实现C Native API接口调用逻辑，示例代码如下：
+在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 ```c++
 #include <hilog/log.h>
@@ -35,7 +35,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 static void ImageNativeCTest()
 {
-    // 创建 OH_ImageReceiverOptions 实例
+    // 创建 OH_ImageReceiverOptions 实例。
     OH_ImageReceiverOptions* options = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
     if (errCode != IMAGE_SUCCESS) {
@@ -47,7 +47,7 @@ static void ImageNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // 设置 OH_ImageReceiverOptions 的 size 属性
+    // 设置 OH_ImageReceiverOptions 的 size 属性。
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -55,7 +55,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 设置 OH_ImageReceiverOptions 的 capacity 属性
+    // 设置 OH_ImageReceiverOptions 的 capacity 属性。
     errCode = OH_ImageReceiverOptions_SetCapacity(options, IMAGE_CAPACITY);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options capacity failed, errCode: %{public}d.", errCode);
@@ -63,7 +63,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 创建 OH_ImageReceiverNative 实例
+    // 创建 OH_ImageReceiverNative 实例。
     OH_ImageReceiverNative* receiver = nullptr;
     errCode = OH_ImageReceiverNative_Create(options, &receiver);
     if (errCode != IMAGE_SUCCESS) {
@@ -72,7 +72,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 读取 OH_ImageReceiverNative 的下一个图片对象
+    // 读取 OH_ImageReceiverNative 的下一个图片对象。
     OH_ImageNative* image = nullptr;
     errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
     if (errCode != IMAGE_SUCCESS) {
@@ -81,7 +81,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 读取 OH_ImageNative 的 size 属性
+    // 读取 OH_ImageNative 的 size 属性。
     errCode = OH_ImageNative_GetImageSize(image, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image size failed, errCode: %{public}d.", errCode);
@@ -153,19 +153,30 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 释放 OH_ImageNative 实例
+    // 读取 OH_ImageNative 对象所对应的时间戳信息。
+    int64_t timestamp = 0;
+    errCode = OH_ImageNative_GetTimestamp(image, &timestamp);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get timestamp failed, errCode: %{public}d.", errCode);
+        OH_ImageNative_Release(image);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
+    // 释放 OH_ImageNative 实例。
     errCode = OH_ImageNative_Release(image);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
     }
 
-    // 释放 OH_ImageReceiverOptions 实例
+    // 释放 OH_ImageReceiverOptions 实例。
     errCode = OH_ImageReceiverOptions_Release(options);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver options failed, errCode: %{public}d.", errCode);
     }
 
-    // 释放 OH_ImageReceiverOptions 实例
+    // 释放 OH_ImageReceiverOptions 实例。
     errCode = OH_ImageReceiverNative_Release(receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver failed, errCode: %{public}d.", errCode);

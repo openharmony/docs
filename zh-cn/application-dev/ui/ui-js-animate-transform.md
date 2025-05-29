@@ -94,7 +94,7 @@
 
 ## 设置平移动画
 
-小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段是时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
+小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
 
 ```html
 <!-- xxx.hml -->
@@ -173,7 +173,7 @@
 
 ## 设置旋转动画
 
-设置不同的原点位置（transform-origin）改变元素所围绕的旋转中心。rotate3d属性前三个参数值分别为X轴、Y轴、Z轴的旋转向量，第四个值为旋转角度，旋转向角度可为负值，负值则代表旋转方向为逆时针方向。
+设置不同的原点位置（transform-origin）改变元素所围绕的旋转中心。rotate3d属性前三个参数值分别为X轴、Y轴、Z轴的旋转向量，第四个值为旋转角度，旋转角度可为负值，负值则代表旋转方向为逆时针方向。
 
 ```html
 <!-- xxx.hml -->
@@ -250,7 +250,7 @@
     align-items: center;
     justify-content: center;
 }
-/* react4 react5 翻转形成眼睛 */
+/* rect4 rect5 翻转形成眼睛 */
 .rect4 {
     width: 100px;
     height: 100px;
@@ -303,7 +303,8 @@
 
 ![zh-cn_image_0000001220316305](figures/zh-cn_image_0000001220316305.gif)
 
-> **说明：**
+> **说明：** 
+>
 > transform-origin变换对象的原点位置，如果仅设置一个值，另一个值为50%，若设置两个值第一个值表示X轴的位置，第二个值表示Y轴的位置。
 
 
@@ -311,7 +312,7 @@
 
 设置scale样式属性实现涟漪动画，先使用定位确定元素的位置，确定坐标后创建多个组件实现重合效果，再设置opacity属性改变组件不透明度实现组件隐藏与显示，同时设置scale值使组件可以一边放大一边隐藏，最后设置两个组件不同的动画执行时间，实现扩散的效果。
 
-设置sacle3d中X轴、Y轴、Z轴的缩放参数实现动画。
+设置scale3d中X轴、Y轴、Z轴的缩放参数实现动画。
 
 ```html
 <!-- xxx.hml -->
@@ -348,7 +349,7 @@
 .ripple{
     margin-top: 400px;
     margin-left: 40%;
-    position: absolute;  z-index: 0;
+    position: absolute; z-index: 0;
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -415,13 +416,14 @@ text{
 
 ![zh-cn_image_0000001220396251](figures/zh-cn_image_0000001220396251.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 设置transform属性值后，子元素会跟着父元素一起改变，若只改变父元素其他属性值时（如：height，width），子元素不会改变。
 
 
 ## 设置matrix属性
 
-matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置 了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
+matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
 
 ```html
 <!-- xxx.hml -->
@@ -584,8 +586,6 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 ## 相关实例
 
 针对transform样式动画开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
 

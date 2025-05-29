@@ -48,11 +48,13 @@ The OpenHarmony LiteOS source code is stored in **kernel&#92;\_liteos&#92;\_a** 
 
 ## Linux<a name="section143373618411"></a>
 
-Evolved from the open-source Linux kernel LTS 4.19.y and 5.10.y, the OpenHarmony Linux kernel has incorporated CVE patches and OpenHarmony features as the OpenHarmony common kernel baseline. Vendors can complete the kernel adaptation by applying the driver patches for boards.
+Evolved from the open-source Linux kernel LTS 4.19.y, 5.10.y and 6.6.y, the OpenHarmony Linux kernel has incorporated CVE patches and OpenHarmony features as the OpenHarmony common kernel baseline. Vendors can complete the kernel adaptation by applying the driver patches for boards.
 
 For more information about Linux LTS 4.19.y, visit the [official kernel website](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-4.19.y).
 
 For more information about Linux LTS 5.10.y, visit the [official kernel website](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-5.10.y).
+
+For more information about Linux LTS 6.6.y, visit the [official kernel website](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-6.6.y).
 
 During the build process, you can merge the driver code based on the chip platform and build the kernel image. All patches are licensed under GNU General Public License (GPL) 2.0.
 
@@ -63,6 +65,7 @@ kernel/
 ├── linux
 │	├── linux-4.19						# OpenHarmony linux-4.19 common kernel
 │	├── linux-5.10						# OpenHarmony linux-5.10 common kernel
+│	├── linux-6.6						# OpenHarmony linux-6.6  common kernel
 │	├── build
 │	│	├── BUILD.gn					# GN file of the build framework
 │	│	├── kernel.mk					# Kernel build file
@@ -73,14 +76,18 @@ kernel/
 │	│	│   │		└── hdf.patch			# linux-4.19 HDF patches
 │	│	│   └── hi3516dv300_patch
 │	│	│   		└── hi3516dv300.patch		# linux-4.19 Hi3516D V300 SOC patches
-│	│	└── linux-5.10
-│	│	    ├── common_patch
-│	│	    │		└── hdf.patch			# linux-5.10 HDF patches
-│	│	    └── hi3516dv300_patch
-│	│	    │		└── hi3516dv300.patch		# linux-5.10 Hi3516D V300 SOC patches
+│	│	├── linux-5.10
+│	│	│   ├── common_patch
+│	│	│   │		└── hdf.patch			# linux-5.10 HDF patches
+│	│	│   └── hi3516dv300_patch
+│	│	│   │		└── hi3516dv300.patch		# linux-5.10 Hi3516D V300 SOC patches
+│	│	│   └── rkrk3568_patch
+│	│	│   		├── kernel.patch		# linux-5.10 rk3568 SOC patches
+│	│	│   		└── hdf.patch			# linux-5.10 rk3568 customized HDF patches
+│	│	└── linux-6.6
 │	│	    └── rkrk3568_patch
-│	│	    		├── kernel.patch		# linux-5.10 rk3568 SOC patches
-│	│	    		└── hdf.patch			# linux-5.10 rk3568 customized HDF patches
+│	│	    		├── kernel.patch		# linux-6.6 rk3568 SOC patches
+│	│	    		└── hdf.patch			# linux-6.6 rk3568 customized HDF patches
 │	└── config
 │		├── linux-4.19
 │		│   └── arch
@@ -90,7 +97,7 @@ kernel/
 │		│               ├── hi3516dv300_standard_defconfig    # Standard-system defconfig of the open-source Hi3516D V300 development board from HiSilicon
 │		│               ├── small_common_defconfig            # Common defconfig of the small-system kernel
 │		│               └── standard_common_defconfig         # Common defconfig of the standard-system kernel
-│		└── linux-5.10
+│		└── linux-5.10 or linux-6.6
 │		    └── arch
 │		        └── arm
 │		            └── configs
@@ -192,9 +199,8 @@ The following uses the hispark_taurus development board and Ubuntu x86 server as
 Perform a full build for the project to generate the **uImage** kernel image.
 
 ```
-./build.sh --product-name hispark_taurus_standard              # Build the hispark_taurus_standard image.
-    --build-target build_kernel                    # Build the uImage kernel image of hispark_taurus_standard.
-    --gn-args linux_kernel_version=\"linux-5.10\"  # Build the specified kernel version.
+./build.sh --product-name rk3568					# Build the rk3568 image.
+    --gn-args linux_kernel_version="linux-5.10"		# Build the specified kernel version.
 ```
 
 ## Repositories Involved<a name="section27639463106"></a>
@@ -220,3 +226,5 @@ Linux:
 [kernel\_linux\_build](https://gitee.com/openharmony/kernel_linux_build/blob/master/README.md)
 
 [kernel\_linux\_5.10](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/README)
+
+[kernel\_linux\_6.6](https://gitee.com/openharmony/kernel_linux_6.6/blob/master/README)

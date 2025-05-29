@@ -32,7 +32,7 @@
 - **[精确控制状态变量的关联组件数](precisely-control-render-scope.md)：**
   @State等状态变量关联组件越多，状态数据变更时刷新的组件越多，UI线程负载越重，因此移除冗余的组件关联可以减少丢帧卡顿。
   
-- **[在对象上谨慎使用状态变量关联](proper_state_management.md)：**
+- **在对象上谨慎使用状态变量关联（[合理进行状态管理](proper_state_management.md)）：**
   对象中的任何一个成员变量发生变更均会引起对象关联组件的刷新，因此应对有状态变量关联的对象进行最小化处理，从而减少丢帧卡顿。
   
 ## 提升应用启动和响应速度
@@ -40,13 +40,13 @@
 应用启动和响应速度是用户体验的重要组成部分。为了[提升应用启动](improve-application-cold-start-speed.md)和[响应速度](improve-application-response.md)，可以采取以下措施：
 
 - **延迟加载：**
-  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
+  将不必要的资源延迟加载可以减少应用启动时间。使用[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)以及[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)等容器组件时，配合系统提供的[LazyForEach数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)能力，可以有效减少应用启动时间和内存占用。
   
 - **使用缓存：**
   选择合适的[缓存策略](list-perf-improvment.md#缓存列表项)可以提高应用程序的性能和响应速度，从而提升应用响应速度。
   
 - **使用异步加载：**
-  使用[异步加载](../arkts-utils/async-concurrency-overview.md)可以在后台线程中处理耗时操作，从而提升应用响应速度。
+  使用异步加载([异步并发概述](../arkts-utils/async-concurrency-overview.md))可以在后台线程中处理耗时操作，从而提升应用响应速度。
 
 ## 使用性能调优工具
 

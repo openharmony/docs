@@ -12,19 +12,18 @@ Invalid Parameter. Error message: ${messageInfo}.
 
 **Possible Causes**
 
-This error code is reported when the parameter verification fails. The possible causes are as follows:
-- The value of **tokenId** is **0**.
-- The permission name is empty or exceeds 256 characters.
-- The **flag** value in the permission authorization or revocation request is invalid.
-- The parameters specified for registering a listener are incorrect.
-- The specified context does not belong to the current application.
-- The requested permissions do not belong to the same permission group.
-- The requested permissions include permissions that are not declared by the application.
-- The type of the requested global switch is invalid.
+1. The value of **tokenId** is **0**.
+2. The permission name is empty or exceeds 256 characters.
+3. The **flag** value in the permission authorization or revocation request is invalid.
+4. The parameters specified for registering a listener are incorrect.
+5. The specified context does not belong to the current application.
+6. The requested permissions do not belong to the same permission group.
+7. The requested permissions include permissions that are not declared by the application.
+8. The type of the requested global switch is invalid.
 
 **Solution**
 
-Correct invalid parameter values.
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 
 ## 12100002 TokenId Not Exist
@@ -35,12 +34,12 @@ TokenId does not exist.
 
 **Possible Causes**
 
-- The specified **tokenId** does not exist.
-- The process of the specified **tokenId** is not an application process.
+1. The specified **tokenId** does not exist.
+2. The process of the specified **tokenId** is not an application process.
 
 **Solution**
 
-Set **tokenId** correctly.
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 
 ## 12100003 Permission Not Exist
@@ -51,16 +50,16 @@ Permission does not exist.
 
 **Possible Causes**
 
-- The specified **permissionName** does not exist.
-- The specified **permissionName** does not match the **tokenId** in the permission authorization or revocation scenario.
-- The specified **permissionName** is not a sensitive permission that requires user authorization.
+1. The specified **permissionName** does not exist.
+2. The specified **permissionName** does not match the **tokenId** in the permission authorization or revocation scenario.
+3. The specified **permissionName** is not a sensitive permission that requires user authorization.
 
 **Solution**
 
-Set **permissionName** correctly. For details, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).
+Check and set input parameters correctly. For details about the permissions, see [Application Permissions](../../security/AccessToken/app-permissions.md).
 
 
-## 12100004 APIs Not Used in Pairs
+## 12100004 Listener APIs Not Used in Pairs
 
 **Error Message**
 
@@ -68,13 +67,13 @@ The API is not used in pair with others.
 
 **Possible Causes**
 
-1. One of the APIs that need to be used in pairs is repeatedly called.
-2. One of the APIs that need to be used in pairs is independently called.
+1. One of the listener APIs that must be used in pairs is repeatedly called.
+2. One of the listener APIs that must be used in pairs is independently called.
 
 **Solution**
 
-1. For the APIs that need to be used in pairs, for example, **on()** and **off()**, check whether **on()** with the same parameters is called again before **off()** is called.
-2. For the APIs that need to be used in pairs, for example, **on()** and **off()**, check whether **off()** is called before **on()**.
+1. For the APIs that must be used in pairs, for example, **on()** and **off()**, check whether **on()** with the same parameters is called again before **off()** is called.
+2. For the APIs that must be used in pairs, for example, **on()** and **off()**, check whether **off()** is called before **on()**.
 
 
 ## 12100005 Listener Overflows
@@ -177,11 +176,11 @@ All permissions in the permission list have been granted.
 
 **Possible Causes**
 
-All the requested permissions have been granted.
+All requested permissions have been granted.
 
 **Solution**
 
-None.
+No action is required. If this error code is returned, the permission has been granted and the permission settings dialog box will not be displayed.
 
 
 ## 12100012 Not All Permissions Are Rejected by the User
@@ -196,7 +195,7 @@ The requested permissions include the permissions that are not rejected by the u
 
 **Solution**
 
-Call **requestPermissionFromUser** to request permissions from the user first.
+Call **requestPermissionsFromUser** to request permissions from the user first.
 
 
 ## 12100013 Global Switch Enabled
@@ -211,4 +210,4 @@ The global switch is already turned on.
 
 **Solution**
 
-None.
+No action is required. If this error code is returned, the global switch has been enabled and the dialog box for setting the global switch will not be displayed.

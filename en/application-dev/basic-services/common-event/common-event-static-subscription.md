@@ -2,28 +2,31 @@
 
 ## When to Use
 
-A static subscriber is started once it receives a target event published by the system or application. At the same time, the [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback is triggered,
+A static subscriber is started once it receives a target event published by the system or application. At the same time, [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) is triggered, in which you can implement the service logic.<br>
 
-in which you can implement the service logic. For example, if an application needs to execute some initialization tasks during device power-on, the application can subscribe to the power-on event in static mode. After receiving the power-on event, the application is started to execute the initialization tasks.
+For example, if an application needs to execute some initialization tasks during device power-on, the application can subscribe to the power-on event in static mode. After receiving the power-on event, the application is started to execute the initialization tasks.
 
 Subscribing to a common event in static mode is achieved by configuring a declaration file and implementing a class that inherits from [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md).
 
 > **NOTE**
 >
-> The static subscription mode has negative impact on system power consumption. Therefore, exercise caution when using this mode.
+> Static subscription to common events affects system power consumption. Therefore, exercise caution when using this function.
+
+## Lifecycle
+
+The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md) module is destroyed 15 seconds after [`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) is executed.
 
 ## How to Develop
 
-1. Declaring a static subscriber.
+1. Declare a static subscriber.
 
-   To declare a static subscriber, create an ExtensionAbility, which is derived from the **StaticSubscriberExtensionAbility** class, in the project.
+   Create an ExtensionAbility inherited from [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md) in the project.
 
-   You can implement service logic in the [`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback.
+   You can implement service logic using [onReceiveEvent()](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent).
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import type commonEventManager from '@ohos.commonEventManager';
-   import hilog from '@ohos.hilog';
+   import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'StaticSubscriber';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -43,24 +46,25 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    ```json
    {
      "module": {
-   	...
+   	// ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
-           "srcEntry": "./ets/staticsubscriber/StaticSubscriber.ts",
+           "srcEntry": "./ets/staticsubscriber/StaticSubscriber.ets",
            "description": "$string:StaticSubscriber_desc",
-           "icon": "$media:icon",
+           "icon": "$media:app_icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
+           "exported": false,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
-               "resource": "$profile:staticsubscriber"
+               "resource": "$profile:subscribe"
              }
            ]
          }
        ],
-   	...
+   	// ...
      }
    }
    ```
@@ -76,7 +80,11 @@ Subscribing to a common event in static mode is achieved by configuring a declar
         - **resource**: path that stores the ExtensionAbility configuration, which is customizable. In this example, the path is **resources/base/profile/subscribe.json**.
 
 
-3. Configure the level-2 configuration file to which the metadata points.
+3. Configure the level-2 configuration file **subscribe.json** to which the metadata points.
+
+   > **NOTE**
+   >
+   > If the level-2 configuration file is not declared in this format, the file cannot be identified.
 
    ```json
    {
@@ -86,27 +94,65 @@ Subscribing to a common event in static mode is achieved by configuring a declar
          "permission": "",
          "events": [
            "usual.event.AIRPLANE_MODE"
+         ],
+         "filter": [
+           {
+             "event": "usual.event.AIRPLANE_MODE",
+             "conditions": {
+               "code": 0,
+               "data": "send common event data",
+               "parameters": {
+                 "bundleType": 1,
+                 "userId": 100
+               }
+             }
+           }
          ]
        }
      ]
    }
    ```
 
-   If the level-2 configuration file is not declared in this format, the file cannot be identified. Some fields in the file are described as follows:
+   The **commonEvents** tag identifies a static subscription event configured by a subscriber. Lightweight devices do not support this tag and its subtags. The tag value is of an object array and contains four subtags: **name**, **permission**, **events**, and **filter**.
 
-   - **name**: name of the ExtensionAbility, which must be the same as the name of **extensionAbility** declared in **module.json5**.
-   - **permission**: permission required for the publisher. If a publisher without the required permission attempts to publish an event, the event is regarded as invalid and will not be published.
-   - **events**: list of target events to subscribe to.
+   **Table 1** commonEvents
 
-4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/variant/phone/base/etc/app/install_list_capability.json** file on the device. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:
+   | **Name**| **Description**                                                    | **Data Type**| **Initial Value Allowed**            |
+   | ------------ | ------------------------------------------------------------ | ------------ | -------------------------- |
+   | name         | Name of the ExtensionAbility, which must be the same as the name of **extensionAbility** declared in **module.json5**.| String      | No          |
+   | permission   | Permissions required by the publisher.                      | String      | Yes (initial value: left empty)|
+   | events       | List of subscribed target events.                                    | String array  | No          |
+   | filter       | Filter criteria for static events. This attribute is supported since API version 18.<br>For details about the values, see the following table.| Object array    | Yes (initial value: left empty)|
+
+   The **filter** tag identifies the static subscription events that can be filtered by the subscriber as required. The tag value is of the object array type and contains two subtags: **event** and **conditions**.
+
+   **Table 2** filter
+
+   | **Name**| **Description**                                                    | **Data Type**| **Initial Value Allowed**  |
+   | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
+   | event        | Name of the event to be filtered out for static subscription events. The event name should match with the event list; otherwise, the configuration is invalid.| String      | No|
+   | conditions   | Filter criteria of an event, which is obtained from [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata).| Object        | No|
+
+   The **conditions** tag identifies the condition configuration for filtering static subscription events. The tag value is of the object type and contains three subtags: **code**, **data**, and **parameters**.
+
+   **Table 3** conditions
+
+   | **Name**| **Description**                                  | **Data Type**      | **Initial Value Allowed**            |
+   | ------------ | ------------------------------------------ | ------------------ | -------------------------- |
+   | code         | Result code to filter.      | Integer          | Yes (initial value: left empty)|
+   | data         | Custom result data to filter.| String            | Yes (initial value: left empty)|
+   | parameters   | Additional information to filter for a static subscription event. Only data of the Boolean, number, or string type can be configured.| Object| Yes (initial value: left empty)|
+
+
+4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/variant/phone/base/etc/app/install_list_capability.json** file. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:
 
    - **bundleName**: bundle name of the application.
-   - **app_signature**: fingerprint information of the application. For details about how to configure fingerprint information, see [Application Privilege Configuration Guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson).
+   - **app_signature**: fingerprint information of the application. For details about how to configure fingerprint information, see [Application Privilege Configuration](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-in-install_list_capabilityjson), or obtain and enter the application ID using [Bundle Manager](https://gitee.com/openharmony/docs/blob/master/en/application-dev/tools/bm-tool.md).
    - **allowCommonEvent**: type of common event that can be started by static broadcast.
 
    ```json
    [
-     ...
+     // ...
      {
        "bundleName": "com.samples.stageprocessthread", // Bundle name.
        "app_signature": ["****"], // Fingerprint information.
@@ -118,9 +164,3 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    > **NOTE**
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
-
-## Samples
-
-For details about how to develop StaticSubscriberExtensionAbility, see the following sample:
-
-- [Static Subscription (ArkTS) (Full SDK) (API10)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)

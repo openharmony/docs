@@ -1,6 +1,6 @@
 # @ohos.uri (URI String Parsing)
 
-The **uri** module provides APIs related to URI string parsing.
+The uri module provides APIs for parsing URI strings that comply with the RFC3986 standard. This standard defines how to encode and parse the identifiers used to locate network resources. The module does not support parsing of URIs in non-standard scenarios.
 
 > **NOTE**
 >
@@ -21,97 +21,116 @@ Implements a URI, which provides APIs for determining whether objects are equal 
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | Yes| No| Scheme in the URI.|
-| userInfo | string | Yes| No| User information in the URI.|
-| host | string | Yes| No| Host name (without the port number) in the URI.|
-| port | string | Yes| No| Port number in the URI.|
-| path | string | Yes| No| Path in the URI.|
-| query | string | Yes| No| Query parameters in the URI.|
-| fragment | string | Yes| No| Fragments in the URI.|
-| authority | string | Yes| No| Authority part in the URI.|
-| ssp | string | Yes| No| Scheme-specific part in the URI. It contains protocol-or scheme-specific information.|
-| encodedUserInfo<sup>12+</sup>  | string | Yes  | No  | Encoded user information in the URI.  |
-| encodedPath<sup>12+</sup>      | string | Yes  | No  | Encoded path in the URI.        |
-| encodedQuery<sup>12+</sup>     | string | Yes  | No  | Encoded query parameters in the URI.      |
-| encodedFragment<sup>12+</sup>  | string | Yes  | No  | Encoded fragments in the URI.      |
-| encodedAuthority<sup>12+</sup> | string | Yes  | No  | Encoded authority part in the URI.  |
-| encodedSSP<sup>12+</sup>       | string | Yes  | No  | Encoded scheme-specific part in the URI.  |
+| scheme | string | Yes| No| Scheme in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| userInfo | string | Yes| No| User information in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| host | string | Yes| No| Host name (without the port number) in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| port | string | Yes| No| Port number in the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| path | string | Yes| No| Path in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| query | string | Yes| No| Query parameters in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fragment | string | Yes| No| Fragments in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| authority | string | Yes| No| Authority in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ssp | string | Yes| No| Scheme-specific part in the URI. It contains protocol-or scheme-specific information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| encodedUserInfo<sup>12+</sup>  | string | Yes  | No  | Encoded user information in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| encodedPath<sup>12+</sup>      | string | Yes  | No  | Encoded path in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| encodedQuery<sup>12+</sup>     | string | Yes  | No  | Encoded query parameters in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| encodedFragment<sup>12+</sup>  | string | Yes  | No  | Encoded fragments in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| encodedAuthority<sup>12+</sup> | string | Yes  | No  | Encoded authority in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| encodedSSP<sup>12+</sup>       | string | Yes  | No  | Encoded scheme-specific part in the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 
 ### Naming Rules
 
 Naming format:
 
-A standard URI consists of the following parts:
+A standard URI mainly consists of three parts, as follows:
+
 [scheme:]scheme-specific-part[#fragment]
-- scheme: scheme component. Set this parameter as required. Example values: **http**, **https**, **ftp**, **datashare**, and **dataability**.
-- scheme-specific-part: specific part of the URI decoding scheme. The value consists of [//][authority][path][?query]. Set this parameter as required.
-    - authority: decoding authority component of the URI. The value consists of [userinfo@]host[:port]. Set this parameter as required.
-        - userinfo: user information. Set this parameter as required.
+
+The generic URI syntax consists of a hierarchical sequence of components, as follows:
+
+[scheme:][//authority][path][?query][#fragment]
+
+It can be further divided into the following parts:
+
+[scheme:][//[user-info@]host[:port]][path][?query][#fragment]
+
+- scheme: scheme name, which is separated from scheme-specific-part by a colon (:). The URI that contains the scheme component is an absolute URI, and the URI that does not contain the scheme component is a relative URI. Set this part as required. Example values: **http**, **https**, **ftp**, and **datashare**.
+- scheme-specific-part: specific part of the URI decoding scheme. It is located between [scheme:] and [#fragment] and consists of [//][authority][path][?query]. The URI that starts with a slash (/) is a hierarchical URI, and the URI that does not start with a slash (/) is an opaque URI. Set this part as required.
+    - authority: decoding authority component of the URI. The value consists of [userinfo@]host[:port]. Set this part as required.
+        - userinfo: user information, which is separated from host by an at sign (@). Set this part as required.
         - host: host name of the server. This parameter is mandatory when authority exists.
-        - port: port number of the server. Set this parameter as required.
-    - path: path information. Set this parameter as required.
-    - query: query component. Set this parameter as required.
-- fragment: fragment component. Set this parameter as required.
+        - port: port number of the server. The default value is **-1**. Set this part as required.
+    - path: path information, which is located between host and query and separated by a slash (/). Set this part as required.
+    - query: query component, which is located between path and fragment, indicated by the first question mark (?) character, and is in the format of key-value pairs. Multiple key-value pairs are separated by the at sign (&), and the key and value in a pair is separated by the equal sign (=). Set this part as required.
+- fragment: fragment component, which is separated from scheme-specific-part by the pound key (#). Set this part as required.
 
 **Example URIs**
 
 ```ts
-const result1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
-console.info(result1.host) // ftp.aaa.bbb.ccc
-console.info(result1.fragment) // null
-console.info(result1.path) // /dddd/eee.txt
-console.info(result1.scheme) // ftp
-console.info(result1.userInfo) // null
-console.info(result1.port) // -1
-console.info(result1.query) // null
+const uriObj1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
+console.info(uriObj1.host) // ftp.aaa.bbb.ccc
+console.info(uriObj1.fragment) // null
+console.info(uriObj1.path) // /dddd/eee.txt
+console.info(uriObj1.scheme) // ftp
+console.info(uriObj1.userInfo) // null
+console.info(uriObj1.port) // -1
+console.info(uriObj1.query) // null
 
-const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
-console.info(result2.host) // spinaltap.micro.umn.edu
-console.info(result2.fragment) // fragment
-console.info(result2.path) // /00/Weather/California/Los Angeles
-console.info(result2.scheme) // gopher
-console.info(result2.userInfo) // null
-console.info(result2.port) //-1
-console.info(result2.query) // null
+const uriObj2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
+console.info(uriObj2.host) // spinaltap.micro.umn.edu
+console.info(uriObj2.fragment) // fragment
+console.info(uriObj2.path) // /00/Weather/California/Los Angeles
+console.info(uriObj2.scheme) // gopher
+console.info(uriObj2.userInfo) // null
+console.info(uriObj2.port) //-1
+console.info(uriObj2.query) // null
 
-const result3 = new uri.URI("datashare:///com.samples.datasharetest.DataShare/DB00/TBL00");
-console.info(result3.host) // null
-console.info(result3.fragment) // null
-console.info(result3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
-console.info(result3.scheme) // datashare
-console.info(result3.userInfo) // null
-console.info(result3.port) // -1
-console.info(result3.query) // null
+const uriObj3 = new uri.URI("datashare:///com.samples.datasharetest.DataShare/DB00/TBL00");
+console.info(uriObj3.host) // null
+console.info(uriObj3.fragment) // null
+console.info(uriObj3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
+console.info(uriObj3.scheme) // datashare
+console.info(uriObj3.userInfo) // null
+console.info(uriObj3.port) // -1
+console.info(uriObj3.query) // null
 
-const result4 = new uri.URI("https://username:password@host:8080/directory/file?foo=1&bar=2#fragment");
-console.info(result4.host) // host
-console.info(result4.fragment) // fragment
-console.info(result4.path) // /directory/file
-console.info(result4.scheme) // https
-console.info(result4.userInfo) // username:password
-console.info(result4.port) // 8080
-console.info(result4.query) // foo=1&bar=2
+const uriObj4 = new uri.URI("https://username:password@host:8080/directory/file?foo=1&bar=2#fragment");
+console.info(uriObj4.host) // host
+console.info(uriObj4.fragment) // fragment
+console.info(uriObj4.path) // /directory/file
+console.info(uriObj4.scheme) // https
+console.info(uriObj4.userInfo) // username:password
+console.info(uriObj4.port) // 8080
+console.info(uriObj4.query) // foo=1&bar=2
 
-const result5 = new uri.URI("dataability:///com.example.DataAbility");
-console.info(result5.host) // null
-console.info(result5.fragment) // null
-console.info(result5.path) // /com.example.DataAbility:
-console.info(result5.scheme) // dataability
-console.info(result5.userInfo) // null
-console.info(result5.port) // -1
-console.info(result5.query) // null
+const uriObj5 = new uri.URI("dataability:///com.example.DataAbility");
+console.info(uriObj5.host) // null
+console.info(uriObj5.fragment) // null
+console.info(uriObj5.path) // /com.example.DataAbility:
+console.info(uriObj5.scheme) // dataability
+console.info(uriObj5.userInfo) // null
+console.info(uriObj5.port) // -1
+console.info(uriObj5.query) // null
 
-const result6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
-console.info(result6.encodedUserInfo) // username:my+name
-console.info(result6.encodedPath) // /directory/my+file
-console.info(result6.encodedQuery) // foo=1&bar=2
-console.info(result6.encodedFragment) // fragment
-console.info(result6.encodedAuthority) // username:my+name@host:8080
-console.info(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+const uriObj6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
+console.info(uriObj6.encodedUserInfo) // username:my+name
+console.info(uriObj6.encodedPath) // /directory/my+file
+console.info(uriObj6.encodedQuery) // foo=1&bar=2
+console.info(uriObj6.encodedFragment) // fragment
+console.info(uriObj6.encodedAuthority) // username:my+name@host:8080
+console.info(uriObj6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+
+let uriObj7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
+console.log(uriObj7.scheme) // www.abc.com
+console.log(uriObj7.host) // null
+console.log(uriObj7.port) // -1
+console.log(uriObj7.path) // null
+console.log(uriObj7.query) // null
+console.log(uriObj7.authority) // null
+console.log(uriObj7.fragment) // qwer=da
+console.log(uriObj7.ssp) // 8080/directory/file?ab=pppppp
+console.log("result:", uriObj7.checkIsAbsolute()) // result: true
 ```
 
 ### constructor
@@ -154,9 +173,9 @@ new uri.URI('https://username:password@host:8080');
 
 toString(): string
 
-**System capability**: SystemCapability.Utils.Lang
+Converts this URI into an encoded string.
 
-Obtains the query string applicable to this URI.
+**System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -164,13 +183,13 @@ Obtains the query string applicable to this URI.
 
 | Type| Description|
 | -------- | -------- |
-| string | Website address in a serialized string.|
+| string | URI in a serialized string.|
 
 **Example**
 
 ```ts
-const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result1 = result.toString();
+const result = new uri.URI('https://username:password@host:8080/directory/file?ab=pppppp#qwer da');
+let result1 = result.toString(); // https://username:password@host:8080/directory/file?ab=pppppp#qwer%20da
 ```
 
 ### equalsTo<sup>9+</sup>
@@ -208,7 +227,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = uriInstance.equalsTo(uriInstance1);
+let result = uriInstance.equalsTo(uriInstance1); // true
 ```
 
 ### checkIsAbsolute
@@ -243,6 +262,17 @@ normalize(): URI
 
 Normalizes the path of this URI.
 
+> **NOTE**
+>
+> If the URI is opaque or its path is already in normalized, the URI is directly returned. Otherwise, a new URI is created. The new URI is similar to the current URI. The only difference relies on its path, which is determined by normalizing the path of the current URI according to the following guidelines:
+>
+> - All . (dot) segments are removed.
+>
+> - For any .. (double-dot) segment that is immediately preceded by a segment that is not .., both segments are removed. This process is iterated until no further removals can be made.
+>
+> If normalization results in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
+
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -258,15 +288,21 @@ Normalizes the path of this URI.
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 console.info(uriInstance.path); // /path/path1/../path2/./path3
+// Following path normalization, all . (dot) segments are removed. If a .. (double-dot) segment is immediately preceded by a segment that is not .., both segments are removed.
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
+let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
+console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+// If normalization result in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
+let uri2 = uri1.normalize();
+console.log(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
 
 checkRelative(): boolean
 
-Checks whether this URI is a relative URI. A relative URI does not contain the scheme part.
+Checks whether this URI is a relative URI. A relative URI does not contain the scheme component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -291,7 +327,7 @@ console.info(`${uriInstance1.checkRelative()}`); // true
 
 checkOpaque(): boolean
 
-Checks whether this URI is an opaque URI. In an opaque URI, the scheme-specific part does not start with a slash (/).
+Checks whether this URI is an opaque URI. The URI that does not start with a slash (/) is an opaque URI.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -316,7 +352,7 @@ console.info(`${uriInstance1.checkOpaque()}`); // true
 
 checkHierarchical(): boolean
 
-Checks whether this URI is a hierarchical URI. In a hierarchical URI, the scheme-specific part starts with a slash (/). Relative URIs are also hierarchical.
+Checks whether this URI is a hierarchical URI. The URI that starts with a slash (/) in scheme-specific-part is a hierarchical URI. Relative URIs are also hierarchical.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -341,7 +377,9 @@ console.info(`${uriInstance1.checkHierarchical()}`); // false
 
 getQueryValue(key:string): string
 
-Obtains the first value of a query parameter in this URI.
+Obtains the first value of a given key from the query component of this URI. If the query component contains encoded content, this API decodes the key before obtaining the value.
+
+The query component follows the question mark (?) and consists of key-value pairs, separated by the at sign (&). In each key-value pair, the equal sign (=) is used to connect the key and value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -357,7 +395,7 @@ Obtains the first value of a query parameter in this URI.
 
 | Type  | Description                         |
 | ------ | ----------------------------- |
-| string | First value of the URI query parameter.|
+| string | First value obtained. If no value is found, a null object is returned.|
 
 **Error codes**
 
@@ -365,13 +403,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
 console.info(uriInstance.getQueryValue("param1")); // value1
+let uriInstance1 = new uri.URI('https://www.zyy.ss?sa%3D=po%7E');
+console.info(uriInstance1.getQueryValue('sa=')) // po~
+console.info(uriInstance1.getQueryValue('abc')) // null
 ```
 
 ### addQueryValue<sup>12+</sup>
@@ -403,7 +444,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -417,7 +458,7 @@ console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 
 addSegment(pathSegment:string): URI
 
-Encodes a given field and appends it to this URI to create a new URI, while keeping the existing URI unchanged.
+Encodes a given field, appends it to the path component of this URI to create a new URI, and returns the new URI, while keeping the existing URI unchanged.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -427,7 +468,7 @@ Encodes a given field and appends it to this URI to create a new URI, while keep
 
 | Name     | Type  | Mandatory| Description              |
 | ----------- | ------ | ---- | ------------------ |
-| pathSegment | string | Yes  | Field to be appended to the path part.|
+| pathSegment | string | Yes  | Field to be appended to the path component.|
 
 **Return value**
 
@@ -441,7 +482,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -455,7 +496,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 addEncodedSegment(pathSegment:string): URI
 
-Appends an encoded field to this URI to create a new URI, while keeping the existing URI unchanged.
+Appends an encoded field to the path component of this URI to create a new URI and returns the new URI, while keeping the existing URI unchanged.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -465,7 +506,7 @@ Appends an encoded field to this URI to create a new URI, while keeping the exis
 
 | Name     | Type  | Mandatory| Description              |
 | ----------- | ------ | ---- | ------------------ |
-| pathSegment | string | Yes  | Encoded field to be appended to the path part.|
+| pathSegment | string | Yes  | Encoded field to be appended to the path component.|
 
 **Return value**
 
@@ -479,7 +520,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -493,7 +534,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 getQueryNames(): string[]
 
-Obtains all non-repeated keys in the URI query part. The URI query part follows the question mark (?) and consists of key-value pairs, separated by ampersand (&). In each key-value pair, the equal sign (=) is used to connect a key and value.
+Obtains all non-repeated keys in the query component of this URI. The query component follows the question mark (?) and consists of key-value pairs, separated by the at sign (&). In each key-value pair, the equal sign (=) is used to connect the key and value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -503,7 +544,7 @@ Obtains all non-repeated keys in the URI query part. The URI query part follows 
 
 | Type       | Description                               |
 | ----------- | ----------------------------------- |
-| string[] | Non-repeated keys in the URI query part.|
+| string[] | Non-repeated keys in the query component.|
 
 **Example**
 
@@ -517,7 +558,9 @@ console.info(Array.from(paramNames).toString()); // param1,param2
 
 getQueryValues(key:string): string[]
 
-Obtains all the values of a query parameter in this URI.
+Obtains the values of a given key from the query component of this URI. If the query component contains encoded content, this API decodes the keys before obtaining the values.
+
+The query component follows the question mark (?) and consists of key-value pairs, separated by the at sign (&). In each key-value pair, the equal sign (=) is used to connect the key and value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -533,7 +576,7 @@ Obtains all the values of a query parameter in this URI.
 
 | Type    | Description                               |
 | -------- | ----------------------------------- |
-| string[] | All values of the query parameter.|
+| string[] | Array of values obtained. If no value is found, an empty string array [] is returned.|
 
 **Error codes**
 
@@ -541,13 +584,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
 const uriInstance = new uri.URI("https://www.test.com/search?query=name&query=my");
 console.info(uriInstance.getQueryValues("query").toString()); // name,my
+console.info(JSON.stringify(uriInstance.getQueryValues("abc"))); // []
 ```
 
 ### getBooleanQueryValue<sup>12+</sup>
@@ -565,7 +609,7 @@ Obtains the value of the Boolean type of a query parameter in this URI.
 | Name      | Type   | Mandatory| Description                                 |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | Yes  | Name of the query parameter.              |
-| defaultValue | boolean | Yes  | Default value.|
+| defaultValue | boolean | Yes  | Default value returned when the query parameter does not contain the specified key.|
 
 **Return value**
 
@@ -579,7 +623,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -592,13 +636,15 @@ const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=f
 console.info(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
 const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
 console.info(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+const uriInstance4 = new uri.URI("https://www.test.com/search");
+console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 ```
 
 ### clearQuery<sup>12+</sup>
 
 clearQuery(): URI
 
-Clears the query part of this URI to create a new URI, while keeping the existing URI object unchanged.
+Clears the query component of this URI to create a new URI, while keeping the existing URI object unchanged.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -608,7 +654,7 @@ Clears the query part of this URI to create a new URI, while keeping the existin
 
 | Type| Description                                 |
 | ---- | ------------------------------------- |
-| [URI](#uri)  | URI object whose query part has been cleared.|
+| [URI](#uri)  | URI object whose query component has been cleared.|
 
 **Example**
 
@@ -667,7 +713,7 @@ console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
 
 createFromParts(scheme: string, ssp: string, fragment: string): URI
 
-Creates a URI based on the provided scheme, scheme-specific part, and fragment part.
+Creates a URI based on the provided scheme, scheme-specific-part, and fragment components.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -677,9 +723,9 @@ Creates a URI based on the provided scheme, scheme-specific part, and fragment p
 
 | Name  | Type  | Mandatory| Description                           |
 | -------- | ------ | ---- | ------------------------------- |
-| scheme   | string | Yes  | Scheme part of the URI.              |
-| ssp      | string | Yes  | Scheme-specific part of the URI.|
-| fragment | string | Yes  | Fragment part of this URI. The fragment part is a specific part in the URI, that is, the part after the number sign (#).            |
+| scheme   | string | Yes  | Scheme of the URI.              |
+| ssp      | string | Yes  | Scheme-specific-part of the URI.|
+| fragment | string | Yes  | Fragment of this URI. The fragment component is the part following the number sign (#).            |
 
 **Return value**
 
@@ -693,7 +739,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | if the input parameters are invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -731,5 +777,5 @@ Checks whether this URI is the same as another URI object.
 ```ts
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-uriInstance.equals(uriInstance1);
+uriInstance.equals(uriInstance1); // true
 ```

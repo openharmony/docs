@@ -9,7 +9,7 @@ The **inputMethod.Panel** module provides APIs for managing the attributes of th
 ## Modules to Import
 
 ```ts
-import { panel } from '@kit.IMEKit';
+import { PanelInfo, PanelType, PanelFlag } from '@kit.IMEKit';
 ```
 
 ## PanelInfo
@@ -18,10 +18,10 @@ Defines the attributes of the input method panel.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | [PanelType](#paneltype) | Yes | Type of the input method panel. |
-| flag | [PanelFlag](#panelflag) | No | State type of the input method panel.<br>- The default value is **FLAG_FIXED**.<br>- Currently, this parameter is used to describe the state type of the soft keyboard. |
+| type | [PanelType](#paneltype) | Yes| Type of the input method panel.|
+| flag | [PanelFlag](#panelflag) | No| State type of the input method panel.<br>- The default value is **FLAG_FIXED**.<br>- Currently, this parameter is used to describe the state type of the soft keyboard.|
 
 ##  PanelType
 
@@ -31,8 +31,8 @@ Enumerates the types of the input method panel.
 
 | Name         | Value  | Description        |
 | ------------- | ---- | ------------ |
-| SOFT_KEYBOARD | 0    | Soft keyboard. |
-| STATUS_BAR    | 1    | Status bar. |
+| SOFT_KEYBOARD | 0    | Soft keyboard.|
+| STATUS_BAR    | 1    | Status bar.|
 
 ##  PanelFlag
 
@@ -44,4 +44,4 @@ Enumerates the state types of the input method panel.
 | -------------- | ---- | ------------------------------------------------------------ |
 | FLAG_FIXED     | 0    | Fixed state type.                                            |
 | FLAG_FLOATING  | 1    | Floating state type.                                            |
-| FLAG_CANDIDATE | 2    | Candidate state type.<br>- When in the candidate state type, the input method panel is a window displaying candidates based on user input.<br>- The input method service does not proactively control the visibility of the candidate panel. You need to control the visibility on your own. |
+| FLAG_CANDIDATE | 2    | Candidate state type.<br>- When in the candidate state type, the input method panel is a window displaying candidates based on user input.<br>- The input method service does not proactively control the visibility of the candidate panel. You need to control the visibility on your own.|

@@ -1,12 +1,12 @@
-# @ohos.userIAM.userAuthIcon (Embedded User Authentication Icons)
+# @ohos.userIAM.userAuthIcon (Embedded User Authentication Widget)
 
-The system provides the facial authentication icon and fingerprint authentication icon to simplify the user authentication process.
+The system provides **userAuthIcon** to simplify the user authentication process. With **userAuthIcon**, you can:
 
-1. The icons for facial authentication and fingerprint authentication can be easily integrated into your applications.
+- Easily integrate the facial authentication and fingerprint authentication icons into your applications.
 
-2. The color and size of the icons can be customized, but the icon style cannot be changed.
+- Customize the color and size of the icons. The icon style cannot be changed.
 
-3. After you click the control icon, the face and fingerprint authentication controls are displayed in a pop-up window.
+- Start the facial or fingerprint authentication pop-up component once the icon is tapped.
 
 > **NOTE**
 >
@@ -42,11 +42,13 @@ UserAuthIcon({
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Parameters**
 
-| Name          | Type                                                        | Mandatory | Description                                                        |
+| Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | authParam      | [AuthParam](js-apis-useriam-userauth.md#authparam10)        | Yes  | User authentication parameters.                                            |
 | widgetParam    | [WidgetParam](js-apis-useriam-userauth.md#widgetparam10)    | Yes  | Parameters on the user authentication page.                                     |
@@ -63,13 +65,17 @@ Universal events are not supported.
 ## Example
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 
 @Entry
 @Component
 struct Index {
+  rand = cryptoFramework.createRandom();
+  len: number = 16;
+  randData: Uint8Array = this.rand?.generateRandomSync(this.len)?.data;
   authParam: userAuth.AuthParam = {
-    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    challenge: this.randData,
     authType: [userAuth.UserAuthType.FACE, userAuth.UserAuthType.PIN],
     authTrustLevel: userAuth.AuthTrustLevel.ATL3
   };
@@ -89,7 +95,7 @@ struct Index {
             console.info('The user clicked the icon.');
           },
           onAuthResult: (result: userAuth.UserAuthResult) => {
-            console.info('Get user auth result, result = ' + JSON.stringify(result));
+            console.info(`Get user auth result, result = ${JSON.stringify(result)}`);
           }
         })
       }

@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-WebGL的全称为Web Graphic Library（网页图形库），主要用于交互式渲染2D图形。目前OpenHarmony中使用的WebGL是基于OpenGL裁剪的OpenGL ES，可以在HTML5的Canvas元素对象中使用，无需使用插件，支持跨平台。WebGL程序是由JavaScript代码组成的，其中使用的API可以利用用户设备提供的GPU硬件完成图形渲染和加速。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/1.0/)。
+WebGL的全称为Web Graphics Library（网页图形库），主要用于交互式渲染2D图形。目前OpenHarmony中使用的WebGL是基于OpenGL裁剪的OpenGL ES，可以在HTML5的Canvas元素对象中使用，无需使用插件，支持跨平台。WebGL程序是由JavaScript代码组成的，其中使用的API可以利用用户设备提供的GPU硬件完成图形渲染和加速。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/1.0/)。
 
 > **说明：**
 >
@@ -12,7 +12,7 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 
 ### 着色器程序
 
-将缓冲区中的数据推送到着色器中还需涉及“着色器程序”，一个负责关联着色器和缓冲区的JavaScript对象。一个WebGLProgram对象由两个编译过后的 WebGLShader组成，即顶点着色器和片元着色器（均由GLSL语言所写）。
+将缓冲区中的数据推送到着色器中还需涉及“着色器程序”，一个负责关联着色器和缓冲区的JavaScript对象。一个WebGLProgram对象由两个编译过后的WebGLShader组成，即顶点着色器和片元着色器（均由GLSL语言所写）。
 
 ###  着色器
 
@@ -44,14 +44,14 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 | 类型         | 对应Web IDL类型         | 描述                                                         |
 | ------------ | -------------------- | ------------------------------------------------------------ |
 | GLenum     | unsigned long     | 用于枚举。        |
-| GLboolean  | boolean            | 纹理true或者false。 |
-| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项 |
+| GLboolean  | boolean            | true或者false。 |
+| GLbitfield | unsigned long      | 无符号整数，可以包含多个位标志。每个位标志都代表一个特定的选项。|
 | GLbyte     | byte               | 纹理八位（一个字节），2的补码表示的有符号整数。                |
 | GLshort    | short              | 16位2的补码表示的有符号整数。                             |
 | GLint      | long               | 32位2的补码表示的有符号整数。                           |
 | GLsizei    | long               | 用来描述尺寸（例如：绘画缓冲drawing buffer 的宽和高）。      |
-| GLintptr   | long long          | 用来表示指针的特殊类型。                                      |
-| GLsizeiptr | long long          | 用来表示指针的特殊类型。                                      |
+| GLintptr   | long long          | 用来表示指针的特殊类型，通常用于指定缓冲区对象的偏移量。       |
+| GLsizeiptr | long long          | 用来表示指针的特殊类型，通常用于指定缓冲区对象的大小。         |
 | GLubyte    | octet              | 八位（一个字节）2的补码表示的无符号整数。                 |
 | GLushort   | unsigned short     | 16位2的补码表示的无符号整数。                          |
 | GLuint    | unsigned short     | 32位2的补码表示的有符号整数。                        |
@@ -92,7 +92,7 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 
    - JavaScript 代码中的 main() 函数将会在文档加载完成之后被调用。它的任务是设置WebGL上下文并开始渲染内容。
 
-   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL， getContext将会返回null，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
+   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL，getContext将会返回null，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
 
    ```js
    function main() {
@@ -115,7 +115,11 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 
    顶点着色器需要对顶点坐标进行必要的转换，在每个顶点基础上进行其他调整或计算，然后通过将其保存在由GLSL提供的特殊变量中来返回变换后的顶点。
 
+   在矩阵计算之前需要先引入gl-matrix开源工具库，可以从[gl-matrix官网](https://glmatrix.net/)下载，也可以使用npm命令下载：
+   `npm install gl-matrix`
    ```js
+   // 引入mat4
+   import { mat4 } from 'gl-matrix'
    const vsSource = `
        attribute vec4 aVertexPosition;
        uniform mat4 uModelViewMatrix;

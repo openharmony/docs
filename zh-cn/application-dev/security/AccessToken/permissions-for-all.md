@@ -1,85 +1,99 @@
-# 对所有应用开放
+# 开放权限（系统授权）
 
-在申请目标权限前，建议开发者先阅读[申请应用权限](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
+此列表内所有权限均为系统授权（system_grant）的开放权限，面向所有应用开放。
 
+应用申请了system_grant权限后，系统将在用户安装应用时，自动把相应权限授予给应用。
+
+<!--Del-->
 > **说明：**
 > 权限级别为normal的权限，不涉及ACL使能字段。
+<!--DelEnd-->
 
-## system_grant（系统授权）权限列表
+## 申请方式
 
 以下权限的授权方式均为[system_grant](app-permission-mgmt-overview.md#system_grant系统授权)，申请方式请参考[声明权限](declare-permissions.md)。
 
-### ohos.permission.USE_BLUETOOTH
+## ohos.permission.USE_BLUETOOTH
 
 允许应用查看蓝牙的配置。
 
+包括蓝牙名称、蓝牙设备类型、开关状态等。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.GET_BUNDLE_INFO
+## ohos.permission.GET_BUNDLE_INFO
 
 允许查询应用的基本信息。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.PREPARE_APP_TERMINATE
+## ohos.permission.PREPARE_APP_TERMINATE
 
 允许应用关闭前执行自定义的预关闭动作。
 
+例如，当应用被关闭时，应用可向用户通过弹窗等方式向用户确认是否执行关闭。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：10
 
-### ohos.permission.PRINT
+## ohos.permission.PRINT
 
 允许应用获取打印框架的能力。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：10
 
-### ohos.permission.DISCOVER_BLUETOOTH
+## ohos.permission.DISCOVER_BLUETOOTH
 
 允许应用配置本地蓝牙，查找远端设备且与之配对连接。
 
+该权限允许应用配置本地蓝牙（如设置蓝牙名称、开关蓝牙等），发起或取消设备扫描，发起蓝牙配对并连接设备。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.ACCELEROMETER
+## ohos.permission.ACCELEROMETER
 
 允许应用读取加速度传感器的数据。
 
+包括：加速度计传感器、未校准加速度计传感器、线性加速器传感器。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.ACCESS_BIOMETRIC
+## ohos.permission.ACCESS_BIOMETRIC
 
 允许应用使用生物特征识别能力进行身份认证。
 
+该权限允许应用使用生物特征识别进行身份认证，包括检查当前设备的生物识别能力、自定义认证对话框、发起生物认证、获取生物识别提示信息等。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：6
 
-### ohos.permission.ACCESS_NOTIFICATION_POLICY
+## ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 在本设备上允许应用访问通知策略。
 
@@ -87,482 +101,376 @@
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.GET_NETWORK_INFO
+## ohos.permission.GET_NETWORK_INFO
 
 允许应用获取数据网络信息。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.GET_WIFI_INFO
+## ohos.permission.SET_NETWORK_INFO
+
+允许应用配置数据网络。
+
+包括激活或取消激活指定网络、获取和监听指定网络信息。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：8
+
+## ohos.permission.GET_WIFI_INFO
 
 允许应用获取Wi-Fi信息。
 
+该权限允许应用获取Wi-Fi信息，包括Wi-Fi的开启状态、扫描结果、连接信息、连接状态、设备能力、P2P状态等信息。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.GYROSCOPE
+## ohos.permission.GYROSCOPE
 
 允许应用读取陀螺仪传感器的数据。
 
+包括：陀螺仪传感器、未校准陀螺仪传感器。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.INTERNET
+## ohos.permission.INTERNET
 
 允许使用Internet网络。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：9
 
-### ohos.permission.KEEP_BACKGROUND_RUNNING
+## ohos.permission.KEEP_BACKGROUND_RUNNING
 
 允许Service Ability在后台持续运行。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.NFC_CARD_EMULATION
+## ohos.permission.NFC_CARD_EMULATION
 
 允许应用实现卡模拟功能。
 
+该权限允许应用注册卡模拟服务，完成卡模拟的业务交易。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.NFC_TAG
+## ohos.permission.NFC_TAG
 
 允许应用读写Tag卡片。
 
+该权限允许应用接收Tag的分发、从Tag卡片中读取内容、或写入内容到Tag中。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.PRIVACY_WINDOW
+## ohos.permission.PRIVACY_WINDOW
 
-允许应用将窗口设置为隐私窗口，禁止截屏录屏
+允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
+**权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：9
 
-### ohos.permission.PUBLISH_AGENT_REMINDER
+**变更信息：** API 9-10，权限级别为system_basic；从API 11开始，变更为normal。
+
+## ohos.permission.PUBLISH_AGENT_REMINDER
 
 允许该应用使用后台代理提醒。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.SET_WIFI_INFO
+## ohos.permission.SET_WIFI_INFO
 
 允许应用配置Wi-Fi设备。
 
+包括扫描、开关、连接、断开Wi-Fi，修改Wi-Fi配置，以及使用Wi-Fi P2P的能力。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.VIBRATE
+## ohos.permission.VIBRATE
 
 允许应用控制马达振动。
 
-**权限级别**：normal
-
-**授权方式**：system_grant
-
-**起始版本**：7
-
-### ohos.permission.CLEAN_BACKGROUND_PROCESSES
-
-允许应用根据包名清理相关后台进程。
+包括：单次振动、预置的振动效果、自定义振动。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.COMMONEVENT_STICKY
+## ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+允许应用根据其包名来识别并清理相关的后台进程。
+
+应用能够通过包名检测到与自身关联的后台任务，并可以选择性地终止这些任务以释放系统资源或优化性能。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：7
+
+## ohos.permission.COMMONEVENT_STICKY
 
 允许应用发布粘性公共事件。
 
+应用获取此权限后，可以发布粘性公共事件，能够让订阅者收到在订阅前已经发送的公共事件。
+
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.MODIFY_AUDIO_SETTINGS
+## ohos.permission.MODIFY_AUDIO_SETTINGS
 
 允许应用修改音频设置。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：8
 
-### ohos.permission.RUNNING_LOCK
+## ohos.permission.RUNNING_LOCK
 
 允许应用获取运行锁，保证应用在后台的持续运行。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.SET_WALLPAPER
+## ohos.permission.SET_WALLPAPER
 
 允许应用设置壁纸。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：7
 
-### ohos.permission.ACCESS_CERT_MANAGER
+## ohos.permission.ACCESS_CERT_MANAGER
 
 允许应用进行查询证书及私有凭据等操作。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：9
 
-### ohos.permission.hsdr.HSDR_ACCESS
+## ohos.permission.hsdr.HSDR_ACCESS
 
 允许应用访问安全检测与响应框架。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：10
 
-### ohos.permission.RUN_DYN_CODE
+## ohos.permission.RUN_DYN_CODE
 
-允许应用运行动态代码。
+允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
+
+该权限相关的API均为系统API，仅部分特定系统应用可申请该权限。 
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：11
 
-### ohos.permission.READ_CLOUD_SYNC_CONFIG
+## ohos.permission.READ_CLOUD_SYNC_CONFIG
 
 允许接入云空间的应用查询应用云同步相关配置信息。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：11
 
-### ohos.permission.STORE_PERSISTENT_DATA
+## ohos.permission.STORE_PERSISTENT_DATA
 
 允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
 
-**权限级别**: normal
+**权限级别**：normal
 
-**授权方式**：system_grant
-
-**起始版本**: 11
-
-### ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
-
-允许应用使用外接设备增强功能。
-
-**权限级别**: normal
-
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：11
 
-### ohos.permission.READ_ACCOUNT_LOGIN_STATE
+## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+允许应用使用外接设备增强功能。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：11
+
+## ohos.permission.READ_ACCOUNT_LOGIN_STATE
 
 允许应用读取用户账号的登录状态。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：12
 
-### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
+## ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
 
 允许应用访问导航信息服务。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：12
 
-### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+## ohos.permission.PROTECT_SCREEN_LOCK_DATA
 
 允许应用在锁屏后保护本应用敏感数据不被访问。
 
-应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。
 
 **权限级别**：normal
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：12
 
-### ohos.permission.FILE_ACCESS_PERSIST
+## ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
-允许应用支持持久化访问文件Uri。
+允许应用访问出行分布式业务引擎。
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
-
-**授权方式**：system_grant
-
-**起始版本**：11
-
-## user_grant（用户授权）权限列表
-
-以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
-
-### ohos.permission.ACCESS_BLUETOOTH
-
-允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。
+可获取手机与车机的连接信息，如连接状态、displayId等。
 
 **权限级别**：normal
 
-**授权方式**：user_grant
-
-**起始版本**：10
-
-### ohos.permission.MEDIA_LOCATION
-
-允许应用访问用户媒体文件中的地理位置信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.APP_TRACKING_CONSENT
-
-允许应用读取开放匿名设备标识符。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：9
-
-### ohos.permission.ACTIVITY_MOTION
-
-允许应用读取用户的运动状态。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.CAMERA
-
-允许应用使用相机。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：9
-
-### ohos.permission.DISTRIBUTED_DATASYNC
-
-允许不同设备间的数据交换。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.LOCATION_IN_BACKGROUND
-
-允许应用在后台运行时获取设备位置信息。
-
-由于安全隐私要求，应用不能通过弹窗的形式被授予后台位置权限，应用如果需要使用后台位置权限，需要引导用户到设置界面手动授予。
-
-**申请流程**：
-
-1. 通过弹窗申请前台位置权限。存在两种允许情况：
-   - 申请前台模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)。
-   - 申请前台精确位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)和[ohos.permission.LOCATION](#ohospermissionlocation)。
-2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
-3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
-
-   设置路径：
-   <!--RP1-->
-   - 路径一：设置 > 隐私 > 权限管理 > 位置信息 > *具体应用*
-   - 路径二：设置 > 隐私 > 权限管理 > 应用 > *具体应用* > 位置信息
-   <!--RP1End-->
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.LOCATION
-
-允许应用获取设备位置信息。
-
-**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.APPROXIMATELY_LOCATION
-
-允许应用获取设备模糊位置信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：9
-
-### ohos.permission.MICROPHONE
-
-允许应用使用麦克风。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：8
-
-### ohos.permission.READ_CALENDAR
-
-允许应用读取日历信息。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：8
-
-### ohos.permission.WRITE_CALENDAR
-
-允许应用添加、移除或更改日历活动。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：8
-
-### ohos.permission.READ_HEALTH_DATA
-
-允许应用读取用户的健康数据。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
-
-**起始版本**：7
-
-### ohos.permission.ACCESS_NEARLINK
-
-允许应用接入星闪并使用星闪能力，例如配对、连接外围设备等。
-
-**权限级别**：normal
-
-**授权方式**：user_grant
+**授权方式**：系统授权（system_grant）
 
 **起始版本**：12
 
-### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+## ohos.permission.WINDOW_TOPMOST
 
-允许应用访问公共目录下Download目录及子目录。
-
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
-
-**授权方式**：user_grant
-
-**起始版本**：11
-
-### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
-
-允许应用访问公共目录下的Documents目录及子目录。
-
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
-
-**授权方式**：user_grant
-
-**起始版本**：11
-
-### ohos.permission.READ_MEDIA
-
-允许应用读取用户外部存储中的媒体文件信息。
+允许应用将窗口设置为应用置顶窗口。
 
 **权限级别**：normal
 
-**授权方式**：user_grant
+**授权方式**：系统授权（system_grant）
 
-**起始版本**：7
+**支持设备**：PC/2in1
 
-**废弃版本**：12
+**起始版本**：13
 
-**替代方案**：
+## ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
-请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+允许应用使用红外接口。
 
-### ohos.permission.WRITE_MEDIA
-
-允许应用读写用户外部存储中的媒体文件信息。
+查询红外支持最大频率，发送特定频率红外信号。
 
 **权限级别**：normal
 
-**授权方式**：user_grant
+**授权方式**：系统授权（system_grant）
 
-**起始版本**：7
+**起始版本**：12
 
-**废弃版本**：12
+**变更信息**：在API 12-15，权限的开放范围为系统应用；从API 16开始，开放范围变更为普通应用。
 
-**替代方案**：
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
-请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+允许应用设置键盘功能键状态。
+
+如设置CapsLock（大写锁定键）的开关状态等。当前仅输入法应用可以申请该权限。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：15
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+允许应用单独配置每个Ability的图标和标签信息。
+
+设置后的图标与标签信息可在任务中心和快捷栏的界面中显示。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：15
+
+## ohos.permission.NDK_START_SELF_UI_ABILITY
+
+允许应用通过C API启动同应用的UIAbility。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：15
+
+## ohos.permission.GET_FILE_ICON
+
+允许应用获取指定类型文件的文件图标。
+
+获取该权限后，可用于直接获取指定类型文件的文件图标。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：17

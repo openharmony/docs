@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Package manager error.
+Bundle manager error.
 
 **错误描述**
 
@@ -16,7 +16,7 @@ Package manager error.
 
 **可能原因**
 
-在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型的时候，由于获取包管理服务异常时会报错。
+在调用getInputMethods、listCurrentInputMethodSubtype等接口获取输入法及子类型时，由于获取包管理服务异常会报错。
 
 **处理步骤**
 
@@ -26,43 +26,50 @@ Package manager error.
 
 **错误信息**
 
-Input method engine error.
+Input method engine error. Possible causes:
+1. input method panel not created.
+2. the input method application does not subscribe to related events.
 
 **错误描述**
 
-用户调用输入法应用接口失败时，系统会报此错误码。
+在执行显示键盘、隐藏键盘等操作时，由于输入法应用进程死亡导致操作失败，系统会报此错误码。
 
 **可能原因**
 
-在执行显示键盘、隐藏键盘等操作时，由于输入法应用进程死亡导致操作失败时会报错。
+1. 输入法面板未创建。
+2. 输入法应用不订阅相关事件。
 
 **处理步骤**
 
-查看输入法应用进程是否正常。例如再次在普通应用（微信、联系人等第三方应用）中点击对话框看键盘能否被正常拉起。
+检查输入法应用进程是否正常运行。例如：可在应用中点击对话框，观察键盘是否能正常弹出。
 
 ## 12800003 客户端应用异常
 
 **错误信息**
 
-Input method client error.
+Input method client error. Possible causes: 
+1. the edit box is not focused.
+2. no edit box is bound to current input method application.
 
 **错误描述**
 
-当三方应用（微信、设置、联系人等）的对话框等编辑控件调用显示键盘、隐藏键盘失败时，系统会报此错误码。
+当应用（微信、设置、联系人等）的对话框等编辑控件调用显示键盘、隐藏键盘失败时，系统会报此错误码。
 
 **可能原因**
 
-三方应用客户端服务异常导致输入法应用与三方应用客户端断链。
+1. 应用没有获得焦点。
+2. 应用客户端服务异常导致输入法应用与应用客户端断连。
 
 **处理步骤**
 
-重新将输入法应用与三方应用进行绑定：将三方应用后台进程杀死，重新启动三方应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
+1. 重新将输入法应用与应用进行绑定：将应用后台进程杀死，重新启动应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
+2. 将第应用切换至前台，并确保无其他应用或窗口遮挡。通过点击对话框等方式触发键盘弹出。
 
 ## 12800004 不是输入法应用
 
 **错误信息**
 
-Not an input method extension.
+Not an input method application.
 
 **错误描述**
 
@@ -80,7 +87,7 @@ Not an input method extension.
 
 **错误信息**
 
-Configuration persisting error.
+Configuration persistence error.
 
 **错误描述**
 
@@ -92,13 +99,13 @@ Configuration persisting error.
 
 **处理步骤**
 
-执行hdc shell param get persist.sys.default_ime查看默认输入法参数，若可查看，则系统参数配置模块正常，可重启设备进行尝试。
+执行命令`hdc shell param get persist.sys.default_ime`查看默认输入法参数。若参数可正常显示，则系统参数配置模块正常，建议重启设备后重试。
 
 ## 12800006 输入法控制器异常
 
 **错误信息**
 
-Input method controller error.
+Input method controller error. Possible cause: create InputmethodController object failed.
 
 **错误描述**
 
@@ -116,7 +123,7 @@ Input method controller error.
 
 **错误信息**
 
-Input method settings extension error.
+Input method setter error. Possible cause: create InputmethodSetting object failed.
 
 **错误描述**
 
@@ -134,7 +141,7 @@ Input method settings extension error.
 
 **错误信息**
 
-Input method manager service error.
+Input method manager service error. Possible cause: a system error, such as null pointer, IPC exception.
 
 **错误描述**
 
@@ -146,13 +153,13 @@ Input method manager service error.
 
 **处理步骤**
 
-通过ps -A|grep inputmethod查看是否存在输入法服务的进程号，如果存在，则服务正常。
+执行命令`ps -A | grep inputmethod`检查输入法服务的进程号。若进程存在，则服务正常运行。
 
 ## 12800009 输入法客户端未绑定
 
 **错误信息**
 
-Input method client is detached.
+Input method client detached.
 
 **错误描述**
 
@@ -164,13 +171,13 @@ Input method client is detached.
 
 **处理步骤**
 
-先执行attach接口操作即可。
+需先执行`attach`接口操作。
 
 ## 12800010 不是系统配置的默认输入法
 
 **错误信息**
 
-Not default input method configured by system.
+Not the preconfigured default input method.
 
 **错误描述**
 
@@ -188,7 +195,7 @@ Not default input method configured by system.
 
 **错误信息**
 
-Text preview is not supported.
+Text preview not supported.
 
 **错误描述**
 
@@ -206,7 +213,7 @@ Text preview is not supported.
 
 **错误信息**
 
-Input method panel doesn't exist.
+The input method panel does not exist.
 
 **错误描述**
 
@@ -237,3 +244,114 @@ Window manager service error.
 **处理步骤**
 
 建议重启设备后重试调用接口。
+
+## 12800014 输入法应用非完全访问模式
+
+**错误信息**
+
+The input method is in basic mode.
+
+**错误描述**
+
+输入法应用非完全访问模式。
+
+**可能原因**
+
+开发者调用要求需开启完全访问模式的接口后，若当前输入法非完全访问模式，则抛出此错误码。
+
+**处理步骤**
+
+在设置中开启当前输入法的完全访问模式。
+
+## 12800015 消息接收端无法接收自定义通信数据
+
+**错误信息**
+
+The other side does not accept the request.
+
+**错误描述**
+
+消息接收端无法接收自定义通信数据。
+
+**可能原因**
+
+开发者调用发送自定义通信数据接口时，若消息接收端未注册[MessageHandler](js-apis-inputmethodengine.md#messagehandler15)接收数据，则抛出此错误码。
+
+**处理步骤**
+
+消息接收端需注册MessageHandler接收自定义通信数据，输入法应用侧调用[recvMessage](js-apis-inputmethodengine.md#recvmessage15)，输入法客户端侧调用[recvMessage](js-apis-inputmethod.md#recvmessage15)。
+
+## 12800016 输入法客户端未处于编辑状态
+
+**错误信息**
+
+Input method client is not editable.
+
+**错误描述**
+
+输入法客户端未处于编辑状态。
+
+**可能原因**
+
+输入法客户端绑定后退出编辑状态。例如：自绘控件调用`Attach`后，又调用了[hideTextInput](js-apis-inputmethod.md#hidetextinput10)操作等。
+
+**处理步骤**
+
+输入法客户端绑定后退出编辑状态，需重新进入编辑状态。如：自绘控件需调用[showTextInput](js-apis-inputmethod.md#showtextinput10)重新进入编辑状态。
+
+## 12800017 无效的面板类型或面板状态
+
+**错误信息**
+
+Invalid panel type or panel flag.
+
+**错误描述**
+
+无效的面板类型或面板状态。
+
+**可能原因**
+
+当前的输入法[面板类型](js-apis-inputmethodengine.md#paneltype10)或[面板状态](js-apis-inputmethodengine.md#panelflag10)不支持其调用此接口，或者此接口不支持开发者传入当前面板类型或面板状态，则抛出此错误码。
+
+**处理步骤**
+
+建议开发者进一步阅读接口使用说明，按要求调整当前的输入法面板类型或者面板状态。
+
+## 12800018 输入法未找到
+
+**错误信息**
+
+The input method is not found.
+
+**错误描述**
+
+输入法未找到。
+
+**可能原因**
+
+该输入法未安装。
+
+**处理步骤**
+
+开发者可以通过接口[getAllInputMethods](js-apis-inputmethod.md#getallinputmethods11)查询所有已经安装的输入法。
+
+<!--Del-->
+## 12800019 系统配置的默认输入法不支持停用
+
+**错误信息**
+
+The preconfigured default input method cannot be disabled.
+
+**错误描述**
+
+系统配置的默认输入法不支持停用。
+
+**可能原因**
+
+开发者调用接口[enableInputMethod](js-apis-inputmethod-sys.md#enableinputmethod20)设置系统配置的默认输入法的启用状态[EnabledState](js-apis-inputmethod.md#enabledstate15)为DISABLED。
+
+**处理步骤**
+
+开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置的默认输入法，判断当前停用的输入法是否为系统配置的默认输入法，若是，则不做停用处理。
+
+<!--DelEnd-->

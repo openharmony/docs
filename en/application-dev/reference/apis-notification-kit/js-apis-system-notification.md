@@ -1,7 +1,7 @@
 # @system.notification (Notification)
 
 > **NOTE**
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use [@ohos.notification](js-apis-notification.md).
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.notification`](js-apis-notification.md).
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -64,6 +64,4 @@ let notificationObj: notification = {
     });
   }
 }
-
-export default notificationObj
 ```

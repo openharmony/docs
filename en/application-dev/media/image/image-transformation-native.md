@@ -1,6 +1,6 @@
-# Using Image to Transform Images
+# Image Transformation
 
-You will learn how to use native image APIs to process images.
+This topic describes how to use native image APIs to implement image transformation.
 
 ## How to Develop
 
@@ -62,7 +62,7 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
         OHOS::Media::OH_GetImageInfo(env, argValue[0], &pixelMapInfo);
         return result;
     }
-   ```
+    ```
 
 2. Obtain the memory address of a **PixelMap** object and lock the memory.
 

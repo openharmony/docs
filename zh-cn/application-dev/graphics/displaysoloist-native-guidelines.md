@@ -1,6 +1,6 @@
 # NativeDisplaySoloist开发指导 (C/C++)
 
-如果开发者想在独立线程中进行帧率控制的Native侧业务，可以通过DisplaySoloist来实现，如游戏、自绘制UI框架对接等场景。
+如果开发者想在独立线程中实现帧率控制的Native侧业务，可以通过DisplaySoloist来实现，如游戏、自绘制UI框架对接等场景。
 开发者可以选择多个DisplaySoloist实例共享一个线程，也可以选择每个DisplaySoloist实例独占一个线程。
 
 ## 接口说明
@@ -13,9 +13,9 @@
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
 
-## 开发步骤
+## 开发示例
 
-   本范例是通过Drawing在Native侧实现图形的绘制，通过异步线程设置期望的帧率，再根据帧率进行图形的绘制并将其呈现在NativeWindow上，图形绘制部分可参考[使用Drawing实现图形绘制与显示](drawing-guidelines.md)。
+   本范例是通过Drawing在Native侧实现图形的绘制，通过异步线程设置期望的帧率，再根据帧率进行图形的绘制并将其呈现在NativeWindow上，图形绘制部分可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
 ### 添加开发依赖
 
@@ -32,6 +32,7 @@ libnative_display_soloist.so
 ```
 
 **头文件**
+
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include "napi/native_api.h"
@@ -48,6 +49,8 @@ libnative_display_soloist.so
 #include <stdint.h>
 #include <sys/mman.h>
 ```
+
+### 开发步骤
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
@@ -72,14 +75,14 @@ libnative_display_soloist.so
      build() {
        Column() {
          Row() {
-           XComponent({ id: 'xcomponentId30', type: 'surface', libraryname: 'entry' })
+           XComponent({ id: 'xcomponentId30', type: XComponentType.SURFACE, libraryname: 'entry' })
              .onLoad((xComponentContext) => {
                this.xComponentContext1 = xComponentContext as XComponentContext;
              }).width('640px')
          }.height('40%')
    
          Row() {
-           XComponent({ id: 'xcomponentId120', type: 'surface', libraryname: 'entry' })
+           XComponent({ id: 'xcomponentId120', type: XComponentType.SURFACE, libraryname: 'entry' })
              .onLoad((xComponentContext) => {
                this.xComponentContext2 = xComponentContext as XComponentContext;
              }).width('640px') // 64的倍数
@@ -197,7 +200,7 @@ libnative_display_soloist.so
    }
    ```
 
-   使用DisplaySoloist接口配置帧率和注册每帧回调函数。
+   使用DisplaySoloist接口配置帧率和注册每帧回调函数。如果使用OH_DisplaySoloist_Create创建DisplaySoloist实例时传入的参数useExclusiveThread为true，则OH_DisplaySoloist_FrameCallback以独占线程方式执行，否则OH_DisplaySoloist_FrameCallback以共享线程方式执行。
 
    > **说明：**
    >

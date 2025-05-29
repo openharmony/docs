@@ -3,13 +3,21 @@
 
 ## Overview
 
-The **OH_AudioCapturer_Callbacks_Struct** struct defines a pointer to the callback functions related to an audio capturer.
+The OH_AudioCapturer_Callbacks_Struct struct defines a pointer to the callback functions related to an audio capturer.
+
+To avoid unexpected behavior, ensure that every member variable of the struct is initialized by a custom callback method or a null pointer when setting the audio callback functions. For details, see [Using OHAudio for Audio Recording](../../media/audio/using-ohaudio-for-recording.md).
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 10
 
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback), [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback), [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback), and [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)
+
 **Related module**: [OHAudio](_o_h_audio.md)
+
+**Header file**: [native_audiostream_base.h](native__audiostream__base_8h.md)
 
 
 ## Summary
@@ -17,7 +25,7 @@ The **OH_AudioCapturer_Callbacks_Struct** struct defines a pointer to the callba
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | int32_t (\*[OH_AudioCapturer_OnReadData](#oh_audiocapturer_onreaddata))([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, void \*buffer, int32_t length) | Defines a function pointer to the callback function used to read audio data. | 
 | int32_t (\*[OH_AudioCapturer_OnStreamEvent](#oh_audiocapturer_onstreamevent))([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event) event) | Defines a function pointer to the callback function used to process audio recording stream events. | 
@@ -41,13 +49,20 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 **Description**
 
 Defines a function pointer to the callback function used to process audio recording errors.
+
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnErrorCallback](_o_h_audio.md#oh_audiocapturer_onerrorcallback)
+
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer). |
-| userData | Pointer to the data storage area customized by the application. |
-| error | Audio recording error result defined by [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result), which can be **AUDIOSTREAM_ERROR_INVALID_PARAM**, **AUDIOSTREAM_ERROR_ILLEGAL_STATE**, or **AUDIOSTREAM_ERROR_SYSTEM**. |
+| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
+| userData | Pointer to the data storage area customized by the application.|
+| error | Audio recording error result defined by [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result), which can be **AUDIOSTREAM_ERROR_INVALID_PARAM**, **AUDIOSTREAM_ERROR_ILLEGAL_STATE**, or **AUDIOSTREAM_ERROR_SYSTEM**.|
 
 
 ### OH_AudioCapturer_OnInterruptEvent
@@ -60,14 +75,20 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnInterruptEvent)(
 
 Defines a function pointer to the callback function used to process audio recording interruption events.
 
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnInterruptCallback](_o_h_audio.md#oh_audiocapturer_oninterruptcallback)
+
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer). |
-| userData | Pointer to the data storage area customized by the application. |
-| type | Type of force that causes audio interruption. For details about the available options, see [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype). |
-| hint | Hint provided along with audio interruption. For details about the available options, see [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint). |
+| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
+| userData | Pointer to the data storage area customized by the application.|
+| type | Type of force that causes audio interruption. For details about the available options, see [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype).|
+| hint | Hint provided along with audio interruption. For details about the available options, see [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint).|
 
 
 ### OH_AudioCapturer_OnReadData
@@ -80,14 +101,22 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 
 Defines a function pointer to the callback function used to read audio data.
 
+The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
+
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnReadDataCallback](_o_h_audio.md#oh_audiocapturer_onreaddatacallback)
+
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer). |
-| userData | Pointer to the data storage area customized by the application. |
-| buffer | Pointer to the playback data storage area, which is used by the application to fill in playback data. |
-| length | Length of the buffer. |
+| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
+| userData | Pointer to the data storage area customized by the application.|
+| buffer | Pointer to the captured data storage area, which is used by the application to fill in captured data.|
+| length | Length of the buffer.|
 
 
 ### OH_AudioCapturer_OnStreamEvent
@@ -100,10 +129,16 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnStreamEvent)(OH_
 
 Defines a function pointer to the callback function used to process audio recording stream events.
 
+**Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnDeviceChangeCallback](_o_h_audio.md#oh_audiocapturer_ondevicechangecallback)
+
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer). |
-| userData | Pointer to the data storage area customized by the application. |
-| event | Audio event defined in [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event). |
+| capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
+| userData | Pointer to the data storage area customized by the application.|
+| event | Audio event defined in [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event).|

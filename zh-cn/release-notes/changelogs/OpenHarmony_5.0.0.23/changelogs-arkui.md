@@ -96,7 +96,7 @@ enableArrow、arrowOffset属性的起始支持版本为API version 10。
 
   如下图所示为变更前后效果对比：
 
- | 变更前 | 变更后 |
+| 变更前 | 变更后 |
 |---------|---------|
 | ![](figures/Dialog_Default_Radius_And_Margin_Before.png)  |  ![](figures/Dialog_Default_Radius_And_Margin_After.png)  |
 | ![](figures/Dialog_Width_Before.png) |  ![](figures/Dialog_Width_After.png) |
@@ -328,67 +328,7 @@ Popup组件。
 
 默认效果变更，应注意变更后的默认效果是否符合开发者预期，如不符合可以使用offset属性自行调整Popup位置，请查阅[Popup控制](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)文档。
 
-## cl.arkui.9 拖拽预览图支持统一圆角及应用自定义
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-依照UX规范
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-API version 11及以前：非文本类组件长按浮起预览图显示应用自定义的圆角效果。
-
-API version 12及以后：非文本类组件长按浮起预览图通过检查DragPreviewOptions.mode来判断是否启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值时，则显示应用自定义圆角效果。
-
-**API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.23开始。
-
-**适配指导**
-
-默认样式变更调整，无需适配。
-
-## cl.arkui.10 拖拽支持预览图背景模糊效果
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-依照UX规范
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-API version 11及以前：非文本类组件长按浮起预览图，预览图无背景模糊效果。
-
-API version 12及以后：非文本类组件长按浮起预览图，预览图有背景模糊效果。
-
-**API Level**
-
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.23开始。
-
-**适配指导**
-
-默认样式变更调整，无需适配。
-
-## cl.arkui.11 DatePickerDialog标题按钮大小及布局变更
+## cl.arkui.9 DatePickerDialog标题按钮大小及布局变更
 
 **访问级别**
 
@@ -424,7 +364,7 @@ UX规格增强
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.12  bindSheet组件修改标题与关闭按钮之间的间距
+## cl.arkui.10  bindSheet组件修改标题与关闭按钮之间的间距
 
 **访问级别**
 
@@ -498,7 +438,7 @@ bindSheet半模态面板。
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.14 Menu 组件边距 margin 变更
+## cl.arkui.11 Menu 组件边距 margin 变更
 
 **访问级别**
 
@@ -530,7 +470,7 @@ Menu 组件
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.15  TabContent组件底部页签水平方向排列情景默认字体大小变更
+## cl.arkui.12  TabContent组件底部页签水平方向排列情景默认字体大小变更
 
 **访问级别**
 
@@ -568,7 +508,7 @@ TabContent组件
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合可参照[TabContent组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)说明文档设置相关属性以达到预期。
 
-## cl.arkui.16 backgroundImage异常参数处理规格变更
+## cl.arkui.13 backgroundImage异常参数处理规格变更
 
 **访问级别**
 
@@ -596,7 +536,7 @@ TabContent组件
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
 
-## cl.arkui.17 backgroundImageSize异常参数处理规格变更
+## cl.arkui.14 backgroundImageSize异常参数处理规格变更
 
 **访问级别**
 
@@ -623,3 +563,74 @@ TabContent组件
 **适配指导**
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## cl.arkui.15 border中对部分接口新增参数类型
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+扩展border成员属性类型，提供镜像能力。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：borderWidth 参数类型为Length | EdgeWidths；
+
+​                borderColor 参数类型为ResourceColor | EdgeColors；
+
+​                borderRadius 参数类型为 Length | BorderRadiuses；
+
+​                borderOptions同理
+
+变更后：borderWidth 参数类型为Length | EdgeWidths | LocalizedEdgeWidths；
+
+​                borderColor 参数类型为ResourceColor | EdgeColors | LocalizedEdgeColors；
+
+​                borderRadius 参数类型为Length | BorderRadiuses | LocalizedBorderRadiuses；
+
+​                borderOptions同理
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**变更的接口/组件**
+
+新增 borderWidth参数LocalizedEdgeWidths，borderColor参数LocalizedEdgeColors，borderRadius参数LocalizedBorderRadiuses以及borderOptions中width、color、radius参数的类型扩充。
+
+**适配指导**
+
+开发者需要根据错误提示信息，进行适配整改。
+
+针对以下场景，会存在类型不兼容报错。
+
+```ts
+const item: BorderOptions = { width: "10px",color: 0x000000,radius: 10 }
+
+const value1 : Length | EdgeWidths = item.width
+
+const value2 : ResourceColor | EdgeColors = item.color
+
+const value3 : Length | BorderRadiuses = item.radius
+```
+
+需要开发者手动修改代码。
+
+```ts
+const item: BorderOptions = { width: "10px",color: 0x000000,radius: 10 }
+
+const value1 : Length | EdgeWidths | LocalizedEdgeWidths | undefined = item.width
+
+const value2 : ResourceColor | EdgeColors | LocalizedEdgeColors | undefined = item.color
+
+const value3 : Length | BorderRadiuses | LocalizedBorderRadiuses | undefined = item.radius
+```
+

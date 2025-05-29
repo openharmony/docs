@@ -16,18 +16,17 @@
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## AbilityConstant.WindowMode
+## WindowMode<sup>12+</sup>
 
 启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称                        | 值 | 说明                 |
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
 | WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
 
 **示例：**

@@ -12,7 +12,9 @@
 import { common } from '@kit.AbilityKit';
 ```
 
-## onConnect
+## ConnectOptions
+
+### onConnect
 
 onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void
 
@@ -58,7 +60,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## onDisconnect
+### onDisconnect
 
 onDisconnect(elementName: ElementName): void
 
@@ -103,7 +105,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## onFailed
+### onFailed
 
 onFailed(code: number): void
 

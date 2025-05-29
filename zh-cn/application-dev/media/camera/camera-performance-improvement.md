@@ -1,4 +1,6 @@
-# 性能提升方案(仅对系统应用开放)(ArkTS)
+# 性能提升实践(仅对系统应用开放)(ArkTS)
+
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
 相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
@@ -67,14 +69,14 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图。 |
+| isQuickThumbnailSupported() : boolean | 是否支持快速缩略图，true表示支持，false表示不支持。 |
 | enableQuickThumbnail(enabled:bool): void | 使能/去使能快速缩略图。 |
 | on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void | 相机缩略图监听回调。 |
 
 > **说明：**
 >
 > - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)、[addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)之前。
-> - on接口需要在enableQuickThumbnail(true)之后生效。
+> - on接口需要在[enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)之后生效。
 
 ### 开发示例
 
@@ -92,34 +94,34 @@ import { common } from '@kit.AbilityKit';
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // 创建PhotoSession实例
+  // 创建PhotoSession实例。
   let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  // 开始配置会话
+  // 开始配置会话。
   photoSession.beginConfig();
-  // 把CameraInput加入到会话
+  // 把CameraInput加入到会话。
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   cameraInput.open();
   photoSession.addInput(cameraInput);
-  // 把PhotoOutPut加入到会话
+  // 把PhotoOutPut加入到会话。
   let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
   photoSession.addOutput(photoOutPut);
   let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
   if (isSupported) {
-    // 使能快速缩略图
+    // 使能快速缩略图。
     photoOutPut.enableQuickThumbnail(true);
     photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
       if (err || pixelMap === undefined) {
         console.error('photoOutPut on thumbnail failed');
         return;
       }
-      // 显示或保存pixelmap
+      // 显示或保存pixelmap。
       showOrSavePicture(pixelMap);
     });
   }
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  //do something
+  //do something。
 }
 ```
 
@@ -138,7 +140,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 | 接口 | 说明 |
 | ---- | ---- |
-| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动。 |
+| isPrelaunchSupported(camera: CameraDevice) : boolean |  判断指定cameraDevice是否支持预热启动，true表示支持，false表示不支持。 |
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | 配置相机预热参数。 |
 | prelaunch() : void | 用户点击系统相机图标，拉起相机应用的同时调用，下发预热请求，使能相机预热启动。 |
 

@@ -9,6 +9,8 @@ The Camera_StatusInfo struct describes the camera status information.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 

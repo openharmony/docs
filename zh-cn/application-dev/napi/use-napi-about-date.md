@@ -18,7 +18,7 @@ ArkTS Date对象提供了一种在ArkTS中表示和操作日期和时间的方�
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_create_date | 在需要根据当前系统时间或特定计算生成一个Date对象时，可通过使用此接口创建表示这些时间的ArkTS Date对象，然后将其传递给ArkTS代码进行进一步处理。 |
-| napi_get_date_value | 在Node-API模块中接收到一个ArkTS的Date对象，并且需要获取其对应的时间戳或日期值时，可以使用此接口。这对于在Node-API模块中处理日期数据或执行日期相关的计算非常有用。 |
+| napi_get_date_value | 在Node-API模块中接收到一个ArkTS的Date对象，并且需要获取其对应的时间戳或日期值时，可以使用此接口。|
 | napi_is_date | 在需要确定一个ArkTS对象是否为Date对象时，可使用此接口判断给定的值是否为Date对象。例如，在接收函数参数时，需要验证参数是否为Date对象以确保正确的数据类型。 |
 
 ## 使用示例
@@ -55,8 +55,8 @@ export const createDate: () => Date;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_date: %{public}s', testNapi.createDate().toString());
 ```
@@ -86,7 +86,7 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
     }
 
     // 将获取到的Unix Time Stamp时间打印
-    OH_LOG_INFO(LOG_APP, "Node-API gets the incoming Green time:%{public}lf.", value);
+    OH_LOG_INFO(LOG_APP, "Node-API gets unix time stamp is:%{public}lf.", value);
 
     // 把转换后的Unix Time Stamp时间创建成ArkTS double数值，并放入returnValue中
     napi_value returnValue = nullptr;
@@ -105,8 +105,8 @@ export const getDateValue: (date: Date) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   const date = new Date();
   hilog.info(0x0000, 'testTag', 'Node-API: output the Unix Time Stamp: %{public}d', date.getTime());
@@ -157,8 +157,8 @@ export const isDate: <T>(date: T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let now: Date = new Date();
   let date = "123";

@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -31,9 +31,9 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | operate  | string                                                  | 是   | 要执行的操作。<br/>- resetFactory：设备恢复出厂设置。<br/>- reboot：设备重启。<br/>- shutDown：设备关机。<br/>- lockScreen：设备屏幕锁定。 <!--RP1--><!--RP1End-->|
-| addition | string                                                  | 否   | 执行时附加参数。                                             |
+| addition | string                                                  | 否   | <!--RP2-->执行时附加参数。目前无需传入。<!--RP2End-->       |
 
 **错误码：**
 
@@ -49,7 +49,6 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {

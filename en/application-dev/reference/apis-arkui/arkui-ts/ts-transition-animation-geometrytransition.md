@@ -1,6 +1,6 @@
 # Implicit Shared Element Transition (geometryTransition)
 
-**GeometryTransition** is used to create a smooth, seamless transition between views. By specifying the frame and position of the in and out components through **GeometryTransition**, you can create a spatial linkage between the transition effects (such as opacity and scale) defined through the **transition** mechanism. In this way, you can guide the visual focus from the previous view (out component) to the new view (in component).
+**geometryTransition** is used to create a smooth, seamless transition between views. By specifying the frame and position of the in and out components through **geometryTransition**, you can create a spatial linkage between the transition effects (such as opacity and scale) defined through the **transition** mechanism. In this way, you can guide the visual focus from the previous view (out component) to the new view (in component).
 
 > **NOTE**
 >
@@ -16,36 +16,42 @@ Implements an implicit shared element transition.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name | Type                | Mandatory| Description                                                    |
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                   | Yes  | ID used to set up a binding relationship. If this attribute is set to an empty string **""**, the binding relationship is cleared. The value can be dynamically changed to refresh the binding relationship. One ID can be bound to only two components, which function as in and out components.|
+| id      | string                   | Yes  | ID used to set up a binding relationship. Setting **id** to an empty string clears the binding relationship. The value can be changed to re-establish the binding relationship. One ID can be bound to only two components, which function as in and out components.|
 
-## geometryTransition<sup>11+<sup>
+## geometryTransition<sup>11+</sup>
 
 geometryTransition(id: string, options?: GeometryTransitionOptions)
 
 Implements an implicit shared element transition.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                | Mandatory| Description                                                    |
 | ------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                   | Yes  | ID used to set up a binding relationship. If this attribute is set to an empty string **""**, the binding relationship is cleared. The value can be dynamically changed to refresh the binding relationship. One ID can be bound to only two components, which function as in and out components.|
+| id      | string                   | Yes  | ID used to set up a binding relationship. Setting **id** to an empty string clears the binding relationship. The value can be changed to re-establish the binding relationship. One ID can be bound to only two components, which function as in and out components.|
 | options | [GeometryTransitionOptions](#geometrytransitionoptions11) | No  | Settings of the implicit shared element transition.                                  |
 
-## GeometryTransitionOptions<sup>11+<sup>
+## GeometryTransitionOptions<sup>11+</sup>
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description                                                    |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| follow | boolean  | No  | Whether to apply the animation to components that are always in the component tree. It is available only in the **if** syntax.<br>Default value: **false**|
+| follow | boolean  | No  | Whether to apply the animation to components that are always in the component tree. It is effective only in the **if** syntax.<br>Default value: **false**|
 
 ## Example
 
@@ -65,7 +71,7 @@ struct Index {
           .width(300)
           .height(400)
           .offset({ y: 100 })
-          .geometryTransition("picture")
+          .geometryTransition("picture", { follow: false })
           .transition(TransitionEffect.OPACITY)
       } else {
         // geometryTransition is bound to a container. Therefore, a relative layout must be configured for the child components of the container.

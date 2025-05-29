@@ -3,12 +3,13 @@
 
 ## Overview
 
-The **OH_Drawing_PlaceholderSpan** struct describes the placeholder that acts as a span.
+The OH_Drawing_PlaceholderSpan struct describes the placeholder that acts as a span.
 
 **Since**: 11
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## Summary
 

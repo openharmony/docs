@@ -12,7 +12,9 @@
 import { common } from '@kit.AbilityKit';
 ```
 
-## onConnect
+## ConnectOptions
+
+### onConnect
 
 onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void
 
@@ -24,8 +26,8 @@ Callback invoked when a connection is set up.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability. |
-| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes   | **IRemoteObject** instance. |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability.|
+| remote | [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject) | Yes   | **IRemoteObject** instance.|
 
 **Example**
 
@@ -58,7 +60,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## onDisconnect
+### onDisconnect
 
 onDisconnect(elementName: ElementName): void
 
@@ -70,7 +72,7 @@ Callback invoked when a connection is interrupted.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability. |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes   | Element name of the ability.|
 
 **Example**
 
@@ -103,7 +105,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## onFailed
+### onFailed
 
 onFailed(code: number): void
 
@@ -115,7 +117,7 @@ Callback invoked when a connection fails.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| code | number | Yes   | Result code.<br>The value **0** means that the connection is successful, **-1** means that a parameter is incorrect, and **-2** means that the ability is not found. |
+| code | number | Yes   | Result code.<br>The value **0** means that the connection is successful, **-1** means that a parameter is incorrect, and **-2** means that the ability is not found.|
 
 **Example**
 

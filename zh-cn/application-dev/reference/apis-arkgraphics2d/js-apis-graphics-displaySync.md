@@ -36,10 +36,10 @@ let backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | 是   | 是   | 当前帧到达的时间（单位：纳秒）。 |
-| targetTimestamp | number| 是   | 是   | 下一帧预期到达的时间（单位：纳秒）。 |
+| timestamp      | number | 是   | 否   | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间（单位：纳秒）。 |
 
 ## DisplaySync
 
@@ -67,7 +67,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameters types. 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **示例：**
 
@@ -122,7 +122,7 @@ off(type: 'frame', callback\?: Callback\<IntervalInfo\>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | Callback<[IntervalInfo](#intervalinfo)>| 否   | 订阅函数, 参数不填时，默认取消全部订阅函数。|
+| callback    | Callback<[IntervalInfo](#intervalinfo)>| 否   | 订阅函数，参数不填时，默认取消全部订阅函数。|
 
 
 **示例：**

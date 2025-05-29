@@ -22,7 +22,7 @@ import { dateTimeManager } from '@kit.MDMKit';
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-Sets the system time through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets the system time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -33,9 +33,9 @@ Sets the system time through the specified device administrator application. Thi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | time  | number | Yes| Timestamp to set, in ms.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -54,8 +54,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
@@ -71,7 +71,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-Sets the system time through the specified device administrator application. This API uses a promise to return the result.
+Sets the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -82,7 +82,7 @@ Sets the system time through the specified device administrator application. Thi
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | time  | number | Yes| Timestamp to set, in ms.|
 
 **Return value**
@@ -109,8 +109,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
@@ -124,7 +124,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
-Forbids the specified device administrator application to modify the system time. This API uses an asynchronous callback to return the result.
+Disallows the device to modify the system time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -135,9 +135,9 @@ Forbids the specified device administrator application to modify the system time
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | disallow  | boolean | Yes| Whether to disallow modification of the system time. The value **true** means to disallow modification of the system time, and **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -156,8 +156,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
@@ -173,7 +173,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
-Forbids the specified device administrator application to modify the system time. This API uses a promise to return the result.
+Disallows the device to modify the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -184,14 +184,14 @@ Forbids the specified device administrator application to modify the system time
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
 | disallow  | boolean | Yes| Whether to disallow modification of the system time. The value **true** means to disallow modification of the system time, and **false** means the opposite.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, an error object will be thrown.|
+| Promise\<void> | Promise that returns no value. An error object is thrown when the device fails to modify the system time.|
 
 **Error codes**
 
@@ -211,8 +211,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
@@ -226,7 +226,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
-Checks whether the system time modification is disallowed through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Queries whether the system time of a device can be modified. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -237,8 +237,8 @@ Checks whether the system time modification is disallowed through the specified 
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| callback | AsyncCallback\<boolean> | Yes| Callback used to return the result. The value **true** means the system time modification is disallowed, and **false** means the opposite.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| callback | AsyncCallback\<boolean> | Yes| Callback invoked to return the result. The value **true** means the system time modification is disallowed, and **false** means the opposite.|
 
 **Error codes**
 
@@ -257,8 +257,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 ```ts
 import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
@@ -274,7 +274,7 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
-Checks whether the system time modification is disallowed through the specified device administrator application. This API uses a promise to return the result.
+Queries whether the system time of a device can be modified. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -283,9 +283,9 @@ Checks whether the system time modification is disallowed through the specified 
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory  | Description     |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -311,8 +311,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {

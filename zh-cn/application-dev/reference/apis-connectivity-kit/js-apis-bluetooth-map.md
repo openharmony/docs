@@ -15,13 +15,26 @@ import { map } from '@kit.ConnectivityKit';
 ```
 
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+基础Profile接口定义。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
+
+
 ## map.createMapMseProfile
 
 createMapMseProfile(): MapMseProfile
 
 创建mapMse profile实例。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -43,7 +56,7 @@ try {
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -52,4 +65,4 @@ try {
 
 ## mapMseProfile
 
-使用mapMseProfile方法之前需要创建该类的实例进行操作，通过createMapMseProfile()方法构造此实例。
+使用mapMseProfile方法之前需要创建该类的实例进行操作，通过[createMapMseProfile()](#mapcreatemapmseprofile)方法构造此实例。

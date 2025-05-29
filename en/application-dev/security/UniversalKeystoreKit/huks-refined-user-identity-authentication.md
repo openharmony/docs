@@ -6,6 +6,9 @@ For example, a service needs to use a HUKS key to encrypt the account password i
 
 To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AUTH_PURPOSE**.
 
+> **NOTE**<br>
+> For symmetric encryption and decryption, only the AES/CBC, AES/GCM, and SM4/CBC modes support fine-grained access control.
+
 ## How to Develop
 
 1. Generate a key, set HuksUserAuthType to fingerprint authentication, and set other parameters including **HUKS_TAG_KEY_AUTH_PURPOSE**.

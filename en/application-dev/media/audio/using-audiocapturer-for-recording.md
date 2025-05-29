@@ -12,12 +12,16 @@ The figure below shows the state changes of the AudioCapturer. After an **AudioC
 
 ![AudioCapturer state change](figures/audiocapturer-status-change.png)
 
-You can call **on('stateChange')** to listen for state changes. For details about each state, see [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
+You can call **on('stateChange')** to listen for state changes of the AudioCapturer. For details about each state, see [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
 
 ### How to Develop
 
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8).
-     
+
+   > **NOTE**
+   >
+   > When the microphone audio source is set ([SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8) is set to **SOURCE_TYPE_MIC**, **SOURCE_TYPE_VOICE_RECOGNITION**, **SOURCE_TYPE_VOICE_COMMUNICATION**, or **SOURCE_TYPE_VOICE_MESSAGE**), the permission ohos.permission.MICROPHONE is required. For details about how to apply for the permission, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+
    ```ts
     import { audio } from '@kit.AudioKit';
     
@@ -29,8 +33,8 @@ You can call **on('stateChange')** to listen for state changes. For details abou
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+      capturerFlags: 0 // Flag indicating an AudioCapturer.
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -49,37 +53,43 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 2. Call **on('readData')** to subscribe to the audio data read callback.
-     
+    > **NOTE**
+    > - **Thread management**: You are advised not to use multiple threads for data reading. If multithreading is necessary for data reading, ensure proper thread management.
+    > - **Thread performance**: Do not execute time-consuming tasks in the thread where the **readData** API resides. Failing to do so may delay the data processing thread's response to callbacks, potentially causing issues like missing audio data, lag, and noise.
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
-    let bufferSize: number = 0;
     class Options {
       offset?: number;
       length?: number;
     }
-   
-    let path = getContext().cacheDir;
-    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-   
+
+    let bufferSize: number = 0;
+    // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
+    let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fileIo.writeSync(file.fd, buffer, options);
+      fs.writeSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-    }
+    };
+
     audioCapturer.on('readData', readDataCallback);
    ```
 
 3. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
@@ -90,10 +100,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 4. Call **stop()** to stop recording.
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -104,10 +114,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 5. Call **release()** to release the instance.
-     
+
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-   
+
     audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
@@ -117,15 +127,15 @@ You can call **on('stateChange')** to listen for state changes. For details abou
     });
    ```
 
-
 ### Sample Code
 
 Refer to the sample code below to record audio using AudioCapturer.
-  
+
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -134,7 +144,6 @@ class Options {
   length?: number;
 }
 
-let context = getContext(this);
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -142,28 +151,28 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // Channel.
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
-}
+};
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type.
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
   capturerFlags: 0 // Flag indicating an AudioCapturer.
-}
+};
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
-
-let path = getContext().cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-
+};
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
    }
-   fileIo.writeSync(file.fd, buffer, options);
+   fs.writeSync(file.fd, buffer, options);
    bufferSize += buffer.byteLength;
-}
+};
 
 // Create an AudioCapturer instance, and set the events to listen for.
 function init() {
@@ -214,7 +223,7 @@ function stop() {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
-        fileIo.close(file);
+        fs.close(file);
         console.info('Capturer stop success.');
       }
     });

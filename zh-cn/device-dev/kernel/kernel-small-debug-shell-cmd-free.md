@@ -1,15 +1,12 @@
 # free
 
-
 ## 命令功能
 
 free命令可显示系统内存的使用情况。
 
-
 ## 命令格式
 
 free [_-b | -k | -m | -g | -t_]
-
 
 ## 参数说明
 
@@ -25,20 +22,16 @@ free [_-b | -k | -m | -g | -t_]
 | -g | 以GiB为单位显示。 |
 | -t | 以TiB为单位显示。 |
 
-
 ## 使用指南
 
 无。
 
-
 ## 使用实例
 
-举例：分别输入free、free -k、free -m.
-
+举例：分别输入free、free -k、free -m。
 
 ## 输出说明
-
-  
+ 
 ```
 OHOS:/$ free
                 total        used        free      shared     buffers

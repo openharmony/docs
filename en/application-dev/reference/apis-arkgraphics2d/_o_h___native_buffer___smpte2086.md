@@ -11,6 +11,7 @@ The OH_NativeBuffer_Smpte2086 struct describes the SMPTE ST 2086 static metadata
 
 **Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
+**Header file**: [buffer_common.h](buffer__common_8h.md)
 
 ## Summary
 
@@ -19,9 +20,9 @@ The OH_NativeBuffer_Smpte2086 struct describes the SMPTE ST 2086 static metadata
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryRed](#displaprimaryred) | Red primary color.| 
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryGreen](#displaprimarygreen) | Green primary color.| 
-| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displaPrimaryBlue](#displaprimaryblue) | Blue primary color.| 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryRed](#displayprimaryred) | Red primary color.| 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryGreen](#displayprimarygreen) | Green primary color.| 
+| [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [displayPrimaryBlue](#displayprimaryblue) | Blue primary color.| 
 | [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md) [whitePoint](#whitepoint) | White point.| 
 | float [maxLuminance](#maxluminance) | Maximum luminance.| 
 | float [minLuminance](#minluminance) | Minimum luminance.| 
@@ -30,10 +31,10 @@ The OH_NativeBuffer_Smpte2086 struct describes the SMPTE ST 2086 static metadata
 ## Member Variable Description
 
 
-### displaPrimaryBlue
+### displayPrimaryBlue
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryBlue
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryBlue
 ```
 
 **Description**
@@ -41,10 +42,10 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryBlue
 Blue primary color.
 
 
-### displaPrimaryGreen
+### displayPrimaryGreen
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryGreen
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryGreen
 ```
 
 **Description**
@@ -52,10 +53,10 @@ OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryGreen
 Green primary color.
 
 
-### displaPrimaryRed
+### displayPrimaryRed
 
 ```
-OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displaPrimaryRed
+OH_NativeBuffer_ColorXY OH_NativeBuffer_Smpte2086::displayPrimaryRed
 ```
 
 **Description**

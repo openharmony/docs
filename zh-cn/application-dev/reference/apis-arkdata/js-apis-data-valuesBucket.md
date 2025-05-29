@@ -1,6 +1,6 @@
 # @ohos.data.ValuesBucket (数据集)
 
-**数据集(ValuesBucket)** 是开发者向数据库插入的数据集合，数据集以键值对的形式进行传输。
+**数据集（ValuesBucket）** 是开发者向数据库插入的数据集合，数据集以键值对的形式进行传输。
 
 > **说明：**
 >
@@ -23,6 +23,8 @@ type ValueType = number | string | boolean
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 | 类型    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示字段类型为数字。   |
@@ -33,11 +35,10 @@ type ValueType = number | string | boolean
 
 type ValuesBucket = Record<string, ValueType | Uint8Array | null>
 
-用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。 
+用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 | 类型          | 说明                                      |
 | ------------- | --------------------------------------------- |
-| string | 表示键的类型为string。 |
-| [ValueType](#valuetype)\| Uint8Array \| null | 表示值的类型为[ValueType](#valuetype)\| Uint8Array \| null。 |
+| Record<string, [ValueType](#valuetype) \| Uint8Array \| null> | 表示键值对类型。键的类型为string，值的类型为[ValueType](#valuetype) \| Uint8Array \| null。|

@@ -2,6 +2,8 @@
 
 用于显示加载动效的组件。
 
+加载动效在组件不可见时停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+
 >  **说明：**
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -22,9 +24,15 @@ LoadingProgress()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
+
+>  **说明：**
+>
+> 组件应设置合理的宽高，当组件宽高设置过大时加载动效可能不符合预期效果。
 
 ### color
 
@@ -50,7 +58,6 @@ enableLoading(value: boolean)
 
 设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -60,7 +67,7 @@ enableLoading(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
-| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true |
+| value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -76,11 +83,11 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12对象说明) | 是   | 在LoadingProgress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<LoadingProgressConfiguration>](#loadingprogressconfiguration12对象说明) | 是   | 在LoadingProgress组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
@@ -88,13 +95,33 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| enableloading | boolean | true |LoadingProgress动画是否显示。<br/>默认值：true。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    |    只读    |    可选    |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
+
+## LoadingProgressStyle枚举说明
+
+表示LoadingProgress的样式类型，不推荐使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 说明                                     |
+| ---------------------- | ---------------------------------------- |
+| Default       | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
 
 ## 示例
 
-### 示例1
+### 示例1（设置颜色）
+
+该示例通过color接口，实现了设置加载动效颜色的功能。
 
 ```ts
 // xxx.ets
@@ -114,28 +141,31 @@ struct LoadingProgressExample {
 
 ![LoadingProgress](figures/LoadingProgress.gif)
 
-### 示例2
+### 示例2（设置定制内容区）
+
+该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
-//该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。
 // xxx.ets
-import { hilog } from '@kit.PerformanceAnalysisKit'
-import { promptAction } from '@kit.ArkUI'
+import { UIContext } from '@kit.ArkUI';
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
-  enableLoading: boolean = false
+  enableLoading: boolean = false;
+  ctx: UIContext | undefined = undefined;
 
-  constructor(enableLoading: boolean) {
-    this.enableLoading = enableLoading
+  constructor(enableLoading: boolean, ctx: UIContext) {
+    this.enableLoading = enableLoading;
+    this.ctx = ctx;
   }
 
   applyContent(): WrappedBuilder<[LoadingProgressConfiguration]> {
-    return wrapBuilder(buildLoadingProgress)
+    return wrapBuilder(buildLoadingProgress);
   }
 }
 
-let arr1: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
-let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+let arr1: string[] =
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 @Builder
 function buildLoadingProgress(config: LoadingProgressConfiguration) {
@@ -152,9 +182,12 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
       Column() {
         Button('' + ((config.contentModifier as MyLoadingProgressStyle).enableLoading))
           .onClick((event: ClickEvent) => {
-            promptAction.showToast({
-              message: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) + ''
-            })
+            let uiContext = (config.contentModifier as MyLoadingProgressStyle).ctx;
+            if (uiContext) {
+              uiContext.getPromptAction().showToast({
+                message: ((config.contentModifier as MyLoadingProgressStyle).enableLoading) + ''
+              });
+            }
           })
           .fontColor(Color.White)
           .backgroundColor(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
@@ -165,7 +198,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
     Row() {
       Column() {
         Gauge({
-          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading?50:30, min: 11, max: 100
+          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 50 : 30, min: 11, max: 100
         }) {
           Column() {
             Text('60')
@@ -181,7 +214,6 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
               .maxLines(1)
           }.width('100%').height('100%')
         }
-
         .colors(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
         .width(200)
         .strokeWidth(18)
@@ -215,7 +247,10 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
       .width('100%')
       .friction(0.6)
 
-      .lanes({ minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80, maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80 })
+      .lanes({
+        minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80,
+        maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80
+      })
       .scrollBar(BarState.Off)
     }
 
@@ -226,11 +261,11 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
 @Entry
 @Component
 struct LoadingProgressDemoExample {
-  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false]
-  @State widthList: (number | string)[] = ['110%', 220, '40%', 80]
-  @State loadingProgressIndex: number = 0
-  @State clickFlag: number = 0
-  scroller: Scroller = new Scroller()
+  @State loadingProgressList: (boolean | undefined | null)[] = [undefined, true, null, false];
+  @State widthList: (number | string)[] = ['110%', 220, '40%', 80];
+  @State loadingProgressIndex: number = 0;
+  @State clickFlag: number = 0;
+  scroller: Scroller = new Scroller();
 
   build() {
     Column() {
@@ -240,15 +275,15 @@ struct LoadingProgressDemoExample {
             LoadingProgress()
               .color('#106836')
               .size({ width: '100%' })
-              .contentModifier(new MyLoadingProgressStyle(this.loadingProgressList[this.loadingProgressIndex]))
+              .contentModifier(new MyLoadingProgressStyle(this.loadingProgressList[this.loadingProgressIndex], this.getUIContext()))
           }.width('100%').backgroundColor(0xdcdcdc)
         }.width('100%').margin({ top: 5 })
       }.height('85%')
 
       Button('点击切换config.enableloading').onClick(() => {
-        this.clickFlag++
-        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length
-        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex])
+        this.clickFlag++;
+        this.loadingProgressIndex = (this.loadingProgressIndex + 1) % this.loadingProgressList.length;
+        console.log('enableLoading:' + this.loadingProgressList[this.loadingProgressIndex]);
       }).margin(20)
     }
 

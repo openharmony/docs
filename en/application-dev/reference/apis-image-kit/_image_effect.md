@@ -5,6 +5,8 @@
 
 The ImageEffect module provides the APIs for editing an image.
 
+For details about the development guide and sample, see [Using ImageEffect to Edit Images](../../media/image/image-effect-guidelines.md).
+
 **Since**: 12
 
 
@@ -15,9 +17,9 @@ The ImageEffect module provides the APIs for editing an image.
 
 | Name| Description| 
 | -------- | -------- |
-| [image_effect.h](image__effect_8h.md) | Declares the APIs related to an image effector.| 
-| [image_effect_errors.h](image__effect__errors_8h.md) | Declares the error codes used by an image effector.| 
-| [image_effect_filter.h](image__effect__filter_8h.md) | Declare the APIs related to an image effect filter.| 
+| [image_effect.h](image__effect_8h.md) | Declares the APIs related to the image effector.| 
+| [image_effect_errors.h](image__effect__errors_8h.md) | Declares the error codes used by the image effector.| 
+| [image_effect_filter.h](image__effect__filter_8h.md) | Declare the APIs related to the image effect filter.| 
 
 
 ### Structs
@@ -84,19 +86,26 @@ The ImageEffect module provides the APIs for editing an image.
 | -------- | -------- |
 | [OH_ImageEffect](#oh_imageeffect) \* [OH_ImageEffect_Create](#oh_imageeffect_create) (const char \*name) | Creates an **OH_ImageEffect** instance. The instance must be released by calling [OH_ImageEffect_Release](#oh_imageeffect_release) when it is no longer needed.| 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_AddFilter](#oh_imageeffect_addfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*filterName) | Adds a filter.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_AddFilterByFilter](#oh_imageeffect_addfilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, [OH_EffectFilter](#oh_effectfilter) \*filter) | Adds a specified filter. | 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_InsertFilter](#oh_imageeffect_insertfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | Inserts a filter.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_InsertFilterByFilter](#oh_imageeffect_insertfilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, [OH_EffectFilter](#oh_effectfilter) \*filter) | Inserts a filter to the specified position. | 
 | int32_t [OH_ImageEffect_RemoveFilter](#oh_imageeffect_removefilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*filterName) | Removes a filter.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_RemoveFilterByIndex](#oh_imageeffect_removefilterbyindex) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index) | Removes a filter from the specified position. | 
+| [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_ReplaceFilter](#oh_imageeffect_replacefilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | Replaces a filter. | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_ReplaceFilterByFilter](#oh_imageeffect_replacefilterbyfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index, const char \*filterName) | Replaces a filter at the specified position. | 
 | int32_t [OH_ImageEffect_GetFilterCount](#oh_imageeffect_getfiltercount) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | Obtains the number of added filters.| 
 | [OH_EffectFilter](#oh_effectfilter) \* [OH_ImageEffect_GetFilter](#oh_imageeffect_getfilter) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, uint32_t index) | Obtains the information about a filter.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Configure](#oh_imageeffect_configure) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*key, const [ImageEffect_Any](_image_effect___any.md) \*value) | Configures an image effector.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputSurface](#oh_imageeffect_setoutputsurface) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OHNativeWindow \*nativeWindow) | Sets an output surface.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_GetInputSurface](#oh_imageeffect_getinputsurface) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OHNativeWindow \*\*nativeWindow) | Obtains an input surface.| 
-| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputPixelmap](#oh_imageeffect_setinputpixelmap) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PixelmapNative \*pixelmap) | Sets an input pixel map.| 
-| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputPixelmap](#oh_imageeffect_setoutputpixelmap) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PixelmapNative \*pixelmap) | Sets an output pixel map.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputPixelmap](#oh_imageeffect_setinputpixelmap) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PixelmapNative \*pixelmap) | Sets an input PixelMap.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputPixelmap](#oh_imageeffect_setoutputpixelmap) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PixelmapNative \*pixelmap) | Sets an output PixelMap.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputNativeBuffer](#oh_imageeffect_setinputnativebuffer) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_NativeBuffer \*nativeBuffer) | Sets an input native buffer.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputNativeBuffer](#oh_imageeffect_setoutputnativebuffer) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_NativeBuffer \*nativeBuffer) | Sets an output native buffer.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputUri](#oh_imageeffect_setinputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | Sets an input URI.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputUri](#oh_imageeffect_setoutputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | Sets an output URI.| 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputPicture](#oh_imageeffect_setinputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | Sets an input picture. | 
+| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputPicture](#oh_imageeffect_setoutputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | Sets an output picture. | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Start](#oh_imageeffect_start) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | Starts an image effector.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Stop](#oh_imageeffect_stop) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | Stops an image effector.| 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Release](#oh_imageeffect_release) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | Releases an **OH_ImageEffect** instance.| 
@@ -222,7 +231,7 @@ typedef struct ImageEffect_Any ImageEffect_Any
 
 **Description**
 
-Describes the image effect parameters.
+Defines a struct for the image effect parameters.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -297,7 +306,7 @@ typedef struct ImageEffect_FilterDelegate ImageEffect_FilterDelegate
 
 **Description**
 
-Describes the callback functions of a custom image effect filter.
+Defines a struct for the callback functions of a custom image effect filter.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -312,7 +321,7 @@ typedef struct ImageEffect_FilterNames ImageEffect_FilterNames
 
 **Description**
 
-Describes the filter name information.
+Defines a struct for the filter name information.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -342,7 +351,7 @@ typedef struct ImageEffect_Region ImageEffect_Region
 
 **Description**
 
-Describes the image region.
+Defines a struct for the image region.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -357,7 +366,7 @@ typedef struct ImageEffect_Size ImageEffect_Size
 
 **Description**
 
-Describes the image size.
+Defines a struct for the image size.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -622,7 +631,7 @@ Enumerates the error codes used by the image effector.
 | EFFECT_ERROR_PARAM_INVALID | Parameter check fails.| 
 | EFFECT_BUFFER_SIZE_NOT_MATCH | The output buffer size does not match.| 
 | EFFECT_COLOR_SPACE_NOT_MATCH | The input and output color spaces do not match.| 
-| EFFECT_INPUT_OUTPUT_NOT_MATCH | The input and output configurations do not match. For example, the input is a surface, but the output is a pixel map.| 
+| EFFECT_INPUT_OUTPUT_NOT_MATCH | The input and output configurations do not match. For example, the input is a surface, but the output is a PixelMap.| 
 | EFFECT_EFFECT_NUMBER_LIMITED | The maximum number is reached.| 
 | EFFECT_INPUT_OUTPUT_NOT_SUPPORTED | The input or output configuration is not supported.| 
 | EFFECT_ALLOCATE_MEMORY_FAILED | Requesting for the buffer fails.| 
@@ -1012,7 +1021,7 @@ Obtains a filter parameter.
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer; returns **EFFECT_KEY_ERROR** if the key of the filter parameter is invalid.
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer; returns **EFFECT_KEY_ERROR** if the key of a parameter is invalid.
 
 
 ### OH_EffectFilter_LookupFilterInfo()
@@ -1183,7 +1192,7 @@ Sets a filter parameter.
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer; returns **EFFECT_KEY_ERROR** if the key of the filter parameter is invalid; returns **EFFECT_PARAM_ERROR** if the value of the filter parameter is invalid.
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer; returns **EFFECT_KEY_ERROR** if the key of a parameter is invalid; returns **EFFECT_PARAM_ERROR** if the value of a parameter is invalid.
 
 
 ### OH_EffectFilterInfo_Create()
@@ -1416,6 +1425,32 @@ Adds a filter.
 Returns the pointer to the **OH_EffectFilter** instance created if the operation is successful; returns a null pointer if the effector is invalid.
 
 
+### OH_ImageEffect_AddFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffect, OH_EffectFilter *filter)
+```
+
+**Description**
+
+Adds a specified filter.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| filter | Pointer to the filter. | 
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+
+
 ### OH_ImageEffect_Configure()
 
 ```
@@ -1440,7 +1475,7 @@ Configures an image effector.
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer. returns **EFFECT_KEY_ERROR** if the key of the configuration parameter is invalid; returns **EFFECT_PARAM_ERROR** if the value of the configuration parameter is invalid.
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer; returns **EFFECT_KEY_ERROR** if the key of a parameter is invalid; returns **EFFECT_PARAM_ERROR** if the value of a parameter is invalid.
 
 
 ### OH_ImageEffect_Create()
@@ -1461,7 +1496,7 @@ Creates an **OH_ImageEffect** instance. The instance must be released by calling
 
 | Name| Description| 
 | -------- | -------- |
-| name | Pointer to the image effector name, which is used to identify the effector. The value can be customized but cannot be empty.| 
+| name | Pointer to the image effector name, which is used to identify the effector and can be customized. You are advised to set it to a non-empty string.| 
 
 **Returns**
 
@@ -1572,6 +1607,33 @@ Inserts a filter.
 Returns the pointer to the **OH_EffectFilter** instance created if the operation is successful; returns a null pointer if an input parameter is invalid.
 
 
+### OH_ImageEffect_InsertFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index, OH_EffectFilter *filter);
+```
+
+**Description**
+
+Inserts a filter to the specified position.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| index | Index of the filter. | 
+| filter | Pointer to the filter. | 
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+
+
 ### OH_ImageEffect_Release()
 
 ```
@@ -1621,6 +1683,85 @@ Removes a filter.
 **Returns**
 
 Returns the number of filters.
+
+
+### OH_ImageEffect_RemoveFilterByIndex()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEffect, uint32_t index)
+```
+
+**Description**
+
+Removes a filter from the specified position.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| index | Index of the filter. | 
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+
+
+### OH_ImageEffect_ReplaceFilter()
+
+```
+OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName)
+```
+
+**Description**
+
+Replaces a filter.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| filterName | Pointer to the filter name. | 
+
+**Returns**
+
+Returns the pointer to the **OH_EffectFilter** instance created if the operation is successful; returns a null pointer otherwise.
+
+
+### OH_ImageEffect_ReplaceFilterByFilter()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *imageEffect, uint32_t index, const char *filterName);
+```
+
+**Description**
+
+Replaces a filter at the specified position.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| index | Index of the filter. | 
+| filterName | Pointer to the filter name. | 
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
 
 
 ### OH_ImageEffect_Restore()
@@ -1700,6 +1841,32 @@ Sets an input native buffer.
 Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
 
 
+### OH_ImageEffect_SetInputPicture()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+```
+
+**Description**
+
+Sets an input picture.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. | 
+| picture | Pointer to an **OH_PictureNative** instance. | 
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+
+
 ### OH_ImageEffect_SetInputPixelmap()
 
 ```
@@ -1708,7 +1875,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap (OH_ImageEffect * imageEff
 
 **Description**
 
-Sets an input pixel map.
+Sets an input PixelMap.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -1742,10 +1909,10 @@ Sets an input URI.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| uri | Pointer to the URI.| 
+| imageEffect | Pointer to the image effector.|
+| uri | Pointer to the URI of the image. Only JPEG and HEIF images are supported.|
 
 **Returns**
 
@@ -1768,14 +1935,48 @@ Sets an output native buffer.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| nativeBuffer | Pointer to the **OH_NativeBuffer** instance.| 
+| imageEffect | Pointer to the image effector.|
+| nativeBuffer | Pointer to an **OH_NativeBuffer** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_NativeBuffer** object.|
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
+
+
+### OH_ImageEffect_SetOutputPicture()
+
+```
+ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
+```
+
+**Description**
+
+Sets an output picture.
+
+**System capability**: SystemCapability.Multimedia.ImageEffect.Core
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| imageEffect | Pointer to the image effector. |
+| picture | Pointer to an **OH_PictureNative** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_PictureNative** object.|
+
+**Returns**
+
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
 
 
 ### OH_ImageEffect_SetOutputPixelmap()
@@ -1786,7 +1987,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap (OH_ImageEffect * imageEf
 
 **Description**
 
-Sets an output pixel map.
+Sets an output PixelMap.
 
 **System capability**: SystemCapability.Multimedia.ImageEffect.Core
 
@@ -1794,14 +1995,18 @@ Sets an output pixel map.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| pixelmap | Pointer to the **OH_PixelmapNative** instance.| 
+| imageEffect | Pointer to the image effector.|
+| pixelmap | Pointer to an **OH_PixelmapNative** instance. The value can be NULL. If NULL is passed, the rendering result is returned to the input **OH_PixelmapNative** object.|
 
 **Returns**
 
-Returns **EFFECT_SUCCESS** if the operation is successful; returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter is a null pointer.
+Returns **EFFECT_SUCCESS** if the operation is successful.
+
+Returns **EFFECT_ERROR_PARAM_INVALID** if the input parameter of the effector is a null pointer.
+
+Returns **EFFECT_PARAM_ERROR** if the call fails because of abnormal parameters.
 
 
 ### OH_ImageEffect_SetOutputSurface()
@@ -1846,10 +2051,10 @@ Sets an output URI.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| imageEffect | Pointer to the image effector.| 
-| uri | Pointer to the URI.| 
+| imageEffect | Pointer to the image effector.|
+| uri | Pointer to the URI of the image. The format of the output URI is the same as that of the input URI. If HEIF encoding is not supported, JPEG encoding is used.|
 
 **Returns**
 

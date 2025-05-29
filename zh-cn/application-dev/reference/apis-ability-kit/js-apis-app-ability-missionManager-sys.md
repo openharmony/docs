@@ -18,7 +18,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ohos.permission.MANAGE_MISSIONS
 
-## missionManager.on
+## missionManager.on('mission')
 
 on(type:'mission', listener: MissionListener): number
 
@@ -28,13 +28,13 @@ on(type:'mission', listener: MissionListener): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 监听的任务名称。 |
+  | type     | string   | 是       | 监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | 是 | 系统任务监听器。 |
 
 **错误码：**
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -130,13 +130,13 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 取消监听的任务名称。 |
+  | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
@@ -149,7 +149,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **示例：**
 
@@ -218,7 +218,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
@@ -228,13 +228,13 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type     | string   | 是       | 取消监听的任务名称。 |
+  | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监听器的index值，和监听器一一对应，由on方法返回。 |
 
 **返回值：**
@@ -252,7 +252,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **示例：**
 
@@ -330,7 +330,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -396,7 +396,7 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -451,7 +451,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -504,7 +504,7 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -557,7 +557,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -608,7 +608,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -662,7 +662,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -713,7 +713,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<M
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -769,7 +769,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -821,7 +821,7 @@ lockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -875,7 +875,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -926,7 +926,7 @@ unlockMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -981,7 +981,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1033,7 +1033,7 @@ clearMission(missionId: number): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1087,7 +1087,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1135,7 +1135,7 @@ clearAllMissions(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -1180,7 +1180,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1232,7 +1232,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1285,7 +1285,7 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1341,7 +1341,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1370,7 +1370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1408,7 +1408,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1438,7 +1438,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1476,7 +1476,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission?: number): 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1511,7 +1511,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1525,7 +1525,7 @@ try {
       }
     }
     missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
-      console.log("moveMissionsToForeground is called" );
+      console.log(`moveMissionsToForeground is called`);
     });
   });
 } catch (paramError) {
@@ -1539,13 +1539,13 @@ try {
 
 moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-将指定任务批量切到后台，以回调函数的方式返回, 返回的结果任务ID按被隐藏时的任务层级排序。
+将指定任务批量切到后台，以回调函数的方式返回，返回的结果任务ID按被隐藏时的任务层级排序。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1574,7 +1574,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1603,13 +1603,13 @@ try {
 
 moveMissionsToBackground(missionIds : Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
-将指定任务批量切到后台，以promise的方式返回, 返回的结果按被隐藏时的任务层级排序。
+将指定任务批量切到后台，以promise的方式返回，返回的结果按被隐藏时的任务层级排序。
 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1654,7 +1654,7 @@ try {
       }
     }
     missionManager.moveMissionsToBackground(toHides).then((hideRes: Array<number>) => {
-      console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+      console.log(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
     });
   });
 } catch (paramError) {

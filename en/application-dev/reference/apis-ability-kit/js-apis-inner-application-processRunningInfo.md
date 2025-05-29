@@ -1,4 +1,5 @@
 # ProcessRunningInfo
+<!--deprecated_code_no_check-->
 
 The **ProcessRunningInfo** module defines the running information of a process.
 

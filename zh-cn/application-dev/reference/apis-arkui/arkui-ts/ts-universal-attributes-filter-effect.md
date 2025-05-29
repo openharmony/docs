@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## visualEffect
 
@@ -22,6 +22,12 @@ visualEffect(effect: VisualEffect): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | effect | [VisualEffect](../../apis-arkgraphics2d/js-apis-uiEffect.md#visualeffect) | 是   | 非滤镜视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## backgroundFilter
 
 backgroundFilter(filter: Filter): T
@@ -37,6 +43,12 @@ backgroundFilter(filter: Filter): T
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 背景滤镜视觉效果。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## foregroundFilter
 
@@ -54,6 +66,12 @@ foregroundFilter(filter: Filter): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 前景滤镜（内容）视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## compositingFilter
 
 compositingFilter(filter: Filter): T
@@ -70,8 +88,16 @@ compositingFilter(filter: Filter): T
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | filter | [Filter](../../apis-arkgraphics2d/js-apis-uiEffect.md#filter) | 是   | 合成滤镜视觉效果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
+
+该示例主要演示前景滤镜、背景滤镜和合成滤镜的模糊效果。
+
 ```ts
 // xxx.ets
 import { uiEffect } from '@kit.ArkGraphics2D';
@@ -79,35 +105,39 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-
-  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10);
 
   build() {
     Column({ space: 15 }) {
 
       Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('前景滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
-     .foregroundFilter(this.filterTest.blur(10)) // 通过 foregroundFilter 进行像素扩展
+        .backgroundImage($r("app.media.app_icon"))
+        .backgroundImageSize({ width: 80, height: 80 })
+        .foregroundFilter(this.filterTest1) // 通过 foregroundFilter 设置模糊效果
 
       Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('背景滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
-        .backgroundFilter(this.filterTest.blur(10)) // 通过 backgroundFilter 设置模糊效果
+        .backgroundImage($r("app.media.app_icon"))
+        .backgroundImageSize({ width: 80, height: 80 })
+        .backgroundFilter(this.filterTest2) // 通过 backgroundFilter 设置模糊效果
 
       Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text()
+      Text('合成滤镜')
         .width(100)
         .height(100)
         .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.testImage"))
-        .compositingFilter(this.filterTest.blur(10)) // 通过 compositingFilter 设置模糊效果
+        .backgroundImage($r("app.media.app_icon"))
+        .backgroundImageSize({ width: 80, height: 80 })
+        .compositingFilter(this.filterTest3) // 通过 compositingFilter 设置模糊效果
     }
     .height('100%')
     .width('100%')
@@ -115,4 +145,4 @@ struct FilterEffectExample {
 }
 ```
 
-![compositingFilter](figures/filterEffect.jpg)
+![filterEffect](figures/filterEffectWithText.jpg)

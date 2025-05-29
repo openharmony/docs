@@ -1,6 +1,6 @@
-# @ohos.xml (xml解析与生成)
+# @ohos.xml (XML解析与生成)
 
-本模块提供了将XML文本转换为JavaScript对象、以及XML文件生成和解析的一系列接口。
+本模块提供XML生成和解析的接口。
 
 > **说明：**
 >
@@ -25,9 +25,9 @@ XmlSerializer的构造函数。
 
 > **说明：**
 >
-> buffer是一个用户根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中务必确保所设置的缓存区足够大，使其可以容纳生成文本的所有内容。
+> buffer是开发者根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中必须确保缓存区域足以容纳生成的文本内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -35,8 +35,8 @@ XmlSerializer的构造函数。
 
 | 参数名   | 类型                              | 必填 | 说明                                             |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
-| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。               |
+| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入XML信息的ArrayBuffer或DataView内存。 |
+| encoding | string                            | 否   | 编码格式，默认'utf-8'（目前仅支持'utf-8'）。               |
 
 **错误码：**
 
@@ -57,13 +57,13 @@ let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 
 setAttributes(name: string, value: string): void
 
-写入元素的属性和属性值。
+添加元素的属性和属性值。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
+> 该接口对所添加数据不做标准XML校验处理，确保所添加的数据符合标准XML规范。例如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -93,21 +93,21 @@ thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high"/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high"/>
 ```
 
 ### addEmptyElement
 
 addEmptyElement(name: string): void
 
-写入一个空元素。
+添加一个空元素。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
+> 该接口对所添加数据不做标准XML校验处理，确保所添加的数据符合标准XML规范。例如不允许添加数字开头的元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -115,7 +115,7 @@ addEmptyElement(name: string): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | 是   | 该空元素的元素名。 |
+| name   | string | 是   | 元素的名称。 |
 
 **错误码：**
 
@@ -134,17 +134,17 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <d/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <d/>
 ```
 
 ### setDeclaration
 
 setDeclaration(): void
 
-编写带有编码的文件声明。
+添加带有编码的文件声明。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -157,8 +157,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <?xml version="1.0" encoding="utf-8"?>
 ```
 
@@ -166,7 +166,7 @@ console.log(result.trim());
 
 startElement(name: string): void
 
-根据给定名称写入元素开始标记。
+根据给定名称添加元素开始标记。
 
 > **说明：**
 >
@@ -174,7 +174,7 @@ startElement(name: string): void
 >
 >- 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -203,8 +203,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -212,13 +212,13 @@ console.log(result.trim());
 
 endElement(): void
 
-写入元素结束标记。
+添加元素结束标记。
 
 > **说明：**
 >
 > 调用该接口前必须先调用[startElement](#startelement)接口写入元素开始标记。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -233,8 +233,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -242,13 +242,13 @@ console.log(result.trim());
 
 setNamespace(prefix: string, namespace: string): void
 
-写入当前元素标记的命名空间。
+添加当前元素标记的命名空间。
 
 > **说明：**
 >
-> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的前缀以及对同一个元素设置多个命名空间。
+> 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。例如禁止添加数字开头的前缀以及为同一个元素设置多个命名空间。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -278,8 +278,8 @@ thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
@@ -287,9 +287,9 @@ console.log(result.trim());
 
 setComment(text: string): void
 
-写入注释内容。
+添加注释内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -316,8 +316,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!--Hello, World!-->
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!--Hello, World!-->
 ```
 
 ### setCDATA
@@ -330,7 +330,7 @@ setCDATA(text: string): void
 >
 > 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许在CDATA标签中添加包含"\]\]\>"字符串的数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -357,17 +357,17 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <![CDATA[root SYSTEM]]>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <![CDATA[root SYSTEM]]>
 ```
 
 ### setText
 
 setText(text: string): void
 
-写入标签值。
+添加标签值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -397,17 +397,17 @@ thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high">Happy</note>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high">Happy</note>
 ```
 
 ### setDocType
 
 setDocType(text: string): void
 
-写入文档类型。
+添加文档类型。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -434,8 +434,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 ## XmlPullParser
@@ -448,7 +448,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 构造并返回一个XmlPullParser对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -456,8 +456,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的xml文本信息。 |
-| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。         |
+| buffer   | ArrayBuffer \| DataView | 是   | 用于解析的XML文本信息。|
+| encoding | string                            | 否   | 编码格式，默认'utf-8'（目前仅支持'utf-8'）。         |
 
 **错误码：**
 
@@ -474,17 +474,70 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
-### parse
+### parseXml<sup>14+</sup>
+
+parseXml(option: ParseOptions): void
+
+解析XML。
+
+**原子化服务API**：从API version 14 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明          |
+| ------ | ----------------------------- | ---- | ------------- |
+| option | [ParseOptions](#parseoptions) | 是   | XML解析选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { xml, util } from '@kit.ArkTS';
+
+let strxml =
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title><![CDATA[测试\n测试]]></title>' +
+    '</note>';
+let textEncoder = new util.TextEncoder();
+let uint8 = textEncoder.encodeInto(strxml);
+
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  if (key == xml.EventType.CDSECT) {
+    console.log(JSON.stringify(value.getText()));
+  }
+  return true;
+}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let pullParser = new xml.XmlPullParser(uint8.buffer as object as ArrayBuffer);
+pullParser.parseXml(options);
+// "测试\n测试"
+```
+
+### parse<sup>(deprecated)</sup>
 
 parse(option: ParseOptions): void
 
-该接口用于解析xml。
+该接口用于解析XML。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，建议使用[parseXml<sup>14+</sup>](#parsexml14)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -492,7 +545,7 @@ parse(option: ParseOptions): void
 
 | 参数名 | 类型                          | 必填 | 说明                             |
 | ------ | ----------------------------- | ---- | -------------------------------- |
-| option | [ParseOptions](#parseoptions) | 是   | 用户控制以及获取解析信息的选项。 |
+| option | [ParseOptions](#parseoptions) | 是   | XML解析选项。 |
 
 **错误码：**
 
@@ -536,33 +589,33 @@ that.parse(options);
 
 ## ParseOptions
 
-xml解析选项。
+XML解析选项。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang。
 
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示解析文档类型。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示解析命名空间。 |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数，解析标签和标签值，默认undefined，表示不解析标签和标签值。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数，解析属性和属性值，默认undefined，表示不解析属性和属性值。 |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数,，解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析元素事件类型和ParseInfo属性。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，false表示不解析文档类型，true表示解析文档类型，默认值false。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，忽略命名空间后，将不会对其进行解析。true表示忽略命名空间，false表示不忽略命名空间，默认值false。 |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认值undefined，表示不解析。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认值undefined，表示不解析。 |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值undefined，表示不解析。 |
 
 ## ParseInfo
 
-当前xml解析信息。
+当前XML解析信息。
 
 
 ### getColumnNumber
 
 getColumnNumber(): number
 
-获取当前列号，从1开始。
+获取当前列号，从1开始计数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -589,7 +642,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:113
+// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
 ### getDepth
@@ -598,7 +651,11 @@ getDepth(): number
 
 获取元素的当前深度。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 标签内的空白事件深度与标签的深度保持一致。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -638,7 +695,7 @@ getLineNumber(): number
 
 获取当前行号，从1开始。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -674,7 +731,7 @@ getName(): string
 
 获取当前元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -709,7 +766,7 @@ getNamespace(): string
 
 获取当前元素的命名空间。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -748,7 +805,7 @@ getPrefix(): string
 
 获取当前元素前缀。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -788,7 +845,7 @@ getText(): string
 
 获取当前事件的文本内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -823,7 +880,7 @@ isEmptyElementTag(): boolean
 
 判断当前元素是否为空元素。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -862,7 +919,7 @@ isWhitespace(): boolean
 
 判断当前事件是否仅包含空格字符。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -870,7 +927,7 @@ isWhitespace(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 返回true，当前文本事件仅包含空格字符。 |
+| boolean | 返回true，表示当前文本事件仅包含空格字符。 |
 
 **示例：**
 
@@ -901,7 +958,7 @@ getAttributeCount(): number
 
 获取当前开始标记的属性数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -934,9 +991,9 @@ console.log(str);
 
 事件类型枚举。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称             | 值   | 说明                  |
 | ---------------- | ---- | --------------------- |

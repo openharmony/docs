@@ -51,20 +51,20 @@ Defines a media query event.
 
 | Name     | Type   | Mandatory  | Description   |
 | ------- | ------- | ---- | ----- |
-| matches | boolean | Yes   | Matching result.|
+| matches | boolean | Yes   | Matching result. The value **true** means that the query conditions are met, and **false** means the opposite.|
 
 ## MediaQueryList
 
 Defines a media query list.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type   | Mandatory  | Description               |
 | ------- | ------- | ---- | ----------------- |
 | media   | string  | No   | Serialized media query condition. This parameter is read-only.|
-| matches | boolean | Yes   | Matching result.            |
+| matches | boolean | Yes   | Matching result. The value **true** means that the query conditions are met, and **false** means the opposite.           |
 
 ### onchange
 
@@ -78,7 +78,7 @@ Called when the **matches** value changes.
 
 | Name    | Type     | Mandatory  | Description            |
 | ------- | ------- | ---- | -------------- |
-| matches | boolean | Yes   | New **matches** value.|
+| matches | boolean | Yes   | New **matches** value. The value **true** means that the query conditions are met, and **false** means the opposite.|
 
 
 ### MediaQueryList.addListener

@@ -2,7 +2,7 @@
 ## 简介
 在应用开发中，经常会调用执行耗时的接口，比如服务端数据接口，本地文件读取接口。如果不进行合理的处理，可能会引起卡顿等性能问题。
 ## 问题场景
-列表无限滑动的场景，在即将触底的时候需要进行数据请求，如果在主线程中直接处理请求数据，可能会导致滑动动画被中断。如果回调函数处理的耗时较长，会直接阻塞主线程，卡顿就会非常明显。使用异步执行的方式进行异步调用，**回调函数的执行还是会在主线程**，一样会阻塞UI绘制和渲染。场景预览如下，列表滑动过程中，图片会显示延迟。
+列表无限滑动的场景，在即将触底的时候需要进行数据请求，如果在主线程中直接处理请求数据，可能会导致滑动动画被中断。如果回调函数处理的耗时较长，会直接阻塞主线程，卡顿就会非常明显。使用异步执行的方式进行异步调用，回调函数的执行还是会在主线程，一样会阻塞UI绘制和渲染。场景预览如下，列表滑动过程中，图片会显示延迟。
 
 ![](./figures/avoid_time_consuming_demo.gif)
 
@@ -38,7 +38,7 @@
   async mockRequestData(): Promise<ModelDetailVO[]> {
     let result: modelDetailDTO[] = [];
     // data.json是存在本地的json数据，大小大约20M,模拟从网络端获取数据
-    await getContext().resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
+    await this.getUIContext().getHostContext()?.resourceManager.getRawFileContent("data.json").then((data: Uint8Array) => {
       // 耗时回调函数
       let jsonData = buffer.from(data).toString();
       let res: responseData = JSON.parse(jsonData);
@@ -72,7 +72,8 @@
             // 即将触底时提前增加数据
             if (item.id + 10 === this.dataSource.totalCount()) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
-              taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
+              taskpoolExecute(this.dataSource.totalCount(),
+                this.getUIContext().getHostContext() as common.UIAbilityContext).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
                 }
@@ -85,9 +86,9 @@
   }
 
   // 注意：以下方法和类声明均在组件外声明
-  async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
+  async function taskpoolExecute(index: number, context: Context): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
-    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
+    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, context);
     return await taskpool.execute(task) as ModelDetailVO[];
   }
 
@@ -109,10 +110,10 @@
 
 ![](./figures//trace_taskpool_callback.png) 
 
-从图中可以看到，主线程阻塞耗时明显减少，同时在右上角出现了新的trace，__H:Deserialize__，这个trace表示在反序列化taskpool线程返回的数据。依然存在一定耗时(17ms) 容易出现丢帧等问题。针对跨线程的序列化耗时问题，系统提供了[@Sendable](../arkts-utils/arkts-sendable.md)装饰器来实现内存共享。可以在返回的类对象ModelDetailVO上使用@Sendable装饰器，继续优化性能。
+从图中可以看到，主线程阻塞耗时明显减少，同时在右上角出现了新的trace，__H:Deserialize__，这个trace表示在反序列化taskpool线程返回的数据。依然存在一定耗时(17ms) 容易出现丢帧等问题。针对跨线程的序列化耗时问题，系统提供了[@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)来实现内存共享。可以在返回的类对象ModelDetailVO上使用@Sendable装饰器，继续优化性能。
 
 #### 优化思路：可以使用@Sendable装饰器提升数据传输和同步效率
-多线程存在线程间通信耗时问题，如果涉及数据较大的情况,用[@Sendable](../arkts-utils/arkts-sendable.md)。
+多线程存在线程间通信耗时问题，如果涉及数据较大的情况，可以使用[@Sendable](../arkts-utils/arkts-sendable.md)。
 
 ```c++
   build() {
@@ -126,9 +127,10 @@
           }
           .onAppear(() => {
             // 即将触底时提前增加数据
-            if (item.id + 10 === this.dataSource.totalCount()) {
+            if (item.id + 10 === this.dataSource.totalCount(), ) {
               // 通过子线程获取数据，传入当前的数据长度，用于赋给数据的ID值
-              taskpoolExecute(this.dataSource.totalCount()).then((data: ModelDetailVO[]) => {
+              taskpoolExecute(this.dataSource.totalCount(),
+                this.getUIContext().getHostContext() as common.UIAbilityContext).then((data: ModelDetailVO[]) => {
                 for (let i = 0; i < data.length; i++) {
                   this.dataSource.addLastItem(data[i]);
                 }
@@ -141,9 +143,9 @@
   }
 
   // 注意：以下方法和类声明均在组件外声明
-  async function taskpoolExecute(index: number): Promise<ModelDetailVO[]> {
+  async function taskpoolExecute(index: number, context: Context): Promise<ModelDetailVO[]> {
     // context需要手动传入子线程
-    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, getContext());
+    let task: taskpool.Task = new taskpool.Task(mockRequestData, index, context);
     return await taskpool.execute(task) as ModelDetailVO[];
   }
 
@@ -159,7 +161,8 @@
     })
     return transArrayDTO2VO(result, index);
   }
-
+  
+  @Sendable
   class ModelDetailVO {
     id: number = 0;
     name: string = "";

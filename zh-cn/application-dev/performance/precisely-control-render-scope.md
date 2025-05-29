@@ -18,7 +18,7 @@ struct CompA {
   private sizeFont: number = 30; // the private variable does not invoke rendering
   private isRenderText() : number {
     this.sizeFont++; // the change of sizeFont will not invoke rendering, but showing that the function is called
-    console.log("Text prop2 is rendered");
+    console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
   build() {
@@ -85,7 +85,7 @@ class UIStyle {
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
   private isRenderSpecialImage() : number { // function to show whether the component is rendered
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
@@ -102,22 +102,22 @@ struct SpecialImage {
 }
 @Component
 struct CompA {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UIStyle;
   // the following functions are used to show whether the component is called to be rendered
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
   build() {
@@ -175,7 +175,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -247,7 +247,7 @@ struct CompA {
   private sizeFont: number = 30; // the private variable does not invoke rendering
   private isRenderText() : number {
     this.sizeFont++; // the change of sizeFont will not invoke rendering, but showing that the function is called
-    console.log("Text prop2 is rendered");
+    console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
   build() {
@@ -324,12 +324,12 @@ struct CompA {
   private sizeFont: number = 30;
   private isRenderText() : number {
     this.sizeFont++;
-    console.log("Text prop2 is rendered");
+    console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
   private isRenderTextSubProp1() : number {
     this.sizeFont++;
-    console.log("Text subProp1 is rendered");
+    console.info("Text subProp1 is rendered");
     return this.sizeFont;
   }
   build() {
@@ -451,9 +451,9 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
+  @ObjectLink needRenderImage: NeedRenderImage; // receive the new class from its parent component
   private isRenderSpecialImage() : number { // function to show whether the component is rendered
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
@@ -480,19 +480,19 @@ struct CompA {
   @ObjectLink needRenderScale: NeedRenderScale;
   // the following functions are used to show whether the component is called to be rendered
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
   build() {
@@ -554,7 +554,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
@@ -616,6 +616,18 @@ struct Page {
 
 ![precisely-control-render-scope-05.gif](figures/precisely-control-render-scope-05.gif)
 
+可以使用SmartPerf Host工具分别抓取优化前后点击“move”按钮时的trace数据，来查看属性拆分的性能收益。
+
+优化前点击move按钮的脏节点更新耗时如下图：
+
+![precisely-control-render-scope-dirty-node-trace-01](figures/precisely-control-render-scope-dirty-node-trace-01.PNG)
+
+优化后点击move按钮的脏节点更新耗时如下图：
+
+![precisely-control-render-scope-dirty-node-trace-02](figures/precisely-control-render-scope-dirty-node-trace-02.PNG)
+
+从上面trace图中的“H:FlushDirtyNodeUpdate”标签可以看出，优化前点击“move”按钮的脏节点更新耗时为1ms416μs，而通过拆分属性进行优化后耗时仅836μs，性能提升了大约40.9%。
+
 在上面的示例中将原先大类中的十五个属性拆成了八个小类，并且在组件的属性绑定中也进行了相应的适配。属性拆分遵循以下几点原则：
 
 - 只作用在同一个组件上的多个属性可以被拆分进同一个新类，即示例中的NeedRenderImage。适用于组件经常被不关联的属性改变而引起刷新的场景，这个时候就要考虑拆分属性，或者重新考虑ViewModel设计是否合理。
@@ -651,7 +663,7 @@ this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWid
 this.needRenderXxx.xxx = x;
 
 //example
-this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1
+this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1;
 ```
 
 属性拆分应当重点考虑变化较为频繁的属性，来提高应用运行的性能。
@@ -671,7 +683,7 @@ class SomeClass {
 @Component
 struct Page {
   @State someClass: SomeClass = new SomeClass();
-  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty
+  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty;
   build() {
     Row() {
       Column() {
@@ -696,8 +708,8 @@ struct Page {
 多个组件依赖对象中的不同属性时，直接关联该对象会出现改变任一属性所有组件都刷新的现象，可以通过将类中的属性拆分组合成新类的方式精准控制组件刷新。
 
 在多个组件依赖同一个数据源并根据数据源变化刷新组件的情况下，直接关联数据源会导致每次数据源改变都刷新所有组件。为精准控制组件刷新，可以采取以下策略：
-  1. 使用 @Watch 装饰器：在组件中使用@Watch装饰器监听数据源，当数据变化时执行业务逻辑，确保只有满足条件的组件进行刷新。
-  2. 事件驱动更新：对于复杂组件关系或跨层级情况，使用Emitter自定义事件发布订阅机制。数据源变化时触发相应事件，订阅该事件的组件接收到通知后，根据变化的具体值判断组件是否刷新。
+  1. 使用 [@Watch](../ui/state-management/arkts-watch.md) 装饰器：在组件中使用@Watch装饰器监听数据源，当数据变化时执行业务逻辑，确保只有满足条件的组件进行刷新。
+  2. 事件驱动更新：对于复杂组件关系或跨层级情况，使用[Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md)自定义事件发布订阅机制。数据源变化时触发相应事件，订阅该事件的组件接收到通知后，根据变化的具体值判断组件是否刷新。
 
 【反例】
 
@@ -712,7 +724,7 @@ struct Index {
   
   aboutToAppear(): void {  
     for (let i = 0; i < 10; i++) {  
-      this.listData.push(`ListItemComponent ${i}`);  
+      this.listData.push(`组件 ${i}`);  
     }  
   }  
   
@@ -839,6 +851,20 @@ struct ListItemComponent {
 
 ![precise_refresh.gif](./figures/precise_refresh.gif)
 
+【效果对比】
+
+使用SmartPerf Host工具分别抓取正反例中切换选中项的trace数据，通过点击组件2的脏节点更新耗时分析二者的性能差异。
+
+反例点击组件2的脏节点更新耗时如下图：
+
+![precisely-control-render-scope-dirty-node-trace-03](figures/precisely-control-render-scope-dirty-node-trace-03.PNG)
+
+正例点击组件2的脏节点更新耗时如下图：
+
+![precisely-control-render-scope-dirty-node-trace-04](figures/precisely-control-render-scope-dirty-node-trace-04.PNG)
+
+从上面的trace图可以看出，反例中点击组件2后十个ListItemComponent组件节点都触发了更新，脏节点更新耗时3ms179μs，而正例只有三个节点触发更新，脏节点更新耗时仅为1ms600μs，性能提升了大约49.7%。
+
 被依赖的数据源仅在父子或兄弟关系的组件中传递时，可以参考上述示例，使用@State/@Link/@Watch装饰器进行状态管理，实现组件的精准刷新。
 
 当组件关系层级较多但都归属于同一个确定的组件树时，推荐使用@Provide/@Consume传递数据，使用@Watch装饰器监听数据变化，在监听回调中执行业务逻辑。参考如下伪代码。
@@ -872,7 +898,7 @@ onCurrentValueUpdate() {
 Component.property(this.nestedComponentResult)
 ```
 
-当组件关系复杂或跨越层级过多时，推荐使用 [Emitter] (../reference/apis-basic-services-kit/js-apis-emitter.md)自定义事件发布订阅的方式。当数据源改变时发布事件，依赖该数据源的组件通过订阅事件来获取数据源的改变，完成业务逻辑的处理，从而实现组件的精准刷新。
+当组件关系复杂或跨越层级过多时，推荐使用 [Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md) 自定义事件发布订阅的方式。当数据源改变时发布事件，依赖该数据源的组件通过订阅事件来获取数据源的改变，完成业务逻辑的处理，从而实现组件的精准刷新。
 
 下面通过部分示例代码介绍使用方式。
 

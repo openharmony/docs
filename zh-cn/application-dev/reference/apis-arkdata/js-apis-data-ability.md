@@ -19,7 +19,7 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 
 通过表名和DataAbility谓词对象创建Rdb谓词对象。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -61,7 +61,7 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
 
 此方法类似于SQL语句的“=”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -90,7 +90,7 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 此方法类似于SQL语句的“!=”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -117,7 +117,7 @@ beginWrap(): DataAbilityPredicates
 
 在谓词中添加左括号。此方法类似于SQL语句的“(”，需要与endWrap一起使用。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -142,7 +142,7 @@ endWrap(): DataAbilityPredicates
 
 在谓词中添加右括号。此方法类似于SQL语句的“)”，需要和beginWrap一起使用。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -169,7 +169,7 @@ or(): DataAbilityPredicates
 
 此方法类似于SQL语句“or”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -191,7 +191,7 @@ and(): DataAbilityPredicates
 
 将和条件添加到谓词中。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -213,7 +213,7 @@ contains(field: string, value: string): DataAbilityPredicates
 
 配置谓词以匹配数据类型为string且value包含指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -242,7 +242,7 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 此方法类似于SQL语句的“%”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -271,7 +271,7 @@ endsWith(field: string, value: string): DataAbilityPredicates
 
 此方法类似于SQL语句的“%”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -298,7 +298,7 @@ isNull(field: string): DataAbilityPredicates
 
 配置谓词以匹配值为null的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -324,7 +324,7 @@ isNotNull(field: string): DataAbilityPredicates
 
 配置谓词以匹配值不为null的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -352,7 +352,7 @@ like(field: string, value: string): DataAbilityPredicates
 
 此方法类似于SQL语句“like”。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -379,7 +379,7 @@ glob(field: string, value: string): DataAbilityPredicates
 
 配置谓词以匹配数据类型为string的指定字段。与like方法不同，该方法的输入参数区分大小写。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -412,7 +412,7 @@ between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType且value在指定范围内的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -440,7 +440,7 @@ notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicate
 
 配置谓词以匹配数据类型为ValueType且value超出给定范围的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -468,7 +468,7 @@ greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType且值大于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -495,7 +495,7 @@ lessThan(field: string, value: ValueType): DataAbilityPredicates
 
 配置谓词以匹配数据类型为valueType且value小于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -522,7 +522,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType且value大于或等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -549,7 +549,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType且value小于或等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -576,7 +576,7 @@ orderByAsc(field: string): DataAbilityPredicates
 
 配置谓词以匹配其值按升序排序的列。当有多个orderByAsc使用时，最先使用的具有最高优先级。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -603,7 +603,7 @@ orderByDesc(field: string): DataAbilityPredicates
 
 配置谓词以匹配其值按降序排序的列。当有多个orderByDesc使用时，最先使用的具有最高优先级。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -630,7 +630,7 @@ distinct(): DataAbilityPredicates
 
 配置谓词以过滤重复记录并仅保留其中一个。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
 
@@ -648,15 +648,15 @@ distinct(): DataAbilityPredicates
 
 limitAs(value: number): DataAbilityPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 最大数据记录数。 |
+| value | number | 是 | 最大数据记录数，取值为正整数。传入值小于等于0时，不会限制记录数量。 |
 
 **返回值：**
 
@@ -674,15 +674,15 @@ limitAs(value: number): DataAbilityPredicates
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-配置谓词以指定返回结果的起始位置。将此方法必须与limitAs一起使用。
+设置谓词查询结果的起始位置。需要同步调用limitAs接口指定查询数量，否则无查询结果。查询指定偏移位置后的所有行时，limitAs接口需传入参数-1。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。传入值小于等于0时，查询结果将从第一个元素位置返回。 |
 
 **返回值：**
 
@@ -704,7 +704,7 @@ groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
 配置谓词按指定列分组查询结果。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -730,7 +730,7 @@ indexedBy(field: string): DataAbilityPredicates
 
 配置谓词以指定索引列。在使用此方法之前，您需要创建一个索引列。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -746,27 +746,35 @@ indexedBy(field: string): DataAbilityPredicates
 
 **示例：**
 
-  ```js
-  import { dataAbility, relationalStore } from '@kit.ArkData';
+```js
+import { UIAbility } from '@kit.AbilityKit';
+import { dataAbility, relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let context = getContext(this);
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
 
-  const STORE_CONFIG : relationalStore.StoreConfig = {
-      name: 'RdbTest.db', // 数据库文件名
-      securityLevel: relationalStore.SecurityLevel.S3,
-  };
-  // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-  const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
-  relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-    if (err) {
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db', // 数据库文件名
+        securityLevel: relationalStore.SecurityLevel.S3,
+      };
+      // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+      const SQL_CREATE_TABLE =
+        'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+      await store.executeSql(SQL_CREATE_TABLE); // 创建数据表
+    } catch (e) {
+      const err = e as BusinessError;
       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+
+    if (!store) {
       return;
     }
-    console.info('Succeeded in getting RdbStore.');
-
-
-    await store.executeSql(SQL_CREATE_TABLE); // 创建数据表
-
 
     // 创建索引
     const SQL_CREATE_INDEX = 'CREATE INDEX SALARY_INDEX ON EMPLOYEE(SALARY)'
@@ -777,8 +785,9 @@ indexedBy(field: string): DataAbilityPredicates
     dataAbilityPredicates.indexedBy("SALARY_INDEX")
 
     //  ...
-  })
-  ```
+  }
+}
+```
 
 ### in
 
@@ -786,7 +795,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType数组且值在给定范围内的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -814,7 +823,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 配置谓词以匹配数据类型为ValueType数组且值不在给定范围内的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
 
@@ -841,7 +850,7 @@ type ValueType = number | string | boolean
 
 用于表示允许的数据字段类型。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
 | 类型    | 说明                 |
 | ------- | -------------------- |

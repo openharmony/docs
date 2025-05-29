@@ -4,10 +4,11 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+>
+> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
-To ensure application running efficiency, most **PhotoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
 ## Obtaining Media Assets
 
@@ -28,9 +29,12 @@ To obtain the object at the specified position (for example, the first one, the 
 Example: Obtain the image **test.jpg**.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -65,7 +69,7 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 
 Your application may need to obtain the thumbnail of an image or video for preview purposes.
 
-For example, obtain the file descriptor (FD) of an image, and decode the image into a pixel map for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
+For example, obtain the file descriptor (FD) of an image, and decode the image into a PixelMap for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
 
 Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 
@@ -77,10 +81,13 @@ Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 4. Call **PhotoAsset.getThumbnail** to obtain the [PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) of the thumbnail of the image.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -121,15 +128,18 @@ Example: Create an image asset.
 
 **How to Develop**
 
-1. Set the file name and create **createOption** for setting attributes for the image asset to create.
+1. Set the file name and **createOption** for setting attributes for the image asset to create.
 2. Call **MediaAssetChangeRequest.createAssetRequest** to create a media asset change request object.
 3. Call **MediaAssetChangeRequest.getWriteCacheHandler** to obtain the handle of the file to write and write the content of the image asset.
 4. Call **PhotoAccessHelper.applyChanges** to apply the changes to the image.
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
-let context = getContext(this);
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -140,8 +150,8 @@ async function example() {
     };
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
-    // write date into fd
-    await fs.close(fd);
+    // write date into fd.
+    await fileIoclose(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`create asset failed with error: ${err.code}, ${err.message}`);
@@ -156,7 +166,7 @@ You can also use **MediaAssetChangeRequest.addResource** to specify the data sou
 
 To rename a media asset, change the **PhotoAsset.displayName** attribute, that is, the file name (including the file name extension) displayed.
 
-Obtain the media asset using [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult) APIs, use [MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11) to rename the file, and use use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply the changes to the database.
+Use [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult) to obtain the file to rename, use [MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11) to set the new name, and then use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply the changes to the database.
 
 **Prerequisites**
 
@@ -174,9 +184,12 @@ Example: Rename the first image in the obtained image assets.
 5. Call [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to save the modification to the database.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-let context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -204,14 +217,14 @@ async function example() {
 
 You can use [MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11) to move files to the trash.
 
-The file moved to the trash will be retained for 30 days before being deleted permanently. Before a file is deleted permanently from the trash, the user can restore it using the system application **FileManager** or **Gallery**.
+The file moved to the trash will be retained for 30 days before being deleted permanently. Before a file is deleted permanently from the trash, the user can restore it using the system application **Files** or **Gallery**.
 
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
-Example: Move the first image in the result set to the trash.
+Example: Move the first file in the result set to the trash.
 
 **How to Develop**
 
@@ -221,9 +234,12 @@ Example: Move the first image in the result set to the trash.
 4. Call [MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11) to move the image to the trash.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-let context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {

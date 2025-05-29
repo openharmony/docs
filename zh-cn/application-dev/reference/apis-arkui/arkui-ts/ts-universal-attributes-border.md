@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
 ## border
@@ -23,7 +23,7 @@ border(value: BorderOptions)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API Version 9开始，父节点的border显示在子节点内容之上。 |
+| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API version 9开始，父节点的border显示在子节点内容之上。 |
 
 ## borderStyle
 
@@ -95,7 +95,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，支持百分比，百分比依据组件宽度。 |
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，支持百分比，百分比依据组件宽度。设置圆角后，可搭配[.clip属性](./ts-universal-attributes-sharp-clipping.md#clip12)进行裁剪，避免子组件超出组件自身。|
 
 ## BorderOptions对象说明
 
@@ -158,7 +158,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## LocalizedEdgeColors<sup>12+</sup>对象说明
 
-边框颜色，用于描述组件边框四条边的颜色。
+边框颜色，描述组件边框四条边的颜色。
 
 引入该对象时，至少传入一个参数。
 
@@ -222,7 +222,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## 示例
 
-### 示例1
+### 示例1（基本样式用法）
+
+设置边框的宽度、颜色、圆角半径以及点、线样式。
 
 ```ts
 // xxx.ets
@@ -264,11 +266,12 @@ struct BorderExample {
 
 ![zh-cn_image_0000001219982705](figures/zh-cn_image_0000001219982705.gif)
 
-### 示例2
+### 示例2（边框宽度类型和边框颜色）
+
+border属性的width、radius、color属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
+
 ```ts
 // xxx.ets
-// border属性的width、radius、color属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
-
 import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component

@@ -20,7 +20,7 @@ import { ChildProcessOptions } from '@kit.AbilityKit';
 
 | Name       | Type     | Mandatory| Description                                                              |
 | ----------- | --------------------   | ---- | ---------------------------------------------------- |
-| isolationMode | boolean | No| Whether the child process runs in an independent sandbox environment. The default value is **false**, indicating that the child process runs in a non-independent sandbox environment.<br>This parameter is reserved. Currently, the child process can run only in a non-independent sandbox environment.|
+| isolationMode | boolean | No| Whether the child process runs in an independent sandbox and network environment. The value **true** means that the child process runs in an independent sandbox and network environment, and **false** means that the child process shares the sandbox and network environment with the main process. The default value is **false**.|
 
 **Example**
 

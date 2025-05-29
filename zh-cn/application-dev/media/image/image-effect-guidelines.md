@@ -106,7 +106,7 @@ target_link_libraries(entry PUBLIC
 
     以相机预览场景为例来说明OHNativeWindow输入场景。XComponent组件为相机预览流提供的SurfaceId，可在native c++层将SurfaceId转换成OHNativeWindow，下面提供一份代码示例。
     XComponent模块的具体使用方法请参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-    NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md)。
+    NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)。
     Camera的具体使用方法请参考[Camera预览参考](../camera/native-camera-preview.md)。
 
     (1) 在xxx.ets中添加一个XComponent组件。
@@ -125,7 +125,7 @@ target_link_libraries(entry PUBLIC
          // 调用native接口获取输入SurfaceId。
          this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
  
-         // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架
+         // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架。
          // ...
      })
      .width('100%')
@@ -232,7 +232,7 @@ target_link_libraries(entry PUBLIC
             root["name"] = "CustomBrightness";
             root["values"] = values;
         
-        　　 // 将json对象转成字符串infoStr
+        　　 // 将json对象转成字符串infoStr。
             // ...
 
             // 对*info赋值序列化字符串地址。

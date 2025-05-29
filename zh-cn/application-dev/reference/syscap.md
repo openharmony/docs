@@ -6,7 +6,7 @@
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性，如蓝牙，WIFI，NFC，摄像头等，都是系统能力之一。每个系统能力对应多个API，随着目标设备是否支持该系统能力共同存在或消失，也会随着DevEco Studio一起提供给开发者做联想。
 
-![image-20220326064841782](figures/image-20220326064841782.png)
+![image-SysCap.png](figures/image-SysCap.png)
 
 开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。
 
@@ -112,12 +112,12 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 	```ts
 	import geolocationManager from '@ohos.geoLocationManager';
 
-	if (geolocationManager) {
+	try {
 	geolocationManager.getCurrentLocation((location) => {
 		console.log('current location: ' + JSON.stringify(location));
 	});
-	} else {
-	console.log('该设备不支持位置信息');
+	} catch(err) {
+	    console.error('该设备不支持位置信息' + err);
 	}
 	```
 - Native API
@@ -145,19 +145,21 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authenticator = userAuth.getAuthenticator();
-const result = authenticator.checkAbility('FACE_ONLY', 'S1');
-
-if (result == authenticator.CheckAvailabilityResult.AUTH_NOT_SUPPORT) {
-	console.log('该设备不支持人脸识别');
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array(),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+};
+const widgetParam :userAuth.WidgetParam = {
+  title: '请输入密码',
+};
+try {
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  userAuthInstance.start();
+    console.log('设备认证成功');
+} catch (error) {
+    console.error('auth catch error: ' + JSON.stringify(error));
 }
-//强行调用不支持的 API 会返回错误信息，但不会出现语法错误。
-authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
-	if (err) {
-		console.log(err.message);
-		return;
-	}
-})
 ```
 
 ### 设备间的SysCap差异如何产生的

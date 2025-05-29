@@ -1,14 +1,14 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
 
-PlainArray可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，key值类型为number类型，每个key对应一个value。
+PlainArray可用于存储具有关联关系的key-value键值对集合，其中key值唯一且类型为number，每个key对应一个value。
 
-PlainArray依据泛型定义，采用轻量级结构，集合中key值的查找依赖于二分查找算法，然后映射到其他数组中的value值。
+PlainArray依据泛型定义，采用轻量级结构，通过二分查找算法在集合中查找 key 值，并映射到其他数组中的value值。
 
-PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值对，且均采用轻量级结构，但PlainArray的key值类型只能为number类型。
+PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值对，且均采用轻量级结构，但PlainArray的key值类型仅限于number。
 
 **推荐使用场景：** 当需要存储key值为number类型的键值对时，可以使用PlainArray。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -65,7 +65,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 
 isEmpty(): boolean
 
-判断该容器是否为空。
+判断容器是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -75,7 +75,7 @@ isEmpty(): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 为空返回true, 不为空返回false。 |
+| boolean | 为空返回true，不为空返回false。 |
 
 **错误码：**
 
@@ -97,7 +97,7 @@ let result = plainArray.isEmpty();
 
 has(key: number): boolean
 
-判断此容器中是否含有该指定key。
+判断容器中是否包含指定key。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -107,7 +107,7 @@ has(key: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -147,7 +147,7 @@ get(key: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 查找的指定key。 |
+| key | number | 是 | 查找的指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -178,7 +178,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-查找指定key对应的下标值，如果没有找到该key返回-1。
+查找指定key对应的下标值，如果未找到则返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +188,7 @@ getIndexOfKey(key: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -219,7 +219,7 @@ let result = plainArray.getIndexOfKey(2);
 
 getIndexOfValue(value: T): number
 
-查找指定value元素第一次出现的下标值，如果没有找到该value元素返回-1。
+查找指定value元素第一次出现的下标值，如果未找到则返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -269,7 +269,7 @@ getKeyAt(index: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -299,7 +299,7 @@ let result = plainArray.getKeyAt(1);
 
 getValueAt(index: number): T
 
-查找指定下标元素键值对中的Value值，失败返回undefined。
+查找指定下标元素键值对中的Value值，失败则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -307,17 +307,17 @@ getValueAt(index: number): T
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定下标。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | T | 返回该下标元素键值对中的value值，失败返回undefined。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回该下标元素键值对中的value值，失败返回undefined。 |
 
-  **错误码：**
+**错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
@@ -384,7 +384,7 @@ add(key: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 添加成员数据的键名。 |
+| key | number | 是 | 添加成员数据的键名。需要小于等于int32_max即2147483647。 |
 | value | T | 是 | 添加成员数据的值。 |
 
 **错误码：**
@@ -418,7 +418,7 @@ remove(key: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。 |
+| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -459,7 +459,7 @@ removeAt(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素下标。 |
+| index | number | 是 | 指定元素下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -490,7 +490,7 @@ let result = plainArray.removeAt(1);
 
 removeRangeFrom(index: number, size: number): number
 
-删除一定范围内的元素。
+删除指定范围内的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -500,8 +500,8 @@ removeRangeFrom(index: number, size: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 删除元素的起始下标。 |
-| size | number | 是 | 期望删除元素个数。 |
+| index | number | 是 | 删除元素的起始下标。需要小于等于int32_max即2147483647。 |
+| size | number | 是 | 期望删除元素个数。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -543,7 +543,7 @@ setValueAt(index: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定替换数据下标。 |
+| index | number | 是 | 指定替换数据下标。需要小于等于int32_max即2147483647。 |
 | value | T | 是 | 替换键值对中的值。 |
 
 **错误码：**
@@ -604,7 +604,7 @@ let result = plainArray.toString();
 
 clear(): void
 
-清除容器中的所有元素，并把length置为0。
+清除容器中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -632,7 +632,7 @@ plainArray.clear();
 
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -643,9 +643,9 @@ forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;)
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
@@ -688,10 +688,6 @@ for(let i = 0;i < 10;i++) {
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
 返回一个包含key-value键值对的迭代器对象，其中key是number类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

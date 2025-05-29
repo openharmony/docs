@@ -16,6 +16,7 @@ Node-API提供了注册和取消注册清理钩子函数的功能，以下是相
 ## 场景和功能介绍
 
 以下Node-API接口用于注册和取消不同类型的清理钩子。他们的使用场景如下：
+
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_add_env_cleanup_hook | 注册一个环境清理钩子函数，该函数将在Node-API环境退出时被调用。 |
@@ -30,6 +31,8 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 ### napi_add_env_cleanup_hook
 
 用于注册一个环境清理钩子函数，该函数将在环境退出时执行。这是确保资源在环境销毁前得到清理的重要机制。
+
+需要注意的是，napi_add_env_cleanup_hook接口并不支持对同一arg绑定多个回调。若出现env已销毁，但cleanup回调未被执行的情况。可以在启用ArkTS运行时[多线程检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)功能的前提下，查看hilog流水日志`AddCleanupHook Failed, data cannot register multiple times.`来查找发生注册失败的调用。
 
 ### napi_remove_env_cleanup_hook
 
@@ -47,7 +50,7 @@ typedef struct {
     size_t size;
 } Memory;
 // 外部缓冲区清理回调函数，用于释放分配的内存
-void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint) 
+void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint)
 {
     Memory *wrapper = (Memory *)finalize_hint;
     free(wrapper->data);
@@ -61,12 +64,12 @@ static void Cleanup(void *arg)
     OH_LOG_INFO(LOG_APP, "Node-API napi_add_env_cleanup_hook cleanuped: %{public}d", *(int *)(arg));
 }
 // 创建外部缓冲区并注册环境清理钩子函数
-static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info) 
+static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 {
     // 分配内存并复制字符串数据到内存中
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
-    wrapper->data = (char *)malloc(str.size());
+    wrapper->data = static_cast<char *>(malloc(str.size()));
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
     // 创建外部缓冲区对象，并指定清理回调函数
@@ -81,7 +84,7 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
         return nullptr;
     }
-    // 注册环境清理钩子函数，此处不移除环境清理钩子，为了在Javas环境被销毁时，这个钩子函数被调用，用来模拟执行一些清理操作，例如释放资源、关闭文件等。
+    // 注册环境清理钩子函数，此处不移除环境清理钩子，为了在Java环境被销毁时，这个钩子函数被调用，用来模拟执行一些清理操作，例如释放资源、关闭文件等。
     status = napi_add_env_cleanup_hook(env, Cleanup, &hookParameter);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Test Node-API napi_add_env_cleanup_hook failed.");
@@ -106,8 +109,8 @@ ArkTS侧示例代码
 
 ```ts
 // index.ets
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // 发送消息到worker线程
@@ -121,13 +124,13 @@ wk.onmessage = (message) => {
 
 ```ts
 // worker.ts
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
+import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
 // 处理来自主线程的消息
-parent.onmessage = function(message) {
+parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
@@ -238,8 +241,8 @@ export const napiAsyncCleanUpHook: () => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
 } catch (error) {

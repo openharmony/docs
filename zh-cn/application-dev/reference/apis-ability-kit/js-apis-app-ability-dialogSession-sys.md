@@ -20,7 +20,7 @@ import { dialogSession } from '@kit.AbilityKit';
 
 提供会话组件信息，包括包名、模块名、组件名等信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -31,7 +31,7 @@ import { dialogSession } from '@kit.AbilityKit';
 | abilityLabelId | number | 是 | 是 | 表示Ability标签ID。 |
 | bundleIconId | number | 是 | 是 | 表示Bundle图标ID。 |
 | bundleLabelId | number | 是 | 是 | 表示Bundle标签ID。 |
-| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。 |
+| visible<sup>12+</sup> | boolean | 是 | 是 | 表示Ability是否可见。true表示Ability可见，false表示Ability不可见。 |
 | appIndex<sup>12+</sup> | number | 是 | 是 | 表示应用的分身索引。 |
 | multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | 是 | 是 | 表示应用的多开模式。|
 
@@ -53,7 +53,7 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 
 根据dialogSessionId获取会话信息。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -99,7 +99,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 
 发送用户请求。使用callback异步回调。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -109,7 +109,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | 是 | 用户请求会话ID。 |
   | targetWant | Want | 是 | 用户请求目标。 |
-  | isAllowed | boolean | 是 | 用户请求结果。 |
+  | isAllowed | boolean | 是 | 是否允许拉起目标Ability。true表示允许，false表示不允许。 |
   | callback | AsyncCallback\<void\> | 是 | 回调函数。当发送用户请求成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -163,7 +163,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 
 发送用户请求。使用Promise异步回调。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -173,7 +173,7 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | 是 | 用户请求会话ID。 |
   | targetWant | Want | 是 | 用户请求目标。 |
-  | isAllowed | boolean | 是 | 用户请求结果。 |
+  | isAllowed | boolean | 是 | 是否允许拉起目标Ability。true表示允许，false表示不允许。 |
 
 **返回值：**
 

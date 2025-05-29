@@ -20,7 +20,7 @@
 以下Node-API接口主要用于与ArkTS交互时处理错误和异常情况。他们的使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS |
+| napi_create_error、napi_create_type_error、napi_create_range_error | 在C/C++中需要创建一个错误对象时，可以使用这些函数。创建的错误对象可以使用napi_throw抛出到ArkTS。 |
 | napi_throw | 当在C/C++中出现了错误或异常情况时，通过使用napi_create_error或napi_get_last_error_info方法创建或获取ArkTS Error对象，使用该方法抛出已有的ArkTS Error对象。 |
 | napi_throw_error、napi_throw_type_error、napi_throw_range_error | 当在C/C++中出现了错误或异常情况时，可以使用这些函数来抛出ArkTS中的异常。 |
 | napi_is_error | 检查一个napi_value是否代表一个错误对象时，可以使用这个函数。 |
@@ -41,7 +41,6 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
-#include <assert.h>
 static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 {
     // 获取输入参数（这里以字符串message作为参数传入）
@@ -52,12 +51,18 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     int32_t value = 0;
     napi_status status = napi_get_value_int32(env, args[0], &value);
     // 接口使用错误，故返回值不为napi_ok
-    assert(status != napi_ok);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_value_int32 return status, status is not equal to napi_ok.");
+    }
+
     // 调用接口napi_get_last_error_info获取最后一次错误信息
     const napi_extended_error_info *errorInfo;
     napi_get_last_error_info(env, &errorInfo);
     // 取出错误码与接口调用错误后其返回值作比较
-    assert(errorInfo->error_code == status);
+    if (errorInfo->error_code == status) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_last_error_info return errorInfo, error_code equal to status.");
+    }
+
     // 取出错误消息作为返回值带出去打印
     napi_value result = nullptr;
     napi_create_string_utf8(env, errorInfo->error_message, NAPI_AUTO_LENGTH, &result);
@@ -75,8 +80,8 @@ export const getLastErrorInfo: (str: string) => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info: %{public}s', testNapi.getLastErrorInfo('message'));
 } catch (error) {
@@ -93,7 +98,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatTypeError(napi_env env, napi_callback_info info)
+static napi_value CreateTypeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -111,16 +116,16 @@ static napi_value CreatTypeError(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const creatTypeError: () => Error;
+export const createTypeError: () => Error;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
-  throw testNapi.creatTypeError();
+  throw testNapi.createTypeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_type_error errorCode: %{public}s, errorMessage %{public}s', error.code, error.message);
 }
@@ -135,7 +140,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreatRangeError(napi_env env, napi_callback_info info)
+static napi_value CreateRangeError(napi_env env, napi_callback_info info)
 {
     // 构造errorCode和errorMessage
     napi_value errorCode = nullptr;
@@ -153,16 +158,16 @@ static napi_value CreatRangeError(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const creatRangeError: () => Error;
+export const createRangeError: () => Error;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
-  throw testNapi.creatRangeError();
+  throw testNapi.createRangeError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_range_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
@@ -209,8 +214,8 @@ export const napiThrow: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrow();
 } catch (error) {
@@ -263,8 +268,8 @@ export const napiThrowError: (dividend: number, divisor: number) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrowErrorMessage();
 } catch (error) {
@@ -322,8 +327,8 @@ export const throwTypeError: (message: string) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwTypeErrorMessage();
 } catch (error) {
@@ -387,8 +392,8 @@ export const throwRangeError: (num: number) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwRangeErrorMessage();
 } catch (error) {
@@ -438,8 +443,8 @@ export const napiIsError: <T>(obj: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   throw new Error("throwing an error");
 } catch (error) {
@@ -483,8 +488,8 @@ export const getAndClearLastException: () => Error | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 // 这里获取到最后一个未处理的异常
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
            testNapi.getAndClearLastException());
@@ -528,18 +533,18 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export interface MyObject {
-  code: string;
-  message: string;
-}
 export const isExceptionPending: () => Object | void;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+interface MyObject {
+  code: string;
+  message: string;
+}
 try {
   let result = testNapi.isExceptionPending() as MyObject;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_exception_pending, error.Code: %{public}s, error.message: %{public}s',
@@ -581,22 +586,13 @@ export const fatalError: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.fatalError();
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_fatal_error error');
 }
-```
-
-以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
-
-```text
-// CMakeLists.txt
-add_definitions( "-DLOG_DOMAIN=0xd0d0" )
-add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
 ### napi_fatal_exception
@@ -636,8 +632,8 @@ export const fatalException: (err: Error) => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const err = new Error("a fatal exception occurred");
 testNapi.fatalException(err);

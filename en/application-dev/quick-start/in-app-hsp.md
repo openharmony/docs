@@ -5,9 +5,9 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 > 
 > In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
 > 
-> Integrated HSP: a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP package also belongs to the in-app HSP.
 
-## When to Use
+## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
 
 - The HSP is loaded on demand during application running, which helps improve application performance.
@@ -16,15 +16,19 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 
 ## Constraints
 
-- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
-- No [UIAbility](../application-models/uiability-overview.md) or [ExtensionAbility](../application-models/extensionability-overview.md) can be declared in the configuration file of an HSP.
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The HAP version must be later than or equal to the HSP version.
+- HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) and [UIAbility](../application-models/uiability-overview.md) components in the configuration file, however, ExtensionAbility or UIAbility with entry capabilities (that is, entity.system.home and ohos.want.action.home are configured for the **skill** tag) is not supported.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
-- The integrated HSP is only available for the [stage model](application-package-structure-stage.md).
-- The integrated HSP only works with API version 12 or later and uses the normalized OHMUrl format.
+
+> **NOTE**
+> 
+> Cyclic dependency: For example, there are three HSPs. HSP-A depends on HSP-B, HSP-B depends on HSP-C, and HSP-C depends on HSP-A.
+>
+> Dependency transfer: For example, there are three HSPs. HSP-A depends on HSP-B, and HSP-B depends on HSP-C. Dependency transfer is not supported indicating that HSP-A can use the methods and components of HSP-B, but cannot directly use that of HSP-C.
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section7717162312546)<!--RP1End-->. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
@@ -32,13 +36,13 @@ MyApplication
 │   │   └── main
 │   │       ├── ets
 │   │       │   └── pages
-│   │       │       └── index.ets
-│   │       ├── resources
-│   │       └── module.json5
-│   ├── oh-package.json5
-│   ├── index.ets
-│   └── build-profile.json5 // Module-level configuration file
-└── build-profile.json5     // Project-level configuration file
+│   │       │       └── index.ets     // Page file of the library module
+│   │       ├── resources             // Resources of the library module
+│   │       └── module.json5          // Configuration file of the library module
+│   ├── oh-package.json5              // Module-level configuration file
+│   ├── index.ets                     // Entry file
+│   └── build-profile.json5           // Module-level configuration file
+└── build-profile.json5               // Project-level configuration file
 ```
 
 ## Developing an HSP
@@ -75,7 +79,7 @@ export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
-// library/src/main/ets/utils/test.ts
+// library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
     console.info(msg);
@@ -98,7 +102,7 @@ export { Log, add, minus } from './src/main/ets/utils/test';
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **liblibrary.so** file is exported.
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {
@@ -140,7 +144,7 @@ When resources in an HSP need to be exported for cross-package access, it is rec
 
 The implementation is as follows:
 
-The implementation is as follows:  
+Encapsulate the resources that need to be published into a resource management class.  
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{
@@ -159,14 +163,12 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 export { ResManager } from './src/main/ets/ResManager';
 ```
 
-
-
 ## Using an HSP
 
-You can reference APIs in an HSP and and implement page redirection in the HSP through page routing.
+You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). For details, see <!--RP2-->[Referencing an HSP](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section6161154819195)<!--RP2End-->.
+To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
@@ -181,7 +183,6 @@ The APIs can be used as follows in the code of the invoking module:
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -262,11 +263,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -305,7 +306,6 @@ If you want to add a button in the **entry** module to jump to the menu page (**
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -338,9 +338,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }
@@ -360,7 +359,7 @@ The **url** content template is as follows:
 ```ets
 '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
 ```
-### Going Back to Previous Page with Router
+### Going Back to the Previous Page Using router.back()
 You can use the **router.back** method to go back, from a page in the HSP, to the previous page, under the prerequisite that the target page is in the redirection path of the source page.
 ```ts
 import router from '@ohos.router';
@@ -446,40 +445,3 @@ The **url** parameter in the **router.back** method is described as follows:
     ```ets
     '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
     ```
-
-## Integrated HSP
-
-### Configuring an HSP as an Integrated HSP
-To specify the HSP to be built as an integrated HSP, open the module-level **build-profile.json5** file and set **integratedHsp** to **true**.
-
-```
-{
-  "apiType": "stageMode",
-  "buildOption": {
-    "arkOptions": {
-      "integratedHsp": true
-    }
-  }
-}
-```
-
-### Using the Normalized OHMUrl Format
-To configure the project to use the normalized OHMUrl format, open the project-level **build-profile.json5** file and set **useNormalizedOHMUrl** to **true**.
-
-```
-{
-  "app": {
-    "products": {
-      "name": "default",
-      "signingConfig": "default",
-      "compatibleSdkVersion": "5.0.0(12)",
-      "runtimeOS": "HarmonyOS",
-      "buildOption": {
-        "strictMode": {
-          "useNormalizedOHMUrl": true
-        }
-      }
-    }
-  }
-}
-```

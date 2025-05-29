@@ -1,4 +1,4 @@
-# 动态照片(ArkTS)
+# 动态照片拍摄(ArkTS)
 
 相机框架提供动态照片拍摄能力，业务应用可以类似拍摄普通照片一样，一键式拍摄得到动态照片。
 
@@ -6,7 +6,7 @@
 
 - 查询当前设备的当前模式是否支持拍摄动态照片。
 - 如果支持动态照片，可以调用相机框架提供的使能接口**使能**动态照片能力。
-- 监听照片回调，将照片存入媒体库。
+- 监听照片回调，将照片存入媒体库。可参考[MediaLibrary Kit-访问和管理动态照片资源](../medialibrary/photoAccessHelper-movingphoto.md)。
 
 ## 开发步骤
 
@@ -41,7 +41,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -49,19 +49,22 @@
 
 3. 查询当前设备当前模式是否支持动态照片能力。
 
-   ```ts
-   function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
-     let isSupported: boolean = false;
-     try {
-       isSupported = photoOutput.isMovingPhotoSupported();
-     } catch (error) {
-       // 失败返回错误码error.code并处理
-       let err = error as BusinessError;
-       console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
-     }
-     return isSupported;
-   }
-   ```
+    > **说明：**
+    > 查询是否支持动态照片前需要先完成相机会话配置、提交和启动会话，详细开发步骤请参考[会话管理](camera-session-management.md)。
+
+    ```ts
+    function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+      let isSupported: boolean = false;
+      try {
+        isSupported = photoOutput.isMovingPhotoSupported();
+      } catch (error) {
+        // 失败返回错误码error.code并处理。
+        let err = error as BusinessError;
+        console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+      }
+      return isSupported;
+    }
+    ```
 
 4. 使能动态照片拍照能力。
 
@@ -70,7 +73,7 @@
      try {
        photoOutput.enableMovingPhoto(true);
      } catch (error) {
-       // 失败返回错误码error.code并处理
+       // 失败返回错误码error.code并处理。
        let err = error as BusinessError;
        console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
      }
@@ -79,17 +82,18 @@
 
 5. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
 
-
-
 ## 状态监听
 
-注册photoAsset监听回调。
+在相机应用开发过程中，可以随时监听动态照片拍照输出流状态。通过注册photoAsset的回调函数获取监听结果，photoOutput创建成功时即可监听。
 
    ```ts
-   let context = getContext(this);
-   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+   function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     return phAccessHelper;
+   }
 
-   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+     phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
      try {
        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
@@ -100,15 +104,15 @@
      }
    }
 
-   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
-         console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`photoAssetAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // 调用媒体库落盘接口保存一阶段图和动态照片视频
-       mediaLibSavePhoto(photoAsset);
+       // 调用媒体库落盘接口保存一阶段图和动态照片视频。
+       mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
      });
    }
    ```

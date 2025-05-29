@@ -1,6 +1,6 @@
 # Image (System API)
 
-The **\<Image>** component is usually used to display images in applications.
+The **Image** component is usually used to display images in applications.
 
 > **NOTE**
 >
@@ -20,11 +20,11 @@ Sets the type of the AI analyzer, including subject recognition and character re
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type                                         | Mandatory| Description        |
+| Name | Type                                         | Mandatory | Description        |
 | ------ | --------------------------------------------- | ---- | ------------ |
-| config | [ImageAnalyzerConfig](#imageanalyzerconfig11) | Yes  | Type of the AI analyzer.|
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | Yes  | Type of the AI analyzer. |
 
 ### edgeAntialiasing<sup>11+</sup>
 
@@ -38,23 +38,56 @@ This attribute can be used to fix aliasing in SVG images on devices with PPI low
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
+**Parameters** 
 
-| Name| Type  | Mandatory| Description                               |
+| Name | Type  | Mandatory | Description                               |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | number | Yes  | Edge antialiasing of the image.<br>Default value: **$0$**|
+| value  | number | Yes  | Edge antialiasing of the image.<br>Default value: **$0$** |
 
-## ImageAnalyzerConfig<sup>11+</sup>
+### pointLight<sup>11+</sup>
 
-This API can be used in ArkTS widgets since API version 11.
+pointLight(value: PointLightStyle)
 
-Describes the type of the AI analyzer.
+Sets the point light style.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description          |
-| -------- | -------------- |
-| SUBJECT | Object recognition.|
-| TEXT | Text recognition.|
+**Parameters** 
+
+| Name | Type                                                        | Mandatory | Description        |
+| ------ | ------------------------------------------------------------ | ---- | ------------ |
+| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | Yes  | Point light style. |
+
+### enhancedImageQuality<sup>12+</sup>
+
+enhancedImageQuality(imageQuality: ResolutionQuality)
+
+Sets the image resolution for decoding the image.
+
+This attribute does not support non-decoded image types such as SVG, [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7), and [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                   | Mandatory | Description                            |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| imageQuality | [ResolutionQuality](#resolutionquality12) | Yes  | Image resolution used for decoding. |
+
+## ResolutionQuality<sup>12+</sup>
+
+Enumerates the image resolutions used for decoding the image.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                     |
+| ------ | --------------------------  |
+| Low   | Low resolution, with moderate decoding time.  |
+| Medium | Medium resolution, with moderate decoding time. |
+| High   | High resolution, with long decoding time.   |

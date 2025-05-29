@@ -11,7 +11,7 @@ The **batteryStatistics** module provides APIs for querying software and hardwar
 ## Modules to Import
 
 ```js
-import batteryStats from '@ohos.batteryStatistics';
+import {batteryStats} from '@kit.BasicServicesKit';
 ```
 
 ## batteryStats.getBatteryStats
@@ -36,7 +36,8 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example**
 
@@ -64,7 +65,7 @@ Obtains the power consumption information list. This API uses an asynchronous ca
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained (that is, **Array<[BatteryStatsInfo](#batterystatsinfo)>>**). If the operation failed, **err** is an error object.|
+| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the obtained Array<[BatteryStatsInfo](#batterystatsinfo)>. Otherwise, **err** is an error object. **AsyncCallback** has encapsulated an API of the **BatteryStatsInfo** class.|
 
 **Error codes**
 
@@ -72,7 +73,9 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example**
 
@@ -114,7 +117,9 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -155,7 +160,9 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example**
 
@@ -182,7 +189,7 @@ Obtains the power consumption of a hardware unit according to the consumption ty
 
 | Name| Type                               | Mandatory| Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type.|
+| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type. The value must be an enum.|
 
 **Return value**
 
@@ -196,7 +203,9 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example**
 
@@ -223,7 +232,7 @@ Obtains the proportion of the power consumption of a hardware unit according to 
 
 | Name| Type                               | Mandatory| Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type.|
+| type   | [ConsumptionType](#consumptiontype) | Yes  | Power consumption type. The value must be an enum.|
 
 **Return value**
 
@@ -237,7 +246,9 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-b
 
 | Code  | Error Message   |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4600101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 

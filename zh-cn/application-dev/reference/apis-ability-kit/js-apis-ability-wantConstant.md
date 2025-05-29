@@ -12,7 +12,7 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Action
+## Action
 
 want操作的常数。用于表示要执行的通用操作。
 
@@ -21,7 +21,7 @@ want操作的常数。用于表示要执行的通用操作。
 | 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                        |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                           |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作。                          |
 | ACTION_SEARCH                               | ohos.want.action.search                  | 指示启动页面搜索功能的操作。                                 |
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。    |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                  |
@@ -48,7 +48,7 @@ want操作的常数。用于表示要执行的通用操作。
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
 
 
-## wantConstant.Entity
+## Entity
 
 want实体的常数。用于表示目标Ability额外的类别信息。
 
@@ -63,7 +63,7 @@ want实体的常数。用于表示目标Ability额外的类别信息。
 | ENTITY_VIDEO                               | entity.system.video                      | 指示视频类别。                                      |
 
 
-## wantConstant.Flags
+## Flags
 
 Flags说明。用于表示处理Want的方式。
 

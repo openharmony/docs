@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager)[NativeResourceManager](rawfile.md#nativeresourcemanager) | 代表native侧的ResourceManager。  | 
+| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager) [NativeResourceManager](rawfile.md#nativeresourcemanager) | 代表native侧的ResourceManager。  | 
 
 
 ### 函数

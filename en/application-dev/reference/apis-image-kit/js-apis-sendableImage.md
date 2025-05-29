@@ -25,13 +25,13 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
 | Type                            | Description                                                                   |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.<br>If the size of the created pixel map exceeds that of the original image, the pixel map size of the original image is returned.|
+| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
 
 **Example**
 
@@ -40,7 +40,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     sendableImage.createPixelMap(color, opts).then((pixelMap: sendableImage.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
@@ -126,8 +126,8 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap: image.PixelMap | undefined = undefined;
-   sendableImage.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   let pixelMap: sendableImage.PixelMap | undefined = undefined;
+   sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -159,7 +159,7 @@ Creates a **PixelMap** object from a surface ID.
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region7)  | Yes  | Size of the image after cropping.                        |
+| region                 | [image.Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -205,7 +205,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
-| options | [InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 | Type                            | Description                 |
@@ -218,7 +218,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 
 **Example**
 
@@ -227,7 +227,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     return pixelMap;
@@ -238,7 +238,7 @@ async function Demo() {
 
 convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
-Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object under **image**. This API returns the result synchronously. The APIs of the **PixelMap** object under **image** cannot be called any more.
+Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object under **image**. This API returns the result synchronously. The APIs of the **PixelMap** object under **image** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -259,7 +259,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
@@ -268,7 +269,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
@@ -280,7 +281,7 @@ async function Demo() {
 
 convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
-Creates a **PixelMap** object under **image** from a **PixelMap** object under **sendableImage**. This API returns the result synchronously. The APIs of the **PixelMap** object under **sendableImage** cannot be called any more.
+Creates a **PixelMap** object under **image** from a **PixelMap** object under **sendableImage**. This API returns the result synchronously. The APIs of the **PixelMap** object under **sendableImage** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -301,7 +302,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
@@ -310,7 +312,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
@@ -320,7 +322,7 @@ async function Demo() {
 
 ## PixelMap
 
-Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
 The **PixelMap** object under **sendableImage** supports the **sendable** attribute and sharing of the worker thread. The [Convert](#sendableimageconverttopixelmap) API can be used to convert a **PixelMap** object in **sendableImage** to a **PixelMap** object in **image**, and vise versa. After the conversion, the APIs of the original object cannot be called. Otherwise, error 501 is reported. When processing a **PixelMap** object across threads, you need to consider the multithreaded problem.
 
@@ -332,14 +334,14 @@ Before calling any API in **PixelMap**, you must use [sendableImage.createPixelM
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the pixels of an image are editable.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isStrideAlignment | boolean | Yes  | No  | Whether the image memory is the DMA memory. In the case of DMA, a 256-byte alignment is carried out, which means that a padding area exists at the end of the line.|
+| isEditable        | boolean | Yes  | No  | Whether the PixelMap is editable. The value **true** means that the PixelMap is editable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isStrideAlignment | boolean | Yes  | No  | Whether the PixelMap uses DMA memory. The value** true** means that the PixelMap uses DMA memory, and **false** means the opposite. The PixelMap in DMA memory is aligned to 256-byte boundaries, with padding areas at the end of each row.|
 
 ### readPixelsToBuffer
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the PixelMap is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -361,9 +363,10 @@ Reads the pixels of this image and writes the data to an ArrayBuffer. This API u
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+async function Demo(pixelMap : sendableImage.PixelMap) {
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
             console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
@@ -396,8 +399,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -405,7 +408,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBufferSync(readBuffer);
     }
@@ -426,7 +429,7 @@ Reads the pixels in an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Return value**
 
@@ -451,7 +454,7 @@ async function Demo() {
         pixelMap.readPixels(area).then(() => {
             console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
         }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// Called if no condition is met.
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
         })
     }
 }
@@ -471,7 +474,7 @@ Reads the pixels in an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area from which the pixels will be read.|
 
 **Error codes**
 
@@ -479,8 +482,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -515,7 +518,7 @@ Writes the pixels to an area. This API uses a promise to return the result.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Return value**
 
@@ -564,7 +567,7 @@ Writes the pixels to an area. This API returns the result synchronously.
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
+| area   | [image.PositionArea](js-apis-image.md#positionarea7) | Yes  | Area to which the pixels will be written.|
 
 **Error codes**
 
@@ -572,8 +575,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -626,7 +629,7 @@ Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let bufferArr: Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -663,8 +666,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -672,7 +675,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let bufferArr : Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -751,7 +754,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function Demo() {
     if (pixelMap != undefined) {
         let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
-        return imageInfo;
     }
 }
 ```
@@ -804,7 +806,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image.
+Obtains the pixel density of this image.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -814,7 +816,7 @@ Obtains the density of this image.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image.|
+| number | Pixel density, in ppi.|
 
 **Example**
 
@@ -836,7 +838,7 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 
 | Name| Type  | Mandatory| Description                       |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | Yes  | Opacity rate.|
+| rate   | number | Yes  | Opacity rate. The value range is (0,1].|
 
 **Return value**
 
@@ -865,7 +867,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-Sets the opacity rate for this pixel map and initializes the pixel map.
+Sets the opacity rate for this PixelMap and initializes the PixelMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -875,7 +877,7 @@ Sets the opacity rate for this pixel map and initializes the pixel map.
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | Yes  | Opacity rate.  |
+| rate     | number               | Yes  | Opacity rate. The value range is (0,1].  |
 
 **Error codes**
 
@@ -883,8 +885,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -922,7 +924,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
             console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -953,8 +955,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -962,8 +964,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let pixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return pixelMap;
+    let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return resPixelMap;
 }
 ```
 
@@ -1032,8 +1034,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1063,8 +1065,8 @@ Translates this image based on given coordinates. This API uses a promise to ret
 
 | Name| Type  | Mandatory| Description       |
 | ------ | ------ | ---- | ----------- |
-| x      | number | Yes  | X coordinate to translate.|
-| y      | number | Yes  | Y coordinate to translate.|
+| x      | number | Yes  | X coordinate to translate, in px.|
+| y      | number | Yes  | Y coordinate to translate, in px.|
 
 **Return value**
 
@@ -1113,8 +1115,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1191,8 +1193,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1221,8 +1223,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Return value**
 
@@ -1263,8 +1265,8 @@ Flips this image horizontally or vertically, or both. This API returns the resul
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
+| horizontal | boolean              | Yes  | Whether to flip the image horizontally. The value **true** means to flip the image horizontally, and **false** means the opposite.           |
+| vertical   | boolean              | Yes  | Whether to flip the image vertically. The value **true** means to flip the image vertically, and **false** means the opposite.           |
 
 **Error codes**
 
@@ -1272,8 +1274,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1303,7 +1305,7 @@ Crops this image based on a given size. This API uses a promise to return the re
 
 | Name| Type              | Mandatory| Description       |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region7) | Yes  | Size of the image after cropping.|
+| region | [Region](../apis-image-kit/js-apis-image.md#region8) | Yes  | Size of the image after cropping.|
 
 **Return value**
 
@@ -1344,7 +1346,7 @@ Crops this image based on a given size. This API returns the result synchronousl
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region7)   | Yes  | Size of the image after cropping.                 |
+| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | Yes  | Size of the image after cropping.                 |
 
 **Error codes**
 
@@ -1352,8 +1354,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  501    | Resource Unavailable. |
 
 **Example**
 
@@ -1465,7 +1467,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -1473,13 +1475,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace).then(() => {
+    pixelMap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
         console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
@@ -1718,8 +1721,8 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 | Name| Type         | Read Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | No  | No  | Region size.  |
-| x    | number        | No  | No  | X coordinate.|
-| y    | number        | No  | No  | Y coordinate.|
+| x    | number        | No  | No  | X coordinate, in px.|
+| y    | number        | No  | No  | Y coordinate, in px.|
 
 ## sendableImage.createImageSource
 
@@ -1747,7 +1750,8 @@ Creates an **ImageSource** instance based on a given URI.
 **Example**
 
 ```ts
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 ```
@@ -1777,11 +1781,12 @@ Creates an **ImageSource** instance based on a given file descriptor.
 **Example**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
-let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
 ```
 
@@ -1813,7 +1818,7 @@ Creates an **ImageSource** instance based on buffers.
 **Example**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(buf);
 ```
 
@@ -1845,11 +1850,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
+import { image } from '@kit.ImageKit';
+
 let size: image.Size = {
     height: 8192,
     width: 8
@@ -1891,13 +1898,14 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
     console.info('Succeeded in creating pixelMap object through image decoding parameters.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to create pixelMap object through image decoding parameters.');
+    console.error(`Failed to create pixelMap object through image decoding parameters. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -1906,6 +1914,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 release(): Promise\<void>
 
 Releases this **ImageSource** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
@@ -1921,19 +1930,21 @@ The thread that runs **release** is insecure.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
 sendableImageSourceApi.release().then(() => {
     console.info('Succeeded in releasing the image source instance.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to release the image source instance.');
+    console.error(`Failed to release the image source instance. code ${error.code}, message is ${error.message}`);
 })
 ```
 
 ## Image
 
 Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage) and [readLatestImage](#readlatestimage) are called.
+
 This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable).
 
 ### Attributes
@@ -1943,15 +1954,16 @@ This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#is
 | Name    | Type              | Read Only| Optional| Description                                              |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region) | No  | No  | Image area to be cropped.                                |
-| size     | [Size](#size)      | Yes  | No  | Image size.                                        |
+| size     | [Size](#size)      | Yes  | No  | Image size. If the **image** object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the **image** object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the **image** object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).                                        |
 | format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
-| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp.|
+| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use [getImageProperty](js-apis-image.md#getimageproperty11) to read the related EXIF information.|
 
 ### getComponent
 
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
 Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
+
 The thread that runs **getComponent** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
@@ -1972,6 +1984,7 @@ The thread that runs **getComponent** is insecure.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -1983,7 +1996,7 @@ async function Demo() {
   img.getComponent(4).then((component: image.Component) => {
     console.info('getComponent succeeded.');
   }).catch((error: BusinessError) => {
-    console.error('getComponent failed');
+    console.error(`getComponent failed code ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -2009,6 +2022,7 @@ The corresponding resources must be released before another image arrives. The t
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2020,7 +2034,7 @@ async function Demo() {
   img.release().then(() => {
     console.info('release succeeded.');
   }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`release failed. code ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -2059,16 +2073,17 @@ Obtains a surface ID for the camera or other components. This API uses a promise
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
     width: 8
 }
 let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.getReceivingSurfaceId().then((id: string) => { 
-    console.info('getReceivingSurfaceId succeeded.');
+receiver.getReceivingSurfaceId().then((id: string) => {
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
 }).catch((error: BusinessError) => {
-    console.error('getReceivingSurfaceId failed.');
+    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2077,6 +2092,8 @@ receiver.getReceivingSurfaceId().then((id: string) => {
 readLatestImage(): Promise\<Image>
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2090,6 +2107,7 @@ Reads the latest image from the **ImageReceiver** instance. This API uses a prom
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2099,7 +2117,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.readLatestImage().then((img: image.Image) => {
     console.info('readLatestImage succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('readLatestImage failed.');
+    console.error(`readLatestImage failed. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2108,6 +2126,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2121,6 +2141,7 @@ Reads the next image from the **ImageReceiver** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2130,7 +2151,7 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.readNextImage().then((img: image.Image) => {
     console.info('readNextImage succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('readNextImage failed.');
+    console.error(`readNextImage failed. code ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2153,6 +2174,7 @@ Listens for image arrival events.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2169,6 +2191,7 @@ receiver.on('imageArrival', () => {
 release(): Promise\<void>
 
 Releases this **ImageReceiver** instance. This API uses a promise to return the result.
+
 The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
@@ -2183,6 +2206,7 @@ The thread that runs **release** is insecure.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2192,6 +2216,6 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 receiver.release().then(() => {
     console.info('release succeeded.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`release failed. code ${error.code}, message is ${error.message}`);
 })
 ```

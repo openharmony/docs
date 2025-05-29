@@ -22,9 +22,9 @@ Obtains a **DistributedAccountAbility** instance.
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DistributedAccountAbility](#distributedaccountability) | **DistributedAccountAbility** instance obtained. This instance provides APIs for querying and updating the login state of a distributed account.||
 
 **Example**
   ```ts
@@ -47,13 +47,13 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -90,13 +90,13 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 12300001 | System service exception. |
@@ -132,9 +132,9 @@ Queries distributed account information. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
@@ -167,9 +167,9 @@ Queries distributed account information. This API uses a promise to return the r
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained. |
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
 
 **Example**
   ```ts
@@ -195,14 +195,14 @@ Sets the distributed account information. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -242,19 +242,19 @@ Sets the distributed account information. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message|
+| ID| Error Message|
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -296,10 +296,10 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
@@ -332,15 +332,15 @@ Updates the distributed account information. This API uses a promise to return t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information.|
 
 **Return value**
 
-| Type | Description |
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```ts
@@ -362,15 +362,15 @@ Represents the distributed information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string |Yes| Name of the distributed account. It must be a non-null string.|
 | id | string |Yes| UID of the distributed account. It must be a non-null string.|
-| event | string |Yes | Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string |No | Nickname of the distributed account. By default, no value is passed in. |
-| avatar<sup>9+</sup> | string |No | Avatar of the distributed account. By default, no value is passed in. |
-| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No | Status of the distributed account. The value is of the enumerated type. The default status is unlogged. |
-| scalableData<sup>8+</sup> | object |No | Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default.|
+| event | string |Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string |No| Nickname of the distributed account. By default, no value is passed in.|
+| avatar<sup>9+</sup> | string |No| Avatar of the distributed account. By default, no value is passed in.|
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
+| scalableData<sup>8+</sup> | object |No| Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default.|
 
 ## DistributedAccountStatus<sup>10+</sup>
 
@@ -378,7 +378,7 @@ Enumerates the statuses of a distributed account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Value | Description       |
+| Name | Value| Description       |
 | ---- | ------ | ----------- |
-| NOT_LOGGED_IN   | 0  | The account has not logged in. |
-| LOGGED_IN  | 1  | The account has logged in. |
+| NOT_LOGGED_IN   | 0  | The account has not logged in.|
+| LOGGED_IN  | 1  | The account has logged in.|

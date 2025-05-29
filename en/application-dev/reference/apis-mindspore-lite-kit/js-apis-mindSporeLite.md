@@ -1,6 +1,6 @@
 # @ohos.ai.mindSporeLite (On-device AI Framework)
 
-MindSpore Lite is a lightweight and high-performance on-device AI engine that provides standard model inference and training APIs and built-in universal high-performance operator libraries. It natively supports native Neural Network Runtime Kit for a higher inference efficiency, empowering intelligent applications in all scenarios.
+MindSpore Lite is a lightweight and high-performance on-device AI engine that provides standard model inference and training APIs and built-in universal high-performance operator libraries. It supports Neural Network Runtime Kit for a higher inference efficiency, empowering intelligent applications in all scenarios.
 
 This topic describes the model inference and training capabilities supported by the MindSpore Lite AI engine.
 
@@ -34,9 +34,9 @@ Loads the input model from the full path for model inference. This API uses an a
 **Example**
 
 ```ts
-let model_file : string = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, (result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile, (mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -61,9 +61,9 @@ Loads the input model from the full path for model inference. This API uses an a
 ```ts
 let context: mindSporeLite.Context = {};
 context.target = ['cpu'];
-let model_file : string = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file, context, (result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile : string = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile, context, (mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -91,9 +91,9 @@ Loads the input model from the full path for model inference. This API uses a pr
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -117,13 +117,15 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 ```ts
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
-let modelName = '/path/to/xxx.ms';
-getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer, (mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -146,26 +148,19 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-let modelName = '/path/to/xxx.ms';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
   context.target = ['cpu'];
-  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -193,24 +188,17 @@ Loads the input model from the memory for inference. This API uses a promise to 
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-let modelName = '/path/to/xxx.ms';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
-globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -233,10 +221,10 @@ Loads the input model based on the specified file descriptor for inference. This
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
-let model_file = '/path/to/xxx.ms';
-let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
-mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile = '/path/to/xxx.ms';
+let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
+mindSporeLite.loadModelFromFd(file.fd, (mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -260,12 +248,12 @@ Loads the input model based on the specified file descriptor for inference. This
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
-let model_file = '/path/to/xxx.ms';
+let modelFile = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
 context.target = ['cpu'];
-let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
-mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
+mindSporeLite.loadModelFromFd(file.fd, context, (mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -294,11 +282,12 @@ Loads the input model based on the specified file descriptor for inference. This
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
-let model_file = '/path/to/xxx.ms';
-let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
-let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
-let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-console.info(modelInputs[0].name);
+let modelFile = '/path/to/xxx.ms';
+let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
+mindSporeLite.loadModelFromFd(file.fd).then((mindSporeLiteModel: mindSporeLite.Model) => {
+  let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+  console.info(modelInputs[0].name);
+})
 ```
 
 ## mindSporeLite.loadTrainModelFromFile<sup>12+</sup>
@@ -326,9 +315,9 @@ Loads the training model file based on the specified path. This API uses a promi
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadTrainModelFromFile(model_file).then((result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -358,12 +347,18 @@ Loads a training model from the memory buffer. This API uses a promise to return
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit'
-let model_file = '/path/to/xxx.ms';
-let resMgr:resourceManager.ResourceManager=getContext().getApplicationContext().resourceManager;
-let modelBuffer = await resMgr.getRawFileContent(model_file);
-let msliteModel = await mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer);
-console.info("==========MSLITE trainMode===========", msliteModel.trainMode);
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
+
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
+  let modelBuffer = buffer.buffer;
+  mindSporeLite.loadTrainModelFromBuffer(modelBuffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    console.info("MSLITE trainMode: ", mindSporeLiteModel.trainMode);
+  })
+})
 ```
 
 ## mindSporeLite.loadTrainModelFromFd<sup>12+</sup>
@@ -392,11 +387,11 @@ Loads the training model file from the file descriptor. This API uses a promise 
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
-let model_file = '/path/to/xxx.ms';
-let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
-let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadTrainModelFromFd(file.fd);
-let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-console.info(modelInputs[0].name);
+let modelFile = '/path/to/xxx.ms';
+let file = fileIo.openSync(modelFile, fileIo.OpenMode.READ_ONLY);
+mindSporeLite.loadTrainModelFromFd(file.fd).then((mindSporeLiteModel: mindSporeLite.Model) => {
+  console.info("MSLITE trainMode: ", mindSporeLiteModel.trainMode);
+});
 ```
 
 ## mindSporeLite.getAllNNRTDeviceDescriptions<sup>12+</sup>
@@ -416,9 +411,9 @@ Obtains all device descriptions in NNRt.
 **Example**
 
 ```ts
-let all_devices = await mindSporeLite.getAllNNRTDeviceDescriptions();
-if (all_devices == null) {
-  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.error('MS_LITE_LOG: getAllNNRTDeviceDescriptions is NULL.');
 }
 ```
 
@@ -565,13 +560,12 @@ Obtains the NNRt device ID.
 ```ts
 let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
 if (allDevices == null) {
-  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
-  return
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
 }
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i:number = 0; i<allDevices.length; i++){
+for (let i: number = 0; i < allDevices.length; i++) {
   console.info(allDevices[i].deviceID().toString());
 }
 ```
@@ -595,13 +589,12 @@ Obtains the device model.
 ```ts
 let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
 if (allDevices == null) {
-  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
-  return
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
 }
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i:number = 0; i<allDevices.length; i++){
+for (let i: number = 0; i < allDevices.length; i++) {
   console.info(allDevices[i].deviceType().toString());
 }
 ```
@@ -625,13 +618,12 @@ Obtains the NNRt device name.
 ```ts
 let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
 if (allDevices == null) {
-  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
-  return
+  console.error('getAllNNRTDeviceDescriptions is NULL.');
 }
 let context: mindSporeLite.Context = {};
 context.target = ["nnrt"];
 context.nnrt = {};
-for (let i:number = 0; i<allDevices.length; i++){
+for (let i: number = 0; i < allDevices.length; i++) {
   console.info(allDevices[i].deviceName().toString());
 }
 ```
@@ -728,9 +720,9 @@ Obtains the model input for inference.
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((result : mindSporeLite.Model) => {
-  let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
+  let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
 })
 ```
@@ -752,30 +744,23 @@ Executes the inference model. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let modelBuffer = buffer.buffer;
-  let model_file : string = '/path/to/xxx.ms';
-  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
+  let modelFile : string = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
 
-  modelInputs[0].setData(modelBuffer);
-  mindSporeLiteModel.predict(modelInputs, (result : mindSporeLite.MSTensor[]) => {
-    let output = new Float32Array(result[0].getData());
+  modelInputs[0].setData(inputBuffer);
+  mindSporeLiteModel.predict(modelInputs, (mindSporeLiteTensor : mindSporeLite.MSTensor[]) => {
+    let output = new Float32Array(mindSporeLiteTensor[0].getData());
     for (let i = 0; i < output.length; i++) {
-      console.info(output[i].toString());
+      console.info('MS_LITE_LOG: ' + output[i].toString());
     }
   })
 })
@@ -803,26 +788,20 @@ Executes model inference. This API uses a promise to return the result. Ensure t
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-    value:number = 0;
-    foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-}
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let modelBuffer = buffer.buffer;
-  let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
+  let modelFile = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(modelBuffer);
-  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
-    let output = new Float32Array(result[0].getData());
+  modelInputs[0].setData(inputBuffer);
+  mindSporeLiteModel.predict(modelInputs).then((mindSporeLiteTensor : mindSporeLite.MSTensor[]) => {
+    let output = new Float32Array(mindSporeLiteTensor[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.info(output[i].toString());
     }
@@ -854,8 +833,8 @@ Resets the tensor size.
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   let new_dim = new Array([1,32,32,1]);
   mindSporeLiteModel.resize(modelInputs, new_dim);
@@ -866,7 +845,7 @@ mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSpore
 
 runStep(inputs: MSTensor[]): boolean
 
-Runs a single-step training model.
+Defines a single-step training model. This API is used only for on-device training.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -885,30 +864,22 @@ Runs a single-step training model.
 **Example**
 
 ```ts
-let syscontext = globalThis.context
-let inputBuffer0 = await syscontext.resourceManager.getRawFileContent("lenet_train_0.input");
-let inputBuffer1 = await syscontext.resourceManager.getRawFileContent("lenet_train_1.input");
-let model_file = '/path/to/xxx.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.trainMode = true;
-const modelInputs = msliteModel.getInputs();
-for (let i = 0; i < modelInputs.length; i++) {
-  let printStr = modelInputs[i].name + ", ";
-  printStr += modelInputs[i].shape + ", ";
-  printStr += modelInputs[i].dtype + ", ";
-  printStr += modelInputs[i].dataSize + ", ";
-  printStr += modelInputs[i].getData();
-}
-modelInputs[0].setData(inputBuffer0.buffer);
-modelInputs[1].setData(inputBuffer1.buffer);
-let ret = msliteModel.runStep(modelInputs);
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSporeLite.Model) => {
+  mindSporeLiteModel.trainMode = true;
+  const modelInputs = mindSporeLiteModel.getInputs();
+  let ret = mindSporeLiteModel.runStep(modelInputs);
+  if (ret == false) {
+    console.error('MS_LITE_LOG: runStep failed.')
+  }
+})
 ```
 
 ### getWeights<sup>12+</sup>
 
 getWeights(): MSTensor[]
 
-Obtains all weights of a training model.
+Obtains all weight tensors of a model. This API is used only for on-device training.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -921,31 +892,33 @@ Obtains all weights of a training model.
 **Example**
 
 ```ts
-let syscontext = globalThis.context
-let inputBuffer0 = await syscontext.resourceManager.getRawFileContent("lenet_train_0.input");
-let inputBuffer1 = await syscontext.resourceManager.getRawFileContent("lenet_train_1.input");
-let model_file = '/path/to/xxx.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.trainMode = true;
-const modelInputs = msliteModel.getInputs();
-for (let i = 0; i < modelInputs.length; i++) {
-  let printStr = modelInputs[i].name + ", ";
-  printStr += modelInputs[i].shape + ", ";
-  printStr += modelInputs[i].dtype + ", ";
-  printStr += modelInputs[i].dataSize + ", ";
-  printStr += modelInputs[i].getData();
-}
-modelInputs[0].setData(inputBuffer0.buffer);
-modelInputs[1].setData(inputBuffer1.buffer);
-let ret = msliteModel.runStep(modelInputs);
-const weights = msliteModel.getWeights();
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
+
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
+  mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    mindSporeLiteModel.trainMode = true;
+    const weights = mindSporeLiteModel.getWeights();
+    for (let i = 0; i < weights.length; i++) {
+      let printStr = weights[i].name + ", ";
+      printStr += weights[i].shape + ", ";
+      printStr += weights[i].dtype + ", ";
+      printStr += weights[i].dataSize + ", ";
+      printStr += weights[i].getData();
+      console.info("MS_LITE weights: ", printStr);
+    }
+  })
+})
 ```
 
 ### updateWeights<sup>12+</sup>
 
 updateWeights(weights: MSTensor[]): boolean
 
-Updates the weights of a training model.
+Weight of the updated model, which is used only for on-device training.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -964,33 +937,22 @@ Updates the weights of a training model.
 **Example**
 
 ```ts
-let syscontext = globalThis.context
-let inputBuffer0 = await syscontext.resourceManager.getRawFileContent("lenet_train_0.input");
-let inputBuffer1 = await syscontext.resourceManager.getRawFileContent("lenet_train_1.input");
-let model_file = '/path/to/xxx.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.trainMode = true;
-const modelInputs = msliteModel.getInputs();
-for (let i = 0; i < modelInputs.length; i++) {
-  let printStr = modelInputs[i].name + ", ";
-  printStr += modelInputs[i].shape + ", ";
-  printStr += modelInputs[i].dtype + ", ";
-  printStr += modelInputs[i].dataSize + ", ";
-  printStr += modelInputs[i].getData();
-}
-modelInputs[0].setData(inputBuffer0.buffer);
-modelInputs[1].setData(inputBuffer1.buffer);
-let ret = msliteModel.runStep(modelInputs);
-const weights = msliteModel.getWeights();
-for (let i = 0; i < weights.length; i++) {
-        let printStr = weights[i].name + ", ";
-        printStr += weights[i].shape + ", ";
-        printStr += weights[i].dtype + ", ";
-        printStr += weights[i].dataSize + ", ";
-        printStr += weights[i].getData();
-        console.info("==========MSLITE weights===========",printStr);
-      }
-let ret = msliteModel.updateWeights(weights);
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
+
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
+  mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    mindSporeLiteModel.trainMode = true;
+    const weights = mindSporeLiteModel.getWeights();
+    let ret = mindSporeLiteModel.updateWeights(weights);
+    if (ret == false) {
+      console.error('MS_LITE_LOG: updateWeights failed.')
+    }
+  })
+})
 ```
 
 ### setupVirtualBatch<sup>12+</sup>
@@ -1018,20 +980,28 @@ Sets the virtual batch for training. This API is used only for on-device trainin
 **Example**
 
 ```ts
-let syscontext = globalThis.context
-let inputBuffer0 = await syscontext.resourceManager.getRawFileContent("lenet_train_0.input");
-let inputBuffer1 = await syscontext.resourceManager.getRawFileContent("lenet_train_1.input");
-let model_file = globalThis.abilityContext.filesDir + '/' + 'lenet_train.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.trainMode = true;
-let ret = msliteModel.setupVirtualBatch(2,-1,-1);
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
+
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
+  mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    mindSporeLiteModel.trainMode = true;
+    let ret = mindSporeLiteModel.setupVirtualBatch(2,-1,-1);
+    if (ret == false) {
+      console.error('MS_LITE setupVirtualBatch failed.')
+    }
+  })
+})
 ```
 
 ### exportModel<sup>12+</sup>
 
 exportModel(modelFile: string, quantizationType?: QuantizationType, exportInferenceOnly?: boolean, outputTensorName?: string[]): boolean
 
-Exports training models.
+Exports a training model. This API is used only for on-device training.
 
 **System capability**: SystemCapability.AI.MindSporeLite
 
@@ -1053,15 +1023,21 @@ Exports training models.
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.exportModel(path +"/lenet_train_infer.ms", mindSporeLite.QuantizationType.NO_QUANT, true);
+let modelFile = '/path/to/xxx.ms';
+let newPath = '/newpath/to';
+mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSporeLite.Model) => {
+  mindSporeLiteModel.trainMode = true;
+  let ret = mindSporeLiteModel.exportModel(newPath + "/new_model.ms", mindSporeLite.QuantizationType.NO_QUANT, true);
+  if (ret == false) {
+    console.error('MS_LITE exportModel failed.')
+  }
+})
 ```
 
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 Exports model weights for micro inference. This API is available only for on-device training.
 
@@ -1087,9 +1063,14 @@ Micro inference is a ultra-lightweight micro AI deployment solution provided by 
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-let msliteModel = await mindSporeLite.loadTrainModelFromFile(model_file);
-msliteModel.exportWeightsCollaborateWithMicro("micro_weight.bin");
+let modelFile = '/path/to/xxx.ms';
+let microWeight = '/path/to/xxx.bin';
+mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSporeLite.Model) => {
+  let ret = mindSporeLiteModel.exportWeightsCollaborateWithMicro(microWeight);
+  if (ret == false) {
+    console.error('MSLITE exportWeightsCollaborateWithMicro failed.')
+  }
+})
 ```
 
 ## MSTensor
@@ -1114,8 +1095,8 @@ In the following sample code, you first need to use [getInputs()](#getinputs) to
 **Example**
 
 ```ts
-let model_file = '/path/to/xxx.ms';
-mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSporeLite.Model) => {
+let modelFile = '/path/to/xxx.ms';
+mindSporeLite.loadModelFromFile(modelFile).then((mindSporeLiteModel : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   console.info(modelInputs[0].name);
   console.info(modelInputs[0].shape.toString());
@@ -1143,26 +1124,20 @@ Obtains tensor data.
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
   let inputBuffer = buffer.buffer;
-  let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelFile = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer);
-  mindSporeLiteModel.predict(modelInputs).then((result : mindSporeLite.MSTensor[]) => {
-    let output = new Float32Array(result[0].getData());
+  mindSporeLiteModel.predict(modelInputs).then((mindSporeLiteTensor : mindSporeLite.MSTensor[]) => {
+    let output = new Float32Array(mindSporeLiteTensor[0].getData());
     for (let i = 0; i < output.length; i++) {
       console.info(output[i].toString());
     }
@@ -1187,22 +1162,16 @@ Sets the tensor data.
 **Example**
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
   let inputBuffer = buffer.buffer;
-  let model_file = '/path/to/xxx.ms';
-  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
+  let modelFile = '/path/to/xxx.ms';
+  let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
   modelInputs[0].setData(inputBuffer);
 })

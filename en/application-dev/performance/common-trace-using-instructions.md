@@ -125,7 +125,7 @@ Figure 5 Trace lanes for page loading
 
 The following example traverses a list in **LazyForEach** mode and uses [Smartperf-Host](../../device-dev/device-test/smartperf-host.md) to trace the code execution process.
 
-In the [sample code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace), a **\<List>** container component is used to create 120 custom **\<IconView>** components in lazy loading mode. In each **\<IconView>** component, a **\<Flex>** container that holds the **\<Image>** and **\<Text>** components is used to present a list item with text and an image.
+In the [sample code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace), a **List** container component is used to create 120 custom **IconView** components in lazy loading mode. In each **IconView** component, a **Flex** container that holds the **Image** and **Text** components is used to present a list item with text and an image.
 
 ```ts
 // src/main/ets/pages/LazyForEachPage.ets
@@ -221,9 +221,9 @@ The following describes the details of each part.
 ![Lane for Stage layout and rendering](figures/trace-stage-frame-rate.png)
 
 - **H:Layout[stage][self:1][parent:0]**: lays out the current frame node Stage, which functions as the framework and bears the Page node. Therefore, the tag presentation starts from Stage.
-  - **H:Measure[%s][self:17][parent:16]**: calculates the layout size of the components **\<Page>**, **\<Column>**, **\<Row>**, **\<Image>**, **\<Text>**, and more.
+  - **H:Measure[%s][self:17][parent:16]**: calculates the layout size of the components **Page**, **Column**, **Row**, **Image**, **Text**, and more.
   - **H:Builder:BuildLazyItem [0]** and **H:ListLayoutAlgorithm::MeasureListItem:0**: create a lazy item and calculate the layout size of the list item, respectively.
-  - **H:Layout[%s][self:38][parent:37]**: lays out the components **\<Page>**, **\<Column>**, **\<Row>**, **\<Image>**, **\<Text>**, and more.
+  - **H:Layout[%s][self:38][parent:37]**: lays out the components **Page**, **Column**, **Row**, **Image**, **Text**, and more.
 - **H:FrameNode::RenderTask**: executes the rendering task.
 - **H: RequestNextVSync**: requests the Vsync signal of the next frame.
 
@@ -234,7 +234,7 @@ The following describes the details of each part.
 ![Lane for Flex layout and rendering](figures/trace-notify-rs.png)
 
 - **H:Layout[Flex][self:63][parent:62]**: lays out the current frame node Flex.
-  - **H:Measure[%s][self:17][parent:16]**: calculates the layout size of the components **\<Image>**, **\<Text>**, and more.
+  - **H:Measure[%s][self:17][parent:16]**: calculates the layout size of the components **Image**, **Text**, and more.
 - **H:FrameNode::RenderTask**: renders Flex;
 - **H: RequestNextVSync**: requests the Vsync signal of the next frame.
 
@@ -245,7 +245,7 @@ The following describes the details of each part.
 ![Lane for preprocessing data and adding a predicted layout task](figures/trace-per-build.png)
 
 - **H:Builder:BuildLazyItem [11]**: preprocesses 11 data records.
-- **H:Layout[ListItem][self:76][parent:-1]**: adds a predicted layout for Flex, **\<Image>**, and **\<Text>**.
+- **H:Layout[ListItem][self:76][parent:-1]**: adds a predicted layout for Flex, **Image**, and **Text**.
 - **H:FlushMessages**: sends a message to instruct Render Service to perform rendering.
 
 **5. Compositing the layers for each node in the render tree**
@@ -261,9 +261,9 @@ The following describes the details of each part.
 
 You can use hiTraceMeter to customize traces based on service requirements. Currently, ArkTS and native APIs are provided for trace customization. For details, read the following topics:
 
-> [Development of Performance Tracing (ArkTS)](../dfx/hitracemeter-guidelines.md)
+> [Development of Performance Tracing (ArkTS)](../dfx/hitracemeter-guidelines-arkts.md)
 >
-> [Performance Tracing Development Guide (Native)](../dfx/hitracemeter-native-guidelines.md)
+> [Performance Tracing Development Guide (Native)](../dfx/hitracemeter-guidelines-ndk.md)
 
 After custom traces are added, you can view them on [Smartperf-Host](../../device-dev/device-test/smartperf-host.md). They are displayed within an independent lane under the corresponding process.
 

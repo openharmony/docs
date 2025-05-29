@@ -4,13 +4,13 @@
 近场通信(Near Field Communication，NFC)是一种短距高频的无线电技术，在13.56MHz频率运行，通信距离一般在10厘米距离内。HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安全单元芯片，电子设备上的应用程序模拟NFC卡片和NFC读卡器通信，实现NFC刷卡业务。
 
 ## 场景介绍
-应用程序模拟NFC卡片，和NFC读卡器通信完成NFC刷卡业务。从使用场景上，可以分成HCE应用前台刷卡，和HCE应用后台刷卡。
+应用程序模拟NFC卡片，和NFC读卡器通信完成NFC刷卡业务。从使用场景上，可以分成HCE应用前台刷卡和HCE应用后台刷卡。
 - HCE应用前台刷卡<br>
 前台刷卡是指在触碰NFC读卡器之前，用户先在电子设备上打开特定的应用程序，用户明确想使用所打开的应用程序和NFC读卡器进行刷卡操作。用户打开应用程序在前台，并且进入应用的刷卡页面之后，电子设备触碰NFC读卡器，只会把刷卡交易数据分发给前台应用。
 - HCE应用后台刷卡<br>
 后台刷卡是指不打开特定的HCE应用程序，电子设备触碰NFC读卡器后，根据NFC读卡器选择的应用ID（AID）匹配到HCE应用程序，并自动和匹配的HCE应用程序通信完成刷卡交易。如果匹配到多个HCE应用程序时，说明存在冲突，需要用户打开指定的应用才能完成刷卡。
 - HCE应用刷卡的约束条件<br>
-不管是HCE应用前台还是后台刷卡，能够完成HCE应用程序NFC刷卡的条件是电子设备需要亮屏解锁。
+1.不管是HCE应用前台还是后台刷卡，能够完成HCE应用程序NFC刷卡的条件是电子设备需要亮屏解锁。<br>2.module.json5文件中需要声明nfc卡模拟权限，具体见示例。<br>3.前台应用时需要调用start和stop注册和去注册AID，具体见示例。<br>
 
 ## 接口说明
 
@@ -28,12 +28,12 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ## 开发步骤
 
 ### HCE应用前台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 使能前台HCE应用程序优先处理NFC刷卡功能；
-5. 订阅HCE APDU数据的接收；
-6. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 使能前台HCE应用程序优先处理NFC刷卡功能。
+5. 订阅HCE APDU数据的接收。
+6. 完成HCE刷卡APDU数据的接收和发送。
 7. 退出应用程序NFC刷卡页面时，退出前台优先功能。
 
 ```ts
@@ -55,7 +55,7 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
             "actions": [
               "action.system.home",
 
-              // Add the nfc card emulation action to filter out for this application.
+              // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
@@ -64,7 +64,7 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc card emulation.
+        // 添加使用nfc卡模拟需要的权限
         "name": "ohos.permission.NFC_CARD_EMULATION",
         "reason": "$string:app_name",
       }
@@ -87,9 +87,9 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
-    // check the command, then transmit the response.
+    // 检查指令，发送response
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
-    let responseData = [0x90, 0x00]; // change the response depend on different received command.
+    let responseData = [0x90, 0x00]; // 根据接收到的不同命令更改response
     hceService.transmit(responseData).then(() => {
       hilog.info(0x0000, 'testTag', 'hceService transmit Promise success.');
     }).catch((err: BusinessError) => {
@@ -123,12 +123,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // Ability has brought to foreground
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (hceElementName != undefined) {
       try {
         // 调用接口使能前台HCE应用程序优先处理NFC刷卡功能
-        let aidList = ["A0000000031010", "A0000000031011"]; // change aid tobe correct.
+        let aidList = ["A0000000031010", "A0000000031011"]; // 修改为正确的aid
         hceService.start(hceElementName, aidList);
 
         // 订阅HCE APDU数据的接收
@@ -140,7 +140,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground() {
-    // Ability has back to background
+    // 应用退到后台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
     // 退出应用程序NFC标签页面时，调用tag模块退出前台优先功能
     if (hceElementName != undefined) {
@@ -155,11 +155,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### HCE应用后台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 订阅HCE APDU数据的接收；
-5. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 订阅HCE APDU数据的接收。
+5. 完成HCE刷卡APDU数据的接收和发送。
 6. 退出应用程序时，退出订阅功能。
 
 ```ts
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
             "actions": [
               "action.system.home",
 
-              // Add the nfc card emulation action to filter out for this application.
+              // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
@@ -189,18 +189,18 @@ export default class EntryAbility extends UIAbility {
         "metadata": [
           {
             "name": "payment-aid",
-            "value": "A0000000031010" // change it tobe correct
+            "value": "A0000000031010" // 修改为正确的aid
           },
           {
             "name": "other-aid",
-            "value": "A0000000031011" // change it tobe correct
+            "value": "A0000000031011" // 修改为正确的aid
           }
         ]
       }
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc card emulation.
+        // 添加使用nfc卡模拟需要的权限
         "name": "ohos.permission.NFC_CARD_EMULATION",
         "reason": "$string:app_name",
       }
@@ -224,7 +224,7 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       return;
     }
 
-    // check the command, then transmit the response.
+    // 检查指令，发送response
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
     let responseData = [0x90, 0x00]; // change the response depend on different received command.
     hceService.transmit(responseData).then(() => {
@@ -261,12 +261,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // Ability has brought to foreground
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onDestroy() {
-    // Ability has back to destroy
+    // 退出应用
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
     // 退出应用程序NFC标签页面时，调用tag模块退出前台优先功能
     if (hceElementName != undefined) {

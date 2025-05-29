@@ -1,8 +1,8 @@
-# Using Image to Encode Images
+# Image Encoding
 
 You can call the native APIs provided by the **ImagePacker** module to encode images, that is, to compress a **PixelMap** object into an image in the desired format.
 
-Currently, JPEG, WebP, and PNG encoding formats are supported.
+Currently, images can be encoded only into the JPEG, WebP, PNG, or HEIF format (depending on the hardware).
 
 **Usage Scenario**
 
@@ -66,16 +66,20 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
    - **ImagePacker_Native** instance obtained
 
-   - Image source (napi_value), **PixelMap** object, or** ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
+   - Image source (napi_value), **PixelMap** object, or **ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
 
    - Encoding parameters, including the encoding format and encoding quality
+
+      > **NOTE**
+      >
+      > According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **format** of the encoding parameters must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
 
    The encoding APIs can output data to the buffer (memory) or a file. They have the same input parameters, as described previously. You can select either of them as required.
 
    Example: output data to the buffer (memory)
 
    ```cpp
-   // Encoding parameters
+   // Encoding parameters.
    struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
@@ -92,7 +96,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    Example: output data to a file
 
    ```cpp
-   // Encoding parameters
+   // Encoding parameters.
    struct ImagePacker_Opts_ opts;
    // (Mandatory) Configure the encoding format.
    opts.format = "image/jpeg";
@@ -103,7 +107,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    if (fd >= 0) {
       // Start to encode the input source. If IMAGE_RESULT_SUCCESS is returned, the encoding is successful.
       int32_t result = OH_ImagePacker_PackToFile(nativePacker, source, &opts, fd);  
-      // Close the file. 
+      // Close the file.
       close(fd);
    }
    ```
@@ -118,7 +122,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // Call OH_ImagePacker_Release to destroy the encoder.
    int32_t ret = OH_ImagePacker_Release(nativePacker);
    if (result != IMAGE_RESULT_SUCCESS) {
-       // Exception handling.
+       // Handle exceptions.
    } else {
        nativePacker = NULL; // The encoder cannot be destroyed repeatedly.
    }

@@ -1,4 +1,4 @@
-# Transient Task
+# Transient Task (ArkTS)
 
 
 ## Overview
@@ -6,7 +6,7 @@
 An application is suspended after it runs in the background for a short period of time. If the application needs to execute a short-time task in the background, for example, saving the status, it can request a transient task to extend the running time in the background.
 
 
-### Constraints
+## Constraints
 
 - **When to request**: An application can request a transient task when it is running in the foreground or through the **onBackground** callback.
 
@@ -19,7 +19,7 @@ An application is suspended after it runs in the background for a short period o
   **Figure 1** Quota calculation for transient tasks
   
   ![transient-task](figures/transient-task.png)
-  
+
   > **NOTE**
   >
   > The application shall proactively cancel a transient task when it is finished. Otherwise, the time frame allowed for the application to run in the background will be affected.
@@ -44,11 +44,11 @@ The table below lists the main APIs used for transient task development. For det
 1. Import the module.
    
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-   import { BusinessError } from '@ohos.base';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Request a transient task and implement the callback.
+2. Request a transient task and implement the callback. The callback is triggered when the transient task is about to end and is independent of the service of the application. After the request for the transient task is successful, the application normally executes its own service logic.
    
    ```ts
    let id: number;         // ID of the transient task.
@@ -65,6 +65,8 @@ The table below lists the main APIs used for transient task development. For det
      id = delayInfo.requestId;
      delayTime = delayInfo.actualDelayTime;
    }
+
+   // Execute the service logic of the application.
    ```
 
 3. Obtain the remaining time of the transient task. Based on the remaining time, the application determines whether to continue to run other services. For example, the application has two small tasks. After the first task is executed, it queries the remaining time of the current transient task to determine whether to execute the second task.

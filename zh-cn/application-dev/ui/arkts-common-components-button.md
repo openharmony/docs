@@ -1,7 +1,7 @@
 # 按钮 (Button)
 
 
-Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)。
+Button是按钮组件，通常用于响应用户的点击操作，其类型包括胶囊按钮、圆形按钮、普通按钮、圆角矩形按钮。Button做为容器使用时可以通过添加子组件实现包含文字、图片等元素的按钮。具体用法请参考[Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md)。
 
 
 ## 创建按钮
@@ -9,7 +9,7 @@ Button是按钮组件，通常用于响应用户的点击操作，其类型包�
 Button通过调用接口来创建，接口调用有以下两种形式：
 
 
-- 创建不包含子组件的按钮。
+- 通过label和[ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions对象说明)创建不包含子组件的按钮。以ButtonOptions中的type和stateEffect为例。
 
   ```ts
   Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -28,13 +28,13 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   ![zh-cn_image_0000001562820757](figures/zh-cn_image_0000001562820757.png)
 
 
-- 创建包含子组件的按钮。
+- 通过[ButtonOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#buttonoptions对象说明)创建包含子组件的按钮。以ButtonOptions中的type和stateEffect为例。
 
   ```ts
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
+  只支持包含一个子组件，子组件可以是基础组件或者容器组件。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -50,10 +50,10 @@ Button通过调用接口来创建，接口调用有以下两种形式：
 
 ## 设置按钮类型
 
-Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮（Circle）和普通按钮（Normal），通过type进行设置。
+Button有四种可选类型，分别为胶囊类型（Capsule）、圆形按钮（Circle）、普通按钮（Normal）和圆角矩形按钮（ROUNDED_RECTANGLE），通过type进行设置。
 
 
-- 胶囊按钮（默认类型）
+- 胶囊按钮（默认类型）。
 
   此类型按钮的圆角自动设置为高度的一半，不支持通过borderRadius属性重新设置圆角。
 
@@ -67,7 +67,7 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
   ![zh-cn_image_0000001511421208](figures/zh-cn_image_0000001511421208.png)
 
 
-- 圆形按钮
+- 圆形按钮。
 
   此类型按钮为圆形，不支持通过borderRadius属性重新设置圆角。
 
@@ -80,7 +80,7 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001511740428](figures/zh-cn_image_0000001511740428.png)
 
-- 普通按钮
+- 普通按钮。
 
   此类型的按钮默认圆角为0，支持通过borderRadius属性重新设置圆角。
 
@@ -94,6 +94,17 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
+- 圆角矩形按钮
+  当[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为NORMAL时，默认圆角大小为20vp，[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为SMALL时，圆角大小为14vp，支持通过borderRadius属性重新设置圆角。
+
+  ```ts
+  Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true }) 
+    .backgroundColor(0x317aff) 
+    .width(90)
+    .height(40)
+  ```
+
+  ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001511421208.png)
 
 ## 自定义样式
 
@@ -169,42 +180,122 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ```ts
   // xxx.ets
-  import { router } from '@kit.ArkUI';
-  
   @Entry
   @Component
   struct ButtonCase1 {
-    @State FurL:router.RouterOptions = {'url':'pages/first_page'}
-    @State SurL:router.RouterOptions = {'url':'pages/second_page'}
-    @State TurL:router.RouterOptions = {'url':'pages/third_page'}
-    build() {
-      List({ space: 4 }) {
-        ListItem() {
-          Button("First").onClick(() => {
-            router.pushUrl(this.FurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Second").onClick(() => {
-            router.pushUrl(this.SurL)
-          })
-            .width('100%')
-        }
-        ListItem() {
-          Button("Third").onClick(() => {
-            router.pushUrl(this.TurL)
-          })
-            .width('100%')
-        }
+    pathStack: NavPathStack = new NavPathStack();
+
+    @Builder
+    PageMap(name: string) {
+      if (name === "first_page") {
+        pageOneTmp()
+      } else if (name === "second_page") {
+        pageTwoTmp()
+      } else if (name === "third_page") {
+        pageThreeTmp()
       }
-      .listDirection(Axis.Vertical)
-      .backgroundColor(0xDCDCDC).padding(20)
+    }
+
+    build() {
+      Navigation(this.pathStack) {
+        List({ space: 4 }) {
+          ListItem() {
+            Button("First").onClick(() => {
+              this.pathStack.pushPath({ name: "first_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Second").onClick(() => {
+              this.pathStack.pushPath({ name: "second_page"})
+            })
+              .width('100%')
+          }
+
+          ListItem() {
+            Button("Third").onClick(() => {
+              this.pathStack.pushPath({ name: "third_page"})
+            })
+              .width('100%')
+          }
+        }
+        .listDirection(Axis.Vertical)
+        .backgroundColor(0xDCDCDC).padding(20)
+      }
+      .mode(NavigationMode.Stack)
+      .navDestination(this.PageMap)
+    }
+  }
+
+  // pageOne
+  @Component
+  export struct pageOneTmp {
+    pathStack: NavPathStack = new NavPathStack();
+  
+    build() {
+      NavDestination() {
+        Column() {
+          Text("first_page")
+        }.width('100%').height('100%')
+      }.title("pageOne")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageTwo
+  @Component
+  export struct pageTwoTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("second_page")
+        }.width('100%').height('100%')
+      }.title("pageTwo")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
+    }
+  }
+
+  // pageThree
+  @Component
+  export struct pageThreeTmp {
+    pathStack: NavPathStack = new NavPathStack();
+
+    build() {
+      NavDestination() {
+        Column() {
+          Text("third_page")
+        }.width('100%').height('100%')
+      }.title("pageThree")
+      .onBackPressed(() => {
+        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
+        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        return true
+      })
+      .onReady((context: NavDestinationContext) => {
+        this.pathStack = context.pathStack
+      })
     }
   }
   ```
 
-  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562700393.png)
+  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562940814.gif)
 
 
 - 用于提交表单。
@@ -231,7 +322,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ![zh-cn_image_0000001562940473](figures/zh-cn_image_0000001562940473.png)
 
-- 悬浮按钮
+- 悬浮按钮。
 
   在可以滑动的界面，滑动时按钮始终保持悬浮状态。
 

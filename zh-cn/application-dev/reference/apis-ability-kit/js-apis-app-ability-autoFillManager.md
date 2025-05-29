@@ -1,6 +1,8 @@
 # @ohos.app.ability.autoFillManager (autoFillManager)
 
-autoFillManager模块提供手动保存账号密码等功能。
+autoFillManager模块提供账号密码保存等功能。
+
+不同于页面切换时触发的系统自动保存功能，该功能需要由用户手动触发。例如用户在网站上输入了账号密码，并点击“保存”按钮，才能触发相应的自动保存操作。
 
 > **说明：**
 > 
@@ -11,7 +13,7 @@ autoFillManager模块提供手动保存账号密码等功能。
 ## 导入模块
 
 ```ts
-import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoSaveCallback
@@ -24,7 +26,7 @@ onSuccess(): void
 
 当保存请求成功时，该回调被调用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -38,7 +40,7 @@ onFailure(): void
 
 当保存请求失败时，该回调被调用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -79,16 +81,16 @@ struct Index {
 
 > **说明：**
 >
-> 示例中从AppStorage中取得的UiContext为预先在EntryAbility（拉起此页面的Ability）中OnWindowStageCreate生命周期获得，并存储到AppStorage中，具体可参考[requestAutoSave](#requestautosave)。
+> 示例中从AppStorage中取得的UiContext为预先在EntryAbility（拉起此页面的Ability）中OnWindowStageCreate生命周期获得，并存储到AppStorage中，具体可参考[requestAutoSave](#autofillmanagerrequestautosave)。
 
-## requestAutoSave
+## autoFillManager.requestAutoSave
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 请求保存表单数据，使用callback异步回调。
 如果当前表单没有提供表单切换的功能，可以通过此接口保存历史表单输入数据，保存请求完成时会触发该回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -103,6 +105,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | The parameter check failed. Possible causes: 1. Get instance id failed; 2. Parse instance id failed; 3. The second parameter is not of type callback. |
 | 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

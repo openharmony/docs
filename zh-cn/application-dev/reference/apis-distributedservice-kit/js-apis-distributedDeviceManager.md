@@ -4,17 +4,15 @@
 
 应用可调用接口实现如下功能：
 
-- 注册和解除注册设备上下线变化监听
-- 发现周边不可信设备
-- 认证和取消认证设备
-- 查询可信设备列表
+- 注册和解除注册设备上下线变化监听。
+- 发现周边不可信设备。
+- 认证和取消认证设备。
+- 查询可信设备列表。
 - 查询本地设备信息，包括设备名称，设备类型和设备标识等。
-
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 
 ## 导入模块
 
@@ -22,10 +20,9 @@
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
 
-
 ## distributedDeviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string): DeviceManager;
+createDeviceManager(bundleName: string): DeviceManager
 
 创建一个设备管理实例。设备管理实例是分布式设备管理方法的调用入口。用于获取可信设备和本地设备的相关信息。
 
@@ -35,7 +32,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。  |
 
 **返回值：**
 
@@ -45,7 +42,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -67,11 +64,9 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 ## distributedDeviceManager.releaseDeviceManager
 
-releaseDeviceManager(deviceManager: DeviceManager): void;
+releaseDeviceManager(deviceManager: DeviceManager): void
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
-
-**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -83,11 +78,10 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -112,13 +106,11 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-**参数：**
-
 | 名称                     | 类型                        | 必填   | 说明       |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | 是    | 设备的唯一标识。 实际值为udid-hash与appid基于sha256方式进行加密后的值。|
+| deviceId               | string                    | 是    | 设备标识符。实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。|
 | deviceName             | string                    | 是    | 设备名称。    |
-| deviceType             | string                    | 是    | 设备类型。    |
+| deviceType             | string                    | 是    | [设备类型](#getdevicetype)。    |
 | networkId              | string                    | 否    | 设备网络标识。  |
 
 ## DeviceStateChange
@@ -127,14 +119,11 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-**参数：**
-
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
 | UNKNOWN     | 0    | 设备物理上线，此时状态未知，在状态更改为可用之前，分布式业务无法使用。           |
-| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
+| AVAILABLE   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成，可以运行分布式业务。 |
 | UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
-
 
 ## DeviceManager
 
@@ -142,7 +131,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 ### getAvailableDeviceListSync
 
-getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
+getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
 
 同步获取所有可信设备列表。
 
@@ -158,22 +147,21 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -183,7 +171,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void;
+getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void
 
 获取所有可信设备列表。使用callback异步回调。
 
@@ -199,7 +187,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -208,12 +196,12 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
@@ -229,7 +217,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
+getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
 
 获取所有可信设备列表。使用Promise异步回调。
 
@@ -245,7 +233,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -254,11 +242,10 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
@@ -268,7 +255,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 ### getLocalDeviceNetworkId
 
-getLocalDeviceNetworkId(): string;
+getLocalDeviceNetworkId(): string
 
 获取本地设备网络标识。
 
@@ -284,7 +271,7 @@ getLocalDeviceNetworkId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -293,11 +280,12 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
     console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
@@ -308,7 +296,7 @@ getLocalDeviceNetworkId(): string;
 
 ### getLocalDeviceName
 
-getLocalDeviceName(): string;
+getLocalDeviceName(): string
 
 获取本地设备名称。
 
@@ -324,7 +312,7 @@ getLocalDeviceName(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -333,11 +321,12 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getLocalDeviceName();
     console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
@@ -348,7 +337,7 @@ getLocalDeviceName(): string;
 
 ### getLocalDeviceType
 
-getLocalDeviceType(): number;
+getLocalDeviceType(): number
 
 获取本地设备类型。
 
@@ -364,7 +353,7 @@ getLocalDeviceType(): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -373,11 +362,12 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getLocalDeviceType();
     console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
@@ -388,9 +378,9 @@ getLocalDeviceType(): number;
 
 ### getLocalDeviceId
 
-getLocalDeviceId(): string;
+getLocalDeviceId(): string
 
-获取本地设备id。
+获取本地设备id，实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -404,7 +394,7 @@ getLocalDeviceId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -413,11 +403,12 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceId: string = dmInstance.getLocalDeviceId();
     console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
@@ -428,7 +419,7 @@ getLocalDeviceId(): string;
 
 ### getDeviceName
 
-getDeviceName(networkId: string): string;
+getDeviceName(networkId: string): string
 
 通过指定设备的网络标识获取该设备名称。
 
@@ -440,7 +431,7 @@ getDeviceName(networkId: string): string;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -450,7 +441,7 @@ getDeviceName(networkId: string): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -460,13 +451,14 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getDeviceName(networkId);
     console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
@@ -477,7 +469,7 @@ getDeviceName(networkId: string): string;
 
 ### getDeviceType
 
-getDeviceType(networkId: string): number;
+getDeviceType(networkId: string): number
 
 通过指定设备的网络标识获取该设备类型。
 
@@ -489,7 +481,7 @@ getDeviceType(networkId: string): number;
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
 
 **返回值：**
 
@@ -499,7 +491,7 @@ getDeviceType(networkId: string): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -509,13 +501,14 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = 'xxxxxxx';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getDeviceType(networkId);
     console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
@@ -526,7 +519,7 @@ getDeviceType(networkId: string): number;
 
 ### startDiscovering
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。wifi场景要求同局域网。
 
@@ -543,7 +536,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -554,8 +547,8 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
@@ -577,6 +570,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -586,7 +580,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
 
 ### stopDiscovering
 
-stopDiscovering(): void;
+stopDiscovering(): void
 
 停止发现周边设备。
 
@@ -596,22 +590,21 @@ stopDiscovering(): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery unavailable.                                          |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.stopDiscovering();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -621,7 +614,7 @@ stopDiscovering(): void;
 
 ### bindTarget
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void
 
 认证设备。
 
@@ -633,13 +626,13 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
   | 参数名     | 类型                                                | 必填  | 说明         |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | 是    | 设备标识。   |
+  | deviceId   | string                                              | 是    | 设备标识。长度范围1~255字符。   |
   | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | 是    | 认证参数。由开发者自行决定传入的键值对。默认会携带以下key值：<br>bindType 此值是绑定的类型，必填。<br />-1：PIN码。<br>targetPkgName 绑定目标的包名。<br>appName 尝试绑定目标的应用程序名称。<br>appOperation 应用程序要绑定目标的原因。<br>customDescription 操作的详细说明。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | 是    | 认证结果回调。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -650,8 +643,8 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -661,7 +654,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = 'XXXXXXXX';
   let bindParam: Record<string, string | number> = {
-    'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
+    'bindType': 1, // 认证类型： 1 - 无账号PIN码认证
     'targetPkgName': 'xxxx',
     'appName': 'xxxx',
     'appOperation': 'xxxx',
@@ -669,6 +662,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
   };
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
         console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
@@ -684,7 +678,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
 
 ### unbindTarget
 
-unbindTarget(deviceId: string): void;
+unbindTarget(deviceId: string): void
 
 解除认证设备。
 
@@ -696,11 +690,11 @@ unbindTarget(deviceId: string): void;
 
   | 参数名   | 类型                      | 必填 | 说明       |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | 是   | 设备标识。 |
+  | deviceId | string                    | 是   | 设备标识。长度范围1~255字符。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -710,12 +704,13 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId = 'XXXXXXXX';
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -725,7 +720,7 @@ unbindTarget(deviceId: string): void;
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void
 
 注册设备状态回调，以便在设备状态发生变化时根据应用捆绑包名通知应用。
 
@@ -742,7 +737,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -751,7 +746,6 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -767,6 +761,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange on:' + JSON.stringify(data));
     });
@@ -778,7 +773,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void
 
 取消注册设备状态回调。
 
@@ -791,11 +786,11 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | 参数名       | 类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -804,7 +799,6 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -820,6 +814,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceStateChange', (data: Data) => {
       console.info('deviceStateChange' + JSON.stringify(data));
     });
@@ -831,7 +826,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void
 
 注册发现设备成功回调监听。
 
@@ -848,7 +843,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -857,7 +852,6 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -872,6 +866,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
   }
   
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess:' + JSON.stringify(data));
     });
@@ -883,7 +878,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&g
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void
 
 取消注册设备发现成功回调。
 
@@ -900,7 +895,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -923,6 +918,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverSuccess', (data: Data) => {
       console.info('discoverSuccess' + JSON.stringify(data));
     });
@@ -934,7 +930,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }
 
 ### on('deviceNameChange')
 
-on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void;
+on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void
 
 注册设备名称变更回调，以便在设备名称改变时通知应用程序。
 
@@ -951,7 +947,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -960,8 +956,8 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -969,6 +965,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange on:' + JSON.stringify(data));
     });
@@ -980,7 +977,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;):
 
 ### off('deviceNameChange')
 
-off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void;
+off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void
 
 取消注册设备名称变更回调监听。
 
@@ -997,7 +994,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1006,8 +1003,8 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1015,6 +1012,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('deviceNameChange', (data: Data) => {
       console.info('deviceNameChange' + JSON.stringify(data));
     });
@@ -1026,7 +1024,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;
 
 ### on('discoverFailure')
 
-on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void;
+on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 注册设备发现失败回调监听。
 
@@ -1043,7 +1041,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1052,8 +1050,8 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1061,6 +1059,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('discoverFailure', (data: Data) => {
       console.info('discoverFailure on:' + JSON.stringify(data));
     });
@@ -1072,7 +1071,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void
 
 ### off('discoverFailure')
 
-off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void;
+off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void
 
 取消注册设备发现失败回调。
 
@@ -1089,7 +1088,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1098,8 +1097,8 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
@@ -1107,6 +1106,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
   }
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('discoverFailure', (data: Data) => {
       console.info('discoverFailure' + JSON.stringify(data));
     });
@@ -1118,7 +1118,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): vo
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
+on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void
 
 注册设备管理服务死亡回调，以便在服务死亡时通知应用程序。
 
@@ -1135,7 +1135,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1144,11 +1144,12 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('serviceDie', () => {
       console.info('serviceDie on');
     });
@@ -1160,7 +1161,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
+off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void
 
 取消注册设备管理服务死亡回调。
 
@@ -1177,7 +1178,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1186,11 +1187,12 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.off('serviceDie', () => {
       console.info('serviceDie off');
     });

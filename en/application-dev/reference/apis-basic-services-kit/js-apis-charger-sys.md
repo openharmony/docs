@@ -12,7 +12,7 @@ The **charger** module enumerates charging types.
 ## Modules to Import
 
 ```js
-import charger from '@ohos.charger';
+import {charger} from '@kit.BasicServicesKit';
 ```
 
 ## ChargeType

@@ -2,7 +2,7 @@
 
 ## 简介
 
-HiChecker可以作为应用开发阶段使用的检测工具，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中元能力资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验
+HiChecker可以作为应用开发阶段使用的检测工具，用于检测代码运行过程中部分易忽略的问题，如应用线程出现耗时调用、应用进程中元能力资源泄露等问题。开发者可以通过日志记录或进程crash等形式查看具体问题并进行修改，提升应用的使用体验。
 
 ## 基本概念
 
@@ -11,7 +11,6 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 ## 实现原理
 
 1. 应用程序通过HiChecker函数接口控制规则的增删查改。
-
 2. 子系统有耗时调用或者Ability资源泄露时通过HiChecker通知有对应规则的事件发生，HiChecker检测条件满足时做对应的操作。
 
 ## 约束与限制
@@ -25,9 +24,9 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | 需要添加的规则 |
-| hichecker.removeCheckRule(rule: bigint) | 需要删除的规则 |
-| hichecker.containsCheckRule(rule: bigint) | 需要查询的规则 |
+| hichecker.addCheckRule(rule: bigint) | 需要添加的规则。 |
+| hichecker.removeCheckRule(rule: bigint) | 需要删除的规则。 |
+| hichecker.containsCheckRule(rule: bigint) | 需要查询的规则。 |
 
 ## 开发步骤
 
@@ -49,7 +48,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
        const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
        const imagePackerApi = image.createImagePacker();
        let packOpts: image.PackingOption = { format:"image/jpeg", quality:98 };
-       imagePackerApi.packing(imageSourceApi, packOpts);
+       imagePackerApi.packToData(imageSourceApi, packOpts);
        // 以上5行通过image子系统触发检测规则
        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreateend');
      }
@@ -95,7 +94,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
    hilog|grep -i hichecker
    ```
 
-   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）
+   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）。
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:

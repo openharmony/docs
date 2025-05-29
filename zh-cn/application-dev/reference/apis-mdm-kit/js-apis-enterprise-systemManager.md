@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -20,7 +20,7 @@ import { systemManager } from '@kit.MDMKit';
 
 setNTPServer(admin: Want, server: string): void
 
-指定设备管理应用设置NTP服务器的策略。
+设置NTP时间服务器。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -30,8 +30,8 @@ setNTPServer(admin: Want, server: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| server | string | 是 | NTP服务器地址（以","分隔，如"ntpserver1.com,ntpserver2.com"）。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| server | string | 是 | NTP服务器地址（以","分隔，如"ntpserver1.com,ntpserver2.com"。最大长度96字节，包括结束符）。 |
 
 **错误码**：
 
@@ -47,8 +47,8 @@ setNTPServer(admin: Want, server: string): void
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -58,7 +58,7 @@ try {
   systemManager.setNTPServer(wantTemp, server);
   console.info('Succeeded in setting NTPserver.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -66,7 +66,7 @@ try {
 
 getNTPServer(admin: Want): string
 
-指定设备管理应用获取NTP服务器信息。
+获取NTP时间服务器信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -74,15 +74,15 @@ getNTPServer(admin: Want): string
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明           |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
-| 类型   | 说明                            |
-| ------ | ------------------------------- |
-| string | string对象，返回NTP服务器信息。 |
+| 类型   | 说明                                |
+| ------ | ----------------------------------- |
+| string | string对象，返回NTP时间服务器信息。 |
 
 **错误码**：
 
@@ -98,9 +98,9 @@ getNTPServer(admin: Want): string
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -109,7 +109,7 @@ try {
   systemManager.getNTPServer(wantTemp);
   console.info('Succeeded in getting NTP server.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to get ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -117,7 +117,7 @@ try {
 
 setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
-指定设备管理应用设置升级策略。
+设置升级策略。内网升级场景下，需要先调用[systemManager.notifyUpdatePackages](#systemmanagernotifyupdatepackages)接口通知系统更新包，再调用该接口设置升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -127,7 +127,7 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | policy | [OtaUpdatePolicy](#otaupdatepolicy) | 是 | 升级策略。 |
 
 **错误码**：
@@ -144,8 +144,8 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -209,14 +209,25 @@ try {
 } catch (err) {
   console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
 }
-
+// 禁用公网升级
+let otaUpdatePolicy6: systemManager.OtaUpdatePolicy = {
+  "policyType": systemManager.PolicyType.DEFAULT,
+  "version": "version_1.0.0.5",
+  "disableSystemOtaUpdate": true,
+};
+try {
+  systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy6);
+  console.info('Succeeded in setting ota update policy.');
+} catch (err) {
+  console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## systemManager.getOtaUpdatePolicy
 
 getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
-指定设备管理应用查询升级策略。
+查询升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -224,9 +235,9 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明           |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明               |
+| ------ | ------------------------------------------------------- | ---- | ------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -248,8 +259,8 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -266,7 +277,7 @@ try {
 
 notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;void&gt;
 
-通知系统更新包信息。
+通知系统更新包信息。内网升级场景下，需要先调用该接口通知系统更新包，再调用[systemManager.setOtaUpdatePolicy](#systemmanagersetotaupdatepolicy)设置升级策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -276,7 +287,7 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | packageInfo  | [UpdatePackageInfo](#updatepackageinfo) | 是   | 系统更新包信息。 |
 
 **返回值：**
@@ -300,9 +311,9 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -345,7 +356,7 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | version  | string | 是   | 更新包版本号。 |
 
 **返回值：**
@@ -368,9 +379,9 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -381,7 +392,54 @@ systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.Update
     console.error(`Get update result failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+## systemManager.getUpdateAuthData<sup>19+</sup>
 
+getUpdateAuthData(admin: Want): Promise&lt;string&gt;
+
+获取系统更新的鉴权数据，用于校验系统更新信息。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise对象，返回系统更新的鉴权数据。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device.       |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
+    console.info(`Succeeded in getting update auth data: ${JSON.stringify(result)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
+  });
+```
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
@@ -408,6 +466,7 @@ systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.Update
 | delayUpdateTime | number   | 否   | 表示延迟升级时间（单位：小时）。 |
 | installStartTime        | number   | 否   | 表示指定安装窗口起始时间（时间戳）。 |
 | installEndTime | number   | 否   | 表示指定安装窗口结束时间（时间戳）。 |
+| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
 
 ## PolicyType
 
@@ -434,6 +493,7 @@ systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.Update
 | version       | string | 是   | 系统更新包版本号。   |
 | packages | Array&lt;[Package](#package)&gt; | 是   | 系统更新包详情。 |
 | description       | [PackageDescription](#packagedescription) | 否   | 系统更新包描述信息。  |
+| authInfo<sup>19+</sup> | string | 否 | 系统更新包的鉴权信息。 |
 
 ## Package
 
@@ -444,8 +504,8 @@ systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.Update
 | 名称                | 类型     | 必填  | 说明            |
 | ----------------- | ------ | --- | ------------- |
 | type       | [PackageType](#packagetype) | 是   | 系统更新包类型。   |
-| path | string | 是   | 系统更新包文件路径。 |
-| fd       | number | 否   | 系统更新包文件句柄。  |
+| path | string | 是   | 系统更新包文件路径。若传入fd参数，该参数传入更新包文件名。 |
+| fd       | number | 否   | 系统更新包文件句柄。当前不支持只传入path参数，需要传入fd。  |
 
 ## PackageDescription
 

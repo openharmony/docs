@@ -14,7 +14,7 @@ Internal error.
 
 This error code is reported when an error occurs during internal processing, such as multi-thread processing or internal pointer checks.
 
-**Cause**
+**Possible Causes**
 
 Common kernel errors such as multi-thread processing and internal processing errors occur.
 
@@ -26,13 +26,13 @@ Make sure the system resources are sufficient.
 
 **Error Message**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **Description**
 
 This error code is reported when a marshalling or unmarshalling error occurs before data transmission.
 
-**Cause**
+**Possible Causes**
 
 A parameter mismatch is detected between the application and the notification service.
 
@@ -44,13 +44,13 @@ Make sure the application SDK version matches the system version.
 
 **Error Message**
 
-Failed to connect service.
+Failed to connect to the service.
 
 **Description**
 
 This error code is reported when the application fails to connect to the notification service.
 
-**Cause**
+**Possible Causes**
 
 The notification service is busy or abnormal.
 
@@ -62,13 +62,13 @@ Restart the system.
 
 **Error Message**
 
-Notification is not enabled.
+Notification disabled.
 
 **Description**
 
 This error code is reported when notification is disabled.
 
-**Cause**
+**Possible Causes**
 
 The notification feature is not enabled for the application.
 
@@ -80,13 +80,13 @@ Enable notification for the application in the notification settings.
 
 **Error Message**
 
-Notification slot is not enabled.
+Notification slot disabled.
 
 **Description**
 
 This error code is reported when the notification slot is not available.
 
-**Cause**
+**Possible Causes**
 
 The notification slot is disabled or has not been added.
 
@@ -100,49 +100,49 @@ The notification slot is disabled or has not been added.
 
 **Error Message**
 
-Notification is not allowed to remove.
+Notification deletion disabled.
 
 **Description**
 
 This error code is reported when notification deletion is disabled.
 
-**Cause**
+**Possible Causes**
 
 The notification attribute **isUnremovable** is set to true.
 
 **Solution**
 
-Set **isUnremovable** as needed. For details, see [NotificationRequest](./js-apis-notificationManager.md#notificationrequest).
+Enable notification deletion. For details, see [NotificationRequest](./js-apis-inner-notification-notificationRequest.md).
 
 ## 1600007 Notification Not Found
 
 **Error Message**
 
-The notification is not exist.
+The notification does not exist.
 
 **Description**
 
 This error code is reported when the notification service could not find the notification.
 
-**Cause**
+**Possible Causes**
 
 The notification has been canceled or deleted.
 
 **Solution**
 
-N/A
+None.
 
 ## 1600008 User Not Found
 
 **Error Message**
 
-The user is not exist.
+The user does not exist.
 
 **Description**
 
 This error code is reported when the specified user is not found in the information system.
 
-**Cause**
+**Possible Causes**
 
 The user information passed is incorrect.
 
@@ -154,15 +154,15 @@ Verify the user information.
 
 **Error Message**
 
-Over max number notifications per second.
+The notification sending frequency reaches the upper limit.
 
 **Description**
 
 This error code is reported when the notification sending frequency reaches the upper limit.
 
-**Cause**
+**Possible Causes**
 
-More than 10 notifications are sent per second.
+More than 10 notifications are sent per second, or more than 20 notifications are updated per second.
 
 **Solution**
 
@@ -178,7 +178,7 @@ Distributed operation failed.
 
 This error code is reported when an error occurs with the distributed database operation or distributed API invoking.
 
-**Cause**
+**Possible Causes**
 
 The distributed database could not be operated or the distributed API could not be invoked.
 
@@ -186,17 +186,17 @@ The distributed database could not be operated or the distributed API could not 
 
 Verify the distributed connection.
 
-## 1600011 Failed to Read the Template Configuration
+## 1600011 Failed to Read Template Configuration
 
 **Error Message**
 
-Read template config failed.
+Failed to read the template configuration.
 
 **Description**
 
 This error code is reported when the attempt to read the template configuration file fails.
 
-**Cause**
+**Possible Causes**
 
 The template configuration file is lost in the system.
 
@@ -214,13 +214,194 @@ No memory space.
 
 This error code is reported when a memory allocation error occurs.
 
-**Cause**
+**Possible Causes**
 
 A memory allocation error occurs.
 
 **Solution**
 
 Ensure sufficient system memory.
+
+## 1600013 Notification Pop-up Window Displayed
+
+**Error Message**
+
+A notification dialog box is already displayed.
+
+**Description**
+
+This error code is reported when the notification pop-up window is displayed.
+
+**Possible Causes**
+
+The notification pop-up window is displayed.
+
+**Solution**
+
+Check whether the notification pop-up window is displayed.
+
+
+## 1600014 No Related Permission
+
+**Error Message**
+
+No permission.
+
+**Description**
+
+This error code is reported when you do not have the related permission.
+
+**Possible Causes**
+
+You do not have the related permission.
+
+**Solution**
+
+Check whether you have the related permission.
+
+## 1600015 Duplicate Configurations not Allowed for the Current Notification Status
+
+**Error Message**
+
+The current notification status does not support duplicate configurations.
+
+**Description**
+
+This error code is reported when the current notification status does not support duplicate configurations.
+
+**Possible Causes**
+
+The current notification status does not support duplicate configurations.
+
+**Solution**
+
+Check whether the notification status is duplicately configured.
+
+## 1600016 Updated Notification Version Outdated
+
+**Error Message**
+
+The notification version for this update is too low.
+
+**Description**
+
+This error code is reported when the notification version for this update is outdated.
+
+**Possible Causes**
+
+The notification version for this update is outdated.
+
+**Solution**
+
+Check the notification version.
+
+## 1600017 No Configured Proxy Relationship
+
+**Error Message**
+
+There is no corresponding agent relationship configuration.
+
+**Description**
+
+This error code is reported when no proxy relationship is configured.
+
+**Possible Causes**
+
+No corresponding proxy relationship is configured.
+
+**Solution**
+
+Check the proxy relationship configuration.
+
+## 1600018 Notification Settings Page Already Displayed
+
+**Error Message**
+
+The notification settings window is already displayed.
+
+**Description**
+
+This error code is reported when the notification settings page has been displayed.
+
+**Possible Causes**
+
+The notification settings page has been displayed.
+
+**Solution**
+
+Check whether the notification settings page is displayed.
+
+## 1600019 No Configuration Information for a Do Not Disturb Profile
+
+**Error Message**
+
+The do-not-disturb profile does not exist.
+
+**Description**
+
+This error code is reported when the configuration information corresponding to the Do Not Disturb profile ID does not exist.
+
+**Possible Causes**
+
+No configuration information corresponding to the Do Not Disturb profile ID exists.
+
+**Solution**
+
+Check whether the queried Do Not Disturb profile ID is correct.
+
+## 1600020 Applications in the Permission Control List Is Not Allowed to Publish Notifications
+
+**Error Message**
+
+The application is not allowed to publish notifications due to permission control settings.
+
+**Description**
+
+This error code is reported when an application under the permission control list publishes a notification.
+
+**Possible Causes**
+
+The application is restricted by the enterprise-customized devices.
+
+**Solution**
+
+The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
+
+## 1600021 Cross-Device Communication Timeout
+
+**Error Message**
+
+Distributed operation timed out.
+
+**Description**
+
+This error code is reported when the cross-device collaboration APIs (for example, redirection or quick reply) of notification is called but the communication times out.
+
+**Possible Causes**
+
+Device connection error.
+
+**Solution**
+
+Make sure that devices (for example, mobile phone and the watch) are properly connected.
+
+## 2300007 Network Access Failure
+
+**Error Message**
+
+Network unreachable.
+
+**Description**
+
+This error code is reported when the network cannot be accessed.
+
+**Possible Causes**
+
+The network cannot be accessed.
+
+**Solution**
+
+Check the network status.
 
 ## 17700001 Bundle Name Not Found
 
@@ -232,7 +413,7 @@ The specified bundle name was not found.
 
 This error code is reported when the bundle name is incorrect or the application is not installed.
 
-**Cause**
+**Possible Causes**
 
 1. The bundle name is incorrect.
 2. The application is not installed.

@@ -44,7 +44,7 @@ Check the format of the string.
 
 **Error Message**
 
-Worker initialization failure.
+Worker initialization failed.
 
 **Description**
 
@@ -64,7 +64,7 @@ The **Worker** instance fails to be initialized when the API is called.
 
 **Error Message**
 
-Worker instance is not running.
+The Worker instance is not running.
 
 **Description**
 
@@ -82,7 +82,7 @@ Ensure that the **Worker** instance is running properly.
 
 **Error Message**
 
-The invoked API is not supported in workers.
+The called API is not supported in the worker thread.
 
 **Description**
 
@@ -112,7 +112,7 @@ The type of data to transfer does not support serialization or is imported exter
 
 **Solution**
 
-Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [Serialization Types Supported by TaskPool and Worker](../../arkts-utils/serialization-support-types.md).
+Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [ArkTS Inter-Thread Communication Overview](../../arkts-utils/interthread-communication-overview.md).
 
 ## 10200007 Abnormal Worker File Path
 
@@ -136,7 +136,7 @@ Ensure that the worker file path complies with the specifications for creating *
 
 **Error Message**
 
-Buffer size must be a multiple of ${size}.
+The buffer size must be a multiple of ${size}.
 
 **Description**
 
@@ -149,7 +149,7 @@ The buffer size is not an integer multiple of **size**, which can be 16-bit, 32-
 **Solution**
 
 Use a buffer the size of which meets the requirements.
-
+  
 
 ## 10200010 Empty Container
 
@@ -210,7 +210,7 @@ Use the keyword **new** to create an instance.
 
 **Error Message**
 
-Cannot set property ${propertyName} of Buffer which has only a getter.
+${propertyName} cannot be set for the buffer that has only a getter.
 
 **Description**
 
@@ -228,7 +228,7 @@ Do not set the read-only attribute for the buffer.
 
 **Error Message**
 
-The function is not mark as concurrent.
+The function is not marked as concurrent.
 
 **Description**
 
@@ -246,7 +246,7 @@ Check the functions required by the tasks executed by the task pool and add the 
 
 **Error Message**
 
-The task does not exist when it is canceled.
+The task to cancel does not exist.
 
 **Description**
 
@@ -264,7 +264,7 @@ Before canceling a task, ensure that the task has been placed in the task pool b
 
 **Error Message**
 
-The task is executing when it is canceled.
+The task to cancel is being executed.
 
 **Description**
 
@@ -300,7 +300,7 @@ Before deleting an element, ensure that the element exists in this container.
 
 **Error Message**
 
-The task group does not exist when it is canceled.
+The task group to cancel does not exist.
 
 **Description**
 
@@ -354,7 +354,7 @@ Ensure that the attribute contained in the method is callable and that the metho
 
 **Error Message**
 
-The global call exceeds the timeout.
+Waiting for a global call timed out.
 
 **Description**
 
@@ -372,7 +372,7 @@ Do not call APIs that take a long time to process data, such as complex computin
 
 **Error Message**
 
-The function is not called in the taskpool thread.
+The function is not called in the TaskPool thread.
 
 **Description**
 
@@ -380,7 +380,7 @@ This error code is reported when the function is not called in a **TaskPool** th
 
 **Possible Causes**
 
-The function is called in the main thread or in a thread that is not in **TaskPool**.
+The function is called in the UI main thread or in a thread that is not in **TaskPool**.
 
 **Solution**
 
@@ -426,7 +426,7 @@ Ensure that the callback has been registered in the host thread before this func
 
 **Error Message**
 
-Add dependent task to SequenceRunner.
+dependent task not allowed.
 
 **Description**
 
@@ -466,7 +466,7 @@ The dependency does not exist.
 
 **Description**
 
-[removeDependency()](../apis/js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
+[removeDependency()](js-apis-taskpool.md#removedependency11) is called to remove a dependent task, but the task does not exist.
 
 **Possible Causes**
 
@@ -484,7 +484,7 @@ The delayTime is less than zero.
 
 **Description**
 
-This error code is reported when the value of [delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
+This error code is reported when the value of [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is less than 0.
 
 **Possible Causes**
 
@@ -498,7 +498,7 @@ Ensure that [delayTime](js-apis-taskpool.md#taskpoolexecutedelayed11) is set to 
 
 **Error Message**
 
-Can not set an arraybuffer to both transferList and cloneList.
+An ArrayBuffer cannot be set as both a transfer list and a clone list.
 
 **Description**
 
@@ -516,7 +516,7 @@ Ensure that an ArrayBuffer is set as either a transfer list or clone list. If yo
 
 **Error Message**
 
-No such lock.
+The lock does not exist.
 
 **Description**
 
@@ -722,11 +722,86 @@ A periodic task cannot have dependencies.
 
 **Possible Causes**
 
-[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
 
 **Solution**
 
 Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
+
+## 10200054 Asynchronous Queue Task Discarded
+
+**Error Message**
+
+The asyncRunner task discarded.
+
+**Description**
+
+A task within the waiting list of the asynchronous queue is discarded.
+
+**Possible Causes**
+
+When the number of tasks executed by calling [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18) exceeds the capacity of the waiting list, the earliest task in the list is discarded.
+
+**Solution**
+
+1. Increase the capacity of the waiting list.
+2. Locate the cause of slow task execution and check the task execution logic.
+
+## 10200055 Asynchronous Queue Task Canceled
+
+**Error Message**
+
+The asyncRunner task has been canceled.
+
+**Description**
+
+The task in the asynchronous queue is canceled.
+
+**Possible Causes**
+
+The task is canceled when it is pending in the task pool for processing or when it is in the waiting list.
+
+**Solution**
+
+Before canceling a task, ensure that the task has been distributed to the task pool and started for execution. If you are not sure, capture exceptions.
+
+## 10200056 Asynchronous Queue Task Cannot Have Dependencies
+
+**Error Message**
+
+The task has been executed by AsyncRunner.
+
+**Description**
+
+An asynchronous queue task cannot have dependencies.
+
+**Possible Causes**
+
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for an asynchronous queue task.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not an asynchronous queue task. If you are not sure, capture exceptions.
+
+## 10200057 Task Cannot Be Executed by Two APIs
+
+**Error Message**
+
+The task cannot be executed by two APIs.
+
+**Description**
+
+Asynchronous queue tasks can be executed only by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18), whereas non-asynchronous tasks cannot be executed by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18).
+
+**Possible Causes**
+
+1. [sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), [taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1), [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18), [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12), or [addDependency](js-apis-taskpool.md#adddependency11) is called to execute an asynchronous queue task.
+2. [execute](../apis-arkts/js-apis-taskpool.md#execute18) of the asynchronous queue is called again to execute a task that has been executed.
+
+**Solution**
+
+1. When calling these APIs, ensure that the asynchronous queue task will not be executed. If you are not sure, capture exceptions.
+2. When calling [execute](../apis-arkts/js-apis-taskpool.md#execute18) of the asynchronous queue, ensure that the task has not been executed. If you are not sure, capture exceptions.
 
 ## 10200060 Precision Limit Is Exceeded
 
@@ -767,5 +842,3 @@ When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or t
 Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
 
 Example: Decimal.set({crypto: false})
-
- <!--no_check--> 

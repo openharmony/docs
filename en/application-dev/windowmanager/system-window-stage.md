@@ -12,16 +12,16 @@ However, you can customize an animation to be played during the display or hidin
 
 > **NOTE**
 >
-> This document involves the use of system APIs. You must use the full SDK for development.<!--Del--> For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+> This document involves the use of system APIs. You must use the full SDK for development. <!--Del-->For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
 
 
 ## Available APIs
 
-For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window.md).
+For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window-sys.md).
 
 | Instance           | API                                                      | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.    |
+| Window static method   | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window or system window.<br>**config**: parameters used for creating the window.    |
 | Window            | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
 | Window            | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window            | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
@@ -30,7 +30,7 @@ For details about more APIs, see [Window](../reference/apis-arkui/js-apis-window
 | Window            | hide (callback: AsyncCallback\<void>): void                  | Hides this window. This is a system API.                            |
 | Window            | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 | Window            | getTransitionController(): TransitionController              | Obtains the transition animation controller. This is a system API.                  |
-| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API. |
+| TransitionContext | completeTransition(isCompleted: boolean): void               | Completes the transition. This API can be called only after [animateTo()](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) is executed. This is a system API.|
 | Window            | showWithAnimation(callback: AsyncCallback\<void>): void      | Shows this window and plays an animation during the process. This is a system API.            |
 | Window            | hideWithAnimation(callback: AsyncCallback\<void>): void      | Hides this window and plays an animation during the process. This is a system API.            |
 
@@ -243,7 +243,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-// In the xxx.ets file, implement the attribute setting of the subwindow.
+// In the xxx.ets file, implement the attribute setting of the child window.
 import { window, router } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -267,7 +267,7 @@ struct transferCtrlSubWindow {
       .onClick(() => {
         let subWin = AppStorage.get<window.Window>("TransferSubWindow");
         subWin?.destroyWindow();
-        AppStorage.SetOrCreate<window.Window>("TransferSubWindow", undefined);
+        AppStorage.setOrCreate<window.Window>("TransferSubWindow", undefined);
       })
     }.height('100%').width('100%').backgroundColor('#ff556243').shadow({radius: 30,color: '#ff555555',offsetX: 15,offsetY: 15})
   }
@@ -275,7 +275,7 @@ struct transferCtrlSubWindow {
 ```
 
 ```ts
-// In the .ets file, implement the operations of creating a subwindow and displaying or hiding a window.
+// In the .ets file, implement the operations of creating a child window and displaying or hiding a window.
 import { window, router } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -331,7 +331,7 @@ struct Index {
     animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start show window animation');
       let toWindow = context.toWindow;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.
@@ -369,7 +369,7 @@ struct Index {
     animationConfig.HideWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
       console.info('LOCAL-TEST start hide window animation');
       let toWindow = context.toWindow;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 200, // Animation duration
         tempo: 0.5, // Playback speed.
         curve: Curve.EaseInOut, // Animation curve.

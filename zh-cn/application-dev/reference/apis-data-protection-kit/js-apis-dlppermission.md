@@ -25,7 +25,7 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd(file descriptor, 文件描述符)。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -53,10 +53,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fileIo.openSync(uri);
 
 try {
-  let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+  let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -73,7 +73,7 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fd | number | 是 | 文件的fd。 |
+| fd | number | 是 | 待查询文件的fd（文件描述符）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示是DLP文件，返回false表示非DLP文件。 |
 
 **错误码：**
@@ -142,14 +142,14 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
-      let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
+      let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息。
       console.info('res', JSON.stringify(res));
     }
   });
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -186,7 +186,7 @@ import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
       dlpPermission.getDLPPermissionInfo((err, res) => {
         if (err != undefined) {
@@ -194,7 +194,7 @@ try {
         } else {
           console.info('res', JSON.stringify(res));
         }
-      }); // 获取当前权限信息
+      }); // 获取当前权限信息。
     }
   });
 } catch (err) {
@@ -214,7 +214,7 @@ getOriginalFileName(fileName: string): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fileName | string | 是 | 指定要查询的文件名。 |
+| fileName | string | 是 | 指定要查询的文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -238,10 +238,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // 获取原始文件名
+  let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // 获取原始文件名。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -257,7 +257,7 @@ getDLPSuffix(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件扩展名。例如：原文件"text.txt"，返回拓展名为".dlp"，加密后的DLP文件名为"test.txt.dlp"。 |
+| string | 返回DLP文件扩展名。例如：原文件"text.txt"，加密后的DLP文件名为"test.txt.dlp"，返回拓展名为".dlp"。 |
 
 **错误码：**
 
@@ -274,10 +274,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名
+  let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名。
   console.info('res', res);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -316,9 +316,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  }); // 订阅
+  }); // 订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -356,9 +356,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.off('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  }); // 取消订阅
+  }); // 取消订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -374,7 +374,7 @@ isInSandbox(): Promise&lt;boolean&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前应用是否运行在沙箱中。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -392,10 +392,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
+  let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内。
   console.info('res', inSandbox);
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -411,7 +411,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -436,7 +436,7 @@ try {
     } else {
       console.info('isInSandbox, data', JSON.stringify(data));
     }
-  }); // 是否在沙箱内
+  }); // 是否在沙箱内。
 } catch (err) {
   console.error('isInSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -472,10 +472,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res = dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型
+  let res = dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -516,7 +516,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取支持DLP的文件类型
+  }); // 获取支持DLP的文件类型。
 } catch (err) {
   console.error('getDLPSupportedFileTypes error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -561,13 +561,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
+  dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内。
     if (inSandbox) {
-      dlpPermission.setRetentionState([uri]); // 设置沙箱保留
+      dlpPermission.setRetentionState([uri]); // 设置沙箱保留。
     }
   });
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -583,7 +583,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
@@ -612,7 +612,7 @@ try {
       console.info('setRetentionState success');
       console.info('res', JSON.stringify(res));
     }
-  }); // 设置沙箱保留
+  }); // 设置沙箱保留。
 } catch (err) {
   console.error('setRetentionState error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -630,7 +630,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 
 **返回值：**
 
@@ -656,9 +656,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  dlpPermission.cancelRetentionState([uri]); // 取消沙箱保留
+  dlpPermission.cancelRetentionState([uri]); // 取消沙箱保留。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -674,7 +674,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。 |
+| docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
 
 **错误码：**
@@ -701,7 +701,7 @@ try {
     } else {
       console.info('cancelRetentionState success');
     }
-  }); // 取消沙箱保留
+  }); // 取消沙箱保留。
 } catch (err) {
   console.error('cancelRetentionState error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -719,7 +719,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。 |
+| bundleName | string | 否 | 指定应用包名。默认为空，查询当前应用的保留沙箱信息列表。最小7字节，最大128字节。 |
 
 **返回值：**
 
@@ -745,10 +745,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表。
   console.info('res', JSON.stringify(res))
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -764,7 +764,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 指定应用包名。 |
+| bundleName | string | 是 | 指定应用包名。最小7字节，最大128字节。 |
 | callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
@@ -791,7 +791,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱保留列表
+  }); // 获取沙箱保留列表。
 } catch (err) {
   console.error('getRetentionSandboxList error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -835,7 +835,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱保留列表
+  }); // 获取沙箱保留列表。
 } catch (err) {
   console.error('getRetentionSandboxList error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -872,10 +872,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表。
   console.info('res', JSON.stringify(res))
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -917,7 +917,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取DLP访问列表
+  }); // 获取DLP访问列表。
 } catch (err) {
   console.error('getDLPFileAccessRecords error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -955,30 +955,30 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | The system ability works abnormally. |
-| 19100016 | uri missing in want. |
-| 19100017 | displayName missing in want. |
+| 19100016 | The uri field is missing in the want parameter. |
+| 19100017 | The displayName field is missing in the want parameter. |
 
 **示例：**
 
 ```ts
 import { dlpPermission } from '@kit.DataProtectionKit';
-import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { common, Want } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 try {
-  let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+  let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
   let want: Want = {
     "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
     "parameters": {
       "displayName": "1.txt"
     }
-  }; // 请求参数
+  }; // 请求参数。
   dlpPermission.startDLPManagerForResult(context, want).then((res) => {
     console.info('res.resultCode', res.resultCode);
     console.info('res.want', JSON.stringify(res.want));
-  }); // 打开DLP权限管理应用
+  }); // 打开DLP权限管理应用。
 } catch (err) {
-  console.error('error', err.code, err.message); // 失败报错
+  console.error('error', err.code, err.message); // 失败报错。
 }
 ```
 
@@ -993,7 +993,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| configInfo | string | 是 | 沙箱应用配置信息。 |
+| configInfo | string | 是 | 沙箱应用配置信息。长度小于4MB。 |
 
 **返回值：**
 
@@ -1011,7 +1011,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 | 19100001 | Invalid parameter value. |
 | 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 
@@ -1020,9 +1020,9 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+  dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -1048,7 +1048,7 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 | 19100001 | Invalid parameter value. |
 | 19100007 | No permission to call this API, which is available only for non-DLP sandbox applications. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 
@@ -1057,16 +1057,16 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
+  dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
 ## dlpPermission.getSandboxAppConfig<sup>11+<sup>
 getSandboxAppConfig(): Promise&lt;string&gt;
 
-获取沙箱应用配置信息，使用Promise方式异步返回结果
+获取沙箱应用配置信息，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1083,7 +1083,7 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 | -------- | -------- |
 | 19100001 | Invalid parameter value. |
 | 19100011 | The system ability works abnormally. |
-| 19100018 | Not authorized application. |
+| 19100018 | The application is not authorized. |
 
 **示例：**
 
@@ -1094,23 +1094,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
     console.info('res', JSON.stringify(res));
-  }); // 获取沙箱应用配置信息
+  }); // 获取沙箱应用配置信息。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
 ## dlpPermission.isDLPFeatureProvided<sup>12+<sup>
 isDLPFeatureProvided(): Promise&lt;boolean&gt;
 
-查询当前系统是否提供DLP特性，使用Promise方式异步返回结果
+查询当前系统是否提供DLP特性，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前系统是否提供DLP特性。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前系统提供DLP特性，返回false表示不提供DLP特性。 |
 
 **错误码：**
 
@@ -1129,13 +1129,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 dlpPermission.isDLPFeatureProvided().then((res) => {
   console.info('res', JSON.stringify(res));
 }).catch((err: BusinessError) => {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 });
 ```
 
 ## ActionFlagType
 
-可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰
+可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1174,7 +1174,7 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
 | flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo
@@ -1185,7 +1185,7 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。 |
+| uri | string | 是 | 否 | 表示DLP文件的uri。不超过4095字节。 |
 | lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPManagerResult<sup>11+</sup>
@@ -1210,6 +1210,6 @@ DLP文件授权类型的枚举。
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。 |
+| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
 

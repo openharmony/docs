@@ -40,7 +40,7 @@ A user_grant permission must be authorized by the user. An application with this
 
 This type of permissions must be declared in the application installation package and authorized by the user in a dialog box during the running of the application. The application has the permission only after user authorization.
 
-For example, the permissions related to the microphone and camera in the [Permissions for All Applications](permissions-for-all.md) are user_grant permissions. The list of user_grant permissions must be presented on the application details page in the application market.
+For example, the permissions related to the microphone and camera in the [Open user_grant Permissions](permissions-for-all-user.md) are user_grant permissions. The list of user_grant permissions must be presented on the application details page in the application market.
 
 ## Permission Groups and Permissions
 
@@ -81,13 +81,21 @@ The relationship between a permission group and its permissions is not fixed. Fo
   | APL| Description| Available To|
   | -------- | -------- | -------- |
   | normal | Allows an application to access common system resources beyond the default rules, such as configuring Wi-Fi and invoking the camera to take photos.<br>Access to these resources (including data and functions) imposes low risks on user privacy and other applications.| Applications with the normal or higher APL.|
-  | system_basic | Allows an application to access resources related to basic OS services (basic functions provided or preset by the system), such as system settings and identity authentication.<br>Access to these resources imposes low risks to user privacy and other applications.| <!--RP1-->Applications with the system_basic or system_core APL.<!--RP1End--> |
+  | system_basic | Allows an application to access resources related to basic OS services (basic functions provided or preset by the system), such as system settings and identity authentication.<br>Access to these resources imposes low risks to user privacy and other applications.| - Applications with the system_basic or system_core APL.<br>- [Restricted permissions](restricted-permissions.md), which are some system_basic permissions that can be granted to normal applications via ACL.|
   | system_core | Allows an application to access OS core resources, which are critical to underlying core services. If these resources are corrupted, the OS cannot run properly.| - Applications with the system_core APL.<br>- System applications only.|
 
 - ACL
 
   Permission APLs and application APLs are in one-to-one correspondence. In principle, an application with a lower APL cannot request a permission with a higher APL. However, you can use the Access Control List (ACL) to enable an application to have permissions beyond its APL.
 
-  All the system permissions are defined with the **Enable via ACL** field. If the value is true, the application can be granted to an application with a lower APL via the ACL. For the definition of a permission, see <!--RP2-->[Permissions for System Applications](permissions-for-system-apps.md)<!--RP2End-->.
+  All the system permissions are defined with the **Enable via ACL** field. If the value is true, the application can be granted to an application with a lower APL via the ACL. For details about the definition of a single permission, see [Restricted Permissions](restricted-permissions.md)<!--Del-->, [system_grant Permissions Available for System Applications via ACL](permissions-for-system-apps.md), and [user_grant Permissions for System Applications](permissions-for-system-apps-user.md)<!--DelEnd-->.
 
   For example, to implement a special feature, application A with the normal APL requires permission P, whose APL is system_basic. If **Enable via ACL** is true for permission P, application A can request permission P via the ACL.
+
+- Permission type with data
+
+  In the traditional permission model, permissions are either allowed or denied — with limited information. Examples include the permissions configured in the **allowed-acls** field in the profile. This model cannot meet the increasing requirements for refined permission control.
+
+  To address this challenge, the system introduces the permission key-value (KV) pairs that carry additional information. Examples include the permission types configured in the **app-services-capabilities** field in the profile. This permission type offers greater flexibility and adaptability to complex permission control models.
+
+  In scenarios involving extended peripherals, the application needs to manage diverse driver servers that can be connected to. This requires that the permissions carry specific server data. The data defined in **app-services-capabilities** can specify the server information.

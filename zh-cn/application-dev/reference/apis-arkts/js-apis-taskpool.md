@@ -1,6 +1,6 @@
 # @ohos.taskpool（启动任务池）
 
-任务池（taskpool）作用是为应用程序提供一个多线程的运行环境，降低整体资源的消耗、提高系统的整体性能，且您无需关心线程实例的生命周期。您可以使用任务池API创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。理论上您可以使用任务池API创建数量不受限制的任务，但是出于内存因素不建议您这样做。此外，不建议您在任务中执行阻塞操作，特别是无限期阻塞操作，长时间的阻塞操作占据工作线程，可能会阻塞其他任务调度，影响您的应用性能。
+任务池（taskpool）的作用是为应用程序提供多线程运行环境，降低资源消耗并提升系统性能，且您无需关心线程实例的生命周期。您可以使用任务池API创建后台任务（Task），并进行如执行任务或取消任务等操作。理论上，任务池API允许创建的任务数量不受限制，但由于内存限制，不建议这样做。此外，不建议在任务中执行阻塞操作，尤其是无限期阻塞操作，因为长时间的阻塞操作会占用工作线程，可能阻塞其他任务的调度，影响应用性能。
 
 您所创建的同一优先级任务的执行顺序可以由您决定，任务真实执行的顺序与您调用任务池API提供的任务执行接口顺序一致。任务默认优先级是MEDIUM。
 
@@ -9,6 +9,12 @@
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](errorcode-utils.md)。
 
 taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
+
+文档中涉及以下任务概念：
+- 任务组任务：对应为[TaskGroup](#taskgroup10)任务。
+- 串行队列任务：对应为[SequenceRunner](#sequencerunner-11)任务。
+- 异步队列任务：对应为[AsyncRunner](#asyncrunner18)任务。
+- 周期任务：被[executePeriodically](#taskpoolexecuteperiodically12)执行过的任务。
 
 > **说明：**
 >
@@ -23,7 +29,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool内部任务队列, 函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列，函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -33,7 +39,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 执行逻辑的函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
@@ -49,7 +55,6 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.               |
 | 10200006 | An exception occurred during serialization.  |
 | 10200014 | The function is not marked as concurrent.      |
 
@@ -67,11 +72,74 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 });
 ```
 
+
+## taskpool.execute<sup>13+</sup>
+
+execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...args: A): Promise\<R>
+
+校验并发函数的参数类型和返回类型后，将待执行的函数放入taskpool内部任务队列。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | A | 否   | 执行逻辑的函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**返回值：**
+
+| 类型              | 说明                                 |
+| ----------------- | ------------------------------------ |
+| Promise\<R>  | Promise对象，返回任务函数的执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006 | An exception occurred during serialization.  |
+| 10200014 | The function is not marked as concurrent.      |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+    console.info("printArgs: " + args);
+    return args;
+}
+
+@Concurrent
+function testWithThreeParams(a: number, b: string, c: number): string {
+  return b;
+}
+
+@Concurrent
+function testWithArray(args: [number, string]): string {
+  return "success";
+}
+
+taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 100: test number
+  console.info("taskpool result: " + value);
+});
+
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
+
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
+```
+
+
 ## taskpool.execute
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
+将创建好的任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务、串行队列任务和异步队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -97,10 +165,10 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failed.             |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not marked as concurrent.     |
 | 10200051 | The periodic task cannot be executed again. |
+| 10200057 | The task cannot be executed by two APIs.  |
 
 **示例：**
 
@@ -124,6 +192,66 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
   console.info("taskpool result3: " + value);
 });
 ```
+
+
+## taskpool.execute<sup>13+</sup>
+
+execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
+
+校验并发函数的参数类型和返回类型后，将创建好的泛型任务放入taskpool内部任务队列。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                       |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [GenericsTask<A, R>](#genericstask13)         | 是   | 需要在任务池中执行的泛型任务。                  |
+| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**返回值：**
+
+| 类型              | 说明              |
+| ----------------  | ---------------- |
+| Promise\<R> | Promise对象，返回任务函数的执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not marked as concurrent.     |
+| 10200051 | The periodic task cannot be executed again. |
+| 10200057 | The task cannot be executed by two APIs.  |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+    console.info("printArgs: " + args);
+    return args;
+}
+
+let task1: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 100); // 100: test number
+let task2: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 200); // 200: test number
+let task3: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 300); // 300: test number
+taskpool.execute<[number], number>(task1, taskpool.Priority.LOW).then((value: number) => {
+  console.info("taskpool result1: " + value);
+});
+taskpool.execute<[number], number>(task2, taskpool.Priority.MEDIUM).then((value: number) => {
+  console.info("taskpool result2: " + value);
+});
+taskpool.execute<[number], number>(task3, taskpool.Priority.HIGH).then((value: number) => {
+  console.info("taskpool result3: " + value);
+});
+```
+
 
 ## taskpool.execute<sup>10+</sup>
 
@@ -190,7 +318,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务、串行队列任务和周期任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
+延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务、串行队列任务、异步队列任务和周期任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -217,16 +345,19 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 | 错误码ID   | 错误信息                         |
 | --------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not marked as concurrent. |
 | 10200028 | The delayTime is less than zero. |
 | 10200051 | The periodic task cannot be executed again. |
+| 10200057 | The task cannot be executed by two APIs.  |
 
 **示例：**
 
 ```ts
-@Concurrent
 // import BusinessError
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
+@Concurrent
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
 }
@@ -241,11 +372,68 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 })
 ```
 
+
+## taskpool.executeDelayed<sup>13+</sup>
+
+executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTask\<A, R>, priority?: Priority): Promise\<R>
+
+校验并发函数的参数类型和返回类型后，延时执行泛型任务。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名       | 类型          | 必填 | 说明                 |
+| ----------- | ------------- | ---- | -------------------- |
+| delayTime   | number        | 是   | 延时时间。单位为ms。  |
+| task        | [GenericsTask\<A, R>](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
+| priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，默认值为taskpool.Priority.MEDIUM。 |
+
+**返回值：**
+
+| 类型                 | 说明                               |
+| ----------------    | ---------------------------------- |
+| Promise\<R>  | Promise对象，返回任务函数的执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID   | 错误信息                         |
+| --------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200028 | The delayTime is less than zero. |
+| 10200051 | The periodic task cannot be executed again. |
+| 10200057 | The task cannot be executed by two APIs.  |
+
+**示例：**
+
+```ts
+// import BusinessError
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Concurrent
+function printArgs(args: number): string {
+    console.info("printArgs: " + args);
+    return "success";
+}
+
+let task: taskpool.Task = new taskpool.GenericsTask<[number], string>(printArgs, 100); // 100: test number
+taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000:delayTime is 1000ms
+  console.info("taskpool execute success");
+}).catch((e: BusinessError) => {
+  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+})
+```
+
+
 ## taskpool.executePeriodically<sup>12+</sup>
 
 executePeriodically(period: number, task: Task, priority?: Priority): void
 
-周期执行任务，每隔period时长执行一次任务。当前执行模式支持设置任务优先级和调用cancel取消任务周期执行。周期任务不可以是任务组任务和串行队列任务，不可以再次调用执行接口，不可以拥有依赖关系。
+周期执行任务每隔period时长执行一次。当前执行模式支持设置任务优先级，并可以通过调用cancel取消任务周期执行。周期任务不能是任务组任务、串行队列任务或异步队列任务，不能再次调用执行接口，且不能拥有依赖关系。
 
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -268,11 +456,11 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 | 错误码ID   | 错误信息                         |
 | ---------- | -------------------------------- |
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003   | Worker initialization failed. |
 | 10200006   | An exception occurred during serialization. |
 | 10200014   | The function is not marked as concurrent. |
 | 10200028   | The period is less than zero. |
 | 10200050   | The concurrent task has been executed and cannot be executed periodically. |
+| 10200057 | The task cannot be executed by two APIs.  |
 
 
 **示例：**
@@ -289,10 +477,10 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // 向主线程发送消息
+  taskpool.Task.sendData(args); // 向宿主线程发送消息
 }
 
-function pringResult(data: number): void {
+function printResult(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
@@ -306,8 +494,84 @@ function taskpoolTest() {
 
   try {
     let periodicTask: taskpool.Task = new taskpool.Task(testExecutePeriodically, 200); // 200: test number
-    periodicTask.onReceiveData(pringResult);
+    periodicTask.onReceiveData(printResult);
     taskpool.executePeriodically(1000, periodicTask); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
+  }
+}
+
+taskpoolTest();
+```
+
+
+## taskpool.executePeriodically<sup>13+</sup>
+
+executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsTask\<A, R>, priority?: Priority): void
+
+校验并发函数的参数类型和返回类型后，周期执行泛型任务，每隔period时长执行一次。
+
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名       | 类型          | 必填  | 说明                 |
+| -----------  | ------------- | ----- | -------------------- |
+| period       | number        | 是    | 周期时长。单位为ms。  |
+| task         | [GenericsTask\<A, R>](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
+| priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID   | 错误信息                         |
+| ---------- | -------------------------------- |
+| 401        | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006   | An exception occurred during serialization. |
+| 10200014   | The function is not marked as concurrent. |
+| 10200028   | The period is less than zero. |
+| 10200050   | The concurrent task has been executed and cannot be executed periodically. |
+| 10200057 | The task cannot be executed by two APIs.  |
+
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+  console.info("printArgs: " + args);
+}
+
+@Concurrent
+function testExecutePeriodically(args: number): void {
+  let t = Date.now();
+  while ((Date.now() - t) < args) {
+    continue;
+  }
+  taskpool.Task.sendData(args); // 向宿主线程发送消息
+}
+
+function printResult(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+function taskpoolTest() {
+  try {
+    let task: taskpool.Task = new taskpool.GenericsTask<[number], void>(printArgs, 100); // 100: test number
+    taskpool.executePeriodically<[number], void>(1000, task); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-1: Code: ${e.code}, message: ${e.message}`);
+  }
+
+  try {
+    let periodicTask: taskpool.Task = new taskpool.GenericsTask<[number], void>(testExecutePeriodically, 200); // 200: test number
+    periodicTask.onReceiveData(printResult);
+    taskpool.executePeriodically<[number], void>(1000, periodicTask); // 1000: period is 1000ms
   } catch (e) {
     console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
   }
@@ -321,7 +585,7 @@ taskpoolTest();
 
 cancel(task: Task): void
 
-取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
+取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -335,15 +599,14 @@ cancel(task: Task): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task to cancel does not exist. |
-| 10200016 | The task to cancel is being executed.   |
+| 10200055 | The asyncRunner task has been canceled. |
 
-从API version10开始，此接口调用时不再涉及上报错误码10200016。
+从API version 10开始，此接口调用时不再涉及上报错误码10200016。
 
 **正在执行的任务取消示例：**
 
@@ -368,14 +631,14 @@ function inspectStatus(arg: number): number {
   return arg + 1;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let task1: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
   let task2: taskpool.Task = new taskpool.Task(inspectStatus, 200); // 200: test number
   let task3: taskpool.Task = new taskpool.Task(inspectStatus, 300); // 300: test number
   let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
   let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
   let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     console.info("taskpool test result: " + res);
   });
   taskpool.execute(task2);
@@ -384,7 +647,7 @@ function concurrntFunc() {
   taskpool.execute(task5);
   taskpool.execute(task6);
   // 1s后取消task
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task1);
     } catch (e) {
@@ -393,14 +656,14 @@ function concurrntFunc() {
   }, 1000);
 }
 
-concurrntFunc();
+concurrentFunc();
 ```
 
 ## taskpool.cancel<sup>10+</sup>
 
 cancel(group: TaskGroup): void
 
-取消任务池中的任务组。当一个任务组的任务未全部执行结束时取消任务组，返回undefined作为任务组结果。
+取消任务池中的任务组。当一个任务组的任务未全部执行结束时取消任务组，则返回undefined作为任务组结果。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -434,18 +697,18 @@ function printArgs(args: number): number {
   return args;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let taskGroup1: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup1.addTask(printArgs, 10); // 10: test number
   let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup2.addTask(printArgs, 100); // 100: test number
-  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskGroup1 res is:" + res);
   });
-  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskGroup2 res is:" + res);
   });
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(taskGroup2);
     } catch (e) {
@@ -454,7 +717,70 @@ function concurrntFunc() {
   }, 1000);
 }
 
-concurrntFunc();
+concurrentFunc();
+```
+
+## taskpool.cancel<sup>18+</sup>
+
+cancel(taskId: number): void
+
+通过任务ID取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。在其他线程调用taskpool.cancel时需要注意，因为cancel的行为是异步的，可能对之后的taskpool.execute/taskpool.executeDelayed生效。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                 |
+| ------- | ----------------------- | ---- | -------------------- |
+| taskId   | number | 是   | 需要取消执行的任务的ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
+| 10200015 | The task to cancel does not exist. |
+| 10200055 | The asyncRunner task has been canceled. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < 2000) {
+    continue;
+  }
+  if (taskpool.Task.isCanceled()) {
+    console.info("task has been canceled after 2s sleep.");
+    return args + 1;
+  }
+  console.info("printArgs: " + args);
+  return args;
+}
+
+@Concurrent
+function cancelFunction(taskId: number) {
+  try {
+    taskpool.cancel(taskId);
+  } catch (e) {
+    console.error(`taskpool: cancel error code: ${e.code}, info: ${e.message}`);
+  }
+}
+
+function concurrentFunc() {
+  let task = new taskpool.Task(printArgs, 100); // 100: test number
+  taskpool.execute(task);
+  setTimeout(() => {
+    let cancelTask = new taskpool.Task(cancelFunction, task.taskId);
+    taskpool.execute(cancelTask);
+  }, 1000);
+}
+
+concurrentFunc();
 ```
 
 ## taskpool.terminateTask<sup>12+</sup>
@@ -494,15 +820,15 @@ function longTask(arg: number): number {
   return arg;
 }
 
-function concurrntFunc() {
+function concurrentFunc() {
   let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     taskpool.terminateTask(task1);
     console.info("taskpool longTask result: " + res);
   });
 }
 
-concurrntFunc();
+concurrentFunc();
 ```
 
 ## taskpool.isConcurrent<sup>12+</sup>
@@ -525,7 +851,7 @@ isConcurrent(func: Function): boolean
 
 | 类型    | 说明                                 |
 | ------- | ------------------------------------ |
-| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)，返回true，否则返回false。 |
+| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)，则返回true，否则返回false。 |
 
 **错误码：**
 
@@ -541,8 +867,8 @@ isConcurrent(func: Function): boolean
 @Concurrent
 function test() {}
 
-let result: Boolean = taskpool.isConcurrent(test)
-console.info("result is: " + result)
+let result: Boolean = taskpool.isConcurrent(test);
+console.info("result is: " + result);
 ```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
@@ -618,22 +944,21 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 
 ## Task
 
-表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或添加依赖关系执行。
+表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或放入异步队列执行或添加依赖关系执行。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 | 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
+| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -649,7 +974,7 @@ Task的构造函数。
 
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -688,7 +1013,7 @@ Task的构造函数，可以指定任务名称。
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | 是   | 任务名称。                                                   |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -774,7 +1099,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -834,9 +1159,9 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("test result: " + res);
-}).catch((e: string)=>{
+}).catch((e: string) => {
   console.error("test catch: " + e);
 })
 console.info("testTransfer view2 byteLength: " + view.byteLength);
@@ -851,11 +1176,11 @@ console.info("testTransfer view3 byteLength: " + view1.byteLength);
 
 setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
-设置任务的拷贝列表。使用该方法前需要先构造Task。
+设置任务的拷贝列表。使用该方法前需先构造Task。
 
 > **说明：**
 >
-> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器声明并校验sendable-class)使用，否则会抛异常。
+> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -865,7 +1190,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[sendable数据](../../arkts-utils/arkts-sendable.md#sendable数据)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
@@ -914,7 +1239,7 @@ export class BaseClass {
     this.num1 = num;
   }
 
-  constructor(){
+  constructor() {
     console.info(this.str);
     this.isDone1 = true;
   }
@@ -935,10 +1260,10 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { BaseClass, DeriveClass } from './sendable'
+// 宿主线程（这里的宿主线程为UI主线程）调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { BaseClass, DeriveClass } from './sendable';
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -961,7 +1286,7 @@ function printLog(arr: Array<DeriveClass>): void {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -970,7 +1295,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("TaskPool Test")
+          Text("TaskPool Test");
         }.onClick(() => {
           // task1访问调用BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc
           let baseInstance1: BaseClass = new BaseClass();
@@ -1011,13 +1336,13 @@ struct Index {
 
 static sendData(...args: Object[]): void
 
-在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需要先构造Task。
+在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需先构造Task。
 
 > **说明：**
 >
 > - 该接口在taskpool的线程中调用。
 > - 避免在回调函数中使用该方法。
-> - 调用该接口时确保处理数据的回调函数在宿主线程已注册。
+> - 调用该接口时确保处理数据的回调函数已在宿主线程注册。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1027,7 +1352,7 @@ static sendData(...args: Object[]): void
 
 | 参数名   | 类型          | 必填 | 说明                                              |
 | -------- | ------------- | ---- | ------------------------------------------------- |
-| args     | Object[]      | 是   | 可传输对象默认转移，作为回调函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| args     | Object[]      | 否   | 可传输对象默认转移，作为回调函数的参数，支持的参数类型请参见[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -1051,14 +1376,14 @@ function sendDataTest(num: number): number {
   return num;
 }
 
-function pringLog(data: number): void {
+function printLog(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
 async function taskpoolTest(): Promise<void> {
   try {
     let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
-    task.onReceiveData(pringLog);
+    task.onReceiveData(printLog);
     await taskpool.execute(task);
   } catch (e) {
     console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
@@ -1073,7 +1398,7 @@ taskpoolTest();
 
 onReceiveData(callback?: Function): void
 
-为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需要先构造Task。
+为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需先构造Task。
 
 > **说明：**
 >
@@ -1107,14 +1432,14 @@ function ConcurrentFunc(num: number): number {
   return num;
 }
 
-function pringLog(data: number): void {
+function printLog(data: number): void {
   console.info("taskpool: data is: " + data);
 }
 
 async function testFunc(): Promise<void> {
   try {
     let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
-    task.onReceiveData(pringLog);
+    task.onReceiveData(printLog);
     await taskpool.execute(task);
   } catch (e) {
     console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
@@ -1128,7 +1453,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务、已执行的任务和周期任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
+为当前任务添加对其他任务的依赖。使用该方法前需先构造Task。该任务和被依赖的任务不能是任务组任务、串行队列任务、异步队列任务、已执行任务或周期任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1136,9 +1461,9 @@ addDependency(...tasks: Task[]): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | 是   | 被依赖的任务数组。 |
+| 参数名 | 类型             | 必填 | 说明               |
+| ------ | --------------- | ---- | ------------------ |
+| tasks  | [Task](#task)[] | 否   | 被依赖的任务数组。默认值为undefined。 |
 
 **错误码：**
 
@@ -1149,6 +1474,7 @@ addDependency(...tasks: Task[]): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200026 | There is a circular dependency. |
 | 10200052 | The periodic task cannot have a dependency. |
+| 10200056 | The task has been executed by the AsyncRunner. |
 
 **示例：**
 
@@ -1157,7 +1483,7 @@ addDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1171,7 +1497,7 @@ task1.addDependency(task2);
 task2.addDependency(task3);
 console.info("dependency: add dependency end");
 
-console.info("dependency: start execute second")
+console.info("dependency: start execute second");
 taskpool.execute(task1).then(() => {
   console.info("dependency: second task1 success");
 })
@@ -1187,7 +1513,7 @@ taskpool.execute(task3).then(() => {
 
 removeDependency(...tasks: Task[]): void
 
-删除当前任务对其他任务的依赖。使用该方法前需要先构造Task。
+删除当前任务对其他任务的依赖。使用该方法前需先构造Task。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1197,7 +1523,7 @@ removeDependency(...tasks: Task[]): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | 是   | 被依赖的任务数组。 |
+| tasks  | [Task](#task)[] | 否   | 被依赖的任务数组。默认值为undefined。 |
 
 **错误码：**
 
@@ -1208,6 +1534,7 @@ removeDependency(...tasks: Task[]): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200027 | The dependency does not exist. |
 | 10200052 | The periodic task cannot have a dependency. |
+| 10200056 | The task has been executed by the AsyncRunner. |
 
 **示例：**
 
@@ -1216,7 +1543,7 @@ removeDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1234,7 +1561,7 @@ task1.removeDependency(task2);
 task2.removeDependency(task3);
 console.info("dependency: remove dependency end");
 
-console.info("dependency: start execute")
+console.info("dependency: start execute");
 taskpool.execute(task1).then(() => {
   console.info("dependency: task1 success");
 })
@@ -1275,23 +1602,23 @@ onEnqueued(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onEnqueued(()=>{
-  console.info("taskpool: onEnqueued")
+task.onEnqueued(() => {
+  console.info("taskpool: onEnqueued");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1324,23 +1651,23 @@ onStartExecution(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onStartExecution(()=>{
-  console.info("taskpool: onStartExecution")
+task.onStartExecution(() => {
+  console.info("taskpool: onStartExecution");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1372,13 +1699,13 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { HashMap } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { HashMap } from '@kit.ArkTS';
 
 @Concurrent
-function test(args:number) {
-  let t = Date.now()
+function test(args: number) {
+  let t = Date.now();
   while ((Date.now() - t) < 100) {
     continue;
   }
@@ -1388,12 +1715,12 @@ function test(args:number) {
 }
 
 let task2 = new taskpool.Task(test, 1);
-task2.onExecutionFailed((e:Error)=>{
+task2.onExecutionFailed((e: Error) => {
   console.info("taskpool: onExecutionFailed error is " + e);
 })
-taskpool.execute(task2).then(()=>{
-  console.info("taskpool: execute task success")
-}).catch((e:BusinessError)=>{
+taskpool.execute(task2).then(() => {
+  console.info("taskpool: execute task success");
+}).catch((e:BusinessError) => {
   console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
 })
 ```
@@ -1426,7 +1753,7 @@ onExecutionSucceeded(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
@@ -1438,11 +1765,11 @@ function delay(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onExecutionSucceeded(()=>{
-  console.info("taskpool: onExecutionSucceeded")
+task.onExecutionSucceeded(() => {
+  console.info("taskpool: onExecutionSucceeded");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1477,13 +1804,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     if (!task.isDone()) {
       taskpool.cancel(task);
     }
@@ -1513,6 +1840,7 @@ type CallbackFunctionWithError = (e: Error) => void
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -1540,9 +1868,110 @@ function printArgs(args: string): string {
 let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
 ```
 
+
+## GenericsTask<sup>13+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+表示泛型任务。GenericsTask继承自[Task](#task)。
+相比创建Task，创建GenericsTask可以在编译阶段完成对并发函数的传参和返回值类型的校验，其余行为与Task一致。
+
+### constructor<sup>13+</sup>
+
+constructor(func: (...args: A) => R | Promise\<R>, ...args: A)
+
+GenericsTask的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                  |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | A | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200014 | The function is not marked as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+@Concurrent
+function testWithThreeParams(a: number, b: string, c: number): string {
+  return b;
+}
+
+@Concurrent
+function testWithArray(args: [number, string]): string {
+  return "success";
+}
+
+let task1: taskpool.Task = new taskpool.GenericsTask<[string], string>(printArgs, "this is my first LongTask");
+
+let task2: taskpool.Task = new taskpool.GenericsTask<[number, string, number], string>(testWithThreeParams, 100, "test", 100);
+
+let task3: taskpool.Task = new taskpool.GenericsTask<[[number, string]], string>(testWithArray, [100, "test"]);
+```
+
+### constructor<sup>13+</sup>
+
+constructor(name: string, func: (...args: A) => R | Promise\<R>, ...args: A)
+
+GenericsTask的构造函数，可以指定任务名称。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| name   | string   | 是   | 泛型任务名称。                                                   |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| args   | A | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200014 | The function is not marked as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let taskName: string = "taskName";
+let task: taskpool.Task = new taskpool.GenericsTask<[string], string>(taskName, printArgs, "this is my first Task");
+let name: string = task.name;
+```
+
 ## TaskGroup<sup>10+</sup>
 
-表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
 
 ### constructor<sup>10+</sup>
 
@@ -1606,7 +2035,7 @@ addTask(func: Function, ...args: Object[]): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -1635,7 +2064,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务、周期任务和已执行的任务。
+将创建好的任务添加到任务组中。使用该方法前需先构造TaskGroup。任务组不能添加其他任务组任务、串行队列任务、异步队列任务、有依赖关系的任务、长时任务、周期任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1656,6 +2085,7 @@ addTask(task: Task): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not marked as concurrent. |
 | 10200051 | The periodic task cannot be executed again.  |
+| 10200057 | The task cannot be executed by two APIs.  |
 
 **示例：**
 
@@ -1719,11 +2149,11 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回相同的串行队列。
+SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回同一个串行队列。
 
 > **说明：**
 >
-> - 不支持在同一线程重复构造相同的串行队列。
+> - 底层通过单例模式保证了：创建同名串行队列时，获取到同一个实例。
 > - 不支持修改串行队列的优先级。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1755,7 +2185,7 @@ let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", task
 
 execute(task: Task): Promise\<Object>
 
-执行串行任务。使用该方法前需要先构造SequenceRunner。串行队列不可以执行任务组任务、其他串行队列任务、有依赖关系的任务和已执行的任务。
+执行串行任务。使用该方法前需先构造SequenceRunner。串行队列不能执行任务组任务、其他串行队列任务、异步队列任务、有依赖关系的任务和已执行的任务。
 
 > **说明：**
 >
@@ -1785,16 +2215,16 @@ execute(task: Task): Promise\<Object>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | A dependent task cannot be added to SequenceRunner.  |
+| 10200025 | dependent task not allowed.  |
 | 10200051 | The periodic task cannot be executed again.  |
+| 10200057 | The task cannot be executed by two APIs.  |
 
 **示例：**
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
@@ -1804,8 +2234,7 @@ function additionDelay(delay:number): void {
 function waitForRunner(finalString: string): string {
   return finalString;
 }
-async function seqRunner()
-{
+async function seqRunner() {
   let finalString:string = "";
   let task1:taskpool.Task = new taskpool.Task(additionDelay, 3000);
   let task2:taskpool.Task = new taskpool.Task(additionDelay, 2000);
@@ -1827,6 +2256,156 @@ async function seqRunner()
   });
   await runner.execute(task4);
   console.info("seqrunner: task4 done, finalString is " + finalString);
+}
+```
+
+## AsyncRunner<sup>18+</sup>
+
+表示异步队列，可以指定任务执行并发度和指定任务的排队策略。使用[constructor](#constructor18)方法构造AsyncRunner。
+
+### constructor<sup>18+</sup>
+
+constructor(runningCapacity: number, waitingCapacity?: number)
+
+AsyncRunner的构造函数。构造一个非全局的异步队列，如果参数相同，返回的是不同的异步队列。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                       |
+| -------- | --------------------- | ---- | ---------------------------------------------------------- |
+| runningCapacity | number | 是   | 指定任务执行的最大并发度，该参数应为正整数，负数时报错，输入非整数时会向下取整。 |
+| waitingCapacity | number | 否   | 指定等待任务的列表容量，取值需大于等于0，负数时报错，输入非整数时会向下取整。默认值为0，表示等待任务列表的容量没有限制。如果设置大于0的值，则表示排队策略为丢弃策略，当加入的任务数量超过该值时，等待列表中处于队头的任务会被丢弃。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let runner: taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
+```
+
+### constructor<sup>18+</sup>
+
+constructor(name: string, runningCapacity: number, waitingCapacity?: number)
+
+AsyncRunner的构造函数。构造一个全局异步队列，如果名字相同，将返回同一个异步队列。
+
+> **说明：**
+>
+> - 底层通过单例模式保证了：创建同名的异步队列时，获取到同一个实例。
+> - 不支持修改并发度和等待任务列表容量。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                       |
+| -------- | --------------------- | ---- | ---------------------------------------------------------- |
+| name     | string                | 是   | 异步队列的名字。 |
+| runningCapacity | number | 是   | 指定任务执行的最大并发度，该参数应为正整数。负数时报错，非整数会向下取整。 |
+| waitingCapacity | number | 否   |  指定等待任务的列表容量，取值需大于等于0，负数时报错，输入非整数时会向下取整。默认值为0，表示等待任务列表的容量没有限制。如果设置大于0的值，则表示排队策略为丢弃策略，当加入的任务数量超过该值时，等待列表中处于队头的任务会被丢弃。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
+```
+
+### execute<sup>18+</sup>
+
+execute(task: Task, priority?: Priority): Promise\<Object>
+
+执行异步任务。使用该方法前需要先构造AsyncRunner。
+
+> **说明：**
+>
+> - 不支持执行任务组任务。
+> - 不支持执行串行队列任务。
+> - 不支持执行其他异步队列任务。
+> - 不支持执行周期性任务。
+> - 不支持执行延迟任务。
+> - 不支持执行存在依赖的任务。
+> - 不支持执行已执行过的任务。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                             |
+| ------ | ------------- | ---- | -------------------------------- |
+| task   | [Task](#task) | 是   | 需要添加到异步队列中的任务。 |
+| priority | [Priority](#priority) | 否   | 指定任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**返回值：**
+
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<Object> | Promise对象，返回任务执行的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200006 | An exception occurred during serialization. |
+| 10200025 | dependent task not allowed.  |
+| 10200051 | The periodic task cannot be executed again.  |
+| 10200054 | The asyncRunner task is discarded.  |
+| 10200057 | The task cannot be executed by two APIs.  |
+
+**示例：**
+
+```ts
+@Concurrent
+function additionDelay(delay: number): void {
+  let start: number = new Date().getTime();
+  while (new Date().getTime() - start < delay) {
+    continue;
+  }
+}
+async function asyRunner() {
+  let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
+  for (let i = 0; i < 30; i++) {
+    let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
+    runner.execute(task).then(() => {
+      console.info("asyncRunner: task" + i + " done.");
+    }).catch((e: BusinessError) => {
+      console.error("asyncRunner: task" + i + " error." + e.code + "-" + e.message);
+    });
+  }
+}
+
+async function asyRunner2() {
+  let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
+  for (let i = 0; i < 20; i++) {
+    let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
+    runner.execute(task).then(() => {
+      console.info("asyncRunner: task" + i + " done.");
+    });
+  }
 }
 ```
 
@@ -1897,11 +2476,104 @@ async function seqRunner()
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
 
+## TaskResult<sup>20+</sup>
+
+处于等待或执行过程中的任务进行[taskpool.cancel](#taskpoolcancel)操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| result | Object             | 是   | 是   | 任务执行结果。默认为undefined。                                    |
+| error   | Error \| Object   | 是   | 是   | 错误信息。默认和BusinessError的message字段一致。                 |
+
+> **说明：**
+>
+> 任务被取消后，有如下两种情况：
+>    - 如果当前任务是处于等待阶段，则result的值为undefined，error的值和BusinessError的message字段一致；
+>    - 如果当前任务正在运行，有异常抛出的情况下result的值为undefined，error的值为抛出的异常信息；没有异常的情况下，result为任务执行完成后的结果，error的值和BusinessError的message字段一致。
+>
+
+**示例**
+
+```ts
+import taskpool from '@ohos.taskpool';
+import {BusinessError} from '@ohos.base';
+
+@Concurrent
+function loop(): Error | number {
+  let start: number = Date.now();
+  while (Date.now() - start < 1500) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    return 0;
+  }
+  while (Date.now() - start < 3000) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    throw new Error("this is loop error");
+  }
+  return 1;
+}
+// 执行前取消
+function waitingCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.executeDelayed(2000, task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`waitingCancel task catch code: ${e.code}, message: ${e.message}`);
+    // waitingCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`waitingCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // waitingCancel task catch data: result: undefined, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中取消
+function runningCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancel task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancel task catch data: result: 0, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中抛异常
+function runningCancelError() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancelError task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancelError task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancelError task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancelError task catch data: result: undefined, error: Error: this is loop error
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 2000);
+}
+```
 
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/serialization-support-types.md)。
+序列化支持类型包括：目前支持的数据类型有[普通对象](../../arkts-utils/normal-object.md)、[ArrayBuffer对象](../../arkts-utils/arraybuffer-object.md)、[SharedArrayBuffer对象](../../arkts-utils/shared-arraybuffer-object.md)、[Transferable对象（NativeBinding对象）](../../arkts-utils/transferabled-object.md)、[Sendable对象](../../arkts-utils/arkts-sendable.md)五种。
 
 ### 简单使用
 
@@ -1914,6 +2586,7 @@ function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
+
 async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
@@ -1921,6 +2594,7 @@ async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(function)
   console.info("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
 }
+
 taskpoolExecute();
 ```
 
@@ -1938,9 +2612,9 @@ import { c } from "./b";
 
 @Concurrent
 function printArgs(a: string): string {
-    console.info(a);
-    console.info(c);
-    return a;
+  console.info(a);
+  console.info(c);
+  return a;
 }
 
 async function taskpoolExecute(): Promise<void> {
@@ -1960,7 +2634,7 @@ taskpoolExecute();
 ```ts
 // 支持async函数
 @Concurrent
-async function delayExcute(): Promise<Object> {
+async function delayExecute(): Promise<Object> {
   let ret = await Promise.all<Object>([
     new Promise<Object>(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
@@ -1968,7 +2642,7 @@ async function delayExcute(): Promise<Object> {
 }
 
 async function taskpoolExecute(): Promise<void> {
-  taskpool.execute(delayExcute).then((result: Object) => {
+  taskpool.execute(delayExecute).then((result: Object) => {
     console.info("taskPoolTest task result: " + result);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
@@ -1989,6 +2663,7 @@ function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
   return newArr;
 }
+
 export async function func1(): Promise<void> {
   console.info("taskpoolTest start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
@@ -2041,13 +2716,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
   // 1s后取消task
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task);
     } catch (e) {
@@ -2083,13 +2758,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task); // 任务已执行,取消失败
     } catch (e) {
@@ -2196,22 +2871,20 @@ let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
 let name: string = "";
-let threadIS = Array.from(taskpoolInfo.threadInfos)
-for(let threadInfo of threadIS) {
+let threadIS = Array.from(taskpoolInfo.threadInfos);
+for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
-  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined )
-  {
+  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
     taskIds.length = threadInfo.taskIds.length;
     priority = threadInfo.priority;
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-let taskIS = Array.from(taskpoolInfo.taskInfos)
-for(let taskInfo of taskIS) {
+let taskIS = Array.from(taskpoolInfo.taskInfos);
+for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;
-  if (taskInfo.duration != undefined )
-  {
+  if (taskInfo.duration != undefined) {
     duration = taskInfo.duration;
     name = taskInfo.name;
   }

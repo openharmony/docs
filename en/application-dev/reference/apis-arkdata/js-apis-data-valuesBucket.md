@@ -1,6 +1,6 @@
 # @ohos.data.ValuesBucket (Data Set)
 
-The **ValuesBucket** module defines a data set in key-value (KV) format for inserting data into an RDB store.
+**ValuesBucket** is a dataset in the form of key-value (KV) pairs that can be inserted in the database.
 
 > **NOTE**
 >
@@ -19,7 +19,7 @@ import { ValueType, ValuesBucket } from '@kit.ArkData';
 
 type ValueType = number | string | boolean
 
-Enumerates the value types allowed by the database.
+Defines the value types allowed in a **ValuesBucket** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -33,11 +33,10 @@ Enumerates the value types allowed by the database.
 
 type ValuesBucket = Record<string, ValueType | Uint8Array | null>
 
-Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
+Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for it.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 | Type         | Description                                     |
 | ------------- | --------------------------------------------- |
-| string | The key is a string. |
-| [ValueType](#valuetype)\| Uint8Array \| null | The value type can be [ValueType](#valuetype), Uint8Array, or null. |
+| Record<string, [ValueType](#valuetype) \| Uint8Array \| null> | Types of the key and value in a KV pair. The key type is string, and the value type can be [ValueType](#valuetype), Uint8Array, or null. |

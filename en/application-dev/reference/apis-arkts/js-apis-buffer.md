@@ -195,8 +195,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let str = '\u00bd + \u00bc = \u00be';
-console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
-// Print: ½ + ¼ = ¾: 9 characters, 12 bytes
+console.info(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
+// Output: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
 ## buffer.compare
@@ -239,7 +239,8 @@ let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
 let res = buf1.compare(buf2);
 
-console.log(Number(res).toString()); // Print 1.
+console.info(Number(res).toString());
+// Output: 1
 ```
 
 ## buffer.concat
@@ -282,12 +283,13 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
-console.log(buf.toString('hex')); // 3132333461626364
+console.info(buf.toString('hex'));
+// Output: 3132333461626364
 ```
 
 ## buffer.from
 
-from(array: number[]): Buffer;
+from(array: number[]): Buffer
 
 Creates a **Buffer** instance with the specified array.
 
@@ -321,7 +323,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-console.log(buf.toString('hex')); // 627566666572
+console.info(buf.toString('hex'));
+// Output: 627566666572
 ```
 
 ## buffer.from
@@ -338,7 +341,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Array of **Buffer** instances, whose memory is to be shared.|
+| arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| **ArrayBuffer** or **SharedArrayBuffer** instance whose memory is to be shared.|
 | byteOffset | number | No| Byte offset. The default value is **0**.|
 | length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
 
@@ -346,7 +349,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance with shared memory.|
+| Buffer | **Buffer** instance created.|
 
 **Error codes**
 
@@ -355,7 +358,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200001 | The value of "[byteOffset/length]" is out of range. |
+| 10200001 | The value of "[byteOffset/length]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [byteOffset/length] |
 
 **Example**
 
@@ -370,7 +373,9 @@ let buf = buffer.from(ab, 0, 2);
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-Creates a **Buffer** instance with the copy of another instance.
+Copies the data of a passed **Buffer** instance to create a new **Buffer** instance and returns the new one.
+
+Creates a **Buffer** instance that holds the memory of a passed **Uint8Array** instance and returns the new instance, maintaining the memory association of the data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -380,7 +385,7 @@ Creates a **Buffer** instance with the copy of another instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to copy.|
+| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** or **Uint8Array** instance.|
 
 **Return value**
 
@@ -401,8 +406,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { buffer } from '@kit.ArkTS';
 
+// Create a Buffer instance of the Buffer type.
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
+
+// Create a Buffer instance object of the Uint8Array type to ensure memory sharing between objects.
+let uint8Array = new Uint8Array(10);
+let buf3 = buffer.from(uint8Array);
+buf3.fill(1)
+console.info("uint8Array:", uint8Array)
+// Output: 1,1,1,1,1,1,1,1,1,1
 ```
 
 ## buffer.from
@@ -421,7 +434,7 @@ Creates a **Buffer** instance based on the specified object.
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object that supports **Symbol.toPrimitive** or **valueOf()**.|
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | Yes| Byte offset or encoding format.|
-| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **arraybuffer**. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
+| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **ArrayBuffer**. The value range is [0, ArrayBuffer.byteLength]. Error 10200001 is reported if a value outside this range is reported. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
 
 **Return value**
 
@@ -484,8 +497,10 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
-console.log (buf1.toString()); // Print: this is a test
-console.log (buf2.toString()); // print: this is a test
+console.info(buf1.toString());
+// Output: this is a test
+console.info(buf2.toString());
+// Output: this is a tést
 ```
 
 
@@ -516,11 +531,21 @@ Checks whether the specified object is a **Buffer** instance.
 ```ts
 import { buffer } from '@kit.ArkTS';
 
-let result = buffer.isBuffer(buffer.alloc(10)); // true
-let result1 = buffer.isBuffer(buffer.from('foo')); // true
-let result2 = buffer.isBuffer('a string'); // false
-let result3 = buffer.isBuffer([]); // false
-let result4 = buffer.isBuffer(new Uint8Array(1024)); // false
+let result = buffer.isBuffer(buffer.alloc(10)); // 10: buffer size
+console.info("result = " + result);
+// Output: result = true
+let result1 = buffer.isBuffer(buffer.from('foo'));
+console.info("result1 = " + result1);
+// Output: result1 = true
+let result2 = buffer.isBuffer('a string');
+console.info("result2 = " + result2);
+// Output: result2 = false
+let result3 = buffer.isBuffer([]);
+console.info("result3 = " + result3);
+// Output: result3 = false
+let result4 = buffer.isBuffer(new Uint8Array(1024));
+console.info("result4 = " + result4);
+// Output: result4 = false
 ```
 
 ## buffer.isEncoding
@@ -550,10 +575,14 @@ Checks whether the encoding format is supported.
 ```ts
 import { buffer } from '@kit.ArkTS';
 
-console.log(buffer.isEncoding('utf-8').toString());	// Print: true
-console.log(buffer.isEncoding('hex').toString());	// Print: true
-console.log(buffer.isEncoding('utf/8').toString());	// Print: false
-console.log(buffer.isEncoding('').toString());	// Print: false
+console.info(buffer.isEncoding('utf-8').toString());
+// Output: true
+console.info(buffer.isEncoding('hex').toString());
+// Output: true
+console.info(buffer.isEncoding('utf/8').toString());
+// Output: false
+console.info(buffer.isEncoding('').toString());
+// Output: false
 ```
 
 ## buffer.transcode
@@ -571,8 +600,8 @@ Transcodes the given **Buffer** or **Uint8Array** object from one encoding forma
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to encode.|
-| fromEnc | string | Yes| Current encoding format.|
-| toEnc | string | Yes| Target encoding format.|
+| fromEnc | string | Yes| Current encoding format. For details about the supported formats, see [BufferEncoding](#bufferencoding).|
+| toEnc | string | Yes| Target encoding format. For details about the supported formats, see [BufferEncoding](#bufferencoding).|
 
 **Return value**
 
@@ -594,7 +623,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
-console.log(newBuf.toString('ascii'));
+console.info("newBuf = " + newBuf.toString('ascii'));
+// Output: newBuf = ,
 ```
 
 ## Buffer
@@ -617,7 +647,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+| 10200013 | ${propertyName} cannot be set for the buffer that has only a getter. |
 
 **Example**
 
@@ -625,10 +655,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("1236");
-console.log(JSON.stringify(buf.length));
+console.info(JSON.stringify(buf.length));
+// Output: 4
 let arrayBuffer = buf.buffer;
-console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
-console.log(JSON.stringify(buf.byteOffset));
+console.info(JSON.stringify(new Uint8Array(arrayBuffer)));
+// Output: {"0":49,"1":50,"2":51,"3":54}
+console.info(JSON.stringify(buf.byteOffset));
+// Output: 0
 ```
 
 ### compare
@@ -655,7 +688,7 @@ Compares this **Buffer** instance with another instance.
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the two **Buffer** instances are the same.<br>Returns **1** if this instance comes after the target instance when sorted. <br>Returns **-1** if this instance comes before the target instance when sorted.|
+| number | Comparison result. The value **0** is returned if the two **Buffer** instances are the same; **1** is returned if this instance comes after the target instance when sorted; **-1** is returned if this instance comes before the target instance when sorted.|
 
 **Error codes**
 
@@ -674,9 +707,12 @@ import { buffer } from '@kit.ArkTS';
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 
-console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// Print: 0
-console.log(buf1.compare(buf2, 0, 6, 4).toString());	// Print: -1
-console.log(buf1.compare(buf2, 5, 6, 5).toString());	// Print: 1
+console.info(buf1.compare(buf2, 5, 9, 0, 4).toString());
+// Output: 0
+console.info(buf1.compare(buf2, 0, 6, 4).toString());
+// Output: -1
+console.info(buf1.compare(buf2, 5, 6, 5).toString());
+// Output: 1
 ```
 
 ### copy
@@ -726,8 +762,8 @@ for (let i = 0; i < 26; i++) {
 }
 
 buf1.copy(buf2, 8, 16, 20);
-console.log(buf2.toString('ascii', 0, 25));
-// Print: !!!!!!! qrst!!!!!!!!!!!!!
+console.info(buf2.toString('ascii', 0, 25));
+// Output: !!!!!!!!qrst!!!!!!!!!!!!!
 ```
 
 ### entries
@@ -756,6 +792,14 @@ let pair = buf.entries();
 let next: IteratorResult<Object[]> = pair.next();
 while (!next.done) {
   console.info("buffer: " + next.value);
+  /*
+  Output: buffer: 0,98
+           buffer: 1,117
+           buffer: 2,102
+           buffer: 3,102
+           buffer: 4,101
+           buffer: 5,114
+  */
   next = pair.next();
 }
 ```
@@ -799,8 +843,10 @@ let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
 let buf3 = buffer.from('ABCD');
 
-console.log(buf1.equals(buf2).toString());	// Print: true
-console.log(buf1.equals(buf3).toString());	// Print: false
+console.info(buf1.equals(buf2).toString());
+// Output: true
+console.info(buf1.equals(buf3).toString());
+// Output: false
 ```
 
 ### fill
@@ -843,7 +889,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
-console.log(b.toString());
+console.info(b.toString());
+// Output: hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 ```
 
 
@@ -885,8 +932,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.includes('this').toString());	// Print: true
-console.log(buf.includes('be').toString());	// Print: false
+console.info(buf.includes('this').toString());
+// Output: true
+console.info(buf.includes('be').toString());
+// Output: false
 ```
 
 ### indexOf
@@ -927,8 +976,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.indexOf('this').toString());	// Print: 0
-console.log(buf.indexOf('is').toString());		// Print: 2
+console.info(buf.indexOf('this').toString());
+// Output: 0
+console.info(buf.indexOf('is').toString());
+// Output: 2
 ```
 
 ### keys
@@ -953,9 +1004,17 @@ Creates and returns an iterator that contains the keys of this **Buffer** instan
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.values());
+let numbers = Array.from(buf.keys());
 for (const key of numbers) {
-  console.log(key.toString());
+  console.info(key.toString());
+  /*
+  Output: 0
+           1
+           2
+           3
+           4
+           5
+  */
 }
 ```
 
@@ -974,7 +1033,7 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is the length of this **Buffer** instance.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
@@ -997,8 +1056,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this').toString());	// Print: 0
-console.log(buf.lastIndexOf('buffer').toString());	// Print: 17
+console.info(buf.lastIndexOf('this').toString());
+// Output: 0
+console.info(buf.lastIndexOf('buffer').toString());
+// Output: 17
 ```
 
 
@@ -1039,11 +1100,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64BE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigInt64BE(0).toString());
+// Output: 7161960797921896816
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readBigInt64LE
@@ -1083,11 +1147,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64LE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64BE(0).toString());
+// Output: 7161960797921896816
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readBigUInt64BE
@@ -1127,11 +1194,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64BE(0).toString());
-
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64BE(0).toString());
+// Output: 7161960797921896816
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readBigUInt64LE
@@ -1171,11 +1240,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
-        0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64LE(0).toString());
+  0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
+console.info(buf.readBigUInt64LE(0).toString());
+// Output: 8100120198111388771
 
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readDoubleBE
@@ -1215,10 +1287,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleBE(0).toString());
-
+console.info(buf.readDoubleBE(0).toString());
+// Output: 8.20788039913184e-304
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeDoubleBE(123.456, 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readDoubleLE
@@ -1258,10 +1332,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleLE(0).toString());
-
+console.info(buf.readDoubleLE(0).toString());
+// Output: 5.447603722011605e-270
 let buf1 = buffer.allocUninitializedFromPool(8);
 let result = buf1.writeDoubleLE(123.456, 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### readFloatBE
@@ -1301,10 +1377,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatBE(0).toString());
-
+console.info(buf.readFloatBE(0).toString());
+// Output: 2.387939260590663e-38
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeFloatBE(0xcabcbcbc, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readFloatLE
@@ -1344,10 +1422,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatLE(0).toString());
-
+console.info(buf.readFloatLE(0).toString());
+// Output: 1.539989614439558e-36
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeFloatLE(0xcabcbcbc, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readInt8
@@ -1387,11 +1467,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0).toString());	// Print: 0
-console.log(buf.readInt8(1).toString());	// Print: 5
-
+console.info(buf.readInt8(0).toString());
+// Output: 0
+console.info(buf.readInt8(1).toString());
+// Output: 5
 let buf1 = buffer.allocUninitializedFromPool(2);
 let result = buf1.writeInt8(0x12);
+console.info("result = " + result);
+// Output: result = 1
 ```
 
 ### readInt16BE
@@ -1431,10 +1514,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
-console.log(buf.readInt16BE(0).toString());	// Print: 5
-
+console.info(buf.readInt16BE(0).toString());
+// Output: 5
 let buf1 = buffer.alloc(2);
 let result = buf1.writeInt16BE(0x1234, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 ### readInt16LE
@@ -1474,10 +1559,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
-console.log(buf.readInt16LE(0).toString());	// Print: 1280
-
+console.info(buf.readInt16LE(0).toString());
+// Output: 1280
 let buf1 = buffer.alloc(2);
 let result = buf1.writeInt16BE(0x1234, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 ### readInt32BE
@@ -1517,10 +1604,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32BE(0).toString());	// Print: 5
-
+console.info(buf.readInt32BE(0).toString());
+// Output: 5
 let buf1 = buffer.alloc(4);
 let result = buf1.writeInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readInt32LE
@@ -1560,10 +1649,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32LE(0).toString());	// Print: 83886080
-
+console.info(buf.readInt32LE(0).toString());
+// Output: 83886080
 let buf1 = buffer.alloc(4);
 let result = buf1.writeInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readIntBE
@@ -1581,14 +1672,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read.|
+| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read.|
+| number | Data read. If the offset is a decimal, undefined is returned.|
 
 **Error codes**
 
@@ -1606,10 +1697,12 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
-console.log(num.toString()); // 97
-
+console.info(num.toString());
+// Output: 97
 let buf1 = buffer.allocUninitializedFromPool(6);
 let result = buf1.writeIntBE(0x123456789011, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 
@@ -1628,14 +1721,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read.|
+| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read.|
+| number | Data read. If the offset is a decimal, undefined is returned.|
 
 **Error codes**
 
@@ -1652,10 +1745,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readIntLE(0, 6).toString(16));
-
+console.info(buf.readIntLE(0, 6).toString(16));
+// Output: -546f87a9cbee
 let buf1 = buffer.allocUninitializedFromPool(6);
 let result = buf1.writeIntLE(0x123456789011, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 ### readUInt8
@@ -1696,11 +1791,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, -2]);
-console.log(buf.readUInt8(0).toString());
-console.log(buf.readUInt8(1).toString());
-
+console.info(buf.readUInt8(0).toString());
+// Output: 1
+console.info(buf.readUInt8(1).toString());
+// Output: 0
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt8(0x42);
+console.info("result = " + result);
+// Output: result = 1
 ```
 
 ### readUInt16BE
@@ -1741,11 +1839,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
-console.log(buf.readUInt16BE(0).toString(16));
-console.log(buf.readUInt16BE(1).toString(16));
-
+console.info(buf.readUInt16BE(0).toString(16));
+// Output: 1234
+console.info(buf.readUInt16BE(1).toString(16));
+// Output: 3456
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt16BE(0x1234, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 ### readUInt16LE
@@ -1786,11 +1887,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
-console.log(buf.readUInt16LE(0).toString(16));
-console.log(buf.readUInt16LE(1).toString(16));
-
+console.info(buf.readUInt16LE(0).toString(16));
+// Output: 3412
+console.info(buf.readUInt16LE(1).toString(16));
+// Output: 5634
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt16LE(0x1234, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 ### readUInt32BE
@@ -1831,10 +1935,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
-console.log(buf.readUInt32BE(0).toString(16));
-
+console.info(buf.readUInt32BE(0).toString(16));
+// Output: 12345678
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt32BE(0x12345678, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readUInt32LE
@@ -1875,10 +1981,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
-console.log(buf.readUInt32LE(0).toString(16));
-
+console.info(buf.readUInt32LE(0).toString(16));
+// Output: 78563412
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt32LE(0x12345678, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readUIntBE
@@ -1896,14 +2004,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read.|
+| byteLength | number | Yes| Number of bytes to read.  The value range is [1, 6].|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read.|
+| number | Data read. If the offset is a decimal, undefined is returned.|
 
 **Error codes**
 
@@ -1920,10 +2028,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readUIntBE(0, 6).toString(16));
-
+console.info(buf.readUIntBE(0, 6).toString(16));
+// Output: 1234567890ab
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUIntBE(0x13141516, 0, 4);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### readUIntLE
@@ -1941,14 +2051,14 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read.|
+| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Data read.|
+| number | Data read. If the offset is a decimal, undefined is returned.|
 
 **Error codes**
 
@@ -1965,10 +2075,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
-console.log(buf.readUIntLE(0, 6).toString(16));
-
+console.info(buf.readUIntLE(0, 6).toString(16));
+// Output: ab9078563412
 let buf1 = buffer.allocUninitializedFromPool(4);
 let result = buf1.writeUIntLE(0x13141516, 0, 4);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### subarray
@@ -1992,7 +2104,7 @@ Truncates this **Buffer** instance from the specified position to create a new *
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| Buffer | **Buffer** instance created. When the value of **start** or **end** is less than **0**, an empty buffer is returned.|
 
 **Example**
 
@@ -2005,8 +2117,8 @@ for (let i = 0; i < 26; i++) {
   buf1.writeInt8(i + 97, i);
 }
 const buf2 = buf1.subarray(0, 3);
-console.log(buf2.toString('ascii', 0, buf2.length));
-// Print: abc
+console.info(buf2.toString('ascii', 0, buf2.length));
+// Output: abc
 ```
 
 ### swap16
@@ -2032,7 +2144,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 16-bits |
+| 10200009 | The buffer size must be a multiple of 16-bits. |
 
 **Example**
 
@@ -2040,10 +2152,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// Print: 0102030405060708
-
+console.info(buf1.toString('hex'));
+// Output: 0102030405060708
 buf1.swap16();
-console.log(buf1.toString('hex'));	// Print: 0201040306050807
+console.info(buf1.toString('hex'));
+// Output: 0201040306050807
 ```
 
 ### swap32
@@ -2069,7 +2182,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 32-bits |
+| 10200009 | The buffer size must be a multiple of 32-bits. |
 
 **Example**
 
@@ -2077,10 +2190,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// Print: 0102030405060708
-
+console.info(buf1.toString('hex'));
+// Output: 0102030405060708
 buf1.swap32();
-console.log(buf1.toString('hex'));	// Print: 0403020108070605
+console.info(buf1.toString('hex'));
+// Output: 0403020108070605
 ```
 
 ### swap64
@@ -2106,7 +2220,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 64-bits |
+| 10200009 | The buffer size must be a multiple of 64-bits. |
 
 **Example**
 
@@ -2114,9 +2228,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1.toString('hex'));	// Print: 0102030405060708
+console.info(buf1.toString('hex'));
+// Output: 0102030405060708
 buf1.swap64();
-console.log(buf1.toString('hex'));	// Print: 0807060504030201
+console.info(buf1.toString('hex'));
+// Output: 0807060504030201
 ```
 
 ### toJSON
@@ -2143,8 +2259,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
-console.log(JSON.stringify(obj));
-// Print: {"type":"Buffer","data":[1,2,3,4,5]}
+console.info(JSON.stringify(obj));
+// Output: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
 ### toString
@@ -2169,7 +2285,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Type| Description|
 | -------- | -------- |
-| string | String obtained.|
+| string | String. When the value of **start** is greater than or equal to **Buffer.length** or **start** is greater than **end**, an empty string is returned.|
 
 **Error codes**
 
@@ -2188,8 +2304,8 @@ let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
   buf1.writeInt8(i + 97, i);
 }
-console.log(buf1.toString('utf-8'));
-// Print: abcdefghijklmnopqrstuvwxyz
+console.info(buf1.toString('utf-8'));
+// Output: abcdefghijklmnopqrstuvwxyz
 ```
 
 ### values
@@ -2217,7 +2333,15 @@ let buf1 = buffer.from('buffer');
 let pair = buf1.values()
 let next:IteratorResult<number> = pair.next()
 while (!next.done) {
-  console.log(next.value.toString());
+  console.info(next.value.toString());
+  /*
+  Output: 98
+           117
+           102
+           102
+           101
+           114
+  */
   next = pair.next();
 }
 ```
@@ -2238,7 +2362,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | -------- | -------- | -------- | -------- |
 | str | string | Yes| String to write.|
 | offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
-| length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
+| length | number | No| Maximum number of bytes to write. The default value is **Buffer.length** minus **offset**.|
 | encoding | string | No| Encoding format of the string. The default value is **'utf8'**.|
 
 
@@ -2264,11 +2388,13 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
-console.log(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
-// Print: 12 bytes: ½ + ¼ = ¾
+console.info(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
+// Output: 12 bytes: ½ + ¼ = ¾
 
 let buffer1 = buffer.alloc(10);
 let length = buffer1.write('abcd', 8);
+console.info("length = " + length);
+// Output: length = 2
 ```
 
 ### writeBigInt64BE
@@ -2293,7 +2419,7 @@ Writes a 64-bit, big-endian, signed big integer to this **Buffer** instance at t
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2311,6 +2437,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeBigInt64LE
@@ -2335,7 +2463,7 @@ Writes a 64-bit, little-endian, signed big integer to this **Buffer** instance a
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2353,6 +2481,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeBigUInt64BE
@@ -2377,7 +2507,7 @@ Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** instance at
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2395,6 +2525,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeBigUInt64LE
@@ -2419,7 +2551,7 @@ Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** instance
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2437,6 +2569,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeDoubleBE
@@ -2461,7 +2595,7 @@ Writes a 64-bit, big-endian, double-precision floating-point number to this **Bu
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2479,6 +2613,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleBE(123.456, 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeDoubleLE
@@ -2496,14 +2632,14 @@ Writes a 64-bit, little-endian, double-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2521,6 +2657,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleLE(123.456, 0);
+console.info("result = " + result);
+// Output: result = 8
 ```
 
 ### writeFloatBE
@@ -2545,7 +2683,7 @@ Writes a 32-bit, big-endian, single-precision floating-point number to this **Bu
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2563,6 +2701,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatBE(0xcafebabe, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 
@@ -2588,7 +2728,7 @@ Writes a 32-bit, little-endian, single-precision floating-point number to this *
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2606,6 +2746,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatLE(0xcafebabe, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### writeInt8
@@ -2630,7 +2772,7 @@ Writes an 8-bit signed integer to this **Buffer** instance at the specified offs
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2648,7 +2790,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt8(2, 0);
+console.info("result = " + result);
+// Output: result = 1
 let result1 = buf.writeInt8(-2, 1);
+console.info("result1 = " + result1);
+// Output: result1 = 2
 ```
 
 
@@ -2674,7 +2820,7 @@ Writes a 16-bit, big-endian, signed integer to this **Buffer** instance at the s
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2692,6 +2838,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16BE(0x0102, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 
@@ -2717,7 +2865,7 @@ Writes a 16-bit, little-endian, signed integer to this **Buffer** instance at th
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2735,6 +2883,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16LE(0x0304, 0);
+console.info("result = " + result);
+// Output: result = 2
 ```
 
 ### writeInt32BE
@@ -2759,7 +2909,7 @@ Writes a 32-bit, big-endian, signed integer to this **Buffer** instance at the s
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2777,6 +2927,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32BE(0x01020304, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 
@@ -2802,7 +2954,7 @@ Writes a 32-bit, little-endian, signed integer to this **Buffer** instance at th
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2820,6 +2972,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32LE(0x05060708, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### writeIntBE
@@ -2845,7 +2999,7 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2863,6 +3017,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntBE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 
@@ -2889,7 +3045,7 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2907,6 +3063,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntLE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 ### writeUInt8
@@ -2931,7 +3089,7 @@ Writes an 8-bit unsigned integer to this **Buffer** instance at the specified of
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2949,9 +3107,17 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt8(0x3, 0);
+console.info("result = " + result);
+// Output: result = 1
 let result1 = buf.writeUInt8(0x4, 1);
+console.info("result1 = " + result1);
+// Output: result1 = 2
 let result2 = buf.writeUInt8(0x23, 2);
+console.info("result2 = " + result2);
+// Output: result2 = 3
 let result3 = buf.writeUInt8(0x42, 3);
+console.info("result3 = " + result3);
+// Output: result3 = 4
 ```
 
 ### writeUInt16BE
@@ -2976,7 +3142,7 @@ Writes a 16-bit, big-endian, unsigned integer to this **Buffer** instance at the
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -2994,7 +3160,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16BE(0xdead, 0);
+console.info("result = " + result);
+// Output: result = 2
 let result1 = buf.writeUInt16BE(0xbeef, 2);
+console.info("result1 = " + result1);
+// Output: result1 = 4
 ```
 
 ### writeUInt16LE
@@ -3019,7 +3189,7 @@ Writes a 16-bit, little-endian, unsigned integer to this **Buffer** instance at 
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -3037,7 +3207,11 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16LE(0xdead, 0);
+console.info("result = " + result);
+// Output: result = 2
 let result1 = buf.writeUInt16LE(0xbeef, 2);
+console.info("result1 = " + result1);
+// Output: result1 = 4
 ```
 
 ### writeUInt32BE
@@ -3062,7 +3236,7 @@ Writes a 32-bit, big-endian, unsigned integer to this **Buffer** instance at the
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -3080,6 +3254,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32BE(0xfeedface, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### writeUInt32LE
@@ -3104,7 +3280,7 @@ Writes a 32-bit, little-endian, unsigned integer to this **Buffer** instance at 
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -3122,6 +3298,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32LE(0xfeedface, 0);
+console.info("result = " + result);
+// Output: result = 4
 ```
 
 ### writeUIntBE
@@ -3147,7 +3325,7 @@ Writes an unsigned big-endian value of the specified length to this **Buffer** i
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -3165,6 +3343,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 ### writeUIntLE
@@ -3190,7 +3370,7 @@ Writes an unsigned little-endian value of the specified length to this **Buffer*
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of bytes written.|
+| number | Offset plus the number of written bytes.|
 
 **Error codes**
 
@@ -3208,6 +3388,8 @@ import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
+console.info("result = " + result);
+// Output: result = 6
 ```
 
 ## Blob
@@ -3284,8 +3466,9 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
 pro.then((val: ArrayBuffer) => {
-  let uintarr: Uint8Array = new Uint8Array(val);
-  console.log(uintarr.toString());
+  let uint8Array: Uint8Array = new Uint8Array(val);
+  console.info(uint8Array.toString());
+  // Output: 97,98,99
 });
 ```
 ### slice
@@ -3342,6 +3525,7 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
 pro.then((val: string) => {
-  console.log(val);
+  console.info(val);
+  // Output: abc
 });
 ```

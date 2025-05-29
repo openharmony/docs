@@ -83,6 +83,9 @@ import { rpc } from '@kit.IPCKit';
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageSequence对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -104,7 +107,7 @@ reclaim(): void
 
 writeRemoteObject(object: IRemoteObject): void
 
-序列化远程对象并将其写入MessageSequence对象。
+序列化远程对象并将其写入[MessageSequence](#messagesequence9)对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -120,9 +123,9 @@ writeRemoteObject(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -166,8 +169,8 @@ readRemoteObject(): IRemoteObject
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900010  | read data from message sequence failed |
+  | 1900008  | The proxy or remote object is invalid. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -213,8 +216,8 @@ writeInterfaceToken(token: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes:<br/> 1.The number of parameters is incorrect;<br/> 2.The parameter type does not match;<br/> 3.The string length exceeds 40960 bytes;<br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -252,7 +255,7 @@ readInterfaceToken(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -343,7 +346,8 @@ setSize(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -382,8 +386,9 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900011  | parcel memory alloc failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
+  | 1900011  | Memory allocation failed. |
 
 **示例：**
 
@@ -526,7 +531,8 @@ rewindRead(pos: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -570,7 +576,8 @@ rewindWrite(pos: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -612,8 +619,8 @@ writeByte(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------  |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -651,7 +658,7 @@ readByte(): number
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
-  | 1900010 | read data from message sequence failed |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -697,8 +704,8 @@ writeShort(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -736,7 +743,7 @@ readShort(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -782,8 +789,8 @@ writeInt(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -821,7 +828,7 @@ readInt(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -867,8 +874,8 @@ writeLong(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -906,7 +913,7 @@ readLong(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -952,8 +959,8 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -991,7 +998,7 @@ readFloat(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1037,8 +1044,8 @@ writeDouble(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1076,7 +1083,7 @@ readDouble(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1122,8 +1129,8 @@ writeBoolean(val: boolean): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1161,7 +1168,7 @@ readBoolean(): boolean
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1207,8 +1214,8 @@ writeChar(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1246,7 +1253,7 @@ readChar(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1292,8 +1299,8 @@ writeString(val: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1331,7 +1338,7 @@ readString(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1377,8 +1384,8 @@ writeParcelable(val: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1435,9 +1442,9 @@ readParcelable(dataIn: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **示例：**
 
@@ -1496,8 +1503,8 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1536,8 +1543,8 @@ readByteArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1584,8 +1591,7 @@ readByteArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1632,8 +1638,8 @@ writeShortArray(shortArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1671,8 +1677,8 @@ readShortArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1718,7 +1724,7 @@ readShortArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1764,8 +1770,8 @@ writeIntArray(intArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1803,8 +1809,8 @@ readIntArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1850,7 +1856,7 @@ readIntArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1896,8 +1902,8 @@ writeLongArray(longArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1935,8 +1941,8 @@ readLongArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -1982,7 +1988,7 @@ readLongArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2028,8 +2034,8 @@ writeFloatArray(floatArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2067,8 +2073,8 @@ readFloatArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2114,7 +2120,7 @@ readFloatArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2160,8 +2166,8 @@ writeDoubleArray(doubleArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2199,8 +2205,8 @@ readDoubleArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2246,7 +2252,7 @@ readDoubleArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2292,8 +2298,8 @@ writeBooleanArray(booleanArray: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2331,8 +2337,8 @@ readBooleanArray(dataIn: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2378,7 +2384,7 @@ readBooleanArray(): boolean[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2424,8 +2430,8 @@ writeCharArray(charArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2463,8 +2469,8 @@ readCharArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2510,7 +2516,7 @@ readCharArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2556,8 +2562,8 @@ writeStringArray(stringArray: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The string length exceeds 40960 bytes; <br/> 5.The number of bytes copied to the buffer is different from the length of the obtained string. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2595,8 +2601,8 @@ readStringArray(dataIn: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2642,7 +2648,7 @@ readStringArray(): string[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -2682,7 +2688,7 @@ writeNoException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900009  | write data to message sequence failed |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2727,10 +2733,15 @@ readException(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -2759,7 +2770,7 @@ readException(): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -2822,8 +2833,8 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2883,9 +2894,9 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
-  | 1900012  | call js callback function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array; <br/> 5.The element does not exist in the array. |
+  | 1900010  | Failed to read data from the message sequence. |
+  | 1900012  | Failed to call the JS callback function. |
 
 **示例：**
 
@@ -2947,8 +2958,8 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The obtained remoteObject is null. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -2997,8 +3008,8 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The length of the array passed when reading is not equal to the length passed when writing to the array. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3049,7 +3060,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3100,7 +3111,7 @@ static closeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
 
 **示例：**
 
@@ -3146,8 +3157,8 @@ static dupFileDescriptor(fd: number): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900013  | call os dup function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900013  | Failed to call dup. |
 
 **示例：**
 
@@ -3228,8 +3239,8 @@ writeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3270,7 +3281,7 @@ readFileDescriptor(): number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900010  | read data from message sequence failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3319,8 +3330,8 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 401      | check param failed |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter is not an instance of the Ashmem object. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3366,8 +3377,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900004  | read from ashmem failed |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3426,11 +3436,16 @@ getRawDataCapacity(): number
 
 ### writeRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[writeRawDataBuffer](#writerawdatabuffer11)类替代。
-
 writeRawData(rawData: number[], size: number): void
 
 将原始数据写入MessageSequence对象。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[writeRawDataBuffer](#writerawdatabuffer11)替代。
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3438,7 +3453,7 @@ writeRawData(rawData: number[], size: number): void
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | rawData | number[] | 是   | 要写入的原始数据，大小不能超过128MB。 |
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **错误码：**
@@ -3447,8 +3462,8 @@ writeRawData(rawData: number[], size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0;<br/> 6.The element does not exist in the array; <br/> 7.Failed to obtain typedArray information; <br/> 8.The array is not of type int32; <br/> 9.The length of typedarray is smaller than the size of the original data sent. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3473,14 +3488,19 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 将原始数据写入MessageSequence对象。
 
+> **说明：**
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名  | 类型     | 必填 | 说明                               |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | ArrayBuffer | 是   | 要写入的原始数据。                 |
-  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
+  | 参数名  | 类型        | 必填 | 说明                                 |
+  | ------- | ----------- | ---- | ------------------------------------ |
+  | rawData | ArrayBuffer | 是   | 要写入的原始数据，大小不能超过128MB。 |
+  | size    | number      | 是   | 发送的原始数据大小，以字节为单位。    |
 
 **错误码：**
 
@@ -3488,8 +3508,8 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information; <br/> 4.The transferred size cannot be obtained; <br/> 5.The transferred size is less than or equal to 0; <br/> 6.The transferred size is greater than the byte length of ArrayBuffer. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3515,11 +3535,14 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 ### readRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[readRawDataBuffer](#readrawdatabuffer11)类替代。
-
 readRawData(size: number): number[]
 
 从MessageSequence读取原始数据。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3541,8 +3564,8 @@ readRawData(size: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3595,8 +3618,8 @@ readRawDataBuffer(size: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3650,8 +3673,8 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900009  | write data to message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The obtained value of typeCode is incorrect; <br/> 5.Failed to obtain arrayBuffer information. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3672,8 +3695,8 @@ writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 
@@ -3703,8 +3726,8 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900010  | read data from message sequence failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The obtained value of typeCode is incorrect; |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -3725,8 +3748,8 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
     data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
-    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffer fail, errorMessage ' + e.message);
   }
   try {
     let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
@@ -3741,9 +3764,11 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
 ## MessageParcel<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[MessageSequence](#messagesequence9)类替代。
-
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[MessageSequence](#messagesequence9)替代。
 
 ### create
 
@@ -3766,6 +3791,9 @@ static create(): MessageParcel
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageParcel对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -5616,6 +5644,11 @@ readException(): void
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -5644,7 +5677,7 @@ readException(): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6269,16 +6302,15 @@ marshalling(dataOut: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ### unmarshalling
@@ -6321,23 +6353,24 @@ unmarshalling(dataIn: MessageSequence): boolean
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
+      hilog.info(0x0000, 'testTag', 'RpcClient: readInt is ' + this.num + ' readString is ' + this.str);
       return true;
     }
   }
   let parcelable = new MyParcelable(1, "aaa");
   let data = rpc.MessageSequence.create();
-  let result = data.writeParcelable(parcelable);
-  hilog.info(0x0000, 'testTag', 'RpcClient: writeParcelable is ' + result);
+  data.writeParcelable(parcelable);
   let ret = new MyParcelable(0, "");
-  let result2 = data.readParcelable(ret);
-  hilog.info(0x0000, 'testTag', 'RpcClient: readParcelable is ' + result2);
+  data.readParcelable(ret);
   ```
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[Parcelable](#parcelable9)类替代。
-
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[Parcelable](#parcelable9)替代。
 
 ### marshalling
 
@@ -6474,6 +6507,11 @@ asObject(): IRemoteObject
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -6502,7 +6540,7 @@ asObject(): IRemoteObject
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6561,11 +6599,13 @@ onRemoteDied(): void
 | data    | [MessageSequence](#messagesequence9) | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
 | reply   | [MessageSequence](#messagesequence9) | 是   | 否   | 对端进程返回的MessageSequence对象。   |
 
-## SendRequestResult<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[RequestResult](#requestresult9)类替代。
+## SendRequestResult<sup>(deprecated)</sup>
 
 发送请求的响应结果。
+
+> **说明：**
+>
+> 从API version 8 开始支持，API version 9 开始废弃，建议使用[RequestResult](#requestresult9)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
@@ -6606,15 +6646,17 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询接口描述符的字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6632,11 +6674,13 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 9开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6684,15 +6728,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6709,7 +6755,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6735,15 +6781,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-1)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6755,7 +6803,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6778,16 +6826,19 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
+  | 1900008  | The proxy or remote object is invalid. |
 
-### addDeathrecipient<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+### addDeathRecipient<sup>(deprecated)</sup>
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6825,16 +6876,19 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6871,15 +6925,17 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 1900008  | The proxy or remote object is invalid. |
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
 
 getInterfaceDescriptor(): string
 
 获取对象的接口描述符，接口描述符为字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6907,23 +6963,28 @@ isObjectDead(): boolean
 
 实现IRemoteObject代理对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 值                      | 说明                              |
-| --------------------- | ----------------------- | --------------------------------- |
-| PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
-| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
-| MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
-| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
+  | 名称                  | 类型   | 可读  | 可写 | 说明                                     |
+  | --------------------- | -------| ------|------|------------------------------------------ |
+  | PING_TRANSACTION      | number | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
+  | DUMP_TRANSACTION      | number | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
+  | INTERFACE_TRANSACTION | number | 是    | 否   | 内部指令码，获取对端接口描述符。          |
+  | MIN_TRANSACTION_ID    | number | 是    | 否   | 最小有效指令码。                          |
+  | MAX_TRANSACTION_ID    | number | 是    | 否   | 最大有效指令码。                          |
+
 
 ### sendRequest<sup>(deprecated)</sup>
-
->从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6944,6 +7005,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -6972,7 +7038,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6990,9 +7056,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   if (proxy != undefined) {
     let ret: boolean = proxy.sendRequest(1, data, reply, option);
     if (ret) {
-    hilog.info(0x0000, 'testTag', 'sendRequest got result');
-    let msg = reply.readString();
-    hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
+      hilog.info(0x0000, 'testTag', 'sendRequest got result');
+      let msg = reply.readString();
+      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
     } else {
       hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed');
     }
@@ -7032,10 +7098,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7064,7 +7135,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7101,13 +7172,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7124,10 +7197,15 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7156,7 +7234,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7219,87 +7297,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-**示例：**
-
-  ```ts
-  // FA模型需要从@kit.AbilityKit导入featureAbility
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-    bundleName: "com.ohos.server",
-    abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendMessageRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendMessageRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendMessageRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendMessageRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // FA模型使用此方法连接服务
-  // FA.connectAbility(want,connect);
-
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    try {
-      proxy.sendMessageRequest(1, data, reply, option, sendMessageRequestCallback);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorCode ' + e.code);
-      hilog.error(0x0000, 'testTag', 'rpc sendMessageRequest fail, errorMessage ' + e.message);
-    }
-  }
-  ```
-
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-3)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-3)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7311,70 +7319,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
-
-**示例：**
-
-  ```ts
-  // FA模型需要从@kit.AbilityKit导入featureAbility
-  // import { featureAbility } from '@kit.AbilityKit';
-  import { Want, common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  let proxy: rpc.IRemoteObject | undefined;
-  let connect: common.ConnectOptions = {
-    onConnect: (elementName, remoteProxy) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-      proxy = remoteProxy;
-    },
-    onDisconnect: (elementName) => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-    },
-    onFailed: () => {
-      hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
-    }
-  };
-  let want: Want = {
-      bundleName: "com.ohos.server",
-      abilityName: "com.ohos.server.EntryAbility",
-  };
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-}
-
-  // FA模型使用此方法连接服务
-  // FA.connectAbility(want,connect);
-
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let connectionId = context.connectServiceExtensionAbility(want, connect);
-  ```
-
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-
-  ```ts
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  if (proxy != undefined) {
-    proxy.sendRequest(1, data, reply, option, sendRequestCallback);
-  }
-  ```
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### getLocalInterface<sup>9+</sup>
 
@@ -7403,10 +7348,15 @@ getLocalInterface(interface: string): IRemoteBroker
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | check param failed |
-  | 1900006  | only remote object permitted |
+  | 1900006  | Operation allowed only for the remote object. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7435,7 +7385,7 @@ getLocalInterface(interface: string): IRemoteBroker
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7448,8 +7398,8 @@ getLocalInterface(interface: string): IRemoteBroker
 
   if (proxy != undefined) {
     try {
-    let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
-    hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
+      let broker: rpc.IRemoteBroker = proxy.getLocalInterface("testObject");
+      hilog.info(0x0000, 'testTag', 'RpcClient: getLocalInterface is ' + broker);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'rpc get local interface fail, errorCode ' + e.code);
@@ -7460,11 +7410,13 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-1)类替代。
-
 queryLocalInterface(interface: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的本地接口对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7482,6 +7434,11 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7510,7 +7467,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7547,11 +7504,16 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7580,7 +7542,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7610,11 +7572,13 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
-
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7633,6 +7597,11 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7661,7 +7630,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7703,11 +7672,16 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900008  | proxy or remote object is invalid |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7736,7 +7710,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7767,11 +7741,13 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)类替代。
-
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7790,6 +7766,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7818,7 +7799,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7860,11 +7841,16 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
-  | 1900007  | communication failed              |
+  | 1900007  | communication failed.              |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7893,7 +7879,7 @@ getDescriptor(): string
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7917,11 +7903,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-1)类替代。
-
 getInterfaceDescriptor(): string
 
 查询当前代理对象接口的描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7933,6 +7921,11 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -7961,7 +7954,7 @@ getInterfaceDescriptor(): string
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7993,6 +7986,11 @@ isObjectDead(): boolean
 
 **示例：**
 
+>**说明：**
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+  <!--code_no_check-->
   ```ts
   // FA模型需要从@kit.AbilityKit导入featureAbility
   // import { featureAbility } from '@kit.AbilityKit';
@@ -8021,7 +8019,7 @@ isObjectDead(): boolean
   // FA.connectAbility(want,connect);
 
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  let context: common.UIAbilityContext = this.getUIContext().getHostContext(); // UIAbilityContext
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
@@ -8041,14 +8039,16 @@ isObjectDead(): boolean
 
 公共消息选项，使用指定的标志类型，构造指定的MessageOption对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 值        | 说明                                                        |
-  | ------------- | --------- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
-  | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
-  | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | 名称          | 类型   | 可读  | 可写  | 说明                                                                      |
+  | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | 是    | 否    | 同步调用标识。                                                            |
+  | TF_ASYNC      | number | 是    | 否    | 异步调用标识。                                                            |
+  | TF_ACCEPT_FDS | number | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
+  | TF_WAIT_TIME  | number | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
 
 ### constructor<sup>9+</sup>
 
@@ -8167,7 +8167,7 @@ getFlags(): number
     hilog.info(0x0000, 'testTag', 'create object successfully');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog2 = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog2 is ' + flog2);
@@ -8197,7 +8197,7 @@ setFlags(flags: number): void
 
   try {
     let option = new rpc.MessageOption();
-    option.setFlags(1)
+    option.setFlags(rpc.MessageOption.TF_ASYNC);
     hilog.info(0x0000, 'testTag', 'run setFlags success');
     let flog = option.getFlags();
     hilog.info(0x0000, 'testTag', 'run getFlags success, flog is ' + flog);
@@ -8481,7 +8481,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
 
 **示例：**
 
@@ -8506,11 +8506,13 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 ### flushCommands<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
-
 static flushCommands(object: IRemoteObject): number
 
 静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在任何时间执行敏感操作之前调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[flushCmdBuffer](#flushcmdbuffer9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8603,7 +8605,7 @@ static restoreCallingIdentity(identity: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **示例：**
 
@@ -8622,11 +8624,13 @@ static restoreCallingIdentity(identity: string): void
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
-
 static setCallingIdentity(identity: string): boolean
 
 静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[restoreCallingIdentity](#restorecallingidentity9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8676,13 +8680,24 @@ RemoteObject构造函数。
   | ---------- | ------ | ---- | ------------ |
   | descriptor | string | 是   | 接口描述符。 |
 
-### sendRequest<sup>(deprecated)</sup>
+**示例：**
 
->从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
+  ```ts
+  class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor: string) {
+      super(descriptor);
+    }
+  }
+  ```
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8774,7 +8789,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
 **示例：**
 
@@ -8812,13 +8827,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     });
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
+### sendRequest<sup>(deprecated)</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8835,7 +8852,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -8913,49 +8930,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-**示例：**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.RequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageSequence.create();
-  let reply = rpc.MessageSequence.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
-  ```
-
-### sendRequest<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-5)类替代。
+### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-5)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8967,55 +8952,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
-
-**示例：**
-
-  ```ts
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  class MyDeathRecipient implements rpc.DeathRecipient {
-    onRemoteDied() {
-      hilog.info(0x0000, 'testTag', 'server died');
-    }
-  }
-  class TestRemoteObject extends rpc.RemoteObject {
-    constructor(descriptor: string) {
-      super(descriptor);
-    }
-    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-      return true;
-    }
-    isObjectDead(): boolean {
-      return false;
-    }
-  }
-  function sendRequestCallback(err: BusinessError, result: rpc.SendRequestResult) {
-    if (result.errCode === 0) {
-      hilog.info(0x0000, 'testTag', 'sendRequest got result');
-      let num = result.reply.readInt();
-      let msg = result.reply.readString();
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply num: ' + num);
-      hilog.info(0x0000, 'testTag', 'RPCTest: reply msg: ' + msg);
-    } else {
-      hilog.error(0x0000, 'testTag', 'RPCTest: sendRequest failed, errCode: ' + result.errCode);
-    }
-    hilog.info(0x0000, 'testTag', 'RPCTest: sendRequest ends, reclaim parcel');
-    result.data.reclaim();
-    result.reply.reclaim();
-  }
-  let testRemoteObject = new TestRemoteObject("testObject");
-  let option = new rpc.MessageOption();
-  let data = rpc.MessageParcel.create();
-  let reply = rpc.MessageParcel.create();
-  data.writeInt(1);
-  data.writeString("hello");
-  testRemoteObject.sendRequest(1, data, reply, option, sendRequestCallback);
-  ```
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### onRemoteMessageRequest<sup>9+</sup>
 
@@ -9161,11 +9098,13 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
-
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 sendRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9292,7 +9231,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                          |
   | ------------- | --------------------------------------------- |
-  | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+  | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
 **错误码：**
 
@@ -9300,7 +9239,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **示例：**
 
@@ -9343,11 +9282,13 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-2)类替代。
-
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的远端对象是否已经存在。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9361,7 +9302,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
   | 类型          | 说明                                                               |
   | ------------- | ------------------------------------------------------------------ |
-  | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
+  | [IRemoteBroker](#iremotebroker) | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
 **示例：**
 
@@ -9415,7 +9356,7 @@ getDescriptor(): string
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900008  | proxy or remote object is invalid |
+  | 1900008  | The proxy or remote object is invalid. |
 
 **示例：**
 
@@ -9455,11 +9396,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-2)类替代。
-
 getInterfaceDescriptor(): string
 
 查询接口描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9519,7 +9462,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The string length exceeds 40960 bytes; <br/> 4.The number of bytes copied to the buffer is different from the length of the obtained string. |
 
 **示例：**
 
@@ -9561,11 +9504,13 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
-
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 此接口用于把接口描述符和IRemoteBroker对象绑定。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[modifyLocalInterface](#modifylocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9610,17 +9555,18 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 ## Ashmem<sup>8+</sup>
 
 提供与匿名共享内存对象相关的方法，包括创建、关闭、映射和取消映射Ashmem、从Ashmem读取数据和写入数据、获取Ashmem大小、设置Ashmem保护。
+共享内存只适用与本设备内跨进程通信。
+
+### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-映射内存保护类型：
-
-  | 名称       | 值  | 说明               |
-  | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行。   |
-  | PROT_NONE  | 0   | 映射的内存不可访问。 |
-  | PROT_READ  | 1   | 映射的内存可读。     |
-  | PROT_WRITE | 2   | 映射的内存可写。     |
+  | 名称       | 类型   | 可读  | 可写  | 说明                                     |
+  | ---------- | ------ | ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
+  | PROT_NONE  | number | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
+  | PROT_READ  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
+  | PROT_WRITE | number | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
 
 ### create<sup>9+</sup>
 
@@ -9649,7 +9595,7 @@ static create(name: string, size: number): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The Ashmem name passed is empty; <br/> 4.The Ashmem size passed is less than or equal to 0. |
 
 **示例：**
 
@@ -9669,13 +9615,15 @@ static create(name: string, size: number): Ashmem
   }
   ```
 
-### createAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+### createAshmem<sup>(deprecated)</sup>
 
 static createAshmem(name: string, size: number): Ashmem
 
 静态方法，根据指定的名称和大小创建Ashmem对象。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9728,7 +9676,7 @@ static create(ashmem: Ashmem): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The passed parameter is not an Ahmem object; <br/> 3.The ashmem instance for obtaining packaging is empty. |
 
 **示例：**
 
@@ -9748,13 +9696,15 @@ static create(ashmem: Ashmem): Ashmem
   }
   ```
 
-### createAshmemFromExisting<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[create](#create9-1)替代。
+### createAshmemFromExisting<sup>(deprecated)</sup>
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9786,6 +9736,10 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 closeAshmem(): void
 
 关闭这个Ashmem。
+
+> **说明：**
+>
+> 关闭Ashmem对象前需要先解除地址映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9855,8 +9809,8 @@ mapTypedAshmem(mapType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900001  | call mmap function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect;  <br/> 2.The parameter type does not match; <br/> 3.The passed mapType exceeds the maximum protection level. |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
@@ -9866,7 +9820,7 @@ mapTypedAshmem(mapType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.mapTypedAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+    ashmem.mapTypedAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc map ashmem fail, errorCode ' + e.code);
@@ -9874,13 +9828,15 @@ mapTypedAshmem(mapType: number): void
   }
   ```
 
-### mapAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapTypedAshmem](#maptypedashmem9)类替代。
+### mapAshmem<sup>(deprecated)</sup>
 
 mapAshmem(mapType: number): boolean
 
 在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapTypedAshmem](#maptypedashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9902,7 +9858,7 @@ mapAshmem(mapType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
+  let mapReadAndWrite = ashmem.mapAshmem(rpc.Ashmem.PROT_READ | rpc.Ashmem.PROT_WRITE);
   hilog.info(0x0000, 'testTag', 'RpcTest: map ashmem result is ' + mapReadAndWrite);
   ```
 
@@ -9920,7 +9876,7 @@ mapReadWriteAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | call mmap function failed |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
@@ -9938,13 +9894,15 @@ mapReadWriteAshmem(): void
   }
   ```
 
-### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)类替代。
+### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
 mapReadAndWriteAshmem(): boolean
 
 在此进程虚拟地址空间上创建可读写的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9978,7 +9936,7 @@ mapReadonlyAshmem(): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 1900001  | call mmap function failed |
+  | 1900001  | Failed to call mmap. |
 
 **示例：**
 
@@ -9996,13 +9954,15 @@ mapReadonlyAshmem(): void
   }
   ```
 
-### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)类替代。
+### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
 mapReadOnlyAshmem(): boolean
 
 在此进程虚拟地址空间上创建只读的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10042,8 +10002,8 @@ setProtectionType(protectionType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900002  | os ioctl function failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900002  | Failed to call ioctl. |
 
 **示例：**
 
@@ -10053,7 +10013,7 @@ setProtectionType(protectionType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtection(ashmem.PROT_READ);
+    ashmem.setProtectionType(rpc.Ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10061,13 +10021,15 @@ setProtectionType(protectionType: number): void
   }
   ```
 
-### setProtection<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[setProtectionType](#setprotectiontype9)类替代。
+### setProtection<sup>(deprecated)</sup>
 
 setProtection(protectionType: number): boolean
 
 设置映射内存区域的保护等级。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[setProtectionType](#setprotectiontype9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10089,7 +10051,7 @@ setProtection(protectionType: number): boolean
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
-  let result = ashmem.setProtection(ashmem.PROT_READ);
+  let result = ashmem.setProtection(rpc.Ashmem.PROT_READ);
   hilog.info(0x0000, 'testTag', 'RpcTest: Ashmem setProtection result is ' + result);
   ```
 
@@ -10098,6 +10060,10 @@ setProtection(protectionType: number): boolean
 writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10115,8 +10081,8 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain arrayBuffer information. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
 
@@ -10141,13 +10107,17 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
   }
   ```
 
-### writeAshmem<sup>9+(deprecated)</sup>
-
->从API version 11 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
+### writeAshmem<sup>(deprecated)</sup>
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10157,7 +10127,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
   | size   | number   | 是   | 要写入的数据大小。                                 |
-  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **错误码：**
 
@@ -10165,8 +10135,8 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900003  | write to ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The element does not exist in the array. |
+  | 1900003  | Failed to write data to the shared memory. |
 
 **示例：**
 
@@ -10186,13 +10156,17 @@ writeAshmem(buf: number[], size: number, offset: number): void
   }
   ```
 
-### writeToAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
+### writeToAshmem<sup>(deprecated)</sup>
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10229,6 +10203,10 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 从此Ashmem对象关联的共享文件中读取数据。
 
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
@@ -10250,8 +10228,8 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900004  | read from ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
 
@@ -10285,13 +10263,18 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
   }
   ```
 
-### readAshmem<sup>9+(deprecated)</sup>
-
->从API version 11 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
+### readAshmem<sup>(deprecated)</sup>
 
 readAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10314,8 +10297,8 @@ readAshmem(size: number, offset: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900004  | read from ashmem failed |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900004  | Failed to read data from the shared memory. |
 
 **示例：**
 
@@ -10337,13 +10320,17 @@ readAshmem(size: number, offset: number): number[]
   }
   ```
 
-### readFromAshmem<sup>8+(deprecated)</sup>
-
->从API version 9 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
+### readFromAshmem<sup>(deprecated)</sup>
 
 readFromAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 

@@ -119,7 +119,7 @@ struct LazyForEachPage {
   private iconItemSourceList = new ListData();
   aboutToAppear() {
     // 添加120个IconItem的数据
-     ......
+    // ......
   }
   build() {
     Column() {
@@ -192,10 +192,13 @@ export struct IconItem {
 
 ![加载并路由LazyForEach页面泳道图](figures/trace-load-lazyforeach.png)
 
-- `H:JsiDeclarativeEngine::LoadPageSource`加载一个 JavaScript 文件，并且解析为 ABC 字节码；
-- `H:FlushPipelineWithoutAnimation` 清理渲染管道的操作；
-- `H:CustomNode:OnAppear` 用于构建当前 OnAppear 生命周期的操作，并执行aboutToAppear生命周期函数；
-- `H:CustomNode:BuildItem LazyForEachPage` 渲染子节点并挂载在 LazyForEachPage 页面上。
+**①** `H:JsiDeclarativeEngine::LoadPageSource`加载一个 JavaScript 文件，并且解析为 ABC 字节码；
+
+**②** `H:FlushPipelineWithoutAnimation` 清理渲染管道的操作；
+
+**③** `H:CustomNode:OnAppear` 用于构建当前 OnAppear 生命周期的操作，并执行aboutToAppear生命周期函数；
+
+**④** `H:CustomNode:BuildItem LazyForEachPage` 渲染子节点并挂载在 LazyForEachPage 页面上。
 
 **2.对当前帧节点Stage，执行布局任务、执行渲染任务并通知图形侧进行渲染**
 
@@ -203,12 +206,14 @@ export struct IconItem {
 
 ![对当前帧节点Stage，执行布局任务、执行渲染任务并通知图形侧进行渲染泳道图](figures/trace-stage-frame-rate.png)
 
-- `H:Layout[stage][self:1][parent:0]`对当前帧节点Stage，执行布局任务；(Stage作为框架，承载着页面Page节点。因此，标签的呈现会从Stage开始)
-  - `H:Measure[%s][self:17][parent:16]` 对Page、Column、Row、Image、Text等组件布局尺寸计算；
-  - `H:Builder:BuildLazyItem [0]`和`H:ListLayoutAlgorithm::MeasureListItem:0` 分别为创建一个LazyItem项目和计算列表项的布局尺寸；
-  - `H:Layout[%s][self:38][parent:37]` 对Page、Column、Row、Image、Text等组件执行布局任务；
-- `H:FrameNode::RenderTask` 执行渲染任务；
-- `H:RequestNextVSync` 请求下一帧Vsync信号。
+**①** `H:Layout[stage][self:1][parent:0]` 对当前帧节点Stage，执行布局任务；(Stage作为框架，承载着页面Page节点。因此，标签的呈现会从Stage开始)
+   - `H:Measure[%s][self:17][parent:16]` 对Page、Column、Row、Image、Text等组件布局尺寸计算；
+   - `H:Builder:BuildLazyItem [0]`和`H:ListLayoutAlgorithm::MeasureListItem:0` 分别为创建一个LazyItem项目和计算列表项的布局尺寸；
+   - `H:Layout[%s][self:38][parent:37]` 对Page、Column、Row、Image、Text等组件执行布局任务；
+
+**②** `H:FrameNode::RenderTask` 执行渲染任务；
+
+**③** `H:RequestNextVSync` 请求下一帧Vsync信号。
 
 **3.对当前帧节点Flex，执行布局任务、执行渲染任务并通知图形侧进行渲染**
 
@@ -216,10 +221,12 @@ export struct IconItem {
 
 ![执行渲染任务并通知图形侧进行渲染泳道图](figures/trace-notify-rs.png)
 
-- `H:Layout[Flex][self:63][parent:62]`对当前帧节点Flex，执行布局任务**；**
+**①** `H:Layout[Flex][self:63][parent:62]`对当前帧节点Flex，执行布局任务；
   - `H:Measure[%s][self:17][parent:16]` 对Image、Text等组件布局尺寸计算；
-- `H:FrameNode::RenderTask` Flex渲染任务执行；
-- `H:RequestNextVSync` 请求下一帧Vsync信号。
+
+**②** `H:FrameNode::RenderTask` Flex渲染任务执行；
+
+**③** `H:RequestNextVSync` 请求下一帧Vsync信号。
 
 **4.构建前预处理数据及添加预测布局任务**
 
@@ -227,9 +234,11 @@ export struct IconItem {
 
 ![构建前预处理数据及添加预测布局任务泳道图](figures/trace-per-build.png)
 
-- `H:Builder:BuildLazyItem [11]`构建前预处理数据了11条数据；
-- `H:Layout[ListItem][self:76][parent:-1]` 添加一条Flex、Image、Text的预测布局；
-- `H:FlushMessages` 发送消息通知图形侧进行渲染。
+**①** `H:Builder:BuildLazyItem [11]`构建前预处理数据了11条数据；
+
+**②** `H:Layout[ListItem][self:76][parent:-1]` 添加一条Flex、Image、Text的预测布局；
+
+**③** `H:FlushMessages` 发送消息通知图形侧进行渲染。
 
 **5.合成渲染树上各节点图层任务**
 
@@ -237,15 +246,16 @@ export struct IconItem {
 
 ![合成渲染树上各节点图层任务泳道图](figures/trace-node-tree.png)
 
-- `H:AcquireBuffer`、`H:ProcessSurfaceNode:EntryView XYWH[0 0 720 1280]`获取屏幕缓冲区并绘制EntryView、SystemUi_StatusBar、SystemUi_NavigationBar等；
-- `H:Repaint` 硬件合成器合成绘制当前节点树。
+**①** `H:AcquireBuffer`、`H:ProcessSurfaceNode:EntryView XYWH[0 0 720 1280]`获取屏幕缓冲区并绘制EntryView、SystemUi_StatusBar、SystemUi_NavigationBar等；
+
+**②** `H:Repaint` 硬件合成器合成绘制当前节点树。
 
 ## 自定义Trace
 
 开发者可以根据业务需求，使用hiTraceMeter进行自定义Trace打点跟踪，目前支持ArkTS和Native，具体使用细节可参考下方链接：
 
-> [性能打点跟踪开发指导（ArkTS）](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/dfx/hitracemeter-guidelines.md/)
-> [性能打点跟踪开发指导（Native）](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/dfx/hitracemeter-native-guidelines.md/)
+> [性能打点跟踪开发指导（ArkTS）](../dfx/hitracemeter-guidelines-arkts.md)
+> [性能打点跟踪开发指导（Native）](../dfx/hitracemeter-guidelines-ndk.md)
 
 添加自定义Trace后，可在[SmartPerf-Host调试工具](../../device-dev/device-test/smartperf-host.md)上查看，自定义Trace将以独立泳道的形式呈现在对应打点的进程下。
 下图两条泳道使用了startTrace和finishTrace方法，表示程序运行过程中，指定标签从调用startTrace到调用finishTrace的耗时统计。图中记录了CUSTOM_TRACE_TAG_1和CUSTOM_TRACE_TAG_2两个标签，先后呈现了2个标签的耗时统计。
@@ -265,7 +275,7 @@ export struct IconItem {
 Trace的生成依赖了DFX子系统中的HiTrace组件，其中包含的hiTraceMeter模块为开发者提供系统性能打点接口，具体细节可参考下方链接：
 
 > [HiTrace组件](https://gitee.com/openharmony/hiviewdfx_hitrace)
-> [hiTraceMeter模块](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_hitrace.md/)
+> [hiTraceMeter模块](../reference/apis-performance-analysis-kit/_hitrace.md)
 
 hiTraceMeter拥有两套开始和结束打点接口，实现对逻辑行为的耗时统计。由于耗时统计大多数以方法为单位，所以hiTraceMeter也提供了快速打点单个方法执行耗时的宏定义HITRACE_METER、HITRACE_METER_NAME、HITRACE_METER_FMT，使用它们，只需要在方法起始位置调用即可。这些宏定义依赖了方法内局部变量的生命周期，其原理是在方法开始时构造了一个打点实例，在实例构造函数中调用开始打点接口，当方法执行完毕，打点实例随着方法结束而执行析构，在实例析构函数中调用结束打点接口。
 

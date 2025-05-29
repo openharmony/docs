@@ -2,9 +2,8 @@
 This **wifiext** module provides WLAN extension interfaces for non-universal products.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs described in this document are used only for non-universal products, such as routers.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The APIs described in this document are used only for non-universal products, such as routers.
 
 
 ## Modules to Import
@@ -19,7 +18,7 @@ enableHotspot(): void;
 
 Enables the WLAN hotspot.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 9 and deprecated since API version 10.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
@@ -31,10 +30,10 @@ Enables the WLAN hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -54,7 +53,7 @@ disableHotspot(): void;
 
 Disables the WLAN hotspot.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 9 and deprecated since API version 10.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
@@ -66,10 +65,10 @@ Disables the WLAN hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -95,19 +94,19 @@ Obtains the supported power modes. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise used to return the power modes obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 ## PowerMode<sup>9+</sup>
 
 Enumerates the power modes.
@@ -133,27 +132,26 @@ Obtains the supported power modes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getSupportedPowerMode((err, data) => {
+  wifiManagerExt.getSupportedPowerMode((err, data:wifiManagerExt.PowerMode[]) => {
       if (err) {
           console.error("get supported power mode info error");
           return;
@@ -174,7 +172,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
 Obtains the power mode. This API uses a promise to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 9 and deprecated since API version 10.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
@@ -183,19 +181,19 @@ Obtains the power mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[PowerMode](#powermode9)&gt; | Promise used to return the power modes obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[PowerMode](#powermode9)&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
@@ -222,27 +220,26 @@ Obtains the power mode. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getPowerMode((err, data) => {
+  wifiManagerExt.getPowerMode((err, data:wifiManagerExt.PowerMode) => {
       if (err) {
           console.error("get linked info error");
           return;
@@ -263,6 +260,9 @@ setPowerMode(mode: PowerMode) : void;
 
  Sets the power mode.
 
+> **NOTE**
+> This API is supported since API version 9 and deprecated since API version 10.
+
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
@@ -278,11 +278,10 @@ setPowerMode(mode: PowerMode) : void;
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2701000 | AP extension module error.|
+| 2701000 | Operation failed. |
 
 **Example**
 

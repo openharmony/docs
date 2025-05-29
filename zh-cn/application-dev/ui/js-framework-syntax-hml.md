@@ -165,7 +165,7 @@ export default {
       clickfunc: function(e) {
           console.log(e);
       },
-      touchstartfuc: function(e) {
+      touchstartfunc: function(e) {
           console.log(e);
       },
   }
@@ -198,7 +198,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
   ```js
   // xxx.js
   export default {
-      touchstartfuc: function(e) {
+      touchstartfunc: function(e) {
           console.log(e);
       },
   }
@@ -385,7 +385,7 @@ export default {
 
 ## 模板引用
 
-HML可以通过element引用模板文件，详细介绍可参考[自定义组件](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)章节。
+HML可以通过element引用模板文件，详细介绍可参考[自定义组件的基本用法](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)章节。
 
 ```html
 <!-- template.hml -->

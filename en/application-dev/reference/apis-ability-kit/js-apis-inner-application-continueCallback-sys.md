@@ -19,9 +19,9 @@ Called when the mission continuation is complete.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| result |  number | Yes | Mission continuation result. |
+| result |  number | Yes| Mission continuation result. The value **0** means a successful mission continuation, and other values means a failed mission continuation.|
 
 **Example**
 

@@ -12,6 +12,12 @@ gestureModifier(modifier: GestureModifier)
 
 Creates a gesture modifier.
 
+>  **NOTE**
+>
+>  **gestureModifier** does not support custom components.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -31,6 +37,8 @@ Binds a gesture to this component.
 
 You can customize this API as required. The **if/else** syntax is supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name           | Type                                       | Description                                      |
@@ -38,6 +46,8 @@ You can customize this API as required. The **if/else** syntax is supported.
 | event        | [UIGestureEvent](./ts-uigestureevent.md#uigestureevent) |  **UIGestureEvent** object, which is used to set the gesture to be bound to the component.     |
 
 ## Example
+
+This example demonstrates how to dynamically set the gestures bound to a component using **gestureModifier**.
 
 ```ts
 // xxx.ets
@@ -77,6 +87,11 @@ struct Index {
           .width(500)
           .height(500)
           .backgroundColor(Color.Blue)
+        Button('changeGesture')
+          .onClick(() => {
+            this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
+          })
+          .margin({top: 10})
       }
       .width('100%')
     }
@@ -84,4 +99,3 @@ struct Index {
   }
 }
 ```
-<!--no_check-->

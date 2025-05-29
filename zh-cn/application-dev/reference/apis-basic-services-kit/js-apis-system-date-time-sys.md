@@ -29,7 +29,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 设置系统时间，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -39,12 +39,12 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 | 参数名   | 类型            | 必填 | 说明                                       |
 | -------- | ----------- | ---- | ---------------- |
-| time     | number                    | 是   | 目标时间戳（ms）。                         |
+| time     | number                    | 是   | 目标时间戳(ms)。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                        |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -57,7 +57,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// time对应的时间为2021-01-20 02:36:25
+// time对应的时间为2021-01-20 02:36:25。
 let time = 1611081385000;
 try {
   systemDateTime.setTime(time, (error: BusinessError) => {
@@ -79,7 +79,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 设置系统时间，使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -89,7 +89,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| time   | number | 是   | 目标时间戳（ms）。 |
+| time   | number | 是   | 目标时间戳(ms)。 |
 
 **返回值：**
 
@@ -99,7 +99,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                        |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -112,7 +112,7 @@ setTime(time : number) : Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// time对应的时间为2021-01-20 02:36:25
+// time对应的时间为2021-01-20 02:36:25。
 let time = 1611081385000;
 try {
   systemDateTime.setTime(time).then(() => {
@@ -134,9 +134,9 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+> 从API version 9开始支持，从API 10开始废弃，建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -151,7 +151,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                                                         |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -187,9 +187,9 @@ setDate(date: Date): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 9开始支持，从API 10开始废弃。建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
+> 从API version 9开始支持，从API 10开始废弃，建议使用[systemDateTime.setTime](#systemdatetimesettime)替代。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -199,7 +199,7 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明       |
 | ------ | ---- | ---- | ---------- |
-| date   | Date | 是   | 目标日期，且必须。 |
+| date   | Date | 是   | 目标日期，且必须>0。 |
 
 **返回值：**
 
@@ -209,7 +209,7 @@ setDate(date: Date): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                                                         |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -241,7 +241,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置系统时区，使用callback异步回调。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -256,7 +256,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                        |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -289,7 +289,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 设置系统时区，使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -309,7 +309,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                                                        |
 | -------- |-------------------------------------------------------------------------------------------------------------|
@@ -331,6 +331,86 @@ try {
 } catch(e) {
   let error = e as BusinessError;
   console.info(`Failed to set timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.updateNtpTime<sup>14+</sup>
+
+updateNtpTime(): Promise&lt;void&gt;
+
+使用异步方式从NTP服务器更新NTP时间。该方法一小时内只会从NTP服务器更新一次NTP时间。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型                | 说明                 |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error.                                                                 |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemDateTime.updateNtpTime().then(() => {
+    console.info(`Succeeded in update ntp time.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getNtpTime<sup>14+</sup>
+
+getNtpTime(): number
+
+使用同步方式获取基于上次更新的NTP时间所计算出的真实时间。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值**：
+
+| 类型   | 说明                             |
+| ------ |--------------------------------|
+| number | 基于上次更新的NTP时间所计算出的Unix纪元时间(ms)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000002    | Location NTP time of the system is invalid.                                                           |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let time = systemDateTime.getNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get ntp time. message: ${error.message}, code: ${error.code}`);
 }
 ```
 

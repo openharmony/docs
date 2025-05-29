@@ -13,17 +13,19 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 
 **Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
+**Header file**: [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
+
 
 ## Summary
 
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
-| int32_t [audioSampleRate](#audiosamplerate) | Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**. | 
+| int32_t [audioSampleRate](#audiosamplerate) | Audio sampling rate. | 
 | int32_t [audioChannels](#audiochannels) | Number of audio channels. | 
-| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)[audioSource](#audiosource) | Audio source. | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [audioSource](#audiosource) | Audio source. | 
 
 
 ## Member Variable Description
@@ -34,9 +36,7 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 ```
 int32_t OH_AudioCaptureInfo::audioChannels
 ```
-
 **Description**
-
 Number of audio channels.
 
 
@@ -45,10 +45,8 @@ Number of audio channels.
 ```
 int32_t OH_AudioCaptureInfo::audioSampleRate
 ```
-
 **Description**
-
-Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**.
+Audio sampling rate. For details about the supported rates, see [AudioSamplingRate](../apis-audio-kit/js-apis-audio.md#audiosamplingrate8) of Audio Kit.
 
 
 ### audioSource
@@ -56,7 +54,5 @@ Audio sampling rate. For details about the supported rates, see **OH_AudioCaptur
 ```
 OH_AudioCaptureSourceType OH_AudioCaptureInfo::audioSource
 ```
-
 **Description**
-
 Audio source.

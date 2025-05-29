@@ -1,45 +1,40 @@
-# CommonEventSubscriber
-
-The **CommonEventSubscriber** module provides APIs for describing the common event subscriber.
+# commonEventSubscriber
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Usage
+## CommonEventSubscriber
 
-Before using the **CommonEventSubscriber** module, you must obtain a **subscriber** object by calling **CommonEvent.createSubscriber**.
+The **CommonEventSubscriber** module provides APIs for describing the common event subscriber.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+### How to Use
+
+Before using the **CommonEventSubscriber** module, you must obtain a **subscriber** object by calling **commonEventManager.createSubscriber**.
 
 ```ts
-import CommonEvent from '@ohos.commonEvent';
-import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
-let subscriber:CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+import { commonEventManager } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber: commonEventManager.CommonEventSubscriber;
 // Subscriber information.
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+	events: ['event']
 };
-
-// Callback for subscriber creation.
-function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`createSubscriber failed, code is ${err.code}`);
-    } else {
-        console.info("createSubscriber success");
-        subscriber = commonEventSubscriber;
-    }
-}
-
 // Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 ```
 
-## getCode
+### getCode
 
 getCode(callback: AsyncCallback\<number>): void
 
-Obtains the result code of an ordered common event. This API uses an asynchronous callback to return the result.
+Obtains the result code (number type) of an ordered common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -49,53 +44,33 @@ Obtains the result code of an ordered common event. This API uses an asynchronou
 
 | Name  | Type                  | Mandatory| Description              |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Common event code.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for result code obtaining of an ordered common event.
-function getCodeCallback(err:Base.BusinessError, code:number) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getCode " + JSON.stringify(code));
-    }
-}
-subscriber.getCode(getCodeCallback);
-```
-
-## getCode
-
-getCode(): Promise\<number>
-
-Obtains the result code of an ordered common event. This API uses a promise to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Return value**
-
-| Type            | Description                |
-| ---------------- | -------------------- |
-| Promise\<number> | Common event code.|
-
-**Example**
-
-```ts
-subscriber.getCode().then((code:number) => {
-    console.info("getCode " + JSON.stringify(code));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getCode((err: BusinessError, code: number) => {
+  if (err) {
+    console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
 });
 ```
 
-## getCodeSync<sup>10+</sup>
+### getCode
 
-getCodeSync(): number
+getCode(): Promise\<number>
 
-Obtains the result code of an ordered common event.
+Obtains the result code (number type) of an ordered common event. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -105,20 +80,46 @@ Obtains the result code of an ordered common event.
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| number | Common event code.|
+| Promise\<number> | Promise used to return the result.|
 
 **Example**
 
 ```ts
-let code = subscriber.getCodeSync();
-console.info("getCodeSync " + JSON.stringify(code));
+subscriber.getCode().then((code: number) => {
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## setCode
+### getCodeSync<sup>10+</sup>
+
+getCodeSync(): number
+
+Obtains the result code (number type) of an ordered common event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type            | Description                |
+| ---------------- | -------------------- |
+| number | Result code of an ordered common event. |
+
+**Example**
+
+```ts
+let code: number = subscriber.getCodeSync();
+console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
+```
+
+### setCode
 
 setCode(code: number, callback: AsyncCallback\<void>): void
 
-Sets the result code of an ordered common event. This API uses an asynchronous callback to return the result.
+Sets the result code (number type) of an ordered common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -128,70 +129,8 @@ Sets the result code of an ordered common event. This API uses an asynchronous c
 
 | Name  | Type                | Mandatory| Description                  |
 | -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | Yes  | Common event code.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```ts
-// Callback for result code setting of an ordered common event.
-function setCodeCallback(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCode success");
-    }
-}
-subscriber.setCode(1, setCodeCallback);
-```
-
-## setCode
-
-setCode(code: number): Promise\<void>
-
-Sets the result code of an ordered common event. This API uses a promise to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Common event code.|
-
-**Return value**
-
-| Type            | Description                |
-| ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
-
-**Example**
-
-```ts
-subscriber.setCode(1).then(() => {
-    console.info("setCode success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-## setCodeSync<sup>10+</sup>
-
-setCodeSync(code: number): void
-
-Sets the result code of an ordered common event.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Common event code.|
+| code     | number               | Yes  | Result code of an ordered common event.  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -199,25 +138,100 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
+subscriber.setCode(1, (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting code.`);
+});
+```
 
+### setCode
+
+setCode(code: number): Promise\<void>
+
+Sets the result code (number type) of an ordered common event. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | Yes  | Result code of an ordered common event. |
+
+**Return value**
+
+| Type            | Description                |
+| ---------------- | -------------------- |
+| Promise\<void>   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+
+**Example**
+
+```ts
+subscriber.setCode(1).then(() => {
+  console.info(`Succeeded in setting code.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### setCodeSync<sup>10+</sup>
+
+setCodeSync(code: number): void
+
+Sets the result code (number type) of an ordered common event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| code   | number | Yes  | Result code of an ordered common event. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
+
+**Example**
+
+```ts
 try {
-    subscriber.setCodeSync(1);
+  subscriber.setCodeSync(1);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## getData
+### getData
 
 getData(callback: AsyncCallback\<string>): void
 
-Obtains the result data of an ordered common event. This API uses an asynchronous callback to return the result.
+Obtains the result data (string type) of an ordered common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -227,53 +241,34 @@ Obtains the result data of an ordered common event. This API uses an asynchronou
 
 | Name  | Type                  | Mandatory| Description                |
 | -------- | ---------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<string> | Yes  | Common event data.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for result data obtaining of an ordered common event.
-function getDataCallback(err:Base.BusinessError, data:string) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getData " + JSON.stringify(data));
-    }
-}
-subscriber.getData(getDataCallback);
-```
-
-## getData
-
-getData(): Promise\<string>
-
-Obtains the result data of an ordered common event. This API uses a promise to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Return value**
-
-| Type            | Description              |
-| ---------------- | ------------------ |
-| Promise\<string> | Common event data.|
-
-**Example**
-
-```ts
-subscriber.getData().then((data:string) => {
-    console.info("getData " + JSON.stringify(data));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
+// Obtain the result data (string type) of an ordered common event.
+subscriber.getData((err: BusinessError, data: string) => {
+  if (err) {
+    console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
 });
 ```
 
-## getDataSync<sup>10+</sup>
+### getData
 
-getDataSync(): string
+getData(): Promise\<string>
 
-Obtains the result data of an ordered common event.
+Obtains the result data (string type) of an ordered common event. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -283,20 +278,46 @@ Obtains the result data of an ordered common event.
 
 | Type            | Description              |
 | ---------------- | ------------------ |
-| string | Common event data.|
+| Promise\<string> | Promise used to return the result.|
 
 **Example**
 
 ```ts
-let data = subscriber.getDataSync();
-console.info("getDataSync " + JSON.stringify(data));
+subscriber.getData().then((data: string) => {
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## setData
+### getDataSync<sup>10+</sup>
+
+getDataSync(): string
+
+Obtains the result data (string type) of an ordered common event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Return value**
+
+| Type            | Description              |
+| ---------------- | ------------------ |
+| string | Result data of an ordered common event. |
+
+**Example**
+
+```ts
+let data: string = subscriber.getDataSync();
+console.info(`Succeeded in getting data, data is ${data}`);
+```
+
+### setData
 
 setData(data: string, callback: AsyncCallback\<void>): void
 
-Sets the result data for an ordered common event. This API uses an asynchronous callback to return the result.
+Sets the result data (string type) of an ordered common event. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -306,70 +327,8 @@ Sets the result data for an ordered common event. This API uses an asynchronous 
 
 | Name  | Type                | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| data     | string               | Yes  | Common event data.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```ts
-// Callback for result data setting of an ordered common event
-function setDataCallback(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setData success");
-    }
-}
-subscriber.setData("publish_data_changed", setDataCallback);
-```
-
-## setData
-
-setData(data: string): Promise\<void>
-
-Sets the result data for an ordered common event. This API uses a promise to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| data   | string | Yes  | Common event data.|
-
-**Return value**
-
-| Type            | Description                |
-| ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
-
-**Example**
-
-```ts
-subscriber.setData("publish_data_changed").then(() => {
-    console.info("setData success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-## setDataSync<sup>10+</sup>
-
-setDataSync(data: string): void
-
-Sets the result data for an ordered common event.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| data   | string | Yes  | Common event data.|
+| data     | string               | Yes  | Result data of an ordered common event. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -377,20 +336,96 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+
+**Example**
+
+```ts
+subscriber.setData('publish_data_changed', (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting data.`);
+});
+```
+
+### setData
+
+setData(data: string): Promise\<void>
+
+Sets the result data (string type) of an ordered common event. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | Yes  | Result data of an ordered common event. |
+
+**Return value**
+
+| Type            | Description                |
+| ---------------- | -------------------- |
+| Promise\<void>   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+
+**Example**
+
+```ts
+subscriber.setData('publish_data_changed').then(() => {
+  console.info(`Succeeded in setting data.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### setDataSync<sup>10+</sup>
+
+setDataSync(data: string): void
+
+Sets the result data (string type) of an ordered common event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| data   | string | Yes  | Result data of an ordered common event. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
 
 **Example**
 
 ```ts
 try {
-    subscriber.setDataSync("publish_data_changed");
+  subscriber.setDataSync('publish_data_changed');
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
@@ -404,25 +439,31 @@ Sets the result code and data of an ordered common event. This API uses an async
 
 | Name  | Type                | Mandatory| Description                  |
 | -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | Yes  | Common event code.  |
-| data     | string               | Yes  | Common event data.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| code     | number               | Yes  | Result code of an ordered common event.  |
+| data     | string               | Yes  | Result data of an ordered common event.  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for code and data setting of an ordered common event.
-function setCodeAndDataCallback(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCodeAndData success");
-    }
-}
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeAndDataCallback);
+subscriber.setCodeAndData(1, 'publish_data_changed', (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting code and data.`);
+});
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string): Promise\<void>
 
@@ -436,41 +477,14 @@ Sets the result code and data of an ordered common event. This API uses a promis
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| code   | number | Yes  | Common event code.|
-| data   | string | Yes  | Common event data.|
+| code   | number | Yes  | Result code of an ordered common event. |
+| data   | string | Yes  | Result data of an ordered common event. |
 
 **Return value**
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
-
-**Example**
-
-```ts
-subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-    console.info("setCodeAndData success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-## setCodeAndDataSync<sup>10+</sup>
-
-setCodeAndDataSync(code: number, data: string): void
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-Sets the result code and data of an ordered common event.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| code   | number | Yes  | Common event code.|
-| data   | string | Yes  | Common event data.|
+| Promise\<void>   | Promise that returns no value.|
 
 **Error codes**
 
@@ -478,83 +492,118 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | parameter error.                    | 
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+
+**Example**
+
+```ts
+subscriber.setCodeAndData(1, 'publish_data_changed').then(() => {
+  console.info(`Succeeded in setting code and data.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### setCodeAndDataSync<sup>10+</sup>
+
+setCodeAndDataSync(code: number, data: string): void
+
+Sets the result code and data of an ordered common event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| code   | number | Yes  | Result code of an ordered common event. |
+| data   | string | Yes  | Result data of an ordered common event. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
 
 **Example**
 
 ```ts
 try {
-    subscriber.setCodeAndDataSync(1, "publish_data_changed");
+  subscriber.setCodeAndDataSync(1, 'publish_data_changed');
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeAndDataSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
 }
 
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 Checks whether the current common event is an ordered common event. This API uses an asynchronous callback to return the result.
 
- 
-
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                              |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. Returns **true** if the common event is an ordered one; returns **false** if the common event is an unordered one.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for checking whether the current common event is an ordered one.
-function isOrderedCommonEventCallback(err:Base.BusinessError, isOrdered:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
-    }
-}
-subscriber.isOrderedCommonEvent(isOrderedCommonEventCallback);
+subscriber.isOrderedCommonEvent((err: BusinessError, isOrdered:boolean) => {
+  if (err) {
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
+});
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(): Promise\<boolean>
 
 Checks whether the current common event is an ordered common event. This API uses a promise to return the result.
 
- 
-
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Return value**
 
 | Type             | Description                            |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. Returns **true** if the common event is an ordered one; returns **false** if the common event is an unordered one.|
 
 **Example**
 
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
-    console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
-}).catch((err:Base.BusinessError) => {
-    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
+}).catch((err: BusinessError) => {
+  console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## isOrderedCommonEventSync<sup>10+</sup>
+### isOrderedCommonEventSync<sup>10+</sup>
 
 isOrderedCommonEventSync(): boolean
 
 Checks whether the current common event is an ordered common event.
-
- 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -562,22 +611,20 @@ Checks whether the current common event is an ordered common event.
 
 | Type             | Description                            |
 | ----------------- | -------------------------------- |
-| boolean | Returns **true** if the common event is an ordered one; returns **false** otherwise.|
+| boolean |Returns **true** if the common event is an ordered one; returns **false** if the common event is an unordered one.|
 
 **Example**
 
 ```ts
-let isOrdered  = subscriber.isOrderedCommonEventSync();
-console.info("isOrderedCommonEventSync " + JSON.stringify(isOrdered));
+let isOrdered: boolean = subscriber.isOrderedCommonEventSync();
+console.info(`isOrderedCommonEventSync ${JSON.stringify(isOrdered)}`);
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 Checks whether a common event is a sticky one. This API uses an asynchronous callback to return the result.
-
- 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -585,29 +632,33 @@ Checks whether a common event is a sticky one. This API uses an asynchronous cal
 
 | Name  | Type                   | Mandatory| Description                              |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Returns **true** if the common event is a sticky one; returns **false** otherwise.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. Returns **true** if the common event is a sticky one; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for checking whether the current common event is a sticky one.
-function isStickyCommonEventCallback(err:Base.BusinessError, isSticky:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
-    }
-}
-subscriber.isStickyCommonEvent(isStickyCommonEventCallback);
+subscriber.isStickyCommonEvent((err: BusinessError, isSticky:boolean) => {
+  if (err) {
+    console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
+});
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(): Promise\<boolean>
 
 Checks whether a common event is a sticky one. This API uses a promise to return the result.
-
- 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -615,25 +666,23 @@ Checks whether a common event is a sticky one. This API uses a promise to return
 
 | Type             | Description                            |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | Returns **true** if the common event is a sticky one; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. Returns **true** if the common event is a sticky one; returns **false** otherwise.|
 
 **Example**
 
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
-    console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
-}).catch((err:Base.BusinessError) => {
-    console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
+}).catch((err: BusinessError) => {
+  console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## isStickyCommonEventSync<sup>10+</sup>
+### isStickyCommonEventSync<sup>10+</sup>
 
 isStickyCommonEventSync(): boolean
 
 Checks whether a common event is a sticky one.
-
- 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -646,15 +695,15 @@ Checks whether a common event is a sticky one.
 **Example**
 
 ```ts
-let isSticky  = subscriber.isStickyCommonEventSync();
-console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
+let isSticky: boolean = subscriber.isStickyCommonEventSync();
+console.info(`isStickyCommonEventSync ${JSON.stringify(isSticky)}`);
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. This API uses an asynchronous callback to return the result.
+Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -662,27 +711,40 @@ Aborts this common event. After the abort, the common event is not sent to the n
 
 | Name  | Type                | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for common event aborting.
-function abortCommonEventCallback(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("abortCommonEvent success");
-    }
-}
-subscriber.abortCommonEvent(abortCommonEventCallback);
+subscriber.abortCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in aborting common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(): Promise\<void>
 
-Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. This API uses a promise to return the result.
+Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -690,23 +752,28 @@ Aborts this common event. After the abort, the common event is not sent to the n
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
+| Promise\<void>   | Promise that returns no value.|
 
 **Example**
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
-    console.info("abortCommonEvent success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in aborting common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to abort common event. Code is ${err.code}, message is ${err.message}`);
+});
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## abortCommonEventSync<sup>10+</sup>
+### abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
-Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events.
+Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -714,13 +781,18 @@ Aborts this common event. After the abort, the common event is not sent to the n
 
 ```ts
 subscriber.abortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-Clears this ordered common event. This API uses an asynchronous callback to return the result.
+Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -728,27 +800,40 @@ Clears this ordered common event. This API uses an asynchronous callback to retu
 
 | Name  | Type                | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for clearing the aborted state of the current common event.
-function clearAbortCommonEventCallback(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("clearAbortCommonEvent success");
-    }
-}
-subscriber.clearAbortCommonEvent(clearAbortCommonEventCallback);
+subscriber.clearAbortCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to clear abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in clearing abort common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(): Promise\<void>
 
-Clears this ordered common event. This API uses a promise to return the result.
+Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -756,23 +841,28 @@ Clears this ordered common event. This API uses a promise to return the result.
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
+| Promise\<void>   | Promise that returns no value.|
 
 **Example**
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
-    console.info("clearAbortCommonEvent success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in clearing abort common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to clear abort common event. Code is ${err.code}, message is ${err.message}`);
+});
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## clearAbortCommonEventSync<sup>10+</sup>
+### clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
-Clears this ordered common event.
+Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -780,9 +870,14 @@ Clears this ordered common event.
 
 ```ts
 subscriber.clearAbortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## getAbortCommonEvent
+### getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
@@ -794,23 +889,29 @@ Checks whether this ordered common event should be aborted. This API uses an asy
 
 | Name  | Type                   | Mandatory| Description                              |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for checking whether the current common event is in the aborted state.
-function getAbortCommonEventCallback(err:Base.BusinessError, abortEvent:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
-    }
-}
-subscriber.getAbortCommonEvent(getAbortCommonEventCallback);
+subscriber.getAbortCommonEvent((err: BusinessError, abortEvent: boolean) => {
+  if (err) {
+    console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  } 
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
+});
 ```
 
-## getAbortCommonEvent
+### getAbortCommonEvent
 
 getAbortCommonEvent(): Promise\<boolean>
 
@@ -822,19 +923,19 @@ Checks whether this ordered common event should be aborted. This API uses a prom
 
 | Type             | Description                              |
 | ----------------- | ---------------------------------- |
-| Promise\<boolean> | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
 
 **Example**
 
 ```ts
-subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
-    console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## getAbortCommonEventSync<sup>10+</sup>
+### getAbortCommonEventSync<sup>10+</sup>
 
 getAbortCommonEventSync(): boolean
 
@@ -846,16 +947,16 @@ Checks whether this ordered common event should be aborted.
 
 | Type             | Description                              |
 | ----------------- | ---------------------------------- |
-| boolean | Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
+| boolean |Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
 
 **Example**
 
 ```ts
-let abortEvent = subscriber.getAbortCommonEventSync();
-console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
+let abortEvent: boolean = subscriber.getAbortCommonEventSync();
+console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
 ```
 
-## getSubscribeInfo
+### getSubscribeInfo
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
@@ -869,23 +970,29 @@ Obtains the subscriber information. This API uses an asynchronous callback to re
 
 | Name  | Type                                                        | Mandatory| Description                  |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | Yes  | Returns the subscriber information.|
+| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for subscriber information obtaining.
-function getSubscribeInfoCallback(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
-    }
-}
-subscriber.getSubscribeInfo(getSubscribeInfoCallback);
+subscriber.getSubscribeInfo((err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
+  if (err) {
+    console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
+});
 ```
 
-## getSubscribeInfo
+### getSubscribeInfo
 
 getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
@@ -899,19 +1006,19 @@ Obtains the subscriber information. This API uses a promise to return the result
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| Promise\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | Returns the subscriber information.|
+| Promise\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | Promise used to return the result.|
 
 **Example**
 
 ```ts
-subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
-    console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## getSubscribeInfoSync<sup>10+</sup>
+### getSubscribeInfoSync<sup>10+</sup>
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
@@ -925,16 +1032,16 @@ Obtains the subscriber information.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Returns the subscriber information.|
+| [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | Subscriber information.|
 
 **Example**
 
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
-console.info("getSubscribeInfoSync " + JSON.stringify(subscribeInfo));
+console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(callback: AsyncCallback\<void>): void
 
@@ -946,23 +1053,29 @@ Finishes this ordered common event. This API uses an asynchronous callback to re
 
 | Name  | Type                 | Mandatory| Description                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback returned after the ordered common event is finished.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 
 **Example**
 
 ```ts
-// Callback for ordered common event finishing.
-function finishCommonEventCallback(err:Base.BusinessError) {
-  if (err.code !== undefined && err.code != null) {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("finishCommonEvent success");
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
-}
-subscriber.finishCommonEvent(finishCommonEventCallback);
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(): Promise\<void>
 
@@ -974,14 +1087,14 @@ Finishes this ordered common event. This API uses a promise to return the result
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| Promise\<void>   | Promise used to return the result.|
+| Promise\<void>   | Promise that returns no value.|
 
 **Example**
 
 ```ts
 subscriber.finishCommonEvent().then(() => {
-    console.info("finishCommonEvent success");
-}).catch((err:Base.BusinessError) => {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```

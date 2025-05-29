@@ -18,7 +18,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | Permission                                | APL   | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates. |
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -28,10 +28,10 @@ For details about the APL, see [Basic Concepts in the Permission Mechanism](../.
 
 **System API**: This is a system API.
 
-| Name      | Template  | Readable | Writable | Description                      |
+| Name      | Type  | Read-Only| Optional| Description                      |
 | ---------- | ------ | ---- | ---- | -------------------------- |
-| bundleName | string | Yes  | No  | Name of the bundle whose status changes. |
-| userId     | number | Yes  | No  | ID of the user whose bundle status changes.  |
+| bundleName | string | Yes  | No  | Name of the bundle whose status changes.|
+| userId     | number | Yes  | No  | ID of the user for whom the bundle status changes. You can obtain the ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).  |
 
 ## BundleChangedEvent
 
@@ -64,18 +64,18 @@ Subscribes to bundle installation, uninstall, and update events.
 
 **Parameters**
 
-| Name                      | Type    | Mandatory | Description              |
+| Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
-| type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| Yes  | Type of the event to subscribe to. |
-| callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription. |
+| type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| Yes  | Type of the event to subscribe to.|
+| callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -110,18 +110,18 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 **Parameters**
 
-| Name                      | Type    | Mandatory | Description                                                      |
+| Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| Yes  | Type of the event to unsubscribe from.                                        |
-| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from. |
+| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 

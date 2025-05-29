@@ -9,6 +9,8 @@
 
 **相关模块：**[OH_Camera](_o_h___camera.md)
 
+**所在头文件：**[camera.h](camera_8h.md)
+
 
 ## 汇总
 
@@ -46,6 +48,8 @@ Camera_Profile** Camera_OutputCapability::photoProfiles
 ```
 **描述**
 拍照配置文件列表。
+
+配置文件中的size设置的是相机分辨率宽高，非实际出图宽高。
 
 
 ### photoProfilesSize

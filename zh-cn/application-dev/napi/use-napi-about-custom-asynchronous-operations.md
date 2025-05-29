@@ -1,4 +1,4 @@
-# Node-API 自定义异步操作
+# 使用Node-API进行自定义异步操作相关开发
 
 ## 简介
 
@@ -8,9 +8,9 @@
 
 Node-API支持异步操作，这对于处理IO密集型或计算密集型的任务非常重要，因为这些任务通常需要非阻塞的执行方式以避免阻塞主线程。以下是一些关于自定义异步操作的基本概念：
 
-- **异步模型:** Node-API支持异步模型，提供了Promise和Callback两种方式来实现异步操作。Promise是一种基于未来值的编程模型，它允许开发者将异步操作的结果封装在一个对象中，并通过链式调用的方式处理异步操作的结果。Callback则是一种传统的异步编程方式，通过回调函数来处理异步操作的结果。
-- **临时结果:** 当原生方法（即Node-API代码）被调用时，它会立即返回一个临时结果给ArkTS调用者。这个临时结果通常是一个表示异步操作正在进行中的标志，或者是用于后续处理异步操作结果的句柄。
-- **回调或Promise:** 当异步操作完成后，结果会通过回调函数或Promise对象返回给ArkTS调用者。这样，ArkTS代码就可以在异步操作完成后继续执行后续的逻辑。
+- **异步模型：** Node-API支持异步模型，提供了Promise和Callback两种方式来实现异步操作。Promise是一种基于未来值的编程模型，它允许开发者将异步操作的结果封装在一个对象中，并通过链式调用的方式处理异步操作的结果。Callback则是一种传统的异步编程方式，通过回调函数来处理异步操作的结果。
+- **临时结果：** 当原生方法（即Node-API代码）被调用时，它会立即返回一个临时结果给ArkTS调用者。这个临时结果通常是一个表示异步操作正在进行中的标志，或者是用于后续处理异步操作结果的句柄。
+- **回调或Promise：** 当异步操作完成后，结果会通过回调函数或Promise对象返回给ArkTS调用者。这样，ArkTS代码就可以在异步操作完成后继续执行后续的逻辑。
 
 ## 场景和功能介绍
 
@@ -27,7 +27,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 ### napi_async_init、napi_async_destroy
 
-在需要管理异步资源上下文环境的创建和销毁时，可以使用napi_async_init和napi_async_destroy来管理这些环境。需要注意的是，这些函数暂不支持与async_hook相关的能力，所以在使用时需要注意可能会存在的限制。
+在需要管理异步资源上下文环境的创建和销毁时，可以使用napi_async_init和napi_async_destroy来管理这些环境。需要注意的是，这些函数不支持与async_hook相关的能力，所以在使用时需要注意可能会存在的限制。
 
 ### napi_make_callback
 
@@ -42,6 +42,9 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // 入参索引
+static constexpr int INT_ARG_3 = 3; // 入参索引
+
 static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
 {
     // 接受四个参数
@@ -52,9 +55,9 @@ static napi_value AsynchronousWork(napi_env env, napi_callback_info info)
     // 提取参数中的资源、接收器对象和函数
     napi_value resource = args[0];
     napi_value recv = args[1];
-    napi_value func = args[2];
+    napi_value func = args[INT_ARG_2];
     napi_value argv[1] = {nullptr};
-    argv[0] = args[3];
+    argv[0] = args[INT_ARG_3];
     // 获取函数的类型
     napi_valuetype funcType;
     napi_typeof(env, func, &funcType);
@@ -105,9 +108,9 @@ export const asynchronousWork: (object: Object, obj: Object, fun: Function, num:
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-import process from '@ohos.process'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+import process from '@ohos.process';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API asynchronousWork: %{public}d', testNapi.asynchronousWork({}, process.ProcessManager, (num: number)=>{return num;}, 123));
 } catch (error) {

@@ -44,7 +44,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 需要注意的是合理使用napi_open_handle_scope和napi_close_handle_scope管理napi_value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
 
 代码部分也可参考下面链接：
-[生命周期管理](napi-guidelines.md)
+[生命周期管理](napi-guidelines.md#生命周期管理)
 
 cpp部分代码
 
@@ -104,8 +104,8 @@ export const handleScope: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API handleScopeTest: %{public}s', testNapi.handleScopeTest());
   hilog.info(0x0000, 'testTag', 'Test Node-API handleScope: %{public}s', testNapi.handleScope());
@@ -159,8 +159,8 @@ export const escapableHandleScopeTest: () => string;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API EscapableHandleScopeTest: %{public}s', testNapi.escapableHandleScopeTest());
 } catch (error) {
@@ -180,9 +180,17 @@ try {
 
 获取与reference相关联的ArkTS Object。
 
-### napi_add_finalize
+> **说明**
+>
+> 由于弱引用（引用计数为0的napi_ref）的释放与gc回收js对象并非同时发生。
+>
+> 因此可能在弱引用被释放前，js对象已经被回收。
+>
+> 这意味着你可能在napi_ref有效的情况下，通过本接口获取到一个空指针。
 
-当ArkTS Object中的对象被垃圾回收时调用注册的napi_finalize回调。
+### napi_add_finalizer
+
+当ArkTS Object中的对象被垃圾回收时调用注册的napi_add_finalizer回调。
 
 cpp部分代码
 
@@ -207,12 +215,7 @@ static napi_value CreateReference(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
     // 将键值对添加到对象中
     napi_set_named_property(env, obj, "key", value);
-    // 创建对ArkTS对象的引用
-    napi_status status = napi_create_reference(env, obj, 1, &g_ref);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_create_reference fail");
-        return nullptr;
-    }
+
     // 添加终结器
     void *data = {};
     napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);
@@ -277,8 +280,8 @@ export const deleteReference: () => string | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s', JSON.stringify(testNapi.createReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API useReference: %{public}s', JSON.stringify(testNapi.useReference()));

@@ -108,9 +108,8 @@ Menu中MenuItem全部设置margin后，左右边距不对称，变更后左右�
 struct Index {
   build() {
     Column() {
-      Text('click for menu')
+      Text('click for Menu')
         .fontSize(20)
-        .position({ x: 100, y: 270 })
         .margin({ top: 20 })
         .bindMenu(this.TestMenuItemMarginLeftAndRight)
     }
@@ -125,6 +124,7 @@ struct Index {
     }
     .borderWidth(2)
     .borderColor(Color.Red)
+    .width(200)
   }
 }
 ```
@@ -326,45 +326,7 @@ TimePickerDialog组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.7 AlertDialog、promptAction.showDialog中Button间距变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-修正视觉效果以获得更好的用户体验。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：Button间距为8vp。
-
-变更后：Button间距为16vp。
-
-| 变更前 | 变更后 |
-|---------|---------|
-| ![](figures/AlertDialog_Before.png) | ![](figures/AlertDialog_After.png) |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35开始。
-
-**变更的接口/组件**
-
-AlertDialog、promptAction.showDialog。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.8 SubMenu避让底部导航条距离变更
+## cl.arkui.7 SubMenu避让底部导航条距离变更
 
 **访问级别**
 
@@ -398,23 +360,23 @@ Menu组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.9 menu、toast修改阴影参数
+## cl.arkui.8 menu、toast修改阴影参数
 **访问级别**
 
 公开接口
 
 **变更原因**
 
-当前阴影不明显，区分度不高。
+当前menu、toast组件阴影不明显，背景颜色和组件颜色接近时，区分度不高。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 | 变更前阴影 | 变更后阴影|
 |---------|---------|
-|  ![Menu_before](figures/Menu_before.jpeg)       |  ![Menu_before](figures/Menu_after.jpeg)       |
-|  ![Toast_before](figures/Toast_before.jpeg)       |  ![Toast_before](figures/Toast_after.jpeg)       |
+|  ![menu_Before](figures/menu_Before.png)       |  ![menu_After](figures/menu_After.png)       |
+|  ![toast_Before](figures/toast_Before.png)       |  ![toast_After](figures/toast_After.png)       |
 
 **起始API Level**
 
@@ -438,9 +400,9 @@ Toast组件ShowToast接口
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认效果变更，无需适配。
 
-## cl.arkui.10 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
+## cl.arkui.9 RichEditor设置预设样式的接口传入默认值时，文本样式效果变更
 
 **访问级别**
 
@@ -514,7 +476,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.11 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
+## cl.arkui.10 RichEditor占位文本接口中文本样式属性传入异常值/默认值时，占位文本样式的效果变更
 
 **访问级别**
 
@@ -524,7 +486,7 @@ struct Index {
 
 1.RichEditor设置占位文本的接口placeholder，其占位文本样式属性PlaceHolderStyle为异常值"{}"时，组件未将占位文本样式属性设置为默认效果。
 
-2.当占位文本样式属性中各个属性为默认值undefined/null时，对应默认效果未生效。
+2.当占位文本样式属性中各个属性为默认值undefined时，对应默认效果未生效。
 
 占位文本样式属性：
 
@@ -589,11 +551,6 @@ struct Index {
         .onClick(() => {
           this.style = { fontColor: undefined };
         })
-      Button('change style.fontColor to null')
-        .fontSize(10)
-        .onClick(() => {
-          this.style = { fontColor: null };
-        })
       Button('change style.fontColor to normal value')
         .fontSize(10)
         .onClick(() => {
@@ -604,7 +561,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.12 MenuItem组件禁用状态下字体颜色变更
+## cl.arkui.11 MenuItem组件禁用状态下字体颜色变更
 
 **访问级别**
 
@@ -640,9 +597,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-默认行为变更，无需适配。
-
-## cl.arkui.13 RichEditor收起键盘后，选中区状态变更
+## cl.arkui.12 RichEditor收起键盘后，选中区状态变更
 
 **访问级别**
 
@@ -656,13 +611,17 @@ UX规格变更
 
 该变更为不兼容性变更。
 
-变更前：RichEditor收起键盘时，复位选中区。
+变更前：RichEditor非用户手动点击收起键盘按钮收起键盘时，触发组件失焦，关闭菜单，复位选中区。
 
-变更后：RichEditor收起键盘时，不复位选中区。
+![变更前](figures/richeditor_selection_change_before.gif)
+
+变更后：RichEditor非用户手动点击收起键盘按钮收起键盘时，仅小窗模式下触发组件失焦，其他场景不触发组件失焦，不关闭菜单，不复位选中区。
+
+![变更后](figures/richeditor_selection_change_after.gif)
 
 **起始API Level**
 
-不涉及API变更
+10
 
 **变更发生版本**
 
@@ -670,13 +629,13 @@ UX规格变更
 
 **变更的接口/组件**
 
-富文本组件。
+RichEditor组件。
 
 **适配指导**
 
-收起键盘时选中区状态变更，应用无需适配。
+非用户手动点击收起键盘按钮收起键盘时收起键盘时焦点状态变更，应用无需适配。
 
-## cl.arkui.14 dragInteraction接口增加系统接口校验
+## cl.arkui.13 dragInteraction接口增加系统接口校验
 
 **访问级别**
 
@@ -707,7 +666,7 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 默认行为变更，无需适配。
 
-## cl.arkui.15 Popup（气泡组件）UX样式变更
+## cl.arkui.14 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
 
 **访问级别**
 
@@ -715,55 +674,13 @@ off(type: 'drag', callback?: Callback\<DragState>): void；
 
 **变更原因**
 
-Popup（气泡组件）UX样式不符合规范
+统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的行为。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
-变更前：
-1、按钮与文本左侧没有对齐
-2、按钮上方与文本下方间距不足8vp
-
-![advanced_popup_before](figures/advanced_popup_before.png) 
-
-变更后：
-1、按钮与文本左侧对齐
-2、按钮上方与文本下方间距8vp
-
-![advanced_popup_after](figures/advanced_popup_after.png) 
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.35开始。
-
-**变更的接口/组件**
-
-Popup（气泡组件）
-
-**适配指导**
-
-默认样式变更，无需适配。
-
-## cl.arkui.16 Scroll、List、Grid、WaterFlow组件scrollBarColor接口变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-统一Scroll、List、Grid、WaterFlow组件scrollBarColor接口在设置负数时的效果。
-
-**变更影响**
-
-该变更为不兼容性变更。
-
-变更前，Scroll组件scrollBarColor接口设置负数时按默认值处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色处理。
+变更前，Scroll组件scrollBarColor接口设置负数时按默认值0x66182431处理，List、Grid、WaterFlow组件scrollBarColor接口设置负数时按黑色0xFF000000处理。
 
 变更后，Scroll、List、Grid、WaterFlow组件scrollBarColor接口设置负数时按无符号整数对应的ARGB颜色处理。
 
@@ -781,9 +698,9 @@ Scroll、List、Grid、WaterFlow组件scrollBarColor接口
 
 **适配指导**
 
-默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+默认行为变更，无需适配。
 
-## cl.arkui.17 自定义MenuItem的onChange触发逻辑变更
+## cl.arkui.15 自定义MenuItem的onChange触发逻辑变更
 
 **访问级别**
 
@@ -817,7 +734,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。注意，由于此前基于CustomBuilder创建的MenuItem，设置onChange不生效，变更后请按应用场景正确使用onChange。
 
-## cl.arkui.18 手机横屏及其他设备，上下文菜单placement变更
+## cl.arkui.16 手机横屏及其他设备，上下文菜单placement变更
 
 **访问级别**
 
@@ -855,7 +772,7 @@ MenuItem组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.20 Toggle/Switch按压反馈样式变更
+## cl.arkui.17 Toggle/Switch按压反馈样式变更
 
 **访问级别**
 
@@ -888,3 +805,83 @@ UX规范变更
 **适配指导**
 
 按压显示效果变化，无需适配。
+
+## cl.arkui.18 Contextmenu组件hoverScale接口过渡动效默认行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. 需长按800ms后，组件截图做600ms缩放动效，然后切换自定义预览图, 切换时使用弹簧动效。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScale From -> scaleFrom -> scaleTo。
+3. hoverScale动效过程中不支持打断动效。
+4. hoverScale动效过程中，组件截图与预览图切换时，组件截图和预览图做相反的透明度动效。
+
+变更后：
+1. 需长按250ms后，组件截图做200ms缩放动效，然后切换自定义预览图, 切换时弹簧动效速度较之前版本变快。
+2. hoverScale与scale接口组合使用时，整个动效流程生效的缩放动效的参数为 hoverScaleFrom -> hoverScaleTo -> scaleTo。
+3. hoverScale动效过程中，在组件截图缩放动效的200ms可以点击空白处取消动效，并以弹簧动效返回原始状态。
+4. hoverScale动效过程中，组件截图切换预览图时，组件截图不做透明度变化动效，仅预览图做透明度动效。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/hoverScale_Before.gif)  |  ![](figures/hoverScale_After.gif)  |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+contextmenu的hoverScale接口
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.19 删除systemapi的atomicService标签
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+systemapi不支持在元服务中使用。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：支持在元服务应用中使用，使用该接口IDE正确编译。
+
+变更后：不支持在元服务应用中使用，使用该接口会导致IDE编译报错。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.35开始。
+
+**变更的接口/组件**
+
+clearResourceCache、TransitionHierarchyStrategy、TransitionHierarchyStrategy枚举的NONE类型、
+TransitionHierarchyStrategy枚举的ADAPTIVE类型、GeometryTransitionOptions接口的hierarchyStrategy属性
+
+**适配指导**
+
+默认行为变更，无需适配。

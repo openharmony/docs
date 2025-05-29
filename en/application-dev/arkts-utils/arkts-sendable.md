@@ -1,99 +1,130 @@
-# Sendable Development
+# Overview of Sendable Objects
+
+In traditional JS engines, there is only one way to optimize the overhead of concurrent object communication: moving the implementation to the native side and reducing costs through the transfer or sharing of [Transferable objects](transferabled-object.md). However, this solution falls short of addressing the extensive demand for concurrent object communication. The issue remains unresolved in current JS engine implementations.
+
+ArkTS introduces the concept of Sendable objects, which support pass-by-reference during concurrent communication.
+
+Sendable objects are designed to be shareable across threads, maintaining a consistent reference to the same JS object before and after crossing thread boundaries. If a Sendable object contains JS or native content, it can be directly shared. However, if the underlying implementation is native, thread safety must be carefully considered. The following figure shows the communication process.
+
+![sendable](figures/sendable.png)
+
+Unlike other ArkTS objects, Sendable objects must have a fixed type at runtime.
+
+When multiple concurrent instances attempt to update Sendable data at the same time, data races occurs, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
+
+Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread.
 
 ## Basic Concepts
 
 ### Sendable Protocol
 
-The Sendable protocol defines the sendable object system and its specifications of ArkTS. Data that complies with the Sendable protocol (referred to as [sendable data](#sendable-data-types)) can be passed between ArkTS concurrent instances.
+The Sendable protocol defines the Sendable object system and its specifications in ArkTS. Data that complies with the Sendable protocol (referred to as Sendable objects) can be passed between concurrent instances in ArkTS.
 
-By default, sendable data is passed by reference between ArkTS concurrent instances (including the main thread and the worker thread of TaskPool or Worker). Pass-by-copy is also supported.
-
-Data races may occur when multiple concurrent instances attempt to update mutable sendable data at the same time. To address this issue, ArkTS introduces the asynchronous lock.
-
-**Example**
-
-```ts
-import { taskpool, worker } from '@kit.ArkTS';
-
-@Sendable
-class A {}
-
-let a: A = new A();
-
-@Concurrent
-function foo(a: A) {}
-let task: taskpool.Task = new taskpool.Task(foo, a)
-
-let w = new worker.ThreadWorker("entry/ets/workers/Worker.ets")
-
-// 1. Implementation of TaskPool pass-by-sharing
-taskpool.execute(task).then(() => {})
-
-// 2. Implementation of Worker pass-by-sharing
-w.postMessageWithSharedSendable(a)
-
-// 3. Implementation of TaskPool pass-by-copy
-task.setCloneList([a])
-taskpool.execute(task).then(() => {})
-
-// 4. Implementation of Worker pass-by-copy
-w.postMessage(a)
-```
-
-
-### Sendable Class
-A sendable class must meet the following requirements:
-1. Be marked by and only by the [@Sendable decorator](#sendable-decorator-declaring-and-verifying-a-sendable-class).
-2. Meet the [sendable usage rules](#sendable-usage-rules).
-
-### Sendable Interface
-A sendable interface must meet the following requirements:
-1. Be [ISendable](#isendable) or inherit from [ISendable](#isendable).
-2. Meet the [sendable usage rules](#sendable-usage-rules).
-
-
-### Sendable Data Types
-
-- All basic ArkTS data types: boolean, number, string, bigint, null, and undefined.
-- Container type defined in the ArkTS common library. In this case, [@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md) must be explicitly imported.
-- **AsyncLock** object defined in the ArkTS common library. In this case, [@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly imported.
-- Interfaces that inherit [ISendable](#isendable).
-- Class marked with the [@Sendable decorator](#sendable-decorator-declaring-and-verifying-a-sendable-class).
-- System objects that have accessed the Sendable class. For details, see [Sendable System Objects](arkts-sendable-system-object-list.md).
-- Elements whose union type data is of the sendable type.
-
-> **NOTE**
->
-> - JS built-in objects are passed between concurrent instances in compliance with the structured clone algorithm, and the semantics is passed by copy. Therefore, the instance of a JS built-in object is not of the sendable type.
->
-> - Object literals and array literals are passed between concurrent instances in compliance with the structured clone algorithm, and the semantics is passed by copy. Therefore, object literals and array literals are not of the sendable type.
-
+By default, Sendable data is passed by reference between concurrent instances (including the UI main thread, TaskPool thread, and Worker thread). Pass-by-copy is also supported.
 
 ### ISendable
 
-The interface **ISendable {}** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md) without any necessary method or property. **ISendable** is the parent type of all sendable types except null and undefined. **ISendable** is mainly used when you want to customize the sendable data struct. The class decorator [@Sendable](#sendable-decorator-declaring-and-verifying-a-sendable-class) is the syntax sugar for implementing **ISendable**.
+The interface **ISendable** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md). It has no required methods or properties. ISendable is the parent type of all Sendable types except for null and undefined. ISendable is mainly used when you want to customize Sendable data structures. The class decorator [@Sendable decorator](#sendable-decorator) is the syntax sugar for implementing ISendable.
 
-
-##  \@Sendable Decorator: Declaring and Verifying a Sendable Class
+### Sendable Class
 
 > **NOTE**
 >
-> Since API version 11, this decorator is supported in ArkTS widgets.
+> Since API version 11, the \@Sendable decorator can be used to verify Sendable classes.
 
-### Decorator Description
-| \@Sendable Decorator        | Description                                                                  |
-| ------------------------- | ---------------------------------------------------------------------- |
-| Decorator parameters                | None.                                                                  |
-| Use scenario restrictions              | The decorator can be used only in projects of the stage model. It can be used only in .ets files.                   |
-| Inheritance relationship restrictions for decorated classes       | A sendable class can inherit only from another sendable class. A common class cannot inherit from a sendable class. |
-| Property type restrictions for decorated objects | 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, and collections.Set.<br>2. Closure variables are not allowed.<br>3. Private properties must be defined using **private**, rather than the number sign (#).<br>4. Computed properties are not supported.          |
-| Other property restrictions for decorated objects| Member properties must be initialized explicitly. Member properties cannot be followed by exclamation marks (!).|
-| Method parameters restrictions for decorated objects | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.          |
-| Sendable class restrictions     | Properties cannot be added or deleted, but can be modified. The property types before and after the modification must be the same. Methods cannot be modified.  |
-| Use scenario                 | 1. The class methods can be used in TaskPool or Worker.<br>2. The sendable type is used when a large amount of data needs to be transmitted.        |
+A Sendable class must meet the following requirements:
+
+1. It must be decorated by [@Sendable](#sendable-decorator).
+
+2. It must meet the Sendable constraints. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
+
+### Sendable Function
+
+> **NOTE**
+>
+> - Since API version 12, the \@Sendable decorator can be used to verify Sendable functions.
+>
+> - For projects with API version 12, to use the \@Sendable decorator to verify Sendable functions, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the Sendable feature does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+>
+> - For projects with API versions later than 12, you can directly use the \@Sendable decorator to verify Sendable functions without any other configuration.
+
+A Sendable function must meet the following requirements:
+
+1. It must be decorated by [@Sendable](#sendable-decorator).
+
+2. It must meet the Sendable constraints. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
+
+### Sendable Interface
+
+A Sendable interface must meet the following requirements:
+
+1. It must be [ISendable](#isendable) or inherit from [ISendable](#isendable).
+
+2. It must meet the Sendable constraints. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
+
+### Sendable Data Types
+
+- All ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
+
+- [Container types](arkts-collections-introduction.md) defined in ArkTS ([@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md) must be explicitly introduced).
+
+- [Asynchronous lock objects](arkts-async-lock-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+
+- [Asynchronous waiting objects](arkts-condition-variable-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+
+- Interfaces that inherit from [ISendable](#isendable).
+
+- Classes decorated by [@Sendable](#sendable-decorator).
+
+- Functions decorated by [@Sendable](#sendable-decorator).
+
+- System objects that integrate Sendable, which are as follows:
+  - [Sendable User Preferences](../reference/apis-arkdata/js-apis-data-sendablePreferences.md)
+  - [Sendable Color Space Management](../reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
+  - [Sendable Object-based Image Processing](../reference/apis-image-kit/js-apis-sendableImage.md)
+  - [Resource Management](../reference/apis-localization-kit/js-apis-sendable-resource-manager.md)
+  - [SendableContext Object Management](../reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
+
+- Elements whose union type data is of the Sendable type.
+
+> **NOTE**
+>
+> - Built-in JS objects are passed between concurrent instances following the structured clone algorithm, and their cross-thread behavior is pass-by-copy. Therefore, instances of JS built-in objects are not of the Sendable type.
+>
+> - Object literals and array literals are also passed between concurrent instances following the structured cloning algorithm, and their cross-thread behavior is pass-by-copy. Therefore, object literals and array literals are not of the Sendable type.
 
 
-### Decorator Example
+## Implementation Principle of Sendable
+
+To implement pass-by-reference of [Sendable data](#sendable-data-types) between different concurrent instances, Sendable objects are allocated in a shared heap to achieve memory sharing across concurrent instances.
+
+
+The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of a Sendable object is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.
+
+Relationship between the shared heap and local heap
+
+![image_0000002001521153](figures/image_0000002001521153.png)
+
+The local heap of each concurrent instance is isolated, whereas the shared heap is a process-level heap that can be referenced by all concurrent instances. However, the shared heap cannot reference objects in the local heap.
+
+
+## \@Sendable Decorator
+
+The \@Sendable decorator declares and verifies Sendable classes and functions.
+
+| \@Sendable Decorator| Description|
+| -------- | -------- |
+| Parameters| None.|
+| Usage restrictions| It can be used only in projects of the stage model and only in .ets files.|
+| Supported function types| Only regular functions and async functions can be decorated by @Sendable.|
+| Class inheritance restrictions| Sendable classes can only inherit from other Sendable classes. Regular classes cannot inherit from Sendable classes.|
+| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, collections.Set, and ArkTSUtils.locks.AsyncLock.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
+| Other property restrictions| Member properties must be initialized explicitly. They cannot be followed by exclamation marks (!).|
+| Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions. Since API version 18, functions or class objects decorated by @Sendable can also access variables exported from the same file.|
+| Restrictions for Sendable classes and functions| Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
+| Use scenario| 1. Scenarios where class methods or Sendable functions are used in TaskPool or Worker.<br>2. Scenarios involving large amounts of object data transmission. The time required for serialization increases with the data volume. After transforming data with Sendable, the efficiency of transmitting 100 KB of data is approximately 20 times higher, and for 1 MB of data, it is about 100 times higher.|
+
+The following is an example of using the decorator on a class:
 
 ```ts
 @Sendable
@@ -109,471 +140,46 @@ class SendableTestClass {
 }
 ```
 
+The following is an example of using the decorator on a function:
 
-## Sendable Usage Rules
-
-### 1. A sendable class can inherit only from another sendable class.
-
-> **NOTE**
->
-> The class here does not include variables. In other words, a sendable class cannot inherit from a variable.
-
-**Positive example:**
 ```ts
 @Sendable
-class A {
-  constructor() {
-  }
-}
+type SendableFuncType = () => void;
 
 @Sendable
-class B extends A {
-  constructor() {
-    super()
-  }
-}
-```
-
-**Negative example:**
-```ts
-class A {
-  constructor() {
-  }
-}
-
-@Sendable
-class B extends A {
-  constructor() {
-    super()
-  }
-}
-```
-
-### 2. A non-sendable class can inherit only from a non-sendable class.
-
-**Positive example:**
-```ts
-class A {
-  constructor() {
-  }
-}
-
-class B extends A {
-  constructor() {
-    super()
-  }
-}
-```
-
-**Negative example:**
-```ts
-@Sendable
-class A {
-  constructor() {
-  }
-}
-
-class B extends A {
-  constructor() {
-    super()
-  }
-}
-```
-
-### 3. A non-sendable class can implement only a non-sendable interface.
-
-**Positive example:**
-```ts
-interface I {};
-
-class B implements I {};
-```
-
-**Negative example:**
-```ts
-import lang from '@arkts.lang';
-
-type ISendable = lang.ISendable;
-
-interface I extends ISendable {};
-
-class B implements I {};
-```
-
-### 4. The member variables of a sendable class or interface must be of a sendable data type.
-
-**Positive example:**
-```ts
-@Sendable
-class A {
-  constructor() {
-  }
-  a: number = 0;
-}
-```
-
-**Negative example:**
-```ts
-@Sendable
-class A {
-  constructor() {
-  }
-  b: Array<number> = [1, 2, 3] // collections.Array must be used.
-}
-```
-
-### 5. The member variables of a sendable class or interface cannot use the exclamation mark (!) for assertion.
-
-**Positive example:**
-```ts
-@Sendable
-class A {
-  constructor() {
-  }
-  a: number = 0;
-}
-```
-
-**Negative example:**
-```ts
-@Sendable
-class A {
-  constructor() {
-  }
-  a!: number;
-}
-```
-
-### 6. The member variables of a sendable class or interface do not support computed property names.
-
-**Positive example:**
-```ts
-@Sendable
-class A {
-    num1: number = 1;
-    num2: number = 2;
-    add(): number {
-      return this.num1 + this.num2;
-    }
-}
-```
-
-**Negative example:**
-```ts
-enum B {
-    b1 = "bbb"
-}
-@Sendable
-class A {
-    ["aaa"]: number = 1; // ["aaa"] is allowed in other classes in ets files
-    [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
-}
-```
-
-### 7. The template type of a sendable class, collections.Array, collections.Map, and collections.Set in the generic class must be Sendable.
-
-**Positive example:**
-```ts
-import collections from '@arkts.collections';
-
-try {
-  let arr1: collections.Array<number> = new collections.Array<number>();
-  let num: number = 1;
-  arr1.push(num)
-} catch (e) {
-  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-**Negative example:**
-```ts
-import collections from '@arkts.collections';
-
-try {
-  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
-  let arr2: Array<number> = new Array<number>()
-  arr2.push(1)
-  arr1.push(arr2)
-} catch (e) {
-  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
-}
-```
-
-### 8. Variables defined in the context of the current module cannot be used in a sendable class.
-
-Because the context of a sendable object varies among concurrent instances, direct access may cause unexpected behavior. A sendable object cannot use the variables defined in the context of the current module. Otherwise, a compile-time error is reported.
-
-> **NOTE**
->
-> Since API version 12, a sendable class object of the top level can be used internally by the sendable class itself.
-
-**Positive example:**
-```ts
-import lang from '@arkts.lang';
-
-type ISendable = lang.ISendable;
-
-interface I extends ISendable {}
-
-@Sendable
-class B implements I {
-  static o: number = 1;
-  static bar(): B {
-    return new B();
-  }
-}
-
-@Sendable
-class C {
-  v: I = new B();
-  u: number = B.o;
-
-  foo() {
-    return B.bar();
-  }
-}
-```
-
-**Negative example:**
-```ts
-import lang from '@arkts.lang';
-
-type ISendable = lang.ISendable;
-
-interface I extends ISendable {}
-
-@Sendable
-class B implements I {}
-
-function bar(): B {
-  return new B();
-}
-
-let b = new B();
-
-{
-  @Sendable
-  class A implements I {}
-
-  @Sendable
-  class C {
-    u: I = bar(); // bar is not a sendable class object. A compile-time error is reported.
-    v: I = new A(); // A is not defined in the top level. A compile-time error is reported.
-
-    foo() {
-      return b; // b is not a sendable class object but an instance of the sendable class. A compile-time error is reported.
-    }
-  }
-}
-
-```
-
-### 9. A sendable class can only use the @Sendable decorator.
-
-If the class decorator is defined in a .ts file, any modification to the class layout causes a runtime error.
-
-**Positive example:**
-```ts
-@Sendable
-class A {
+class TopLevelSendableClass {
   num: number = 1;
-}
-```
-
-**Negative example:**
-```ts
-@Sendable
-@Observed
-class C {
-  num: number = 1;
-}
-```
-
-### 10. The Sendable type cannot be initialized using an object literal or array literal.
-
-A sendable data type can be created only by using the **new** expression of the Sendable type.
-
-**Positive example:**
-```ts
-import collections from '@arkts.collections';
-
-let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // The type is Sendable.
-```
-
-**Negative example:**
-```ts
-import collections from '@arkts.collections';
-
-let arr2: collections.Array<number> = [1, 2, 3]; // The type is not Sendable. A compile-time error is reported.
-let arr3: number[] = [1, 2, 3]; // The type is not Sendable. No error is reported.
-let arr4: number[] = new collections.Array<number>(1, 2, 3); // A compile-time error is reported.
-```
-
-### 11. A non-sendable type cannot be converted to a sendable type using **as**.
-
-> **NOTE**
->
-> A sendable type must be compatible with a non-sendable type without violating the sendable usage rules. Therefore, a sendable type can be converted to a non-sendable type using **as**.
-
-**Positive example:**
-```ts
-class A {
-  state: number = 0;
-}
-
-@Sendable
-class SendableA {
-  state: number = 0;
-}
-
-let a1: A = new SendableA() as A;
-```
-
-**Negative example:**
-```ts
-class A {
-  state: number = 0;
-}
-
-@Sendable
-class SendableA {
-  state: number = 0;
-}
-
-let a2: SendableA = new A() as SendableA;
-```
-
-## Rules for Interaction with TS/JS
-
-### ArkTS General Rules (Only for Sendable Objects Currently)
-
-| Rule Description       |
-| ----------- |
-| When a sendable object is passed to a TS/JS interface, the object layout cannot be operated (adding or deleting properties, or changing property types).|
-| When a sendable object is set to a TS/JS object, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
-| When a sendable object is placed in a TS/JS container, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
-
-> **NOTE**
->
-> Changes of the property types do not include changes of the sendable object types, for example, from Sendable class A to Sendable class B.
-
-
-### Native API Rules (Only for Sendable Objects Currently)
-
-| Rule Description       |
-| ----------- |
-| Do not delete properties. The **napi_delete_property** interface cannot be used.|
-| Do not add properties. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.	|
-| Do not modify property types. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
-| Symbol-related interfaces and types are not supported. The following interfaces cannot be used: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
-
-
-## When to Use
-
-Sendable objects can be passed by reference between concurrent instances. Compared with serialization, pass-by-reference is more efficient and does not cause the loss of member methods carried in the class. The sendable mode is used in the following scenarios:
-1. Transferring a large amount of data (for example, more than 100 KB) across concurrent instances
-2. Passing a class instance object carrying methods across concurrent instances
-
-### Transferring a Large Amount of Data Across Concurrent Instances
-
-The overhead of serialization across concurrent instances increases linearly with the data volume. When a large amount of data is transmitted (100 KB data takes about 1 ms to transmit), the overhead of data copy across concurrent instances is high, adversely affecting the parallelization performance. On the contrary, passing objects by reference improves performance.
-
-**Example**
-```ts
-// index.ets
-import taskpool from '@ohos.taskpool';
-import { testTypeA, testTypeB, Test } from './sendable'
-
-// Simulate data processing in a concurrent function.
-@Concurrent
-async function taskFunc(obj: Test) {
-  console.info("test task res1 is: " + obj.data1.name + " res2 is: " + obj.data2.name);
-}
-
-async function test() {
-  // Use TaskPool for data transfer.
-  let a: testTypeA = new testTypeA("testTypeA");
-  let b: testTypeB = new testTypeB("testTypeB");
-  let obj: Test = new Test(a, b);
-  let task: taskpool.Task = new taskpool.Task(taskFunc, obj);
-  await taskpool.execute(task);
-}
-
-test();
-```
-
-```ts
-// sendable.ets
-// Assemble the data of a large size in a sendable class.
-@Sendable
-export class testTypeA {
-  name: string = "A";
-  constructor(name: string) {
-    this.name = name;
+  PrintNum() {
+    console.info("Top level sendable class");
   }
 }
 
 @Sendable
-export class testTypeB {
-  name: string = "B";
-  constructor(name: string) {
-    this.name = name;
-  }
+function TopLevelSendableFunction() {
+  console.info("Top level sendable function");
 }
 
 @Sendable
-export class Test {
-  data1: testTypeA;
-  data2: testTypeB;
-  constructor(arg1: testTypeA, arg2: testTypeB) {
-    this.data1 = arg1;
-    this.data2 = arg2;
-  }
-}
-```
-
-
-### Passing a Class Instance Object Carrying Methods Across Concurrent Instances
-
-Methods will be lost during serialization of instance objects. In scenarios where instance methods must be called, use pass-by-reference.
-
-**Example**
-```ts
-// index.ets
-import taskpool from '@ohos.taskpool';
-import { Test } from './sendable'
-
-// Simulate data processing in a concurrent function.
-@Concurrent
-async function taskFunc(obj: Test) {
-  console.info("test task data1 is: " + obj.add(5) + " data2 is: " + obj.printStr("taskFunc"));
-}
-async function test() {
-  // Use TaskPool for data transfer.
-  let obj: Test = new Test();
-  let task: taskpool.Task = new taskpool.Task(taskFunc, obj);
-  await taskpool.execute(task);
+function SendableTestFunction() {
+  const topClass = new TopLevelSendableClass(); // Top-level Sendable class.
+  topClass.PrintNum();
+  TopLevelSendableFunction(); // Top-level Sendable function.
+  console.info("Sendable test function");
 }
 
-test();
-```
-
-```ts
-// sendable.ets
-// Define a Test class to simulate the transfer of a class carrying methods.
 @Sendable
-export class Test {
-  data1: number = 10;
-  data2: string = "Test";
-  constructor() {
+class SendableTestClass {
+  constructor(func: SendableFuncType) {
+    this.callback = func;
   }
-  add(arg: number): number {
-    return this.data1 + arg;
-  }
-  printStr(str: string): string {
-    return this.data2 + str;
+  callback: SendableFuncType; // Top-level Sendable function.
+
+  CallSendableFunc() {
+    SendableTestFunction(); // Top-level Sendable function.
   }
 }
-```
 
- <!--no_check--> 
+let sendableClass = new SendableTestClass(SendableTestFunction);
+sendableClass.callback();
+sendableClass.CallSendableFunc();
+```

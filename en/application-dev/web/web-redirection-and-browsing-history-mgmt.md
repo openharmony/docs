@@ -3,20 +3,29 @@
 
 ## History Navigation
 
-When a user clicks a web page link on the frontend page, the **\<Web>** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
+When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
 
-If acquisition of network resources is involved in page loading, you need to declare the [ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md) permission.
+If you need to obtain online resources when loading a page, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
 
 In the following example, when a user clicks the button, **backward()** is called to go back to the previous page.
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  
   build() {
     Column() {
       Button('loadData')
@@ -25,7 +34,7 @@ struct WebComponent {
             this.webviewController.backward();
           }
         })
-      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/cn/', controller: this.webviewController })
     }
   }
 }
@@ -45,13 +54,14 @@ In the following example, the frontend page **route.html** is loaded on to the a
   
   ```ts
   // index.ets
-  import web_webview from '@ohos.web.webview';
-  import router from '@ohos.router';
+  import { webview } from '@kit.ArkWeb';
+  import { router } from '@kit.ArkUI';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // Path for storing the route.html resource file: src/main/resources/rawfile
@@ -61,7 +71,7 @@ In the following example, the frontend page **route.html** is loaded on to the a
               let url: string = event.data.getRequestUrl();
               if (url.indexOf('native://') === 0) {
                 // Redirect to another page.
-                router.pushUrl({ url:url.substring(9) })
+                router.pushUrl({ url: url.substring(9) });
                 return true;
               }
             }
@@ -114,17 +124,17 @@ In the following example, when a user clicks the link on the frontend page **cal
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import call from '@ohos.telephony.call';
-  
+  import { webview } from '@kit.ArkWeb';
+  import { call } from '@kit.TelephonyKit';
+
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  
+    webviewController: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src: $rawfile('call.html'), controller: this.webviewController})
+        Web({ src: $rawfile('call.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {
               let url: string = event.data.getRequestUrl();

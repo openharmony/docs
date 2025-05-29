@@ -6,7 +6,7 @@ To develop the moving photo feature, perform the following steps:
 
 - Check whether the device supports taking moving photos.
 - Enable the capability of taking moving photos (if supported).
-- Listen for the photo callback function and save the photo to the media library.
+- Listen for the photo callback function and save the photo to the media library. For details, see [Accessing and Managing Moving Photos](../medialibrary/photoAccessHelper-movingphoto.md).
 
 ## How to Develop
 
@@ -15,7 +15,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 > **NOTE**
 >
 > - Before enabling the capability of taking moving photos, you must enable [deferred photo delivery](camera-deferred-capture.md).
-> - The permission **ohos.permission.MICROPHONE** is required for taking moving photos. For details about how to apply for and verify the permission, see [Camera Development Preparations](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
+> - The permission **ohos.permission.MICROPHONE** is required for taking moving photos. For details about how to apply for and verify the permission, see [Requesting Camera Development Permissions](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
@@ -41,7 +41,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -49,19 +49,23 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 3. Check whether the device supports taking moving photos.
 
-   ```ts
-   function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
-     let isSupported: boolean = false;
-     try {
-       isSupported = photoOutput.isMovingPhotoSupported();
-     } catch (error) {
-       // If the operation fails, error.code is returned and processed.
-       let err = error as BusinessError;
-       console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
-     }
-     return isSupported;
-   }
-   ```
+    > **NOTE**
+    >
+    > Before the check, you must configure, commit, and start a session. For details, see [Camera Session Management](camera-session-management.md).
+
+    ```ts
+    function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+      let isSupported: boolean = false;
+      try {
+        isSupported = photoOutput.isMovingPhotoSupported();
+      } catch (error) {
+        // If the operation fails, error.code is returned and processed.
+        let err = error as BusinessError;
+        console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+      }
+      return isSupported;
+    }
+    ```
 
 4. Enable the capability of taking moving photos.
 
@@ -77,21 +81,22 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-5. Trigger photographing. This procedure is the same as that in the common photographing mode. For details, see [Camera Photographing](camera-shooting.md).
-
-
+5. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
 
 ## Status Listening
 
-Register a callback function to listen for **'photoAssetAvailable'** events.
+During camera application development, you can listen for the output stream status of moving photos by registering the **'photoAsset'** event. This event can be registered when a **PhotoOutput** instance is created.
 
    ```ts
-   let context = getContext(this);
-   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+   function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+     return phAccessHelper;
+   }
 
-   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+     phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
      try {
-       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
        await phAccessHelper.applyChanges(assetChangeRequest);
        console.info('apply saveCameraPhoto successfully');
@@ -100,15 +105,15 @@ Register a callback function to listen for **'photoAssetAvailable'** events.
      }
    }
 
-   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
-         console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+         console.info(`photoAssetAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
        // Call the mediaLibrary flush API to save the first-phase images and moving photos.
-       mediaLibSavePhoto(photoAsset);
+       mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
      });
    }
    ```

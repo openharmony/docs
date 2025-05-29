@@ -1,30 +1,35 @@
 # HSP
 
-HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
+HSP（Harmony Shared Package）是动态共享包，包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
 > 
-> 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用。
+> 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用，本页面介绍应用内HSP。
 > 
-> 集成态HSP：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
+> [集成态HSP](integrated-hsp.md)：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名，并且会重新签名生成一个新的HSP包，作为宿主应用的安装包，这个新的HSP也属于宿主应用HAP的应用内HSP。
 
 ## 使用场景
-- 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
+- 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够控制应用包的大小。
 
-- HSP在运行时按需加载，有助于提升应用性能。
+- HSP在运行时[按需加载](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-modular-design#section28312051291)，有助于提升应用性能。
 
 - 同一个组织内部的多个应用之间，可以使用集成态HSP实现代码和资源的共享。
 
 ## 约束限制
 
-- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
-- HSP不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
-- HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
-- 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
-- 集成态HSP需要API12及以上版本，使用标准化的OHMUrl格式。
+- HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。从API version 18开始，HAP的版本号须大于等于HSP版本号。API version 17及之前版本，HSP的版本号必须与HAP版本号一致。
+- 从API version 14开始HSP支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件，但不支持具有入口能力的UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。API version 13及之前版本，不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md#声明配置)组件。
+- 从API version 18开始HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但不支持具有入口能力的ExtensionAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。API version 17及之前版本，不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HSP可以依赖其他HAR或HSP，也可以被HAP或者HSP依赖集成，但不支持循环依赖，也不支持依赖传递。
+
+> **说明：**
+> 
+> 循环依赖：例如有三个HSP，HSP-A、HSP-B和HSP-C，循环依赖指HSP-A依赖HSP-B，HSP-B依赖HSP-C，HSP-C又依赖HSP-A。
+>
+> 依赖传递：例如有三个HSP，HSP-A、HSP-B和HSP-C，依赖关系是HSP-A依赖HSP-B，HSP-B依赖HSP-C。不支持传递依赖指HSP-A可以使用HSP-B的方法和组件，但是HSP-A不能直接使用HSP-C的方法和组件。
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hsp#section7717162312546)，以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -32,13 +37,13 @@ MyApplication
 │   │   └── main
 │   │       ├── ets
 │   │       │   └── pages
-│   │       │       └── index.ets
-│   │       ├── resources
-│   │       └── module.json5
-│   ├── oh-package.json5
-│   ├── index.ets
-│   └── build-profile.json5 //模块级
-└── build-profile.json5     //工程级
+│   │       │       └── index.ets     //模块library的页面文件
+│   │       ├── resources             //模块library的资源目录
+│   │       └── module.json5          //模块library的配置文件
+│   ├── oh-package.json5              //模块级
+│   ├── index.ets                     //入口文件index.ets
+│   └── build-profile.json5           //模块级
+└── build-profile.json5               //工程级
 ```
 
 ## 开发
@@ -65,15 +70,15 @@ export struct MyTitleBar {
   }
 }
 ```
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
-### 导出ts类和方法
-通过`export`导出ts类和方法，例如：
+### 导出类和方法
+通过`export`导出类和方法，例如：
 ```ts
 // library/src/main/ets/utils/test.ets
 export class Log {
@@ -90,7 +95,7 @@ export function minus(a: number, b: number): number {
   return a - b;
 }
 ```
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { Log, add, minus } from './src/main/ets/utils/test';
@@ -107,7 +112,7 @@ export function nativeMulti(a: number, b: number): number {
 }
 ```
 
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { nativeMulti } from './src/main/ets/utils/nativeTest';
@@ -116,7 +121,7 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ### 通过$r访问HSP中的资源
 在组件中，经常需要使用字符串、图片等资源。HSP中的组件需要使用资源时，一般将其所用资源放在HSP包内，而非放在HSP的使用方处，以符合高内聚低耦合的原则。
 
-在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的详细使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
+在工程中，常通过`$r`/`$rawfile`的形式引用应用资源。可以用`$r`/`$rawfile`访问本模块`resources`目录下的资源，如访问`resources`目录下定义的图片`src/main/resources/base/media/example.png`时，可以用`$r("app.media.example")`。有关`$r`/`$rawfile`的使用方式，请参阅文档[资源分类与访问](./resource-categories-and-access.md)中“资源访问-应用资源”小节。
 
 不推荐使用相对路径的方式，容易引用错误路径。例如：
 当要引用上述同一图片资源时，在HSP模块中使用`Image("../../resources/base/media/example.png")`，实际上该`Image`组件访问的是HSP调用方（如`entry`）下的资源`entry/src/main/resources/base/media/example.png`。
@@ -153,7 +158,7 @@ export class ResManager{
 }
 ```
 
-对外暴露的接口，需要在入口文件`index.ets`中声明：
+在入口文件 `index.ets` 中声明对外暴露的接口。
 ```ts
 // library/index.ets
 export { ResManager } from './src/main/ets/ResManager';
@@ -166,7 +171,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)<!--RP2End-->。
+要使用HSP中的接口，首先需要在使用方的 `oh-package.json5` 文件中配置对它的依赖。具体配置方法请参考[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -180,9 +185,7 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```ts
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
-import router from '@ohos.router';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const TAG = 'Index';
 
@@ -257,16 +260,13 @@ struct Index {
         .padding({ left: 12, right: 12, top: 4, bottom: 4 })
         .onClick(() => {
           // 先通过当前上下文获取hsp模块的上下文，再获取hsp模块的resourceManager，然后再调用resourceManager的接口获取资源
-          getContext()
-            .createModuleContext('library')
-            .resourceManager
-            .getStringValue(ResManager.getDesc())
+          this.getUIContext()?.getHostContext()?.resourceManager.getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -299,230 +299,129 @@ struct Index {
 }
 ```
 
-### 页面路由跳转
+### 页面跳转和返回
 
-若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/pages/Index.ets`）里这样使用：
+开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/library_menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/pages/Index.ets`）里这样使用：
 ```ts
-import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
-import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
-import router from '@ohos.router';
-
-const TAG = 'Index';
+// entry/src/main/ets/pages/Index.ets
 
 @Entry
 @Component
 struct Index {
   @State message: string = '';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Column() {
-      List() {
-        ListItem() {
-          Text($r('app.string.click_to_menu'))
-            .fontSize(18)
-            .textAlign(TextAlign.Start)
-            .width('100%')
-            .fontWeight(500)
-            .height('100%')
-        }
-        .id('clickToMenu')
-        .borderRadius(24)
-        .width('685px')
-        .height('84px')
-        .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
-        .margin({ top: 10, bottom: 10 })
-        .padding({ left: 12, right: 12, top: 4, bottom: 4 })
-        .onClick(() => {
-          router.pushUrl({
-            url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-          }).then(() => {
-            console.log('push page success');
-            Logger.info(TAG, 'push page success');
-          }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    Navigation(this.pathStack) {
+      Column() {
+        List() {
+          ListItem() {
+            Text($r('app.string.click_to_menu'))
+              .fontSize(18)
+              .textAlign(TextAlign.Start)
+              .width('100%')
+              .fontWeight(500)
+              .height('100%')
+          }
+          .id('clickToMenu')
+          .borderRadius(24)
+          .width('685px')
+          .height('84px')
+          .backgroundColor($r('sys.color.ohos_id_color_foreground_contrary'))
+          .margin({ top: 10, bottom: 10 })
+          .padding({
+            left: 12,
+            right: 12,
+            top: 4,
+            bottom: 4
           })
-        })
+          .onClick(() => {
+            this.pathStack.pushPathByName('library_menu', null)
+          })
+        }
+        .alignListItem(ListItemAlign.Center)
       }
-      .alignListItem(ListItemAlign.Center)
-    }
-    .width('100%')
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .width('100%')
+      .backgroundColor($r('app.color.page_background'))
+      .height('100%')
+    }.title("Navigation_index")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
-其中`router.pushUrl`方法的入参中`url`的内容为：
-```ets
-'@bundle:com.samples.hspsample/library/ets/pages/Menu'
+
+在library下新增page文件（library/src/main/ets/pages/library_menu.ets），其中'back_to_index'的按钮返回上一页。
 ```
-`url`内容的模板为：
-```ets
-'@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
-```
-### 页面路由返回
-如果当前处于HSP中的页面，需要返回之前的页面时，可以使用`router.back`方法，但是返回的页面必须是当前页面跳转路径上的页面。
-```ts
-import router from '@ohos.router';
+// library/src/main/ets/pages/library_menu.ets
+@Builder
+export function PageOneBuilder() {
+  Library_Menu()
+}
 
 @Entry
 @Component
-struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
-  @State message: string = 'HSP back page';
+export struct Library_Menu {
+  @State message: string = 'Hello World';
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontFamily('HarmonyHeiTi')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(32)
-          .fontColor($r('app.color.text_color'))
-          .margin({ top: '32px' })
-          .width('624px')
-
-        Button($r('app.string.back_to_HAP'))
-          .id('backToHAP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: 550 })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // 绑定点击事件
-          .onClick(() => {
-            router.back({ //  返回HAP的页面
-              url: 'pages/Index' // 路径为：`entry/src/main/ets/pages/Index.ets`
+    NavDestination() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize($r('app.float.page_text_font_size'))
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              this.message = 'Welcome';
             })
+          Button("back_to_index").fontSize(50).onClick(() => {
+            this.pathStack.pop();
           })
-
-        Button($r('app.string.back_to_HSP'))
-          .id('backToHSP')
-          .fontFamily('HarmonyHeiTi')
-          .height(48)
-          .width('624px')
-          .margin({ top: '4%' , bottom: '6%' })
-          .type(ButtonType.Capsule)
-          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-          .backgroundColor($r('app.color.button_background'))
-          .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
-          .fontSize($r('sys.float.ohos_id_text_size_button1'))
-            // 绑定点击事件
-          .onClick(() => {
-            router.back({ //  返回HSP的页面
-              url: '@bundle:com.samples.hspsample/library/ets/pages/Menu' //路径为：`library/src/main/ets/pages/Menu.ets
-            })
-          })
+        }
+        .width('100%')
       }
-      .width('100%')
-    }
-    .backgroundColor($r('app.color.page_background'))
-    .height('100%')
+      .height('100%')
+    }.title('Library_Menu')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack
+    })
   }
 }
 ```
 
-页面返回`router.back`方法的入参中`url`说明：
-
-* 如果从HSP页面返回HAP页面，url的内容为：
-
-    ```ets
-    'pages/Index'
-    ```
-    `url`内容的模板为：
-    ```ets
-    '页面所在的文件名(不加.ets后缀)'
-    ```
-
-* 如果从HSP1的页面跳到HSP2的页面后，需要返回到HSP1的页面，url的内容为：
-
-    ```ets
-    '@bundle:com.samples.hspsample/library/ets/pages/Menu'
-    ```
-    `url`内容的模板为：
-    ```ets
-    '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
-    ```
-
-## 集成态HSP
-集成态HSP是应用内HSP的一种中间编译产物，目的就是解决使用方的bundleName和签名强耦合性。
-> **说明：** 
-> HSP只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
-
-#### 开发使用说明
-1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
-    ```json
-    // created_party_project/build-profile.json5
+需要在library模块下新增route_map.json文件（library/src/main/resources/base/profile/route_map.json）。
+```
+{
+  "routerMap": [
     {
-      "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
-            }
-          }
-        }
+      "name": "library_menu",
+      "pageSourceFile": "src/main/ets/pages/library_menu.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is library_menu"
       }
     }
-    ```
-2. 创建方-集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
+  ]
+}
+```
 
-    ```json
-    // created_party_project/library/build-profile.json5
-    {
-      "apiType": "stageMode",
-      "buildOption": {
-        "arkOptions": {
-          "integratedHsp": true
-        }
-      }
-    }
-    ```
+在library模块下的配置文件（library/src/main/module.json5）中配置json文件。
+```
+{
+  "module": {
+    "name": "library",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "pages": "$profile:main_pages",
+    "routerMap": "$profile:route_map" //新增
+  }
+}
+```
 
-3. 创建方-集成态HSP-打包配置（tgz包）。
-
-    3.1 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)；
-
-    3.2 配置release模式；
-
-    ![](./figures/ide-release-setting.png)
-
-    3.3 选择library目录，Build -> Make Module 'libray'。
-
-4. 使用方-工程依赖配置:使用方主模块下oh-package.json5配置文件中添加依赖。
-
-    ```json
-    // user_project/entry/oh-package.json5
-      "dependencies": {
-        "hsp": "./lib/library-default.tgz"
-      }
-    ```
-
-5. 使用方-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
-    ```json
-    // user_project/build-profile.json5
-    {
-      "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
-            }
-          }
-        }
-      }
-    }
-    ```
+页面跳转和页面返回都使用了Navigation的特性，详情参考[Navigation跳转](../ui/arkts-navigation-navigation.md#路由操作)。

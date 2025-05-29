@@ -4,8 +4,8 @@ The **connection** module provides APIs for operating and managing Bluetooth.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.connection (Bluetooth Connection Module)](js-apis-bluetooth-connection.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.connection (Bluetooth Connection Module)](js-apis-bluetooth-connection.md).
 
 
 ## Modules to Import
@@ -160,7 +160,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('cancelPairedDevice, device name err:' + JSON.stringify(err));
@@ -213,7 +213,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66').then(() => {
         console.info('cancelPairedDevice');
@@ -359,7 +359,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
+    connection.getLocalProfileUuids((err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
@@ -405,115 +405,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
+    connection.getLocalProfileUuids().then(() => {
         console.info('getLocalProfileUuids');
     }, (err: BusinessError) => {
         console.error('getLocalProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    });
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
-## connection.connectAllowedProfiles<sup>11+</sup>
-
-connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
-
-Connects all profiles allowed for a remote device. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type    | Mandatory  | Description                                 |
-| -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201     | Permission denied.                       |
-|202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
-|801     | Capability not supported.                |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth disabled.                 |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-try {
-    connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
-        if (err) {
-            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            return;
-        }
-        console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
-    });
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
-## connection.connectAllowedProfiles<sup>11+</sup>
-
-connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
-
-Connects all profiles allowed for a remote device. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type    | Mandatory  | Description                                 |
-| -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
-
-**Return value**
-
-| Type                                             | Description               |
-| ------------------------------------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201     | Permission denied.                       |
-|202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
-|801     | Capability not supported.                |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth disabled.                 |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-try {
-    connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
-        console.info('connectAllowedProfiles');
-    }, (err: BusinessError) => {
-        console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -538,7 +433,7 @@ Disconnects all connected profiles for a remote device. This API uses an asynchr
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. This API uses an asynchronous callback to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -630,11 +525,9 @@ try {
 
 getRemoteProductId(deviceId: string): string
 
-Obtains the product ID of a remote Bluetooth device.
+Obtains the product ID of a remote Bluetooth device. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** and **ohos.permission.MANAGE_BLUETOOTH** permissions are no longer verified.
 
 **System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -656,7 +549,6 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
@@ -673,96 +565,6 @@ try {
   console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
 }
 ```
-
-## connection.on('discoveryResult')<sup>12+</sup>
-
-on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
-
-Subscribes to the Bluetooth device discovery result. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.GET_BLUETOOTH_PEERS_MAC
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory  | Description                                    |
-| -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | Yes   | Callback used to return information about the discovered devices. You need to create the callback and register it here.   |
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
-|801 | Capability not supported.          |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
-    console.info('bluetooth device find = '+ JSON.stringify(data));
-}
-try {
-    connection.on('discoveryResult', onReceiveEvent);
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
-## connection.off('discoveryResult')<sup>12+</sup>
-
-off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
-
-Unsubscribes from the Bluetooth device discovery result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.GET_BLUETOOTH_PEERS_MAC
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**Parameters**
-
-| Name     | Type                                 | Mandatory  | Description                                      |
-| -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
-
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
-|2900099 | Operation failed.                        |
-
-**Example**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
-    console.info('bluetooth device find = '+ JSON.stringify(data));
-}
-try {
-    connection.on('discoveryResult', onReceiveEvent);
-    connection.off('discoveryResult', onReceiveEvent);
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
 
 ## connection.setRemoteDeviceType<sup>12+</sup>
 
@@ -804,7 +606,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setRemoteDeviceType('11:22:33:44:55:66', connection.DeviceType.DEVICE_TYPE_HEADSET).then(() => {
         console.info('setRemoteDeviceType success');
@@ -819,11 +621,9 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-Obtains the type of a remote Bluetooth device. This API uses a promise to return the result.
+Obtains the type of a remote Bluetooth device. This API uses a promise to return the result. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **System API**: This is a system API.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -837,7 +637,7 @@ Obtains the type of a remote Bluetooth device. This API uses a promise to return
 
 | Type                 | Description        |
 | ------------------- | ------------- |
-| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to returnthe device type obtained.|
+| Promise&lt;[DeviceType](#devicetype12)&gt; | Promise used to return the device type obtained.|
 
 **Error codes**
 
@@ -845,7 +645,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
@@ -854,13 +654,154 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {
         console.info('getRemoteDeviceType success, DeviceType:' + JSON.stringify(data));
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.controlDeviceAction<sup>15+</sup>
+
+controlDeviceAction(controlDeviceActionParams: ControlDeviceActionParams): Promise&lt;void&gt;
+
+Sends a control command to Bluetooth headsets during scanning. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| controlDeviceActionParams<sup>15+</sup> | [ControlDeviceActionParams](#controldeviceactionparams15) | Yes   | Bluetooth peripheral control information.|
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let controlDeviceActionParams: connection.ControlDeviceActionParams = {
+        deviceId: '40:DC:A5:E5:75:C3',
+        type: connection.ControlType.PLAY,
+        typeValue: connection.ControlTypeValue.ENABLE,
+        controlObject: connection.ControlObject.LEFT_EAR
+    };
+    connection.controlDeviceAction(controlDeviceActionParams).then(() => {
+        console.info('controlDeviceAction success');
+    }, (err: BusinessError) => {
+        console.error('controlDeviceAction: errCode' + err.code + ', errMessage: ' + err.message);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.updateCloudBluetoothDevice<sup>15+</sup>
+
+updateCloudBluetoothDevice(trustedPairedDevices: TrustedPairedDevices): Promise&lt;void&gt;
+
+Updates cloud devices in Bluetooth settings. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| trustedPairedDevices   | [TrustedPairedDevices](#trustedpaireddevices15)  | Yes   | Cloud device list. |  
+
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the setting fails, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { connection } from '@kit.ConnectivityKit';
+// promise
+/**
+ * Update cloud devices in Bluetooth settings.
+ */
+public updateCloudBluetoothDevice() {
+    const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
+    let descBuffer = new ArrayBuffer(1);
+    trustPairDeviceArr.push({
+        sn: '',
+        deviceType: '',
+        modelId: '',
+        manufactory: '',
+        productId: '',
+        hiLinkVersion: '',
+        macAddress: '11:22:33:44:55:66',
+        serviceType: '',
+        serviceId: '',
+        deviceName: '',
+        uuids: '',
+        bluetoothClass: 0,
+        token: descBuffer,
+        deviceNameTime: 0,
+        secureAdvertisingInfo: descBuffer,
+        pairState: 0
+        });
+    const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
+    try {
+        connection.updateCloudBluetoothDevice(trustPairDevices)
+            .then(() => {
+                console.info('updateCloudBluetoothDevice success!');
+            })
+            .catch((err: BusinessError) => {
+                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            });
+    } catch (err) {
+        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
 }
 ```
 
@@ -874,6 +815,19 @@ Represents the pairing request parameters.
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
 | pinType | [PinType](#pintype) | Yes   | No   | Type of the device to pair.<br>This is a system API.  |
+
+## ControlDeviceActionParams<sup>15+</sup>
+
+Defines the configuration parameters of the control command.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string | Yes   | No| Device ID.|
+| type | [ControlType](#controltype15) | Yes   | No   | Control type.|
+| typeValue | [ControlTypeValue](#controltypevalue15) | Yes| No| Control action.|
+| controlObject | [ControlObject](#controlobject15) | Yes| No| Control object.|
 
 ## PinType
 
@@ -894,21 +848,6 @@ Enumerates the Bluetooth pairing types.
 | PIN_TYPE_OOB_CONSENT    | 6 | The user needs to accept or reject the out of band (OOB) pairing request.<br>This is a system API. |
 | PIN_TYPE_PIN_16_DIGITS    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device.<br>This is a system API. |
 
-
-## DiscoveryResult<sup>12+</sup>
-
-Represents information about the discovered device.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Communication.Bluetooth.Core
-
-| Name      | Type  | Readable  | Writable  | Description         |
-| -------- | ------ | ---- | ---- | ----------- |
-| deviceId<sup>12+</sup> | string      | Yes   | No   | ID of the discovered device.<br>This is a system API.         |
-| rssi<sup>12+</sup>     | number      | Yes   | No   | RSSI of the discovered device.<br>This is a system API.  |
-| deviceName<sup>12+</sup>     | string      | Yes   | No   | Name of the discovered device.<br>This is a system API.  |
-| deviceClass<sup>12+</sup>     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.<br>This is a system API.  |
 
 
 ## DeviceType<sup>12+</sup>
@@ -940,3 +879,79 @@ Represents the battery information.
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | Yes   | No   | MAC address of the remote device.<br>This is a system API.|
+
+
+## ControlType<sup>15+</sup>
+
+Enumerates control types.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                              | Value   | Description             |
+| -------------------------------- | ------ | --------------- |
+| PLAY | 0 | Play|
+| VIBRATE | 1 | Vibration|
+| FLASH | 2 | Flash|
+| LOCK | 3 | Lock|
+
+
+## ControlTypeValue<sup>15+</sup>
+
+Enumerates control actions.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name   | Value  | Description      |
+| ------- | ---- | ---------- |
+| DISABLE | 0    | Disable|
+| ENABLE  | 1    | Enable|
+| QUERY   | 2    | Query|
+
+
+## ControlObject<sup>15+</sup>
+
+Enumerates control objects.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name          | Value  | Description                |
+| -------------- | ---- | -------------------- |
+| LEFT_EAR       | 0    | Left earbud.|
+| RIGHT_EAR      | 1    | Right earbud.|
+| LEFT_RIGHT_EAR | 2    | Left and right earbuds.|
+
+
+## TrustedPairedDevices<sup>15+</sup>
+
+Defines the cloud device list.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Optional  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| trustedPairedDevices  | Array&lt;[TrustedPairedDevice](#trustedpaireddevice15)&gt; | Yes   | No   | Cloud device list.  |
+
+## TrustedPairedDevice<sup>15+</sup>
+
+Defines the cloud device information.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Optional  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| sn  | string | Yes   | No   | Device SN.  |
+| deviceType  | string | Yes   | No   | Device type to set.  |
+| modelId  | string | Yes   | No   | Charging state of the left earbud.  |
+| manufactory  | string | Yes   | No   | Manufacturer information.  |
+| productId  | string | Yes   | No   | Product information.  |
+| hiLinkVersion  | string | Yes   | No   | HiLink version.  |
+| macAddress  | string | Yes   | No   | MAC address.  |
+| serviceType  | string | Yes   | No   | Service type.  |
+| serviceId  | string | Yes   | No   | Device ID.  |
+| deviceName  | string | Yes   | No   | Device name.  |
+| uuids  | string | Yes   | No   | Device UUID.  |
+| bluetoothClass  | number | Yes   | No   | Peer device type.  |
+| token  | ArrayBuffer | Yes   | No   | Device token information.  |
+| deviceNameTime  | number | Yes   | No   | Device name modification time.  |
+| secureAdvertisingInfo  | ArrayBuffer | Yes   | No   | Device advertising information.  |
+| pairState  | number | Yes   | No   | Device pairing status.  |

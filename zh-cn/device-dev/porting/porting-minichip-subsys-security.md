@@ -67,7 +67,7 @@ OpenHarmony提供了mbedtls的开源三方库，路径为“//third_party/mbedtl
    }
    ```
 
-3. 适配硬件随机数接口
+3. 适配硬件随机数接口。
    接口定义如下：
 
    路径：“third_party/mbedtls/include/mbedtls/entropy_poll.h”
@@ -86,7 +86,7 @@ OpenHarmony提供了mbedtls的开源三方库，路径为“//third_party/mbedtl
 | disable_authenticate | 是否需要裁剪hichain认证功能。<br/>(1)&nbsp;默认值：&nbsp;true，不裁剪。<br/>(2)&nbsp;其他值：&nbsp;false，裁剪hichain认证功能。 | 
 | huks_use_lite_storage | 是否采用轻量化存储方案。无文件系统、仅有flash存储的设备，可采用轻量化存储方案。<br/>(1)&nbsp;默认值：&nbsp;true，使用轻量化存储。<br/>(2)&nbsp;其他值：&nbsp;false，不使用轻量化存储。 | 
 | huks_use_hardware_root_key | 是否使用硬件根密钥。设备存在硬件根密钥能力时，需要根据自身能力适配硬件根密钥方案；HUKS提供的RKC方案仅为模拟实现。<br/>(1)&nbsp;默认值：false，默认值，默认无硬件根密钥。<br/>(2)&nbsp;其他值：true，设备具有硬件根密钥相关能力时，应自行适配。 | 
-| huks_config_file | 是否使用HUKS默认配置文件。<br/>(1)&nbsp;默认值：""：使用HUKS默认配置文件hks_config.h。<br/>(2)&nbsp;其他文件：产品可在HUKS支持能力集合中自行选择所要支持的特性。 | 
+| huks_config_file | 是否使用HUKS默认配置文件。<br/>(1)&nbsp;默认值：使用HUKS默认配置文件hks_config.h。<br/>(2)&nbsp;其他文件：产品可在HUKS支持能力集合中自行选择所要支持的特性。 | 
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

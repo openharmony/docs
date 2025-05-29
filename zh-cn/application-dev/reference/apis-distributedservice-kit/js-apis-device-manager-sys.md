@@ -6,12 +6,12 @@
 
 系统应用可调用接口实现如下功能：
 
-- 注册和解除注册设备上下线变化监听
-- 发现周边不可信设备
-- 认证和取消认证设备
-- 查询可信设备列表
-- 查询本地设备信息，包括设备名称，设备类型和设备标识
-- 发布设备发现
+- 注册和解除注册设备上下线变化监听。
+- 发现周边不可信设备。
+- 认证和取消认证设备。
+- 查询可信设备列表。
+- 查询本地设备信息，包括设备名称，设备类型和设备标识。
+- 发布设备发现。
 
 > **说明：**
 >
@@ -38,7 +38,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -49,7 +49,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
+| bundleName | string                                               | 是   | 指示应用程序的Bundle名称。长度范围1~255字符。                                  |
 | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 **示例：**
@@ -149,16 +149,15 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称            | 类型                                | 必填   | 说明                |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 |
+| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 取值范围1~65535。|
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | medium        | [ExchangeMedium](#exchangemedium) | 是    | 发现类型。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| isSameAccount | boolean                           | 否    | 是否同帐号。            |
-| isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
+| isSameAccount | boolean                           | 否    | 是否同账号，true表示同账号，false表示异账号。            |
+| isWakeRemote  | boolean                           | 否    | 是否唤醒设备，true表示唤醒，false表示不用唤醒。           |
 | capability    | [SubscribeCap](#subscribecap)     | 是    | 发现能力。             |
 
-
-## DiscoverMode 
+## DiscoverMode
 
 表示发现模式的枚举。
 
@@ -257,7 +256,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | publishId     | number                            | 是    | 发布设备标识，用于标识不同的发布周期。 |
 | mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
 | freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力。             |
+| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力，true表示支持测距能力，false表示不支持测距能力。             |
 
 ## DeviceManager
 
@@ -277,7 +276,7 @@ release(): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -287,7 +286,7 @@ release(): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -319,7 +318,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -329,7 +328,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -358,7 +357,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 | 参数名        | 类型                               | 必填 | 说明                                |
 | ------------- | --------------------------------- | ---- | ---------------------------------- |
-|   isRefresh   | boolean                           | 是   | 是否打开心跳模式，刷新可信列表。      |
+|   isRefresh   | boolean                           | 是   | 是否打开心跳模式，刷新可信列表，true表示打开心跳模式，false表示关闭心跳模式。      |
 
 **返回值：**
 
@@ -368,7 +367,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -379,7 +378,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -412,7 +411,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -421,7 +420,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -460,7 +459,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -468,7 +467,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -500,7 +499,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -510,7 +509,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -543,7 +542,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -552,7 +551,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -592,7 +591,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -600,7 +599,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -628,12 +627,12 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -642,7 +641,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -679,7 +678,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
   | 参数名   | 类型                                     | 必填 | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | networkId| string                                   | 是   | 设备的网络标识。长度范围1~255字符。 |
   
 **返回值：**
 
@@ -689,7 +688,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
@@ -698,7 +697,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -732,7 +731,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -744,7 +743,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -794,11 +793,11 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。长度范围1~255字符。|
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -810,7 +809,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -881,11 +880,11 @@ stopDeviceDiscovery(subscribeId: number): void
 
   | 参数名          | 类型   | 必填   | 说明    |
   | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | 是    | 发现标识。 |
+  | subscribeId | number | 是    | 发现标识。取值范围为1~65535。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -896,7 +895,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -930,7 +929,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -942,7 +941,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -986,11 +985,11 @@ unPublishDeviceDiscovery(publishId: number): void
 
   | 参数名        | 类型 | 必填 | 说明  |
   | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | 是   | 发布标识。 |
+  | publishId   | number   | 是   | 发布标识。 取值范围为1~2147483647。|
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1001,7 +1000,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1037,7 +1036,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1046,7 +1045,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1071,7 +1070,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   }
 
   interface AuthParam {
-    authType: number; // 认证类型： 1 - 无帐号PIN码认证
+    authType: number; // 认证类型： 1 - 无账号PIN码认证
     extraInfo: ExtraInfo;
   }
 
@@ -1091,7 +1090,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
     business: '0'
   };
   let authParam: AuthParam = {
-    authType: 1,// 认证类型： 1 - 无帐号PIN码认证
+    authType: 1,// 认证类型： 1 - 无账号PIN码认证
     extraInfo: extraInfo
   };
 
@@ -1130,7 +1129,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1141,7 +1140,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1190,7 +1189,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1199,7 +1198,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1245,7 +1244,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 ### setUserOperation<sup>9+</sup>
 
-setUserOperation(operateAction: number, params: string): void;
+setUserOperation(operateAction: number, params: string): void
 
 设置用户ui操作行为。
 
@@ -1259,12 +1258,12 @@ setUserOperation(operateAction: number, params: string): void;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | operateAction | number          | 是    | 用户操作动作。       |
-  | params        | string          | 是    | 表示用户的输入参数。 |
+  | operateAction | number          | 是    | 用户操作动作。取值范围为0~5。       |
+  | params        | string          | 是    | 表示用户的输入参数。长度范围1~255字符。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1274,7 +1273,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1297,7 +1296,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 ### requestCredentialRegisterInfo<sup>10+</sup>
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void
 
 获取凭据的注册信息。
 
@@ -1311,12 +1310,12 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | requestInfo   | string          | 是    | 请求凭据信息。       |
+  | requestInfo   | string          | 是    | 请求凭据信息。最大长度255字符。       |
   | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1325,7 +1324,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1359,7 +1358,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 ### importCredential<sup>10+</sup>
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 导入凭据信息。
 
@@ -1373,12 +1372,12 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | 是    | 导入凭据信息。       |
+  | credentialInfo| string          | 是    | 导入凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1387,7 +1386,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
 <!--code_no_check-->
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1454,7 +1453,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 ### deleteCredential<sup>10+</sup>
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void
 
 删除凭据信息。
 
@@ -1468,12 +1467,12 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | queryInfo     | string          | 是    | 删除凭据信息。       |
+  | queryInfo     | string          | 是    | 删除凭据信息。长度范围1~64000字符。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1482,7 +1481,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1519,7 +1518,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 ### on('uiStateChange')<sup>9+</sup>
 
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
+on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void
 
 ui状态变更回调。
 
@@ -1538,7 +1537,7 @@ ui状态变更回调。
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1547,7 +1546,7 @@ ui状态变更回调。
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1574,7 +1573,7 @@ ui状态变更回调。
 
 ### off('uiStateChange')<sup>9+</sup>
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void
 
 取消ui状态变更回调。
 
@@ -1593,7 +1592,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1602,7 +1601,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1635,7 +1634,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1644,7 +1643,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1692,7 +1691,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1701,7 +1700,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1749,7 +1748,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1758,7 +1757,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1806,7 +1805,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1815,7 +1814,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1863,7 +1862,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1872,7 +1871,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1912,7 +1911,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1921,7 +1920,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1961,7 +1960,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -1970,7 +1969,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2009,7 +2008,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2018,7 +2017,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2052,12 +2051,12 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
   | 参数名     | 类型                                              | 必填 | 说明                             |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail |
+  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail。 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2066,7 +2065,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2106,7 +2105,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2115,7 +2114,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2155,7 +2154,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2164,7 +2163,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -2199,7 +2198,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
@@ -2208,7 +2207,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)。
   ```ts
   import { BusinessError } from '@ohos.base';
 

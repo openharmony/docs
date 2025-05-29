@@ -116,6 +116,7 @@ struct formHostSample {
     updateDuration: 0,
     defaultDimension: 6,
     supportDimensions: [],
+    supportedShapes: [],
     customizeData: {},
     isDynamic: false,
     transparencyEnabled: false
@@ -275,8 +276,8 @@ struct formHostSample {
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
-            console.info("TextPickerDialog: show()")
-            TextPickerDialog.show({
+            console.info("showTextPickerDiaglog")
+            this.getUIContext().showTextPickerDiaglog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,

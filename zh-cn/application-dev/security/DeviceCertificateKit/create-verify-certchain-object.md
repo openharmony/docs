@@ -78,10 +78,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
 
 async function sample() {
   let textEncoder = new util.TextEncoder();
-  // 证书链二进制数据，需业务自行赋值
+  // 证书链二进制数据，需业务自行赋值。
   const encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(certChainData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -99,7 +99,7 @@ async function sample() {
     console.error(`X509CertChain getCertList failed, errCode: ${e.code}, errMsg: ${e.message}`);
   }
 
-  // 证书链校验数据，需业务自行赋值
+  // 证书链校验数据，需业务自行赋值。
   const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{

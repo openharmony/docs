@@ -102,7 +102,7 @@ setOnFocus(callback:  Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onDisappear事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onFocus事件的回调。 |
 
 ### setOnBlur
 
@@ -118,7 +118,7 @@ setOnBlur(callback: Callback\<void> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onDisappear事件的回调。 |
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | 是   | onBlur事件的回调。 |
 
 ### setOnHover
 
@@ -188,4 +188,7 @@ setOnVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: Visib
 >**说明：**
 >
 > 非实时回调，实际回调与预期间隔可能存在差别。
+>
 > 两次可见区域回调的时间间隔不小于预期更新间隔。当开发者设置的预期间隔过小时，由系统负载决定实际回调间隔时间。
+>
+> 当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[0.5]，实际生效的阈值为[0.0, 0.5]。

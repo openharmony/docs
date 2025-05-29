@@ -27,8 +27,7 @@ The following describes how to log and subscribe to button onclick events.
 1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add a watcher in **onCreate()** to subscribe to button onclick events. The sample code is as follows:
@@ -67,9 +66,8 @@ The following describes how to log and subscribe to button onclick events.
 3. In the **entry/src/main/ets/pages/Index.ets** file, import the dependent modules.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 4. In the **entry/src/main/ets/pages/index.ets** file, add the **writeTest** button with **onClick()** to enable an event to be logged when the button is clicked. The sample code is as follows: 

@@ -1,11 +1,11 @@
 # 触摸热区设置
 
-适用于支持通用点击事件、通用触摸事件、通用手势处理的组件。
+适用于支持通用点击事件、通用触摸事件和通用手势处理的组件。
 
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## responseRegion
 
@@ -50,12 +50,14 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 
 ## 示例
 
+该示例通过responseRegion设置按钮的触摸热区以响应点击事件。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = ""
+  @State text: string = "";
 
   build() {
     Column({ space: 20 }) {

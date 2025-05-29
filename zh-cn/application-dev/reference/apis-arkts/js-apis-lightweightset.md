@@ -6,11 +6,11 @@ LightWeightSet依据泛型定义，采用轻量级结构，初始默认容量大
 
 集合中value值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的value值。
 
-LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合，LightWeightSet的占用内存更小。
+LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合，但LightWeightSet的占用内存更小。
 
 **推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -66,7 +66,7 @@ let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
 
 isEmpty(): boolean
 
-判断该容器是否为空。
+判断容器是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -97,7 +97,7 @@ let result = lightWeightSet.isEmpty();
 
 add(obj: T): boolean
 
-向此容器中添加数据。
+向容器中添加数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -135,7 +135,7 @@ let result = lightWeightSet.add("squirrel");
 
 addAll(set: LightWeightSet&lt;T&gt;): boolean
 
-将另一个容器中的所有元素组添加到当前容器中。
+将另一个容器的所有元素组添加到当前容器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的lightWeightSet。 |
+| set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的LightWeightSet。 |
 
 **返回值：**
 
@@ -178,7 +178,7 @@ let result = lightWeightSet.addAll(set);
 
 hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
-判断此容器中是否含有该指定set中的所有元素。
+判断容器中是否包含指定set中的所有元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -194,7 +194,7 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含所有元素返回true，否则返回false。 |
+| boolean | 包含所有元素时返回true，否则返回false。 |
 
 **错误码：**
 
@@ -221,7 +221,7 @@ let result = lightWeightSet.hasAll(set);
 
 has(key: T): boolean
 
-判断此容器中是否含有该指定key。
+判断容器中是否包含指定的key。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -237,7 +237,7 @@ has(key: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含指定key返回true，否则返回false。 |
+| boolean | 包含指定key时返回true，否则返回false。 |
 
 **错误码：**
 
@@ -256,52 +256,11 @@ let result = lightWeightSet.has(123);
 ```
 
 
-### equal
-
-equal(obj: Object): boolean
-
-判断此容器中是否含有该指定obj同类型的对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| obj | Object | 是 | 比较对象。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 构成类型相同返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The equal method cannot be bound. |
-
-**示例：**
-
-```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
-lightWeightSet.add("squirrel");
-lightWeightSet.add("sparrow");
-let obj = ["sparrow", "squirrel"];
-let result = lightWeightSet.equal(obj);
-```
-
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
 
-将当前LightWeightSet扩容至可以容纳指定数量元素。如果传入的容量值大于或等于当前LightWeightSet中的元素个数，将容量变更为新容量，小于则不会变更。
+将当前LightWeightSet扩容至指定容量。如果传入的容量值大于或等于当前LightWeightSet中的元素个数，将容量变更为新容量，小于则不会变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -425,7 +384,7 @@ removeAt(index: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -456,7 +415,7 @@ let result = lightWeightSet.removeAt(1);
 
 getValueAt(index: number): T
 
-获取此容器中指定下标对应的元素。
+获取容器中指定下标对应的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -466,7 +425,7 @@ getValueAt(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -497,7 +456,7 @@ let result = lightWeightSet.getValueAt(1);
 
 clear(): void
 
-清除容器中的所有元素，并把length置为0。
+清除容器中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -585,7 +544,7 @@ let result = lightWeightSet.toArray();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键值的新迭代器对象。
+返回包含此映射中所有键值的新迭代器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -635,9 +594,9 @@ forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
@@ -726,11 +685,7 @@ for(let i = 0; i < 10; i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -780,4 +735,47 @@ for(let i = 0; i < 10; i++) {
 for(let i = 0; i < 10; i++) {
   lightWeightSet.remove(i + "123");
 }
+```
+
+
+### equal<sup>(deprecated)</sup>
+
+equal(obj: Object): boolean
+
+判断此容器与obj的构成元素是否相同。
+
+> **说明：**
+>
+> 此接口从API version 10开始支持，从API version 12开始废弃。无替代接口。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| obj | Object | 是 | 比较对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 当obj为仅含string或number的LightWeightSet或数组，且对象内部元素构成相同时，返回true；其它情况返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
+**示例：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["sparrow", "squirrel"];
+let result = lightWeightSet.equal(obj);
 ```

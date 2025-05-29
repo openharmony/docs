@@ -2,10 +2,10 @@
 
 For details about the corresponding algorithm specifications, see [HKDF](crypto-key-derivation-overview.md#hkdf).
 
-# How to Develop
+## How to Develop
 1. Create a [HKDFSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#hkdfspec12) object and use it as a parameter for key derivation.
    
-   **HKDFSpec** is a child class of **KdfSpec**. You need to specify the following:
+   **HKDFSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to used, which is **'HKDF'**.
    - **key**: original key material.
@@ -14,9 +14,9 @@ For details about the corresponding algorithm specifications, see [HKDF](crypto-
    - **info**: optional context and application information used to expand the short key. This parameter can be empty.
    - **keySize**: length of the key to derive, in bytes. The value must be a positive integer.
 
-2. Use [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'HKDF|SHA256|EXTRACT_AND_EXPAND'**** to create a **Kdf** instance. The key derivation algorithm is **HKDF**, HMAC algorithm is **SHA256**, and mode is **extract and expand**.
+2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'HKDF|SHA256|EXTRACT_AND_EXPAND'**** to create a **Kdf** instance. The key derivation algorithm is **HKDF**, HMAC algorithm is **SHA256**, and mode is **extract and expand**.
 
-3. Use [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **HKDFSpec** object to generate a derived key.
+3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **HKDFSpec** object to generate a derived key.
    
    The following table lists how **Kdf.generateSecret** delivers the return value.
    

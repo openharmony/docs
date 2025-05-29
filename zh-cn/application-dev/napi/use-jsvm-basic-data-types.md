@@ -27,11 +27,11 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_GetValueUint32
 
-用于从JavaScript环境中获取32位无符号整数值。
+将JavaScript value转为JSVM模块中的uint32类型数据。
 
 cpp部分代码
 
@@ -40,15 +40,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueUint32注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueUint32},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueUint32方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueUint32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_GetValueUint32的样例方法
 static JSVM_Value GetValueUint32(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -63,31 +55,31 @@ static JSVM_Value GetValueUint32(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueUint32 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueUint32 success: %{public}d", number);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueUint32 success: %{public}u", number);
     }
     return argv[0];
 }
+
+// GetValueUint32注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueUint32},
+};
+static JSVM_CallbackStruct *method = param;
+
+// GetValueUint32方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueUint32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(getValueUint32(123))JS";
 ```
+<!-- @[oh_jsvm_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueuint32/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let num = 123;
-let script: string = `
-   function testGetValueUint32(num) {
-       return getValueUint32(num);
-   }
-   testGetValueUint32(${num})
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testGetValueUint32: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testGetValueUint32 error: %{public}s', error.message);
-}
+```
+JSVM GetValueUint32 success: 123
 ```
 
 ### OH_JSVM_GetValueInt32
@@ -101,15 +93,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueInt32注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueInt32},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueInt32方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_GetValueInt32的样例方法
 static JSVM_Value GetValueInt32(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -130,27 +114,26 @@ static JSVM_Value GetValueInt32(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return args[0];
 }
+
+// GetValueInt32注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueInt32},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueInt32方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(getValueInt32(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint32/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let num = -123;
-let script: string = `
-   function testGetValueInt32(num) {
-       return getValueInt32(num);
-   }
-   testGetValueInt32(${num})
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testGetValueInt32: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testGetValueInt32 error: %{public}s', error.message);
-}
+```
+JSVM GetValueInt32 success: -123
 ```
 
 ### OH_JSVM_GetValueInt64
@@ -164,15 +147,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueInt64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueInt64},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueInt64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_GetValueInt64的样例方法
 static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -186,31 +161,30 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}d", result64);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}ld", result64);
     }
     return args[0];
 }
+
+// GetValueInt64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueInt64},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueInt64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(getValueInt64(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint64/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let num = -110;
-let script: string = `
-   function testGetValueInt64(num) {
-       return getValueInt64(num);
-   }
-   testGetValueInt64(${num})
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testGetValueInt64: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testGetValueInt64 error: %{public}s', error.message);
-}
+```
+JSVM GetValueInt64 success: -123
 ```
 
 ### OH_JSVM_GetValueDouble
@@ -224,6 +198,23 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+
+// OH_JSVM_GetValueDouble的样例方法
+static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
+    double value = 0;
+    JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM GetDouble success: %{public}f", value);
+    }
+    return args[0];
+}
+
 // GetDouble注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDouble},
@@ -233,47 +224,21 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getDouble", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_GetValueDouble的样例方法
-static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double value;
-    JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetDouble success: %{public}f", value);
-    }
-    return args[0];
-}
+
+// 样例测试js
+const char* srcCallNative = R"JS(getDouble(-110.0456))JS";
 ```
+<!-- @[oh_jsvm_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvaluedouble/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let num = -110.0456;
-let script: string = `
-   function testGetDouble(num) {
-       return getDouble(num);
-   }
-   testGetDouble(${num})
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testGetDouble: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testGetDouble error: %{public}s', error.message);
-}
+```
+JSVM GetDouble success: -110.045600
 ```
 
 ### OH_JSVM_CreateInt32
 
-用于创建一个JavaScript数字（int32类型）的值。
+根据int32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -282,20 +247,10 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateInt32注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateInt32},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateInt32方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_CreateInt32的样例方法
 static JSVM_Value CreateInt32(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int32_t是有符号的32位整数类型，表示带有符号的整数，它的范围是从-2^31到2^31 - 1，也就是-2147483648到2147483647
-    // 要表示的整数值
     int32_t value = -20;
     // 创建JavaScript中的int32数字
     JSVM_Value result = nullptr;
@@ -309,31 +264,31 @@ static JSVM_Value CreateInt32(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+
+// CreateInt32注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateInt32},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateInt32方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(createInt32())JS";
 ```
+<!-- @[oh_jsvm_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint32/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   function testCreateInt32() {
-       return createInt32();
-   }
-   testCreateInt32()
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateInt32: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateInt32 error: %{public}s', error.message);
-}
+```
+JSVM CreateInt32 success: -20
 ```
 
 ### OH_JSVM_CreateUint32
 
-用于创建一个JavaScript数字（uint32类型）的值。
+根据uint32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -342,15 +297,7 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateUInt32注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateUInt32},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateUInt32方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createUInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_CreateUint32的样例方法
 static JSVM_Value CreateUInt32(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -367,35 +314,35 @@ static JSVM_Value CreateUInt32(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         uint32_t number = 0;
         OH_JSVM_GetValueUint32(env, result, &number);
-        OH_LOG_INFO(LOG_APP, "JSVM CreateUInt32 success: %{public}d", number);
+        OH_LOG_INFO(LOG_APP, "JSVM CreateUInt32 success: %{public}u", number);
     }
     return result;
 }
+
+// CreateUInt32注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateUInt32},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateUInt32方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createUInt32", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(createUInt32())JS";
 ```
+<!-- @[oh_jsvm_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createuint32/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   function testCreateUInt32() {
-       return createUInt32();
-   }
-   testCreateUInt32()
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateUInt32: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateUInt32 error: %{public}s', error.message);
-}
+```
+JSVM CreateUInt32 success: 26
 ```
 
 ### OH_JSVM_CreateInt64
 
-用于创建一个JavaScript数字（int64类型）的值。
+根据int64_t数据创建一个JavaScript number对象。注意，如果需要表示JS超大数，建议使用BigInt相关接口。
 
 cpp部分代码
 
@@ -404,20 +351,10 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateInt64注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateInt64},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateInt64方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_CreateInt64的样例方法
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
-    // 要表示的整数值
     int64_t value = 2147483648;
     // 创建JavaScript中的int64数字
     JSVM_Value result = nullptr;
@@ -427,35 +364,35 @@ static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         int64_t number = 0;
         OH_JSVM_GetValueInt64(env, result, &number);
-        OH_LOG_INFO(LOG_APP, "JSVM CreateInt64 success: %{public}ld", value);
+        OH_LOG_INFO(LOG_APP, "JSVM CreateInt64 success: %{public}ld", number);
     }
     return result;
 }
+
+// CreateInt64注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateInt64},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateInt64方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createInt64", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(createInt64())JS";
 ```
+<!-- @[oh_jsvm_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint64/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   function testCreateInt64() {
-       return createInt64();
-   }
-   testCreateInt64()
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateInt64: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateInt64 error: %{public}s', error.message);
-}
+```
+JSVM CreateInt64 success: 2147483648
 ```
 
 ### OH_JSVM_CreateDouble
 
-用于创建一个JavaScript数字（double类型）的值。
+根据double数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -465,14 +402,7 @@ cpp部分代码
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // CreateDouble注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateDouble},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateDouble方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createDouble", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+
 // OH_JSVM_CreateDouble的样例方法
 static JSVM_Value CreateDouble(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -489,24 +419,23 @@ static JSVM_Value CreateDouble(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
+
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateDouble},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateDouble方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createDouble", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char* srcCallNative = R"JS(createDouble())JS";
 ```
+<!-- @[oh_jsvm_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createdouble/src/main/cpp/hello.cpp) -->
 
-ArkTS侧示例代码
+预期的输出结果
 
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-   function testCreateDouble() {
-       return createDouble();
-   }
-   testCreateDouble()
-   `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateDouble: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateDouble error: %{public}s', error.message);
-}
+```
+JSVM CreateDouble success: 1.234000
 ```

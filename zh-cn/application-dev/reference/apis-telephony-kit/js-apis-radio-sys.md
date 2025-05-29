@@ -2478,6 +2478,46 @@ radio.factoryReset(slotId).then(() => {
 });
 ```
 
+## radio.getIMEISV<sup>12+</sup>
+
+getIMEISV\(slotId: number\): string
+
+获取设备指定卡槽的软件版本号。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error.                               |
+
+**示例：**
+
+```ts
+let slotId: number = 0;
+let data: string = radio.getIMEISV(slotId);
+console.log(`IMEISV is:` + data);
+```
 
 ## PreferredNetworkMode<sup>8+</sup>
 
@@ -2532,7 +2572,7 @@ radio.factoryReset(slotId).then(() => {
 
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |                           
-| isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
+| isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。<br/>true表示驻留小区，false表示非驻留小区。          |
 | timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |                              
 | data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
@@ -2586,7 +2626,7 @@ LTE小区信息。
 | bandwidth     | number  |  是  | 带宽。                  |
 | mcc           | string  |  是  | 移动国家码。            |
 | mnc           | string  |  是  | 移动网号。              |
-| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。 |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。<br/>true表示支持新无线电_双连接，false表示不支持新无线电_双连接。 |
 
 ## NrCellInformation<sup>8+</sup>
 
@@ -2683,7 +2723,7 @@ NR的选择模式。
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
-| isNetworkSearchSuccess | boolean                                           |  是  | 网络搜索成功。 |
+| isNetworkSearchSuccess | boolean                                           |  是  | 网络是否搜索成功。<br/>true表示网络搜索成功，false表示网络搜索失败。 |
 | networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  是  | 网络搜索结果。 |
 
 ## NetworkInformation
@@ -2729,7 +2769,7 @@ NR的选择模式。
 | slotId             | number                                        |  是  | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | selectMode         | [NetworkSelectionMode](js-apis-radio.md#networkselectionmode) |  是  | 网络选择模式。                         |
 | networkInformation | [NetworkInformation](#networkinformation)     |  是  | 网络信息。                             |
-| resumeSelection    | boolean                                       |  是  | 继续选择。                             |
+| resumeSelection    | boolean                                       |  是  | 是否继续选择。<br/>true表示继续选择，false表示不继续选择。                              |
 
 ## ImsRegState<sup>9+</sup>
 

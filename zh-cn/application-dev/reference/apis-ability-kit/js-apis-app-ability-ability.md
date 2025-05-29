@@ -14,13 +14,23 @@
 import { Ability } from '@kit.AbilityKit';
 ```
 
+## Ability的继承关系说明
+
+各类Ability的继承关系如下图所示。
+
+> **说明：**
+>
+> 部分ExtensionAbility组件（例如[FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)、[InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)等）与下图中的ExtensionAbility基类不存在继承关系，均未在图中列出。
+
+![uiExtensionAbility](../figures/image-ability-uiExtensionAbility.png)
+
 ## Ability.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -48,7 +58,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当内存到达不同级别时系统回调该方法。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -56,7 +66,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 当前内存使用级别。|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 当前内存使用级别。<br>**说明：**<br>不同产品的触发条件可能存在差异。以12G内存的标准设备为例：<br>- 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。<br>- 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。<br>- 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。|
 
 **示例：**
 

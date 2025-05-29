@@ -4,13 +4,13 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## customProperty
 
 customProperty(name: string, value: Optional\<Object>)
 
-设置组件的自定义属性。[自定义组件](../../../quick-start/arkts-create-custom-components.md#创建自定义组件)不支持设置自定义属性。
+设置组件的自定义属性。[自定义组件](../../../ui/state-management/arkts-create-custom-components.md#创建自定义组件)不支持设置自定义属性。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -39,6 +39,9 @@ Optional\<T>
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 ## 示例
+
+在Column组件上设置自定义属性，并在其对应的FrameNode上获取所设置的自定义属性。
+
 ```ts
 // xxx.ets
 import { FrameNode, UIContext } from '@kit.ArkUI';

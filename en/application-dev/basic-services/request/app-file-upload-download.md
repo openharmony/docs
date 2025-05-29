@@ -8,19 +8,18 @@ You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-servic
 
 > **NOTE**
 >
-> - Currently, only the files in the **cache/** directory (specified by **cacheDir**) can be uploaded.
+> Currently, only the files in the **cache/** directory (specified by **cacheDir**) can be uploaded.
 >
-> - The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to apply for the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code snippets demonstrate how to upload a file from the **cache** directory of an application to a network server in two ways:
+The following code demonstrates how to upload files from a cache directory of an application to a network server in two ways:
 
 ```ts
 // Way 1: Use request.uploadFile.
 // pages/xxx.ets
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -32,9 +31,6 @@ fs.writeSync(file.fd, 'upload file test');
 fs.closeSync(file);
 
 // Configure the upload task.
-let header = new Map<Object, string>();
-header.set('key1', 'value1');
-header.set('key2', 'value2');
 let files: Array<request.File> = [
 // "internal://cache" in uri corresponds to the cacheDir directory.
   { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
@@ -42,13 +38,16 @@ let files: Array<request.File> = [
 let data: Array<request.RequestData> = [{ name: 'name', value: 'value' }];
 let uploadConfig: request.UploadConfig = {
   url: 'https://xxx',
-  header: header,
+  header: {
+    'key1':'value1',
+    'key2':'value2'
+  },
   method: 'POST',
   files: files,
   data: data
 }
 
-// Upload the created application file to a network server.
+// Upload the created application file to the network server.
 try {
   request.uploadFile(context, uploadConfig)
     .then((uploadTask: request.UploadTask) => {
@@ -69,6 +68,10 @@ try {
 
 ```ts
 // Way 2: Use request.agent.
+// pages/xxx.ets
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
 let cacheDir = context.cacheDir;
@@ -92,13 +95,17 @@ let config: request.agent.Config = {
   mode: request.agent.Mode.FOREGROUND,
   overwrite: true,
   method: "POST",
+  headers: {
+    'key1':'value1',
+    'key2':'value2'
+  },
   data: attachments,
   saveas: "./"
 };
 request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -107,9 +114,11 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   })
   task.on('completed', async() => {
     console.warn(`/Request upload completed`);
+    // This method requires the user to manage the task lifecycle. After the task is complete, call the remove method to release the task object.
+    request.agent.remove(task.tid);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a upload task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -121,19 +130,18 @@ You can use **downloadFile()** in [ohos.request](../../reference/apis-basic-serv
 >
 > Currently, network resource files can be downloaded only to the application file directory.
 >
-> The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to apply for the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code snippets demonstrate how to download a file from a network server to an application directory in two ways:
+The following code demonstrates how to download files from a network server to an application directory in two ways:
 
 ```ts
 // Way 1: Use request.downloadFile.
 // pages/xxx.ets
-// Download a network resource file to a local application directory, and read data from the file.
-import common from '@ohos.app.ability.common';
+// Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -164,24 +172,28 @@ try {
 ```ts
 // Way 2: Use request.agent.
 // pages/xxx.ets
-// Download a network resource file to a local application directory, and read data from the file.
-import common from '@ohos.app.ability.common';
+// Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
 let config: request.agent.Config = {
   action: request.agent.Action.DOWNLOAD,
   url: 'https://xxxx/test.txt',
+  saveas: 'xxxx.txt',
   gauge: true,
   overwrite: true,
   network: request.agent.Network.WIFI,
 };
-request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+request.agent.create(context, config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -190,8 +202,59 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   })
   task.on('completed', async() => {
     console.warn(`/Request download completed`);
+    let file = fs.openSync(filesDir + '/xxxx.txt', fs.OpenMode.READ_WRITE);
+    let arrayBuffer = new ArrayBuffer(1024);
+    let readLen = fs.readSync(file.fd, arrayBuffer);
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+    fs.closeSync(file);
+    // This method requires the user to manage the task lifecycle. After the task is complete, call the remove method to release the task object.
+    request.agent.remove(task.tid);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a download task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+## Adding Network Configuration
+
+### Intercepting HTTP
+
+You can set the configuration file to intercept HTTP. After HTTP is disabled for the upload and download module, upload and download tasks using plaintext HTTP cannot be created. The configuration file is stored in the **src/main/resources/base/profile/network_config.json** directory of the application.
+
+The sample configuration file is as follows:
+
+```ts
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true, 
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "cleartextTrafficPermitted": true,
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "*.example.com"
+          }
+        ],
+      }
+    ]
+  }
+}
+
+```
+
+The table below lists the description of each field.
+
+| Field                     | Type           | Description                                  |   
+| --------------------------| --------------- | -------------------------------------- |
+| base-config:<br> cleartextTrafficPermitted | boolean | Whether plaintext transfer is allowed in the global configuration. The value **true** means that plaintext transfer is allowed, that is, HTTP is not intercepted, and **false** means the opposite.|
+| domain-config:<br> cleartextTrafficPermitted | boolean | Whether plaintext transfer is allowed in a specified domain. The value **true** means that plaintext transfer is allowed, that is, HTTP is not intercepted, and **false** means the opposite.|
+| include-subdomains | boolean | Whether a rule applies to subdomains. The value **true** means that the regular expression is used to match the domain name, and **false** means the opposite.|

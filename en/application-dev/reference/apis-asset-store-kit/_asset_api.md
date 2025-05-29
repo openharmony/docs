@@ -25,7 +25,7 @@ including passwords, app tokens, and other critical data (such as bank card numb
 
 | Name| Description|
 | -------- | -------- |
-| int32_t [OH_Asset_Add](#oh_asset_add) (const [Asset_Attr](_asset___attr.md) \*attributes, uint32_t attrCnt) | Adds an asset. |
+| int32_t [OH_Asset_Add](#oh_asset_add) (const [Asset_Attr](_asset___attr.md) \*attributes, uint32_t attrCnt) | Adds an asset.|
 | int32_t [OH_Asset_Remove](#oh_asset_remove) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt) | Removes one or more assets. |
 | int32_t [OH_Asset_Update](#oh_asset_update) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt, const [Asset_Attr](_asset___attr.md) \*attributesToUpdate, uint32_t updateCnt) | Updates an asset. |
 | int32_t [OH_Asset_PreQuery](#oh_asset_prequery) (const [Asset_Attr](_asset___attr.md) \*query, uint32_t queryCnt, [Asset_Blob](_asset___blob.md) \*challenge) | Performs preprocessing for the asset query. This function is used when user authentication is required for the access to the asset. |
@@ -47,6 +47,8 @@ int32_t OH_Asset_Add (const Asset_Attr * attributes, uint32_t attrCnt )
 **Description**
 Adds an asset.
 
+To set [ASSET_TAG_IS_PERSISTENT](_asset_type.md#asset_tag), the application must have the ohos.permission.STORE_PERSISTENT_DATA permission.
+
 **Since**: 11
 
 **Parameters**
@@ -60,6 +62,37 @@ Adds an asset.
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
 
+0 - The operation is successful.
+
+201 - The caller does not have the required permission.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000003 - The asset already exists.
+
+24000005 - The lock screen status does not match.
+
+24000006 - The system memory is insufficient.
+
+24000007 - The asset is corrupted.
+
+24000008 - The database operation failed.
+
+24000009 - The cryptographic operation failed.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
+
+24000014 - The file operation failed.
+
+24000015 - Failed to obtain the system time.
 
 ### OH_Asset_FreeBlob()
 
@@ -109,7 +142,7 @@ Parses the query result and obtains the specified attribute.
 
 | Name| Description|
 | -------- | -------- |
-| result | Query result returned by OH_Asset_Query. |
+| result | Query result returned by **OH_Asset_Query**. |
 | tag | Key of the attribute to obtain. |
 
 **Returns**
@@ -138,6 +171,21 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
 
+0 - The operation is successful.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000006 - The system memory is insufficient.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
 
 ### OH_Asset_PreQuery()
 
@@ -161,6 +209,35 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
 
+0 - The operation is successful.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000002 - The asset is not found.
+
+24000005 - The lock screen status does not match.
+
+24000006 - The system memory is insufficient.
+
+24000007 - The asset is corrupted.
+
+24000008 - The database operation failed.
+
+24000009 - The cryptographic operation failed.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
+
+24000016 - The number of cached assets exceeds the limit.
+
+24000017 - The function is not supported.
 
 ### OH_Asset_Query()
 
@@ -184,6 +261,36 @@ Queries one or more assets.
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
 
+0 - The operation is successful.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000002 - The asset is not found.
+
+24000004 - The access to the asset is denied.
+
+24000005 - The lock screen status does not match.
+
+24000006 - The system memory is insufficient.
+
+24000007 - The asset is corrupted.
+
+24000008 - The database operation failed.
+
+24000009 - The cryptographic operation failed.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
+
+24000017 - The function is not supported.
+
 ### OH_Asset_Remove()
 
 ```
@@ -205,6 +312,29 @@ Removes one or more assets.
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
 
+0 - The operation is successful.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000002 - The asset is not found.
+
+24000006 - The system memory is insufficient.
+
+24000007 - The asset is corrupted.
+
+24000008 - The database operation failed.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
+
+24000015 - Failed to obtain the system time.
 
 ### OH_Asset_Update()
 
@@ -228,3 +358,31 @@ Updates an asset.
 **Returns**
 
 Returns [ASSET_SUCCESS](_asset_type.md#asset_resultcode) if the operation is successful; returns an error code otherwise.
+
+0 - The operation is successful.
+
+401 - The parameter is invalid.
+
+24000001 - The asset store service is unavailable.
+
+24000002 - The asset is not found.
+
+24000005 - The lock screen status does not match.
+
+24000006 - The system memory is insufficient.
+
+24000007 - The asset is corrupted.
+
+24000008 - The database operation failed.
+
+24000009 - The cryptographic operation failed.
+
+24000010 - The IPC failed.
+
+24000011 - The Bundle Manager service is abnormal.
+
+24000012 - The Account service is abnormal.
+
+24000013 - The Access Token service is abnormal.
+
+24000015 - Failed to obtain the system time.

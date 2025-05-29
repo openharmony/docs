@@ -40,7 +40,7 @@ USB Host DDK为开发者提供了主机端USB驱动开发能力，按照功能�
 
 - USB Interface Pool负责USB Interface管理。提供USB Interface接口对象的申请和回收，USB Interface接口对象用来记录设备端口信息以及资源。USB Interface Pool按照USB Port对USB Interface进行分类管理。同时，此模块还提供了USB DDK API，方便开发者进行USB数据读写操作。
 
-- USB Protocol Layer提供USB协议封装，根据USB协议对设备IO/控制命令进行翻译和解析”，同时负责设备描述符的管理，根据USB Device上报的枚举信息，匹配对应的描述符；构建对应的USB Interface接口对象，并将其加入到USB Interface Pool中管理。
+- USB Protocol Layer提供USB协议封装，根据USB协议对设备IO/控制命令进行翻译和解析，同时负责设备描述符的管理，根据USB Device上报的枚举信息，匹配对应的描述符；构建对应的USB Interface接口对象，并将其加入到USB Interface Pool中管理。
 
 - Device IO Manager负责USB IO请求管理，提供了同步IO和异步IO管理机制，对于异步IO，IO Manager负责将该请求记录下来，然后通过Raw API Library提供的接口依次处理待发送的IO请求；当收到USB控制器应答的处理结果后，IO接收线程负责解析并上报处理结果给上层调用者。
 
@@ -58,7 +58,7 @@ USB Device DDK向开发者提供了设备端USB驱动开发能力。例如，USB
 
   ![image](figures/USB-Device驱动模型图.png "USB-Device驱动模型图")
 
-- SDK IF负责将USB设备按照设备、接口、管道进行逻辑划分，对配置管理、设备管理、IO管理进行封装。此模块还向开发者提供了设备创建、获取接口、接收Event事件、收发数据等设备测驱动开发的能力接口。
+- SDK IF负责将USB设备按照设备、接口、管道进行逻辑划分，对配置管理、设备管理、IO管理进行封装。此模块还向开发者提供了设备创建、获取接口、接收Event事件、收发数据等设备侧驱动开发的能力接口。
 
 - Configuration Manager负责解析HCS文件描述的USB描述符信息，得到的USB描述符信息用于设备创建，同时模块还提供了自定义属性的读取、创建、删除、修改等操作。
 

@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 示例效果请以真机运行为准，当前IDE预览器不支持。
+> 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 导入模块
 
@@ -15,6 +15,8 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 ```
 
 ## DrawableDescriptor
+
+支持传入png、jpg、bmp、svg、gif、webp、astc、sut格式的资源类型。
 
 ### getPixelMap
 
@@ -35,8 +37,8 @@ getPixelMap(): image.PixelMap
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
@@ -66,7 +68,7 @@ PixelMapDrawableDescriptor的构造函数。
 
 ## LayeredDrawableDescriptor
 
-当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)
+当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)。
 
 drawable.json位于项目工程entry/src/main/resources/base/media目录下。定义请参考：
 
@@ -86,18 +88,18 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 
     ```ts
     // xxx.ets
-    import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
+    import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Index {
-      private resManager = getContext().resourceManager
+      private resManager = this.getUIContext().getHostContext()?.resourceManager;
  
       build() {
         Row() {
           Column() {
-            Image((this.resManager.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
-            Image(((this.resManager.getDrawableDescriptor($r('app.media.drawable')
+            Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+            Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
             .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
           }.height('50%')
         }.width('50%')
@@ -107,30 +109,30 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 2. 通过PixelMapDrawableDescriptor创建LayeredDrawableDescriptor。
    
     ```ts
-    import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
-    import { image } from '@kit.ImageKit'
+    import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component
     struct Index {
-      @State fore1: image.PixelMap | undefined = undefined
-      @State back1: image.PixelMap | undefined = undefined
+      @State fore1: image.PixelMap | undefined = undefined;
+      @State back1: image.PixelMap | undefined = undefined;
 
-      @State foregroundDraw:DrawableDescriptor|undefined=undefined
-      @State backgroundDraw:DrawableDescriptor|undefined=undefined
-      @State maskDraw:DrawableDescriptor|undefined=undefined
-      @State maskPixel: image.PixelMap | undefined = undefined
-      @State draw : LayeredDrawableDescriptor | undefined = undefined
+      @State foregroundDraw:DrawableDescriptor|undefined=undefined;
+      @State backgroundDraw:DrawableDescriptor|undefined=undefined;
+      @State maskDraw:DrawableDescriptor|undefined=undefined;
+      @State maskPixel: image.PixelMap | undefined = undefined;
+      @State draw : LayeredDrawableDescriptor | undefined = undefined;
       async aboutToAppear() {
-        this.fore1 = await this.getPixmapFromMedia($r('app.media.foreground'))
-        this.back1 = await this.getPixmapFromMedia($r('app.media.background'))
-        this.maskPixel = await this.getPixmapFromMedia($r('app.media.ohos_icon_mask'))
+        this.fore1 = await this.getPixmapFromMedia($r('app.media.foreground'));
+        this.back1 = await this.getPixmapFromMedia($r('app.media.background'));
+        this.maskPixel = await this.getPixmapFromMedia($r('app.media.ohos_icon_mask'));
         // 使用PixelMapDrawableDescriptor创建LayeredDrawableDescriptor
-        this.foregroundDraw = new PixelMapDrawableDescriptor(this.fore1)
-        this.backgroundDraw = new PixelMapDrawableDescriptor(this.back1)
-        this.maskDraw = new PixelMapDrawableDescriptor(this.maskPixel)
+        this.foregroundDraw = new PixelMapDrawableDescriptor(this.fore1);
+        this.backgroundDraw = new PixelMapDrawableDescriptor(this.back1);
+        this.maskDraw = new PixelMapDrawableDescriptor(this.maskPixel);
 
-        this.draw = new LayeredDrawableDescriptor(this.foregroundDraw,this.backgroundDraw,this.maskDraw)
+        this.draw = new LayeredDrawableDescriptor(this.foregroundDraw,this.backgroundDraw,this.maskDraw);
       }
       build() {
         Row() {
@@ -143,48 +145,41 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
       // 根据资源，通过图片框架获取pixelMap
       private async getPixmapFromMedia(resource: Resource) {
-        let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
           bundleName: resource.bundleName,
           moduleName: resource.moduleName,
           id: resource.id
-        })
-        let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+        });
+        let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
         let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
           desiredPixelFormat: image.PixelMapFormat.BGRA_8888
-        })
-        await imageSource.release()
-        return createPixelMap
+        });
+        await imageSource.release();
+        return createPixelMap;
       }
     }
     ```
 
-### getPixelMap
+### constructor<sup>12+</sup>
 
-getPixelMap(): image.PixelMap
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor)
 
-获取前景、背景和蒙版融合裁剪后的pixelMap。
+LayeredDrawableDescriptor的构造函数。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值：**
+**参数：**
 
-| 类型                                       | 说明       |
-| ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
-
-**示例：**
-  ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
-  ```
+| 参数名     | 类型              | 必填  | 说明                                       |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| foreground | [DrawableDescriptor](#drawabledescriptor)  | 否   | 分层图标的前景图片选项。 |
+| background   | [DrawableDescriptor](#drawabledescriptor) | 否   | 分层图标的背景图片选项。  |
+| mask | [DrawableDescriptor](#drawabledescriptor) | 否 | 分层图标的遮罩选项。 |
 
 ### getForeground
-getForeground(): DrawableDescriptor;
+getForeground(): DrawableDescriptor
 
 获取前景的DrawableDescriptor对象。
 
@@ -196,20 +191,50 @@ getForeground(): DrawableDescriptor;
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getForeground()
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getForeground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getForeground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+          .borderWidth(1)
+          .backgroundColor(Color.Green);
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getBackground
 
-getBackground(): DrawableDescriptor;
+getBackground(): DrawableDescriptor
 
 获取背景的DrawableDescriptor对象。
 
@@ -221,15 +246,43 @@ getBackground(): DrawableDescriptor;
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getBackground()
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getBackground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getBackground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getBackground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getMask
@@ -246,15 +299,43 @@ getMask(): DrawableDescriptor
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getMask()
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getMask(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getMask();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getMask();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 ### getMaskClipPath
 
@@ -270,13 +351,13 @@ LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参�
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| string | 返回裁切路径的命令字符串 |
+| string | 返回裁切路径的命令字符串。 |
 
 **示例：**
 
   ```ts
 // xxx.ets
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -286,7 +367,7 @@ struct Index {
       Column() {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+          .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
         Text(`获取系统内置的裁剪路径参数：`)
           .fontWeight(800)
         Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))
@@ -307,17 +388,17 @@ PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
 | 名称      | 类型    | 必填  | 说明                                    |
 | ---------- | ------ | -----| --------------------------------------- |
-| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。      |
-| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放。 |
+| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。<br/> 取值范围：[0, +∞)      |
+| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放，为0时不播放，大于0时为播放次数。 |
 
 **示例：**
 
 ```ts
-import { AnimationOptions } from '@kit.ArkUI'
+import { AnimationOptions } from '@kit.ArkUI';
 @Entry
 @Component
 struct Example {
-  options: AnimationOptions = { duration: 2000, iterations: 1 }
+  options: AnimationOptions = { duration: 2000, iterations: 1 };
   build() {
   }
 }
@@ -347,8 +428,8 @@ AnimatedDrawableDescriptor的构造函数。
 **示例：**
 
 ```ts
-import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI'
-import { image } from '@kit.ImageKit'
+import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -357,7 +438,7 @@ struct Example {
   options: AnimationOptions = {duration:1000, iterations:-1};
   @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')))
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
     this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   }
   build() {
@@ -368,17 +449,17 @@ struct Example {
     }
   }
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 

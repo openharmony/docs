@@ -105,7 +105,6 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -137,7 +136,7 @@ Initiates an SPP connection to a remote device from the client. This API uses an
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
+| options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for client.                 |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Error codes**
@@ -159,15 +158,13 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
+    // The obtained number is used as the socket ID for subsequent read/write operations on the client.
     console.info('bluetooth serverSocket Number: ' + number);
-    // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-    clientNumber = number;
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
@@ -179,11 +176,62 @@ try {
 ```
 
 
+## socket.getDeviceId<sup>17+</sup>
+
+getDeviceId(clientSocket: number): string
+
+Obtains the address of the peer device over a client socket. This API is applicable both to the server and client. However, the API call fails if an invalid **clientSocket** is passed.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description                            |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
+
+**Return value**
+
+| Type                                      | Description                        |
+| ---------------------------------------- | -------------------------- |
+| string | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// The server obtains the address of the client.
+let clientSocket = -1; // clientSocket is obtained from the sppAccept callback. Before calling getDeviceId, update the clientSocket.
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+
+// The client obtains the address of the server.
+// clientSocket is obtained from the sppAccept callback. Before calling getDeviceId, update the clientSocket.
+try {
+    let deviceAddr: string = socket.getDeviceId(clientSocket);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## socket.sppCloseServerSocket
 
 sppCloseServerSocket(socket: number): void
 
-Closes an SPP listening socket of the server.
+Closes a listening socket of the server.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -221,7 +269,7 @@ try {
 
 sppCloseClientSocket(socket: number): void
 
-Closes an SPP listening socket of the client.
+Closes a client socket.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -345,7 +393,7 @@ try {
 
 off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
-Unsubscribes from SPP read request events.
+Unsubscribes from the SPP read request events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -354,8 +402,8 @@ Unsubscribes from SPP read request events.
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.                       |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**. |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -379,16 +427,125 @@ try {
 ```
 
 
+## socket.sppWriteAsync<sup>18+</sup>
+
+sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
+
+Writes data to the remote device through the socket. This API uses a promise to return the result. It supports returning of SPP operation errors, if any, when the connection is disconnected.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name         | Type                         | Mandatory  | Description                                      |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+| data         | ArrayBuffer                 | Yes   | Data to write.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
+let arrayBuffer = new ArrayBuffer(8);
+let data = new Uint8Array(arrayBuffer);
+try {
+    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## socket.sppReadAsync<sup>18+</sup>
+
+sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
+
+Reads data sent from the remote device through the socket. This API uses a promise to return the result. It supports returning of SPP operation errors, if any, when the connection is disconnected.
+
+> **NOTE**
+>
+> - This API cannot be used together with [socket.on('sppRead')](#socketonsppread). A socket can use either this API or [socket.on('sppRead')](#socketonsppread).
+>
+> - This API is used in a different way from [socket.on('sppRead')](#socketonsppread). It needs to be called cyclically to read data.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name         | Type                         | Mandatory  | Description                                      |
+| ------------ | --------------------------- | ---- | ---------------------------------------- |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;ArrayBuffer&gt; | Promise used to return the result. If the operation is successful, the result is returned in **ArrayBuffer**. If the operation fails, the corresponding error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|801 | Capability not supported.          |
+|2901054 | IO error. |
+|2900099 | Operation failed. |
+
+**Example**
+
+```js
+import { socket } from '@kit.ConnectivityKit'
+import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
+let buffer = new ArrayBuffer(1024);
+let data = new Uint8Array(arrayBuffer);
+let flag = 1;
+while (flag) {
+  try {
+    buffer = await socket.sppReadAsync(this.clientNumber);
+    if (buffer != null) {
+      console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      printArrayBuffer(buffer);
+    } else {
+      console.error('sppRead error, data is null');
+    }
+  } catch (err) {
+    flag = 0;
+    console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  }
+}
+```
+
+
 ## SppOptions
 
-Defines the SPP configuration.
+Defines the SPP configuration parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name    | Type               | Readable  | Writable  | Description         |
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | Yes   | Yes   | UUID of the SPP.|
-| secure | boolean             | Yes   | Yes   | Whether it is a secure channel.   |
+| secure | boolean             | Yes   | Yes   | Whether it is a secure channel. The value **true** indicates a secure channel, and the value **false** indicates a non-secure channel.   |
 | type   | [SppType](#spptype)            | Yes   | Yes   | Type of the SPP link.   |
 
 

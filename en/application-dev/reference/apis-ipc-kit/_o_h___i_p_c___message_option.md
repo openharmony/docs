@@ -17,7 +17,7 @@ Defines an IPC message.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_IPC_RequestMode](_o_h_i_p_c_remote_object.md#oh_ipc_requestmode)[mode](#mode) | Message request mode.| 
+| [OH_IPC_RequestMode](_o_h_i_p_c_remote_object.md#oh_ipc_requestmode) [mode](#mode) | Message request mode.| 
 | uint32_t [timeout](#timeout) | Parameter reserved for RPC. It is invalid for IPC.| 
 | void \* [reserved](#reserved) | Reserved parameter, which must be NULL.| 
 

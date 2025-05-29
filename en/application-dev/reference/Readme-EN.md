@@ -24,7 +24,7 @@
 - [Contacts Kit API Reference](apis-contacts-kit/Readme-EN.md)
 - [Core File Kit API Reference](apis-core-file-kit/Readme-EN.md)
 - [Crypto Architecture Kit API Reference](apis-crypto-architecture-kit/Readme-EN.md)
-- [Data Loss Prevention Kit API Reference](apis-data-loss-prevention-kit/Readme-EN.md)
+- [Data Protection Kit API Reference](apis-data-protection-kit/Readme-EN.md)
 - [Device Certificate Kit API Reference](apis-device-certificate-kit/Readme-EN.md)
 - [Distributed Service Kit API Reference](apis-distributedservice-kit/Readme-EN.md)
 - [Driver Development Kit API Reference](apis-driverdevelopment-kit/Readme-EN.md)

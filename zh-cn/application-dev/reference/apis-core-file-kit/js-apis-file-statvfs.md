@@ -1,6 +1,6 @@
 # @ohos.file.statvfs (文件系统空间统计)
 
-该模块提供文件系统相关存储信息的功能，向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
+该模块提供文件系统相关存储信息的功能：向应用程序提供获取文件系统总字节数、空闲字节数的JS接口。
 
 > **说明：**
 >
@@ -12,7 +12,7 @@
 import { statfs } from '@kit.CoreFileKit';
 ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string):Promise&lt;number&gt;
 
@@ -41,8 +41,9 @@ getFreeSize(path:string):Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
@@ -51,7 +52,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
   });
   ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -75,8 +76,9 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -87,7 +89,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getFreeSizeSync<sup>10+</sup>
+## statfs.getFreeSizeSync<sup>10+</sup>
 
 getFreeSizeSync(path:string): number
 
@@ -115,14 +117,15 @@ getFreeSizeSync(path:string): number
 
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getFreeSizeSync(path);
   console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -151,8 +154,9 @@ getTotalSize(path: string): Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
@@ -161,7 +165,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
   });
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -185,8 +189,9 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -197,7 +202,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getTotalSizeSync<sup>10+</sup>
+## statfs.getTotalSizeSync<sup>10+</sup>
 
 getTotalSizeSync(path: string): number
 
@@ -225,8 +230,9 @@ getTotalSizeSync(path: string): number
 
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);

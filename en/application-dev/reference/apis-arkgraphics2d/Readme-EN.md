@@ -1,6 +1,6 @@
 # ArkGraphics 2D
 
-- ArkTS APIs
+- ArkTS APIs<!--arkgraphics-arkts-->
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
   - [@ohos.graphics.sendableColorSpaceManager (Sendable Color Space Management)](js-apis-sendableColorSpaceManager.md)
@@ -10,16 +10,20 @@
   - [@ohos.graphics.hdrCapability (HDR Capability)](js-apis-hdrCapability.md)
   - [@ohos.graphics.text (Text)](js-apis-graphics-text.md)
   - [@ohos.graphics.uiEffect (Cascading Effect)](js-apis-uiEffect.md)
+  <!--Del-->
   - [@ohos.graphics.uiEffect (Cascading Effect) (System API)](js-apis-uiEffect-sys.md)
-- C APIs
-  - Modules
+  <!--DelEnd-->
+- C APIs<!--arkgraphics-c-->
+  - Modules<!--arkgraphics-module-->
     - [Drawing](_drawing.md)
     - [EffectKit](effect_kit.md)
+    - [NativeDisplaySoloist](_native_display_soloist.md)
     - [NativeVsync](_native_vsync.md)
     - [NativeWindow](_native_window.md)
     - [OH_NativeBuffer](_o_h___native_buffer.md)
     - [OH_NativeImage](_o_h___native_image.md)
-  - Header Files
+    - [NativeColorSpaceManager](_native_color_space_manager.md)
+  - Header Files<!--arkgraphics-headerfile-->
     - [drawing_bitmap.h](drawing__bitmap_8h.md)
     - [drawing_brush.h](drawing__brush_8h.md)
     - [drawing_canvas.h](drawing__canvas_8h.md)
@@ -42,6 +46,7 @@
     - [drawing_pen.h](drawing__pen_8h.md)
     - [drawing_pixel_map.h](drawing__pixel__map_8h.md)
     - [drawing_point.h](drawing__point_8h.md)
+    - [drawing_record_cmd.h](drawing__record__cmd_8h.md)
     - [drawing_rect.h](drawing__rect_8h.md)
     - [drawing_region.h](drawing__region_8h.md)
     - [drawing_register_font.h](drawing__register__font_8h.md)
@@ -52,16 +57,25 @@
     - [drawing_surface.h](drawing__surface_8h.md)
     - [drawing_text_blob.h](drawing__text__blob_8h.md)
     - [drawing_text_declaration.h](drawing__text__declaration_8h.md)
+    - [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md)
+    - [drawing_text_line.h](drawing__text__line_8h.md)
+    - [drawing_text_lineTypography.h](drawing__text__line_typography_8h.md)
+    - [drawing_text_run.h](drawing__text__run_8h.md)
     - [drawing_text_typography.h](drawing__text__typography_8h.md)
     - [drawing_typeface.h](drawing__typeface_8h.md)
     - [drawing_types.h](drawing__types_8h.md)
     - [effect_filter.h](effect__filter_8h.md)
     - [effect_types.h](effect__types_8h.md)
+    - [buffer_handle.h](buffer__handle_8h.md)
     - [external_window.h](external__window_8h.md)
+    - [buffer_common.h](buffer__common_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
+    - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
-  - Structs
+    - [native_color_space_manager.h](native__color__space__manager_8h.md)
+  - Structs<!--arkgraphics-struct-->
+    - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
     - [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)
     - [OH_Drawing_FontAdjustInfo](_o_h___drawing___font_adjust_info.md)
@@ -81,8 +95,8 @@
     - [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)
     - [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
+    - [OH_Drawing_String](_o_h___drawing___string.md)
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
-    - [OH_Filter](_o_h___filter.md)
     - [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)
     - [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md)
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -92,9 +106,12 @@
     - [OH_NativeBuffer_Smpte2086](_o_h___native_buffer___smpte2086.md)
     - [OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)
     - [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)
+    - [BufferHandle](_buffer_handle.md)
     - [OHExtDataHandle](_o_h_ext_data_handle.md)
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)
     - [Region](_region.md)
     - [Rect](_rect.md)
-- Error Codes
+    - [ColorSpacePrimaries](_color_space_primaries.md)
+    - [WhitePointArray](_white_point_array.md)
+- Error Codes<!--arkgraphics-arkts-errcode-->
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)

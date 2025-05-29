@@ -16,7 +16,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 ## AutoFillPopupConfig
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -29,7 +29,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 表示气泡弹窗的宽和高。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -42,7 +42,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 
 表示气泡弹窗位置的枚举。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

@@ -2,11 +2,12 @@
 
 
 This topic describes how to obtain properties of a key. Before the operation, ensure that the key exists in HUKS.
-
+>**NOTE**<br>
+> The mini-system devices do not support the operation for obtaining key properties.
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Use [getKeyItemProperties](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgetkeyitemproperties9) to obtain the properties of the key based on **keyAlias** and **options**. 
    **options** is a reserved parameter and is left empty currently.

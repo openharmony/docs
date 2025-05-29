@@ -19,7 +19,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 了解编译框架和搭建完编译环境后，请参考如下步骤新建芯片解决方案：
 
-1. 新建目录
+1. 新建目录。
 
    芯片解决方案的目录规则为：`device/{芯片解决方案厂商}/{开发板}`。以海思的hispark_taurus开发板为例，在代码根目录执行如下命令建立目录：
 
@@ -33,14 +33,14 @@ sudo apt-get install gcc-arm-linux-gnueabi
    
    ```
    device                                      
-   └── company                         # 芯片解决方案厂商
-       └── board                       # 开发板名称
-           ├── BUILD.gn                # 编译脚本
-           ├── hals                    # OS南向接口适配
-           ├── linux                   # 可选，linux内核版本
-           │   └── config.gni          # linux版本编译配置
-           └── liteos_a                # 可选，liteos内核版本
-               └── config.gni          # liteos_a版本编译配置
+   └── company                         # 芯片解决方案厂商。
+       └── board                       # 开发板名称。
+           ├── BUILD.gn                # 编译脚本。
+           ├── hals                    # OS南向接口适配。
+           ├── linux                   # 可选，linux内核版本。
+           │   └── config.gni          # linux版本编译配置。
+           └── liteos_a                # 可选，liteos内核版本。
+               └── config.gni          # liteos_a版本编译配置。
    ```
 
    以hispark_taurus移植linux内核为例，目录树应该如下：
@@ -59,7 +59,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
    目录树建立后开发板相关的源码放到hispark_taurus目录下。
 
-2. 配置开发板编译选项
+2. 配置开发板编译选项。
 
    步骤1中的`config.gni`可配置开发板相关的编译选项，编译构建框架将会遵照该配置文件中的参数编译所有用户态OS组件。其中关键的字段说明如下：
 
@@ -122,7 +122,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
    storage_type = "emmc"
    ```
 
-3. 编写开发板编译脚本
+3. 编写开发板编译脚本。
 
    步骤1中的`BUILD.gn`为新增的开发板的编译入口，主要用于编译开发板相关的代码，主要为设备侧驱动、设备侧接口适配(媒体，图形等)和开发板的SDK等等。
 
@@ -139,6 +139,6 @@ sudo apt-get install gcc-arm-linux-gnueabi
    }
    ```
 
-4. 编译调试
+4. 编译调试。
 
    在开发板目录下执行`hb set`和`hb build`即可启动芯片解决方案的编译，编译框架会以开发板下的`BUILD.gn`为入口启动编译。

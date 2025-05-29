@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.infraredEmitter (IR Management) (System API)
+# @ohos.multimodalInput.infraredEmitter (IR Management)
 
 The **infraredEmitter** module generates IR signals of the specified frequency and size, and queries the frequency range supported by the device.
 
@@ -6,15 +6,14 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
 ```js
-import infraredEmitter from '@ohos.multimodalInput.infraredEmitter';
+import { infraredEmitter } from '@kit.InputKit';
 ```
 
-## infraredEmitter.transmitInfrared 
+## infraredEmitter.transmitInfrared<sup>15+</sup>
 
 transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
@@ -29,7 +28,7 @@ Generates IR signals at the specified frequency and level.
 | Name      | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | infraredFrequency | number             | Yes   | IR frequency, in Hz.|
-| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The number of arrays must be an even number. For example, [100,200,300,400] indicates that 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
+| pattern | Array&lt;number&gt; | Yes   | IR level signal, in μs. The value must be an even number within the value range of [0,1024].<br>For example, in the IR level signal array [100,200,300,400], 100 μs is a high-level signal, 200 μs is a low-level signal, 300 μs is a high-level signal, and 400 μs is a low-level signal.|
 
 **Error codes**
 
@@ -38,7 +37,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message         |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -47,11 +45,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
 } catch (error) {
-  console.log(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## infraredEmitter.getInfraredFrequencies
+## infraredEmitter.getInfraredFrequencies<sup>15+</sup>
 
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
@@ -65,7 +63,7 @@ Queries the frequency range of IR signals supported by the mobile phone.
 
 | Parameter                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;[InfraredFrequency](#infraredfrequency)&gt; | Frequency range, including multiple groups of maximum and minimum frequencies.|
+| Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | Frequency range, including multiple groups of maximum and minimum frequencies.|
 
 **Error codes**
 
@@ -74,7 +72,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message         |
 | -------- | ----------------- |
 | 201 | Permission denied. |
-| 202 | Not system application. |
 
 **Example**
 
@@ -83,11 +80,11 @@ try {
   let frequencies = infraredEmitter.getInfraredFrequencies();
   console.log(`frequencies: ${JSON.stringify(frequencies)}`);
 } catch (error) {
-  console.log(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-##  InfraredFrequency
+##  InfraredFrequency<sup>15+</sup>
 
 Defines the frequency range of IR signals.
 

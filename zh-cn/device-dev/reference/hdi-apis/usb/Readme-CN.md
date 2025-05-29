@@ -1,0 +1,91 @@
+# USB HDI 参考
+
+- 模块
+    - [HdiUsbfnMtp](_hdi_usbfn_mtp.md)
+    - [HdiUsb](_hdi_usb.md)
+    - [USB (V1_0)](_u_s_b_v10.md)
+    - [HdiUsb（V1_1）](_hdi_usb_v1_1.md)
+    - [HdiUsb（V1_2）](_hdi_usb_v1_2.md)
+    - [HdiUsb（V2_0）](_hdi_usb_v2_0.md)
+    - [USB](_u_s_b.md)
+- 头文件
+    - HdiUsbfnMtp
+        - [IUsbfnMtpInterface.idl](_i_usbfn_mtp_interface_8idl.md)
+        - [UsbfnMtpTypes.idl](_usbfn_mtp_types_8idl.md)
+    - HdiUsb
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v11.md)
+        - [UsbTypes.idl](_usb_types_8idl_v11.md)
+    - USB (V1_0)
+        - [IUsbdBulkCallback.idl](_i_usbd_bulk_callback_8idl_v10.md)
+        - [IUsbdSubscriber.idl](_i_usbd_subscriber_8idl_v10.md)
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v10.md)
+        - [UsbTypes.idl](_usb_types_8idl_v10.md)
+    - HdiUsb模块头文件（V1_1）
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v11.md)
+        - [UsbTypes.idl](_usb_types_8idl_v11.md)
+    - HdiUsb模块头文件（V1_2）
+        - [IUsbdTransferCallback.idl](_i_usbd_transfer_callback_8idl_v1_2.md)
+        - [IUsbInterface.idl](_i_usb_interface_8idl.md)
+        - [UsbTypes.idl](_usb_types_8idl_v1_2.md)
+    - HdiUsb模块头文件（V2_0）
+        - [IUsbdBulkCallback.idl](_i_usbd_bulk_callback_8idl.md)
+        - [IUsbDeviceInterface.idl](_i_usb_device_interface_8idl.md)
+        - [IUsbdSubscriber.idl](_i_usbd_subscriber_8idl.md)
+        - [IUsbdTransferCallback.idl](_i_usbd_transfer_callback_8idl.md)
+        - [IUsbHostInterface.idl](_i_usb_host_interface_8idl.md)
+        - [IUsbPortInterface.idl](_i_usb_port_interface_8idl.md)
+        - [UsbTypes.idl](_usb_types_8idl.md)
+    - USB
+        - [usb_info.h](usb__info_8h.md)
+        - [usbd_client.h](usbd__client_8h.md)
+        - [usbd_subscriber.h](usbd__subscriber_8h.md)
+        - [usbd_type.h](usbd__type_8h.md)
+- 结构体
+    - HdiUsbfnMtp
+        - [IUsbfnMtpInterface](interface_i_usbfn_mtp_interface.md)
+        - [UsbFnMtpFileSlice](_usb_fn_mtp_file_slice.md)
+    - HdiUsb
+        - [IUsbInterface](interface_i_usb_interface_v11.md)
+        - [UsbCtrlTransferParams](_usb_ctrl_transfer_params_v11.md)
+    - USB (V1_0)
+        - [IUsbdBulkCallback](interface_i_usbd_bulk_callback_v10.md)
+        - [IUsbdSubscriber](interface_i_usbd_subscriber_v10.md)
+        - [IUsbInterface](interface_i_usb_interface_v10.md)
+        - [PortInfo](_port_info_v10.md)
+        - [UsbCtrlTransfer](_usb_ctrl_transfer_v10.md)
+        - [UsbDev](_usb_dev_v10.md)
+        - [USBDeviceInfo](_u_s_b_device_info_v10.md)
+        - [UsbPipe](_usb_pipe_v10.md)
+    - HdiUsb模块结构体（V1_1）
+        - [IUsbInterface](interface_i_usb_interface_v11.md)
+        - [UsbCtrlTransferParams](_usb_ctrl_transfer_params_v11.md)
+    - HdiUsb模块结构体（V1_2）
+        - [IUsbdTransferCallback](interface_i_usbd_transfer_callback_v1_2.md)
+        - [IUsbInterface](interface_i_usb_interface.md)
+        - [UsbIsoPacketDescriptor](_usb_iso_packet_descriptor.md)
+        - [USBTransferInfo](_u_s_b_transfer_info.md)
+    - HdiUsb模块结构体（V2_0）
+        - [IUsbdBulkCallback](interface_i_usbd_bulk_callback.md)
+        - [IUsbDeviceInterface](interface_i_usb_device_interface.md)
+        - [IUsbdSubscriber](interface_i_usbd_subscriber.md)
+        - [IUsbdTransferCallback](interface_i_usbd_transfer_callback_v2_0.md)
+        - [IUsbHostInterface](interface_i_usb_host_interface.md)
+        - [IUsbPortInterface](interface_i_usb_port_interface.md)
+        - [PortInfo](_port_info.md)
+        - [UsbCtrlTransfer](_usb_ctrl_transfer.md)
+        - [UsbCtrlTransferParams](_usb_ctrl_transfer_params.md)
+        - [UsbDev](_usb_dev.md)
+        - [USBDeviceInfo](_u_s_b_device_info.md)
+        - [UsbIsoPacketDescriptor](_usb_iso_packet_descriptor_v2_0.md)
+        - [UsbPipe](_usb_pipe.md)
+        - [UsbPort](_usb_port.md)
+        - [UsbPortStatus](_usb_port_status.md)
+        - [USBTransferInfo](_u_s_b_transfer_info_v2_0.md)
+    - USB
+        - [UsbCtrlTransfer](_o_h_o_s_1_1_u_s_b_1_1_usb_ctrl_transfer.md)
+        - [UsbdClient](_o_h_o_s_1_1_u_s_b_1_1_usbd_client.md)
+        - [UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)
+        - [USBDeviceInfo](_o_h_o_s_1_1_u_s_b_1_1_u_s_b_device_info.md)
+        - [UsbdSubscriber](_o_h_o_s_1_1_u_s_b_1_1_usbd_subscriber.md)
+        - [UsbInfo](_o_h_o_s_1_1_u_s_b_1_1_usb_info.md)
+        - [UsbPipe](_o_h_o_s_1_1_u_s_b_1_1_usb_pipe.md)

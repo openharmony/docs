@@ -1,16 +1,16 @@
 # 合理使用自定义组件冻结功能
 
 ## 概述
-自定义组件冻结功能是指通过设置[freezeWhenInactive](../quick-start/arkts-create-custom-components.md#freezewheninactive11)属性为true，对非激活页面或者自定义组件进行冻结，使其不响应状态变量引起的UI刷新。当状态变量改变时，处于非激活状态的页面或自定义组件的状态变量将不响应更新，状态变量的@Watch函数不会调用，关联的节点不会刷新。只有当页面或者自定义组件重新激活或者可见时，才会去更新状态变量。本文将介绍冻结功能的原理机制和使用场景，并且通过懒加载场景下使用冻结功能前后的性能对比，帮忙开发者优化页面性能，减少页面渲染的时间，提升用户体验。
+自定义组件冻结功能是指通过设置[freezeWhenInactive](../ui/state-management/arkts-create-custom-components.md#freezewheninactive11)属性为true，对非激活页面或者自定义组件进行冻结，使其不响应状态变量引起的UI刷新。当状态变量改变时，处于非激活状态的页面或自定义组件的状态变量将不响应更新，状态变量的@Watch函数不会调用，关联的节点不会刷新。只有当页面或者自定义组件重新激活或者可见时，才会去更新状态变量。本文将介绍冻结功能的原理机制和使用场景，并且通过懒加载场景下使用冻结功能前后的性能对比，帮忙开发者优化页面性能，减少页面渲染的时间，提升用户体验。
 
 ## 原理机制
 - 组件的激活状态和非激活状态并非等同于可见和不可见。比如堆叠，堆叠在下面的组件虽然不可见，但是是激活状态。
-- 需要注意，组件冻结不等于不更新，而是延迟更新，从而来降低某些场景下的UI刷新复杂度。当页面重新可见或者恢复到激活状态时，将对延迟刷新的组件进行刷新。**举例而言，对于Navigation，对当前不可见的页面进行冻结，不会触发组件的更新。当返回该页面时，触发@Watch回调进行刷新。所以在pop返回上一个页面时，会刷新在冻结中没有更新的组件，从而可能导致pop的负载上升。**
+- 需要注意，组件冻结不等于不更新，而是延迟更新，从而来降低某些场景下的UI刷新复杂度。当页面重新可见或者恢复到激活状态时，将对延迟刷新的组件进行刷新。举例而言，对于Navigation，对当前不可见的页面进行冻结，不会触发组件的更新。当返回该页面时，触发@Watch回调进行刷新。所以在pop返回上一个页面时，会刷新在冻结中没有更新的组件，从而可能导致pop的负载上升。
 - 所有的冻结都是以自定义组件为最小单位。使用冻结功能后，自定义组件及其所属的系统组件是可以被冻结的，只是设置冻结的最小单位是自定义组件，不能单独冻结某个系统组件。
 - @Component({ freezeWhenInactive: true })中freezeWhenInactive的值后端只支持常量，不支持变量形式。
 
 ## 适用场景
-目前自定义组件冻结功能支持以下四种场景。更多自定义组件冻结的信息，请参考[自定义组件冻结功能](../quick-start/arkts-custom-components-freeze.md)。
+目前自定义组件冻结功能支持以下四种场景。更多自定义组件冻结的信息，请参考[自定义组件冻结功能](../ui/state-management/arkts-custom-components-freeze.md)。
 
 **页面路由**：当页面A调用router.pushUrl接口跳转到页面B时，页面A为隐藏不可见状态，此时如果更新页面A中的状态变量，不会触发页面A刷新。
 
@@ -304,11 +304,13 @@ struct NotUseFreezeItem {
 如图1所示，在Grid预加载GridItem数量设置200的情况下，不开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask（执行布局任务、执行渲染任务并通知图形进行渲染）耗时为162ms。其中FlushDirtyNodeUpdate（更新脏节点）耗时104ms,UITaskScheduler::FlushTask（主要是对懒加载的GridItem进行重新布局）耗时28ms。
 
 图1 不开启自定义组件冻结功能
+
 ![](./figures/custom_component_freeze_not_freeze_duration.png)
 
 如图2所示，FlushDirtyNodeUpdate里可以看到执行了832个CustomNodeUpdate NotUseFreezeItem（自定义组件节点刷新）任务，这里的832个自定义组件节点指的是屏幕内可见的32个GridItem节点和不可见的800个缓存GridItem节点。
 
 图2 不开启冻结功能后CustomNodeUpdate耗时
+
 ![](./figures/custom_component_freeze_not_freeze_item.png)
 
 ### 开启冻结功能
@@ -316,11 +318,13 @@ struct NotUseFreezeItem {
 如图3所示，在Grid预加载GridItem数量设置200的情况下，开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask耗时仅为32ms。其中FlushDirtyNodeUpdate耗时7ms，UITaskScheduler::FlushTask耗时14ms。和不开启冻结功能相比耗时减少了约80%（性能耗时数据因设备型号版本而异，以实测为准）。
 
 图3 开启自定义组件冻结功能
+
 ![](./figures/custom_component_freeze_freeze_duration.png)
 
 如图4所示，FlushDirtyNodeUpdate里执行了32个CustomNodeUpdate UseFreezeItem（自定义组件节点刷新）任务，这里的32个自定义组件节点指的是屏幕内可见的所有GridItem节点。和图2相比，可以发现开启冻结功能比不开启冻结功能少执行了800个自定义组件节点的刷新任务，大大缩短了渲染耗时。
 
 图4 开启冻结功能后CustomNodeUpdate耗时
+
 ![](./figures/custom_component_freeze_freeze_item.png)
 
 图5为Grid懒加载场景下，设置不同预加载缓存GridItem数量（cachedCount）的UIVsyncTask耗时对比图。可以看出懒加载中设置的预加载缓存GridItem的数量越大，UIVsyncTask耗时越长。

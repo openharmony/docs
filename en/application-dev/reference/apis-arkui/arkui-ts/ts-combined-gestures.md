@@ -34,10 +34,12 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | Name                                      | Description                                |
 | ---------------------------------------- | ------------------------------------ |
-| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.<br>**NOTE**<br>This event is triggered when the window loses focus. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## Example
+
+This example demonstrates the sequential recognition of combined gestures, specifically long press and pan gestures, using **GestureGroup**.
 
 ```ts
 // xxx.ets

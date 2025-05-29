@@ -5,7 +5,7 @@ pan模块提供了访问蓝牙个人区域网相关功能的方法。
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetooth.pan (蓝牙pan模块)](js-apis-bluetooth-pan.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetooth.pan (蓝牙pan模块)](js-apis-bluetooth-pan.md)。
 
 
 ## 导入模块
@@ -80,7 +80,7 @@ setTethering(enable: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| value | boolean | 是    | 是否设置蓝牙共享。 |
+| enable | boolean | 是    | 是否启用网络共享。true表示启用网络共享，false表示不启用网络共享。 |
 
 **错误码**：
 

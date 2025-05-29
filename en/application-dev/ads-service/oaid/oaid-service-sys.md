@@ -5,7 +5,7 @@
 The OAID changes in the following scenarios:
 - A user restores the factory settings of the device.
 
-- A system application configures its bundle name in the **etc/advertising/oaid/oaid_service_config_ext.json** file in the device's system directory and calls the **resetOAID()** API to reset the OAID. Note that the bundle name should be appended to the array in the file and separated with others by commas (,).
+- A system application configures its bundle name in the **etc/advertising/oaid/oaid_service_config.json** file in the device's system directory and calls the **resetOAID()** API to reset the OAID. Note that the bundle name should be appended to the array in the file and separated with others by commas (,).
 
 The following describes how to configure a system application to reset the OAID.
 
@@ -18,7 +18,7 @@ The following describes how to configure a system application to reset the OAID.
 
 ## How to Develop
 
-1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
+1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
    ```ts
     {
      "module": {

@@ -175,7 +175,7 @@ try {
         backup : false,
         autoSync : true,
         kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        securityLevel : distributedData.SecurityLevel.S2,
+        securityLevel : distributedData.SecurityLevel.S3,
     };
     kvManager.getKVStore('storeId', options, function (err, store) {
         if (err) {
@@ -225,7 +225,7 @@ try {
         backup : false,
         autoSync : true,
         kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        securityLevel : distributedData.SecurityLevel.S2,
+        securityLevel : distributedData.SecurityLevel.S3,
     };
     kvManager.getKVStore('storeId', options).then((store) => {
         console.log("getKVStore success");
@@ -268,7 +268,7 @@ const options = {
     autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
-    securityLevel: distributedData.SecurityLevel.S2,
+    securityLevel: distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
@@ -318,7 +318,7 @@ const options = {
     autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
-    securityLevel: distributedData.SecurityLevel.S2,
+    securityLevel: distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
@@ -366,7 +366,7 @@ const options = {
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
     schema : undefined,
-    securityLevel : distributedData.SecurityLevel.S2,
+    securityLevel : distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('store', options, async function (err, store) {
@@ -415,7 +415,7 @@ const options = {
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
     schema : undefined,
-    securityLevel : distributedData.SecurityLevel.S2,
+    securityLevel : distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
@@ -574,13 +574,13 @@ try {
 
 | 名称  | 类型 | 必填   | 说明                    |
 | -----  | ------  | ------  | -------------------|
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认为true，即创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认为false, 即不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认为true，即备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认为true，即创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认为false，即不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认为true，即备份。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | autoSync  | boolean | 否 |设置数据库文件是否自动同步。默认为false，即手动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别(S1-S4)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值，默认为undefined, 即不使用schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值，默认为undefined，即不使用schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -590,9 +590,9 @@ KVStore数据库类型枚举。
 
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
-| SINGLE_VERSION  | 1 | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| MULTI_VERSION   | 2 | 表示多版本数据库。当前暂不支持使用此接口。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| DEVICE_COLLABORATION  | 0 | 表示多设备协同数据库。<br>**数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| SINGLE_VERSION  | 1 | 表示单版本数据库。<br>**数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| MULTI_VERSION   | 2 | 表示多版本数据库。当前暂不支持使用此接口。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## SecurityLevel

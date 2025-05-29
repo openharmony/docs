@@ -1,5 +1,5 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力)
-PhotoEditorExtensionAbility继承自ExtensionAbility，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过startAbilityByType拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
+PhotoEditorExtensionAbility继承自[ExtensionAbility](js-apis-app-ability-extensionAbility.md)，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过[startAbilityByType](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)拉起图片编辑类应用扩展面板后，由用户在面板上选择实现了PhotoEditorExtensionAbility的图片编辑扩展页面并拉起该页面。
 > **说明：**
 > 
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -11,9 +11,9 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
 ## 属性
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
-|  名称 |类型   |只读   |必填   |说明   |
+|  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | 上下文  |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
 
 ## PhotoEditorExtensionAbility.onCreate
 onCreate(): void
@@ -76,7 +76,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
@@ -99,7 +99,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
@@ -116,7 +116,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ## PhotoEditorExtensionAbility.onDestroy
-onDestroy(): void | Promise<void>
+onDestroy(): void | Promise\<void>
 
 PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
 
@@ -127,7 +127,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  Promise<void> |  Promise对象。无返回结果的Promise对象。 |
+|  Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

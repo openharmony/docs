@@ -1,11 +1,10 @@
 # 密钥协商(C/C++)
 
-
 以协商密钥类型为ECDH，并密钥仅在HUKS内使用为例，完成密钥协商。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## 开发步骤
@@ -14,13 +13,7 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
-
-- 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
-
-- 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
-
-- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
+密钥生成时，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识此步骤生成的密钥是否由HUKS管理。
 
 **导出密钥**
 
@@ -31,6 +24,12 @@
 设备A、B分别基于本端私钥和对端设备的公钥，协商出共享密钥。
 
 密钥协商时，可指定参数OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识协商得到的密钥是否由HUKS管理。
+
+- 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
+
+- 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
+
+- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，既可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
 
 | 生成 | 协商 | 规格 |
 | -------- | -------- | -------- |
@@ -49,6 +48,7 @@
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 /* 初始化参数 */
 OH_Huks_Result InitParamSet(
@@ -73,7 +73,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t IV_SIZE = 16;
-static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time
+static uint8_t IV[IV_SIZE] = { 0 }; // this is a test value, for real use the iv should be different every time.
 static struct OH_Huks_Blob g_keyAliasFinal1001 = {
     (uint32_t)strlen("HksECDHAgreeKeyAliasTest001_1_final"),
     (uint8_t *)"HksECDHAgreeKeyAliasTest001_1_final"
@@ -158,7 +158,7 @@ static struct OH_Huks_Param g_agreeParamsFinish02[] = {
         .uint32Param = OH_HUKS_AES_KEY_SIZE_256
     }, {
         .tag = OH_HUKS_TAG_PURPOSE,
-        .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE
+        .uint32Param = OH_HUKS_KEY_PURPOSE_AGREE
     }, {
         .tag = OH_HUKS_TAG_KEY_ALIAS,
         .blob = g_keyAliasFinal2001

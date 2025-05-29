@@ -9,7 +9,8 @@
 > - 本模块接口为系统接口。
 >
 > - 本模块接口仅可在Stage模型下使用。
-
+>
+> - 数据共享结果集在全系统最多同时存在32个，使用完及时释放。
 
 ## 导入模块
 
@@ -22,34 +23,39 @@ import { DataShareResultSet } from '@kit.ArkData';
 需要通过调用[query](js-apis-data-dataShare-sys.md#query)接口获取DataShareResultSet对象。
 
 ```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let context = getContext(UIAbility);
-dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-  if (err != undefined) {
-    console.error("createDataShareHelper fail, error message : " + err);
-  } else {
-    console.info("createDataShareHelper end, data : " + data);
-    dataShareHelper = data;
-  }
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let uri = ("datashare:///com.samples.datasharetest.DataShare");
+    let context = this.context;
+    dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+      if (err != undefined) {
+        console.error("createDataShareHelper fail, error message : " + err);
+      } else {
+        console.info("createDataShareHelper end, data : " + data);
+        dataShareHelper = data;
+      }
+    });
 
-let columns = ["*"];
-let da = new dataSharePredicates.DataSharePredicates();
-let resultSet: DataShareResultSet | undefined = undefined;
-da.equalTo("name", "ZhangSan");
-if (dataShareHelper != undefined) {
-  (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
-    console.info("query end, data : " + data);
-    resultSet = data;
-  }).catch((err: BusinessError) => {
-    console.error("query fail, error message : " + err);
-  });
-}
+    let columns = ["*"];
+    let da = new dataSharePredicates.DataSharePredicates();
+    let resultSet: DataShareResultSet | undefined = undefined;
+    da.equalTo("name", "ZhangSan");
+    if (dataShareHelper != undefined) {
+      (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+        console.info("query end, data : " + data);
+        resultSet = data;
+      }).catch((err: BusinessError) => {
+        console.error("query fail, error message : " + err);
+      });
+    }
+  };
+};
 ```
 
 ## DataShareResultSet
@@ -66,7 +72,7 @@ if (dataShareHelper != undefined) {
 | columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |
 | rowCount    | number        | 是   | 结果集中的行数。         |
-| isClosed    | boolean       | 是   | 标识当前结果集是否关闭。 |
+| isClosed    | boolean       | 是   | 标识当前结果集是否关闭。如果结果集已关闭，则为true；否则为false。 |
 
 ### goToFirstRow
 

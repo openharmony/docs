@@ -16,7 +16,7 @@
 
 - 在DevEco Studio中**New &gt; Create Project**，选择**Native C++**模板，点击**Next**，选择API版本，设置好工程名称，点击**Finish**，创建得到新工程。
 
-- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-0000001546098578-V5#section181711599584)<!--RP1End-->。
+- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->。
 
 
 ## Native侧方法的实现
@@ -28,7 +28,7 @@
   napi_module有两个关键属性：一个是.nm_register_func，定义模块初始化函数；另一个是.nm_modname，定义模块的名称，也就是ArkTS侧引入的so库的名称，模块系统会根据此名称来区分不同的so。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   
   // 准备模块加载相关信息，将上述Init函数与本模块名等信息记录下来。
   static napi_module demoModule = {
@@ -46,20 +46,22 @@
       napi_module_register(&demoModule);
    }
   ```
+注：以上代码无须复制，创建Native C++工程以后在napi_init.cpp代码中已配置好。
 
 - 模块初始化
 
   实现ArkTS接口与C++接口的绑定和映射。
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   EXTERN_C_START
   // 模块初始化
   static napi_value Init(napi_env env, napi_value exports) {
       // ArkTS接口与C++接口的绑定和映射
       napi_property_descriptor desc[] = {
+          // 注：仅需复制以下两行代码，Init在完成创建Native C++工程以后在napi_init.cpp中已配置好。
           {"callNative", nullptr, CallNative, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"nativeCallArkTS", nullptr, NativeCallArkTS, nullptr, nullptr, nullptr, napi_default, nullptr},
+          {"nativeCallArkTS", nullptr, NativeCallArkTS, nullptr, nullptr, nullptr, napi_default, nullptr}
       };
       // 在exports对象上挂载CallNative/NativeCallArkTS两个Native方法
       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -67,16 +69,6 @@
   }
   EXTERN_C_END
   
-  // 模块基本信息
-  static napi_module demoModule = {
-      .nm_version = 1,
-      .nm_flags = 0,
-      .nm_filename = nullptr,
-      .nm_register_func = Init,
-      .nm_modname = "entry",
-      .nm_priv = nullptr,
-      .reserved = {0},
-  };
   ```
 
 - 在index.d.ts文件中，提供JS侧的接口方法。
@@ -90,6 +82,7 @@
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
   ```
+  // entry/src/main/cpp/types/libentry/oh-package.json5
   {
     "name": "libentry.so",
     "types": "./index.d.ts",
@@ -111,7 +104,7 @@
                       ${NATIVERENDER_ROOT_PATH}/include)
   
   # 添加名为entry的库
-  add_library(entry SHARED hello.cpp)
+  add_library(entry SHARED napi_init.cpp)
   # 构建此可执行文件需要链接的库
   target_link_libraries(entry PUBLIC libace_napi.z.so)
   ```
@@ -119,7 +112,7 @@
 - 实现Native侧的CallNative以及NativeCallArkTS接口。具体代码如下：
 
   ```
-  // entry/src/main/cpp/hello.cpp
+  // entry/src/main/cpp/napi_init.cpp
   static napi_value CallNative(napi_env env, napi_callback_info info)
   {
       size_t argc = 2;
@@ -214,7 +207,7 @@ struct Index {
 
 ### 注册建议
 
-- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突；
+- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突。
 
 - 模块注册的入口，即使用__attribute__((constructor))修饰的函数的函数名（如上述RegisterDemoModule函数）需要确保不与其它模块重复。
 
@@ -224,5 +217,7 @@ struct Index {
 每个引擎实例对应一个JS线程，实例上的对象不能跨线程操作，否则会引起应用crash。使用时需要遵循如下原则：
 
 - Node-API接口只能在JS线程使用。
-
 - Native接口入参env与特定JS线程绑定只能在创建时的线程使用。
+- 使用Node-API接口创建的数据需在env完全销毁前进行释放，避免内存泄漏。此外，在napi_env销毁后访问/使用这些数据，可能会导致进程崩溃。
+
+部分常见错误用法已增加维测手段覆盖，详见[使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)。

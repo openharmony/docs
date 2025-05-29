@@ -5,7 +5,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -17,14 +17,17 @@
 
 Stepper(value?: { index?: number })
 
+创建步骤导航器组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
-| 参数名 | 参数类型 | 必填  | 参数描述 |
+| 参数名 | 类型 | 必填  | 说明 |
 | ------| -------- | --------------- | -------- |
-| value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | { index?: number }   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 
 
 ## 属性
@@ -67,8 +70,8 @@ onChange(callback:&nbsp;(prevIndex:&nbsp;number,&nbsp;index:&nbsp;number)&nbsp;=
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| prevIndex | number | 是   | 切换前的步骤页索引值。                     |
-| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。 |
+| prevIndex | number | 是   | 切换前的步骤页索引值。<br/>取值范围：[0, +∞) |
+| index     | number | 是   | 切换后的步骤页（前一页或者下一页）索引值。<br/>取值范围：[0, +∞) |
 
 ### onNext
 
@@ -107,6 +110,8 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 
 ## 示例
 
+该示例主要演示如何使用步骤导航器组件。
+
 ```ts
 // xxx.ets
 @Styles function itemStyle () {
@@ -128,10 +133,10 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 @Entry
 @Component
 struct StepperExample {
-  @State currentIndex: number = 0
-  @State firstState: ItemState = ItemState.Normal
-  @State secondState: ItemState = ItemState.Normal
-  @State thirdState: ItemState = ItemState.Normal
+  @State currentIndex: number = 0;
+  @State firstState: ItemState = ItemState.Normal;
+  @State secondState: ItemState = ItemState.Normal;
+  @State thirdState: ItemState = ItemState.Normal;
 
   build() {
     Stepper({
@@ -145,7 +150,7 @@ struct StepperExample {
           Button('change status:' + this.firstState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
+              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip;
             })
         }.itemStyle()
       }
@@ -159,7 +164,7 @@ struct StepperExample {
           Button('change status:' + this.secondState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
+              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled;
             })
         }.itemStyle()
       }
@@ -174,7 +179,7 @@ struct StepperExample {
           Button('change status:' + this.thirdState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
+              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting;
             })
         }.itemStyle()
       }
@@ -190,15 +195,15 @@ struct StepperExample {
     .backgroundColor('#F1F3F5')
     .onFinish(() => {
       // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等
-      console.info('onFinish')
+      console.info('onFinish');
     })
     .onSkip(() => {
       // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等
-      console.info('onSkip')
+      console.info('onSkip');
     })
     .onChange((prevIndex?: number, index?: number) => {
       if(index){
-        this.currentIndex = index
+        this.currentIndex = index;
       }
     })
   }

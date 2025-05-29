@@ -1,12 +1,14 @@
 # @ohos.graphics.drawing (绘制模块)
 
-drawing模块提供了基本的绘制能力，如绘制矩形、圆形、点、直线、自定义Path、字体等等。
+应用在开发中，经常需要针对不同的元素内容进行绘制，开发者通常可以选择直接使用ArkUI组件来绘制想要的元素或效果，但有些自定义图形或效果无法满足，此时可以选择使用Drawing来实现灵活的自定义绘制效果。Drawing模块提供基本的绘制能力，如绘制矩形、圆形、点、直线、自定义Path和字体等。
 
 > **说明：**
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 本模块采用屏幕物理像素单位px。
+> - 本模块使用屏幕物理像素单位px。
+>
+> - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
 ## 导入模块
 
@@ -16,7 +18,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ## BlendMode
 
-混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
+混合模式枚举。混合模式会将两种颜色（源色、目标色）以特定的方式混合生成一种新的颜色，通常用于叠加、滤镜和遮罩等图形操作场景。混合操作会分别作用于红、绿、蓝三个颜色通道，采用相同的混合逻辑，而透明度（Alpha通道）则根据各模式的定义另行处理。
 
 为简洁起见，我们使用以下缩写：
 
@@ -24,7 +26,7 @@ s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 
 
 计算结果用如下缩写表示：
 
-r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
+r : 如果4个通道（透明度、红、绿、蓝）的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
 
 以黄色矩形为源图像，蓝色圆形为目标图像，各混合模式枚举生成的效果示意图请参考下表。
 
@@ -32,47 +34,308 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 
 | 名称        | 值   | 说明                                                         | 示意图   |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
-| CLEAR       | 0    | 清除模式，r = 0。                                            | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
-| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。） | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | 滤色模式，r = s + d - s * d                                  | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | 叠加模式                                                     | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | 颜色减淡模式                                                 | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | 颜色加深模式                                                 | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | 强光模式                                                     | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | 柔光模式                                                     | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
-| HUE         | 25   | 色相模式                                                     | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
-| SATURATION  | 26   | 饱和度模式                                                   | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
-| COLOR       | 27   | 颜色模式                                                     | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | 亮度模式                                                     | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
+| CLEAR       | 0    | 清除模式，r = 0，设置为全透明。                                | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
+| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。），使用源像素替换目标像素。 | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
+| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。），保持目标像素不变。 | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d，在目标像素上方绘制源像素，考虑源像素的透明度。 | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s，在源像素上方绘制目标像素，考虑目标像素的透明度。 | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da，仅保留源像素与目标不透明部分的交集。 | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa，仅保留目标像素与源不透明部分的交集。 | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da)，保留源像素中不与目标重叠的部分。 | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa)，保留目标像素中不与源重叠的部分。 | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)，源像素覆盖在目标像素上，仅在目标不透明部分显示源像素。 | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)，目标像素覆盖在源像素上，仅在源不透明部分显示目标像素。 | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)，仅显示源像素和目标像素中不重叠的部分。 | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1)，源和目标像素的颜色值相加。                   | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d，源和目标像素的颜色值相乘。                           | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | 滤色模式，r = s + d - s * d，反转源和目标像素的颜色值，相乘后再反转，结果通常更亮。 | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。 | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较暗的颜色值。 | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较亮的颜色值。 | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。           | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。           | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。    | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。             | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d，计算源和目标像素颜色值的差异。 | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d，类似于DIFFERENCE，但对比度较低。 | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d，源和目标像素的颜色值相乘，结果通常更暗。 | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
+| HUE         | 25   | 色相模式，使用源像素的色相，目标像素的饱和度和亮度。               | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
+| SATURATION  | 26   | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。             | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
+| COLOR       | 27   | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。               | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。               | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
+
+## PathMeasureMatrixFlags<sup>12+</sup>
+
+路径测量中的矩阵信息维度枚举，常用于控制物体沿路径移动的动画场景。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称        | 值   | 说明                                                         |
+| ----------- | ---- | ------------------------------------------------------------ |
+| GET_POSITION_MATRIX        | 0    | 获取位置信息对应的矩阵。                                            |
+| GET_TANGENT_MATRIX          | 1    | 获取切线信息对应的矩阵。 |
+| GET_POSITION_AND_TANGENT_MATRIX    | 2     | 获取位置和切线信息对应的矩阵。 |
+
+## SrcRectConstraint<sup>12+</sup>
+
+源矩形区域约束类型枚举，用于在画布绘制图像时指定是否将采样范围限制在源矩形区域内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称        | 值   | 说明                                                         |
+| ----------- | ---- | ------------------------------------------------------------ |
+| STRICT         | 0    | 严格限制采样范围在源矩形区域内，速度较慢。                                            |
+| FAST           | 1    | 允许采样范围超出源矩形范围，速度较快。 |
+
+## ShadowFlag<sup>12+</sup>
+
+控制阴影绘制行为的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                         | 值    | 说明                 |
+| -------------------------- | ---- | ------------------ |
+| NONE      | 0    | 不使用任何阴影处理选项。        |
+| TRANSPARENT_OCCLUDER | 1    | 遮挡物是半透明的。         |
+| GEOMETRIC_ONLY    | 2    | 仅使用几何阴影效果。        |
+| ALL           | 3    | 使用所有可用的阴影处理选项，以生成组合阴影效果，包括半透明遮挡和几何阴影效果。 |
+
+## PathOp<sup>12+</sup>
+
+路径操作类型枚举，可用于合并或裁剪路径等功能。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                   | 值   | 说明                           |
+| ---------------------- | ---- | ------------------------------ |
+| DIFFERENCE     | 0    | 差集操作。 |
+| INTERSECT    | 1    | 交集操作。 |
+| UNION    | 2    | 并集操作。 |
+| XOR     | 3    | 异或操作。 |
+| REVERSE_DIFFERENCE     | 4    | 反向差集操作。 |
+
+## PathIteratorVerb<sup>18+</sup>
+
+迭代器包含的路径操作类型枚举，可用于读取path的操作指令。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称  | 值   | 说明                           |
+| ----- | ---- | ------------------------------ |
+| MOVE  | 0    | 设置起始点。 |
+| LINE  | 1    | 添加线段。 |
+| QUAD  | 2    | 添加二阶贝塞尔圆滑曲线。 |
+| CONIC | 3    | 添加圆锥曲线。 |
+| CUBIC | 4    | 添加三阶贝塞尔圆滑曲线。 |
+| CLOSE | 5    | 路径闭合。 |
+| DONE  | CLOSE + 1    | 路径设置完成。 |
+
+## PathIterator<sup>18+</sup>
+
+表示路径操作迭代器，可通过遍历迭代器读取path的操作指令。
+
+### constructor<sup>18+</sup>
+
+constructor(path: Path)
+
+构造迭代器并绑定路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | 是   | 迭代器绑定的路径对象。                 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+```
+
+### next<sup>18+</sup>
+
+next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
+
+返回当前路径的下一个操作，并将迭代器置于该操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组，长度必须至少为偏移量加4，以确保能容纳所有类型的路径数据。操作执行后，该数组会被覆盖。填入的坐标点数量取决于操作类型，其中，MOVE填入1个坐标点，LINE填入2个坐标点，QUAD填入3个坐标点，CONIC填入3个坐标点 + 1个权重值（共3.5组），CUBIC填入4个坐标点，CLOSE和DONE不填入任何点。 |
+| offset | number   | 否   | 数组中写入位置相对起始点的偏移量，默认为0，取值范围为[0, size-4]，size是指坐标点数组长度。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(10, 20);
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
+let pointCount: Array<number> = [1,2,3,4,4,0,0]; //1,2,3,3.5,4,0,0
+let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
+let offset = 0;
+let verb = iter.next(points, offset);
+let outputMessage: string = "pathIteratorNext: ";
+outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
+for (let j = 0; j < pointCount[verb] + offset; j++) {
+  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
+}
+console.info(outputMessage);
+```
+
+### peek<sup>18+</sup>
+
+peek(): PathIteratorVerb
+
+返回当前路径的下一个操作，迭代器保持在原操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb18) | 迭代器包含的路径操作类型。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.peek();
+```
+
+### hasNext<sup>18+</sup>
+
+hasNext(): boolean
+
+判断路径操作迭代器中是否还有下一个操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 判断路径操作迭代器中是否还有下一个操作。true表示有，false表示没有。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.hasNext();
+```
 
 ## Path
 
 由直线、圆弧、二阶贝塞尔、三阶贝塞尔组成的复合几何路径。
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+构造一个路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+```
+
+### constructor<sup>12+</sup>
+
+constructor(path: Path)
+
+构造一个已有路径的副本。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | 是   | 待复制的路径对象。                 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+path.close();
+let path1: drawing.Path =  new drawing.Path(path);
+```
+
+### set<sup>20+</sup>
+
+set(src: Path): void
+
+使用另一个路径对当前路径进行更新。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | 是   | 用于更新的路径。                 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+path.close();
+let path1: drawing.Path = new drawing.Path();
+path1.set(path);
+```
+
 ### moveTo
 
 moveTo(x: number, y: number) : void
 
-用于设置自定义路径的起始点位置。
+设置自定义路径的起始点位置。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -93,6 +356,7 @@ moveTo(x: number, y: number) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 ```
@@ -101,9 +365,9 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-用于添加一条从路径的最后点位置到目标点位置的线段。
+添加一条从路径的最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -124,6 +388,7 @@ lineTo(x: number, y: number) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.lineTo(10, 15);
@@ -133,9 +398,9 @@ path.lineTo(10, 15);
 
 arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg: number): void
 
-用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。
+给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，取其内切椭圆，然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -145,8 +410,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 | y1       | number | 是   | 矩形左上角的y坐标，该参数为浮点数。 |
 | x2       | number | 是   | 矩形右下角的x坐标，该参数为浮点数。 |
 | y2       | number | 是   | 矩形右下角的y坐标，该参数为浮点数。 |
-| startDeg | number | 是   | 起始角度，单位为度，该参数为浮点数。 |
-| sweepDeg | number | 是   | 扫描度数，单位为度，该参数为浮点数。 |
+| startDeg | number | 是   | 起始的角度。角度的起始方向（0°）为x轴正方向。 |
+| sweepDeg | number | 是   | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 |
 
 **错误码：**
 
@@ -160,6 +425,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.arcTo(10, 15, 10, 10, 10, 10);
@@ -169,9 +435,9 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。
+添加从路径最后点位置（若路径没有内容则为 (0, 0)）到目标点位置的二阶贝塞尔曲线。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -194,18 +460,54 @@ quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.quadTo(10, 15, 10, 10);
+```
+
+### conicTo<sup>12+</sup>
+
+conicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
+
+在当前路径上添加一条路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| ctrlX  | number | 是   | 控制点的x坐标，该参数为浮点数。 |
+| ctrlY  | number | 是   | 控制点的y坐标，该参数为浮点数。 |
+| endX   | number | 是   | 目标点的x坐标，该参数为浮点数。 |
+| endY   | number | 是   | 目标点的y坐标，该参数为浮点数。 |
+| weight | number | 是   | 表示曲线权重，决定了曲线的形状。值越大，曲线越接近控制点。小于等于0时，效果与[lineTo](#lineto)相同；值为1时，效果与[quadTo](#quadto)相同。该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.conicTo(200, 400, 100, 200, 0);
 ```
 
 ### cubicTo
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。
+添加一条从路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔圆滑曲线。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -230,23 +532,718 @@ cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: nu
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
-path.cubicTo(10, 10, 10, 10, 15, 15);
+path.cubicTo(100, 100, 80, 150, 300, 150);
+```
+
+### rMoveTo<sup>12+</sup>
+
+rMoveTo(dx: number, dy: number): void
+
+设置一个相对于当前路径终点（若路径没有内容则默认为 (0, 0)）的路径起始点位置。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| dx     | number | 是   | 路径新起始点相对于当前路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| dy     | number | 是   | 路径新起始点相对于当前路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.rMoveTo(10, 10);
+```
+
+### rLineTo<sup>12+</sup>
+
+rLineTo(dx: number, dy: number): void
+
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| dx     | number | 是   | 目标点相对于当前路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| dy     | number | 是   | 目标点相对于当前路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.rLineTo(400, 200);
+```
+
+### rQuadTo<sup>12+</sup>
+
+rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
+
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔曲线。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| dx1  | number | 是   | 控制点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| dy1  | number | 是   | 控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+| dx2   | number | 是   | 目标点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| dy2   | number | 是   | 目标点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.rQuadTo(100, 0, 0, 200);
+```
+
+### rConicTo<sup>12+</sup>
+
+rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
+
+使用相对位置在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| ctrlX  | number | 是   | 控制点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| ctrlY  | number | 是   | 控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+| endX   | number | 是   | 目标点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| endY   | number | 是   | 目标点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+| weight | number | 是   | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[rLineTo](#rlineto12)添加一条到结束点的线段，若为1则等同于[rQuadTo](#rquadto12)，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.rConicTo(200, 400, 100, 200, 0);
+```
+
+### rCubicTo<sup>12+</sup>
+
+rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
+
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔曲线。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                        |
+| ------ | ------ | ---- | --------------------------- |
+| ctrlX1 | number | 是   | 第一个控制点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| ctrlY1 | number | 是   | 第一个控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+| ctrlX2 | number | 是   | 第二个控制点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| ctrlY2 | number | 是   | 第二个控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+| endX   | number | 是   | 目标点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| endY   | number | 是   | 目标点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.rCubicTo(200, 0, 0, 200, -20, 0);
+```
+
+### addArc<sup>12+</sup>
+
+addArc(rect: common2D.Rect, startAngle: number, sweepAngle: number): void
+
+向路径添加一段圆弧。
+当startAngle和sweepAngle同时满足以下两种情况时，添加整个椭圆而不是圆弧:
+1.startAngle对90取余接近于0；
+2.sweepAngle不在(-360, 360)区间内。
+其余情况sweepAngle会对360取余后添加圆弧。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 包含弧的椭圆的矩形边界。      |
+| startAngle   | number | 是   | 弧的起始角度，单位为度，0度为x轴正方向，该参数为浮点数。 |
+| sweepAngle   | number | 是   | 扫描角度，单位为度。正数表示顺时针方向，负数表示逆时针方向，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+path.addArc(rect, 90, 180);
+```
+
+### addCircle<sup>12+</sup>
+
+addCircle(x: number, y: number, radius: number, pathDirection?: PathDirection): void
+
+按指定方向，向路径添加圆形，圆的起点位于(x + radius, y)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| x   | number | 是   | 表示圆心的x轴坐标，该参数为浮点数。 |
+| y   | number | 是   | 表示圆心的y轴坐标，该参数为浮点数。 |
+| radius   | number | 是   | 表示圆形的半径，该参数为浮点数，小于等于0时不会有任何效果。 |
+| pathDirection   | [PathDirection](#pathdirection12)  | 否   | 表示路径方向，默认为顺时针方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+path.addCircle(100, 200, 50, drawing.PathDirection.CLOCKWISE);
+```
+
+### addOval<sup>12+</sup>
+
+addOval(rect: common2D.Rect, start: number, pathDirection?: PathDirection): void
+
+按指定方向，将矩形的内切椭圆添加到路径中。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 椭圆的矩形边界。      |
+| start   | number | 是   | 表示椭圆初始点的索引，0，1，2，3分别对应椭圆的上端点，右端点，下端点，左端点，该参数为不小于0的整数，大于等于4时会对4取余。 |
+| pathDirection   | [PathDirection](#pathdirection12)  | 否   | 表示路径方向，默认为顺时针方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+path.addOval(rect, 5, drawing.PathDirection.CLOCKWISE);
+```
+
+### addRect<sup>12+</sup>
+
+addRect(rect: common2D.Rect, pathDirection?: PathDirection): void
+
+按指定方向，将矩形添加到路径中，添加的路径的起始点为矩形左上角。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 向路径中添加的矩形轮廓。      |
+| pathDirection   | [PathDirection](#pathdirection12)  | 否   | 表示路径方向，默认为顺时针方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+path.addRect(rect, drawing.PathDirection.CLOCKWISE);
+```
+
+### addRoundRect<sup>12+</sup>
+
+addRoundRect(roundRect: RoundRect, pathDirection?: PathDirection): void
+
+按指定方向，向路径添加圆角矩形轮廓。路径添加方向为顺时针时，起始点位于圆角矩形左下方圆角与左边界的交点；路径添加方向为逆时针时，起始点位于圆角矩形左上方圆角与左边界的交点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| roundRect        | [RoundRect](#roundrect12) | 是    | 圆角矩形对象。      |
+| pathDirection   | [PathDirection](#pathdirection12)  | 否   | 表示路径方向，默认为顺时针方向。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+let roundRect = new drawing.RoundRect(rect, 50, 50);
+path.addRoundRect(roundRect, drawing.PathDirection.CLOCKWISE);
+```
+
+### addPath<sup>12+</sup>
+
+addPath(path: Path, matrix?: Matrix | null): void
+
+将源路径进行矩阵变换后，将其添加到当前路径中。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| path        | [Path](#path) | 是    | 表示源路径对象。      |
+| matrix   | [Matrix](#matrix12)\|null  | 否   | 表示矩阵对象，默认为单位矩阵。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+let matrix = new drawing.Matrix();
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+let roundRect = new drawing.RoundRect(rect, 50, 50);
+path.addRoundRect(roundRect, drawing.PathDirection.CLOCKWISE);
+let dstPath = new drawing.Path();
+dstPath.addPath(path, matrix);
+```
+
+### transform<sup>12+</sup>
+
+transform(matrix: Matrix): void
+
+对路径进行矩阵变换。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| matrix   | [Matrix](#matrix12)  | 是   | 表示矩阵对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+let matrix = new drawing.Matrix();
+matrix.setScale(1.5, 1.5, 10, 10);
+const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+let roundRect = new drawing.RoundRect(rect, 50, 50);
+path.addRoundRect(roundRect, drawing.PathDirection.CLOCKWISE);
+path.transform(matrix);
+```
+
+### contains<sup>12+</sup>
+
+contains(x: number, y: number): boolean
+
+判断指定坐标点是否被路径包含，判定是否被路径包含的规则参考[PathFillType](#pathfilltype12)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| x      | number | 是   | x轴上坐标点，该参数必须为浮点数。 |
+| y      | number | 是   | y轴上坐标点，该参数必须为浮点数。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回指定坐标点是否在路径内。true表示点在路径内，false表示点不在路径内。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+let rect : common2D.Rect = {left: 50, top: 50, right: 250, bottom: 250};
+path.addRect(rect, drawing.PathDirection.CLOCKWISE);
+console.info("test contains: " + path.contains(0, 0));
+console.info("test contains: " + path.contains(60, 60));
+```
+
+### setLastPoint<sub>20+</sup>
+
+setLastPoint(x: number, y: number): void
+
+修改路径的最后一个点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| x      | number | 是   | 指定点的x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| y      | number | 是   | 指定点的y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+let isEmpty = path.isEmpty();
+console.info('isEmpty:', isEmpty);
+path.reset();
+isEmpty = path.isEmpty();
+console.info('isEmpty:', isEmpty);
+path.setLastPoint(50, 50);
+console.info('isEmpty:', isEmpty);
+```
+
+### setFillType<sup>12+</sup>
+
+setFillType(pathFillType: PathFillType): void
+
+设置路径的填充类型，决定路径内部区域的定义方式。例如，使用Winding填充类型时，路径内部区域由路径环绕的次数决定，而使用EvenOdd填充类型时，路径内部区域由路径环绕的次数是否为奇数决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| pathFillType   | [PathFillType](#pathfilltype12)  | 是   | 表示路径填充规则。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.setFillType(drawing.PathFillType.WINDING);
+```
+
+### getFillType<sup>20+</sup>
+
+getFillType(): PathFillType
+
+获取路径的填充类型。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                                               | 说明                   |
+| -------------------------------------------------- | ---------------------- |
+| [PathFillType](#pathfilltype12) | 路径填充类型。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const path = new drawing.Path();
+path.setFillType(drawing.PathFillType.WINDING);
+let type = path.getFillType();
+console.info("type :" + type);
+```
+
+### getBounds<sup>12+</sup>
+
+getBounds(): common2D.Rect
+
+获取包含路径的最小矩形边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                                               | 说明                   |
+| -------------------------------------------------- | ---------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 包含路径的最小矩形区域。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.lineTo(50, 40)
+let rect : common2D.Rect = {left: 0, top: 0, right: 0, bottom: 0};
+rect = path.getBounds();
+console.info("test rect.left: " + rect.left);
+console.info("test rect.top: " + rect.top);
+console.info("test rect.right: " + rect.right);
+console.info("test rect.bottom: " + rect.bottom);
+```
+
+### addPolygon<sup>12+</sup>
+
+addPolygon(points: Array\<common2D.Point>, close: boolean): void
+
+通过坐标点列表添加多条连续的线段。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
+| close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线。true表示将路径闭合，false表示不将路径闭合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let pointsArray = new Array<common2D.Point>();
+const point1: common2D.Point = { x: 200, y: 200 };
+const point2: common2D.Point = { x: 400, y: 200 };
+const point3: common2D.Point = { x: 100, y: 400 };
+const point4: common2D.Point = { x: 300, y: 400 };
+pointsArray.push(point1);
+pointsArray.push(point2);
+pointsArray.push(point3);
+pointsArray.push(point4);
+const path = new drawing.Path();
+path.addPolygon(pointsArray, false);
+```
+
+### offset<sup>12+</sup>
+
+offset(dx: number, dy: number): Path
+
+将路径沿着x轴和y轴方向偏移一定距离并保存在返回的路径对象中。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| dx     | number        | 是   | x轴方向偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
+| dy     | number        | 是   | y轴方向偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| [Path](#path) | 返回当前路径偏移(dx,dy)后生成的新路径对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+path.moveTo(200, 200);
+path.lineTo(300, 300);
+const dst = path.offset(200, 200);
+```
+
+### op<sup>12+</sup>
+
+op(path: Path, pathOp: PathOp): boolean
+
+将当前路径置为和path按照指定的路径操作类型合并后的结果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| path    | [Path](#path) | 是   | 路径对象，用于与当前路径合并。 |
+| pathOp  | [PathOp](#pathop12)   | 是    | 路径操作类型枚举。    |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| boolean | 返回路径合并是否成功的结果。true表示合并成功，false表示合并失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const path = new drawing.Path();
+const path2 = new drawing.Path();
+path.addCircle(100, 200, 100, drawing.PathDirection.CLOCKWISE);
+console.info("get pathOp: ", path2.op(path, drawing.PathOp.DIFFERENCE));
 ```
 
 ### close
 
 close(): void
 
-用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。
+闭合路径，会添加一条从路径起点位置到最后点位置的线段。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.cubicTo(10, 10, 10, 10, 15, 15);
@@ -257,9 +1254,28 @@ path.close();
 
 reset(): void
 
-用于重置自定义路径数据。
+重置自定义路径数据。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+path.moveTo(10,10);
+path.cubicTo(10, 10, 10, 10, 15, 15);
+path.reset();
+```
+
+### rewind<sup>20+</sup>
+
+rewind(): void
+
+将路径内添加的各类点/线清空，但是保留内存空间。
+
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **示例：**
 
@@ -267,17 +1283,82 @@ reset(): void
 import { drawing } from '@kit.ArkGraphics2D';
 let path = new drawing.Path();
 path.moveTo(10,10);
-path.cubicTo(10, 10, 10, 10, 15, 15);
-path.reset();
+path.lineTo(20,20);
+path.rewind();
+let empty = path.isEmpty();
+console.info('empty : ', empty);
+```
+
+### isEmpty<sup>20+</sup>
+
+isEmpty(): boolean
+
+判断路径是否为空。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| boolean | 路径是否为空。true表示当前路径为空，false表示路径不为空。|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path = new drawing.Path();
+path.moveTo(10,10);
+path.lineTo(20,20);
+let isEmpty = path.isEmpty();
+console.info('isEmpty:', isEmpty);
+```
+
+### isRect<sup>20+</sup>
+
+isRect(rect: common2D.Rect | null): boolean
+
+判断路径是否构成矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect)\| null | 是   | 矩形对象，作为出参使用，路径构成矩形时，会被改写为路径表示的矩形，否则不会改变。可以为null，表示无需获取路径表示的矩形。 |
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| boolean | 返回路径是否构成矩形。true表示路径构成矩形，false表示路径不构成矩形。|
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path = new drawing.Path();
+path.moveTo(10,10);
+path.lineTo(20,10);
+let isRect = path.isRect(null);
+console.info("isRect: ", isRect);
+let rect: common2D.Rect = { left : 100, top : 100, right : 400, bottom : 500 };
+path.lineTo(20, 20);
+path.lineTo(10, 20);
+path.lineTo(10, 10);
+isRect = path.isRect(rect);
+console.info('isRect: ', isRect);
 ```
 
 ### getLength<sup>12+</sup>
 
 getLength(forceClosed: boolean): number
 
-用于获取路径长度。
+获取路径长度。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -294,11 +1375,238 @@ getLength(forceClosed: boolean): number
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.arcTo(20, 20, 180, 180, 180, 90);
 let len = path.getLength(false);
 console.info("path length = " + len);
+```
+
+### getPositionAndTangent<sup>12+</sup>
+
+getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D.Point, tangent: common2D.Point): boolean
+
+获取路径起始点指定距离处的坐标点和切线值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
+| distance | number | 是   | 表示与路径起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。该参数为浮点数。               |
+| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的坐标。                  |
+| tangent | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。                 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean |表示是否成功获取距离路径起始点distance处的点的坐标和正切值的结果。true表示获取成功，false表示获取失败，position和tangent不会被改变。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+let position: common2D.Point = { x: 0.0, y: 0.0 };
+let tangent: common2D.Point = { x: 0.0, y: 0.0 };
+if (path.getPositionAndTangent(false, 0.1, position, tangent)) {
+  console.info("getPositionAndTangent-----position:  "+ position.x);
+  console.info("getPositionAndTangent-----position:  "+ position.y);
+  console.info("getPositionAndTangent-----tangent:  "+ tangent.x);
+  console.info("getPositionAndTangent-----tangent:  "+ tangent.y);
+}
+```
+
+### getSegment<sup>18+</sup>
+
+getSegment(forceClosed: boolean, start: number, stop: number, startWithMoveTo: boolean, dst: Path): boolean
+
+截取路径的片段并追加到目标路径上。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
+| start | number | 是   | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。该参数为浮点数。               |
+| stop | number | 是   | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
+| startWithMoveTo | boolean | 是   | 表示是否在目标路径执行[moveTo](#moveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。                |
+| dst | number | [Path](#path)   | 目标路径，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。               |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean |表示是否成功截取路径片段。true表示截取成功，false表示截取失败。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+path.lineTo(700, 0);
+let dstPath: drawing.Path = new drawing.Path();
+console.info("getSegment-----result:  "+ path.getSegment(true, 10.0, 20.0, true, dstPath));
+```
+
+### isClosed<sup>12+</sup>
+
+isClosed(): boolean
+
+获取路径是否闭合。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 表示当前路径是否闭合，true表示闭合，false表示不闭合。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(0, 700);
+if (path.isClosed()) {
+  console.info("path is closed.");
+} else {
+  console.info("path is not closed.");
+}
+```
+
+### getMatrix<sup>12+</sup>
+
+getMatrix(forceClosed: boolean, distance: number, matrix: Matrix, flags: PathMeasureMatrixFlags): boolean
+
+在路径上的某个位置，获取一个变换矩阵，用于表示该点的坐标和朝向。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                  |
+| distance | number | 是   | 表示与路径起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。该参数为浮点数。                  |
+| matrix | [Matrix](#matrix12) | 是   | 矩阵对象，用于存储得到的矩阵。                  |
+| flags | [PathMeasureMatrixFlags](#pathmeasurematrixflags12) | 是   | 矩阵信息维度枚举。                  |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回是否成功获取变换矩阵的结果。true表示成功，false表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let matrix = new drawing.Matrix();
+if(path.getMatrix(false, 10, matrix, drawing.PathMeasureMatrixFlags.GET_TANGENT_MATRIX)) {
+  console.info("path.getMatrix return true");
+} else {
+  console.info("path.getMatrix return false");
+}
+```
+
+### buildFromSvgString<sup>12+</sup>
+
+buildFromSvgString(str: string): boolean
+
+解析SVG字符串表示的路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| str | string | 是   | SVG格式的字符串，用于描述绘制路径。                 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回是否成功解析SVG字符串的结果。true表示解析成功，false表示解析失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let svgStr: string =  "M150 100 L75 300 L225 300 Z";
+if(path.buildFromSvgString(svgStr)) {
+  console.info("buildFromSvgString return true");
+} else {
+  console.info("buildFromSvgString return false");
+}
+```
+
+### getPathIterator<sup>18+</sup>
+
+getPathIterator(): PathIterator
+
+返回该路径的操作迭代器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIterator](#pathiterator18) | 该路径的迭代器对象。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+let iter = path.getPathIterator();
 ```
 
 ## Canvas
@@ -307,15 +1615,15 @@ console.info("path length = " + len);
 
 > **说明：**
 >
-> 画布自带一个黑色，开启反走样，不具备其他任何样式效果的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
+> 画布自带一个默认画刷，该画刷为黑色，开启反走样，不具备其他任何样式效果。当画布中没有主动设置画刷和画笔时，该默认画刷生效。
 
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
 
-Canvas对象的构造函数。
+创建一个以PixelMap作为绘制目标的Canvas对象。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -336,6 +1644,7 @@ Canvas对象的构造函数。
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 import { image } from '@kit.ImageKit';
+
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
   editable: true,
@@ -354,15 +1663,15 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 drawRect(rect: common2D.Rect): void
 
-用于绘制一个矩形，默认使用黑色填充。
+绘制一个矩形，默认使用黑色填充。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域 |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域。 |
 
 **错误码：**
 
@@ -377,6 +1686,7 @@ drawRect(rect: common2D.Rect): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -394,9 +1704,9 @@ class DrawingRenderNode extends RenderNode {
 
 drawRect(left: number, top: number, right: number, bottom: number): void
 
-用于绘制一个矩形，默认使用黑色填充。性能优于[drawRect](#drawrect)接口，推荐使用本接口。
+绘制一个矩形，默认使用黑色填充。性能优于[drawRect](#drawrect)接口，推荐使用本接口。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -420,6 +1730,7 @@ drawRect(left: number, top: number, right: number, bottom: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
 
   draw(context : DrawContext) {
@@ -434,13 +1745,305 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawRoundRect<sup>12+</sup>
+
+drawRoundRect(roundRect: RoundRect): void
+
+画一个圆角矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名     | 类型                    | 必填 | 说明       |
+| ---------- | ----------------------- | ---- | ------------ |
+| roundRect  | [RoundRect](#roundrect12) | 是   | 圆角矩形对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left : 100, top : 100, right : 400, bottom : 500 };
+    let roundRect = new drawing.RoundRect(rect, 10, 10);
+    canvas.drawRoundRect(roundRect);
+  }
+}
+```
+
+### drawNestedRoundRect<sup>12+</sup>
+
+drawNestedRoundRect(outer: RoundRect, inner: RoundRect): void
+
+绘制两个嵌套的圆角矩形，外部矩形边界必须包含内部矩形边界，否则无绘制效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名  | 类型                    | 必填 | 说明       |
+| ------ | ----------------------- | ---- | ------------ |
+| outer  | [RoundRect](#roundrect12) | 是   | 圆角矩形对象，表示外部圆角矩形边界。|
+| inner  | [RoundRect](#roundrect12) | 是   | 圆角矩形对象，表示内部圆角矩形边界。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let inRect: common2D.Rect = { left : 200, top : 200, right : 400, bottom : 500 };
+    let outRect: common2D.Rect = { left : 100, top : 100, right : 400, bottom : 500 };
+    let outRoundRect = new drawing.RoundRect(outRect, 10, 10);
+    let inRoundRect = new drawing.RoundRect(inRect, 10, 10);
+    canvas.drawNestedRoundRect(outRoundRect, inRoundRect);
+    canvas.drawRoundRect(outRoundRect);
+  }
+}
+```
+
+### drawBackground<sup>12+</sup>
+
+drawBackground(brush: Brush): void
+
+使用画刷填充画布的可绘制区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型            | 必填 | 说明       |
+| ------ | --------------- | ---- | ---------- |
+| brush  | [Brush](#brush) | 是   | 画刷对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    brush.setColor(color);
+    canvas.drawBackground(brush);
+  }
+}
+```
+
+### drawShadow<sup>12+</sup>
+
+drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color, spotColor: common2D.Color, flag: ShadowFlag) : void
+
+绘制射灯类型阴影，使用路径描述环境光阴影的轮廓。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型                                       | 必填   | 说明         |
+| ------------ | ---------------------------------------- | ---- | ---------- |
+| path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算遮挡物相对于画布在z轴上的偏移量，其值取决于x与y坐标。 |
+| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
+| lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
+| ambientColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 环境阴影颜色。 |
+| spotColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 点阴影颜色。 |
+| flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const path = new drawing.Path();
+    path.addCircle(100, 200, 100, drawing.PathDirection.CLOCKWISE);
+    let pen = new drawing.Pen();
+    pen.setAntiAlias(true);
+    let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 };
+    pen.setColor(pen_color);
+    pen.setStrokeWidth(10.0);
+    canvas.attachPen(pen);
+    let brush = new drawing.Brush();
+    let brush_color : common2D.Color = { alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00 };
+    brush.setColor(brush_color);
+    canvas.attachBrush(brush);
+    let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
+    let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
+    let color1 : common2D.Color = {alpha: 0xFF, red:0, green:0, blue:0xFF};
+    let color2 : common2D.Color = {alpha: 0xFF, red:0xFF, green:0, blue:0};
+    let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
+    canvas.drawShadow(path, point1, point2, 30, color1, color2, shadowFlag);
+  }
+}
+```
+
+### drawShadow<sup>18+</sup>
+
+drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: common2D.Color | number, spotColor: common2D.Color | number, flag: ShadowFlag) : void
+
+绘制射灯类型阴影，使用路径描述环境光阴影的轮廓。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型                                       | 必填   | 说明         |
+| ------------ | ---------------------------------------- | ---- | ---------- |
+| path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
+| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
+| lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
+| ambientColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是    | 环境阴影颜色，可以用16进制ARGB格式的32位无符号整数表示。 |
+| spotColor  |[common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是    | 点阴影颜色，可以用16进制ARGB格式的32位无符号整数表示。 |
+| flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const path = new drawing.Path();
+    path.addCircle(300, 600, 100, drawing.PathDirection.CLOCKWISE);
+    let point1 : common2D.Point3d = {x: 100, y: 80, z:80};
+    let point2 : common2D.Point3d = {x: 200, y: 10, z:40};
+    let shadowFlag : drawing.ShadowFlag = drawing.ShadowFlag.ALL;
+    canvas.drawShadow(path, point1, point2, 30, 0xFF0000FF, 0xFFFF0000, shadowFlag);
+  }
+}
+```
+
+### getLocalClipBounds<sup>12+</sup>
+
+getLocalClipBounds(): common2D.Rect
+
+获取画布裁剪区域的边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 返回画布裁剪区域的矩形边界。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let clipRect: common2D.Rect = {
+      left : 150, top : 150, right : 300, bottom : 400
+    };
+    canvas.clipRect(clipRect,drawing.ClipOp.DIFFERENCE, true);
+    console.info("test rect.left: " + clipRect.left);
+    console.info("test rect.top: " + clipRect.top);
+    console.info("test rect.right: " + clipRect.right);
+    console.info("test rect.bottom: " + clipRect.bottom);
+    canvas.getLocalClipBounds();
+  }
+}
+```
+
+### getTotalMatrix<sup>12+</sup>
+
+getTotalMatrix(): Matrix
+
+获取画布矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                | 说明       |
+| ----------------- | -------- |
+| [Matrix](#matrix12) |返回画布矩阵。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let matrix = new drawing.Matrix();
+    matrix.setMatrix([5, 0, 0, 0, 1, 1, 0, 0, 1]);
+    canvas.setMatrix(matrix);
+    let matrixResult =canvas.getTotalMatrix();
+  }
+}
+```
+
 ### drawCircle
 
 drawCircle(x: number, y: number, radius: number): void
 
-用于画一个圆形。如果半径小于等于零，则不绘制任何内容。默认使用黑色填充。
+绘制一个圆形。如果半径小于等于零，则不绘制。默认使用黑色填充。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -463,6 +2066,7 @@ drawCircle(x: number, y: number, radius: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -480,15 +2084,15 @@ class DrawingRenderNode extends RenderNode {
 
 drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?: SamplingOptions): void
 
-用于画一张图片，图片的左上角坐标为(left, top)。
+画一张图片，图片的左上角坐标为(left, top)。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap                  |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                  |
 | left     | number                                       | 是   | 图片位置的左上角x轴坐标，该参数为浮点数。 |
 | top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | 否  | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
@@ -507,6 +2111,7 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?:
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   pixelMap: image.PixelMap | null = null;
 
@@ -520,20 +2125,111 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawImageRect<sup>12+</sup>
+
+drawImageRect(pixelmap: image.PixelMap, dstRect: common2D.Rect, samplingOptions?: SamplingOptions): void
+
+将图片绘制到画布的指定区域上。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                 |
+| dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定画布上图片的绘制区域。 |
+| samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 否   | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pen = new drawing.Pen();
+    canvas.attachPen(pen);
+    let rect: common2D.Rect = { left: 0, top: 0, right: 200, bottom: 200 };
+    canvas.drawImageRect(this.pixelMap, rect);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawImageRectWithSrc<sup>12+</sup>
+
+drawImageRectWithSrc(pixelmap: image.PixelMap, srcRect: common2D.Rect, dstRect: common2D.Rect, samplingOptions?: SamplingOptions, constraint?: SrcRectConstraint): void
+
+将图片的指定区域绘制到画布的指定区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                 |
+| srcRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定图片的待绘制区域。 |
+| dstRect     | [common2D.Rect](js-apis-graphics-common2D.md#rect)                               | 是   | 矩形对象，用于指定画布上图片的绘制区域。 |
+| samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 否   | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
+| constraint     | [SrcRectConstraint](#srcrectconstraint12)                        | 否   | 源矩形区域约束类型，默认为STRICT。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+pixelMap: image.PixelMap | null = null;
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pen = new drawing.Pen();
+    canvas.attachPen(pen);
+    let srcRect: common2D.Rect = { left: 0, top: 0, right: 100, bottom: 100 };
+    let dstRect: common2D.Rect = { left: 100, top: 100, right: 200, bottom: 200 };
+    canvas.drawImageRectWithSrc(this.pixelMap, srcRect, dstRect);
+    canvas.detachPen();
+  }
+}
+```
+
 ### drawColor
 
 drawColor(color: common2D.Color, blendMode?: BlendMode): void
 
-绘制背景颜色。
+使用指定颜色并按照指定的[BlendMode](#blendmode)对画布当前可绘制区域进行填充。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。                   |
-| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。                   |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
 
 **错误码：**
 
@@ -548,6 +2244,7 @@ drawColor(color: common2D.Color, blendMode?: BlendMode): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -566,9 +2263,9 @@ class DrawingRenderNode extends RenderNode {
 
 drawColor(alpha: number, red: number, green: number, blue: number, blendMode?: BlendMode): void
 
-绘制背景颜色。性能优于[drawColor](#drawcolor)接口，推荐使用本接口。
+使用指定颜色并按照指定的[BlendMode](#blendmode)对画布当前可绘制区域进行填充。性能优于[drawColor](#drawcolor)接口，推荐使用本接口。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -593,10 +2290,48 @@ drawColor(alpha: number, red: number, green: number, blue: number, blendMode?: B
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     canvas.drawColor(255, 0, 10, 10, drawing.BlendMode.CLEAR);
+  }
+}
+```
+
+### drawColor<sup>18+</sup>
+
+drawColor(color: number, blendMode?: BlendMode): void
+
+使用指定颜色并按照指定的[BlendMode](#blendmode)对画布当前可绘制区域进行填充。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                             |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | number | 是   | 16进制ARGB格式的颜色。                   |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawColor(0xff000a0a, drawing.BlendMode.CLEAR);
   }
 }
 ```
@@ -607,7 +2342,7 @@ drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number
 
 在网格上绘制像素图，网格均匀分布在像素图上。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -635,6 +2370,7 @@ drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   pixelMap: image.PixelMap | null = null;
 
@@ -651,13 +2387,225 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### clear<sup>12+</sup>
+
+clear(color: common2D.Color): void
+
+使用指定颜色填充画布上的裁剪区域。效果等同于[drawColor](#drawcolor)。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                             |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
+  }
+}
+```
+
+### clear<sup>18+</sup>
+
+clear(color: common2D.Color | number): void
+
+使用指定颜色填充画布上的裁剪区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                             |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。  |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let color: number = 0xffff0000;
+    canvas.clear(color);
+  }
+}
+```
+
+### getWidth<sup>12+</sup>
+
+getWidth(): number
+
+获取画布的宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 必填 | 说明           |
+| ------ | ---- | -------------- |
+| number | 是   | 返回画布的宽度，该参数为浮点数。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let width = canvas.getWidth();
+    console.info('get canvas width:' + width);
+  }
+}
+```
+
+### getHeight<sup>12+</sup>
+
+getHeight(): number
+
+获取画布的高度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 必填 | 说明           |
+| ------ | ---- | -------------- |
+| number | 是   | 返回画布的高度，该参数为浮点数。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let height = canvas.getHeight();
+    console.log('get canvas height:' + height);
+  }
+}
+```
+
+### drawOval<sup>12+</sup>
+
+drawOval(oval: common2D.Rect): void
+
+在画布上绘制一个椭圆，椭圆的形状和位置由椭圆的外切矩形给出。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| oval   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形区域，该矩形的内切椭圆即为待绘制椭圆。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = {left:100, top:50, right:400, bottom:500};
+    canvas.drawOval(rect);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawArc<sup>12+</sup>
+
+drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
+
+在画布上绘制圆弧。该方法允许指定起始角度、扫描角度。当扫描角度的绝对值大于360度时，则绘制椭圆。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
+| startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，正数时以顺时针方向放置起始点，负数时以逆时针方向放置起始点。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。它的有效范围在-360度到360度之间，当绝对值大于360度时，该方法绘制的是一个椭圆。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = {left:100, top:50, right:400, bottom:200};
+    canvas.drawArc(rect, 90, 180);
+    canvas.detachPen();
+  }
+}
+```
+
 ### drawPoint
 
 drawPoint(x: number, y: number): void
 
-用于绘制一个点。
+绘制一个点。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -679,6 +2627,7 @@ drawPoint(x: number, y: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -692,13 +2641,56 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawPoints<sup>12+</sup>
+
+drawPoints(points: Array\<common2D.Point>, mode?: PointMode): void
+
+在画布上绘制一组点、线段或多边形。通过指定点的数组和绘制模式来决定绘制方式。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名  | 类型                                       | 必填   | 说明        |
+| ---- | ---------------------------------------- | ---- | --------- |
+| points  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是    | 要绘制的点的数组。长度不能为0。   |
+| mode | [PointMode](#pointmode12)                  | 否    | 绘制数组中的点的方式，默认为drawing.PointMode.POINTS。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(30);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    canvas.drawPoints([{x: 100, y: 200}, {x: 150, y: 230}, {x: 200, y: 300}], drawing.PointMode.POINTS);
+    canvas.detachPen();
+  }
+}
+```
+
 ### drawPath
 
 drawPath(path: Path): void
 
-用于绘制一个自定义路径，该路径包含了一组路径轮廓，每个路径轮廓可以是开放的或封闭的。
+绘制一个自定义路径，该路径包含了一组路径轮廓，每个路径轮廓可以是开放的或封闭的。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -719,6 +2711,7 @@ drawPath(path: Path): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -740,9 +2733,9 @@ class DrawingRenderNode extends RenderNode {
 
 drawLine(x0: number, y0: number, x1: number, y1: number): void
 
-用于画一条直线段，从指定的起点到指点的终点。如果直线段的起点和终点是同一个点，无法绘制。
+画一条直线段，从指定的起点到终点。如果直线段的起点和终点是同一个点，无法绘制。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -766,6 +2759,7 @@ drawLine(x0: number, y0: number, x1: number, y1: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -783,9 +2777,9 @@ class DrawingRenderNode extends RenderNode {
 
 drawTextBlob(blob: TextBlob, x: number, y: number): void
 
-用于绘制一段文字。
+绘制一段文字。若构造blob的字体不支持待绘制字符，则该部分字符无法绘制。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -810,6 +2804,7 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -829,9 +2824,9 @@ class DrawingRenderNode extends RenderNode {
 
 drawSingleCharacter(text: string, font: Font, x: number, y: number): void
 
-用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数**
 
@@ -852,10 +2847,12 @@ drawSingleCharacter(text: string, font: Font, x: number, y: number): void
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -875,15 +2872,15 @@ class DrawingRenderNode extends RenderNode {
 
 drawRegion(region: Region): void
 
-用于绘制一个区域。
+绘制一个区域。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数**
 
 | 参数名 | 类型                | 必填 | 说明        |
 | ------ | ------------------- | ---- | ----------- |
-| region   | [Region](#region12) | 是   | 绘制的区域  |
+| region   | [Region](#region12) | 是   | 绘制的区域。  |
 
 **错误码：**
 
@@ -893,10 +2890,12 @@ drawRegion(region: Region): void
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
-**示例**
+**示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -916,13 +2915,13 @@ class DrawingRenderNode extends RenderNode {
 
 attachPen(pen: Pen): void
 
-绑定画笔给画布，画布将使用画笔的样式和颜色去绘制图形形状的轮廓。
+绑定画笔到画布上，在画布上进行绘制时，将使用画笔的样式去绘制图形形状的轮廓。
 
 > **说明：**
 >
 > 执行该方法后，若pen的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -943,6 +2942,7 @@ attachPen(pen: Pen): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -960,13 +2960,13 @@ class DrawingRenderNode extends RenderNode {
 
 attachBrush(brush: Brush): void
 
-绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并在其内部进行填充。
+绑定画刷到画布上，在画布上进行绘制时，将使用画刷的样式对绘制图形形状的内部进行填充。
 
 > **说明：**
 >
 > 执行该方法后，若brush的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -987,6 +2987,7 @@ attachBrush(brush: Brush): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1003,15 +3004,16 @@ class DrawingRenderNode extends RenderNode {
 
 detachPen(): void
 
-用于去除掉画布中的画笔，画布将不再使用画笔去绘制图形形状的轮廓。
+将画笔与画布解绑，在画布上进行绘制时，不会再使用画笔去绘制图形形状的轮廓。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1029,15 +3031,16 @@ class DrawingRenderNode extends RenderNode {
 
 detachBrush(): void
 
-用于去除掉画布中的画刷，画布将不再使用画刷去绘制图形形状，也不会进行填充。
+将画刷与画布解绑，在画布上进行绘制时，不会再使用画刷对绘制图形形状的内部进行填充。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1054,9 +3057,9 @@ class DrawingRenderNode extends RenderNode {
 
 clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
-用于裁剪一个自定义路径。
+使用自定义路径对画布的可绘制区域进行裁剪。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1079,19 +3082,16 @@ clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     let path = new drawing.Path();
     path.moveTo(10, 10);
-    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.cubicTo(100, 100, 80, 150, 300, 150);
     path.close();
-    canvas.attachPen(pen);
-    canvas.clipPath(path, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clipPath(path, drawing.ClipOp.INTERSECT, true);
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -1100,9 +3100,9 @@ class DrawingRenderNode extends RenderNode {
 
 clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
-用于裁剪一个矩形。
+使用矩形对画布的可绘制区域进行裁剪。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1125,15 +3125,12 @@ clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    canvas.attachPen(pen);
     canvas.clipRect({left : 10, right : 500, top : 300, bottom : 900}, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -1142,9 +3139,9 @@ class DrawingRenderNode extends RenderNode {
 
 save(): number
 
-用于保存当前画布的状态（画布矩阵）到栈顶。
+保存当前画布状态（画布矩阵和可绘制区域）到栈顶。需要与恢复接口[restore](#restore12)配合使用。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1157,6 +3154,7 @@ save(): number
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1173,7 +3171,7 @@ saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
 保存当前画布的矩阵和裁剪区域，并为后续绘制分配位图。调用恢复接口[restore](#restore12)将会舍弃对矩阵和裁剪区域做的更改，并绘制位图。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1194,13 +3192,14 @@ saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1232,9 +3231,9 @@ class DrawingRenderNode extends RenderNode {
 
 scale(sx: number, sy: number): void
 
-用于画布缩放。
+在当前画布矩阵（默认是单位矩阵）的基础上再叠加一个缩放矩阵，后续绘制操作和裁剪操作的形状和位置都会自动叠加一个缩放效果。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1256,6 +3255,7 @@ scale(sx: number, sy: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1274,16 +3274,16 @@ class DrawingRenderNode extends RenderNode {
 
 skew(sx: number, sy: number) : void
 
-用于画布倾斜变换，包括水平轴和垂直轴上的偏移。
+在当前画布矩阵（默认是单位矩阵）的基础上再叠加一个倾斜矩阵，后续绘制操作和裁剪操作的形状和位置都会自动叠加一个倾斜效果。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名  | 类型     | 必填   | 说明         |
 | ---- | ------ | ---- | ----------------- |
-| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。    |
-| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。    |
+| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。    |
+| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。    |
 
 **错误码：**
 
@@ -1298,6 +3298,7 @@ skew(sx: number, sy: number) : void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1316,9 +3317,9 @@ class DrawingRenderNode extends RenderNode {
 
 rotate(degrees: number, sx: number, sy: number) : void
 
-用于画布旋转一定的角度。
+在当前画布矩阵（默认是单位矩阵）的基础上再叠加一个旋转矩阵，后续绘制操作和裁剪操作的形状和位置都会自动叠加一个旋转效果。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1341,6 +3342,7 @@ rotate(degrees: number, sx: number, sy: number) : void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1359,9 +3361,9 @@ class DrawingRenderNode extends RenderNode {
 
 translate(dx: number, dy: number): void
 
-用于平移画布一段距离。
+在当前画布矩阵（默认是单位矩阵）的基础上再叠加一个平移矩阵，后续绘制操作和裁剪操作的形状和位置都会自动叠加一个平移效果。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1383,6 +3385,7 @@ translate(dx: number, dy: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1401,9 +3404,9 @@ class DrawingRenderNode extends RenderNode {
 
 getSaveCount(): number
 
-用于获取栈中保存的画布状态（画布矩阵）的数量。
+获取栈中保存的画布状态（画布矩阵和裁剪区域）的数量。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1416,6 +3419,7 @@ getSaveCount(): number
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1436,9 +3440,9 @@ class DrawingRenderNode extends RenderNode {
 
 restoreToCount(count: number): void
 
-用于恢复到指定数量的画布状态（画布矩阵）。
+恢复到指定数量的画布状态（画布矩阵和裁剪区域）。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1459,6 +3463,7 @@ restoreToCount(count: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1483,15 +3488,16 @@ class DrawingRenderNode extends RenderNode {
 
 restore(): void
 
-用于恢复保存在栈顶的画布状态（画布矩阵）。
+恢复保存在栈顶的画布状态（画布矩阵和裁剪区域）。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1505,11 +3511,698 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### concatMatrix<sup>12+</sup>
+
+concatMatrix(matrix: Matrix): void
+
+画布现有矩阵左乘传入矩阵，不影响之前的绘制操作，后续绘制操作和裁剪操作的形状和位置都会受到该矩阵的影响。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                | 必填   | 说明    |
+| ------ | ----------------- | ---- | ----- |
+| matrix | [Matrix](#matrix12) | 是    | 矩阵对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let matrix = new drawing.Matrix();
+    matrix.setMatrix([5, 0, 0, 0, 1, 2, 0, 0, 1]);
+    canvas.concatMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
+  }
+}
+```
+
+### setMatrix<sup>12+</sup>
+
+setMatrix(matrix: Matrix): void
+
+设置画布的矩阵，后续绘制操作和裁剪操作的形状和位置都会受到该矩阵的影响。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                | 必填   | 说明    |
+| ------ | ----------------- | ---- | ----- |
+| matrix | [Matrix](#matrix12) | 是    | 矩阵对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let matrix = new drawing.Matrix()
+    matrix.setMatrix([5, 0, 0, 0, 1, 1, 0, 0, 1]);
+    canvas.setMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
+  }
+}
+```
+
+### isClipEmpty<sup>12+</sup>
+
+isClipEmpty(): boolean
+
+判断裁剪后的可绘制区域是否为空。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回画布的可绘制区域是否为空的结果，true表示为空，false表示不为空。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    if (canvas.isClipEmpty()) {
+      console.info("canvas.isClipEmpty() returned true");
+    } else {
+      console.info("canvas.isClipEmpty() returned false");
+    }
+  }
+}
+```
+
+### clipRegion<sup>12+</sup>
+
+clipRegion(region: Region, clipOp?: ClipOp): void
+
+在画布上裁剪一个区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| region | [Region](#region12) | 是   | 区域对象，表示裁剪范围。 |
+| clipOp | [ClipOp](#clipop12)   | 否   | 裁剪方式，默认为INTERSECT。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let region : drawing.Region = new drawing.Region();
+    region.setRect(0, 0, 500, 500);
+    canvas.clipRegion(region);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
+  }
+}
+```
+
+### clipRoundRect<sup>12+</sup>
+
+clipRoundRect(roundRect: RoundRect, clipOp?: ClipOp, doAntiAlias?: boolean): void
+
+在画布上裁剪一个圆角矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| roundRect | [RoundRect](#roundrect12) | 是   | 圆角矩形对象，表示裁剪范围。 |
+| clipOp | [ClipOp](#clipop12)   | 否   | 裁剪方式，默认为INTERSECT。 |
+| doAntiAlias | boolean | 否   | 表示是否使能抗锯齿。true表示使能，false表示不使能。默认为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left: 10, top: 100, right: 200, bottom: 300 };
+    let roundRect = new drawing.RoundRect(rect, 10, 10);
+    canvas.clipRoundRect(roundRect);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
+  }
+}
+```
+
+### resetMatrix<sup>12+</sup>
+
+resetMatrix(): void
+
+将当前画布的矩阵重置为单位矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.scale(4, 6);
+    canvas.resetMatrix();
+  }
+}
+```
+
+### quickRejectPath<sup>18+</sup>
+
+quickRejectPath(path: Path): boolean
+
+判断路径与画布区域是否不相交。画布区域包含边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明               |
+| ------ | ------------- | ---- | ------------------ |
+| path   | [Path](#path) | 是   | 路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回路径是否与画布区域不相交的结果。true表示路径与画布区域不相交，false表示路径与画布区域相交。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let path = new drawing.Path();
+    path.moveTo(10, 10);
+    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.close();
+    if (canvas.quickRejectPath(path)) {
+      console.info("canvas and path do not intersect.");
+    } else {
+      console.info("canvas and path intersect.");
+    }
+  }
+}
+```
+
+### quickRejectRect<sup>18+</sup>
+
+quickRejectRect(rect: common2D.Rect): boolean
+
+判断矩形和画布区域是否不相交。画布区域包含边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形区域。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回矩形是否与画布区域不相交的结果。true表示矩形与画布区域不相交，false表示矩形与画布区域相交。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left : 10, top : 20, right : 50, bottom : 30 };
+    if (canvas.quickRejectRect(rect)) {
+      console.info("canvas and rect do not intersect.");
+    } else {
+      console.info("canvas and rect intersect.");
+    }
+  }
+}
+```
+
+### drawArcWithCenter<sup>18+</sup>
+
+drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
+
+在画布上绘制圆弧。该方法允许指定圆弧的起始角度、扫描角度以及圆弧的起点和终点是否连接圆弧的中心点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
+| startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，为正数时以顺时针方向放置起始点，为负数时以逆时针方向放置起始点。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。扫描角度可以超过360度，将绘制一个完整的椭圆。 |
+| useCenter       | boolean | 是   | 绘制时弧形的起点和终点是否连接弧形的中心点。true表示连接，false表示不连接。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = { left: 100, top: 50, right: 400, bottom: 200 };
+    canvas.drawArcWithCenter(rect, 90, 180, false);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawImageNine<sup>18+</sup>
+
+drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+通过绘制两条水平线和两条垂直线将图像分割成9个部分：四个边，四个角和中心。<br>
+若角落的4个区域尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的5个区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| center    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 分割图像的中心矩形。矩形四条边所在的直线将图像分成了9个部分。 |
+| dstRect  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 在画布上绘制的目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
+    let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
+    let dst1: common2D.Rect = { left: 110, top: 0, right: 200, bottom: 90 };
+    canvas.drawImageNine(pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageNine(pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
+
+### drawImageLattice<sup>18+</sup>
+
+drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+将图像按照矩形网格对象的设置划分为多个网格，并把图像的每个部分按照网格对象的设置绘制到画布上的目标矩形区域。<br>
+偶数行和列（起始计数为0）的每个交叉点都是固定的，若固定网格区域的尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| lattice  | [Lattice](#lattice12) | 是   | 矩形网格对象。 |
+| dstRect    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_3.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let xDivs: Array<number> = [28, 36, 44, 52];
+    let yDivs: Array<number> = [28, 36, 44, 52];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 4, 4);
+    let dst: common2D.Rect = { left: 100, top: 0, right: 164, bottom: 64 };
+    let dst1: common2D.Rect = { left: 200, top: 0, right: 360, bottom: 160 };
+    canvas.drawImageLattice(pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageLattice(pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Lattice.png](figures/zh-ch_image_Lattice.png)
+
+## ImageFilter<sup>12+</sup>
+
+图像滤波器。
+
+### createBlurImageFilter<sup>12+</sup>
+
+static createBlurImageFilter(sigmaX: number, sigmaY: number, tileMode: TileMode, imageFilter?: ImageFilter | null ): ImageFilter
+
+创建具有模糊效果的图像滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| sigmaX | number | 是   | 表示沿x轴方向上高斯模糊的标准差，必须大于0，该参数为浮点数。 |
+| sigmaY | number | 是   | 表示沿y轴方向上高斯模糊的标准差，必须大于0，该参数为浮点数。 |
+| tileMode | [TileMode](#tilemode12)| 是   | 表示在边缘处应用的平铺模式。 |
+| imageFilter | [ImageFilter](#imagefilter12) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
+```
+### createFromImage<sup>20+</sup>
+
+static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null, dstRect?: common2D.Rect | null): ImageFilter
+
+基于给定的图像创建一个图像滤波器。此接口不建议用于录制类型的画布，会影响性能。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 图片对象。 |
+| srcRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。图片要被此滤波器使用的像素区域，如果为空，则使用pixelmap全部区域。 |
+| dstRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。要进行渲染的区域，如果为空，则和srcRect保持一致。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let srcRect: common2D.Rect = { left: 10, top: 10, right: 80, bottom: 80 };
+    let dstRect: common2D.Rect = { left: 200, top: 200, right: 400, bottom: 400 };
+    if (this.pixelMap != null) {
+      let filter = drawing.ImageFilter.createFromImage(this.pixelMap, srcRect, dstRect);
+    }
+  }
+}
+```
+### createBlendImageFilter<sup>20+</sup>
+
+static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foreground: ImageFilter): ImageFilter
+
+按照指定的混合模式对两个滤波器进行叠加，生成一个新的滤波器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色混合模式。 |
+| background | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为目标色的滤波器。|
+| foreground | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为源色的滤波器。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let dx = 15.0;
+let dy = 10.0;
+let offsetFilter1 = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
+let x = 15.0;
+let y = 30.0;
+let offsetFilter2 = drawing.ImageFilter.createOffsetImageFilter(x, y, null);
+let blendImageFilter = drawing.ImageFilter.createBlendImageFilter(drawing.BlendMode.SRC_IN, offsetFilter1, offsetFilter2);
+```
+### createComposeImageFilter<sup>20+</sup>
+
+static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): ImageFilter
+
+将两个图像滤波器进行级联生成新的图像滤波器，级联时会将第一级滤波器的输出作为第二级滤波器的输入，经过第二级滤波器处理后，输出最终的滤波结果。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                          |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| cOuter | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。如果第二级滤波器为空，第一级滤波器不为空，最后输出第一级滤波器的结果。两级滤波器不能同时为空。 |
+| cInner | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。如果第一级滤波器为空，第二级滤波器不为空，最后输出第二级滤波器的结果。两级滤波器不能同时为空。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let blurSigmaX = 10.0;
+let blurSigmaY = 10.0;
+let blurFilter = drawing.ImageFilter.createBlurImageFilter(blurSigmaX, blurSigmaY, drawing.TileMode.CLAMP, null);
+let colorMatrix:Array<number> = [
+  0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0
+];
+let redRemovalFilter = drawing.ColorFilter.createMatrixColorFilter(colorMatrix);
+let colorFilter = drawing.ImageFilter.createFromColorFilter(redRemovalFilter, null);
+let composedImageFilter = drawing.ImageFilter.createComposeImageFilter(colorFilter, blurFilter);
+```
+### createFromColorFilter<sup>12+</sup>
+
+static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter | null): ImageFilter
+
+创建一个将颜色滤波器应用于传入的图像滤波器的图像滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| colorFilter | [ColorFilter](#colorfilter) | 是   | 表示颜色滤波器。 |
+| imageFilter | [ImageFilter](#imagefilter12) \| null | 否   | 要与当前图像滤波器叠加的输入滤波器，默认为null，表示直接将当前图像滤波器作用于原始图像。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
+let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
+let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
+```
+### createOffsetImageFilter<sup>20+</sup>
+
+static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | null): ImageFilter
+
+创建一个偏移滤波器，将输入的滤波器按照指定向量进行平移。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| dx | number | 是   | 水平方向的平移距离， 该参数为浮点数。 |
+| dy | number | 是   | 竖直方向的平移距离， 该参数为浮点数。 |
+| input | [ImageFilter](#imagefilter12) \| null | 否   | 需进行平移的滤波器。默认为空，如果为空，则将无滤波效果的绘制结果进行平移。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let dx = 15.0;
+let dy = 10.0;
+let offsetFilter = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
+```
+
+### createFromShaderEffect<sup>20+</sup>
+
+static createFromShaderEffect(shader: ShaderEffect): ImageFilter
+
+基于着色器创建一个图像滤波器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| shader   | [ShaderEffect](#shadereffect12) | 是   | 表示应用于图像的着色器效果。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let shaderEffect = drawing.ShaderEffect.createColorShader(0xFF00FF00);
+let renderEffect = drawing.ImageFilter.createFromShaderEffect(shaderEffect);
+```
 ## TextBlobRunBuffer
 
 描述一行文字中具有相同属性的连续字形。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称      | 类型   | 可读 | 可写 | 说明                      |
 | --------- | ------ | ---- | ---- | ------------------------- |
@@ -1521,7 +4214,7 @@ class DrawingRenderNode extends RenderNode {
 
 文本的编码类型枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                   | 值   | 说明                           |
 | ---------------------- | ---- | ------------------------------ |
@@ -1534,7 +4227,7 @@ class DrawingRenderNode extends RenderNode {
 画布裁剪方式的枚举。
 
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                 | 值    | 说明           | 示意图   |
 | ------------------ | ---- | ---------------- | -------- |
@@ -1543,22 +4236,169 @@ class DrawingRenderNode extends RenderNode {
 
 > **说明：**
 >
-> 示意图展示的是以INTERSECT方式裁剪一个矩形后，使用不同枚举值在此基础上裁剪一个圆形的结果，其中绿色区域为最终得到的裁剪区域。
+> 示意图展示了以INTERSECT方式裁剪一个矩形后，使用不同枚举值继续裁剪一个圆形的结果，绿色区域为最终的裁剪区域。
 
 ## FilterMode<sup>12+</sup>
 
 过滤模式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                  | 值    | 说明      |
 | ------------------- | ---- | ------- |
 | FILTER_MODE_NEAREST | 0    | 邻近过滤模式。 |
 | FILTER_MODE_LINEAR  | 1    | 线性过滤模式。 |
 
+## PathDirection<sup>12+</sup>
+
+添加闭合轮廓方向的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  | 值    | 说明      |
+| ------------------- | ---- | ------- |
+| CLOCKWISE   | 0    | 顺时针方向添加闭合轮廓。 |
+| COUNTER_CLOCKWISE  | 1    | 逆时针方向添加闭合轮廓。 |
+
+## PathFillType<sup>12+</sup>
+
+定义路径的填充类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  | 值    | 说明      |
+| ------------------- | ---- | ------- |
+| WINDING   | 0    | 绘制区域中的任意一点，向任意方向射出一条射线，对于射线和路径的所有交点，初始计数为0，遇到每个顺时针的交点（路径从射线的左边向右穿过），计数加1，遇到每个逆时针的交点（路径从射线的右边向左穿过），计数减1，若最终的计数结果不为0，则认为这个点在路径内部，需要被涂色；若计数为0则不被涂色。 |
+| EVEN_ODD  | 1    | 绘制区域中的任意一点，向任意方向射出一条射线，若这条射线和路径相交的次数是奇数，则这个点被认为在路径内部，需要被涂色；若是偶数则不被涂色。 |
+| INVERSE_WINDING  | 2    | WINDING涂色规则取反。 |
+| INVERSE_EVEN_ODD  | 3    | EVEN_ODD涂色规则取反。 |
+
+> **说明：**<br>
+> ![WINDING&EVEN_ODD](./figures/zh-ch_image_PathFillType_Winding_Even_Odd.png)<br>
+> 如图所示圆环为路径，箭头指示路径的方向，p为区域内任意一点，蓝色线条为点p出发的射线，黑色箭头所指为对应填充规则下使用蓝色填充路径的结果。WINDING填充规则下，射线与路径的交点计数为2，不为0，点p被涂色；EVEN_ODD填充规则下，射线与路径的相交次数为2，是偶数，点p不被涂色。
+
+## PointMode<sup>12+</sup>
+
+绘制数组点的方式的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                 | 值    | 说明            |
+| ------------------ | ---- | ------------- |
+| POINTS  | 0    | 分别绘制每个点。      |
+| LINES   | 1    | 将每对点绘制为线段。    |
+| POLYGON | 2    | 将点阵列绘制为开放多边形。 |
+
+## FontEdging<sup>12+</sup>
+
+字型边缘效果类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  | 值    | 说明      |
+| ------------------- | ---- | ------- |
+| ALIAS | 0    | 无抗锯齿处理。 |
+| ANTI_ALIAS  | 1    | 使用抗锯齿来平滑字型边缘。 |
+| SUBPIXEL_ANTI_ALIAS  | 2    | 使用次像素级别的抗锯齿平滑字型边缘，可以获得更平滑的字型渲染效果。 |
+
+## FontHinting<sup>12+</sup>
+
+字型轮廓效果类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  | 值    | 说明      |
+| ------------------- | ---- | ------- |
+| NONE    | 0    | 不修改字型轮廓。 |
+| SLIGHT  | 1    | 最小限度修改字型轮廓以改善对比度。 |
+| NORMAL  | 2    | 修改字型轮廓以提高对比度。 |
+| FULL    | 3    | 修改字型轮廓以获得最大对比度。 |
+
 ## TextBlob
 
 由一个或多个具有相同字体的字符组成的字块。
+
+### makeFromPosText<sup>12+</sup>
+
+static makeFromPosText(text: string, len: number, points: common2D.Point[], font: Font): TextBlob
+
+使用文本创建TextBlob对象，TextBlob对象中每个字形的坐标由points中对应的坐标信息决定。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                   |
+| -------- | ----------------------------- | ---- | -------------------------------------- |
+| text     | string             | 是   | 绘制字形的文本内容。                   |
+| len      | number             | 是   | 字形个数，由[countText](#counttext12)获取，该参数为整数。 |
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
+| font     | [Font](#font)      | 是   | 字型对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [TextBlob](#textblob) | TextBlob对象。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing,common2D} from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let text : string = 'makeFromPosText';
+    let font : drawing.Font = new drawing.Font();
+    font.setSize(100);
+    let length = font.countText(text);
+    let points : common2D.Point[] = [];
+    for (let i = 0; i !== length; ++i) {
+      points.push({ x: i * 35, y: i * 35 });
+    }
+    let textblob : drawing.TextBlob =drawing.TextBlob.makeFromPosText(text, points.length, points, font);
+    canvas.drawTextBlob(textblob, 100, 100);
+  }
+}
+```
+
+### uniqueID<sup>12+</sup>
+
+uniqueID(): number
+
+获取该TextBlob对象的唯一的非零标识符。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| number | 返回TextBlob对象的唯一的非零标识符。 |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let text : string = 'TextBlobUniqueId';
+let font : drawing.Font = new drawing.Font();
+font.setSize(100);
+let textBlob = drawing.TextBlob.makeFromString(text, font, 0);
+let id = textBlob.uniqueID();
+console.info("uniqueID---------------" +id);
+```
 
 ### makeFromString
 
@@ -1566,7 +4406,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 
 将string类型的值转化成TextBlob对象。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1574,7 +4414,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | 是   | 绘制字形的文本内容。                   |
 | font     | [Font](#font)                 | 是   | 字型对象。           |
-| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。 |
+| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。当前只有TEXT_ENCODING_UTF8生效，其余编码类型也会被视为TEXT_ENCODING_UTF8。 |
 
 **返回值：**
 
@@ -1595,6 +4435,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1614,9 +4455,9 @@ class DrawingRenderNode extends RenderNode {
 
 static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: common2D.Rect): TextBlob
 
-基于RunBuffer信息创建一个Textblob对象。
+基于RunBuffer信息创建Textblob对象。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -1645,6 +4486,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1673,7 +4515,7 @@ bounds(): common2D.Rect
 
 获取文字边界框的矩形区域。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1685,10 +4527,61 @@ bounds(): common2D.Rect
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const font = new drawing.Font();
 font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 let bounds = textBlob.bounds();
+```
+
+## TypefaceArguments<sup>20+</sup>
+
+提供字体属性配置的结构体。
+
+### constructor<sup>20+</sup>
+
+constructor()
+
+字体属性的构造函数。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let typeFaceArgument = new drawing.TypefaceArguments();
+```
+
+### addVariation<sup>20+</sup>
+
+addVariation(axis: string, value: number)
+
+给字体属性设置字重值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名         | 类型                                       | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------------   |
+| axis  | string           | 是   | 字体属性对象可变维度字重的标签'wght'。具体是否支持的该标签取决于加载的字体文件。请打开对应的字体文件具体查看支持的属性。   |
+| value | number           | 是   | 字体属性对象可变维度字重的标签'wght'对应的属性值，需要在字体文件支持的范围内，否则不会生效。如果属性值小于支持的最小值，则默认和最小值一致。如果属性值大于支持的最大值，则默认和最大值效果一致。请打开对应的字体文件具体查看支持的属性值。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let typeFaceArgument = new drawing.TypefaceArguments();
+typeFaceArgument.addVariation('wght', 10);
 ```
 
 ## Typeface
@@ -1699,38 +4592,79 @@ let bounds = textBlob.bounds();
 
 getFamilyName(): string
 
-获取字体的系列名称。
+获取字体的族名，即一套字体设计的名称。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 返回字体的系列名称。 |
+| string | 返回字体的族名。 |
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const font = new drawing.Font();
 let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
+```
+
+### makeFromCurrent<sup>20+</sup>
+
+makeFromCurrent(typefaceArguments: TypefaceArguments): Typeface
+
+基于当前字体结合字体属性构造新的字体对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20)           | 是   | 字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                  |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let typeArguments = new drawing.TypefaceArguments();
+    typeArguments.addVariation("wght", 100);
+    const myTypeFace = drawing.Typeface.makeFromFile("/system/fonts/HarmonyOS_Sans_SC.ttf");
+    const typeFace1 = myTypeFace.makeFromCurrent(typeArguments);
+    let font = new drawing.Font();
+    font.setTypeface(typeFace1);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
 ```
 
 ### makeFromFile<sup>12+</sup>
 
 static makeFromFile(filePath: string): Typeface
 
-从指定字体文件，构造字体。
+从指定字体文件构造字体。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| filePath | string           | 是   | 表示字体资源存放的路径。 |
+| filePath | string           | 是   | 表示字体资源存放的路径。应用沙箱路径和真实物理路径的对应关系请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。 |
 
 **返回值：**
 
@@ -1751,6 +4685,7 @@ static makeFromFile(filePath: string): Typeface
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class TextRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -1764,23 +4699,308 @@ class TextRenderNode extends RenderNode {
 }
 ```
 
+### makeFromRawFile<sup>18+</sup>
+
+static makeFromRawFile(rawfile: Resource): Typeface
+
+使用指定的字体文件构造字体，其中要求指定的字体文件需保存在应用资源文件夹的rawfile路径下。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rawfile | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)           | 是   | 指定字体文件对应的资源对象。当前只支持``$rawfile``格式引用的资源对象，对应格式写为``$rawfile('filePath')``，其中filePath为指定字体文件相对于工程中resources/rawfile目录的相对路径。如将字体文件直接存放在resources/rawfile目录下，则引用格式应写为：``$rawfile('HarmonyOS_Sans_Bold.ttf')``；也可以创建子目录，将字体文件存放在resources/rawfile/ttf下，则引用格式应写为：``$rawfile('ttf/HarmonyOS_Sans_Bold.ttf')``。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回Typeface对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    const myTypeFace = drawing.Typeface.makeFromRawFile($rawfile('HarmonyOS_Sans_Bold.ttf'));
+    font.setTypeface(myTypeFace);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+
+```
+### makeFromFileWithArguments<sup>20+</sup>
+
+static makeFromFileWithArguments(filePath: string, typefaceArguments: TypefaceArguments): Typeface
+
+根据字体文件路径和字体属性构造新的字体。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| filePath | string           | 是   | 表示字体资源存放的路径。应用沙箱路径和真实物理路径的对应关系请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。 |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20) | 是  | 表示字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                  |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
+    let typeFaceArgument = new drawing.TypefaceArguments();
+    const myTypeFace = drawing.Typeface.makeFromFileWithArguments(str, typeFaceArgument);
+    font.setTypeface(myTypeFace);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
+### makeFromRawFileWithArguments<sup>20+</sup>
+
+static makeFromRawFileWithArguments(rawfile: Resource, typefaceArguments: TypefaceArguments): Typeface
+
+使用指定的字体文件和字体属性构造字体，其中要求指定的字体文件需保存在应用资源文件夹的rawfile路径下。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rawfile | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)           | 是   | 指定字体文件对应的资源对象。当前只支持``$rawfile``格式引用的资源对象，对应格式写为``$rawfile('filePath')``，其中filePath为指定字体文件相对于工程中resources/rawfile目录的相对路径。 |
+| typefaceArguments | [TypefaceArguments](#typefacearguments20) | 是 | 表示字体属性。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | ------------------- |
+| [Typeface](#typeface) | 返回字体对象（异常情况下会返回空指针）。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let typeFaceArgument = new drawing.TypefaceArguments();
+    const myTypeFace = drawing.Typeface.makeFromRawFileWithArguments($rawfile('HarmonyOS_Sans_Bold.ttf'), typeFaceArgument);
+    font.setTypeface(myTypeFace);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
 ## Font
 
-描述字形绘制时所使用的属性，如大小、字体等。
+描述字型绘制时所使用的属性，如大小、字体等。
+
+### isSubpixel<sup>12+</sup>
+
+isSubpixel(): boolean
+
+获取字型是否使用次像素渲染。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| boolean | 返回字型是否使用次像素渲染的结果，true表示使用，false表示不使用。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+font.enableSubpixel(true)
+console.info("values=" + font.isSubpixel());
+```
+
+### isLinearMetrics<sup>12+</sup>
+
+isLinearMetrics(): boolean
+
+获取字型是否可以线性缩放。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| boolean | 返回字型是否可线性缩放的结果，true表示可线性缩放，false表示不可线性缩放。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+font.enableLinearMetrics(true)
+console.info("values=" + font.isLinearMetrics());
+```
+
+### getSkewX<sup>12+</sup>
+
+getSkewX(): number
+
+获取字型在x轴方向上的倾斜度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| number | 返回字型在x轴方向上的倾斜度。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+font.setSkewX(-1)
+console.info("values=" + font.getSkewX());
+```
+
+### isEmbolden<sup>12+</sup>
+
+isEmbolden(): boolean
+
+获取字型是否设置了粗体效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| boolean  | 返回字型是否设置粗体效果的结果，true表示设置了粗体效果，false表示未设置粗体效果。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+font.enableEmbolden(true);
+console.info("values=" + font.isEmbolden());
+```
+
+### getScaleX<sup>12+</sup>
+
+getScaleX(): number
+
+获取字型在x轴方向上的缩放比例。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| number  | 返回字型在x轴方向上的缩放比例。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+font.setScaleX(2);
+console.info("values=" + font.getScaleX());
+```
+
+### getHinting<sup>12+</sup>
+
+getHinting(): FontHinting
+
+获取字型轮廓效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [FontHinting](#fonthinting12)  | 返回字型轮廓效果。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+console.info("values=" + font.getHinting());
+```
+
+### getEdging<sup>12+</sup>
+
+getEdging(): FontEdging
+
+获取字型边缘效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [FontEdging](#fontedging12)  | 返回字型边缘效果。 |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+console.info("values=" + font.getEdging());
+```
 
 ### enableSubpixel
 
 enableSubpixel(isSubpixel: boolean): void
 
-使能字体亚像素级别的文字绘制，显示效果平滑。
+使能字型亚像素级别的文字绘制，显示效果平滑。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名     | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isSubpixel | boolean | 是   | 表示是否使能字体亚像素级别的文字绘制。true表示使能，false表示不使能。 |
+| isSubpixel | boolean | 是   | 表示是否使能字型亚像素级别的文字绘制。true表示使能，false表示不使能。 |
 
 **错误码：**
 
@@ -1794,6 +5014,7 @@ enableSubpixel(isSubpixel: boolean): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableSubpixel(true);
 ```
@@ -1802,15 +5023,15 @@ font.enableSubpixel(true);
 
 enableEmbolden(isEmbolden: boolean): void
 
-使能字体粗体。
+使能字型粗体。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| isEmbolden | boolean | 是   | 表示是否使能字体粗体。true表示使能，false表示不使能。 |
+| isEmbolden | boolean | 是   | 表示是否使能字型粗体。true表示使能，false表示不使能。 |
 
 **错误码：**
 
@@ -1824,6 +5045,7 @@ enableEmbolden(isEmbolden: boolean): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableEmbolden(true);
 ```
@@ -1832,15 +5054,15 @@ font.enableEmbolden(true);
 
 enableLinearMetrics(isLinearMetrics: boolean): void
 
-使能字形的线性缩放。
+使能字型的线性缩放。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| isLinearMetrics | boolean | 是   | 表示是否使能字形的线性缩放。true表示使能，false表示不使能。 |
+| isLinearMetrics | boolean | 是   | 表示是否使能字型的线性缩放。true表示使能，false表示不使能。 |
 
 **错误码：**
 
@@ -1854,6 +5076,7 @@ enableLinearMetrics(isLinearMetrics: boolean): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableLinearMetrics(true);
 ```
@@ -1862,15 +5085,15 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-设置字体大小。
+设置字型大小。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。|
+| textSize | number | 是   | 字型大小，该参数为浮点数，为负数时字型大小会被置为0。字型大小为0时，绘制的文字不会显示。|
 
 **错误码：**
 
@@ -1884,6 +5107,7 @@ setSize(textSize: number): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setSize(5);
 ```
@@ -1892,20 +5116,21 @@ font.setSize(5);
 
 getSize(): number
 
-获取字体大小。
+获取字型大小。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 字体大小，浮点数。 |
+| number | 字型大小，浮点数。 |
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setSize(5);
 let fontSize = font.getSize();
@@ -1915,15 +5140,15 @@ let fontSize = font.getSize();
 
 setTypeface(typeface: Typeface): void
 
-设置字体。
+为字型设置字体样式（包括字体名称、粗细、斜体等属性）。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明   |
 | -------- | --------------------- | ---- | ------ |
-| typeface | [Typeface](#typeface) | 是   | 字体。 |
+| typeface | [Typeface](#typeface) | 是   | 字体样式，包括字体名称、粗细、斜体等属性。 |
 
 **错误码：**
 
@@ -1937,6 +5162,7 @@ setTypeface(typeface: Typeface): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setTypeface(new drawing.Typeface());
 ```
@@ -1947,7 +5173,7 @@ getTypeface(): Typeface
 
 获取字体。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1959,6 +5185,7 @@ getTypeface(): Typeface
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 let typeface = font.getTypeface();
 ```
@@ -1969,7 +5196,7 @@ getMetrics(): FontMetrics
 
 获取与字体关联的FontMetrics属性。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **返回值：**
 
@@ -1981,6 +5208,7 @@ getMetrics(): FontMetrics
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 let metrics = font.getMetrics();
 ```
@@ -1995,7 +5223,7 @@ measureText(text: string, encoding: TextEncoding): number
 >
 > 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext)替代。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -2022,6 +5250,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
@@ -2030,9 +5259,9 @@ font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 
 measureSingleCharacter(text: string): number
 
-用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数**
 
@@ -2054,10 +5283,12 @@ measureSingleCharacter(text: string): number
 | ------- | --------------------------------------------|
 | 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2072,9 +5303,9 @@ class DrawingRenderNode extends RenderNode {
 
 setScaleX(scaleX: number): void
 
-用于设置字形对象在x轴上的缩放比例。
+设置字型对象在x轴上的缩放比例。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
@@ -2095,6 +5326,7 @@ setScaleX(scaleX: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2115,15 +5347,15 @@ class DrawingRenderNode extends RenderNode {
 
 setSkewX(skewX: number): void
 
-用于设置字形对象在x轴上的倾斜比例。
+设置字型对象在x轴上的倾斜比例。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **参数：**
 
 | 参数名   | 类型                          | 必填 | 说明       |
 | -------- | ----------------------------- | ---- | ---------- |
-| skewX     | number                      | 是   | 文本在x轴上的倾斜比例，该参数为浮点数。 |
+| skewX     | number                      | 是   | 文本在x轴上的倾斜比例，正数表示往左边倾斜，负数表示往右边倾斜，该参数为浮点数。 |
 
 **错误码：**
 
@@ -2138,6 +5370,7 @@ setSkewX(skewX: number): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2154,11 +5387,549 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### setEdging<sup>12+</sup>
+
+setEdging(edging: FontEdging): void
+
+设置字型边缘效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| edging | [FontEdging](#fontedging12) | 是   | 字型边缘效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font = new drawing.Font();
+font.setEdging(drawing.FontEdging.SUBPIXEL_ANTI_ALIAS);
+```
+
+### setHinting<sup>12+</sup>
+
+setHinting(hinting: FontHinting): void
+
+设置字型轮廓效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| hinting | [FontHinting](#fonthinting12) | 是   | 字型轮廓效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font = new drawing.Font();
+font.setHinting(drawing.FontHinting.FULL);
+```
+
+### countText<sup>12+</sup>
+
+countText(text: string): number
+
+获取文本所表示的字符数量。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| text     | string                        | 是   | 文本内容。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 返回文本所表示的字符数量，整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font = new drawing.Font();
+let resultNumber: number = font.countText('ABCDE');
+console.info("count text number: " + resultNumber);
+```
+
+### setBaselineSnap<sup>12+</sup>
+
+setBaselineSnap(isBaselineSnap: boolean): void
+
+当前画布矩阵轴对齐时，设置字型基线是否与像素对齐。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                       |
+| --------------- | ------- | ---- | ---------------------------------------- |
+| isBaselineSnap | boolean | 是   | 指示字型基线是否和像素对齐，true表示对齐，false表示不对齐。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setBaselineSnap(true);
+console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
+```
+
+### isBaselineSnap()<sup>12+</sup>
+
+isBaselineSnap(): boolean
+
+当前画布矩阵轴对齐时，获取字型基线是否与像素对齐的结果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 返回字型基线是否与像素对齐，true为对齐，false为没有对齐。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setTypeface(new drawing.Typeface());
+font.setBaselineSnap(true);
+console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
+```
+
+### setEmbeddedBitmaps<sup>12+</sup>
+
+setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
+
+设置字型是否转换成位图处理。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
+| isEmbeddedBitmaps | boolean | 是   | 设置字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setTypeface(new drawing.Typeface());
+font.setEmbeddedBitmaps(false);
+console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
+```
+
+### isEmbeddedBitmaps()<sup>12+</sup>
+
+isEmbeddedBitmaps(): boolean
+
+获取字型是否转换成位图处理的结果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 返回字型是否转换成位图处理结果，true表示转换成位图处理，false表示不转换成位图处理。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setTypeface(new drawing.Typeface());
+font.setEmbeddedBitmaps(true);
+console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
+```
+
+### setForceAutoHinting<sup>12+</sup>
+
+setForceAutoHinting(isForceAutoHinting: boolean): void
+
+设置是否自动调整字型轮廓。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
+| isForceAutoHinting | boolean | 是   | 是否自动调整字型轮廓，true为自动调整，false为不自动调整。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setTypeface(new drawing.Typeface());
+font.setForceAutoHinting(false);
+console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
+```
+
+### isForceAutoHinting<sup>12+</sup>
+
+isForceAutoHinting(): boolean
+
+获取字型轮廓是否自动调整的结果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 返回字型轮廓是否自动调整，true为自动调整，false为不自动调整。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setTypeface(new drawing.Typeface());
+font.setForceAutoHinting(false);
+console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
+```
+
+### getWidths<sup>12+</sup>
+
+getWidths(glyphs: Array\<number>): Array\<number>
+
+获取字形数组中每个字形对应的宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | 是   | 字形索引数组，可由[textToGlyphs](#texttoglyphs12)生成。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<number> | 返回字形宽度数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+let text: string = 'hello world';
+let glyphs: number[] = font.textToGlyphs(text);
+let fontWidths: Array<number> = font.getWidths(glyphs);
+for (let index = 0; index < fontWidths.length; index++) {
+  console.info("get fontWidths[", index, "]:", fontWidths[index]);
+}
+```
+
+### textToGlyphs<sup>12+</sup>
+
+textToGlyphs(text: string, glyphCount?: number): Array\<number>
+
+将文本转换为字形索引。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| text     | string                        | 是   | 文本字符串。 |
+| glyphCount | number | 否   | 文本表示的字符数量，必须与[countText](#counttext12)获取的值相等，默认为text的字符数量，该参数为整数。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<number> | 返回转换得到的字形索引数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+let text : string = 'hello world';
+let glyphs : number[] = font.textToGlyphs(text);
+console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
+```
+
+### getBounds<sup>18+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+获取字形数组中每个字形的边界矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | 是   | 字形索引数组，可由[textToGlyphs](#texttoglyphs12)生成。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | 返回字形边界矩形数组。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let font: drawing.Font = new drawing.Font();
+let text: string = 'hello world';
+let glyphs: number[] = font.textToGlyphs(text);
+let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+for (let index = 0; index < fontBounds.length; index++) {
+  console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+    " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+}
+```
+
+### getTextPath<sup>18+</sup>
+
+getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+
+获取文字的轮廓路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明                    |
+| ------   | ------------------------------------------------   | ---- | ---------------------- |
+|   text   |    string                                          | 是   | 表示存储UTF-8 文本编码的字符。|
+|byteLength|    number                                          | 是   | 表示要获取对应文本路径的字节长度，按传入的字节长度和实际的文本字节大小之间的最小值来获取对应的文本路径。|
+|    x     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的X坐标。|
+|    y     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的Y坐标。|
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回获取到的文本的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+import { buffer } from '@kit.ArkTS';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let myString: string = "你好, HarmonyOS";
+    let length = buffer.from(myString).length;
+    let path = font.getTextPath(myString, length, 0, 100)
+    canvas.drawPath(path)
+  }
+}
+```
+
+### createPathForGlyph<sup>18+</sup>
+
+createPathForGlyph(index: number): Path
+
+获取指定字形的路径轮廓。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| index | number | 是   | 字形索引。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回指定字形的路径轮廓。 |
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = '你好';
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
+```
+
+### setThemeFontFollowed<sup>15+</sup>
+
+setThemeFontFollowed(followed: boolean): void
+
+设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
+| followed | boolean | 是   | 字型中的字体是否跟随主题字体，true表示跟随主题字体，false表示不跟随主题字体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setThemeFontFollowed(true);
+console.info("font is theme font followed: " + font.isThemeFontFollowed());
+```
+
+### isThemeFontFollowed()<sup>15+</sup>
+
+isThemeFontFollowed(): boolean
+
+获取字型中的字体是否跟随主题字体。默认不跟随。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 返回字型中的字体是否跟随主题字体的结果，true表示跟随主题字体，false表示不跟随主题字体。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setThemeFontFollowed(true);
+console.info("font is theme font followed: " + font.isThemeFontFollowed());
+```
+
 ## FontMetricsFlags<sup>12+</sup>
 
-字体度量标志枚举，用于指示字体度量中的各字段数据是否有效。
+字体度量标志枚举，指示字体度量中的各字段数据是否有效。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                          | 值        | 说明                           |
 | ----------------------------- | --------- | ------------------------------ |
@@ -2166,7 +5937,7 @@ class DrawingRenderNode extends RenderNode {
 | UNDERLINE_POSITION_VALID      | 1 << 1    | 表示[FontMetrics](#fontmetrics)结构中的underlinePosition（下划线位置）字段有效。  |
 | STRIKETHROUGH_THICKNESS_VALID | 1 << 2    | 表示[FontMetrics](#fontmetrics)结构中strikethroughThickness（删除线厚度）是有效的。|
 | STRIKETHROUGH_POSITION_VALID  | 1 << 3    | 表示[FontMetrics](#fontmetrics)结构中strikethroughPosition（删除线位置）字段有效。  |
-| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top, bottom, xMin, xMax）无效。  |
+| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top、bottom、xMin、xMax）无效。  |
 
 ## FontMetrics
 
@@ -2201,7 +5972,7 @@ class DrawingRenderNode extends RenderNode {
 
 createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
-使用指定的颜色和混合模式创建颜色滤波器。
+创建指定的颜色和混合模式的颜色滤波器。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2209,14 +5980,14 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。 |
 | mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
 
 **返回值：**
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -2230,8 +6001,46 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
+```
+
+### createBlendModeColorFilter<sup>18+</sup>
+
+static createBlendModeColorFilter(color: common2D.Color | number, mode: BlendMode) : ColorFilter
+
+使用指定的颜色和混合模式创建颜色滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。 |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
 ```
 
 ### createComposeColorFilter
@@ -2253,7 +6062,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
 
 **错误码：**
 
@@ -2267,6 +6076,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter1 = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 let colorFilter2 = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.DST);
@@ -2285,12 +6095,13 @@ createLinearToSRGBGamma() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 ```
 
@@ -2306,12 +6117,13 @@ createSRGBGammaToLinear() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 ```
 
@@ -2319,7 +6131,7 @@ let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 
 createLumaColorFilter() : ColorFilter
 
-创建一个将亮度与透明度相乘的颜色滤波器。
+创建一个颜色滤波器将其输入的亮度值乘以透明度通道，并将红色、绿色和蓝色通道设置为零。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2327,15 +6139,86 @@ createLumaColorFilter() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
 
 **示例：**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 ```
 
+### createMatrixColorFilter<sup>12+</sup>
+
+static createMatrixColorFilter(matrix: Array\<number>): ColorFilter
+
+创建颜色滤波器，通过4x5颜色矩阵变换颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| matrix | Array\<number> | 是   | 长度为20的数组，表示用于颜色变换的4*5矩阵。                 |
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix: Array<number> = [
+  1, 0, 0, 0, 0,
+  0, 1, 0, 0, 0,
+  0, 0, 100, 0, 0,
+  0, 0, 0, 1, 0
+];
+let colorFilter = drawing.ColorFilter.createMatrixColorFilter(matrix);
+```
+### createLightingColorFilter<sup>20+</sup>
+
+static createLightingColorFilter(mutColor: common2D.Color | number, addColor: common2D.Color | number): ColorFilter
+
+创建一个光照颜色滤波器，此滤波器会将RGB通道的颜色值乘以一种颜色值并加上另一种颜色值，计算结果会被限制在0到255范围内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| mutColor | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 用来进行乘法运算的颜色，ARGB格式的颜色，每个颜色通道是0到255之间的整数。为number类型时必须是16进制ARGB格式的无符号整数。 |
+| addColor | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 用来进行加法运算的颜色，ARGB格式的颜色，每个颜色通道是0到255之间的整数。为number类型时必须是16进制ARGB格式的无符号整数。 |
+
+**返回值：**
+
+| 类型                        | 说明                |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+let mulColor : common2D.Color = { alpha: 0, red: 0, green: 0, blue: 20 };
+let addColor : common2D.Color = { alpha: 0, red: 0, green: 0, blue: 125 };
+let colorFilter = drawing.ColorFilter.createLightingColorFilter(mulColor, addColor);
+```
 ## JoinStyle<sup>12+</sup>
 
 定义线条转角样式的枚举，即画笔在绘制折线段时，在折线转角处的样式。
@@ -2356,9 +6239,9 @@ let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 
 | 名称        | 值   | 说明                                                         | 示意图   |
 | ---------- | ---- | ----------------------------------------------------------- | -------- |
-| FLAT_CAP   | 0    | 没有线帽样式，线条头尾端点处横切。 | ![FLAT_CAP](./figures/zh-ch_image_CapStyle_Flat_Cap.png) |
-| SQUARE_CAP | 1    | 线帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度是线段宽度的一半。 | ![SQUARE_CAP](./figures/zh-ch_image_CapStyle_Square_Cap.png) |
-| ROUND_CAP  | 2    | 线帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段宽度一致。 | ![ROUND_CAP](./figures/zh-ch_image_CapStyle_Round_Cap.png) |
+| FLAT_CAP   | 0    | 没有线帽样式，线条头尾端点处横切。 | ![FLAT_CAP](./figures/zh-ch_image_CapStyle_Flat_Cap.jpg) |
+| SQUARE_CAP | 1    | 线帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度是线段宽度的一半。 | ![SQUARE_CAP](./figures/zh-ch_image_CapStyle_Square_Cap.jpg) |
+| ROUND_CAP  | 2    | 线帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段宽度一致。 | ![ROUND_CAP](./figures/zh-ch_image_CapStyle_Round_Cap.jpg) |
 
 ## BlurType<sup>12+</sup>
 
@@ -2368,10 +6251,10 @@ let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 
 | 名称   | 值 | 说明               | 示意图   |
 | ------ | - | ------------------ | -------- |
-| NORMAL | 0 | 内外模糊。          | ![NORMAL](./figures/zh-ch_image_BlueType_Normal.png) |
-| SOLID  | 1 | 内部实体，外部模糊。 | ![SOLID](./figures/zh-ch_image_BlueType_Solid.png) |
-| OUTER  | 2 | 内部空白，外部模糊。 | ![OUTER](./figures/zh-ch_image_BlueType_Outer.png) |
-| INNER  | 3 | 内部模糊，外部空白。 | ![INNER](./figures/zh-ch_image_BlueType_Inner.png) |
+| NORMAL | 0 | 全面模糊，外圈边缘和内部实体一起模糊。 | ![NORMAL](./figures/zh-ch_image_BlueType_Normal.png) |
+| SOLID  | 1 | 内部实体不变，只模糊外圈边缘部分。 | ![SOLID](./figures/zh-ch_image_BlueType_Solid.png) |
+| OUTER  | 2 | 只有外圈边缘模糊，内部实体完全透明。 | ![OUTER](./figures/zh-ch_image_BlueType_Outer.png) |
+| INNER  | 3 | 只有内部实体模糊，外圈边缘清晰。 | ![INNER](./figures/zh-ch_image_BlueType_Inner.png) |
 
 ## SamplingOptions<sup>12+</sup>
 
@@ -2381,7 +6264,7 @@ let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 
 constructor()
 
-用于构造一个新的采样选项对象。
+构造一个新的采样选项对象，[FilterMode](#filtermode12)的默认值为FILTER_MODE_NEAREST。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2390,6 +6273,7 @@ constructor()
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2403,7 +6287,7 @@ class DrawingRenderNode extends RenderNode {
 
 constructor(filterMode: FilterMode)
 
-用于构造一个新的采样选项对象。
+构造一个新的采样选项对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2426,6 +6310,7 @@ constructor(filterMode: FilterMode)
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2477,6 +6362,7 @@ static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount:
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     let xDivs : Array<number> = [1, 2, 4];
@@ -2486,6 +6372,56 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
+
+### createImageLattice<sup>18+</sup>
+
+static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
+
+创建矩形网格对象。将图像划分为矩形网格，同时处于偶数列和偶数行上的网格是固定的，如果目标网格足够大，则这些固定网格以其原始大小进行绘制。如果目标网格太小，无法容纳这些固定网格，则所有固定网格都会按比例缩小以适应目标网格。其余网格将进行缩放，来适应剩余的空间。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名       | 类型                                                                | 必填 | 说明                                                                               |
+| ------------ | ------------------------------------------------------------------ | ---- | --------------------------------------------------------------------------------- |
+| xDivs        | Array\<number>                                                     | 是   | 用于划分图像的X坐标值数组。该参数为整数。                                             |
+| yDivs        | Array\<number>                                                     | 是   | 用于划分图像的Y坐标值数组。该参数为整数。                                             |
+| fXCount      | number                                                             | 是   | X坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
+| fYCount      | number                                                             | 是   | Y坐标值数组的大小。基于功能和性能的考虑，取值范围为[0, 5]。                            |
+| fBounds      | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null           | 否   | 可选，要绘制的原始边界矩形，矩形参数须为整数，默认为原始图像矩形大小（若矩形参数为小数，会直接舍弃小数部分，转为整数）。 |
+| fRectTypes   | Array\<[RectType](#recttype12)>\|null                              | 否   | 可选，填充网格类型的数组，默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
+| fColors      | Array\<number>\|null | 否   | 可选，填充网格的颜色数组，颜色用16进制ARGB格式的32位无符号整数表示，参数默认为空。如果设置，大小必须为(fXCount + 1) * (fYCount + 1)。 |
+
+**返回值：**
+
+| 类型                       | 说明                                |
+| ------------------------- | ----------------------------------- |
+| [Lattice](#lattice12)     | 返回创建的矩形网格对象。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    let xDivs : Array<number> = [1, 2, 4];
+    let yDivs : Array<number> = [1, 2, 4];
+    let colorArray :Array<number>=[0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
+  }
+}
+```
 
 ## RectType<sup>12+</sup>
 
@@ -2507,7 +6443,7 @@ class DrawingRenderNode extends RenderNode {
 
 static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 
-用于创建具有模糊效果的蒙版滤镜。
+创建具有模糊效果的蒙版滤镜。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2516,7 +6452,7 @@ static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 | 参数名     | 类型                   | 必填 | 说明                                 |
 | ---------- | --------------------- | ---- | ----------------------------------- |
 | blurType   | [BlurType](#blurtype12) | 是   | 模糊类型。                           |
-| sigma      | number                | 是   | 要应用的高斯模糊的标准偏差，必须为大于0的浮点数。 |
+| sigma      | number                | 是   | 高斯模糊的标准偏差，必须为大于0的浮点数。 |
 
 **返回值：**
 
@@ -2537,6 +6473,7 @@ static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2544,6 +6481,18 @@ class DrawingRenderNode extends RenderNode {
   }
 }
 ```
+
+## PathDashStyle<sup>18+</sup>
+
+路径效果的绘制样式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 值 | 说明               |
+| ------ | - | ------------------ |
+| TRANSLATE | 0 | 不会随着路径旋转，只会平移。 |
+| ROTATE  | 1 | 随着路径的旋转而旋转。 |
+| MORPH  | 2 | 随着路径的旋转而旋转，并在转折处进行拉伸或压缩等操作以增加平滑度。 |
 
 ## PathEffect<sup>12+</sup>
 
@@ -2553,7 +6502,7 @@ class DrawingRenderNode extends RenderNode {
 
 static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffect
 
-用于创建将路径变为虚线的路径效果对象。
+创建将路径变为虚线的路径效果对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2583,6 +6532,7 @@ static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffe
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2592,11 +6542,118 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### createPathDashEffect<sup>18+</sup>
+
+static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
+
+通过路径描述的形状创建一个虚线路径效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| path  | [Path](#path) | 是 | 通过该路径生成一个图形，用来填充每个虚线段。|
+| advance | number | 是 | 虚线段的步长，该参数为大于0的浮点数，否则会抛错误码。 |
+| phase | number | 是 | 表示虚线段内图形在虚线步长范围内的偏移量，该参数为浮点数，效果为先对偏移量取绝对值，然后对步长取模。 |
+| style | [PathDashStyle](#pathdashstyle18) | 是 | 指定虚线效果的样式。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pen = new drawing.Pen();
+    const penColor: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }
+    pen.setColor(penColor);
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    pen.setAntiAlias(true);
+
+    const path = new drawing.Path();
+    path.moveTo(100, 100);
+    path.lineTo(150, 50);
+    path.lineTo(200, 100);
+
+    const path1 = new drawing.Path();
+    path1.moveTo(0, 0);
+    path1.lineTo(10, 0);
+    path1.lineTo(20, 10);
+    path1.lineTo(0,10);
+
+    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 50, -30,
+        drawing.PathDashStyle.MORPH);
+    pen.setPathEffect(pathEffect1);
+
+    canvas.attachPen(pen);
+    canvas.drawPath(path);
+    canvas.detachPen();
+  }
+}
+```
+
+### createSumPathEffect<sup>18+</sup>
+
+static createSumPathEffect(firstPathEffect: PathEffect, secondPathEffect: PathEffect): PathEffect
+
+创建一个叠加的路径效果。与createComposePathEffect不同，此接口会分别对两个参数的效果各自独立进行表现，然后将两个效果简单重叠显示。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| firstPathEffect | [PathEffect](#patheffect12) | 是 | 表示第一个路径效果。 |
+| secondPathEffect | [PathEffect](#patheffect12) | 是 | 表示第二个路径效果。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let intervals = [10, 5];
+    let pathEffectOne = drawing.PathEffect.createDashPathEffect(intervals, 5);
+    let pathEffectTwo = drawing.PathEffect.createDashPathEffect(intervals, 10);
+    let effect = drawing.PathEffect.createSumPathEffect(pathEffectOne, pathEffectTwo);
+  }
+}
+```
+
 ### createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
 
-用于创建将路径的夹角变成指定半径的圆角的路径效果对象。
+创建将路径的夹角变成指定半径的圆角的路径效果对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2625,10 +6682,84 @@ static createCornerPathEffect(radius: number): PathEffect
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let effect = drawing.PathEffect.createCornerPathEffect(30);
+  }
+}
+```
+
+### createDiscretePathEffect<sup>18+</sup>
+
+static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
+
+创建一种将路径打散，并且在路径上产生不规则分布的效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| segLength  | number        | 是      | 路径中每进行一次打散操作的长度，该长度为浮点数，负数和0时无效果。 |
+| dev        | number        | 是      | 绘制时的末端点的最大移动偏离量，该偏移量为浮点数。 |
+| seedAssist | number        | 否      | 生成效果伪随机种子辅助变量，默认值为0，该参数为32位无符号整数。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let effect = drawing.PathEffect.createDiscretePathEffect(100, -50, 0);
+  }
+}
+```
+
+### createComposePathEffect<sup>18+</sup>
+
+static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
+
+创建路径组合的路径效果对象，首先应用内部路径效果，然后应用外部路径效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                        | 必填 | 说明                             |
+| ------ | --------------------------- | ---- | -------------------------------- |
+| outer  | [PathEffect](#patheffect12) | 是   | 组合路径效果中外部路径效果。 |
+| inner  | [PathEffect](#patheffect12) | 是   | 组合路径效果中内部路径效果。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pathEffect1 = drawing.PathEffect.createCornerPathEffect(100);
+    let pathEffect2 = drawing.PathEffect.createCornerPathEffect(10);
+    let effect = drawing.PathEffect.createComposePathEffect(pathEffect1, pathEffect2);
   }
 }
 ```
@@ -2641,7 +6772,7 @@ class DrawingRenderNode extends RenderNode {
 
 static create(blurRadius: number, x: number, y: number, color: common2D.Color): ShadowLayer
 
-用于创建一个阴影层对象。
+创建阴影层对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2652,7 +6783,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color): 
 | blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
 | x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
 | y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
-| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。 |
 
 **返回值：**
 
@@ -2673,6 +6804,7 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color): 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2682,15 +6814,223 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### create<sup>18+</sup>
+
+static create(blurRadius: number, x: number, y: number, color: common2D.Color | number): ShadowLayer
+
+创建阴影层对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                 |
+| ---------- | -------- | ---- | ----------------------------------- |
+| blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
+| x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
+| y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) \| number   | 是   | 颜色，可以用16进制ARGB格式的无符号整数表示。  |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, 0xff00ff00);
+  }
+}
+```
+
 ## Pen
 
-画笔对象，用于描述所绘制图形形状的轮廓信息。
+画笔对象，描述所绘制图形形状的轮廓信息。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+构造一个新的画笔对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+```
+
+### constructor<sup>12+</sup>
+
+constructor(pen: Pen)
+
+复制构造一个新的画笔对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明              |
+| ------| ----------- | ---- | ---------------- |
+| pen     | [Pen](#pen) | 是   | 待复制的画笔对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+const penColor: common2D.Color = { alpha: 255, red: 0, green: 255, blue: 0 };
+pen.setColor(penColor);
+pen.setStrokeWidth(10);
+const newPen = new drawing.Pen(pen);
+```
+
+### setMiterLimit<sup>12+</sup>
+
+setMiterLimit(miter: number): void
+
+设置折线尖角长度与线宽的最大比值，当画笔绘制一条折线，并且[JoinStyle](#joinstyle12)为MITER_JOIN时，若尖角长度与线宽的比值大于限制值，则该折角使用BEVEL_JOIN绘制。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| miter  | number | 是   | 折线尖角长度与线宽的最大比值，负数在绘制时会被视作4.0处理，非负数正常生效，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+pen.setMiterLimit(5);
+```
+
+### getMiterLimit<sup>12+</sup>
+
+getMiterLimit(): number
+
+获取折线尖角的限制值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                 |
+| -------| -------------------- |
+| number | 返回折线尖角长度与线宽的最大比值。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+let miter = pen.getMiterLimit();
+```
+
+### setImageFilter<sup>12+</sup>
+
+setImageFilter(filter: ImageFilter | null): void
+
+设置画笔的图像滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| filter    | [ImageFilter](#imagefilter12) \| null | 是   |  图像滤波器，null表示清空画笔的图像滤波器效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let colorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
+let imgFilter = drawing.ImageFilter.createFromColorFilter(colorfilter);
+let pen = new drawing.Pen();
+pen.setImageFilter(imgFilter);
+pen.setImageFilter(null);
+```
+
+### getColorFilter<sup>12+</sup>
+
+getColorFilter(): ColorFilter
+
+获取画笔的颜色滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+
+**示例：**
+
+```ts 
+import {drawing} from '@kit.ArkGraphics2D';
+
+let pen = new drawing.Pen();
+let colorfilter = drawing.ColorFilter.createLumaColorFilter();
+pen.setColorFilter(colorfilter);
+let filter = pen.getColorFilter();
+```
 
 ### setColor
 
 setColor(color: common2D.Color) : void
 
-用于设置画笔的颜色。
+设置画笔的颜色。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2698,7 +7038,7 @@ setColor(color: common2D.Color) : void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。 |
 
 **错误码：**
 
@@ -2712,6 +7052,7 @@ setColor(color: common2D.Color) : void
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const pen = new drawing.Pen();
 pen.setColor(color);
@@ -2721,7 +7062,7 @@ pen.setColor(color);
 
 setColor(alpha: number, red: number, green: number, blue: number): void
 
-用于设置画笔的颜色。性能优于[setColor](#setcolor)接口，推荐使用本接口。
+设置画笔的颜色。性能优于[setColor](#setcolor)接口，推荐使用本接口。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2746,15 +7087,90 @@ setColor(alpha: number, red: number, green: number, blue: number): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
+```
+
+### setColor<sup>18+</sup>
+
+setColor(color: number) : void
+
+设置画笔的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+pen.setColor(0xffff0000);
+```
+
+### getColor<sup>12+</sup>
+
+getColor(): common2D.Color
+
+获取画笔的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型           | 说明            |
+| -------------- | -------------- |
+| common2D.Color | 返回画笔的颜色。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+const pen = new drawing.Pen();
+pen.setColor(color);
+let colorGet = pen.getColor();
+```
+
+### getHexColor<sup>18+</sup>
+
+getHexColor(): number
+
+获取画笔的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型           | 说明            |
+| -------------- | -------------- |
+| number | 返回画笔的颜色，以16进制ARGB格式的32位无符号整数表示。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+let pen = new drawing.Pen();
+pen.setColor(color);
+let hex_color: number = pen.getHexColor();
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setStrokeWidth
 
 setStrokeWidth(width: number) : void
 
-用于设置画笔的线宽。0线宽被视作特殊的极细线宽，在绘制时始终会被绘制为1像素，不随画布的缩放而改变；负数线宽在实际绘制时会被视作0线宽。
+设置画笔的线宽。0线宽被视作特殊的极细线宽，在绘制时始终会被绘制为1像素，不随画布的缩放而改变；负数线宽在实际绘制时会被视作0线宽。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2776,15 +7192,39 @@ setStrokeWidth(width: number) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setStrokeWidth(5);
+```
+
+### getWidth<sup>12+</sup>
+
+getWidth(): number
+
+获取画笔的线宽属性，线宽描述了画笔绘制图形轮廓的宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明            |
+| ------ | -------------- |
+| number | 返回画笔的线宽，单位为物理像素px。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+let width = pen.getWidth();
 ```
 
 ### setAntiAlias
 
 setAntiAlias(aa: boolean) : void
 
-用于设置画笔是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
+设置画笔是否开启抗锯齿。开启后，可以使得图形的边缘在显示时更平滑。未调用此接口设置时，系统默认关闭抗锯齿。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2792,7 +7232,7 @@ setAntiAlias(aa: boolean) : void
 
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| aa     | boolean | 是   | 表示是否开启反走样。true表示开启，false表示关闭。 |
+| aa     | boolean | 是   | 表示是否开启抗锯齿。true表示开启，false表示关闭。 |
 
 **错误码：**
 
@@ -2806,15 +7246,39 @@ setAntiAlias(aa: boolean) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setAntiAlias(true);
+```
+
+### isAntiAlias<sup>12+</sup>
+
+isAntiAlias(): boolean
+
+获取画笔是否开启抗锯齿属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回画笔是否开启抗锯齿属性，true表示开启，false表示关闭。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+let isAntiAlias = pen.isAntiAlias();
 ```
 
 ### setAlpha
 
 setAlpha(alpha: number) : void
 
-用于设置画笔的透明度。
+设置画笔的透明度。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2836,15 +7300,39 @@ setAlpha(alpha: number) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setAlpha(128);
+```
+
+### getAlpha<sup>12+</sup>
+
+getAlpha(): number
+
+获取画笔的透明度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明              |
+| ------ | ---------------- |
+| number | 返回画笔的透明度，该返回值为0到255之间的整数。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+let alpha = pen.getAlpha();
 ```
 
 ### setColorFilter
 
 setColorFilter(filter: ColorFilter) : void
 
-用于给画笔添加额外的颜色滤波器。
+给画笔添加额外的颜色滤波器。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2852,7 +7340,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。null表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2866,6 +7354,7 @@ setColorFilter(filter: ColorFilter) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 pen.setColorFilter(colorFilter);
@@ -2875,7 +7364,7 @@ pen.setColorFilter(colorFilter);
 
 setMaskFilter(filter: MaskFilter): void
 
-用于给画笔添加额外的蒙版滤镜。
+给画笔添加额外的蒙版滤镜。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2883,7 +7372,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。null表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2898,6 +7387,7 @@ setMaskFilter(filter: MaskFilter): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2922,7 +7412,7 @@ setPathEffect(effect: PathEffect): void
 
 | 参数名  | 类型                       | 必填 | 说明         |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。为null时表示清空路径效果。 |
+| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。null表示清空路径效果。 |
 
 **错误码：**
 
@@ -2937,6 +7427,7 @@ setPathEffect(effect: PathEffect): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2947,6 +7438,38 @@ class DrawingRenderNode extends RenderNode {
     pen.setPathEffect(pathEffect);
   }
 }
+```
+
+### setShaderEffect<sup>12+</sup>
+
+setShaderEffect(shaderEffect: ShaderEffect): void
+
+设置画笔着色器效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名  | 类型                       | 必填 | 说明         |
+| ------- | ------------------------- | ---- | ------------ |
+| shaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 着色器对象。null表示清空着色器效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100, y: 100}, {x: 300, y: 300}, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+pen.setShaderEffect(shaderEffect);
 ```
 
 ### setShadowLayer<sup>12+</sup>
@@ -2961,7 +7484,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。null表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -2976,6 +7499,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3003,7 +7527,7 @@ class DrawingRenderNode extends RenderNode {
 
 setBlendMode(mode: BlendMode) : void
 
-用于设置画笔的混合模式。
+设置画笔的混合模式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3025,6 +7549,7 @@ setBlendMode(mode: BlendMode) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setBlendMode(drawing.BlendMode.SRC);
 ```
@@ -3033,7 +7558,7 @@ pen.setBlendMode(drawing.BlendMode.SRC);
 
 setJoinStyle(style: JoinStyle): void
 
-用于设置画笔绘制转角的样式。
+设置画笔绘制转角的样式。未调用此接口设置时，系统默认的转角样式为MITER_JOIN。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3041,7 +7566,7 @@ setJoinStyle(style: JoinStyle): void
 
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ----------------------- | ---- | --------------- |
-| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式     |
+| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式。     |
 
 **错误码：**
 
@@ -3056,6 +7581,7 @@ setJoinStyle(style: JoinStyle): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3071,7 +7597,7 @@ class DrawingRenderNode extends RenderNode {
 
 getJoinStyle(): JoinStyle
 
-用于获取画笔绘制转角的样式。
+获取画笔绘制转角的样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3086,6 +7612,7 @@ getJoinStyle(): JoinStyle
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3102,7 +7629,7 @@ class DrawingRenderNode extends RenderNode {
 
 setCapStyle(style: CapStyle): void
 
-用于设置线帽样式。
+设置画笔的线帽样式。未调用此接口设置时，系统默认的线帽样式为FLAT_CAP。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3110,7 +7637,7 @@ setCapStyle(style: CapStyle): void
 
 | 参数名 | 类型                     | 必填 | 说明                   |
 | ------ | ----------------------- | ---- | --------------------- |
-| style  | [CapStyle](#capstyle12)   | 是   | 描述线帽样式的变量。    |
+| style  | [CapStyle](#capstyle12)   | 是   | 描述画笔的线帽样式。    |
 
 **错误码：**
 
@@ -3125,6 +7652,7 @@ setCapStyle(style: CapStyle): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3140,7 +7668,7 @@ class DrawingRenderNode extends RenderNode {
 
 getCapStyle(): CapStyle
 
-用于获取画笔的线帽样式。
+获取画笔的线帽样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3155,6 +7683,7 @@ getCapStyle(): CapStyle
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3193,19 +7722,128 @@ setDither(dither: boolean) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setDither(true);
 ```
 
+### getFillPath<sup>12+</sup>
+
+getFillPath(src: Path, dst: Path): boolean
+
+获取使用画笔绘制的源路径轮廓，并用目标路径表示。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| src | [Path](#path) | 是   | 源路径对象。                 |
+| dst     | [Path](#path)                | 是   | 目标路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回获取源路径轮廓是否成功，true表示成功，false表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let pen = new drawing.Pen();
+let pathSrc: drawing.Path = new drawing.Path();
+let pathDst: drawing.Path = new drawing.Path();
+pathSrc.moveTo(0, 0);
+pathSrc.lineTo(700, 700);
+let value = pen.getFillPath(pathSrc, pathDst);
+```
+
+### reset<sup>12+</sup>
+
+reset(): void
+
+重置当前画笔为初始状态。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const pen = new drawing.Pen();
+pen.reset();
+```
+
 ## Brush
 
-画刷对象，用于描述所绘制图形的填充信息。
+画刷对象，描述所绘制图形的填充信息。
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+构造一个新的画刷对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+```
+
+### constructor<sup>12+</sup>
+
+constructor(brush: Brush)
+
+复制构造一个新的画刷对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明              |
+| ------| ----------- | ---- | ---------------- |
+| brush     | [Brush](#brush) | 是   | 待复制的画刷对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+const brushColor: common2D.Color = { alpha: 255, red: 0, green: 255, blue: 0 };
+brush.setColor(brushColor);
+const newBrush = new drawing.Brush(brush);
+```
 
 ### setColor
 
 setColor(color: common2D.Color) : void
 
-用于设置画刷的颜色。
+设置画刷的颜色。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3213,7 +7851,7 @@ setColor(color: common2D.Color) : void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道的值是0到255之间的整数。 |
 
 **错误码：**
 
@@ -3227,6 +7865,7 @@ setColor(color: common2D.Color) : void
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
@@ -3236,7 +7875,7 @@ brush.setColor(color);
 
 setColor(alpha: number, red: number, green: number, blue: number): void
 
-用于设置画刷的颜色。性能优于[setColor](#setcolor-1)接口，推荐使用本接口。
+设置画刷的颜色。性能优于[setColor](#setcolor-1)接口，推荐使用本接口。
 
 **系统能力：** SystemCapability.Graphics.Drawing
  
@@ -3261,15 +7900,98 @@ setColor(alpha: number, red: number, green: number, blue: number): void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
+```
+
+### setColor<sup>18+</sup>
+
+setColor(color: number) : void
+
+设置画刷的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+brush.setColor(0xffff0000);
+```
+
+### getColor<sup>12+</sup>
+
+getColor(): common2D.Color
+
+获取画刷的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型           | 说明            |
+| -------------- | -------------- |
+| common2D.Color | 返回画刷的颜色。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+const brush = new drawing.Brush();
+brush.setColor(color);
+let colorGet = brush.getColor();
+```
+
+### getHexColor<sup>18+</sup>
+
+getHexColor(): number
+
+获取画刷的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型           | 说明            |
+| -------------- | -------------- |
+| number | 返回画刷的颜色，以16进制ARGB格式的32位无符号整数表示。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+let brush = new drawing.Brush();
+brush.setColor(color);
+let hex_color: number = brush.getHexColor();
+console.info('getHexColor: ', hex_color.toString(16));
 ```
 
 ### setAntiAlias
 
 setAntiAlias(aa: boolean) : void
 
-用于设置画刷是否开启反走样。开启后，可以使得图形的边缘在显示时更平滑。
+设置画刷是否开启抗锯齿。开启后，可以使得图形的边缘在显示时更平滑。未调用此接口设置时，系统默认关闭抗锯齿。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3277,7 +7999,7 @@ setAntiAlias(aa: boolean) : void
 
 | 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
-| aa     | boolean | 是   | 表示是否开启反走样。true表示开启，false表示关闭。 |
+| aa     | boolean | 是   | 表示是否开启抗锯齿，true表示开启，false表示关闭。 |
 
 **错误码：**
 
@@ -3291,15 +8013,39 @@ setAntiAlias(aa: boolean) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setAntiAlias(true);
+```
+
+### isAntiAlias<sup>12+</sup>
+
+isAntiAlias(): boolean
+
+获取画刷是否开启抗锯齿属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回画刷是否开启抗锯齿属性，true表示开启，false表示关闭。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+let isAntiAlias = brush.isAntiAlias();
 ```
 
 ### setAlpha
 
 setAlpha(alpha: number) : void
 
-用于设置画刷的透明度。
+设置画刷的透明度。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3321,15 +8067,39 @@ setAlpha(alpha: number) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setAlpha(128);
+```
+
+### getAlpha<sup>12+</sup>
+
+getAlpha(): number
+
+获取画刷的透明度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明              |
+| ------ | ---------------- |
+| number | 返回画刷的透明度，该返回值为0到255之间的整数。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+let alpha = brush.getAlpha();
 ```
 
 ### setColorFilter
 
 setColorFilter(filter: ColorFilter) : void
 
-用于给画刷添加额外的颜色滤波器。
+给画刷添加额外的颜色滤波器。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3337,7 +8107,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。null表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -3351,6 +8121,7 @@ setColorFilter(filter: ColorFilter) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
@@ -3360,7 +8131,7 @@ brush.setColorFilter(colorFilter);
 
 setMaskFilter(filter: MaskFilter): void
 
-用于给画刷添加额外的蒙版滤镜。
+给画刷添加额外的蒙版滤镜。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3368,7 +8139,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。null表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -3383,6 +8154,7 @@ setMaskFilter(filter: MaskFilter): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3391,6 +8163,38 @@ class DrawingRenderNode extends RenderNode {
     brush.setMaskFilter(maskFilter);
   }
 }
+```
+
+### setShaderEffect<sup>12+</sup>
+
+setShaderEffect(shaderEffect: ShaderEffect): void
+
+设置画刷着色器效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名  | 类型                       | 必填 | 说明         |
+| ------- | ------------------------- | ---- | ------------ |
+| shaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 着色器对象。null表示清空着色器效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100, y: 100}, {x: 300, y: 300}, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+brush.setShaderEffect(shaderEffect);
 ```
 
 ### setShadowLayer<sup>12+</sup>
@@ -3405,7 +8209,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。null表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -3420,6 +8224,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3462,7 +8267,7 @@ class DrawingRenderNode extends RenderNode {
 
 setBlendMode(mode: BlendMode) : void
 
-用于设置画刷的混合模式。
+设置画刷的混合模式。未调用此接口设置时，系统默认的混合模式为SRC_OVER。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3484,47 +8289,117 @@ setBlendMode(mode: BlendMode) : void
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setBlendMode(drawing.BlendMode.SRC);
 ```
+
+### setImageFilter<sup>12+</sup>
+
+setImageFilter(filter: ImageFilter | null): void
+
+为画刷设置图像滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| filter    | [ImageFilter](#imagefilter12) \| null | 是   | 图像滤波器，null表示清空图像滤波器效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. | 
+
+**示例：**
+
+```ts
+import {drawing} from '@kit.ArkGraphics2D';
+
+let brush = new drawing.Brush();
+let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.DECAL);
+brush.setImageFilter(imgFilter);
+brush.setImageFilter(null);
+```
+
+### getColorFilter<sup>12+</sup>
+
+getColorFilter(): ColorFilter
+
+获取画刷的颜色滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回颜色滤波器。 |
+
+**示例：**
+
+```ts 
+import {drawing} from '@kit.ArkGraphics2D';
+
+let brush = new drawing.Brush();
+let setColorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
+brush.setColorFilter(setColorFilter);
+let filter = brush.getColorFilter();   
+```
+
+### reset<sup>12+</sup>
+
+reset(): void
+
+重置当前画刷为初始状态。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+const brush = new drawing.Brush();
+brush.reset();
+```
+
+## ScaleToFit<sup>12+</sup>
+
+源矩形到目标矩形的缩放方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                   | 值   | 说明                           |
+| ---------------------- | ---- | ------------------------------ |
+| FILL_SCALE_TO_FIT     | 0    | 将源矩形缩放以填充满整个目标矩形，可能会改变源矩形的长宽比。  |
+| START_SCALE_TO_FIT    | 1    | 保持源矩形的长宽比进行缩放，并对齐到目标矩形的左上方。 |
+| CENTER_SCALE_TO_FIT    | 2    | 保持源矩形的长宽比进行缩放，并居中对齐到目标矩形。   |
+| END_SCALE_TO_FIT | 3    | 保持源矩形的长宽比进行缩放，并对齐到目标矩形的右下方。   |
 
 ## Matrix<sup>12+</sup>
 
 矩阵对象。
 
-$$
-表示为\begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix}的3*3矩阵。
-$$
+表示为3*3的矩阵，如下图所示：
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 矩阵中的元素从左到右，从上到下分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。
 设(x<sub>1</sub>, y<sub>1</sub>)为源坐标点，(x<sub>2</sub>, y<sub>2</sub>)为源坐标点通过矩阵变换后的坐标点，则两个坐标点的关系如下：
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
 constructor()
 
-用于构造一个矩阵对象。
+构造一个矩阵对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3536,6 +8411,133 @@ import { drawing } from '@kit.ArkGraphics2D';
 let matrix = new drawing.Matrix();
 ```
 
+### constructor<sup>20+</sup>
+
+constructor(matrix: Matrix)
+
+拷贝一个矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| matrix      | [Matrix](#matrix12)                  | 是    | 被拷贝的矩阵。|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+let matrix2 = new drawing.Matrix(matrix);
+```
+
+### isAffine<sup>20+</sup>
+
+isAffine(): boolean
+
+判断当前矩阵是否为仿射矩阵。仿射矩阵是一种包括平移、旋转、缩放等变换的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| boolean | 返回当前矩阵是否为仿射矩阵。true表示是仿射矩阵，false表示不是仿射矩阵。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
+let isAff = matrix.isAffine();
+console.info('isAff :', isAff);
+```
+
+### rectStaysRect<sup>20+</sup>
+
+rectStaysRect(): boolean
+
+判断经过该矩阵映射后的矩形的形状是否仍为矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| boolean | 返回经过该矩阵映射后的矩形的形状是否仍为矩形。true表示仍是矩形，false表示不是矩形。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
+let matrix2 = new drawing.Matrix(matrix);
+let isRect = matrix2.rectStaysRect();
+console.info('isRect :', isRect);
+```
+
+### setSkew<sup>20+</sup>
+
+setSkew(kx: number, ky: number, px: number, py: number): void
+
+设置矩阵的倾斜系数。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                       |
+| ----------- | ---------------------------------------- | ---- | -------------------             |
+| kx          | number                  | 是    | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。        |
+| ky          | number                  | 是    | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。        |
+| px          | number                  | 是    | 倾斜中心点的x轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点右侧，负数表示位于坐标原点左侧。     |
+| py          | number                  | 是    | 倾斜中心点的y轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点下侧，负数表示位于坐标原点上侧。     |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
+matrix.setSkew(2, 0.5, 0.5, 2);
+```
+
+### setSinCos<sup>20+</sup>
+
+setSinCos(sinValue: number, cosValue: number, px: number, py: number): void
+
+设置矩阵，使其围绕旋转中心(px, py)以指定的正弦值和余弦值旋转。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明            |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| sinValue          | number                  | 是    | 旋转角度的正弦值。仅当正弦值和余弦值的平方和为1时，为旋转变换，否则矩阵可能包含平移缩放等其他变换。          |
+| cosValue          | number                  | 是    | 旋转角度的余弦值。仅当正弦值和余弦值的平方和为1时，为旋转变换，否则矩阵可能包含平移缩放等其他变换。            |
+| px          | number                  | 是    | 旋转中心的x轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点右侧，负数表示位于坐标原点左侧。     |
+| py          | number                  | 是    | 旋转中心的y轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点下侧，负数表示位于坐标原点上侧。    |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+matrix.setMatrix([1, 0.5, 1, 0.5, 1, 1, 1, 1, 1]);
+matrix.setSinCos(0, 1, 1, 0);
+```
 ### setRotation<sup>12+</sup>
 
 setRotation(degree: number, px: number, py: number): void
@@ -3549,8 +8551,8 @@ setRotation(degree: number, px: number, py: number): void
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
 | degree      | number                  | 是    | 角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转，该参数为浮点数。|
-| px          | number                  | 是    | x轴上坐标点，该参数为浮点数。     |
-| py          | number                  | 是    | y轴上坐标点，该参数为浮点数。     |
+| px          | number                  | 是    | 旋转轴点的横坐标，该参数为浮点数。     |
+| py          | number                  | 是    | 旋转轴点的纵坐标，该参数为浮点数。     |
 
 **错误码：**
 
@@ -3583,8 +8585,8 @@ setScale(sx: number, sy: number, px: number, py: number): void
 | ----------- | ---------------------------------------- | ---- | ------------------- |
 | sx          | number                  | 是    | x轴方向缩放系数，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。     |
 | sy          | number                  | 是    | y轴方向缩放系数，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。     |
-| px          | number                  | 是    | x轴上坐标点，该参数为浮点数。      |
-| py          | number                  | 是    | y轴上坐标点，该参数为浮点数。      |
+| px          | number                  | 是    |  缩放中心点的横坐标，该参数为浮点数。      |
+| py          | number                  | 是    |  缩放中心点的纵坐标，该参数为浮点数。      |
 
 **错误码：**
 
@@ -3639,7 +8641,7 @@ matrix.setTranslation(100, 100);
 
 setMatrix(values: Array\<number>): void
 
-用于设置矩阵对象的各项参数。
+设置矩阵对象的各项参数。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3647,7 +8649,7 @@ setMatrix(values: Array\<number>): void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小,到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
+| values  | Array\<number> | 是   | 长度为9的浮点数组，表示矩阵对象参数。数组中的值按下标从小，到大分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。 |
 
 **错误码：**
 
@@ -3699,6 +8701,84 @@ matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
 let matrix2 = new drawing.Matrix();
 matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
 matrix1.preConcat(matrix2);
+```
+
+### setMatrix<sup>20+</sup>
+
+setMatrix(matrix: Array\<number\> \| Matrix): void
+
+用一个矩阵对当前矩阵进行更新。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| matrix | Array\<number\> \| [Matrix](#matrix12) | 是   | 用于更新的数组或矩阵。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix1 = new drawing.Matrix();
+matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
+let matrix2 = new drawing.Matrix();
+matrix1.setMatrix(matrix2);
+```
+
+### setConcat<sup>20+</sup>
+
+setConcat(matrixA: Matrix, matrixB: Matrix): void
+
+用两个矩阵的乘积更新当前矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| matrixA  | [Matrix](#matrix12) | 是   | 用于运算的矩阵A。 |
+| matrixB  | [Matrix](#matrix12) | 是   | 用于运算的矩阵B。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix1 = new drawing.Matrix();
+matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
+let matrix2 = new drawing.Matrix();
+matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
+matrix1.setConcat(matrix2, matrix1);
+```
+
+### postConcat<sup>20+</sup>
+
+postConcat(matrix: Matrix): void
+
+用当前矩阵右乘一个矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| matrix | [Matrix](#matrix12) | 是   | 用于运算的矩阵。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let matrix = new drawing.Matrix();
+if (matrix.isIdentity()) {
+  console.info("matrix is identity.");
+} else {
+  console.info("matrix is not identity.");
+}
+let matrix1 = new drawing.Matrix();
+matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
+let matrix2 = new drawing.Matrix();
+matrix2.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
+matrix1.postConcat(matrix2);
 ```
 
 ### isEqual<sup>12+</sup>
@@ -3763,7 +8843,7 @@ invert(matrix: Matrix): Boolean
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
-| Boolean | 返回matrix是否被设置为逆矩阵的结果。true表示当前矩阵可逆，matrix被填充为逆矩阵，false表示当前矩阵不可逆，matrix不被改变。 |
+| Boolean | 返回matrix是否被设置为逆矩阵的结果。true表示当前矩阵可逆，matrix被设置为逆矩阵，false表示当前矩阵不可逆，matrix不被设置。 |
 
 **错误码：**
 
@@ -3816,15 +8896,761 @@ if (matrix.isIdentity()) {
 }
 ```
 
+### getValue<sup>12+</sup>
+
+getValue(index: number): number
+
+获取矩阵给定索引位的值。索引范围0-8。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| index | number | 是   | 索引位置，范围0-8，该参数为整数。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| number | 函数返回矩阵给定索引位对应的值，该返回值为整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+for (let i = 0; i < 9; i++) {
+    console.info("matrix "+matrix.getValue(i).toString());
+}
+```
+
+### postRotate<sup>12+</sup>
+
+postRotate(degree: number, px: number, py: number): void
+
+将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| degree | number | 是   | 旋转角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转，该参数为浮点数。 |
+| px | number | 是   | 旋转中心点的横坐标，该参数为浮点数。 |
+| py | number | 是   | 旋转中心点的纵坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let degree: number = 2;
+let px: number = 3;
+let py: number = 4;
+matrix.postRotate(degree, px, py);
+console.info("matrix= "+matrix.getAll().toString());
+```
+
+### postScale<sup>12+</sup>
+
+postScale(sx: number, sy: number, px: number, py: number): void
+
+将矩阵设置为矩阵右乘围绕轴心点按一定缩放系数缩放后的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| sx | number | 是   | x轴方向缩放系数，负数表示先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 |
+| sy | number | 是   | y轴方向缩放系数，负数表示先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 |
+| px | number | 是   | 缩放中心点的横坐标，该参数为浮点数。 |
+| py | number | 是   | 缩放中心点的纵坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let sx: number = 2;
+let sy: number = 0.5;
+let px: number = 1;
+let py: number = 1;
+matrix.postScale(sx, sy, px, py);
+console.info("matrix= "+matrix.getAll().toString());
+```
+
+### postTranslate<sup>12+</sup>
+
+postTranslate(dx: number, dy: number): void
+
+将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| dx | number | 是   | x轴方向平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 |
+| dy | number | 是   | y轴方向平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let dx: number = 3;
+let dy: number = 4;
+matrix.postTranslate(dx, dy);
+console.info("matrix= "+matrix.getAll().toString());
+```
+
+### preRotate<sup>12+</sup>
+
+preRotate(degree: number, px: number, py: number): void
+
+将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| degree | number | 是   | 旋转角度，单位为度。正数表示顺时针旋转，负数表示逆时针旋转，该参数为浮点数。 |
+| px | number | 是   | 旋转中心点的横坐标，该参数为浮点数。 |
+| py | number | 是   | 旋转中心点的纵坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let degree: number = 2;
+let px: number = 3;
+let py: number = 4;
+matrix.preRotate(degree, px, py);
+console.info("matrix= "+matrix.getAll().toString());
+```
+
+### postSkew<sup>20+</sup>
+
+postSkew(kx: number, ky: number, px: number, py: number): void
+
+当前矩阵右乘一个倾斜变换矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------------   |
+| kx          | number                  | 是    | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。           |
+| ky          | number                  | 是    | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。           |
+| px          | number                  | 是    | 倾斜中心点的x轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点右侧，负数表示位于坐标原点左侧。    |
+| py          | number                  | 是    | 倾斜中心点的y轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点下侧，负数表示位于坐标原点上侧。   |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D"
+let matrix = new drawing.Matrix();
+matrix.postSkew(2.0, 1.0, 2.0, 1.0);
+```
+
+### preSkew<sup>20+</sup>
+
+ preSkew(kx: number, ky: number, px: number, py: number): void
+
+当前矩阵左乘一个倾斜变换矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------------   |
+| kx          | number                  | 是    | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。           |
+| ky          | number                  | 是    | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。           |
+| px          | number                  | 是    | 倾斜中心点的x轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点右侧，负数表示位于坐标原点左侧。        |
+| py          | number                  | 是    | 倾斜中心点的y轴坐标，该参数为浮点数。0表示坐标原点，正数表示位于坐标原点下侧，负数表示位于坐标原点上侧。        |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D"
+let matrix = new drawing.Matrix();
+matrix.preSkew(2.0, 1.0, 2.0, 1.0);
+```
+
+### mapRadius<sup>20+</sup>
+
+mapRadius(radius: number): number
+
+返回半径为radius的圆经过当前矩阵映射形成的椭圆的平均半径。平均半径的平方为椭圆长轴长度和短轴长度的乘积。若当前矩阵包含透视变换，则该结果无意义。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| radius  | number | 是   | 用于计算的圆的半径，浮点数。如果是负数，则按照绝对值进行计算。 |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| number | 返回经过变换之后的平均半径。 |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D"
+
+let matrix = new drawing.Matrix();
+matrix.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
+let radius = matrix.mapRadius(10);
+console.info('radius', radius);
+```
+
+### preScale<sup>12+</sup>
+
+preScale(sx: number, sy: number, px: number, py: number): void
+
+将矩阵设置为矩阵左乘围绕轴心点按一定缩放系数缩放后的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| sx | number | 是   | x轴方向缩放系数，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 |
+| sy | number | 是   | y轴方向缩放系数，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 |
+| px | number | 是   | 轴心点横坐标，该参数为浮点数。 |
+| py | number | 是   | 轴心点纵坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let sx: number = 2;
+let sy: number = 0.5;
+let px: number = 1;
+let py: number = 1;
+matrix.preScale(sx, sy, px, py);
+console.info("matrix"+matrix.getAll().toString());
+```
+
+### preTranslate<sup>12+</sup>
+
+preTranslate(dx: number, dy: number): void
+
+将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| dx | number | 是   | x轴方向平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 |
+| dy | number | 是   | y轴方向平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+let dx: number = 3;
+let dy: number = 4;
+matrix.preTranslate(dx, dy);
+console.info("matrix"+matrix.getAll().toString());
+```
+
+### reset<sup>12+</sup>
+
+reset(): void
+
+重置当前矩阵为单位矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+matrix.postScale(2, 3, 4, 5);
+matrix.reset();
+console.info("matrix= "+matrix.getAll().toString());
+```
+
+### mapPoints<sup>12+</sup>
+
+mapPoints(src: Array\<common2D.Point>): Array\<common2D.Point>
+
+通过矩阵变换将源点数组映射到目标点数组。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 源点数组经矩阵变换后的点数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
+let src: Array<common2D.Point> = [];
+src.push({x: 15, y: 20});
+src.push({x: 20, y: 15});
+src.push({x: 30, y: 10});
+let matrix = new drawing.Matrix();
+let dst: Array<common2D.Point> = matrix.mapPoints(src);
+console.info("matrix= src: "+JSON.stringify(src));
+console.info("matrix= dst: "+JSON.stringify(dst));
+```
+
+### getAll<sup>12+</sup>
+
+getAll(): Array\<number>
+
+获取矩阵的所有元素值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| Array\<number> | 存储矩阵元素值的浮点数组，长度为9。 |
+
+**示例：**
+
+```ts
+import {drawing} from "@kit.ArkGraphics2D";
+
+let matrix = new drawing.Matrix();
+console.info("matrix "+ matrix.getAll());
+```
+
+### mapRect<sup>12+</sup>
+
+mapRect(dst: common2D.Rect, src: common2D.Rect): boolean
+
+将目标矩形设置为源矩形通过矩阵变换后的图形的外接矩形。如下图所示，蓝色矩形为源矩形，假设黄色矩形为源矩形通过矩阵变换形成的图形，此时黄色矩形的边不与坐标轴平行，无法使用矩形对象表示，因此，将目标矩形设置为黄色矩形的外接矩形，即黑色矩形。
+
+![mapRect](./figures/zh-ch_matrix_mapRect.png)
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| dst | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形对象，用于存储源矩形经矩阵变换后的图形的外接矩形。 |
+| src |[common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 源矩形对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回源矩形经过矩阵变换后的图形是否仍然是矩形，true表示是矩形，false表示不是矩形。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
+let dst: common2D.Rect = { left: 100, top: 20, right: 130, bottom: 60 };
+let src: common2D.Rect = { left: 100, top: 80, right: 130, bottom: 120 };
+let matrix = new drawing.Matrix();
+if (matrix.mapRect(dst, src)) {
+    console.info("matrix= dst "+JSON.stringify(dst));
+}
+```
+
+### setRectToRect<sup>12+</sup>
+
+setRectToRect(src: common2D.Rect, dst: common2D.Rect, scaleToFit: ScaleToFit): boolean
+
+将当前矩阵设置为能使源矩形映射到目标矩形的变换矩阵。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| src | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 源矩形。 |
+| dst | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形。 |
+| scaleToFit | [ScaleToFit](#scaletofit12) | 是   | 源矩形到目标矩形的映射方式。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回矩阵是否可以表示矩形之间的映射，true表示可以，false表示不可以。如果源矩形的宽高任意一个小于等于0，则返回false，并将矩阵设置为单位矩阵；如果目标矩形的宽高任意一个小于等于0，则返回true，并将矩阵设置为除透视缩放系数为1外其余值皆为0的矩阵。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
+let src: common2D.Rect = { left: 100, top: 100, right: 300, bottom: 300 };
+let dst: common2D.Rect = { left: 200, top: 200, right: 600, bottom: 600 };
+let scaleToFit: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT
+let matrix = new drawing.Matrix();
+if (matrix.setRectToRect(src, dst, scaleToFit)) {
+    console.info("matrix"+matrix.getAll().toString());
+}
+```
+
+### setPolyToPoly<sup>12+</sup>
+
+setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: number): boolean
+
+将当前矩阵设置为能够将源点数组映射到目标点数组的变换矩阵。源点和目标点的个数必须大于等于0，小于等于4。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组，长度必须为count。 |
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 目标点数组，长度必须为count。 |
+| count | number | 是   | 在src和dst点的数量，该参数为整数。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回设置矩阵是否成功的结果，true表示设置成功，false表示设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
+let srcPoints: Array<common2D.Point> = [ {x: 10, y: 20}, {x: 200, y: 150} ];
+let dstPoints: Array<common2D.Point> = [{ x:0, y: 10 }, { x:300, y: 600 }];
+let matrix = new drawing.Matrix();
+if (matrix.setPolyToPoly(srcPoints, dstPoints, 2)) {
+    console.info("matrix"+matrix.getAll().toString());
+}
+```
+
+## RoundRect<sup>12+</sup>
+
+圆角矩形对象。
+
+### constructor<sup>20+</sup>
+
+constructor(roundRect: RoundRect)
+
+拷贝一个圆角矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| roundRect        | [RoundRect](#roundrect12) | 是    |  用于拷贝的圆角矩形。   |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let rect: common2D.Rect = {left : 100, top : 100, right : 500, bottom : 300};
+let roundRect = new drawing.RoundRect(rect, 50, 50);
+let roundRect2 = new drawing.RoundRect(roundRect);
+```
+
+### constructor<sup>12+</sup>
+
+constructor(rect: common2D.Rect, xRadii: number, yRadii: number)
+
+构造一个圆角矩形对象，当且仅当xRadii和yRadii均大于0时，圆角生效，否则只会构造一个矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 需要创建的圆角矩形区域。      |
+| xRadii        | number                  | 是    | X轴上的圆角半径，该参数为浮点数，小于等于0时无效。     |
+| yRadii        | number                  | 是    | Y轴上的圆角半径，该参数为浮点数，小于等于0时无效。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+let rect: common2D.Rect = {left : 100, top : 100, right : 500, bottom : 300};
+let roundRect = new drawing.RoundRect(rect, 50, 50);
+```
+### setCorner<sup>12+</sup>
+
+setCorner(pos: CornerPos, x: number, y: number): void
+
+设置圆角矩形中指定圆角位置的圆角半径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| pos | [CornerPos](#cornerpos12) | 是   | 圆角位置。                 |
+| x     | number                 | 是   | x轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
+| y     | number      | 是   | y轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
+roundRect.setCorner(drawing.CornerPos.TOP_LEFT_POS, 150, 150);
+```
+
+### getCorner<sup>12+</sup>
+
+getCorner(pos: CornerPos): common2D.Point
+
+获取圆角矩形中指定圆角位置的圆角半径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| pos | [CornerPos](#cornerpos12) | 是   | 圆角位置。                 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [common2D.Point](js-apis-graphics-common2D.md#point)  | 返回一个点，其横坐标表示圆角x轴方向上的半径，纵坐标表示y轴方向上的半径。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
+let cornerRadius = roundRect.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+console.info("getCorner---"+cornerRadius.x)
+console.info("getCorner---"+cornerRadius.y)
+```
+
+### offset<sup>12+</sup>
+
+offset(dx: number, dy: number): void
+
+将圆角矩形分别沿x轴方向和y轴方向平移dx,dy。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| dx | number | 是   | 表示x轴方向上的偏移量。正数表示向x轴正方向平移，负数表示向x轴负方向平移，该参数为浮点数。                 |
+| dy | number | 是   | 表示y轴方向上的偏移量。正数表示向y轴正方向平移，负数表示向y轴负方向平移，该参数为浮点数。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
+roundRect.offset(100, 100);
+```
+
 ## Region<sup>12+</sup>
 
 区域对象，用于描述所绘制图形的区域信息。
 
-### isPointContained<sup>12+</sup>
+### constructor<sup>20+</sup>
 
-isPointContained(x: number, y: number) : boolean
+constructor()
 
-用于判断测试点是否在区域内。
+构造一个区域对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(200, 200, 400, 400);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### constructor<sup>20+</sup>
+
+constructor(region: Region)
+
+拷贝一个区域对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3832,8 +9658,250 @@ isPointContained(x: number, y: number) : boolean
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| x      | number | 是   | 测试点的x轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
-| y      | number | 是   | 测试点的y轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| region     | [Region](#region12) | 是   | 用于拷贝的区域。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(200, 200, 400, 400);
+    let region2 = new drawing.Region(region);
+    canvas.drawRegion(region2);
+    canvas.detachPen();
+  }
+}
+```
+
+### constructor<sup>20+</sup>
+
+constructor(left: number, top: number, right: number, bottom: number)
+
+构造矩形区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| left   | number | 是   | 矩形区域的左侧位置（矩形左上角横坐标）。该参数必须为整数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。|
+| top    | number | 是   | 矩形区域的顶部位置（矩形左上角纵坐标）。该参数必须为整数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+| right  | number | 是   | 矩形区域的右侧位置（矩形右下角横坐标）。该参数必须为整数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| bottom | number | 是   | 矩形区域的底部位置（矩形右下角纵坐标）。该参数必须为整数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region(100, 100, 200, 200);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### isEqual<sup>20+</sup>
+
+isEqual(other: Region): boolean
+
+用于判断其他区域是否与当前区域相等。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| other      | [Region](#region12) | 是   | 区域对象。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回其他区域是否与当前区域相等的结果。true表示相等，false表示不相等。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let other = new drawing.Region();
+    region.setRect(100, 100, 400, 400);
+    other.setRect(150, 150, 250 ,250);
+    let flag: boolean = false;
+    flag = region.isEqual(other);
+    console.info('flag: ', flag);
+    canvas.drawRegion(region);
+    canvas.drawRegion(other);
+    canvas.detachPen();
+  }
+}
+```
+
+### isComplex<sup>20+</sup>
+
+isComplex(): boolean
+
+判断当前区域是否包含多个矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回当前区域是否包含多个矩形的结果。true表示当前区域包含多个矩形，false表示当前区域不包含多个矩形。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let other = new drawing.Region();
+    region.setRect(100, 100, 200, 200);
+    region.op(new drawing.Region(220, 200, 280, 280), drawing.RegionOp.UNION);
+    let flag: boolean = false;
+    flag = region.isComplex();
+    console.info('flag :', flag);
+    canvas.drawRegion(region);
+    canvas.drawRegion(other);
+    canvas.detachPen();
+  }
+}
+```
+
+### isEmpty<sup>20+</sup>
+
+isEmpty(): boolean
+
+判断当前区域是否为空。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明                    |
+| ------- | --------------         |
+| boolean | 返回当前区域是否为空。true表示当前区域为空，false表示当前区域不为空。   |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let flag: boolean = region.isEmpty();
+    console.info('flag: ', flag);
+    region.setRect(100, 100, 400, 400);
+    flag = region.isEmpty();
+    console.info('flag: ', flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### getBounds<sup>20+</sup>
+
+getBounds(): common2D.Rect
+
+获取区域的边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 返回当前区域的边界矩形。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let region = new drawing.Region();
+let rect: common2D = region.getBounds();
+```
+
+### getBoundaryPath<sup>20+</sup>
+
+getBoundaryPath(): Path
+
+返回一个新路径，该路径取自当前区域的边界。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| [Path](#path)  | 返回当前区域边界的路径。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let region = new drawing.Region();
+let path = region.getBoundaryPath();
+```
+
+### isPointContained<sup>12+</sup>
+
+isPointContained(x: number, y: number) : boolean
+
+判断测试点是否在区域内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| x      | number | 是   | 测试点的x轴坐标。该参数必须为整数。如果输入的数字包含小数部分，小数部分将被舍去。 |
+| y      | number | 是   | 测试点的y轴坐标。该参数必须为整数。如果输入的数字包含小数部分，小数部分将被舍去。 |
 
 **返回值：**
 
@@ -3853,6 +9921,8 @@ isPointContained(x: number, y: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3872,11 +9942,48 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### offset<sup>20+</sup>
+
+offset(dx: number, dy: number): void
+
+对区域进行平移。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| dx      | number | 是   | x轴方向平移量，正数往x轴正方向平移，负数往x轴负方向平移，该参数为整数。 |
+| dy      | number | 是   | y轴方向平移量，正数往y轴正方向平移，负数往y轴负方向平移，该参数为整数。|
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(100, 100, 400, 400);
+    region.offset(10, 20);
+    canvas.drawPoint(200,200);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
 ### isRegionContained<sup>12+</sup>
 
 isRegionContained(other: Region) : boolean
 
-用于判断其他区域是否在当前区域内。
+判断其他区域是否在当前区域内。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3904,6 +10011,8 @@ isRegionContained(other: Region) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3929,7 +10038,7 @@ class DrawingRenderNode extends RenderNode {
 
 op(region: Region, regionOp: RegionOp) : boolean
 
-用于将当前区域与指定区域进行指定运算操作，并将当前区域替换为运算结果。
+将当前区域与指定区域进行运算，并替换为运算结果。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3958,6 +10067,8 @@ op(region: Region, regionOp: RegionOp) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3982,7 +10093,7 @@ class DrawingRenderNode extends RenderNode {
 
 quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
-用于判断矩形和区域是否不相交。
+快速判断矩形和区域是否不相交，实际上比较的是矩形和区域的外接矩形是否不相交，因此会有误差。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -4013,6 +10124,8 @@ quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4031,11 +10144,56 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### quickRejectRegion<sup>20+</sup>
+
+quickRejectRegion(region: Region): boolean
+
+判断当前区域是否与另一个区域不相交。实际上比较的是两个区域的外接矩形是否不相交，因此会有误差。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| region      | [Region](#region12) | 是   | 指定的区域对象。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回是否当前区域与另外的区域不相交的结果。true表示不相交，false表示相交。仅点和边相交返回true。|
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let region2 = new drawing.Region();
+    region2.setRect(100, 100, 400, 400);
+    let flag: boolean = false;
+    flag = region.quickRejectRegion(region2);
+    console.info("region quickRejectRegion: " + flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
 ### setPath<sup>12+</sup>
 
 setPath(path: Path, clip: Region) : boolean
 
-设置一个与裁剪区域内路径的轮廓相匹配的区域。
+设置一个与裁剪区域内路径轮廓相匹配的区域。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -4050,7 +10208,7 @@ setPath(path: Path, clip: Region) : boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 返回是否成功设置一个与裁剪区域内路径的轮廓相匹配的区域。true表示设置成功，false表示设置失败。 |
+| boolean | 返回设置一个与裁剪区域内路径轮廓相匹配的区域是否成功。true表示设置成功，false表示设置失败。 |
 
 **错误码：**
 
@@ -4064,6 +10222,8 @@ setPath(path: Path, clip: Region) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4080,6 +10240,72 @@ class DrawingRenderNode extends RenderNode {
     console.info("region setPath : " + flag);
     canvas.drawRegion(region);
     canvas.detachPen();
+  }
+}
+```
+
+### setRegion<sup>20+</sup>
+
+setRegion(region: Region): void
+
+设置当前区域为另一块区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| region      | [Region](#region12) | 是   | 用于赋值的区域。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(100, 100, 200, 200);
+    let region2 = new drawing.Region();
+    region2.setRegion(region);
+    canvas.drawRegion(region2);
+    canvas.detachPen();
+  }
+}
+```
+
+### setEmpty<sup>20+</sup>
+
+setEmpty(): void
+
+设置当前区域为空。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    let region = new drawing.Region();
+    region.setRect(100, 100, 200, 200);
+    let isEmpty = region.isEmpty();
+    console.info("isEmpty :" + isEmpty);
+    region.setEmpty();
+    isEmpty = region.isEmpty();
+    console.info("isEmpty :" + isEmpty);
   }
 }
 ```
@@ -4119,6 +10345,8 @@ setRect(left: number, top: number, right: number, bottom: number) : boolean
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4136,21 +10364,1094 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+## TileMode<sup>12+</sup>
+
+着色器效果平铺模式的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                   | 值   | 说明                           |
+| ---------------------- | ---- | ------------------------------ |
+| CLAMP     | 0    | 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 |
+| REPEAT    | 1    | 在水平和垂直方向上重复着色器效果。 |
+| MIRROR    | 2    | 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 |
+| DECAL     | 3    | 仅在其原始边界内渲染着色器效果。|
+
+## ShaderEffect<sup>12+</sup>
+
+着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
+
+### createComposeShader<sup>20+</sup>
+
+static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: ShaderEffect, blendMode: BlendMode): ShaderEffect
+
+按照指定的混合模式对两个着色器进行叠加，生成一个新的着色器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| dstShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为目标色的着色器。 |
+| srcShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为源色的着色器。   |
+| blendMode  | [BlendMode](#blendmode) | 是   | 混合模式。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let dstShader = drawing.ShaderEffect.createColorShader(0xFF0000FF);
+let srcShader = drawing.ShaderEffect.createColorShader(0xFFFF0000);
+let shader = drawing.ShaderEffect.createComposeShader(dstShader, srcShader, drawing.BlendMode.SRC);
+```
+
+### createImageShader<sup>20+</sup>
+
+static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileMode, samplingOptions: SamplingOptions, matrix?: Matrix | null): ShaderEffect
+
+基于图片创建一个着色器。此接口不建议用于录制类型的画布，会影响性能。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| pixelmap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 进行采样的图片对象。 |
+| tileX   | [TileMode](#tilemode12)  | 是   | 水平方向的平铺模式。 |
+| tileY   | [TileMode](#tilemode12)  | 是   | 竖直方向的平铺模式。 |
+| samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 是   | 图片采样参数。 |
+| matrix | [Matrix](#matrix12) \| null | 否   | 可选参数，对图片施加的矩阵变换，如果为空，则不施加任何变换。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    let matrix = new drawing.Matrix();
+    let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
+    if (this.pixelMap != null) {
+      let imageShader = drawing.ShaderEffect.createImageShader(this.pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
+    }
+  }
+}
+```
+
+### createColorShader<sup>12+</sup>
+
+static createColorShader(color: number): ShaderEffect
+
+创建具有单一颜色的着色器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| color   | number | 是   | 表示着色器的ARGB格式颜色，该参数为32位无符号整数。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回具有单一颜色的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let shaderEffect = drawing.ShaderEffect.createColorShader(0xFFFF0000);
+```
+
+### createLinearGradient<sup>12+</sup>
+
+static createLinearGradient(startPt: common2D.Point, endPt: common2D.Point, colors: Array
+\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect
+
+创建着色器，在两个指定点之间生成线性渐变。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的起点。 |
+| endPt   | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的终点。 |
+| colors | Array\<number> | 是   | 表示在两个点之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
+| mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
+| pos | Array\<number> \|null| 否   | 表示每种对应颜色在颜色数组中的相对位置。数组长度需和colors保持一致，数组的首个元素应当是0.0，末尾元素应当是1.0，中间的元素应当在0与1之间并且逐下标递增，表示colors中每个对应颜色的相对位置。默认为null，表示颜色均匀分布在起点和终点之间。 |
+| matrix | [Matrix](#matrix12) \| null | 否   | 矩阵对象，用于对着色器做矩阵变换。默认为null，表示单位矩阵。 |
+
+![LinearGradient](./figures/zh-ch_image_createLinearGradient.png)
+
+如上图所示，设置颜色数组为红绿蓝，位置数组为0.0、0.75和1.0后的显示效果。三角下标表示对应颜色的起始点和终点之间的相对位置，颜色之间使用渐变填充。
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D,drawing } from '@kit.ArkGraphics2D';
+
+let startPt: common2D.Point = { x: 100, y: 100 };
+let endPt: common2D.Point = { x: 300, y: 300 };
+let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+```
+
+### createRadialGradient<sup>12+</sup>
+
+static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
+
+创建着色器，使用给定的圆心和半径生成径向渐变。径向渐变是指颜色从圆心逐渐向外扩散形成的渐变。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的圆心。 |
+| radius   | number  | 是   | 表示渐变的半径，小于等于0时无效，该参数为浮点数。 |
+| colors | Array\<number> | 是   | 表示在圆心和圆边界之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
+| mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
+| pos | Array\<number> \| null | 否   | 表示每种对应颜色在颜色数组中的相对位置。数组长度需和colors保持一致，数组的首个元素应当是0.0，末尾元素应当是1.0，中间的元素应当在0与1之间并且逐下标递增，表示colors中每个对应颜色的相对位置。默认为null，表示颜色均匀分布在圆心和圆边界之间。 |
+| matrix | [Matrix](#matrix12) \| null | 否   | 矩阵对象，用于对着色器做矩阵变换。默认为null，表示单位矩阵。 |
+
+![RadialGradient](./figures/zh-ch_image_createRadialGradient.png)
+
+如上图所示，设置颜色数组为红绿蓝，位置数组为0.0、0.75和1.0后的显示效果。三角下标表示对应颜色所在圆心和圆边界之间的相对位置，颜色之间使用渐变填充。
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D,drawing } from '@kit.ArkGraphics2D';
+
+let centerPt: common2D.Point = { x: 100, y: 100 };
+let shaderEffect = drawing.ShaderEffect.createRadialGradient(centerPt, 100, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+```
+
+### createSweepGradient<sup>12+</sup>
+
+static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>,
+  mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null,
+  matrix?: Matrix | null): ShaderEffect;
+
+创建着色器。该着色器以给定中心点为圆心，在顺时针或逆时针方向上生成颜色扫描渐变。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的圆心。 |
+| colors | Array\<number> | 是   | 表示在起始角度和结束角度之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
+| mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
+| startAngle | number | 是   | 表示扇形渐变的起始角度，单位为度。0度时为x轴正方向，正数往顺时针方向偏移，负数往逆时针方向偏移。该参数为浮点数。 |
+| endAngle | number | 是   | 表示扇形渐变的结束角度，单位为度。0度时为x轴正方向，正数往顺时针方向偏移，负数往逆时针方向偏移。小于起始角度时无效。该参数为浮点数。 |
+| pos | Array\<number> \| null | 否   | 表示每种对应颜色在颜色数组中的相对位置。数组长度需和colors保持一致，数组的首个元素应当是0.0，末尾元素应当是1.0，中间的元素应当在0与1之间并且逐下标递增，表示colors中每个对应颜色的相对位置。默认为null，表示颜色均匀分布在起始角度和结束角度之间。 |
+| matrix | [Matrix](#matrix12) \| null | 否   |矩阵对象，用于对着色器做矩阵变换。默认为null，表示单位矩阵。 |
+
+![SweepGradient](./figures/zh-ch_image_createSweepGradient.png)
+
+如上图所示，设置颜色数组为红绿蓝，位置数组为0.0、0.75和1.0，起始角度设置为0度，结束角度设置为180度后的显示效果。0.0对应0度的位置，0.75对应135度的位置，1.0对应180度的位置，颜色之间使用渐变填充。
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D,drawing } from '@kit.ArkGraphics2D';
+
+let centerPt: common2D.Point = { x: 100, y: 100 };
+let shaderEffect = drawing.ShaderEffect.createSweepGradient(centerPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT, 100, 200);
+```
+
+### createConicalGradient<sup>12+</sup>
+
+static createConicalGradient(startPt: common2D.Point, startRadius: number, endPt: common2D.Point, endRadius: number, colors: Array\<number>, mode: TileMode, 
+pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
+
+创建着色器，在给定两个圆之间生成径向渐变。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   |表示渐变的起始圆的圆心。 |
+| startRadius | number | 是   | 表示渐变的起始圆的半径，小于0时无效。该参数为浮点数。 |
+| endPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | 是   | 表示渐变的结束圆的圆心。 |
+| endRadius | number | 是   | 表示渐变的结束圆的半径，小于0时无效。该参数为浮点数。 |
+| colors | Array\<number> | 是   | 表示在起始圆和结束圆之间分布的颜色数组，数组中的值为32位（ARGB）无符号整数。 |
+| mode  | [TileMode](#tilemode12) | 是   | 着色器效果平铺模式。 |
+| pos | Array\<number> \| null | 否   | 表示每种对应颜色在颜色数组中的相对位置。数组长度需和colors保持一致，数组的首个元素应当是0.0，末尾元素应当是1.0，中间的元素应当在0与1之间并且逐下标递增，表示colors中每个对应颜色的相对位置。默认为null，表示颜色均匀分布在起始圆和结束圆之间。|
+| matrix | [Matrix](#matrix12) \| null | 否   | 矩阵对象，用于对着色器做矩阵变换。默认为null，表示单位矩阵。 |
+
+![ConicalGradient](./figures/zh-ch_image_createConicalGradient.png)
+
+如上图所示，设置颜色数组为红绿蓝，位置数组为0.0、0.5和1.0的绘制结果。左侧为起始圆不在结束圆内的绘制结果，右侧为起始圆在结束圆内的绘制结果。
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D,drawing } from '@kit.ArkGraphics2D';
+
+let startPt: common2D.Point = { x: 100, y: 100 };
+let endPt: common2D.Point = {x: 200, y: 200};
+let shaderEffect = drawing.ShaderEffect.createConicalGradient(startPt, 100, endPt, 50, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+```
+
+## Tool<sup>15+</sup>
+
+本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
+
+### makeColorFromResourceColor<sup>15+</sup>
+
+static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
+
+将ResourceColor类型的值转换为common2D.Color对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| resourceColor | [ResourceColor](../apis-arkui/arkui-ts/ts-types.md#resourcecolor) | 是   | ResourceColor格式的颜色值（支持所有的4种输入，示例中提供13个示例输入）。其中第4种类型[Resource](../apis-arkui/arkui-ts/ts-types.md#resource)只接受``$r('belonging.type.name')``构造方法，需要确保该资源在main/resources/base/element目录下已定义(app支持color、string和integer，sys只支持color)。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [common2D.Color](js-apis-graphics-common2D.md#color) | 转换后的common2D.Color颜色对象，若转换失败则返回空指针。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+
+// Color
+let color1: common2D.Color = drawing.Tool.makeColorFromResourceColor(Color.Blue);
+
+// Number
+let color2: common2D.Color = drawing.Tool.makeColorFromResourceColor(0xffc0cb);
+let color3: common2D.Color = drawing.Tool.makeColorFromResourceColor(0x11ffa500);
+
+// String
+let color4: common2D.Color = drawing.Tool.makeColorFromResourceColor('#ff0000');
+let color5: common2D.Color = drawing.Tool.makeColorFromResourceColor('#110000ff');
+let color6: common2D.Color = drawing.Tool.makeColorFromResourceColor('#00f');
+let color7: common2D.Color = drawing.Tool.makeColorFromResourceColor('#100f');
+let color8: common2D.Color = drawing.Tool.makeColorFromResourceColor('rgb(255, 100, 255)');
+let color9: common2D.Color = drawing.Tool.makeColorFromResourceColor('rgba(255, 100, 255, 0.5)');
+
+// Resource
+let color10: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('sys.color.ohos_id_color_secondary'));
+let color11: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.color.appColorTest'));
+let color12: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.string.appColorTest'));
+let color13: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.integer.appColorTest'));
+
+// Use color
+let brush = new drawing.Brush();
+brush.setColor(color1);
+```
+
 ## RegionOp<sup>12+</sup>
 
 两个区域合并时的操作的枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                   | 值   | 说明                           | 示意图   |
 | --------------------- | ---- | ------------------------------ | -------- |
-| DIFFERENCE         | 0    | 两个区域相减操作。  | ![CLEAR](./figures/zh-ch_image_RegionOp_Difference.png) |
-| INTERSECT          | 1    | 两个区域相交操作。 | ![INTERSECT](./figures/zh-ch_image_RegionOp_Intersect.png) |
-| UNION              | 2    | 两个区域联合操作。   | ![UNION](./figures/zh-ch_image_RegionOpe_Union.png) |
-| XOR                | 3    | 两个区域异或操作。   | ![XOR](./figures/zh-ch_image_RegionOp_Xor.png) |
-| REVERSE_DIFFERENCE | 4    | 两个区域反向相减操作。   | ![REVERSE_DIFFERENCE](./figures/zh-ch_image_RegionOp_Reverse_difference.png) |
+| DIFFERENCE         | 0    | 两个区域的相减操作。  | ![CLEAR](./figures/zh-ch_image_RegionOp_Difference.png) |
+| INTERSECT          | 1    | 两个区域的相交操作。 | ![INTERSECT](./figures/zh-ch_image_RegionOp_Intersect.png) |
+| UNION              | 2    | 两个区域的联合操作。   | ![UNION](./figures/zh-ch_image_RegionOpe_Union.png) |
+| XOR                | 3    | 两个区域的异或操作。   | ![XOR](./figures/zh-ch_image_RegionOp_Xor.png) |
+| REVERSE_DIFFERENCE | 4    | 两个区域的反向相减操作。   | ![REVERSE_DIFFERENCE](./figures/zh-ch_image_RegionOp_Reverse_difference.png) |
 | REPLACE            | 5    | 两个区域替换操作。   | ![REPLACE](./figures/zh-ch_image_RegionOp_Replace.png) |
 
 > **说明：**
 >
-> 示意图展示的是以一个红色区域为基础，使用不同枚举值与另一个蓝色区域合并后获得的结果，其中绿色区域为最终得到的区域。
+> 示意图展示了一个以红色区域为基础，使用不同枚举值与另一个蓝色区域合并后获得的结果，其中绿色区域为最终得到的区域。
+
+## CornerPos<sup>12+</sup>
+
+圆角位置枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                   | 值   | 说明                           |
+| --------------------- | ---- | ------------------------------ | 
+| TOP_LEFT_POS          | 0    | 左上角圆角位置。  |
+| TOP_RIGHT_POS         | 1    | 右上角圆角位置。 |
+| BOTTOM_RIGHT_POS      | 2    | 右下角圆角位置。   |
+| BOTTOM_LEFT_POS       | 3    | 左下角圆角位置。   |
+
+## RectUtils<sup>20+</sup>
+
+提供了处理矩形的工具。
+
+主要的使用场景：
+
+1. 矩形快速构建与获取基本属性，如构造新矩形、拷贝矩形、获取矩形的宽高以及中心点等。
+
+2. 边界计算与调整，如获取包含关系、计算与更新矩形之间交集和并集，更新边界值等。
+
+### makeEmpty<sup>20+</sup>
+
+static makeEmpty(): common2D.Rect
+
+创建一个上下左右边界坐标都是0的矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 创建的矩形对象。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+
+let rect = drawing.RectUtils.makeEmpty();
+```
+
+### makeLtrb<sup>20+</sup>
+
+static makeLtrb(left: number, top: number, right: number, bottom: number): common2D.Rect
+
+创建指定上下左右边界的矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| left   | number | 是   | 矩形的左上角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| top    | number | 是   | 矩形的左上角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+| right  | number | 是   | 矩形的右下角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| bottom | number | 是   | 矩形的右下角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 创建的矩形。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+```
+
+### makeCopy<sup>20+</sup>
+
+static makeCopy(src: common2D.Rect): common2D.Rect;
+
+拷贝一个矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| src   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于拷贝的矩形。 |
+
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect) | 创建的新矩形。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+let rect2 = drawing.RectUtils.makeCopy(rect);
+console.info('rect2.left:', rect2.left);
+console.info('rect2.top: ', rect2.top);
+console.info('rect2.right: ', rect2.right);
+console.info('rect2.bottom: ', rect2.bottom);
+```
+
+### getWidth<sup>20+</sup>
+
+static getWidth(rect: common2D.Rect): number
+
+获取矩形的宽度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| number | 返回矩形的宽。如果矩形的左边界大于右边界，获取的宽度为负值，左边界小于右边界则为正值。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+let width = drawing.RectUtils.getWidth(rect);
+console.info('width ：', width);
+```
+
+### getHeight<sup>20+</sup>
+
+static getHeight(rect: common2D.Rect): number
+
+获取矩形的高度。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| number | 返回矩形的高。如果矩形的上边界大于下边界，获取的高度为负值，上边界小于下边界则为正值。|
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+let height = drawing.RectUtils.getHeight(rect);
+```
+
+### centerX<sup>20+</sup>
+
+static centerX(rect: common2D.Rect): number
+
+获取矩形中心的横坐标。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| number | 返回矩形中心的横坐标。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(20, 30, 30, 40);
+let x = drawing.RectUtils.centerX(rect);
+```
+
+### centerY<sup>20+</sup>
+
+static centerY(rect: common2D.Rect): number
+
+获取矩形中心的纵坐标。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| number | 返回矩形中心的纵坐标。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(20, 30, 30, 40);
+let x = drawing.RectUtils.centerY(rect);
+```
+
+### contains<sup>20+</sup>
+
+static contains(rect: common2D.Rect, other: common2D.Rect): boolean
+
+判断一个矩形是否完全包含另外一个矩形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+| other   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 判断是否被包含的矩形对象。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回矩形是否完全包含另一个矩形的结果。true表示指定矩形在另一个矩形内部或者相等，false表示指定矩形在另一个矩形外部。空的矩形不包含任何矩形。|
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+let rect2 = drawing.RectUtils.makeLtrb(0, 0, 40, 40);
+let isContains = drawing.RectUtils.contains(rect2, rect);
+console.info('isContains: ', isContains);
+```
+
+### contains<sup>20+</sup>
+
+static contains(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): boolean
+
+判断一个矩形是否完全包含另外一个矩形（另一个矩形分别用左上右下坐标表示）。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+| left   | number | 是   | 矩形的左上角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| top    | number | 是   | 矩形的左上角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+| right  | number | 是   | 矩形的右下角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| bottom | number | 是   | 矩形的右下角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回矩形是否完全包含由左上右下坐标组成的矩形的结果。true表示指定左上右下坐标组成的矩形在矩形的内部或者相等，false表示指定左上右下坐标组成的矩形在矩形的外部。空的矩形不包含任何矩形。|
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 100, 100);
+let isContains = drawing.RectUtils.contains(rect, 10, 20, 30, 40);
+console.info('isContains :', isContains);
+```
+
+### contains<sup>20+</sup>
+
+static contains(rect: common2D.Rect, x: number, y: number): boolean
+
+判断一个矩形是否完全包含一个点。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+| x   | number | 是   | 要判断点的x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| y    | number | 是  | 要判断点的y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回矩形是否完全包含x、y组成的点的结果。true表示矩形完全包含x、y组成的点，false表示矩形不完全包含x、y组成的点。左边界和上边界属于矩形内部，右边界和下边界不属于矩形内部。空的矩形不包含任何点。|
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 100, 100);
+let isContains = drawing.RectUtils.contains(rect, 10, 20);
+console.info('isContains: ', isContains);
+```
+
+### inset<sup>20+</sup>
+
+static inset(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): void
+
+将指定矩形的左边界、上边界、右边界和下边界分别和传入的"左上右下"的值相加。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+| left   | number | 是   | 添加到矩形左边界的值（矩形左上角横坐标），该参数为浮点数。0表示不进行任何运算，正数表示进行相加运算，负数表示相减运算。 |
+| top    | number | 是   | 添加到矩形上边界的值（矩形左上角纵坐标），该参数为浮点数。0表示不进行任何运算，正数表示进行相加运算，负数表示相减运算。 |
+| right  | number | 是   | 添加到矩形右边界的值（矩形右下角横坐标），该参数为浮点数。0表示不进行任何运算，正数表示进行相加运算，负数表示相减运算。 |
+| bottom | number | 是   | 添加到矩形下边界的值（矩形右下角纵坐标），该参数为浮点数。0表示不进行任何运算，正数表示进行相加运算，负数表示相减运算。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 10, 20, 20);
+drawing.RectUtils.inset(rect, 10, -20, 30, 60);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### intersect<sup>20+</sup>
+
+static intersect(rect: common2D.Rect, other: common2D.Rect): boolean
+
+计算两个矩形的交集区域，并将交集结果更新到第一个入参代表的矩形区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于计算交集的原矩形。 |
+| other   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是  | 用于计算交集的另一个矩形。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean |  返回两个矩形是否有交集的结果。true表示两个矩形有交集，false表示两个矩形没有交集。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
+let rect2 = drawing.RectUtils.makeLtrb(10, 10, 40, 40);
+let isIntersect = drawing.RectUtils.intersect(rect, rect2);
+console.info('isIntersect :', isIntersect);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### isIntersect<sup>20+</sup>
+
+static isIntersect(rect: common2D.Rect, other: common2D.Rect): boolean
+
+判断两个矩形是否相交。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于计算交集的原矩形。 |
+| other   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是  | 用于计算交集的另一个矩形。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean |  返回两个矩形是否有交集的结果。true表示指定矩形与原矩形相交，false表示指定矩形和原矩形没有交集。两矩形仅边重叠或点相交返回false。|
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
+let rect2 = drawing.RectUtils.makeLtrb(10, 10, 40, 40);
+let isIntersect = drawing.RectUtils.isIntersect(rect, rect2);
+console.info('isIntersect :', isIntersect);
+```
+
+### union<sup>20+</sup>
+
+static union(rect: common2D.Rect, other: common2D.Rect): void
+
+计算矩形的并集区域，并将并集结果更新到第一个入参表示的矩形区域。如果第一个入参矩形为空，则将并集结果更新到第二个入参代表的矩形区域；如果第二个入参的矩形为空，则不进行任何操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于计算并集的原矩形。 |
+| other   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是  | 用于计算并集的另一个矩形。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
+let rect2 = drawing.RectUtils.makeLtrb(10, 10, 40, 40);
+drawing.RectUtils.union(rect, rect2);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### isEmpty<sup>20+</sup>
+
+static isEmpty(rect: common2D.Rect): boolean
+
+判断矩形是否为空（左边界大于等于右边界或者上边界大于等于下边界）。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明            |
+| ------ | ------ | ---- | --------------  |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于判断的矩形对象。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回矩形是否为空的结果。true表示矩形是空，false表示矩形不为空。       |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeEmpty();
+let isEmpty = drawing.RectUtils.isEmpty(rect);
+console.info('isEmpty :', isEmpty);
+let rect2 = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
+isEmpty = drawing.RectUtils.isEmpty(rect);
+console.info('isEmpty :', isEmpty);
+```
+
+### offset<sup>20+</sup>
+
+static offset(rect: common2D.Rect, dx: number, dy: number): void
+
+对矩形进行平移。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 发生偏移的矩形区域。 |
+| dx   | number | 是    | 水平方向平移的距离，该参数为浮点数。0表示不平移，负数表示向左平移，正数表示向右平移。 |
+| dy    | number | 是   | 竖直方向平移的距离，该参数为浮点数。0表示不平移，负数表示向上平移，正数表示向右平移。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(0, 0, 20, 20);
+drawing.RectUtils.offset(rect, 10, 20);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### offsetTo<sup>20+</sup>
+
+static offsetTo(rect: common2D.Rect, newLeft: number, newTop: number): void
+
+将矩形平移到指定位置。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 发生偏移的矩形区域。 |
+| newLeft   | number | 是   | 要平移到的对应位置的x轴坐标，浮点数。0表示坐标原点，负数位于坐标原点左侧，正数位于坐标原点右侧。 |
+| newTop    | number | 是   | 要平移到的对应位置的y轴坐标，浮点数。0表示坐标原点，负数位于坐标原点上侧，正数位于坐标原点下侧。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(40, 40, 20, 20);
+drawing.RectUtils.offsetTo(rect, 10, 20);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### setRect<sup>20+</sup>
+
+static setRect(rect: common2D.Rect, other: common2D.Rect): void
+
+使用另一个矩形对当前矩形进行赋值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   |  原矩形。 |
+| other   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于赋值的矩形。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 20, 30, 40);
+let rect2 = drawing.RectUtils.makeEmpty();
+drawing.RectUtils.setRect(rect2, rect);
+console.info('rect2.left:', rect2.left);
+console.info('rect2.top: ', rect2.top);
+console.info('rect2.right: ', rect2.right);
+console.info('rect2.bottom: ', rect2.bottom);
+```
+
+### setLtrb<sup>20+</sup>
+
+static setLtrb(rect: common2D.Rect, left: number, top: number, right: number, bottom: number): void
+
+使用传入的"上下左右"的值更新当前矩形的上下左右边界值。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形对象。 |
+| left   | number | 是   | 矩形的左上角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| top    | number | 是   | 矩形的左上角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+| right  | number | 是   | 矩形的右下角x轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点左侧，正数表示位于坐标原点右侧。 |
+| bottom | number | 是   | 矩形的右下角y轴坐标，该参数为浮点数。0表示坐标原点，负数表示位于坐标原点上侧，正数表示位于坐标原点下侧。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeEmpty();
+drawing.RectUtils.setLtrb(rect, 10, 20, 30, 60);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### setEmpty<sup>20+</sup>
+
+static setEmpty(rect: common2D.Rect): void
+
+将矩形的上下左右边界都设为0。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明            |
+| ------ | ------ | ---- | --------------  |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于设置为空的矩形对象。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 20, 20, 30);
+drawing.RectUtils.setEmpty(rect)
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### sort<sup>20+</sup>
+
+static sort(rect: common2D.Rect): void
+
+如果矩形存在反转的情况（即左边界大于右边界或上边界大于下边界），则对矩形的上下（左右）边界值进行交换，使得上边界小于下边界（左边界小于右边界）。
+
+如果矩形不存在反转的情况（即左边界小于等于右边界或上边界小于等于下边界)，不做任何操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明            |
+| ------ | ------ | ---- | --------------  |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 用于设置的矩形对象。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(20, 40, 30, 30);
+drawing.RectUtils.sort(rect);
+console.info('rect.left:', rect.left);
+console.info('rect.top: ', rect.top);
+console.info('rect.right: ', rect.right);
+console.info('rect.bottom: ', rect.bottom);
+```
+
+### isEqual<sup>20+</sup>
+
+static isEqual(rect: common2D.Rect, other: common2D.Rect): boolean
+
+判断两个矩形是否相等。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 需要判断的原矩形。 |
+| other  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 需要判断的另一矩形。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| boolean | 返回两个矩形是否相等的结果。true表示两个矩形相等，false表示两个矩形不相等。 |
+
+**示例：**
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+let rect = drawing.RectUtils.makeLtrb(10, 20, 20, 30);
+let rect2 = drawing.RectUtils.makeEmpty();
+let isEqual = drawing.RectUtils.isEqual(rect, rect2);
+console.info('isEqual :', isEqual);
+```

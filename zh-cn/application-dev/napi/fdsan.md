@@ -34,10 +34,10 @@ enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 
 | 名称                       | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ |
-| `FDSAN_ERROR_LEVEL_DISABLED` | disabled ，此level代表什么都不处理。                         |
-| `FDSAN_ERROR_LEVEL_WARN_ONCE` | warn-once，第一次出现错误时在hilog中发出警告，然后将级别降低为disabled(FDSAN_ERROR_LEVEL_DISABLED) |
-| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | warn-always，每次出现错误时都在hilog中发出警告 |
-| `FDSAN_ERROR_LEVEL_FATAL` | fatal ，出现错误时调用abort异常退出. |
+| `FDSAN_ERROR_LEVEL_DISABLED` | disabled，此level代表什么都不处理。                         |
+| `FDSAN_ERROR_LEVEL_WARN_ONCE` | warn-once，第一次出现错误时在hilog中发出警告，然后将级别降低为disabled(FDSAN_ERROR_LEVEL_DISABLED)。 |
+| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | warn-always，每次出现错误时都在hilog中发出警告。 |
+| `FDSAN_ERROR_LEVEL_FATAL` | fatal，出现错误时调用abort异常退出。 |
 
 **返回值：** 返回旧的error_level。
 
@@ -61,12 +61,12 @@ uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 
 | 名称                       | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ |
-| `FDSAN_OWNER_TYPE_GENERIC_00` | 默认未使用fd对应的type值     |
-| `FDSAN_OWNER_TYPE_GENERIC_FF` | 默认非法fd对应的type值 |
-| `FDSAN_OWNER_TYPE_FILE` | 默认普通文件对应的type值，使用fopen或fdopen打开的文件具有该类型 |
-| `FDSAN_OWNER_TYPE_DIRECTORY` | 默认文件夹对应的type值，使用opendir或fdopendir打开的文件具有该类型 |
-| `FDSAN_OWNER_TYPE_UNIQUE_FD` | 默认unique_fd对应的type值，保留暂未使用 |
-| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | 默认zip压缩文件对应的type值，保留暂未使用 |
+| `FDSAN_OWNER_TYPE_GENERIC_00` | 默认未使用fd对应的type值。     |
+| `FDSAN_OWNER_TYPE_GENERIC_FF` | 默认非法fd对应的type值。 |
+| `FDSAN_OWNER_TYPE_FILE` | 默认普通文件对应的type值，使用fopen或fdopen打开的文件具有该类型。 |
+| `FDSAN_OWNER_TYPE_DIRECTORY` | 默认文件夹对应的type值，使用opendir或fdopendir打开的文件具有该类型。 |
+| `FDSAN_OWNER_TYPE_UNIQUE_FD` | 默认unique_fd对应的type值，保留暂未使用。 |
+| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | 默认zip压缩文件对应的type值，保留暂未使用。 |
 
 **返回值：** 返回创建的tag，可以用于fdsan_exchange_owner_tag函数的输入。
 
@@ -85,9 +85,9 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 
 | 名称                       | 类型               | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | fd句柄，作为FdEntry的索引 |
-| `expected_tag` | uint64_t | 期望的ownership tag值     |
-| `new_tag` | uint64_t | 设置新的ownership tag值   |
+| `fd` | int | fd句柄，作为FdEntry的索引。 |
+| `expected_tag` | uint64_t | 期望的ownership tag值。     |
+| `new_tag` | uint64_t | 设置新的ownership tag值。   |
 
 
 
@@ -104,8 +104,8 @@ int fdsan_close_with_tag(int fd, uint64_t tag);
 
 | 名称                       | 类型               | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | 待关闭的fd句柄 |
-| `tag` | uint64_t | 期望的ownership tag     |
+| `fd` | int | 待关闭的fd句柄。 |
+| `tag` | uint64_t | 期望的ownership tag。     |
 
 **返回值：** 0或者-1，0表示close成功，-1表示close失败。
 
@@ -121,7 +121,7 @@ uint64_t fdsan_get_owner_tag(int fd);
 
 | 名称                       | 类型               | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | ownership tag     |
+| `tag` | uint64_t | ownership tag。     |
 
 **返回值：** 返回对应fd的tag。
 
@@ -137,7 +137,7 @@ const char* fdsan_get_tag_type(uint64_t tag);
 
 | 名称                       | 类型               | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | ownership tag     |
+| `tag` | uint64_t | ownership tag。     |
 
 **返回值：** 返回对应tag的type。
 
@@ -153,7 +153,7 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 
 | 名称                       | 类型               | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | ownership tag     |
+| `tag` | uint64_t | ownership tag。     |
 
 **返回值：** 返回对应tag的value。
 
@@ -165,7 +165,7 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 void good_write()
 {
     sleep(1);
-    int fd = open(DEV_NULL_FILE, O_RDONLY);
+    int fd = open(DEV_NULL_FILE, O_RDWR);
     sleep(3);
     ssize_t ret = write(fd, "fdsan test\n", 11);
     if (ret == -1) {
@@ -176,7 +176,7 @@ void good_write()
 
 void bad_close()
 {
-    int fd = open(DEV_NULL_FILE, O_RDONLY);
+    int fd = open(DEV_NULL_FILE, O_RDWR);
     close(fd);
     sleep(2);
     // This close expected to be detect by fdsan
@@ -200,34 +200,42 @@ int main()
     return 0;
 }
 ```
-上述代码中的`goog_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的：
+上述代码中的`good_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的。
 
 ![](./figures/fdsan-error-2.png)
 
-由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败
+由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败。
 
-在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口
+在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口。
 
 ### 使用标准库接口
 
 标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。在前述案例中可以使用fopen替代open：
 
-```cpp
+```c
+#include <stdio.h>
+#include <errno.h>
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
     // fopen is protected by fdsan, replace open with fopen
-    // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    FILE *f = fopen(DEV_NULL_FILE, O_RDONLY);
-    sleep(3);
-    ssize_t ret = write(fileno(f), "fdsan test\n", 11);
-    if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+    // int fd = open(TEMP_FILE, O_RDWR);
+    FILE *f = fopen(TEMP_FILE, "w+");
+    if (f == NULL) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
     }
-    close(fileno(f));
+    // ssize_t ret = write(fd, "fdsan test\n", 11);
+    int ret = fprintf(f, "fdsan test %d\n", 11);
+    if (ret < 0) {
+        printf("fprintf failed errno=%d\n", errno);
+    }
+    // close(fd);
+    fclose(f);
 }
 ```
-
+#### 日志信息
 使用fopen打开的每个文件描述符都需要有一个与之对应的 `tag` 。`fdsan` 在 `close` 时会检查关闭的 `fd` 是否与 `tag` 匹配，不匹配就会默认提示相关日志信息。下面是上述代码的日志信息：
 
 ```
@@ -318,6 +326,13 @@ OpenFiles:
 下面是一个具有fdsan的函数接口实现实例：
 
 ```cpp
+#include <errno.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <utility>
+
 struct fdsan_fd {
     fdsan_fd() = default;
 
@@ -401,19 +416,28 @@ struct fdsan_fd {
 在实现了具有fdsan的函数接口之后，可以使用该接口包装fd：
 
 ```cpp
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
-    // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    fdsan_fd fd(open(DEV_NULL_FILE, O_RDONLY));
-    sleep(3);
+    // int fd = open(DEV_NULL_FILE, O_RDWR);
+    fdsan_fd fd(open(TEMP_FILE, O_CREAT | O_RDWR));
+    if (fd.get() == -1) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
+    }
     ssize_t ret = write(fd.get(), "fdsan test\n", 11);
     if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+        printf("write failed errno=%d\n", errno);
     }
-    close(fd.get());
+    fd.reset();
 }
 ```
 
-此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以参考3.2节。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
+此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以<a href="#日志信息">参考日志</a>。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
+
+## 5. close函数信号安全性说明
+在POSIX标准中，`close`函数原本被定义为信号安全函数（async-signal-safe），这意味着它可以安全地在信号处理函数（signal handler）中调用。然而，在集成了fdsan（File Descriptor Sanitizer）机制的系统实现中，这一性质发生了变化。
+
+由于fdsan的实现依赖mmap系统调用，`mmap`本身不是信号安全函数，因此这会导致close函数不再是信号安全的。因此在信号处理函数中请避免使用`close`，可以通过系统调用实现相同功能。
 

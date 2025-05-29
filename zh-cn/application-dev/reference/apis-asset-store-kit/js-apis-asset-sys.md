@@ -19,15 +19,17 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
 
-如果要设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| userId     | number                                | 是   | 用户ID。                                                           |
+| userId     | number                                | 是   | 用户ID。取值范围大于等于100。                           |
 | attributes | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -59,7 +61,7 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 | 24000014 | The file operation failed.                           |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -99,9 +101,11 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                  |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                         |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -130,7 +134,7 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -167,11 +171,13 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| userId             | number                                | 是   | 用户ID。                                                         |
+| userId             | number                                | 是   | 用户ID。取值范围大于等于100。                              |
 | query              | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
-| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
+| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文和自定义数据等。              |
 
 **返回值：**
 
@@ -201,7 +207,7 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -240,9 +246,11 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                            |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                        |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -274,7 +282,7 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -311,9 +319,11 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| userId   | number                                          | 是   | 用户ID。                                                  |
+| userId   | number                                          | 是   | 用户ID。取值范围大于等于100。                          |
 | query    | [AssetMap](js-apis-asset.md#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
 
 **返回值：**
@@ -345,7 +355,7 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -386,9 +396,11 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                                     |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                                      |
 | handle | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQueryAsUser](#assetprequeryasuser)执行成功返回的挑战值。 |
 
 **返回值：**
@@ -413,7 +425,7 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

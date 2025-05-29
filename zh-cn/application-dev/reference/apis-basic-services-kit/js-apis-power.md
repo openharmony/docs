@@ -1,7 +1,6 @@
 # @ohos.power (系统电源管理)
 
-该模块主要提供重启、关机、查询屏幕状态等接口。
-
+该模块主要提供重启、关机、查询屏幕状态等接口。开发者可以使用该模块的接口获取设备的活动状态、电源模式、亮灭屏状态等。
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -16,9 +15,17 @@ import {power} from '@kit.BasicServicesKit';
 
 isActive(): boolean
 
-检测当前设备是否处于活动状态。有屏的设备为亮屏状态，无屏的设备为非休眠状态。
+检测当前设备是否处于活动状态。
+- 有屏的设备亮屏时为活动状态，熄屏时为非活动状态。
+- 无屏的设备非休眠时为活动状态，休眠时为非活动状态。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| boolean | 活动状态返回true，非活动状态返回false。 |
 
 **错误码：**
 
@@ -26,7 +33,7 @@ isActive(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
@@ -84,7 +91,7 @@ getPowerMode(): DevicePowerMode
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
@@ -117,7 +124,7 @@ isStandby(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 

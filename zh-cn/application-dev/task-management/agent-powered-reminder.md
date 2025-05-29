@@ -1,10 +1,10 @@
-# 代理提醒
+# 代理提醒(ArkTS)
 
 ## 概述
 
 ### 功能介绍
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
 - 倒计时类：基于倒计时的提醒功能。
 
@@ -14,9 +14,19 @@
 
 ### 约束与限制
 
-- **个数限制**：一个三方应用支持最多30个有效提醒（有效即发布成功），一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。
+<!--RP2-->
+- **个数限制**：一个普通应用支持最多30个有效提醒，一个系统应用支持最多10000个有效提醒。整个系统最多支持12000个有效提醒。
+<!--RP2End-->
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒是周期性提醒时，如设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
+
+<!--RP3--><!--RP3End-->
 
 
 ## 接口说明
@@ -26,12 +36,12 @@
 以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)文档。
 | 接口名 | 描述 |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知 |
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知 |
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒 |
-| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot） |
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot） |
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知。 |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知。 |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 |
+| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒。 |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot）。 |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot）。 |
 
 
 ## 开发步骤
@@ -63,10 +73,6 @@
           }
         ],
         wantAgent: {     // 点击提醒通知后跳转的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
@@ -107,13 +113,9 @@
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -145,13 +147,9 @@
           pkgName: 'com.example.myapplication',
           abilityName: 'EntryAbility'
         },
-        maxScreenWantAgent: { // 全屏显示提醒到达时自动拉起的目标UIAbility信息
-          pkgName: 'com.example.myapplication',
-          abilityName: 'EntryAbility'
-        },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -191,5 +189,3 @@
 - [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
 - [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
-
-- [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

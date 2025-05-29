@@ -10,7 +10,7 @@ Crypto Architecture Kit shields the implementation differences of third-party cr
 
 - Currently, Crypto Architecture Kit supports only OpenSSL.
 
-- Crypto Architecture Kit provides common algorithms. Some algorithms and specifications, such as MD5, do not apply to scenarios with high security requirements. You need to select the proper algorithms based on service requirements.
+- Crypto Architecture Kit provides common algorithms. Some algorithms and specifications, such as MD5, do not apply to security-critical scenarios. Use appropriate algorithms based on service requirements.
 
 ## Capability Scope
 
@@ -24,9 +24,9 @@ Crypto Architecture Kit provides the following functionalities, with algorithm s
 
 - [Key Agreement](crypto-key-agreement-overview.md)
 
-- [Message Digest](crypto-generate-message-digest.md)
+- [MD](crypto-generate-message-digest-overview.md)
 
-- [MAC Operation](crypto-compute-mac.md)
+- [MAC](crypto-compute-mac-overview.md)
 
 - [Random Number Generation](crypto-generate-random-number.md)
 

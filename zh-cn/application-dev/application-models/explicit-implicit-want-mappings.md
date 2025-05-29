@@ -66,7 +66,8 @@
 
 - 调用方传入的want参数的action不为空，待匹配应用组件的skills配置中的actions不为空且不包含调用方传入的want参数的action，则action匹配失败。
 
-  **图1** want参数的action匹配规则
+**图1** want参数的action匹配规则
+
 ![want-action](figures/want-action.png)
 
 
@@ -84,7 +85,8 @@
 
 - 调用方传入的want参数的entities不为空，待匹配应用组件的skills配置中的entities不为空且不完全包含调用方传入的want参数的entities，则entities匹配失败。
 
-  **图2** want参数的entities匹配规则
+**图2** want参数的entities匹配规则
+
 ![want-entities](figures/want-entities.png)
 
 
@@ -115,6 +117,7 @@
 最左uri匹配：当配置文件待匹配应用组件的skills配置中的uris数组中只配置scheme；或者只配置scheme和host；或者只配置scheme、host和port时。传入want参数的uri的最左边依次需要和scheme，或者scheme和host，或者scheme、host和port都匹配，才满足最左uri匹配。
 
 **图3** want参数中uri和type皆不为空时的匹配规则
+
 ![want-uri-type1](figures/want-uri-type1.png)
 
 为了简化描述：
@@ -123,6 +126,7 @@
 - 称调用方传入的want参数的type参数为w_type，待匹配应用组件的skills数组中uris的type数据为s_type。
 
 **图4** want参数中uri和type的具体匹配规则
+
 ![want-uri-type2](figures/want-uri-type2.png)
 
 
@@ -146,7 +150,7 @@
 
 > **说明：**
 >
-> 待匹配应用组件的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下三种表达式：
+> 待匹配应用组件的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下四种表达式：
 >
 > - **前缀uri表达式**：当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri
 >     * `scheme://`
@@ -157,6 +161,10 @@
 > - **正则表达式**：`scheme://host:port/pathRegex`
 >
 > 系统应用预留uri的scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的uri不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
+
+**图5** want参数中uri的匹配规则示例
+
+![want-uri-case](figures/want-uri-case.png)
 
 ### type匹配规则
 
@@ -186,6 +194,7 @@
 
 
 
-**图5** want参数中linkFeature具体匹配规则
+**图6** want参数中linkFeature具体匹配规则
+
 ![want-linkFeature](figures/linkFeature.png)
 ![want-linkFeature-case](figures/want-linkFeature-case.png)

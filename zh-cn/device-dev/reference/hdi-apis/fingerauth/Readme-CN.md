@@ -1,0 +1,32 @@
+# FingerprintAuth HDI 参考
+
+- 模块
+    - [HdfFingerprintAuth (V1_1)](_hdf_fingerprint_auth_v11.md)
+    - [HdfFingerprintAuth (V1_0)](_hdf_fingerprint_auth_v10.md)
+- 头文件
+    - HdfFingerprintAuth (V1_1)
+        - [FingerprintAuthTypes.idl](_fingerprint_auth_types_8idl_v11.md)
+        - [IExecutor.idl](_i_executor_8idl_fingerauth_v11.md)
+        - [IFingerprintAuthInterface.idl](_i_fingerprint_auth_interface_8idl_v11.md)
+        - [ISaCommandCallback.idl](_i_sa_command_callback_8idl_fingerauth_v11.md)
+    - HdfFingerprintAuth (V1_0)
+        - [FingerprintAuthTypes.idl](_fingerprint_auth_types_8idl_v10.md)
+        - [IExecutor.idl](_i_executor_8idl_fingerauth_v10.md)
+        - [IExecutorCallback.idl](_i_executor_callback_8idl_fingerauth_v10.md)
+        - [IFingerprintAuthInterface.idl](_i_fingerprint_auth_interface_8idl_v10.md)
+- 结构体
+    - HdfFingerprintAuth (V1_1)
+        - [IExecutor](interface_i_executor_fingerauth_v11.md)
+        - [IFingerprintAuthInterface](interface_i_fingerprint_auth_interface_v11.md)
+        - [ISaCommandCallback](interface_i_sa_command_callback_fingerauth_v11.md)
+        - [Property](_property_fingerauth_v11.md)
+        - [SaCommand](_sa_command_fingerauth_v11.md)
+        - [SaCommandParam](union_sa_command_param_fingerauth_v11.md)
+        - [SaCommandParamEnableSensorIllumination](_sa_command_param_enable_sensor_illumination_fingerauth_v11.md)
+        - [SaCommandParamNone](_sa_command_param_none_fingerauth_v11.md)
+    - HdfFingerprintAuth (V1_0)
+        - [ExecutorInfo](_executor_info_fingerauth_v10.md)
+        - [IExecutor](interface_i_executor_fingerauth_v10.md)
+        - [IExecutorCallback](interface_i_executor_callback_fingerauth_v10.md)
+        - [IFingerprintAuthInterface](interface_i_fingerprint_auth_interface_v10.md)
+        - [TemplateInfo](_template_info_fingerauth_v10.md)

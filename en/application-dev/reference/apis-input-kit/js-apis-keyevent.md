@@ -2,7 +2,7 @@
 
 The **keyEvent** module provides key events reported by a device. It is inherited from [InputEvent](js-apis-inputevent.md).
 
->  **NOTE**
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -16,17 +16,21 @@ import { Action, Key, KeyEvent } from '@kit.InputKit';
 
 Key event type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name  | Value | Description    |
 | ------ | ------- | -------- |
 | CANCEL | 0    | Cancellation of a key action.|
-| DOWN   | 1    | Pressing of a key.|
-| UP     | 2    | Release of a key.|
+| DOWN   | 1    | Key press.|
+| UP     | 2    | Key release.|
 
 ## Key
 
 Defines a key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -39,6 +43,8 @@ Defines a key.
 ## KeyEvent
 
 Key event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -54,5 +60,5 @@ Key event.
 | logoKey     | boolean  | Yes  | No  | Whether logoKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
 | fnKey       | boolean  | Yes  | No  | Whether fnKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.     |
 | capsLock    | boolean  | Yes  | No  | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.  |
-| numLock     | boolean  | Yes  | No  | Whether numLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.   |
-| scrollLock  | boolean  | Yes  | No  | Whether scrollLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite.|
+| numLock     | boolean  | Yes  | No  | Whether numLock is active.<br>The value **true** indicates that numLock is active, and the value **false** indicates the opposite.   |
+| scrollLock  | boolean  | Yes  | No  | Whether scrollLock is active.<br>The value **true** indicates that scrollLock is active, and the value **false** indicates the opposite.|

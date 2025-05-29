@@ -1,11 +1,10 @@
 # HMAC(C/C++)
 
-
-HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code），是一种基于Hash函数和密钥进行消息认证的方法。
+HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code）。具体的场景介绍及支持的算法规格，请参考[HMAC介绍与算法规格](huks-hmac-overview.md)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## 开发步骤
@@ -16,7 +15,7 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 
 2. 初始化密钥属性集。
 
-3. 调用OH_Huks_GenerateKeyItem生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md#支持的算法)的规格介绍，导入已有的密钥。
 
@@ -28,7 +27,6 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 
 3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。
    
-
 4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
 5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取哈希后的数据。
@@ -36,6 +34,7 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
@@ -92,16 +91,16 @@ OH_Huks_Result HksHmacTest(
 
 static napi_value HmacKey(napi_env env, napi_callback_info info)
 {
+    /* 1. Generate Key */
+    /*
+    * 模拟生成密钥场景
+    * 1.1. 确定密钥别名
+    */
     char tmpKeyAlias[] = "test_hmac";
     struct OH_Huks_Blob keyAlias = { (uint32_t)strlen(tmpKeyAlias), (uint8_t *)tmpKeyAlias };
     struct OH_Huks_ParamSet *hmacParamSet = nullptr;
     OH_Huks_Result ohResult;
     do {
-        /* 1. Generate Key */
-        /*
-        * 模拟生成密钥场景
-        * 1.1. 确定密钥别名
-        */
         /*
         * 1.2. 获取生成密钥算法参数配置
         */

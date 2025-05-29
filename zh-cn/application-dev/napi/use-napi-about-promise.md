@@ -20,6 +20,7 @@ Promise是ArkTS中用来处理异步操作的对象，Promise有pending（待定
 ## 场景和功能介绍
 
 以下Node-API接口主要用于与ArkTS Promise对象进行交互。他们的使用场景如下：
+
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_is_promise | 检查一个napi_value是否代表一个Promise对象时，可以使用这个函数。 |
@@ -40,7 +41,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsPromise(napi_env env, napi_callback_info info) 
+static napi_value IsPromise(napi_env env, napi_callback_info info)
 {
     napi_value argv[1] = {nullptr};
     size_t argc = 1;
@@ -71,8 +72,8 @@ export const isPromise: <T>(value: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = Promise.resolve();
 // 传入的对象为Promise时，返回true，否则返回false
@@ -84,14 +85,41 @@ hilog.info(0x0000, 'Node-API', 'napi_is_promise string %{public}s', testNapi.isP
 
 napi_create_promise用于创建一个Promise对象。
 
+使用该接口时应注意：
+
+1. 当有异常未处理时调用`napi_create_promise`，会返回`napi_pending_exception`。
+2. 使用`napi_create_promise`后未判断返回值是否为`napi_ok`，之后使用了无效的`deferred`和`promise`导致应用崩溃。
+
+```c++
+napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    napi_status status = napi_ok;
+
+    napi_throw_error(env, "500", "common error");
+
+    status = napi_create_promise(env, &deferred, &promise); // 有异常返回napi_pending_exception，且deferred、promise都为nullptr
+    if (status == napi_ok) {
+        // do something
+    }
+
+    return nullptr;
+}
+```
+
 ### napi_resolve_deferred & napi_reject_deferred
 
 用于对Promise关联的deferred对象进行解析，napi_resolve_deferred将其从挂起状态转换为已兑现状态，napi_reject_deferred将其从挂起状态转换为已拒绝状态。
+
+为确保微任务能正确的被执行，ArkTS运行时在使用Node-API方法兑现Promise时，将会触发一次微任务的执行。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+
+static constexpr int INT_ARG_2 = 2; // 入参索引
 
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
@@ -113,7 +141,7 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     return returnIsPromise;
 }
 
-static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info) 
+static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 {
     // 获得并解析参数
     size_t argc = 3;
@@ -121,7 +149,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
     bool status;
-    napi_get_value_bool(env, args[2], &status);
+    napi_get_value_bool(env, args[INT_ARG_2], &status);
     // 创建Promise对象
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
@@ -152,8 +180,8 @@ export const resolveRejectDeferred: (resolve: string, reject: string, status: bo
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 创建promise如果创建成功返回true，创建失败返回false
 hilog.info(0x0000, 'Node-API', 'napi_create_promise %{public}s', testNapi.createPromise());

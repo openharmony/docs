@@ -39,7 +39,7 @@ import { common2D } from '@kit.ArkGraphics2D'
 
 以下步骤描述了如何使用@ohos.graphics.text模块的接口创建段落对象以及显示段落文本。
 
-1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
+1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数draw，下方第2步及第3步为draw函数的具体实现。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
 
     ```js
     // 创建一个MyRenderNode类，并绘制文本。
@@ -51,9 +51,11 @@ import { common2D } from '@kit.ArkGraphics2D'
     }
     ```
 
-2. **设置画笔和画刷样式**。使用`Pen`接口创建一个画笔实例pen，并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用`Brush`接口创建一个画刷实例brush，并设置填充颜色，画刷用于形状内部的填充。使用canvas中的`attachPen`和`attachBrush`接口将画笔画刷的实例设置到画布实例中。
+2. **创建canvas并设置画笔和画刷样式**。使用`Pen`接口创建一个画笔实例pen，并设置抗锯齿、颜色、线宽等属性，画笔用于形状边框线的绘制。使用`Brush`接口创建一个画刷实例brush，并设置填充颜色，画刷用于形状内部的填充。使用canvas中的`attachPen`和`attachBrush`接口将画笔画刷的实例设置到画布实例中。
 
     ```js
+    // 创建画布canvas对象
+    const canvas = context.canvas
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
     let pen = new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
@@ -71,7 +73,7 @@ import { common2D } from '@kit.ArkGraphics2D'
     canvas.attachBrush(brush)
     ```
 
-3. **绘制文本**。使用`TextStyle`接口创建一个文本样式实例myTextStyle，示例只设置了文本颜色，使用`ParagraphStyle`接口创建一个段落样式实例myParagraphStyle，并设置文本样式等属性，使用`FontCollection`接口创建一个字体管理器实例fontCollection，使用`ParagraphBuilder`的接口，以myParagraphStyle和fontCollection为参数创建一个段落生成器实例ParagraphGraphBuilder，并调用其接口使文本样式更新以及添加段落文本，在调用build()接口生成段落实例paragraph，最后调用paint接口在屏幕上显示。
+3. **绘制文本**。使用`TextStyle`接口创建一个文本样式实例myTextStyle，示例只设置了文本颜色，使用`ParagraphStyle`接口创建一个段落样式实例myParagraphStyle，并设置文本样式等属性，使用`FontCollection`接口创建一个字体管理器实例fontCollection，使用`ParagraphBuilder`的接口，以myParagraphStyle和fontCollection为参数创建一个段落生成器实例paragraphBuilder，并调用其接口使文本样式更新以及添加段落文本，在调用build()接口生成段落实例paragraph，最后调用paint接口在屏幕上显示。
 
     ```js
     //字体颜色，字重，字体大小等属性由此设置
@@ -85,13 +87,13 @@ import { common2D } from '@kit.ArkGraphics2D'
         //wordBreak:text.WordBreak.NORMAL 文本断词类型
     };
     let fontCollection = new text.FontCollection();
-    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
     //更新文本样式
-    ParagraphGraphBuilder.pushStyle(myTextStyle);
+    paragraphBuilder.pushStyle(myTextStyle);
     //添加文本
-    ParagraphGraphBuilder.addText("0123456789");
+    paragraphBuilder.addText("0123456789");
     //生成段落
-    let paragraph = ParagraphGraphBuilder.build();
+    let paragraph = paragraphBuilder.build();
     // 布局
     paragraph.layoutSync(600);
     //绘制文本

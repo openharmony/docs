@@ -1,8 +1,8 @@
-# High-Performance Camera Photographing (for System Applications Only) (ArkTS)
+# High-Performance Photo Capture (for System Applications Only) (ArkTS)
 
-As an important feature of the camera, high-performance photographing enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photographing is implemented as follows: After an application delivers a photographing request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
+As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
-To develop high-performance photographing, perform the following steps:
+To develop high-performance photo capture, perform the following steps:
 
 - Check whether the device supports deferred photo delivery of a certain type.
 - Enable deferred photo delivery (if supported).
@@ -84,7 +84,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-6. Trigger photographing. This procedure is the same as that in the common photographing mode. For details, see [Camera Photographing](camera-shooting.md).
+6. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
 
 
 
@@ -93,19 +93,19 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Listen for thumbnails.
 
    ```ts
-   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
          console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // Obtain the pixel map of a thumbnail.
+       // Obtain the PixelMap of a thumbnail.
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
        // Call the mediaLibrary APIs to flush the thumbnail to the disk. See the code below.
-       saveDeferredPhoto(proxyObj);
+       saveDeferredPhoto(proxyObj, context);
      });
    }
    ```
@@ -117,15 +117,13 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
-   let context = getContext(this);
-   
-   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
+   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
        // Create a photoAsset.
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);
-       // Pass the thumbnail proxy class object to the mediaLibrary.
+       // Pass the thumbnail proxy class object to the media library.
        let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
        let res = await accessHelper.applyChanges(mediaRequest);

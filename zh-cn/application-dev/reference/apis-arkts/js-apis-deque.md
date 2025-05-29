@@ -1,14 +1,14 @@
 # @ohos.util.Deque (线性容器Deque)
 
-Deque（double ended queue）根据循环队列的数据结构实现，符合先进先出以及先进后出的特点，支持两端的元素插入和移除。Deque会根据实际需要动态调整容量，每次进行两倍扩容。
+Deque（double ended queue）基于循环队列的数据结构实现，支持两端元素的插入和删除，同时具备先进先出以及先进后出的特点。Deque会根据实际需要动态调整容量，每次扩容两倍。
 
-Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
+Deque和[Queue](js-apis-queue.md)相比，Deque允许在两端执行插入和删除操作，Queue只能在头部删除元素，尾部插入元素。
 
-与[Vector](js-apis-vector.md)相比，它们都支持在两端增删元素，但Deque不能进行中间插入的操作。对头部元素的插入删除效率高于Vector，而Vector访问元素的效率高于Deque。
+与[Vector](js-apis-vector.md)相比，它们都支持在两端插入和删除元素，但Deque不支持中间插入。Deque在头部插入删除元素的效率高于Vector，而Vector在访问元素的效率高于Deque。
 
-**推荐使用场景：** 需要频繁在集合两端进行增删元素的操作时，推荐使用Deque。
+**推荐使用场景：** 需要在集合两端频繁增删元素时，推荐使用Deque。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -94,7 +94,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
 ```
@@ -136,7 +136,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
 ```
@@ -145,7 +145,7 @@ deque.insertEnd(false);
 
 has(element: T): boolean
 
-判断此Deque中是否含有该指定元素。
+判断此Deque中是否包含指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -256,7 +256,7 @@ let result = deque.popLast();
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历Deque实例对象上的元素以及元素对应的下标。
+使用回调函数遍历Deque实例对象的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -267,9 +267,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -303,7 +303,7 @@ deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> 
 
 getFirst(): T
 
-获取Deque实例中的头元素。
+获取Deque实例的头元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -313,7 +313,7 @@ getFirst(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回T类型的头元素 |
+| T | 返回T类型的头元素。 |
 
 **错误码：**
 
@@ -338,7 +338,7 @@ let result = deque.getFirst();
 
 getLast(): T
 
-获取Deque实例中的尾元素。
+获取Deque实例的尾元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -348,7 +348,7 @@ getLast(): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回T类型的尾元素 |
+| T | 返回T类型的尾元素。 |
 
 **错误码：**
 
@@ -373,11 +373,7 @@ let result = deque.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -406,7 +402,7 @@ deque.insertFront(5);
 deque.insertFront(4);
 
 // 使用方法一：
-let nums: Array<number> = Array.from(deque)
+let nums: Array<number> = Array.from(deque);
 for (let item of nums) {
   console.log("value:" + item);
 }

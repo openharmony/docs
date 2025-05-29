@@ -1,6 +1,6 @@
-# 使用Hidebug获取调试信息（ArkTS）
+# 使用HiDebug获取调试信息（ArkTS）
 
-Hidebug对外提供系统调试相关功能的接口，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息的获取等，也可完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
+为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 
@@ -14,6 +14,7 @@ Hidebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSharedDirty             | 获取进程的共享脏内存大小。                                   |
 | hidebug.getPrivateDirty            | 获取进程的私有脏内存大小。                                   |
 | hidebug.getCpuUsage                | 获取进程的CPU使用率。                                        |
+| hidebug.getServiceDump             | 获取系统服务信息。                                           |
 | hidebug.dumpJsHeapData             | 虚拟机堆导出。                                               |
 | hidebug.startJsCpuProfiling        | 启动虚拟机Profiling方法跟踪。                                |
 | hidebug.stopJsCpuProfiling         | 停止虚拟机Profiling方法跟踪。                                |
@@ -28,8 +29,12 @@ Hidebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.isDebugState               | 获取应用进程被调试状态。                                     |
+| hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
+| hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
+| hidebug.dumpJsRawHeapData          | 为当前线程转储虚拟机的原始堆快照。                  |
 
-hidebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
+HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
 ## 开发示例
 
@@ -39,32 +44,37 @@ hidebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 2. 工程配置界面中，**Model**选择“Stage”。
 
-3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件，
+3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件。
 
    新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
    ```ts
-   import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
-   function testHidebug(event?: ClickEvent) {
-     hilog.info(0x0000, "testTag", `getCurrentCpuUsage ${hidebug.getSystemCpuUsage()}`);
+   import { hidebug } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   function testHiDebug(event?: ClickEvent) {
+     try {
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`);
+     } catch (error) {
+       console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+     }
    }
    ```
 
-   给文本Text添加一个点击事件，示例代码如下：
+   给文本Text组件添加一个点击事件，示例代码如下：
 
    ```ts
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
-   
+     @State message: string = 'Hello World';
+
      build() {
        Row() {
          Column() {
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testHidebug);//添加点击事件
+             .onClick(testHiDebug);//添加点击事件
          }
          .width('100%')
        }
@@ -76,7 +86,11 @@ hidebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 4. 在真机上运行该工程，单击应用/服务界面上的“Hello World”文本。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
+
    此时窗口将显示通过hidebug.getSystemCpuUsage()接口获取的CPU使用率的相关日志。
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381 
+	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222
    ```
+
+<!--RP1-->
+<!--RP1End-->

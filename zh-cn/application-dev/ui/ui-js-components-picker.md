@@ -106,7 +106,7 @@ picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 ![zh-cn_image_0000001234327855](figures/zh-cn_image_0000001234327855.gif)
 
 > **说明：**
-> - hours属性为12：按照12小时制显示，用上午和下午进行区分；
+> - hours属性为12：按照12小时制显示，用上午和下午进行区分。
 >
 > - hours属性为24：按照24小时制显示。
 
@@ -295,10 +295,3 @@ export default {
 
 
 ![zh-cn_image_0000001234342189](figures/zh-cn_image_0000001234342189.gif)
-
-
-## 相关实例
-
-针对picker开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

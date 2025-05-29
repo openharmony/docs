@@ -20,8 +20,8 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 
 | 名称        | 类型                    | 必填 | 说明                                                         |
 | ----------- | --------------------   | ---- | ------------------------------------------------------------ |
-| entryParams | string                 |  否  | 开发者自定义参数，透传到子进程中。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.entryParams获取。 |
-| fds         | Record<string, number> |  否  | 文件描述符句柄集合，用于主进程和子进程通信，通过key-value的形式传入到子进程中，可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.fds.xxx获取对应fd句柄。<br/><b>说明：</b>传递到子进程中数字可能会变，但是指向的文件是一致的。|
+| entryParams | string                 |  否  | 开发者自定义参数，透传到子进程中。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.entryParams获取，entryParams支持传输的最大数据量为150KB。|
+| fds         | Record<string, number> |  否  | 文件描述符句柄集合，用于主进程和子进程通信，通过key-value的形式传入到子进程中，其中key为自定义字符串，value为文件描述符句柄。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.fds获取fd句柄。<br/><b>说明：</b> <br>- fds最多支持16组，每组key的最大长度为20字符。<br>- 传递到子进程中句柄数字可能会变，但是指向的文件是一致的。|
 
 **示例：**
 
@@ -30,18 +30,35 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 ```ts
 // 主进程中:
 import { common, ChildProcessArgs, childProcessManager } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let path = context.filesDir + "/test.txt";
-let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
-let args: ChildProcessArgs = {
-  entryParams: "testParam",
-  fds: {
-    "key1": file.fd
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('Click')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let path = context.filesDir + "/test.txt";
+            let file = fileIo.openSync(path, fileIo.OpenMode.READ_ONLY | fileIo.OpenMode.CREATE);
+            let args: ChildProcessArgs = {
+              entryParams: "testParam",
+              fds: {
+                "key1": file.fd
+              }
+            };
+            childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
-};
-childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+}
 ```
 
 ```ts

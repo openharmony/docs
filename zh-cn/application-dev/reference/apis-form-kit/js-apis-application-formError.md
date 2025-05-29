@@ -10,7 +10,7 @@ formError模块提供获取卡片错误码的能力。
 ## 导入模块
 
 ```ts
-import { formError } from '@kit.FormKit'
+import { formError } from '@kit.FormKit';
 ```
 
 ## 权限
@@ -19,7 +19,7 @@ import { formError } from '@kit.FormKit'
 
 ## FormError
 
-枚举，支持的卡片类型
+枚举，支持的卡片类型。
 
 **系统能力：** SystemCapability.Ability.Form
 

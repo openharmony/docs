@@ -9,6 +9,7 @@ The OH_Filter_ColorMatrix struct describes a matrix used to create an effect fil
 
 **Related module**: [EffectKit](effect_kit.md)
 
+**Header file**: [effect_types.h](effect__types_8h.md)
 
 ## Summary
 

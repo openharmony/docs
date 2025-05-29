@@ -9,6 +9,8 @@
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
+**引用文件**：&lt;multimedia/image_framework/image/image_native.h&gt;
+
 **起始版本：** 12
 
 **相关模块：**[Image_NativeModule](_image___native_module.md)
@@ -34,4 +36,5 @@
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageNative_GetBufferSize](_image___native_module.md#oh_imagenative_getbuffersize) ([OH_ImageNative](_image___native_module.md#oh_imagenative) \*image, uint32_t componentType, size_t \*size) | 获取native [OH_ImageNative](_image___native_module.md#oh_imagenative) 对象中某个组件类型所对应的缓冲区的大小。  | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageNative_GetRowStride](_image___native_module.md#oh_imagenative_getrowstride) ([OH_ImageNative](_image___native_module.md#oh_imagenative) \*image, uint32_t componentType, int32_t \*rowStride) | 获取native [OH_ImageNative](_image___native_module.md#oh_imagenative) 对象中某个组件类型所对应的像素行宽。  | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageNative_GetPixelStride](_image___native_module.md#oh_imagenative_getpixelstride) ([OH_ImageNative](_image___native_module.md#oh_imagenative) \*image, uint32_t componentType, int32_t \*pixelStride) | 获取native [OH_ImageNative](_image___native_module.md#oh_imagenative) 对象中某个组件类型所对应的像素大小。  | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageNative_GetTimestamp](_image___native_module.md#oh_imagenative_gettimestamp) ([OH_ImageNative](_image___native_module.md#oh_imagenative) \*image, int64_t \*timestamp) | 获取Native [OH_ImageNative](_image___native_module.md#oh_imagenative) 对象中的时间戳信息。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageNative_Release](_image___native_module.md#oh_imagenative_release) ([OH_ImageNative](_image___native_module.md#oh_imagenative) \*image) | 释放native [OH_ImageNative](_image___native_module.md#oh_imagenative) 对象。  | 

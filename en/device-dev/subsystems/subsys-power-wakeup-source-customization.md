@@ -4,7 +4,7 @@
 
 ### Introduction
 
-OpenHarmony supports multiple wakeup sources, such as the power button, keyboard, and mouse, and provides custom modes for turning on and off these wakeup sources. After a device enters the sleep state, you can turn on the screen and wake up the device by pressing the power button, keyboard, or mouse. However, different products may support different peripherals, for example, stylus or folio keyboard. To address this issue, OpenHarmony provides the wakeup source customization function, allowing you to customize wakeup sources depending on your hardware specifications.
+OpenHarmony supports multiple wakeup sources, such as the power button, keyboard, and mouse, and provides custom modes for turning on and off these wakeup sources. After a device enters the sleep state, you can turn on the screen and wake up the device by touching the power button, keyboard, mouse, or screen. However, different products may support different peripherals, for example, stylus or folio keyboard. To address this issue, OpenHarmony provides the wakeup source customization function, allowing you to customize wakeup sources depending on your hardware specifications.
 
 ### Constraints
 
@@ -65,6 +65,9 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         },
         "switch": {
             "enable": true
+        },
+        "tp_touch": {
+            "enable": true
         }
     }
     ```
@@ -81,6 +84,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | pen | Wakeup by stylus|
     | lid | Wakeup by lid|
     | switch | Wakeup by switch|
+    | tp_touch | Wakeup by touch|
 
     **Table 2** Description of the wakeup source configuration
 
@@ -164,6 +168,9 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
             "enable": false
         },
         "switch": {
+            "enable": false
+        },
+        "tp_touch": {
             "enable": false
         }
     }

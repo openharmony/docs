@@ -20,7 +20,7 @@ onApplicationForeground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -34,7 +34,7 @@ onApplicationBackground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -66,7 +66,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();

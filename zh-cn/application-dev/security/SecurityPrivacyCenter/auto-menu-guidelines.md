@@ -116,9 +116,9 @@
 
 ### 配置权限
 
-业务接入方需申请权限[ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center)，来确保应用可以接入框架菜单。
+业务接入方需申请权限[ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](../AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center)，来确保应用可以接入框架菜单。
 
-申请方式请参考[访问控制开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md)。
+申请方式请参考[访问控制开发指导](../AccessToken/determine-application-mode.md)。
 
 ## 配置Ability页面（以UIAbility方式接入）
 
@@ -174,14 +174,15 @@ export default class EntryAbility extends ExtensionAbility {
 
 ## 接入页面退出（以UIAbility方式接入）
 
-如果是UIAbility的方式接入，接入方需主动退出时，例如页面有返回按钮，想要销毁应用的页面时，可以直接调用router.back()或者terminateSelf()来销毁当前页面。
+如果是UIAbility的方式接入，接入方需主动退出时，例如页面有返回按钮，想要销毁应用的页面时，可以调用terminateSelf()来销毁当前页面。
 
 示例：
 
 ```typescript
-import router from '@ohos.router';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Entry()
+@Entry
 @Component
 struct Index {
  
@@ -190,7 +191,11 @@ struct Index {
       Column() {
         Button("click to back")
           .onClick(() => {
-            router.back()
+            try {
+              (this.getUIContext().getHostContext() as common.UIAbilityContext).terminateSelf();
+            } catch (err) {
+              hilog.info(0x0000, 'testTag', 'error: %{public}s', JSON.stringify(err));
+            }
           })
       }
       .width('100%')
@@ -209,12 +214,11 @@ struct Index {
 ```typescript
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
 
-let storage = LocalStorage.getShared()
-
-@Entry(storage)
+@Entry
 @Component
 struct Index {
-  private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session') as UIExtensionContentSession
+  private session = this.getUIContext().getSharedLocalStorage()?.get<UIExtensionContentSession>('session') as UIExtensionContentSession;
+
   build() {
     Row() {
       Column() {

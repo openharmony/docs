@@ -1,24 +1,27 @@
-# Using AVScreenCapture to Save Recordings in Files (C/C++)
+# Using AVScreenCapture to Capture Screens and Write Them to Files (C/C++)
 
 Screen capture is mainly used to record the main screen.
 
-You can call the C APIs of the **AVScreenCapture** module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
+You can call the C APIs of the [AVScreenCapture](media-kit-intro.md#avscreencapture) module to record the screen and collect audio and video source data output by the device and microphone. You can call the APIs to obtain audio and video files and transfer the files to other modules for playback or processing. In this way, screen content can be shared in the form of files.
 
-The **AVScreenCapture**, **Window**, and **Graphics** modules together implement the entire video capture process.
+The AVScreenCapture, Window, and Graphics modules together implement the entire video capture process.
 
-The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
+The full screen capture process involves creating an AVScreenCapture instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
-This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
+
+This topic describes how to use the AVScreenCapture APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+
+If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
-After an **AVScreenCapture** instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
-
+After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
-**Linking the Dynamic Library in the CMake Script**
+**Linking the Dynamic Link Library in the CMake Script**
 
 ```c++
 target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
@@ -36,7 +39,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include "unistd.h"
     ```
 
-2. Create an **AVScreenCapture** instance, named **capture** in this example.
+2. Create an AVScreenCapture instance, named **capture** in this example.
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
@@ -70,8 +73,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -119,9 +122,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Example
+## Sample Code
 
-Refer to the sample code below to implement captured file storage using **AVScreenCapture**.
+Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
 ```c++
 
@@ -139,13 +142,20 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // Process the state change.
     }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-        // Process the screen capture interruption caused by incoming calls.
-        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
+        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // Process screen capture interruption.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // Process the state change.
     }
+    (void)userData;
+}
+
+// The callback OnDisplaySelected() is invoked to obtain the display ID.
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+    (void)capture;
+    (void)displayId;
     (void)userData;
 }
 
@@ -169,8 +179,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_VideoCaptureInfo videoCapInfo = {
-        .videoFrameWidth = 720, 
-        .videoFrameHeight = 1080, 
+        .videoFrameWidth = 768, 
+        .videoFrameHeight = 1280, 
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -212,6 +222,12 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Set a callback to respond to state changes.
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
+    // (Optional) Set a callback to obtain the display ID. This operation must be performed before screen capture starts.
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+
+    // (Optional) Set the cursor display switch. This operation must be performed before screen capture starts.
+    OH_AVScreenCapture_ShowCursor(capture, false);
+
     // Initialize AVScreenCapture.
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
     
@@ -227,7 +243,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Release the AVScreenCapture instance.
     int32_t retRelease = OH_AVScreenCapture_Release(capture);
 
-    // Return the invoking result. In the example, only a random number is returned.
+    // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);
 

@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)
 
-The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page.
+The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -123,7 +123,7 @@ See [Creating an ActionExtensionAbility](#creating-an-actionextensionability).
 
 To manually create an ActionExtensionAbility in the DevEco Studio project, perform the following steps:
 
-1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ActionExtAbility**.
+1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **actionextability**.
 
 2. In the **actionextability** directory, right-click and choose **New > ArkTS File** to create a file named **ActionExtAbility.ets**.
 
@@ -176,7 +176,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ActionExtAbility",

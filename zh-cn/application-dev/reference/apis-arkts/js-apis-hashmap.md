@@ -1,6 +1,6 @@
 # @ohos.util.HashMap (非线性容器HashMap)
 
-HashMap底层使用数组+链表+红黑树的方式实现，查询、插入和删除的效率都很高。HashMap存储内容基于key-value的键值对映射，不能有重复的key，且一个key只能对应一个value。
+HashMap底层采用数组、链表和红黑树实现，支持高效查询、插入和删除。HashMap存储内容基于key-value的键值对映射，不允许重复的key，且一个key只能对应一个value。
 
 HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存取数据，访问速度较快。而TreeMap是有序存取，效率较低。
 
@@ -8,7 +8,7 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 需要快速存取、删除以及插入键值对数据时，推荐使用HashMap。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，包含以下泛型标记符：<br>
 - K：Key，键<br>
 - V：Value，值
 
@@ -97,7 +97,7 @@ let result = hashMap.isEmpty();
 
 hasKey(key: K): boolean
 
-判断此HashMap中是否含有该指定key。
+判断此HashMap中是否包含指定key。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -136,7 +136,7 @@ let result = hashMap.hasKey("squirrel");
 
 hasValue(value: V): boolean
 
-判断此HashMap中是否含有该指定value。
+判断此HashMap中是否包含指定value。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -152,7 +152,7 @@ hasValue(value: V): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 包含指定value返回true，否则返回false。 |
+| boolean | 包含指定的value返回true，否则返回false。 |
 
 **错误码：**
 
@@ -175,7 +175,7 @@ let result = hashMap.hasValue(123);
 
 get(key: K): V
 
-获取指定key所对应的value，不存在返回undefined。
+获取指定key对应的value，不存在返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -269,7 +269,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的hashMap。 |
+| Object | 返回添加或更新后的hashMap。 |
 
 **错误码：**
 
@@ -332,7 +332,7 @@ let result = hashMap.remove("sparrow");
 
 clear(): void
 
-清除HashMap中的所有元素，并把length置为0。
+清除HashMap中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -360,7 +360,7 @@ hashMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回新迭代器对象，包含此映射中所有的键。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -399,7 +399,7 @@ while(!temp.done) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中包含的键对应的值的新迭代器对象。
+返回新迭代器对象，包含此映射中所有键对应的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -489,9 +489,9 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | V | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
@@ -583,10 +583,6 @@ for(let i = 0; i < 10; i++) {
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

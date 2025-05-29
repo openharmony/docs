@@ -37,12 +37,13 @@
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | 配置描述符。 |
 | [UsbRequestPipe](_usb_request_pipe.md) | 请求管道。 |
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
+| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](#oh_usb_getdevices)接口获取到的设备ID列表和设备数量。 |
 
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [UsbDdkErrCode](#usbddkerrcode) {<br/>USB_DDK_SUCCESS = 0, USB_DDK_FAILED = -1, USB_DDK_INVALID_PARAMETER = -2, USB_DDK_MEMORY_ERROR = -3,<br/>USB_DDK_INVALID_OPERATION = -4, USB_DDK_NULL_PTR = -5, USB_DDK_DEVICE_BUSY = -6, USB_DDK_TIMEOUT = -7<br/>} | USB DDK 错误码定义。 |
+| [UsbDdkErrCode](#usbddkerrcode) {<br/>USB_DDK_SUCCESS = 0, USB_DDK_NO_PERM = 201, USB_DDK_INVALID_PARAMETER = 401, USB_DDK_MEMORY_ERROR = 27400001,<br/>USB_DDK_INVALID_OPERATION = 27400002, USB_DDK_IO_FAILED = 27400003, USB_DDK_TIMEOUT = 27400004<br/>} | USB DDK 错误码定义。 |
 
 
 ### 函数
@@ -51,6 +52,7 @@
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | 初始化DDK。 |
 | [OH_Usb_Release](#oh_usb_release) (void) | 释放DDK。 |
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource) (void) | 释放DDK。 |
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | 获取设备描述符。 |
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。 |
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
@@ -64,6 +66,7 @@
 | [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 发送共享内存管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。 |
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
+| [OH_Usb_GetDevices](#oh_usb_getdevices) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |
 
 #### 函数参数deviceId说明
 
@@ -85,8 +88,81 @@ uint64_t JsDeviceIdToNative(uint64_t deviceId)
 }
 ~~~
 
-## 枚举类型说明
+## 类型定义说明
 
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
+```
+
+**描述**
+
+端点描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
+```
+
+**描述**
+
+接口描述符。
+
+**起始版本：** 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface UsbDdkInterface
+```
+
+**描述**
+
+USB接口。
+
+**起始版本：** 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
+```
+
+**描述**
+
+配置描述符。
+
+**起始版本：** 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
+```
+
+**描述**
+
+ 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。
+
+**起始版本：** 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**描述**
+
+设备ID清单，用于存放[OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices)接口获取到的设备ID列表和设备数量。
+
+**起始版本：** 10
+
+## 枚举类型说明
 
 ### UsbDdkErrCode
 
@@ -99,16 +175,17 @@ enum UsbDdkErrCode
 
 USB DDK 错误码定义。
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| USB_DDK_SUCCESS | 操作成功。 |
-| USB_DDK_FAILED | 操作失败。 |
-| USB_DDK_INVALID_PARAMETER | 非法参数。 |
-| USB_DDK_MEMORY_ERROR | 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。 |
-| USB_DDK_INVALID_OPERATION | 非法操作。 |
-| USB_DDK_NULL_PTR | 空指针异常。 |
-| USB_DDK_DEVICE_BUSY | 设备忙。 |
-| USB_DDK_TIMEOUT | 传输超时。 |
+**起始版本：** 10
+
+| 枚举定义 | 值 | 描述 |
+| -------- | -------- |-------- |
+| USB_DDK_SUCCESS | 0 | 操作成功。 |
+| USB_DDK_NO_PERM | 201 | 操作失败。 |
+| USB_DDK_INVALID_PARAMETER | 401 | 非法参数。 |
+| USB_DDK_MEMORY_ERROR | 27400001 | 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。 |
+| USB_DDK_INVALID_OPERATION | 27400002 | 非法操作。 |
+| USB_DDK_IO_FAILED | 27400003 | 设备I/O操作失败。 |
+| USB_DDK_TIMEOUT | 27400004 | 传输超时。 |
 
 
 ## 函数说明
@@ -118,7 +195,7 @@ USB DDK 错误码定义。
 
 
 ```
-int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle )
+int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle)
 ```
 
 **描述:**
@@ -126,6 +203,8 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 声明接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -137,14 +216,17 @@ int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64
 
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参interfaceHandle为空指针。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示内存超过限制。
 
 ### OH_Usb_CreateDeviceMemMap()
 
 
 ```
-int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap )
+int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap)
 ```
 
 **描述:**
@@ -152,6 +234,8 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -163,7 +247,10 @@ int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemM
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参devMmap为空指针。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示mmap失败或者申请devMmap的内存空间失败。
 
 
 ### OH_Usb_DestroyDeviceMemMap()
@@ -178,6 +265,8 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -199,6 +288,8 @@ void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -210,7 +301,7 @@ void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 
 
 ```
-int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config )
+int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config)
 ```
 
 **描述:**
@@ -218,6 +309,8 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -229,14 +322,19 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参config为空指针。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：内存分配失败。
 
 
 ### OH_Usb_GetCurrentInterfaceSetting()
 
 
 ```
-int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex )
+int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex)
 ```
 
 **描述:**
@@ -244,6 +342,8 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 获取接口当前激活的备用设置。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -254,14 +354,17 @@ int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * s
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参settingIndex为空指针。
 
 
 ### OH_Usb_GetDeviceDescriptor()
 
 
 ```
-int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc )
+int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc)
 ```
 
 **描述:**
@@ -269,6 +372,8 @@ int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescripto
 获取设备描述符。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本：** 10
 
 **参数:**
 
@@ -279,8 +384,10 @@ int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescripto
 
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：内存分配失败。
 
 ### OH_Usb_Init()
 
@@ -295,16 +402,19 @@ int32_t OH_Usb_Init (void )
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 
 ### OH_Usb_Release()
 
 
 ```
-void OH_Usb_Release (void )
+void OH_Usb_Release (void)
 ```
 
 **描述:**
@@ -313,9 +423,29 @@ void OH_Usb_Release (void )
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本：** 10
+
+### OH_Usb_ReleaseResource()
+
+```
+int32_t OH_Usb_ReleaseResource (void)
+```
+
+**描述:**
+
+释放DDK。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：18
+
+**返回:**
+
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 
 ### OH_Usb_ReleaseInterface()
-
 
 ```
 int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
@@ -327,6 +457,8 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
 
+**起始版本**：10
+
 **参数:**
 
 | 名称 | 描述 |
@@ -335,14 +467,17 @@ int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示参数错误。
 
 
 ### OH_Usb_SelectInterfaceSetting()
 
 
 ```
-int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex )
+int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex)
 ```
 
 **描述:**
@@ -350,6 +485,8 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 激活接口的备用设置。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -360,14 +497,16 @@ int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t setting
 
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示参数错误。
 
 ### OH_Usb_SendControlReadRequest()
 
 
 ```
-int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen )
+int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen)
 ```
 
 **描述:**
@@ -375,6 +514,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 发送控制读请求，该接口为同步接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -388,14 +529,20 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参setup、data或者dataLen为空指针，亦或datalen小于读取到的数据长度。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示拷贝读取数据的内存失败。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 
 ### OH_Usb_SendControlWriteRequest()
 
 
 ```
-int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen )
+int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen)
 ```
 
 **描述:**
@@ -403,6 +550,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 发送控制写请求，该接口为同步接口。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -416,14 +565,20 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参setup或者data为空指针。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示拷贝读取数据的内存失败。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 
 ### OH_Usb_SendPipeRequest()
 
 
 ```
-int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap )
+int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap)
 ```
 
 **描述:**
@@ -431,6 +586,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：10
 
 **参数:**
 
@@ -441,14 +598,19 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参pipe、devMmap或者devMmap的地址为空指针。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示拷贝读取数据的内存失败。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 ### OH_Usb_SendPipeRequestWithAshmem()
 
 
 ```
-int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem)
 ```
 
 **描述:**
@@ -456,6 +618,8 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 发送共享内存的管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
 
 **需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：12
 
 **参数:**
 
@@ -466,4 +630,38 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参pipe、ashmem或者ashmem的地址为空指针。
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示拷贝读取数据的内存失败。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
+
+### OH_Usb_GetDevices()
+
+
+```
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
+```
+
+**描述:**
+
+获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**起始版本**：18
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| devices | 已申请好的设备内存地址，用于存放获取到的设备ID列表及数量。 |
+
+**返回:**
+
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示参数devices的地址为空指针。

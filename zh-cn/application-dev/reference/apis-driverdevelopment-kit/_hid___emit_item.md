@@ -5,13 +5,11 @@
 
 事件信息。
 
-**起始版本：**
+**起始版本：** 11
 
-11
+**相关模块：**[HID DDK](_hid_ddk.md)
 
-**相关模块：**
-
-[HID DDK](_hid_ddk.md)
+**所在头文件：** [hid_ddk_types.h](hid__ddk__types_8h.md)
 
 
 ## 汇总
@@ -21,45 +19,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [type](#type) | 事件类型 | 
-| [code](#code) | 事件编码 | 
-| [value](#value) | 事件值 | 
-
-
-## 结构体成员变量说明
-
-
-### type
-
-
-```
-uint16_t Hid_EmitItem::type
-```
-
-**描述:**
-
-事件类型
-
-
-### code
-
-
-```
-uint16_t Hid_EmitItem::code
-```
-
-**描述:**
-
-事件编码
-
-
-### value
-
-
-```
-uint32_t Hid_EmitItem::value
-```
-
-**描述:**
-
-事件值
+| uint16_t [type](_hid_ddk.md#type) | 事件类型 | 
+| uint16_t [code](_hid_ddk.md#code) | 事件编码 | 
+| uint32_t [value](_hid_ddk.md#value) | 事件值 | 

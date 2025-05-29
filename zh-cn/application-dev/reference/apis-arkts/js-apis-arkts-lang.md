@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 此模块仅支持在ArkTS文件（文件后缀为.ets）中导入使用。
 
 ## 导入模块
 
@@ -18,6 +20,8 @@ import { lang } from '@kit.ArkTS';
 ISendable类型的对象是ArkTS中的Object类型的实例。
 
 ISendable主要用在开发者自定义Sendable数据结构的场景中，ArkTS语言标准库中的容器类型隐式地继承并实现了ISendable。
+
+**系统能力**：SystemCapability.Utils.Lang
 
 **示例：**
 

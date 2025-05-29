@@ -52,77 +52,95 @@ The access control mechanism ensures secure data storage and sync across devices
 
 ## Setting the Security Level for a KV Store
 
-When a KV store is created, the **securityLevel** parameter specifies the security level of the KV store. The following example shows how to create a KV store with security level of S1.
+When a KV store is created, the **securityLevel** parameter specifies the security level of the KV store. The following example shows how to create a KV store with security level of S3.
 
 For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
+> **NOTE**
+>
+> For the scenarios involving a single device, you can upgrade the security level of a KV store by modifying the **securityLevel** parameter. When upgrading the database security level, observe the following:
+> * This operation does not apply to the databases that require cross-device sync. Data cannot be synced between databases of different security levels. If you want to upgrade the security level of a database that requires cross-device sync, you are advised to create a database of a higher security level.
+> * You need to close the database before modifying the **securityLevel** parameter, and open it after the security level is upgraded.
+> * You cannot downgrade the database security level. For example, you can change the database security level from S2 to S3, but cannot change it from S3 to S2.
 
 
-  
 ```ts
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvManager: distributedKVStore.KVManager;
-let kvStore: distributedKVStore.SingleKVStore;
-let context = getContext(this);
-const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-  context: context,
-  bundleName: 'com.example.datamanagertest'
-}
-try {
-  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-  console.info('Succeeded in creating KVManager.');
-  try {
-    const options: distributedKVStore.Options = {
-      createIfMissing: true,
-      encrypt: true,
-      backup: false,
-      autoSync: true,
-      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S1
-    };
-    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-      if (err) {
-        console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-        return;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let kvManager: distributedKVStore.KVManager;
+    let kvStore: distributedKVStore.SingleKVStore;
+    let context = this.context;
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest'
+    }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info('Succeeded in creating KVManager.');
+      try {
+        const options: distributedKVStore.Options = {
+          createIfMissing: true,
+          encrypt: true,
+          backup: false,
+          autoSync: false,
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        };
+        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+          if (err) {
+            console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info('Succeeded in getting KVStore.');
+          kvStore = store;
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-      console.info('Succeeded in getting KVStore.');
-      kvStore = store;
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+    }
   }
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
 }
 ```
 
-
 ## Setting the Security Level for an RDB Store 
 
-When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S1.
+When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S3.
 
 For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 
   
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore;
-let context = getContext(this);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-  store = rdbStore;
-  console.info('Succeeded in getting RdbStore.')
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-})
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.')
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
 ```

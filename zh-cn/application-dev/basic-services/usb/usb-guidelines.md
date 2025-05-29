@@ -20,8 +20,8 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备。 |
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求软件包的临时权限以访问设备。使用Promise异步回调。                        |
 | removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
-| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
-| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。                                            |
+| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。                |
+| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。开发者模式关闭时，如果没有设备接入，接口可能返回`undefined`，注意需要对接口返回值做判空处理。                                            |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | 设置设备的配置。                                             |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | 注册通信接口。                                                   |
@@ -29,8 +29,8 @@ USB类开放能力如下，具体请查阅[API参考文档](../../reference/apis
 | closePipe(pipe: USBDevicePipe): number                         | 关闭设备消息控制通道。                                       |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
-| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
-| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | 控制传输。                                                   |
+| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。如果USB服务异常，可能返回`undefined`，注意需要对接口返回值做判空处理。                                        |
+| usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 
 ## 开发步骤
@@ -126,38 +126,63 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    usbManager.claimInterface(pipe, interface1, true);
    ```
 
-4. 数据传输。
+4. 数据传输。当前仅支持批量传输和控制传输。
 
-   ```ts
-   import { usbManager } from '@kit.BasicServicesKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   /*
-    读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
-   （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
-   */
-   let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
-   let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
-   let dataUint8Array : Uint8Array = new Uint8Array(1024);
-   usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-   if (dataLength >= 0) {
-     console.info("usb readData result Length : " + dataLength);
-   } else {
-     console.info("usb readData failed : " + dataLength);
-   }
-   }).catch((error : BusinessError) => {
-   console.info("usb readData error : " + JSON.stringify(error));
-   });
-   // 发送数据，在device信息中选取对应数据发送的endpoint来做数据传输。（endpoint.direction == 0）
-   usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-     if (dataLength >= 0) {
-       console.info("usb writeData result write length : " + dataLength);
-     } else {
-       console.info("writeData failed");
-     }
-   }).catch((error : BusinessError) => {
-     console.info("usb writeData error : " + JSON.stringify(error));
-   });
-   ```
+    - 批量传输
+
+    ```ts
+    import { usbManager } from '@kit.BasicServicesKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    /*
+      读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
+    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
+    */
+    let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
+    let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
+    let dataUint8Array : Uint8Array = new Uint8Array(1024);
+    usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+    if (dataLength >= 0) {
+      console.info("usb readData result Length : " + dataLength);
+    } else {
+      console.info("usb readData failed : " + dataLength);
+    }
+    }).catch((error : BusinessError) => {
+    console.info("usb readData error : " + JSON.stringify(error));
+    });
+    // 发送数据，在device信息中选取对应数据发送的endpoint来做数据传输。（endpoint.direction == 0）
+    usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+      if (dataLength >= 0) {
+        console.info("usb writeData result write length : " + dataLength);
+      } else {
+        console.info("writeData failed");
+      }
+    }).catch((error : BusinessError) => {
+      console.info("usb writeData error : " + JSON.stringify(error));
+    });
+    ```
+
+    - 控制传输
+
+    ```ts
+    import { usbManager } from '@kit.BasicServicesKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    /*
+      构造控制传输参数
+    */
+    let param: usbManager.USBDeviceRequestParams = {
+      bmRequestType: 0x80,    //0x80指一次由设备到主机的标准请求命令
+      bRequest: 0x06,    //0x06指获取描述符
+      wValue:0x01 << 8 | 0,    //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
+      wIndex: 0,    //索引值，可填0
+      wLength: 18,    //描述符的长度，此处18表示设备描述符长度，最大支持1024
+      data: new Uint8Array(18)
+    };
+
+    usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
+    console.info("usbControlTransfer = ${ret}");
+    })
+    ```
 
 5. 释放接口，关闭设备。
 

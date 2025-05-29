@@ -3,7 +3,7 @@
 
 ## 概述
 
-具有相同事件名称的事件组。
+一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -11,6 +11,7 @@
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)
 
+**所在头文件：** [hiappevent.h](hiappevent_8h.md)
 
 ## 汇总
 

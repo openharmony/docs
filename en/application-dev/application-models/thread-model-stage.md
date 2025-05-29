@@ -1,15 +1,17 @@
 # Thread Model (Stage Model)
 
+A thread is the basic unit for the operating system to perform computing and scheduling. It is an execution flow within a [process](./process-model-stage.md) and shares the resources of the process. A process can contain multiple threads.
+
 ## Thread Type
 There are three types of threads in the stage model:
 - Main thread
   - Draws the UI.
-  - Manages the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
-  - Manages ArkTS engine instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
+  - Manages the [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instance of the main thread so that multiple UIAbility components can run on it.
+  - Manages [ArkTS engine](../arkts-utils/arkts-runtime-overview.md) instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
   - Distributes interaction events.
   - Processes application code callbacks (event processing and lifecycle management).
   - Receives messages sent by the **TaskPool** and **Worker** threads.
-- [TaskPool Worker Thread](../reference/apis-arkts/js-apis-taskpool.md)
+- [TaskPool Thread](../reference/apis-arkts/js-apis-taskpool.md)
 
   Used for time-consuming operations and provides APIs for setting the scheduling priority and load balancing. It is recommended.
 - [Worker Thread](../reference/apis-arkts/js-apis-worker.md)

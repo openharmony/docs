@@ -517,7 +517,17 @@ hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
+```ts
+// You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
@@ -557,17 +567,22 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
-
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -608,4 +623,16 @@ for (let key of keys) {
    console.log("value:" + temp.value[1]);
    temp = iter.next();
  }
+```
+
+```ts
+// You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
 ```

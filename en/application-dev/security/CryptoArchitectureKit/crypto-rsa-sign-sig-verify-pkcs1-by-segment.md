@@ -1,38 +1,30 @@
-# Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)
-
+# Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode) (ArkTS)
 
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
-
 **Signing**
 
-
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
+1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA1024|PKCS1|SHA256'** to create a **Sign** instance. The key type is RSA1024, the padding mode is **PKCS1**, and the MD algorithm is **SHA256**.
+2. Call [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA1024|PKCS1|SHA256'** to create a **Sign** instance. The key type is RSA1024, the padding mode is **PKCS1**, and the MD algorithm is **SHA256**.
 
-3. Use [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
+3. Call [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
-4. Set the data length to be passed in each time to 64 bytes, and call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) multiple times to pass in the data to be signed.
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
+4. Set the data length to be passed in each time to 64 bytes, and call [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) multiple times to pass in the data to be signed.<br>Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
 
-5. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
-
+5. Call [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
 **Signature Verification**
 
+1. Call [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256'** to create a **Verify** instance. The string parameter must be the same as that used to create the **Sign** instance.
 
-1. Use [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256'** to create a **Verify** instance. The string parameter must be the same as that used to create the **Sign** instance.
+2. Call [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
-2. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
+3. Call [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.<br>Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
 
-3. Use [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
-
-4. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
-
+4. Call [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1) to verify the data signature.
 
 - Example (using asynchronous APIs):
 
@@ -86,7 +78,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
     let messageData = new Uint8Array(buffer.from(message, 'utf-8').buffer);
     let signData = await signMessageBySegment(keyPair.priKey, messageData);
     let verifyResult = await verifyMessagBySegment(keyPair.pubKey, messageData, signData);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');
@@ -146,7 +138,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
     let messageData = new Uint8Array(buffer.from(message, 'utf-8').buffer);
     let signData = signMessageBySegment(keyPair.priKey, messageData);
     let verifyResult = verifyMessagBySegment(keyPair.pubKey, messageData, signData);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');

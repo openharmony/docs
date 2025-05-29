@@ -1,84 +1,51 @@
 # Synchronous Task Development (TaskPool and Worker)
 
 
-Synchronous tasks are executed in order among multiple threads. Synchronization primitives, such as locks, are used by these tasks for coordination between each other.
+Synchronous tasks involve coordinating execution across multiple threads to ensure that tasks run in a specific order and adhere to certain rules, such as using locks to prevent data races.
 
 
-To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure the correctness of data and program execution.
+To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure data integrity and correct program execution.
 
-If synchronous tasks are independent of each other, you are advised to use **TaskPool**, which focuses on single independent tasks. For example, a series of imported static methods or methods implemented in singletons are independent. If synchronous tasks are associated with each other, use **Worker**, for example, methods implemented in class objects (not singleton class objects).
-
-
-## Using TaskPool to Process Independent Synchronous Tasks
-
-**TaskPool** is recommended for scheduling independent tasks. Typical independent tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
-
-1. Define a concurrency function that internally calls the synchronous methods.
-
-2. Create a [task](../reference/apis-arkts/js-apis-taskpool.md#task), call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) to execute the task, and perform operations on the result returned by the task.
-
-3. Perform concurrent operations.
-
-Simulate a singleton class that contains synchronous calls.
+TaskPool is well-suited for individual, independent tasks. Therefore, it is recommended for scenarios where synchronous tasks are relatively independent, such as a series of static methods or methods implemented using a singleton pattern. Conversely, if synchronous tasks are interdependent, Worker is the better choice, especially when methods rely on class objects.
 
 
-```ts
-// handle.ts code
-export default class Handle {
-  static getInstance(): void {
-    // Return a singleton object.
-  }
+## Using TaskPool for Independent Synchronous Tasks
 
-  static syncGet(): void {
-    // Synchronous getter.
-  }
+TaskPool is ideal for scheduling independent tasks or when a series of tasks is implemented as static methods. It is also suitable when unique handles or class objects can be constructed via a singleton pattern and used across different task threads.
 
-  static syncSet(num: number): number {
-    // Simulate synchronization step 1.
-    console.info("taskpool: this is 1st print!");
-    // Simulate synchronization step 2.
-    console.info("taskpool: this is 2nd print!");
-    return ++num;
-  }
+> **NOTE**
+>
+> Due to the memory isolation feature of the [actor model](multi-thread-concurrency-overview.md#actor-model) between threads, regular singletons cannot be shared across threads. This issue can be solved by exporting singletons through sendable modules.
 
-  static syncSet2(num: number): number {
-    // Simulate synchronization step 1.
-    console.info("taskpool: this is syncSet2 1st print!");
-    // Simulate synchronization step 2.
-    console.info("taskpool: this is syncSet2 2nd print!");
-    return ++num;
-  }
-}
-```
+1. Define a concurrent function to implement service logic.
 
+2. Create a [task](../reference/apis-arkts/js-apis-taskpool.md#task), and execute the task using the [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) interface.
 
-Use **TaskPool** to call the related synchronous methods.
+3. Perform operations on the task result.
+
+In the following example, the service logic uses TaskPool to call related synchronous methods. First, define the concurrent function **taskpoolFunc**, which must be decorated with [@Concurrent](taskpool-introduction.md#concurrent-decorator). Then, define the function **mainFunc**, which creates tasks, executes them, and performs operations on the results returned by the tasks.
 
 
 ```ts
 // Index.ets code
-import taskpool from '@ohos.taskpool';
-import Handle from './Handle'; // Return a static handle.
+import { taskpool} from '@kit.ArkTS';
 
-// Step 1: Define a concurrency function that internally calls the synchronous methods.
+// Step 1: Define a concurrent function to implement service logic.
 @Concurrent
-function func(num: number): number {
-  // Call the synchronous wait implemented in a static class object.
-  // Call syncSet and use its result as an input parameter of syncSet2 to simulate the synchronous call logic.
-  let tmpNum: number = Handle.syncSet(num);
-  return Handle.syncSet2(tmpNum);
+async function taskpoolFunc(num: number): Promise<number> {
+  // Implement the corresponding functionality based on the service logic.
+  let tmpNum: number = num + 100;
+  return tmpNum;
 }
 
-// Step 2: Create and execute a task.
-async function asyncGet(): Promise<void> {
-  // Create task and task2 and pass in the function func.
-  let task: taskpool.Task = new taskpool.Task(func, 1);
-  let task2: taskpool.Task = new taskpool.Task(func, 2);
-  // Execute task and task2 synchronously by using await.
-  let res: number = await taskpool.execute(task) as number;
+async function mainFunc(): Promise<void> {
+  // Step 2: Create and execute a task.
+  let task1: taskpool.Task = new taskpool.Task(taskpoolFunc, 1);
+  let res1: number = await taskpool.execute(task1) as number;
+  let task2: taskpool.Task = new taskpool.Task(taskpoolFunc, res1);
   let res2: number = await taskpool.execute(task2) as number;
-  // Print the task result.
-  console.info("taskpool: task res is: " + res);
+  // Step 3: Perform operations on the result returned by the task.
+  console.info("taskpool: task res1 is: " + res1);
   console.info("taskpool: task res2 is: " + res2);
 }
 
@@ -93,9 +60,8 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            // Step 3: Perform concurrent operations.
-            asyncGet();
+          .onClick(async () => {
+            mainFunc();
           })
       }
       .width('100%')
@@ -106,14 +72,15 @@ struct Index {
 ```
 
 
-## Using Worker to Process Associated Synchronous Tasks
+## Using Worker for Interdependent Synchronous Tasks
 
-Use **Worker** when you want to schedule a series of synchronous tasks using the same handle or depending on the same class object.
+When a series of synchronous tasks needs to be scheduled using the same handle, or when they depend on a specific class object that cannot be shared across different task pools, Worker is the appropriate choice.
 
-1. Create a **Worker** object in the main thread and receive messages from the worker thread.
+1. Create a Worker object in the UI main thread and receive messages from the Worker thread. DevEco Studio supports generation of Worker templates with a single click. In the corresponding {moduleName} directory, right-click anywhere and choose **New > Worker** to automatically generate the Worker template files and configuration information.
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -129,17 +96,17 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
               .onClick(() => {
                 let w: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
                 w.onmessage = (): void => {
-                  // Receive the result of the worker thread.
+                  // Receive results from the Worker thread.
                 }
-                w.onerror = (): void => {
-                  // Receive error information of the worker thread.
+                w.onAllErrors = (): void => {
+                  // Receive error messages from the Worker thread.
                 }
-                // Send a Set message to the worker thread.
+                // Send a Set message to the Worker thread.
                 w.postMessage({'type': 0, 'data': 'data'})
-                // Send a Get message to the worker thread.
+                // Send a Get message to the Worker thread.
                 w.postMessage({'type': 1})
                 // ...
-                // Select a time to destroy the thread based on the actual situation.
+                // Destroy the thread based on actual service requirements.
                 w.terminate()
               })
           }
@@ -151,7 +118,7 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
     ```
 
 
-2. Bind the **Worker** object in the worker thread and process the synchronous task logic.
+2. Bind the Worker object in the Worker thread and process the synchronous task logic.
 
     ```ts
     // handle.ts code
@@ -168,23 +135,25 @@ Use **Worker** when you want to schedule a series of synchronous tasks using the
     
     ```ts
     // MyWorker.ts code
-    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
-    import Handle from './handle'  // Return a handle.
+    import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
+    import Handle from './handle'  // Import the handle.
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;
     
     // Handle that cannot be transferred. All operations depend on this handle.
     let handler: Handle = new Handle()
     
-    // onmessage() logic of the worker thread.
+    // onmessage() logic of the Worker thread.
     workerPort.onmessage = (e : MessageEvents): void => {
      switch (e.data.type as number) {
       case 0:
        handler.syncSet(e.data.data);
        workerPort.postMessage('success set');
+       break;
       case 1:
        handler.syncGet();
        workerPort.postMessage('success get');
+       break;
      }
     }
     ```

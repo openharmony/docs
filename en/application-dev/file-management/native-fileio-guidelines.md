@@ -2,7 +2,7 @@
 
 ## When to Use
 
-The **FileIO** module provides APIs for basic file operations.
+The **FileIO** module provides some APIs for basic file operations. For details about other APIs, see [libc](../reference/native-lib/musl.md) and [libc++](../reference/native-lib/cpp.md).
 
 ## Basic Concepts
 
@@ -10,7 +10,7 @@ URI: uniquely identifies a file.
 
 ## Constraints
 
-- Before performing file operations, ensure that the URI or path passed in is correct and valid.
+Before performing file operations, ensure that the URI or path passed in is correct and valid.
 
 ## Available APIs
 
@@ -20,7 +20,7 @@ For details about the APIs, see [FileIO](../reference/apis-core-file-kit/_file_i
 | -------- | -------- |
 | FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)| Obtains the location of a file.|
 | enum FileIO_FileLocation FileIO_FileLocation| Enumerates the file locations.|
-| enum enum FileManagement_ErrCode FileManagement_ErrCode| Enumerates the error codes used in the **FileIO** module.|
+| enum FileManagement_ErrCode FileManagement_ErrCode| Enumerates the error codes used in the **FileIO** module.|
 
 ## How to Develop
 
@@ -38,7 +38,7 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
-Use **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
+Call **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
 ```c
     void GetFileLocationExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";

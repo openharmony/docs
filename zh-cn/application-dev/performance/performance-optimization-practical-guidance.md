@@ -5,25 +5,25 @@
 本文总结了实际开发应用时常见的性能优化规范，配合举例实际开发中常见的正反例代码，帮助开发者解决大部分性能问题。
 
 ### 性能规范总览目录
-| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;  &emsp;&emsp; <br />分类<br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;   |<br />高频程度 (5满分)<br />&emsp;&emsp;&emsp;&emsp;   | 规范（检查项）       | 实操方法                |            <br />代码示例<br />&emsp;&emsp;&emsp;&emsp;                 |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------:|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 不建议在aboutToAppear(),aboutToDisappear()等生命周期中执行耗时操作 | 排查所有的aboutToAppear和aboutToDisappear函数(或者通过Trace查看)，查看是否有耗时操作，改为setTimeOut或者在TaskPool中执行。                                          |       [代码示例](#不建议在abouttoappearabouttodisappear等生命周期中执行耗时操作)        |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 不要在回调函数中执行耗时操作(ArkUI接口回调、网络访问回调、await等)            | 排查所有的回调函数(或者通过Trace查看)，尤其是ArkUI接口，网络回调函数，查看是否有耗时操作，是否使用了await操作，改为setTimeOut或者在TaskPool中执行。                      |            [代码示例](#不要在回调函数中执行耗时操作arkui接口回调网络访问回调await等)             |
-| 响应时延&nbsp;/&nbsp;完成时延&nbsp;/&nbsp;帧率                                                                                                                                     |                          5                          | 列表场景未使用LazyForEach+组件复用+缓存列表项            | 排查使用LazyForEach的代码，确认是否有使用组件复用(@Reusable)+缓存列表项(cachedCount)。                                                                                                           |                [代码示例](#列表场景未使用lazyforeach组件复用缓存列表项)                 |
-| 完成时延                                                                                                                                                                     |                          5                          | Web未使用预连接，未提前初始化引擎    | 在应用创建Ability的时候，在OnCreate阶段预先初始化内核，建议把引擎的初始化放在setTimeOut中。                                                                                                              |                     [代码示例](#web未使用预连接未提前初始化引擎)                      |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 高频接口中不要打印Trace和日志    | 排查接口onTouch、onItemDragMove、onDragMove、onScroll、onMouse、onVisibleAreaChange、OnAreaChange、onActionUpdate、animator的onFrame、组件复用场景下的aboutToReuse，不建议在里面打印trace和日志。          |                     [代码示例](#高频接口中不要打印trace和日志)                      |
-| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          4                          | 组件复用里面有if语句，但是未使用reuseId            | 排查使用了@Reusable的自定义组件，查看build中给是否使用了if/else或ForEach等条件渲染语句，如果使用了，需要配合reuseId一起使用。                                                                                        |                  [代码示例](#组件复用里面有if语句但是未使用reuseid)                   |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          4                          | 不建议使用@Prop装饰器           | 全局搜索@Prop并且替换                                                                                                                                           |                        [代码示例](#不建议使用prop装饰器)                        |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 避免在ResourceManager的getXXXSync接口入参中直接使用资源信息           | 排查ResourceManager.getXXXSync接口，查看入参时需要使用getStringSync($r('app.media.icon').id)的形式，如果未使用需要整改。                                                 | [代码示例](#避免在resourcemanager的getxxxsync接口入参中直接使用资源信息) |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 展示用的自定义组件（数据从父组件中获取，无独立数据处理）使用@Builder替换           | 审视@Component标记的自定义组件，如果里面没有独立的生命周期处理逻辑，数据由父组件传递，建议@Builder替代。                                                           |            [代码示例](#展示用的自定义组件数据从父组件中获取无独立数据处理使用builder替换)            |
-| 响应时延&nbsp;/&nbsp;完成时延&nbsp;/&nbsp;帧率                                                                                                                                     |                          3                          | 删除无具体逻辑的生命周期，ArkUI的函数回调等，删除冗余堵塞日志打印           | 排查所有的aboutToAppear、aboutToDisappear等生命周期函数，排查ArkUI的回调函数，如果函数中无具体业务逻辑，例如只打印了日志，删除函数回调。                                        |             [代码示例](#删除无具体逻辑的生命周期arkui的函数回调等删除冗余堵塞日志打印)              |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 删除未关联组件的状态变量装饰器           | 排查全局的状态变量装饰器，如果变量未关联组件，删除装饰器。             |                      [代码示例](#删除未关联组件的状态变量装饰器)                       |
-| 帧率                                                                                                                                                                       |                          2                          | 	crypto-js性能差           | 排查buffer.from关键字，加密建议使用原生的cryptoFramework，然后将buffer替换为base64helper，性能提升10倍以上， 且数据量越大越明显。             |                        [代码示例](#crypto-js性能差)                        |
-| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          1                          | 	不建议使用Marquee组件           | 排查Marquee关键字，使用Text的跑马灯模式(TextOverflow.MARQUEE)替代。             |                       [代码示例](#不建议使用marquee组件)                       |
-| 完成时延                                                                                                                                                                     |                          1                          | 	不能使用函数作为ArkUI组件的属性和组件复用的自定义组件的入参           | 查看属性是否有xx()函数写法，确认函数/方法中是否有耗时操作，替换成变量。            |              [代码示例](#不能使用函数作为arkui组件的属性和组件复用的自定义组件的入参)              |
-| 完成时延                                                                                                                                                                     |                          1                          | 	不建议使用.linearGradient颜色渐变属性           | 排查linearGradient关键字，可以使用图片代替。            |                 [代码示例](#不建议使用lineargradient颜色渐变属性)                  |
-| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          1                          | 	不要在for/while循环中执行耗时操作           | 排查for/while循环，查看里面是否有打印日志或者Trace。            |                    [代码示例](#不要在forwhile循环中执行耗时操作)                    |
-| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          1                          | 	变量初值不建议设置为undefined，需进行默认初始化           | 例如number设置为0，string设置为空字符串等，这样在使用过程中更不需要增加额外判空。排查类中的变量，看看是否有初始化为undefined。            |                [代码示例](#变量初值不建议设置为undefined需进行默认初始化)                 |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;  &emsp;&emsp; <br />分类<br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;   |<br />高频程度 (5满分)<br />&emsp;&emsp;&emsp;&emsp;   | 规范（检查项）                                             | 实操方法                |            <br />代码示例<br />&emsp;&emsp;&emsp;&emsp;                 |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------:|:----------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------:|
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 不建议在aboutToAppear(),aboutToDisappear()等生命周期中执行耗时操作。 | 排查所有的aboutToAppear和aboutToDisappear函数(或者通过Trace查看)，查看是否有耗时操作，改为setTimeOut或者在TaskPool中执行。                                          |       [代码示例](#不建议在abouttoappearabouttodisappear等生命周期中执行耗时操作)        |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 不要在回调函数中执行耗时操作(ArkUI接口回调、网络访问回调、await等)。            | 排查所有的回调函数(或者通过Trace查看)，尤其是ArkUI接口，网络回调函数，查看是否有耗时操作，是否使用了await操作，改为setTimeOut或者在TaskPool中执行。                      |            [代码示例](#不要在回调函数中执行耗时操作arkui接口回调网络访问回调await等)             |
+| 响应时延&nbsp;/&nbsp;完成时延&nbsp;/&nbsp;帧率                                                                                                                                     |                          5                          | 列表场景未使用LazyForEach+组件复用+缓存列表项。                      | 排查使用LazyForEach的代码，确认是否有使用组件复用(@Reusable)+缓存列表项(cachedCount)。                                                                                                           |                [代码示例](#列表场景未使用lazyforeach组件复用缓存列表项)                 |
+| 完成时延                                                                                                                                                                     |                          5                          | Web未使用预连接，未提前初始化引擎。                                 | 在应用创建Ability的时候，在OnCreate阶段预先初始化内核，建议把引擎的初始化放在setTimeOut中。                                                                                                              |                     [代码示例](#web未使用预连接未提前初始化引擎)                      |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          5                          | 高频接口中不要打印Trace和日志。                                  | 排查接口onTouch、onItemDragMove、onDragMove、onDidScroll、onMouse、onVisibleAreaChange、OnAreaChange、onActionUpdate、animator的onFrame、组件复用场景下的aboutToReuse，不建议在里面打印trace和日志。          |                     [代码示例](#高频接口中不要打印trace和日志)                      |
+| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          4                          | 组件复用里面有if语句，但是未使用reuseId。                           | 排查使用了@Reusable的自定义组件，查看build中给是否使用了if/else或ForEach等条件渲染语句，如果使用了，需要配合reuseId一起使用。                                                                                        |                  [代码示例](#组件复用里面有if语句但是未使用reuseid)                   |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          4                          | 不建议使用@Prop装饰器。                                      | 全局搜索@Prop并且替换                                                                                                                                           |                        [代码示例](#不建议使用prop装饰器)                        |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 避免在ResourceManager的getXXXSync接口入参中直接使用资源信息。         | 排查ResourceManager.getXXXSync接口，查看入参时需要使用getStringSync($r('app.media.icon').id)的形式，如果未使用需要整改。                                                 | [代码示例](#避免在resourcemanager的getxxxsync接口入参中直接使用资源信息) |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 展示用的自定义组件（数据从父组件中获取，无独立数据处理）使用@Builder替换。           | 审视@Component标记的自定义组件，如果里面没有独立的生命周期处理逻辑，数据由父组件传递，建议@Builder替代。                                                           |            [代码示例](#展示用的自定义组件数据从父组件中获取无独立数据处理使用builder替换)            |
+| 响应时延&nbsp;/&nbsp;完成时延&nbsp;/&nbsp;帧率                                                                                                                                     |                          3                          | 删除无具体逻辑的生命周期，ArkUI的函数回调等，删除冗余堵塞日志打印。                | 排查所有的aboutToAppear、aboutToDisappear等生命周期函数，排查ArkUI的回调函数，如果函数中无具体业务逻辑，例如只打印了日志，删除函数回调。                                        |             [代码示例](#删除无具体逻辑的生命周期arkui的函数回调等删除冗余堵塞日志打印)              |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          3                          | 删除未关联组件的状态变量装饰器。                                    | 排查全局的状态变量装饰器，如果变量未关联组件，删除装饰器。             |                      [代码示例](#删除未关联组件的状态变量装饰器)                       |
+| 帧率                                                                                                                                                                       |                          2                          | 	crypto-js性能差。                                      | 排查buffer.from关键字，加密建议使用原生的cryptoFramework，然后将buffer替换为base64helper，性能提升10倍以上， 且数据量越大越明显。             |                        [代码示例](#crypto-js性能差)                        |
+| 响应时延&nbsp;/&nbsp;完成时延                                                                                                                                                    |                          1                          | 	不建议使用Marquee组件。                                    | 排查Marquee关键字，使用Text的跑马灯模式(TextOverflow.MARQUEE)替代。             |                       [代码示例](#不建议使用marquee组件)                       |
+| 完成时延                                                                                                                                                                     |                          1                          | 	不能使用函数作为ArkUI组件的属性和组件复用的自定义组件的入参。                  | 查看属性是否有xx()函数写法，确认函数/方法中是否有耗时操作，替换成变量。            |              [代码示例](#不能使用函数作为arkui组件的属性和组件复用的自定义组件的入参)              |
+| 完成时延                                                                                                                                                                     |                          1                          | 	不建议使用.linearGradient颜色渐变属性。                        | 排查linearGradient关键字，可以使用图片代替。            |                 [代码示例](#不建议使用lineargradient颜色渐变属性)                  |
+| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          1                          | 	不要在for/while循环中执行耗时操作。                             | 排查for/while循环，查看里面是否有打印日志或者Trace。            |                    [代码示例](#不要在forwhile循环中执行耗时操作)                    |
+| 完成时延&nbsp;/&nbsp;帧率                                                                                                                                                      |                          1                          | 	变量初值不建议设置为undefined，需进行默认初始化。                      | 例如number设置为0，string设置为空字符串等，这样在使用过程中更不需要增加额外判空。排查类中的变量，看看是否有初始化为undefined。            |                [代码示例](#变量初值不建议设置为undefined需进行默认初始化)                 |
 
 ## 性能优化规范
 
@@ -35,6 +35,8 @@
 
 #### 反例
 ```typescript
+const LARGE_NUMBER = 1000000;
+
 @Entry
 @Component
 struct ViewA {
@@ -44,17 +46,18 @@ struct ViewA {
   aboutToAppear() {
     // 耗时操作
     this.computeTask();
-    let context = context.resourceManager.getStringSync($r('app.string.startup_text'));
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
-    while (this.count < LARGE_NUMBER) {
-    this.count++;
+      while (this.count < LARGE_NUMBER) {
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 }
 ```
 #### 正例
@@ -70,26 +73,26 @@ struct ViewB {
   aboutToAppear() {
     // 耗时操作
     this.computeTaskAsync(); // 异步任务
-    let context = getContext(this) as Context;
+    let context = this.getUIContext().getHostContext() as Context;
     this.text = context.resourceManager.getStringSync($r('app.string.startup_text'));
   }
 
   computeTask(): void {
     this.count = 0;
     while (this.count < LARGE_NUMBER) {
-    this.count++;
+      this.count++;
+    }
+    let context = this.getUIContext().getHostContext() as Context;
+    this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
   }
-  let context = getContext(this) as Context;
-  this.text = context.resourceManager.getStringSync($r('app.string.task_text'));
-}
 
-// 运算任务异步处理
-private computeTaskAsync(): void {
-  setTimeout(() => {
-  // 这里使用setTimeout来实现异步延迟运行
-  this.computeTask();
-  }, DELAYED_TIME)
-}
+  // 运算任务异步处理
+  private computeTaskAsync(): void {
+    setTimeout(() => {
+      // 这里使用setTimeout来实现异步延迟运行
+      this.computeTask();
+    }, this.DELAYED_TIME)
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -127,12 +130,12 @@ requestByTaskPool(): void {
   // 创建任务项
   let task: taskpool.Task = new taskpool.Task(this.getInfoFromHttp);
   try {
-  // 执行网络加载函数
-  taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-});
-} catch (err) {
-  logger.error(TAG, "failed, " + (err as BusinessError).toString());
-}
+    // 执行网络加载函数
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
+    });
+  } catch (err) {
+    logger.error(TAG, "failed, " + (err as BusinessError).toString());
+  }
 }
 ```
 #### 高频程度&收益（5满分）
@@ -272,11 +275,11 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 ```typescript
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.info("EntryAbility onCreate")
+    console.info("EntryAbility onCreate");
     // 在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
     setTimeout(() => {
       // 这里使用setTimeout来实现延迟运行
-      web_webview.WebviewController.initializeWebEngine()
+      web_webview.WebviewController.initializeWebEngine();
     }, 200)
     console.info("EntryAbility onCreate done");
   }
@@ -294,12 +297,14 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 #### 类型
 响应时延/完成时延
 #### 解决方法
-排查接口onTouch、onItemDragMove、onDragMove、onScroll、onMouse、onVisibleAreaChange、OnAreaChange、
+排查接口onTouch、onItemDragMove、onDragMove、onDidScroll、onMouse、onVisibleAreaChange、OnAreaChange、
 onActionUpdate、animator的onFrame、组件复用场景下的aboutToReuse，不建议在里面打印trace和日志。
 #### 反例
 ```typescript
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Component
-struct CounterOfOnScroll {
+struct CounterOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -311,20 +316,20 @@ struct CounterOfOnScroll {
       }, (item: number) => item.toString())
     }
     .width('100%')
-      .height('100%')
-      .onScroll(() => {
-        hitrace.startTrace("ScrollSlide", 1002);
-        // 业务逻辑
-        // ...
-        // 在高频接口中不建议打印Trace和日志
-        hitrace.finishTrace("ScrollSlide", 1002);
-      })
+    .height('100%')
+    .onDidScroll(() => {
+      hiTraceMeter.startTrace("ScrollSlide", 1002);
+      // 业务逻辑
+      // ...
+      // 在高频接口中不建议打印Trace和日志
+      hiTraceMeter.finishTrace("ScrollSlide", 1002);
+    })
   }
 ```
 #### 正例
 ```typescript
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -339,12 +344,12 @@ struct PositiveOfOnScroll {
       }
       .divider({ strokeWidth: 3, color: Color.Gray })
     }
-      .width('100%')
-      .height('100%')
-      .onScroll(() => {
-        // 业务逻辑
-        // ...
-      })
+    .width('100%')
+    .height('100%')
+    .onDidScroll(() => {
+      // 业务逻辑
+      // ...
+    })
   }
 }
 ```
@@ -457,7 +462,7 @@ export struct WithReuseId {
 #### 类型
 响应时延/完成时延
 #### 解决方法
-全局搜索@Prop并且替换
+全局搜索@Prop并且替换。
 #### 反例
 ```typescript
 @Observed
@@ -623,18 +628,18 @@ import promptAction from '@ohos.promptAction';
 @Component
 struct ViewA {
   aboutToAppear(): void {
-    hilog.info('Index.ets aboutToAppear')  // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToAppear');  // 无具体业务逻辑的日志
   }
 
   aboutToDisappear(): void{
-    hilog.info('Index.ets aboutToDisappear') // 无具体业务逻辑的日志
+    hilog.info(0x101, 'tag', 'Index.ets aboutToDisappear'); // 无具体业务逻辑的日志
   }
 
   /**
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -660,7 +665,7 @@ struct ViewB {
    * 弹窗函数
    */
   showToast() {
-    promptAction.showToast({
+    this.getUIContext().getPromptAction().showToast({
       message: $r('app.string.water_mark_toast_message')
     })
   }
@@ -768,13 +773,13 @@ struct ViewA {
         .backgroundColor('#182431')
         .margin({ bottom: 40 })
         .onStart(() => {
-          console.info('Marquee animation complete onStart')
+          console.info('Marquee animation complete onStart');
         })
         .onBounce(() => {
-          console.info('Marquee animation complete onBounce')
+          console.info('Marquee animation complete onBounce');
         })
         .onFinish(() => {
-          console.info('Marquee animation complete onFinish')
+          console.info('Marquee animation complete onFinish');
         })
     }.width("100%")
   }
@@ -925,5 +930,4 @@ struct ViewB {
 1
 
 <!--no_check-->
-
 

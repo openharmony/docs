@@ -22,16 +22,20 @@ import { GesturePath } from '@kit.AccessibilityKit';
 
 ### 属性
 
-| 名称           | 类型                                                                              | 可读   | 可写   | 说明     |
+| 名称           | 类型                                                                          | 只读   | 可选   | 说明     |
 | ------------ |---------------------------------------------------------------------------------| ---- | ---- | ------ |
-| points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 是    | 是    | 手势触摸点。    |
-| durationTime | number                                                                          | 是    | 是    | 手势总耗时, 单位为毫秒。 |
+| points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 否    | 否    | 手势触摸点。    |
+| durationTime | number                                                                          | 否    | 否    | 手势总耗时，单位为毫秒。 |
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(durationTime: number);
 
 构造函数。
+
+> **说明：**
+>
+> 从API version 12开始废弃。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -39,7 +43,7 @@ constructor(durationTime: number);
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| durationTime | number | 是 | 手势总耗时,单位为毫秒。 |
+| durationTime | number | 是 | 手势总耗时，单位为毫秒。 |
 
 **示例：**
 

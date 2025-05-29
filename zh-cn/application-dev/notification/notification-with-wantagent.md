@@ -1,17 +1,21 @@
 # 为通知添加行为意图
 
-当发布通知时，如果期望用户可以通过点击通知栏拉起目标应用组件或发布公共事件，可以通过Ability Kit申请[WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)封装至通知消息中。
+应用向Ability Kit申请[WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)，并将WantAgent封装至通知中。当发布通知时，用户便可以通过点击通知栏中的消息或按钮，拉起目标应用组件或发布公共事件。
 
-**图1** 携带行为意图的通知运行机制  
- ![notification_wantagent](figures/notification_wantagent.png) 
+携带了actionButtons的通知示意图如下。
+
+![notification_wantagent](figures/notification_actionButtons.png)
+
+## 运行机制
+
+![notification_wantagent](figures/notification_wantagent.png)
 
 ## 接口说明
 
-具体接口描述，详见[WantAgent接口文档](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)。
-
 | **接口名** | **描述** |
 | -------- | -------- |
-| getWantAgent(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | 创建WantAgent。 |
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  |
+| [getWantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | 创建WantAgent。 |
 
 ## 开发步骤
 
@@ -47,7 +51,7 @@
          parameters: {}
        }
      ],
-     operationType: wantAgent.OperationType.START_ABILITY,
+     actionType: wantAgent.OperationType.START_ABILITY,
      requestCode: 0,
      wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
@@ -66,7 +70,7 @@
          parameters: {},
        }
      ],
-     operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
+     actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
      wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
@@ -86,9 +90,23 @@
    });
    ```
 
-4. 构造NotificationRequest对象，并发布WantAgent通知。
+4. 构造NotificationRequest对象，并发布携带WantAgent的通知。
+
+   > **说明：**
+   >
+   > - 如果封装WantAgent至通知消息中，可以点击通知触发WantAgent。当通知消息存在actionButtons时，点击通知会先显示actionButtons，再次点击通知触发WantAgent。
+   >
+   > - 如果封装WantAgent至通知按钮中，点击通知后，该通知下方会出现通知按钮，可以点击按钮触发WantAgent。
 
    ```typescript
+   // 构造NotificationActionButton对象
+   let actionButton: notificationManager.NotificationActionButton = {
+     title: 'Test_Title',
+     // wantAgentObj使用前需要保证已被赋值（即步骤3执行完成）
+     // 通知按钮的WantAgent
+     wantAgent: wantAgentObj
+   }
+   
    // 构造NotificationRequest对象
    let notificationRequest: notificationManager.NotificationRequest = {
      content: {
@@ -100,8 +118,10 @@
        },
      },
      id: 6,
-     label: 'TEST',
+     // 通知消息的WantAgent
      wantAgent: wantAgentObj,
+     // 通知按钮
+     actionButtons: [actionButton],
    }
    
    notificationManager.publish(notificationRequest, (err: BusinessError) => {
@@ -112,5 +132,3 @@
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
-
-5. 用户通过点击通知栏上的通知，系统会自动触发WantAgent的动作。

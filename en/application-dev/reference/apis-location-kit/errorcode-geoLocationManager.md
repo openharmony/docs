@@ -24,7 +24,7 @@ This error code is reported if the location service is unavailable and relevant 
 
 **Procedure**
 
-Stop calling the API.
+Add a retry mechanism.
 
 ## 3301100 Positioning Failed Due to Location Service Switch Turning-off
 
@@ -48,6 +48,48 @@ Display a prompt asking for enabling the location service.
 
 **Error Message**
 
+The network locating is failed because the network cannot be accessed.
+
+**Description**
+
+This error code is reported if network positioning fails because network access is denied.
+
+**Procedure**
+
+Check the device for Internet or Wi-Fi connectivity and an installed SIM card.<br>
+</br>
+
+**Error Message**
+
+The positioning result does not meet the precision requirement (maxAccuracy) in the positioning request parameters.
+
+**Description**
+
+This error code is reported if positioning times out because the positioning result does not meet the requirement of **maxAccuracy**.
+
+**Procedure**
+
+Increase the value of **maxAccuracy** for [LocationRequest](./js-apis-geoLocationManager.md#locationrequest) and [CurrentLocationRequest](./js-apis-geoLocationManager.md#currentlocationrequest) as follows:
+
+- If [scenario](./js-apis-geoLocationManager.md#locationrequestscenario) is set to **NAVIGATION**, **TRAJECTORY_TRACKING** or **CAR_HAILING**, or [priority](./js-apis-geoLocationManager.md#locationrequestpriority) is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.
+
+- If [scenario](./js-apis-geoLocationManager.md#locationrequestscenario) is set to **DAILY_LIFE_SERVICE** or **NO_POWER**, or [priority](./js-apis-geoLocationManager.md#locationrequestpriority) is set to **LOW_POWER** or **FIRST_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.<br>
+
+**Error Message**
+
+The system does not have a cache locaiton.
+
+**Description**
+
+This error code is reported if the application fails to obtain the previous location because the system has not cached the location information.
+
+**Procedure**
+
+If the system has not cached the location information, call [getCurrentLocation](./js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation) to obtain the real-time location information.<br>
+</br>
+
+**Error Message**
+
 Failed to obtain the geographical location.
 
 **Description**
@@ -58,25 +100,13 @@ This error code is reported if the location service fails, leading to a failure 
 
 1. Positioning times out because of weak GNSS signals.
 
-2. Positioning times out because the network positioning service is abnormal.
-
-3. Positioning times out because the positioning result does not meet the requirement of **maxAccuracy**.
-
-4. The application fails to obtain the previous location because the system does not cache the location information.
-
-5. The system time is incorrectly set.
+2. The system time is incorrectly set.
 
 **Procedure**
 
 1. Move to an open area and try again.
 
-2. Check the device for Internet or Wi-Fi connectivity and an installed SIM card.
-
-3. Check whether the **maxAccuracy** field in the location request is properly set.
-
-4. Use **getCurrentLocation** to obtain the real-time location if no location information is cached in the system.
-
-5. Enable automatic setting on the **Time & Date** page.
+2. Enable automatic setting on the **Time & Date** page.
 
 
 ## 3301300 Query Failed During Reverse Geocoding
@@ -91,11 +121,15 @@ This error code is reported if the query during reverse geocoding has failed.
 
 **Possible Cause**
 
-Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+- Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+
+- The x86 emulator does not support the reverse geocoding function. A reverse geocoding query fails if the x86 emulator is used for debugging.
 
 **Procedure**
 
-Perform a query again.
+- For the network problem, try the reverse geocoding query again after the network is resumed.
+
+- For the x86 emulator problem, try the reverse geocoding query again on a real device.
 
 ## 3301400 Query Failed During Geocoding
 
@@ -109,8 +143,9 @@ This error code is reported if the query during geocoding has failed.
 
 **Possible Cause**
 
-1. A certain request parameter is incorrect, or no result can be found based on the parameter.<br>
-2. Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+- A certain request parameter is incorrect, or no result can be found based on the parameter.<br>
+
+- Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
 
 **Procedure**
 
@@ -132,7 +167,7 @@ The correct area information is not found.
 
 **Procedure**
 
-Stop calling the API for querying the country code.
+Add a retry mechanism.
 
 ## 3301600 Geofence Operation Failed
 
@@ -152,7 +187,9 @@ This error code is reported if a geofence operation, for example, adding, deleti
 
 **Procedure**
 
-Stop calling the geofence operation API.
+1. Add the SysCap verification mechanism.
+
+2. Add a retry mechanism.
 
 ## 3301601 Failed to Add a Geofence Due to a Limit on the Maximum Number
 
@@ -166,7 +203,7 @@ This error code is reported if the attempt to add a geofence fails because the n
 
 **Possible Cause**
 
-The number of geofences has reached the maximum.
+The number of geofences has reached the maximum (that is, 1,000).
 
 **Procedure**
 
@@ -180,7 +217,7 @@ Failed to delete a geofence due to an incorrect ID.
 
 **Description**
 
-The ID of the geofence to be deleted is incorrect.
+This error code is reported if the ID of the geofence to be deleted is incorrect.
 
 **Possible Cause**
 
@@ -210,13 +247,13 @@ This error code is reported if no response is received for an asynchronous reque
 
 **Procedure**
 
-Stop calling relevant APIs.
+Add a retry mechanism.
 
 ## 3301800 Failed to Start Wi-Fi or Bluetooth Scanning
 
 **Error Message**
 
-Failed to start WiFi or Bluetooth scanning.
+Failed to start Wi-Fi or Bluetooth scanning.
 
 **Description**
 
@@ -228,8 +265,30 @@ This error code is reported if Wi-Fi or Bluetooth scanning fails to start.
 
 2. Power consumption control is activated because of low battery level.
 
-3. Wi-Fi or Bluetooth is not enabled.
+3. Wi-Fi or Bluetooth is disabled.
 
 **Procedure**
 
-Turn off Wi-Fi or Bluetooth, and then turn it on again.
+Disable and then enable Wi-Fi or Bluetooth.
+
+## 3301900 Failed to Obtain the MAC Address of the Wi-Fi Hotspot
+
+**Error Message**
+
+Failed to obtain the hotpot MAC address because the Wi-Fi is not connected.
+
+**Description**
+
+This error code is reported if the attempt to obtain the MAC address of the Wi-Fi hotspot or router fails because the device is not connected to the Wi-Fi hotspot or router.
+
+**Possible Cause**
+
+1. Wi-Fi is disabled.
+
+2. Wi-Fi is enabled, but the device is not connected to a Wi-Fi hotspot or router.
+
+**Procedure**
+
+1. Enable Wi-Fi.
+
+2. Connect to a router or Wi-Fi hotspot.

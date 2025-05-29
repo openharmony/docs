@@ -63,7 +63,7 @@ struct ImageExample2 {
 
 ### 使用TaskPool线程池异步处理
 
-当前系统提供了[TaskPool线程池](../reference/apis-arkts/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
+当前系统提供了[TaskPool线程池](../reference/apis-arkts/js-apis-taskpool.md)，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
 ```typescript
 import taskpool from '@ohos.taskpool';
@@ -206,6 +206,8 @@ struct Index {
 因此会扩散影响到容器外ForEach中的Text渲染：
 
 ```typescript
+const IMAGE_TOTAL_NUM: number = 10; // 图片总数
+
 @Entry
 @Component
 struct StackExample {
@@ -213,7 +215,7 @@ struct StackExample {
   private data: number[] = [];
 
   aboutToAppear() {
-    for (let i: number = 0; i < Constants.IMAGE_TOTAL_NUM; i++) {
+    for (let i: number = 0; i < IMAGE_TOTAL_NUM; i++) {
       this.data.push(i);
     }
   }
@@ -221,7 +223,7 @@ struct StackExample {
   build() {
     Column() {
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -245,6 +247,8 @@ struct StackExample {
 建议：指定Stack宽高，此时Stack组件作为布局计算的边界，内部的变化不会扩散到父容器，进而减少兄弟节点的刷新。
 
 ```typescript
+const IMAGE_TOTAL_NUM: number = 10; // 图片总数
+
 @Entry
 @Component
 struct StackExample2 {
@@ -252,7 +256,7 @@ struct StackExample2 {
   private data: number[] = [];
 
   aboutToAppear() {
-    for (let i: number = 0; i < Constants.IMAGE_TOTAL_NUM; i++) {
+    for (let i: number = 0; i < IMAGE_TOTAL_NUM; i++) {
       this.data.push(i);
     }
   }
@@ -260,7 +264,7 @@ struct StackExample2 {
   build() {
     Column() { // 父容器
       Button('Switch Hidden and Show').onClick(() => {
-        this.isVisible = !(this.isVisible);
+        this.isVisible = !this.isVisible;
       })
 
       Stack() {
@@ -277,6 +281,7 @@ struct StackExample2 {
       }, (item: number) => item.toString())
     }
   }
+}  
 ```
 **效果对比**
 
@@ -319,58 +324,58 @@ struct MyComponent7 {
 
 ```typescript
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
   public getData(index: number): string {
-    return ''
+    return '';
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
@@ -379,28 +384,28 @@ class MyDataSource extends BasicDataSource {
   private dataArray: string[] = Array.from(Array<number>(10000), (v, k) => k.toString());
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
   public getData(index: number): string  {
-    return this.dataArray[index]
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private data: MyDataSource = new MyDataSource()
+  private data: MyDataSource = new MyDataSource();
 
   build() {
     List() {
@@ -523,11 +528,11 @@ class AVPlayerManager {
 
 应用启动时有广告页的场景下。如果先渲染广告页而后再渲染首页，很可能造成首页响应时延较长，影响用户体验。针对此类问题可以使用NodeContainer在广告页渲染时同步渲染首页，等到跳转到首页时直接送显，提高响应速度。
 
-反例：按次序依次渲染送显
+反例：按次序依次渲染送显。
 
 主要代码逻辑如下：
 
-1、模拟广告页，通过点击不同按钮分别进入普通页面和预加载页面
+1、模拟广告页，通过点击不同按钮分别进入普通页面和预加载页面。
 ```typescript
 // Index.ets
 
@@ -542,13 +547,13 @@ struct Index {
       Button("普通页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/CommonPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/CommonPage' });
         })
       // 进入预加载页面
       Button("预加载页面")
         .type(ButtonType.Capsule)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/PreloadedPage' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/PreloadedPage' });
         })
     }.height('100%')
     .width('100%')
@@ -557,7 +562,7 @@ struct Index {
 }
 ```
 
-2、普通首页，也即按顺序普通渲染的页面
+2、普通首页，也即按顺序普通渲染的页面。
 ```typescript
 // CommonPage.ets
 
@@ -573,7 +578,7 @@ struct CommonPage {
   }
 }
 ```
-3、自定义builder，用来定制页面结构
+3、自定义builder，用来定制页面结构。
 ```typescript
 // CustomerBuilder.ets
 
@@ -610,17 +615,17 @@ export function MyBuilder(numbers: string[]) {
 export const getNumbers = (): string[] => {
   const numbers: string[] = [];
   for (let i = 0; i < 100; i++) {
-    numbers.push('' + i)
+    numbers.push('' + i);
   }
   return numbers;
 }
 ```
 
-正例：在启动时预加载首页
+正例：在启动时预加载首页。
 
 主要代码逻辑如下：
 
-1、应用启动时提前创建首页
+1、应用启动时提前创建首页。
 ```typescript
 // EntryAbility.ets  
 
@@ -658,7 +663,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-2、预加载的首页，使用NodeContainer进行占位，当跳转到本页时直接将提前创建完成的首页填充
+2、预加载的首页，使用NodeContainer进行占位，当跳转到本页时直接将提前创建完成的首页填充。
 ```typescript
 // PreloadedPage.ets
 
@@ -675,7 +680,7 @@ struct PreloadedPage {
 }
 ```
 
-3、自定义NodeController，并提供提前创建首页的能力
+3、自定义NodeController，并提供提前创建首页的能力。
 ```typescript
 // CustomerController.ets
 
@@ -708,9 +713,9 @@ export class MyNodeController extends NodeController {
       return;
     }
     // 创建节点，需要uiContext
-    this.rootNode = new BuilderNode(uiContext)
+    this.rootNode = new BuilderNode(uiContext);
     // 创建组件
-    this.rootNode.build(this.wrapBuilder, this.numbers)
+    this.rootNode.build(this.wrapBuilder, this.numbers);
   }
 }
 
@@ -755,11 +760,11 @@ export class ControllerManager {
 
 通过SmartPerf-Host工具抓取相关trace进行分析首页响应时延，其中主要关注两个trace tag分别是DispatchTouchEvent代表点击事件和MarshRSTransactionData代表响应,如下图所示：
 
-反例响应时延：18.1ms
+反例响应时延：18.1ms。
 
 ![反例响应时延](./figures/preload_counter_example_delay.png)
 
-正例响应时延：9.4ms
+正例响应时延：9.4ms。
 
 ![正例响应时延](./figures/preload_positive_example_delay.png)
 
@@ -847,7 +852,7 @@ struct ArticleSkeletonView { // 自定义骨架图
 
 将使用和未使用骨架图的组件通过SmartPerf-Host工具抓取trace后对比可得：
 
-未使用骨架图时，响应时间约为321.5ms。(其中包含setTimeout的300ms)
+未使用骨架图时，响应时间约为321.5ms。(其中包含setTimeout的300ms)。
 
 ![骨架图占位](./figures/improve-application-response-no-skeleton-duration.png)
 
@@ -864,7 +869,7 @@ struct ArticleSkeletonView { // 自定义骨架图
 ```ts
 // 相机页面每次隐藏时触发一次
 onPageHide() {
-  this.service.release()
+  this.service.release();
 }
 
 // 释放资源
@@ -877,22 +882,22 @@ public async release() {
       // 拍照模式会话类释放
       await this.captureSession?.release();
     } catch (e) {
-      logger.error("release session error:",JSON.stringify(e))
+      logger.error("release session error:",JSON.stringify(e));
     }
     this.isSessionStart = false;
     this.isSessionCapture = false;
     try {
       // 拍照输入对象类关闭
-      await this.cameraInput?.close()
+      await this.cameraInput?.close();
       // 预览输出对象类释放
-      await this.previewOutput?.release()
+      await this.previewOutput?.release();
       // 拍照输出对象类释放
-      await this.cameraOutput?.release()
+      await this.cameraOutput?.release();
     } catch (e) {
-     logger.error('release input output error:',JSON.stringify(e))
+     logger.error('release input output error:',JSON.stringify(e));
     }
     // 相机管理对象置空
-    this.cameraManager = null
+    this.cameraManager = null;
   }
 }
 ```
@@ -910,7 +915,7 @@ public async release() {
 ```ts
 // 相机页面每次隐藏时触发一次
 onPageHide() {
-  setTimeout(this.service.release, 200)
+  setTimeout(this.service.release, 200);
 }
 
 // 释放资源
@@ -924,22 +929,22 @@ public async release() {
       // 拍照模式会话类释放
       this.captureSession?.release();
     } catch (e) {
-      logger.error("release session error:",JSON.stringify(e))
+      logger.error("release session error:",JSON.stringify(e));
     }
     this.isSessionStart = false;
     this.isSessionCapture = false;
     try {
       // 拍照输入对象类关闭
-      await this.cameraInput?.close()
+      await this.cameraInput?.close();
       // 预览输出对象类释放
-      this.previewOutput?.release()
+      this.previewOutput?.release();
       // 拍照输出对象类释放
-      this.cameraOutput?.release()
+      this.cameraOutput?.release();
     } catch (e) {
-     logger.error('release input output error:',JSON.stringify(e))
+     logger.error('release input output error:',JSON.stringify(e));
     }
     // 相机管理对象置空
-    this.cameraManager = null
+    this.cameraManager = null;
   }
 }
 ```
@@ -954,10 +959,10 @@ public async release() {
 
 （注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考。）
 
-| 操作类型        | 执行时间    | 备注                                            |
-| ----------- | ------- | --------------------------------------------- |
-| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作                   |
-| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作 |
+| 操作类型        | 执行时间    | 备注                                             |
+| ----------- | ------- |------------------------------------------------|
+| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作。                   |
+| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作。 |
 
 正反例数据表明，合理运用延时策略能显著提升函数执行效率，是优化相机资源管理与关闭操作性能的有效手段，对提升整体用户体验具有重要价值。
 
@@ -967,19 +972,19 @@ public async release() {
 
 ### 反例
 
-指定触发拖动手势事件的最小拖动距离为100vp
+指定触发拖动手势事件的最小拖动距离为100vp。
 
 ```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -996,26 +1001,26 @@ struct PanGestureExample {
       .gesture(
         PanGesture(this.panOption)
           .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
-            hiTraceMeter.startTrace("PanGesture", 1)
+            console.info('Pan start');
+            hiTraceMeter.startTrace("PanGesture", 1);
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
             }
           })
           .onActionEnd(() => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
-            hiTraceMeter.finishTrace("PanGesture", 1)
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
+            hiTraceMeter.finishTrace("PanGesture", 1);
           })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          this.panOption.setDistance(100)
+          this.panOption.setDistance(100);
         })
     }
   }
@@ -1036,19 +1041,19 @@ struct PanGestureExample {
 
 ### 正例
 
-指定触发拖动手势事件的最小拖动距离为4vp
+指定触发拖动手势事件的最小拖动距离为4vp。
 
 ```ts
-import { hiTraceMeter } from '@kit.PerformanceAnalysisKit'
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -1065,26 +1070,26 @@ struct PanGestureExample {
       .gesture(
         PanGesture(this.panOption)
           .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
-            hiTraceMeter.startTrace("PanGesture", 1)
+            console.info('Pan start');
+            hiTraceMeter.startTrace("PanGesture", 1);
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
             }
           })
           .onActionEnd(() => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
-            hiTraceMeter.finishTrace("PanGesture", 1)
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
+            hiTraceMeter.finishTrace("PanGesture", 1);
           })
       )
 
       Button('修改PanGesture触发条件')
         .onClick(() => {
-          this.panOption.setDistance(4)
+          this.panOption.setDistance(4);
         })
     }
   }
@@ -1106,9 +1111,9 @@ struct PanGestureExample {
 ### 性能比对 
 （注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考，该表格仅分析trace图。）
 
-| 拖动距离设置              | 执行时间 | 备注                                                         |
-| ------------------------- | -------- | ------------------------------------------------------------ |
-| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化 |
-| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能                                     |
+| 拖动距离设置              | 执行时间 | 备注                              |
+| ------------------------- | -------- |---------------------------------|
+| 最小拖动距离100vp（反例） | 145.1ms  | 最小拖动距离过大会导致滑动脱手、响应时延慢等问题导致性能劣化。 |
+| 最小拖动距离4vp（正例）   | 38.4ms   | 设置合理的拖动距离优化性能。                  |
 
 正反例数据表明，合理减小拖动距离能显著提升执行效率，是优化响应时延的有效手段，对提升整体用户体验具有重要价值。（注：本案例通过设置较大和较小拖动距离进行数据对比得出相关结论。distance的默认值为5vp，设置过小的distance容易出现误触等问题，开发者可根据具体应用场景进行设置。）

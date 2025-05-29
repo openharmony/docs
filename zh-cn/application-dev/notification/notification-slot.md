@@ -5,6 +5,9 @@
 
 不同类型的通知渠道对应的通知提醒方式不同，详见下表。其中，Y代表支持，N代表不支持。
 
+<!--RP1-->
+<!--RP1End-->
+
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | UNKNOWN_TYPE         | 0      | 未知类型 | Y | N | N | N | N | N |
@@ -34,6 +37,10 @@
    ```ts
    import { notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建指定类型的通知渠道。
@@ -41,11 +48,11 @@
     ```ts
     // addslot回调
     let addSlotCallBack = (err: BusinessError): void => {
-        if (err) {
-            console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            console.info("addSlot success");
-        }
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        hilog.info(DOMAIN_NUMBER, TAG, `addSlot success`);
+      }
     }
     notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
     ```
@@ -56,17 +63,17 @@
     ```ts
     // getSlot回调
     let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
-        if (err) {
-            console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-            console.info(`getSlot success. `);
-            if (data != null) {
-                console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
-                console.info(`slot level is ${JSON.stringify(data.level)}`);
-                console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
-                console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
-            }
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get slot. Code is ${err.code}, message is ${err.message}`);
+      } else {
+        hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in getting slot.`);
+        if (data != null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+          hilog.info(DOMAIN_NUMBER, TAG, `lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
         }
+      }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
     notificationManager.getSlot(slotType, getSlotCallback);
@@ -77,12 +84,12 @@
     ```ts
     // removeSlot回调
     let removeSlotCallback = (err: BusinessError): void => {
-    if (err) {
-        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("removeSlot success");
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `removeSlot failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
+      } else {
+        hilog.info(DOMAIN_NUMBER, TAG, "removeSlot success");
+      }
     }
-    }
-    let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+    let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
     notificationManager.removeSlot(slotType, removeSlotCallback);
     ```

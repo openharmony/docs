@@ -18,6 +18,8 @@ getChannelId(): string
 
 根据应用的BundleName获取渠道号。
 
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Customization.CustomConfig
 
 **返回值：**

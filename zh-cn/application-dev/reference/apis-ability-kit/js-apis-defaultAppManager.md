@@ -12,7 +12,7 @@
 import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## defaultAppManager.ApplicationType
+## ApplicationType
 
 默认应用的应用类型。
 
@@ -34,7 +34,7 @@ import { defaultAppManager } from '@kit.AbilityKit';
 
 isDefaultApplication(type: string): Promise\<boolean>
 
-以异步方法根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用Promise形式返回结果。
+根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -42,7 +42,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                           |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#applicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                           |
 
 **返回值：**
 
@@ -77,7 +77,7 @@ defaultAppManager.isDefaultApplication(defaultAppManager.ApplicationType.BROWSER
 
 isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
-以异步方法根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用callback形式返回结果。
+根据系统已定义的应用类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型判断当前应用是否是该类型的默认应用，使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
@@ -85,8 +85,8 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 
 | 参数名         | 类型                              | 必填   | 说明                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                            |
-| callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+| type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#applicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。                            |
+| callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的[回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
 **错误码：**
 
@@ -124,7 +124,7 @@ isDefaultApplicationSync(type: string): boolean
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | -------| ------ | ---- | --------------------------------------- |
-|  type  | string | 是   | 要查询的应用类型，取[ApplicationType](#defaultappmanagerapplicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。   |
+|  type  | string | 是   | 要查询的应用类型，取[ApplicationType](#applicationtype)或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型中的值。   |
 
 **返回值：**
 

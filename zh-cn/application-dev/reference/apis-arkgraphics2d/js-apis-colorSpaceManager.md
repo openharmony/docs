@@ -49,6 +49,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 | LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
 | LINEAR_BT709<sup>11+</sup>         | 24     | 与LINEAR_SRGB相同。<br>RGB色域为BT709类型。<br>转换函数为Linear类型。 |
 | LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
+| H_LOG<sup>18+</sup>                | 26     | RGB色域为BT2020类型。<br>转换函数为LOG类型。 |
 | DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同。<br>RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
 | DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同。<br>RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
 | DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同。<br>RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
@@ -107,7 +108,7 @@ let colorSpace: colorSpaceManager.ColorSpaceManager;
 try {
     colorSpace = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 } catch (err) {
-    console.log(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create SRGB colorSpace. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -159,7 +160,7 @@ try {
     let gamma = 2.2;
     colorSpace = colorSpaceManager.create(primaries, gamma);
 } catch (err) {
-    console.log(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to create colorSpace with customized primaries and gamma. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -197,7 +198,7 @@ getColorSpaceName(): ColorSpace
 try {
     let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
-    console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
+    console.error(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -229,7 +230,7 @@ getWhitePoint(): Array\<number\>
 try {
     let point = colorSpace.getWhitePoint();
 } catch (err) {
-    console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
 ```
 
@@ -261,6 +262,6 @@ getGamma(): number
 try {
     let gamma = colorSpace.getGamma();
 } catch (err) {
-    console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
+    console.error(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }
 ```

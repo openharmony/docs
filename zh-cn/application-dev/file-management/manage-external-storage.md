@@ -8,7 +8,7 @@
 
 ![External storage device management](figures/external-storage-device-management.png)
 
-- 插入外卡时，StorageDaemon进程通过netlink监听获取到外卡插入事件，创建对应的磁盘设备以及卷设备，此时，已创建的卷设备状态为卸载状态（UNMOUNTED）。
+- 插入外卡时，StorageDaemon进程通过netlink监听获取到外卡插入事件，创建对应的磁盘设备以及卷设备。此时，已创建的卷设备状态为卸载状态（UNMOUNTED）。
 
 - StorageDaemon进程在创建完卷设备后，会对卷设备进行检查，此时卷状态为检查状态（CHECKING）。
   - **检查成功**：对卷设备进行挂载，挂载成功后，卷状态更改为挂载状态（MOUNTED），并通知StorageManager发送COMMON_EVENT_VOLUME_MOUNTED广播。
@@ -29,30 +29,30 @@
 
 | 广播类型 | 参数 | 
 | -------- | -------- |
-| usual.event.data.VOLUME_REMOVED | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID | 
-| usual.event.data.VOLUME_UNMOUNTED | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID<br/>volumeState：卷设备状态 | 
-| usual.event.data.VOLUME_MOUNTED | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID<br/>volumeState：卷设备状态<br/>fsUuid：卷设备uuid<br/>path：卷设备挂载路径 | 
-| usual.event.data.VOLUME_BAD_REMOVAL | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID | 
-| usual.event.data.VOLUME_EJECT | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID<br/>volumeState：卷设备状态 | 
+| usual.event.data.VOLUME_REMOVED | id：卷设备ID。<br/>diskId：卷设备所属磁盘设备ID。 | 
+| usual.event.data.VOLUME_UNMOUNTED | id：卷设备ID。<br/>diskId：卷设备所属磁盘设备ID。<br/>volumeState：卷设备状态。 | 
+| usual.event.data.VOLUME_MOUNTED | id：卷设备ID。<br/>diskId：卷设备所属磁盘设备ID。<br/>volumeState：卷设备状态。<br/>fsUuid：卷设备uuid。<br/>path：卷设备挂载路径。 | 
+| usual.event.data.VOLUME_BAD_REMOVAL | id：卷设备ID。<br/>diskId：卷设备所属磁盘设备ID。 | 
+| usual.event.data.VOLUME_EJECT | id：卷设备ID。<br/>diskId：卷设备所属磁盘设备ID。<br/>volumeState：卷设备状态。 | 
 
 ## 开发步骤
 
 开发者通过订阅卷设备相关的广播事件来感知外置存储的插入，通过广播传递的信息获取卷设备信息后可以对卷设备进行查询以及管理操作。
 
-1. 获取权限。
-   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
+1. 获取权限。  
+  订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
-2. 订阅广播事件。
-   需订阅的事件如下：
+2. 订阅广播事件。  
+  需订阅的事件如下：
 
-   - 卷设备移除："usual.event.data.VOLUME_REMOVED"
-   - 卷设备卸载："usual.event.data.VOLUME_UNMOUNTED"
-   - 卷设备挂载："usual.event.data.VOLUME_MOUNTED"
-   - 卷设备异常移除："usual.event.data.VOLUME_BAD_REMOVAL"
-   - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"
+   - 卷设备移除："usual.event.data.VOLUME_REMOVED"。
+   - 卷设备卸载："usual.event.data.VOLUME_UNMOUNTED"。
+   - 卷设备挂载："usual.event.data.VOLUME_MOUNTED"。
+   - 卷设备异常移除："usual.event.data.VOLUME_BAD_REMOVAL"。
+   - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"。
 
    ```ts
-   import { commonEventManager } from '@kit.BasicServiceKit';
+   import { commonEventManager } from '@kit.BasicServicesKit';
    import { volumeManager } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -74,17 +74,21 @@
 3. 收到广播通知后获取卷设备信息。
 
    ```ts
-   commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-     if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
-       // 开发者可以通过广播传递的卷设备信息来管理卷设备
-       let volId: string = data.parameters.id;
-       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
-         if (error) {
-           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
-         } else {
-           console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
-         }
-       })
-     }
-   })
+   let subscriber: commonEventManager.CommonEventSubscriber|undefined;
+   //注意： 参数subscriber 是从步骤2订阅广播事件 中 await commonEventManager.createSubscriber(subscribeInfo) 获取到的。
+   if (subscriber !== undefined) {
+    commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
+        // 开发者可以通过广播传递的卷设备信息来管理卷设备
+        let volId: string = data.parameters.id;
+        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
+          if (error) {
+            console.error(`volumeManager getVolumeById failed, Error code: ${error.code}, message: ${error.message}`);
+          } else {
+            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+          }
+        })
+      }
+    })
+   }
    ```

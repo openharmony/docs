@@ -16,7 +16,9 @@ The AbilityStartCallback module describes the callback invoked to return the UIE
 import { common } from '@kit.AbilityKit';
 ```
 
-## onError
+## AbilityStartCallback
+
+### onError
 
 onError(code: number, name: string, message: string): void
 
@@ -30,9 +32,9 @@ Called when the UIExtensionAbility fails to start.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| code | number | Yes   | Result code returned when the UIExtensionAbility fails to start. |
-| name | string | Yes   | Name returned when the UIExtensionAbility fails to start. |
-| message | string | Yes   | Error information returned when the UIExtensionAbility fails to start. |
+| code | number | Yes   | Result code returned when the UIExtensionAbility fails to start.|
+| name | string | Yes   | Name returned when the UIExtensionAbility fails to start.|
+| message | string | Yes   | Error information returned when the UIExtensionAbility fails to start.|
 
 **Example**
 
@@ -65,7 +67,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## onResult<sup>12+<sup>
+### onResult<sup>12+<sup>
 
 onResult?(parameter: AbilityResult): void
 
@@ -79,7 +81,7 @@ Called when the UIExtensionAbility is terminated.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextterminateselfwithresult12) is called to terminate the UIExtensionAbility. |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned when [terminateSelfWithResult](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextterminateselfwithresult12) is called to terminate the UIExtensionAbility.|
 
 **Example**
 

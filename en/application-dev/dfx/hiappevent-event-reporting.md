@@ -10,21 +10,21 @@ For details about how to use the APIs, see [Application Event Logging](../refere
 
 | API                                   | Description                                            |
 | ----------------------------------------- | ------------------------------------------------ |
-| addProcessor(processor: Processor): number | Adds a data processor for reporting events.|
+| addProcessor(processor: Processor): number | Adds a data processor for reporting events. |
 | removeProcessor(id: number): void          | Removes a data processor.            |
 
 **User ID APIs**
 
 | API                                    | Description                                        |
 | ------------------------------------------ | -------------------------------------------- |
-| setUserId(name: string, value: string): void | Sets a user ID. The data processor can carry the user ID when reporting an event.|
-| getUserId(name: string): string               | Obtains a user ID that has been set.                         |
+| setUserId(name: string, value: string): void | Sets a user ID. The data processor can carry the user ID when reporting an event. |
+| getUserId(name: string): string               | Obtains a user ID that has been set.                          |
 
 **User Property APIs**
 
 | API                                          | Description                                            |
 | ------------------------------------------------ | ------------------------------------------------ |
-| setUserProperty(name: string, value: string): void | Sets a user property. The data processor can carry user properties when reporting events.|
+| setUserProperty(name: string, value: string): void | Sets a user property. The data processor can carry user properties when reporting events. |
 | getUserProperty(name: string): string               | Obtains a user property.                           |
 
 ## How to Develop

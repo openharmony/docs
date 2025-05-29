@@ -18,41 +18,42 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Value | Description |
+| Name| Type| Value| Description|
 | -------- | -------- | -------- | -------- |
-| ENTER_KEY_TYPE_UNSPECIFIED | number | 0 | No function is specified for the Enter key. |
-| ENTER_KEY_TYPE_GO | number | 2 | The Enter key takes the user to the target. |
-| ENTER_KEY_TYPE_SEARCH | number | 3 | The Enter key takes the user to the results of their searching. |
-| ENTER_KEY_TYPE_SEND | number | 4 | The Enter key sends the text to its target. |
-| ENTER_KEY_TYPE_NEXT | number | 5 | The Enter key takes the user to the next field. |
-| ENTER_KEY_TYPE_DONE | number | 6 | The Enter key takes the user to the next line. |
-| ENTER_KEY_TYPE_PREVIOUS | number | 7 | The Enter key takes the user to the previous field. |
-| PATTERN_NULL | number | -1 | Any type of edit box. |
-| PATTERN_TEXT | number | 0 | Text edit box. |
-| PATTERN_NUMBER | number | 2 | Number edit box. |
-| PATTERN_PHONE | number | 3 | Phone number edit box. |
-| PATTERN_DATETIME | number | 4 | Date edit box. |
-| PATTERN_EMAIL | number | 5 | Email edit box. |
-| PATTERN_URI | number | 6 | URI edit box. |
-| PATTERN_PASSWORD | number | 7 | Password edit box. |
-| PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | Numeric password edit box. |
-| PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | Screen lock password edit box. |
-| OPTION_ASCII | number | 20 | ASCII values are allowed. |
-| OPTION_NONE | number | 0 | No input attribute is specified. |
-| OPTION_AUTO_CAP_CHARACTERS | number | 2 | Characters are allowed. |
-| OPTION_AUTO_CAP_SENTENCES | number | 8 | Sentences are allowed. |
-| OPTION_AUTO_WORDS | number | 4 | Words are allowed. |
-| OPTION_MULTI_LINE | number | 1 | Multiple lines are allowed. |
-| OPTION_NO_FULLSCREEN | number | 10 | Half-screen style. |
-| FLAG_SELECTING | number | 2 | The edit box is being selected. |
-| FLAG_SINGLE_LINE | number | 1 | The edit box allows only single-line input. |
-| DISPLAY_MODE_PART | number | 0 | The edit box is displayed in half-screen mode. |
-| DISPLAY_MODE_FULL | number | 1 | The edit box is displayed in full screen. |
-| CURSOR_UP<sup>9+</sup> | number | 1 | The caret moves upward. |
-| CURSOR_DOWN<sup>9+</sup> | number | 2 | The caret moves downward. |
-| CURSOR_LEFT<sup>9+</sup> | number | 3 | The caret moves leftward. |
-| CURSOR_RIGHT<sup>9+</sup> | number | 4 | The caret moves rightward. |
-| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 2105 | The input method is displayed in a floating window. |
+| ENTER_KEY_TYPE_UNSPECIFIED | number | 0 | No function is specified for the key.|
+| ENTER_KEY_TYPE_GO | number | 2 | Key that executes a command or navigates to a specific location.|
+| ENTER_KEY_TYPE_SEARCH | number | 3 | Key that initiates a search operation.|
+| ENTER_KEY_TYPE_SEND | number | 4 | Key that sends the text to its target.|
+| ENTER_KEY_TYPE_NEXT | number | 5 | Key that moves the focus to the next item in a sequence.|
+| ENTER_KEY_TYPE_DONE | number | 6 | Key that indicates that a task or input is complete.|
+| ENTER_KEY_TYPE_PREVIOUS | number | 7 | Key that moves the focus to the previous item in a sequence.|
+| ENTER_KEY_TYPE_NEWLINE<sup>12+</sup> | number | 8 | Key that inserts a new line.|
+| PATTERN_NULL | number | -1 | Any type of edit box.|
+| PATTERN_TEXT | number | 0 | Text edit box.|
+| PATTERN_NUMBER | number | 2 | Number edit box.|
+| PATTERN_PHONE | number | 3 | Phone number edit box.|
+| PATTERN_DATETIME | number | 4 | Date edit box.|
+| PATTERN_EMAIL | number | 5 | Email edit box.|
+| PATTERN_URI | number | 6 | URI edit box.|
+| PATTERN_PASSWORD | number | 7 | Password edit box.|
+| PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | Numeric password edit box.|
+| PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | Screen lock password edit box.|
+| OPTION_ASCII | number | 20 | ASCII values are allowed.|
+| OPTION_NONE | number | 0 | No input attribute is specified.|
+| OPTION_AUTO_CAP_CHARACTERS | number | 2 | Characters are allowed.|
+| OPTION_AUTO_CAP_SENTENCES | number | 8 | Sentences are allowed.|
+| OPTION_AUTO_WORDS | number | 4 | Words are allowed.|
+| OPTION_MULTI_LINE | number | 1 | Multiple lines are allowed.|
+| OPTION_NO_FULLSCREEN | number | 10 | Half-screen style.|
+| FLAG_SELECTING | number | 2 | The edit box is being selected.|
+| FLAG_SINGLE_LINE | number | 1 | The edit box allows only single-line input.|
+| DISPLAY_MODE_PART | number | 0 | The edit box is displayed in half-screen mode.|
+| DISPLAY_MODE_FULL | number | 1 | The edit box is displayed in full screen.|
+| CURSOR_UP<sup>9+</sup> | number | 1 | The caret moves upward.|
+| CURSOR_DOWN<sup>9+</sup> | number | 2 | The caret moves downward.|
+| CURSOR_LEFT<sup>9+</sup> | number | 3 | The caret moves leftward.|
+| CURSOR_RIGHT<sup>9+</sup> | number | 4 | The caret moves rightward.|
+| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 2105 | The input method is displayed in a floating window.|
 
 ## inputMethodEngine.getInputMethodAbility<sup>9+</sup>
 
@@ -66,7 +67,7 @@ Obtains an [InputMethodAbility](#inputmethodability) instance for the input meth
 
 | Type                                     | Description              |
 | ----------------------------------------- | ------------------ |
-| [InputMethodAbility](#inputmethodability) | **InputMethodAbility** instance. |
+| [InputMethodAbility](#inputmethodability) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -86,7 +87,7 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method.<b
 
 | Type                                 | Description                    |
 | ------------------------------------- | ------------------------ |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance. |
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -110,7 +111,7 @@ Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method
 
 | Type                                     | Description              |
 | ----------------------------------------- | ------------------ |
-| [InputMethodEngine](#inputmethodengine) | **InputMethodAbility** instance. |
+| [InputMethodEngine](#inputmethodengine) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -134,7 +135,7 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 
 | Type                                 | Description                    |
 | ------------------------------------- | ------------------------ |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance. |
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -142,7 +143,7 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
-## inputMethodEngine.CommandDataType<sup>12+</sup>
+## CommandDataType<sup>12+</sup>
 
 type CommandDataType = number | string | boolean;
 
@@ -154,7 +155,7 @@ Defines the private data type, which varies depending on its function.
 | ------- | -------------------- |
 | string  | String. |
 | number  | Number.  |
-| boolean | Boolean. |
+| boolean | Boolean.|
 
 **Example**
 
@@ -178,6 +179,19 @@ try {
 }
 ```
 
+## SizeChangeCallback<sup>15+</sup>
+
+type SizeChangeCallback = (size: window.Size, keyboardArea?: KeyboardArea) => void
+
+Callback triggered when the size of the input method panel changes.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name      | Type                                                | Mandatory| Description                            |
+| ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
+| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | Yes  | Panel size.                  |
+| keyboardArea | [KeyboardArea](#keyboardarea15)                      | No  | Size of the keyboard area.|
+
 ## InputMethodEngine
 
 In the following API examples, you must first use [getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated) to obtain an **InputMethodEngine** instance, and then call the APIs using the obtained instance.
@@ -192,10 +206,10 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                           | Mandatory | Description                                                        |
+| Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | Yes  | Event type, which is **'inputStart'**. |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | Yes | Callback used to return the **KeyboardController** and **TextInputClient** instances. |
+| type     | string                        | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
 
@@ -221,10 +235,10 @@ Disables listening for the input method binding event.
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                    |
+| Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | Yes  | Event type, which is **'inputStart'**. |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| type | string                                                       | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -249,9 +263,9 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -279,10 +293,10 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
-| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -305,10 +319,10 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                           | Mandatory | Description                                                        |
+| Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | Yes  | Event type, which is **'inputStart'**. |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | Yes | Callback used to return the result. |
+| type     | string                        | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | Yes| Callback used to return instances related to input method operations.|
 
 **Example**
 
@@ -334,10 +348,10 @@ Disables listening for the input method binding event. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                    |
+| Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | Yes  | Event type, which is **'inputStart'**. |
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | No | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| type | string                                                       | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -355,9 +369,9 @@ Enables listening for the input method unbinding event. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'inputStop'**. |
+| type     | string | Yes  | Event type, which is **'inputStop'**.|
 | callback | () => void   | Yes  | Callback used to return the result.                       |
 
 **Example**
@@ -382,9 +396,9 @@ Disables listening for the input method stop event. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'inputStop'**. |
+| type     | string | Yes  | Event type, which is **'inputStop'**.|
 | callback | () => void   | Yes  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.       |
 
 **Example**
@@ -409,9 +423,9 @@ Enables listening for the window invocation setting event. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'setCallingWindow'**. |
+| type     | string | Yes  | Event type, which is **'setCallingWindow'**.|
 | callback | (wid: number) => void | Yes  | Callback used to return the window ID of the caller.                    |
 
 **Example**
@@ -436,10 +450,10 @@ Disables listening for the window invocation setting event. This API uses an asy
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type, which is **'setCallingWindow'**.|
-| callback | (wid:number) => void | Yes  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| callback | (wid:number) => void | Yes  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -463,9 +477,9 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -493,10 +507,10 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
-| callback | () => void   | No  | Callback to unregister. |
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
+| callback | () => void   | No  | Callback used to return the result.|
 
 **Example**
 
@@ -523,9 +537,9 @@ Enables listening for the input method subtype setting event. This API uses an a
 
 **Parameters**
 
-| Name   | Type | Mandatory | Description |
+| Name   | Type| Mandatory | Description|
 | -------- | --- | ---- | --- |
-| type     | string | Yes  | Event type, which is **'setSubtype'**. |
+| type     | string | Yes  | Event type, which is **'setSubtype'**.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | Yes  | Callback used to return the input method subtype.                        |
 
 **Example**
@@ -552,9 +566,9 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type | Mandatory| Description  |
 | ------- | ----- | ---- | ---- |
-| type     | string | Yes  | Event type, which is **'setSubtype'**. |
+| type     | string | Yes  | Event type, which is **'setSubtype'**.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
 
 **Example**
@@ -573,15 +587,15 @@ try {
 
 on(type: 'securityModeChange', callback: Callback< SecurityMode>): void
 
-Enables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Enables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory | Description                                          |
+| Name  | Type                                       | Mandatory| Description                                          |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                                      | Yes  | Event type, which is **'securityModeChange'**. |
+| type     | string                                      | Yes  | Event type, which is **'securityModeChange'**.|
 | callback | Callback\<[SecurityMode](#securitymode11))> | Yes  | Callback used to return the current security mode.      |
 
 **Example**
@@ -600,16 +614,16 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-Disables listening for security mode changes of the input method. This API uses an asynchronous callback to return the result.
+Disables listening for the security mode changes of the input method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory | Description                                                        |
+| Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | Yes  | Event type, which is **'securityModeChange'**.              |
-| callback | Callback\<[SecurityMode](#securitymode11))> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| callback | Callback\<[SecurityMode](#securitymode11))> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -636,18 +650,18 @@ Enables listening for the private data event of the input method. This API uses 
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                      |
+| Name  | Type                                         | Mandatory| Description                                      |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                        | Yes  | Event type, which is **'privateCommand'**. |
-| callback | Callback<Record<string, CommandDataType>> | Yes  | Callback used to return the private data sent to the input method application. |
+| type     | string                                        | Yes  | Event type, which is **'privateCommand'**.|
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | Yes  | Callback used to return the private data sent to the input method application.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **Example**
 
@@ -655,9 +669,9 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -671,7 +685,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>): void
 
 Disables listening for the private data event of the input method. This API uses an asynchronous callback to return the result.
 
@@ -679,18 +693,18 @@ Disables listening for the private data event of the input method. This API uses
 
 **Parameters**
 
-| Name  | Type                                       | Mandatory | Description                                                        |
+| Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | Yes  | Event type, which is **'privateCommand'**.                  |
-| callback | Callback\<[SecurityMode](#securitymode11))> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **Example**
 
@@ -698,9 +712,9 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -709,6 +723,79 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`regist private command error: ${error.code} ${error.message}`);
+}
+```
+
+### on('callingDisplayDidChange')<sup>18+</sup>
+
+on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
+
+Subscribes to the change of the ID of the screen where the window corresponding to the edit box is located. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                         | Mandatory| Description                                      |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | Yes  | Event type, which is **'callingDisplayDidChange'**.|
+| callback |  Callback\<number> | Yes  | Callback used to return the screen ID of the window corresponding to the edit box.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 801 | capability not supported. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+let callingDisplayDidChangeCallback = (num: number) => {
+  console.log(`display id: ${num}`);
+}
+try {
+  console.log(`regist calling display changed`);
+  inputMethodEngine.getInputMethodAbility().on('callingDisplayDidChange', callingDisplayDidChangeCallback);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`regist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### off('callingDisplayDidChange')<sup>18+</sup>
+
+off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
+
+Unsubscribes from the change of the ID of the screen where the window corresponding to the edit box is located. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type, which is **'callingDisplayDidChange'**.                  |
+| callback | Callback\<number>  | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
+
+try {
+  console.log(`unregist calling display changed `);
+  inputMethodEngine.getInputMethodAbility().off('callingDisplayDidChange', (num: number) => {
+    console.log('InputMethodAbility delete calling display  notification.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -724,13 +811,13 @@ Obtains the current security mode of the input method.
 
 | Type                           | Description      |
 | ------------------------------- | ---------- |
-| [SecurityMode](#securitymode11) | Security mode. |
+| [SecurityMode](#securitymode11) | Security mode.|
 
 **Error codes**
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
-| 12800004 | not an input method extension. |
+| 12800004 | not an input method. |
 
 **Example**
 
@@ -747,16 +834,16 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-Creates an input method panel. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel, which can be called only by input method applications. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type       | Mandatory | Description                    |
+| Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method. |
-| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel. |
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
+| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method application.|
 | callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
 
 **Error codes**
@@ -764,7 +851,7 @@ Creates an input method panel. This API uses an asynchronous callback to return 
 | ID  | Error Message                      |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **Example**
 
@@ -793,16 +880,16 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-Creates an input method panel. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel, which can be called only by input method applications. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type       | Mandatory | Description                    |
+| Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method. |
-| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel. |
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
+| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 
 **Return value**
 | Type  | Description                                                                |
@@ -814,7 +901,7 @@ Creates an input method panel. This API uses a promise to return the result.<br>
 | ID  | Error Message                      |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **Example**
 
@@ -843,16 +930,16 @@ Destroys the specified input method panel. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type       | Mandatory | Description                    |
+| Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| panel     | [Panel](#panel10) | Yes  | Input method panel to destroy. |
+| panel     | [Panel](#panel10) | Yes  | Input method panel to destroy.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -904,7 +991,7 @@ Destroys the specified input method panel. This API uses a promise to return the
 
 **Parameters**
 
-| Name  | Type       | Mandatory | Description                    |
+| Name  | Type       | Mandatory| Description                    |
 | ---------| ----------- | ---- | ------------------------ |
 | panel    | [Panel](#panel10)       | Yes  | Input method panel to destroy.     |
 
@@ -917,7 +1004,7 @@ Destroys the specified input method panel. This API uses a promise to return the
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -972,23 +1059,23 @@ Enables listening for a physical keyboard event. This API uses an asynchronous c
 
 **Parameters**
 
-| Name  | Type                           | Mandatory | Description                                                 |
+| Name  | Type                           | Mandatory| Description                                                 |
 | -------- | ------------------------------- | ---- |-----------------------------------------------------|
-| type   | string         | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event. |
-| callback | (event: [KeyEvent](#keyevent)) => boolean | Yes | Callback used to return the key information. If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.  |
+| type   | string         | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
+| callback | (event: [KeyEvent](#keyevent)) => boolean | Yes| Callback used to return the key information. If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.  |
 
 **Example**
 
 ```ts
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
   inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
 } catch(err) {
@@ -1008,7 +1095,7 @@ Disables listening for a physical keyboard event. This API uses an asynchronous 
 
 | Name   | Type    | Mandatory | Description |
 | -------- | ------- | ---- | ----- |
-| type     | string  | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event. |
+| type     | string  | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
 | callback | (event: [KeyEvent](#keyevent)) => boolean | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.  |
 
 **Example**
@@ -1038,10 +1125,10 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'keyEvent'**. |
-| callback | function | Yes  | Callback used to return the result.<br>- Input parameter: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent).<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
+| type     | string   | Yes  | Event type, which is **'keyEvent'**.|
+| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | Yes  | Callback used to return the result. The input parameter is the key event information and the return value is of the Boolean type.<br>- Input parameter: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent).<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
@@ -1052,7 +1139,8 @@ try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
     console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
     console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    console.log(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
+    console.log(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
     return true;
   });
 } catch(err) {
@@ -1070,9 +1158,9 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'keyEvent'**. |
+| type     | string   | Yes  | Event type, which is **'keyEvent'**.|
 | callback | function | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1103,8 +1191,8 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 
 | Name   | Type | Mandatory | Description |
 | -------- | ---- | ---- | ----- |
-| type     | string | Yes  | Event type, which is **'cursorContextChange'**. |
-| callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor movement direction.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: y coordinate of the bottom of the cursor.<br>- **height**: height of the cursor. |
+| type     | string | Yes  | Event type, which is **'cursorContextChange'**.|
+| callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: y coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
 
 **Example**
 
@@ -1132,8 +1220,8 @@ Disables listening for cursor context changes. This API uses an asynchronous cal
 
 | Name   | Type | Mandatory | Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string  | Yes  | Event type, which is **'cursorContextChange'**. |
-| callback | (x: number, y:number, height:number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| type     | string  | Yes  | Event type, which is **'cursorContextChange'**.|
+| callback | (x: number, y:number, height:number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 
   **Example**
@@ -1157,9 +1245,9 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description  |
+| Name   | Type  | Mandatory| Description  |
 | -------- | ----- | ---- | ---- |
-| type     | string  | Yes  | Event type, which is **'selectionChange'**. |
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
@@ -1188,9 +1276,9 @@ Disables listening for the text selection change event. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description    |
+| Name  | Type | Mandatory| Description    |
 | -------- | ------- | ---- | ------- |
-| type     | string  | Yes  | Event type, which is **'selectionChange'**. |
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1217,9 +1305,9 @@ Enables listening for the text change event. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'textChange'**. |
+| type     | string | Yes  | Event type, which is **'textChange'**.|
 | callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
@@ -1244,9 +1332,9 @@ Disables listening for the text change event. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'textChange'**. |
+| type     | string | Yes  | Event type, which is **'textChange'**.|
 | callback | (text: string) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1271,9 +1359,9 @@ Enables listening for the edit box attribute change event. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**. |
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
 | callback | (attr: EditorAttribute) => void | Yes  | Callback used to return the changed edit box attribute.|
 
 **Example**
@@ -1298,10 +1386,10 @@ Disables listening for the edit box attribute change event. This API uses an asy
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**. |
-| callback | (attr: EditorAttribute) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
+| callback | (attr: EditorAttribute) => void | No  | Callback used for unsubscription. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1323,16 +1411,16 @@ Loads content from a page to this input method panel. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1364,9 +1452,9 @@ Loads content from a page to this input method panel. This API uses a promise to
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  |  Path of the page from which the content will be loaded. |
+| path | string | Yes  |  Path of the page from which the content will be loaded.|
 
 **Return value**
 
@@ -1378,7 +1466,7 @@ Loads content from a page to this input method panel. This API uses a promise to
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1408,17 +1496,17 @@ Loads content from a page linked to LocalStorage to this input method panel. Thi
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page linked to LocalStorage. |
+| path | string | Yes  | Path of the page linked to LocalStorage.|
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1452,9 +1540,9 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page from which the content will be loaded. |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
@@ -1467,7 +1555,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1497,23 +1585,23 @@ Resizes this input method panel. This API uses an asynchronous callback to retur
 
 > **NOTE**
 >
-> The panel width cannot exceed the screen width, and the panel height cannot be 0.6 times higher than the screen height.
+> The panel width cannot exceed the screen width, and the panel height cannot be 0.7 times higher than the screen height.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | width | number | Yes  | Target width of the panel, in px.|
 | height | number | Yes  | Target height of the panel, in px.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1543,13 +1631,13 @@ Resizes this input method panel. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> The panel width cannot exceed the screen width, and the panel height cannot be 0.6 times higher than the screen height.
+> The panel width cannot exceed the screen width, and the panel height cannot be 0.7 times higher than the screen height.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | width | number | Yes  | Target width of the panel, in px.|
 | height | number | Yes  | Target height of the panel, in px.|
@@ -1564,7 +1652,7 @@ Resizes this input method panel. This API uses a promise to return the result.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1594,17 +1682,17 @@ Moves this input method panel to the specified position. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | x | number | Yes  | Distance to move along the x-axis, in px. A positive value indicates moving rightwards.|
 | y | number | Yes  | Distance to move along the y-axis, in px. A positive value indicates moving downwards.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1636,7 +1724,7 @@ Moves this input method panel to the specified position. This API uses a promise
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | x | number | Yes  |Distance to move along the x-axis, in px. A positive value indicates moving rightwards.|
 | y | number | Yes  |Distance to move along the y-axis, in px. A positive value indicates moving downwards.|
@@ -1651,7 +1739,7 @@ Moves this input method panel to the specified position. This API uses a promise
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1671,6 +1759,76 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+Sends a command to start moving the window. The window can be moved only when the mouse is clicked.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 801 | Capability not supported. |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**Example**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+Obtains the window ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise used to return the result. Returns the **displayId** of the window. |
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
@@ -1681,9 +1839,9 @@ Shows this input method panel. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1735,9 +1893,9 @@ Hides this panel. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1783,22 +1941,22 @@ panel.hide().then(() => {
 
 adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
-Adjusts the panel rectangle.
+Adjusts the panel rectangle. After the API is called, the adjust request is submitted to the input method framework, but the execution is not complete.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | Yes | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**. |
+| flag | [PanelFlag](#panelflag10) | Yes| Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.|
 | rect | [PanelRect](#panelrect12) | Yes  | Landscape rectangle and portrait rectangle of the target panel. For the panel of the fixed state, the height cannot exceed 70% of the screen height, and the width cannot exceed the screen width. For the panel of the floating state, the height cannot exceed the screen height, and the width cannot exceed the screen width.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800013 | window manager service error. |
@@ -1820,6 +1978,101 @@ try {
 }
 ```
 
+### adjustPanelRect<sup>15+</sup>
+
+adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
+
+Adjusts the panel rectangle, and customizes the avoid area and touch area.
+
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. This API is compatible with [adjustPanelRect](#adjustpanelrect12). If the input parameter **rect** contains only the **landscapeRect** and **portraitRect** attributes, [adjustPanelRect](#adjustpanelrect12) is called by default.
+>
+> This API returns the result synchronously. The return only indicates that the system receives the setting request, not that the setting is complete.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                     | Mandatory| Description                                                      |
+| ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
+| flag   | [PanelFlag](#panelflag10)                 | Yes  | Type of the state of the target panel. It can be **FLG_FIXED** or **FLG_FLOATING**.         |
+| rect   | [EnhancedPanelRect](#enhancedpanelrect15) | Yes  | The target panel rectangle, avoid area, and touch area.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  let panelRect:inputMethodEngine.EnhancedPanelRect = {
+    landscapeAvoidY: 650,
+    landscapeInputRegion: [{left:300, top:650, width:2000, height:500}],
+    portraitAvoidY: 1800,
+    portraitInputRegion: [{left:0, top:1800, width:1200, height:800}],
+    fullScreenMode: true
+  };
+  panel.adjustPanelRect(panelFlag, panelRect);
+} catch(err) {
+  console.error(`Failed to adjustPanelRect: ${JSON.stringify(err)}`);
+}
+```
+
+### updatelnputRegion<sup>15+</sup>
+
+updateRegion(inputRegion: Array&lt;window.Rect&gt;): void
+
+Updates the hot zone on the input method panel in the current state.
+
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state.
+>
+> This API returns the result synchronously. The return only indicates that the system has received the request for updating the hot zone, not that the hot zone has been updated.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name     | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| inputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | Yes  | Region for receiving input events.<br>- The array size is limited to [1, 4].<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 12800013 | window manager service error.                                |
+| 12800017 | invalid panel type or panel flag.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+try {
+  let inputRegion: Array<window.Rect> = [{left:300, top:650, width:2000, height:500}];
+  panel.updateRegion(inputRegion);
+} catch(err) {
+  console.error(`Failed to updateRegion: ${JSON.stringify(err)}`);
+}
+```
+
 ### on('show')<sup>10+</sup>
 
 on(type: 'show', callback: () => void): void
@@ -1830,10 +2083,10 @@ Enables listening for the show event of this panel. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'show'**. |
-| callback | () => void | Yes  | Callback used to return the result. |
+| type | string | Yes| Event type, which is **'show'**.|
+| callback | () => void | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1857,10 +2110,10 @@ Enables listening for the hide event of this panel. This API uses an asynchronou
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'hide'**. |
-| callback | () => void | Yes  | Callback used to return the result. |
+| type | string | Yes| Event type, which is **'hide'**.|
+| callback | () => void | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1876,22 +2129,25 @@ try {
 
 ### on('sizeChange')<sup>12+</sup>
 
-on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
+on(type: 'sizeChange', callback: SizeChangeCallback): void
 
 Enables listening for the panel size change. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect()** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
+>
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'sizeChange'**. |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> |  Yes | Callback used to return the size of the soft keyboard panel, including the width and height. |
+| Name  | Type                                       | Mandatory| Description                                                  |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | Yes  | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -1899,10 +2155,17 @@ Enables listening for the panel size change. This API uses an asynchronous callb
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-  console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
+}
+try {
+  panel.on('sizeChange', (windowSize: window.Size, keyboardArea: inputMethodEngine.KeyboardArea) => {
+    console.info(`panel size changed, windowSize: ${JSON.stringify(windowSize)}, keyboardArea: ${JSON.stringify(keyboardArea)}`);
+  });
+} catch(err) {
+  console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1916,16 +2179,16 @@ Disables listening for the show event of this panel. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'show'**. |
-| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| type | string | Yes| Event type, which is **'show'**.|
+| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1949,16 +2212,16 @@ Disables listening for the hide event of this panel. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'hide'**. |
-| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
+| type | string | Yes| Event type, which is **'hide'**.|
+| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -1974,18 +2237,25 @@ try {
 
 ### off('sizeChange')<sup>12+</sup>
 
-off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
+off(type: 'sizeChange', callback?: SizeChangeCallback): void
 
 Disables listening for the panel size change. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When you call **adjustPanelRect** to adjust the panel size, the system calculates the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used to obtain the actual panel size to refresh the panel layout.
+>
+>-  This API is supported from API version 12 to 14. The callback function of this API contains only mandatory parameters of the [window.Size](../apis-arkui/js-apis-window.md#size7) type.
+>-  Since API version 15, after the [adjustPanelRect](#adjustpanelrect15) API is called, an optional parameter of the [KeyboardArea](#keyboardarea15) type is added to the callback function of this API.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
-| -------- | ---------------------- | ---- | -------- |
-| type | string | Yes | Event type, which is **'sizeChange'**. |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | No  | Callback to unregister.   |
+| Name  | Type                                       | Mandatory| Description                                                    |
+| -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                                      | Yes  | Event type, which is **'sizeChange'**.|
+| callback | [SizeChangeCallback](#sizechangecallback15) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.  |
 
 **Example**
 
@@ -1993,10 +2263,10 @@ Disables listening for the panel size change. This API uses an asynchronous call
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel size changed, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
-    console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
+    console.error(`Failed to subscribe sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2010,15 +2280,15 @@ Changes the state type of this input method panel. This API only works for [SOFT
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | Yes | Target state type of the panel. |
+| flag | [PanelFlag](#panelflag10) | Yes| Type of the state of the target panel.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -2045,15 +2315,15 @@ Sets the input method panel to privacy mode. In privacy mode, screenshot and scr
 
 **Parameters**
 
-| Name       | Type   | Mandatory | Description              |
+| Name       | Type   | Mandatory| Description              |
 | ------------- | ------- | ---- | ------------------ |
-| isPrivacyMode | boolean | Yes  | Whether to set the input method panel to privacy mode. |
+| isPrivacyMode | boolean | Yes  | Whether to set the input method panel to privacy mode.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 201      | permissions check fails.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -2069,6 +2339,65 @@ try {
 }
 ```
 
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+Sets the immersive mode of the input method application. You can only set the immersion mode to **NONE_IMMERSIVE**, **LIGHT_IMMERSIVE**, or **DARK_IMMERSIVE**. **IMMERSIVE** cannot be set.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#immersivemode15) | Yes  | Immersive mode.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**Example**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+Obtains the immersive mode of the input method application.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                           | Description      |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#immersivemode15) | Immersive mode.|
+
+**Example**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+
 ## KeyboardController
 
 In the following API examples, you must first use [on('inputStart')](#oninputstart9) to obtain a **KeyboardController** instance, and then call the APIs using the obtained instance.
@@ -2083,15 +2412,15 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 12800003 | input method client error. |
 
@@ -2121,13 +2450,13 @@ Hides the keyboard. This API uses a promise to return the result.
 
 | Type            | Description                     |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | Promise that returns no value. |
+| Promise&lt;void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 12800003 | input method client error. |
 
@@ -2157,9 +2486,9 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description    |
+| Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2191,7 +2520,7 @@ Hides the keyboard. This API uses a promise to return the result.
 
 | Type            | Description                     |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | Promise that returns no value. |
+| Promise&lt;void> | Promise that returns no value.|
 
 **Example**
 
@@ -2215,18 +2544,18 @@ Exits this input type. This API can be called only by the preconfigured default 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **Example**
 
@@ -2254,16 +2583,16 @@ Exits this input type. This API can be called only by the preconfigured default 
 
 | Type            | Description                     |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | Promise that returns no value. |
+| Promise&lt;void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **Example**
 
@@ -2285,7 +2614,7 @@ Describes the security mode.
 
 | Name | Value  | Description                                        |
 | ----- | ---- | -------------------------------------------- |
-| BASIC | 0    | Basic access mode, where network access is restricted. |
+| BASIC | 0    | Basic access mode, where network access is restricted.|
 | FULL  | 1    | Full access mode, where network access is not restricted.      |
 
 ## ExtendAction<sup>10+</sup>
@@ -2294,12 +2623,12 @@ Describes the type of the extended edit action on the text box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| SELECT_ALL  | 0 |Select all. |
-| CUT  | 3 |Cut. |
-| COPY  | 4 |Copy. |
-| PASTE  | 5 |Paste. |
+| SELECT_ALL  | 0 |Select all.|
+| CUT  | 3 |Cut.|
+| COPY  | 4 |Copy.|
+| PASTE  | 5 |Paste.|
 
 ## Direction<sup>10+</sup>
 
@@ -2307,12 +2636,12 @@ Enumerates the directions of cursor movement of the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| CURSOR_UP  | 1 |Upward. |
-| CURSOR_DOWN  | 2 |Downward. |
-| CURSOR_LEFT  | 3 |Leftward. |
-| CURSOR_RIGHT  | 4 |Rightward. |
+| CURSOR_UP  | 1 |Upward.|
+| CURSOR_DOWN  | 2 |Downward.|
+| CURSOR_LEFT  | 3 |Leftward.|
+| CURSOR_RIGHT  | 4 |Rightward.|
 
 ## Range<sup>10+</sup>
 
@@ -2320,10 +2649,10 @@ Describes the range of the selected text.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | Yes | Yes | Index of the first selected character in the text box.|
-| end  | number | Yes | Yes | Index of the last selected character in the text box.|
+| start  | number | No| No| Index of the first selected character in the text box.|
+| end  | number | No| No| Index of the last selected character in the text box.|
 
 ## Movement<sup>10+</sup>
 
@@ -2331,9 +2660,114 @@ Describes the direction in which the cursor moves when the text is selected.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | Yes | Yes | Direction in which the cursor moves when the text is selected.|
+| direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
+
+## MessageHandler<sup>15+</sup>
+
+Represents a custom communication object.
+
+> **NOTE**
+>
+> You can register this object to receive custom communication data sent by the edit box application attached to the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
+>
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
+
+### onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+Receives the custom data callback sent by the edit box application attached to the input method application.
+
+> **NOTE**
+>
+> This callback is triggered when the registered [MessageHandler](#messagehandler15) receives custom communication data sent by the edit box application attached to the input method application.
+>
+> The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                            |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | No  | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
+}
+```
+
+### onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+Listens for MessageHandler termination.
+
+> **NOTE**
+>
+> When an application registers a new [MessageHandler](#messagehandler15) object, the [onTerminated](#onterminated15) callback of the penultimate registered [MessageHandler](#messagehandler15) object is triggered.
+>
+> When an application unregisters a new [MessageHandler](#messagehandler15) object, the [onTerminated](#onterminated15) callback of the registered [MessageHandler](#messagehandler15) object is triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
+}
+```
 
 ## InputClient<sup>9+</sup>
 
@@ -2349,16 +2783,16 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
   **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes | Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key). |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
@@ -2396,9 +2830,9 @@ Sends the function key. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes | Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key). |
+| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -2410,7 +2844,7 @@ Sends the function key. This API uses a promise to return the result.
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
@@ -2446,16 +2880,16 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object. |
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -2490,9 +2924,9 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
+| length | number | Yes| Text length, which cannot be less than 0.|
 
 **Return value**
 
@@ -2504,7 +2938,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -2537,21 +2971,21 @@ Obtains the specific-length text before the cursor.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length, which cannot be less than 0. |
+| length | number | Yes  | Text length, which cannot be less than 0.|
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | Specific-length text before the cursor. |
+| string | Specific-length text before the cursor.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
@@ -2579,16 +3013,16 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -2623,9 +3057,9 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
+| length | number | Yes| Text length, which cannot be less than 0.|
 
 **Return value**
 
@@ -2637,7 +3071,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -2670,21 +3104,21 @@ Obtains the specific-length text after the cursor.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length, which cannot be less than 0. |
+| length | number | Yes  | Text length, which cannot be less than 0.|
 
 **Return value**
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | Specific-length text after the cursor. |
+| string | Specific-length text after the cursor.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
@@ -2712,16 +3146,16 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -2760,9 +3194,9 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length, which cannot be less than 0. |
+| length | number | Yes  | Text length, which cannot be less than 0.|
 
 **Return value** 
 
@@ -2774,7 +3208,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -2811,15 +3245,15 @@ Deletes the fixed-length text before the cursor.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length, which cannot be less than 0. |
+| length | number | Yes  | Text length, which cannot be less than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
@@ -2847,16 +3281,16 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description          |
+| Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | Yes  | Text length, which cannot be less than 0.    |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -2895,21 +3329,21 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0.   |
+| length | number | Yes| Text length, which cannot be less than 0.   |
 
-**Return value** 
+**Return value**
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the deletion is successful, and **false** means the opposite. |
+| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the deletion is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -2942,7 +3376,7 @@ Deletes the fixed-length text after the cursor.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
 | length | number | Yes  | Text length, which cannot be less than 0. |
 
@@ -2950,7 +3384,7 @@ Deletes the fixed-length text after the cursor.
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
@@ -2978,16 +3412,16 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | Text to insert. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| text | string | Yes| Text to insert.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -3021,9 +3455,9 @@ Inserts text. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | Text to insert. |
+| text | string | Yes| Text to insert.|
 
 **Return value** 
 
@@ -3035,7 +3469,7 @@ Inserts text. This API uses a promise to return the result.
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
@@ -3071,15 +3505,15 @@ Inserts text.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| text   | string | Yes  | Text to insert. |
+| text   | string | Yes  | Text to insert.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | input method engine error. |
@@ -3108,13 +3542,13 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 | Name                        | Type                         | Mandatory                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes |  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes|  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 12800003 | input method client error. |
 
@@ -3128,8 +3562,8 @@ inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethod
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+  console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -3151,7 +3585,7 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 12800003 | input method client error. |
 
@@ -3162,8 +3596,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
   });
@@ -3184,13 +3618,13 @@ Obtains the attribute of the edit box.
 
 | Type                               | Description          |
 | ----------------------------------- | -------------- |
-| [EditorAttribute](#editorattribute) | Attribute of the edit box. |
+| [EditorAttribute](#editorattribute) | Attribute object of the edit box.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 12800003 | input method client error. |
 
@@ -3199,7 +3633,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 ```ts
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
-  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 } catch (err) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
@@ -3215,16 +3650,16 @@ Moves the cursor. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name   | Type                     | Mandatory | Description          |
+| Name   | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------- |
-| direction | number                    | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0. |
+| direction | number                    | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3257,21 +3692,21 @@ Moves the cursor. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                                        |
+| Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| direction | number | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0. |
+| direction | number | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0.|
 
 **Return value** 
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3302,15 +3737,15 @@ Moves the cursor.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                                        |
+| Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| direction | number | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0. |
+| direction | number | Yes  | Direction in which the cursor moves.<br>- **1**: upward.<br>- **2**: downward.<br>- **3**: leftward.<br>- **4**: rightward. which cannot be less than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3336,16 +3771,16 @@ Selects text based on the specified range. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory | Description                                                        |
+| Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | range    | [Range](#range10) | Yes  | Range of the selected text.                                            |
-| callback | AsyncCallback&lt;void&gt;                                 | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt;                                 | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3379,21 +3814,21 @@ Selects text based on the specified range. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type                                                     | Mandatory | Description            |
+| Name| Type                                                     | Mandatory| Description            |
 | ------ | --------------------------------------------------------- | ---- | ---------------- |
-| range  | [Range](#range10) | Yes  | Range of the selected text. |
+| range  | [Range](#range10) | Yes  | Range of the selected text.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3425,15 +3860,15 @@ Selects text based on the specified range.
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description            |
+| Name| Type             | Mandatory| Description            |
 | ------ | ----------------- | ---- | ---------------- |
-| range  | [Range](#range10) | Yes  | Range of the selected text. |
+| range  | [Range](#range10) | Yes  | Range of the selected text.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3460,16 +3895,16 @@ Selects text based on the cursor movement direction. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type | Mandatory| Description  |
 | -------- | ------ | ---- | ------ |
 | movement | [Movement](#movement10)   | Yes  | Direction in which the cursor moves when the text is selected. |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3503,21 +3938,21 @@ Selects text based on the specified range. This API uses a promise to return the
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                  |
+| Name  | Type                                                        | Mandatory| Description                  |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| movement | [Movement](#movement10) | Yes  | Direction in which the cursor moves when the text is selected. |
+| movement | [Movement](#movement10) | Yes  | Direction in which the cursor moves when the text is selected.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
@@ -3549,15 +3984,15 @@ Selects text based on the cursor movement direction.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                  |
+| Name  | Type                   | Mandatory| Description                  |
 | -------- | ----------------------- | ---- | ---------------------- |
-| movement | [Movement](#movement10) | Yes  | Direction in which the cursor moves when the text is selected. |
+| movement | [Movement](#movement10) | Yes  | Direction in which the cursor moves when the text is selected.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                  |
+| ID| Error Message                  |
 | -------- | -------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
@@ -3584,15 +4019,15 @@ Obtains the index of the text where the cursor is located. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                                        |
+| Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the text index is obtained, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the text index is obtained, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
@@ -3623,13 +4058,13 @@ Obtains the index of the text where the cursor is located. This API uses a promi
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
@@ -3658,13 +4093,13 @@ Obtains the index of the text where the cursor is located.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Index of the text where the cursor is located. |
+| number | Index of the text where the cursor is located.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
@@ -3694,16 +4129,16 @@ Sends an extended edit action. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                                        |
+| Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| action | [ExtendAction](#extendaction10) | Yes  | Extended edit action to send. |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| action | [ExtendAction](#extendaction10) | Yes  | Extended edit action to send.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -3741,21 +4176,21 @@ Sends an extended edit action. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | [ExtendAction](#extendaction10) | Yes | Extended edit action to send. |
+| action | [ExtendAction](#extendaction10) | Yes| Extended edit action to send.|
 
 **Return value**
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
@@ -3792,25 +4227,25 @@ Sends private data to the system component that needs to communicate with the in
 
 **Parameters**
 
-| Name     | Type                           | Mandatory | Description      |
+| Name     | Type                           | Mandatory| Description      |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | Yes  | Private data to send. |
+| commandData | Record<string, [CommandDataType](#commanddatatype12)> | Yes  | Private data to send.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                     |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **Example**
 
@@ -3855,16 +4290,16 @@ Obtains information about the application window, in which the input box that st
 
 | Type                                      | Description                                                 |
 | ------------------------------------------ | ----------------------------------------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise used to return the information obtained. |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise used to return the information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
 | 12800003 | input method client error.        |
-| 12800012 | input method panel doesn't exist. |
+| 12800012 | the input method panel does not exist. |
 | 12800013 | window manager service error.     |
 
 **Example**
@@ -3894,26 +4329,26 @@ Sets the preview text. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                                                        |
+| Name| Type             | Mandatory| Description                                                        |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
 | text   | string            | Yes  | Preview text to set.                                          |
-| range  | [Range](#range10) | Yes  | Range of the preview text.<br>- If the value is { start: -1, end: -1 }, **text** replaces the entire text in the current preview area by default.<br>- If **start** is equal to **end**, **text** is inserted into the cursor position specified by **start**.<br>- If **start** is not equal to **end**, **text** replaces the text of the specified range.<br>- If the values of **start** and **end** are negative values, a parameter error is returned.<br>- If there is preview text in the text box, the value of **range** cannot exceed the range of the preview text. Otherwise, a parameter error is returned.<br>- If there is no preview text in the text box, the value of **range** cannot exceed the text range of the text box. Otherwise, a parameter error is returned. |
+| range  | [Range](#range10) | Yes  | Range of the preview text.<br>- If the value is { start: -1, end: -1 }, **text** replaces the entire text in the current preview area by default.<br>- If **start** is equal to **end**, **text** is inserted into the cursor position specified by **start**.<br>- If **start** is not equal to **end**, **text** replaces the text of the specified range.<br>- If the values of **start** and **end** are negative values, a parameter error is returned.<br>- If there is preview text in the text box, the value of **range** cannot exceed the range of the preview text. Otherwise, a parameter error is returned.<br>- If there is no preview text in the text box, the value of **range** cannot exceed the text range of the text box. Otherwise, a parameter error is returned.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **Example**
 
@@ -3936,26 +4371,26 @@ try {
 
 setPreviewTextSync(text: string, range: Range): void
 
-Sets the preview text. This API returns the result synchronously.
+Sets the preview text.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                                                        |
+| Name| Type             | Mandatory| Description                                                        |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
 | text   | string            | Yes  | Preview text to set.                                          |
-| range  | [Range](#range10) | Yes  | Range of the preview text.<br>- If the value is { start: -1, end: -1 }, **text** replaces the entire text in the current preview area by default.<br>- If **start** is equal to **end**, **text** is inserted into the cursor position specified by **start**.<br>- If **start** is not equal to **end**, **text** replaces the text of the specified range.<br>- If the values of **start** and **end** are negative values, a parameter error is returned.<br>- If there is preview text in the text box, the value of **range** cannot exceed the range of the preview text. Otherwise, a parameter error is returned.<br>- If there is no preview text in the text box, the value of **range** cannot exceed the text range of the text box. Otherwise, a parameter error is returned. |
+| range  | [Range](#range10) | Yes  | Range of the preview text.<br>- If the value is { start: -1, end: -1 }, **text** replaces the entire text in the current preview area by default.<br>- If **start** is equal to **end**, **text** is inserted into the cursor position specified by **start**.<br>- If **start** is not equal to **end**, **text** replaces the text of the specified range.<br>- If the values of **start** and **end** are negative values, a parameter error is returned.<br>- If there is preview text in the text box, the value of **range** cannot exceed the range of the preview text. Otherwise, a parameter error is returned.<br>- If there is no preview text in the text box, the value of **range** cannot exceed the text range of the text box. Otherwise, a parameter error is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **Example**
 
@@ -3985,16 +4420,16 @@ Finishes the text preview. This API uses a promise to return the result.
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **Example**
 
@@ -4016,7 +4451,7 @@ try {
 
 finishTextPreviewSync(): void
 
-Finishes the text preview. This API returns the result synchronously.
+Finishes the text preview.
 
 >**NOTE**
 >
@@ -4028,10 +4463,10 @@ Finishes the text preview. This API returns the result synchronously.
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **Example**
 
@@ -4044,17 +4479,138 @@ try {
 }
 ```
 
-## EditorAttribute
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+Sends the custom communication to the edit box application attached to the input method application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only when the edit box is attached to the input method and enter the edit mode, and the input method application is in full experience mode.
+>
+> The maximum length of **msgId** is 256 B, and the maximum length of **msgParam** is 128 KB.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                                                        |
+| -------- | ----------- | ---- | ------------------------------------------------------------ |
+| msgId    | string      | No  | Identifier of the custom data to be sent to the edit box application attached to the input method application.|
+| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the edit box application attached to the input method application.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | parameter error.                            |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void;
+
+Registers or unregisters MessageHandler.
+
+> **NOTE**
+>
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                        |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the edit box application attached to the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
+
+**Return value**
+
+| Type| Description        |
+| ---- | ------------ |
+| void | No value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+      try {
+        let messageHandler: inputMethodEngine.MessageHandler = {
+          onTerminated(): void {
+            console.log('OnTerminated.');
+          },
+          onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+          }
+        }
+        inputClient.recvMessage(messageHandler);
+      } catch(err) {
+        console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+      }
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
+}
+```
+
+### EditorAttribute
 
 Represents the attributes of the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name        | Type | Read-Only | Optional | Description              |
+| Name        | Type| Read-Only| Optional| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| enterKeyType | number   | Yes  | No  | Function of the edit box. |
-| inputPattern | number   | Yes  | No  | Text of the edit box. |
-| isTextPreviewSupported<sup>12+</sup> | boolean | No | No | Whether text preview is supported. |
+| enterKeyType | number   | Yes  | No  | Function of the edit box.|
+| inputPattern | number   | Yes  | No  | Text of the edit box.|
+| isTextPreviewSupported<sup>12+</sup> | boolean | No| No| Whether text preview is supported.|
+| bundleName<sup>14+</sup> | string | Yes| Yes| Name of the application package to which the edit box belongs. The value may be **""** When this attribute is used, the scenario where the value is **""** must be considered.|
+| immersiveMode<sup>15+</sup> | number | Yes  | Yes  | Immersive mode of the input method.|
+| windowId<sup>18+</sup> | number | Yes| Yes| ID of the window where the edit box is located.|
+| displayId<sup>18+</sup> | number | Yes  | Yes  | Screen ID of the window corresponding to the edit box. If window ID is not set, the screen ID of the focused window is used.|
 
 ## KeyEvent
 
@@ -4062,10 +4618,10 @@ Represents the attributes of a key.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name     | Type | Read-Only | Optional | Description        |
+| Name     | Type| Read-Only| Optional| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](../apis-input-kit/js-apis-keycode.md#keycode). |
-| keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event. |
+| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](../apis-input-kit/js-apis-keycode.md#keycode).|
+| keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>
 
@@ -4073,10 +4629,11 @@ Enumerates the state types of the input method panel.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name        | Value | Description              |
+| Name        | Value| Description              |
 | ------------ | -- | ------------------ |
-| FLG_FIXED  | 0 | Fixed state type. |
-| FLG_FLOATING | 1 | Floating state type. |
+| FLG_FIXED  | 0 | Fixed state type.|
+| FLG_FLOATING | 1 | Floating state type.|
+| FLAG_CANDIDATE<sup>15+</sup> | 2 | Candidate state type.|
 
 ## PanelType<sup>10+</sup>
 
@@ -4084,10 +4641,10 @@ Enumerates the types of the input method panel.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name        | Value | Description              |
+| Name        | Value| Description              |
 | ------------ | -- | ------------------ |
-| SOFT_KEYBOARD | 0 | Soft keyboard type. |
-| STATUS_BAR   | 1 | Status bar type. |
+| SOFT_KEYBOARD | 0 | Soft keyboard type.|
+| STATUS_BAR   | 1 | Status bar type.|
 
 ## PanelInfo<sup>10+</sup>
 
@@ -4095,10 +4652,10 @@ Describes the attributes of the input method panel.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name     | Type | Read-Only | Optional | Description        |
+| Name     | Type| Read-Only| Optional| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| number   | Yes  | Yes  | Type of the panel. |
-| flag	    | number   | Yes  | Yes  | State type of the panel. |
+| type   	| [PanelType](#paneltype10)   | No  | No  | Type of the panel.|
+| flag	    | [PanelFlag](#panelflag10)   | No  | Yes  | State type of the panel.|
 
 ## PanelRect<sup>12+</sup>
 
@@ -4106,10 +4663,39 @@ Represents the size of the input method panel.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name        | Type | Read-Only | Optional | Description              |
+| Name        | Type| Read-Only| Optional| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | Yes  | Yes  | Size of the input method panel window in landscape mode. |
-| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | Yes  | Yes  | Size of the input method panel window in portrait mode. |
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in landscape mode.|
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in portrait mode.|
+
+## EnhancedPanelRect<sup>15+</sup>
+
+Indicates the size of the enhanced input method panel, including the custom avoid area and touch area.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name                | Type                                                        | Read-Only| Optional| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| landscapeRect        | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | Yes  | Size of the input method panel window in landscape mode.<br>- This attribute is mandatory when **fullScreenMode** is not set or is set to **false**.|
+| portraitRect         | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | Yes  | Size of the input method panel window in portrait mode.<br>- This attribute is mandatory when **fullScreenMode** is not set or is set to **false**.|
+| landscapeAvoidY      | number                                                       | No  | Yes  | Distance between the avoid line and the top of the panel in landscape mode. The default value is **0**.<br>- Other system components in the application avoid the input method panel area below the avoid line.<br>- When the panel is fixed, the distance between the avoid line and the bottom of the screen cannot exceed 70% of the screen height.|
+| landscapeInputRegion | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | No  | Yes  | Region where the panel receives input events in landscape mode.<br>- The array size is limited to [1, 4]. The default value is the panel size in landscape mode.<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| portraitAvoidY       | number                                                       | No  | Yes  | Distance between the avoid line and the top of the panel in portrait mode. The default value is **0**.<br>- Other system components in the application avoid the input method panel area below the avoid line.<br>- When the panel is fixed, the distance between the avoid line and the bottom of the screen cannot exceed 70% of the screen height.|
+| portraitInputRegion  | Array&lt;[window.Rect](../apis-arkui/js-apis-window.md#rect7)&gt; | No  | Yes  | Region where the panel receives input events in portrait mode.<br>- The array size is limited to [1, 4]. The default value is the panel size in portrait mode.<br>- The input hot zone is relative to the left vertex of the input method panel window.|
+| fullScreenMode       | boolean                                                      | No  | Yes  | Indicates whether to enable the full-screen mode. The default value is **false**.<br>- If the value is **true**, **landscapeRect** and **portraitRect** are optional.<br>- If the value is **false**, **landscapeRect** and **portraitRect** are mandatory.|
+
+## KeyboardArea<sup>15+</sup>
+
+Keyboard area on the panel.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name  | Type  | Read-Only| Optional| Description                                                        |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| top    | number | Yes  | No  | Distance between the upper boundary of the keyboard area and the upper boundary of the panel area, in pixels. The value is an integer.|
+| bottom | number | Yes  | No  | Distance between the lower boundary of the keyboard area and the lower boundary of the panel area, in pixels. The value is an integer.|
+| left   | number | Yes  | No  | Distance between the left boundary of the keyboard area and the left boundary of the panel area, in pixels. The value is an integer.|
+| right  | number | Yes  | No  | Distance between the right border of the keyboard area and the right border of the panel area, in pixels. The value is an integer.|
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4117,14 +4703,27 @@ Represents window information.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name  | Type                                                        | Read-Only | Optional | Description          |
+| Name  | Type                                                        | Read-Only| Optional| Description          |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
-| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | Yes  | Yes  | Rectangular area of the window. |
-| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | Yes  | Yes  | Window status type. |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | No  | Rectangular area of the window.|
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | No  | No  | Window status type.|
+
+## ImmersiveMode<sup>15+</sup>
+
+Enumerates the immersive modes of the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | The immersive mode is not used.|
+| IMMERSIVE      | 1 | The immersive mode is used. Its style is determined by the input method application.|
+| LIGHT_IMMERSIVE  | 2 | Immersive style in light mode.|
+| DARK_IMMERSIVE   | 3 | Immersive style in dark mode.|
 
 ## TextInputClient<sup>(deprecated)</sup>
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [InputClient](#inputclient9) instead.
 
@@ -4144,10 +4743,10 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4178,9 +4777,9 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0.|
+| length | number | Yes| Text length, which cannot be less than 0.|
 
 **Return value**
 
@@ -4215,10 +4814,10 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object. |
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4249,9 +4848,9 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
+| length | number | Yes| Text length, which cannot be less than 0.|
 
 **Return value**
 
@@ -4286,10 +4885,10 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| length | number | Yes| Text length, which cannot be less than 0.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4324,9 +4923,9 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length, which cannot be less than 0. |
+| length | number | Yes  | Text length, which cannot be less than 0.|
 
 **Return value** 
 
@@ -4365,7 +4964,7 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description          |
+| Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | Yes  | Text length, which cannot be less than 0.     |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
@@ -4403,11 +5002,11 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes | Text length, which cannot be less than 0. |
+| length | number | Yes| Text length, which cannot be less than 0. |
 
-**Return value** 
+**Return value**
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
@@ -4443,10 +5042,10 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes | Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key). |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4481,15 +5080,15 @@ Sends the function key. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes | Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key). |
+| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
 
 **Return value**
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the setting is successful, and **false** means the opposite. |
+| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -4522,10 +5121,10 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | Text to insert. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| text | string | Yes| Text to insert.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4559,15 +5158,15 @@ Inserts text. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | Text to insert. |
+| text | string | Yes| Text to insert.|
 
 **Return value** 
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the insertion is successful, and **false** means the opposite. |
+| Promise&lt;boolean&gt; |  Promise used to return the result. The value **true** means that the insertion is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -4601,7 +5200,7 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 | Name   | Type  | Mandatory | Description  |
 | -------- | ----- | ----- | ----- |
-| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes |  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes|  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4613,8 +5212,8 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.log(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -4648,4 +5247,4 @@ textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.Ed
   console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
-
+<!--no_check-->

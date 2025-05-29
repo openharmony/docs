@@ -3,10 +3,24 @@
 The **getContext** API enables you to obtain the context of the ability (either UIAbilityContext or ExtensionContext) on the current page.
 
 > **NOTE**
-> - This API is supported since API version 9.
+> - This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) in [UIContext](js-apis-arkui-UIContext.md#uicontext) instead.
 > - This API applies only to the stage model.
 
+## getContext<sup>(deprecated)</sup>
+
 getContext(component?: Object):Context
+
+Obtains the **Context** object associated with an ability on the page.
+
+> **NOTE**
+> 
+> This API deprecated since API version 18. You are advised to use [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) in [UIContext](js-apis-arkui-UIContext.md#uicontext) instead.
+>
+> Since API version 12, you can use the [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -24,13 +38,15 @@ getContext(component?: Object):Context
 
 Load a page by calling **windowStage.loadContent** in the UIAbility.
 
+> **NOTE**
+> 
+> Directly using **getContext** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Context** object using [getHostContext](js-apis-arkui-UIContext.md#gethostcontext12).
+
 ```ts
 // EntryAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -82,6 +98,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            // You are advised to use this.getUIContext().getHostContext().
             let context : Context = getContext(this) as Context
             console.info("CacheDir:" + context.cacheDir)
           })

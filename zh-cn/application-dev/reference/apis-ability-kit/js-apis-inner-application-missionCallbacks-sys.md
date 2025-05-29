@@ -17,7 +17,7 @@ import { distributedMissionManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -53,7 +53,7 @@ distributedMissionManager.registerMissionListener(
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -90,16 +90,17 @@ distributedMissionManager.registerMissionListener(
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | deviceId |  string | 是 | 通知断开连接，返回设备ID。 |
-| state |  number | 是 | 通知断开连接，网络状态。 |
+| state |  number | 是 | 通知断开连接，返回网络状态。0：连接断开（固定值）。 |
 
 **示例：**
+
 ```ts
 import { distributedMissionManager } from '@kit.AbilityKit';
 

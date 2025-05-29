@@ -4,7 +4,7 @@ A set of effective internationalization guidelines for UI design can not only es
 
 ## Space Reservation and Flexible Layout
 
-The length of translations languages varies greatly according to languages. Translation may increase the length of UI texts. To ensure that UI strings are not truncated after being translated into other languages, the best practice is to use flexible dynamic layout. That is, UI controls are dynamically adjusted based on the text length. If flexible layout is not applicable during actual development, reserve sufficient text space. The following table takes English as an example to provide the reference space to be reserved for translation.
+The length of translations can vary significantly across languages, which may cause UI text length to increase after translation. To ensure that UI strings are not truncated after being translated into other languages, the best practice is to use flexible dynamic layout. That is, UI controls are dynamically adjusted based on the text length. If flexible layout is not applicable, reserve sufficient text space during development. The following table takes English as an example to provide the reference space to be reserved for translation.
 
 **Table 1** Reserved space on the UI for translation
 
@@ -23,7 +23,7 @@ Different text alignment modes and reading sequences may be used for different l
 
 - UI layout mirroring. The UI should allow the content of an RTL language to be displayed in the original layout, meeting the bidirectional reading experience. For example, ABC is read ABC for an LTR language and CBA for an RTL language.
 
-- UI element mirroring.  UI controls and icons with directionality are required to comply with mirroring rules, as shown in Figure 3, Figure 4, and Figure 5. Some icons, for example, the clock face, do not need to be mirrored because they are not directional or related to real objects.
+- UI element mirroring. UI controls and icons with directionality are required to comply with mirroring rules, as shown in Figure 3, Figure 4, and Figure 5. Some icons, for example, the clock face, do not need to be mirrored because they are not directional or related to real objects.
 
 - Touch and operation. The touch or operation on each UI element should comply with the reading sequence of the language in use. For example, if there are multiple tabs, swiping left means to move backward for an LTR language and swiping right means to move backward for an RTL language.
 

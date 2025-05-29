@@ -112,7 +112,7 @@ Notification deletion disabled.
 
 **处理步骤**
 
-参考[NotificationRequest](./js-apis-notificationManager.md#notificationrequest)通知禁止删除属性。
+参考[NotificationRequest](./js-apis-inner-notification-notificationRequest.md)通知禁止删除属性。
 
 ## 1600007 通知不存在
 
@@ -130,7 +130,7 @@ The notification does not exist.
 
 **处理步骤**
 
-无
+无。
 
 ## 1600008 用户不存在
 
@@ -162,7 +162,7 @@ The notification sending frequency reaches the upper limit.
 
 **可能原因**
 
-通知发送频率超过每秒10个。
+通知发送频率超过每秒10个，或者更新频率超过每秒20条。
 
 **处理步骤**
 
@@ -313,6 +313,77 @@ There is no corresponding agent relationship configuration.
 
 确认代理关系配置。
 
+## 1600018 通知设置页面已经拉起
+
+**错误信息**
+
+The notification settings window is already displayed.
+
+**错误描述**
+
+通知设置页面已经拉起，方法将返回该错误码。
+
+**可能原因**
+
+通知设置页面已经拉起。
+
+**处理步骤**
+
+确认通知设置页面是否拉起。
+
+## 1600019 没有对应勿扰模式编号的配置信息
+
+**错误信息**
+
+The do-not-disturb profile does not exist.
+
+**错误描述**
+
+勿扰模式编号对应的配置信息不存在时，将返回该错误码。
+
+**可能原因**
+
+没有对应勿扰模式编号的配置信息。
+
+**处理步骤**
+
+确认查询的勿扰模式编号是否正确。
+
+## 1600020 不允许权限管控名单中的应用发布通知
+
+**错误信息**
+
+The application is not allowed to publish notifications due to permission control settings.
+
+**错误描述**
+
+当发布通知时，若应用被列入权限管控名单，将返回该错误码。
+
+**可能原因**
+
+该场景为企业定制设备场景。
+
+**处理步骤**
+
+该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
+
+## 1600021 跨设备通信超时
+
+**错误信息**
+
+Distributed operation timed out.
+
+**错误描述**
+
+调用通知的跨设备协同接口（例如通知跨设备点击跳转、通知跨设备快捷回复等），跨设备通信超时，将返回该错误码。
+
+**可能原因**
+
+设备连接配对异常。
+
+**处理步骤**
+
+检查设备间连接是否正常（例如手机与手表是否配对成功）。
 
 ## 2300007 网络无法访问
 
@@ -349,4 +420,4 @@ The specified bundle name was not found.
 
 **处理步骤**
 
-1. 检查应用是否存在。
+检查应用是否存在。

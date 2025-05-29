@@ -19,7 +19,8 @@ init(): boolean
 初始化有源标签芯片。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
+>
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -29,7 +30,7 @@ init(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:初始化成功，&nbsp;false:初始化失败。 |
+| boolean | true：初始化成功。&nbsp;<br>false：初始化失败。 |
 
 ## connectedTag.initialize<sup>9+</sup>
 
@@ -42,13 +43,14 @@ initialize(): void
 **系统能力：** SystemCapability.Communication.ConnectedTag
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.uninit
 
@@ -64,7 +66,7 @@ uninit(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:卸载操作成功，&nbsp;false:卸载操作失败。 |
+| boolean | true：卸载操作成功。&nbsp;<br>false：卸载操作失败。 |
 
 ## connectedTag.uninitialize<sup>9+</sup>
 
@@ -77,13 +79,14 @@ uninitialize(): void
 **系统能力:** SystemCapability.Communication.ConnectedTag
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
 
@@ -131,13 +134,14 @@ read(): Promise&lt;number[]&gt;
 | Promise&lt;number[]&gt; | 返回读取有源标签内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
@@ -199,13 +203,14 @@ read(callback: AsyncCallback&lt;number[]&gt;): void
 | callback | AsyncCallback&lt;number[]&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
@@ -235,7 +240,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
+| data | string | 是 | 有源标签内容, 最大长度为1024个字节。 |
 
 **返回值：**
 
@@ -251,9 +256,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag writeNdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag writeNdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -271,7 +276,7 @@ write(data: number[]): Promise&lt;void&gt;
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 有源标签内容, 由十六进制数字组成，范围从0x00至0xFF。 |
+| data | number[] | 是 | 有源标签内容, 由十六进制数字组成。范围：0x00至0xFF。 |
 
 **返回值：**
 
@@ -280,14 +285,15 @@ write(data: number[]): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
@@ -297,9 +303,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag write NdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag write NdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -317,7 +323,7 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | string | 是 | 有源标签内容, 长度最大是1024个字节。 |
+| data | string | 是 | 有源标签内容, 最大长度为1024个字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **示例：**
@@ -328,9 +334,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag writeNdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -349,18 +355,19 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| data | number[] | 是 | 有源标签内容, 由十六进制数字组成，范围从0x00至0xFF。 |
+| data | number[] | 是 | 有源标签内容, 由十六进制数字组成。范围：0x00至0xFF。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3200101 | Connected NFC tag running state is abnormal in service. |
+|3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
 
@@ -370,9 +377,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag write NdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -391,7 +398,7 @@ on(type: "notify", callback: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"notify"字符串 |
+| type | string | 是 | 固定填"notify"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回值参见[NfcRfType](#nfcrftype)。 |
 
 ## connectedTag.off('notify')
@@ -408,7 +415,7 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"notify"字符串 |
+| type | string | 是 | 固定填"notify"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将“去注册”该事件关联的所有回调函数。|
 
 **示例：**
@@ -445,5 +452,5 @@ connectedTag.off("notify", (rfState : number)=> {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NFC_RF_LEAVE | 0 | NFC离场事件 |
-| NFC_RF_ENTER | 1 | NFC进场事件 |
+| NFC_RF_LEAVE | 0 | NFC离场事件。 |
+| NFC_RF_ENTER | 1 | NFC进场事件。 |

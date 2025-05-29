@@ -1,11 +1,11 @@
-# @ohos.bluetooth.access (蓝牙access模块)（系统接口）
+# @ohos.bluetooth.access (蓝牙access模块)(系统接口)
 
-access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
+access模块提供了打开蓝牙、关闭蓝牙和获取蓝牙状态的方法。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetooth.access (蓝牙access模块)](js-apis-bluetooth-access.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.bluetooth.access (蓝牙access模块)](js-apis-bluetooth-access.md)。
 
 
 ## 导入模块
@@ -25,7 +25,7 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -35,7 +35,7 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -72,7 +72,7 @@ factoryReset(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -82,7 +82,7 @@ factoryReset(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -116,7 +116,7 @@ getLocalAddress(): string;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_LOCAL_MAC
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -126,7 +126,7 @@ getLocalAddress(): string;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
@@ -139,6 +139,7 @@ getLocalAddress(): string;
 **示例：**
 
 ```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localAddr = access.getLocalAddress();
 } catch (err) {
@@ -157,7 +158,7 @@ restrictBluetooth(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -167,7 +168,7 @@ restrictBluetooth(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |

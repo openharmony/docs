@@ -10,11 +10,13 @@
 ## ResourceManager的getXXXSync接口
 
 ResourceManager通过getXXXSync接口获取资源的方式有两种：通过resource对象```resourceManager.getStringSync($r('app.string.test'))```和通过id```resourceManager.getStringSync($r('app.string.test').id)```。
-下面以[getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md)为例，测试一下这两种参数在方法中的使用是否会有耗时区别。
+下面以[getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)为例，测试一下这两种参数在方法中的使用是否会有耗时区别。
 
 ### 通过resource对象获取
 
 ```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct Index {
@@ -23,7 +25,7 @@ struct Index {
   aboutToAppear(): void {
     hiTraceMeter.startTrace('getStringSync', 1);
     // getStringSync接口的入参直接使用资源，未使用资源ID
-    getContext().resourceManager.getStringSync($r('app.string.test'));
+    (this.getUIContext().getHostContext() as Context).resourceManager.getStringSync($r('app.string.test'));
     hiTraceMeter.finishTrace('getStringSync', 1);
   }
 
@@ -46,6 +48,8 @@ struct Index {
 ### 通过id获取
 
 ```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct Index {
@@ -54,7 +58,7 @@ struct Index {
   aboutToAppear(): void {
     hiTraceMeter.startTrace('getStringSyncAfter', 2);
     // getStringSync接口的入参使用了资源ID
-    getContext().resourceManager.getStringSync($r('app.string.test').id);
+    (this.getUIContext().getHostContext() as Context).resourceManager.getStringSync($r('app.string.test').id);
     hiTraceMeter.finishTrace('getStringSyncAfter', 2);
   }
 
@@ -92,6 +96,8 @@ struct Index {
 @CustomDialog
 export struct DiskFormatDialog {
   private diskName: string = '';
+  private customDialogController: CustomDialogController;
+  
   build() {
     Column() {
       Text(this.diskName.split("").join("\u200B"))
@@ -111,6 +117,8 @@ export struct DiskFormatDialog {
 @CustomDialog
 export struct DiskFormatDialog {
   private diskName: string = '';
+  private customDialogController: CustomDialogController;
+    
   build() {
     Column() {
       Text(this.diskName)

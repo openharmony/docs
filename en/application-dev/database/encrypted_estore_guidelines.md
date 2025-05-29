@@ -3,19 +3,18 @@
 
 ## When to Use
 
-An [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) database is created in the **el5/** directory to store the application's sensitive information. When the screen is locked and certain conditions are met, the key used to encrypt the sensitive information will be destroyed and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encrypted Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+An [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database is created in the **el5/** directory to store the application's sensitive information. When the device screen is locked and certain conditions are met, the key used to encrypt the sensitive information will be destroyed and the encrypted database cannot be read or written. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encryption Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
-However, the application may write data when the screen is locked. Data loss will be caused if the EL5 database cannot be operated when data is written. A solution is provided to solve this problem. When the screen is locked, incremental data is stored in an [EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) database. The data temporarily stored in the EL2 database will be moved to the EL5 database when the EL5 database is unlocked. This ensures data security and consistency when the screen is locked.
+However, the application may write data when the screen is locked. Data loss will be caused if the EL5 database cannot be operated when data is written. A solution is provided to solve this problem. When the screen is locked, incremental data is stored in an [EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database. The data temporarily stored in the EL2 database will be moved to the EL5 database when the EL5 database is unlocked. This ensures data security and integrity when the screen is locked.
 
 Both the KV store and RDB store can be used as an EL5 database.
 
 ## Working Principles
 
-The following classes are encapsulated to implement the data operations and transfer between the EL2 and EL5 databases:
+The following classes are encapsulated to implement the data operations and transfer between EL2 and EL5 databases:
 
 - **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
-- **Store** class: provides APIs for accessing and operating the currently operable database.
-
+- **Store** class: provides APIs for obtaining a database instance, adding, deleting, and updating data, and obtaining the data count in the database.
 - **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
 
 - **ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
@@ -156,7 +155,7 @@ export class Store {
     }
   }
 
-  updataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  updateOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -170,7 +169,7 @@ export class Store {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
           });
         }
-        console.info(`ECDB_Encry updata success`)
+        console.info(`ECDB_Encry update success`)
       });
     }
   }
@@ -208,7 +207,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (code === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -226,7 +225,7 @@ export let lockObserve = new SecretKeyObserver();
 
 ### ECStoreManager
 
-Use the APIs provided by the **ECStoreManager** class to manage the EL2 and EL5 databases. Specifically, you can use the APIs to configure a database, set the function used to move data, provide the database handle for the application based on the key status, close an EL5 database, and destroy an El2 database after the data is moved.
+Use the APIs provided by the **ECStoreManager** class to manage the EL2 and EL5 databases. You can configure database information and migration function information, provide database handles for applications based on the key status, close EL5 databases, and destroy EL2 databases after data migration.
 
 ```ts
 // ECStoreManager.ts
@@ -325,7 +324,7 @@ Register a listener for the COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED e
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, application, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
@@ -355,7 +354,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -371,7 +370,7 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
@@ -387,11 +386,11 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
-    let eContext = this.context.createModuleContext("entry");
+    let eContext = await application.createModuleContext(this.context,"entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       "kvManagerConfig": {
@@ -406,8 +405,8 @@ export default class EntryAbility extends UIAbility {
         autoSync: false,
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-        // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        // The value distributedKVStore.KVStoreType.DEVICE_COLLABORATION indicates a device KV store.
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
@@ -507,9 +506,9 @@ struct Index {
           storeOption.deleteOnedata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)
@@ -633,7 +632,7 @@ export class Store {
     }
   }
 
-  async updataOnedata(rdbStore: relationalStore.RdbStore) {
+  async updateOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -685,7 +684,7 @@ export class SecretKeyObserver {
     this.storeManager = storeManager;
   }
 
-  updatalockStatus(code: number) {
+  updatelockStatus(code: number) {
     if (this.lockStatuas === SecretStatus.Lock) {
       this.onLock();
     } else {
@@ -702,7 +701,7 @@ export let lockObserve = new SecretKeyObserver();
 
 ### ECStoreManager
 
-Use the APIs provided by the **ECStoreManager** class to manage the EL2 and EL5 databases. Specifically, you can use the APIs to configure a database, set the function used to move data, provide the database handle for the application based on the key status, close an EL5 database, and destroy an El2 database after the data is moved.
+Use the APIs provided by the **ECStoreManager** class to manage the EL2 and EL5 databases. You can configure database information and migration function information, provide database handles for applications based on the key status, close EL5 databases, and destroy EL2 databases after data migration.
 
 ```ts
 // ECStoreManager.ts
@@ -783,7 +782,7 @@ Register a listener for the COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED e
 
 ```ts
 // EntryAbility.ets
-import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, contextConstant, UIAbility, Want, application } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { relationalStore } from '@kit.ArkData';
@@ -813,7 +812,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatalockStatus(data.code);
+          e_secretKeyObserver.updatelockStatus(data.code);
         }
       });
     } catch (error) {
@@ -829,27 +828,27 @@ let cInfo: StoreInfo | null = null;
 let eInfo: StoreInfo | null = null;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
       context: cContext,
       config: {
         name: 'cstore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
-    }
-    let eContext = this.context.createModuleContext("entry");
+    };
+    let eContext = await application.createModuleContext(this.context, "entry");
     eContext.area = contextConstant.AreaMode.EL5;
     eInfo = {
       context: eContext,
       config: {
         name: 'estore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
-    }
+    };
     // Listen for the COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED event. code == 1 indicates the screen is unlocked, and code==0 indicates the screen is locked.
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
@@ -948,9 +947,9 @@ struct Index {
           storeOption.deleteAlldata(store);
         }).margin(5)
 
-        Button("updata").onClick(async (event: ClickEvent) => {
+        Button("update").onClick(async (event: ClickEvent) => {
           let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.updataOnedata(store);
+          storeOption.updateOnedata(store);
         }).margin(5)
 
         Text(this.message)

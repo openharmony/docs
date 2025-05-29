@@ -21,22 +21,22 @@
 | -------- | -------- |
 | napi_create_array | 用于在Node-API模块中向ArkTS层创建一个ArkTS数组对象。 |
 | napi_create_array_with_length | 用于在Node-API模块中向ArkTS层创建指定长度的ArkTS数组时。 |
-| napi_create_typedarray | 用于在Node-API模块中创建指定类型的TypedArray，例如Uint8Array、Int32Array等，通常用于将Node-API模块中的数据转换为ArkTS中的TypedArray，以便进行高性能的数据处理操作。 |
-| napi_create_dataview |  用于在Node-API模块中创建一个DataView对象，可以访问和操作二进制数据。 |
 | napi_get_array_length | 用于在Node-API模块中获取ArkTS数组对象的长度。 |
-| napi_get_typedarray_info | 用于在Node-API模块中获得某个TypedArray的各种属性。 |
-| napi_get_dataview_info | 用于在Node-API模块中获得某个DataView的各种属性。 |
 | napi_is_array | 用于在Node-API模块中判断一个napi_value值是否为数组。 |
 | napi_set_element | 用于在Node-API模块中对ArkTS数组对象的特定索引处设置一个值。 |
 | napi_get_element | 用于在Node-API模块中从ArkTS数组对象的特定索引处获取一个值。 |
 | napi_has_element | 用于在Node-API模块中判断ArkTS数组对象请求索引处是否包含元素。 |
 | napi_delete_element | 用于在Node-API模块中从ArkTS数组对象中删除请求索引对应的元素。 |
-| napi_is_dataview | 用于在Node-API模块中判断给定的napi_value是否为ArkTS中的DataView对象。 |
+| napi_create_typedarray | 用于在Node-API模块中创建指定类型的TypedArray，例如Uint8Array、Int32Array等，通常用于将Node-API模块中的数据转换为ArkTS中的TypedArray，以便进行高性能的数据处理操作。 |
 | napi_is_typedarray | 用于在Node-API模块中判断一个给定的napi_value是否为TypedArray对象。 |
+| napi_get_typedarray_info | 用于在Node-API模块中获得某个TypedArray的各种属性。 |
+| napi_create_dataview |  用于在Node-API模块中创建一个DataView对象，可以访问和操作二进制数据。 |
+| napi_is_dataview | 用于在Node-API模块中判断给定的napi_value是否为ArkTS中的DataView对象。 |
+| napi_get_dataview_info | 用于在Node-API模块中获得某个DataView的各种属性。 |
 
 ## 使用示例
 
-Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。napi_create_typedarray方法除外，具体使用见示例。
+Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。具体使用见示例。
 
 ### napi_create_array
 
@@ -47,13 +47,15 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_NUM_5 = 5; // 数组长度
+
 static napi_value CreateArray(napi_env env, napi_callback_info info)
 {
     // 创建一个空数组
     napi_value jsArray = nullptr;
     napi_create_array(env, &jsArray);
     // 将创建好的数组进行赋值
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < INT_NUM_5; i++) {
         napi_value element;
         napi_create_int32(env, i, &element);
         napi_set_element(env, jsArray, i, element);
@@ -73,8 +75,8 @@ export const createArray: () => number[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
 ```
@@ -115,8 +117,8 @@ export const createArrayWithLength: (length: number) => void[];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let array = testNapi.createArrayWithLength(6);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{public}d', array.length);
@@ -131,7 +133,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetArrayLength(napi_env env, napi_callback_info info) 
+static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -163,8 +165,8 @@ export const getArrayLength: (arr: Array<any>) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const arr = [0, 1, 2, 3, 4, 5];
 hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testNapi.getArrayLength(arr));
@@ -179,7 +181,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsArray(napi_env env, napi_callback_info info) 
+static napi_value IsArray(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -211,8 +213,8 @@ export const isArray: <T>(data: Array<T> | T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let value = new Array<number>(1);
   let data = "123";
@@ -226,12 +228,14 @@ try {
 ### napi_set_element
 
 用于在ArkTS数组中设置指定索引位置的元素。
-对于以索引值为键的object，可以使用napi_set_property来设置属性值。
+对于以索引值为键的object，可以使用napi_set_element来设置属性值。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
+
+static constexpr int INT_ARG_2 = 2; // 入参索引
 
 static napi_value NapiSetElement(napi_env env, napi_callback_info info)
 {
@@ -250,7 +254,7 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
     double index = 0;
     napi_get_value_double(env, args[1], &index);
     // 将传入的值设置到数组指定索引位置
-    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[2]);
+    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[INT_ARG_2]);
 
     return nullptr;
 }
@@ -265,8 +269,8 @@ export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let arr = [10, 20, 30];
 testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
 testNapi.napiSetElement<number | string>(arr, 2, 50);
@@ -321,8 +325,8 @@ export const napiGetElement: <T>(arr: Array<T>, index: number) => number | strin
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 interface MyObject {
   first: number;
@@ -379,8 +383,8 @@ export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -425,8 +429,9 @@ export const napiDeleteElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+// 需要同时导入前文示例代码中的napiHasElement、napiGetElement接口
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -522,8 +527,8 @@ export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 传递要创建的类型值
 let typedArray = testNapi.createTypedArray<Int8Array>(testNapi.TypedArrayTypes["INT8_ARRAY"]);
@@ -567,6 +572,149 @@ EXTERN_C_END
 
 ```
 
+### napi_is_typedarray
+
+用于在Node-API模块中判断ArkTS侧给定的napi_value是否为TypedArray对象。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value IsTypedarray(napi_env env, napi_callback_info info)
+{
+    // 获取ArkTS侧传入的参数
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 调用napi_is_typedarray接口判断给定入参类型是否为TypedArray。
+    bool result = false;
+        napi_status status;
+    status = napi_is_typedarray(env, args[0], &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Node-API napi_is_typedarray fail");
+        return nullptr;
+    }
+    // 将结果转成napi_value类型返回。
+    napi_value returnValue = nullptr;
+    napi_get_boolean(env, result, &returnValue);
+
+    return returnValue;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const isTypedarray: (data: Object) => boolean | void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+try {
+  let value = new Uint8Array([1, 2, 3, 4]);
+  let data = "123";
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray(data));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
+}
+```
+
+### napi_get_typedarray_info
+
+获取给定TypedArray的各种属性。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
+{
+    // 获取ArkTS侧传入的参数，第一个参数为需要获得的信息的TypedArray类型数据，第二个参数为需要获得的信息类型的枚举值
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 将第二个参数转为int32类型便于比较
+    int32_t infoTypeParam;
+    napi_get_value_int32(env, args[1], &infoTypeParam);
+    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
+    enum InfoType { INFO_TYPE = 1, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
+    void *data;
+    napi_typedarray_type type;
+    size_t byteOffset, length;
+    napi_value arraybuffer;
+    // 调用接口napi_get_typedarray_info获得TypedArray类型数据的信息
+    napi_get_typedarray_info(env, args[0], &type, &length, &data, &arraybuffer, &byteOffset);
+    napi_value result;
+    // 根据属性名，返回TypedArray对应的属性值
+    switch (infoTypeParam) {
+    case INFO_TYPE:
+        // 如果传入的参数是int8类型的TypedArray数据，它的类型（type）为napi_int8_array
+        napi_value int8_type;
+        napi_get_boolean(env, type == napi_int8_array, &int8_type);
+        result = int8_type;
+        break;
+    case INFO_LENGTH:
+        // TypedArray中元素的字节长度
+        napi_value napiLength;
+        napi_create_int32(env, length, &napiLength);
+        result = napiLength;
+        break;
+    case INFO_BYTE_OFFSET:
+        // TypedArray数组的第一个元素所在的基础原生数组中的字节偏移量
+        napi_value napiByteOffset;
+        napi_create_int32(env, byteOffset, &napiByteOffset);
+        result = napiByteOffset;
+        break;
+    case INFO_ARRAY_BUFFER:
+        // TypedArray下的ArrayBuffer
+        result = arraybuffer;
+        break;
+    default:
+        break;
+    }
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuffer | number | boolean;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+
+// 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
+// TypedArray的子类有: Int8Array Uint8Array Uint8ClampedArray Int16Array Int32Array等
+let int8Array = new Int8Array([15, 7]);
+// 定义枚举类型 这些都是TypedArray的属性
+enum InfoType {
+    TYPE = 1, // 传入的TypedArray的类型
+    LENGTH = 2, // 传入的TypedArray的长度
+    ARRAY_BUFFER = 3, // TypedArray下的ArrayBuffer
+    BYTE_OFFSET = 4 // 数组的第一个元素所在的基础原生数组中的字节偏移量
+};
+let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+// 将arraybuffer转为数组
+let arr = new Array(new Int8Array(arrbuff));
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+```
+
 ### napi_create_dataview
 
 创建dataview对象，便于访问和操作二进制数据，需要提供一个指向二进制数据的缓冲区，并指定要包含的字节数。
@@ -576,7 +724,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateDataView(napi_env env, napi_callback_info info) 
+static napi_value CreateDataView(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
     size_t argc = 1;
@@ -620,188 +768,13 @@ export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const arrayBuffer = new ArrayBuffer(16);
-const dataView = testNapi.createDataView(arrayBuffer);
+const dataView = testNapi.createDataView(arrayBuffer) as DataView;
 hilog.info(0x0000, 'testTag', 'Test Node-API dataView：%{public}d', dataView.byteLength);
 hilog.info(0x0000, 'testTag', 'Test Node-API dataView第一个数据：%{public}d', dataView.getInt8(0));
-```
-
-### napi_get_typedarray_info
-
-获取给定TypedArray的各种属性。
-
-cpp部分代码
-
-```cpp
-#include "napi/native_api.h"
-
-static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
-{
-    // 获取ArkTS侧传入的参数，第一个参数为需要获得的信息的TypedArray类型数据，第二个参数为需要获得的信息类型的枚举值
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 将第二个参数转为int32类型便于比较
-    int32_t infoTypeParam;
-    napi_get_value_int32(env, args[1], &infoTypeParam);
-    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
-    enum InfoType { INFO_TYPE = 1, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
-    void *data;
-    napi_typedarray_type type;
-    size_t byteOffset, length;
-    napi_value arraybuffer;
-    // 调用接口napi_get_typedarray_info获得TypedArray类型数据的信息
-    napi_get_typedarray_info(env, args[0], &type, &length, &data, &arraybuffer, &byteOffset);
-    napi_value result;
-    // 根据属性名，返回TypedArray对应的属性值
-    switch (infoTypeParam) {
-    case INFO_TYPE:
-        // 如果传入的参数是int8类型的TypedArray数据，它的类型（type）为napi_int8_array
-        napi_value int8_type;
-        napi_get_boolean(env, type == napi_int8_array, &int8_type);
-        result = int8_type;
-        break;
-    case INFO_LENGTH:
-        // TypedArray中的元素数
-        napi_value napiLength;
-        napi_create_int32(env, length, &napiLength);
-        result = napiLength;
-        break;
-    case INFO_ARRAY_BUFFER:
-        // TypedArray数组的第一个元素所在的基础原生数组中的字节偏移量
-        napi_value napiByteOffset;
-        napi_create_int32(env, byteOffset, &napiByteOffset);
-        result = napiByteOffset;
-        break;
-    case INFO_BYTE_OFFSET:
-        // TypedArray下的ArrayBuffer
-        result = arraybuffer;
-        break;
-    default:
-        break;
-    }
-    return result;
-}
-```
-
-接口声明
-
-```ts
-// index.d.ts
-export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuffer | number | boolean;
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-
-// 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
-// TypedArray的子类有: Int8Array Uint8Array Uint8ClampedArray Int16Array Int32Array等
-let int8Array = new Int8Array([15, 7]);
-// 定义枚举类型 这些都是TypedArray的属性
-enum InfoType {
-    TYPE = 1, // 传入的TypedArray的类型
-    LENGTH = 2, // 传入的TypedArray的类型
-    ARRAY_BUFFER = 3, // TypedArray下的ArrayBuffer
-    BYTE_OFFSET = 4 // 数组的第一个元素所在的基础原生数组中的字节偏移量
-};
-let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// 将arraybuffer转为数组
-let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
-```
-
-### napi_get_dataview_info
-
-获取给定DataView的各种属性。
-
-cpp部分代码
-
-```cpp
-#include "napi/native_api.h"
-
-static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
-{ 
-    // 获取ArkTS侧传入的参数
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 将第二个参数转为int32类型的数字
-    int32_t infoType;
-    napi_get_value_int32(env, args[1], &infoType);
-    size_t byteLength;
-    void *data;
-    napi_value arrayBuffer;
-    size_t byteOffset;
-    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
-    enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
-    // 获取dataview信息
-    napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
-    napi_value result;
-    switch (infoType) {
-    case BYTE_LENGTH:
-        // 返回查询DataView的字节数
-        napi_value napiByteLength;
-        napi_create_int32(env, byteLength, &napiByteLength);
-        result = napiByteLength;
-        break;
-    case ARRAY_BUFFER:
-        // 返回查询DataView的arraybuffer
-        result = arrayBuffer;
-        break;
-    case BYTE_OFFSET:
-        // 返回查询DataView的偏移字节量
-        napi_value napiByteOffset;
-        napi_create_int32(env, byteOffset, &napiByteOffset);
-        result = napiByteOffset;
-        break;
-    default:
-        break;
-    }
-    return result;
-}
-```
-
-接口声明
-
-```ts
-// index.d.ts
-export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuffer | number;
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-
-// 创建一个ArrayBuffer
-let arrayBuffer = new Int8Array([2, 5]).buffer;
-// 使用arrayBuffer创建一个dataView
-let dataView = new DataView(arrayBuffer);
-// 定义一个枚举类型
-enum InfoType {
-    BYTE_LENGTH = 0,
-    ARRAY_BUFFER = 1,
-    BYTE_OFFSET = 2,
-};
-// 传入DataView类型参数查询DataView的字节数
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
-// 传入DataView类型参数查询DataView的ArrayBuffer
-let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// 将arraybuffer转为数组
-let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
-// 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
 ```
 
 ### napi_is_dataview
@@ -846,8 +819,8 @@ export const isDataView: (date: DataView | string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let buffer = new ArrayBuffer(16);
   let dataView = new DataView(buffer);
@@ -859,34 +832,54 @@ try {
 }
 ```
 
-### napi_is_typedarray
+### napi_get_dataview_info
 
-用于在Node-API模块中判断ArkTS侧给定的napi_value是否为TypedArray对象。
+获取给定DataView的各种属性。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
+static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
 {
     // 获取ArkTS侧传入的参数
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 调用napi_is_typedarray接口判断给定入参类型是否为TypedArray。
-    bool result = false;
-        napi_status status;
-    status = napi_is_typedarray(env, args[0], &result);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_is_typedarray fail");
-        return nullptr;
+    // 将第二个参数转为int32类型的数字
+    int32_t infoType;
+    napi_get_value_int32(env, args[1], &infoType);
+    size_t byteLength;
+    void *data;
+    napi_value arrayBuffer;
+    size_t byteOffset;
+    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
+    enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
+    // 获取dataview信息
+    napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
+    napi_value result;
+    switch (infoType) {
+        case BYTE_LENGTH:
+            // 返回查询DataView的字节数
+            napi_value napiByteLength;
+            napi_create_int32(env, byteLength, &napiByteLength);
+            result = napiByteLength;
+            break;
+        case ARRAY_BUFFER:
+            // 返回查询DataView的arraybuffer
+            result = arrayBuffer;
+            break;
+        case BYTE_OFFSET:
+            // 返回查询DataView的偏移字节量
+            napi_value napiByteOffset;
+            napi_create_int32(env, byteOffset, &napiByteOffset);
+            result = napiByteOffset;
+            break;
+        default:
+            break;
     }
-    // 将结果转成napi_value类型返回。
-    napi_value returnValue = nullptr;
-    napi_get_boolean(env, result, &returnValue);
-
-    return returnValue;
+    return result;
 }
 ```
 
@@ -894,22 +887,34 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isTypedarray: <T>(data: T) => boolean | void;
+export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuffer | number;
 ```
 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-try {
-  let value = new Uint8Array([1, 2, 3, 4]);
-  let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
-}
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+
+// 创建一个ArrayBuffer
+let arrayBuffer = new Int8Array([2, 5]).buffer;
+// 使用arrayBuffer创建一个dataView
+let dataView = new DataView(arrayBuffer);
+// 定义一个枚举类型
+enum InfoType {
+    BYTE_LENGTH = 0,
+    ARRAY_BUFFER = 1,
+    BYTE_OFFSET = 2,
+};
+// 传入DataView类型参数查询DataView的字节数
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+// 传入DataView类型参数查询DataView的ArrayBuffer
+let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+// 将arraybuffer转为数组
+let arr = Array.from(new Int8Array(arrbuff));
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+// 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
 ```
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：

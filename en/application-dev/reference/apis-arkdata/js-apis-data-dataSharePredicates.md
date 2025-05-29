@@ -19,13 +19,13 @@ import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates
-Provides methods for setting different **DataSharePredicates** objects. This type is not multi-thread safe. If a **DataSharePredicates** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
+Provides APIs for setting different **DataSharePredicates** objects. This type is not multi-thread safe. If a **DataSharePredicates** instance is operated by multiple threads at the same time in an application, use a lock for it.
 
 ### equalTo<sup>10+</sup>
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the data that is equal to the specified value.
+Creates a **DataSharePredicates** object to search for the records in the specified column that are equal to the given value.
 
 Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
@@ -56,7 +56,7 @@ predicates.equalTo("NAME", "Rose")
 
 and(): DataSharePredicates
 
-Adds the AND condition to this **DataSharePredicates** object.
+Creates a **DataSharePredicates** object to add the AND condition.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -81,7 +81,7 @@ predicates.equalTo("NAME", "lisi")
 
 orderByAsc(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object that sorts data in ascending order.
+Creates a **DataSharePredicates** object that sorts records in ascending order.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -110,7 +110,7 @@ predicates.orderByAsc("AGE")
 
 orderByDesc(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object that sorts data in descending order.
+Creates a **DataSharePredicates** object that sorts data in descending order.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -139,7 +139,7 @@ predicates.orderByDesc("AGE")
 
 limit(total: number, offset: number): DataSharePredicates
 
-Sets a **DataSharePredicates** object to specify the number of results and the start position.
+Creates a **DataSharePredicates** object to specify the number of records in the result and the start position.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -149,8 +149,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Name  | Type  | Mandatory| Description          |
 | -------- | ------ | ---- | -------------- |
-| total    | number | Yes  | Number of results.  |
-| offset | number | Yes  | Start position.|
+| total    | number | Yes  | Number of records. The value should be a positive integer. If a value less than or equal to **0** is specified, the number of records is not limited.  |
+| offset | number | Yes  | Start position. The value should be a positive integer. If a value less than or equal to **0** is specified, the query result is returned from the first element.|
 
 **Return value**
 
@@ -169,7 +169,7 @@ predicates.equalTo("NAME", "Rose").limit(10, 3)
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the data that is within the specified value.
+Creates a **DataSharePredicates** object to search for the records in the specified column that are within the specified range.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 

@@ -353,8 +353,8 @@ Use the **Record** type to access object attributes.
 **Before adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
+import { router } from '@kit.ArkUI';
+let params: Object = router.getParams();
 let funNum: number = params['funNum'];
 let target: string = params['target'];
 ```
@@ -362,8 +362,8 @@ let target: string = params['target'];
 **After adaptation**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
+import { router } from '@kit.ArkUI';
+let params = router.getParams() as Record<string, string | number>;
 let funNum: number = params.funNum as number;
 let target: string = params.target as string;
 ```
@@ -438,7 +438,7 @@ const area = {
 **After adaptation**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -550,9 +550,7 @@ let arr: Test[] = [
 ]
 ```
 
-### Using a Key String for Object Literals of the Record Type
-
-If an object literal is of the Record type, a string must be used as the key of the object literal.
+### If **Record** is used to specify the object literal type, a string must be used as the key of the object literal.
 
 **Before adaptation**
 
@@ -735,7 +733,7 @@ test.foo('', option);
 
 **Reason for change**
 
-The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the some **.d.ets** file. Therefore, you only need to import the type.
+The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the declaration file. Therefore, you only need to import the type.
 In **test.d.ets**, **I** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
 
 ### Passing Parameters from the Object Literal to the Object Type
@@ -955,25 +953,25 @@ for (let arr of map) {
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
@@ -1040,7 +1038,7 @@ type OptionsFlags = Record<keyof C, string>
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1050,7 +1048,7 @@ function ThrowError(error: BusinessError) {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1158,29 +1156,47 @@ class Test {
 **Before adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **After adaptation**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **Reason for change**
@@ -1249,7 +1265,7 @@ ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cann
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
-2. If necessary, you can construct a singleton object to implement the function of a global object. (Note: The singleton object cannot be defined in a HAR file, which packs two copies in different HAP files and therefore cannot implement singleton objects.)
+2. If necessary, you can construct a singleton object to implement the function of a global object. (**NOTE**: The singleton object cannot be defined in a HAR file, which packages two copies in different HAP files and therefore cannot implement singleton objects.)
 
 Construct a singleton object.
 
@@ -1548,7 +1564,7 @@ class Test {
 }
 
 ```
-### Type '*** | null' Not Assignable to type ''\*\*\*'
+### Type `*** | null` is not assignable to type `***`
 
 **Before adaptation**
 
@@ -1725,7 +1741,7 @@ class Test {
 }
 ```
 
-### '***' Is of Type 'unknown'
+### '***' is of type 'unknown'
 
 **Before adaptation**
 
@@ -1740,7 +1756,7 @@ try {
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   
@@ -1749,7 +1765,7 @@ try {
 }
 ```
 
-### Type '*** | null' Not Assignable to Type '\*\*\*'
+### Type '*** | null' is not assignable to type '\*\*\*'
 
 **Before adaptation**
 
@@ -1821,7 +1837,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot Invoke an Object Which Is Possibly 'undefined'
+### Cannot invoke an object which possibly 'undefined'
 
 **Before adaptation**
 
@@ -1861,7 +1877,7 @@ if (a.foo) {
 
 In the original code definition, **foo** is an optional property and may be **undefined**. If **undefined** is called, an error is reported. You are advised to determine whether a property is optional based on the service logic. If defining an optional property is necessary, a null check is required for accessing the property.
 
-### Variable '***' Is Used Before Being Assigned
+### Variable '***' is used before being assigned
 
 **Before adaptation**
 
@@ -1906,7 +1922,7 @@ For primitive types, a value can be assigned based on the service logic, for exa
 
 For the object type, you can change the type to a union type consisting of **null** and assign **null** to the type. In this case, when using the object type, you need to perform the non-null check.
 
-### "Function lacks ending return statement and return type does not include 'undefined'" Error
+### Function lacks ending return statement and return type does not include 'undefined'.
 
 **Before adaptation**
 
@@ -1952,7 +1968,7 @@ let a: number = 123;
 
 ArkTS does not support the use of comments to bypass strict type checks. Delete the comment (**// @ts-nocheck** or **// @ts-ignore**), and then modify other code based on the error information.
 
-## Importing ArkTS Files to JS and TS Files Not Allowed
+## Importing ArkTS files to JS and TS files is not allowed
 
 ## arkts-no-tsdeps
 
@@ -1962,7 +1978,7 @@ In .ts and .js files, it is not allowed to import source code from an .ets file.
 
 Mode 1: Change the file name extension of the .ts file to .ets and adapt the code based on the ArkTS syntax rules.
 
-Mode 2: Extract the code on which the .ts file depends from the .ets file to the .ts file.
+Mode 2: Extract the code that the .ts file depends on from the .ets file to the .ts file.
 
 ## arkts-no-special-imports
 
@@ -2230,7 +2246,7 @@ function deepCopy(obj: object): object {
 }
 ```
 
-## Typical Use Scenarios of State Management
+## Typical Application Scenarios of State Management
 
 ### Using State Variables Outside of Structs
 
@@ -2265,7 +2281,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // You are not advised to pass this as a parameter to the outside struct.
   }
 }
 
@@ -2311,7 +2327,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2335,7 +2351,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2376,8 +2392,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // The struct does not support generics. An arkts-no-any-unknown error is reported.
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // The struct does not support generics. An arkts-no-any-unknown error is reported.
 
   @Builder
   componentCloser() {
@@ -2385,7 +2401,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // The struct does not support generics. An arkts-no-any-unknown error is reported.
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2406,7 +2422,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2434,7 +2450,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

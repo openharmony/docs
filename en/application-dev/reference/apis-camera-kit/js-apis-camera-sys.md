@@ -13,31 +13,6 @@ The camera module provides a set of camera service APIs for you to easily develo
 import { camera } from '@kit.CameraKit';
 ```
 
-## CameraDevice
-
-Defines the camera device information.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name          | Type                              | Read-only| Mandatory| Description       |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| hostDeviceName | string                            | Yes  | Yes  | Name of the remote device. **System API**: This is a system API.|
-| hostDeviceType | [HostDeviceType](#hostdevicetype) | Yes  | Yes  | Type of the remote device. **System API**: This is a system API.|
-
-## HostDeviceType
-
-Enumerates the remote camera types.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                         | Value      | Description          |
-| ---------------------------- | ----     | ------------- |
-| UNKNOWN_TYPE                 | 0        | Unknown type.     |
-| PHONE                        | 0x0E     | Phone camera.|
-| TABLET                       | 0x11     | Tablet camera.|
-
 ## SceneMode<sup>11+</sup>
 
 Enumerates the camera scene modes.
@@ -51,7 +26,15 @@ Enumerates the camera scene modes.
 | PROFESSIONAL_PHOTO<sup>12+</sup>        | 5      | Professional photo mode. **System API**: This is a system API.            |
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | Professional video mode. **System API**: This is a system API.            |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | Slow-motion video mode. **System API**: This is a system API. |
+| MACRO_PHOTO<sup>12+</sup>        | 8   | Macro photo mode. **System API**: This is a system API. |
+| MACRO_VIDEO<sup>12+</sup>        | 9   | Macro video mode. **System API**: This is a system API. |
+| LIGHT_PAINTING_PHOTO<sup>12+</sup>        | 10   | Light painting mode. **System API**: This is a system API. |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | High-resolution photo mode. **System API**: This is a system API.         |
+| QUICK_SHOT_PHOTO<sup>12+</sup>        | 13   | Quick snap mode. **System API**: This is a system API. |
+| APERTURE_VIDEO<sup>12+</sup>        | 14   | Large aperture video mode. **System API**: This is a system API. |
+| PANORAMA_PHOTO<sup>12+</sup>        | 15     | Panoramic photo mode. **System API**: This is a system API.         |
+| TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | Time-lapse photo mode. **System API**: This is a system API.         |
+| FLUORESCENCE_PHOTO<sup>13+</sup>        | 17   | Fluorescence photo mode. **System API**: This is a system API. |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -77,7 +60,7 @@ Describes the LCD flash information.
 
 | Name     | Type                         | Read-only| Optional | Description        |
 | -------- | ----------------------------- |---- |-----| ------------- |
-| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required.     |
+| isLcdFlashNeeded   | boolean | Yes | No  | Whether the LCD flash is required. The value **true** means that the LCD flash is required, and **false** means the opposite.     |
 | lcdCompensation     | number                 | Yes | No  | LCD flash compensation.      |
 
 ## Photo<sup>11+</sup>
@@ -104,9 +87,86 @@ Enumerates the exposure modes.
 | ----------------------------- |-----|---------|
 | EXPOSURE_MODE_MANUAL<sup>12+</sup>          | 3   | Manual exposure mode.|
 
+## PolicyType<sup>12+</sup>
+
+Enumerates the policy types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description     |
+| ----------------------------- |-----|---------|
+| PRIVACY<sup>12+</sup>          | 1   | Privacy.|
+
+## LightPaintingType<sup>12+</sup>
+
+Enumerates the types of light painting shutter modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description     |
+| ----------------------------- |-----|---------|
+| TRAFFIC_TRAILS         | 0   | Traffic trails.|
+| STAR_TRAILS          | 1   | Star trails.|
+| SILKY_WATER          | 2   | Silky water.|
+| LIGHT_GRAFFITI          | 3   | Light graffiti.|
+
 ## CameraManager
 
 Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
+
+### createDepthDataOutput<sup>13+</sup>
+
+createDepthDataOutput(profile: DepthProfile): DepthDataOutput
+
+Creates a **DepthDataOutput** instance. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                             |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| profile  | [DepthProfile](#depthprofile13)           | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11).|
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [DepthDataOutput](#depthdataoutput13)    | **DepthDataOutput** instance. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
+  let profile: camera.DepthProfile = cameraOutputCapability.depthProfiles[0];
+  let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
+  try {
+    depthDataOutput = cameraManager.createDepthDataOutput(profile);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The createDepthDataOutput call failed. error code: ${err.code}`);
+  }
+  return depthDataOutput;
+}
+```
 
 ### isCameraMuteSupported
 
@@ -122,7 +182,7 @@ Checks whether the camera device can be muted.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device can be muted.<br>**false**: The camera device cannot be muted.|
+| boolean    | Check result. The value **true** means that the camera device can be muted, and **false** means the opposite.|
 
 **Example**
 
@@ -138,6 +198,10 @@ function isCameraMuteSupported(cameraManager: camera.CameraManager): boolean {
 muteCamera(mute: boolean): void
 
 Mutes or unmutes the camera device.
+
+> **NOTE**
+>
+>This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
 
 **System API**: This is a system API.
 
@@ -158,6 +222,32 @@ function muteCamera(cameraManager: camera.CameraManager): void {
 }
 ```
 
+### muteCameraPersistent<sup>12+</sup>
+
+muteCameraPersistent(mute: boolean, type: PolicyType): void
+
+Disables the camera in a persistent manner.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory | Description                                        |
+| -------- |-----------------------------| ---- |--------------------------------------------|
+| mute     | boolean                     |  Yes | Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite.                  |
+| type     | [PolicyType](#policytype12) |  Yes | Policy type. For details about the available options, see [PolicyType](#policytype12).|
+
+**Example**
+
+```ts
+function muteCameraPersistent(cameraManager: camera.CameraManager): void {
+  let mute: boolean = true;
+  cameraManager.muteCameraPersistent(mute, camera.PolicyType.PRIVACY);
+}
+```
+
 ### on('cameraMute')
 
 on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
@@ -173,7 +263,7 @@ Subscribes to camera mute status events. This API uses an asynchronous callback 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the status is returned when the camera device is muted or unmuted.|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the mute status. The value **true** means that the camera is enabled, and **false** means that the camera is disabled.              |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled.              |
 
 **Example**
 
@@ -209,7 +299,7 @@ Unsubscribes from camera mute status events.
 | Name    | Type            | Mandatory| Description                                                     |
 | -------- | --------------- | ---- |---------------------------------------------------------|
 | type     | string          | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status. The event can be listened for when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<boolean> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+| callback | AsyncCallback\<boolean> | No  | Callback used to return the camera mute status. The value **true** means that the camera mute status is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraMute')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
 
 **Example**
 
@@ -237,15 +327,15 @@ Checks whether a camera device supports prelaunch.
 
 **Parameters**
 
-| Name    | Type            | Mandatory| Description      |
-| -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | Yes| Camera device.|
+| Name    | Type                                              | Mandatory| Description      |
+| -------- |--------------------------------------------------| ---- | --------- |
+| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | Yes| Camera device.|
 
 **Return value**
 
 | Type| Description|
 | -------- | --------------- |
-| boolean | **true**: The camera device supports prelaunch.<br>**false**: The camera device does not support prelaunch.|
+| boolean | Check result. The value **true** means that the camera device supports prelaunch, and **false** means the opposite.|
 
 **Error codes**
 
@@ -357,7 +447,7 @@ function preLaunch(context: common.BaseContext): void {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): PreviewOutput
+createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.
 
@@ -369,7 +459,7 @@ Creates a deferred **PreviewOutput** instance and adds it, instead of a common *
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | Yes| Configuration file of the camera preview stream.|
+| profile | [Profile](js-apis-camera.md#profile) | No| Configuration file of the camera preview stream.|
 
 **Return value**
 
@@ -441,6 +531,563 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 }
 ```
 
+## CameraOcclusionDetectionResult<sup>12+</sup>
+Describes the status indicating whether the camera is occluded.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Type                                               | Read-only| Optional| Description               |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded. The value **true** means that the camera is occluded, and **false** means the opposite.       |
+
+## CameraOutputCapability<sup>13+</sup>
+
+Describes the camera output capability.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Type                                               | Read-only| Optional| Description               |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  Yes | No| Supported depth stream profiles.       |
+
+## CameraFormat
+
+Enumerates the camera output formats.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                    | Value       | Description        |
+| ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | Depth map in DEPTH_16 format.     |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | Depth map in DEPTH_32 format.     |
+
+## CameraInput
+
+Defines the camera input object.
+
+It provides camera device information used in [Session](js-apis-camera.md#session11).
+
+### on('cameraOcclusionDetection')<sup>12+</sup>
+
+on(type: 'cameraOcclusionDetection', callback: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+Subscribes to CameraInput occlusion events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| type     | string                           | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created. It is triggered when the occlusion status of the camera module changes, and the occlusion status is returned.|
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | Yes  | Callback used to return the occlusion status. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function registerCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.on('cameraOcclusionDetection', callback);
+}
+```
+
+### off('cameraOcclusionDetection')<sup>12+</sup>
+
+off(type: 'cameraOcclusionDetection', callback?: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+Unsubscribes from CameraInput occlusion events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description                                                     |
+| -------- | --------------- | ---- |---------------------------------------------------------|
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created.|
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraOcclusionDetection')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.off('cameraOcclusionDetection', callback);
+}
+```
+
+## DepthDataAccuracy<sup>13+</sup>
+
+Describes the accuracy of depth data.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name     | Type                         | Read-only| Optional| Description           |
+| -------- | ----------------------------- |----- |---| -------------- |
+| DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  Yes | No| Relative accuracy, which is the depth map calculated based on the disparity.     |
+| DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  Yes | No| Absolute accuracy, which is the depth map calculated from distance measurement.     |
+
+## DepthProfile<sup>13+</sup>
+
+Describes the profile of depth data. It inherits from [Profile](js-apis-camera.md#profile).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Type                                     | Read-only| Optional| Description       |
+| ------------------------- | ----------------------------------------- | --- | ---- |----------- |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | Yes |  No | Accuracy of the depth data, which can be either relative accuracy or absolute accuracy.|
+
+## DepthDataQualityLevel<sup>13+</sup>
+
+Enumerates the quality levels of depth data.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name     | Type                         | Read-only| Optional| Description           |
+| -------- | ----------------------------- |----- |---| -------------- |
+| DEPTH_DATA_QUALITY_BAD     | number            |  Yes | No| The depth map is of poor quality and cannot be used for blurring.     |
+| DEPTH_DATA_QUALITY_FAIR      | number          |  Yes | No| The depth map is of average quality and cannot be used for high-quality blurring.     |
+| DEPTH_DATA_QUALITY_GOOD      | number          |  Yes | No| The depth map is of high quality and can be used for high-quality blurring.     |
+
+## DepthData<sup>13+</sup>
+
+Describes a depth data object.
+
+### Properties
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name     | Type                         | Read-only| Optional| Description           |
+| -------- | ----------------------------- |----- |---| -------------- |
+| format | [CameraFormat](#cameraformat)   | Yes|  No | Camera output format.|
+| depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | Yes|  No | Depth map.|
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | Yes|  No | Quality level of the depth map.|
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | Yes|  No | Accuracy of the depth map.|
+
+### release<sup>13+</sup>
+
+release(): void
+
+Releases depth data output resources.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Example**
+
+```ts
+function releaseDepthData(depthData: camera.DepthData): void {
+  await depthData.release();
+}
+```
+
+## DepthDataOutput<sup>13+</sup>
+
+Implements depth data output. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+
+### start<sup>13+</sup>
+
+start(): Promise\<void\>
+
+Starts a depth data output stream. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.start().then(() => {
+    console.info('Promise returned to indicate that start method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth data output start, error code: ${error.code}.`);
+  });
+}
+```
+
+### stop<sup>13+</sup>
+
+stop(): Promise\<void\>
+
+Stops a depth data output stream. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.stop().then(() => {
+    console.info('Promise returned to indicate that stop method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth data output stop, error code: ${error.code}.`);
+  });
+}
+```
+
+### on('depthDataAvailable')<sup>13+</sup>
+
+on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
+
+Subscribes to depth data availability events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | Yes  | Callback used to listen for depth data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, depthData: camera.DepthData): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+}
+
+function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.on('depthDataAvailable', callback);
+}
+```
+
+### off('depthDataAvailable')<sup>13+</sup>
+
+off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
+
+Unsubscribes from depth data availability events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                   | Mandatory| Description                                      |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| type     | string                 | Yes  | Event type. The value is fixed at **'depthDataAvailable'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, depthData: camera.DepthData): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+}
+
+function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.off('depthDataAvailable', callback);
+}
+```
+
+### on('error')<sup>13+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **DepthDataOutput** error events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode). |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(depthDataOutputError: BusinessError): void {
+  console.error(`Depth data output error code: ${depthDataOutputError.code}`);
+}
+
+function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.on('error', callback);
+}
+```
+
+### off('error')<sup>13+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **DepthDataOutput** error events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **depthDataOutput** instance is created.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.off('error');
+}
+```
+
+## DepthFusionQuery<sup>14+</sup>
+
+A class for querying depth fusion capabilities.
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean
+
+Checks whether depth fusion is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | Check result. The value **true** means that depth fusion is supported, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.     |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
+  }
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array\<number\>
+
+Obtains the depth fusion threshold.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Array\<number\> | Depth fusion threshold.      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.      |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
+  }
+}
+```
+## DepthFusion<sup>14+</sup>
+
+Depth fusion class. It inherits from [DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14).
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean
+
+Checks whether depth fusion is enabled.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | Check result. The value **true** means that depth fusion is enabled, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config.      |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
+  };
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void
+
+Enables depth fusion.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | Yes  | Whether to enable depth fusion. The value **true** means to enable depth fusion, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                                          |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
+  };
+}
+```
+
 ## PrelaunchConfig
 
 Defines the camera prelaunch configuration.
@@ -451,12 +1098,12 @@ Currently, the configuration is used for sensor-level prelaunch. It will be used
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-|            Name                |                     Type                 |     Read-only   |     Mandatory    | Description      |
-| ------------------------------- | ---------------------------------------- | ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](#cameradevice)            |      No    |       Yes     | Camera device.        |
-| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)  |      No    |       No     | Type of the parameter used for prelaunch.   |
-| activeTime<sup>11+</sup>        | number                                   |      No    |       No     | Activation time, in minutes.|
-| settingParam<sup>11+</sup>      |  [SettingParam](#settingparam11)         |      No    |       No     | Setting parameter.     |
+|            Name                | Type                                              |     Read-only   |     Mandatory    | Description      |
+| ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
+| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      No    |       Yes     | Camera device.        |
+| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      No    |       No     | Type of the parameter used for prelaunch.   |
+| activeTime<sup>11+</sup>        | number                                           |      No    |       No     | Activation time, in minutes.|
+| settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      No    |       No     | Setting parameter.     |
 
 ## RestoreParamType<sup>11+</sup>
 
@@ -482,9 +1129,9 @@ Defines the effect parameters used to preheat an image.
 
 | Name            | Type  |   Read-only   | Optional | Description                                                                                               |
 | --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  No      | No  | Skin smoothing level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **1** indicates level-1 smoothing.       |
-| faceSlender     | number |  No      | No  | Face slimming level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **1** indicates level-1 slimming.       |
-| skinTone        | number |  No      | No  | Skin tone perfection level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12). For example, the value **0xBF986C** indicates a specific color.|
+| skinSmoothLevel | number |  No      | No  | Skin smoothing level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **1** indicates level-1 smoothing.       |
+| faceSlender     | number |  No      | No  | Face slimming level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **1** indicates level-1 slimming.       |
+| skinTone        | number |  No      | No  | Skin tone perfection level, which is obtained through [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11). For example, the value **0xBF986C** indicates a specific color.|
 
 ## PreviewOutput
 
@@ -549,7 +1196,7 @@ Checks whether Picture-in-Picture (PiP) preview is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: PiP preview is supported.<br>**false**: PiP preview is not supported.|
+| boolean | Check result. The value **true** means that the PiP preview is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -623,7 +1270,7 @@ Enables or disables PiP preview.
 
 | Name    | Type     | Mandatory| Description                      |
 |---------|---------| ---- | ------------------------ |
-| enabled | boolean | Yes| Whether to enable PiP preview. The value **true** means to enable PiP preview, and **false** means to disable it.|
+| enabled | boolean | Yes| Whether to enable or disable PiP view. The value **true** means to enable PiP view, and **false** means to disable it.|
 
 **Error codes**
 
@@ -802,7 +1449,7 @@ A class object that functions as a thumbnail proxy.
 
 getThumbnail(): Promise<image.PixelMap>
 
-Obtains the pixel map of a thumbnail.
+Obtains the PixelMap of a thumbnail.
 
 **System API**: This is a system API.
 
@@ -812,7 +1459,7 @@ Obtains the pixel map of a thumbnail.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise\<image.PixelMap\> | Pixel map of the thumbnail.|
+| Promise\<image.PixelMap\> | PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -870,11 +1517,71 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 Implements output information used in a photo session. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
 
+### burstCapture<sup>12+</sup>
+
+burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
+
+Starts the burst mode, in which users can capture a series of photos in quick succession. This API is generally used in photo mode. After the burst mode starts, the bottom layer continues displaying photos. You can call [confirmCapture](#confirmcapture11) to cancel the burst mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name | Type                                       | Mandatory| Description    |
+| ------- | ------------------------------------------- | ---- | -------- |
+| setting | [PhotoCaptureSetting](js-apis-camera.md#photocapturesetting) | Yes  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
+
+**Return value**
+
+| Type           | Description                     |
+| -------------- | ------------------------   |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+| 7400101         |  Parameter missing or parameter type incorrect.          |
+| 7400104         |  Session not running.          |
+| 7400201         |  Camera service fatal error.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function burstCapture(photoOutput: camera.PhotoOutput): void {
+  let captureLocation: camera.Location = {
+    latitude: 0,
+    longitude: 0,
+    altitude: 0
+  }
+  let settings: camera.PhotoCaptureSetting = {
+    quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+    rotation: camera.ImageRotation.ROTATION_0,
+    location: captureLocation,
+    mirror: false
+  }
+  photoOutput.burstCapture(settings).then(() => {
+    console.info('Promise returned to indicate that photo burstCapture request success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to photo output burstCapture, error code: ${error.code}.`);
+  });
+}
+```
+
 ### confirmCapture<sup>11+</sup>
 
 confirmCapture()
 
 Confirms photo capture. This API is generally used in night photo mode when users need to stop the exposure countdown and take a photo in advance.
+
+This API is used to end the burst mode, which is started by calling [burstCapture](#burstcapture12).
 
 **System API**: This is a system API.
 
@@ -925,7 +1632,7 @@ Checks whether deferred delivery of a certain type is supported.
 
 | Type           | Description                   |
 | -------------- | ----------------------- |
-| boolean | **true**: Deferred delivery is supported.<br>**false**: Deferred delivery is not supported.|
+| boolean | Check result. The value **true** means that deferred delivery is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1026,7 +1733,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1040,7 +1747,7 @@ Checks whether automatic high quality is supported for photos.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | Whether automatic high quality is supported.|
+| boolean | Check result. The value **true** means that automatic high quality is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1062,13 +1769,13 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
-Enables automatic high quality for photos. 
+Enables automatic high quality for photos.
 
-Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported12) to check whether automatic high quality is supported.
+Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13) to check whether automatic high quality is supported.
 
 **System API**: This is a system API.
 
@@ -1078,7 +1785,7 @@ Before using this API, call [isAutoHighQualityPhotoSupported](#isautohighquality
 
 | Name     | Type              | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   Yes  |   Whether to enable automatic high quality for photos.   |
+|   enabled   |  boolean  |   Yes  |   Whether to enable or disable automatic high quality for photos. The value **true** means to enable automatic high-quality, and **false** means to disable it.   |
 
 **Error codes**
 
@@ -1205,7 +1912,7 @@ This API must be called after [addOutput](js-apis-camera.md#addoutput11) or [add
 
 | Type| Description|
 | --------- | ------ |
-| boolean | **true**: The quick thumbnail feature is supported.<br>**false**: The quick thumbnail feature is not supported.|
+| boolean | Check result. The value **true** means that the quick thumbnail feature is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1335,7 +2042,7 @@ function callback(err: BusinessError, pixelMap: image.PixelMap): void {
       return;
   }
   // Display or save the PixelMap instance.
-  // do something
+  // do something.
 }
 
 async function registerQuickThumbnail(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<void> {
@@ -1393,61 +2100,23 @@ function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
 }
 ```
 
-## VideoOutput
+## MetadataOutput
 
-Implements output information used in a video session. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+Implements metadata streams. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
 
-### isMirrorSupported<sup>12+</sup>
+### addMetadataObjectTypes<sup>13+</sup> 
 
-isMirrorSupported(): boolean
+addMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
 
-Checks whether video mirroring is supported.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-**Return value**
-
-| Type           | Description                    |
-| -------------- | ----------------------- |
-| boolean | Whether video mirroring is supported.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 202                |  Not System Application.    |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isMirrorSupported(videoOutput: camera.VideoOutput): boolean {
-  return videoOutput.isMirrorSupported();
-}
-```
-
-### enableMirror<sup>12+</sup>
-
-enableMirror(enabled: boolean): void
-
-Enables video mirroring.
-
-Before using this API, call [isMirrorSupported](#ismirrorsupported12) to check whether video mirroring is supported.
-
-**System API**: This is a system API.
+Adds the types of metadata objects to be detected.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name     | Type              | Mandatory| Description                |
-| -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   Yes  |   Whether to enable video mirroring.   |
+| Name                 | Type                                              | Mandatory| Description                         |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
 
 **Error codes**
 
@@ -1455,19 +2124,173 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 202 | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.  |
-| 7400103                |  Session not config.                             |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function enableMirror(videoOutput: camera.VideoOutput): void {
-  return videoOutput.enableMirror(true);
+function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.addMetadataObjectTypes(types);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
+  }
 }
 ```
+
+### removeMetadataObjectTypes<sup>13+</sup> 
+
+removeMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+Removes the types of metadata objects to be detected.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                 | Type                                              | Mandatory| Description                         |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.                                   |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.removeMetadataObjectTypes(types);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+## MetadataObjectType
+
+Enumerates the types of metadata objects used for camera detection.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description             |
+| -------------------------- | ---- | ----------------- |
+| HUMAN_BODY<sup>13+</sup>                 | 1    | Metadata object used for human body detection.|
+| CAT_FACE<sup>13+</sup>                   | 2    | Metadata object used for cat face detection.|
+| CAT_BODY<sup>13+</sup>                   | 3    | Metadata object used for cat body detection.|
+| DOG_FACE<sup>13+</sup>                   | 4    | Metadata object used for dog face detection.|
+| DOG_BODY<sup>13+</sup>                   | 5    | Metadata object used for dog body detection.|
+| SALIENT_DETECTION<sup>13+</sup>          | 6    | Metadata object used for salient detection.|
+
+## Emotion<sup>13+</sup>
+Enumerates the types of emotions in the detected human face information.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description             |
+| -------------------------- | ---- | ----------------- |
+| NEUTRAL                 | 0    | Quiet and calm.|
+| SADNESS                   | 1    | Sad.|
+| SMILE                   | 2    | Smile.|
+| SURPRISE                   | 3    | Surprise.|
+
+## MetadataObject
+
+Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name        | Type                                       | Read-only| Optional|Description               |
+| -----------  | ------------------------------------------- | ---- | ---- | ----------------- |
+| objectId<sup>13+</sup>     | number                                      |  Yes |  No | Metadata object ID.|
+| confidence<sup>13+</sup>   | number                                      |  Yes |  No | Confidence of the detection, with a value range of [0,1].|
+
+## MetadataFaceObject<sup>13+</sup>
+
+Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  Yes |  No | Right eye area.|
+| emotion                | [Emotion](#emotion13)             |  Yes |  No | Detected emotion.|
+| emotionConfidence      | number                            |  Yes |  No | Confidence of the emotion detection, with a value range of [0,1].|
+| pitchAngle             | number                            |  Yes |  No | Pitch angle, with a value range of [-90, 90], where downward is positive.|
+| yawAngle               | number                            |  Yes |  No | Yaw angle, with a value range of [-90, 90], where rightward is positive.|
+| rollAngle              | number                            |  Yes |  No | Row angle, with a value range of [-180, 180], where clockwise direction is positive.|
+
+## MetadataHumanBodyObject<sup>13+</sup>
+
+Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataCatFaceObject<sup>13+</sup>
+
+Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+
+## MetadataCatBodyObject<sup>13+</sup>
+
+Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataDogFaceObject<sup>13+</sup>
+
+Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+
+## MetadataDogBodyObject<sup>13+</sup>
+
+Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataSalientDetectionObject<sup>13+</sup>
+
+Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataBarcodeObject<sup>14+</sup>
+
+Implements the barcode metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## PortraitEffect
 
@@ -1490,7 +2313,7 @@ Enumerates the portrait effects.
 
 Provides APIs to obtain and set the beauty effect.
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -1524,7 +2347,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -1596,7 +2419,7 @@ Enumerates the beauty types.
 
 Provides APIs to obtain the manual exposure range supported.
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -1679,7 +2502,7 @@ function getExposure(nightPhotoSession: camera.NightPhotoSession): number | unde
 
 setExposure(exposure: number): void
 
-Sets the manual exposure duration, in ms.
+Sets the manual exposure duration. Before using this API, call [getSupportedExposureRange](#getsupportedexposurerange11) to obtain the supported manual exposure durations, in ms.
 
 **System API**: This is a system API.
 
@@ -1689,7 +2512,7 @@ Sets the manual exposure duration, in ms.
 
 | Name     | Type                   | Mandatory| Description                                                                     |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------------|
-| value    | number                    | Yes  | Manual exposure duration, which must be one of the supported durations obtained by running [getSupportedExposureRange](#getsupportedexposurerange12).|
+| value    | number                    | Yes  | Manual exposure duration, which must be one of the supported durations obtained by running [getSupportedExposureRange](#getsupportedexposurerange11).|
 
  **Error codes**
 
@@ -1713,7 +2536,7 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 Provides the API to check the support for macro photography.
 
-### isMacroSupported<sup>12+</sup>
+### isMacroSupported<sup>11+</sup>
 
 isMacroSupported(): boolean
 
@@ -1727,7 +2550,7 @@ Checks whether macro photography is supported in the current state. This API mus
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-|   boolean  | **true**: Macro photography is supported.<br>**false**: Macro photography is not supported.|
+|   boolean  | Check result. The value **true** means that macro photography is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1789,15 +2612,31 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 }
 ```
 
+## TripodStatus<sup>13+</sup>
+
+Enumerates the tripod statuses.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name      | Value  | Description                                 |
+|----------|-----|-------------------------------------|
+| INVALID  | 0   | Error status, or no tripod detected. **System API**: This is a system API.|
+| ACTIVE   | 1   | The tripod is active. **System API**: This is a system API.         |
+| ENTERING | 2   | The system is transitioning into a stable tripod mode. **System API**: This is a system API.       |
+| EXITING  | 3   | The system is leaving the stable tripod mode. **System API**: This is a system API.         |
+
+
 ## SceneFeatureType<sup>12+</sup>
 
 Enumerates the scene features.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Value       | Description        |
-| ----------------------- | --------- | ------------ |
-| MOON_CAPTURE_BOOST       | 0      | Moon scene. **System API**: This is a system API.           |
+| Name                           | Value  | Description                       |
+|-------------------------------|-----|---------------------------|
+| MOON_CAPTURE_BOOST            | 0   | Moon scene. **System API**: This is a system API. |
+| TRIPOD_DETECTION<sup>13+</sup> | 1   | Scene where a tripod is used for photo capture. **System API**: This is a system API. |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | Scene for long exposure photography. **System API**: This is a system API.|
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
@@ -1808,7 +2647,19 @@ Describes the scene feature detection result.
 | Name    | Type       |   Read-only  |   Mandatory  | Description      |
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   Yes    |    Yes   | Scene feature type. |
-| detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected.|
+| detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected, and **false** means the opposite.|
+
+## TripodDetectionResult<sup>13+</sup>
+
+TripodDetectionResult extends [SceneFeatureDetectionResult](#scenefeaturedetectionresult12)
+
+Describes the tripod detection result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name    | Type                             |   Read-only  |   Mandatory  | Description     |
+| -------- |---------------------------------| -------- | -------- |---------|
+| tripodStatus | [TripodStatus](#tripodstatus13) |   Yes    |    Yes   | Tripod status.|
 
 ## SceneDetection<sup>12+</sup>
 
@@ -1834,7 +2685,7 @@ Checks whether a scene feature is supported.
 
 | Type       | Description          |
 |-----------|--------------|
-| boolean   | **true**: The scene feature is supported.<br>**false**: The scene feature is not supported. |
+| boolean   | Check result. The value **true** means that the scene feature is supported, and **false** means the opposite. |
 
 **Error codes**
 
@@ -1848,8 +2699,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
-  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+function isSceneFeatureSupported(photoSessionForSys: camera.PhotoSessionForSys, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSessionForSys.isSceneFeatureSupported(featureType);
   return isSupported;
 }
 ```
@@ -1958,9 +2809,9 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(): Array<ZoomPointInfo> {
+function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
@@ -2069,7 +2920,7 @@ Provides APIs to obtain and set the beauty effect.
 
 setBeauty(type: BeautyType, value: number): void
 
-Sets a beauty type and its level. Beauty mode is turned off only when all the [beauty types](#beautytype) obtained through [getSupportedBeautyTypes](#getsupportedbeautytypes12) are disabled.
+Sets a beauty type and its level. Beauty mode is turned off only when all the [beauty types](#beautytype) obtained through [getSupportedBeautyTypes](#getsupportedbeautytypes11) are disabled.
 
 **System API**: This is a system API.
 
@@ -2080,7 +2931,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 | Name     | Type                   | Mandatory| Description                                                               |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------|
 | type     | [BeautyType](#beautytype) | Yes  | Beauty type.                                                            |
-| value    | number                    | Yes  | Beauty level, which is obtained through [getSupportedBeautyRange](#getsupportedbeautyrange12).|
+| value    | number                    | Yes  | Beauty level, which is obtained through [getSupportedBeautyRange](#getsupportedbeautyrange11).|
 
 **Error codes**
 
@@ -2160,7 +3011,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 Provides the API to obtain the color effects supported.
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -2204,7 +3055,7 @@ Provides the APIs to obtain and set the lens color effect.
 
 setColorEffect(type: ColorEffectType): void
 
-Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsupportedcoloreffects12) to obtain the supported color effects.
+Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsupportedcoloreffects11) to obtain the supported color effects.
 
 **System API**: This is a system API.
 
@@ -2214,7 +3065,7 @@ Sets a color effect. Before the setting, call [getSupportedColorEffects](#getsup
 
 | Name        | Type                                                           | Mandatory| Description                     |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| type | [ColorEffectType](#coloreffecttype11)                              | Yes| Color effect, which can be obtained through [getSupportedColorEffects](#getsupportedcoloreffects12).  |
+| type | [ColorEffectType](#coloreffecttype11)                              | Yes| Color effect, which can be obtained through [getSupportedColorEffects](#getsupportedcoloreffects11).  |
 
 **Error codes**
 
@@ -2622,7 +3473,7 @@ Implements a capture session, which saves all [CameraInput](js-apis-camera.md#ca
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
 
 ### getSupportedBeautyTypes<sup>(deprecated)</sup>
 
@@ -2632,7 +3483,7 @@ Obtains the supported beauty types.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes12) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
 
 **System API**: This is a system API.
 
@@ -2676,7 +3527,7 @@ Obtains the levels that can be set a beauty type. The beauty levels vary accordi
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
 
 **System API**: This is a system API.
 
@@ -2723,7 +3574,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -2768,7 +3619,7 @@ Obtains the level of the beauty type in use.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -2843,7 +3694,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state change. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
 
 **Error codes**
 
@@ -2886,7 +3737,7 @@ Unsubscribes from macro state change events.
 | Name    | Type                   | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -2983,9 +3834,120 @@ function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, fea
 }
 ```
 
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>13+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.off('lcdFlashStatus');
+}
+```
+
+## FocusTrackingMode<sup>15+</sup>
+
+Enumerates the focus tracking modes.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description  |
+| ---- | ---- | ------ |
+| AUTO | 0    | Automatic.|
+
+## FocusTrackingInfo<sup>15+</sup>
+
+Describes the focus tracking information, which is obtained by calling VideoSessionForSys.[on('focusTrackingInfoAvailable')](#onfocustrackinginfoavailable15).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name          | Type                                     | Read-only| Optional| Description      |
+| -------------- | ----------------------------------------- | ---- | ---- | ---------- |
+| trackingMode   | [FocusTrackingMode](#focustrackingmode15) | No  | No  | Tracing mode.|
+| trackingRegion | [Rect](js-apis-camera.md#rect)            | No  | No  | Tracking region.|
+
+## LightStatus<sup>18+</sup>
+
+Enumerates the camera light statuses, which are obtained by calling VideoSessionForSys.[on('lightStatusChange')](#onlightstatuschange18).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name          | Value  | Description   |
+|--------------| ---- |-------|
+| NORMAL       | 0    | Normal lighting conditions.|
+| INSUFFICIENT | 1    | Insufficient lighting (too dark).|
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
 
 Implements a video session for system applications, which sets the parameters of the normal video mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
 
@@ -3014,7 +3976,7 @@ Subscribes to macro state change events. This API uses an asynchronous callback 
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state change. |
+| callback | AsyncCallback\<boolean\>     | Yes  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. |
 
 **Error codes**
 
@@ -3057,7 +4019,7 @@ Unsubscribes from macro state change events.
 | Name   | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<boolean\> | No  | Callback used to return the macro state. The value **true** means that the macro state is enabled, and **false** means that it is disabled. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('macroStatusChanged')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
 
 **Error codes**
 
@@ -3073,6 +4035,249 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
   videoSession.off('macroStatusChanged');
 }
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>13+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.off('lcdFlashStatus');
+}
+```
+
+### on('focusTrackingInfoAvailable')<sup>15+</sup>
+
+on(type: 'focusTrackingInfoAvailable', callback: Callback\<FocusTrackingInfo\>): void
+
+Subscribes to focus tracking information events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | Yes  | Callback used to return the focus tracking information.                        |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+function callback(focusTrackingInfo: camera.FocusTrackingInfo): void {
+  console.info(`Focus tracking mode: ${focusTrackingInfo.trackingMode}`);
+  console.info(`Focus tracking Region: topLeftX ${focusTrackingInfo.trackingRegion.topLeftX}
+                                       topLeftY ${focusTrackingInfo.trackingRegion.topLeftY}
+                                       width ${focusTrackingInfo.trackingRegion.width}
+                                       height ${focusTrackingInfo.trackingRegion.height}`);
+}
+
+function registerFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.on('focusTrackingInfoAvailable', callback);
+}
+```
+
+### off('focusTrackingInfoAvailable')<sup>15+</sup>
+
+off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>): void
+
+Unsubscribes from focus tracking information events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'focusTrackingInfoAvailable'**. The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | Callback\<[FocusTrackingInfo](#focustrackinginfo15)\>      | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusTrackingInfoAvailable')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
+  session.off('focusTrackingInfoAvailable');
+}
+```
+
+### on('lightStatusChange')<sup>18+</sup>
+
+on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
+
+Subscribes to camera light status changes. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                                                             |
+| -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
+| type     | string                                         | Yes  | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | Yes  | Callback used to return the light status information.                                                             |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOn(): void {
+        Logger.info(TAG, 'handleLightStatusOn');
+        try {
+          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOn err:${e}`);
+        }
+    }
+```
+
+### off('lightStatusChange')<sup>18+</sup>
+
+off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
+
+Unsubscribes from camera light status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                                                              |
+| -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
+| type     | string                                         | Yes | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | No | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lightStatusChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)               |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOff(): void {
+        Logger.info(TAG, 'handleLightStatusOff');
+        try {
+          this.mSession?.off('lightStatusChange');
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOff err:${e}`);
+        }
+  }
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
@@ -3254,6 +4459,83 @@ Unsubscribes from smooth zoom state change events.
 ```ts
 function unregisterSmoothZoomInfo(portraitPhotoSession: camera.PortraitPhotoSession): void {
   portraitPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>13+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.off('lcdFlashStatus');
 }
 ```
 
@@ -3681,7 +4963,6 @@ Defines the PiP status data.
 | status        | number   | No  | Yes  | Status of PiP. The options are 0 (stopped), 1 (started), 2 (stopping), and 3 (starting).|
 | sketchRatio   | number   | No  | Yes  | Zoom ratio of PiP.|
 
-
 ## SlowMotionVideoSession<sup>12+</sup>
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
@@ -3691,7 +4972,6 @@ Implements a slow-motion video session, which sets the parameters of the slow-mo
 > **NOTE**
 >
 > In slow-motion video mode, only preview streams and video streams can be added.
-
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
@@ -4009,7 +5289,7 @@ Checks whether the device supports slow-motion detection.
 
 | Type       | Description                                                                                    |
 | ---------- |----------------------------------------------------------------------------------------|
-| boolean    | **true**: The device supports slow-motion detection.<br>**false**: The device does not support slow-motion detection.<br>If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the device supports slow-motion detection, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4085,6 +5365,128 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
 }
 ```
 
+## PanoramaPhotoSession<sup>12+</sup>
+
+PanoramaPhotoSession extends Session, Focus, AutoExposure, WhiteBalance, ColorEffect
+
+Implements a panoramic photo session, which sets the parameters of the panoramic photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **PanoramaPhotoSession** error events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                         | Mandatory| Description                          |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`Panorama photo session error code: ${err.code}`);
+}
+
+function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **PanoramaPhotoSession** error events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                       | Mandatory| Description                          |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('error')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
+
+**Example**
+
+```ts
+function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                   | Mandatory| Description                      |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+Unsubscribes from focus state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+
+**Example**
+
+```ts
+function unregisterFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.off('focusStateChange');
+}
+```
+
 ## IsoInfo<sup>12+</sup>
 
 Describes the ISO information.
@@ -4148,7 +5550,7 @@ Enumerates the camera output formats.
 | Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DNG<sup>12+</sup>  | 4         | Raw image in DNG format. **System API**: This is a system API.        |
-
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup>  | 5         | Enhanced raw image in DNG format, where JPG and raw images are packaged in the same file, and up to 16-bit raw data is supported. **System API**: This is a system API.        |
 ## ExposureMeteringMode<sup>12+</sup>
 
 Enumerates the exposure metering modes.
@@ -4187,7 +5589,7 @@ Checks whether an exposure metering mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure metering mode is supported.<br>**false**: The exposure metering mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure metering mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4208,7 +5610,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
   try {
-    isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
+    isSupported = professionalPhotoSession.isExposureMeteringModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -4271,7 +5673,7 @@ function getExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
 
 setExposureMeteringMode(aeMeteringMode: ExposureMeteringMode): void
 
-Sets an exposure metering mode. 
+Sets an exposure metering mode.
 
 Before the setting, call [isExposureMeteringModeSupported](#isexposuremeteringmodesupported12) to check whether the target exposure metering mode is supported.
 
@@ -4311,6 +5713,28 @@ function setExposureMeteringMode(professionalPhotoSession: camera.ProfessionalPh
 }
 ```
 
+## FocusRangeType<sup>15+</sup>
+
+Enumerates the focus range types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description      |
+| ---- | ---- | ---------- |
+| AUTO | 0    | Auto focus.    |
+| NEAR | 1    | Focus on near objects.|
+
+## FocusDrivenType<sup>15+</sup>
+
+Enumerates the focus drive types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Value  | Description      |
+| ---- | ---- | ---------- |
+| AUTO | 0    | Automatic.    |
+| FACE | 1    | Face-driven.|
+
 ## FocusQuery<sup>12+</sup>
 
 Provides the API to check whether the focus assist is supported.
@@ -4329,7 +5753,7 @@ Checks whether the focus assist is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus assist is supported.<br>**false**: The focus assist is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus assist is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4358,6 +5782,106 @@ function isFocusAssistSupported(professionalPhotoSession: camera.ProfessionalPho
 }
 ```
 
+### isFocusRangeTypeSupported<sup>15+</sup>
+
+isFocusRangeTypeSupported(type: FocusRangeType): boolean
+
+Checks whether a focus range type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                    |
+| ------ | ----------------------------------- | ---- | ------------------------ |
+| type   | [FocusRangeType](#focusrangetype15) | Yes  | Focus range type.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Check result. The value **true** means that the focus range type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusRangeTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusRangeType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusRangeTypeSupported(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isFocusRangeTypeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+### isFocusDrivenTypeSupported<sup>15+</sup>
+
+isFocusDrivenTypeSupported(type: FocusDrivenType): boolean
+
+Checks whether a focus drive type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description                    |
+| ------ | ------------------------------------- | ---- | ------------------------ |
+| type   | [FocusDrivenType](#focusdriventype15) | Yes  | Focus drive type.|
+
+**Return value**
+
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
+| boolean | Check result. The value **true** means that the focus drive type is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isFocusDrivenTypeSupported(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): boolean {
+  let status: boolean = false;
+  try {
+    status = session.isFocusDrivenTypeSupported(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isFocusDrivenTypeSupported call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
 ## Focus
 
 Focus extends [FocusQuery](#focusquery12)
@@ -4368,7 +5892,7 @@ Provides APIs to obtain and set the camera focus mode and focus position.
 
 setFocusAssist(enabled: boolean): void
 
-Sets the focus assist. 
+Sets the focus assist.
 
 Before the setting, call [isFocusAssistSupported](#isfocusassistsupported12) to check whether the device supports the focus assist.
 
@@ -4380,7 +5904,7 @@ Before the setting, call [isFocusAssistSupported](#isfocusassistsupported12) to 
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| enabled | boolean | Yes  | **true**: Enables the focus assist.<br>**false**: Disables the focus assist.|
+| enabled | boolean | Yes  | Whether to enable or disable focus assist. The value **true** means to enable focus assist, and **false** means to disable it.|
 
 **Error codes**
 
@@ -4423,7 +5947,7 @@ Checks whether the focus assist is enabled.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus assist is enabled.<br>**false**: The focus assist is disabled.|
+| boolean    | Check result. The value **true** means that the focus assist is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -4452,6 +5976,180 @@ function getFocusAssist(professionalPhotoSession: camera.ProfessionalPhotoSessio
 }
 ```
 
+### setFocusRange<sup>15+</sup>
+
+setFocusRange(type: FocusRangeType): void
+
+Sets a focus range type. Before the setting, call [isFocusRangeTypeSupported](#isfocusrangetypesupported15) to check whether the focus range type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description          |
+| ------ | ----------------------------------- | ---- | -------------- |
+| type   | [FocusRangeType](#focusrangetype15) | Yes  | Focus range type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusRange(session: camera.VideoSessionForSys, type: camera.FocusRangeType): void {
+  try {
+    session.setFocusRange(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFocusRange call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusRange<sup>15+</sup>
+
+getFocusRange(): FocusRangeType
+
+Obtains the focus range type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                               | Description                    |
+| ----------------------------------- | ------------------------ |
+| [FocusRangeType](#focusrangetype15) | Focus range type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusRange(session: camera.VideoSessionForSys): camera.FocusRangeType | undefined {
+  let focusRangeType: camera.FocusRangeType | undefined = undefined;
+  try {
+    focusRangeType = session.getFocusRange();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getFocusRange call failed. error code: ${err.code}`);
+  }
+  return focusRangeType;
+}
+```
+
+### setFocusDriven<sup>15+</sup>
+
+setFocusDriven(type: FocusDrivenType): void
+
+Sets a focus drive type. Before the setting, call [isFocusDrivenTypeSupported](#isfocusdriventypesupported15) to check whether the focus drive type is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description          |
+| ------ | ------------------------------------- | ---- | -------------- |
+| type   | [FocusDrivenType](#focusdriventype15) | Yes  | Focus drive type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setFocusDriven(session: camera.VideoSessionForSys, type: camera.FocusDrivenType): void {
+  try {
+    session.setFocusDriven(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFocusDriven call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getFocusDriven<sup>15+</sup>
+
+getFocusDriven(): FocusDrivenType
+
+Obtains the focus drive type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
+| [FocusDrivenType](#focusdriventype15) | Focus drive type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenType | undefined {
+  let focusDrivenType: camera.FocusDrivenType | undefined = undefined;
+  try {
+    focusDrivenType = session.getFocusDriven();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getFocusDriven call failed. error code: ${err.code}`);
+  }
+  return focusDrivenType;
+}
+```
+
 ## ManualFocus<sup>12+</sup>
 
 Provides APIs related to manual focus operations.
@@ -4470,7 +6168,7 @@ Sets the manual focus distance.
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0,1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
+| distance | number | Yes  | Manual focus distance. The value is a floating point number in the range [0, 1]. The value **0** indicates a close-up shot, and **1** indicates a long shot.<br> |
 
 **Error codes**
 
@@ -4560,7 +6258,7 @@ Checks whether manual ISO setting is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: Manual ISO setting is supported.<br>**false**: Manual ISO setting is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | The value **true** means that manual ISO setting is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4765,7 +6463,7 @@ Checks whether a white balance mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The white balance mode is supported.<br>**false**: The white balance mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+| boolean    | The value **true** means that the white balance mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4849,7 +6547,7 @@ Provides APIs to process white balance, including obtaining and setting the whit
 
 setWhiteBalanceMode(mode: WhiteBalanceMode): void
 
-Sets a white balance mode. 
+Sets a white balance mode.
 
 Before the setting, call [isWhiteBalanceModeSupported](#iswhitebalancemodesupported12) to check whether the target white balance mode is supported.
 
@@ -4933,7 +6631,6 @@ function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
 ```
 
 ### setWhiteBalance<sup>12+</sup>
-
 setWhiteBalance(whiteBalance: number): void
 
 Sets a white balance value.
@@ -5248,9 +6945,9 @@ function unregisterSmoothZoomInfo(professionalPhotoSession: camera.ProfessionalP
 }
 ```
 
-### on('isoInfo')<sup>12+</sup>
+### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfo', callback: AsyncCallback\<IsoInfo\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 
 Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
 
@@ -5262,8 +6959,8 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
 
@@ -5285,13 +6982,13 @@ function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
 }
 
 function registerIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('isoInfo', isoInfoCallback);
+  professionalPhotoSession.on('isoInfoChange', isoInfoCallback);
 }
 ```
 
-### off('isoInfo')<sup>12+</sup>
+### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfo', callback?: AsyncCallback\<IsoInfo\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 
 Unsubscribes from automatic ISO change events.
 
@@ -5303,8 +7000,8 @@ Unsubscribes from automatic ISO change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -5316,13 +7013,13 @@ Unsubscribes from automatic ISO change events.
 
 ```ts
 function unregisterIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('isoInfo');
+  professionalPhotoSession.off('isoInfoChange');
 }
 ```
 
-### on('exposureInfo')<sup>12+</sup>
+### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -5334,8 +7031,8 @@ Subscribes to exposure information change events to obtain the exposure informat
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
 
@@ -5357,13 +7054,13 @@ function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): vo
 }
 
 function registerExposureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('exposureInfo', exposureInfoCallback);
+  professionalPhotoSession.on('exposureInfoChange', exposureInfoCallback);
 }
 ```
 
-### off('exposureInfo')<sup>12+</sup>
+### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfo', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -5375,8 +7072,8 @@ Unsubscribes from exposure information change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -5388,13 +7085,13 @@ Unsubscribes from exposure information change events.
 
 ```ts
 function unregisterExposureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('exposureInfo');
+  professionalPhotoSession.off('exposureInfoChange');
 }
 ```
 
-### on('apertureInfo')<sup>12+</sup>
+### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 Subscribes to aperture change events to obtain the real-time aperture information. This API uses an asynchronous callback to return the result.
 
@@ -5406,8 +7103,8 @@ Subscribes to aperture change events to obtain the real-time aperture informatio
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
 
@@ -5429,13 +7126,13 @@ function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): vo
 }
 
 function registerApertureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('apertureInfo', apertureInfoCallback);
+  professionalPhotoSession.on('apertureInfoChange', apertureInfoCallback);
 }
 ```
 
-### off('apertureInfo')<sup>12+</sup>
+### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfo', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 Unsubscribes from aperture change events.
 
@@ -5447,8 +7144,8 @@ Unsubscribes from aperture change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -5460,13 +7157,13 @@ Unsubscribes from aperture change events.
 
 ```ts
 function unregisterApertureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('apertureInfo');
+  professionalPhotoSession.off('apertureInfoChange');
 }
 ```
 
-### on('luminationInfo')<sup>12+</sup>
+### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 Subscribes to illumination change events to obtain real-time illumination information. This API uses an asynchronous callback to return the result.
 
@@ -5478,8 +7175,8 @@ Subscribes to illumination change events to obtain real-time illumination inform
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
 
@@ -5501,13 +7198,13 @@ function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo)
 }
 
 function registerLuminationInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('luminationInfo', luminationInfoCallback);
+  professionalPhotoSession.on('luminationInfoChange', luminationInfoCallback);
 }
 ```
 
-### off('luminationInfo')<sup>12+</sup>
+### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfo', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 Unsubscribes from illumination change events.
 
@@ -5519,8 +7216,8 @@ Unsubscribes from illumination change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -5532,7 +7229,7 @@ Unsubscribes from illumination change events.
 
 ```ts
 function unregisterLuminationInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('luminationInfo');
+  professionalPhotoSession.off('luminationInfoChange');
 }
 ```
 
@@ -5766,9 +7463,9 @@ function unregisterSmoothZoomInfo(professionalVideoSession: camera.ProfessionalV
 }
 ```
 
-### on('isoInfo')<sup>12+</sup>
+### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfo', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 
 Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
 
@@ -5780,8 +7477,8 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
 
@@ -5803,13 +7500,13 @@ function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
 }
 
 function registerIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('isoInfo', isoInfoCallback);
+  professionalVideoSession.on('isoInfoChange', isoInfoCallback);
 }
 ```
 
-### off('isoInfo')<sup>12+</sup>
+### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfo', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 
 Unsubscribes from automatic ISO change events.
 
@@ -5821,8 +7518,8 @@ Unsubscribes from automatic ISO change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -5834,13 +7531,13 @@ Unsubscribes from automatic ISO change events.
 
 ```ts
 function unregisterIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('isoInfo');
+  professionalVideoSession.off('isoInfoChange');
 }
 ```
 
-### on('exposureInfo')<sup>12+</sup>
+### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -5852,8 +7549,8 @@ Subscribes to exposure information change events to obtain the exposure informat
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>| Yes  | Callback used to return the exposure information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
 
@@ -5875,13 +7572,13 @@ function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): vo
 }
 
 function registerExposureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('exposureInfo', exposureInfoCallback);
+  professionalVideoSession.on('exposureInfoChange', exposureInfoCallback);
 }
 ```
 
-### off('exposureInfo')<sup>12+</sup>
+### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfo', callback?: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -5893,8 +7590,8 @@ Unsubscribes from exposure information change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -5906,13 +7603,13 @@ Unsubscribes from exposure information change events.
 
 ```ts
 function unregisterExposureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('exposureInfo');
+  professionalVideoSession.off('exposureInfoChange');
 }
 ```
 
-### on('apertureInfo')<sup>12+</sup>
+### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 Subscribes to aperture change events to obtain the aperture information. This API uses an asynchronous callback to return the result.
 
@@ -5924,8 +7621,8 @@ Subscribes to aperture change events to obtain the aperture information. This AP
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
 
@@ -5947,13 +7644,13 @@ function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): vo
 }
 
 function registerApertureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('apertureInfo', apertureInfoCallback);
+  professionalVideoSession.on('apertureInfoChange', apertureInfoCallback);
 }
 ```
 
-### off('apertureInfo')<sup>12+</sup>
+### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfo', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 Unsubscribes from aperture change events.
 
@@ -5965,8 +7662,8 @@ Unsubscribes from aperture change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -5978,13 +7675,13 @@ Unsubscribes from aperture change events.
 
 ```ts
 function unregisterApertureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('apertureInfo');
+  professionalVideoSession.off('apertureInfoChange');
 }
 ```
 
-### on('luminationInfo')<sup>12+</sup>
+### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 Subscribes to illumination change events to obtain illumination information. This API uses an asynchronous callback to return the result.
 
@@ -5996,8 +7693,8 @@ Subscribes to illumination change events to obtain illumination information. Thi
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>| Yes  | Callback used to return the illumination information.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
 
@@ -6019,13 +7716,13 @@ function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo)
 }
 
 function registerLuminationInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('luminationInfo', luminationInfoCallback);
+  professionalVideoSession.on('luminationInfoChange', luminationInfoCallback);
 }
 ```
 
-### off('luminationInfo')<sup>12+</sup>
+### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfo', callback?: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 Unsubscribes from illumination change events.
 
@@ -6037,8 +7734,8 @@ Unsubscribes from illumination change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12))\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -6050,7 +7747,7 @@ Unsubscribes from illumination change events.
 
 ```ts
 function unregisterLuminationInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('luminationInfo');
+  professionalVideoSession.off('luminationInfoChange');
 }
 ```
 
@@ -6532,7 +8229,7 @@ Checks whether the LCD flash is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: The LCD flash is supported.<br>**false**: The LCD flash is not supported.|
+| boolean | Check result. The value **true** means that the LCD flash is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -6548,5 +8245,1434 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boolean {
   return nightPhotoSession.isLcdFlashSupported();
+}
+```
+
+## Flash<sup>11+</sup>
+
+Flash extends [FlashQuery](js-apis-camera.md#flashquery12)
+
+Provides APIs related to the flash.
+
+### enableLcdFlash<sup>13+</sup>
+
+enableLcdFlash(enabled: boolean): void
+
+Enables or disables the LCD flash.
+
+Before the setting, call [isLcdFlashSupported](#islcdflashsupported12) to check whether the device supports the LCD flash.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory| Description                                              |
+| --------- | ----------------------- | ---- |--------------------------------------------------|
+| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. The value **true** means to enable the LCD flash, and **false** means to disable it. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableLcdFlash(session: camera.PhotoSessionForSys | camera.VideoSessionForSys | camera.NightPhotoSession): void {
+  try {
+    session.enableLcdFlash(true);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFlashMode call failed. error code: ${err.code}`);
+  }
+}
+```
+
+## TimeLapseRecordState<sup>12+</sup>
+
+Enumerates the time-lapse recording states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description        |
+| ----------------------------- | ---- | ----------- |
+| IDLE          | 0    | Recording not started.|
+| RECORDING     | 1    | Recording.|
+
+## TimeLapsePreviewType<sup>12+</sup>
+
+Enumerates the time-lapse preview types, which affect the shooting algorithm.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description        |
+| ----------------------------- | ---- | ----------- |
+| DARK         | 1    | Dark environment, a scenario with poor illumination, for example, at night or in a dark area.|
+| LIGHT        | 2    | Bright environment, a scenario with good illumination, for example, in the daytime or under light.|
+
+## TryAEInfo<sup>12+</sup>
+
+Describes the Try AE parameters. Try AE indicates that the hardware reports the status based on the ambient illumination change during time-lapse photographing.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name| Type   | Read-only| Optional| Description          |
+| ---- | ------- | ---- |--| -------------- |
+| isTryAEDone        | boolean  | Yes  | No| Whether Try AE is complete.       |
+| isTryAEHintNeeded  | boolean  | Yes  | Yes| Whether Try AE is required.       |
+| previewType        | [TimeLapsePreviewType](#timelapsepreviewtype12) | Yes  | Yes| Preview type.       |
+| captureInterval    | number   | Yes  | Yes| Shooting interval, in ms.       |
+
+## TimeLapsePhotoSession<sup>12+</sup>
+
+TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
+
+Implements a time-lapse photo session, which sets the parameters of the time-lapse photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session12).
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **TimeLapsePhotoSession** error events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                         | Mandatory| Description                          |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message       |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`Time lapse photo session error code: ${err.code}`);
+}
+
+function registerSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **TimeLapsePhotoSession** error events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                       | Mandatory| Description                          |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback, which is optional. If a callback function is passed in, it is an anonymous function.      |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message       |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**Example**
+
+```ts
+function unregisterSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                   | Mandatory| Description                      |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | Yes  | Callback used to return the focus state change. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message       |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+Unsubscribes from focus state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('focusStateChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message       |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**Example**
+
+```ts
+function unregisterFocusStateChange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('focusStateChange');
+}
+```
+
+### on('isoInfoChange')<sup>12+</sup>
+
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
+
+Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`ISO value: ${info.iso}`);
+}
+
+function registerIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('isoInfoChange', isoInfoCallback);
+}
+```
+
+### off('isoInfoChange')<sup>12+</sup>
+
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
+
+Unsubscribes from automatic ISO change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
+
+**Error codes**
+
+| ID| Error Message                   |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('isoInfoChange');
+}
+```
+
+### on('exposureInfoChange')<sup>12+</sup>
+
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
+
+Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`exposureTimeValue: ${info.exposureTime}`);
+}
+
+function registerExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('exposureInfoChange', exposureInfoCallback);
+}
+```
+
+### off('exposureInfoChange')<sup>12+</sup>
+
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
+
+Unsubscribes from exposure information change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('exposureInfoChange');
+}
+```
+
+### on('luminationInfoChange')<sup>12+</sup>
+
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
+
+Subscribes to illumination change events to obtain real-time illumination information. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`Lumination: ${info.lumination}`);
+}
+
+function registerLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('luminationInfoChange', luminationInfoCallback);
+}
+```
+
+### off('luminationInfoChange')<sup>12+</sup>
+
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
+
+Unsubscribes from illumination change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('luminationInfoChange');
+}
+```
+
+### on('tryAEInfoChange')<sup>12+</sup>
+
+on(type: 'tryAEInfoChange', callback: AsyncCallback\<TryAEInfo\>): void
+
+Subscribes to Try AE change events to obtain real-time Try AE parameters. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'tryAEInfoChange'**.        |
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| Yes  | Callback used to return the Try AE parameters.        |
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function tryAEInfoCallback(err: BusinessError, info: camera.TryAEInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`TryAEInfo: ${info.isTryAEDone}, ${info.isTryAEHintNeeded}, ${info.previewType}, ${info.captureInterval}`);
+}
+
+function registerTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('tryAEInfoChange', tryAEInfoCallback);
+}
+```
+
+### off('tryAEInfoChange')<sup>12+</sup>
+
+off(type: 'tryAEInfoChange', callback?: AsyncCallback\<TryAEInfo\>): void
+
+Unsubscribes from Try AE change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                                     | Mandatory| Description                              |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'tryAEInfoChange'**.        |
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('tryAEInfoChange')**.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**Example**
+
+```ts
+function unregisterTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('tryAEInfoChange');
+}
+```
+
+### isTryAENeeded<sup>12+</sup>
+
+isTryAENeeded(): boolean
+
+Checks whether Try AE is required.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| boolean   | Check result. The value **true** means that Try AE is required, and **false** means the opposite. The error code type is defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 |  Session not config.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isTryAENeeded(timeLapsePhotoSession: camera.TimeLapsePhotoSession): boolean {
+  let needed = false;
+  try {
+    needed = timeLapsePhotoSession.isTryAENeeded();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isTryAENeeded call failed. error code: ${err.code}`);
+  }
+  return needed;
+}
+```
+
+### startTryAE<sup>12+</sup>
+
+startTryAE(): void
+
+Starts to execute Try AE.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function startTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.startTryAE();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The startTryAE call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### stopTryAE<sup>12+</sup>
+
+stopTryAE(): void
+
+Stops the execution of Try AE.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stopTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.stopTryAE();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The stopTryAE call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedTimeLapseIntervalRange<sup>12+</sup>
+
+getSupportedTimeLapseIntervalRange(): Array\<number\>
+
+Obtains the supported time-lapse shooting interval range.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| Array\<number\>   | Interval range, in ms. The value depends on the underlying capability. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedTimeLapseIntervalRange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): Array<number> {
+  let intervalRange: Array<number> = [];
+  try {
+    intervalRange = timeLapsePhotoSession.getSupportedTimeLapseIntervalRange();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getSupportedTimeLapseIntervalRange call failed. error code: ${err.code}`);
+  }
+  return intervalRange;
+}
+```
+
+### getTimeLapseInterval<sup>12+</sup>
+
+getTimeLapseInterval(): number
+
+Obtains the current time-lapse shooting interval.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| number    | Shooting interval, in ms.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSession): number {
+  let interval: number = 0;
+  try {
+    interval = timeLapsePhotoSession.getTimeLapseInterval();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getTimeLapseInterval call failed. error code: ${err.code}`);
+  }
+  return interval;
+}
+```
+
+### setTimeLapseInterval<sup>12+</sup>
+setTimeLapseInterval(interval: number): void
+
+Sets a time-lapse shooting interval.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| interval | number | Yes  | Shooting interval, in ms.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    let interval: number = 10000;
+    timeLapsePhotoSession.setTimeLapseInterval(interval);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setTimeLapseInterval call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getTimeLapseRecordState<sup>12+</sup>
+
+getTimeLapseRecordState(): TimeLapseRecordState
+
+Obtains the time-lapse shooting state.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [TimeLapseRecordState](#timelapserecordstate12)    | Shooting state. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSession): camera.TimeLapseRecordState {
+  let state = camera.TimeLapseRecordState.IDLE;
+  try {
+    state = timeLapsePhotoSession.getTimeLapseRecordState();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getTimeLapseRecordState call failed. error code: ${err.code}`);
+  }
+  return state;
+}
+```
+
+### setTimeLapseRecordState<sup>12+</sup>
+
+setTimeLapseRecordState(state: TimeLapseRecordState): void
+
+Sets the time-lapse shooting state.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                   |
+| -------- | -------------------------------| ---- | ----------------------- |
+| state   | [TimeLapseRecordState](#timelapserecordstate12)  | Yes  | Shooting state.               |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.setTimeLapseRecordState(camera.TimeLapseRecordState.RECORDING);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setTimeLapseRecordState call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getTimeLapsePreviewType<sup>12+</sup>
+
+getTimeLapsePreviewType(): TimeLapsePreviewType
+
+Obtains the time-lapse preview type.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [TimeLapsePreviewType](#timelapsepreviewtype12)    | Preview type. If the operation fails, an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSession): camera.TimeLapsePreviewType {
+  let type = camera.TimeLapsePreviewType.DARK;
+  try {
+    type = timeLapsePhotoSession.getTimeLapsePreviewType();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getTimeLapsePreviewType call failed. error code: ${err.code}`);
+  }
+  return type;
+}
+```
+
+### setTimeLapsePreviewType<sup>12+</sup>
+
+setTimeLapsePreviewType(type: TimeLapsePreviewType): void
+
+Sets the time-lapse preview type.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                   |
+| -------- | -------------------------------| ---- | ----------------------- |
+| state   | [TimeLapsePreviewType](#timelapsepreviewtype12)  | Yes  | Preview type.               |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.setTimeLapsePreviewType(camera.TimeLapsePreviewType.LIGHT);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
+  }
+}
+```
+
+## LightPaintingPhotoSession<sup>12+</sup>
+
+LightPaintingPhotoSession extends Session, Flash, Focus, Zoom, ColorEffect
+
+Implements a light painting photo session, which sets the parameters of the light painting photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **LightPaintingPhotoSession** error events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                                                       | Mandatory | Description                                                                                                                                                                     |
+|----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).                                                                                                          |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`LightPaintingPhotoSession error code: ${err.code}`);
+}
+
+function registerSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **LightPaintingPhotoSession** error events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                                                       | Mandatory| Description                                                         |
+|----------|---------------------------------------------------------------------------|----|-------------------------------------------------------------|
+| type     | string                                                                    | Yes | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.                       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                                     |
+|-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
+| type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+Unsubscribes from focus state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                          |
+|-----------|---------------------------------------------|----|--------------------------------------------------------------|
+| type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.                  |
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('focusStateChange');
+}
+```
+
+### on('smoothZoomInfoAvailable')<sup>12+</sup>
+
+on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
+
+Subscribes to smooth zoom state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                      |
+| -------- | ----------------------- | ---- | ------------------------ |
+| type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
+function registerSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('smoothZoomInfoAvailable', callback);
+}
+```
+
+### off('smoothZoomInfoAvailable')<sup>12+</sup>
+
+off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>): void
+
+Unsubscribes from smooth zoom state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### getLightPaintingType<sup>12+</sup>
+
+getLightPaintingType(): LightPaintingType
+
+Obtains the type of light painting shutter mode in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Type                                            | Description                   |
+|------------------------------------------------- | --------------------- |
+| [LightPaintingType](#lightpaintingtype12) | Type of light painting shutter mode. |
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+function getLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): camera.LightPaintingType {
+  let type: camera.LightPaintingType = lightPaintingPhotoSession.getLightPaintingType();
+  return type;
+}
+```
+
+### setLightPaintingType<sup>12+</sup>
+
+setLightPaintingType(type: LightPaintingType): void
+
+Sets the type of light painting shutter mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| type | [LightPaintingType](#lightpaintingtype12) | Yes  | Type of light painting mode.|
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  try {
+    let type: camera.LightPaintingType = camera.LightPaintingType.TRAFFIC_TRAILS;
+    lightPaintingPhotoSession.setLightPaintingType(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setLightPaintingType call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedLightPaintingTypes<sup>12+</sup>
+
+getSupportedLightPaintingTypes(): Array\<LightPaintingType\>
+
+Obtains the supported types of light painting shutter mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Type                                            | Description                   |
+|------------------------------------------------- | --------------------- |
+| Array\<[LightPaintingType](#lightpaintingtype12)\> | Supported types of light painting shutter mode. |
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
+  let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
+  return types
+}
+```
+
+## ColorReservationType<sup>15+</sup>
+
+Enumerates the color reservation types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name    | Value  | Description            |
+| -------- | ---- | ---------------- |
+| NONE     | 0    | No color reservation.|
+| PORTRAIT | 1    | Portrait color reservation.      |
+
+## ColorReservationQuery<sup>15+</sup>
+
+Provides APIs for querying the color retention type supported by the device.
+
+### getSupportedColorReservationTypes<sup>15+</sup>
+
+getSupportedColorReservationTypes(): Array\<ColorReservationType\>
+
+Obtains the supported color reservation types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                                  | Description                    |
+| ------------------------------------------------------ | ------------------------ |
+| Array<[ColorReservationType](#colorreservationtype15)> | Array of color reservation types supported.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedColorReservationTypes(session: camera.VideoSessionForSys): Array<camera.ColorReservationType> {
+  let colorReservationTypes: Array<camera.ColorReservationType> = [];
+  try {
+    colorReservationTypes = session.getSupportedColorReservationTypes();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorReservationTypes call failed. error code: ${err.code}`);
+  }
+  return colorReservationTypes;
+}
+```
+
+## ColorReservation<sup>15+</sup>
+
+ColorReservation extends [ColorReservationQuery](#colorreservationquery15)
+
+Provides API for obtaining and setting a color reservation type.
+
+### setColorReservation<sup>15+</sup>
+
+setColorReservation(type: ColorReservationType): void
+
+Sets a color reservation type. Before the setting, call [getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15) to obtain the supported color reservation types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | [ColorReservationType](#colorreservationtype15) | Yes  | Color reservation type, which is obtained by calling [getSupportedColorReservationTypes](#getsupportedcolorreservationtypes15).|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Not System Application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                       |
+| 7400103  | Session not config.                                          |
+| 7400201  | Camera service fatal error.                                  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setColorReservation(session: camera.VideoSessionForSys, type: camera.ColorReservationType): void {
+  try {
+    session.setColorReservation(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getColorReservation<sup>15+</sup>
+
+getColorReservation(): ColorReservationType
+
+Obtains the color reservation type in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                           | Description                    |
+| ----------------------------------------------- | ------------------------ |
+| [ColorReservationType](#colorreservationtype15) | Color reservation type.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+| 7400103  | Session not config.     |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getColorReservation(session: camera.VideoSessionForSys): camera.ColorReservationType | undefined {
+  let colorReservation: camera.ColorReservationType | undefined = undefined;
+  try {
+    colorReservation = session.getColorReservation();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setColorReservation call failed. error code: ${err.code}`);
+  }
+  return colorReservation;
 }
 ```

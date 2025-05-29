@@ -33,17 +33,18 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
@@ -83,17 +84,18 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.     |
 
 **示例**：
@@ -131,17 +133,18 @@ isIdleStateSync(bundleName: string): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
-| 10000002   | Parcel operation failed.         |
-| 10000003   | System service operation failed. |
-| 10000004   | IPC failed.        |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.    |
 
 **示例**：
@@ -155,6 +158,8 @@ queryAppGroup(): Promise&lt;number&gt;
 
 查询当前应用的优先级分组，使用Promise异步回调。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **返回值**：
@@ -165,7 +170,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -174,9 +179,9 @@ queryAppGroup(): Promise&lt;number&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -199,6 +204,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 查询当前应用的优先级分组，使用Callback异步回调。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **参数**：
@@ -209,7 +216,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -218,9 +225,9 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -245,6 +252,8 @@ queryAppGroupSync(): number
 
 查询当前应用的优先级分组，使用同步方式返回。
 
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **返回值**：
@@ -255,7 +264,7 @@ queryAppGroupSync(): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -264,9 +273,9 @@ queryAppGroupSync(): number
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -301,7 +310,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -310,9 +319,9 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -350,7 +359,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -359,9 +368,9 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -405,7 +414,7 @@ queryAppGroupSync(bundleName: string): number
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -414,9 +423,9 @@ queryAppGroupSync(bundleName: string): number
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000005   | Application is not installed.      |
 | 10000006   | Failed to get the application information.       |
 | 10100002   | Failed to get the application group information. |
@@ -452,7 +461,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -461,9 +470,9 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
 
@@ -502,7 +511,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -511,9 +520,9 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10100001   | Repeated operation on the application group. |
 
@@ -554,7 +563,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -563,9 +572,9 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -609,7 +618,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -618,9 +627,9 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -634,6 +643,111 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryAppStatsInfos<sup>15+</sup>
+
+queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
+
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise对象。返回指定时间段内应用使用的具体信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryAppStatsInfos(0, 20000000000000).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryAppStatsInfos promise success.');
+  console.log('queryAppStatsInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryLastUseTime<sup>15+</sup>
+
+queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt;AppStatsMap&gt;
+
+通过指定bundleName和应用的index，查询应用使用具体信息，统计的最小颗粒度是天，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | 是    | 参数为map结构，key是bundleName，value是查询应用的index（可以有多个，通过Array传入）。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise对象。返回指定bundleName和index应用使用的具体信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryLastUseTime promise success.');
+  console.log('queryLastUseTime promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -658,7 +772,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -667,9 +781,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -717,7 +831,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -726,9 +840,9 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -768,7 +882,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -777,9 +891,9 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -826,7 +940,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -835,9 +949,9 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -875,18 +989,17 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -931,18 +1044,17 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.      |
 | 10000007   | Failed to get the system time.  |
 
@@ -987,7 +1099,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -996,9 +1108,9 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1035,7 +1147,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1044,9 +1156,9 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.           |
 | 10000007   | Failed to get the system time.     |
 
@@ -1090,7 +1202,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1099,9 +1211,9 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1138,7 +1250,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1147,9 +1259,9 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.          |
 | 10000007   | Failed to get the system time.     |
 
@@ -1188,7 +1300,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1197,9 +1309,9 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1243,9 +1355,9 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1291,7 +1403,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1300,9 +1412,9 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1341,7 +1453,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1350,9 +1462,9 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10000006   | Failed to get the application information.       |
 | 10000007   | Failed to get the system time.  |
 
@@ -1398,7 +1510,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1407,9 +1519,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 
@@ -1452,7 +1564,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1461,9 +1573,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 
@@ -1507,7 +1619,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1516,9 +1628,9 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 **示例**：
@@ -1551,7 +1663,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1560,9 +1672,9 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
+| 10000002   | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.         |
+| 10000003   | Failed to get system ability manager. |
+| 10000004   | Failed to access the device usage service.        |
 | 10100001   | Repeated operation on the application group. |
 
 **示例**：
@@ -1647,6 +1759,7 @@ FA卡片的使用信息属性集合。
 | fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。|
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。 |
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。 |
+| appIndex<sup>15+</sup>                 | number | 否    | 应用程序的索引。 |
 
 ## BundleEvents
 
@@ -1672,6 +1785,16 @@ FA卡片的使用信息属性集合。
 |名称                           | 描述                                       |
 | ------------------------------ | ---------------------------------------- |
 | Record<string, [BundleStatsInfo](#bundlestatsinfo)> | 不同应用的使用时长统计信息 |
+
+## AppStatsMap<sup>15+</sup>
+
+应用使用的具体信息(包含分身应用)。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+|名称                           | 描述                                       |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | 不同应用的使用统计信息（包含分身应用）。 |
 
 ## DeviceEventStats
 

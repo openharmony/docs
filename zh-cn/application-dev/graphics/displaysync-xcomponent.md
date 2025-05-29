@@ -1,6 +1,6 @@
 # 请求自绘制内容绘制帧率
 
-对于基于[XComponent](../ui/arkts-common-components-xcomponent.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
+对于基于[XComponent](../ui/napi-xcomponent-guidelines.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
 
 ## 接口说明
 
@@ -14,7 +14,7 @@
 
    > **说明：**
    >
-   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](drawing-guidelines.md)。
+   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
@@ -38,14 +38,14 @@
     build() {
       Column() {
         Row() {
-          XComponent({ id: 'xcomponentId_30', type: 'surface', libraryname: 'entry' })
+          XComponent({ id: 'xcomponentId_30', type: XComponentType.SURFACE, libraryname: 'entry' })
             .onLoad((xComponentContext) => {
               this.xComponentContext1 = xComponentContext as XComponentContext;
             }).width('832px')
         }.height('40%')
 
         Row() {
-          XComponent({ id: 'xcomponentId_120', type: 'surface', libraryname: 'entry' })
+          XComponent({ id: 'xcomponentId_120', type: XComponentType.SURFACE, libraryname: 'entry' })
             .onLoad((xComponentContext) => {
               this.xComponentContext2 = xComponentContext as XComponentContext;
             }).width('832px') // Multiples of 64
@@ -82,7 +82,9 @@
    > **说明：**
    >
    > - Callback回调函数运行于UI主线程，故涉及UI线程的耗时操作不应运行于回调函数中，以免影响性能。
-   > - 实例在调用NapiRegister后，在不需要进行帧率控制时，应进行NapiUnregister操作，避免内存泄漏问题。
+   > - 实例在调用OH_NativeXComponent_RegisterOnFrameCallback后，在不需要进行帧率控制时，应进行OH_NativeXComponent_UnregisterOnFrameCallback操作，避免内存泄漏及性能功耗影响。
+   > - API version 18之前，应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置回调函数，如果没有取消注册，在XComponent实例存在期间，能一直收到期望回调。
+   > - 从API version 18开始，应用调用OH_NativeXComponent_RegisterOnFrameCallback接口设置回调函数，如果没有取消注册，只在XComponent上树期间，能收到期望回调。
 
    ```ts
    void SampleXComponent::RegisterOnFrameCallback(OH_NativeXComponent *nativeXComponent) 

@@ -6,11 +6,13 @@
 
 本节提供两种方式供应用调试阶段使用。两种方式均不可用于发布上架应用市场，如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和签名文件的申请。
 
-- 方式一：通过DevEco Studio完成[ACL方式跨级别申请权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing-0000001587684945)。
+- 方式一：通过DevEco Studio完成[ACL方式跨级别申请权限](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
 - 方式二：直接修改HarmonyAppProvision配置文件。
   1. 打开HarmonyAppProvision配置文件，即SDK目录下的“Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json”文件。
-  2. 修改 "acls" &gt; "allowed-acls" 字段。
+  2. 添加需要使用的受限权限。
+    - 不携带权限数据的受限权限通过修改 "acls" &gt; "allowed-acls" 字段添加。
+    - 携带权限数据的受限权限通过修改 "app-services-capabilities" 字段添加。
 
       ```json
       {
@@ -20,6 +22,9 @@
             "ohos.permission.WRITE_AUDIO",
             "ohos.permission.CAPTURE_SCREEN"
           ]
+        },
+        "app-services-capabilities": {
+            "ohos.permission.ACCESS_DDK_DRIVERS": "..."
         }
       }
       ```

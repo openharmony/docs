@@ -9,6 +9,8 @@ The **bluetoothManager** module provides Bluetooth management capabilities, incl
 > The APIs of this module can be used only in the stage model.
 >
 > The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+>
+> The global restriction policies are provided by **restrictions**. To disable Bluetooth globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
 ## Modules to Import
 
@@ -20,7 +22,7 @@ import { bluetoothManager } from '@kit.MDMKit';
 
 getBluetoothInfo(admin: Want): BluetoothInfo
 
-Obtains device Bluetooth information through the specified device administrator application. This API returns the result synchronously. If the operation is successful, the Bluetooth information obtained is returned. If the operation fails, an exception will be thrown.
+Obtains device Bluetooth information.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -32,7 +34,7 @@ Obtains device Bluetooth information through the specified device administrator 
 
 | Name| Type                                                   | Mandatory| Description          |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
@@ -73,7 +75,7 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-Adds allowed Bluetooth devices through the specified device administrator application.
+Adds allowed Bluetooth devices. This API should be called before [setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy), so that Bluetooth can be successfully disabled. Otherwise, a conflict occurs.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -85,7 +87,7 @@ Adds allowed Bluetooth devices through the specified device administrator applic
 
 | Name   | Type                                                   | Mandatory| Description                                               |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                     |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.                                     |
 | deviceIds | Array\<string>                                          | Yes  | MAC addresses of the Bluetooth devices to add. This array can hold a maximum of 1000 MAC addresses.|
 
 **Error codes**
@@ -122,7 +124,7 @@ try {
 
 removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-Removes allowed Bluetooth devices through the specified device administrator application.
+Removes allowed Bluetooth devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -134,7 +136,7 @@ Removes allowed Bluetooth devices through the specified device administrator app
 
 | Name   | Type                                                   | Mandatory| Description                   |
 | --------- | ------------------------------------------------------- | ---- | ----------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.         |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.         |
 | deviceIds | Array\<string>                                          | Yes  | MAC addresses of the Bluetooth devices to remove.|
 
 **Error codes**
@@ -168,9 +170,9 @@ try {
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want): Array\<string>;
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
-Obtains allowed Bluetooth devices through the specified device administrator application.
+Obtains allowed Bluetooth devices.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -182,7 +184,7 @@ Obtains allowed Bluetooth devices through the specified device administrator app
 
 | Name| Type                                                   | Mandatory| Description          |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 

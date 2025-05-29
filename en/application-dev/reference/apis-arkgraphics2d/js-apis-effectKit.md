@@ -1,6 +1,6 @@
 # @ohos.effectKit (Image Effects)
 
-The **EffectKit** module provides basic image processing capabilities, including brightness adjustment, blurring, grayscale adjustment, and color picker.
+The EffectKit module provides basic image processing capabilities, including brightness adjustment, blurring, grayscale adjustment, and color picker.
 
 This module provides the following classes:
 
@@ -302,6 +302,19 @@ A class that stores the color picked.
 | blue  | number | Yes  | No  | Value of the blue component. The value range is [0x0, 0xFF].          |
 | alpha | number | Yes  | No  | Value of the alpha component. The value range is [0x0, 0xFF].      |
 
+## TileMode<sup>14+</sup>
+
+Enumerates the tile modes of the shader effect.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name                  | Value  | Description                          |
+| ---------------------- | ---- | ------------------------------ |
+| CLAMP     | 0    | Replicates the edge color if the shader effect draws outside of its original boundary.|
+| REPEAT    | 1    | Repeats the shader effect in both horizontal and vertical directions.|
+| MIRROR    | 2    | Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.|
+| DECAL     | 3    | Renders the shader effect only within the original boundary.|
+
 ## ColorPicker
 
 A class used to obtain the color from an image. Before calling any method of **ColorPicker**, use [createColorPicker](#effectkitcreatecolorpicker) to create a **ColorPicker** instance.
@@ -469,7 +482,7 @@ Obtains a given number of colors with the top proportions in the image. This API
 
 | Type                                    | Description                                           |
 | :--------------------------------------- | :---------------------------------------------- |
-| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the color fails to be obtained, an empty array is returned.<br>- If the value of **colorCount** is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
+| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the colors fail to be obtained or the number of colors obtained is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
 
 **Example**
 
@@ -660,6 +673,10 @@ blur(radius: number): Filter
 
 Adds the blur effect to the filter linked list, and returns the head node of the linked list.
 
+>  **NOTE**
+>
+>  This API provides the blur effect for static images. To provide the real-time blur effect for components, use [dynamic blur](../../ui/arkts-blur-effect.md).
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -702,6 +719,56 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 })
 ```
 ![image_Add_Blur.png](figures/image_Add_Blur.png)
+
+### blur<sup>14+</sup>
+
+blur(radius: number, tileMode: TileMode): Filter
+
+Adds the blur effect to the filter linked list, and returns the head node of the linked list.
+
+>  **NOTE**
+>
+>  This API provides the blur effect for static images. To provide the real-time blur effect for components, use [dynamic blur](../../ui/arkts-blur-effect.md).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                        |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  radius   | number | Yes  | Blur radius, in pixels. The blur effect is proportional to the configured value. A larger value indicates a more obvious effect.|
+|  tileMode   | [TileMode](#tilemode14) | Yes  | Tile mode of the shader effect. The blur effect of image edges is affected. Currently, only CPU rendering is supported. Therefore, the tile mode supports only DECAL.|
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | Final image effect.|
+
+**Example**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 30;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius, effectKit.TileMode.DECAL);
+  }
+})
+```
+![image_Add_Blur_With_TileMode.png](figures/image_Add_Blur_With_TileMode.png)
 
 ### invert<sup>12+</sup>
 

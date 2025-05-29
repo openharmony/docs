@@ -18,11 +18,21 @@
 
  - master：最新开发版本。  
 
- - OpenHarmony 4.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v4.1-release.md)了解版本详情。
+ - OpenHarmony 5.1.0 Release版本（API Level 18）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.1.0-release.md)了解版本详情。
 
- - OpenHarmony 4.0 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v4.0-release.md)了解版本详情。
+ - OpenHarmony 5.0.3 Release版本（API Level 15）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.3-release.md)了解版本详情。
 
- - OpenHarmony 3.2 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-release.md)了解版本详情。
+ - OpenHarmony 5.0.2 Release版本（API Level 14）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.2-release.md)了解版本详情。
+
+ - OpenHarmony 5.0.1 Release版本（API Level 13）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.1-release.md)了解版本详情。
+
+ - OpenHarmony 5.0.0 Release版本（API Level 12）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.0-release.md)了解版本详情。
+
+ - OpenHarmony 4.1 Release版本（API Level 11）：点击[此处](zh-cn/release-notes/OpenHarmony-v4.1-release.md)了解版本详情。
+
+ - OpenHarmony 4.0 Release版本（API Level 10）：点击[此处](zh-cn/release-notes/OpenHarmony-v4.0-release.md)了解版本详情。
+
+ - OpenHarmony 3.2 Release版本（API Level 9）：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-release.md)了解版本详情。
     
     该版本已更新至OpenHarmony 3.2.3 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.2.3-release.md)了解版本详情。 
 

@@ -9,6 +9,8 @@
 
 **相关模块：**[HuksTypeApi](_huks_type_api.md)
 
+**所在头文件：**[native_huks_type.h](native__huks__type_8h.md)
+
 
 ## 汇总
 
@@ -57,7 +59,7 @@ int32_t型参数。
 uint32_t OH_Huks_Param::tag
 ```
 **描述**
-标签值
+标签值。
 
 
 ### uint32Param

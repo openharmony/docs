@@ -6,11 +6,13 @@ By default, ArkTS containers are passed by reference between concurrent instance
 
 ArkTS containers are not thread-safe. They adopt the fail-fast approach. An exception is thrown if multiple concurrent instances make structural changes to a container instance at the same time. Therefore, in update scenarios, you must use the ArkTS asynchronous lock to ensure secure access to the ArkTS containers.
 
-Currently, the ArkTS collection provides the following containers: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), and [TypedArray](#collectionstypedarray).
+Currently, the following ArkTS containers are provided: [Array](#collectionsarray), [Map](#collectionsmap), [Set](#collectionsset), [TypedArray](#collectionstypedarray), [ArrayBuffer](#collectionsarraybuffer), [BitVector](#collectionsbitvector), and [ConcatArray](#collectionsconcatarray).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -37,9 +39,11 @@ An array-like object that can be concatenated. This API extends **ISendable**.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -47,11 +51,47 @@ This section uses the following to identify the use of generics:
 | ------ | ------ | ---- | ---- | ----------------- |
 | length | number | Yes  | No  | Number of elements in a ConcatArray.|
 
+### [index: number]
+
+readonly &#91;index: number&#93;: T
+
+Returns the element at a given index in this ConcatArray.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name   | Type  | Mandatory| Description                                                           |
+| ----- | ------ | ---- | ------------------------------------------------------------------ |
+| index | number | Yes  | Index of the element. The index starts from zero. If the passed-in index is less than 0 or greater than or equal to the value of **length**, an error is thrown.|
+
+**Return value**
+
+| Type  | Description                    |
+| ----- | ------------------------ |
+| T | Element in the ConcatArray.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                            |
+| ------- | ------------------------------------ |
+| 401 |  Parameter error. Illegal index.         |
+| 10200001 | The value of index is out of range. |
+
+**Example**
+
+```ts
+let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 4);
+console.info("Element at index 1: ", concatArray[1]);
+```
+
 ### join
 
 join(separator?: string): string
 
 Concatenates all elements in this array into a string, with a given separator.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -88,6 +128,8 @@ slice(start?: number, end?: number): ConcatArray\<T>
 
 Selects a range of elements in this array to create an array.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -117,6 +159,76 @@ let concatArray : collections.ConcatArray<number> = new collections.Array<number
 let slicedArray = concatArray.slice (1, 3); // [2, 3] is returned. The original array remains unchanged.
 ```
 
+## ArrayFromMapFn<sup>18+</sup>
+type ArrayFromMapFn<FromElementType, ToElementType> = (value: FromElementType, index: number) => ToElementType
+
+Defines the ArkTS Array reduction function, which is used by the **from** API of the Array class.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                         |
+| ------- | ------ | ---- | --------------------------- |
+| value | FromElementType | Yes| Element that is being processed.|
+| index | number | Yes| Index of the element in the ArkTS array.|
+
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| ToElementType | Result of the reduction function, which is used as a new element in the array.|
+
+## ArrayPredicateFn</a><sup>18+</sup>
+type ArrayPredicateFn<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
+
+Defines the ArkTS Array reduction function, which is used by the **some** and **every** APIs of the Array class to determine whether array elements meet certain test conditions.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                         |
+| ------- | ------ | ---- | --------------------------- |
+| value | ElementType | Yes| Element that is being processed.|
+| index | number | Yes| Index of the element in the ArkTS array.|
+| array | ArrayType | Yes| ArkTS array that is being traversed.|
+
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| boolean | Result of the reduction function, indicating whether the current element meets the test condition. The value **true** means that the current element or a previous element meets the condition, and **false** means that no element meets the condition.|
+
+## ArrayReduceCallback</a><sup>18+</sup>
+type ArrayReduceCallback<AccType, ElementType, ArrayType> =
+    (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
+
+Defines the ArkTS Array reduction function, which is used by the **reduceRight** API of the Array class.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                         |
+| ------- | ------ | ---- | --------------------------- |
+| previousValue | AccType | Yes| Accumulated value of the current traversal.|
+| currentValue | ElementType | Yes| Element that is being traversed in the ArkTS array.|
+| currentIndex | number | Yes| Index of the element in the ArkTS array.|
+| array | ArrayType | Yes| ArkTS array that is being traversed.|
+
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| AccType | Result of the reduction function, which is used as the **previousValue** parameter in the next call of **ArrayReduceCallback**.|
+
 ## collections.Array
 
 A linear data structure that is implemented on arrays and can be passed between ArkTS concurrent instances.
@@ -125,7 +237,7 @@ Pass-by-reference is recommended for better transfer performance.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -193,6 +305,37 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4);
+```
+### constructor
+
+constructor(...items: T[])
+
+A constructor used to create an ArkTS array with the given elements.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description                           |
+| ------ | ---- | ---- | ------------------------------- |
+| items  | T[]  | No  | Elements to be included in the ArkTS array.      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                           |
+| -------- | --------------------------------------------------- |
+| 401      | Parameter error.                                    |
+| 10200012 | The Array's constructor cannot be directly invoked. |
+
+**Example**
+
+```ts
+let arrayPara  = [1,2,3];
+let array = new collections.Array<number>(...arrayPara);
 ```
 
 ### create
@@ -265,8 +408,432 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let arrayLike = [1, 3, 5];
-let array = collections.Array.from<number>(arrayLike);
+// Positive example:
+let array: Array<string> = ['str1', 'str2', 'str3']; // Native Array<T>, where T is the sendable data type.
+let sendableArray = collections.Array.from<string>(array); // Returns Sendable Array<T>.
+```
+
+<!--code_no_check-->
+```ts
+// Negative example:
+let array: Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // Native Array<T>, where T is a non-sendable data type.
+let sendableArray = collections.Array.from<Array<string>>(array); // Prints the following exception information: Parameter error.Only accept sendable value
+```
+
+### from<sup>12+</sup>
+
+static from\<T>(iterable: Iterable\<T>): Array\<T>
+
+Creates an ArkTS array from an iterable object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| iterable | Iterable\<T> | Yes  | Array-like object.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**Example**
+
+```ts
+// Positive example:
+const mapper = new Map([
+  ['1', 'a'],
+  ['2', 'b'],
+]);
+let newArray: collections.Array<string> = collections.Array.from(mapper.values());
+console.info(newArray.toString());
+// Expected output: a,b
+```
+
+### from<sup>18+</sup>
+
+static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<T, T>): Array\<T>
+
+Creates an ArkTS array from an array-like object, and uses a custom function to process each array element.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| arrayLike | ArrayLike\<T> \| Iterable\<T> | Yes  | Array-like object.|
+| mapFn | ArrayFromMapFn\<T,T> | Yes  | Functions used to process the array elements.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**Example**
+
+```ts
+let array : Array<number> = [1, 2, 3]; // Native Array<T>, where T is of the Sendable type.
+let newarray = collections.Array.from<number, number>(array, (value, index) => value + index); // Return a new Array<T>.
+console.info(newarray.toString());
+// Expected output: 1, 3, 5
+```
+
+### from<sup>18+</sup>
+
+static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapFn\<U, T>): Array\<T>
+
+Creates an ArkTS array from an array-like object, and uses a custom function to process each array element. The type of the elements in the array-like object can be different from that of the array elements.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| arrayLike | ArrayLike\<U> \| Iterable\<U> | Yes  | Array-like object.|
+| mapFn | ArrayFromMapFn\<U, T> | Yes  | Functions used to process the array elements.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**Example**
+
+```ts
+let array : Array<number> = [1, 2, 3]; // Native Array<T>
+let newarray = collections.Array.from<number, string>(array, (value, index) => value + "." + index); // Return a new Array<T>.
+console.info(newarray.toString());
+// Expected output: 1.0, 2.1, 3.2
+```
+
+### isArray<sup>18+</sup>
+
+static isArray\<T>(value: Object | undefined | null): boolean
+
+Check whether the input parameter is an ArkTS array.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| value | Object \| undefined \| null | Yes  | Value to check.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| boolean | Check result. The value **true** means that the input parameter is an ArkTS array, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd')
+let result: boolean = collections.Array.isArray(arr);
+console.info(result + '');
+// Expected output: true
+```
+
+### of<sup>18+</sup>
+
+static of\<T>(...items: T\[]): Array\<T>
+
+Creates an ArkTS array with a variable number of parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| items | T[] | No  | Array of elements used to create the array. The number of elements can be zero, one, or more.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd')
+console.info(arr.toString());
+// Expected output: a, b, c, d
+```
+
+### copyWithin<sup>18+</sup>
+copyWithin(target: number, start: number, end?: number): Array\<T>
+
+Copies elements within a given range from this ArkTS array to another position in sequence.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| target | number | Yes| Index to copy the elements to.|
+| start | number | Yes| Start index of the range. If a negative number is passed in, it refers to the index of **start + array.length**.|
+| end | number | No| End index of the range. If a negative number is passed in, it refers to the index of **end + array.length**. The default value is the length of the ArkTS array.|
+
+**Return value**
+
+| Type        | Description     |
+| ------------ | --------- |
+| Array\<T> | ArkTS array after being modified.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------ |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The copyWithin method cannot be bound.           |
+| 10200201 | Concurrent modification exception.               |
+
+**Example**
+
+```ts
+let array: collections.Array<number> = collections.Array.from([1, 2, 3, 4, 5, 6, 7, 8]);
+let copied: collections.Array<number> = array.copyWithin(3, 1, 3);
+console.info(copied.toString());
+// Expected output: 1, 2, 3, 2, 3, 6, 7, 8
+```
+
+### lastIndexOf<sup>18+</sup>
+
+lastIndexOf(searchElement: T, fromIndex?: number): number
+
+Obtains the index of the last occurrence of the specified value in in this ArkTS array.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name          | Type    | Mandatory | Description                                                                               |
+| ------------- | ------ | --- | --------------------------------------------------------------------------------- |
+| searchElement | T | Yes  | Value to search for.                                                                           |
+| fromIndex     | number | No  | Index from which the search starts. The default value is **0**. If the index is greater than or equal to the length of the ArkTS array, **-1** is returned. If a negative number is passed in, it refers to the index of **fromIndex + array.length**.|
+
+**Return value**
+
+| Type    | Description                     |
+| ------ | ----------------------- |
+| number | Index of the last occurrence of the value. If the value is not found, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The lastIndexOf method cannot be bound. |
+| 10200201 | Concurrent modification exception.      |
+
+**Example**
+
+```ts
+let array: collections.Array<number> = collections.Array.from([3, 5, 9]);
+console.info(array.lastIndexOf(3) + '');
+// Expected output: 0
+console.info(array.lastIndexOf(7) + '');
+// Expected output: -1
+console.info(array.lastIndexOf(9, 2) + '');
+// Expected output: 2
+console.info(array.lastIndexOf(9, -2) + '');
+// Expected output: -1
+```
+
+### some<sup>18+</sup>
+some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
+
+Checks whether this ArkTS array contains an element that meets certain conditions.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                 |
+| ------- | ------ | ---- | ---------------------------------------------------- |
+| predicate | ArrayPredicateFn\<T, Array> | Yes| Assertion function used for the test.|
+
+**Return value**
+
+| Type        | Description     |
+| ------------ | --------- |
+| boolean | Check result. The value **true** means that an element meeting the given condition exists, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                           |
+| -------- | ---------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The some method cannot be bound.   |
+| 10200201 | Concurrent modification exception. |
+
+**Example**
+
+```ts
+let newArray: collections.Array<number> = collections.Array.from([-10, 20, -30, 40, -50]);
+console.info(newArray.some((element: number) => element < 0) + '');
+// Expected output: true
+```
+
+### reduceRight<sup>18+</sup>
+
+reduceRight(callbackFn: ArrayReduceCallback\<T, T, Array\<T>>): T
+
+Goes through each element in this ArkTS array from right to left, uses a callback function to combine them into a single value, and returns that final value.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name       | Type                                                                              | Mandatory | Description                                        |
+| ---------- | -------------------------------------------------------------------------------- | --- | ------------------------------------------ |
+| callbackFn | ArrayReduceCallback\<T, T, Array\<T>> | Yes  | Function that takes four arguments. It performs an operation on each element and passes the result as an accumulated value to the next element.|
+
+**Return value**
+
+| Type | Description           |
+| --- | ------------- |
+| T   | Final result obtained from the last call of the callback function.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The reduceRight method cannot be bound. |
+| 10200201 | Concurrent modification error.          |
+
+**Example**
+
+```ts
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let reducedValue = array.reduceRight((accumulator, value) => accumulator + value); // Accumulated result of all elements.
+console.info(reducedValue + '');
+// Expected output: 15
+```
+
+### reduceRight<sup>18+</sup>
+
+reduceRight\<U = T>(callbackFn: ArrayReduceCallback\<U, T, Array\<T>>, initialValue: U): U
+
+This API is similar to the previous API, but it takes an initial value as the second parameter to initialize the accumulator before the array traversal starts from right to left.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name         | Type                                                                                          | Mandatory | Description                                        |
+| ------------ | -------------------------------------------------------------------------------------------- | --- | ------------------------------------------ |
+| callbackFn   | ArrayReduceCallback\<U, T, Array\<T>> | Yes  | Function that takes four arguments. It performs an operation on each element and passes the result as an accumulated value to the next element.|
+| initialValue | U                                                                                            | Yes  | Initial value of the accumulator.                               |
+
+**Return value**
+
+| Type | Description           |
+| --- | ------------- |
+| U   | Final result obtained from the last call of the callback function.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The reduceRight method cannot be bound. |
+| 10200201 | Concurrent modification error.          |
+
+**Example**
+
+```ts
+// An accumulator with the initial value 0 is used. The accumulator is used to calculate the sum of all elements in the array and return the sum.
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let reducedValue = array.reduceRight<number>((accumulator: number, value: number) => accumulator + value, 0); // Accumulated result of all elements. The initial value is 0.
+console.info(reducedValue + '');
+// Expected output: 15
 ```
 
 ### pop
@@ -409,6 +976,40 @@ let array = new collections.Array<number>(1, 2, 3);
 let firstElement = array.shift(); // 1 is returned. The array changes to [2, 3].
 ```
 
+### reverse<sup>18+</sup>
+
+reverse(): Array\<T>
+
+Reverses elements in this ArkTS array and returns a reference to the same array.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                |
+| ----- | ------------------ |
+| Array | Reversed ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                               |
+| -------- | ----------------------------------- |
+| 10200011 | The reverse method cannot be bound. |
+| 10200201 | Concurrent modification exception.  |
+
+**Example**
+
+```ts
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let reversed = array.reverse();
+console.info(array.toString());
+// Expected output: 5, 4, 3, 2, 1
+```
+
 ### unshift
 
 unshift(...items: T[]): number
@@ -445,6 +1046,40 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 let array = new collections.Array<number>(1, 2, 3);
 let newLength = array.unshift(0); // 4 is returned. The array changes to [0, 1, 2, 3].
+```
+
+### toString<sup>18+</sup>
+
+toString(): string
+
+Converts an ArkTS array into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type        | Description           |
+| ---------- | ------------- |
+| string | A string that contains all elements of the array.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                |
+| -------- | ------------------------------------ |
+| 10200011 | The toString method cannot be bound. |
+| 10200201 | Concurrent modification error.       |
+
+**Example**
+
+```ts
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let stringArray = array.toString();
+console.info(stringArray);
+// Expected output: 1,2,3,4,5
 ```
 
 ### slice
@@ -519,7 +1154,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let array = new collections.Array<number>(1, 3, 5, 4, 1);
+let array = new collections.Array<number>(1, 3, 5, 4, 2);
 array.sort((a: number, b: number) => a - b); // [1, 2, 3, 4, 5]
 array.sort((a: number, b: number) => b - a); // [5, 4, 3, 2, 1]
 ```
@@ -653,7 +1288,7 @@ Returns a new array containing all elements that pass a test provided by a callb
 
 | Name   | Type                                                  | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element passes the test and should be retained in the new array. The value **false** means that the current element fails the test and should be excluded from the new array.|
 
 **Return value**
 
@@ -911,7 +1546,7 @@ Returns the value of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 
@@ -956,7 +1591,7 @@ Checks whether this ArkTS array contains an element and returns a Boolean value.
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** means that the element exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -988,7 +1623,7 @@ Returns the index of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and the index of that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 
@@ -1129,6 +1764,8 @@ concat(...items: ConcatArray\<T>[]): Array\<T>
 
 Concatenates this ArkTS array with one or more arrays.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -1191,7 +1828,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1200,6 +1837,80 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2); // The array is changed to [1, 2], and [3, 4, 5] is returned.
+```
+
+### every<sup>18+</sup>
+
+every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
+
+Checks whether all elements in this ArkTS array meet a given condition.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+| Name | Type  | Mandatory| Description                                                   |
+| ------- | ------ | ---- | ----------------------------------------------------- |
+| predicate | ArrayPredicateFn\<T, Array\<T>> | Yes| Assertion function used for the test.|
+
+**Return value**
+
+| Type        | Description     |
+| ------------ | --------- |
+| boolean | Check result. The value **true** means that all elements meet the given condition, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                         |
+| -------- | ------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The every method cannot be bound. |
+| 10200201 | Concurrent modification exception. |
+
+**Example**
+
+```ts
+let newArray: collections.Array<number> = collections.Array.from([-10, 20, -30, 40, -50]);
+console.info(newArray.every((element: number) => element > 0) + '');
+// Expected output: false
+```
+
+### toLocaleString<sup>18+</sup>
+
+toLocaleString(): string
+
+Generates a string that matches the cultural conversions of the current system locale. Each element converts itself to a string via its **toLocaleString** API, and these strings are then joined together in sequence with commas (,).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type        | Description           |
+| ---------- | ------------- |
+| string | A string that contains all elements of the array.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                      |
+| -------- | ------------------------------------------ |
+| 10200011 | The toLocaleString method cannot be bound. |
+| 10200201 | Concurrent modification error.             |
+
+**Example**
+
+```ts
+// The system where the application is running is set to the French locale.
+let array = new collections.Array<number | string>(1000, 'Test', 53621);
+let stringArray = array.toLocaleString();
+console.info(stringArray);
+// Expected output: 1,000,Test,53,621
 ```
 
 ### splice
@@ -1224,7 +1935,7 @@ Removes elements from a specified position in an array, and inserts new elements
 
 | Type     | Description                                 |
 | --------- | ------------------------------------ |
-| Array\<T> | **Array** object that contains the removed element. If no element is removed, an empty **Array** object is returned.|
+| Array\<T> | **Array** object that contains the removed elements. If no element is removed, an empty **Array** object is returned.|
 
 **Error codes**
 
@@ -1232,7 +1943,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1250,6 +1961,80 @@ let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2, 2, 6, 7, 8); // The array is changed to [1, 2, 6, 7, 8, 5], and [3, 4] is returned.
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                     | Description            |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
+
+```ts
+let array= new collections.Array<number>(1, 2, 3, 4);
+
+for (let item of array) {
+  console.info(`value : ${item}`);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: T
+
+Returns the element at a given index in this array.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name   | Type  | Mandatory| Description                                                           |
+| ----- | ------ | ---- | ------------------------------------------------------------------ |
+| index | number | Yes  | Index of the element. The index starts from zero. If the passed-in index is less than 0 or greater than or equal to the value of **length**, an error is thrown.|
+
+**Return value**
+
+| Type  | Description                    |
+| ----- | ------------------------ |
+|   T   | Element in the array. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                            |
+| ------- | ------------------------------------ |
+| 401 |        Parameter error.                  |
+| 10200001 | The value of index is out of range. |
+
+**Example**
+
+```ts
+let array = new collections.Array<number>(1, 2, 4);
+console.info("Element at index 1: ", array[1]);
+```
+
 ## collections.Map
 
 A non-linear data structure.
@@ -1259,7 +2044,7 @@ This section uses the following to identify the use of generics:
 - K: key.
 - V: value.
 
-The K and V types must be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+The K and V types must be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
 
@@ -1311,6 +2096,7 @@ const myMap = new collections.Map<number, string>([
 ]);
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 @Sendable
@@ -1509,7 +2295,7 @@ Deletes a specified key from this ArkTS map.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The key exists and has been deleted.<br>**false**: The key does not exist.|
+| boolean | Operation result. The value **true** means that the key exists and has been deleted, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1579,6 +2365,7 @@ new collections.Map<string, number>([
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 new collections.Map<string, number>([
@@ -1646,7 +2433,7 @@ Checks whether a key exists in this ArkTS map.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The key exists.<br>**false**: The key does not exist.|
+| boolean | Check result. The value **true** means that the key exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1701,6 +2488,7 @@ const myMap = new collections.Map<string, string>();
 myMap.set("foo", "bar")
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 let obj = new Object();
@@ -1709,6 +2497,49 @@ const myMap: collections.Map<string, Object> = new collections.Map<string, Objec
 myMap.set("foo", obj);
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| IterableIterator<[K, V]> | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
+
+```ts
+let map = new collections.Map<number, string>([
+    [0, "one"],
+    [1, "two"],
+    [2, "three"],
+    [3, "four"]
+]);
+
+let keys = Array.from(map.keys());
+for (let key of keys) {
+  console.info("key:" + key);
+  console.info("value:" + map.get(key));
+}
+```
 
 ## collections.Set
 
@@ -1716,7 +2547,7 @@ A non-linear data structure.
 
 This section uses the following to identify the use of generics:
 
-- T: type, which can be any of the [Sendable Data Types](../../arkts-utils/arkts-sendable.md).
+- T: type, which can be any of the [sendable data types](../../arkts-utils/arkts-sendable.md#sendable-data-types).
 
 ### Properties
 
@@ -1764,6 +2595,7 @@ const mySet = new collections.Set<number>();
 const mySet = new collections.Set<number>([1, 2, 3, 4, 5]);
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 @Sendable
@@ -1948,7 +2780,7 @@ Deletes an element from this ArkTS set.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The key is deleted.<br>**false**: The key fails to be deleted.|
+| boolean | Operation result. The value **true** means that the key is deleted, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2012,6 +2844,7 @@ new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set)
 });
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 new collections.Set<string>(['foo', 'bar', 'baz']).forEach((value1, value2, set) => {
@@ -2033,7 +2866,7 @@ Checks whether a value exists in this ArkTS set.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The value exists.<br>**false**: The value does not exist.|
+| boolean | Check result. The value **true** means that the value exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2086,12 +2919,52 @@ const mySet: collections.Set<string> = new collections.Set<string>();
 mySet.add("foo");
 ```
 
+<!--code_no_check-->
 ```ts
 // Negative example:
 let obj = new Object();
 const mySet: collections.Set<Object> = new collections.Set<Object>();
 // Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 mySet.add(obj);
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
+
+```ts
+let set = new collections.Set<number>([1, 2, 3, 4, 5]);
+
+let val: Array<number> = Array.from(set.values())
+for (let item of val) {
+  console.info("value: " + item);
+}
 ```
 
 ## collections.ArrayBuffer
@@ -2120,7 +2993,7 @@ A constructor used to create an ArkTS ArrayBuffer of a given length.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------|
-| byteLength  | number | Yes  | Buffer size.        |
+| byteLength  | number | Yes  | Number of bytes occupied by the buffer.    |
 
 **Error codes**
 
@@ -2192,6 +3065,12 @@ Describes the mapping function of the ArkTS typed array.
 | value | FromElementType | Yes| Element that is currently traversed and used to construct an ArkTS typed array.|
 | index | number | Yes| Index of the element.|
 
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| ToElementType | Element value after the mapping.|
+
 ## TypedArrayPredicateFn
 type TypedArrayPredicateFn\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
@@ -2209,6 +3088,12 @@ Describes the assertion function of the ArkTS typed array.
 | index | number | Yes| Index of the element.|
 | array | ArrayType | Yes| ArkTS typed array that is being traversed.|
 
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| boolean | Operation result. The value **true** means that the value meets the condition, and **false** means the opposite.|
+
 ## TypedArrayForEachCallback
 type TypedArrayForEachCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void
 
@@ -2225,6 +3110,29 @@ Describes the traversal function of the ArkTS typed array.
 | value | ElementType | Yes| Element that is being traversed in the ArkTS typed array.|
 | index | number | Yes| Index of the element.|
 | array | ArrayType | Yes| ArkTS typed array that is being traversed.|
+
+## TypedArrayMapCallback
+type TypedArrayMapCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => ElementType
+
+Describes the conversion mapping function of the ArkTS typed array.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                         |
+| ------- | ------ | ---- | --------------------------- |
+| value | ElementType | Yes| Element that is being mapped in the ArkTS typed array.|
+| index | number | Yes| Index of the element.|
+| array | ArrayType | Yes| ArkTS typed array that is being mapped.|
+
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| ElementType | Element value after conversion.|
 
 ## TypedArrayReduceCallback
 type TypedArrayReduceCallback\<AccType, ElementType, ArrayType> = (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
@@ -2244,6 +3152,12 @@ Describes the reduce function of the ArkTS typed array.
 | currentIndex | number | Yes| Index of the element.|
 | array | ArrayType | Yes| ArkTS typed array that is being traversed.|
 
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| AccType | Result of the reduce function. The result is passed in to the **previousValue** parameter when **TypedArrayReduceCallback** is called next time.|
+
 ## TypedArrayCompareFn
 type TypedArrayCompareFn\<ElementType> = (first: ElementType, second: ElementType) => number
 
@@ -2260,12 +3174,18 @@ Describes the sort function of the ArkTS typed array.
 | first | ElementType | Yes| First element to be compared.|
 | second | ElementType | Yes| Second element to be compared.|
 
+**Return value**
+
+| Type  | Description                         |
+| ------ | --------------------------- |
+| number | Comparison result of the elements. If **first** is less than **second**, the return value is a negative number. If **first** is greater than **second**, the return value is a positive number. If **first** is equal to **second**, the return value is 0.|
+
 ## collections.TypedArray
 
-A linear data structure that is implemented on [ArkTS ArrayBuffer](#collectionsarraybuffer). Currently, Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, and Uint8ClampedArray are supported.
+A linear data structure that is implemented on [ArkTS ArrayBuffer](#collectionsarraybuffer). Currently, Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Uint8ClampedArray, and Float32Array are supported.
 
 This section uses the following to identify the use of generics:
-- TypedArray: ArkTS typed array of the preceding seven types.
+- TypedArray: ArkTS typed array of the preceding eight types.
 
 ### Properties
 
@@ -2308,6 +3228,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array();
 let int32Array: collections.Int32Array = new collections.Int32Array();
 let uint32Array: collections.Uint32Array = new collections.Uint32Array();
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray();
+let float32Array: collections.Float32Array = new collections.Float32Array();
 ```
 
 ### constructor
@@ -2315,9 +3236,9 @@ constructor(length: number)
 
 A constructor used to create an ArkTS typed array of a given length.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2345,6 +3266,7 @@ let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 let int32Array: collections.Int32Array = new collections.Int32Array(12);
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(12);
 let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(12);
+let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ```
 
 ### constructor
@@ -2352,15 +3274,15 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 A constructor that creates an ArkTS typed array from an array-like object or ArkTS ArrayBuffer.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| array |  ArrayLike\<number> \| ArrayBuffer | Yes| Object used to construct the ArkTS typed array.|
+| array |  ArrayLike\<number> \| ArrayBuffer | Yes| Object used to construct the ArkTS typed array. When the parameter type is ArrayBuffer, the number of bytes occupied by the buffer must be an integer multiple of 4.|
 
 **Error codes**
 
@@ -2380,7 +3302,7 @@ let array: collections.Uint32Array = new collections.Uint32Array(arrayLike);
 
 ```ts
 // Example 2: Construct an object from an ArkTS typed array.
-let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(10);
+let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(12);
 let array: collections.Uint32Array = new collections.Uint32Array(arrayBuffer);
 ```
 
@@ -2398,15 +3320,15 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 A constructor that creates an ArkTS typed array from an ArrayBuffer.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name | Type  | Mandatory| Description                                        |
 | ------- | ------ | ---- | ------------------------------------------ |
-| buffer | ArrayBuffer | Yes| ArrayBuffer object used to construct the ArkTS typed array.|
+| buffer | ArrayBuffer | Yes| ArrayBuffer object used to construct the ArkTS typed array. The number of bytes occupied by the buffer must be an integer multiple of 4.|
 | byteOffset | number | No| Byte offset of the specified buffer. The default value is **0**.|
 | length | number | No| Length of the ArkTS typed array. The default value is **0**.|
 
@@ -2433,9 +3355,9 @@ static from(arrayLike: ArrayLike\<number>): TypedArray
 
 Creates an ArkTS typed array from an array-like or iterator object.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2461,9 +3383,9 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 
 Creates an ArkTS typed array from an array-like object.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name | Type  | Mandatory| Description                                       |
@@ -2483,7 +3405,7 @@ Creates an ArkTS typed array from an array-like object.
 // Example 1: Create an ArkTS typed array from an object.
 let array: collections.Uint32Array = collections.Uint32Array.from<number>(
   { length: 5 }, (v: Object, k: number) => k);
-// Uint32Array [0, 1, 2, 3, 4, 5]
+// Uint32Array [0, 1, 2, 3, 4]
 ```
 
 ```ts
@@ -2505,9 +3427,9 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 
 Creates an ArkTS typed array from an iterator object.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name | Type  | Mandatory| Description                               |
@@ -2538,14 +3460,121 @@ let array: collections.Uint32Array = collections.Uint32Array.from(
 // Uint32Array [1, 3, 5]
 ```
 
+### of<sup>18+</sup>
+
+static of(...items: number[]): TypedArray
+
+Creates an ArkTS typed array with a variable number of parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| items | number[] | No  | Array of elements used to create the array. The number of elements can be zero, one, or more.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| TypedArray | New ArkTS typed array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
+**Example**
+
+```ts
+let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4)
+console.info(arr.toString());
+// Expected output: 1,2,3,4
+```
+
+### toString<sup>18+</sup>
+
+toString(): string
+
+Converts an ArkTS typed array into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type        | Description           |
+| ---------- | ------------- |
+| string | A string that contains all elements of the array.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                |
+| -------- | ------------------------------------ |
+| 10200011 | The toString method cannot be bound. |
+| 10200201 | Concurrent modification error.       |
+
+**Example**
+
+```ts
+let array = new collections.Uint32Array([1, 2, 3, 4, 5]);
+let stringArray = array.toString();
+console.info(stringArray);
+// Expected output: 1,2,3,4,5
+```
+
+### toLocaleString<sup>18+</sup>
+
+toLocaleString(): string
+
+Generates a string of digits that matches the cultural conventions of the current system locale. Each element converts its digits to a string via its **toLocaleString** API, and these strings are then joined together in sequence with commas (,).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type        | Description           |
+| ---------- | ------------- |
+| string | A string that contains all elements of the array.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                      |
+| -------- | ------------------------------------------ |
+| 10200011 | The toLocaleString method cannot be bound. |
+| 10200201 | Concurrent modification error.             |
+
+**Example**
+
+```ts
+// The system where the application is running is set to the French locale.
+let array = new collections.Uint32Array([1000, 2000, 3000]);
+let stringArray = array.toLocaleString();
+console.info(stringArray);
+// Expected output: 1,000,2,000,3,000
+```
+
 ### copyWithin
 copyWithin(target: number, start: number, end?: number): TypedArray
 
 Copies elements within a given range from this ArkTS typed array to another position in sequence.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2583,9 +3612,9 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 Checks whether any element in this ArkTS typed array meets a given condition.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2597,7 +3626,7 @@ Checks whether any element in this ArkTS typed array meets a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: An element meeting the given condition exists.<br>**false**: An element meeting the given condition does not exist.|
+| boolean | Check result. The value **true** means that an element meeting the given condition exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2624,9 +3653,9 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 Checks whether all elements in this ArkTS typed array meet a given condition.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2638,7 +3667,7 @@ Checks whether all elements in this ArkTS typed array meet a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: All elements meet the given condition.<br>**false**: Not all elements meet the given condition.|
+| boolean | Check result. The value **true** means that all elements meet the given condition, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2665,9 +3694,9 @@ fill(value: number, start?: number, end?: number): TypedArray
 
 Fills all elements in a given range in this ArkTS typed array with a value.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2706,9 +3735,9 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
 Returns a new ArkTS typed array that contains all elements that meet the given condition.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2744,9 +3773,9 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 
 Returns the value of the first element that passes a test provided by a callback function. If none of the elements pass the test, **undefined** is returned.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2782,9 +3811,9 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 Returns the index of the first element that passes a test provided by a callback function. If none of the elements pass the test, **-1** is returned.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2819,9 +3848,9 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
 Calls a callback function for each element in this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2853,9 +3882,9 @@ indexOf(searchElement: number, fromIndex?: number): number
 
 Returns the index of the first occurrence of a value in this ArkTS typed array. If the value is not found, **-1** is returned.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2889,14 +3918,61 @@ array.indexOf(9, 2); // 2
 array.indexOf(9, -2); // 2
 ```
 
+### lastIndexOf<sup>18+</sup>
+
+lastIndexOf(searchElement: number, fromIndex?: number): number
+
+Obtains the index of the last occurrence of the specified value in in this ArkTS typed array.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name          | Type    | Mandatory | Description                                                                               |
+| ------------- | ------ | --- | --------------------------------------------------------------------------------- |
+| searchElement | number | Yes  | Value to search for.                                                                           |
+| fromIndex     | number | No  | Index from which the search starts. The default value is **0**. If the index is greater than or equal to the length of the ArkTS typed array, **-1** is returned. If a negative number is passed in, the search starts from the end of the ArkTS typed array.|
+
+**Return value**
+
+| Type    | Description                     |
+| ------ | ----------------------- |
+| number | Index of the last occurrence of the value. If the value is not found, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The lastIndexOf method cannot be bound. |
+
+**Example**
+
+```ts
+let array: collections.Uint32Array = collections.Uint32Array.from([3, 5, 9]);
+console.info(array.lastIndexOf(3) + '');
+// Expected output: 0
+console.info(array.lastIndexOf(7) + '');
+// Expected output: -1
+console.info(array.lastIndexOf(9, 2) + '');
+// Expected output: 2
+console.info(array.lastIndexOf(9, -2) + '');
+// Expected output: -1
+```
+
 ### join
 join(separator?: string): string
 
 Concatenates all elements in this ArkTS typed array into a string, with a given separator.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -2927,18 +4003,18 @@ let joined: string = array.join('-'); // "1-2-3-4-5"
 ```
 
 ### map
-map(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): TypedArray
+map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
 Applies a callback function to each element in this ArkTS typed array and uses the result to create an ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name   | Type  | Mandatory| Description                                                |
 | --------- | ------ | ---- | ---------------------------------------------------- |
-| callbackFn | [TypedArrayForEachCallback](#typedarrayforeachcallback)\<number, TypedArray> | Yes | Callback function to run for each element.|
+| callbackFn | [TypedArrayMapCallback](#typedarraymapcallback)\<number, TypedArray> | Yes | Callback function to run for each element.|
 
 
 **Return value**
@@ -2968,9 +4044,9 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 
 Applies a reduce function on each element in this ArkTS typed array and returns the final reduction result.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name    | Type  | Mandatory|  Description    |
@@ -3000,14 +4076,54 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 // reducedValue == 15
 ```
 
+### reduceRight<sup>18+</sup>
+
+reduceRight(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): number
+
+Reversely traverses this ArkTS typed array, applies a reduce function on each element in the array, and returns the final reduction result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+| Name    | Type  | Mandatory|  Description    |
+| ---------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| callbackFn | [TypedArrayReduceCallback](#typedarrayreducecallback)\<number, number, TypedArray> | Yes| Reduce function.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| number | Final result obtained from the last call of the reduce function.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The reduceRight method cannot be bound. |
+| 10200201 | Concurrent modification exception.      |
+
+**Example**
+
+```ts
+let array: collections.Uint32Array = collections.Uint32Array.from([1, 2, 3, 4, 5]);
+let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value);
+console.info(reducedValue + '');
+// Expected output: 15
+```
+
 ### reduce
 reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initialValue: number): number
 
 Applies a reduce function for each element in this ArkTS typed array, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name   | Type  | Mandatory| Description                                                |
@@ -3039,14 +4155,55 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 // reducedValue == 16
 ```
 
+### reduceRight<sup>18+</sup>
+
+reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initialValue: U): U
+
+Reversely traverses this ArkTS typed array, applies a reduce function for each element in the array, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+| Name   | Type  | Mandatory| Description                                                |
+| --------- | ------ | ---- | --------------------------------------------------- |
+| callbackFn | [TypedArrayReduceCallback](#typedarrayreducecallback)\<U, number, TypedArray> | Yes | Reduce function.|
+| initialValue | U | Yes | Initial value.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| U | Final result obtained from the last call of the reduce function.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID   | Error Message                                   |
+| -------- | --------------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 10200011 | The reduceRight method cannot be bound. |
+| 10200201 | Concurrent modification exception.      |
+
+**Example**
+
+```ts
+let array: collections.Uint32Array = collections.Uint32Array.from([1, 2, 3, 4, 5]);
+let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value, 1);
+console.info(reducedValue + '');
+// Expected output: 16
+```
+
 ### reduce
 reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initialValue: U): U
 
 Applies a reduce function for each element in this ArkTS typed array, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -3083,9 +4240,9 @@ reverse(): TypedArray
 
 Reverses this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -3114,9 +4271,9 @@ set(array: ArrayLike\<number>, offset?: number): void
 
 Writes the elements in an array-like object to the given start position in sequence.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name   | Type  | Mandatory| Description                                                |
@@ -3146,9 +4303,9 @@ slice(start?: number, end?: number): TypedArray
 
 Selects a range of elements in this ArkTS typed array to create an ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -3186,9 +4343,9 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
 Sorts elements in this ArkTS typed array and returns the sorted ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -3225,9 +4382,9 @@ subarray(begin?: number, end?: number): TypedArray
 
 Returns a new ArkTS typed array based on the same ArkTS ArrayBuffer.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -3264,9 +4421,9 @@ at(index: number): number | undefined
 
 Returns the element at the given index. If no element is found, **undefined** is returned.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name| Type  | Mandatory| Description                                                        |
@@ -3302,9 +4459,9 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 Checks whether elements are contained in this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 | Name| Type  | Mandatory| Description                                     |
@@ -3316,7 +4473,7 @@ Checks whether elements are contained in this ArkTS typed array.
 
 | Type   | Description                                                       |
 | ------- | ---------------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** means that the element exists, and **false** means the opposite.|
 
 
 **Error codes**
@@ -3342,9 +4499,9 @@ entries(): IterableIterator\<[number, number]>
 
 Returns an iterator object that contains the key-value pair of each element in this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -3376,9 +4533,9 @@ keys(): IterableIterator\<number>
 
 Returns an iterator object that contains the key (index) of each element in this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -3410,9 +4567,9 @@ values(): IterableIterator\<number>
 
 Returns an iterator object that contains the value of each element in this ArkTS typed array.
 
-**System capability**: SystemCapability.Utils.Lang
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -3437,6 +4594,85 @@ let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
   console.info("" + value); // 1, 2, 3, 4, and 5 are returned in sequence.
 }
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                     | Description            |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
+
+```ts
+let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
+
+for (let item of int32Array) {
+  console.info(`value : ${item}`);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: number
+
+Returns the element at a given index in this TypedArray. This API is applicable to Int8Array, Int16Array, Int32Array, Uint8Array, Uint16Array, Uint32Array, Float32Array, and Float64Array.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name   | Type  | Mandatory| Description                    |
+| ----- | ------ | ---- | -------------------------- |
+| index | number | Yes  | Index of the element. The index starts from zero.|
+
+**Return value**
+
+| Type  | Description                |
+| ----- | ---------------------|
+| number | Number data type.|
+
+**Example**
+
+```ts
+let int8Array = collections.Int8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int8Array[1]);
+let int16Array = collections.Int16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int16Array[1]);
+let int32Array = collections.Int32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", int32Array[1]);
+let uint8Array = collections.Uint8Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint8Array[1]);
+let uint16Array = collections.Uint16Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint16Array[1]);
+let uint32Array = collections.Uint32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", uint32Array[1]);
+let float32Array = collections.Float32Array.from([1, 2, 4]);
+console.info("Element at index 1: ", float32Array[1]);
+let uint8Clamped = collections.Uint8ClampedArray.from([1, 2, 4]);
+console.info("Element at index 1: ", uint8Clamped[1]);
 ```
 
 ## collections.BitVector
@@ -3473,7 +4709,7 @@ Constructor used to create a bit vector.
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 ```
 
 
@@ -3497,7 +4733,7 @@ Adds an element at the end of this bit vector.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The element is added.<br>**false**: The element fails to add.|
+| boolean | Operation result. The value **true** means that the element is added, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3505,14 +4741,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The push method cannot be bound.                             |
 | 10200201 | Concurrent modification error.                               |
 
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3548,14 +4784,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res = bitVector.pop(); // bitVector: [0, 1, 0, 1]
-console.info("bitVector pop:", res) // 0
+console.info("bitVector pop:", res); // 0
 ```
 
 ### has
@@ -3574,13 +4810,13 @@ Checks whether a bit value is included in a given range of this bit vector.
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | Yes  | Bit value. The value **0** indicates bit value 0, and other values indicate bit value 1.|
 | fromIndex | number | Yes  | Start index of the range (inclusive).        |
-| toIndex   | number | Yes  | End index of the range (exclusive).      |
+| toIndex   | number | Yes  | End index of the range (inclusive).      |
 
 **Return value**
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | **true**: The bit value exists.<br>**false**: The bit value does not exist.|
+| boolean | Check result. The value **true** means that the bit value exists, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3588,7 +4824,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
@@ -3596,14 +4832,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res0: boolean = bitVector.has(0, 1, 4);
-console.info("bitVector has 0:", res0) // true
+console.info("bitVector has 0:", res0); // true
 ```
 
 ### setBitsByRange
@@ -3630,7 +4866,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The setBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -3638,7 +4874,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3669,14 +4905,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The setAllBits method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
 
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3714,7 +4950,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -3722,14 +4958,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let bitVector2 = bitVector.getBitsByRange(1, 3); // bitVector2: [1, 0]
-console.info("bitVector2 length:", bitVector2.length) // 2
+console.info("bitVector2 length:", bitVector2.length); // 2
 ```
 
 ### resize
@@ -3758,23 +4994,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The resize method cannot be bound.                           |
 | 10200201 | Concurrent modification error.                               |
 
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 bitVector.resize(10); // bitVector: [0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 10
+console.info("bitVector get bit vector's length:", bitVector.length); // 10
 bitVector.resize(3); // bitVector: [0, 1, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 3
+console.info("bitVector get bit vector's length:", bitVector.length); // 3
 ```
 
 ### getBitCountByRange
@@ -3807,7 +5043,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitCountByRange method cannot be bound.               |
 | 10200201 | Concurrent modification error.                               |
@@ -3815,14 +5051,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getBitCountByRange(1, 1, 4);
-console.info("bitVector getBitCountByRange:", res) // 2
+console.info("bitVector getBitCountByRange:", res); // 2
 ```
 
 ### getIndexOf
@@ -3855,7 +5091,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getIndexOf method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
@@ -3863,14 +5099,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getIndexOf(0, 1, 4);
-console.info("bitVector getIndexOf:", res) // 2
+console.info("bitVector getIndexOf:", res); // 2
 ```
 
 ### getLastIndexOf
@@ -3903,7 +5139,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getLastIndexOf method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -3911,14 +5147,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getLastIndexOf(0, 1, 4);
-console.info("bitVector getLastIndexOf:", res) // 2
+console.info("bitVector getLastIndexOf:", res); // 2
 ```
 
 ### flipBitByIndex
@@ -3943,7 +5179,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of index is out of range.                          |
 | 10200011 | The flipBitByIndex method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -3951,7 +5187,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3983,7 +5219,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The flipBitsByRange method cannot be bound.                  |
 | 10200201 | Concurrent modification error.                               |
@@ -3991,7 +5227,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let bitVector : collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -4028,10 +5264,91 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let iter = bitVector.values();
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let iter: IterableIterator<number> = bitVector.values();
 let temp: IteratorResult<number> = iter.next();
 while (!temp.done) {
-    console.info("bitVector value" + temp.value);
-    temp = iter.next();
+  console.info(JSON.stringify(temp.value));
+  temp = iter.next();
 } // 0, 1, 0, 1, and 0 are returned in sequence.
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;number&gt;
+
+Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type                     | Description            |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;number&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**Example**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+
+for (let item of bitVector) {
+  console.info("value: " + item);
+}
+```
+
+### [index: number]
+
+&#91;index: number&#93;: number
+
+Returns the element at a given index in this BitVector.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name   | Type  | Mandatory| Description                    |
+| ----- | ------ | ---- | -------------------------- |
+| index | number | Yes  | Index of the element. The index starts from zero.|
+
+**Return value**
+
+| Type  | Description                |
+| ----- | ---------------------|
+| number | Number data type.|
+
+**Example**
+
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+console.info("BitVector Element Index at 1: " + bitVector[1]);
 ```

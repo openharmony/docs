@@ -27,7 +27,7 @@
 
 ## 布局元素的组成
 
-布局相关的容器组件可形成对应的布局效果。例如，List组件可构成线性布局。
+布局相关的容器组件可形成对应的布局效果。
 
   **图2** 布局元素组成图  
 
@@ -44,7 +44,7 @@
 
 ## 如何选择布局
 
-声明式UI提供了以下9种常见布局，开发者可根据实际应用场景选择合适的布局进行页面开发。
+声明式UI提供了以下10种常见布局，开发者可根据实际应用场景选择合适的布局进行页面开发。
 
 | 布局                                                         | 应用场景                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -55,8 +55,11 @@
 | [栅格布局](arkts-layout-development-grid-layout.md)（GridRow、GridCol） | 栅格是多设备场景下通用的辅助定位工具，可将空间分割为有规律的栅格。栅格不同于网格布局固定的空间划分，可以实现不同设备下不同的布局，空间划分更随心所欲，从而显著降低适配不同屏幕尺寸的设计及开发成本，使得整体设计和开发流程更有秩序和节奏感，同时也保证多设备上应用显示的协调性和一致性，提升用户体验。推荐内容相同但布局不同时使用。 |
 | [媒体查询](arkts-layout-development-media-query.md)（\@ohos.mediaquery） | 媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。例如根据设备和应用的不同属性信息设计不同的布局，以及屏幕发生动态改变时更新应用的页面布局。 |
 | [列表](arkts-layout-development-create-list.md)（List）      | 使用列表可以高效地显示结构化、可滚动的信息。在ArkUI中，列表具有垂直和水平布局能力和自适应交叉轴方向上排列个数的布局能力，超出屏幕时可以滚动。列表适合用于呈现同类数据类型或数据类型集，例如图片和文本。 |
+| [弧形列表](arkts-layout-development-create-arclist.md)（ArcList）      | 使用弧形列表能够高效地展示结构化、可滚动的信息。在ArkUI中，弧形列表仅支持垂直布局，当内容超出屏幕范围时可实现滚动。弧形列表适用于展示同类数据类型或数据集合，例如图片和文本。 |
 | [网格](arkts-layout-development-create-grid.md)（Grid）      | 网格布局具有较强的页面均分能力、子元素占比控制能力。网格布局可以控制元素所占的网格数量、设置子元素横跨几行或者几列，当网格容器尺寸发生变化时，所有子元素以及间距等比例调整。推荐在需要按照固定比例或者均匀分配空间的布局场景下使用，例如计算器、相册、日历等。 |
+| [瀑布流](arkts-layout-development-create-waterflow.md)（WaterFlow）      | 瀑布流布局是多列等宽不等高的布局方式，视觉呈现如瀑布般错落有致。推荐在需要错落排列到场景使用，如图片/视频展示，商品推荐等。 |
 | [轮播](arkts-layout-development-create-looping.md)（Swiper） | 轮播组件通常用于实现广告轮播、图片预览等。       |
+| [弧形轮播](arkts-layout-development-arcswiper.md)（ArcSwiper） | 弧形轮播组件通常用于实现圆形屏幕设备上的广告轮播、图片预览等。       |
 | [选项卡](arkts-navigation-tabs.md)（Tabs） | 选项卡可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。       |
 
 
@@ -72,12 +75,32 @@ position、offset等属性影响了布局容器相对于自身或其他组件的
 
 ## 对子元素的约束
 
-| 对子元素的约束能力 | 使用场景                                                     | 实现方式                                                     |
-| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 拉伸               | 容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。 | [flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)和[flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)属性：<br/>1.&nbsp;flexGrow基于父容器的剩余空间分配来控制组件拉伸。<br/>2.&nbsp;flexShrink设置父容器的压缩尺寸来控制组件压缩。 |
-| 缩放               | 子组件的宽高按照预设的比例，随容器组件发生变化，且变化过程中子组件的宽高比不变。 | [aspectRatio](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)属性指定当前组件的宽高比来控制缩放，公式为：aspectRatio=width/height。 |
-| 占比               | 占比能力是指子组件的宽高按照预设的比例，随父容器组件发生变化。 | 基于通用属性的两种实现方式：<br/>1.&nbsp;将子组件的宽高设置为父组件宽高的百分比。<br/>2.&nbsp;[layoutWeight](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)属性，使得子元素自适应占满剩余空间。 |
-| 隐藏               | 隐藏能力是指容器组件内的子组件，按照其预设的显示优先级，随容器组件尺寸变化显示或隐藏，其中相同显示优先级的子组件同时显示或隐藏。 | 通过[displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)属性来控制组件的显示和隐藏。 |
+* 拉伸：容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
+
+  [flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow)和[flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)属性：
+  1. flexGrow基于父容器的剩余空间分配来控制组件拉伸。
+  2. flexShrink设置父容器的压缩尺寸来控制组件压缩。
+
+* 缩放：子组件的宽高按照预设的比例，随容器组件发生变化，且变化过程中子组件的宽高比不变。
+
+  [aspectRatio](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)属性指定当前组件的宽高比来控制缩放，公式为：aspectRatio=width/height。
+
+* 占比：子组件的宽高按照预设的比例，随祖先容器组件发生变化。
+
+  基于通用属性的两种实现方式：
+  1. 子组件的宽高设置为百分比。
+
+      | 父组件与祖先组件宽高设置情况 | 子组件百分比 |
+      |---|---|
+      | 父组件设置宽或高 & 祖先组件未指定父组件宽或高 | 参考父组件的宽高 |
+      | 父组件设置宽或高 & 祖先组件指定父组件宽或高 | 参考祖先组件指定的父组件宽高 |
+      | 父组件未设置宽或高 & 祖先组件指定父组件宽或高 | 参考祖先组件指定的父组件宽高 |
+      | 父组件未设置宽或高 & 祖先组件未指定父组件宽或高 | 参考父组件的百分比参照。由于父组件未指定宽高，该百分比参照传递自祖先组件 |
+  2. [layoutWeight](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)属性，使得子元素自适应占满剩余空间。
+
+* 隐藏：隐藏能力是指容器组件内的子组件，按照其预设的显示优先级，随容器组件尺寸变化显示或隐藏，其中相同显示优先级的子组件同时显示或隐藏。
+
+  通过[displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)属性来控制组件的显示和隐藏。
 
 ## 相关实例
 

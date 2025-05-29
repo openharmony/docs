@@ -108,19 +108,26 @@ struct Motion {
 export struct SpringCurve {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion', '周期2, 阻尼0.25', curves.springMotion(1, 0.25)),
-    new Spring('responsive' + '\n' + 'SpringMotion', '默认弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
-    new Spring('interpolating' + '\n' + 'Spring', '初始速度10，质量1， 剛度228， 阻尼30', curves.interpolatingSpring(10, 1, 228, 30)),
-    new Spring('springCurve', '初始速度10， 质量1， 剛度228， 阻尼30', curves.springCurve(10, 1, 228, 30))
+    new Spring('springMotion', '周期1, 阻尼0.25', curves.springMotion(1, 0.25)),
+    new Spring('responsive' + '\n' + 'SpringMotion', '弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolating' + '\n' + 'Spring', '初始速度10，质量1， 刚度228， 阻尼30',
+      curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve', '初始速度10， 质量1， 刚度228， 阻尼30', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {
     Row() {
       ForEach(this.springs, (item: Spring) => {
-        Motion({ title: item.title, subTitle: item.subTitle, iCurve: item.iCurve, dRotate: this.dRotate })
+        Motion({
+          title: item.title,
+          subTitle: item.subTitle,
+          iCurve: item.iCurve,
+          dRotate: this.dRotate
+        })
       })
     }
-    .justifyContent(FlexAlign.Center).alignItems(VerticalAlign.Bottom)
+    .justifyContent(FlexAlign.Center)
+    .alignItems(VerticalAlign.Bottom)
     .width('100%')
     .height(437)
     .margin({ top: 20 })
@@ -133,5 +140,5 @@ export struct SpringCurve {
 
 
 
-![zh-cn_image_0000001649089041](figures/zh-cn_image_0000001649089041.gif)
+![zh-cn_image_0000001649089041](figures/spring_curve.gif)
 

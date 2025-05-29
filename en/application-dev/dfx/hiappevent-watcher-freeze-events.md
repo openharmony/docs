@@ -27,8 +27,8 @@ The **params** parameter in the freeze event information is described as follows
 | peer_binder | string[] | Binder call information.|
 | threads | object[] | Full thread call stack. For details, see **thread**.|
 | memory | object | Memory information. For details, see **memory**.|
-| external_log<sup>12+</sup> | string[] | Path of the error log file.|
-| log_over_limit<sup>12+</sup> | boolean | Whether the size of generated log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
+| external_log<sup>12+</sup> | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
+| log_over_limit<sup>12+</sup> | boolean | Whether the size of generated fault log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 
 **exception**
 
@@ -45,15 +45,25 @@ The **params** parameter in the freeze event information is described as follows
 | tid | number | Thread ID.|
 | frames | object[] | Thread call stack. For details, see **frame**.|
 
-**frame**
+**frame (native)**
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| symbol | string | Function name.|
+| symbol | string | Function name. When the device is heavily loaded and the call stack is obtained in low-overhead mode, the function name may be lost.|
 | file | string | File name.|
-| buildId | string | Unique file ID.|
+| buildId | string | Unique file ID. When the device is heavily loaded and the call stack is obtained in low-overhead mode, the **buildId** information may be lost.|
 | pc | string | PC register address.|
 | offset | number | Function offset.|
+
+**frame (JS)**
+
+| Name   | Type  | Description                      |
+| ------- | ------ | ------------------------- |
+| file | string | File name.|
+| packageName | string | Package name of the module.|
+| symbol | string | Function name.|
+| column | number | The column where an exception occurs.|
+| line | number | The line where an exception occurs.|
 
 **memory**
 

@@ -12,7 +12,7 @@ Internal error.
 
 **错误描述**
 
-当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。
+当出现了开发者解决不了的内部异常错误，系统会产生此错误码，并描述具体是哪种内部错误。作为@ohos.router的错误码时，该错误码为string类型。
 
 **可能原因**
 
@@ -26,11 +26,11 @@ NA
 
 **错误信息**
 
-Uri error. The URI of the page to redirect is incorrect or does not exist
+Uri error. The URI of the page to redirect is incorrect or does not exist.
 
 **错误描述**
 
-当跳转页面输入的uri错误或者不存在，系统会产生此错误码。
+当跳转页面输入的uri错误或者不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -48,7 +48,7 @@ Page stack error. Too many pages are pushed.
 
 **错误描述**
 
-当跳转页面压入页面数超过32，系统会产生此错误码。
+当跳转页面压入页面数超过32，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -66,7 +66,7 @@ Named route error. The named route does not exist.
 
 **错误描述**
 
-当跳转命名路由页面输入的name错误或者不存在，系统会产生此错误码。
+当跳转命名路由页面输入的name错误或者不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -116,7 +116,7 @@ Uri error. The URI of the page to be used for replacement is incorrect or does n
 
 **错误描述**
 
-当替换页面输入的uri错误或不存在，系统会产生此错误码。
+当替换页面输入的uri错误或不存在，系统会产生此错误码。该错误码为string类型。
 
 **可能原因**
 
@@ -125,3 +125,21 @@ Uri error. The URI of the page to be used for replacement is incorrect or does n
 **处理步骤**
 
 请检查输入的路由uri是否正确。
+
+## 300001 Navigation跳转前下载hsp分包失败
+
+**错误信息**
+
+hsp silent install fail.
+
+**错误描述**
+
+Navigation跳转前下载跳转页面所在hsp分包失败，系统会产生此错误码。
+
+**可能原因**
+
+下载的目标hsp分包不存在。
+
+**处理步骤**
+
+请检查待跳转的目标页面所在hsp分包是否存在，传入的moduleName是否正确。

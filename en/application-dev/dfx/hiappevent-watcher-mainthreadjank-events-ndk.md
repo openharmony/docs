@@ -1,5 +1,9 @@
 # Subscribing to Main Thread Jank Events (C/C++)
 
+## Main Thread Jank Event Specifications
+
+For details, see [Main Thread Jank Event Overview](./hiappevent-watcher-mainthreadjank-events.md).
+
 ## Available APIs
 
 For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
@@ -9,7 +13,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 | API                                                      | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
 | int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher)| Removes a watcher to unsubscribe from application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
@@ -31,7 +35,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -48,6 +52,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -56,7 +61,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events.
+4. Subscribe to system events.
 
     - Watcher of the onReceive type.
 
@@ -88,7 +93,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           auto bundleVersion = params["bundle_version"].asString();
                           auto beginTime = params["begin_time"].asInt64();
                           auto endTime = params["end_time"].asInt64();
-                          auto externalLogSize = params["external_log"].size();
+                          auto externalLog = writer.write(params["external_log"]);
                           auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
@@ -99,8 +104,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                                       bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d",
-                                      externalLogSize);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
                                       logOverLimit);
                       }
@@ -113,7 +117,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
           // Set the watcher name. The system identifies different watchers based on their names.
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // Set the event type to EVENT_MAIN_THREAD_JANK.
+          // Set the event to subscribe to EVENT_MAIN_THREAD_JANK.
           const char *names[] = {EVENT_MAIN_THREAD_JANK};
           // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
@@ -122,9 +126,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           // Add a watcher to listen for the specified event.
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
-      }	  
+      }
       ```
-    
+
 5. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
@@ -149,33 +153,29 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 6. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
+   // Import the dependent module.
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // Register the system event watcher at startup.
-       testNapi.registerWatcher();
-     }
-   }
+
+   // Add the interface invocation to onCreate().
+   // Register the system event watcher at startup.
+   testNapi.registerWatcher();
    ```
 
 7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
+
    ```typescript
-      Button("timeOut500")
+      Button("timeOut350")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .onClick(() => {
           let t = Date.now();
-          while (Date.now() - t <= 500){
-          
-          }
+          while (Date.now() - t <= 350) {}
       })
    ```
 
-8. If the nolog version is used and the developer mode is disabled, the main thread checker will collect tracing data when a task times out.
+8. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
 
-9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut500** button twice consecutively to trigger a main thread jank event.
-
-10. After the main thread jank event is reported, you can view the following event information in the **Log** window.
+9. After the main thread jank event is reported, you can view the following event information in the **Log** window.
 
     ```text
       HiAppEvent eventInfo.domain=OS
@@ -188,14 +188,14 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       HiAppEvent eventInfo.params.bundle_version=1.0.0
       HiAppEvent eventInfo.params.begin_time=1717597063225
       HiAppEvent eventInfo.params.end_time=1717597063727
-      HiAppEvent eventInfo.params.external_log=1
+      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613221239_45572.txt"]
       HiAppEvent eventInfo.params.log_over_limit=0
-    ``` 
+    ```
 
     > **NOTE**
-    > For details, see [Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
+    > For details, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
 
-11. Remove the application event watcher.
+11. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -205,13 +205,13 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
     ```
 
-12. Destroy the application event watcher.
+12. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set systemEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```

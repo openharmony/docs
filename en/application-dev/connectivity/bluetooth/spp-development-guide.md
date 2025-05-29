@@ -1,6 +1,7 @@
-# SPP Development
+# SPP-based Data Transmission
 
 ## Introduction
+
 Serial Port Profile (SPP) is a Bluetooth protocol used to establish serial communication connections between Bluetooth devices. With SPP, Bluetooth devices can transmit data, such as files and text, just like using a serial port.
 
 ## When to Use
@@ -17,7 +18,7 @@ The following table describes the related APIs.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| sppListen()                        | Creates an SPP listening socket for the server.                                                      |
+| sppListen()                        | Creates a listening socket for the server.                                                      |
 | sppAccept()                        | Accepts a connection request from the client over a socket of the server.                                                 |
 | sppConnect()                       | Initiates an SPP connection to a remote device from the client.                                                    |
 | sppCloseServerSocket()             | Closes the listening socket of the server.                                                          |
@@ -31,14 +32,15 @@ The following table describes the related APIs.
 ### Writing Data to the Client
 1. Import the **socket** module.
 2. Check that the SystemCapability.Communication.Bluetooth.Core capability is available.
-3. Enable Bluetooth on the device.
-4. Creates a server socket. If the operation is successful, **serverId** is returned.
-5. Create a communication channel between the server socket and the client socket. If the operation is successful, **clientId** is returned.
-6. Write data to the client.
-7. (Optional) Subscribe to the data written by the client.
-8. Close the server socket.
-9. Close the client socket.
-Example:
+3. Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission.
+4. Enable Bluetooth on the device.
+5. Creates a server socket. If the operation is successful, **serverId** is returned.
+6. Create a communication channel between the server socket and the client socket. If the operation is successful, **clientId** is returned.
+7. Write data to the client.
+8. (Optional) Subscribe to the data written by the client.
+9. Close the server socket.
+10. Close the client socket.
+11. Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -112,7 +114,7 @@ Example:
     console.info('sppCloseClientSocket success');
     ```
 
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+11. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Connecting to the Peer Device over a Socket
 1. Import the **socket** module.
@@ -120,7 +122,7 @@ For details about the error codes, see [Bluetooth Error Codes](../../reference/a
 3. Enable Bluetooth on the device.
 4. Start Bluetooth scanning to obtain the MAC address of the peer device.
 5. Connect to the peer device.
-Example:
+6. Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -143,4 +145,4 @@ Example:
     })
     ```
 
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+7. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

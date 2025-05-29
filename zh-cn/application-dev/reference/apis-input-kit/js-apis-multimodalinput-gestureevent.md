@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.gestureEvent (手势输入事件)
+# @ohos.multimodalInput.gestureEvent (手势事件)
 
 设备上报的手势事件。
 
@@ -20,8 +20,8 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型                                   |
-| scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0                             |
+| type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型。                                   |
+| scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0。                             |
 
 ## Rotate<sup>11+</sup>
 
@@ -31,8 +31,8 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型                                   |
-| angle | number      | 是    | 否    | 旋转角度                             |
+| type | [ActionType](#actiontype)   | 是    | 否    | 旋转事件类型。                                   |
+| angle | number      | 是    | 否    | 旋转角度。                             |
 
 ## ThreeFingersSwipe
 
@@ -42,9 +42,9 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 三指滑动事件类型                                   |
-| x        | number      | 是    | 否    | 坐标x                             |
-| y        | number      | 是    | 否    | 坐标y                             |
+| type         | [ActionType](#actiontype)   | 是    | 否    | 三指滑动事件类型。                                   |
+| x        | number      | 是    | 否    | 坐标x。                             |
+| y        | number      | 是    | 否    | 坐标y。                             |
 
 ## FourFingersSwipe
 
@@ -54,9 +54,9 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 是    | 否    | 四指滑动事件类型                                   |
-| x        | number      | 是    | 否    | 坐标x                             |
-| y        | number      | 是    | 否    | 坐标y                             |
+| type         | [ActionType](#actiontype)   | 是    | 否    | 四指滑动事件类型。                                   |
+| x        | number      | 是    | 否    | 坐标x。                             |
+| y        | number      | 是    | 否    | 坐标y。                             |
 
 ## ThreeFingersTap<sup>11+</sup>
 
@@ -66,7 +66,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称               | 类型                      | 可读 | 可写 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type | [ActionType](#actiontype) | 是   | 否   | 三指轻点事件类型 |
+| type | [ActionType](#actiontype) | 是   | 否   | 三指轻点事件类型。 |
 
 ## ActionType
 
@@ -76,7 +76,7 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 | 名称        | 值  | 说明             |
 | ----------- | --- | --------------- |
-| CANCEL      | 0   | 取消             |
-| BEGIN       | 1   | 手势开始         |
-| UPDATE      | 2   | 手势更新         |
-| END         | 3   | 手势结束         |
+| CANCEL      | 0   | 取消。             |
+| BEGIN       | 1   | 手势开始。         |
+| UPDATE      | 2   | 手势更新。         |
+| END         | 3   | 手势结束。         |

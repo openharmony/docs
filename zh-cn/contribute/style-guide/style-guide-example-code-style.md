@@ -9,92 +9,173 @@
 
 文档的示例代码需要遵循[OpenHarmony应用ArkTS编程规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)、[JavaScript语言编程规范](../OpenHarmony-JavaScript-coding-style-guide.md)、[C语言编程规范](../OpenHarmony-c-coding-style-guide.md)和[C++语言编程规范](../OpenHarmony-cpp-coding-style-guide.md)基本的编码规范，包括命名规范、代码格式和代码规范等。
 
-### 【规则】每个接口（包括方法和组件）均需要提供示例代码
+### 【规则】每个接口提供示例代码
 
 【描述】
 
 API参考中，每个接口（包括方法和组件）均需要提供示例代码。如果多个API存在关联关系，则需要在一个场景化的代码示例中体现。
 
-### 【规则】每个接口提供的示例代码中无须增加`try...catch...`
+### 【规则】API参考示例代码不包含异常处理
 
 【描述】
 
-在接口示例代码中，为了保持示例代码的简洁性和易读性，不需要为每个接口调用添加`try...catch...`语句来捕获异常。
-
-示例代码主要用于演示如何正确地使用接口，并提供了正确的处理方式。添加异常处理代码可能会使示例代码变得冗长且难以理解。
+API参考文档的主要目的是展示如何调用和使用API。为了保持示例代码的简洁性和易读性，API参考示例中无需添加异常处理逻辑。这使得开发者可以快速理解API的基本用法。
 
 【正例】
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import fs from '@ohos.file.fs';
+declare function doSthAsync(): Promise<void>;
 
-// 正例1：
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+declare function doSthSync(): void;
 
-this.context.startAbility(want)
+// 正例1在API示例代码中，异步场景，无需增加`.catch()`分支
+doSthAsync()
   .then(() => {
-    // 执行正常业务
-    console.info('Succeeded in starting ability.');
   })
-  .catch((err: BusinessError) => {
-    // 处理业务逻辑错误
-    console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-  });
 
-// 正例2：
-let pathDir = '<pathDir>'; // 应用文件路径
-let filePath: string = pathDir + '/test.txt';
-let str: string = fs.readTextSync(filePath, { offset: 1, length: 3 });
-console.info(`Succeeded in reading text, str is ${str}`);
+// 正例2：在API示例代码中，同步场景，无需使用`try...catch...`包裹
+doSthSync();
 ```
 
 【反例】
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 反例1：在API示例代码中，异步场景，无须增加`try...catch...`
-let want: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility'
-};
+declare function doSthAsync(): Promise<void>;
 
+declare function doSthSync(): void;
+
+// 反例1：在API示例代码中，异步场景，无须增加`try...catch...`，也无须使用 `.catch()` 方法处理错误。
 try {
-  this.context.startAbility(want)
+  doSthAsync()
     .then(() => {
-      // 执行正常业务
-      console.info('Succeeded in starting ability.');
     })
     .catch((err: BusinessError) => {
-      // 处理业务逻辑错误
-      console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
     });
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   // 处理入参错误异常
-  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
 }
 
 // 反例2：在API示例代码中，同步场景，无须增加`try...catch...`
-let pathDir: string = '<pathDir>'; // 应用文件路径
-let filePath: string = pathDir + '/test.txt';
 try {
-  let str: string = fs.readTextSync(filePath, { offset: 1, length: 3 });
-  console.info(`Succeeded in reading text, str is ${str}`);
+  doSthSync();
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.error(`Failed to read text. Code is ${err.code}, message is ${err.message}`);
+  // 处理入参错误异常
+  console.error(`Failed to copy file. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-### 【规则】示例代码中的变量需要包含定义、使用方法或者来源链接参考或者说明
+### 【规则】开发指南示例代码包含异常处理
+
+【描述】
+
+开发指南旨在提供全面的代码示例，帮助开发者在实际应用中正确使用API。为了确保代码的健壮性和可靠性，示例代码中需要包含异常处理逻辑。这有助于开发者理解如何在不同情况下处理错误，提高代码质量。
+
+通过在开发指南的示例代码中添加异常处理，开发者可以更好地理解如何编写健壮的代码，并在实际开发中应用这些实践。
+
+【正例】
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+declare function doSthAsync1(): Promise<void>;
+
+declare function doSthAsync2(): Promise<void>;
+
+declare function doSthAsync3(): Promise<void>;
+
+declare function doSthSync1(): void;
+
+declare function doSthSync2(): void;
+
+// 正例1：异步接口，Promise场景，加上`.catch()`相关的分支判断
+doSthAsync1()
+  .then(() => {
+  })
+  .catch((err: BusinessError) => {
+    console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
+  });
+
+// 正例2：异步接口，结合async/await使用，增加`try...catch...`包裹
+async () => {
+  try {
+    await doSthAsync1();
+    await doSthAsync2();
+    await doSthAsync3();
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    // 处理入参错误异常
+    console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+// 正例3：同步接口，增加`try...catch...`包裹
+try {
+  doSthSync1();
+  doSthSync2();
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  // 处理入参错误异常
+  console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
+}
+
+// 正例4：对于同步接口增加`try...catch...`包裹，按需增加对应的异常错误码判断
+try {
+  doSthSync1();
+  doSthSync2();
+} catch (err) {
+  switch (err.code) {
+    case 401:
+      // Handle parameters exceptions
+      break;
+    case 12300001:
+      // Handle 12300001 exceptions
+      break;
+    case 12300002:
+    case 12300003:
+    case 12300004:
+      console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
+      break;
+  }
+}
+```
+
+【反例】
+
+```ts
+declare function doSthAsync1(): Promise<void>;
+
+declare function doSthAsync2(): Promise<void>;
+
+declare function doSthAsync3(): Promise<void>;
+
+declare function doSthSync1(): void;
+
+declare function doSthSync2(): void;
+
+// 反例1：异步接口，缺少`.catch()`异常处理
+doSthAsync1()
+  .then(() => {
+  })
+
+// 反例2：异步接口，结合async/await使用，缺少`try...catch...`异常处理
+async () => {
+  await doSthAsync1();
+  await doSthAsync2();
+  await doSthAsync3();
+}
+
+// 反例3：同步接口，缺少`try...catch...`异常处理
+doSthSync1();
+doSthSync2();
+```
+
+### 【规则】明确变量定义与用途
 
 【描述】
 
@@ -102,12 +183,10 @@ try {
 
 【正例】
 
-示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-dev/application-models/uiability-usage.md#获取uiability的上下文信息)。
+示例中的`context`的获取方式请参见[获取UIAbility的上下文信息](../../application-dev/application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
+import { common, Want } from '@kit.AbilityKit';
 
 const context: common.UIAbilityContext = this.context; // UIAbilityContext
 let want: Want = {
@@ -115,16 +194,16 @@ let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'FuncAbility',
   moduleName: 'func', // moduleName非必选
-  parameters: { // 自定义信息
+  parameters: {
+    // 自定义信息
     info: '来自EntryAbility Index页面',
   },
 }
 // context为调用方UIAbility的UIAbilityContext
-context.startAbilityForResult(want).then((data) => {
-  // ...
-}).catch((err: BusinessError) => {
-  console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-})
+context.startAbilityForResult(want)
+  .then((data) => {
+    // ...
+  })
 ```
 
 【反例】
@@ -132,14 +211,13 @@ context.startAbilityForResult(want).then((data) => {
 ```ts
 // 反例：使用到的context和want变量未进行定义
 // context为调用方UIAbility的UIAbilityContext
-context.startAbilityForResult(want).then((data) => {
-  // ...
-}).catch((err: BusinessError) => {
-  console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-})
+context.startAbilityForResult(want)
+  .then((data) => {
+    // ...
+  })
 ```
 
-### 【建议】一致的依赖包命名风格
+### 【建议】统一依赖包命名风格
 
 【描述】
 
@@ -150,17 +228,17 @@ context.startAbilityForResult(want).then((data) => {
 【正例】
 
 ```ts
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 ```
 
 【反例】
 
 ```ts
 // 包名和其命名空间不一致，不利于维护和理解代码
-import prompt from '@ohos.promptAction';
+import { promptAction as prompt } from '@kit.ArkUI';
 ```
 
-### 【规则】组件宽高等属性不加单位
+### 【规则】UI组件宽高等属性不加单位
 
 【描述】
 
@@ -194,7 +272,7 @@ Text('Hello World')
 
 ## 代码展示
 
-### 【规则】行内代码使用`包裹显示
+### 【规则】行内代码使用反引号显示
 
 【描述】
 
@@ -208,7 +286,7 @@ Text('Hello World')
 
 在Index.ets文件中实现页面跳转。
 
-### 【规则】代码示例、命令行使用代码样式进行代码染色
+### 【规则】代码示例使用代码块进行代码染色
 
 【描述】
 
@@ -229,9 +307,9 @@ Text('Hello World')
 【正例】
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -244,9 +322,9 @@ export default class EntryAbility extends UIAbility {
 【反例】
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -257,7 +335,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### 【规则】省略代码展示
+### 【规则】使用省略符展示代码省略部分
 
 【描述】
 
@@ -266,27 +344,27 @@ export default class EntryAbility extends UIAbility {
 【正例】
 
 ```ts
-// 正例1：
+// 正例1
 // ...
 
-// 正例2：
-// To do sthing.
+// 正例2
+// To do sth.
 ```
 
 【反例】
 
 ```ts
-// 反例1：
+// 反例1
 ...
 
-// 反例2：
+// 反例2
 ....
 
-// 反例3：
+// 反例3
 ......
 ```
 
-### 【规则】代码注释展示
+### 【规则】添加清晰的代码注释
 
 【描述】
 
@@ -303,11 +381,11 @@ export default class EntryAbility extends UIAbility {
 【正例】
 
 ```ts
-// 正例1：
+// 正例1
 // 定义生命周期回调对象
 let abilityLifecycleCallback = {};
 
-// 正例2：
+// 正例2
 let abilityLifecycleCallback = {}; // 定义生命周期回调对象
 ```
 
@@ -325,9 +403,95 @@ let abilityLifecycleCallback = {}; //定义生命周期回调对象
 let abilityLifecycleCallback = {};       // 定义生命周期回调对象
 ```
 
+### 【规则】同一个代码块中只放置单个文件的代码内容
+
+【描述】
+
+在技术文档中展示代码示例时，应遵循单一文件代码块原则。这意味着每个代码块应只包含来自单个文件的代码内容。这种做法有助于提高代码的可读性、可理解性，并且更贴近实际开发环境。混合多个文件的代码可能会导致读者混淆，难以理解代码的结构和上下文关系。通过遵循这一原则，可以确保代码示例清晰、有组织，并且易于复制和实施。
+
+【正例】
+
+将不同文件的代码分别放在独立的代码块中。这种方式清晰地展示了每个文件的内容，使读者能够轻松理解文件结构和组件之间的关系。例如：
+
+1. 开发`MyComponent`自定义组件。
+
+   ```ts
+   // MyComponent.ets
+   @Component
+   export struct MyComponent {
+     @State message: string = 'Hello, World!';
+   
+     build() {
+       Row() {
+         Text(this.message)
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold)
+       }
+       .height('100%')
+     }
+   }
+   ```
+
+2. 在`Index.ets`文件中引用该自定义组件。
+
+   ```ts
+   // pages/Index.ets
+   import { MyComponent } from '../common/components/MyComponent';
+   
+   @Entry
+   @Component
+   struct Index {
+     build() {
+       Column() {
+         MyComponent()
+       }
+       .width('100%')
+       .height('100%')
+     }
+   }
+   ```
+
+【反例】
+
+将多个文件的代码混合在一个代码块中，这可能会导致读者难以区分不同文件的边界，增加理解难度，同时也不利于代码的复制和实际应用。例如：
+
+开发`MyComponent`自定义组件。在`Index.ets`文件中引用该自定义组件。
+
+```ts
+// MyComponent.ets
+@Component
+export struct MyComponent {
+  @State message: string = 'Hello, World!';
+
+  build() {
+    Row() {
+      Text(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .height('100%')
+  }
+}
+
+
+// pages/Index.ets
+import { MyComponent } from '../common/components/MyComponent';
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      MyComponent()
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ## 异常处理
 
-### 【规则】在可能出现异常的代码段加上异常捕获，并按不同的异常类型进行分支判断
+### 【规则】在可能的异常处添加异常捕获
 
 【描述】
 
@@ -336,12 +500,12 @@ let abilityLifecycleCallback = {};       // 定义生命周期回调对象
 【正例】
 
 ```ts
-// 情形1：err为undefined的场景
+// 正例1：情形一、err为undefined的场景
 if (err) {
   // ...
 }
 
-// 情形2：err.code为非0的场景
+// 正例2：情形二、err.code为非0的场景
 if (err.code) {
   // ...
 }
@@ -350,33 +514,33 @@ if (err.code) {
 【反例】
 
 ```ts
-// 反例1：
+// 反例1
 if (err == null) {
   // ...
 }
 
-// 反例2：
+// 反例2
 if (err != null) {
   // ...
 }
 
-// 反例3：
+// 反例3
 if (err == undefined) {
   // ...
 }
 
-// 反例4：
+// 反例4
 if (err === undefined) {
   // ...
 }
 
-// 反例5：
+// 反例5
 if (err !== undefined) {
   // ...
 }
 ```
 
-### 【规则】使用console.error输出异常的详细信息，包含错误码和相关的message信息
+### 【规则】使用`console.error`输出详细异常信息
 
 【描述】
 
@@ -389,10 +553,10 @@ if (err !== undefined) {
 【正例】
 
 ```ts
-// 模板：
-console.error(`Failed to do sthing. Code: ${err.code}, message: ${err.message}`);
+// 模板
+console.error(`Failed to do sth. Code: ${err.code}, message: ${err.message}`);
 
-// 正例1：
+// 正例1
 notificationManager.publish(notificationRequest, (err: BusinessError) => {
   if (err) {
     // 异常分支打印
@@ -402,7 +566,7 @@ notificationManager.publish(notificationRequest, (err: BusinessError) => {
   // ...
 });
 
-// 正例2：
+// 正例2
 notificationManager.publish(notificationRequest)
   .then(() => {
     // ...
@@ -412,7 +576,7 @@ notificationManager.publish(notificationRequest)
     console.error(`Failed to publish notification. Code: ${err.code}, message: ${err.message}`);
   })
 
-// 正例3：
+// 正例3
 let pathDir: string = '<pathDir>'; // 应用文件路径
 let filePath: string = pathDir + '/test.txt';
 try {
@@ -459,7 +623,7 @@ console.error('Failed to publish notification, err: ' + JSON.stringify(err));
 
 ## 日志打印
 
-### 【规则】正常日志打印使用console.info，以提供程序运行的状态和关键信息
+### 【规则】使用`console.info`进行正常日志打印
 
 【描述】
 
@@ -470,97 +634,84 @@ console.error('Failed to publish notification, err: ' + JSON.stringify(err));
 【正例】
 
 ```ts
-// 模板：
-console.info('Succeeded in doing sthing.');
+// 模板
+console.info('Succeeded in doing sth.');
 
-// 正例：
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Succeeded in publishing notification.');
-});
+// 正例
+declare function doSthAsync1(): Promise<void>;
+
+doSthAsync1()
+  .then(() => {
+    console.info('Succeeded in publishing notification.');
+  })
 ```
 
 【反例】
 
 ```ts
+declare function doSthAsync1(): Promise<void>;
+
 // 反例1：使用console.log(...)可能会让程序员产生困惑，无法明确该日志信息是正常日志还是错误日志
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.log('Succeeded in publishing notification.');
-});
+doSthAsync1()
+  .then(() => {
+    console.log('Succeeded in publishing notification.');
+  })
 
 // 反例2：使用了console.error(...)而不是console.info(...)来打印正常日志信息。console.error通常用于打印错误信息，而不是正常的日志信息
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.error('Succeeded in publishing notification.');
-});
+doSthAsync1()
+  .then(() => {
+    console.error('Succeeded in publishing notification.');
+  })
 ```
 
-### 【规则】正常成功日志打印使用succeeded，以表示程序执行成功的结果
+### 【规则】使用`Succeeded`表示成功的日志信息
 
 【描述】
 
-在日志打印中使用一致的语言，例如成功日志可以使用`succeeded`来表达。
+在日志打印中使用一致的语言，例如成功日志可以使用`Succeeded`来表达。
 
 【正例】
 
 ```ts
-// 模板：
-console.info('Succeeded in doing sthing.');
+// 模板
+console.info('Succeeded in doing sth.');
 
-// 正例：
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Succeeded in publishing.');
-});
+// 正例
+declare function doSthAsync1(): Promise<void>;
+
+doSthAsync1()
+  .then(() => {
+    console.info('Succeeded in doing sth.');
+  })
 ```
 
 【反例】
 
 ```ts
-// 反例1：
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish success.');
-});
+declare function doSthAsync1(): Promise<void>;
 
-// 反例2：
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish successful.');
-});
+// 反例1
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth success.');
+  })
 
-// 反例3：
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish successfully.');
-});
+// 反例2
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth successful.');
+  })
+
+// 反例3
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth successfully.');
+  })
 ```
 
 ## 代码逻辑
 
-### 【规则】回调方法中使用箭头函数替代常规函数
+### 【规则】回调方法中使用箭头函数
 
 【描述】
 
@@ -603,8 +754,8 @@ notificationManager.publish(notificationRequest, function (err: BusinessError) {
 【正例】
 
 ```ts
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 /**
  * 获取应用文件路径
@@ -613,22 +764,22 @@ const context: common.UIAbilityContext = this.context; // UIAbilityContext
 let filesDir: string = context.filesDir;
 
 // 新建并打开文件
-let file: fs.File = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file: fileIo.File = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 // 写入一段内容至文件
-let writeLen: number = fs.writeSync(file.fd, 'Try to write str.');
+let writeLen: number = fileIo.writeSync(file.fd, 'Try to write str.');
 // 从文件读取一段内容
 let buf: ArrayBuffer = new ArrayBuffer(1024);
-let readLen: number = fs.readSync(file.fd, buf, {
+let readLen: number = fileIo.readSync(file.fd, buf, {
   offset: 0
 });
 // 关闭文件
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 【反例】
 
 ```ts
-// 使用了废弃的fileio接口，而不是推荐的fs接口
+// 使用了废弃的fileio接口，而不是推荐的fileIo接口
 import fileio from '@ohos.fileio';
 import common from '@ohos.app.ability.common';
 

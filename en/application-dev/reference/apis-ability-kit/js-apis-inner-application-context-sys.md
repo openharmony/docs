@@ -14,15 +14,17 @@ The **Context** module provides context for abilities or applications. It allows
 import { common } from '@kit.AbilityKit';
 ```
 
-## Context.createBundleContext
+## Context.createBundleContext<sup>(deprecated)</sup>
 
 createBundleContext(bundleName: string): Context
 
 Creates the context based on the bundle name.
 
-**NOTE**
+> **NOTE**
 >
-> If there are multiple modules in the stage model, resource ID conflicts may occur. You are advised to use [Context.createModuleContext](#contextcreatemodulecontext) instead.
+> If there are multiple modules in the stage model, resource ID conflicts may occur. You are advised to use [application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12) instead.
+>
+> This API is deprecated since API version 12. You are advised to use [application.createBundleContext](./js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12) instead.
 
 **System API**: This is a system API.
 
@@ -34,19 +36,19 @@ Creates the context based on the bundle name.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name. |
+| bundleName | string | Yes   | Bundle name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Context | Context created. |
+| Context | Context created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -69,11 +71,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleContext
+## Context.createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(bundleName: string, moduleName: string): Context
 
 Creates the context based on the bundle name and module name.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12) instead.
 
 **System API**: This is a system API.
 
@@ -83,20 +89,20 @@ Creates the context based on the bundle name and module name.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name. |
-| moduleName | string | Yes   | Module name. |
+| bundleName | string | Yes   | Bundle name.|
+| moduleName | string | Yes   | Module name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Context | Context created. |
+| Context | Context created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -135,20 +141,20 @@ Creates a resource management object for a module.
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name. |
-| moduleName | string | Yes   | Module name. |
+| bundleName | string | Yes   | Bundle name.|
+| moduleName | string | Yes   | Module name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| resmgr.ResourceManager | Object for resource management. |
+| resmgr.ResourceManager | Object for resource management.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -186,13 +192,13 @@ Creates a resource manager object for a module of the system-level HSP.
 | Name      | Type    | Mandatory  | Description  |
 | -------- |--------| ---- |------|
 | bundleName | string | Yes   | Bundle name. |
-| moduleName | string | Yes   | Module name. |
+| moduleName | string | Yes   | Module name.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16400001 | The specified ability does not exist. |

@@ -1,6 +1,6 @@
 # ErrorObserver
 
-定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
+定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageronerror)的入参监听当前应用发生的异常。
 
 > **说明：**
 > 
@@ -14,11 +14,11 @@ import { errorManager } from '@kit.AbilityKit';
 
 ## ErrorObserver.onUnhandledException
 
-onUnhandledException(errMsg: string): void;
+onUnhandledException(errMsg: string): void
 
-将在js运行时引发用户未捕获的异常时调用。
+应用产生未捕获的异常时的回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -49,11 +49,11 @@ try {
 
 ## ErrorObserver.onException<sup>10+</sup>
 
-onException?(errObject: Error): void;
+onException?(errObject: Error): void
 
-将在js运行时引发用户未捕获的异常时调用。
+应用产生异常，上报js层时的回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

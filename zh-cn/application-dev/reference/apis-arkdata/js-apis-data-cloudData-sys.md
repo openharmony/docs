@@ -13,7 +13,7 @@
 该模块提供以下端云服务相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
-- [sharing<sup>11+</sup>](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
+- [sharing](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 > **说明：** 
 >
@@ -51,14 +51,14 @@ import { cloudData } from '@kit.ArkData';
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
 | extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含账号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
-**样例：**
+**示例：**
 
 ```ts
-//accountId:用户打开的云账号ID
-//bundleName:应用包名
-//containerName:云上数据库名称
-//databaseScopes:云上数据库类型
-//recordTypes:云上数据库表名
+// accountId:用户打开的云账号ID
+// bundleName:应用包名
+// containerName:云上数据库名称
+// databaseScopes:云上数据库类型
+// recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
@@ -88,17 +88,29 @@ interface ExtraData {
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
 
+## SyncStatus<sup>18+</sup>
+
+端云同步任务的状态。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 值   | 说明              |
+| -------- |-----|-----------------|
+| RUNNING | 0  | 表示端云同步任务处于运行状态。 |
+| FINISHED | 1   | 表示端云同步任务处于完成状态。 |
+
 ## SyncInfo<sup>12+</sup>
 
-返回数据，上一次端云同步所需要的信息。
+返回数据，最近一次端云同步所需要的信息。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称       | 类型                                                         | 必填 | 说明                       |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
-| finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
-| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
+| startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
+| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态，默认值cloudData.SyncStatus.RUNNING。 |
 
 ## Config
 
@@ -119,7 +131,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云账号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -169,7 +181,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云账号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -322,7 +334,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
 
 **错误码：**
@@ -373,7 +385,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -516,7 +528,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
- **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
+ static notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，使用callback异步回调。
 
@@ -620,7 +632,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
-**static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
+static notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
 

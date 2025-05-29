@@ -1,23 +1,20 @@
 # 内核编码规范
 
-
 此规范基于业界通用的编程规范整理而成，请内核的开发人员遵守这样的编程风格。
-
 
 ## 总体原则
 
 总体原则:
 
-- 清晰：代码应当易于理解、易于维护、易于重构，避免晦涩语法
+- 清晰：代码应当易于理解、易于维护、易于重构，避免晦涩语法。
 
-- 简洁：命名简短，函数紧凑
+- 简洁：命名简短，函数紧凑。
 
-- 高效：通过使用算法、编译器优化选项或硬件资源提高程序效率
+- 高效：通过使用算法、编译器优化选项或硬件资源提高程序效率。
 
-- 美观：代码风格合理、一致
+- 美观：代码风格合理、一致。
 
 在大部分情况下，开发人员应当遵从以下规范，但也有一些例外场景。如修改第三方开源代码或大量使用开源代码接口下，应当与开源代码保持一致。请依据总体原则，灵活处理。
-
 
 ## 目录结构
 
@@ -25,22 +22,20 @@
 
 目录名和文件名如果没有特殊的需要，采用全小写的形式，可以使用下划线（“_”）分割。
 
-
 ## 命名
 
 推荐使用驼峰风格，具体规则如下：
 
   | 类型 | 命名风格 | 形式 | 
 | -------- | -------- | -------- |
-| 函数、结构体类型、枚举类型、联合体类型、typedef的类型 | 大驼峰，或带有模块前缀的大驼峰 | AaaBbb<br/>XXX_AaaBbb | 
-| 局部变量，函数参数，宏参数，结构体中字段，联合体中成员 | 小驼峰 | aaaBBB | 
-| 全局变量 | 带“g_”前缀的小驼峰 | g_aaaBBB | 
-| 宏（不含函数式宏），枚举值，goto标签 | 全大写，下划线分割 | AAA_BBB | 
-| 函数式宏 | 全大写下划线分割，或大驼峰，或带有模块前缀的大驼峰 | AAA_BBB<br/>AaaBbb<br/>XXX_AaaBbb | 
-| 头文件防止重复的符号 | 以下划线“_”开头以H结尾，中间为文件名的全大写并以下划线分割 | _AAA_H | 
+| 函数、结构体类型、枚举类型、联合体类型、typedef的类型。 | 大驼峰，或带有模块前缀的大驼峰。 | AaaBbb<br/>XXX_AaaBbb | 
+| 局部变量，函数参数，宏参数，结构体中字段，联合体中成员。 | 小驼峰。 | aaaBBB | 
+| 全局变量。 | 带“g_”前缀的小驼峰。 | g_aaaBBB | 
+| 宏（不含函数式宏），枚举值，goto标签。 | 全大写，下划线分割。 | AAA_BBB | 
+| 函数式宏。 | 全大写下划线分割，或大驼峰，或带有模块前缀的大驼峰。 | AAA_BBB<br/>AaaBbb<br/>XXX_AaaBbb | 
+| 头文件防止重复的符号。 | 以下划线“_”开头以H结尾，中间为文件名的全大写并以下划线分割。 | _AAA_H | 
 
 内核对外API建议采用LOS_ModuleFunc的形式，如果有宾语则建议采用前置的方式，比如：
-
   
 ```
 LOS_TaskCreate
@@ -49,12 +44,10 @@ LOS_MuxLock
 
 kernel目录下内部模块间的接口使用OsModuleFunc的形式，比如：
 
-  
 ```
 OsTaskScan
 OsMuxInit
 ```
-
 
 ## 注释
 
@@ -67,17 +60,16 @@ OsMuxInit
 文件头部要进行注释，建议注释列出：版权说明、文件功能说明，作者、创建日期、注意事项等。
 
 注释风格要统一，建议优先选择/\* \*/的方式，注释符与注释内容之间要有1空格，单行、多行注释风格如下：
-
-  
+ 
 ```
 /* 单行注释 */
-// 单行注释
+// 单行注释。
 /*
  * 多行注释
  * 第二行
  */
-// 多行注释
-// 另一行
+// 多行注释。
+// 另一行。
 ```
 
 针对代码的注释，应该置于对应代码的上方或右方。
@@ -87,13 +79,11 @@ OsMuxInit
 代码右边的注释，与代码之间，至少留1空格。
 
 建议将多条连续的右侧注释对齐，比如：
-
-  
+ 
 ```
 #define CONST_A 100    /* Const A */
 #define CONST_B 2000   /* Const B */
 ```
-
 
 ## 格式
 
@@ -104,70 +94,66 @@ OsMuxInit
 一行只写一条语句。
 
 比如：
-
-  
+ 
 ```
-struct MyType {  // 跟随语句放行末，前置1空格
-    ...
-};               // 右大括号后面紧跟分号
-int Foo(int a) { // 函数左大括号独占一行，放行首
+struct MyType {  // 跟随语句放行末，前置1空格。
+    // ...
+};               // 右大括号后面紧跟分号。
+int Foo(int a) { // 函数左大括号独占一行，放行首。
     if (a > 0) {
-        Foo();   // 一行只有一条语句
+        Foo();   // 一行只有一条语句。
         Bar();         
-     } else {    // 右大括号、"else"、以及后续的左大括号均在同一行
-        ...         
-     }           // 右大括号独占一行
-     ... 
+     } else {    // 右大括号、"else"、以及后续的左大括号均在同一行。
+        // ...         
+     }           // 右大括号独占一行。
+     // ... 
 }
 ```
 
 每行字符数不要超过 120 个，代码过长时应当换行，换行时将操作符留在行末，新行缩进一层或进行同类对齐，并将表示未结束的操作符或连接符号留在行末。
-
   
 ```
-// 假设下面第一行已经不满足行宽要求   
-if (currentValue > MIN && // Good：换行后，布尔操作符放在行末
-    currentValue < MAX) { // Good: 与(&&)操作符的两个操作数同类对齐
+// 假设下面第一行已经不满足行宽要求。   
+if (currentValue > MIN && // Good：换行后，布尔操作符放在行末。
+    currentValue < MAX) { // Good: 与(&&)操作符的两个操作数同类对齐。
        DoSomething();
-       ... 
+       // ... 
 }
-flashPara.flashEndAddr = flashPara.flashBaseAddr + // Good: 加号留在行末
-                         flashPara.flashSize; // Good: 加法两个操作数对齐
+flashPara.flashEndAddr = flashPara.flashBaseAddr + // Good: 加号留在行末。
+                         flashPara.flashSize; // Good: 加法两个操作数对齐。
 
-// Good：函数参数放在一行   
+// Good：函数参数放在一行。   
 ReturnType result = FunctionName(paramName1, paramName2); 
 ReturnType result = FunctionName(paramName1,
                                  paramName2,
-                                 paramName3); // Good：保持与上方参数对齐                
+                                 paramName3); // Good：保持与上方参数对齐。                
 ReturnType result = FunctionName(paramName1, paramName2,
-      paramName3, paramName4, paramName5); // Good：参数换行，4 空格缩进  
-ReturnType result = VeryVeryVeryLongFunctionName( // 行宽不满足第1个参数，直接换行
-      paramName1, paramName2, paramName3); // 换行后，4 空格缩进  
+      paramName3, paramName4, paramName5); // Good：参数换行，4 空格缩进。  
+ReturnType result = VeryVeryVeryLongFunctionName( // 行宽不满足第1个参数，直接换行。
+      paramName1, paramName2, paramName3); // 换行后，4 空格缩进。  
 
-// Good：每行的参数代表一组相关性较强的数据结构，放在一行便于理解   
-int result = DealWithStructLikeParams(left.x, left.y,    // 表示一组相关参数
-                                      right.x, right.y); // 表示另外一组相关参数
+// Good：每行的参数代表一组相关性较强的数据结构，放在一行便于理解。   
+int result = DealWithStructLikeParams(left.x, left.y,    // 表示一组相关参数。
+                                      right.x, right.y); // 表示另外一组相关参数。
 ```
 
 包括 if/for/while/do-while 语句应使用大括号，即复合语句。
-
-  
+ 
 ```
-while (condition) {} // Good：即使循环体是空，也应使用大括号
+while (condition) {} // Good：即使循环体是空，也应使用大括号。
 while (condition) {
-     continue;       // Good：continue 表示空逻辑，使用大括号
+     continue;       // Good：continue 表示空逻辑，使用大括号。
 }
 ```
 
 case/default 语句相对 switch 缩进一层，风格如下：
-
   
 ```
 switch (var) {
-    case 0:             // Good: 缩进
-        DoSomething1(); // Good: 缩进
+    case 0:             // Good: 缩进。
+        DoSomething1(); // Good: 缩进。
         break;
-    case 1: {           // Good: 带大括号格式
+    case 1: {           // Good: 带大括号格式。
         DoSomething2();
         break;
     }
@@ -177,20 +163,18 @@ switch (var) {
 ```
 
 指针类型"\*"跟随变量或者函数名，例如：
-
   
 ```
 int *p1;   // OK
-int* p2;   // Bad：跟随类型
-int*p3;    // Bad：两边都没空格
-int * p4;  // Bad：两边都有空格
-struct Foo *CreateFoo(void); // OK: "*"跟随函数名  
+int* p2;   // Bad：跟随类型。
+int*p3;    // Bad：两边都没空格。
+int * p4;  // Bad：两边都有空格。
+struct Foo *CreateFoo(void); // OK: "*"跟随函数名。  
 特例：
-char * const VERSION = "V100";    // OK: 当有 const 修饰符时，"*"两边都有空格   
-int Foo(const char * restrict p); // OK: 当有 restrict 修饰符时，"*"两边都有空格 
-sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
+char * const VERSION = "V100";    // OK: 当有 const 修饰符时，"*"两边都有空格。  
+int Foo(const char * restrict p); // OK: 当有 restrict 修饰符时，"*"两边都有空格。 
+sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型。
 ```
-
 
 ## 宏
 
@@ -198,12 +182,11 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 
 定义宏时，要使用完备的括号，例如：
 
-  
 ```
-#define SUM(a, b) ((a) + (b))   // 符合本规范要求.
-#define SOME_CONST  100         // Good: 单独的数字无需括号   
-#define ANOTHER_CONST   (-1)    // Good: 负数需要使用括号
-#define THE_CONST   SOME_CONST  // Good: 单独的标识符无需括号
+#define SUM(a, b) ((a) + (b))   // 符合本规范要求。
+#define SOME_CONST  100         // Good: 单独的数字无需括号。   
+#define ANOTHER_CONST   (-1)    // Good: 负数需要使用括号。
+#define THE_CONST   SOME_CONST  // Good: 单独的标识符无需括号。
 ```
 
 以下情况需要注意：
@@ -215,19 +198,18 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 - 宏参数作为独立部分，在赋值（包括+=, -=等）操作的某一边时，可以不加括号；
 
 - 宏参数作为独立部分，在逗号表达式，函数或宏调用列表中，可以不加括号。
-
   
 ```
-// x 不要加括号
+// x 不要加括号。
 #define MAKE_STR(x) #x
 
-// obj 不要加括号
+// obj 不要加括号。
 #define HELLO_STR(obj) "Hello, " obj
 
-// a, b 需要括号；而 value 可以不加括号
+// a, b 需要括号；而 value 可以不加括号。
 #define UPDATE_VALUE(value, a, b) (value = (a) + (b))
 
-// a 需要括号；而 b 可以不加括号
+// a 需要括号；而 b 可以不加括号。
 #define FOO(a, b) Bar((a) + 1, b)
 ```
 
@@ -240,7 +222,6 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 禁止宏调用参数中出现预编译指令，如\#include，\#deﬁne和\#ifdef，这样做会导致未定义的行为。
 
 宏定义不以分号结尾。
-
 
 ## 头文件
 
@@ -258,11 +239,9 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 
 建议按稳定度包含头文件，依次顺序为： 源码对应的头文件，C标准库，操作系统库，平台库，项目公共库，自己其他的依赖。
 
-
 ## 数据类型
 
 基础数据类型建议使用los_compiler.h中定义的类型，比如无符号32位整数位定义为UINT32。
-
 
 ## 变量
 
@@ -276,7 +255,6 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 
 指向资源句柄或描述符的变量，在资源释放后立即赋予新值（如果变量的作用域马上结束可以不赋予新值）。指向资源句柄或描述符的变量包括指针、文件描述符、socket描述符以及其它指向资源的变量。
 
-
 ## 断言
 
 断言必须使用宏定义，且只能在调试版本中生效。
@@ -286,7 +264,6 @@ sz = sizeof(int*); // OK：右侧没有变量，"*"跟随类型
 禁止在断言内改变运行环境。
 
 一个断言只用于检查一个错误。
-
 
 ## 函数
 

@@ -32,10 +32,10 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [RawDir](#rawdir)[RawDir](#rawdir) | Provides access to the **rawfile** directory.| 
-| typedef struct [RawFile](#rawfile)[RawFile](#rawfile) | Provides access to rawfiles.| 
-| typedef struct [RawFile64](#rawfile64)[RawFile64](#rawfile64) | Provides access to large rawfiles.| 
-| typedef struct [NativeResourceManager](#nativeresourcemanager)[NativeResourceManager](#nativeresourcemanager) | Represents the native **ResourceManager**.| 
+| typedef struct [RawDir](#rawdir) [RawDir](#rawdir) | Provides access to the **rawfile** directory.| 
+| typedef struct [RawFile](#rawfile) [RawFile](#rawfile) | Provides access to rawfiles.| 
+| typedef struct [RawFile64](#rawfile64) [RawFile64](#rawfile64) | Provides access to large rawfiles.| 
+| typedef struct [NativeResourceManager](#nativeresourcemanager) [NativeResourceManager](#nativeresourcemanager) | Represents the native **ResourceManager**.| 
 
 
 ### Functions
@@ -53,6 +53,7 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 | long [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | Obtains the current offset of a rawfile, in long.| 
 | bool [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Opens a rawfile based on the specified offset (in long) and file length (in long) and obtains the file descriptor.| 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | Releases a file descriptor.| 
+| bool [OH_ResourceManager_ReleaseRawFileDescriptorData](rawfile.md#oh_resourcemanager_releaserawfiledescriptordata) (const [RawFileDescriptor](_raw_file_descriptor.md) \*descriptor) | Releases a file descriptor.|
 | int64_t [OH_ResourceManager_ReadRawFile64](#oh_resourcemanager_readrawfile64) (const [RawFile64](#rawfile64) \*rawFile, void \*buf, int64_t length) | Reads data of the specified length from the current position in a large rawfile.| 
 | int [OH_ResourceManager_SeekRawFile64](#oh_resourcemanager_seekrawfile64) (const [RawFile64](#rawfile64) \*rawFile, int64_t offset, int whence) | Searches for the data read/write position in a large rawfile based on the specified offset.| 
 | int64_t [OH_ResourceManager_GetRawFileSize64](#oh_resourcemanager_getrawfilesize64) ([RawFile64](#rawfile64) \*rawFile) | Obtains the length of a large rawfile, in int64_t.| 
@@ -75,7 +76,7 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 ### NativeResourceManager
 
 ```
-typedef struct NativeResourceManagerNativeResourceManager
+typedef struct NativeResourceManager NativeResourceManager
 ```
 
 **Description**
@@ -90,7 +91,7 @@ This class encapsulates the native implementation of the JavaScript resource man
 ### RawDir
 
 ```
-typedef struct RawDirRawDir
+typedef struct RawDir RawDir
 ```
 
 **Description**
@@ -103,7 +104,7 @@ Provides access to the **rawfile** directory.
 ### RawFile
 
 ```
-typedef struct RawFileRawFile
+typedef struct RawFile RawFile
 ```
 
 **Description**
@@ -116,7 +117,7 @@ Provides access to rawfiles.
 ### RawFile64
 
 ```
-typedef struct RawFile64RawFile64
+typedef struct RawFile64 RawFile64
 ```
 
 **Description**
@@ -272,7 +273,7 @@ The file descriptor obtained can be used to read the file.
 | Name| Description| 
 | -------- | -------- |
 | rawFile | Pointer to [RawFile64](#rawfile64).| 
-| File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the rawfile.|  | 
+| descriptor | File descriptor of the rawfile, start position of the rawfile in the HAP, and length of the rawfile.| 
 
 **Returns**
 
@@ -287,7 +288,9 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 
 **Description**
 
-Obtain the name of the rawfile file through the index. You can use this method to traverse the rawfile directory.
+Obtains the name of a file in **rawfile** based on the index.
+
+You can use this function to traverse the **rawfile** directory.
 
 **Since**: 8
 
@@ -463,7 +466,7 @@ Obtains the native **ResourceManager** based on the JS **ResourceManager** to im
 
 | Name| Description| 
 | -------- | -------- |
-| env | Pointer to the JS native API (napi) environment.| 
+| env | Pointer to the JavaScript Native API (napi) environment.| 
 | jsResMgr | JS **ResourceManager**.| 
 
 **Returns**
@@ -678,6 +681,29 @@ To prevent file descriptor leakage, you are advised to release a rawfile descrip
 
 Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
 
+### OH_ResourceManager_ReleaseRawFileDescriptorData()
+
+```
+bool OH_ResourceManager_ReleaseRawFileDescriptorData (const RawFileDescriptor * descriptor )
+```
+
+**Description**
+
+Releases the file descriptor of a file in **rawfile**.
+
+To prevent file descriptor leakage, you are advised to release a rawfile descriptor immediately after use.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| descriptor | File descriptor of the rawfile. It contains the file descriptor, start position in the HAP, and file length.| 
+
+**Returns**
+
+Returns <b>true</b> if the file descriptor is released; returns <b>false</b> otherwise.
 
 ### OH_ResourceManager_ReleaseRawFileDescriptor64()
 

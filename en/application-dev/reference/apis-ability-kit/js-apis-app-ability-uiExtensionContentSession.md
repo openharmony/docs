@@ -5,7 +5,7 @@
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -24,19 +24,116 @@ Loads content from a page associated with a local storage to the window correspo
 
 **Parameters**
 
-| Name | Type                                           | Mandatory | Description                                                        |
+| Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default. |
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+    session.loadContent('pages/Extension', storage);
+  }
+
+  // ...
+}
+```
+
+## UIExtensionContentSession.loadContentByName<sup>18+</sup>
+
+loadContentByName(name: string, storage?: LocalStorage): void
+
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| name | string | Yes| Name of the named route page.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------ | ------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 16000050 | Internal error. |
+
+**Example**
+
+Implementation of the UIExtensionAbility:
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import './pages/UIExtensionPage'; // Import the named route page. The ./pages/UIExtensionPage.ets file is used as an example in the sample code. Change the path and file name to the actual ones during your development.
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // Other lifecycles and implementations
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+
+    let name: string = 'UIExtPage'; // Name of the named route page.
+    try {
+      session.loadContentByName(name, storage);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`Failed to load content by name ${name}, code: ${code}, msg: ${message}`);
+    }
+  }
+
+  // Other lifecycles and implementations
+}
+```
+
+Implementation of the named route page loaded by the UIExtensionAbility:
+```ts
+// Implementation of the ./pages/UIExtensionPage.ets file.
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry ({routeName: 'UIExtPage'}) // Use routeName to define the name of the named route page.
+@Component
+struct UIExtensionPage {
+  @State message: string = 'Hello world';
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -48,17 +145,51 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelf')
+        .onClick(() => {
+          this.session?.terminateSelf((err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in terminating self.`);
+          });
+
+          this.storage?.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -70,9 +201,43 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelf')
+        .onClick(() => {
+          this.session?.terminateSelf()
+            .then(() => {
+              console.info(`Succeeded in terminating self.`);
+            })
+            .catch((err: BusinessError) => {
+              console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
+            });
+
+          this.storage?.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
@@ -84,18 +249,62 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes | Result returned to the UIExtensionComponent. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Result returned to the UIExtensionComponent.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelfWithResult')
+        .onClick(() => {
+          let abilityResult: common.AbilityResult = {
+            resultCode: 0,
+            want: {
+              bundleName: 'com.ohos.uiextensioncontentsession',
+              parameters: {
+                'result': 123456
+              }
+            }
+          };
+
+          this.session?.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in terminating self with result.`);
+          });
+
+          this.storage?.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
@@ -107,23 +316,67 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes | Result returned to the UIExtensionComponent. |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Result returned to the UIExtensionComponent.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelfWithResult')
+        .onClick(() => {
+          let abilityResult: common.AbilityResult = {
+            resultCode: 0,
+            want: {
+              bundleName: 'com.ohos.uiextensioncontentsession',
+              parameters: {
+                'result': 123456
+              }
+            }
+          };
+
+          this.session?.terminateSelfWithResult(abilityResult)
+            .then(() => {
+              console.info(`Succeeded in terminating self with result.`);
+            })
+            .catch((err: BusinessError) => {
+              console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
+            });
+
+          this.storage?.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -137,24 +390,54 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------------- | ------- | -- | ----------------------------------------------------- |
-| isPrivacyMode | boolean | Yes | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| isPrivacyMode | boolean | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let isPrivacyMode: boolean = true;
+    try {
+      session.setWindowPrivacyMode(isPrivacyMode)
+        .then(() => {
+          console.info(`Succeeded in setting window to privacy mode.`);
+        })
+        .catch((err: BusinessError) => {
+          console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
+        });
+    } catch (e) {
+      let code = (e as BusinessError).code;
+      let msg = (e as BusinessError).message;
+      console.error(`Failed to set window to privacy mode, code: ${code}, msg: ${msg}`);
+    }
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -168,78 +451,178 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------------- | ------------------------- | -- | ------------------------------------------------------ |
-| isPrivacyMode | boolean                   | Yes | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
-| callback      | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let isPrivacyMode: boolean = true;
+    try {
+      session.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
+          return;
+        }
+        console.info(`Succeeded in setting window to privacy mode.`);
+      });
+    } catch (e) {
+      let code = (e as BusinessError).code;
+      let msg = (e as BusinessError).message;
+      console.error(`Failed to set window to privacy mode, code: ${code}, msg: ${msg}`);
+    }
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
 
-Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
+Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result. It can be called only by applications running in the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd--> |
-| wantParam | Record<string, Object> | Yes | Extended parameter. |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes | Callback used to return the detailed error information if the startup fails. |
-| callback | AsyncCallback\<void> | Yes |Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object. |
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).<!--DelEnd-->|
+| wantParam | Record<string, Object> | Yes| Extended parameter.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
+| callback | AsyncCallback\<void> | Yes|Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let wantParams: Record<string, Object> = {
+      'sceneType': 1
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.error(`onError, code: ${code}, name: ${name}, msg: ${message}`);
+      },
+      onResult: (result: common.AbilityResult) => {
+        console.info(`onResult, result: ${JSON.stringify(result)}`);
+      }
+    };
+
+    session.startAbilityByType('test', wantParams, abilityStartCallback, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbilityByType`);
+    });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback): Promise\<void>
 
-Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
+Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result. It can be called only by applications running in the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd--> |
-| wantParam | Record<string, Object> | Yes | Extended parameter. |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes | Callback used to return the detailed error information if the startup fails. |
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).<!--DelEnd-->|
+| wantParam | Record<string, Object> | Yes| Extended parameter.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let wantParams: Record<string, Object> = {
+      'sceneType': 1
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.error(`onError, code: ${code}, name: ${name}, msg: ${message}`);
+      },
+      onResult: (result: common.AbilityResult) => {
+        console.info(`onResult, result: ${JSON.stringify(result)}`);
+      }
+    };
+
+    session.startAbilityByType('test', wantParams, abilityStartCallback)
+      .then(() => {
+        console.info(`Succeeded in startAbilityByType`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
 
@@ -251,15 +634,15 @@ Obtains the window proxy of this UIExtensionAbility.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| uiExtension.WindowProxy | Window proxy. |
+| uiExtension.WindowProxy | Window proxy.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 
@@ -270,13 +653,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import uiExtension from '@ohos.arkui.uiExtension';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Extension {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
   private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
 
   aboutToAppear(): void {

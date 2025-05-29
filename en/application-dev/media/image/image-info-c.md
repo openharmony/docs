@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
 
-Implement the C native APIs in **hello.cpp**. Refer to the sample code below.
+Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 ```c++
 #include <hilog/log.h>
@@ -150,6 +150,17 @@ static void ImageNativeCTest()
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image pixel stride failed, errCode: %{public}d.", errCode);
         OH_ImageNative_Release(image);
         OH_ImageReceiverOptions_Release(options);OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
+    // Read the timestamp of the OH_ImageNative instance.
+    int64_t timestamp = 0;
+    errCode = OH_ImageNative_GetTimestamp(image, &timestamp);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get timestamp failed, errCode: %{public}d.", errCode);
+        OH_ImageNative_Release(image);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
         return;
     }
 

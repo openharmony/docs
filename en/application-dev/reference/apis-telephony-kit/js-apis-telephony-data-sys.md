@@ -2,11 +2,11 @@
 
 The **data** module provides basic mobile data management functions. With the APIs provided by this module, you can set the default slot of the SIM card used for cellular data services and enable or disable cellular data services and data roaming.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.data (Cellular Data)](js-apis-telephony-data.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.data (Cellular Data)](js-apis-telephony-data.md).
 
 
 ## Modules to Import
@@ -32,12 +32,12 @@ Sets the default slot of the SIM card used for mobile data. This API uses an asy
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -82,7 +82,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2.|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -92,7 +92,7 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -140,7 +140,7 @@ Enables the cellular data service. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -187,7 +187,7 @@ Enables the cellular data service. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -230,7 +230,7 @@ Disables the cellular data service. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -277,7 +277,7 @@ Disables the cellular data service. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -316,12 +316,12 @@ Enables the cellular data roaming service. This API uses an asynchronous callbac
 
 | Name  | Type                 | Mandatory| Description                                    |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -364,7 +364,7 @@ Enables the cellular data roaming service. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -374,7 +374,7 @@ Enables the cellular data roaming service. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -415,12 +415,12 @@ Disables the cellular data roaming service. This API uses an asynchronous callba
 
 | Name  | Type                 | Mandatory| Description                                    |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -463,7 +463,7 @@ Disables the cellular data roaming service. This API uses a promise to return th
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1.<br>**1**: card slot 2.|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -473,7 +473,7 @@ Disables the cellular data roaming service. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Telephony Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |

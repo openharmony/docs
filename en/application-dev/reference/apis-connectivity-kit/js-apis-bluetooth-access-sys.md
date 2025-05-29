@@ -4,8 +4,8 @@ The **access** module provides APIs for enabling and disabling Bluetooth and obt
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.access (Bluetooth Access Module)](js-apis-bluetooth-access.md).
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.bluetooth.access (Bluetooth Access Module)](js-apis-bluetooth-access.md).
 
 
 ## Modules to Import
@@ -31,11 +31,11 @@ Restores the Bluetooth factory settings. This API uses an asynchronous callback 
 
 | Name  | Type                                              | Mandatory | Description                                                      |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| callback     | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result.<br>If the Bluetooth factory settings are restored successfully, **err** is **undefined**. Otherwise, **err** is an error object.      |
+| callback     | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result.<br> If the Bluetooth factory settings are restored successfully, **err** is **undefined**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 |ID  | Error Message          |
 | -------- | ------------------ |
@@ -82,7 +82,7 @@ Restores the Bluetooth factory settings. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 |ID  | Error Message          |
 | -------- | ------------------ |
@@ -126,7 +126,7 @@ Obtains the Bluetooth address of the local device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 |ID  | Error Message          |
 | -------- | ------------------ |
@@ -167,7 +167,7 @@ Restricts the BR/EDR capability of this Bluetooth device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 |ID  | Error Message          |
 | -------- | ------------------ |

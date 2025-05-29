@@ -1,31 +1,26 @@
-# Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode)
-
+# Signing and Signature Recovery Using an RSA Key Pair (PKCS1 Mode) (ArkTS)
 
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
 
-
 **Signing**
 
-
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
+1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) and [AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1) to generate a 1024-bit RSA key pair (**KeyPair**) with two primes. The **KeyPair** instance consists of a public key (**PubKey**) and a private key (**PriKey**).
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Randomly Generating an Asymmetric Key Pair](crypto-generate-asym-key-pair-randomly.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA1024|PKCS1|SHA256|SignOnly'** to create a **Sign** instance for signing without the MD. The key type is **RSA1024**, the padding mode is **PKCS1**, and the MD algorithm is **SHA256**.
+2. Call [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA1024|PKCS1|SHA256|SignOnly'** to create a **Sign** instance for signing without the MD. The key type is **RSA1024**, the padding mode is **PKCS1**, and the MD algorithm is **SHA256**.
 
-3. Use [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
+3. Call [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
-4. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
-
+4. Call [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
 **Signature Verification**
 
+1. Call [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256|Recover'** to create a **Verify** instance. The key parameters must be the same as that used to create the **Sign** instance.
 
-1. Use [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA1024|PKCS1|SHA256|Recover'** to create a **Verify** instance. The key parameters must be the same as that used to create the **Sign** instance.
+2. Call [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
-2. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
-
-3. Use [Verify.recover](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#recover12) to recover the original data from the signature.
+3. Call [Verify.recover](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#recover12) to recover the original data from the signature.
 
 - Example (using asynchronous APIs):
 
@@ -54,7 +49,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
     let keyPair = await generator.generateKeyPair();
     let signData = await signMessagePromise(keyPair.priKey);
     let rawSignData = await verifyMessagePromise(signData, keyPair.pubKey);
-    if (rawSignData != null) {
+    if (rawSignData !== null) {
       console.info('recover result: ' + rawSignData.data);
     } else {
       console.error("get verify recover result fail!");
@@ -89,7 +84,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
     let keyPair = generator.generateKeyPairSync();
     let signData = signMessagePromise(keyPair.priKey);
     let rawSignData = verifyMessagePromise(signData, keyPair.pubKey);
-    if (rawSignData != null) {
+    if (rawSignData !== null) {
       console.info('recover result: ' + rawSignData.data);
     } else {
       console.error("get verify recover result fail!");

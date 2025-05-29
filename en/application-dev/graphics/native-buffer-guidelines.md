@@ -12,7 +12,7 @@ Use the native buffer APIs to create an **OH_NativeBuffer** instance, obtain mem
 
 | API| Description| 
 | -------- | -------- |
-| OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config \*config) | Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.| 
+| OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config \*config) | Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called. This function must be used in pair with **OH_NativeBuffer_Unreference**. Otherwise, memory leak occurs.|
 | OH_NativeBuffer_Reference (OH_NativeBuffer \*buffer) | Increases the reference count of an **OH_NativeBuffer** instance by 1.| 
 | OH_NativeBuffer_Unreference (OH_NativeBuffer \*buffer) | Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.| 
 | OH_NativeBuffer_GetConfig (OH_NativeBuffer \*buffer, OH_NativeBuffer_Config \*config) | Obtains the properties of an **OH_NativeBuffer** instance.| 

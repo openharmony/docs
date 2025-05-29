@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for **HiTraceId**.
+Defines a **HiTraceId** instance.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
@@ -11,6 +11,7 @@ Defines a struct for **HiTraceId**.
 
 **Related module**: [Hitrace](_hitrace.md)
 
+**Header file**: [trace.h](trace_8h.md)
 
 ## Summary
 

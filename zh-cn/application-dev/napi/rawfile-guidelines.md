@@ -24,111 +24,13 @@
 | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | 获取rawfile的fd。                        |
 | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | 释放rawfile的fd。                        |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
-| bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录    |
+| bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录。    |
 
-
-
-## 函数介绍
-
-1. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawDir接口获取RawDir实例。
-
-    ```c++
-    RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
-    ```
-
-2. 根据RawDir实例，使用OH_ResourceManager_GetRawFileCount接口获取对应目录下的rawfile文件总数 。
-
-    ```c++
-    int count = OH_ResourceManager_GetRawFileCount(rawDir);
-    ```
-
-3. 根据RawDir实例，使用OH_ResourceManager_GetRawFileName接口获取目录下对应index的rawfile文件名。
-
-    ```c++
-    for (int index = 0; index < count; index++) {
-        std::string fileName = OH_ResourceManager_GetRawFileName(rawDir, index);
-    }
-    ```
-
-4. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawFile接口获取指定文件名的RawFile实例
-
-    ```c++
-    RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
-    ```
-
-5. 根据RawFile实例，使用OH_ResourceManager_GetRawFileSize接口获取对应rawfile文件大小。
-
-    ```c++
-    long rawFileSize = OH_ResourceManager_GetRawFileSize(rawFile);
-    ```
-
-6. 根据RawFile实例，使用OH_ResourceManager_SeekRawFile接口指定rawfile偏移量。
-
-    ```c++
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 10, 0);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 0 , 1);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, -10, 2);
-    ```
-
-7. 根据RawFile实例，使用OH_ResourceManager_GetRawFileOffset接口获取rawfile偏移量。
-
-    ```c++
-    long rawFileOffset = OH_ResourceManager_GetRawFileOffset(rawFile)
-    ```
-
-8. 根据RawFile实例，使用OH_ResourceManager_ReadRawFile接口读取rawfile文件内容。
-
-    ```c++
-    std::unique_ptr<char[]> mediaData = std::make_unique<char[]>(rawFileSize);
-    long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
-    ```
-
-9. 根据RawFile实例，使用OH_ResourceManager_GetRawFileRemainingLength接口读取rawfile文件的剩余长度。
-
-    ```c++
-    int64_t rawFileRemainingSize = OH_ResourceManager_GetRawFileRemainingLength(rawFile);
-    ```
-
-10. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawFile(rawFile);
-    ```
-
-11. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawDir(rawDir);
-    ```
-
-12. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
-
-    ```c++
-    RawFileDescriptor descriptor;
-    bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
-    ```
-
-13. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
-
-    ```c++
-    OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
-    ```
-
-14. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
-
-    ```c++
-    OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
-    ```
-
-14. 根据传入的rawfile路径，使用OH_ResourceManager_IsRawDir接口判断是否是目录。
-
-    ```c++
-    OH_ResourceManager_IsRawDir(nativeResourceManager, path);
-    ```
+详细的接口说明请参考[rawfile函数说明](../reference/apis-localization-kit/rawfile.md#函数说明)。
 
 ## 开发步骤
 
-   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
+   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符（fd, offset, length）三种调用方式为例。
 
 **1. 创建工程**
 
@@ -136,7 +38,7 @@
 
 **2. 添加依赖**
 
-创建完成后，IDE会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
+创建完成后，DevEco Studio会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
 
 1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so。
 
@@ -175,7 +77,7 @@
     EXTERN_C_END
     ```
 
-2. 把src/main/cpp/hello.cpp文件中，增加对应的三个方法，如下所示
+2. 把src/main/cpp/hello.cpp文件中，增加对应的三个方法，如下所示：
 
     ```c++
     static napi_value GetFileList(napi_env env, napi_callback_info info)
@@ -184,7 +86,7 @@
     static napi_value IsRawDir(napi_env env, napi_callback_info info)
     ```
 
-3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
+3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符（fd, offset, length）三种调用方式示例代码如下：
 
     ```c++
     #include <rawfile/raw_file.h>
@@ -286,7 +188,7 @@
         // 一次性读取rawfile全部内容
         int res = OH_ResourceManager_ReadRawFile(rawFile, data.get(), len);
 
-        // 多次部分读取rawfile, 每次读取100 Byte。获取全部内容
+        // 多次部分读取rawfile, 每次读取100 Bytes。获取全部内容
         // long offset = 0;
         // while (OH_ResourceManager_GetRawFileRemainingLength(rawFile) > 0) {
         //     OH_ResourceManager_ReadRawFile(rawFile, data.get() + offset, 100);
@@ -362,7 +264,7 @@
         if (rawFile != nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, tag, "OH_ResourceManager_OpenRawFile success");
         }
-        // 获取rawfile的描述符RawFileDescriptor {fd, offset, length}
+        // 获取rawfile的描述符RawFileDescriptor （fd, offset, length）
         RawFileDescriptor descriptor;
         OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
         // 关闭打开的指针对象
@@ -412,22 +314,22 @@
 
 **4. Js侧调用**
 
-1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
+1. 打开src\main\ets\pages\index.ets, 导入"libentry.so"。
 
-2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
+2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName: 'bundleName name', moduleName: 'module name').resourceManager方法，该方法仅支持系统应用使用。<br>Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
     
 3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
 
-   获取本应用包资源resourceManager对象的示例如下:
+   获取本应用包资源resourceManager对象的示例如下：
 
     ```js
     import hilog from '@ohos.hilog';
-    import testNapi from 'libentry.so'  // 导入so
+    import testNapi from 'libentry.so';  // 导入so
     @Entry
     @Component
     struct Index {
-        @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取本应用包的资源对象
+        @State message: string = 'Hello World';
+        private resmgr = this.getUIContext().getHostContext()?.resourceManager;  // 获取本应用包的资源对象
         build() {
             Row() {
             Column() {
@@ -438,8 +340,8 @@
                     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
                     let rawfilelist = testNapi.getFileList(this.resmgr, ""); //传入资源对象，以及访问的rawfile文件夹名称
                     console.log("rawfilelist" + rawfilelist);
-                    let rawfileContet = testNapi.getRawFileContent(this.resmgr, "rawfile1.txt");
-                    console.log("rawfileContet" + rawfileContet);
+                    let rawfileContent = testNapi.getRawFileContent(this.resmgr, "rawfile1.txt");
+                    console.log("rawfileContent" + rawfileContent);
                     let rawfileDescriptor = testNapi.getRawFileDescriptor(this.resmgr, "rawfile1.txt");
                     console.log("getRawFileDescriptor" + rawfileDescriptor.fd, rawfileDescriptor.offset, rawfileDescriptor.length);
                     let ret = testNapi.isRawDir(this.resmgr, "rawfile1.txt");

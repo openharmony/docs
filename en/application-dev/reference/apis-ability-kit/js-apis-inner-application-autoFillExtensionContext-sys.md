@@ -1,4 +1,4 @@
-# AutoFillExtensionContext (System API) 
+# AutoFillExtensionContext (System API)
 
 The **AutoFillExtensionContext** module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the AutoFillExtensionAbility.
 
@@ -22,7 +22,7 @@ class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
 }
 ```
 
-## AutoFillExtensionContext.reloadInModal<sup>12+</sup>
+## AutoFillExtensionContext.reloadInModal<sup>13+</sup>
 
 reloadInModal(customData: CustomData): Promise\<void>
 
@@ -32,21 +32,21 @@ Starts a modal page.
 
 **Parameters**
 
-| Name    | Type                                                     | Mandatory | Description                        |
+| Name    | Type                                                     | Mandatory| Description                        |
 | ---------- | --------------------------------------------------------- | ---- | ---------------------------- |
-| customData | [CustomData](js-apis-inner-application-customData-sys.md) | Yes  | Custom information for starting the modal page. |
+| customData | [CustomData](js-apis-inner-application-customData-sys.md) | Yes  | Custom information for starting the modal page.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 202      | Not System App. Interface caller is not a system app.        |
 | 401      | If the input parameter is not valid parameter.               |
@@ -101,13 +101,14 @@ When the user selects an account on the account selection page, the **reloadInMo
 import { autoFillManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-let context: common.AutoFillExtensionContext | undefined = storage.get<common.AutoFillExtensionContext>('autoFillExtensionContext');
-
 @Entry
 @Component
 struct AccountPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+  context: common.AutoFillExtensionContext | undefined = this.storage?.get<common.AutoFillExtensionContext>('autoFillExtensionContext');
+
+
   build() {
     Row() {
       Column() {
@@ -121,9 +122,9 @@ struct AccountPage {
               .borderRadius(5)
           }
           .onClick(() => {
-            if (viewData != undefined) {
-              if (context != undefined) {
-                context.reloadInModal({ data: { viewData: 20, text: 'HelloWorld789456' } }).then(() => {
+            if (this.viewData != undefined) {
+              if (this.context != undefined) {
+                this.context.reloadInModal({ data: { viewData: 20, text: 'HelloWorld789456' } }).then(() => {
                   console.info('reloadInModal successfully.')
                 }).catch((err: BusinessError) => {
                   console.error('reloadInModal failed.')

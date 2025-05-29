@@ -1,20 +1,8 @@
 # Audio Decoding
 
-You can call the native APIs provided by the audio codec module to decode audio, that is, to decode media data into PCM streams.
+You can call the native APIs provided by the AudioCodec module to decode audio, that is, to decode media data into PCM streams.
 
-Currently, the following decoding capabilities are supported:
-
-| Container Specification| Audio Decoding Type                |
-| -------- | :--------------------------- |
-| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End-->|
-| m4a      | AAC                          |
-| flac     | FLAC                        |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG (MP3)                    |
-| amr      | AMR (AMR-NB and AMR-WB)           |
-| raw      | G711mu                       |
-| ape      | APE                          |
+For details about the supported decoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#audio-decoding).
 
 **Usage Scenario**
 
@@ -27,10 +15,13 @@ Currently, the following decoding capabilities are supported:
 - Audio editing
 
   Decode audio and transmit the data for audio editing (for example, adjusting the playback speed of a channel). Audio editing is performed based on PCM streams.
+> **NOTE**
+>
+> Streams generated in the MP3 audio encoding process cannot be directly decoded through the MP3 audio decoding process. The following process is recommended: PCM stream -> MP3 audio encoding -> multiplexing -> demultiplexing -> MP3 audio decoding.
 
 ## How to Develop
 
-Read [Audio Codec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
+Read [AudioCodec](../../reference/apis-avcodec-kit/_audio_codec.md) for the API reference.
 
 Refer to the code snippet below to complete the entire audio decoding process, including creating a decoder, setting decoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the decoder.
 
@@ -38,9 +29,13 @@ During application development, you must call the APIs in the defined sequence. 
 
 The figure below shows the call relationship of audio decoding.
 
+- The dotted line indicates an optional operation.
+
+- The solid line indicates a mandatory operation.
+
 ![Call relationship of audio decoding](figures/audio-codec.png)
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Libraries in the CMake Script
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -66,14 +61,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```cpp
     // Namespace of the C++ standard library.
     using namespace std;
-    // Create a decoder by name.
+    // Create a decoder by codec name.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByName(name);
     ```
 
     ```cpp
-    // Specify whether encoding is used. The value **false** means decoding.
+    // Specify whether encoding is used. The value false means decoding.
     bool isEncoder = false;
     // Create a decoder by MIME type.
     OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, isEncoder);
@@ -102,11 +97,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
     - **OH_AVCodecOnError**, a callback used to report a codec operation error
-    - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, audio channel change
+    - **OH_AVCodecOnStreamChanged**, a callback used to report stream information changes, including changes in the sampling rate, number of audio channels, and audio sampling format. The decoding formats that can detect these changes include <!--RP5--><!--RP5End-->AAC, FLAC, MP3, and VORBIS. (This callback is supported since API version 15.)
     - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the decoder is ready for receiving data
     - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that decoding is complete
 
    You need to process the callback functions to ensure that the decoder runs properly.
+
+   > **NOTE**
+   >
+   > You are not advised to perform time-consuming operations in the callback.
 
     ```cpp
     // Implement the OH_AVCodecOnError callback function.
@@ -120,8 +119,20 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
-        (void)format;
         (void)userData;
+        // Callback processing after the decoding output parameters are changed. The application performs processing as required.
+        int32_t sampleRate;
+        int32_t channelCount;
+        int32_t sampleFormat;
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, &sampleRate)) {
+            // Check whether the sampling rate changes and perform processing as required.
+        }
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, &channelCount)) {
+            // Check whether the number of audio channels changes and perform processing as required.
+        }
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, &sampleFormat)) {
+            // Check whether the audio sampling format changes and perform processing as required.
+        }
     }
     // Implement the OH_AVCodecOnNeedInputBuffer callback function.
     static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
@@ -150,13 +161,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
     int32_t ret = OH_AudioCodec_RegisterCallback(audioDec_, cb_, signal_);
     if (ret != AVCS_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
-4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration.
 
-    Add the header file.
+    Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demultiplexing](audio-video-demuxer.md).
+
+    For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
+
+    Add the header files.
+
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -164,7 +180,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic library in the cmake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -179,13 +195,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // Perform DRM authorization.
+
     // Create a media key session.
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // If the creation fails, refer to the DRM interface document and check logs.
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // Generate a media key request and set the response to the media key request.
@@ -195,32 +216,48 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 5. Call **OH_AudioCodec_Configure()** to configure the decoder.
+
    Key values of configuration options are described as follows:
 
-   |                              |                             Description                            |                AAC                 | FLAC|               Vorbis               | MPEG |       G711mu        |          AMR (AMR-NB and AMR-WB)        |          APE                      |
-   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :-------------------------------: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            Sampling rate.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            Number of audio channels.                           |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               |                Mandatory               |
-   | OH_MD_KEY_MAX_INPUT_SIZE     |                         Maximum input size.                        |                Optional               | Optional|                Optional                | Optional|        Optional          |               Optional               |                Optional               |
-   | OH_MD_KEY_AAC_IS_ADTS        |                           ADTS or not.                          |        Optional. The default value is 1 latm.        |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
-   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        Output audio stream format.                       | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|   -   | Optional (SAMPLE_S16LE, SAMPLE_F32LE)|  Optional| Optional (default: SAMPLE_S16LE)| Optional (SAMPLE_S16LE, SAMPLE_F32LE)|               Optional               |
-   | MD_KEY_BITRATE               |                             Optional                            |                Optional               | Optional|                Optional               | Optional|         Optional          |              Optional                |               Optional               |
-   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                  |                -                  |
-   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                 |                -                  |
-   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header stitching|                 -                  |      |   Mandatory (Either this parameter or the combination of **MD_KEY_IDENTIFICATION_HEADER** and **MD_KEY_SETUP_HEADER** must be selected.)   |  -   |           -            |                -                 |                -                  |
+   |             key              |       Description      |                AAC                 | FLAC|               Vorbis               | MPEG |       G711mu        |          AMR (AMR-NB and AMR-WB)        | APE |
+   | ---------------------------- | :--------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :--: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |      Sampling rate     |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               | Mandatory|
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |      Number of audio channels     |                Mandatory               | Mandatory|                Mandatory                | Mandatory|        Mandatory         |                Mandatory               | Mandatory|
+   | OH_MD_KEY_MAX_INPUT_SIZE     |    Maximum input size  |                Optional               | Optional|                Optional                | Optional|        Optional          |               Optional               | Optional|
+   | OH_MD_KEY_AAC_IS_ADTS        |     ADTS or not    |             Optional (defaults to **1**)            |  -   |                 -                  |  -   |         -             |               -                  |  -  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT   |  Output audio stream format | Optional (SAMPLE_S16LE, SAMPLE_F32LE)| Optional| Optional (SAMPLE_S16LE, SAMPLE_F32LE)|  Optional| Optional (default: SAMPLE_S16LE)| Optional (SAMPLE_S16LE, SAMPLE_F32LE)| Optional|
+   | OH_MD_KEY_BITRATE               |       Bit rate     |                Optional               | Optional|                Optional               | Optional|         Optional          |              Optional                | Optional|
+   | OH_MD_KEY_IDENTIFICATION_HEADER |    ID Header    |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                  |  -  |
+   | OH_MD_KEY_SETUP_HEADER          |   Setup Header  |                 -                  |  -   |    Mandatory (Either this parameter or **MD_KEY_CODEC_CONFIG** must be set.)   |  -   |          -            |                -                 |  -  |
+   | OH_MD_KEY_CODEC_CONFIG          | Codec-specific data|                Optional                |  -   |   Mandatory (Either this parameter or the combination of **MD_KEY_IDENTIFICATION_HEADER** and **MD_KEY_SETUP_HEADER** must be selected.)   |  -   |           -            |                -                 | Optional|
    
+   The sample below lists the value range of each audio decoding type.
+
+   | Audio Decoding Type|                                          Sampling Rate (Hz)                                             | Audio Channel Count|
+   | ----------- | ----------------------------------------------------------------------------------------------  | :----: |
+   | AAC         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000                |  1–8  |
+   | FLAC       | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 192000        |  1–8  |
+   | Vorbis      | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000|  1–8  |
+   | MPEG (MP3)   | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000                                    |  1–2  |
+   | G711mu      | 8000                                                                                            |   1    |
+   | AMR (amrnb)  | 8000                                                                                            |   1    |
+   | AMR (amrwb)  | 16000                                                                                           |   1    |
+   | APE         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000|  1–2  |
+   <!--RP4-->
+   <!--RP4End-->
+
    ```cpp
    // Set the decoding resolution.
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-   // (Mandatory) Configure the audio bit rate.
+   // (Optional) Configure the audio bit rate.
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // (Mandatory) Configure the number of audio channels.
    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
    // (Optional) Configure the maximum input length.
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-   // Configure whether to use ADTS decoding (ACC).
+   // Configure whether to use ADTS decoding (optional for AAC decoding).
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
@@ -232,7 +269,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    // Configure the decoder.
    ret = OH_AudioCodec_Configure(audioDec_, format);
    if (ret != AV_ERR_OK) {
-       // Exception handling.
+       // Handle exceptions.
    }
    ```
    
@@ -241,7 +278,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    ```cpp
    ret = OH_AudioCodec_Prepare(audioDec_);
    if (ret != AV_ERR_OK) {
-       // Exception handling.
+       // Handle exceptions.
    }
    ```
    
@@ -257,20 +294,20 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Start decoding.
     ret = OH_AudioCodec_Start(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
    
 8. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-    If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
+    If the content being played is DRM encrypted and [demultiplexing](audio-video-demuxer.md#media-data-demultiplexing) is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
 
     Add the header file.
 
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    Link the dynamic library in the cmake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
@@ -279,8 +316,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     The following is the sample code:
     ```c++
     auto buffer = signal_->inBufferQueue_.front();
-    int64_t size;
-    int64_t pts;
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
         0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
@@ -294,41 +329,47 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
-    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
-    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    // Create a CencInfo instance.
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Set the decryption algorithm.
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Set KeyId and Iv.
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Set the sample information.
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Set the mode. KeyId, Iv, and SubSamples have been set.
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Set CencInfo to the AVBuffer.
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
+    // Destroy the CencInfo instance.
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
    
 9. Call **OH_AudioCodec_PushInputBuffer()** to write the data to decode.
+
+   You should fill in complete input data before calling this API.
 
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
@@ -357,11 +398,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVBuffer_SetBufferAttr(buffer, &attr);
     int32_t ret = OH_AudioCodec_PushInputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
    
-10. Call **OH_AudioCodec_FreeOutputBuffer()** to output decoded PCM streams.
+10. Call **OH_AudioCodec_FreeOutputBuffer()** to release the decoded data.
+
+    Once you have retrieved the decoded PCM stream, call **OH_AudioCodec_FreeOutputBuffer()** to free up the data.
 
     <!--RP3-->
     ```c++
@@ -371,39 +414,39 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     OH_AVCodecBufferAttr attr = {0};
     ret = OH_AVBuffer_GetBufferAttr(data, &attr);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Write the decoded data (specified by data) to the output file.
     pcmOutputFile_.write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)), attr.size);
     ret = OH_AudioCodec_FreeOutputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
-        // End
+        // End.
     }
     ```
     <!--RP3End-->
 
 11. (Optional) Call **OH_AudioCodec_Flush()** to refresh the decoder.
 
-   After **OH_AudioCodec_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioCodec_Start()** again.
+    After **OH_AudioCodec_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed. To continue decoding, you must call **OH_AudioCodec_Start()** again.
    
-   You need to call **OH_AudioCodec_Start()** in the following cases:
+    You need to call **OH_AudioCodec_Start()** in the following cases:
 
-   * The EOS of the file is reached.
-   * An error with **OH_AudioCodec_IsValid** set to **true** (indicating that the execution can continue) occurs.
+    * The EOS of the file is reached.
+    * An error with **OH_AudioCodec_IsValid** set to **true** (indicating that the execution can continue) occurs.
 
     ```c++
     // Refresh the decoder.
     ret = OH_AudioCodec_Flush(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Start decoding again.
     ret = OH_AudioCodec_Start(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -415,22 +458,24 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Reset the decoder.
     ret = OH_AudioCodec_Reset(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     // Reconfigure the decoder.
     ret = OH_AudioCodec_Configure(audioDec_, format);
     if (ret != AV_ERR_OK) {
-    // Exception handling.
+    // Handle exceptions.
     }
     ```
 
 13. Call **OH_AudioCodec_Stop()** to stop the decoder.
 
+    After the codec is stopped, you can call **OH_AudioCodec_Start()** to start it again. If you have passed specific data in the previous **OH_AudioCodec_Start()** for the codec, you must pass it again.
+
     ```c++
     // Stop the decoder.
     ret = OH_AudioCodec_Stop(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     }
     ```
 
@@ -444,7 +489,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Call OH_AudioCodec_Destroy to destroy the decoder.
     ret = OH_AudioCodec_Destroy(audioDec_);
     if (ret != AV_ERR_OK) {
-        // Exception handling.
+        // Handle exceptions.
     } else {
         audioDec_ = NULL; // The decoder cannot be destroyed repeatedly.
     }

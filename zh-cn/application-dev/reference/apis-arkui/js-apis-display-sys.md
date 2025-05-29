@@ -6,7 +6,7 @@
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohso.display (屏幕属性)](js-apis-display.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.display (屏幕属性)](js-apis-display.md)。
 
 ## 导入模块
 
@@ -28,13 +28,13 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
+| displayId    | number                    | 是   | 显示设备的id，该参数仅支持整数输入。该参数大于等于0。 |
 
 **返回值：**
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | 查询的display对象上是否有可见的隐私窗口。<br>true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。</br> |
+|boolean | 查询的display对象上是否有可见的隐私窗口。true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。 |
 
 **错误码：**
 
@@ -42,6 +42,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -96,6 +97,7 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
@@ -128,7 +130,7 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
-| callback | Callback&lt;boolean&gt; | 否   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
+| callback | Callback&lt;boolean&gt; | 否   | 需要取消注册的回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私窗口模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。若无此参数，则取消注册屏幕隐私模式变化监听的所有回调函数。|
 
 **错误码：**
 
@@ -136,6 +138,7 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
@@ -151,7 +154,7 @@ try {
 ## display.setFoldDisplayMode<sup>10+</sup>
 setFoldDisplayMode(mode: FoldDisplayMode): void
 
-更改可折叠设备的显示模式。
+更改可折叠设备的显示模式，不适用于2in1设备。
 
 **系统接口：** 此接口为系统接口。
 
@@ -169,7 +172,7 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -183,6 +186,44 @@ try {
   display.setFoldDisplayMode(mode);
 } catch (exception) {
   console.error('Failed to change the fold display mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.setFoldDisplayMode<sup>19+</sup>
+setFoldDisplayMode(mode: FoldDisplayMode, reason: string): void
+
+更改可折叠设备的显示模式，并指明更改原因，不适用于2in1设备。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| mode     | [FoldDisplayMode](js-apis-display.md#folddisplaymode10)    | 是   | 可折叠设备的显示模式。 |
+| reason     | string    | 否   | 更改显示模式的原因。不设置，则默认为空字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+try {
+  let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_MAIN;
+  display.setFoldDisplayMode(mode, 'backSelfie');
+} catch (exception) {
+  console.error(`Failed to change the fold display mode. Code: ${exception}`);
 }
 ```
 
@@ -207,7 +248,7 @@ setFoldStatusLocked(locked: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -221,6 +262,123 @@ try {
   display.setFoldStatusLocked(locked);
 } catch (exception) {
   console.error('Failed to change the fold status locked mode. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.addVirtualScreenBlocklist<sup>18+</sup>
+addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+将窗口添加到禁止投屏显示的名单中，被添加的窗口无法在投屏时显示。仅对应用主窗或系统窗口生效。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function addVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
+}
+```
+
+## display.removeVirtualScreenBlocklist<sup>18+</sup>
+removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
+
+将窗口从禁止投屏显示的名单中移除，被移除的窗口可以在投屏时显示。仅对应用主窗或系统窗口生效。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801     | Capability not supported.Function removeVirtualScreenBlocklist can not work correctly due to limited device capabilities. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    let windowId = windowStage.getMainWindowSync().getWindowProperties().id;
+    let windowIds = [windowId];
+
+    let promise = display.addVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in adding virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to add virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+
+    promise = display.removeVirtualScreenBlocklist(windowIds);
+    promise.then(() => {
+      console.info('Succeeded in removing virtual screen blocklist.');
+    }).catch((err: BusinessError) => {
+      console.error('Failed to remove virtual screen blocklist. Code: ' + JSON.stringify(err));
+    })
+  }
 }
 ```
 
@@ -250,6 +408,7 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
@@ -292,6 +451,7 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |

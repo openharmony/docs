@@ -3,7 +3,7 @@
 
 ## 概述
 
-HiTraceId定义
+HiTraceId定义。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -11,6 +11,7 @@ HiTraceId定义
 
 **相关模块：**[Hitrace](_hitrace.md)
 
+**所在头文件：** [trace.h](trace_8h.md)
 
 ## 汇总
 

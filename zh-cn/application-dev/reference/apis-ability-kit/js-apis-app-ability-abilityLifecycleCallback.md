@@ -18,9 +18,9 @@ import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 
 onAbilityCreate(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability创建时触发回调。
+注册监听应用上下文的生命周期后，在Ability创建时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -38,9 +38,9 @@ onAbilityCreate(ability: UIAbility): void
 
 onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage创建时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -59,9 +59,9 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage获焦时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -80,9 +80,9 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage失焦时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -101,9 +101,9 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
+注册监听应用上下文的生命周期后，在WindowStage销毁时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -122,9 +122,9 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 onAbilityDestroy(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability销毁时触发回调。
+注册监听应用上下文的生命周期后，在Ability销毁时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -142,9 +142,9 @@ onAbilityDestroy(ability: UIAbility): void
 
 onAbilityForeground(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
+注册监听应用上下文的生命周期后，在Ability的状态从后台转到前台时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -162,9 +162,9 @@ onAbilityForeground(ability: UIAbility): void
 
 onAbilityBackground(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
+注册监听应用上下文的生命周期后，在Ability的状态从前台转到后台时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -182,9 +182,9 @@ onAbilityBackground(ability: UIAbility): void
 
 onAbilityContinue(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在ability迁移时触发回调。
+注册监听应用上下文的生命周期后，在Ability迁移时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -204,7 +204,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#uiabilityoncreate)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -224,7 +224,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -245,7 +245,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -266,7 +266,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#uiabilityonforeground)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -286,7 +286,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#uiabilityondestroy)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -306,7 +306,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#uiabilityonbackground)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -326,7 +326,7 @@ onWillNewWant?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -346,7 +346,7 @@ onNewWant?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发后回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -366,7 +366,7 @@ onAbilityWillContinue?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -386,7 +386,7 @@ onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): 
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageRestore](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -407,7 +407,7 @@ onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageRestore](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)触发后回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -428,7 +428,7 @@ onAbilityWillSaveState?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onSaveState](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)触发前回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -448,7 +448,7 @@ onAbilitySaveState?(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在UIAbility的[onSaveState](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)触发后回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -498,7 +498,7 @@ import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
@@ -593,7 +593,7 @@ MySecondAbility.ts
 import { UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {

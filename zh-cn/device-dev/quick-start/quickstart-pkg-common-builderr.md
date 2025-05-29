@@ -5,7 +5,7 @@
 
 - **现象描述**
   
-  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt_pkg"
+  Linux编译服务器终端输入不识别的命令时，提示"ImportError: No module named apt_pkg"。
 
 - **可能原因**
   
@@ -48,7 +48,7 @@
 
 - **可能原因2**
   
-  usr/bin目录下没有python软链接
+  usr/bin目录下没有python软链接。
 
   ![faq-python-error](figures/faq-python-error.png)
 
@@ -165,6 +165,7 @@
   环境中未安装“Crypto”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install Crypto”，在线安装。
 
   方法2：离线安装。
@@ -194,9 +195,10 @@
   环境中未安装“ecdsa”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install ecdsa”，在线安装。
 
-  方法2：离线安装
+  方法2：离线安装。
 
   通过网页[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)，下载安装包。
 
@@ -223,6 +225,7 @@
   环境中未安装合适的“six”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install six”，在线安装。
 
   方法2：离线安装。

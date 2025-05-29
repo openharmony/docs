@@ -1,4 +1,4 @@
-# Input Kit (Multimodal Input)
+# Input Kit (Multimodal Input)<!--input-kit-->
 
 - [Introduction to Input Kit](input-overview.md)
 - [Input Device Development](inputdevice-guidelines.md)
@@ -6,5 +6,6 @@
 - [Input Monitor Development](inputmonitor-guidelines.md)
 - [Event Injection Development](inputeventclient-guidelines.md)
 - [Input Consumer Development](inputconsumer-guidelines.md)
-- [Shortcut Key Development](shortkey-guidelines.md)
-<!--DelEnd-->
+- [Shortcut Key Development](shortkey-guidelines.md)<!--DelEnd-->
+- [Event Listening Development (C/C++)](monitor-guidelines.md)
+- [Event Interception Development (C/C++)](interceptor-guidelines.md)

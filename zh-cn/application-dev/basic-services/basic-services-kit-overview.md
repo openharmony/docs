@@ -30,7 +30,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [上传下载](../reference/apis-basic-services-kit/js-apis-request.md)：提供文件上传下载、后台传输代理的基础能力。
 
 - 进程间/线程间通信：
-  - [公共事件](../reference/apis-basic-services-kit/js-apis-commonEvent.md)：提供进程间通信的能力，包括订阅、发布、退订公共事件等，相关开发指南请参考[公共事件简介](common-event/common-event-overview.md)。
+  - [公共事件](../reference/apis-basic-services-kit/js-apis-commonEventManager.md)：提供进程间通信的能力，包括订阅、发布、退订公共事件等，相关开发指南请参考[公共事件简介](common-event/common-event-overview.md)。
   - [Emitter](../reference/apis-basic-services-kit/js-apis-emitter.md)：提供线程内通信的能力，包括订阅、发布、退订自定义事件等，相关开发指南请参考[使用Emitter进行线程间通信](common-event/itc-with-emitter.md)。
 
 - 设备管理：
@@ -40,7 +40,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
   - [系统电源管理](../reference/apis-basic-services-kit/js-apis-power.md)：提供系统电源管理相关的能力，比如查询屏幕状态能力等。
   - [RunningLock锁操作](../reference/apis-basic-services-kit/js-apis-runninglock.md)：提供RunningLock锁相关操作的能力，包括创建、查询、持锁、释放锁等操作。
   - [热管理](../reference/apis-basic-services-kit/js-apis-thermal.md)：提供热管理相关的能力，比如热档位查询等。
-  - [USB管理](../reference/apis-basic-services-kit/js-apis-usbManager.md)：提供USB设备管理相关的能力，比如查询USB设备列表、批量数据传输、控制命令传输、权限控制等，相关开发指南请参考[USB服务开发概述](usb/usb-overview.md)。
+  - [USB管理](../reference/apis-basic-services-kit/js-apis-usbManager.md)：提供USB设备管理相关的能力，比如查询USB设备列表、批量数据传输、控制命令传输、权限控制等，相关开发指南请参考[USB服务开发概述](usb/usbManager/usbHost-overview.md)。
 
 - 其他：
   - [应用账号管理](../reference/apis-basic-services-kit/js-apis-appAccount.md)：提供应用账号的期管理以及数据管理的能力，相关开发指南请参考[管理应用账号](account/manage-application-account.md)。
@@ -49,7 +49,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
 
 ## 与其他kit的关系
 
-- [ArkTS Kit](../arkts-utils/arkts-commonlibrary-overview.md)：ArkTS Kit中的[多线程并发(Worker和Taskpool)](../arkts-utils/multi-thread-concurrency-overview.md)需要使用本Kit中的Emitter进行线程间通信。
+- [ArkTS Kit](../arkts-utils/arkts-overview.md)：ArkTS Kit中的[多线程并发(Worker和Taskpool)](../arkts-utils/multi-thread-concurrency-overview.md)需要使用本Kit中的Emitter进行线程间通信。
 
 - [Ability Kit](../application-models/abilitykit-overview.md)：Ability Kit中的进程间通信需要使用本Kit中的公共事件。
 

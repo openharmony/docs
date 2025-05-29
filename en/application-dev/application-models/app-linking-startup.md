@@ -2,7 +2,7 @@
 
 ## Overview
 
-In App Linking, the system directs users to specific content in the target application based on the passed-in URI (HTTPS link). Unlike Deep Link, users can directly access the content regardless of whether the target application is installed.
+In App Linking, the system directs users to specific content in the target application based on the passed-in URI (HTTPS link). Unlike [Deep Linking](deep-linking-startup.md), users can directly access the content regardless of whether the target application is installed.
 
 
 ## When to Use
@@ -36,20 +36,29 @@ Configure the [module.json5 file](../quick-start/module-configuration-file.md) o
 * The **uris** field must contain an element whose **scheme** is **https** and **host** is a domain name address.
 * **domainVerify** must be set to **true**.
 
+> **NOTE**
+>
+> By default, the **skills** field contains a **skill** object, which is used to identify the application entry. Application redirection links should not be configured in this object. Instead, separate **skill** objects should be used. If there are multiple redirection scenarios, create different **skill** objects under **skills**. Otherwise, the configuration does not take effect.
+
+
 For example, the configuration below declares that the application is associated with the domain name www.example.com.
 
 ```json
 {
   "module": {
+    // ...
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        // ...
         "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
           {
             "entities": [
               // entities must contain "entity.system.browsable".
@@ -71,7 +80,7 @@ For example, the configuration below declares that the application is associated
             ],
             // domainVerify must be set to true.
            "domainVerify": true
-          }
+          } // Add a skill object for redirection. If there are multiple redirection scenarios, create multiple skill objects.
         ]
       }
     ]
@@ -95,11 +104,11 @@ Perform the following operations on the developer website to associate the appli
           "appIdentifier": "1234"
         }
       ]
-    },
+    }
    }
    ```
 
-   **app-identifer** is the unique identifier allocated to an application during [application signing] (https://gitee.com/openharmony/developtools_hapsigner/blob/master/README.md). It is also the value of the **app-identifer** field declared in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md).
+   **app-identifer** is the unique identifier allocated to an application during application signing. It is also the value of the **app-identifer** field declared in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md).
 
 1. Place the domain name configuration file in a fixed directory on the DNS.
    
@@ -129,10 +138,9 @@ export default class EntryAbility extends UIAbility {
       let urlObject = url.URL.parseURL(want?.uri);
       let action = urlObject.params.get('action')
       // For example, if action is set to showall, all programs are displayed.
-      if (action === "showall"){
-         ...
+      if (action === "showall") {
+         // ...
       }
-      ...
     }
   }
 }
@@ -146,11 +154,11 @@ The **openLink** API provides two methods for starting the target application.
 
   - Method 1: Open the application only in App Linking mode.
     
-    In this mode, **appLinkingOnly** is set to **true**. If a matching application is found, that application is directly opened. If no application matches, an exception is thrown. 
+    In this mode, **appLinkingOnly** is set to **true**. If a matching application is found, that application is directly opened. If no application matches, an exception is thrown.
     
   - Method 2: Open the application preferentially in App Linking mode.
 
-     In this mode, **appLinkingOnly** is set to **false** or uses the default value. App Linking is preferentially used to start the target application. If a matching application is found, that application is directly opened. If no application matches, the system attempts to open the application in Deep Linking mode.
+    In this mode, **appLinkingOnly** is set to **false** or uses the default value. App Linking is preferentially used to start the target application. If a matching application is found, that application is directly opened. If no application matches, the system attempts to open the application in Deep Linking mode.
 
 This section describes method 1, in order to check whether the App Linking configuration is correct. The following is an example.
 
@@ -167,7 +175,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "https://www.example.com/programs?action=showall";
         // Open the application only in App Linking mode.
         context.openLink(link, { appLinkingOnly: true })
@@ -191,20 +199,20 @@ If the target application is started, the App Linking configuration of the targe
 
    Ensure that the value of **host** is the domain name of the application.
 
-1. What should I do when the developer website server is incorrectly configured?
+2. What should I do when the developer website server is incorrectly configured?
 
    * Check the JSON configuration of the server and ensure that the value of **appIdentifier** is correct.
    * Check whether the **applinking.json** file is stored in the correct directory (**.well-known**). Use a browser to access the JSON file address https://*your.domain.name*/.well-known/applinking.json and ensure that the file is accessible.
 
-1. What should I do when the system has not verified the domain name?
+3. What should I do when the system has not verified the domain name?
 
    After installing the application on the device, wait for at least 20 seconds to ensure that asynchronous verification is complete.
 
-1. What is the mapping between applications and domain names?
+4. What is the mapping between applications and domain names?
 
    They are in a many-to-many relationship. An application can be associated with multiple domain names, and a domain name can be associated with multiple applications.
 
-1. If a domain name is associated with multiple applications, which application will be started by domain name?
+5. If a domain name is associated with multiple applications, which application will be started by domain name?
 
    You can configure the **applinking.json** file to associate a domain name with multiple applications. If the **uris** field in the **module.json5** file of each application is set to the same value, the system displays a dialog box for users to select the application to start.
    

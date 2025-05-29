@@ -1,18 +1,20 @@
 # BundleInfo
 
-The **BundleInfo** module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
+The BundleInfo module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module are deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md) instead.
 
 ## BundleInfo<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1) instead.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                            | Type                                                        | Readable| Writable| Description                                                        |
+| Name                            | Type                                                        | Read-Only| Optional| Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                             | string                                                       | Yes  | No  | Bundle name.                                              |
 | type                             | string                                                       | Yes  | No  | Bundle type.                                                |
@@ -29,13 +31,13 @@ The **BundleInfo** module defines the bundle information, which can be obtained 
 | versionName                      | string                                                       | Yes  | No  | Version description of the bundle.                                  |
 | compatibleVersion                | number                                                       | Yes  | No  | Earliest SDK version required for running the bundle.                           |
 | targetVersion                    | number                                                       | Yes  | No  | Latest SDK version required for running the bundle.                             |
-| isCompressNativeLibs             | boolean                                                      | Yes  | No  | Whether to compress the native library of the bundle. The default value is **true**.                        |
+| isCompressNativeLibs             | boolean                                                      | Yes  | No  | Whether the native libraries in the bundle are compressed. The value **true** means that the native libraries are compressed, and **false** means the opposite.                      |
 | hapModuleInfos                   | Array\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)>     | Yes  | No  | Module configuration information.                                            |
 | entryModuleName                  | string                                                       | Yes  | No  | Name of the entry module.                                           |
 | cpuAbi                           | string                                                       | Yes  | No  | CPU and ABI information of the bundle.                                        |
 | isSilentInstallation             | string                                                       | Yes  | No  | Whether the application can be installed in silent mode.                                          |
 | minCompatibleVersionCode         | number                                                       | Yes  | No  | Earliest version compatible with the bundle in the distributed scenario.                        |
-| entryInstallationFree            | boolean                                                      | Yes  | No  | Whether installation-free is supported for the entry module.                                       |
+| entryInstallationFree            | boolean                                                      | Yes  | No  | Whether installation-free is supported for the entry module. The value **true** means that installation-free is supported, and **false** means the opposite.                                       |
 | reqPermissionStates<sup>8+</sup> | Array\<number>                                               | Yes  | No  | Permission grant state. The value **0** means that the request is successful, and **-1** means the opposite.         |
 
 
@@ -48,23 +50,23 @@ Provides the detailed information of the permissions to request from the system.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                 | Type                   | Readable| Writable| Description                  |
+| Name                 | Type                   | Read-Only| Optional| Description                  |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
-| name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
-| reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
-| usedScene             | [UsedScene](#usedscenedeprecated) | Yes  | Yes  | Application scenario and timing for using the permission.|
+| name                  | string                  | No  | No  | Name of the permission to request.  |
+| reason                | string                  | No  | No  | Reason for requesting the permission.  |
+| usedScene             | [UsedScene](#usedscenedeprecated) | No  | No  | Application scenario and timing for using the permission.|
 
 
 
 ## UsedScene<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [UsedScene](js-apis-bundleManager-bundleInfo.md) instead.
+> This API is deprecated since API version 9. You are advised to use [UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene) instead.
 
 Describes the application scenario and timing for using the permission.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| abilities | Array\<string> | Yes  | Yes  | Abilities that use the permission.|
-| when      | string         | Yes  | Yes  | Time when the permission is used.         |
+| abilities | Array\<string> | No  | No  | Abilities that use the permission.|
+| when      | string         | No  | No  | Time when the permission is used.         |

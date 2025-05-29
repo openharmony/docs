@@ -1,4 +1,4 @@
-# @ohos.inputMethod (Input Method Framework) 
+# @ohos.inputMethod (Input Method Framework)
 
 The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
@@ -13,15 +13,15 @@ The **inputMethod** module is oriented to common foreground applications (third-
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## Constants<sup>8+</sup>
+## Constant
 
 Provides the constants.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Value | Description |
+| Name| Type| Value| Description|
 | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 128 | Maximum number of supported input methods. |
+| MAX_TYPE_NUM<sup>8+</sup> | number | 128 | Maximum number of supported input methods.|
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -29,17 +29,17 @@ Describes the input method application attributes.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>9+</sup>  | string | Yes | No | Mandatory. Name of the input method package.|
-| id<sup>9+</sup>    | string | Yes | No | Mandatory. Unique ID of the input method.|
-| label<sup>9+</sup>    | string | Yes | No | Optional. External name of the input method.|
-| labelId<sup>10+</sup>    | number | Yes | No | Optional. External ID of the input method.|
-| icon<sup>9+</sup>    | string | Yes | No | Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
-| iconId<sup>9+</sup>    | number | Yes | No | Optional. Icon ID of the input method. |
-| extra<sup>9+</sup>    | object | Yes | Yes | Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
-| packageName<sup>(deprecated)</sup> | string | Yes | No | Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name** instead. |
-| methodId<sup>(deprecated)</sup> | string | Yes | No | Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id** instead. |
+| name<sup>9+</sup>  | string | Yes| No| Mandatory. Name of the input method package.|
+| id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique identifier of an input method extension in an app. **id** and **name** form a globally unique identifier of the input method extension.|
+| label<sup>9+</sup>    | string | Yes| Yes| Optional. External label of the input method extension. Use the label configured for the InputmethodExtensionAbility. If no label is configured, the label of the application entry ability is automatically used. If no label is configured for the application entry ability, the label configured in **AppScope** is automatically used.|
+| labelId<sup>10+</sup>    | number | Yes| Yes| Optional. External ID of the input method.|
+| icon<sup>9+</sup>    | string | Yes| Yes| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
+| iconId<sup>9+</sup>    | number | Yes| Yes| Optional. Icon ID of the input method.|
+| extra<sup>9+</sup>    | object | No| Yes| Extra information about the input method. This parameter is reserved and currently has no specific meaning.<br>- API version 10 and later: optional<br>- API version 9: mandatory|
+| packageName<sup>(deprecated)</sup> | string | Yes| No| Name of the input method package. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **name** instead.|
+| methodId<sup>(deprecated)</sup> | string | Yes| No| Unique ID of the input method. Mandatory.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 9. You are advised to use **id** instead.|
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -53,13 +53,13 @@ Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
 | Type                                           | Description                  |
 | ----------------------------------------------- | ---------------------- |
-| [InputMethodController](#inputmethodcontroller) | **InputMethodController** instance. |
+| [InputMethodController](#inputmethodcontroller) | **InputMethodController** instance.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------------------ |
 | 12800006 | input method controller error. |
 
@@ -81,13 +81,13 @@ Obtains the default input method.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodProperty](#inputmethodproperty8) | Default input method. |
+| [InputMethodProperty](#inputmethodproperty8) | Default input method.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800008 | input method manager service error. |
 
@@ -113,13 +113,13 @@ Obtains the information about the input method configuration page ability.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md) | Element name of the input method configuration page ability. |
+| [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md) | Element name of the input method configuration page ability.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800008 | input method manager service error. |
 
@@ -145,15 +145,15 @@ Obtains an [InputMethodSetting](#inputmethodsetting8) instance.
 
 | Type                                     | Description                      |
 | ----------------------------------------- | -------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance. |
+| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 |  settings extension error. |
+| 12800007 |  setter error. |
 
 **Example**
 
@@ -175,19 +175,19 @@ Switches to another input method. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target | [InputMethodProperty](#inputmethodproperty8) | Yes | Target input method. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| target | [InputMethodProperty](#inputmethodproperty8) | Yes| Target input method.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -215,7 +215,7 @@ try{
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
@@ -230,24 +230,24 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes | Target input method. |
+  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
 
 **Return value**
 
   | Type                                     | Description                        |
   | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite. |
+  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -273,7 +273,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -287,7 +287,7 @@ Obtains the current input method. This API returns the result synchronously.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method. |
+| [InputMethodProperty](#inputmethodproperty8) | **InputmethodProperty** instance of the current input method.|
 
 **Example**
 
@@ -311,19 +311,19 @@ Switches to another subtype of this input method. This API uses an asynchronous 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes | Target input method subtype. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -361,7 +361,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -379,24 +379,24 @@ Switches to another subtype of this input method. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes | Target input method subtype. |
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
 | Type                                     | Description                        |
 | ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -432,7 +432,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -446,7 +446,7 @@ Obtains the current input method subtype.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype. |
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
 
 **Example**
 
@@ -469,20 +469,20 @@ Switches to a specified subtype of a specified input method. This API uses an as
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes | Target input method. |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes | Target input method subtype. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -511,7 +511,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
@@ -528,25 +528,25 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes | Target input method. |
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes | Target input method subtype. |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Target input method.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Target input method subtype.|
 
 **Return value**
 
 | Type                                     | Description                        |
 | ----------------------------------------- | ---------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -573,7 +573,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
@@ -581,7 +581,7 @@ getInputMethodController(): InputMethodController
 
 Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getController()](#inputmethodgetcontroller9) instead.
 
@@ -591,7 +591,7 @@ Obtains an [InputMethodController](#inputmethodcontroller) instance.
 
 | Type                                           | Description                    |
 | ----------------------------------------------- | ------------------------ |
-| [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance. |
+| [InputMethodController](#inputmethodcontroller) | Current **InputMethodController** instance.|
 
 **Example**
 
@@ -615,7 +615,7 @@ Obtains an [InputMethodSetting](#inputmethodsetting8) instance.
 
 | Type                                     | Description                      |
 | ----------------------------------------- | -------------------------- |
-| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance. |
+| [InputMethodSetting](#inputmethodsetting8) | **InputMethodSetting** instance.|
 
 **Example**
 
@@ -629,18 +629,18 @@ Enumerates the text input types.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| NONE  | -1 |None. |
-| TEXT  | 0 |Text. |
-| MULTILINE  | 1 |Multi-line. |
-| NUMBER  | 2 |Number. |
-| PHONE  | 3 |Phone number. |
-| DATETIME  | 4 |Date. |
-| EMAIL_ADDRESS  | 5 |Email address. |
-| URL  | 6 |URL. |
-| VISIBLE_PASSWORD  | 7 |Password. |
-| NUMBER_PASSWORD<sup>11+</sup> | 8 |Numeric password. |
+| NONE  | -1 |None.|
+| TEXT  | 0 |Text.|
+| MULTILINE  | 1 |Multi-line.|
+| NUMBER  | 2 |Number.|
+| PHONE  | 3 |Phone number.|
+| DATETIME  | 4 |Date.|
+| EMAIL_ADDRESS  | 5 |Email address.|
+| URL  | 6 |URL.|
+| VISIBLE_PASSWORD  | 7 |Password.|
+| NUMBER_PASSWORD<sup>11+</sup> | 8 |Numeric password.|
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -648,16 +648,17 @@ Enumerates the function types represented by the Enter key of the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| UNSPECIFIED  | 0 |Not specified. |
-| NONE  | 1 |None. |
-| GO  | 2 |Go. |
-| SEARCH  | 3 |Search. |
-| SEND  | 4 |Send. |
-| NEXT  | 5 |Next. |
-| DONE  | 6 |Done. |
-| PREVIOUS  | 7 |Previous. |
+| UNSPECIFIED  | 0 |Not specified.|
+| NONE  | 1 |None.|
+| GO  | 2 |Go.|
+| SEARCH  | 3 |Search.|
+| SEND  | 4 |Send.|
+| NEXT  | 5 |Next.|
+| DONE  | 6 |Done.|
+| PREVIOUS  | 7 |Previous.|
+| NEWLINE<sup>12+</sup>  | 8 | Line break.|
 
 ## KeyboardStatus<sup>10+</sup>
 
@@ -665,11 +666,11 @@ Enumerates the soft keyboard states of the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| NONE  | 0 |None. |
-| HIDE  | 1 |Hidden. |
-| SHOW  | 2 |Shown. |
+| NONE  | 0 |None.|
+| HIDE  | 1 |Hidden.|
+| SHOW  | 2 |Shown.|
 
 ## Direction<sup>10+</sup>
 
@@ -677,12 +678,12 @@ Enumerates the directions of cursor movement of the input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| CURSOR_UP  | 1 |Upward. |
-| CURSOR_DOWN  | 2 |Downward. |
-| CURSOR_LEFT  | 3 |Leftward. |
-| CURSOR_RIGHT  | 4 |Rightward. |
+| CURSOR_UP  | 1 |Upward.|
+| CURSOR_DOWN  | 2 |Downward.|
+| CURSOR_LEFT  | 3 |Leftward.|
+| CURSOR_RIGHT  | 4 |Rightward.|
 
 ## ExtendAction<sup>10+</sup>
 
@@ -690,12 +691,12 @@ Describes the type of the extended edit action on the text box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Value |Description |
+| Name| Value|Description|
 | -------- | -------- |-------- |
-| SELECT_ALL  | 0 |Select all. |
-| CUT  | 3 |Cut. |
-| COPY  | 4 |Copy. |
-| PASTE  | 5 |Paste. |
+| SELECT_ALL  | 0 |Select all.|
+| CUT  | 3 |Cut.|
+| COPY  | 4 |Copy.|
+| PASTE  | 5 |Paste.|
 
 ## FunctionKey<sup>10+</sup>
 
@@ -703,9 +704,9 @@ Describes the type of the input method function key.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | Yes | Yes | Function type represented by the Enter key of the input method.|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | No| No| Function type represented by the Enter key of the input method.|
 
 ## InputAttribute<sup>10+</sup>
 
@@ -713,10 +714,10 @@ Describes the attributes of the edit box, including the text input type and Ente
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | Yes | Yes | Enumerates the text input types.|
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | Yes | Yes | Function type represented by the Enter key.|
+| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | No| No| Enumerates the text input types.|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | No| No| Function type represented by the Enter key.|
 
 ## TextConfig<sup>10+</sup>
 
@@ -724,12 +725,12 @@ Describes the configuration of the edit box.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Mandatory | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | No | Yes | Edit box attribute.|
-| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | No | No | Cursor information.|
-| selection<sup>10+</sup>  | [Range](#range10) | No | No | Text selection range.|
-| windowId<sup>10+</sup>  | number | No | No | ID of the window where the edit box is located.|
+| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | No| No| Edit box attribute.|
+| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | No| Yes| Cursor information.|
+| selection<sup>10+</sup>  | [Range](#range10) | No| Yes| Text selection range.|
+| windowId<sup>10+</sup>  | number | No| Yes| ID of the window where the edit box is located.|
 
 ## CursorInfo<sup>10+</sup>
 
@@ -737,12 +738,12 @@ Represents the cursor information.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| left  | number | Yes | Yes | Left coordinate of the cursor.|
-| top  | number | Yes | Yes | Top coordinate of the cursor.|
-| width  | number | Yes | Yes | Width of the cursor.|
-| height  | number | Yes | Yes | Height of the cursor.|
+| left  | number | No| No| Left coordinate of the cursor.|
+| top  | number | No| No| Top coordinate of the cursor.|
+| width  | number | No| No| Width of the cursor.|
+| height  | number | No| No| Height of the cursor.|
 
 ## Range<sup>10+</sup>
 
@@ -750,10 +751,10 @@ Describes the range of the selected text.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | Yes | Yes | Index of the first selected character in the text box.|
-| end  | number | Yes | Yes | Index of the last selected character in the text box.|
+| start  | number | No| No| Index of the first selected character in the text box.|
+| end  | number | No| No| Index of the last selected character in the text box.|
 
 ## Movement<sup>10+</sup>
 
@@ -761,9 +762,9 @@ Describes the direction in which the cursor moves when the text is selected.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | Yes | Yes | Direction in which the cursor moves when the text is selected.|
+| direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
 
 ## InputWindowInfo<sup>10+</sup>
 
@@ -771,13 +772,167 @@ Describes the window information of the input method keyboard.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| name  | string | Yes | Yes | Name of the input method keyboard window.|
-| left  | number | Yes | Yes | Horizontal coordinate of the upper left corner of the input method keyboard window, in px.|
-| top  | number | Yes | Yes | Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
-| width  | number | Yes | Yes | Width of the input method keyboard window, in px.|
-| height  | number | Yes | Yes | Height of the input method keyboard window, in px.|
+| name  | string | No| No| Name of the input method keyboard window.|
+| left  | number | No| No| Horizontal coordinate of the upper left corner of the input method keyboard window, in px.|
+| top  | number | No| No| Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
+| width  | number | No| No| Width of the input method keyboard window, in px.|
+| height  | number | No| No| Height of the input method keyboard window, in px.|
+
+## EnabledState<sup>15+</sup>
+
+Indicates whether the input method is enabled.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| DISABLED   | 0 |Disabled.|
+| BASIC_MODE  | 1 |Basic mode.|
+| FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
+
+## RequestKeyboardReason<sup>15+</sup>
+
+Describes the reason for keyboard request.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| NONE   | 0 |The keyboard request is triggered for no reason.|
+| MOUSE  | 1 |The keyboard request is triggered by a mouse operation.|
+| TOUCH  | 2 |The keyboard request is triggered by a touch operation.|
+| OTHER  | 20 |The keyboard request is triggered by other reasons.|
+
+## MessageHandler<sup>15+</sup>
+
+Represents a custom communication object.
+
+> **NOTE**
+>
+> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
+>
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
+
+### onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+Receives custom data sent by the input method application.
+
+> **NOTE**
+>
+> This callback is triggered when the registered MeesageHandler receives custom communication data sent by the input method application.
+>
+> The **msgId** parameter is mandatory, and the **msgParam** parameter is optional. If only the custom **msgId** data is received, confirm it with the data sender.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                            |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | No  | Identifier of the received custom communication data.|
+| msgParam | ArrayBuffer | Yes  | Message body of the received custom communication data.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputMethodController = inputMethod.getController();
+try {
+    let messageHandler: inputMethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+### onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+Listens for MessageHandler termination.
+
+> **NOTE**
+>
+> When an application registers a new MessageHandler object, the **OnTerminated** callback of the previous registered MessageHandler object is triggered.
+>
+> When an application unregisters a MessageHandler object, the **OnTerminated** callback of the current registered MessageHandler object is triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputMethodController = inputMethod.getController();
+try {
+    let messageHandler: inputMethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## SetPreviewTextCallback<sup>18+</sup>
+
+type SetPreviewTextCallback = (text: string, range: Range) => void
+
+Callback triggered when the input method framework needs to display the text preview.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name      | Type         | Mandatory| Description                         |
+| ------- | ----------------- | ---- | ----------------------------- |
+| text    | string            | Yes  | Text preview.                |
+| range   | [Range](#range10) | Yes  | Describes the range of the selected text.|
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
 
 ## InputMethodController
 
@@ -797,17 +952,17 @@ Attaches a self-drawing component to the input method. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | Yes | Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- The value **true** means to start the input method keyboard, and **false** means the opposite. |
-| textConfig | [TextConfig](#textconfig10) | Yes | Configuration of the edit box. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
+| textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
@@ -851,22 +1006,22 @@ Attaches a self-drawing component to the input method. This API uses a promise t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | Yes | Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- The value **true** means to start the input method keyboard, and **false** means the opposite.|
-| textConfig | [TextConfig](#textconfig10) | Yes | Configuration of the edit box. |
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
+| textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
@@ -894,6 +1049,67 @@ try {
 }
 ```
 
+### attach<sup>15+</sup>
+
+attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+Attaches a self-drawing component to the input method. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> An input method can use the following features only when it has a self-drawing component attached to it: showing or hiding the keyboard, updating the cursor information, changing the selection range of the edit box, saving the configuration information, and listening for and processing the information or commands sent by the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
+| textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | Yes| Reason for keyboard request.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+
+  let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+  inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
+    console.log('Succeeded in attaching inputMethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to attach: ${JSON.stringify(err)}`);
+}
+```
+
 ### showTextInput<sup>10+</sup>
 
 showTextInput(callback: AsyncCallback&lt;void&gt;): void
@@ -908,19 +1124,19 @@ Enters the text editing mode. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -950,19 +1166,19 @@ Enters the text editing mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -970,6 +1186,54 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
+  console.log('Succeeded in showing text input.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+});
+```
+
+### showTextInput<sup>15+</sup>
+
+showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+Enters the text editing mode. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> After the edit box is attached to an input method, this API can be called to start the soft keyboard and enter the text editing state.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | Yes| Reason for keyboard request.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client detached. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+inputMethodController.showTextInput(requestKeyboardReason).then(() => {
   console.log('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
@@ -992,19 +1256,19 @@ Exits the text editing mode. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
@@ -1036,19 +1300,19 @@ Exits the text editing mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1072,15 +1336,15 @@ Detaches the self-drawing component from the input method. This API uses an asyn
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
@@ -1109,15 +1373,15 @@ Detaches the self-drawing component from the input method. This API uses a promi
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
@@ -1148,21 +1412,21 @@ Sets the window to be avoided by the input method. This API uses an asynchronous
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| windowId | number | Yes | Window ID of the application bound to the input method. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| windowId | number | Yes| Window ID of the application bound to the input method.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
@@ -1197,26 +1461,26 @@ Sets the window to be avoided by the input method. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| windowId | number | Yes | Window ID of the application bound to the input method. |
+| windowId | number | Yes| Window ID of the application bound to the input method.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1245,21 +1509,21 @@ Updates the cursor information in this edit box. This API can be called to notif
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| cursorInfo | [CursorInfo](#cursorinfo10) | Yes | Cursor information. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| cursorInfo | [CursorInfo](#cursorinfo10) | Yes| Cursor information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
@@ -1290,26 +1554,26 @@ Updates the cursor information in this edit box. This API can be called to notif
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| cursorInfo | [CursorInfo](#cursorinfo10) | Yes | Cursor information. |
+| cursorInfo | [CursorInfo](#cursorinfo10) | Yes| Cursor information.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1338,23 +1602,23 @@ Updates the information about the selected text in this edit box, to notify the 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | All input text. |
-| start | number | Yes | Start position of the selected text. |
-| end | number | Yes | End position of the selected text. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| text | string | Yes| All input text.|
+| start | number | Yes| Start position of the selected text.|
+| end | number | Yes| End position of the selected text.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
@@ -1384,28 +1648,28 @@ Updates the information about the selected text in this edit box, to notify the 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| text | string | Yes | All input text. |
-| start | number | Yes | Start position of the selected text. |
-| end | number | Yes | End position of the selected text. |
+| text | string | Yes| All input text.|
+| start | number | Yes| Start position of the selected text.|
+| end | number | Yes| End position of the selected text.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1433,21 +1697,21 @@ Updates the attribute information of this edit box. This API uses an asynchronou
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| attribute | [InputAttribute](#inputattribute10) | Yes | Attribute information. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| attribute | [InputAttribute](#inputattribute10) | Yes| Attribute information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **Example**
 
@@ -1478,26 +1742,26 @@ Updates the attribute information of this edit box. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| attribute | [InputAttribute](#inputattribute10) | Yes |  Attribute information. |
+| attribute | [InputAttribute](#inputattribute10) | Yes|  Attribute information.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1530,15 +1794,15 @@ Ends this input session. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
@@ -1579,15 +1843,15 @@ Ends this input session. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
@@ -1628,15 +1892,15 @@ Shows the soft keyboard. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description      |
+| Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
@@ -1674,13 +1938,13 @@ Shows the soft keyboard. This API uses a promise to return the result.
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
@@ -1714,15 +1978,15 @@ Hides the soft keyboard. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                 | Mandatory | Description      |
+| Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
@@ -1760,13 +2024,13 @@ Hides the soft keyboard. This API uses a promise to return the result.
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
@@ -1784,13 +2048,117 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+Sends the custom communication to the input method application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only when the edit box is attached to the input method and enter the edit mode, and the input method application is in full experience mode.
+>
+> The maximum length of **msgId** is 256 B, and the maximum length of **msgParam** is 128 KB.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Optional| Description                                      |
+| -------- | ----------- | ---- | ------------------------------------------ |
+| msgId    | string      | No  | Identifier of the custom data to be sent to the input method application.|
+| msgParam | ArrayBuffer | Yes  | Message body of the custom data to be sent to the input method application.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 401      | parameter error.                            |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void
+
+Registers or unregisters MessageHandler.
+
+> **NOTE**
+>
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
+>
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                        |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
+
+**Return value**
+
+| Type| Description        |
+| ---- | ------------ |
+| void | No value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message        |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
+```
+
 ### stopInput<sup>(deprecated)</sup>
 
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 Ends this input session. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 > 
 > This API can be called only when the edit box is attached to the input method. That is, it can be called to end the input session only when the edit box is focused.
 > 
@@ -1800,9 +2168,9 @@ Ends this input session. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1828,7 +2196,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 Ends this input session. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 > 
 > This API can be called only when the edit box is attached to the input method. That is, it can be called to end the input session only when the edit box is focused.
 > 
@@ -1838,9 +2206,9 @@ Ends this input session. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -1868,19 +2236,19 @@ Enables listening for the text insertion event of the input method. This API use
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type. The value is fixed at **'insertText'**. |
-| callback | (text: string) => void | Yes  | Callback used to return the text to be inserted.<br>The application needs to operate the content in the edit box based on the text content returned in the callback. |
+| type     | string                                                       | Yes  | Listening type. The value is fixed at **'insertText'**.|
+| callback | (text: string) => void | Yes  | Callback used to return the text to be inserted.<br>The application needs to operate the content in the edit box based on the text content returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1915,10 +2283,10 @@ Disables listening for the text insertion event of the input method.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Listening type. The value is fixed at **'insertText'**. |
-| callback | (text: string) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                 | Yes  | Listening type. The value is fixed at **'insertText'**.|
+| callback | (text: string) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -1940,19 +2308,19 @@ Enables listening for the leftward delete event. This API uses an asynchronous c
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description |
+| Name  | Type| Mandatory| Description|
 | -------- | ----- | ---- | ----- |
 | type     | string  | Yes  | Listening type. The value is fixed at **'deleteLeft'**.|
-| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted leftward.<br>The application needs to operate the content in the edit box based on the length returned in the callback. |
+| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted leftward.<br>The application needs to operate the content in the edit box based on the length returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -1976,10 +2344,10 @@ Disables listening for the leftward delete event.
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                                                        |
+| Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | Yes  | Listening type. The value is fixed at **'deleteLeft'**. |
-| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                   | Yes  | Listening type. The value is fixed at **'deleteLeft'**.|
+| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2001,19 +2369,19 @@ Enables listening for the rightward delete event. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description |
+| Name  | Type| Mandatory| Description|
 | -------- | ----- | ---- | ----- |
 | type     | string  | Yes  | Listening type. The value is fixed at **'deleteRight'**.|
-| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted rightward.<br>The application needs to operate the content in the edit box based on the length returned in the callback. |
+| callback | (length: number) => void | Yes  | Callback used to return the length of the text to be deleted rightward.<br>The application needs to operate the content in the edit box based on the length returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2037,10 +2405,10 @@ Disables listening for the rightward delete event.
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                                                        |
+| Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | Yes  | Listening type. The value is fixed at **'deleteRight'**. |
-| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                   | Yes  | Listening type. The value is fixed at `deleteRight`.|
+| callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2062,19 +2430,19 @@ Enables listening for the soft keyboard status event of the input method. This A
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description   |
+| Name  | Type | Mandatory| Description   |
 | -------- | ------ | ---- | ---- |
-| type     | string  | Yes  | Listening type. The value is fixed at **'sendKeyboardStatus'**. |
-| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | Yes  | Callback used to return the soft keyboard status.<br>The application needs to perform operations based on the soft keyboard state returned in the callback. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'sendKeyboardStatus'**.|
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | Yes  | Callback used to return the soft keyboard status.<br>The application needs to perform operations based on the soft keyboard state returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2098,10 +2466,10 @@ Disables listening for the soft keyboard status event of the input method.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type. The value is fixed at **'sendKeyboardStatus'**. |
-| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | No  | Callback used for disable listening. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                                                       | Yes  | Listening type. The value is fixed at **'sendKeyboardStatus'**.|
+| callback | (keyboardStatus: [KeyboardStatus](#keyboardstatus10)) => void | No  | Callback used for disable listening. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2123,19 +2491,19 @@ Enables listening for the function key sending event of the input method. This A
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description    |
+| Name  | Type | Mandatory| Description    |
 | -------- | -------- | ---- | ----- |
 | type     | string  | Yes  | Listening type. The value is fixed at **'sendFunctionKey'**.|
-| callback | (functionKey: [FunctionKey](#functionkey10)) => void | Yes  | Callback used to return the function key information sent by the input method.<br>The application needs to perform operations based on the function key information returned in the callback. |
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | Yes  | Callback used to return the function key information sent by the input method.<br>The application needs to perform operations based on the function key information returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2159,10 +2527,10 @@ Disables listening for the function key sending event of the input method.
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory | Description                                                        |
+| Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                               | Yes  | Listening type. The value is fixed at **'sendFunctionKey'**. |
-| callback | (functionKey: [FunctionKey](#functionkey10)) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                                               | Yes  | Listening type. The value is fixed at **'sendFunctionKey'**.|
+| callback | (functionKey: [FunctionKey](#functionkey10)) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2184,19 +2552,19 @@ Enables listening for the cursor movement event of the input method. This API us
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type| Mandatory| Description  |
 | -------- | ------ | ---- | ------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'moveCursor'**. |
+| type     | string | Yes  | Listening type. The value is fixed at **'moveCursor'**.|
 | callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | Yes  | Callback used to return the cursor movement direction.<br>The application needs to change the cursor position based on the cursor movement direction returned in the callback. |
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                          |
+| ID| Error Message                          |
 | -------- | -------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2220,10 +2588,10 @@ Disables listening for the cursor movement event of the input method.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description |
+| Name | Type   | Mandatory| Description |
 | ------ | ------ | ---- | ---- |
-| type   | string | Yes  | Listening type. The value is fixed at **'moveCursor'**. |
-| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type   | string | Yes  | Listening type. The value is fixed at **'moveCursor'**.|
+| callback | (direction: [Direction<sup>10+</sup>](#direction10)) => void | No| Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2245,19 +2613,19 @@ Enables listening for the extended action handling event of the input method. Th
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description  |
+| Name  | Type | Mandatory| Description  |
 | -------- | ------ | ---- | -------- |
-| type     | string    | Yes  | Listening type. The value is fixed at **'handleExtendAction'**. |
+| type     | string    | Yes  | Listening type. The value is fixed at **'handleExtendAction'**.|
 | callback | callback: (action: [ExtendAction](#extendaction10)) => void | Yes  | Callback used to return the extended action type.<br>The application needs to perform operations based on the extended action type returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2281,10 +2649,10 @@ Disables listening for the extended action handling event of the input method. T
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description |
+| Name| Type  | Mandatory| Description |
 | ------ | ------ | ---- | ------- |
-| type   | string | Yes  | Listening type. The value is fixed at **'handleExtendAction'**. |
-| callback | (action: [ExtendAction](#extendaction10)) => void | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type   | string | Yes  | Listening type. The value is fixed at **'handleExtendAction'**.|
+| callback | (action: [ExtendAction](#extendaction10)) => void | No| Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2310,16 +2678,16 @@ Enables listening for the select-by-range event. This API uses an asynchronous c
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description    |
+| Name  | Type    | Mandatory| Description    |
 | -------- | ---- | ---- | ------- |
-| type     | string  | Yes  | Listening type. The value is fixed at **'selectByRange'**. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'selectByRange'**.|
 | callback | Callback&lt;[Range](#range10)&gt; | Yes  | Callback used to return the range of the text to be selected.<br>The application needs to select the text based on the range returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -2345,17 +2713,17 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                                                        |
+| Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                            | Yes  | Listening type. The value is fixed at **'selectByRange'**. |
-| callback | Callback&lt;[Range](#range10)&gt; | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                            | Yes  | Listening type. The value is fixed at **'selectByRange'**.|
+| callback | Callback&lt;[Range](#range10)&gt; | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
@@ -2374,16 +2742,16 @@ Enables listening for the select-by-cursor-movement event. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description    |
+| Name  | Type  | Mandatory| Description    |
 | -------- | ----- | ---- | ------ |
-| type     | string  | Yes  | Listening type. The value is fixed at **'selectByMovement'**. |
-| callback | Callback&lt;[Movement](#movement10)&gt; | Yes  | Callback used to return the direction in which the cursor moves.<br>The application needs to select the text based on the direction returned in the callback. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'selectByMovement'**.|
+| callback | Callback&lt;[Movement](#movement10)&gt; | Yes  | Callback used to return the direction in which the cursor moves.<br>The application needs to select the text based on the direction returned in the callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
@@ -2409,10 +2777,10 @@ Disables listening for the select-by-cursor-movement event. This API uses an asy
 
 **Parameters**
 
-| Name  | Type                                | Mandatory | Description                                                        |
+| Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                               | Yes  | Listening type. The value is fixed at **'selectByMovement'**. |
-| callback | Callback&lt;[Movement](#movement10)> | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string                               | Yes  | Listening type. The value is fixed at **'selectByMovement'**.|
+| callback | Callback&lt;[Movement](#movement10)> | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
 
@@ -2438,19 +2806,19 @@ Enables listening for the event of obtaining the length of text deleted leftward
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description    |
+| Name  | Type  | Mandatory| Description    |
 | -------- | ----- | ---- | ------ |
-| type     | string  | Yes  | Listening type. The value is fixed at **'getLeftTextOfCursor'**. |
-| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted leftward. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'getLeftTextOfCursor'**.|
+| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted leftward.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2476,9 +2844,9 @@ Disables listening for the event of obtaining the length of text deleted leftwar
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type. The value is fixed at **'getLeftTextOfCursor'**. |
+| type   | string | Yes  | Listening type. The value is fixed at **'getLeftTextOfCursor'**.|
 | callback | (length: number) => string | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
@@ -2507,19 +2875,19 @@ Enables listening for the event of obtaining the length of text deleted rightwar
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description    |
+| Name  | Type  | Mandatory| Description    |
 | -------- | ----- | ---- | ------ |
-| type     | string  | Yes  | Listening type. The value is fixed at **'getRightTextOfCursor'**. |
-| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted rightward. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'getRightTextOfCursor'**.|
+| callback | (length: number) => string | Yes  | Callback used to obtain the text of the specified length deleted rightward.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2545,9 +2913,9 @@ Disables listening for the event of obtaining the length of text deleted rightwa
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type. The value is fixed at **'getRightTextOfCursor'**. |
+| type   | string | Yes  | Listening type. The value is fixed at **'getRightTextOfCursor'**.|
 | callback | (length: number) => string | No |Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
@@ -2576,19 +2944,19 @@ Enables listening for the event of obtaining the index of text at the cursor. Th
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description    |
+| Name  | Type  | Mandatory| Description    |
 | -------- | ----- | ---- | ------ |
-| type     | string  | Yes  | Listening type. The value is fixed at **'getTextIndexAtCursor'**. |
-| callback | () => number | Yes  | Callback used to obtain the index of text at the cursor. |
+| type     | string  | Yes  | Listening type. The value is fixed at **'getTextIndexAtCursor'**.|
+| callback | () => number | Yes  | Callback used to obtain the index of text at the cursor.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **Example**
 
@@ -2614,9 +2982,9 @@ Disables listening for the event of obtaining the index of text at the cursor. T
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Listening type. The value is fixed at **'getTextIndexAtCursor'**. |
+| type   | string | Yes  | Listening type. The value is fixed at **'getTextIndexAtCursor'**.|
 | callback | () => number | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
@@ -2635,6 +3003,188 @@ try {
 }
 ```
 
+### on('setPreviewText')<sup>18+</sup>
+
+on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
+
+Subscribes to the event for text preview operations in an input method application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Event type, which is **'setPreviewText'**.|
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | Yes  | Callback used to return the result. It is used to receive and return the text preview.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### off('setPreviewText')<sup>18+</sup>
+
+off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
+
+Unsubscribes from the event for text preview operations in an input method application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'setPreviewText'**.|
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### on('finishTextPreview')<sup>18+</sup>
+
+on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
+
+Subscribes to the event of finishing text preview. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Event type, which is **'finishTextPreview'**.|
+| callback | Callback&lt;void&gt; | Yes  | Callback used to return the result. It is used to process the logic of finishing text preview. Return type: void|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**Example**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // Cancel only the callback1 of finishTextPreview.
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // Cancel all callbacks of finishTextPreview.
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
+### off('finishTextPreview')<sup>18+</sup>
+
+off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
+
+Unsubscribes from the event of finishing text preview. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'finishTextPreview'**.|
+| callback | Callback&lt;void&gt; | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // Cancel only the callback1 of finishTextPreview.
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // Cancel all callbacks of finishTextPreview.
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 In the following API examples, you must first use [getSetting](#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
@@ -2649,10 +3199,10 @@ Enables listening for the input method and subtype change event. This API uses a
 
 **Parameters**
 
-| Name  | Type                           | Mandatory | Description                                                        |
+| Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | Yes  | Listening type. The value is fixed at **'imeChange'**. |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes | Callback used to return the input method attributes and subtype. |
+| type     | string                        | Yes  | Listening type. The value is fixed at **'imeChange'**.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -2677,10 +3227,10 @@ Disables listening for the input method and subtype change event. This API uses 
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description         |
+| Name  | Type   | Mandatory| Description         |
 | -------- | --------- | ---- | --------------- |
-| type     | string    | Yes  | Listening type. The value is fixed at **'imeChange'**. |
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No | Callback used to return the input method attributes and subtype. |
+| type     | string    | Yes  | Listening type. The value is fixed at **'imeChange'**.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -2698,19 +3248,19 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 
 **Parameters**
 
-| Name  | Type                                              | Mandatory | Description                  |
+| Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes | Input method. |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes | Callback used to return all subtypes of the specified input method. |
+| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes| Input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2749,24 +3299,24 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 **Parameters**
 
-| Name  | Type                                              | Mandatory | Description                  |
+| Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes | Input method. |
+| inputMethodProperty | [InputMethodProperty](#inputmethodproperty8)| Yes| Input method.|
 
 **Return value**
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method. |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2803,17 +3353,17 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type                                              | Mandatory | Description                  |
+| Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method. |
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2848,15 +3398,15 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method. |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2893,19 +3443,19 @@ Obtains a list of activated or deactivated input methods. This API uses an async
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory | Description                         |
+| Name  | Type                                               | Mandatory| Description                         |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
-| enable   | boolean                                             | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods. |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; |  Yes | Callback used to return a list of activated or deactivated input methods. |
+| enable   | boolean                                             | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; |  Yes | Callback used to return a list of activated or deactivated input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | package manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2942,24 +3492,24 @@ Obtains a list of activated or deactivated input methods. This API uses a promis
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                   |
+| Name| Type   | Mandatory| Description                   |
 | ------ | ------- | ---- | ----------------------- |
-| enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods. |
+| enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
 
 **Return value**
 
 | Type                                                        | Description                                      |
 | ------------------------------------------------------------ | ------------------------------------------ |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods. |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of activated or deactivated input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | package manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2994,21 +3544,21 @@ Obtains a list of activated or deactivated input methods. This API returns the r
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                   |
+| Name| Type   | Mandatory| Description                   |
 | ------ | ------- | ---- | ----------------------- |
-| enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods. |
+| enable | boolean | Yes  |Whether to return a list of activated input methods. The value **true** means to return a list of activated input methods, and **false** means to return a list of deactivated input methods.|
 
 **Return value**
 
 | Type                                                | Description                         |
 | ---------------------------------------------------- | ----------------------------- |
-| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of activated or deactivated input methods. |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of activated or deactivated input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800001 | bundle manager error.                 |
@@ -3034,15 +3584,15 @@ Obtains a list of all input methods. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                          |
+| Name  | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return a list of all input methods. |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return a list of all input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
@@ -3077,13 +3627,13 @@ Obtains a list of all input methods. This API uses a promise to return the resul
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of all input methods. |
+| Promise\<Array\<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return a list of all input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
@@ -3112,13 +3662,13 @@ Obtains a list of all input methods. This API returns the result synchronously.
 
 | Type                                                | Description              |
 | ---------------------------------------------------- | ------------------ |
-| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of all input methods. |
+| Array\<[InputMethodProperty](#inputmethodproperty8)> | List of all input methods.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                           |
+| ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
@@ -3143,15 +3693,15 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800008 | input method manager service error. |
 
@@ -3183,15 +3733,15 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object. |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
-| ID | Error Message                            |
+| ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 12800008 | input method manager service error. |
 
@@ -3213,7 +3763,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 Obtains a list of installed input methods. This API uses an asynchronous callback to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethods](#getinputmethods9) instead.
 
@@ -3221,9 +3771,9 @@ Obtains a list of installed input methods. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type                                              | Mandatory | Description                  |
+| Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return the list of installed input methods. |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | Yes  | Callback used to return the list of installed input methods.|
 
 **Example**
 
@@ -3255,7 +3805,7 @@ Obtains a list of installed input methods. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return the list of installed input methods. |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return the list of installed input methods.|
 
 **Example**
 
@@ -3283,9 +3833,9 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3315,9 +3865,9 @@ Displays a dialog box for selecting an input method. This API uses a promise to 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -3328,5 +3878,40 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
+})
+```
+
+### getInputMethodState<sup>15+</sup>
+
+getInputMethodState(): Promise&lt;EnabledState&gt;
+
+Obtains the input method state. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                                   | Description                                                        |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[EnabledState](#enabledstate15)> | Promise used to return the result. **EnabledState.DISABLED** indicates that the input method is disabled, **EnabledState.BASIC_MODE** indicates that the input method is in basic mode, and **EnabledState.FULL_EXPERIENCE_MODE** indicates that the input method is in full experience mode.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 12800004 | not an input method.              |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
+  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
 ```

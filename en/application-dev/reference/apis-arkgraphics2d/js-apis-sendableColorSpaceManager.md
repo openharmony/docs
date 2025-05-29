@@ -41,7 +41,7 @@ Creates a standard color space object that is sendable.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).                |
+| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).                |
 
 **Error codes**
 
@@ -50,7 +50,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -79,7 +79,7 @@ Creates a custom color space object that is sendable.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>The color space type is **CUSTOM**, which is one of the enumerated values of [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace).<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| [ColorSpaceManager](#colorspacemanager)  | Sendable color space object created.<br>The color space type is **CUSTOM**, which is one of the enumerated values of [colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace).<br>This instance inherits from **ISendable** and can be passed by reference between concurrent ArkTS instances (including the main thread and the worker threads of TaskPool or Worker). For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | ----------------------- |
 | 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -135,7 +135,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -163,7 +163,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -192,7 +192,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 

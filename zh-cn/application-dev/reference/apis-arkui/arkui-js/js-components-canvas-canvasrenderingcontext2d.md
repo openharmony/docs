@@ -380,7 +380,7 @@ export default {
 
 ### globalCompositeOperation
 
-类型字段说明
+类型字段说明。
 
 | 值                | 描述                       |
 | ---------------- | ------------------------ |
@@ -1698,7 +1698,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
 createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): Object
 
-创建一个径向渐变色，返回CanvasGradient对象，请参考CanvasGradient
+创建一个径向渐变色，返回CanvasGradient对象，请参考CanvasGradient。
 
 **参数：** 
 

@@ -26,7 +26,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | 编码器的比特率模式。  | 
 | typedef struct [OH_AVRange](_o_h___a_v_range.md) [OH_AVRange](_a_v_capability.md#oh_avrange) | 范围包含最小值和最大值。  | 
 | typedef enum [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) | 编解码器类别。  | 
 | typedef enum [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) | 可以在特定编解码器场景中使用的可选特性。  | 
@@ -36,7 +35,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | 编码器的比特率模式。  | 
 | [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | 编解码器类别。  | 
 | [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br/> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br/>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br/>VIDEO_LOW_LATENCY = 2 <br/>} | 可以在特定编解码器场景中使用的可选特性。  | 
 
@@ -51,7 +49,7 @@
 | const char \*[OH_AVCapability_GetName](_a_v_capability.md#oh_avcapability_getname) (OH_AVCapability \*capability) | 获取编解码器名称。  | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](_a_v_capability.md#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | 获取编解码器支持的最大实例数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](_a_v_capability.md#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | 获取编码器支持的比特率范围。  | 
-| bool [OH_AVCapability_IsEncoderBitrateModeSupported](_a_v_capability.md#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
+| bool [OH_AVCapability_IsEncoderBitrateModeSupported](_a_v_capability.md#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | 检查编码器是否支持特定的比特率模式。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderQualityRange](_a_v_capability.md#oh_avcapability_getencoderqualityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*qualityRange) | 获取编码器支持的质量范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderComplexityRange](_a_v_capability.md#oh_avcapability_getencodercomplexityrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*complexityRange) | 获取编码器支持的编码器复杂性范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetAudioSupportedSampleRates](_a_v_capability.md#oh_avcapability_getaudiosupportedsamplerates) (OH_AVCapability \*capability, const int32_t \*\*sampleRates, uint32_t \*sampleRateNum) | 获取音频编解码器支持的采样率。  | 
@@ -71,4 +69,4 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](_a_v_capability.md#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | 获取特定档次支持的编解码器级别。  | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](_a_v_capability.md#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | 检查编解码器是否支持档次和级别的特定组合。  | 
 | bool [OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | 检查编解码器是否支持指定特性。  | 
-| OH_AVFormat \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。  | 
+| [OH_AVFormat](_core.md#oh_avformat) \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者手动释放。  | 

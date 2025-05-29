@@ -31,6 +31,9 @@ Provides DialogAbility information, including the bundle name, module name, and 
 | abilityLabelId | number | Yes| Yes| ID of the ability label.|
 | bundleIconId | number | Yes| Yes| ID of the bundle icon.|
 | bundleLabelId | number | Yes| Yes| ID of the bundle label.|
+| visible<sup>12+</sup> | boolean | Yes| Yes| Whether the ability is visible. The value **true** means that the ability is visible, and **false** means the opposite.|
+| appIndex<sup>12+</sup> | number | Yes| Yes| Index of the application clone.|
+| multiAppMode<sup>12+</sup> | [MultiAppMode](./js-apis-bundleManager-applicationInfo.md#multiappmode12) | Yes| Yes| Multi-app mode.|
 
 ## DialogSessionInfo
 
@@ -106,7 +109,7 @@ Sends a request for a dialog box. This API uses an asynchronous callback to retu
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | Yes| Session ID.|
   | targetWant | Want | Yes| Target of the request.|
-  | isAllowed | boolean | Yes| Request result.|
+  | isAllowed | boolean | Yes| Whether the target ability can be started. The value **true** means that the target ability can be started, and **false** means the opposite.|
   | callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -170,7 +173,7 @@ Sends a request for a dialog box. This API uses a promise to return the result.
   | -------- | -------- | -------- | -------- |
   | dialogSessionId | string | Yes| Session ID.|
   | targetWant | Want | Yes| Target of the request.|
-  | isAllowed | boolean | Yes| Request result.|
+  | isAllowed | boolean | Yes| Whether the target ability can be started. The value **true** means that the target ability can be started, and **false** means the opposite.|
 
 **Return value**
 

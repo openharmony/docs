@@ -14,7 +14,7 @@
 
 #### 接口说明
 
-CMSIS-RTOS v2提供下面几种功能，接口详细信息可以查看API参考。
+CMSIS-RTOS v2提供下面几种功能，接口详细信息可以查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/kal/cmsis/cmsis_liteos2.c)。
 
   **表1** 内核信息与控制
 
@@ -153,7 +153,7 @@ CMSIS-RTOS2组件可以作为库或源代码提供（下图显示了库）。通
 
 静态对象分配需要访问RTOS对象控制块定义。特定于实现的头文件（下图中的os_xx .h）提供对此类控制块定义的访问。对于OpenHarmony LiteOS-M内核，由文件名以los_开头的头文件提供，这些文件包含OpenHarmony LiteOS-M内核的这些定义。
 
-![zh-cn_image_0000001153834574](figures/zh-cn_image_0000001153834574.png)
+<br>![zh-cn_image_0000001153834574](figures/zh-cn_image_0000001153834574.png)
 
 
 #### 编程实例

@@ -46,6 +46,50 @@
 **取值：** "usual.event.PACKAGE_INSTALLATION_STARTED"
 
 
+### COMMON_EVENT_BUNDLE_RESOURCES_CHANGED<sup>15+</sup>
+
+表示包管理资源数据刷新的公共事件。
+
+在切换语言、切换主题等场景，包管理资源数据刷新完成时，会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**取值：** "usual.event.BUNDLE_RESOURCES_CHANGED"
+
+
+### COMMON_EVENT_DEFAULT_APPLICATION_CHANGED<sup>19+</sup>
+
+表示文件默认打开应用发生变更的公共事件。
+
+在文件默认打开应用发生变更时，会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+**取值：** "usual.event.DEFAULT_APPLICATION_CHANGED"
+
+
+### COMMON_EVENT_SHORTCUT_CHANGED<sup>20+</sup>
+
+表示应用快捷方式发生变化的公共事件。
+
+在应用快捷方式的更改设置完成时（例如调用shortcutManager模块的[setShortcutVisibleForSelf](../../apis-ability-kit/js-apis-shortcutManager.md#shortcutmanagersetshortcutvisibleforself)成功时），会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.MANAGE_SHORTCUTS
+
+**取值：** "usual.event.SHORTCUT_CHANGED"
+
 
 ## Background Tasks Kit 
 
@@ -152,26 +196,6 @@
 **取值：** "usual.event.USER_SWITCHED"
 
 
-### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-
-表示分布式账号登录成功的动作。
-
-分布式账号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
-
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
-
-
 ## Core File Kit
 
 文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。
@@ -252,6 +276,20 @@
 
 **取值：** "usual.event.data.VOLUME_EJECT"
 
+
+### COMMON_EVENT_RESTORE_START<sup>13+<sup>
+
+表示某个应用开始恢复的公共事件。
+
+当数据迁移相关应用拉起备份恢复框架进行恢复任务，某个应用恢复开始时会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.START_RESTORE_NOTIFICATION
+
+**取值：** "usual.event.RESTORE_START"
 
 
 ## Telephony Kit

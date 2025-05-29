@@ -9,6 +9,7 @@ Defines the parameters for the connection success received by the WebSocket clie
 
 **Related module**: [Netstack](netstack.md)
 
+**Header file**: [net_websocket_type.h](net__websocket__type_8h.md#net_websocket_typeh)
 
 ## Summary
 

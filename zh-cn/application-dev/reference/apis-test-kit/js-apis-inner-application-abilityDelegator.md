@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-AbilityDelegator提供添加用于监视指定Ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待Ability到达OnCreate生命周期、设置等待时间等、获取指定Ability的生命周期状态、获取当前应用顶部Ability、启动指定Ability等。
+AbilityDelegator提供对[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)生命周期的监控与管理能力。开发者通过[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例，可以实现获取UIAbility当前状态（如是否已创建/是否在前台等）、查询当前获焦的UIAbility、等待UIAbility进入某个生命周期节点（如等待UIAbility进入onForeground）、启动指定UIAbility、设置超时机制等功能。
 
 > **说明：**
 > 
@@ -47,7 +47,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | Calling AddAbilityMonitor failed. |
 
 **示例：**
 
@@ -101,7 +101,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | Calling AddAbilityMonitor failed. |
 
 **示例：**
 
@@ -147,7 +147,7 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitorSync failed. |
+| 16000100 | Calling AddAbilityMonitorSync failed. |
 
 **示例：**
 
@@ -194,7 +194,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | Calling RemoveAbilityMonitor failed. |
 
 **示例：**
 
@@ -249,7 +249,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | Calling RemoveAbilityMonitor failed. |
 
 - 示例
 
@@ -296,7 +296,7 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitorSync failed. |
+| 16000100 | Calling RemoveAbilityMonitorSync failed. |
 
 **示例：**
 
@@ -342,7 +342,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **示例：**
 
@@ -396,7 +396,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **示例：**
 
@@ -458,7 +458,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **示例：**
 
@@ -582,7 +582,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | GetCurrentTopAbility failed. |
+| 16000100 | Calling GetCurrentTopAbility failed. |
 
 **示例：**
 
@@ -623,7 +623,7 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16000100 | GetCurrentTopAbility failed. |
+| 16000100 | Calling GetCurrentTopAbility failed. |
 
 **示例：**
 
@@ -667,12 +667,12 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled. |
 | 16000013 | The application is controlled by EDM. |
@@ -731,12 +731,12 @@ startAbility(want: Want): Promise\<void>
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled. |
 | 16000013 | The application is controlled by EDM. |
@@ -787,7 +787,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityForeground failed. |
+| 16000100 | Calling DoAbilityForeground failed. |
 
 **示例：**
 
@@ -838,7 +838,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityForeground failed. |
+| 16000100 | Calling DoAbilityForeground failed. |
 
 **示例：**
 
@@ -884,7 +884,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityBackground failed. |
+| 16000100 | Calling DoAbilityBackground failed. |
 
 **示例：**
 
@@ -935,7 +935,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityBackground failed. |
+| 16000100 | Calling DoAbilityBackground failed. |
 
 **示例：**
 
@@ -1196,7 +1196,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | FinishTest failed. |
+| 16000100 | Calling FinishTest failed. |
 
 **示例：**
 
@@ -1243,7 +1243,7 @@ finishTest(msg: string, code: number): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | FinishTest failed. |
+| 16000100 | Calling FinishTest failed. |
 
 **示例：**
 
@@ -1283,7 +1283,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | Calling AddAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1331,7 +1331,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | Calling AddAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1372,7 +1372,7 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitorSync failed. |
+| 16000100 | Calling AddAbilityStageMonitorSync failed. |
 
 **示例：**
 
@@ -1412,7 +1412,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | Calling RemoveAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1460,7 +1460,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | Calling RemoveAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1501,7 +1501,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityStageMonitorSync failed. |
+| 16000100 | Calling RemoveAbilityStageMonitorSync failed. |
 
 
 **示例：**
@@ -1542,7 +1542,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1592,7 +1592,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **示例：**
 
@@ -1636,7 +1636,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **示例：**
 

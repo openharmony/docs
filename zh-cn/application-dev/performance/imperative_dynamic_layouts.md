@@ -27,9 +27,9 @@
 本案例相关核心字段含义如下表所示：
 | 标签     | 含义                                                                      |
 |---------|---------------------------------------------------------------------------|
-| type    |描述UI组件的类型，通常与原生组件存在一一对应的关系，也可能是框架基于原生能力封装的某种组件|
-| content |文本，图片类组件的内容                                                         |
-| css     |描述UI组件的布局特性                                                          |
+| type    |描述UI组件的类型，通常与原生组件存在一一对应的关系，也可能是框架基于原生能力封装的某种组件。|
+| content |文本，图片类组件的内容。                                                        |
+| css     |描述UI组件的布局特性。                                                          |
 
 1. 定义视频首页UI描述数据如下：
 ```json
@@ -79,7 +79,6 @@
       },
       "children": [
         {
-          "id": "Carousel",
           "type": "Image",
           "css": {
             "height": "40%",
@@ -88,7 +87,6 @@
           "content": "app.media.movie1"
         },
         {
-          "id": "Carousel",
           "type": "Image",
           "css": {
             "height": "40%",
@@ -97,7 +95,6 @@
           "content": "app.media.movie2"
         },
         {
-          "id": "Carousel",
           "type": "Image",
           "css": {
             "height": "40%",
@@ -237,7 +234,7 @@
               "css": {
                 "fontColor": "#ffffff"
               },
-              "content": "《志愿军：雄兵出击》"
+              "content": "电影1"
             }
           ]
         },
@@ -261,14 +258,14 @@
               "css": {
                 "fontColor": "#ffffff"
               },
-              "content": "长空之王"
+              "content": "电影2"
             }
           ]
         }
       ]
     },
     {
-      "id": "changeCarouselImageHeight",
+      "id": "refreshImage",
       "type": "Text",
       "css": {
         "width": 180,
@@ -277,7 +274,7 @@
         "fontColor": "#ffffff",
         "backgroundColor": "#0000FF"
       },
-      "content": "更改轮播图高度"
+      "content": "刷新"
     }
   ]
 }
@@ -285,35 +282,37 @@
 2. 定义相应数据结构用于接收UI描述数据，如下：
 ```ts
 class VM {
-  type?: string
-  content?: string
-  css?: ESObject
-  children?: VM[]
-  id?: string
+  type?: string;
+  content?: string;
+  css?: ESObject;
+  children?: VM[];
+  id?: string;
 }
 ```
 3. 自定义DSL解析逻辑，且使用carouselNodes保存轮播图节点，方便后续操作节点更新，如下：
 ```ts
+// 存储图片节点，方便后续直接操作节点
 let carouselNodes: typeNode.Image[] = [];
 
+/**
+ * 自定义DSL解析逻辑，将UI描述数据解析为组件
+ *
+ * @param vm
+ * @param context
+ * @returns
+ */
 function FrameNodeFactory(vm: VM, context: UIContext): FrameNode | null {
   if (vm.type === "Column") {
-    // 构建Column组件
     let node = typeNode.createNode(context, "Column");
-    // 填充组件属性
     setColumnNodeAttr(node, vm.css);
-    // 遍历构建Column下的所有子组件
     vm.children?.forEach(kid => {
       let child = FrameNodeFactory(kid, context);
       node.appendChild(child);
     });
     return node;
   } else if (vm.type === "Row") {
-    // 构建Row组件
     let node = typeNode.createNode(context, "Row");
-    // 填充组件属性
     setRowNodeAttr(node, vm.css);
-    // 遍历构建Row下的所有子组件
     vm.children?.forEach(kid => {
       let child = FrameNodeFactory(kid, context);
       node.appendChild(child);
@@ -333,29 +332,30 @@ function FrameNodeFactory(vm: VM, context: UIContext): FrameNode | null {
     node.attribute.width(vm.css.width);
     node.attribute.height(vm.css.height);
     node.attribute.borderRadius(vm.css.borderRadius);
-    node.attribute.objectFit(ImageFit.Fill)
+    node.attribute.objectFit(ImageFit.Fill);
     node.initialize($r(vm.content));
-    if (vm.id === "Carousel") {
-      carouselNodes.push(node);
-    }
+    carouselNodes.push(node);
     return node;
   } else if (vm.type === "Text") {
     let node = typeNode.createNode(context, "Text");
     node.attribute.fontSize(vm.css.fontSize);
     node.attribute.width(vm.css.width);
     node.attribute.height(vm.css.height);
-    node.attribute.width(vm.css.width)
-    node.attribute.borderRadius(vm.css.borderRadius)
+    node.attribute.width(vm.css.width);
+    node.attribute.borderRadius(vm.css.borderRadius);
     node.attribute.backgroundColor(vm.css.backgroundColor);
     node.attribute.fontColor(vm.css.fontColor);
     node.attribute.opacity(vm.css.opacity);
-    node.attribute.textAlign(TextAlign.Center)
-    // 给按钮添加点击事件，用来控制轮播图高度变更
-    if (vm.id === 'changeCarouselImageHeight') {
+    node.attribute.textAlign(TextAlign.Center);
+    // 使用id来标识特殊节点，方便抽出来单独操作
+    if (vm.id === 'refreshImage') {
+      // 因为frameNode暂时没有Button组件，因此使用Text代替，给该组件绑定点击事件
       node.attribute.onClick(() => {
-        carouselNodes[0].attribute.height('50%');
-        carouselNodes[1].attribute.height('50%');
-        carouselNodes[2].attribute.height('50%');
+        carouselNodes[1].initialize($r('app.media.movie6'));
+        carouselNodes[2].initialize($r('app.media.movie7'));
+        carouselNodes[3].initialize($r('app.media.movie8'));
+        carouselNodes[4].initialize($r('app.media.movie9'));
+        carouselNodes[5].initialize($r('app.media.movie10'));
         node.attribute.visibility(Visibility.Hidden);
       })
     }
@@ -370,23 +370,26 @@ function setColumnNodeAttr(node: typeNode.Column, css: ESObject) {
   node.attribute.height(css.height);
   node.attribute.backgroundColor(css.backgroundColor);
   if (css.alignItems === "HorizontalAlign.Start") {
-    node.attribute.alignItems(HorizontalAlign.Start)
+    node.attribute.alignItems(HorizontalAlign.Start);
   }
 }
 
 function setRowNodeAttr(node: typeNode.Row, css: ESObject) {
   node.attribute.width(css.width);
   if (css.padding !== undefined) {
-    node.attribute.padding(css.padding as Padding)
+    node.attribute.padding(css.padding as Padding);
   }
   if (css.margin !== undefined) {
-    node.attribute.margin(css.margin as Padding)
+    node.attribute.margin(css.margin as Padding);
   }
-  node.attribute.justifyContent(FlexAlign.SpaceBetween)
+  node.attribute.justifyContent(FlexAlign.SpaceBetween);
 }
 ```
 4. 使用NodeContainer组件嵌套ArkUI的FrameNode扩展和ArkUI的声明式语法，如下：
 ```ts
+/**
+ * 继承NodeController，用于绘制组件树
+ */
 class ImperativeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     return FrameNodeFactory(data, uiContext);
@@ -397,6 +400,7 @@ class ImperativeController extends NodeController {
 @Component
 struct ImperativePage {
   controller: ImperativeController = new ImperativeController();
+
   build() {
     Column() {
       NodeContainer(this.controller)

@@ -1,133 +1,209 @@
-# Media error code
+# Media Error Codes
+<!--RP1-->
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-> **NOTE:**
-> The following describes only the specific error codes of this module. For details about common error codes, see the Common Error Code Description.
+## DTS2025010983858
 
-## 5400101 Memory allocation failure
+### quetsion one
+Test DTS2025010983858 quesiton one
 
-**Error information**
+1. list-One
+   according UserAgent {OSName} and {OSVersion} recognise OpenHarmonyOS.The format: OpenHarmony + Vesion
+
+   ```ts
+   const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);  
+   matches?.length && Number(matches[1]) >= 5;  
+   ```
+
+2. list-Two
+    according UserAgent {OSName} recognise OpenHarmonyOS.
+
+   ```ts
+   const isOpenHarmony = () => /OpenHarmony/i.test(navigator.userAgent);   
+   ```
+
+### question two
+Test DTS2025010983858 quesiton two
+
+**Table 1**
+|Name|age|city|
+|---|---|---|
+| <!--DelRow-->formVisibleNotify | 15 | beijing |
+| <!--DelRow-->transparencyEnabled | 18| shagnhai |
+|fontScaleFollowSystem|20|London|
+
+**Table 2**
+|Name|age|city|
+|---|---|---|
+|fontScaleFollowSystem|20|London|
+| <!--DelRow-->formVisibleNotify | 15 | beijing |
+| <!--DelRow-->transparencyEnabled | 18| shagnhai |
+|fontScaleFollowSystemeternal|25|Pairs|
+
+1. List-One
+    **Table 3**
+    |Name|age|city|
+    |---|---|---|
+    | <!--DelRow-->formVisibleNotify | 15 | beijing |
+    | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+    |fontScaleFollowSystem|20|London|
+
+2. List-One
+    **Table 4**
+    |Name|age|city|
+    |---|---|---|
+    |fontScaleFollowSystem|20|London|
+    | <!--DelRow-->formVisibleNotify | 15 | beijing |
+    | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+    |fontScaleFollowSystemeternal|25|Pairs|
+
+3. List-Three
+    * ul-list-1
+        **Table 5**
+        |Name|age|city|
+        |---|---|---|
+        | <!--DelRow-->formVisibleNotify | 15 | beijing |
+        | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+        |fontScaleFollowSystem|20|London|
+
+    * ul-list-2
+        **Table 6**
+        |Name|age|city|
+        |---|---|---|
+        |fontScaleFollowSystem|20|London|
+        | <!--DelRow-->formVisibleNotify | 15 | beijing |
+        | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+        |fontScaleFollowSystemeternal|25|Pairs|
+
+
+## 5400101 Memory Allocation Failed
+
+**Error Message**
 
 No memory.
 
-**Error Description**
+**Description**
 
 Failed to allocate memory.
 
 **Possible Causes**
 
 1. The number of instances exceeds 16.
-2. The new or malloc process fails, resulting in a null pointer.
+2. The new or malloc process fails, causing a null pointer.
 
-**Processing Procedure**
+**Solution**
 
-Destroy the current instance and create it again. If the instance fails to be created, stop related operations.
+Destroy this instance and re-create it. If the re-creation fails, stop related operations.
 
-## 5400102 The current state machine does not support this operation.
+## 5400102 Unsupported Operation
 
-**Error information**
+**Error Message**
 
 Operation not allowed.
 
-**Error Description**
+**Description**
 
-The current operation is not allowed.
+This operation is not allowed.
 
 **Possible Causes**
 
-The current state machine does not support this operation.
+This operation is not allowed in the current state.
 
-**Processing Procedure**
+**Solution**
 
-Check whether the current status supports the current operation, switch the instance to the correct status, and perform the correct operation.
+Switch the instance to the correct state and perform the operation.
 
-## 5400103 An I/O error occurs.
+## 5400103 I/O Error
 
-**Error information**
+**Error Message**
 
 I/O error.
 
-**Error Description**
+**Description**
 
-An IO error has occurred.
+An I/O error occurs.
 
 **Possible Causes**
 
-The data interaction between the media and other modules is abnormal. (Graphics, Audio, Network, HDI, Camera).
+The data interaction between the media and other modules (graphics, audio, network, HDI, and camera) is abnormal.
 
-**Processing Procedure**
+**Solution**
 
-Check whether the network connection is normal. Destroy the current instance and create it again. If the instance fails to be created again, stop related operations.
+Ensure that the network is normal, destroy this instance, and re-create it. If the re-creation fails, stop related operations.
 
 ## 5400104 Operation Timeout
 
-**Error information**
+**Error Message**
 
 Operation timeout.
 
-**Error Description**
+**Description**
 
-Operation timed out.
+The operation timed out.
 
 **Possible Causes**
 
-1. The network times out. The default network timeout interval is 15 seconds. The timer starts when the cached event is reported. After the timer expires, the error message is reported.
-2. Access to other modules times out.
+1. The network connection times out. (The default network timeout period is 15 seconds, and the timer starts after the buffered event is reported.)
+2. Accessing other modules times out.
 
-**Processing Procedure**
+**Solution**
 
 1. Check whether the network is normal.
-2. Destroy the current instance and create it again. If the instance fails to be created again, stop related operations.
+2. Destroy this instance and re-create it. If the re-creation fails, stop related operations.
 
-## 5400105 Playback Service Dead
+## 5400105 Play Service Dead
 
-**Error information**
+**Error Message**
 
 Service died.
 
-**Error Description**
+**Description**
 
-Playback service is dead.
-
-**Possible Causes**
-
-Playback service is dead.
-
-**Processing Procedure**
-
-Destroy the current instance and create it again. If the instance fails to be created, stop related operations.
-
-## Specifications Not Supported by 5400106
-
-**Error information**
-
-Unsupport format.
-
-**Error Description**
-
-The specification is not supported.
+The playback service is dead.
 
 **Possible Causes**
 
-The file or format is not supported.
+The playback service is dead.
 
-**Processing Procedure**
+**Solution**
 
-The current format is not supported. You need to switch to a supported format.
+Destroy this instance and re-create it. If the re-creation fails, stop related operations.
+
+## 5400106 Format Not Supported
+
+**Error Message**
+
+Unsupported format.
+
+**Description**
+
+The format is not supported.
+
+**Possible Causes**
+
+The file format is not supported.
+
+**Solution**
+
+Use a supported format.
 
 ## 5400107 Audio Focus Conflict
 
-**Error information**
+**Error Message**
 
-Audio interrupted
+Audio interrupted.
 
-**Error Description**
+**Description**
 
-Recording Failure Due to Audio Focus Conflict
+Recording fails due to audio focus conflicts.
 
 **Possible Causes**
 
-Another process occupies the audio focus. As a result, the audio focus cannot be obtained.
+Another process occupies the audio focus.
 
-**Processing Procedure**
+**Solution**
 
-Destroy the current instance and check whether other processes are recording. If you can stop the occupation of other processes, you can create them again.
+Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
+<!--RP1End-->

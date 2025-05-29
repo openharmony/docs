@@ -25,6 +25,8 @@ import { Queue } from '@kit.ArkTS';
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
@@ -37,6 +39,8 @@ import { Queue } from '@kit.ArkTS';
 constructor()
 
 A constructor used to create a **Queue** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -60,6 +64,8 @@ let queue : Queue<number | string | Object> = new Queue();
 add(element: T): boolean
 
 Adds an element at the end of this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -95,7 +101,7 @@ let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
 let result2 = queue.add(b);
-let c : C1 = {name : "Dylon", age : "13"};
+let c : C1 = {name : "Dylan", age : "13"};
 let result3 = queue.add(c);
 ```
 
@@ -104,6 +110,8 @@ let result3 = queue.add(c);
 pop(): T
 
 Removes the first element from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -139,6 +147,8 @@ getFirst(): T
 
 Obtains the first element of this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -172,6 +182,8 @@ forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -218,9 +230,7 @@ queue.forEach((value : number, index ?: number) : void => {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 

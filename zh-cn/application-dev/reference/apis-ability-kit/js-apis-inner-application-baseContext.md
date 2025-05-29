@@ -14,13 +14,13 @@ import { common } from '@kit.AbilityKit';
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| stageMode | boolean | 是    | 是    | 表示是否Stage模型。<br>true：Stage模型<br>false：FA模型。 |
+| stageMode | boolean | 是    | 是    | 表示是否Stage模型。<br>true：Stage模型。<br>false：FA模型。 |
 
 **示例：**
 

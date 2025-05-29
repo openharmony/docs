@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<Stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+The **Stack** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
 ## Required Permissions
 

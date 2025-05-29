@@ -211,7 +211,7 @@ export struct LessEmbeddedComponent {
           ListItem() {
             OneMomentNoModifier({ color: moment.color })
               .onClick(() => {
-                console.log(`my id is ${moment.id}`)
+                console.log(`my id is ${moment.id}`);
               })
           }
         }, (moment: FriendMoment) => moment.id)
@@ -265,7 +265,7 @@ export struct OneMomentNoModifier {
 
 优化前，由`H:ViewPU.viewPropertyHasChanged OneMomentNoModifier color 1`标签可知，OneMomentNoModifier自定义组件下的状态变量color发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
 
-此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。  
+此时，`H:CustomNode:BuildRecycle`耗时543μs，`Create[Text]`耗时为4μs。
 
 ![noModifier2](./figures/component_recycle_case/noModifier2.png)
 
@@ -281,11 +281,11 @@ export class MyTextUpdater extends AttributeUpdater<TextAttribute> {
 
   constructor(color: string | number | Resource) {
     super();
-    this.color = color
+    this.color = color;
   }
 
   initializeModifier(instance: TextAttribute): void {
-    instance.fontColor(this.color) // 差异化更新
+    instance.fontColor(this.color); // 差异化更新
   }
 }
 
@@ -303,7 +303,7 @@ export struct UpdaterComponent {
           ListItem() {
             OneMomentNoModifier({ color: moment.color })
               .onClick(() => {
-                console.log(`my id is ${moment.id}`)
+                console.log(`my id is ${moment.id}`);
               })
           }
         }, (moment: FriendMoment) => moment.id)
@@ -359,7 +359,7 @@ export struct OneMomentNoModifier {
 
 ![useUpdater1](./figures/component_recycle_case/useUpdater1.png)
 
-优化后，在`H:aboutToReuse`标签下没有`H:ViewPU.viewPropertyHasChanged`标签，后续也没有`Create[Text]`标签。此时，`H:CustomNode:BuildRecycle`耗时415μs
+优化后，在`H:aboutToReuse`标签下没有`H:ViewPU.viewPropertyHasChanged`标签，后续也没有`Create[Text]`标签。此时，`H:CustomNode:BuildRecycle`耗时415μs。
 
 **优化效果**
 
@@ -570,11 +570,11 @@ export struct OneMoment {
 
   // 此处aboutToReuse为多余刷新
   aboutToReuse(params: Record<string, Object>): void {
-    this.moment.id = (params.moment as FriendMoment).id
-    this.moment.userName = (params.moment as FriendMoment).userName
-    this.moment.avatar = (params.moment as FriendMoment).avatar
-    this.moment.text = (params.moment as FriendMoment).text
-    this.moment.image = (params.moment as FriendMoment).image
+    this.moment.id = (params.moment as FriendMoment).id;
+    this.moment.userName = (params.moment as FriendMoment).userName;
+    this.moment.avatar = (params.moment as FriendMoment).avatar;
+    this.moment.text = (params.moment as FriendMoment).text;
+    this.moment.image = (params.moment as FriendMoment).image;
   }
     
   build() {

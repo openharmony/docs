@@ -1,7 +1,7 @@
 # Path Drawing
 
 
-The **&lt;svg&gt;** component uses instructions **M** (start point), **H** (horizontal line), and **a** (drawing an arc to a specified position) to control a path and sets the fill colors to create a pie chart.
+The [\<svg>](../reference/apis-arkui/arkui-js/js-components-svg.md) component uses instructions **M** (start point), **H** (horizontal line), and **a** (drawing an arc to a specified position) to control a path and sets the fill colors to create a pie chart.
 
 ```html
 <!-- xxx.hml -->

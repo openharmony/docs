@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -12,11 +12,11 @@
 import { Environment } from '@kit.CoreFileKit';
 ```
 
-## environment.getUserDownloadDir<sup>11+</sup>
+## Environment.getUserDownloadDir
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径。
+获取当前用户预授权下载目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -33,7 +33,7 @@ getUserDownloadDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -44,16 +44,16 @@ function getUserDownloadDirExample() {
     let path = Environment.getUserDownloadDir();
     console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## environment.getUserDesktopDir<sup>11+</sup>
+## Environment.getUserDesktopDir
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径。
+获取当前用户预授权桌面目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -70,7 +70,7 @@ getUserDesktopDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -81,16 +81,16 @@ function getUserDesktopDirExample() {
     let path = Environment.getUserDesktopDir();
     console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## environment.getUserDocumentDir<sup>11+</sup>
+## Environment.getUserDocumentDir
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径。
+获取当前用户预授权文档目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -107,7 +107,7 @@ getUserDocumentDir(): string
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -118,7 +118,7 @@ function getUserDocumentDirExample() {
     let path = Environment.getUserDocumentDir();
     console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```

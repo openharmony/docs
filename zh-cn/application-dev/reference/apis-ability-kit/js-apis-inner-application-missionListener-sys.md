@@ -1,6 +1,6 @@
 # MissionListener (系统接口)
 
-定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager-sys.md#missionmanageron)注册。
+定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager-sys.md#missionmanageronmission)注册。
 
 > **说明：**
 > 
@@ -15,7 +15,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ## 属性
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

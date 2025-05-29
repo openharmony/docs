@@ -78,7 +78,7 @@
 
 
 * COMMON_EVENT_TIME_CHANGED
-提示系统时间被被重新设置。
+提示系统时间被重新设置。
   - 值：usual.event.TIME_CHANGED
   - 订阅者所需权限：无
 
@@ -352,9 +352,9 @@
 
 
 * COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE
-提示MPLink（增强Wi-Fi功能）状态已更改。
+提示MPLink（增强Wi-Fi功能）状态已更改（暂不支持）。
   - 值：usual.event.wifi.mplink.STATE_CHANGE
-  - 订阅者所需权限：ohos.permission.MPLINK_CHANGE_STATE
+  - 订阅者所需权限：无
 
 
 * COMMON_EVENT_WIFI_P2P_CONN_STATE
@@ -885,7 +885,7 @@
   - 订阅者所需权限：无
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
+* COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>
 提示分屏。
 
 
@@ -911,5 +911,5 @@
   - 值：usual.event.USER_INFO_UPDATED
   - 订阅者所需权限：无
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
+* COMMON_EVENT_SMS_RECEIVE_COMPLETED
 表示设备接收到信息的动作。

@@ -29,6 +29,8 @@ import { LightWeightMap } from '@kit.ArkTS';
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
@@ -41,6 +43,8 @@ import { LightWeightMap } from '@kit.ArkTS';
 constructor()
 
 A constructor used to create a **LightWeightMap** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -65,6 +69,8 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -95,6 +101,8 @@ let result = lightWeightMap.isEmpty();
 hasAll(map: LightWeightMap<K, V>): boolean
 
 Checks whether this container contains all elements of the specified **LightWeightMap** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -137,6 +145,8 @@ hasKey(key: K): boolean
 
 Checks whether this container contains the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -174,6 +184,8 @@ hasValue(value: V): boolean
 
 Checks whether this container contains the specified value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -210,6 +222,10 @@ increaseCapacityTo(minimumCapacity: number): void
 
 Increases the capacity of this container.
 
+If the passed-in capacity is greater than or equal to the number of elements in this container, the container capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this container, the capacity is not changed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -239,6 +255,8 @@ lightWeightMap.increaseCapacityTo(10);
 get(key: K): V
 
 Obtains the value of the specified key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -278,6 +296,8 @@ getIndexOfKey(key: K): number
 
 Obtains the index of the first occurrence of an element with the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -315,6 +335,8 @@ let result = lightWeightMap.getIndexOfKey("sparrow");
 getIndexOfValue(value: V): number
 
 Obtains the index of the first occurrence of an element with the specified value in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -354,13 +376,15 @@ getKeyAt(index: number): K
 
 Obtains the key of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -394,6 +418,8 @@ setAll(map: LightWeightMap<K, V>): void
 
 Adds all elements in a **LightWeightMap** instance to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -426,6 +452,8 @@ map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 set(key: K, value: V): Object
 
 Adds or updates an element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -463,6 +491,8 @@ let result = lightWeightMap.set("squirrel", 123);
 remove(key: K): V
 
 Removes an element with the specified key from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -502,13 +532,15 @@ removeAt(index: number): boolean
 
 Removes an element at the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -541,13 +573,15 @@ setValueAt(index: number, newValue: V): boolean
 
 Sets a value for an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | newValue | V | Yes| Value of the target element to set.|
 
 **Return value**
@@ -582,13 +616,15 @@ getValueAt(index: number): V
 
 Obtains the value of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -622,6 +658,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -647,6 +685,8 @@ lightWeightMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 Obtains an iterator that contains all the keys in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -685,6 +725,8 @@ values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -722,6 +764,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, th
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -757,13 +801,24 @@ lightWeightMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
 entries(): IterableIterator<[K, V]>
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -795,12 +850,24 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
 
 ### toString
 
 toString(): String
 
 Concatenates the elements in this container into a string and returns the string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -833,9 +900,7 @@ let result = lightWeightMap.toString();
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -878,5 +943,15 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the set, setValueAt, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
 }
 ```

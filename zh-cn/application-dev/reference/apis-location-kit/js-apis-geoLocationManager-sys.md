@@ -32,11 +32,9 @@ API9及之后的版本，需要申请ohos.permission.APPROXIMATELY_LOCATION或�
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION | 成功 | 获取到模糊位置，精确度为5公里。 |
 | 大于等于9 | ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 成功 | 获取到精准位置，精准度在米级别。 |
 
-如果应用在后台运行时也需要访问设备位置，需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。
+如果应用在后台运行时也需要访问设备位置，需要申请LOCATION类型的长时任务，这样应用在切入后台之后，系统可以继续上报位置信息。长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
 
-应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
-
-长时任务申请可参考[长时任务](../../task-management/continuous-task.md)。
+应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all-user.md#ohospermissionlocation_in_background)。
 
 开发者可以在应用配置文件中声明所需要的权限，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -55,7 +53,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：地名信息来自于逆地理编码模拟功能。<br/>false：地名信息不是来自于逆地理编码模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## Location
@@ -66,7 +64,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
+| isFromMock | Boolean | 否 | 是 | true：位置信息来自于位置模拟功能。<br/>false：位置信息不是来自于位置模拟功能。<br/>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -107,7 +105,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 否 | 否 | true：需要发起扫描<br/>false：不需要发起扫描 |
+| needStartScan |  boolean | 否 | 否 | true：需要发起扫描。<br/>false：不需要发起扫描。 |
 | scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
 | scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
 
@@ -203,7 +201,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
 
-on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。使用callback异步回调。
 
@@ -237,22 +235,21 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
 
-off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 取消订阅定位业务所需数据的变化，并停止WiFi和蓝牙扫描。
 
@@ -284,28 +281,27 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
       geoLocationManager.off('locatingRequiredDataChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocation
 
-enableLocation(callback: AsyncCallback&lt;void&gt;): void;
+enableLocation(callback: AsyncCallback&lt;void&gt;): void
 
 打开位置服务，使用callback异步回调。
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -331,7 +327,6 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.enableLocation((err) => {
           if (err) {
@@ -339,7 +334,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -352,7 +347,7 @@ enableLocation(): Promise&lt;void&gt;
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -377,28 +372,28 @@ enableLocation(): Promise&lt;void&gt;
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.enableLocation().then(() => {
-          console.log('promise, enableLocation succeed');
+          console.info('promise, enableLocation succeed');
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.disableLocation
 
-disableLocation(): void;
+disableLocation(): void
 
 关闭位置服务。
 
 **系统API**：此接口为系统接口。
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -420,13 +415,13 @@ disableLocation(): void;
   try {
       geoLocationManager.disableLocation();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocationMock
 
-enableLocationMock(): void;
+enableLocationMock(): void
 
 使能位置模拟功能。
 
@@ -434,12 +429,15 @@ enableLocationMock(): void;
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -452,14 +450,14 @@ enableLocationMock(): void;
   try {
       geoLocationManager.enableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableLocationMock
 
-disableLocationMock(): void;
+disableLocationMock(): void
 
 去使能位置模拟功能。
 
@@ -467,12 +465,15 @@ disableLocationMock(): void;
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -485,14 +486,14 @@ disableLocationMock(): void;
   try {
       geoLocationManager.disableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setMockedLocations
 
-setMockedLocations(config: LocationMockConfig): void;
+setMockedLocations(config: LocationMockConfig): void
 
 设置模拟的位置信息，后面会以该接口中携带的时间间隔上报模拟位置。
 
@@ -501,6 +502,8 @@ setMockedLocations(config: LocationMockConfig): void;
 **系统能力**：SystemCapability.Location.Location.Core
 
 **系统API**：此接口为系统接口。
+
+**需要权限**: ohos.permission.MOCK_LOCATION
 
 **参数**：
 
@@ -514,6 +517,7 @@ setMockedLocations(config: LocationMockConfig): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
@@ -536,14 +540,14 @@ setMockedLocations(config: LocationMockConfig): void;
       geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.enableReverseGeocodingMock
 
-enableReverseGeocodingMock(): void;
+enableReverseGeocodingMock(): void
 
 使能逆地理编码模拟功能。
 
@@ -551,12 +555,15 @@ enableReverseGeocodingMock(): void;
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -568,14 +575,14 @@ enableReverseGeocodingMock(): void;
   try {
       geoLocationManager.enableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableReverseGeocodingMock
 
-disableReverseGeocodingMock(): void;
+disableReverseGeocodingMock(): void
 
 去使能逆地理编码模拟功能。
 
@@ -583,12 +590,15 @@ disableReverseGeocodingMock(): void;
 
 **系统API**：此接口为系统接口。
 
+**需要权限**: ohos.permission.MOCK_LOCATION
+
 **错误码**：
 
 以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -600,14 +610,14 @@ disableReverseGeocodingMock(): void;
   try {
       geoLocationManager.disableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setReverseGeocodingMockInfo
 
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
+setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void
 
 设置逆地理编码模拟功能的配置信息，包含了位置和地名的对应关系，后续进行逆地理编码查询时如果位置信息位于配置信息中，就返回对应的地名。
 
@@ -616,6 +626,8 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 **系统能力**：SystemCapability.Location.Location.Core
 
 **系统API**：此接口为系统接口。
+
+**需要权限**: ohos.permission.MOCK_LOCATION
 
 **参数**：
 
@@ -629,6 +641,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setReverseGeocodingMockInfo} due to limited device capabilities.          |
@@ -649,14 +662,14 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
       geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.isLocationPrivacyConfirmed
 
-isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
+isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
 查询用户是否同意定位服务隐私申明，是否同意启用定位服务。只有系统应用才能调用。
 
@@ -674,7 +687,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | boolean | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -694,14 +707,14 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
   try {
       let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setLocationPrivacyConfirmStatus
 
-setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void;
+setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void
 
 设置用户勾选定位服务隐私申明的状态，记录用户是否同意启用定位服务。只有系统应用才能调用。
 
@@ -716,7 +729,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
+  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明。<br/>false：用户不同意定位服务隐私申明。 |
 
 **错误码**：
 
@@ -737,14 +750,14 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
 
-getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;;
+getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;
 
 单次获取定位业务所需数据，包含WiFi蓝牙扫描信息，使用Promise方式异步返回结果。
 
@@ -782,24 +795,24 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
-          console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
+          console.info('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('locationIconStatusChange')<sup>12+</sup>
 
-on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void;
+on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void
 
 订阅定位图标状态变化。使用callback异步回调。
 
@@ -830,19 +843,19 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locationIconStatusChange')<sup>12+</sup>
 
-off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void;
+off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void
 
 取消订阅定位图标状态的变化。
 
@@ -873,20 +886,20 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
 	  geoLocationManager.off('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocationIconStatus<sup>12+</sup>
 
-getLocationIconStatus(): LocationIconStatus;
+getLocationIconStatus(): LocationIconStatus
 
 获取当前的定位图标状态。
 
@@ -917,6 +930,194 @@ getLocationIconStatus(): LocationIconStatus;
   try {
       let iconStatus = geoLocationManager.getLocationIconStatus();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.enableLocationByUserId<sup>18+</sup>
+
+enableLocationByUserId(userId: number): Promise&lt;void&gt;
+
+打开指定系统账号的定位开关，使用Promise异步回调。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考[查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  try {
+      // 打开指定系统账号的位置开关，如：处于ID为101的账号下，可以打开ID为100的账号的位置开关
+      let userId:number = 100;
+      geoLocationManager.enableLocationByUserId(userId).then(() => {
+          console.info('promise, enableLocationByUserId succeed');
+      })
+      .catch((error:BusinessError) => {
+          console.error('promise, enableLocationByUserId: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.disableLocationByUserId<sup>18+</sup>
+
+disableLocationByUserId(userId: number): void
+
+关闭指定系统账号的定位开关。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考[查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // 关闭指定系统账号的位置开关，如：处于ID为101的账号下，可以关闭ID为100的账号的位置开关
+      let userId:number = 100;
+      geoLocationManager.disableLocationByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.isLocationEnabledByUserId<sup>18+</sup>
+
+isLocationEnabledByUserId(userId: number): boolean
+
+判断指定系统账号的位置开关是否开启。
+
+**系统API**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考 [查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // 查询指定系统账号的位置开关状态，如：处于ID为101的账号下，可以查询ID为100的账号的位置开关状态
+      let userId:number = 100;
+      let locationEnabled = geoLocationManager.isLocationEnabledByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.setLocationSwitchIgnored<sup>18+</sup>
+
+setLocationSwitchIgnored(isIgnored: boolean): void
+
+设置应用获取位置信息是否受位置开关控制。
+
+设置为true后，允许应用在位置开关关闭的场景获取到位置信息，有效时间为从调用接口成功开始的两分钟。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION_SWITCH_IGNORED
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | isIgnored | boolean | 是 | true：需要在位置开关关闭的场景下获取位置信息。有效时间为从调用接口成功开始的两分钟。<br/>false：不需要在位置开关关闭的场景下获取位置信息。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      let isIgnored:boolean = true;
+      geoLocationManager.setLocationSwitchIgnored(isIgnored);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```

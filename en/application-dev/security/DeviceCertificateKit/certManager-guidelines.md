@@ -6,7 +6,7 @@
 
 ## Scenarios
 
-**Typical scenarios**
+1. During the development, you may need to:
 
    - Install an application certificate and its private credential.
 
@@ -16,16 +16,14 @@
 
    - Uninstall an application certificate and its private credential.
 
-Before you get started, you need to know the combinations of the algorithm and the signing/signature verification parameters supported by certificate management.
+2. Before you get started, you need to know the combinations of the algorithm and the signing/signature verification parameters supported by certificate management.
 
    The credential installation, signing, and signature verification in certificate management depends on [HUKS](../UniversalKeystoreKit/huks-overview.md). The algorithms supported by certificate management are a subset of HUKS. Currently, only private credentials using the RSA or ECC algorithm can be installed and used. For details about the parameter combinations supported by signing and signature verification, see the description of RSA and ECC in [Signing and Signature Verification Overview and Algorithm Specifications](../UniversalKeystoreKit/huks-signing-signature-verification-overview.md).
 
 
 ## Available APIs
 
-For details about the APIs, see [Certificate Management](../../reference/apis-device-certificate-kit/js-apis-certManager.md).
-
-The following table describes the APIs used in the typical scenarios mentioned above.
+The following table describes the APIs used in the typical scenarios mentioned above. For details about the APIs, see [Certificate Management](../../reference/apis-device-certificate-kit/js-apis-certManager.md).
 
 | Instance         | API                                                      | Description                                        |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
@@ -47,7 +45,9 @@ The following table describes the APIs used in the typical scenarios mentioned a
 
 ## How to Develop
 
-1. Request permissions.<br> To call **certManager** APIs, declare the ohos.permission.ACCESS_CERT_MANAGER permission in the **requestPermissions** field in the **module.json5** file. For more information, see [module.json5](../../quick-start/module-configuration-file.md).
+1. Request permissions.
+
+   Before calling **certManager** APIs, declare the ohos.permission.ACCESS_CERT_MANAGER permission in the **requestPermissions** field in the **module.json5** file. For more information, see [module.json5](../../quick-start/module-configuration-file.md).
 
 2. Import modules.
 
@@ -55,6 +55,7 @@ The following table describes the APIs used in the typical scenarios mentioned a
    import { certificateManager } from '@kit.DeviceCertificateKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
+
 3. Install a private credential, obtain the private credential, use it to sign and verify data. Then, uninstall the private credential.
 
    ```ts
@@ -69,12 +70,13 @@ The following table describes the APIs used in the typical scenarios mentioned a
      let appKeyUri: string = '';
      try {
        /* Install a private credential. */
-       const res = await certificateManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
+       const res: certificateManager.CMResult = await certificateManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
        appKeyUri = (res.uri != undefined) ? res.uri : '';
-     } catch (err: BusinessError) {
-       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to install private certificate. Code: ${e.code}, message: ${e.message}`);
      }
-
+   
      try {
        /* srcData is the data to be signed and verified. */
        let srcData: Uint8Array = new Uint8Array([
@@ -105,15 +107,17 @@ The following table describes the APIs used in the typical scenarios mentioned a
        await certificateManager.update(verifyHandle.handle, srcData);
        const verifyResult = await certificateManager.finish(verifyHandle.handle, signResult.outData);
        console.info('Succeeded in signing and verifying.');
-     } catch (err: BusinessError) {
-       console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to sign or verify. Code: ${e.code}, message: ${e.message}`);
      }
-
+   
      try {
        /* Uninstall a private credential. */
        await certificateManager.uninstallPrivateCertificate(appKeyUri);
-     } catch (err: BusinessError) {
-       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error(`Failed to uninstall private certificate. Code: ${e.code}, message: ${e.message}`);
      }
    }
    ```

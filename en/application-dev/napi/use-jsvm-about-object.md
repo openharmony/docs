@@ -1,4 +1,4 @@
-# Managing Object Using JSVM-API
+# Working with Objects Using JSVM-API
 
 ## Overview
 
@@ -6,10 +6,10 @@ JSVM-API provides APIs for basic JavaScript (JS) object operations, including cr
 
 ## Basic Concepts
 
-You may need to define and operate objects when using JSVM-API in development. For example, create an API with an object as an input parameter, performs certain operations on the object, and returns a result object. In this process, you need to ensure that the definition of the API is clear and compatible with the attributes and methods of the object.
+You may need to define and operate objects when using JSVM-API in development. For example, define an API with an object as an input parameter, perform operations on the object, and have a result object returned. In this process, you need to ensure that the API definition is clear and compatible with the properties and methods of the object.
 
-> - API: defines the interaction protocol between components. An API includes input parameters, output result, and possible error handling. By calling APIs, components can call and exchange data with each other without knowing the internal implementation details.
-> - Object: a composite data type that allows values of different types to be stored as an independent entity in JS. An object is a collection of properties and methods. A property is a value associated with an object, and a method is an operation that the object can perform.
+- API: defines the interaction protocol between components. An API includes input parameters, output result, and possible error handling. By calling APIs, components can interact and exchange data with each other without knowing the internal implementation details.
+- Object: a composite data type that allows values of different types to be stored as an independent entity in JS. An object is a collection of properties and methods. A property is a value associated with an object, and a method is an operation that the object can perform.
 
 ## Available APIs
 
@@ -30,80 +30,79 @@ You may need to define and operate objects when using JSVM-API in development. F
 
 ## Example
 
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for object management APIs.
+
 ### OH_JSVM_GetPrototype
 
-Obtain the prototype of a JS object.
+Call **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for GetPrototype.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+#include <fstream>
+#include <string>
+// Register the GetPrototype callback.
+// Define OH_JSVM_GetPrototype.
+static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    size_t argc = 1;
+    JSVM_Value argv[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    JSVM_Value result{nullptr};
+    JSVM_Status status = OH_JSVM_GetPrototype(env, argv[0], &result);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM GetPrototype fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM GetPrototype success");
+    }
+    return result;
+}
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
 static JSVM_CallbackStruct *method = param;
-// Expose the alias of the GetPrototype method to TS.
+// Alias for the getPrototype method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getPrototype", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Add the GetPrototype method.
-static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    g_data_type = "utf8";
-    // Create an empty object.
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    const char *testNameStr = "set and get proto";
-    JSVM_Value propValue = nullptr;
-    JSVM_Value key = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &key);
-    OH_JSVM_CreateStringUtf8(env, testNameStr, strlen(testNameStr), &propValue);
-    OH_JSVM_SetProperty(env, obj, key, propValue);
-    // Obtain properties.
-    JSVM_Value propResult = nullptr;
-    JSVM_Status status = OH_JSVM_GetProperty(env, obj, key, &propResult);
-    if (status != JSVM_OK) {
-        return nullptr;
-    }
-    return propResult;
-}
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(const myObject = {};
+    const proto = getPrototype(myObject);
+    console.log(proto === Object.prototype);)JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `getPrototype()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getPrototype: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getPrototype error: %{public}s', error.message);
-}
+JSVM GetPrototype success
 ```
 
 ### OH_JSVM_CreateObject
 
-Create a default JS object.
+Call **OH_JSVM_CreateObject** to create a default JS object.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for CreateObject.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateObject},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the CreateObject method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the CreateObject method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+#include <fstream>
+// Define OH_JSVM_CreateObject.
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    g_data_type = "object";
     JSVM_Value object = nullptr;
     // Create an empty object.
-    OH_JSVM_CreateObject(env, &object);
+    JSVM_Status status = OH_JSVM_CreateObject(env, &object);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM CreateObject fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM CreateObject success");
+    }
     // Set the object property.
     JSVM_Value name = nullptr;
     // Set the property name to "name".
@@ -113,43 +112,40 @@ static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateStringUtf8(env, "Hello OH_JSVM_CreateObject!", JSVM_AUTO_LENGTH, &value);
     // Set the property on the object.
     OH_JSVM_SetProperty(env, object, name, value);
-
     return object;
 }
+// Register the CreateObject callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateObject},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the createObject method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(createObject())JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `createObject()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createObject: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createObject error: %{public}s', error.message);
-}
+JSVM CreateObject success
 ```
 
 ### OH_JSVM_ObjectFreeze
 
-Freeze a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
+Call **OH_JSVM_ObjectFreeze** to freeze a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for ObjectFreeze.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = ObjectFreeze},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the ObjectFreeze method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the ObjectFreeze method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_ObjectFreeze.
 static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    g_data_type = "objectstr";
     // Accept an object passed in from JS.
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
@@ -166,44 +162,39 @@ static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
     // Return the properties modified after the freezing to JS.
     return argv[0];
 }
+// Register the ObjectFreeze callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = ObjectFreeze},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the ObjectFreeze method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
+  objectFreeze(obj))JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `
-  let obj = { data: 55, message: "hello world"};
-  objectFreeze(obj)
-`
-try {
-  let result = napitest.runJsVm(script);
-  // The property values of the frozen object remain unchanged.
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM objectFreeze: %{public}s', JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM objectFreeze error: %{public}s', error.message);
-}
+Test JSVM OH_JSVM_ObjectFreeze success
 ```
 
 ### OH_JSVM_ObjectSeal
 
-Seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
+Call **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for ObjectSeal.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = ObjectSeal},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the ObjectSeal method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-/ / Add the ObjectSeal method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_ObjectSeal.
 static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    g_data_type = "objectstr";
     // Accept an object passed in from JS.
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
@@ -233,43 +224,38 @@ static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
     // Return the modified object to JS.
     return argv[0];
 }
+// Register the ObjectSeal callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = ObjectSeal},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the ObjectSeal method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
+  objectSeal(obj))JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `
-  let obj = { data: 55, message: "hello world"};
-  objectSeal(obj)
-`
-try {
-  let result = napitest.runJsVm(script);
-  // Properties of a sealed object can be modified, but cannot be added or deleted.
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM objectSeal: %{public}s', JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM objectSeal error: %{public}s', error.message);
-}
+Test JSVM OH_JSVM_ObjectSeal success
 ```
 
 ### OH_JSVM_Typeof
 
-Return the type of a JS object.
+Call **OH_JSVM_Typeof** to return the type of a JS object.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for GetTypeof.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetTypeof},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the GetTypeof method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the GetTypeof method.
-static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
-{
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_Typeof.
+static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -278,92 +264,110 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value type = nullptr;
     switch (valueType) {
     case JSVM_UNDEFINED:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
         OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_NULL:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
         OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_BOOLEAN:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
         OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_NUMBER:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
         OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_STRING:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
         OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_SYMBOL:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
         OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_OBJECT:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
         OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_FUNCTION:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
         OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_EXTERNAL:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
         OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
         break;
     case JSVM_BIGINT:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
         OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
         break;
     default:
+        OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
         OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
         break;
     }
     return type;
 }
+// Register the GetTypeof callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetTypeof},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the GetTypeof method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `
-getTypeof(true);
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, "JSVM", "GetTypeof: %{public}s", result);
-} catch (error) {
-  hilog.error(0x0000, "JSVM", "GetTypeof: %{public}s", error.message);
-}
+JSVM Input type is boolean
 ```
 
 ### OH_JSVM_Instanceof
 
-Check whether an object is an instance of a constructor.
+Call **OH_JSVM_Instanceof** to check whether an object is an instance of a constructor.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for InstanceOf.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = InstanceOf},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the InstanceOf method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the InstanceOf method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_Instanceof.
 static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
 {
+    // Obtain the two parameters passed from JS.
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     bool result = false;
-    OH_JSVM_Instanceof(env, args[0], args[1], &result);
+    JSVM_Status status = OH_JSVM_Instanceof(env, args[0], args[1], &result);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM InstanceOf fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM InstanceOf: %{public}d", result);
+    }
     JSVM_Value returnValue = nullptr;
     OH_JSVM_GetBoolean(env, result, &returnValue);
     return returnValue;
 }
-```
-
-ArkTS code
-
-```ts
-let script: string = `
-      class Person {
+// Register the InstanceOf callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = InstanceOf},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the InstanceOf method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(class Person {
         name;
         age;
         constructor(name, age) {
@@ -372,38 +376,29 @@ let script: string = `
         }
       }
      instanceOf(new Person('Alice', 30), Person);
-     ;
-        `;
-try {
-  let result = napitest.runJsVm(script.toString());
-  hilog.info(0x0000, "JSVM", "InstanceOf: %{public}s", result);
-} catch (error) {
-  hilog.error(0x0000, "JSVM", "InstanceOf: %{public}s", error.message);
-} 
+     ;)JS";
+```
+
+**Expected output**
+```ts
+JSVM InstanceOf: 1
 ```
 
 ### OH_JSVM_TypeTagObject
 
-Associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
+Call **OH_JSVM_TypeTagObject** to associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
 
 ### OH_JSVM_CheckObjectTypeTag
 
-Check whether a tag matches the tag type of an object.
+Call **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type of an object.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for SetTypeTagToObject and CheckObjectTypeTag respectively.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetTypeTagToObject},
-    {.data = nullptr, .callback = CheckObjectTypeTag},
-};
-static JSVM_CallbackStruct *method = param;
-// Alias of SetTypeTagToObject and CheckObjectTypeTag, which are called by TS. Add them in jsvm-api.md.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
 #define NUMBERINT_FOUR 4
 // Define a static constant JSVM_TypeTag array to store type tags.
 static const JSVM_TypeTag TagsData[NUMBERINT_FOUR] = {
@@ -412,10 +407,10 @@ static const JSVM_TypeTag TagsData[NUMBERINT_FOUR] = {
     {0, 0}, // Indicates the default tag or no tag.
     {0x6a971439f5b2e5d7, 0x531dc28a7e5317c0},
 };
-// Add SetTypeTagToObject and CheckObjectTypeTag to jsvm-api.md.
+// Define OH_JSVM_TypeTagObject.
 static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain the call information and parameters.
+    // Obtain the two parameters passed from JS.
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -424,19 +419,21 @@ static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetValueInt32(env, args[1], &index);
     // Set the type tag for the parameter (object).
     JSVM_Status status = OH_JSVM_TypeTagObject(env, args[0], &TagsData[index]);
-    if (status != JSVM_OK) {
-        OH_JSVM_ThrowError(env, "Reconnect error", "OH_JSVM_TypeTagObject failed");
-        return nullptr;
-    }
     // Convert the bool value to JSVM_Value and return it.
     JSVM_Value result = nullptr;
-    OH_JSVM_GetBoolean(env, true, &result);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
+        OH_JSVM_GetBoolean(env, false, &result);
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject success");
+        OH_JSVM_GetBoolean(env, true, &result);
+    }
     return result;
 }
-
+// Define OH_JSVM_CheckObjectTypeTag.
 static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Obtain the call information and parameters.
+    // Obtain the two parameters passed from JS.
     size_t argc = 2;
     JSVM_Value args[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -445,172 +442,166 @@ static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetValueInt32(env, args[1], &index);
     // Check the type tag of the object.
     bool checkResult = false;
-    OH_JSVM_CheckObjectTypeTag(env, args[0], &TagsData[index], &checkResult);
+    JSVM_Status status = OH_JSVM_CheckObjectTypeTag(env, args[0], &TagsData[index], &checkResult);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject:%{public}d", checkResult);
+    }
     // Convert the bool value to JSVM_Value and return it.
     JSVM_Value checked = nullptr;
     OH_JSVM_GetBoolean(env, checkResult, &checked);
     return checked;
 }
+// Registers the SetTypeTagToObject and CheckObjectTypeTag callbacks.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetTypeTagToObject},
+    {.data = nullptr, .callback = CheckObjectTypeTag},
+};
+static JSVM_CallbackStruct *method = param;
+// Aliases for the SetTypeTagToObject and CheckObjectTypeTag methods to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(
+         class Obj {
+           data;
+           message;
+         }
+         let obj= { data: 0, message: "hello world"};
+         setTypeTagToObject(obj, 0);
+         checkObjectTypeTag(obj,0);)JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `
-         class Obj {
-           data;
-           message;
-         }
-         let obj= { data: 0, message: "hello world"};
-         setTypeTagToObject(obj, 0)
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, "JSVM", "SetTypeTagToObject: %{public}s", JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, "JSVM", "SetTypeTagToObject: %{public}s", error.message);
-}
-let script: string = `
-         class Obj {
-           data;
-           message;
-         }
-         let obj= { data: 0, message: "hello world"};
-         setTypeTagToObject(obj,0)
-         checkObjectTypeTag(obj,0);
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, "JSVM", "CheckObjectTypeTag: %{public}s", JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, "JSVM", "CheckObjectTypeTag: %{public}s", error.message);
-}
+JSVM SetTypeTagToObject success
+JSVM SetTypeTagToObject:1
 ```
 
 ### OH_JSVM_CreateExternal
 
-Create a JS object that wraps an external pointer.
+Call **OH_JSVM_CreateExternal** to create a JS object that wraps an external pointer.
+> **NOTE**<br>When a JS object is garbage-collected, the content pointed to by the wrapped external pointer is not directly managed by GC. Only the function corresponding to the third input parameter (if it is not nullptr) is called.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for CreateExternal.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateExternal},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the CreateExternal method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the CreateExternal method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+#include <fstream>
+// Define OH_JSVM_CreateExternal.
 static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t dataSize = 10;
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "JSVM Failed to malloc.");
+        return nullptr;
+    }
     memset(data, 0, dataSize);
-    const char testStr[] = "test";
+    const char* testStr = "test";
     JSVM_Value external = nullptr;
     JSVM_Status status = OH_JSVM_CreateExternal(
-        env, (void *)testStr, [](JSVM_Env env, void *data, void *hint) {}, (void *)testStr, &external);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
+        env, data, [](JSVM_Env env, void *data, void *hint) {free(data);}, (void *)testStr, &external);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM Failed to create external data, status:%{public}d.", status);
+        free(data);
+        data = nullptr;
         return nullptr;
     } else {
-        type = true;
+        OH_LOG_INFO(LOG_APP, "JSVM CreateExternal success");
     }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
-    // Return the result.
-    return returnValue;
+    return external;
 }
+// Register the CreateExternal callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateExternal},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the CreateExternal method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(createExternal())JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `createSymbol()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createSymbol: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createSymbol error: %{public}s', error.message);
-}
+JSVM CreateExternal success
 ```
 
 ### OH_JSVM_GetValueExternal
 
-Use **OH_JSVM_CreateExternal** to create a JS object that wraps a custom C/C++ object, and use **OH_JSVM_GetValueExternal** to obtain the custom C/C++ object from the JS object created by **OH_JSVM_CreateExternal**.
+Call **OH_JSVM_CreateExternal** to create a JS object that wraps a custom C/C++ object, and call **OH_JSVM_GetValueExternal** to obtain the pointer to the external object wrapped by **OH_JSVM_CreateExternal**.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for GetValueExternal.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_GetValueExternal.
+static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
+{
+    static int data = 0x12345;
+    JSVM_Value externalValue = nullptr;
+    JSVM_Status status = OH_JSVM_CreateExternal(env, (void*)&data, nullptr, nullptr, &externalValue);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateExternal fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_CreateExternal success");
+    }
+    void *data_value;
+    status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
+    if (status != JSVM_OK) {
+        OH_LOG_ERROR(LOG_APP, "JSVM GetValueExternal fail");
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueExternal success");
+    }
+    // Convert the sign bit into a value of int type and pass it.
+    JSVM_Value returnValue = nullptr;
+    int retData = *static_cast<int *>(data_value);
+    OH_JSVM_CreateInt32(env, retData, &returnValue);
+    return returnValue;
+}
+// Register the GetValueExternal callback.
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// Expose the alias of the GetValueExternal method to TS.
+// Alias for the GetValueExternal method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Add the getValueExternal method.
-static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    g_data_type = "int";
-    void *data = (void *)0x12345;
-    JSVM_Value externalValue = nullptr;
-    JSVM_Status status = OH_JSVM_CreateExternal(env, data, nullptr, nullptr, &externalValue);
-    if (status != JSVM_OK) {
-        // Error handling.
-        return nullptr;
-    }
-    void *data_value;
-    status = OH_JSVM_GetValueExternal(env, externalValue, &data_value);
-    bool type = false;
-    if (status != JSVM_OK) {
-        // Error handling.
-        return nullptr;
-    }
-    type = true;
-    OH_LOG_INFO(LOG_APP, "JSVM API Get ValueExternal:%{public}p", data_value);
-    // Convert the sign bit into a value of int type and pass it.
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_CreateInt32(env, 0, &returnValue);
-    return returnValue;
-}
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `getValueExternal()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getValueExternal: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getValueExternal error: %{public}s', error.message);
-}
+JSVM OH_JSVM_CreateExternal success
+JSVM GetValueExternal success
 ```
 
 ### OH_JSVM_CreateSymbol
 
-Create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
+Call **OH_JSVM_CreateSymbol** to create a symbol. Symbol is a special data type used to indicate a unique identifier. Unlike strings or numbers, the value of a symbol is unique. Even if two symbols have the same description, they are not equal. Symbols are often used as keys for object properties to ensure property uniqueness.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for CreateSymbol.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateSymbol},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the CreateSymbol method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the CreateSymbol method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define OH_JSVM_CreateSymbol.
 static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value result = nullptr;
@@ -618,82 +609,81 @@ static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_CreateStringUtf8(env, des, JSVM_AUTO_LENGTH, &result);
     JSVM_Value returnSymbol = nullptr;
     OH_JSVM_CreateSymbol(env, result, &returnSymbol);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
     JSVM_ValueType valuetypeSymbol;
     OH_JSVM_Typeof(env, returnSymbol, &valuetypeSymbol);
     if (valuetypeSymbol == JSVM_SYMBOL) {
         OH_LOG_INFO(LOG_APP, "JSVM CreateSymbol Success");
-        type = true;
+    } else {
+        OH_LOG_INFO(LOG_APP, "JSVM CreateSymbol fail");
     }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
-    return returnValue;
+    return returnSymbol;
 }
+// Register the CreateSymbol callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateSymbol},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the CreateSymbol method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(createSymbol())JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `createSymbol()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createSymbol: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createSymbol error: %{public}s', error.message);
-}
+JSVM CreateSymbol Success
 ```
 
 ### OH_JSVM_SymbolFor
 
-Search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.
+Call **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
 
-CPP code
+CPP code:
 
 ```cpp
-// Register a callback for SymbolFor.
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SymbolFor},
-};
-static JSVM_CallbackStruct *method = param;
-// Expose the alias of the SymbolFor method to TS.
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// Add the SymbolFor method.
+// hello.cpp
+#include "napi/native_api.h"
+#include "ark_runtime/jsvm.h"
+#include <hilog/log.h>
+// Define a constant to store the maximum length of a string.
+static const int MAX_BUFFER_SIZE = 128;
+// Define OH_JSVM_SymbolFor.
 static JSVM_Value SymbolFor(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value description = nullptr;
     OH_JSVM_CreateStringUtf8(env, "test_demo", 9, &description);
-    char buffer[128];
-    size_t bufferSize = 128;
+    char buffer[MAX_BUFFER_SIZE];
+    size_t bufferSize = MAX_BUFFER_SIZE;
     size_t copied = 0;
     OH_JSVM_GetValueStringUtf8(env, description, buffer, bufferSize, &copied);
     JSVM_Value symbol = nullptr;
     OH_JSVM_CreateSymbol(env, description, &symbol);
     JSVM_Value result_symbol = nullptr;
-    JSVM_Status status = OH_JSVM_SymbolFor(env, nullptr, 0, &result_symbol);
-    JSVM_Value returnValue = nullptr;
-    bool type = false;
+    JSVM_Status status = OH_JSVM_SymbolFor(env, buffer, copied, &result_symbol);
     JSVM_ValueType valuetypeSymbol;
     OH_JSVM_Typeof(env, result_symbol, &valuetypeSymbol);
     if (valuetypeSymbol == JSVM_SYMBOL && status == JSVM_OK) {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_SymbolFor success");
-        type = true;
     }
-    OH_JSVM_GetBoolean(env, type, &returnValue);
     // Return the result.
-    return returnValue;
+    return result_symbol;
 }
+// Register the SymbolFor callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SymbolFor},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the SymbolFor method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// Call the C++ code from JS.
+const char* srcCallNative = R"JS(symbolFor())JS";
 ```
 
-ArkTS code
-
+**Expected output**
 ```ts
-let script: string = `symbolFor()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM symbolFor: %{public}s',  JSON.stringify(result));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM symbolFor error: %{public}s', error.message);
-}
+JSVM OH_JSVM_SymbolFor success
 ```

@@ -21,12 +21,12 @@
 
 ## 属性
 
-除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：↵
+除支持[通用属性](js-components-common-attributes.md)外，还支持如下属性：
 
 | 名称       | 类型      | 默认值  | 必填   | 描述                                       |
 | -------- | ------- | ---- | ---- | ---------------------------------------- |
 | selected | boolean | -    | 否    | 选择项是否为下拉列表的默认项，仅在父组件是select时生效。          |
-| value    | string  | -    | 是    | 选择项的值，作为select、menu父组件的selected事件中的返回值。<br/>option选项的UI展示值需要放在标签内，如：<br>`<option value="10">十月</option>` |
+| value    | string  | -    | 是    | 该属性定义选项值，将作为父组件select/menu的selected事件回调参数。<br/>option选项的UI展示值需要放在标签内，如：<br>`<option value="10">十月</option>` |
 | icon     | string  | -    | 否    | 图标资源路径，该图标展示在选项文本前，图标格式为jpg，png和svg。     |
 
 

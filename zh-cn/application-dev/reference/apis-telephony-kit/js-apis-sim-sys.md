@@ -34,7 +34,7 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| boolean | 返回指定卡槽是否为指定运营商卡，如果是返回true。 |
+| boolean | 返回指定卡槽是否为指定运营商卡<br/>- true：是<br/>- false：否 |
 
 **错误码：**
 
@@ -81,7 +81,7 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
+| slotId   | number                    | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -3281,6 +3281,61 @@ promise.then((data: sim.DsdsMode) => {
 });
 ```
 
+## sim.getSimAuthentication<sup>14+</sup>
+
+getSimAuthentication\(slotId: number, authType: AuthType, authData: string\): Promise\<SimAuthenticationResponse\>
+
+SIM卡鉴权。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                   |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| authType | [AuthType](#authtype14)          | 是   | 身份验证类型。                         |
+| authData | string                           | 是   | 密码或其他认证信息。                   |
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<[SimAuthenticationResponse](#simauthenticationresponse14)\> | 以Promise形式返回身份验证响应的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Service connection failed.                   |
+| 8300003  | System internal error.                       |
+| 8300004  | No SIM card.                                 |
+| 8300999  | Unknown error.                               |
+| 8301002  | An error occurred when operating the SIM card.                              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() => {
+    console.log(`getSimAuthentication success.`);
+}).catch((err: BusinessError) => {
+    console.error(`getSimAuthentication failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## LockType<sup>8+</sup>
 
 锁类型。
@@ -3304,8 +3359,8 @@ promise.then((data: sim.DsdsMode) => {
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| LOCK_OFF | 0    | 锁关闭状态 |
-| LOCK_ON  | 1    | 锁开启状态 |
+| LOCK_OFF | 0    | 锁关闭状态。 |
+| LOCK_ON  | 1    | 锁开启状态。 |
 
 ## PersoLockType<sup>8+</sup>
 
@@ -3380,8 +3435,8 @@ promise.then((data: sim.DsdsMode) => {
 
 | 名称  | 类型   | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
-| field | string |  是  | 字段 |
-| value | string |  是  | 值   |
+| field | string |  是  | 字段。 |
+| value | string |  是  | 值。   |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -3395,7 +3450,7 @@ promise.then((data: sim.DsdsMode) => {
 | ------------ | ------ | ---- | ---------- |
 | alphaTag     | string |  是  | 标签。     |
 | number       | string |  是  | 号码。     |
-| recordNumber | number |  否  | 记录编号。 |
+| recordNumber | number |  否  | 记录编号,如未传入，默认值为undefined。 |
 | pin2         | string |  否  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
@@ -3468,3 +3523,30 @@ promise.then((data: sim.DsdsMode) => {
 | 名称                | 值                    | 说明      |
 | ------------------ | --------------------- | -------- |
 | CHINA_TELECOM_CARD | "china_telecom_card"  | 中国电信卡。 |
+
+## AuthType<sup>14+</sup>
+
+身份验证类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                | 值                    | 说明      |
+| ------------------ | --------------------- | -------- |
+| SIM_AUTH_EAP_SIM_TYPE   | 128  | 鉴权类型为EAP-SIM。 |
+| SIM_AUTH_EAP_AKA_TYPE   | 129  | 鉴权类型为EAP-AKA。 |
+
+## SimAuthenticationResponse<sup>14+</sup>
+
+SIM卡鉴权响应。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称         | 类型   | 必填 |    说明    |
+| ------------ | ------ | ---- | ---------- |
+| simStatusWord1 | number |  是  | SIM卡状态字1。 |
+| simStatusWord2 | number |  是  | SIM卡状态字2。 |
+| response       | string |  是  | 鉴权响应。     |

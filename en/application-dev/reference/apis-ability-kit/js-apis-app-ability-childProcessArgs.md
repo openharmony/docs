@@ -20,8 +20,8 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 
 | Name       | Type                   | Mandatory| Description                                                        |
 | ----------- | --------------------   | ---- | ------------------------------------------------------------ |
-| entryParams | string                 |  No | Custom parameters to be transparently transmit to the child process. The parameters can be obtained through **args.entryParams** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart).|
-| fds         | Record<string, number> |  No | File Descriptor (FD) handles, which are used for communication between the main process and child process. They are transferred to the child process in the form of key-value. An FD handle can be obtained by using args.fds.xxx in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart).<br>**NOTE**: The number transferred to the child process may change, but they point to the same file.|
+| entryParams | string                 |  No | Custom parameters to be transparently transmit to the child process. The parameters can be obtained through **args.entryParams** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart). The maximum data volume supported by **entryParams** is 150 KB.|
+| fds         | Record<string, number> |  No | File Descriptor (FD) handles, which are used for communication between the main process and child process. They are passed to the child process in the form of key-value pairs, where **key** is a custom string and **value** is a DF handle. The FD handles can be obtained through **args.fds** in [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart).<br>NOTE<br>- **fds** supports a maximum of 16 groups. In each group, **key** contains a maximum of 20 characters.<br>- The ID of a handle passed to the child process may change, but the handle always points to the same file.|
 
 **Example**
 
@@ -30,18 +30,35 @@ For details about how to obtain the context in the example, see [Obtaining the C
 ```ts
 // In the main process:
 import { common, ChildProcessArgs, childProcessManager } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let path = context.filesDir + "/test.txt";
-let file = fs.openSync(path, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
-let args: ChildProcessArgs = {
-  entryParams: "testParam",
-  fds: {
-    "key1": file.fd
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('Click')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            let path = context.filesDir + "/test.txt";
+            let file = fileIo.openSync(path, fileIo.OpenMode.READ_ONLY | fileIo.OpenMode.CREATE);
+            let args: ChildProcessArgs = {
+              entryParams: "testParam",
+              fds: {
+                "key1": file.fd
+              }
+            };
+            childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
-};
-childProcessManager.startArkChildProcess("entry/./ets/process/DemoProcess.ets", args);
+}
 ```
 
 ```ts

@@ -33,7 +33,7 @@ AVSessionManager provides the capability of managing sessions. It can create an 
 Unlike the **AVSession** and **AVSessionController** objects, AVSessionManager is not a specific object, but the root namespace of AVSessions. You can import AVSessionManager as follows:
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
 All the APIs in the root namespace can be used as APIs of AVSessionManager.
@@ -41,11 +41,28 @@ All the APIs in the root namespace can be used as APIs of AVSessionManager.
 The code snippet below shows how the provider creates an **AVSession** object by using AVSessionManager:
  
 ```ts
-// Create an AVSession object.
-let context: Context = getContext(this);
-async function createSession() {
-  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-  console.info(`session create done : sessionId : ${session.sessionId}`);
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            // Create an AVSession object.
+            let context = this.getUIContext().getHostContext() as Context;
+            async function createSession() {
+            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+            console.info(`session create done : sessionId : ${session.sessionId}`);
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 <!--Del-->

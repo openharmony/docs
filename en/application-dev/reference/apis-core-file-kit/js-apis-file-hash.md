@@ -9,7 +9,7 @@ The **FileHash** module implements hash processing on files.
 ## Modules to Import
 
 ```ts
-import Hash from '@ohos.file.hash';
+import { hash } from '@kit.CoreFileKit';
 ```
 
 ## Guidelines
@@ -17,8 +17,8 @@ import Hash from '@ohos.file.hash';
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -30,7 +30,7 @@ Before using the APIs provided by this module to perform operations on a file or
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
@@ -42,9 +42,9 @@ Calculates a hash value for a file. This API uses a promise to return the result
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                                        |
-| --------- | ------ | ---- | ------------------------------------------------------------ |
-| path      | string | Yes  | Path of the file in the application sandbox.                            |
+| Name   | Type  | Mandatory| Description                          |
+| --------- | ------ | ---- | ------------------------------|
+| path      | string | Yes  | Path of the file in the application sandbox.|
 | algorithm | string | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
 
 **Return value**
@@ -65,16 +65,16 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256").then((str: string) => {
+  hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
     console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -104,9 +104,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
-  Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
+  hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
       console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -114,7 +114,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     }
   });
   ```
-## Hash.createHash<sup>12+</sup>
+## hash.createHash<sup>12+</sup>
 
 createHash(algorithm: string): HashStream;
 
@@ -142,14 +142,14 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   // pages/xxx.ets
-  import fs from '@ohos.file.fs';
+  import { fileIo as fs } from '@kit.CoreFileKit';
 
   function hashFileWithStream() {
     const filePath = pathDir + "/test.txt";
     // Create a readable stream.
     const rs = fs.createReadStream(filePath);
     // Create a hash stream.
-    const hs = Hash.createHash('sha256');
+    const hs = hash.createHash('sha256');
     rs.on('data', (emitData) => {
       const data = emitData?.data;
       hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
@@ -183,7 +183,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   // Create a hash stream.
-  const hs = Hash.createHash('sha256');
+  const hs = hash.createHash('sha256');
   hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   const hashResult = hs.digest();
@@ -207,7 +207,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   // Create a hash stream.
-  const hs = Hash.createHash('sha256');
+  const hs = hash.createHash('sha256');
   hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
   const hashResult = hs.digest();

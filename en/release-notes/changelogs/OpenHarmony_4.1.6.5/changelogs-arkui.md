@@ -436,7 +436,7 @@ Public
 
 **Reason for Change**
 
-TThis change is a non-compatible change. Previously, when **padding** is set to **0**, the caret is displayed outside the default rounded corner of the text box, which does not meet application requirements.
+This change is a non-compatible change. Previously, when **padding** is set to **0**, the caret is displayed outside the default rounded corner of the text box, which does not meet application requirements.
 
 **Change Impact**
 

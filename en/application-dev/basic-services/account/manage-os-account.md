@@ -1,11 +1,10 @@
 # Managing System Accounts (for System Applications Only)
 
-The system provides APIs for managing system accounts.
-After applying for required permissions for your system application, you can use the APIs to create, activate, modify, and delete system accounts. For third-party applications, you can use the APIs to query basic information about system accounts to develop service logic related to system accounts.
+The system provides APIs for managing system accounts. After applying for required permissions for your system application, you can use the APIs to create, activate, modify, and delete system accounts. For third-party applications, you can use the APIs to query basic information about system accounts to develop service logic related to system accounts.
 
 ## Basic Concepts
 
-### System Account Type
+### Account Type
 
 Currently, only the following types of system accounts can be created:
 | Name  | Value| Description        |
@@ -13,7 +12,7 @@ Currently, only the following types of system accounts can be created:
 | ADMIN  | 0      | Administrator account.|
 | NORMAL | 1      | Normal account.  |
 | GUEST  | 2      | Guest account.  |
-| PRIVATE<sup>12+</sup> | 1024  | Private account.  |
+| PRIVATE<sup>12+</sup> | 1024  | Private account. |
 
 ### Account Information
 
@@ -84,9 +83,9 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osA
 });
 ```
 
-## Changing the Profile Picture and Nickname of a System Account
+## Changing the ProfilePhoto and Nickname of a System Account
 
-Change the profile picture and nickname of a system account as required.
+Change the profile photo and nickname of a system account as required.
 
 **Procedure**
 
@@ -137,13 +136,13 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 });
 ```
 
-## Deleting a System Account
+## Removing a System Account
 
-Delete a system account that is no longer used.
+Remove the system account that is no longer used.
 
 **Procedure**
 
-Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to delete a system account.
+Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#removeosaccount) to remove a system account.
 
 ```ts
 let localId: number = 101;

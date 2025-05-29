@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | Permission                                      | APL    | Description              |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle. |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -40,16 +40,16 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory | Description                                                        |
+| Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)          | Yes  | Target element name.                                           |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|--------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -74,7 +74,7 @@ try {
             abilityName: 'EntryAbility'
         }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
             if (err) {
-                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+                console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
             } else {
                 console.info('Operation succeed:' + JSON.stringify(data));
             }
@@ -82,7 +82,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -100,21 +100,21 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                        | Mandatory | Description                   |
+| Name      | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name. |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned. |
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -140,12 +140,12 @@ try {
         }).then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -163,16 +163,16 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name      | Type                                                        | Mandatory | Description                                                        |
+| Name      | Type                                                        | Mandatory| Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>   | Yes  | **ElementName** array, whose maximum length is 10.                            |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -204,7 +204,7 @@ try {
             }
         ], (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -212,7 +212,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -230,21 +230,21 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                               | Mandatory | Description                   |
+| Name       | Type                                               | Mandatory| Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10. |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned. |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -277,12 +277,12 @@ try {
         ]).then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -300,17 +300,17 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                                        | Mandatory | Description                                              |
+| Name      | Type                                                        | Mandatory| Description                                              |
 | ----------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md)                 | Yes  | Target element name.                           |
-| locale  | string |Yes | Target locale. |
-| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
+| locale  | string |Yes| Target locale.|
+| callback    | AsyncCallback<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **RemoteAbilityInfo** object obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -335,7 +335,7 @@ try {
             abilityName: 'EntryAbility'
         }, 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -343,7 +343,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -361,22 +361,22 @@ Obtains information about the remote ability that matches the given element name
 
 **Parameters**
 
-| Name      | Type                                        | Mandatory | Description                   |
+| Name      | Type                                        | Mandatory| Description                   |
 | ----------- | -------------------------------------------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name. |
-| locale  | string |Yes | Target locale. |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md) | Yes  | Target element name.|
+| locale  | string |Yes| Target locale.|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned. |
+| Promise\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)> | Promise used to return the result. If the operation is successful, the **RemoteAbilityInfo** object is returned. Otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -402,12 +402,12 @@ try {
         }, 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -425,11 +425,11 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                                        | Mandatory | Description                                              |
+| Name       | Type                                                        | Mandatory| Description                                              |
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)>          | Yes  | **ElementName** array, whose maximum length is 10.                  |
-| locale  | string |Yes | Target locale. |
-| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**. |
+| locale  | string |Yes| Target locale.|
+| callback     | AsyncCallback\<Array\<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of **RemoteAbilityInfo** objects obtained. Otherwise, **err** is an error object and **data** is **undefined**.|
 
 **Error codes**
 
@@ -467,7 +467,7 @@ try {
             }
         ], 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+           console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -475,7 +475,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -493,22 +493,22 @@ Obtains information about the remote abilities that match the given element name
 
 **Parameters**
 
-| Name       | Type                                               | Mandatory | Description                   |
+| Name       | Type                                               | Mandatory| Description                   |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10. |
-| locale  | string |Yes | Target locale. |
+| elementNames | Array<[ElementName](js-apis-bundleManager-elementName.md)> | Yes  | **ElementName** array, whose maximum length is 10.|
+| locale  | string |Yes| Target locale.|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned. |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo-sys.md)>> | Promise used to return the result. If the operation is successful, an array of **RemoteAbilityInfo** objects is returned. Otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID |    Error Message                  |
+| ID|    Error Message                  |
 |----------|-------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -541,11 +541,11 @@ try {
         ], 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```

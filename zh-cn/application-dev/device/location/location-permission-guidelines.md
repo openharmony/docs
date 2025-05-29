@@ -1,4 +1,4 @@
-# 申请位置权限开发指导
+# 申请位置权限开发指导(ArkTS)
 
 ## 场景概述
 
@@ -20,8 +20,6 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 2. 当APP运行在前台，且访问设备位置信息时，申请位置权限的方式如下：
 
-**表1** 位置权限申请方式介绍
-
 | 申请位置权限的方式 | 是否允许申请 | 申请成功后获取的位置的精确度 |
 | -------- | -------- | -------- |
 | 申请ohos.permission.APPROXIMATELY_LOCATION | 是 | 获取到模糊位置，精确度为5公里。 |
@@ -29,9 +27,10 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 3. 当APP运行在后台时，申请位置权限的方式如下：
 
-如果应用在后台运行时也需要访问设备位置，除了按照步骤2申请权限外，还需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务。
+如果应用在后台运行时也需要访问设备位置，除了按照步骤2申请权限外，还需要申请LOCATION类型的长时任务。
 
-（1）应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
+长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
 
-（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
 
+<!--RP1-->
+<!--RP1End-->

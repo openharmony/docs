@@ -15,6 +15,19 @@ import { map } from '@kit.ConnectivityKit';
 ```
 
 
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+**BaseProfile** API definition.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+
+
 ## map.createMapMseProfile
 
 createMapMseProfile(): MapMseProfile
@@ -43,7 +56,7 @@ try {
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -52,4 +65,4 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ## mapMseProfile
 
-Provides APIs for exchanging messages between devices. Before using any API of **mapMseProfile**, you need to create an instance of this class by using **createMapMseProfile()**.
+Provides APIs for exchanging messages between devices. Before using any API of **mapMseProfile**, you need to create an instance of this class by using [createMapMseProfile()](#mapcreatemapmseprofile).

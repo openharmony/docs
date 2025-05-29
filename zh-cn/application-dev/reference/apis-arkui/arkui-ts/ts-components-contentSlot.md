@@ -22,29 +22,48 @@ ContentSlot(content: Content)
 
 | 参数名  | 类型 | 必填 | 参数描述                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
-| content | [Content](../js-apis-arkui-Content.md)  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
+| content | [Content](#content)  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
-**示例：**
+## Content
+
+type Content = Content
+
+定义ComponentContent和NodeContent的基类。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明                                                     |
+| ---- | ------------------------------------------------------------ |
+| [Content](../js-apis-arkui-Content.md)   | 定义ComponentContent和NodeContent的基类。 |
+
+## 示例
+
+下面的示例展示了ContentSlot的基本用法。
 
 ```ts
-import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@kit.ArkUI'
+import { nativeNode } from 'libNativeNode.so'; // 开发者自己实现的so
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Parent {
-    private nodeContent: Content = new NodeContent();
+  private nodeContent: Content = new NodeContent();
 
-    aboutToAppear() {
-        // 通过C-API创建节点，并添加到管理器nodeContent上
-        nativeNode.createNativeNode(this.nodeContent);
-    }
+  aboutToAppear() {
+    // 通过C-API创建节点，并添加到管理器nodeContent上
+    nativeNode.createNativeNode(this.nodeContent);
+  }
 
-    build() {
-        Column() {
-            // 显示nodeContent管理器里存放的Native侧的组件
-            ContentSlot(this.nodeContent)
-        }
+  build() {
+    Column() {
+      // 显示nodeContent管理器里存放的Native侧的组件
+      ContentSlot(this.nodeContent)
     }
+  }
 }
 ```
+
+上述代码中so的实现可参考[Native XComponent](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)。
+

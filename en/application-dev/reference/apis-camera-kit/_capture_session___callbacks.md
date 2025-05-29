@@ -11,6 +11,8 @@ For details, see [OH_CaptureSession_RegisterCallback](_o_h___camera.md#oh_captur
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [capture_session.h](capture__session_8h.md)
+
 
 ## Summary
 

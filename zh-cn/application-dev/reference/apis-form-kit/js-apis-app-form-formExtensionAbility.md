@@ -5,7 +5,13 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在Stage模型下使用。
+>
+> 如下模块不支持在FormExtensionAbility引用，可能会导致程序异常退出。
+> - @ohos.ability.particleAbility (ParticleAbility模块)
+> - @ohos.multimedia.audio (音频管理)
+> - @ohos.multimedia.camera (相机管理)
+> - @ohos.multimedia.media (媒体服务)
+> - @ohos.resourceschedule.backgroundTaskManager (后台任务管理)
 
 ## 导入模块
 
@@ -13,7 +19,17 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
-## 属性
+## FormExtensionAbility
+
+卡片扩展类。包含卡片提供方接收创建卡片、修改可见性等的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+### 属性
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -21,11 +37,13 @@ import { FormExtensionAbility } from '@kit.FormKit';
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
-## onAddForm
+### FormExtensionAbility.onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
 卡片提供方接收创建卡片的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,11 +81,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 }
 ```
 
-## onCastToNormalForm
+### FormExtensionAbility.onCastToNormalForm
 
 onCastToNormalForm(formId: string): void
 
 卡片提供方接收临时卡片转常态卡片的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -91,11 +111,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onUpdateForm
+### FormExtensionAbility.onUpdateForm
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
 卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -132,12 +154,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onChangeFormVisibility
+### FormExtensionAbility.onChangeFormVisibility
 
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
 卡片提供方接收修改可见性的通知接口。
 该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -183,11 +207,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onFormEvent
+### FormExtensionAbility.onFormEvent
 
 onFormEvent(formId: string, message: string): void
 
 卡片提供方接收处理卡片事件的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -212,11 +238,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onRemoveForm
+### FormExtensionAbility.onRemoveForm
 
 onRemoveForm(formId: string): void
 
 卡片提供方接收销毁卡片的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -240,12 +268,14 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onConfigurationUpdate
+### FormExtensionAbility.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。  
 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后10秒内无操作将会被清理。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -272,11 +302,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onAcquireFormState
+### FormExtensionAbility.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState
 
 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态(该方法可以选择性重写)。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -302,11 +334,13 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onStop<sup>12+</sup>
+### FormExtensionAbility.onStop<sup>12+</sup>
 
 onStop?(): void
 
 当卡片提供方的卡片进程退出时，触发该回调。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
   

@@ -11,8 +11,9 @@ Defines the memory structure.
 
 **Substitute**: You are advised to use [NN_Tensor](_neural_network_runtime.md#nn_tensor).
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**Header file**: [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## Summary
 

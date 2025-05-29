@@ -1,4 +1,4 @@
-# 延迟任务
+# 延迟任务(ArkTS)
 
 ## 概述
 
@@ -20,7 +20,7 @@
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据<!--RP1-->[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
+- **执行频率限制**：系统会根据<!--RP1-->[设备使用信息统计](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)应用的活跃分组<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -74,16 +74,16 @@
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
 | storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | 否    | 存储状态。             |
-| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
+| isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务。<br>- false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
-| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。<br>- false表示不可保存。|
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要。<br>- false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
 
@@ -95,7 +95,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 - 至少设置一个满足的条件，包括网络类型、充电类型、存储状态、电池状态、定时状态等。
 
-- 对于重复任务，任务执行间隔至少20分钟。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
+- 对于重复任务，任务执行间隔至少2小时。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
 
 **表4** 延迟任务回调接口
 
@@ -157,8 +157,6 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
            {
              "name": "MyWorkSchedulerExtensionAbility",
              "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
-             "label": "$string:WorkSchedulerExtensionAbility_label",
-             "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
            }
          ]
@@ -212,6 +210,55 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
    } catch (error) {
      console.error(`stopWork failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
    }
+   ```
+
+### 延迟任务调度功能验证
+1. 确认延时任务是否申请成功
+
+   startWork接口调用成功之后，可以通过以下命令验证延迟任务是否申请成功。如果[hidumper命令](../dfx/hidumper.md)返回结果中包含对应应用的bundleName、abilityName、workId，说明对应workId的延迟任务申请成功。
+
+   ```ts
+   $ hidumper -s 1904 -a '-a'
+   uid: 20010045:
+   {
+   "workId":u20010045_1,
+   "bundleName":com.example.application,
+   "status":0,
+   "paused":false,
+   "priority":10000,
+   "conditionMap":{
+   },
+   "workInfo":
+   {
+           "abilityName" : "MyWorkSchedulerExtensionAbility",
+           "appIndex" : 0,
+           "bundleName" : "com.example.application",
+           "callBySystemApp" : false,
+           "conditions" :
+           {
+                   "network" : 2
+           },
+           "extension" : true,
+           "parameters" : null,
+           "parametersType" : null,
+           "persisted" : false,
+           "preinstalled" : false,
+           "uriKey" : "",
+           "workId" : 1
+   }}
+   ```
+
+2. 确认延迟任务WorkSchedulerExtensionAbility回调方法onWorkStart、onWorkStop实现是否正确、是否可以成功回调
+
+   延迟任务申请成功之后，需要等到条件满足后才可以执行延迟任务回调，为了快速验证延迟任务回调功能是否正确，可以通过以下[hidumper命令](../dfx/hidumper.md)手动触发延迟任务执行回调。
+
+   ```ts
+   $ hidumper -s 1904 -a '-t com.example.application MyWorkSchedulerExtensionAbility'
+
+   -------------------------------[ability]-------------------------------
+
+
+   ----------------------------------WorkSchedule----------------------------------
    ```
 
 ## 相关实例

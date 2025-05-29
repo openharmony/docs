@@ -20,7 +20,7 @@
 
 ### 使用并行化提升启动速度
 
-自定义组件创建完成之后，在build函数执行之前，将先执行aboutToAppear()生命周期回调函数。此时若在该函数中执行耗时操作，将阻塞UI渲染，增加UI主线程负担。因此，应尽量避免在自定义组件的生命周期内执行高耗时操作。在aboutToAppear()生命周期函数内建议只做当前组件的初始化逻辑，对于不需要等待结果的高耗时任务，可以使用多线程处理该任务，通过并发的方式避免主线程阻塞；也可以把耗时操作改为异步并发或延后处理，保证主线程优先处理组件绘制逻辑。
+自定义组件创建完成之后，在build函数执行之前，将先执行[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期回调函数。此时若在该函数中执行耗时操作，将阻塞UI渲染，增加UI主线程负担。因此，应尽量避免在自定义组件的生命周期内执行高耗时操作。在aboutToAppear生命周期函数内建议只做当前组件的初始化逻辑，对于不需要等待结果的高耗时任务，可以使用多线程处理该任务，通过并发的方式避免主线程阻塞；也可以把耗时操作改为异步并发或延后处理，保证主线程优先处理组件绘制逻辑。
 
 #### 使用多线程执行耗时操作
 
@@ -103,7 +103,7 @@ preload() {
   // Web组件引擎初始化
   webview.WebviewController.initializeWebEngine();
   // 启动预连接，连接地址为即将打开的网址
-  webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
+  webview.WebviewController.prepareForPageLoad('https://www.example.com', true, 2);
 }
 ```
 
@@ -121,7 +121,7 @@ preload() {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.info("appear:" + item)
+              console.info("appear:" + item);
             })
         }
       })
@@ -206,7 +206,7 @@ struct MyComponent {
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = ''
+  @State item: string = '';
   // 复用时触发的生命周期
   aboutToReuse(params: ESObject) {
     this.item = params.item;
@@ -236,8 +236,8 @@ import { IconItem } from './IconItem';
 
 // IconItem相关数据
 class IconItemSource {
-  image: string | Resource = ''
-  text: string | Resource = ''
+  image: string | Resource = '';
+  text: string | Resource = '';
   // ...
 }
 
@@ -797,10 +797,10 @@ struct Page {
           x: this.translateObj.translateX
         })
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           }, () => {
-            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
           })
         })
     }
@@ -835,10 +835,10 @@ struct Page1 {
       }
       Button("move")
         .onClick(() => {
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 50
           }, () => {
-            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150;
           })
         })
     }
@@ -1015,41 +1015,91 @@ struct Page {
 
 #### 删除冗余的状态变量标记
 
-状态变量的管理有一定的开销，应在合理场景使用，普通的变量用状态变量标记可能会导致性能劣化
+状态变量的管理有一定的开销，应在合理场景使用，普通的变量用状态变量标记可能会导致性能劣化。
 
 反例代码如下：
 
 ```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
 @Component
-struct component {
-  @State bgcolor: string | Color = '#ffffff';
-  @State selectColor: string | Color = '#007DFF';
+struct UnnecessaryState1 {
+  @State translateObj: Translate = new Translate(); // 变量translateObj没有关联任何UI组件，不应该定义为状态变量
+  @State buttonMsg: string = 'I am button'; // 变量buttonMsg没有关联任何UI组件，不应该定义为状态变量
 
   build() {
   }
 }
 ```
+以上示例中变量translateObj、buttonMsg没有关联任何UI组件，不应该定义为状态变量，否则读写状态变量都会影响性能。
+
+```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
+@Component
+struct UnnecessaryState2 {
+  @State buttonMsg: string = 'I am button';
+
+  build() {
+    Column() {
+      Button(this.buttonMsg) // 这里只是读取变量buttonMsg的值，没有任何写的操作
+    }
+  }
+}
+```
+以上示例中变量buttonMsg仅有读取操作，没有修改过，没有修改过的状态变量不应该定义为状态变量，否则读状态变量会影响性能。
 
 正例代码如下：
 
 ```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+
+@Entry
 @Component
-struct component {
-  bgcolor: string | Color = '#ffffff';
-  selectColor: string | Color = '#007DFF';
+struct NecessaryState {
+  @State translateObj: Translate = new Translate(); // 同时存在读写操作，并关联了Button组件，推荐使用状态变量
+  buttonMsg: string = 'I am button'; // 仅读取变量buttonMsg的值，没有任何写的操作，直接使用一般变量即可
 
   build() {
+    Column() {
+      Button(this.buttonMsg)
+        .onClick(() => {
+          this.getUIContext().animateTo(
+            {
+              duration: 50
+            }, () => {
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150; // 点击时给变量translateObj重新赋值
+          })
+        })
+    }.translate({
+      x:this.translateObj.translateX // 读取translateObj中的值
+    })
   }
 }
 ```
+没有关联任何UI组件的状态变量和没有修改过的状态变量不应该定义为状态变量，直接使用一般变量即可，否则会影响性能。
 
 #### 避免在For/while等循环函数中重复读取状态变量
 
-状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，而是应该放在循环外面读取，例如在打印For/while循环中打印状态变量的日志信息
+状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，而是应该放在循环外面读取，例如在打印For/while循环中打印状态变量的日志信息。
 
-反例代码如下：
+反例代码：
 
 ```typescript
+import hiTraceMeter from '@ohos.hiTraceMeter';
+
+@Entry
 @Component
 struct Page {
   @State message: string = '';
@@ -1058,18 +1108,25 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
+          hiTraceMeter.startTrace('print', 1);
           for (let i = 0; i < 10; i++) {
             console.info(this.message);
           }
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
 }
 ```
+抓取Trace图如下：    
+![](./figures/unnecessarystate.png)  
 
-正例代码如下：
+正例代码：
 
 ```typescript
+import hiTraceMeter from '@ohos.hiTraceMeter';
+
+@Entry
 @Component
 struct Page {
   @State message: string = '';
@@ -1078,23 +1135,28 @@ struct Page {
     Column() {
       Button('点击打印日志')
         .onClick(() => {
+          hiTraceMeter.startTrace('print', 1); 
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
             console.info(logMessage);
           }
+          hiTraceMeter.finishTrace('print', 1);
         })
     }
   }
 }
 ```
+抓取Trace图如下：  
+![](./figures/necessarystate.png)
 
+由此可见，使用普通变量代替状态变量在For/while循环中读取，可以减少耗时，因此在For/while循环中频繁读取变量时，可使用普通变量代替状态变量。
 ## 第四要素：合理使用系统接口，避免冗余操作
 
 应该合理使用系统的高频回调接口，删除不必要的Trace和日志打印，避免冗余操作，减少系统开销，[避免开发过程中的冗余操作](avoiding-redundant-operations.md)。
 
 ### 避免在系统高频回调用进行冗余和耗时操作
 
-应该避免在onScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
+应该避免在onDidScroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
 
 #### 避免在系统高频回调用打印Trace
 
@@ -1102,25 +1164,34 @@ Trace的打印是会额外消耗系统性能的，因此应该避免在这些系
 
 ```typescript
 // 反例
-Scroll() {
-  ForEach(this.arr, (item: number) => {
-    Text("ListItem" + item)
-    .width("100%")
-    .height("100%")
-  }, (item: number) => item.toString())
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Component
+struct NegativeOfOnDidScroll {
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  build() {
+    Scroll() {
+      ForEach(this.arr, (item: number) => {
+        Text("ListItem" + item)
+          .width("100%")
+          .height("100%")
+      }, (item: number) => item.toString())
+    }
+    .width('100%')
+      .height('100%')
+      .onDidScroll(() => {
+        hiTraceMeter.startTrace("ScrollSlide", 1002);
+        // 业务逻辑
+        // ...
+        hiTraceMeter.finishTrace("ScrollSlide", 1002);
+      })
+  }
 }
-.width('100%')
-.height('100%')
-.onScroll(() => {
-  hitrace.startTrace("ScrollSlide", 1002);
-  // 业务逻辑
-  // ...
-  hitrace.finishTrace("ScrollSlide", 1002);
-})
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1138,7 +1209,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
@@ -1152,8 +1223,10 @@ struct PositiveOfOnScroll {
 
 ```typescript
 // 反例
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
-struct NegativeOfOnScroll {
+struct NegativeOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1171,7 +1244,7 @@ struct NegativeOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       hilog.info(1002, 'Scroll', 'TextItem');
       // 业务逻辑
       // ...
@@ -1181,7 +1254,7 @@ struct NegativeOfOnScroll {
 
 // 正例
 @Component
-struct PositiveOfOnScroll {
+struct PositiveOfOnDidScroll {
   private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -1199,7 +1272,7 @@ struct PositiveOfOnScroll {
     }
     .width('100%')
     .height('100%')
-    .onScroll(() => {
+    .onDidScroll(() => {
       // 业务逻辑
       // ...
     })
@@ -1303,7 +1376,7 @@ struct NegativeOfOnClick {
     Button('Click', { type: ButtonType.Normal, stateEffect: true })
       .onClick(() => {
         hitrace.startTrace("ButtonClick", 1004);
-        hilog.info(1004, 'Click', 'ButtonType.Normal')
+        hilog.info(1004, 'Click', 'ButtonType.Normal');
         hitrace.finishTrace("ButtonClick", 1004);
         // 业务代码
         // ...
@@ -1327,6 +1400,7 @@ struct PositiveOfOnClick {
         // ...
       })
   }
+}
 ```
 
 ## 使用性能工具分析和定位问题

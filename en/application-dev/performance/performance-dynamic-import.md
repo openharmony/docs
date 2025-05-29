@@ -2,7 +2,7 @@
 
 ## Overview
 
-When an application loads a page, importing statically all modules significantly slows the loading, and it is often the case that these modules are not all needed. For example, when the home page uses the **\<Navigation>** component, loading the home page loads all subpages by default. As a result, the loading takes a long time, especially when there are a large number of subpages. In effect, the subpages are irrelevant to home page rendering. If they are loaded at a later time, the home page load time can be greatly reduced.
+When an application loads a page, importing statically all modules significantly slows the loading, and it is often the case that these modules are not all needed. For example, when the home page uses the **Navigation** component, loading the home page loads all subpages by default. As a result, the loading takes a long time, especially when there are a large number of subpages. In effect, the subpages are irrelevant to home page rendering. If they are loaded at a later time, the home page load time can be greatly reduced.
 This is where dynamic import comes into play. In this document, we will improve the performance of an application by dynamically importing modules.
 
 ## Example
@@ -11,20 +11,20 @@ This is where dynamic import comes into play. In this document, we will improve 
 |------------------------------------------|--------------------------------------------|
 | ![Home](./figures/dynamic-import-home.png) | ![Subpage](./figures/dynamic-import-pages.png) |
 
-The following example compares static import and dynamic import of the **\<Navigation>** component to describe how to trigger on-demand loading during redirection.
+The following example compares static import and dynamic import of the **Navigation** component to describe how to trigger on-demand loading during redirection.
 
 ### Static Import
 
-When using the **\<Navigation>** component, you may import subpage components to the home page and add methods to buttons to implement redirection. The following code shows a static import example.
+When using the **Navigation** component, you may import subpage components to the home page and add methods to buttons to implement redirection. The following code shows a static import example.
 
-1. Subpage modules are imported. The **\<Navigation>** component uses these modules to redirect the user to subpages. As the subpages are not immediately needed when the user accesses the home page, loading these subpages is redundant and slows down home page loading.
+1. Subpage modules are imported. The **Navigation** component uses these modules to redirect the user to subpages. As the subpages are not immediately needed when the user accesses the home page, loading these subpages is redundant and slows down home page loading.
     ```ts
     import { pageOne, pageOneData } from './pageOne';
     import { pageTwo, pagesTwoData } from './pageTwo';
     ...
     import router from '@ohos.router';
     ```
-2. The home page uses the **\<Navigation>** component to redirect the user to different subpages when they click a specific button.
+2. The home page uses the **Navigation** component to redirect the user to different subpages when they click a specific button.
     ```ts
     @Provide('pathInfos') pageInfos: NavPathStack = new NavPathStack();
     
@@ -61,7 +61,7 @@ When using the **\<Navigation>** component, you may import subpage components to
 
 ### Dynamic Import
 
-If the **\<Navigation>** component loads all modules statically at a time, the loading of the home page can be slow, especially when there are a large number of complex child components. To reduce page load time, you can use dynamic import, so that child components are dynamically imported as needed during page redirection. To implement dynamic import, perform the following steps:
+If the **Navigation** component loads all modules statically at a time, the loading of the home page can be slow, especially when there are a large number of complex child components. To reduce page load time, you can use dynamic import, so that child components are dynamically imported as needed during page redirection. To implement dynamic import, perform the following steps:
 
 1. Encapsulate the **pageOne** component to be dynamically imported through the **PageOneLoader** function. This way, when the **PageOneLoader** function is called, the **pageOne** page is rendered.
     ```ts
@@ -72,7 +72,7 @@ If the **\<Navigation>** component loads all modules statically at a time, the l
       pageOne();
     }
     ```
-2. Because the **\<navDestination>** component in **PageMap** of the **\<Navigation>** component cannot directly load components (**import** is a function and cannot be referenced in components), you need to declare the **@BuilderParam PageOneLoader** function and initialize it when the corresponding button is clicked. This way, **this.PageOneLoader()** can be called in the **\<navDestination>** component to load the **pageOne** component.
+2. Because the **navDestination** component in **PageMap** of the **Navigation** component cannot directly load components (**import** is a function and cannot be referenced in components), you need to declare the **@BuilderParam PageOneLoader** function and initialize it when the corresponding button is clicked. This way, **this.PageOneLoader()** can be called in the **navDestination** component to load the **pageOne** component.
 To dynamically load **pageOne** on the home page **DynamicHome**, perform the following steps: 
    a. Define the **@BuilderParam PageOneLoader: () => void** function in the home page **DynamicHome** to receive the result of asynchronously importing **pageOneLoader** by **await import**.
     ```ts
@@ -87,7 +87,7 @@ To dynamically load **pageOne** on the home page **DynamicHome**, perform the fo
       }
     }
     ```
-   c. Click the button to trigger the click function and call **loadPageOne**. In this case, **@BuilderParam PageOneLoader** is initialized and **\<Navigation>** is used to load the component.
+   c. Click the button to trigger the click function and call **loadPageOne**. In this case, **@BuilderParam PageOneLoader** is initialized and **Navigation** is used to load the component.
     ```ts
     private onEntryClick(): void {
       try {
@@ -169,4 +169,4 @@ struct DynamicHome {
   }
 }
 ```
-In sum, when there are a large number of subpages in the **\<Navigation>** component, using static import to load all subpages at once can significantly slow the loading of the home page. To reduce the page load time and overall resource consumption and prevent the main thread from being blocked, use dynamic import so subpages are loaded on demand.
+In sum, when there are a large number of subpages in the **Navigation** component, using static import to load all subpages at once can significantly slow the loading of the home page. To reduce the page load time and overall resource consumption and prevent the main thread from being blocked, use dynamic import so subpages are loaded on demand.

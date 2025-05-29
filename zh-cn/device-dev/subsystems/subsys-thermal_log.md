@@ -100,7 +100,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     }
     ```
 
-7. 参考[默认热日志的参数配置文件夹的BUILD.gn](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/etc/BUILD.gn)编写BUILD.gn文件，将thermal.para和thermal.para.dac打包到`//vendor/etc/param/thermal.para`目录下
+7. 参考[默认热日志的参数配置文件夹的BUILD.gn](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/etc/BUILD.gn)编写BUILD.gn文件，将thermal.para和thermal.para.dac打包到`//vendor/etc/param/thermal.para`目录下：
 
     ```shell
     import("//build/ohos.gni")

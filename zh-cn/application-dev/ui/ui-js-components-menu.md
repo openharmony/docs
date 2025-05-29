@@ -277,9 +277,3 @@ export default {
 ```
 
 ![zh-cn_image_0000001226815403](figures/zh-cn_image_0000001226815403.gif)
-
-## 相关实例
-
-针对menu开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

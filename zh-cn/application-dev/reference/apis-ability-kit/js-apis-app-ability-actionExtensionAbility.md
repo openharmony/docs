@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)
 
-ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。
+ActionExtensionAbility是为开发者提供的自定义操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ActionExtension主要用于查看宿主应用中的内容以及对其进行对应处理。例如，添加一个书签、将选中的文本翻译成其他语言、在当前页面编辑图像等。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 
@@ -122,7 +122,7 @@ ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回
 
 在DevEco Studio工程中手动新建一个ActionExtensionAbility，具体步骤如下：
 
-1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ActionExtAbility。
+1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为actionextability。
 
 2. 在actionextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
 
@@ -175,7 +175,7 @@ ActionExtensionAbility生命周期回调，在ActionExtensionAbility销毁时回
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ActionExtAbility",

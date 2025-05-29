@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onSizeChange
 
@@ -51,6 +51,8 @@ SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 
 ## 示例
+
+该示例通过Text组件设置组件尺寸变化事件，当Text尺寸变化时可以触发onSizeChange事件，获取相关参数。
 
 ```ts
 // xxx.ets

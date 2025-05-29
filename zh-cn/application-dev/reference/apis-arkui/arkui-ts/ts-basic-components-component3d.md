@@ -3,7 +3,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -12,15 +12,17 @@
 
 ## 接口 
 
-Component3D((sceneOptions?: SceneOptions))
+Component3D(sceneOptions?: SceneOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 **参数：**
 
-| 参数名          | 参数类型                              | 必填   | 参数描述                                     |
-| ------------ | --------------------------------- | ---- | ---------------------------------------- |
-| sceneOptions | [SceneOptions](#sceneoptions对象说明) | 否    | 3D场景配置选项。<br/>**说明：** <br/> 3D场景配置选项在控件创建后不支持动态修改。 |
+| 参数名       | 类型                                  | 必填 | 说明                                                         |
+| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| sceneOptions | [SceneOptions](#sceneoptions对象说明) | 否   | 3D场景配置选项。<br/>**说明：** <br/> 3D场景配置选项在控件创建后不支持动态修改。 |
 
 
 ## SceneOptions对象说明
@@ -29,28 +31,45 @@ Component3D组件配置选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称        | 类型                               | 必填   | 说明                                       |
 | --------- | -------------------------------- | ---- | ---------------------------------------- |
-| scene     | [Resource](ts-types.md#resource)\|[Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1)<sup>12+</sup> | 否    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
+| scene     | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[Scene](#scene12) | 否    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
 | modelType | [ModelType](#modeltype枚举说明) | 否    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
 
 ## ModelType枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述             |
-| ------- | -------------- |
-| TEXTURE | 使用GPU合成显示3D场景。 |
-| SURFACE | 使用专有硬件显示3D场景。  |
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
+| 名称    | 值   | 说明                     |
+| ------- | ---- | ------------------------ |
+| TEXTURE | 0    | 使用GPU合成显示3D场景。  |
+| SURFACE | 1    | 使用专有硬件显示3D场景。 |
+
+## Scene<sup>12+</sup>
+
+type Scene = Scene
+
+设置3D场景。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1) | 用于设置场景。 |
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### environment
 
-environment(uri: Resource)
+environment(uri: ResourceStr)
 
 设置3D环境资源。目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。
 
@@ -60,13 +79,13 @@ environment(uri: Resource)
 
 **参数：** 
 
-| 参数名 | 类型                             | 必填 | 说明         |
-| ------ | -------------------------------- | ---- | ------------ |
-| uri    | [Resource](ts-types.md#resource) | 是   | 3D环境资源。 |
+| 参数名 | 类型                                   | 必填 | 说明         |
+| ------ | -------------------------------------- | ---- | ------------ |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 3D环境资源。 |
 
 ### customRender
 
-customRender(uri: Resource, selfRenderUpdate: boolean)
+customRender(uri: ResourceStr, selfRenderUpdate: boolean)
 
 设置三维场景渲染的渲染管道。管线配置及自渲染属性在控件创建后不支持动态修改。
 
@@ -76,14 +95,14 @@ customRender(uri: Resource, selfRenderUpdate: boolean)
 
 **参数：** 
 
-| 参数名           | 类型                             | 必填 | 说明                                                         |
-| ---------------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| uri              | [Resource](ts-types.md#resource) | 是   | 自定义渲染管线的配置文件。                                   |
-| selfRenderUpdate | boolean                          | 是   | 当设置为true时外部UI没有更新时也能触发动效渲染。<br/>当设置为false时只有外部UI更新才能触发渲染。 |
+| 参数名           | 类型                                   | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri              | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染管线的配置文件。                                   |
+| selfRenderUpdate | boolean                                | 是   | 当设置为true时外部UI没有更新时也能触发动效渲染。<br/>当设置为false时只有外部UI更新才能触发渲染。 |
 
 ### shader
 
-shader(uri: Resource)
+shader(uri: ResourceStr)
 
 设置自定义渲染的shader文件资源。自定义渲染的shader文件资源在控件创建后不支持动态修改。
 
@@ -93,13 +112,13 @@ shader(uri: Resource)
 
 **参数：** 
 
-| 参数名 | 类型                             | 必填 | 说明                         |
-| ------ | -------------------------------- | ---- | ---------------------------- |
-| uri    | [Resource](ts-types.md#resource) | 是   | 自定义渲染的shader文件资源。 |
+| 参数名 | 类型                                   | 必填 | 说明                         |
+| ------ | -------------------------------------- | ---- | ---------------------------- |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染的shader文件资源。 |
 
 ### shaderImageTexture
 
-shaderImageTexture(uri: Resource)
+shaderImageTexture(uri: ResourceStr)
 
 设置自定义渲染用到的纹理资源。若自定义渲染用到多个纹理资源则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。
 
@@ -109,9 +128,9 @@ shaderImageTexture(uri: Resource)
 
 **参数：** 
 
-| 参数名 | 类型                             | 必填 | 说明                       |
-| ------ | -------------------------------- | ---- | -------------------------- |
-| uri    | [Resource](ts-types.md#resource) | 是   | 自定义渲染用到的纹理资源。 |
+| 参数名 | 类型                                   | 必填 | 说明                       |
+| ------ | -------------------------------------- | ---- | -------------------------- |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | 是   | 自定义渲染用到的纹理资源。 |
 
 ### shaderInputBuffer
 
@@ -127,7 +146,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 | 参数名 | 类型           | 必填 | 说明                       |
 | ------ | -------------- | ---- | -------------------------- |
-| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数。 |
+| buffer | Array<number\> | 是   | 自定义渲染用到的动效参数，数组长度范围为[0, 1048576]。 |
 
 ### renderWidth
 
@@ -147,7 +166,7 @@ renderWidth(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ### renderHeight
 
@@ -167,21 +186,21 @@ renderHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
-示例效果请以真机运行为准，当前IDE预览器不支持。<br/>
+示例效果请以真机运行为准，当前DevEco Studio预览器不支持。<br/>
 GLTF模型加载示例。 <br/>
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   build() {
     Row() {
       Column() {
@@ -198,7 +217,7 @@ struct Index {
 自定义渲染示例。 <br/>
 
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
 class EngineTime {
   totalTimeUs = 0;
@@ -221,8 +240,8 @@ function TickFrame() {
 @Entry
 @Component
 struct Index {
-  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
-  backAnimator: AnimatorResult = animator.create({
+  scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  backAnimator: AnimatorResult = this.getUIContext().createAnimator({
     duration: 2000,
     easing: "ease",
     delay: 0,
@@ -234,10 +253,10 @@ struct Index {
   });
   @State timeDelta: number[] = [1.0, 2.0];
   create() {
-    this.backAnimator.onfinish = () => {
+    this.backAnimator.onFinish = () => {
       console.log('backAnimator onfinish');
     }
-    this.backAnimator.onframe = value => {
+    this.backAnimator.onFrame = (value: number) => {
       TickFrame();
       this.timeDelta[0] = engineTime.deltaTimeUs;
     }

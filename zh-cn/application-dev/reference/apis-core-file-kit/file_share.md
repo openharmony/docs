@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。 | 
+| [oh_file_share.h](oh__file__share_8h.md) | 提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。 | 
 
 
 ### 结构体
@@ -49,7 +49,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_PersistPermission](#oh_fileshare_persistpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录URI持久化授权。 | 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录uri取消持久化授权。 | 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录URI取消持久化授权。 | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_ActivatePermission](#oh_fileshare_activatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 使能多个已经持久化授权的文件或目录。 | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_DeactivatePermission](#oh_fileshare_deactivatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 取消使能持久化授权过的多个文件或目录。 | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_CheckPersistentPermission](#oh_fileshare_checkpersistentpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, bool \*\*result, unsigned int \*resultNum) | 校验所选择的多个文件或目录URI的持久化授权。 | 
@@ -173,7 +173,7 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission (const FileShare_PolicyIn
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -182,7 +182,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_CheckPersistentPermission()
@@ -204,7 +204,7 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission (const FileShare_P
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
 | result | 授权校验结果指针。请引用头文件malloc.h并使用free()进行资源释放。 | 
-| resultNum | 校验结果数组的大小. | 
+| resultNum | 校验结果数组的大小。| 
 
 **需要权限：**
 
@@ -212,7 +212,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_DeactivatePermission()
@@ -233,7 +233,7 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission (const FileShare_Policy
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -242,7 +242,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_PersistPermission()
@@ -263,7 +263,7 @@ FileManagement_ErrCode OH_FileShare_PersistPermission (const FileShare_PolicyInf
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -272,7 +272,7 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
 
 
 ### OH_FileShare_ReleasePolicyErrorResult()
@@ -313,7 +313,7 @@ FileManagement_ErrCode OH_FileShare_RevokePermission (const FileShare_PolicyInfo
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -322,4 +322,4 @@ ohos.permission.FILE_ACCESS_PERSIST
 
 **返回：**
 
-返回FileManageMent模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。
+返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode-1)。

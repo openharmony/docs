@@ -13,8 +13,9 @@ It is usually used to construct data nodes and operator parameters in a model di
 
 **Substitute**: You are advised to use [NN_TensorDesc](_neural_network_runtime.md#nn_tensordesc).
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**Header file**: [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## Summary
 

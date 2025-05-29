@@ -18,6 +18,8 @@ getChannelId(): string
 
 Obtains the channel ID based on the bundle name of an application.
 
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
 **System capability**: SystemCapability.Customization.CustomConfig
 
 **Return value**

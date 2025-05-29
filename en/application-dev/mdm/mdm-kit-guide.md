@@ -2,7 +2,7 @@
 
 ## Introduction
 
-An device administrator application is an application with the [EnterpriseAdminExtensionAbility](mdm-kit-admin.md). It implements functions such as enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see [MDM Kit](../reference/apis-mdm-kit/Readme-EN.md).
+An device administrator application is an application with the [EnterpriseAdminExtensionAbility](mdm-kit-admin.md). It implements functions such as enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see [MDM Kit](./mdm-kit-admin.md).
 
 ## How to Develop
 
@@ -14,7 +14,7 @@ To develop a device administrator application, perform the following steps:
 
 2. Declare the permissions required by the device administrator application.
 
-3. Develop and debug MDM functionalities. 
+3. Develop and debug MDM functionalities.
 
 <!--RP1End-->
 
@@ -58,6 +58,7 @@ Example:
 2. Call APIs to implement related functionalities. For example, disable Wi-Fi for devices.
 
    ```ts
+   import { Want } from '@kit.AbilityKit';
    let wantTemp: Want = {
      bundleName: 'com.example.xxx',
      abilityName: 'EnterpriseAdminAbility',
@@ -82,7 +83,7 @@ hdc shell edm disable-admin -n Bundle_name
 ```
 
 > **NOTE**
->
+> 
 > Only one super device administrator application can be enabled on a device.
 >
 > <!--RP5--><!--RP5End-->

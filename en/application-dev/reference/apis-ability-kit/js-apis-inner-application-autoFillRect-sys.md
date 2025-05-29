@@ -1,6 +1,6 @@
 # AutoFillRect (System API)
 
-**AutoFillRect** describes the rectangle used for AutoFill.
+**AutoFillRect** describes the rectangle used for auto-fill.
 
 > **NOTE**
 > 

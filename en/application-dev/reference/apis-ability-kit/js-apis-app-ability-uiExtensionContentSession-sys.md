@@ -42,6 +42,40 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry()
+@Component
+struct Index {
+  private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SendData')
+        .onClick(() => {
+          let data: Record<string, Object> = {
+            'number': 123456,
+            'message': 'test'
+          };
+
+          try {
+            this.session?.sendData(data);
+          } catch (err) {
+            console.log('sendData err:' + JSON.stringify(err));
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## UIExtensionContentSession.setReceiveDataCallback
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
@@ -68,6 +102,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SendData')
+        .onClick(() => {
+          this.session?.setReceiveDataCallback((data: Record<string, Object>) => {
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+          });
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
 
 setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
@@ -83,7 +144,7 @@ Sets a callback with a return value to receive data from the UIExtensionComponen
 
 | Name| Type| Mandatory| Description            |
 | -------- | -------- | -------- |----------------|
-| callback | (data: { [key: string]: Object }) => { [key: string]: Object } | Yes| Callback used to return the received data with a return value.|
+| callback | (data: Record\<string, Object>) => Record\<string, Object> | Yes| Callback used to return the received data with a return value.|
 
 **Error codes**
 
@@ -94,6 +155,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry()
+@Component
+struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined =
+    this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('SetReceiveDataForResultCallback')
+        .onClick(() => {
+          this.session?.setReceiveDataForResultCallback((data: Record<string, Object>) => {
+            console.info(`Succeeded in setReceiveDataCallback, data: ${JSON.stringify(data)}`);
+            return data;
+          });
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -128,7 +217,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -141,6 +230,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    session.startAbility(want, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbility`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -175,7 +287,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -187,6 +299,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbility(want, starOptions, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbility`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbility
 
@@ -227,7 +366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -240,6 +379,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbility(want, starOptions)
+      .then(() => {
+        console.info(`Succeeded in startAbility`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbility, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -279,7 +445,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -292,6 +458,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    session.startAbilityForResult(want, (err: BusinessError, data: common.AbilityResult) => {
+      if (err) {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -331,7 +520,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -343,6 +532,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityForResult(want, starOptions, (err: BusinessError, data: common.AbilityResult) => {
+      if (err) {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityForResult
 
@@ -389,7 +605,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -402,6 +618,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let starOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityForResult(want, starOptions)
+      .then((data: common.AbilityResult) => {
+        console.info(`Succeeded in startAbilityForResult, data: ${JSON.stringify(data)}`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityForResult, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.setWindowBackgroundColor
 
@@ -428,6 +671,35 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+
+    try {
+      session.loadContent('pages/Extension', storage);
+    } catch (err) {
+      console.log('loadContent err:' + JSON.stringify(err));
+    }
+
+    try {
+      session.setWindowBackgroundColor('#00FF00');
+    } catch (err) {
+      console.log('setWindowBackgroundColor err:' + JSON.stringify(err));
+    }
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -457,7 +729,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -470,6 +742,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    session.startAbilityAsCaller(localWant, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbilityAsCaller`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -499,7 +799,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Not System App. Interface caller is not a system app. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -511,6 +811,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let startOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityAsCaller(localWant, startOptions, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in startAbilityAsCaller`);
+    })
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
 
@@ -546,7 +878,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -559,6 +891,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let localWant: Want = want;
+    localWant.bundleName = 'com.example.demo';
+    localWant.moduleName = 'entry';
+    localWant.abilityName = 'TestAbility';
+
+    let startOptions: StartOptions = {
+      displayId: 0
+    };
+
+    session.startAbilityAsCaller(localWant, startOptions)
+      .then(() => {
+        console.info(`Succeeded in startAbilityAsCaller`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityAsCaller, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
 
@@ -594,7 +958,6 @@ import { uiExtensionHost } from '@kit.ArkUI';
 const TAG: string = '[UIExtAbility]';
 
 export default class UIExtAbility extends UIExtensionAbility {
-
   onCreate() {
     console.log(TAG, `UIExtAbility onCreate`);
   }
@@ -619,7 +982,11 @@ export default class UIExtAbility extends UIExtensionAbility {
     };
     let storage: LocalStorage = new LocalStorage(data);
 
-    session.loadContent('pages/extension', storage);
+    try {
+      session.loadContent('pages/Extension', storage);
+    } catch (err) {
+      console.log('loadContent err:' + JSON.stringify(err));
+    }
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {

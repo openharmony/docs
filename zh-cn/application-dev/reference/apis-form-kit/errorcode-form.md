@@ -4,24 +4,6 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
-## 16500001 内部错误
-
-**错误信息**
-
-Internal error.
-
-**错误描述**
-
-Malloc等内核通用错误。
-
-**可能原因**
-
-当前内存不足。
-
-**处理步骤**
-
-内存不足，需要分析整个进程的内存占用情况，是否有内存泄露的情况。
-
 ## 16500050 进程间通信失败
 
 **错误信息**
@@ -76,15 +58,23 @@ Failed to obtain configuration information.
 
 确认并验证卡片配置信息正确性。
 
-## 16501000 内部错误
+## 16501000 内部功能错误
 
 **错误信息**
 
-A functional error occurred.
+An internal functional error occurred.
 
 **错误描述**
 
 系统内为执行当前请求时发生内部错误，系统会报此错误码。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+待系统重启后重试。
 
 ## 16501001 卡片ID不存在
 
@@ -138,36 +128,18 @@ The form cannot be operated by the current application.
 
 **处理步骤**
 
-1. 检查传入卡片ID所有权
-2. 升级权限为SystemApp
+1. 检查传入卡片ID所有权。
+2. 升级权限为SystemApp。
 
-## 16501004 指定的ability未安装
-
-**错误信息**
-
-The ability is not installed.
-
-**错误描述**
-
-当指定的ability未安装时，系统会报此错误码。
-
-**可能原因**
-
-指定的ability未安装。
-
-**处理步骤**
-
-检查传入的abilityName与bundleName是否有效。
-
-## 16501005 连接卡片渲染服务失败
+## 16501006 卡片渲染服务连接失败
 
 **错误信息**
 
-Failed to connect to FormRenderService.
+FormRenderService is stopped. Connect to the service again.
 
 **错误描述**
 
-连接卡片渲染服务失败时，系统会报此错误码。
+无法连接卡片渲染服务时，系统会报此错误码。
 
 **可能原因**
 
@@ -177,6 +149,25 @@ Failed to connect to FormRenderService.
 
 服务繁忙，请稍后重试。
 
+## 16501007 卡片不可信
+
+**错误信息**
+
+Form is not trust.
+
+**错误描述**
+
+卡片不受信任。
+
+**可能原因**
+
+卡片代码存在死循环、内存泄漏等问题导致系统异常。
+
+**处理步骤**
+
+检查卡片代码的死循环、内存泄漏等问题。
+
+<!--Del-->
 ## 16501008 等待卡片加桌超时
 
 **错误信息**
@@ -194,3 +185,122 @@ Waiting for the form addition to the desktop timed out.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+<!--DelEnd-->
+
+## 2293761 内部服务错误
+
+**错误信息**
+
+Some internal server error occurs.
+
+**错误描述**
+
+系统执行当前请求时发生内部错误。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293766 包管理获取请求的应用包名不存在
+
+**错误信息**
+
+The requested bundle name does not exist.
+
+**错误描述**
+
+系统执行获取请求的应用包名不存在，该错误属于内部错误。
+
+**可能原因**
+
+包管理获取请求方的bundleName时出错，属于系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293767 无效参数
+
+**错误信息**
+
+Invalid params received on operating form.
+
+**错误描述**
+
+接口调用时存在无效入参。
+
+**可能原因**
+
+1. 未传入必选参数。
+2. 参数类型错误。
+3. 参数数量错误。
+4. 空参数错误，比如传入空字符串（''）。
+5. 参数格式错误。
+6. 参数值错误。输入参数与[app.json5](../../quick-start/app-configuration-file.md)、[配置卡片的配置文件](../../form/arkts-ui-widget-configuration.md)的对应配置需要保持一致。
+
+**处理步骤**
+
+按照可能原因进行排查，确认必选参数是否传入、传入的参数类型是否错误等。
+
+## 2293795 获取包管理服务失败
+
+**错误信息**
+
+Get bms rpc failed.
+
+**错误描述**
+
+获取包管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293798 获取卡片管理服务失败
+
+**错误信息**
+
+Get fms rpc failed.
+
+**错误描述**
+
+获取卡片管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293802 获取系统能力管理服务失败
+
+**错误信息**
+
+Get system manager service failed.
+
+**错误描述**
+
+获取系统能力管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。

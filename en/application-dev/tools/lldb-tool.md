@@ -77,37 +77,37 @@ The following lists some functions supported by LLDB. For more functions and rel
 
    2. Run LLDB and specify the file to debug as **a.out**.
 
-      ```lldb
+      ```shell
       ./lldb a.out
       ```
 
    3. Set breakpoints at the **main** function in the code.
 
-      ```lldb
+      ```shell
       (lldb) b main
       ```
 
    4. Run the application, and it stops at the first breakpoint.
 
-      ```lldb
+      ```shell
       (lldb) run
       ```
 
    5. Continue to run the application.
 
-      ```lldb
+      ```shell
       (lldb) continue
       ```
 
    6. List all the breakpoints.
 
-      ```lldb
+      ```shell
       (lldb) breakpoint list
       ```
 
    7. Show the arguments and local variables of the current frame.
 
-      ```lldb
+      ```shell
       (lldb) frame variable
       ```
 
@@ -115,7 +115,7 @@ The following lists some functions supported by LLDB. For more functions and rel
 
    9. Exit debugging.
 
-      ```lldb
+      ```shell
       (lldb) quit
       ```
 
@@ -135,13 +135,13 @@ The following lists some functions supported by LLDB. For more functions and rel
    
    3. Attach to the application.
    
-      ```lldb
+      ```shell
       (lldb) process attach --name a.out
       ```
    
    4. Set a breakpoint in line 10 of **hello.cpp**.
    
-      ```lldb
+      ```shell
       (lldb) breakpoint set --file hello.cpp --line 12
       ```
    
@@ -153,7 +153,7 @@ The following lists some functions supported by LLDB. For more functions and rel
    
    6. Continue to run the application on CLI 2. The application stops at the breakpoint.
    
-      ````lldb
+      ````shell
       (lldb) continue
       ````
    
@@ -161,13 +161,13 @@ The following lists some functions supported by LLDB. For more functions and rel
    
    8. Detach from the application.
    
-      ```lldb
+      ```shell
       (lldb) detach
       ```
    
    9. Exit debugging.
    
-      ```lldb
+      ```shell
       (lldb) quit
       ```
    
@@ -218,32 +218,32 @@ The following walks you through on how to remotely debug an executable file name
 
 4. Select and connect to the remote device on the LLDB CLI.
 
-   ```lldb
+   ```shell
    (lldb) platform select remote-ohos
    (lldb) platform connect connect://localhost:8080 
    ```
 
 5. Specify the binary file **a.out** on the device to be debugged.
 
-   ```lldb
+   ```shell
    (lldb) target create /data/local/tmp/a.out
    ```
 
 6. Set breakpoints at the **main** function in the code.
 
-   ```lldb
+   ```shell
    (lldb) b main
    ```
 
 7. Start the application.
 
-   ```lldb
+   ```shell
    (lldb) run
    ```
 
 8. Display source code for the current target process.
 
-   ```lldb
+   ```shell
    (lldb) source list
    ```
 
@@ -251,6 +251,6 @@ The following walks you through on how to remotely debug an executable file name
 
 10. Exit debugging.
 
-    ```lldb
+    ```shell
     (lldb) quit
     ```

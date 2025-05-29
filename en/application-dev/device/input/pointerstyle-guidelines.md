@@ -25,7 +25,7 @@ The following table lists the common APIs for mouse pointer management. For deta
 
 When watching a video in full-screen mode, a user can hide the mouse pointer for an improved user experience.
 
-## How to Develop
+### How to Develop
 
 1. Switch to the full-screen playback mode.
 2. Hide the mouse pointer.
@@ -83,7 +83,7 @@ import { window } from '@kit.ArkUI';
 
 // 1. Enable the color pickup function.
 // 2. Obtain the window ID.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -103,7 +103,7 @@ window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Wi
   }
 });
 // 4. End color pickup.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;

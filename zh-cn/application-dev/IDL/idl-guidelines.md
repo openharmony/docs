@@ -151,8 +151,8 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 ### 获取IDL工具
 #### 方法一（推荐）：
-1. 在linux系统，下载OpenHarmony的两个仓：ability_idl_tool代码仓、third_party_bounds_checking_function代码仓。
-2. 进入ability_idl_tool代码仓，在Makefile所在目录执行make命令（**注意修改MakefileLinux中关于bounds_checking_function的相对位置**）。
+1. 在linux系统，下载OpenHarmony的两个仓：[ability_idl_tool](https://gitee.com/openharmony/ability_idl_tool)代码仓、[third_party_bounds_checking_function](https://gitee.com/openharmony/third_party_bounds_checking_function)代码仓。
+2. 进入[ability_idl_tool](https://gitee.com/openharmony/ability_idl_tool)代码仓，在Makefile所在目录执行make命令（**注意修改MakefileLinux中关于bounds_checking_function的相对位置**）。
 3. make执行完成后，在当前目录下会生成idl-gen可执行文件，可用于idl文件本地调试。
 
 #### 方法二：
@@ -216,7 +216,7 @@ import {testStringTransactionCallback} from "./i_idl_test_service";
 import {testMapTransactionCallback} from "./i_idl_test_service";
 import {testArrayTransactionCallback} from "./i_idl_test_service";
 import IIdlTestService from "./i_idl_test_service";
-import rpc from "@ohos.rpc";
+import { rpc } from "@kit.IPCKit";
 
 export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdlTestService {
     constructor(des: string) {
@@ -314,8 +314,8 @@ class IdlTestImp extends IdlTestServiceStub {
 在服务实现接口后，需要向客户端公开该接口，以便客户端进程绑定。如果开发者的服务要公开该接口，请扩展Ability并实现onConnect()从而返回IRemoteObject，以便客户端能与服务进程交互。服务端向客户端公开IRemoteAbility接口的代码示例如下:
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import rpc from "@ohos.rpc";
+import { Want } from '@kit.AbilityKit';
+import { rpc } from "@kit.IPCKit";
 
 class ServiceAbility {
   onStart() {
@@ -353,9 +353,8 @@ export default new ServiceAbility()
 客户端调用connectServiceExtensionAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import IdlTestServiceProxy from './idl_test_service_proxy'
+import { Want, common } from '@kit.AbilityKit';
+import IdlTestServiceProxy from './idl_test_service_proxy';
 
 function callbackTestIntTransaction(result: number, ret: number): void {
   if (result == 0 && ret == 124) {
@@ -426,30 +425,31 @@ function connectAbility(): void {
 MySequenceable类的代码示例如下：
 
 ```ts
-import rpc from '@ohos.rpc';
-export default class MySequenceable implements rpc.Sequenceable {
-    constructor(num: number, str: string) {
-        this.num = num;
-        this.str = str;
-    }
-    getNum() : number {
-        return this.num;
-    }
-    getString() : string {
-        return this.str;
-    }
-    marshalling(messageParcel: rpc.MessageParcel) {
-        messageParcel.writeInt(this.num);
-        messageParcel.writeString(this.str);
-        return true;
-    }
-    unmarshalling(messageParcel: rpc.MessageParcel) {
-        this.num = messageParcel.readInt();
-        this.str = messageParcel.readString();
-        return true;
-    }
-    private num: number;
-    private str: string;
+import { rpc } from '@kit.IPCKit';
+
+export default class MySequenceable implements rpc.Parcelable {
+  constructor(num: number, str: string) {
+    this.num = num;
+    this.str = str;
+  }
+  getNum() : number {
+    return this.num;
+  }
+  getString() : string {
+    return this.str;
+  }
+  marshalling(messageParcel: rpc.MessageSequence) {
+    messageParcel.writeInt(this.num);
+    messageParcel.writeString(this.str);
+    return true;
+  }
+  unmarshalling(messageParcel: rpc.MessageSequence) {
+    this.num = messageParcel.readInt();
+    this.str = messageParcel.readString();
+    return true;
+  }
+  private num: number;
+  private str: string;
 }
 ```
 

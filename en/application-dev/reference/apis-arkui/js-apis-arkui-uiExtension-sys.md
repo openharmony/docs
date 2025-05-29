@@ -1,6 +1,6 @@
 # @ohos.arkui.uiExtension (uiExtension) (System API)
 
-The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**).
+The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **EmbeddedComponent** (or **UIExtensionComponent**).
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or 
 ## Modules to Import
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -24,7 +24,9 @@ Sets whether to hide insecure windows.
 
 > **NOTE**
 >
-> Insecure windows refer to the windows that may block the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**), such as non-system global floating windows and host subwindows. When the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**) is not displayed or is destroyed, you must unhide the insecure windows.
+> Insecure windows refer to the windows that may block the **EmbeddedComponent** (or **UIExtensionComponent**), such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **EmbeddedComponent** (or **UIExtensionComponent**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **EmbeddedComponent** (or **UIExtensionComponent**) is not displayed or is destroyed, you must unhide the insecure windows. By default, the **UIExtensionComponent** created using the **CreateModalUIExtension** API hides insecure windows. To cancel this behavior and show insecure windows, apply for the **ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS** permission and call this API to set **shouldHide** to **false**.
+> 
+> This API has no effect on 2-in-1 devices.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -42,32 +44,43 @@ Sets whether to hide insecure windows.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
+| 1300002  | Abnormal state. Possible causes: <br> 1. Permission denied. Interface caller does not have permission "ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS". <br> 2. The UIExtension window proxy is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// ExtensionProvider.ts
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Hide insecure windows.
-let promise = this.extensionWindow?.hideNonSecureWindows(true);
-promise?.then(()=> {
-  console.log(`Succeeded in hiding the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
-// Unhide insecure windows.
-let promise = this.extensionWindow?.hideNonSecureWindows(false);
-promise?.then(()=> {
-  console.log(`Succeeded in showing the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // Hide insecure windows.
+    extensionHostWindow.hideNonSecureWindows(true).then(()=> {
+      console.log(`Succeeded in hiding the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // Unhide insecure windows.
+    extensionHostWindow.hideNonSecureWindows(false).then(()=> {
+      console.log(`Succeeded in showing the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
 ### setWaterMarkFlag
@@ -101,31 +114,33 @@ Adds or deletes the watermark flag for this window. This API uses a promise to r
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display. |
 
 **Example**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// ExtensionProvider.ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// When 'onSessionCreate' of EmbeddedUIExtensionAbility is executed, the UIExtensionContentSession instance is stored in storage.
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// Obtain the WindowProxy instance of the current EmbeddedUIExtensionAbility from the session.
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// Add the watermark flag.
-let promise = this.extensionWindow?.setWaterMarkFlag(true);
-promise?.then(() => {
-  console.log(`Succeeded in setting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
-// Delete the watermark flag.
-let promise = this.extensionWindow?.setWaterMarkFlag(false);
-promise?.then(() => {
-  console.log(`Succeeded in deleting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // Add the watermark flag.
+    extensionHostWindow.setWaterMarkFlag(true).then(() => {
+      console.log(`Succeeded in setting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // Delete the watermark flag.
+    extensionHostWindow.setWaterMarkFlag(false).then(() => {
+      console.log(`Succeeded in deleting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```

@@ -1,6 +1,6 @@
 # AbilityResult
 
-The **AbilityResult** module defines the result code and data returned when an ability is terminated after being started.
+The AbilityResult module defines the result code and data returned when an ability is terminated after being started.
 
 In the stage model, you can use [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) to obtain the **AbilityResult** object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
 
@@ -28,7 +28,7 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name       |  Type                | Read-only | Mandatory | Description                                                        |
+| Name       |  Type                | Read-only| Optional| Description                                                        |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| resultCode  | number               | No  | Yes  | Result code returned after the started ability is terminated.                               |
-| want  | [Want](js-apis-app-ability-want.md)               | No  | No  | Data returned after the started ability is terminated. |
+| resultCode  | number               | No  | No  | Result code returned by the target party to the caller after the ability of the target party is started and then terminated.<br>- In normal cases, the result code sent by the target party is returned.<br>- In abnormal cases, the value **-1** is returned.                               |
+| want  | [Want](js-apis-app-ability-want.md) | No  | Yes  | Data returned after the started ability is terminated.|

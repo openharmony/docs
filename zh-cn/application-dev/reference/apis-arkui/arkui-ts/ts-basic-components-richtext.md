@@ -16,14 +16,15 @@
 
 - 不适用场景：
 
-  RichText组件不适用于对HTML字符串的显示效果进行较多自定义的应用场景。例如RichText组件不支持通过设置属性与事件，来修改背景颜色、字体颜色、字体大小、动态改变内容等。在这种情况下，推荐使用[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。
+  RichText组件不适用于对HTML字符串的显示效果进行较多自定义的应用场景。例如RichText组件不支持通过设置属性与事件，来修改**背景颜色、字体颜色、字体大小、动态改变内容**等。在这种情况下，推荐使用[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。
 
-  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)。
+  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在**List下循环重复使用RichText**时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)。
 
 >  **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件无法根据内容自适应设置宽高属性，需要开发者设置显示布局。
+> - **该组件不再更新和维护，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)或[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。**
 
 
 ## 子组件
@@ -34,11 +35,11 @@
 
 RichText(content:string)
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
 
-| 参数名 | 参数类型 | 必填  | 参数描述 |
+| 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
 | content | string | 是   | 表示HTML格式的字符串。 |
 
@@ -51,8 +52,6 @@ onStart(callback: () => void)
 
 加载网页时触发。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onComplete
@@ -61,13 +60,11 @@ onComplete(callback: () => void)
 
 网页加载结束时触发。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
-只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
+只支持[通用属性](ts-component-general-attributes.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
 
 ## 支持标签
 
@@ -88,7 +85,7 @@ onComplete(callback: () => void)
 
 ## 示例
 
-示例效果请以真机运行为准，当前IDE预览器不支持。
+示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ```ts
 // xxx.ets

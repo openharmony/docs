@@ -3,16 +3,17 @@
 
 ## 概述
 
-提供了Context相关的接口，可以配置运行时信息。
+提供了Context相关的接口，可以配置运行时信息，该接口是非线程安全的。
 
-**起始版本：**
+**引用文件：** <mindspore/context.h>
 
-9
+**库：** libmindspore_lite_ndk.so
 
-**相关模块：**
+**系统能力：** SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**起始版本：** 9
 
+**相关模块：** [MindSpore](_mind_spore.md)
 
 ## 汇总
 
@@ -21,15 +22,15 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | Mindspore的上下文信息的指针，该指针会指向Context。 |
-| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | Mindspore的运行设备信息的指针。 |
+| [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) | MindSpore的上下文信息的指针，该指针会指向Context。 |
+| [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) | MindSpore的运行设备信息的指针。 |
 
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。 |
+| [OH_AI_ContextCreate](_mind_spore.md#oh_ai_contextcreate) () | 创建一个上下文的对象。注意：此接口需跟[OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy)配套使用。 |
 | [OH_AI_ContextDestroy](_mind_spore.md#oh_ai_contextdestroy) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) \*context) | 释放上下文对象。 |
 | [OH_AI_ContextSetThreadNum](_mind_spore.md#oh_ai_contextsetthreadnum) ([OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context, int32_t thread_num) | 设置运行时的线程数量。 |
 | [OH_AI_ContextGetThreadNum](_mind_spore.md#oh_ai_contextgetthreadnum) (const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) context) | 获取线程数量。 |
@@ -48,7 +49,7 @@
 | [OH_AI_DeviceInfoGetProviderDevice](_mind_spore.md#oh_ai_deviceinfogetproviderdevice) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取生产商设备的名称。 |
 | [OH_AI_DeviceInfoGetDeviceType](_mind_spore.md#oh_ai_deviceinfogetdevicetype) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取设备的类型。 |
 | [OH_AI_DeviceInfoSetEnableFP16](_mind_spore.md#oh_ai_deviceinfosetenablefp16) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, bool is_fp16) | 设置是否开启float16推理模式，仅CPU/GPU设备可用。 |
-| [OH_AI_DeviceInfoGetEnableFP16](_mind_spore.md#oh_ai_deviceinfogetenablefp16) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取是否开启float16推理模式, 仅CPU/GPU设备可用。 |
+| [OH_AI_DeviceInfoGetEnableFP16](_mind_spore.md#oh_ai_deviceinfogetenablefp16) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取是否开启float16推理模式，仅CPU/GPU设备可用。 |
 | [OH_AI_DeviceInfoSetFrequency](_mind_spore.md#oh_ai_deviceinfosetfrequency) ([OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info, int frequency) | 设置NPU的频率，仅NPU设备可用。 |
 | [OH_AI_DeviceInfoGetFrequency](_mind_spore.md#oh_ai_deviceinfogetfrequency) (const [OH_AI_DeviceInfoHandle](_mind_spore.md#oh_ai_deviceinfohandle) device_info) | 获取NPU的频率类型，仅NPU设备可用。 |
 | [OH_AI_GetAllNNRTDeviceDescs](_mind_spore.md#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRT硬件设备的描述信息。 |

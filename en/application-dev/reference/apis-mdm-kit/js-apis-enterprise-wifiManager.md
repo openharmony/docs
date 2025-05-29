@@ -1,6 +1,6 @@
 # @ohos.enterprise.wifiManager (Wi-Fi Management)
 
-The **wifiManager** module provides APIs for Wi-Fi management of enterprise devices.
+The **wifiManager** module provides Wi-Fi management capabilities for enterprise devices, including obtaining the Wi-Fi status.
 
 > **NOTE**
 >
@@ -9,6 +9,8 @@ The **wifiManager** module provides APIs for Wi-Fi management of enterprise devi
 > The APIs of this module can be used only in the stage model.
 >
 > The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is enabled.
+>
+> The global restriction policies are provided by **restrictions**. To disable Wi-Fi globally, see [@ohos.enterprise.restrictions](js-apis-enterprise-restrictions.md).
 
 ## Modules to Import
 
@@ -20,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-Checks whether Wi-Fi is active through the specified device administrator application.
+Queries the Wi-Fi status.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -30,15 +32,15 @@ Checks whether Wi-Fi is active through the specified device administrator applic
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description          |
-| ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                  |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
-| Type   | Description                                                   |
-| ------- | ------------------------------------------------------- |
-| boolean | Returns **true** if Wi-Fi is active; returns **false** otherwise.|
+| Type   | Description                                                      |
+| ------- | ---------------------------------------------------------- |
+| boolean | Returns the Wi-Fi status. The value **true** means Wi-Fi is enabled, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -72,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-Sets Wi-Fi profile through the specified device administrator application to enable the device to connect to the specified network.
+Sets Wi-Fi for the device to connect to the specified network.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -82,10 +84,10 @@ Sets Wi-Fi profile through the specified device administrator application to ena
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description          |
-| ------- | ------------------------------------------------------- | ---- | -------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-| profile | [WifiProfile](#wifiprofile)                             | Yes  | Wi-Fi profile information.|
+| Name | Type                                                   | Mandatory| Description                  |
+| ------- | ------------------------------------------------------- | ---- | ---------------------- |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
+| profile | [WifiProfile](#wifiprofile)                             | Yes  | Wi-Fi profile information.        |
 
 **Error codes**
 
@@ -123,27 +125,27 @@ try {
 
 ## WifiProfile
 
-Represents the Wi-Fi profile information.
+Wi-Fi profile information.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
 
 
-| Name         | Type                                 | Mandatory| Description                         |
-| ------------- | ------------------------------------- | ---- | ----------------------------- |
-| ssid | string | Yes| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
-| bssid         | string                                | No  | Basic service set identifier (BSSID) of the hotspot.                |
-| preSharedKey  | string                                | Yes  | Pre-shared key (PSK) of the hotspot.                 |
-| isHiddenSsid  | boolean                               | No  | Whether the network is hidden.             |
-| securityType  | [WifiSecurityType](#wifisecuritytype) | Yes  | Security type.                   |
-| creatorUid    | number                                | No  | ID of the creator.               |
-| disableReason | number                                | No  | Reason for disabling Wi-Fi.                   |
-| netId         | number                                | No  | Network ID allocated.               |
-| randomMacType | number | No| Type of the random MAC.|
-| randomMacAddr | string                                | No  | Random MAC address.                |
-| ipType        | [IpType](#iptype)                     | No  | IP address type.                 |
-| staticIp      | [IpProfile](#ipprofile)               | No  | Static IP address information.             |
-| eapProfile    | [WifiEapProfile](#wifieapprofile)     | No  | Extensible Authentication Protocol (EAP) configuration.     |
+| Name         | Type                                 | Mandatory| Description                                                       |
+| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
+| ssid          | string                                | Yes  | SSID of the hotspot, in UTF-8 format.                              |
+| bssid         | string                                | No  | Basic service set identifier (BSSID) of the hotspot.                                              |
+| preSharedKey  | string                                | Yes  | Pre-shared key (PSK) of the hotspot.                                               |
+| isHiddenSsid  | boolean                               | No  | Whether the network is hidden. The value **true** indicates that the network is hidden; the value **false** indicates the opposite.|
+| securityType  | [WifiSecurityType](#wifisecuritytype) | Yes  | Security type.                                                 |
+| creatorUid    | number                                | No  | ID of the creator.                                             |
+| disableReason | number                                | No  | Reason for disabling Wi-Fi.                                                 |
+| netId         | number                                | No  | Network ID allocated.                                             |
+| randomMacType | number                                | No  | Random MAC.                                              |
+| randomMacAddr | string                                | No  | Random MAC address.                                              |
+| ipType        | [IpType](#iptype)                     | No  | IP address type.                                               |
+| staticIp      | [IpProfile](#ipprofile)               | No  | Static IP address information.                                           |
+| eapProfile    | [WifiEapProfile](#wifieapprofile)     | No  | Extensible Authentication Protocol (EAP) configuration.                                   |
 
 ## WifiSecurityType
 

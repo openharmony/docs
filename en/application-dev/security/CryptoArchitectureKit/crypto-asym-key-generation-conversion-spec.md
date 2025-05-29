@@ -1,13 +1,10 @@
 # Asymmetric Key Generation and Conversion Specifications
 
-
 This topic describes the supported algorithms and specifications for asymmetric key generation and conversion. The specifications for key generation can be specified via either of the following:
-
 
 - String parameter: presents the specifications of the key to generate in the form of a string.
 
 - Key parameter: constructs the detailed cryptographic information of the key to generate in an object.
-
 
 For details, see the specifications of each algorithm.
 
@@ -20,32 +17,34 @@ Rivest-Shamir-Adleman (RSA) is an asymmetric encryption algorithm widely used fo
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the RSA key type and prime count with a vertical bar (|) in between.
 
 > **NOTE**
+>
 > When an RSA asymmetric key is generated, the default number of primes is 2 and the **PRIMES_2** parameter can be omitted.
 
-| RSA Key Type| Prime Count| String Parameter| API Version|
+| RSA Key Type| Prime Count| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
-| RSA512 | 2 | RSA512\|PRIMES_2 | 9+ |
-| RSA768 | 2 | RSA768\|PRIMES_2 | 9+ |
-| RSA1024 | 2 | RSA1024\|PRIMES_2 | 9+ |
-| RSA1024 | 3 | RSA1024\|PRIMES_3 | 9+ |
-| RSA2048 | 2 | RSA2048\|PRIMES_2 | 9+ |
-| RSA2048 | 3 | RSA2048\|PRIMES_3 | 9+ |
-| RSA3072 | 2 | RSA3072\|PRIMES_2 | 9+ |
-| RSA3072 | 3 | RSA3072\|PRIMES_3 | 9+ |
-| RSA4096 | 2 | RSA4096\|PRIMES_2 | 9+ |
-| RSA4096 | 3 | RSA4096\|PRIMES_3 | 9+ |
-| RSA4096 | 4 | RSA4096\|PRIMES_4 | 9+ |
-| RSA8192 | 2 | RSA8192\|PRIMES_2 | 9+ |
-| RSA8192 | 3 | RSA8192\|PRIMES_3 | 9+ |
-| RSA8192 | 4 | RSA8192\|PRIMES_4 | 9+ |
-| RSA8192 | 5 | RSA8192\|PRIMES_5 | 9+ |
-
+| RSA512 | 2 | RSA512\|PRIMES_2 | 9+ | 
+| RSA768 | 2 | RSA768\|PRIMES_2 | 9+ | 
+| RSA1024 | 2 | RSA1024\|PRIMES_2 | 9+ | 
+| RSA1024 | 3 | RSA1024\|PRIMES_3 | 9+ | 
+| RSA2048 | 2 | RSA2048\|PRIMES_2 | 9+ | 
+| RSA2048 | 3 | RSA2048\|PRIMES_3 | 9+ | 
+| RSA3072 | 2 | RSA3072\|PRIMES_2 | 9+ | 
+| RSA3072 | 3 | RSA3072\|PRIMES_3 | 9+ | 
+| RSA4096 | 2 | RSA4096\|PRIMES_2 | 9+ | 
+| RSA4096 | 3 | RSA4096\|PRIMES_3 | 9+ | 
+| RSA4096 | 4 | RSA4096\|PRIMES_4 | 9+ | 
+| RSA8192 | 2 | RSA8192\|PRIMES_2 | 9+ | 
+| RSA8192 | 3 | RSA8192\|PRIMES_3 | 9+ | 
+| RSA8192 | 4 | RSA8192\|PRIMES_4 | 9+ | 
+| RSA8192 | 5 | RSA8192\|PRIMES_5 | 9+ | 
 
 > **NOTE**
 >
-> It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> - It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key.
 >
-> If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
+> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+>
+> - If the created RSA asymmetric key generator is used to randomly generate keys, the specifications of the RSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the RSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
@@ -65,18 +64,17 @@ The following table illustrates the composition of the RSA key parameters.
 
 - x indicates that the property that cannot be used to construct a key parameter.
 
-|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- | -------- |
-| n | × | √ | × | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | × | √ |
+| n | × | √ | × | √ | 
+| pk | N/A | √ | N/A | √ | 
+| sk | N/A | N/A | × | √ | 
 
 According to the preceding table:
 
 - The RSA key cannot be generated based on the common parameter (**n**).
 
 - The RSA private key cannot be generated based on the private key parameter, which consists of **n** and **sk**.
-
 
 ## ECC
 
@@ -86,31 +84,31 @@ The ECC algorithm can be regarded as an operation of numbers defined in a specia
 
 An ECC key can be generated based on a string parameter or key parameters, and the common parameter can be generated based on the curve name.
 
-
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the asymmetric key algorithm and key length.
 
-| Asymmetric Key Algorithm| Key Length (Bit)| Curve Name| String Parameter| API Version|
+| Asymmetric Key Algorithm| Key Length (Bit)| Curve Name| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- | -------- |
-| ECC | 224 | NID_secp224r1 | ECC224 | 9+ |
-| ECC | 256 | NID_X9_62_prime256v1 | ECC256 | 9+ |
-| ECC | 384 | NID_secp384r1 | ECC384 | 9+ |
-| ECC | 521 | NID_secp521r1 | ECC521 | 9+ |
-| ECC | 160 | NID_brainpoolP160r1 | ECC_BrainPoolP160r1 | 11+ |
-| ECC | 160 | NID_brainpoolP160t1 | ECC_BrainPoolP160t1 | 11+ |
-| ECC | 192 | NID_brainpoolP192r1 | ECC_BrainPoolP192r1 | 11+ |
-| ECC | 192 | NID_brainpoolP192t1 | ECC_BrainPoolP192t1 | 11+ |
-| ECC | 224 | NID_brainpoolP224r1 | ECC_BrainPoolP224r1 | 11+ |
-| ECC | 224 | NID_brainpoolP224t1 | ECC_BrainPoolP224t1 | 11+ |
-| ECC | 256 | NID_brainpoolP256r1 | ECC_BrainPoolP256r1 | 11+ |
-| ECC | 256 | NID_brainpoolP256t1 | ECC_BrainPoolP256t1 | 11+ |
-| ECC | 320 | NID_brainpoolP320r1 | ECC_BrainPoolP320r1 | 11+ |
-| ECC | 320 | NID_brainpoolP320t1 | ECC_BrainPoolP320t1 | 11+ |
-| ECC | 384 | NID_brainpoolP384r1 | ECC_BrainPoolP384r1 | 11+ |
-| ECC | 384 | NID_brainpoolP384t1 | ECC_BrainPoolP384t1 | 11+ |
-| ECC | 512 | NID_brainpoolP512r1 | ECC_BrainPoolP512r1 | 11+ |
-| ECC | 512 | NID_brainpoolP512t1 | ECC_BrainPoolP512t1 | 11+ |
+| ECC | 224 | NID_secp224r1 | ECC224 | 9+ | 
+| ECC | 256 | NID_X9_62_prime256v1 | ECC256 | 9+ | 
+| ECC | 384 | NID_secp384r1 | ECC384 | 9+ | 
+| ECC | 521 | NID_secp521r1 | ECC521 | 9+ | 
+| ECC | 160 | NID_brainpoolP160r1 | ECC_BrainPoolP160r1 | 11+ | 
+| ECC | 160 | NID_brainpoolP160t1 | ECC_BrainPoolP160t1 | 11+ | 
+| ECC | 192 | NID_brainpoolP192r1 | ECC_BrainPoolP192r1 | 11+ | 
+| ECC | 192 | NID_brainpoolP192t1 | ECC_BrainPoolP192t1 | 11+ | 
+| ECC | 224 | NID_brainpoolP224r1 | ECC_BrainPoolP224r1 | 11+ | 
+| ECC | 224 | NID_brainpoolP224t1 | ECC_BrainPoolP224t1 | 11+ | 
+| ECC | 256 | NID_brainpoolP256r1 | ECC_BrainPoolP256r1 | 11+ | 
+| ECC | 256 | NID_brainpoolP256t1 | ECC_BrainPoolP256t1 | 11+ | 
+| ECC | 320 | NID_brainpoolP320r1 | ECC_BrainPoolP320r1 | 11+ | 
+| ECC | 320 | NID_brainpoolP320t1 | ECC_BrainPoolP320t1 | 11+ | 
+| ECC | 384 | NID_brainpoolP384r1 | ECC_BrainPoolP384r1 | 11+ | 
+| ECC | 384 | NID_brainpoolP384t1 | ECC_BrainPoolP384t1 | 11+ | 
+| ECC | 512 | NID_brainpoolP512r1 | ECC_BrainPoolP512r1 | 11+ | 
+| ECC | 512 | NID_brainpoolP512t1 | ECC_BrainPoolP512t1 | 11+ | 
+| ECC | 256 | NID_secp256k1 | ECC_Secp256k1 | 14+ | 
 
 > **NOTE**
 >
@@ -140,34 +138,31 @@ The following table illustrates the composition of the ECC key parameters.
 
 - √ indicates the property used to construct a key parameter.
 
-|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- | -------- |
-| fieldType | √ | √ | √ | √ |
-| p | √ | √ | √ | √ |
-| a | √ | √ | √ | √ |
-| b | √ | √ | √ | √ |
-| g | √ | √ | √ | √ |
-| n | √ | √ | √ | √ |
-| h | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
+| fieldType | √ | √ | √ | √ | 
+| p | √ | √ | √ | √ | 
+| a | √ | √ | √ | √ | 
+| b | √ | √ | √ | √ | 
+| g | √ | √ | √ | √ | 
+| n | √ | √ | √ | √ | 
+| h | √ | √ | √ | √ | 
+| pk | N/A | √ | N/A | √ | 
+| sk | N/A | N/A | √ | √ | 
 
 > **NOTE**
-> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute the property **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
+> - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
 > 
 > - **g** and **pk** are points of the [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) type on the ECC curve. You need to specify their X and Y coordinates.
-
 
 ### Curve Name
 
 Since API version 11, the ECC common parameter can be generated based on a curve name.
 
-
 > **NOTE**
 > - The curve name is a string parameter. For details about the supported curve names, see the **Curve Name** column in [ECC String Parameter](#string-parameter-1).
 > 
 > - The generated common parameter can be used to randomly generate public and private keys, or used to construct the public key parameter, private key parameter, or key pair parameter.
-
 
 ## DSA
 
@@ -177,23 +172,27 @@ A DSA key can be generated based on a string parameter or key parameters.
 
 ### Constraints
 
-It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
+
+Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
 
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the asymmetric key algorithm and key length.
 
-| Asymmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version|
+| Asymmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
-| DSA | 1024 | DSA1024 | 10+ |
-| DSA | 2048 | DSA2048 | 10+ |
-| DSA | 3072 | DSA3072 | 10+ |
+| DSA | 1024 | DSA1024 | 10+ | 
+| DSA | 2048 | DSA2048 | 10+ | 
+| DSA | 3072 | DSA3072 | 10+ | 
 
 > **NOTE**
 >
-> It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+> - It takes time to generate a DSA2048 or DSA3072 asymmetric key pair or when the plaintext length exceeds 2048 bits.
 >
-> If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
+> - Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+>
+> - If the created DSA asymmetric key generator is used to randomly generate keys, the specifications of the DSA keys generated are the same as the key specifications set when the key generator is created. If it is used to convert keys, the specifications of the DSA keys generated are the same as the key specifications set in key conversion parameters.
 
 ### Key Parameter
 
@@ -217,19 +216,18 @@ The following table illustrates the composition of the DSA key parameters.
 
 - x indicates that the property that cannot be used to construct a key parameter.
 
-|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- | -------- |
-| p | √ | √ | × | √ |
-| q | √ | √ | × | √ |
-| g | √ | √ | × | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | × | √ |
+| p | √ | √ | × | √ | 
+| q | √ | √ | × | √ | 
+| g | √ | √ | × | √ | 
+| pk | N/A | √ | N/A | √ | 
+| sk | N/A | N/A | × | √ | 
 
 > **NOTE**
 > - The DSA private key cannot be generated based on the private key parameter, which consists of **p**, **q**, **g**, and **sk**.
 > 
 > - When the common parameter (**p**, **q**, **g**) is used to generate a DSA key pair, the DSA key length must be at least 1024 bits.
-
 
 ## SM2
 
@@ -237,15 +235,13 @@ ShangMi 2 (SM2) is a public key cryptographic algorithm based on ECC. The SM2 al
 
 An SM2 key can be generated based on a string parameter or key parameters, and the common parameter can be generated based on the curve name.
 
-
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the asymmetric key algorithm and key length with an underscore (_) in between.
 
-| Asymmetric Key Algorithm| Key Length (Bit)| Curve Name| String Parameter| API Version|
+| Asymmetric Key Algorithm| Key Length (Bit)| Curve Name| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- | -------- |
-| SM2 | 256 | NID_sm2 | SM2_256 | 10+ |
-
+| SM2 | 256 | NID_sm2 | SM2_256 | 10+ | 
 
 ### Key Parameter
 
@@ -271,34 +267,31 @@ The following table illustrates the composition of the SM2 key parameters.
 
 - √ indicates the property used to construct a key parameter.
 
-|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- | -------- |
-| fieldType | √ | √ | √ | √ |
-| p | √ | √ | √ | √ |
-| a | √ | √ | √ | √ |
-| b | √ | √ | √ | √ |
-| g | √ | √ | √ | √ |
-| n | √ | √ | √ | √ |
-| h | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
+| fieldType | √ | √ | √ | √ | 
+| p | √ | √ | √ | √ | 
+| a | √ | √ | √ | √ | 
+| b | √ | √ | √ | √ | 
+| g | √ | √ | √ | √ | 
+| n | √ | √ | √ | √ | 
+| h | √ | √ | √ | √ | 
+| pk | N/A | √ | N/A | √ | 
+| sk | N/A | N/A | √ | √ | 
 
 > **NOTE**
 > - Currently, only the **Fp** field is supported. Therefore, **fieldType** has a fixed value of **Fp**. **fieldType** and **p** constitute **field**, which supports only [ECFieldFp](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecfieldfp10) currently.
 > 
 > - **g** and **pk** are points of the [Point](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#point10) type on the SM2 curve. You need to specify their X and Y coordinates.
 
-
 ### Curve Name
 
 Since API version 11, the SM2 common parameter can be generated based on a curve name.
-
 
 > **NOTE**
 > - The curve name is a string parameter. The supported curve name is **NID_sm2**.
 > 
 > - The generated common parameter can be used to randomly generate public and private keys, or used to construct the public key parameter, private key parameter, or key pair parameter.
-
 
 ## Ed25519
 
@@ -306,15 +299,13 @@ Ed25519 is a digital signature algorithm based on EdDSA. The key is of 256 bits 
 
 An Ed25519 key can be generated based on a string parameter or key parameters.
 
-
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter.
 
-| Asymmetric Key Algorithm| String Parameter| API Version|
+| Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |
-| Ed25519 | Ed25519 | 11+ |
-
+| Ed25519 | Ed25519 | 11+ | 
 
 ### Key Parameter
 
@@ -330,14 +321,14 @@ The following table illustrates the composition of the Ed25519 key parameters.
 
 - √ indicates the property used to construct a key parameter.
 
-|  | Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- |
-| pk | √ | - | √ |
-| sk | - | √ | √ |
+| pk | √ | N/A | √ | 
+| sk | N/A | √ | √ | 
 
 > **NOTE**
+>
 > Ed25519 does not have the common parameter.
-
 
 ## X25519
 
@@ -345,15 +336,13 @@ X25519 is a Diffie-Hellman key exchange algorithm used for key agreement.
 
 An X25519 key can be generated based on a string parameter or key parameters.
 
-
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter.
 
-| Asymmetric Key Algorithm| String Parameter| API Version|
+| Asymmetric Key Algorithm| String Parameter| API Version| 
 | -------- | -------- | -------- |
-| X25519 | X25519 | 11+ |
-
+| X25519 | X25519 | 11+ | 
 
 ### Key Parameter
 
@@ -369,14 +358,14 @@ The following table illustrates the composition of the X25519 key parameters.
 
 - √ indicates the property used to construct a key parameter.
 
-|  | Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- |
-| pk | √ | - | √ |
-| sk | - | √ | √ |
+| pk | √ | N/A | √ | 
+| sk | N/A | √ | √ | 
 
 > **NOTE**
+>
 > X25519 does not have the common parameter.
-
 
 ## DH
 
@@ -384,24 +373,23 @@ Diffie–Hellman key exchange (DH) is a key agreement algorithm used to exchange
 
 A DH key can be generated based on a string parameter or key parameters, and the common parameter can be generated based on the prime length and private key length.
 
-
 ### String Parameter
 
 When creating an asymmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the asymmetric key algorithm and named DH group with an underscore (_) in between.
 
-| Asymmetric Key Algorithm| Named DH Group| Key Length (Bit)| String Parameter| API Version|
+| Asymmetric Key Algorithm| Named DH Group| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- | -------- |
-| DH | modp1536 | 1536 | DH_modp1536 | 11+ |
-| DH | modp2048 | 2048 | DH_modp2048 | 11+ |
-| DH | modp3072 | 3072 | DH_modp3072 | 11+ |
-| DH | modp4096 | 4096 | DH_modp4096 | 11+ |
-| DH | modp6144 | 6144 | DH_modp6144 | 11+ |
-| DH | modp8192 | 8192 | DH_modp8192 | 11+ |
-| DH | ffdhe2048 | 2048 | DH_ffdhe2048 | 11+ |
-| DH | ffdhe3072 | 3072 | DH_ffdhe3072 | 11+ |
-| DH | ffdhe4096 | 4096 | DH_ffdhe4096 | 11+ |
-| DH | ffdhe6144 | 6144 | DH_ffdhe6144 | 11+ |
-| DH | ffdhe8192 | 8192 | DH_ffdhe8192 | 11+ |
+| DH | modp1536 | 1536 | DH_modp1536 | 11+ | 
+| DH | modp2048 | 2048 | DH_modp2048 | 11+ | 
+| DH | modp3072 | 3072 | DH_modp3072 | 11+ | 
+| DH | modp4096 | 4096 | DH_modp4096 | 11+ | 
+| DH | modp6144 | 6144 | DH_modp6144 | 11+ | 
+| DH | modp8192 | 8192 | DH_modp8192 | 11+ | 
+| DH | ffdhe2048 | 2048 | DH_ffdhe2048 | 11+ | 
+| DH | ffdhe3072 | 3072 | DH_ffdhe3072 | 11+ | 
+| DH | ffdhe4096 | 4096 | DH_ffdhe4096 | 11+ | 
+| DH | ffdhe6144 | 6144 | DH_ffdhe6144 | 11+ | 
+| DH | ffdhe8192 | 8192 | DH_ffdhe8192 | 11+ | 
 
 > **NOTE**
 >
@@ -427,14 +415,13 @@ The following table illustrates the composition of the DH key parameters.
 
 - √ indicates the property used to construct a key parameter.
 
-|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter|
+|  | Common Parameter| Public Key Parameter| Private Key Parameter| Key Pair Parameter| 
 | -------- | -------- | -------- | -------- | -------- |
-| p | √ | √ | √ | √ |
-| g | √ | √ | √ | √ |
-| l | √ | √ | √ | √ |
-| pk | - | √ | - | √ |
-| sk | - | - | √ | √ |
-
+| p | √ | √ | √ | √ | 
+| g | √ | √ | √ | √ | 
+| l | √ | √ | √ | √ | 
+| pk | N/A | √ | N/A | √ | 
+| sk | N/A | N/A | √ | √ | 
 
 ### Common Parameter Generated Based on the Prime Length and Private Key Length
 
@@ -442,13 +429,13 @@ Since API version 11, the DH common parameter can be generated based on the prim
 
 If the prime length is the same as that of the DH group, the DH group is used. The following table lists the mappings between the prime lengths and DH groups.
 
-| Prime Length (Bit)| Named DH Group|
+| Prime Length (Bit)| Named DH Group| 
 | -------- | -------- |
-| 2048 | ffdhe2048 |
-| 3072 | ffdhe3072 |
-| 4096 | ffdhe4096 |
-| 6144 | ffdhe6144 |
-| 8192 | ffdhe8192 |
+| 2048 | ffdhe2048 | 
+| 3072 | ffdhe3072 | 
+| 4096 | ffdhe4096 | 
+| 6144 | ffdhe6144 | 
+| 8192 | ffdhe8192 | 
 
 - The number of bits for **p** must be greater than or equal to 512 and less than or equal to 10000.
 

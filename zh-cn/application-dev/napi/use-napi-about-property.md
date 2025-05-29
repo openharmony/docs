@@ -45,7 +45,7 @@ cpp部分代码
 
 static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 {
-    // 将obj作为参数传入
+    // 解析ArkTS的传参
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -70,8 +70,8 @@ export const getPropertyNames: (obj: Object) => Array<string> | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -90,29 +90,31 @@ try {
 
 ### napi_set_property
 
-将给定的属性与值设置入给定的Object
+将给定的属性与值设置入给定的Object。
 
 cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // 入参索引
+
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
-    // 接收ArkTS侧传入的三个参数：第一个参数为想要设置的object第二个参数为属性，第三个参数为属性对应的值
+    // 接收ArkTS侧传入的三个参数：第一个参数为想要设置的object，第二个参数为属性，第三个参数为属性对应的值
     size_t argc = 3;
     napi_value args[3] = {nullptr};
     napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
     }
-    // 通过调用napi_set_property接口将属性与值设置入object如果失败，直接抛出错误
-    status = napi_set_property(env, args[0], args[1], args[2]);
+    // 通过调用napi_set_property接口将属性与值设置入object，如果失败，直接抛出错误
+    status = napi_set_property(env, args[0], args[1], args[INT_ARG_2]);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_set_property fail");
         return nullptr;
     }
-    // 将设置成功后的object返回出去
+    // 返回设置成功的object对象
     return args[0];
 }
 ```
@@ -127,8 +129,8 @@ export const setProperty: (obj: Object, key: String, value: string) => Object | 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -144,7 +146,7 @@ try {
 
 ### napi_get_property
 
-获取给定Object的给定属性对应的值
+获取object指定的属性的值。
 
 cpp部分代码
 
@@ -178,8 +180,8 @@ export const getProperty: (obj: Object, key: string) => string | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -194,7 +196,7 @@ try {
 
 ### napi_has_property
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误
+检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
 
 cpp部分代码
 
@@ -217,9 +219,9 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
     }
 
     // 若传入属性存在传入对象中，则输出true将结果转化为napi_value类型抛出
-    napi_value returnReslut;
-    napi_get_boolean(env, result, &returnReslut);
-    return returnReslut;
+    napi_value returnResult;
+    napi_get_boolean(env, result, &returnResult);
+    return returnResult;
 }
 ```
 
@@ -233,8 +235,8 @@ export const hasProperty: (obj: Object, key: number | string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -298,8 +300,8 @@ export const deleteProperty: (obj: Object, key:string) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   first: number = 0;
 }
@@ -367,8 +369,8 @@ export const napiHasOwnProperty: (obj: Object, key:string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let myObj = { 'myProperty': 1 };
 let inheritedObj = { 'inheritedProperty': 2 };
@@ -426,8 +428,8 @@ export const napiSetNamedProperty: (key: string) => Object | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let obj = testNapi.napiSetNamedProperty('myProperty');
 let objAsString = JSON.stringify(obj);
@@ -476,8 +478,8 @@ export const napiGetNamedProperty: (obj: Object, key:string) => boolean | number
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 interface NestedObj {
   nestedStr: string;
@@ -544,8 +546,8 @@ export const napiHasNamedProperty: (obj: Object, key:string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 interface NestedObj {
   nestedStr: string;
   nestedNum: number;
@@ -600,10 +602,13 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     napi_value argv[1] = {nullptr};
     napi_value result;
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    std::string buf;
-    size_t length;
-    napi_get_value_string_utf8(env, argv[0], (char *)buf.c_str(), NAPI_AUTO_LENGTH, &length);
-    napi_create_string_utf8(env, buf.c_str(), length, &result);
+    size_t length = 0;
+    napi_get_value_string_utf8(env, argv[0], nullptr, 0, &length);
+    char* buf = new char[length + 1];
+    std::memset(buf, 0, length + 1);
+    napi_get_value_string_utf8(env, argv[0], buf, length + 1, &length);
+    napi_create_string_utf8(env, buf, length, &result);
+    delete buf;
     return result;
 }
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)
@@ -670,8 +675,8 @@ export const createStringWithGetterSetter: () => DefineGetterSetterObj;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 // 定义method类型的属性
 hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d', testNapi.defineMethodProperties()
   .defineMethodPropertiesExample());
@@ -687,7 +692,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.crea
 
 ### napi_get_all_property_names
 
-用于在传入的ArkTS对象上设置一个命名属性。
+用于获取传入的ArkTS对象的所有属性名。
 
 cpp部分代码
 
@@ -725,8 +730,8 @@ export const getAllPropertyNames : (obj: Object) => Array<string> | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0

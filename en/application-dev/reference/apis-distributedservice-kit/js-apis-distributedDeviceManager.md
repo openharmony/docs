@@ -5,23 +5,20 @@ The **distributedDeviceManager** module provides APIs for distributed device man
 Applications can call the APIs to:
 
 - Subscribe to or unsubscribe from device state changes.
-- Discover untrusted devices nearby.
+- Discover devices nearby.
 - Authenticate or deauthenticate a device.
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
 
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
-
 
 ## distributedDeviceManager.createDeviceManager
 
@@ -33,21 +30,21 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory | Description                                                       |
+| Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name of the application.                                 |
+| bundleName | string                                               | Yes  | Bundle name of the application. The value is a string of 1 to 255 characters. |
 
 **Return value**
 
   | Type                                       | Description       |
   | ------------------------------------------- | --------- |
-  | [DeviceManager](#devicemanager) | **DeviceManager** instance created. |
+  | [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
@@ -71,13 +68,11 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 Releases a **DeviceManager** instance that is no longer used.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory | Description                               |
+| Name    | Type                                                | Mandatory| Description                               |
 | ---------- | ---------------------------------------------------- | ---- | --------------------------------- |
 | deviceManager | [DeviceManager](#devicemanager)    | Yes  | **DeviceManager** instance to release.                                 |
 
@@ -85,9 +80,8 @@ Releases a **DeviceManager** instance that is no longer used.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -112,13 +106,11 @@ Represents the basic information about a distributed device.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-**Parameters**
-
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
+| deviceId               | string                    | Yes   | Device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.|
 | deviceName             | string                    | Yes   | Device name.   |
-| deviceType             | string                    | Yes   | Device type.   |
+| deviceType             | string                    | Yes   | [Device type](#getdevicetype).   |
 | networkId              | string                    | No   | Network ID of the device. |
 
 ## DeviceStateChange
@@ -127,14 +119,11 @@ Enumerates the device states.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-**Parameters**
-
 | Name        | Value | Description             |
 | ----------- | ---- | --------------- |
 | UNKNOWN     | 0    | The device state is unknown after the device goes online. Before the device state changes to available, distributed services cannot be used.          |
-| AVAILABLE   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services. |
+| AVAILABLE   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
 | UNAVAILABLE | 2    | The device goes offline, and the device state is unknown.          |
-
 
 ## DeviceManager
 
@@ -154,21 +143,21 @@ Obtains all trusted devices synchronously.
 
   | Type                                       | Description       |
   | ------------------------------------------- | --------- |
-  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained. |
+  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -195,20 +184,21 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
   | Name      | Type                                    | Mandatory  | Description                   |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices. |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -241,20 +231,21 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
   | Type                                                      | Description                              |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result. |
+  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -280,20 +271,21 @@ Obtains the network ID of the local device.
 
   | Type                     | Description             |
   | ------------------------- | ---------------- |
-  | string | Network ID of the local device obtained. |
+  | string | Network ID of the local device obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -320,20 +312,21 @@ Obtains the local device name.
 
   | Type                     | Description             |
   | ------------------------- | ---------------- |
-  | string                    | Name of the local device obtained. |
+  | string                    | Name of the local device obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -366,14 +359,15 @@ Obtains the local device type.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -390,7 +384,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 getLocalDeviceId(): string;
 
-Obtains the local device ID.
+Obtains the local device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -400,20 +394,21 @@ Obtains the local device ID.
 
   | Type                     | Description             |
   | ------------------------- | ---------------- |
-  | string                    | Local device ID obtained. |
+  | string                    | Local device ID obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -440,19 +435,19 @@ Obtains the device name based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device. |
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
   | Type                     | Description             |
   | ------------------------- | ---------------- |
-  | string                    | Device name obtained. |
+  | string                    | Device name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
@@ -460,7 +455,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -489,7 +485,7 @@ Obtains the device type based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device. |
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
@@ -501,7 +497,7 @@ Obtains the device type based on the network ID of the specified device.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
@@ -509,7 +505,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -528,7 +525,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
-Starts to discover devices nearby. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
+Starts to discover devices nearby. The discovery process takes 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -545,7 +542,7 @@ Starts to discover devices nearby. The discovery process lasts 2 minutes. A maxi
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -554,7 +551,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -598,16 +596,15 @@ Stops device discovery.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery unavailable.                                          |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -633,15 +630,15 @@ Binds a device.
 
   | Name    | Type                                               | Mandatory | Description        |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-| deviceId   | string                                              | Yes   | ID of the device to bind.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pairs to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory. The values **2**, **3**, and **4** are embedded and are not supported currently.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the device to bind.<br>**appName**: application that attempts to bind the device.<br>**appOperation**: reason for the application to bind the device.<br>**customDescription**: detailed description of the operation.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result. |
+  | deviceId   | string                                              | Yes   | Device ID. The value is a string of 1 to 255 characters.  |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory.<br>The value **1** means PIN authentication.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                        |
+| ID| Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
@@ -650,7 +647,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -694,15 +692,15 @@ Unbinds a device.
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory | Description      |
+  | Name  | Type                     | Mandatory| Description      |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | Yes  | Device ID. |
+  | deviceId | string                    | Yes  | Device ID. The value is a string of 1 to 255 characters.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
@@ -710,7 +708,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -737,21 +736,22 @@ Subscribes to the device state changes. The application (identified by the bundl
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes. |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -791,20 +791,21 @@ Unsubscribes from the device state changes.
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -843,21 +844,22 @@ Subscribes to the **'discoverSuccess'** event. The application will be notified 
 
   | Name      | Type                                    | Mandatory  | Description                        |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.|
   | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -896,13 +898,13 @@ Unsubscribes from the **'discoverSuccess'** event.
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -946,21 +948,22 @@ Subscribes to device name changes. The application will be notified when the nam
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | Yes   | Callback used to return the device name change.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -992,21 +995,22 @@ Unsubscribes from the device name changes.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | No   | Callback to unregister.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1038,21 +1042,22 @@ Subscribes to the **'discoverFailure'** event. The application will be notified 
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.|
   | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1085,20 +1090,21 @@ Unsubscribes from the **'discoverFailure'** event.
   | Name      | Type                                    | Mandatory  | Description               |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1130,21 +1136,22 @@ Subscribes to the dead events of the **DeviceManager** service. The application 
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**. |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
   | callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1172,21 +1179,22 @@ Unsubscribes from the dead events of the **DeviceManager** service.
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**. |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
   | callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

@@ -92,7 +92,25 @@ The number of connections reaches the limit.
 
 **Solution**
 
-Check whether the number of paired devices reaches the threshold.
+Check whether the number of paired devices exceeds the threshold.
+
+## 2900007
+
+**Error Message**
+
+Asynchronous interface invoking timeout.
+
+**Description**
+
+The asynchronous call timed out.
+
+**Possible Causes**
+
+The remote device does not respond.
+
+**Solution**
+
+Try again after the timeout. If the local and remote devices are connected, disconnect them and try again.
 
 ## 2900008
 
@@ -111,6 +129,24 @@ The device pairing fails.
 **Solution**
 
 Turn on Bluetooth again to start the pairing process.
+
+## 2900010
+
+**Error Message**
+
+Resources have reached the upper limit.
+
+**Description**
+
+This error code is reported if resource usage reaches the upper limit.
+
+**Possible Causes**
+
+The application applies for too many resources.
+
+**Solution**
+
+Call the corresponding API to release resources.
 
 ## 2900099
 
@@ -164,7 +200,7 @@ The caller does not have the read permission.
 
 **Solution**
 
-Check that the caller has the read permission.
+Check whether the caller has the read permission.
 
 ## 2901001
 
@@ -182,7 +218,7 @@ The caller does not have the write permission.
 
 **Solution**
 
-Check that the caller has the write permission.
+Check whether the caller has the write permission.
 
 ## 2901054
 
@@ -200,4 +236,22 @@ The I/O transmission is abnormal.
 
 **Solution**
 
-Perform the operation again.
+Perform this operation again.
+
+## 2902050
+
+**Error Message**
+
+Failed to start scan as Ble scan is already started by the app.
+
+**Description**
+
+This error code is reported if the attempt to enable scanning fails.
+
+**Possible Causes**
+
+BLE scanning has been enabled.
+
+**Solution**
+
+Check whether scanning is enabled.

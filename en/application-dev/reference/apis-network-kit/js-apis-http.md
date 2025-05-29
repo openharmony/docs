@@ -5,8 +5,6 @@ The **http** module provides APIs for implementing HTTP data request capabilitie
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> **You are advised to use Remote Communication Kit for implementing HTTP data request capabilities. The Kit will continue to evolve to provide more functions.**
 ## Modules to Import
 
 ```ts
@@ -22,13 +20,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
-// This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
+// This API is used to listen for HTTP Response Header events, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP response header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 
-httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+httpRequest.request(// Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
@@ -58,7 +56,7 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
         publicKeyHash: 'Pin2', // Certificate PIN passed by the application. This attribute is supported since API version 12.
         hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
       }
-    ]
+    ],
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -73,6 +71,7 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
     ]
+    addressFamily: http.AddressFamily.DEFAULT // Optional. By default, the IPv4 or IPv6 address of the target domain name is selected. This attribute is supported since API version 15.
   },
   (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
@@ -190,10 +189,12 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -222,7 +223,9 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API supports only receiving of data not greater than 5 MB.
+> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -272,10 +275,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -327,7 +332,9 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
 > **NOTE**
-> This API supports only receiving of data not greater than 5 MB.
+> This API can receive only data whose size is less than 5 MB. If the data size exceeds 5 MB, you need to set **maxLimit** to a larger value in **HttpRequestOptions**.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -382,10 +389,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -491,10 +500,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -565,10 +576,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -666,10 +679,12 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -737,9 +752,9 @@ Unregisters the observer for HTTP Response Header events.
 
 > **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#offheadersreceive8).
+>- This API has been deprecated. You are advised to use [off("headersReceive")<sup>8+</sup>](#offheadersreceive8).
 >
->2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+>- You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -852,9 +867,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -912,9 +924,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -966,14 +975,11 @@ httpRequest.on("dataEnd", () => {
 httpRequest.off("dataEnd");
 ```
 
-### on("dataReceiveProgress")<sup>10+</sup>
+### on('dataReceiveProgress')<sup>10+</sup>
 
-on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
+on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
-
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -996,9 +1002,9 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### off("dataReceiveProgress")<sup>10+</sup>
+### off('dataReceiveProgress')<sup>10+</sup>
 
-off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>): void
+off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -1026,11 +1032,13 @@ httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
 httpRequest.off("dataReceiveProgress");
 ```
 
-### on("dataSendProgress")<sup>11+</sup>
+### on('dataSendProgress')<sup>11+</sup>
 
-on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
+on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 
 Registers an observer for events indicating progress of sending HTTP requests.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1053,14 +1061,16 @@ httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
 httpRequest.off("dataSendProgress");
 ```
 
-### off("dataSendProgress")<sup>11+</sup>
+### off('dataSendProgress')<sup>11+</sup>
 
-off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
+off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 
 Unregisters the observer for events indicating progress of sending HTTP requests.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1092,24 +1102,28 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
-| extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding (encodeURIComponent/encodeURI) and this field is usually in the String format. If **content-Type** is **text/xml**, this field is usually in the String format. If **content-Type** is **application/json**, this field is usually in the Object format. If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| extraData      | string \| Object \| ArrayBuffer | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format.<br>(1) If **content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding (**encodeURIComponent/encodeURI**) and this field is usually in the String format.<br>(2) If **content-Type** is **text/xml**, this field is usually in the String format.<br>(3) If **content-Type** is **application/json**, this field is usually in the Object format.<br>(4) If **content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format.<br>(5) If **content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format.<br>The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
-| usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
-| resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
-| resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.<br>The preset CA certificate is available at **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
+| resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
+| resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. As stipulated in section 3.1 of RFC 7233, servers are allowed to ignore range requests.<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No| Client certificate.|
-| dnsOverHttps<sup>11+</sup> | string | No| DNS resolution for a server that uses the HTTPS protocol.<br>The value must be URL-encoded in the following format: "https://host:port/path".|
+| dnsOverHttps<sup>11+</sup> | string | No| DNS resolution for a server that uses the HTTPS protocol.<br>- The value must be URL-encoded in the following format: "https://host:port/path".|
 | dnsServers<sup>11+</sup> | Array\<string\> | No| Array of DNS servers used for DNS resolution.<br>- You can set a maximum of three DNS servers. If there are more than three DNS servers, only the first three DNS servers are used.<br>- The DNS servers must be expressed as IPv4 or IPv6 addresses.|
-| maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is **5\*1024\*1024**. The maximum value is **100\*1024\*1024**. |
+| maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is 5\*1024\*1024, in bytes. The maximum value is **100\*1024\*1024**. |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
+| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | No| IP address family. You can specify an address type for domain name resolution.|
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | No| Certificate authority (CA), which is used to verify the identity of a remote server. If the parameter is not set, the default value is used. The options are as follows:<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | No| TLS configuration.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | No| Indicates whether to verify the server identity during a secure connection. The identity is not verified by default.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## RequestMethod
 
@@ -1121,14 +1135,14 @@ Defines an HTTP request method.
 
 | Name   | Value     | Description               |
 | :------ | ------- | :------------------ |
-| OPTIONS | "OPTIONS" | OPTIONS method.|
-| GET     | "GET"     | GET method.    |
-| HEAD    | "HEAD"    | HEAD method.   |
-| POST    | "POST"    | POST method.   |
-| PUT     | "PUT"     | PUT method.    |
-| DELETE  | "DELETE"  | DELETE method. |
-| TRACE   | "TRACE"   | TRACE method.  |
-| CONNECT | "CONNECT" | CONNECT method.|
+| OPTIONS | "OPTIONS" | Describes the communication options of the target resource.|
+| GET     | "GET"     | Requests the representation of the specified resource. The GET request should only retrieve data and should not contain the request content.|
+| HEAD    | "HEAD"    | Requests the same response (but does not have a response body) as the GET request.|
+| POST    | "POST"    | Submits an entity to a specified resource, which usually causes a status change on the server.|
+| PUT     | "PUT"     | Replaces all current representations of the target resource with the requested content.|
+| DELETE  | "DELETE"  | Deletes the specified resource.|
+| TRACE   | "TRACE"   | Performs a message loopback test along the path to the target resource.|
+| CONNECT | "CONNECT" | Establishes a tunnel to the server identified by the target resource.|
 
 ## ResponseCode
 
@@ -1138,9 +1152,9 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                           |
+| OK                | 200  | The request is successful. This return code is generally used for GET and POST requests.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| ACCEPTED          | 202  | "Accepted." The request has been accepted for processing, but the processing has not been completed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
 | NO_CONTENT        | 204  | "No Content." The server has successfully fulfilled the request but there is no additional content to send in the response payload body.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                      |
 | RESET             | 205  | "Reset Content." The server has successfully fulfilled the request and desires that the user agent reset the content.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
@@ -1153,7 +1167,7 @@ Enumerates the response codes for an HTTP request.
 | USE_PROXY         | 305  | "Use Proxy." The requested resource can only be accessed through the proxy.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
 | BAD_REQUEST       | 400  | "Bad Request." The request could not be understood by the server due to incorrect syntax. <br>**Atomic service API**: This API can be used in atomic services since API version 11.                      |
 | UNAUTHORIZED      | 401  | "Unauthorized." The request requires user authentication.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                    |
-| PAYMENT_REQUIRED  | 402  | "Payment Required." This code is reserved for future use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                            |
+| PAYMENT_REQUIRED  | 402  |  "Payment Required." This code is reserved for future use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                            |
 | FORBIDDEN         | 403  | "Forbidden." The server understands the request but refuses to process it.<br>**Atomic service API**: This API can be used in atomic services since API version 11.            |
 | NOT_FOUND         | 404  | "Not Found." The server does not find anything matching the Request-URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
 | BAD_METHOD        | 405  | "Method Not Allowed." The method specified in the request is not allowed for the resource identified by the Request-URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                  |
@@ -1186,8 +1200,8 @@ Defines the response to an HTTP request.
 | result               | string \| Object \| ArrayBuffer | Yes  | Response content returned based on **Content-type** in the response header. If **HttpRequestOptions** does not contain the **expectDataType** field, the response content is returned according to the following rules:<br>- application/json: string in JSON format<br>- application/octet-stream: ArrayBuffer<br>- image: ArrayBuffer<br>- Others: string<br> If **HttpRequestOptions** contains the **expectDataType** field, the response content must be of the same type as the data returned by the server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cookies<sup>8+</sup> | string                                       | Yes  | Cookies returned by the server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
+| header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type']<br>- status-line: header['status-line']<br>- date: header.date/header['date']<br>- server: header.server/header['server']<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cookies<sup>8+</sup> | string                                       | Yes  | Original cookies returned by the server. How to process the cookies is up to your decision.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | Yes| Time consumed in each phase of an HTTP request.|
 
 ## ClientCert<sup>11+</sup>
@@ -1236,6 +1250,8 @@ Defines the data receiving progress information.
 ## DataSendProgressInfo<sup>11+</sup>
 
 Defines the data sending progress information.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1312,23 +1328,23 @@ When using these keywords, ensure that the response header is correctly configur
 
 `Cache-Control` is a common header, but it is usually used on the server. It allows you to define when, how, and how long a response should be cached. The following are some common `Cache-Control` directives:
 
-1. **`no-cache`**: indicates that the response can be stored in the cache, but it must be verified with the origin server before each reuse. If the resource remains unchanged, the response status code is 304 (Not Modified). In this case, the resource content is not sent, and the resource in the cache is used. If the resource has expired, the response status code is 200 and the resource content is sent.
+- **`no-cache`**: indicates that the response can be stored in the cache, but it must be verified with the origin server before each reuse. If the resource remains unchanged, the response status code is 304 (Not Modified). In this case, the resource content is not sent, and the resource in the cache is used. If the resource has expired, the response status code is 200 and the resource content is sent.
 
-2. **`no-store`**: indicates that resources cannot be cached. Resources must be obtained from the server for each request.
+- `no-store`: indicates that resources cannot be cached. Resources must be obtained from the server for each request.
 
-3. **`max-age`**: specifies the maximum cache duration, in seconds. For example, `Cache-Control: max-age=3600` indicates that the valid cache duration is 3,600 seconds (that is, 1 hour).
+- `max-age`: specifies the maximum cache duration, in seconds. For example, `Cache-Control: max-age=3600` indicates that the valid cache duration is 3,600 seconds (that is, 1 hour).
 
-4. **`public`**: indicates that the response can be cached by any object, for example, the client that sends the request or the proxy server.
+- `public`: indicates that the response can be cached by any object, for example, the client that sends the request or the proxy server.
 
-5. **`private`**: indicates that the response can be cached only by a single user and cannot be used as a shared cache (that is, the response cannot be cached by the proxy server).
+- `private`: indicates that the response can be cached only by a single user and cannot be used as a shared cache (that is, the response cannot be cached by the proxy server).
 
-6. **`must-revalidate`**: indicates that the response can be cached and can only be reused 
+- `must-revalidate`: indicates that a resource must be revalidated with the origin server once it has become stable.
 
-7. **`no-transform`**: indicates that the proxy server is not allowed to modify the response content.
+- **`no-transform`**: indicates that the proxy server is not allowed to modify the response content.
 
-8. **`proxy-revalidate`**: works in a way similar to `must-revalidate`, but applies only to shared caches.
+- **`proxy-revalidate`**: works in a way similar to `must-revalidate`, but applies only to shared caches.
 
-9. **`s-maxage`**: works in a way similar to `max-age`, but applies only to shared caches.
+- **`s-maxage`**: works in a way similar to `max-age`, but applies only to shared caches.
 
 ### flush<sup>9+</sup>
 
@@ -1344,7 +1360,7 @@ Flushes data in the cache to the file system so that the cached data can be acce
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1422,7 +1438,7 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1506,11 +1522,11 @@ Enumerates HTTP protocol versions.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name | Description    |
-| :-------- | :----------- |
-| HTTP1_1   |  HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| HTTP2     |  HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| HTTP3<sup>11+</sup> | HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
+| Name |   Value  | Description    |
+| :-------- | :----------- | :----------- |
+| HTTP1_1   |   0   |  HTTP1.1<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| HTTP2     |   1   |  HTTP2<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| HTTP3<sup>11+</sup> |  2  | HTTP3 protocol. If the system or server does not support HTTP3, the HTTP protocol of an earlier version is used.<br>This field is valid only for HTTPS URLs. For HTTP URLs, the request fails.|
 
 ## CertType<sup>11+</sup>
 
@@ -1530,7 +1546,284 @@ Defines the dynamic configuration of certificate pinning.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-|  Name |  Type |   Description    |
-| ------------------  | -- | ----------- |
-| publicKeyHash       | string | Certificate PIN of the string type.|
-| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|
+|  Name |  Type |  Mandatory |Description    |
+| ------------------  |---- |-- | ----------- |
+| publicKeyHash       | string | Yes|Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' |  Yes |Encryption algorithm. Currently, only SHA-256 is supported.|
+
+## HttpProxy<sup>10+</sup>
+
+type HttpProxy = connection.HttpProxy
+
+Defines the network proxy configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.HttpProxy | Network proxy configuration.    |
+
+## AddressFamily<sup>15+</sup>
+
+Enumerates the address types for domain name resolution.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Name      |            Description            |
+| ---------------- | --------------------------- |
+| DEFAULT | Automatically selects the IPv4 or IPv6 address of the target domain name.    |
+| ONLY_V4 | Resolves only the IPv4 address of the target domain name and ignores the IPv6 address.    |
+| ONLY_V6 | Resolves only the IPv6 address of the target domain name and ignores the IPv4 address.    |
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Certificate authority (CA), which is used to verify the identity of a remote server. You can configure **RemoteValidation** to use the system CA or skip CA verification.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description           |
+| ---------------- |---------------|
+| 'system' | Use of the system CA for verification.|
+| 'skip' | Skipping of CA verification. |
+
+## Credential<sup>18+</sup>
+
+Represents the credential used for server identity verification in a session, including the user name and password.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name |  Type |  Read Only | Optional |Description    |
+| ------------------  |---- |-- | -- |----------- |
+| username       | string | No|No|User name used for verification. The default value is **''**.|
+| password        | string |  No |No|Password used for verification. The default value is **''**.|
+
+## ServerAuthentication<sup>18+</sup>
+
+Defines HTTP server identity verification information.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                                           | Read Only   |    Optional    |Description    |
+| ------------------  |-------------------------------------------------|-------- |------------ |---------------|
+| credential          | [Credential](#credential18)                     | No     | No        |Server credential. The default value is **undefined**.    |
+| authenticationType  | [AuthenticationType](#authenticationtype18)     | No     | Yes       | Server identity verification type. If the type is not set, negotiation with the server is required.    |
+
+
+## TlsConfig<sup>18+</sup>
+
+Defines the the TLS configuration, including the version and cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name              |  Type                           | Read Only   |    Optional    |Description    |
+| ------------------  |---------------------------------|-------- |-------- |---------------|
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | No     |No      | Earliest TLS version.    |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)    | No     |No      | Latest TLS version.    |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] | No     |Yes      | Array of cipher suite types.|
+
+## TlsVersion<sup>18+</sup>
+
+Enumerates TLS versions.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name       | Value| Description        |
+|:----------|:--|:-----------|
+| TLS_V_1_0 | 4 | TLS version 1.0.|
+| TLS_V_1_1 | 5 | TLS version 1.1.|
+| TLS_V_1_2 | 6 | TLS version 1.2.|
+| TLS_V_1_3 | 7 | TLS version 1.3.|
+
+## TlsOptions<sup>18+</sup>
+
+type TlsOptions = 'system' | TlsConfig
+
+Defines the TLS configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | TLS version of the system. This field is defaulted to **system** when the value is not set.|
+| TlsOptions | Custom TLS version and cipher suites.|
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+Enumerates the identity verification modes of the remote server.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Type                        | Description                                                                                |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | Use of the system CA. This field is defaulted to **system** when the value is not set.|
+| 'skip'   | Skipping of CA verification. This field has a fixed value of **skip**.|
+
+## AuthenticationType<sup>18+</sup>
+
+type AuthenticationType = 'basic' | 'ntlm' | 'digest'
+
+Enumerates server authentication modes in a session.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|Type                         | Description                                                                                                |
+|-------------------------------|----------------------------------------------------------------------------------------------------|
+| 'basic'  | Basic authentication mode. This field has a fixed value of **basic**.|
+| 'ntlm'   | NTLM authentication mode. This field has a fixed value of **ntlm**.|
+| 'digest' | Digest authentication mode. This field has a fixed value of **digest**.|
+
+## CipherSuite<sup>18+</sup>
+
+type CipherSuite = TlsV13CipherSuite
+
+Declares the cipher suite.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV13CipherSuite | Cipher suite defined in [TlsV13CipherSuite](#tlsv13ciphersuite18).                |
+
+## TlsV13CipherSuite<sup>18+</sup>
+
+type TlsV13CipherSuite = TlsV12CipherSuite | TlsV13SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.3, which is also compatible with TLS 1.2.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV12CipherSuite | [TlsV12CipherSuite](#tlsv12ciphersuite18).                |
+| TlsV13SpecificCipherSuite | [TlsV13SpecificCipherSuite](#tlsv13specificciphersuite18).|
+
+## TlsV12CipherSuite<sup>18+</sup>
+
+type TlsV12CipherSuite = TlsV11CipherSuite | TlsV12SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.2, which is also compatible with TLS 1.1.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV11CipherSuite | [TlsV11CipherSuite](#tlsv11ciphersuite18).                |
+| TlsV12SpecificCipherSuite | [TlsV12SpecificCipherSuite](#tlsv12specificciphersuite18).|
+
+## TlsV11CipherSuite<sup>18+</sup>
+
+type TlsV11CipherSuite = TlsV10CipherSuite
+
+Declares the cipher suite for TLS 1.1, which is the same as that for TLS1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                               |
+| ---------------- |---------------------------------------------------|
+| TlsV10CipherSuite | [TlsV10CipherSuite](#tlsv10ciphersuite18).|
+
+## TlsV10CipherSuite<sup>18+</sup>
+
+type TlsV10CipherSuite = TlsV10SpecificCipherSuite
+
+Declares the cipher suite for TLS 1.0.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description                                                               |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV10SpecificCipherSuite | [TlsV10SpecificCipherSuite](#tlsv10specificciphersuite18).|
+
+## TlsV13SpecificCipherSuite<sup>18+</sup>
+
+type TlsV13SpecificCipherSuite = 'TLS_AES_128_GCM_SHA256' | 'TLS_AES_256_GCM_SHA384' | 'TLS_CHACHA20_POLY1305_SHA256'
+
+Enumerates cipher suites supported by TLS 1.3 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_AES_128_GCM_SHA256' | Supported cipher suite: TLS_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_AES_256_GCM_SHA384' | Supported cipher suite: TLS_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_CHACHA20_POLY1305_SHA256. The value is a string.|
+
+## TlsV12SpecificCipherSuite<sup>18+</sup>
+
+type TlsV12SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' |
+'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' |
+'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_GCM_SHA384'
+
+Enumerates cipher suites supported by TLS 1.2 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' | Supported cipher suite: TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_GCM_SHA256' | Supported cipher suite: TLS_RSA_WITH_AES_128_GCM_SHA256. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_GCM_SHA384' | Supported cipher suite: TLS_RSA_WITH_AES_256_GCM_SHA384. The value is a string.|
+
+## TlsV10SpecificCipherSuite<sup>18+</sup>
+
+type TlsV10SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA'
+
+Enumerates cipher suites supported by TLS 1.0 or later.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      | Description  |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_128_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_128_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_AES_256_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_AES_256_CBC_SHA. The value is a string.|
+| 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' | Supported cipher suite: TLS_RSA_WITH_3DES_EDE_CBC_SHA. The value is a string.|

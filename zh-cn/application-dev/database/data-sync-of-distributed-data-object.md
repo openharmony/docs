@@ -13,11 +13,9 @@
 
 ## 基本概念
 
-- **分布式内存数据库**
-  分布式内存数据库将数据缓存在内存中，以便应用获得更快的数据存取速度，不会将数据进行持久化。若数据库关闭，则数据不会保留。
+- **分布式内存数据库**：分布式内存数据库将数据缓存在内存中，以便应用获得更快的数据存取速度，不会将数据进行持久化。若数据库关闭，则数据不会保留。
 
-- **分布式数据对象**
-  分布式数据对象是一个JS对象型的封装。每一个分布式数据对象实例会创建一个内存数据库中的数据表，每个应用程序创建的内存数据库相互隔离，对分布式数据对象的“读取”或“赋值”会自动映射到对应数据库的get/put操作。
+- **分布式数据对象**：分布式数据对象是一个JS对象型的封装。每一个分布式数据对象实例会创建一个内存数据库中的数据表，每个应用程序创建的内存数据库相互隔离，对分布式数据对象的“读取”或“赋值”会自动映射到对应数据库的get/put操作。
 
   分布式数据对象的生命周期包括以下状态：
 
@@ -76,7 +74,7 @@
 
 关于分布式数据对象的数据同步，值得注意的是，同步的最小单位是“属性”。比如，下图中对象1包含三个属性：name、age和parents。当其中一个属性变更时，则数据同步时只需同步此变更的属性。
 
-对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、Object类型）。针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
+对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套）。针对复杂类型的数据修改，目前仅支持对根属性的修改，暂不支持对下级属性的修改。
 
 ```ts
 dataObject['parents'] = {mom: "amy"}; // 支持的修改
@@ -168,9 +166,10 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 
 > **说明：**
 >
-> - 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
+> - 跨端迁移时，在迁移发起端调用setSessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
 >
-> - 跨端迁移需要配置`continuable`标签，<!--RP1-->详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
+<!--RP1-->
+> - 跨端迁移需要配置`continuable`标签，详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
 >
 > - wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
 >
@@ -383,7 +382,6 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'call remote already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 1.1 调用genSessionId接口创建一个sessionId，通过分布式设备管理接口获取对端设备networkId
     sessionId = distributedDataObject.genSessionId();
@@ -407,7 +405,7 @@ export default class EntryAbility extends UIAbility {
     }
     try {
       // 1.3 调用startAbilityByCall接口拉起对端Ability
-      context.startAbilityByCall(want).then((res) => {
+      this.context.startAbilityByCall(want).then((res) => {
         if (!res) {
           console.error(TAG + 'startAbilityByCall failed');
         }
@@ -429,11 +427,10 @@ export default class EntryAbility extends UIAbility {
       console.error(TAG + 'create dataObject already');
       return;
     }
-    let context = getContext(this) as common.UIAbilityContext;
 
     // 2.1 创建分布式数据对象实例
     let data = new Data('The title', 'The text');
-    dataObject = distributedDataObject.create(context, data);
+    dataObject = distributedDataObject.create(this.context, data);
 
     // 2.2 注册数据变更监听
     dataObject.on('change', (sessionId: string, fields: Array<string>) => {

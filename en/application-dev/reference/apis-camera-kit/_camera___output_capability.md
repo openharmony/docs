@@ -9,6 +9,8 @@ The Camera_OutputCapability struct describes the camera output capability.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 
@@ -48,6 +50,8 @@ Camera_Profile** Camera_OutputCapability::photoProfiles
 **Description**
 
 Double pointer to the list of photo profiles.
+
+In the configuration file, **size** is set to the width and height of the camera resolution, not the actual width and height of an output image.
 
 
 ### photoProfilesSize

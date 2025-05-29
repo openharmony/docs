@@ -29,18 +29,22 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name  | Type      | Mandatory| Description                            |
 | -------- | -------------- | ---- | ------------------ |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                             |
 | -------- |-------------------------------------------------------------------|
@@ -71,6 +75,10 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
@@ -81,7 +89,7 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message                                                             |
 |----------|-------------------------------------------------------------------|
@@ -112,13 +120,17 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since the Unix epoch. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getTime<sup>10+</sup>](#systemdatetimegettime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description                    |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 
 **Return value**
 
@@ -128,7 +140,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -157,18 +169,22 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | ---------- | ---- | -------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -199,6 +215,10 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
@@ -209,7 +229,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -240,13 +260,17 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system startup, excluding the deep sleep time. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 
 **Return value**
 
@@ -256,7 +280,7 @@ Obtains the time elapsed since system startup, excluding the deep sleep time. Th
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -285,18 +309,22 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name  | Type                       | Mandatory| Description  |
 | -------- | --------------- | ---- | ------------------------------- |
-| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -327,6 +355,10 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
@@ -337,7 +369,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -368,13 +400,17 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system startup, including the deep sleep time. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [systemDateTime.getUptime<sup>10+</sup>](#systemdatetimegetuptime10) instead.
+
 **System capability**: SystemCapability.MiscServices.Time
 
 **Parameters**
 
 | Name| Type   | Mandatory| Description                              |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.|
+| isNano | boolean | No  | Whether the time to return is in nanoseconds. The default value is **false**.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).|
 
 **Return value**
 
@@ -384,7 +420,7 @@ Obtains the time elapsed since system startup, including the deep sleep time. Th
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                                                             |
 |---------|-------------------------------------------------------------------|
@@ -411,7 +447,7 @@ try {
 
 getTime(isNanoseconds?: boolean): number
 
- Obtains the time elapsed since the Unix epoch. This API returns the result synchronously.
+Obtains the time elapsed since the Unix epoch. This API returns the result synchronously.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -419,7 +455,7 @@ getTime(isNanoseconds?: boolean): number
 
 | Name       | Type   | Mandatory| Description                                                        |
 | ------------- | ------- | ---- | ------------------------------------------------------------ |
-| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**.|
+| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).<br>The default value is **false**.|
 
 **Return value**
 
@@ -430,6 +466,8 @@ getTime(isNanoseconds?: boolean): number
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getTime(true)
 } catch(e) {
@@ -451,7 +489,7 @@ Obtains the time elapsed since system startup. This API returns the result synch
 | Name       | Type                   | Mandatory| Description                                                                               |
 | ------------- | ----------------------- | ---- |-----------------------------------------------------------------------------------|
 | timeType      | [TimeType](#timetype10) | Yes  | Type of the time to be obtained. The value can only be `STARTUP` or `ACTIVE`.                                                 |
-| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds.<br>The default value is **false**.|
+| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true** means that the return result is in nanoseconds (ns).<br>- **false** means that the return result is in milliseconds (ms).<br>The default value is **false**.|
 
 **Return value**
 
@@ -461,15 +499,17 @@ Obtains the time elapsed since system startup. This API returns the result synch
 
 **Error codes**
 
-For details about the following error codes, see [Time and Time Zone Service Error Codes](errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                                                          |
 | -------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. This error code was added due to missing issues. |
 
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
 } catch(e) {
@@ -486,7 +526,7 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()**, which returns the **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -498,7 +538,7 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                |
 |-------|------------------------------------------------------|
@@ -531,7 +571,7 @@ Obtains the current system date. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()**, which returns the **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -543,7 +583,7 @@ Obtains the current system date. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                |
 |-------|------------------------------------------------------|
@@ -647,6 +687,8 @@ Obtains the system time zone in synchronous mode.
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {

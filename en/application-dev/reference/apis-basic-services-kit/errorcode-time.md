@@ -8,22 +8,53 @@
 
 **Error Message**
 
-The parameter check failed or permission denied or system error.
+Parameter check failed, permission denied, or system error.
 
 **Description**
 
-This error code is reported when a parameter check failure, permission verification failure, or system operation error occurs.
+This error code is reported when the time and time zone service error occurs.
 
 **Possible Cause**
 
-
-1. The input parameter is invalid.
-2. The required permission is not configured. For example, **ohos.permission.SET_TIME** is not configured for setting the time or **ohos.permission.SET_TIME_ZONE** is not configured for setting the time zone.
-3. The system is not running properly due to a common kernel error, such as a memory allocation and multi-thread processing error.
+The system is not running properly due to a common kernel error, such as a memory allocation and multi-thread processing error.
 
 **Solution**
 
-1. Make sure input parameters are passed in as required.
-2. Configure the **ohos.permission.SET_TIME** permission for setting the time and the **ohos.permission.SET_TIME_ZONE** permission for setting the time zone.
-3. Make sure the memory is sufficient.
+Make sure the memory is sufficient.
 
+## 13000001 Network or Operating System Error
+
+**Error Message**
+
+Network connection error or OS error.
+
+**Description**
+
+This error code is reported when the network or operating system error occurs.
+
+**Possible Cause**
+
+The network or operating system is not running properly due to a system error, such as network connection failure or socket creation failure.
+
+**Solution**
+
+Make sure the network is connected and the system resources are sufficient.
+
+
+## 13000002 NTP Time Not Updated
+
+**Error Message**
+
+NTP update failed.
+
+**Description**
+
+This error code is reported when the NTP time is not updated.
+
+**Possible Cause**
+
+Fail to update the NTP time before obtain it.
+
+**Solution**
+
+Call the **updateNtpTime()** API to update the NTP time.

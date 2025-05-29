@@ -7,8 +7,9 @@
 
 **起始版本：** 9
 
-**相关模块：**[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
+**所在头文件：**[neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## 汇总
 
@@ -32,7 +33,7 @@ uint32_t* OH_NN_UInt32Array::data
 
 **描述**
 
-无符号整型数组的指针
+无符号整型数组的指针。
 
 
 ### size
@@ -43,4 +44,4 @@ uint32_t OH_NN_UInt32Array::size
 
 **描述**
 
-数组长度
+数组长度。

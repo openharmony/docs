@@ -21,7 +21,7 @@ import { abilityManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：以下各项对应的接口均为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

@@ -1,6 +1,6 @@
 # @ohos.net.networkSecurity (Network Security)
 
-本模块提供网络安全校验能力。应用可以通过证书链校验API完成证书链校验功能。
+本模块提供网络安全校验能力。应用可以通过证书校验API完成证书校验功能。
 
 > **说明：**
 >
@@ -70,7 +70,7 @@ networkSecurity.certVerification(cert, caCert)
 
 certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
-从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
+从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书进行校验。
 
 **系统能力**: SystemCapability.Communication.NetStack
 
@@ -78,8 +78,8 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | 是   | 被校验的证书链。       |
-| caCert | CertBlob | 否   | 传入自定义的CA证书链。 |
+| cert   | CertBlob | 是   | 被校验的证书。       |
+| caCert | CertBlob | 否   | 传入自定义的CA证书。 |
 
 **返回值：**
 
@@ -104,9 +104,11 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
 > **说明：**
 > 
@@ -148,7 +150,7 @@ networkSecurity.certVerification(cert, caCert)
 
 certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
-从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
+从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书进行校验。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -156,14 +158,14 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | 是  | 被校验的证书链。       |
-| caCert | CertBlob | 否   | 传入自定义的CA证书链。 |
+| cert   | CertBlob | 是  | 被校验的证书。       |
+| caCert | CertBlob | 否   | 传入自定义的CA证书。 |
 
 **返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 表示证书链验证的结果。如果证书链验证成功，则返回0； 否则验证失败。 |
+| number | 表示证书验证的结果。如果证书验证成功，则返回0； 否则验证失败。 |
 
 **错误码：**
 
@@ -182,9 +184,11 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
 > **说明：**
 >
@@ -224,3 +228,81 @@ console.info('Synchronous Verification Result:', resultSync);
 > **注意**：
 >
 > 请务必将示例中的证书数据替换为实际的证书内容。
+
+## networkSecurity.isCleartextPermitted<sup>18+</sup>
+
+isCleartextPermitted(): boolean
+
+从应用预置network_config.json文件中获取整体明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 整体明文HTTP是否允许。返回true表示允许访问明文HTTP，false表示不允许。默认返回true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                  |
+
+**示例：**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermitted();
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```
+
+## networkSecurity.isCleartextPermittedByHostName<sup>18+</sup>
+
+isCleartextPermittedByHostName(hostName: string): boolean
+
+从应用预置network_config.json文件中获取按域名明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数**：
+
+| 参数名 | 类型     | 必填 | 说明                   |
+| ------ | -------- | ---- | ---------------------- |
+| hostName | string | 是  | 需要查询的主机名。|
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 按域名明文HTTP是否允许。返回true表示允许明文HTTP访问该主机，false表示不允许。默认返回true。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission denied.                                     |
+
+**示例：**
+
+```ts
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let result: boolean = networkSecurity.isCleartextPermittedByHostName("xxx");
+  console.info(`isCleartextPermitted Result: ${JSON.stringify(result)}`);
+} catch (error) {
+  console.error(`isCleartextPermitted Error: ${JSON.stringify(error)}`);
+}
+```

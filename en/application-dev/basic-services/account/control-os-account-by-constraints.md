@@ -24,7 +24,7 @@ For details about the predefined account constraints, see [Constraints](../../re
 
 ## Setting Constraints for a System Account
 
-The user can set constraints to restrict the system account behaviors. For example, the user can enable mobile guardian for children to prevent the kids to use Wi-Fi or install apps.
+The user can set constraints to restrict the system account behaviors. For example, the user can enable mobile guardian for children to prevent the kids to use Wi-Fi or install applications.
 
 **Procedure**
 
@@ -48,12 +48,11 @@ The user can set constraints to restrict the system account behaviors. For examp
 
 ## Checking Whether a Constraint Can be Enabled for a System Account
 
-Before a constraint is enabled for a system account, the application needs to check whether the constraint can be enabled.
-You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
+Before a constraint is enabled for a system account, the application needs to check whether the constraint can be enabled. You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11) to implement this operation.
 
 **Procedure**
 
-1. Specifies the system account ID and constraint.
+1. Set the system account ID and constraint.
 
    ```ts
    let localId: number = 100;

@@ -90,7 +90,7 @@
 
 **参考链接**
 
-[ForEach：循环渲染](../quick-start/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)
 
 ## CustomDialog，Popup等弹窗如何与页面解耦，最佳实践是什么样的(API 10)
 
@@ -114,7 +114,7 @@ MyGlobalBuilderFunction()
 
 1. [自定义弹窗（CustomDialog）](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 2. [Popup控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
-3. [@Builder装饰器：自定义构建函数](../quick-start/arkts-builder.md)
+3. [@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
 
 ## 为什么两个紧挨着的相同颜色的控件之间会有白线、暗线。如何解决(API 11)
 

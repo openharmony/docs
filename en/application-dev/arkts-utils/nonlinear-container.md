@@ -1,254 +1,256 @@
 # Nonlinear Containers
 
 
-Nonlinear containers, underpinned by hash tables or red-black trees, implement a data structure that enables quick search. There are several types of nonlinear containers: **HashMap**, **HashSet**, **TreeMap**, **TreeSet**, **LightWeightMap**, **LightWeightSet**, and **PlainArray**. The types of **key** and **value** in nonlinear containers must meet the ECMA standard.
+Nonlinear containers, underpinned by hash tables or red-black trees, implement a data structure that enables quick lookup operations. There are several types of nonlinear containers: HashMap, HashSet, TreeMap, TreeSet, LightWeightMap, LightWeightSet, and PlainArray. The types of **key** and **value** in nonlinear containers comply with the ECMA standard.
 
+## Comparison of Nonlinear Container Types
+
+| Type| Characteristics and Recommended Use Cases|
+| --------- | ------- |
+| HashMap | Stores a collection of key-value (KV) pairs with unique keys. It uses the hash code of the key to determine the storage location, offering fast access but no custom sorting. It is recommended for scenarios requiring quick storage, retrieval, and removal of KV pairs.|
+| HashSet | Stores a collection of unique values. It uses the hash code of the value to determine the storage location. It allows null values but does not support custom sorting. It is useful for creating non-redundant collections or removing duplicates.|
+| TreeMap | Stores a collection of KV pairs with unique keys. It allows users to customize sorting methods. It is suitable for scenarios requiring ordered storage of KV pairs.|
+| TreeSet | Stores a collection of unique values. It allows users to customize sorting methods but does not recommend storing null values. It is suitable for scenarios requiring ordered storage of collections.|
+| LightWeightMap | Stores a collection of KV pairs with unique keys. It uses a more lightweight structure, occupying less memory. It is recommended for scenarios with limited memory and the need to store KV pairs.|
+| LightWeightSet |  Stores a collection of unique values. It uses a more lightweight structure, occupying less memory. It is recommended for creating non-redundant collections or removing duplicates.|
+| PlainArray | Stores a collection of KV pairs with unique keys, where keys are of the number type. It uses a lightweight structure and a binary search algorithm for key lookup. It is suitable for storing KV pairs with number-type keys.|
 
 ## HashMap
 
-[HashMap](../reference/apis-arkts/js-apis-hashmap.md) is used to store a set of associated key-value (KV) pairs. In a hash map, each key is unique and corresponds to a value.
+[HashMap](../reference/apis-arkts/js-apis-hashmap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value.
 
-**HashMap** uses generics. In a hash map, a key is located based on its hash code. The initial capacity of a hash map is 16, and it has capacity doubled in each dynamic expansion. The bottom layer of **HashMap** is implemented based on a hash table. It uses chaining to avoid collisions in hash tables.
+Defined by generics, HashMap uses the hash code of the key to determine the storage location, enabling quick access to KV pairs. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. HashMap is implemented using a hash table with a chain address conflict resolution strategy.
 
-**HashMap** is faster in accessing data than [TreeMap](../reference/apis-arkts/js-apis-treemap.md), because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+HashMap is faster in accessing data than [TreeMap](../reference/apis-arkts/js-apis-treemap.md), because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
 
-[HashSet](../reference/apis-arkts/js-apis-hashset.md) is implemented based on **HashMap**. The input parameter of **HashMap** consists of **key** and **value**. In **HashSet**, only the **value** object is processed.
+[HashSet](../reference/apis-arkts/js-apis-hashset.md) is implemented based on HashMap. HashMap takes **key** and **value** as input parameters. In HashSet, only the **value** object is processed.
 
-You are advised to use **HashMap** when you need to quickly access, remove, and insert KV pairs.
+You are advised to use HashMap when you need to quickly access, remove, and insert KV pairs.
 
-**HashMap** provides the following Create, Read, Update, and Delete (CRUD) APIs.
+Common APIs for adding, removing, modifying, and accessing elements in HashMap are as follows:
 
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access.|
-| Update| Use **replace(key: K, newValue: V)** to change the value of the specified key.|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| set(key: K, value: V) | Adds a KV pair.|
+| Accessing elements| get(key: K) | Obtains the value corresponding to the specified key.|
+| Accessing elements| keys() | Returns an iterator that contains all the keys in the map.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the map.|
+| Accessing elements| entries() | Returns an iterator that contains all the KV pairs in the map.|
+| Accessing elements| forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | Iterates over all elements in the map.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Modifying elements| replace(key: K, newValue: V) | Modifies the value corresponding to the specified key.|
+| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object) | Modifies all elements in the map through iteration.|
+| Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the map.|
+| Removing elements| clear() | Clears the entire map.|
 
 ## HashSet
 
-[HashSet](../reference/apis-arkts/js-apis-hashset.md) is used to store a set of values, each of which is unique in a hash set.
+[HashSet](../reference/apis-arkts/js-apis-hashset.md) is used to store a collection of unique values.
 
-**HashSet** uses generics. In a hash set, a value is located based on its hash code. The initial capacity of a hash set is 16, and it has capacity doubled in each dynamic expansion. The type of **value** must comply with the ECMA standard. The bottom layer of **HashSet** is implemented based on a hash table. It uses chaining to avoid collisions in hash tables.
+Defined by generics, HashSet uses the hash code of the value to determine the storage location, enabling quick access to the value. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. The type of **value** must comply with the ECMA standard. HashSet is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md) and processes only the **value** object. The underlying data structure is consistent with HashMap.
 
-**HashSet** is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
+Compared with [TreeSet](../reference/apis-arkts/js-apis-treeset.md), which stores data in an ordered manner and allows users to define sorting functions, HashSet stores data in an unordered manner and does not support custom sorting. Neither allows duplicate elements, but HashSet permits null values, whereas TreeSet does not recommend storing null values as it may affect sorting results.
 
-Unlike [TreeSet](../reference/apis-arkts/js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+You are advised to use HashSet when you need to create non-redundant collections or remove duplicates.
 
-You are advised to use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
+Common APIs for adding, removing, modifying, and accessing elements in HashSet are as follows:
 
-**HashSet** provides the following CRUD APIs.
-
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **add(value: T)** to add a value to this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(value: T)** to remove a value.|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| add(value: T) | Adds a value.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the set.|
+| Accessing elements| entries() | Returns an iterator object containing array-like KV pairs, where both keys and values are the same.|
+| Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
+| Removing elements| remove(value: T) | Removes the matching value from the set.|
+| Removing elements| clear() | Clears the entire set.|
 
 ## TreeMap
 
-[TreeMap](../reference/apis-arkts/js-apis-treemap.md) is used to store a set of associated KV pairs. In a tree map, each key is unique and corresponds to a value.
+[TreeMap](../reference/apis-arkts/js-apis-treemap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value.
 
-**TreeMap** uses generics, and the keys in a tree map are ordered. The bottom layer of **TreeMap** is a binary tree, which supports quick search of KV pairs through the children (left child and right child) of the tree. The type of **key** must comply with the ECMA standard. Keys in a tree map are stored in order. The bottom layer of **TreeMap** is implemented based on the red-black tree and supports quick insertion and removal.
+Defined by generics, TreeMap stores keys in an ordered manner. The underlying structure is a binary tree, allowing for quick lookup of KV pairs through binary tree search. The type of **key** must comply with the ECMA standard. Keys in a TreeMap are stored in order. TreeMap is implemented using a red-black tree, enabling fast insertion and removal.
 
-[HashMap](../reference/apis-arkts/js-apis-hashmap.md) is faster in accessing data than **TreeMap**, because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which provides faster access based on the key's hash code, TreeMap is ordered and thus less efficient.
 
-You are advised to use **TreeMap** when you need to store KV pairs in sorted order.
+You are advised to use TreeMap when you need to store KV pairs in sorted order.
 
-**TreeMap** provides the following CRUD APIs.
+Common APIs for adding, removing, modifying, and accessing elements in TreeMap are as follows:
 
-| Operation| Description|
-| ------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **getFirstKey()** to obtain the first key in this container.|
-| Read| Use **getLastKey()** to obtain the last key in this container.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator\<[K,V]>** for data access.|
-| Update| Use **replace(key: K, newValue: V)** to change the value of the specified key.|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| set(key: K, value: V) | Adds a KV pair.|
+| Accessing elements| get(key: K) | Obtains the value corresponding to the specified key.|
+| Accessing elements| getFirstKey() | Obtains the first key in the map.|
+| Accessing elements| getLastKey() | Obtains the last key in the map.|
+| Accessing elements| keys() | Returns an iterator that contains all the keys in the map.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the map.|
+| Accessing elements| entries() | Returns an iterator that contains all the KV pairs in the map.|
+| Accessing elements| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Iterates over all elements in the map.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Modifying elements| replace(key: K, newValue: V) | Modifies the value corresponding to the specified key.|
+| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Modifies all elements in the map through iteration.|
+| Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the map.|
+| Removing elements| clear() | Clears the entire map.|
 
 ## TreeSet
 
-[TreeSet](../reference/apis-arkts/js-apis-treeset.md) is used to store a set of values, each of which is unique in a tree set.
+[TreeSet](../reference/apis-arkts/js-apis-treeset.md) is used to store a collection of unique values.
 
-**TreeSet** uses generics, and the values in a tree set are ordered. The bottom layer of **TreeSet** is a binary tree, which supports quick search of a value through the children (left child and right child) of the tree. The type of **value** must meet the ECMA standard. Values in a tree set are stored in order. The bottom layer of **TreeSet** is implemented based on the red-black tree and supports quick insertion and removal.
+Defined by generics, TreeSet stores values in an ordered manner. The underlying structure is a binary tree, allowing for quick lookup of values through binary tree search. The type of **value** must comply with the ECMA standard. Values in a TreeSet are stored in order. TreeSet is implemented using a red-black tree, enabling fast insertion and removal.
 
-**TreeSet** is implemented based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md). In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
+TreeSet is based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md) and processes only the **value** object. It allows for ordered storage of a collection of values and can be sorted according to a custom sorting function.
 
-[HashSet](../reference/apis-arkts/js-apis-hashset.md) stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+Compared with [HashSet](../reference/apis-arkts/js-apis-hashset.md), which stores data in an unordered manner, TreeSet stores data in an ordered manner. Neither allows duplicate elements, but HashSet permits null values, whereas TreeSet does not recommend storing null values as it may affect sorting results.
 
-You are advised to use **TreeSet** when you need to store data in sorted order.
+You are advised to use TreeSet when you need to store data in sorted order.
 
-**TreeSet** provides the following CRUD APIs.
+Common APIs for adding, removing, modifying, and accessing elements in TreeSet are as follows:
 
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **add(value: T)** to add a value to this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getFirstValue()** to obtain the first value in this container.|
-| Read| Use **getLastValue()** to obtain the last value in this container.|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(value: T)** to remove a value.|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| add(value: T) | Adds a value.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the set.|
+| Accessing elements| entries() | Returns an iterator object containing array-like KV pairs, where both keys and values are the same.|
+| Accessing elements| getFirstValue() | Obtains the first value in the set.|
+| Accessing elements| getLastValue() | Obtains the last value in the set.|
+| Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
+| Removing elements| remove(value: T) | Removes the matching value from the set.|
+| Removing elements| clear() | Clears the entire set.|
 
 ## LightWeightMap
 
-[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) is used to store a set of associated KV pairs. In a lightweight map, each key is unique and corresponds to a value. **LightWeightMap** uses generics and a more lightweight structure. It uses the hash code to uniquely identify a key at the bottom layer. It uses linear probing to avoid collisions. In a lightweight map, a key is located by using the hash code and binary search algorithm. The hash code is stored in an array and mapped to a key and its value in another array. The type of **key** must comply with the ECMA standard.
+[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value. Defined by generics, LightWeightMap uses a more lightweight structure. The underlying structure uses hash codes to identify unique keys, with a conflict resolution strategy of linear probing. The lookup of keys relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to **key** and **value** values in other arrays. The type of **key** must comply with the ECMA standard.
 
-The default initial capacity of a lightweight map is 8, and it has capacity doubled in each expansion.
+The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time.
 
-Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which can also store KV pairs, **LightWeightMap** occupies less memory.
+LightWeightMap and [HashMap](../reference/apis-arkts/js-apis-hashmap.md) are both used to store KV pairs, but LightWeightMap occupies less memory.
 
-You are advised to use **LightWeightMap** when you need to store and access **KV pairs**.
+You are advised to use LightWeightMap when you need to store and access KV pairs.
 
-**LightWeightMap** provides the following CRUD APIs.
+Common APIs for adding, removing, modifying, and accessing elements in LightWeightMap are as follows:
 
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **set(key: K, value: V)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: K)** to obtain the value of the specified key.|
-| Read| Use **getIndexOfKey(key: K)** to obtain the index of the specified key.|
-| Read| Use **getIndexOfValue(value: V)** to obtain the index of the first occurrence of the specified value.|
-| Read| Use **keys()** to return an iterator that contains all the keys in this container.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**).|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[K,V]&gt;** for data access.|
-| Update| Use **setValueAt(index: number, newValue: V)** to change the value of an element at a given position (specified by **index**).|
-| Update| Use **forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| set(key: K, value: V) | Adds a KV pair.|
+| Accessing elements| get(key: K) | Obtains the value corresponding to the specified key.|
+| Accessing elements| getIndexOfKey(key: K) | Obtains the index of the specified key in the map.|
+| Accessing elements| getIndexOfValue(value: V) | Obtains the index of the first occurrence of the specified value in the map.|
+| Accessing elements| keys() | Returns an iterator that contains all the keys in the map.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the map.|
+| Accessing elements| entries() | Returns an iterator that contains all the KV pairs in the map.|
+| Accessing elements| getKeyAt(index: number) | Obtains the key at the specified index.|
+| Accessing elements| getValueAt(index: number) | Obtains the value at the specified index.|
+| Accessing elements| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Iterates over all elements in the map.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
+| Modifying elements| setValueAt(index: number, newValue: V) | Modifies the value at the specified index.|
+| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Modifies all elements in the map through iteration.|
+| Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the map.|
+| Removing elements| removeAt(index: number) | Removes the KV pair at the specified index from the map.|
+| Removing elements| clear() | Clears the entire map.|
 
 ## LightWeightSet
 
-[LightWeightSet](../reference/apis-arkts/js-apis-lightweightset.md) is used to store a set of values, each of which is unique in a lightweight set.
+[LightWeightSet](../reference/apis-arkts/js-apis-lightweightset.md) is used to store a collection of unique values.
 
-**LightWeightSet** uses generics and a lightweight structure. Its default initial capacity is 8, and it has capacity doubled in each expansion. In a lightweight set, a value is located by using the hash code and binary search algorithm. The hash code is stored in an array and mapped to a value in another array. The type of **value** must comply with the ECMA standard.
+Defined by generics, LightWeightSet uses a more lightweight structure. The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time. The lookup of values relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to values in other arrays. The type of **value** must comply with the ECMA standard.
 
-**LightWeightSet** uses the hash code to uniquely identify a value at the bottom layer. It uses linear probing to avoid collisions and adopts the binary search algorithm.
+LightWeightSet identifies unique values based on hash at the underlying layer, with a conflict resolution strategy of linear probing and a lookup strategy based on binary search.
 
-Compared with [HashSet](../reference/apis-arkts/js-apis-hashset.md), which can also store values, **LightWeightSet** occupies less memory.
+LightWeightSet and [HashSet](../reference/apis-arkts/js-apis-hashset.md) are both used to store unique values, but LightWeightSet occupies less memory.
 
-You are advised to use **LightWeightSet** when you need a set that has only unique elements or need to deduplicate a set.
+You are advised to use LightWeightSet when you need a collection that contains unique elements or need to deduplicate a collection with limited memory.
 
-**LightWeightSet** provides the following CRUD APIs.
+Common APIs for adding, removing, modifying, and accessing elements in LightWeightSet are as follows:
 
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **add(obj: T)** to add a value to this container.|
-| Read| Use **getIndexOf(key: T)** to obtain the index of a key.|
-| Read| Use **values()** to return an iterator that contains all the values in this container.|
-| Read| Use **entries()** to return an iterator that contains all the elements in this container.|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;T&gt;** for data access.|
-| Update| Use **forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object)** to change a value in this container.|
-| Delete| Use **remove(key: K)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| add(value: T) | Adds a value.|
+| Accessing elements| getIndexOf(key: T) | Obtains the index corresponding to the specified key.|
+| Accessing elements| getValueAt(index: number) | Obtains the value at the specified index.|
+| Accessing elements| values() | Returns an iterator that contains all the values in the set.|
+| Accessing elements| entries() | Returns an iterator object containing array-like KV pairs, where both keys and values are the same.|
+| Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
+| Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the set.|
+| Removing elements| removeAt(index: number) | Removes the value at the specified index from the set.|
+| Removing elements| clear() | Clears the entire set.|
 
 ## PlainArray
 
-[PlainArray](../reference/apis-arkts/js-apis-plainarray.md) is used to store a set of associated KV pairs. In a plain array, each key is unique, corresponds to a value, and is of the number type. **PlainArray** uses generics and a more lightweight structure. In a plain array, a key is located by using the binary search algorithm and is mapped to a value in another array.
+[PlainArray](../reference/apis-arkts/js-apis-plainarray.md) is used to store a collection of KV pairs with unique keys, where keys are of the number type. Each key corresponds to a value. Defined by generics, PlainArray uses a more lightweight structure, with key lookup relying on binary search algorithms and mapping to **value** values in other arrays.
 
-The default initial capacity of a plain array is 16, and it has capacity doubled in each expansion.
+The default initial capacity is 16, and it supports dynamic resizing, doubling its size each time.
 
-Both **PlainArray** and [LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
+PlainArray and [LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) are both used to store KV pairs with a lightweight structure, but PlainArray's keys can only be of the number type.
 
 You are advised to use PlainArray when you need to store KV pairs whose keys are of the number type.
 
-**PlainArray** provides the following CRUD APIs.
+Common APIs for adding, removing, modifying, and accessing elements in PlainArray are as follows:
 
-| Operation| Description|
-| -------- | ------ |
-| Create| Use **add(key: number,value: T)** to add an element (a KV pair) to this container.|
-| Read| Use **get(key: number)** to obtain the value of the specified key.|
-| Read| Use **getIndexOfKey(key: number)** to obtain the index of the specified key.|
-| Read| Use **getIndexOfValue(value: T)** to obtain the index of the specified value.|
-| Read| Use **getKeyAt(index: number)** to obtain the key of an element at a given position (specified by **index**).|
-| Read| Use **getValueAt(index: number)** to obtain the value of an element at a given position (specified by **index**).|
-| Read| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to traverse the elements in this container.|
-| Read| Use **\[Symbol.iterator]():IterableIterator&lt;[number, T]&gt;** for data access.|
-| Update| Use **setValueAt(index:number, value: T)** to change the value of an element at a given position (specified by **index**).|
-| Update| Use **forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object)** to modify an element in this container.|
-| Delete| Use **remove(key: number)** to remove an element with the specified key.|
-| Delete| Use **removeAt(index: number)** to remove an element at a given position (specified by **index**).|
-| Delete| Use **removeRangeFrom(index: number, size: number)** to remove elements in a specified range.|
-| Delete| Use **clear()** to clear this container.|
-
+| Operation| API| Description|
+| --------- | ------- | ------- |
+| Adding elements| add(key: number,value: T) | Adds a KV pair.|
+| Accessing elements| get(key: number) | Obtains the value corresponding to the specified key.|
+| Accessing elements| getIndexOfKey(key: number) | Obtains the index of the specified key in the PlainArray.|
+| Accessing elements| getIndexOfValue(value: T) | Obtains the index of the first occurrence of the specified value in the PlainArray.|
+| Accessing elements| getKeyAt(index: number) | Obtains the key at the specified index.|
+| Accessing elements| getValueAt(index: number) | Obtains the value at the specified index.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Iterates over all elements in the PlainArray.|
+| Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[number, T]&gt; | Creates an iterator for data access.|
+| Modifying elements| setValueAt(index:number, value: T) | Modifies the value at the specified index.|
+| Modifying elements| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Modifies all elements in the PlainArray through iteration.|
+| Removing elements| remove(key: number) | Removes the KV pair matching the specified key.|
+| Removing elements| removeAt(index: number) | Removes the KV pair at the specified index.|
+| Removing elements| removeRangeFrom(index: number, size: number) | Removes elements within the specified range in the PlainArray.|
+| Removing elements| clear() | Clears the entire PlainArray.|
 
 ## Use of Nonlinear Containers
 
-Refer to the code snippet below to add, access, and modify elements in **HashMap**, **TreeMap**, **LightWeightMap**, **Stack**, and **PlainArray**.
+Here are usage examples for common nonlinear containers, including HashMap, TreeMap, LightWeightMap, and PlainArray, covering importing modules, adding elements, accessing elements, and modifying elements. The example code is as follows:
 
 
 ```ts
 // HashMap
-import HashMap from '@ohos.util.HashMap'; // Import the HashMap module.
+import { HashMap } from '@kit.ArkTS'; // Import the HashMap module.
 
 let hashMap1: HashMap<string, number> = new HashMap();
-hashMap1.set('a', 123);
+hashMap1.set('a', 123); // Add an element with key 'a' and value 123.
 let hashMap2: HashMap<number, number> = new HashMap();
-hashMap2.set(4, 123); // Add an element.
-console.info(`result: ${hashMap2.hasKey(4)}`); // Check whether an element is contained.
-console.info(`result: ${hashMap1.get('a')}`); // Access an element.
+hashMap2.set(4, 123); // Add an element with key 4 and value 123.
+console.info(`result: ${hashMap2.hasKey(4)}`); // Check whether an element with key 4 exists. Output: result: true
+console.info(`result: ${hashMap1.get('a')}`); // Access an element with key 'a'. Output: result: 123
 
 // TreeMap
-import TreeMap from '@ohos.util.TreeMap'; // Import the TreeMap module.
+import { TreeMap } from '@kit.ArkTS'; // Import the TreeMap module.
 
 let treeMap: TreeMap<string, number> = new TreeMap();
-treeMap.set('a', 123);
-treeMap.set('6', 356); // Add an element.
-console.info(`result: ${treeMap.get('a')}`); // Access an element.
-console.info(`result: ${treeMap.getFirstKey()}`); // Access the first element.
-console.info(`result: ${treeMap.getLastKey()}`); // Access the last element.
+treeMap.set('a', 123); // Add an element with key 'a' and value 123.
+treeMap.set('6', 356); // Add an element with key '6' and value 356.
+console.info(`result: ${treeMap.get('a')}`); // Access an element with key 'a'. Output: result: 123
+console.info(`result: ${treeMap.getFirstKey()}`); // Access the first element. Output: result: 6
+console.info(`result: ${treeMap.getLastKey()}`); // Access the last element. Output: result: a
 
 // LightWeightMap
-import LightWeightMap from '@ohos.util.LightWeightMap'; // Import the LightWeightMap module.
+import { LightWeightMap } from '@kit.ArkTS'; // Import the LightWeightMap module.
 
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-lightWeightMap.set('x', 123);
-lightWeightMap.set('8', 356); // Add an element.
-console.info(`result: ${lightWeightMap.get('a')}`); // Access an element.
-console.info(`result: ${lightWeightMap.get('x')}`); // Access an element.
-console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // Access an element.
+lightWeightMap.set('x', 123); // Add an element with key 'x' and value 123.
+lightWeightMap.set('8', 356); // Add an element with key '8' and value 356.
+console.info(`result: ${lightWeightMap.get('a')}`); // Access an element with key 'a'. Output: result: undefined
+console.info(`result: ${lightWeightMap.get('x')}`); // Obtain the value of the element with key 'x'. Output: result: 123
+console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // Obtain the index of the element with key '8'. Output: result: 0
 
 // PlainArray
-import PlainArray from '@ohos.util.PlainArray' // Import the PlainArray module.
+import { PlainArray } from '@kit.ArkTS'; // Import the PlainArray module.
 
 let plainArray: PlainArray<string> = new PlainArray();
-plainArray.add(1, 'sdd');
-plainArray.add(2,'sff'); // Add an element.
-console.info(`result: ${plainArray.get(1)}`); // Access an element.
-console.info(`result: ${plainArray.getKeyAt(1)}`); // Access an element.
+plainArray.add(1, 'sdd'); // Add an element with key 1 and value 'sdd'.
+plainArray.add(2, 'sff'); // Add an element with key 2 and value 'sff'.
+console.info(`result: ${plainArray.get(1)}`); // Obtain the value of the element with key 1. Output: result: sdd
+console.info(`result: ${plainArray.getKeyAt(1)}`); // Obtain the key of the element at index 1. Output: result: 2
 ```

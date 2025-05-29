@@ -1,8 +1,6 @@
-# Converting Binary Data into an Asymmetric Key Pair
-
+# Converting Binary Data into an Asymmetric Key Pair (ArkTS)
 
 This topic uses RSA, ECC, and SM2 as an example to describe how to convert binary data into an asymmetric key pair (**KeyPair**). That is, convert a piece of external or internal binary data into a **KeyPair** object for subsequent operations, such as encryption and decryption.
-
 
 > **NOTE**
 >
@@ -12,7 +10,6 @@ This topic uses RSA, ECC, and SM2 as an example to describe how to convert binar
 >
 > - The private key must use the ASN.1 syntax and DER encoding format and comply with PKCS\#8 specifications.
 
-
 ## Converting Binary Data into an RSA Key Pair
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
@@ -21,11 +18,11 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. In this example, the public key is passed in.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
+2. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
 
    The default number of primes for creating an RSA asymmetric key is **2**. The **PRIMES_2** parameter is omitted in the string parameter here.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Call [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
 - Example: Convert binary data into an RSA key pair (using callback-based APIs).
   ```ts
@@ -45,7 +42,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an RSA key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -55,7 +52,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     let pkBlob: cryptoFramework.DataBlob = { data: pkVal };
     try {
       let keyPair = rsaGenerator.convertKeySync(pkBlob, null);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {
@@ -63,7 +60,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     }
   }
   ```
-
 
 ## Converting Binary Data into an ECC Key Pair
 
@@ -73,9 +69,9 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. As shown in the following example, the public key and private key are passed in separately.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
+2. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Call [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
 - Example: Convert binary data into an ECC key pair (using callback-based APIs).
   ```ts
@@ -97,7 +93,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an ECC key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -109,7 +105,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
     let generator = cryptoFramework.createAsyKeyGenerator('ECC256');
     try {
       let keyPair = generator.convertKeySync(pubKeyBlob, priKeyBlob);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {
@@ -118,17 +114,17 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
   }
   ```
 
-## Converting PKCS #8 Binary Data into an ECC Private Key
+## Converting PKCS#8 Binary Data into an ECC Private Key
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
 
-Obtain the binary data of the ECC public or private key, encapsulate the data into a **DataBlob** object, and converts the data into the ECC key format. Example:
+Obtain the binary data of the ECC public or private key, encapsulate the data into a **DataBlob** object, and convert the data into the ECC key format. The following is an example:
 
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
+1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
 
-2. Use [PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the byte stream of the public key data, and use [PriKey.getEncodeDer](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedder12-1) with **format** set to **'PKCS8'** to obtain the byte stream of the private key data. The binary data of the key object is obtained.
+2. Call [PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the byte stream of the public key data, and call [PriKey.getEncodeDer](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedder12-1) with **format** set to **'PKCS8'** to obtain the byte stream of the private key data. The binary data of the key object is obtained.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair.
+3. Call [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair.
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -164,9 +160,9 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
    Either the public key or private key can be passed in. As shown in the following example, the public key and private key are passed in separately.
 
-2. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'SM2_256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit SM2 key pair.
+2. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'SM2_256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit SM2 key pair.
 
-3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Call [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
 - Example: Convert binary data into an SM2 key pair (using callback-based APIs).
   ```ts
@@ -188,7 +184,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an SM2 key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -200,7 +196,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
     let generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
     try {
       let keyPair = generator.convertKeySync(pubKeyBlob, priKeyBlob);
-      if (keyPair != null) {
+      if (keyPair !== null) {
         console.info('convertKeySync success');
       }
     } catch (e) {

@@ -29,7 +29,7 @@ The screenlock management service is abnormal.
 
 **错误信息** 
 
-illegal use.
+Invalid use.
 
 **错误描述**
 

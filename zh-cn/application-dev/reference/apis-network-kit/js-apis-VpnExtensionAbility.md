@@ -26,7 +26,7 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 onCreate(want: Want): void
 
-在启动三方vpn进行初始化时回调。
+在启动三方VPN进行初始化时回调。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

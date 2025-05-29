@@ -3,13 +3,15 @@
 
 ## Overview
 
-The **ImagePacker_Opts_** struct defines the image encoding options.
+The ImagePacker_Opts_ struct defines the image encoding options.
 
 **System capability**: SystemCapability.Multimedia.Image
 
 **Since**: 11
 
 **Related module**: [Image](image.md)
+
+**Header file**: [image_packer_mdk.h](image__packer__mdk_8h.md)
 
 
 ## Summary
@@ -19,8 +21,8 @@ The **ImagePacker_Opts_** struct defines the image encoding options.
 
 | Name| Description| 
 | -------- | -------- |
-| [format](#format) | Encoding format.| 
-| [quality](#quality) | Encoding quality.| 
+| const char \* [format](#format) | Pointer to the encoding format.|
+| int [quality](#quality) | Encoding quality.|
 
 
 ## Member Variable Description
@@ -34,7 +36,7 @@ const char* ImagePacker_Opts::format
 
 **Description**
 
-Encoding format.
+Pointer to the encoding format.
 
 
 ### quality

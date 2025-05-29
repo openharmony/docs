@@ -1,6 +1,6 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
 
-The cameraPicker module provides APIs for an application to select a camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
+The cameraPicker module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
 > **NOTE**
 >
@@ -12,11 +12,11 @@ The cameraPicker module provides APIs for an application to select a camera to t
 import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
-## pick
+## cameraPicker.pick
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
-Starts a camera picker and enters the corresponding mode based on the media type. This API uses a promise to return the result.
+Starts the camera picker and enters the corresponding mode based on the media type. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -34,24 +34,21 @@ Starts a camera picker and enters the corresponding mode based on the media type
 
 | Type                                            | Description                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | Promise used to return the result, which is specified by [PickerResult](#pickerresult).          |
-
+| Promise\<PickerResult\>                         | Promise used to return the result, which is defined in [PickerResult](#pickerresult).       |
 
 **Example**
 
 ```ts
 import { cameraPicker as picker } from '@kit.CameraKit';
 import { camera } from '@kit.CameraKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let mContext = getContext(this) as common.Context;
 
-async function demo() {
+async function demo(context: Context) {
   try {
     let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
-    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+    let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
@@ -72,7 +69,7 @@ Enumerates the media types displayed in the camera picker.
 | Name            | Value   | Description    |
 | ----------------| ----  | ---------|
 | PHOTO           | photo | Photo mode. |
-| VIDEO           | video | Record mode. |
+| VIDEO           | video | Video mode.|
 
 
 ## PickerProfile
@@ -86,8 +83,8 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Mandatory  | Description        |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | Yes   | Camera position.  |
-| saveUri        | string                            | No   | URI for saving the configuration information. (Currently, custom URIs are not supported for recording.)|
-| videoDuration  | number                            | No   | Maximum recording duration.|
+| saveUri        | string                            | No   | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| videoDuration  | number                            | No   | Maximum video duration, in seconds.|
 
 
 ## PickerResult

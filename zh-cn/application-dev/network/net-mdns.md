@@ -7,7 +7,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 
 MDNS管理的典型场景有：
 
-- 管理本地服务，通过对本地服务的创建，删除和解析等，管理本地服务。
+- 管理本地服务，通过对本地服务的创建，删除和解析等管理本地服务。
 - 发现本地服务，通过DiscoveryService对象，对指定类型的本地服务状态变化进行监听。
 
 > **说明：**
@@ -44,13 +44,17 @@ MDNS管理的典型场景有：
 4. 通过resolveLocalService方法，解析本地网络的IP地址（非必要，根据需求使用）。
 5. 通过removeLocalService方法，移除本地服务。
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 // 从@kit.NetworkKit中导入mdns命名空间
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { featureAbility } from '@kit.AbilityKit';
+import { featureAbility, common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 class ServiceAttribute {
   key: string = "111"

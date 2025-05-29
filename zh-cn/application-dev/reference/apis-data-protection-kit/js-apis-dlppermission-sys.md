@@ -49,10 +49,10 @@ import { dlpPermission } from '@kit.DataProtectionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略
+  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -99,7 +99,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 获取沙箱聚合策略
+  }); // 获取沙箱聚合策略。
 } catch (err) {
   console.error('getDLPGatheringPolicy error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -121,10 +121,10 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的OS账号ID，默认主用户ID：100。 |
-| uri | string | 是 | DLP文件的URI。 |
+| uri | string | 是 | DLP文件的URI。不超过4095字节。 |
 
 **返回值：**
 
@@ -152,10 +152,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
+  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱。
   console.info('res', JSON.stringify(res));
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -175,10 +175,10 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | access | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 是 | DLP文件授权类型。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的系账号ID，默认主用户ID：100。 |
-| uri | string | 是 | DLP文件的URI。 |
+| uri | string | 是 | DLP文件的URI。不超过4095字节。 |
 | callback | AsyncCallback&lt;[DLPSandboxInfo](#dlpsandboxinfo)&gt; | 是 | 获取应用沙箱信息的回调。 |
 
 **错误码：**
@@ -207,7 +207,7 @@ try {
     } else {
       console.info('res', JSON.stringify(res));
     }
-  }); // 安装DLP沙箱
+  }); // 安装DLP沙箱。
 } catch (err) {
   console.error('installDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -229,8 +229,8 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
-| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
+| userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。 |
 | appIndex | number | 是 | DLP沙箱号。 |
 
 **返回值：**
@@ -261,10 +261,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
     console.info('res', JSON.stringify(res));
-    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱
-  }); // 安装DLP沙箱
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱。
+  }); // 安装DLP沙箱。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -284,7 +284,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 应用包名。 |
+| bundleName | string | 是 | 应用包名。最小7字节，最大128字节。 |
 | userId | number | 是 | 当前的用户ID，通过账号子系统获取的系统账号ID，默认主用户ID：100。 |
 | appIndex | number | 是 | DLP沙箱号，即installDLPSandbox接口调用成功后的返回值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取卸载结果的回调。 |
@@ -318,7 +318,7 @@ try {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 安装DLP沙箱
+  }); // 安装DLP沙箱。
 } catch (err) {
   console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -339,7 +339,7 @@ on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox'：DLP沙箱卸载事件。 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 是 | 沙箱应用卸载事件的回调。 |
 
 **错误码：**
@@ -363,7 +363,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  }); // 订阅
+  }); // 订阅。
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -384,7 +384,7 @@ off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): vo
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox'：DLP沙箱卸载事件。 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 否 | 沙箱应用卸载事件的回调。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
@@ -408,9 +408,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   dlpPermission.off('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  }); // 取消订阅
+  }); // 取消订阅。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 ```
 
@@ -444,7 +444,7 @@ addDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -494,11 +494,11 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -519,7 +519,7 @@ addDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取添加结果的回调。 |
 
 **错误码：**
@@ -567,12 +567,12 @@ try {
     dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
       if (err != undefined) {
         console.error('addDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -637,12 +637,12 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -707,16 +707,16 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
     dlpFile.stopFuseLink(async (err, res) => {
       if (err != undefined) {
         console.error('stopFuseLink error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -781,13 +781,13 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.resumeFuseLink(); // 恢复link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.resumeFuseLink(); // 恢复link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -852,17 +852,17 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
     dlpFile.resumeFuseLink(async (err, res) => {
       if (err != undefined) {
         console.error('resumeFuseLink error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -884,7 +884,7 @@ replaceDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -934,14 +934,14 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件
-    dlpFile.resumeFuseLink(); // 恢复link读写
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件。
+    dlpFile.resumeFuseLink(); // 恢复link读写。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -962,7 +962,7 @@ replaceDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取替换结果的回调。 |
 
 **错误码：**
@@ -1007,18 +1007,18 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.stopFuseLink(); // 暂停link读写
-    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.stopFuseLink(); // 暂停link读写。
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件。
       if (err != undefined) {
         console.error('replaceDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
-        await dlpFile.resumeFuseLink(); // 恢复link读写
+        await dlpFile.resumeFuseLink(); // 恢复link读写。
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1040,7 +1040,7 @@ deleteDLPLinkFile(linkFileName: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 
 **返回值：**
 
@@ -1090,12 +1090,12 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1116,7 +1116,7 @@ deleteDLPLinkFile(linkFileName: string, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| linkFileName | string | 是 | 用于fuse文件系统的link文件名。 |
+| linkFileName | string | 是 | 用于fuse文件系统的link文件名。不超过255字节。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 获取删除结果的回调。 |
 
 **错误码：**
@@ -1161,16 +1161,16 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件。
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件。
       if (err != undefined) {
         console.error('deleteDLPLinkFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1249,11 +1249,11 @@ try{
 let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件。
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 fileIo.closeSync(destFile);
@@ -1327,15 +1327,15 @@ try{
 let destFile = fileIo.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件
+    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件。
       if (err != undefined) {
         console.error('recoverDLPFile error,', err.code, err.message);
-        await dlpFile.closeDLPFile(); //关闭DLP对象
+        await dlpFile.closeDLPFile(); //关闭DLP对象。
       } else {
         console.info('res', JSON.stringify(res));
       }
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1404,10 +1404,10 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1476,7 +1476,7 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
+    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件。
       if (err != undefined) {
         console.error('closeDLPFile error,', err.code, err.message);
       } else {
@@ -1484,7 +1484,7 @@ try {
       }
       fileIo.closeSync(file);
     });
-  }); // 打开DLP文件
+  }); // 打开DLP文件。
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fileIo.closeSync(file);
@@ -1556,10 +1556,10 @@ try {
     everyoneAccessList: []
   };
   dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 生成DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 生成DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 fileIo.closeSync(dlp);
@@ -1624,7 +1624,7 @@ try {
     ownerAccountID: 'xxxxxxx',
     everyoneAccessList: []
   };
-  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty, (err, res) => { // 生成DLP文件
+  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty, (err, res) => { // 生成DLP文件。
     if (err != undefined) {
       console.error('generateDLPFile error,', err.code, err.message);
     } else {
@@ -1654,7 +1654,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 
 **返回值：**
 
@@ -1712,10 +1712,10 @@ try{
 
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
-    dlpFile.closeDLPFile(); //关闭DLP对象
-  }); // 打开DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象。
+  }); // 打开DLP文件。
 } catch (err) {
-  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错。
 }
 fileIo.closeSync(file);
 ```
@@ -1737,7 +1737,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
@@ -1789,7 +1789,7 @@ try{
 }
 
 try {
-  dlpPermission.openDLPFile(file.fd, appId, (err, res) => { // 打开DLP文件
+  dlpPermission.openDLPFile(file.fd, appId, (err, res) => { // 打开DLP文件。
     if (err != undefined) {
       console.error('openDLPFile error,', err.code, err.message);
     } else {
@@ -1799,6 +1799,212 @@ try {
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fileIo.closeSync(file);
+}
+```
+
+## dlpPermission.generateDlpFileForEnterprise<sup>20+</sup>
+
+generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
+
+获取DLPFile管理对象。使用Promise异步回调。
+>**说明：**
+>
+> 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| plaintextFd | number | 是 | 明文文件的fd。 |
+| dlpFd | number | 是 | 加密文件的fd。 |
+| property | [DLPProperty](#dlpproperty) | 是 | DLP文件通用策略。 |
+| customProperty | [CustomProperty](#customproperty20) | 是 | 企业定制策略。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+  let dlpProperty: dlpPermission.DLPProperty = {
+    ownerAccount: 'zhangsan',
+    ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
+    authUserList: [],
+    contactAccount: 'zhangsan',
+    offlineAccess: true,
+    ownerAccountID: 'xxxxxxx',
+    everyoneAccessList: []
+  };
+  let customProperty: dlpPermission.CustomProperty = {
+    enterprise: "customProperty"
+  };
+  try {
+    dlpPermission.generateDlpFileForEnterprise(plaintextFd, dlpFd, dlpProperty, customProperty).then(() => {
+      console.info('Successfully generate DLP file for enterprise.');
+      fileIo.closeSync(plaintextFd);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(plaintextFd);
+    fileIo.closeSync(dlpFd);
+  }
+}
+```
+
+## dlpPermission.decryptDlpFile<sup>20+</sup>
+
+decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
+
+将DLP文件解密生成明文文件。使用Promise异步回调。
+>**说明：**
+>
+> 仅拥有完全控制权限的用户可以解密DLP文件。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+| plaintextFd | number | 是 | 目标解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  try {
+    dlpPermission.decryptDlpFile(dlpFd, plaintextFd).then(() => {
+      console.info('Successfully decrypt DLP file.');
+      fileIo.closeSync(plaintextFd);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(plaintextFd);
+    fileIo.closeSync(dlpFd);
+  }
+}
+```
+
+## dlpPermission.queryDlpPolicy<sup>20+</sup>
+
+queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
+
+在DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回当前DLP策略的json字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 202 | Non-system applications use system APIs. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | The system ability works abnormally. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function(dlpFilePath: string) {
+  let dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+  try {
+    dlpPermission.queryDlpPolicy(dlpFd).then((policy: string) => {
+      console.info('DLP policy:' + policy);
+      fileIo.closeSync(dlpFd);
+    });
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+    fileIo.closeSync(dlpFd);
+  }
 }
 ```
 
@@ -1825,7 +2031,7 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 否 | 表示应用包名。 |
+| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 
 ## AccountType
@@ -1841,6 +2047,19 @@ DLP沙箱身份。
 | CLOUD_ACCOUNT | 1 | 表示云账号。 |
 | DOMAIN_ACCOUNT | 2 | 表示域账号。 |
 
+## ActionType<sup>20+</sup>
+
+表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NOT_OPEN | 0 | 表示超过权限管控时间后，用户无权限打开DLP文件。 |
+| OPEN | 1 | 表示超过权限管控时间后，登录账号的用户拥有编辑权限。 |
+
 ## AuthUser
 
 表示授权用户数据。
@@ -1851,10 +2070,22 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| authAccount | string | 否 | 是 | 表示被授权用户账号。 |
+| authAccount | string | 否 | 是 | 表示被授权用户账号。不超过255字节。 |
 | authAccountType | [AccountType](#accounttype) | 否 | 是 | 表示被授权用户账号类型。 |
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 是 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 是 | 表示授权到期时间。 |
+
+## CustomProperty<sup>20+</sup>
+
+表示自定义策略。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
 
 ## DLPProperty
 
@@ -1866,14 +2097,15 @@ DLP沙箱身份。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ownerAccount | string | 否 | 是 | 表示权限设置者账号。 |
-| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。 |
+| ownerAccount | string | 否 | 是 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 是 | 表示权限设置者账号的ID。不超过255字节。 |
 | ownerAccountType | [AccountType](#accounttype) | 否 | 是 | 表示权限设置者账号类型。 |
 | authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 否 | 表示授权用户列表，默认为空。 |
-| contactAccount | string | 否 | 是 | 表示联系人账号。 |
-| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。 |
+| contactAccount | string | 否 | 是 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 是 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 否 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>11+</sup> | number | 否 | 否 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 否 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
 
 ## GatheringPolicyType
 

@@ -34,8 +34,8 @@ type ActivityType = 'still' | 'relativeStill'
 
 | 类型 | 说明 |
 | -------- | -------- |
-| still | 绝对静止。 |
-| relativeStill | 相对静止。 |
+| 'still' | 绝对静止。 |
+| 'relativeStill' | 相对静止。 |
 
 ## ActivityEvent
 
@@ -74,13 +74,13 @@ on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callba
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | 是   | 设备状态能力类型。              |
 | event  | [ActivityEvent](#activityevent)  | 是   | 事件类型。              |
-| reportLatencyNs  | number  | 是   | 报告延时。              |
+| reportLatencyNs  | number  | 是   | 报告延时(取值范围1000000000-3000000000)。              |
 | callback             | Callback<[ActivityResponse](#activityresponse)\>  | 是   | 回调函数，接收上报状态变化事件。    |
 
 **示例：**
 
 ```ts
-let reportLatencyNs = 100;
+let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
     console.log('data='+ JSON.stringify(data));
 })
@@ -123,7 +123,7 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | 是   | 设备状态能力类型。              |
 | event  | [ActivityEvent](#activityevent)  | 是   | 事件类型。              |
-| callback | Callback：\<[ActivityResponse](#activityresponse)>  | 否   | 回调函数，接收上报状态变化事件，如果没有传递callback参数或者传递的类型是undefined，会移除该进程下订阅该类型得所有callback。  |
+| callback | Callback<[ActivityResponse](#activityresponse)\>  | 否   | 回调函数，接收上报状态变化事件，如果没有传递callback参数或者传递的类型是undefined，会移除该进程下订阅该类型得所有callback。  |
 
 **示例：**
 

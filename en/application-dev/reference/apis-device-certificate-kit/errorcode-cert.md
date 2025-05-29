@@ -135,3 +135,17 @@ The key cannot be used for digital signature.
 **Solution**
 
 Check whether the certificate is correct.
+
+## 19030008 Incorrect Private Key Password
+
+**Error Message**
+
+The password may be wrong.
+
+**Possible Causes**
+
+The password for the private key is incorrect.
+
+**Solution**
+
+Check that the private key password is correct.

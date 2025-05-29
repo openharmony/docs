@@ -111,6 +111,10 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -166,6 +170,10 @@ try {
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -228,6 +236,10 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -261,7 +273,8 @@ import { zlib, BusinessError } from '@kit.BasicServicesKit';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
 };
 
 try {
@@ -282,6 +295,10 @@ try {
 decompressFile(inFile: string, outFile: string, options?: Options): Promise\<void>
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -342,6 +359,10 @@ try {
 decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>): void
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -956,13 +977,13 @@ let zip = zlib.createZipSync();
 
 ## Zip<sup>12+</sup>
 
-压缩解压缩对象实例。
+压缩解压缩对象实例，支持以zlib、deflate、gzip格式对数据进行压缩与解压。
 
 ### getZStream<sup>12+</sup>
 
 getZStream(): Promise&lt;ZStream&gt;
 
-输出流，使用Promise异步返回。成功时返回zlib流。
+输出流，使用Promise异步返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -972,7 +993,7 @@ getZStream(): Promise&lt;ZStream&gt;
 
 | 类型                                 | 说明                      |
 | ------------------------------------ | ------------------------- |
-| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回zlib流。 |
+| Promise&lt;[ZStream](#zstream12)&gt; | Promise对象。返回ZStream流。 |
 
 **示例：**
 
@@ -1058,7 +1079,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 
@@ -1073,7 +1094,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800007 | Buffer error.                                                |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1091,7 +1112,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
+zip.compress(arrayBufferOut, arrayBufferIn, 20).then((data) => {
   console.info('compress success:');
 }).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -1110,12 +1131,12 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 
 **参数：**
 
-| 参数名    | 类型          | 必填 | 说明                                                 |
-| --------- | ------------- | ---- | ---------------------------------------------------- |
-| dest      | ArrayBuffer   | 是   | 目标缓冲区。                                         |
-| source    | ArrayBuffer   | 是   | 源数据缓冲区。                                       |
-| level     | CompressLevel | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
-| sourceLen | number        | 否   | 源数据长度。                                         |
+| 参数名    | 类型          | 必填 | 说明                                          |
+| --------- | ------------- | ---- | --------------------------------------------- |
+| dest      | ArrayBuffer   | 是   | 目标缓冲区。                                  |
+| source    | ArrayBuffer   | 是   | 源数据缓冲区。                                |
+| level     | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
+| sourceLen | number        | 否   | 源数据长度。默认值为0。                                  |
 
 **返回值：**
 
@@ -1130,8 +1151,8 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1172,7 +1193,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 
@@ -1187,8 +1208,8 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1233,7 +1254,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 | --------- | ----------- | ---- | -------------- |
 | dest      | ArrayBuffer | 是   | 目标缓冲区。   |
 | source    | ArrayBuffer | 是   | 源数据缓冲区。 |
-| sourceLen | number      | 否   | 源数据长度。   |
+| sourceLen | number      | 否   | 源数据长度。默认值为0。   |
 
 **返回值：**
 
@@ -1248,8 +1269,8 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1349,9 +1370,9 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1360,7 +1381,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1408,9 +1429,9 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1419,7 +1440,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1435,7 +1456,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1467,9 +1488,9 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1478,9 +1499,9 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -1559,9 +1580,9 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1570,7 +1591,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1586,7 +1607,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1619,9 +1640,9 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1630,8 +1651,8 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **示例：**
 
@@ -1713,13 +1734,13 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1728,7 +1749,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1744,7 +1765,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1776,9 +1797,9 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1787,7 +1808,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1803,7 +1824,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1837,9 +1858,9 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1848,7 +1869,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -1864,7 +1885,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1922,13 +1943,13 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
+  await zip.inflateMark({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
     console.info('inflateMark success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -1951,13 +1972,13 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 参数名     | 类型    | 必填 | 说明                            |
 | ---------- | ------- | ---- | ------------------------------- |
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number  | 是   | 最大窗口大小的以2为底的对数。   |
+| windowBits | number  | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。   |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1966,7 +1987,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2010,9 +2031,9 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2038,7 +2059,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
   console.info('inflateInit success');
 }).catch((errData: BusinessError) => {
@@ -2065,9 +2086,9 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2076,7 +2097,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2136,7 +2157,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2152,7 +2173,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
   ).then(data => {
     console.info('inflateInit2 success');
   }).catch((errData: BusinessError) => {
@@ -2184,9 +2205,9 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2195,7 +2216,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2211,7 +2232,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2248,9 +2269,9 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2259,7 +2280,7 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2275,7 +2296,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2333,7 +2354,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2362,14 +2383,14 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 参数名     | 类型        | 必填 | 说明                                          |
 | ---------- | ----------- | ---- | --------------------------------------------- |
 | strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。               |
-| windowBits | number      | 是   | 最大窗口大小的以2为底的对数，取值范围在8~15。 |
+| windowBits | number      | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。 |
 | window     | ArrayBuffer | 是   | 预设的窗口缓冲区。                            |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2378,9 +2399,11 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBackEnd<sup>12+</sup>
 
@@ -2400,9 +2423,9 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2411,9 +2434,11 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBack<sup>12+</sup>
 
@@ -2435,29 +2460,11 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-InflateBackInputCallback的说明：
-
-InflateBackInputCallback = (inDesc: object) => ArrayBuffer
-
-| 名称   | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| inDesc | object | 是   | 用户定义数据对象 |
-
-InflateBackOutputCallback的说明：
-
-InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
-
-| 名称    | 类型        | 必填 | 说明                   |
-| ------- | ----------- | ---- | ---------------------- |
-| outDesc | object      | 是   | 用户定义数据对象       |
-| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
-| length  | number      | 是   | 写入输出缓冲区的长度。 |
-
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2465,8 +2472,8 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified. <br />2. Incorrect parameter types. <br />3. Parameter verification failed. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2605,6 +2612,52 @@ async function demo() {
 }
 ```
 
+### InflateBackInputCallback<sup>12+</sup>
+
+type InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+用于输入数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| inDesc | object | 是   | 用户定义数据对象。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| ArrayBuffer | 从输入数据源成功读取的内容缓冲区。 |
+
+### InflateBackOutputCallback<sup>12+</sup>
+
+type InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+用于输出数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型        | 必填 | 说明                   |
+| ------- | ----------- | ---- | ---------------------- |
+| outDesc | object      | 是   | 用户定义数据对象。     |
+| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
+| length  | number      | 是   | 写入输出缓冲区的长度。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| number | 输出缓冲区的字节数。 |
+
 ### inflate<sup>12+</sup>
 
 inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
@@ -2617,16 +2670,16 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型              | 必填 | 说明                                                   |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                        |
-| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#zipcompressflushmode12)。 |
+| 参数名 | 类型              | 必填 | 说明                                                |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                     |
+| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#compressflushmode12)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2635,8 +2688,8 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error.                                                  |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800005 | The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed. |
 
 **示例：**
 
@@ -2673,7 +2726,7 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2704,16 +2757,16 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                                 |
-| ------ | ------------- | ---- | ---------------------------------------------------- |
-| strm   | ZStream       | 是   | 参考[ZStream定义](#zstream12)。                      |
-| level  | CompressLevel | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
+| 参数名 | 类型          | 必填 | 说明                                          |
+| ------ | ------------- | ---- | --------------------------------------------- |
+| strm   | ZStream       | 是   | 参考[ZStream定义](#zstream12)。               |
+| level  | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2722,7 +2775,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2764,20 +2817,20 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 
 **参数：**
 
-| 参数名     | 类型             | 必填 | 说明                                                       |
-| ---------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
-| level      | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| method     | CompressMethod   | 是   | 参考[zip.CompressMethod枚举定义](#zipcompressmethod12)。   |
-| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                              |
-| memLevel   | MemLevel         | 是   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
-| strategy   | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| 参数名     | 类型             | 必填 | 说明                                                |
+| ---------- | ---------------- | ---- | --------------------------------------------------- |
+| strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
+| level      | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| method     | CompressMethod   | 是   | 参考[CompressMethod枚举定义](#compressmethod12)。   |
+| windowBits | number           | 是   | 控制内存窗口的大小，并指定数据的格式（zlib、gzip、raw deflate）。取值如下：<br />zlib格式：[1, 15]。<br />gzip格式：大于15。<br />raw deflate格式：[-15, -1]。                       |
+| memLevel   | MemLevel         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
+| strategy   | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2786,7 +2839,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -2829,16 +2882,16 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型              | 必填 | 说明                                                   |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                        |
-| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#zipcompressflushmode12)。 |
+| 参数名 | 类型              | 必填 | 说明                                                |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                     |
+| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#compressflushmode12)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2847,8 +2900,8 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800007 | Buffer error.                                                |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
+| 17800007 | The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data. |
 
 **示例：**
 
@@ -2901,9 +2954,9 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2912,7 +2965,7 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3035,9 +3088,9 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3046,7 +3099,7 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3100,9 +3153,9 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3111,7 +3164,7 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3165,9 +3218,9 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3176,7 +3229,7 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3241,7 +3294,7 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3298,14 +3351,14 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
 | goodLength | number  | 是   | 匹配的长度阈值。                |
 | maxLazy    | number  | 是   | 最大延迟匹配时间。              |
-| niceLength | number  | 是   | 适合的延迟长度阈值              |
-| maxChain   | number  | 是   | 最大链条长度                    |
+| niceLength | number  | 是   | 适合的延迟长度阈值。              |
+| maxChain   | number  | 是   | 最大链条长度。                    |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3314,7 +3367,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3367,9 +3420,9 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3378,7 +3431,7 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3431,9 +3484,9 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3442,7 +3495,7 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3506,7 +3559,7 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3553,17 +3606,17 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 
 **参数：**
 
-| 参数名   | 类型             | 必填 | 说明                                                       |
-| -------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm     | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
-| level    | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| strategy | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| 参数名   | 类型             | 必填 | 说明                                                |
+| -------- | ---------------- | ---- | --------------------------------------------------- |
+| strm     | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
+| level    | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| strategy | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3572,7 +3625,7 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3627,9 +3680,9 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3638,7 +3691,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -3675,17 +3728,16 @@ async function demo() {
 
 ## Options
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
-| -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLevel     | 是   | 否   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| memLevel | MemLevel         | 是   | 否   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
-| strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
+| level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>18+</sup> | [ParallelStrategy](#parallelstrategy18) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy18)。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
-## zip.CompressLevel
+## CompressLevel
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3698,7 +3750,7 @@ async function demo() {
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | 最佳压缩等级。      |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | 默认压缩等级。      |
 
-## zip.MemLevel
+## MemLevel
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3706,11 +3758,11 @@ async function demo() {
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | zip 接口在压缩过程中最小使用内存。 |
-| MEM_LEVEL_MAX     | 9    | zip 接口在压缩过程中最大使用内存。 |
-| MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存。 |
+| MEM_LEVEL_MIN     | 1    | zlib接口在压缩过程中最小使用内存。 |
+| MEM_LEVEL_MAX     | 9    | zlib接口在压缩过程中最大使用内存。 |
+| MEM_LEVEL_DEFAULT | 8    | zlib接口在压缩过程中默认使用内存。 |
 
-## zip.CompressStrategy
+## CompressStrategy
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3724,7 +3776,18 @@ async function demo() {
 | COMPRESS_STRATEGY_RLE              | 3    | 游标编码压缩策略。         |
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略。           |
 
-## zip.ErrorCode
+## ParallelStrategy<sup>18+</sup>
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称                                     | 值   | 说明                      |
+| ---------------------------------------- | ---- | ------------------------ |
+| PARALLEL_STRATEGY_SEQUENTIAL             | 0    | 默认值，串行压缩/解压策略。|
+| PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | 并行解压策略。            |
+
+## ErrorCode
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3733,7 +3796,7 @@ async function demo() {
 | ERROR_CODE_OK    | 0    | 函数调用成功。 |
 | ERROR_CODE_ERRNO | -1   | 函数调用失败。 |
 
-## zip.CompressFlushMode<sup>12+</sup>
+## CompressFlushMode<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3749,7 +3812,7 @@ async function demo() {
 | BLOCK         | 5    | 允许更精确的控制。                           |
 | TREES         | 6    | 实施过程中有特殊目的。                       |
 
-## zip.CompressMethod<sup>12+</sup>
+## CompressMethod<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3759,7 +3822,7 @@ async function demo() {
 | -------- | ---- | ---------- |
 | DEFLATED | 8    | 压缩方法。 |
 
-## zip.ReturnStatus<sup>12+</sup>
+## ReturnStatus<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3779,14 +3842,14 @@ async function demo() {
 
 | 名称         | 类型        | 可读 | 可写 | 说明                                                         |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节                                           |
-| availableIn  | number      | 是   | 否   | nextIn可用的字节数                                           |
-| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数                                 |
-| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节                                             |
-| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数                                      |
-| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数                                       |
-| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态 |
-| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值                               |
+| nextIn       | ArrayBuffer | 是   | 否   | 需要压缩的输入字节。                                           |
+| availableIn  | number      | 是   | 否   | nextIn可用的字节数。                                           |
+| totalIn      | number      | 是   | 否   | 到目前为止读取的输入字节总数。                                 |
+| nextOut      | ArrayBuffer | 是   | 否   | 压缩后的输出字节。                                             |
+| availableOut | number      | 是   | 否   | nextOut的剩余可用字节数。                                      |
+| totalOut     | number      | 是   | 否   | 到目前为止输出字节总数。                                       |
+| dataType     | number      | 是   | 否   | 关于数据类型的最佳猜测：deflate的二进制或文本，或inflate的解码状态。 |
+| adler        | number      | 是   | 否   | 未压缩数据的Adler-32或CRC-32值。                               |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -3794,10 +3857,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                                  |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                                  |
+| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                          |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3805,10 +3868,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                                  |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                          |
+| 名称             | 类型         | 可读 | 可写 | 说明                                          |
+| ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status           | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| dictionaryLength | number       | 是   | 否   | 字典的长度。                                  |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3816,11 +3879,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                                  |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| destLength       | number       | 是   | 否   | 目标缓冲区的长度。                                     |
-| sourceLength     | number       | 是   | 否   | 源缓冲区的长度。                                       |
+| 名称         | 类型         | 可读 | 可写 | 说明                                          |
+| ------------ | ------------ | ---- | ---- | --------------------------------------------- |
+| status       | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLength   | number       | 是   | 否   | 目标缓冲区的长度。                            |
+| sourceLength | number       | 是   | 否   | 源缓冲区的长度。                              |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3828,11 +3891,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                                  |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| pending | number       | 是   | 否   | 已生成的输出字节数。                                  |
-| bits    | number       | 是   | 否   | 已生成的输出位数。                                    |
+| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| pending | number       | 是   | 否   | 已生成的输出字节数。                          |
+| bits    | number       | 是   | 否   | 已生成的输出位数。                            |
 
 ## GzHeader<sup>12+</sup>
 
@@ -3965,9 +4028,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4006,12 +4070,13 @@ gzbuffer(size: number):Promise&lt;number&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009   | Internal structure error. |
 
 **示例：**
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { zlib } from '@kit.BasicServicesKit'
+import { zlib } from '@kit.BasicServicesKit';
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4035,9 +4100,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzbufferDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzbufferDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4104,9 +4170,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzopenDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzopenDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4168,9 +4235,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzeofDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzeofDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4222,9 +4290,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzdirectDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzdirectDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4238,7 +4307,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+清除文件的所有挂起输出，如有必要，关闭文件和释放（解）压缩状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4246,9 +4315,9 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4256,7 +4325,7 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息                  |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **示例：**
@@ -4284,9 +4353,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloseDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloseDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4350,9 +4420,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclearerrDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclearerrDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4374,9 +4445,9 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 **返回值：**
 
-| 类型                                                        | 说明                                                      |
-| ----------------------------------------------------------- | --------------------------------------------------------- |
-| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise对象，返回结果状态和出现的最后一个状态的状态消息。 |
+| 类型                                                     | 说明                                                      |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[GzErrorOutputInfo](#gzerroroutputinfo12)&gt; | Promise对象，返回结果状态和出现的最后一个状态的状态消息。 |
 
 **错误码：**
 
@@ -4384,7 +4455,7 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4424,9 +4495,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzerrorDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzerrorDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4489,9 +4561,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4515,13 +4588,13 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| flush  | CompressFlushMode | 是   | 控制刷新操作的行为，参考[CompressFlushMode枚举](#zipcompressflushmode12)的定义。 |
+| flush  | CompressFlushMode | 是   | 控制刷新操作的行为，参考[CompressFlushMode枚举](#compressflushmode12)的定义。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4530,7 +4603,7 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4558,9 +4631,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzflushDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzflushDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4634,9 +4708,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4714,9 +4789,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzfreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzfreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4738,9 +4814,9 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4748,7 +4824,7 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息                  |
 | -------- | ------------------------- |
-| 17800004 | ZStream error.            |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800006 | Memory allocation failed. |
 
 **示例：**
@@ -4776,9 +4852,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzclosewDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzclosewDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4792,7 +4869,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-与gzclose（）功能相同，仅适用于读取时。
+与gzclose()功能相同，仅适用于读取时。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4800,9 +4877,9 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4810,7 +4887,7 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 17800004 | ZStream error. |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -4839,9 +4916,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzcloserDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzcloserDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4912,9 +4990,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzwriteDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzwriteDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -4982,9 +5061,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzungetcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzungetcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5044,9 +5124,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gztellDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gztellDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5070,14 +5151,14 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| level    | CompressLevel    | 是   | 压缩级别，参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
-| strategy | CompressStrategy | 是   | 压缩策略，参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| level    | CompressLevel    | 是   | 压缩级别，参考[CompressLevel枚举定义](#compresslevel)。      |
+| strategy | CompressStrategy | 是   | 压缩策略，参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -5086,7 +5167,7 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 
 **示例：**
 
@@ -5115,9 +5196,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzsetparamsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzsetparamsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5142,7 +5224,7 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 | 参数名 | 类型                 | 必填 | 说明                                                         |
 | ------ | -------------------- | ---- | ------------------------------------------------------------ |
 | offset | number               | 是   | 目标偏移位置。                                               |
-| whence | OffsetReferencePoint | 是   | 定义偏移的参考点，参考[zip.OffsetReferencePoint枚举定义](#zipoffsetreferencepoint12)。 |
+| whence | OffsetReferencePoint | 是   | 定义偏移的参考点，参考[OffsetReferencePoint枚举定义](#offsetreferencepoint12)。 |
 
 **返回值：**
 
@@ -5185,9 +5267,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzseekDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzseekDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5209,9 +5292,9 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -5249,9 +5332,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzrewindDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzrewindDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5327,9 +5411,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzreadDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzreadDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5396,9 +5481,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5465,9 +5551,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzputcDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzputcDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5492,7 +5579,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | 是   | 格式化描述符和纯文本。 |
-| args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
+| ...args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
 
 **返回值：**
 
@@ -5507,7 +5594,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
+| 17800004 | Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure. |
 | 17800009 | Internal structure error.                                    |
 
 **示例：**
@@ -5536,9 +5623,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzprintfDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzprintfDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5598,9 +5686,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzoffsetDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzoffsetDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5671,9 +5760,10 @@ struct Index {
           .height(60)
           .width(200)
           .onClick(() => {
-            let context = getContext(this);
-            let pathDir = context.cacheDir;
-            gzgetsDemo(pathDir);
+            let pathDir = this.getUIContext()?.getHostContext()?.cacheDir;
+            if (typeof pathDir === 'string') {
+              gzgetsDemo(pathDir);
+            }
           })
       }
       .width('100%')
@@ -5683,18 +5773,18 @@ struct Index {
 }
 ```
 
-## zip.GzErrorOutputInfo<sup>12+</sup>
+## GzErrorOutputInfo<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称      | 类型         | 可读 | 可写 | 说明                                             |
-| --------- | ------------ | ---- | ---- | ------------------------------------------------ |
-| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考zip.ReturnStatus的定义。 |
-| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。         |
+| 名称      | 类型         | 可读 | 可写 | 说明                                         |
+| --------- | ------------ | ---- | ---- | -------------------------------------------- |
+| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
+| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
 
-## zip.OffsetReferencePoint<sup>12+</sup>
+## OffsetReferencePoint<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

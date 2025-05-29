@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Failed to operate the input device.
+Service Exception. Possible causes: 1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status.
 
 **错误描述**
 
@@ -19,6 +19,8 @@ Failed to operate the input device.
 1. 发起键鼠穿越时，本机键鼠穿越为穿出状态。
 2. 关闭键鼠穿越时，本机键鼠穿越为自由态。
 3. 发起关闭键鼠穿越时，本机键鼠穿越状态正在切换中。
+4. 系统错误，如空指针、容器相关异常、IPC异常等。
+5. Native-API调用异常，Native-API状态无效。
 
 **处理步骤**
 

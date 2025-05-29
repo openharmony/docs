@@ -11,12 +11,12 @@ You can use [publish()](../../reference/apis-basic-services-kit/js-apis-commonEv
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
+For details about the APIs, see [commonEventManager.publish](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
 
 | API                                                      | Description                    |
 | ------------------------------------------------------------ | ---------------------------- |
-| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | Publishes a common event.              |
-| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback) | Publishes a common event with given attributes.|
+| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback<void\>) | Publishes a common event.              |
+| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback<void\>) | Publishes a common event with given attributes.|
 
 
 ## Publishing a Common Event That Does Not Carry Information
@@ -26,10 +26,8 @@ Common events that do not carry information can be published only as unordered c
 1. Import the **commonEventManager** module.
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -39,9 +37,9 @@ Common events that do not carry information can be published only as unordered c
    
    ```ts
    // Publish the common event. Replace the event field with the actual event name.
-   commonEventManager.publish('event', (err: Base.BusinessError) => {
+   commonEventManager.publish('event', (err: BusinessError) => {
      if (err) {
-       hilog.info(DOMAIN_NUMBER, TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Publish failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
      } else {
        //...
        hilog.info(DOMAIN_NUMBER, TAG, `Publish success`);
@@ -57,15 +55,14 @@ Common events that carry information can be published as unordered, ordered, and
 1. Import the **commonEventManager** module.
    
    ```ts
-   import Base from '@ohos.base';
-   import commonEventManager from '@ohos.commonEventManager';
-   import hilog from '@ohos.hilog';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
    const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
-2. Create the public event information to be released.
+2. Create the public event information to publish.
    
    ```ts
    // Attributes of a common event.
@@ -79,12 +76,12 @@ Common events that carry information can be published as unordered, ordered, and
    
    ```ts
    // Publish the common event. Replace the event field with the actual event name.
-   commonEventManager.publish('event', options, (err: Base.BusinessError) => {
+   commonEventManager.publish('event', options, (err: BusinessError) => {
      if (err) {
-       hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err = ' + JSON.stringify(err));
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
      } else {
        //...
-       hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
+       hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in publishing common event.`);
      }
    });
    ```

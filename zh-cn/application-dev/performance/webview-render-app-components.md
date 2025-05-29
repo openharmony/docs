@@ -3,9 +3,9 @@
 在使用Web组件加载H5页面时，经常会有长列表、视频等场景。由于Web目前最高只有60帧，想要更加流畅的体验，必须要将原生组件放到Web上。
 
 在什么场景下应该在Web上使用原生组件：
-- 需要高性能，流畅体验。如长列表，视频等场景
-- 需要使用原生组件功能
-- 原生组件已经实现，复用以减少开发成本
+- 需要高性能，流畅体验。如长列表，视频等场景。
+- 需要使用原生组件功能。
+- 原生组件已经实现，复用以减少开发成本。
 
 目前要实现在Web上使用原生组件有两种方案：  
 方案一：直接将组件堆叠到H5页面上。  
@@ -30,7 +30,7 @@
 以下分别采用纯H5、非同层渲染和同层渲染的三种方式，加载相同的商城组件到相同的H5页面上，并抓取trace对比三者之间的区别，其中商城页面大致如图二所示：
 
 **图二：商城页面场景**  
-<img src="./figures/webview-render-app-components_2.jpeg" width="300px"></img>
+![Webview](./figures/webview-render-app-components_2.jpeg)
 
 场景实例源码的核心部分如下：
 
@@ -54,7 +54,10 @@
 
 ```typescript
 // SearchComponent.ets
-...
+  
+// API以及模块引入
+// ...
+  
 @Component
 export struct SearchComponent {
   @Prop params: Params;
@@ -80,7 +83,7 @@ export struct SearchComponent {
       .borderRadius(18)
       .onClick(() => {
         // 点击搜索框提示
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
           message: "仅演示"
         });
       })
@@ -118,7 +121,6 @@ export struct SearchComponent {
   }
 }
 
-...
 ```
 
 ## Web加载原生组件三种方案的对比 
@@ -152,7 +154,7 @@ export struct SearchComponent {
               case webview.WebMessageType.STRING: {
                 if (result.getString() === 'shop_search_click') {
                   // 点击搜索框提示
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: $r("app.string.nativeembed_prompt_text")
                   });
                 }
@@ -166,7 +168,7 @@ export struct SearchComponent {
         hiTraceMeter.finishTrace('START_WEB_WEB', 2002);
       })
     ```
-2. 此时，样式和组件需要单独通过js和css文件进行控制，这里仅展示js主要代码
+2. 此时，样式和组件需要单独通过js和css文件进行控制，这里仅展示js主要代码。
 
     ```javascript
     let h5Port; // 获取应用侧的端口
@@ -177,7 +179,7 @@ export struct SearchComponent {
             }
         }
     })
-
+    
     function postStringToApp(str) {
         if (h5Port) {
             h5Port.postMessage(str);
@@ -189,18 +191,18 @@ export struct SearchComponent {
 
     // 获取应用侧的数据对象
     let imageNodeData = mockData.getMockData();
-
+    
     // 搜索框
     let searchNode = document.createElement('div');
     searchNode.classList.add('shop-input');
     searchNode.addEventListener('click', () => {
         postStringToApp('shop_search_click')
     })
-
-    ...
+    
+    // ...
     // 其余相关节点
-    ...
-
+    // ...
+    
     let imageNodeList = []; // 商城node节点列表
     imageNodeData.forEach(item => {
         // 商品div
@@ -217,9 +219,9 @@ export struct SearchComponent {
         node.append(imageNode, textNode);
         imageNodeList.push(node);
     })
-
+    
     shopNode.append(...imageNodeList);
-
+    
     document.querySelector("#my-app").append(titleNode, searchNode, shopNode);
     ```
 
@@ -237,9 +239,9 @@ export struct SearchComponent {
           .backgroundColor('#F1F3F5')
           .zoomAccess(false)// 不允许执行缩放
           .onPageEnd(() => { 
-            ...
+            // ...
             // 里面放下一步的内容
-            ...
+            // ...
           })
         if (this.isWebInit) {
           Column() {
@@ -253,7 +255,7 @@ export struct SearchComponent {
     }
     ```
 2. 用Web加载nativeembed_view.html文件，在加载完成后的onPageEnd回调中，获取Web侧预留的Embed元素大小，并通过px2vp方法转换为组件大小。  
-需要在H5侧添加getEmbedSize方法来获取元素大小，如下：
+   需要在H5侧添加getEmbedSize方法来获取元素大小，如下：
 
     ```javascript
     // H5侧
@@ -278,8 +280,8 @@ export struct SearchComponent {
             height: number
           }
           let embedSize = JSON.parse(result) as EmbedSize;
-          this.searchWidth = px2vp(embedSize.width);
-          this.searchHeight = px2vp(embedSize.height);
+          this.searchWidth = this.getUIContext().px2vp(embedSize.width);
+          this.searchHeight = this.getUIContext().px2vp(embedSize.height);
           this.isWebInit = true;
         }
       });
@@ -307,7 +309,7 @@ export struct SearchComponent {
 2. 因为要使用NodeContainer，所以封装一个继承自NodeController的类SearchNodeController。
     ```typescript
     type Node = BuilderNode<[Params]> | undefined | null;
-
+    
     /**
      * 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
      */
@@ -319,7 +321,7 @@ export struct SearchComponent {
       private componentWidth: number = 0; // 原生组件宽
       private componentHeight: number = 0; // 原生组件高
       private nodeMap: Map<string, Node> = new Map<string, Node>(); // 存放与surfaceId关联的BuilderNode
-
+    
       /**
        * 设置surfaceId等渲染选项
        */
@@ -331,7 +333,7 @@ export struct SearchComponent {
         this.componentWidth = params.width;
         this.componentHeight = params.height;
       }
-
+    
       /**
        * 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
        */
@@ -349,7 +351,7 @@ export struct SearchComponent {
           return newNode.getFrameNode();
         }
       }
-
+    
       /**
        * 将触摸事件派发到rootNode创建出的FrameNode上
        */
@@ -388,8 +390,8 @@ export struct SearchComponent {
         type: embed.info?.type as string,
         renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
         embedId: embed.embedId as string,
-        width: px2vp(embed.info?.width),
-        height: px2vp(embed.info?.height)
+        width: this.getUIContext().px2vp(embed.info?.width),
+        height: this.getUIContext().px2vp(embed.info?.height)
       });
     }
     this.searchNodeController.rebuild();
@@ -406,7 +408,7 @@ export struct SearchComponent {
 **图三：H5的Trace图**
 ![alt text](./figures/webview-render-app-components_5.png)  
 H5的分析：
-- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处  理。
+- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处理。
 - 在render_service侧，每一帧ReceiveVsync的耗时无明显变化。  
 
 ### 使用非同层渲染加载  
@@ -415,7 +417,9 @@ H5的分析：
 ![alt text](./figures/webview-render-app-components_4.png)  
 非同层渲染的分析：
 - 在应用侧，红蓝线之间为测量和计算布局，图片加载被延后到了蓝线之外。  
-- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。  
+- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。
+  
+
 **图五：非同层渲染情况下的单帧放大图**  
 ![alt text](./figures/webview-render-app-components_6.png)  
 从图五可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘任务过重。 

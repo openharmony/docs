@@ -1,4 +1,4 @@
- # RunningMultiAppInfo (系统接口)
+# RunningMultiAppInfo (系统接口)
 
 定义应用多开在运行态的结构信息。
 
@@ -9,7 +9,7 @@
 
 ## 属性
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -18,6 +18,7 @@
 | bundleName | string | 是  | 应用的包名。 |
 | mode | [MultiAppMode](js-apis-inner-application-multiAppMode-sys.md) | 是   | 应用多开模式。 |
 | runningAppClones | Array<[RunningAppClone](js-apis-inner-application-runningAppClone-sys.md)> | 否  | 特定包名在运行态的分身应用信息。 |
+| runningMultiInstances<sup>14+</sup> | Array<[RunningMultiInstanceInfo](js-apis-inner-application-runningMultiInstanceInfo-sys.md)> | 否  | 特定包名在运行态的多实例应用信息。 |
 
 ## 使用说明
 
@@ -27,17 +28,19 @@
 
 ```ts
 import { appManager } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let bundleName = "ohos.samples.etsclock";
-  appManager.getRunningMultiAppInfo(bundleName).then((info: RunningMultiAppInfo) => {
-      hilog.info(0x0000, 'testTag', `getRunningMultiAppInfo success`);
+  appManager.getRunningMultiAppInfo(bundleName)
+    .then((info: appManager.RunningMultiAppInfo) => {
+      console.info(`getRunningMultiAppInfo success, data: ${JSON.stringify(info)}`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
-    })
+    console.error(`getRunningMultiAppInfo failed, code: ${err.code}, msg:${err.message}`);
+  })
 } catch (err) {
-  hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getRunningMultiAppInfo error, code: ${code}, msg:${msg}`);
 }
 ```

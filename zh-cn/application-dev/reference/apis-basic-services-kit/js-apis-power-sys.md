@@ -101,6 +101,10 @@ wakeup(detail: string): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -117,6 +121,7 @@ wakeup(detail: string): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
@@ -137,13 +142,17 @@ suspend(isImmediate?: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。true表示灭屏后立即进入休眠，不填该参数则默认为false，表示灭屏后由系统自动检测何时进入休眠。如果只想做灭屏操作，建议不填参数。<br>**说明：** 从API version 10开始，支持该参数。|
 
 
 **错误码：**
@@ -153,6 +162,7 @@ suspend(isImmediate?: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
@@ -263,6 +273,10 @@ setScreenOffTime(timeout: number): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -279,6 +293,7 @@ setScreenOffTime(timeout: number): void
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
@@ -299,6 +314,10 @@ hibernate(clearMemory: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -314,6 +333,7 @@ hibernate(clearMemory: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 

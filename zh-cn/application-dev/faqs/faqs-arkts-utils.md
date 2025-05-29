@@ -57,12 +57,7 @@ Worker存在数量限制，支持最多同时存在8个Worker。所以针对预�
 
 **解决方案**
 
-系统采用ArkTS作为开发语言，由于底层线程模型对接了libuv，因此在应用进程启动后，会有多个I/O线程用于I/O操作，JS线程的I/O异步操作，会在I/O线程执行，JS线程可以同时执行其他操作，不存在阻塞等待问题。
-同时，ArkTS提供了TaskPool并发API，类似GCD的线程池能力，可以执行任务，而且不需要开发者进行线程生命周期管理。
-因此针对需要大量线程的问题，开发建议如下:
-将多线程任务转变为并发任务，通过TaskPool分发执行
-I/O型任务不需要单独开启线程，而是在当前线程（可以是TaskPool线程）执行
-少量需要常驻的CPU密集型任务，采用Worker，并且需要控制在8个及以下。
+系统采用ArkTS作为开发语言，由于底层线程模型对接了libuv，因此在应用进程启动后，会有多个I/O线程用于I/O操作，JS线程的I/O异步操作，会在I/O线程执行，JS线程可以同时执行其他操作，不存在阻塞等待问题。同时，ArkTS提供了TaskPool并发API，类似GCD的线程池能力，可以执行任务，而且不需要开发者进行线程生命周期管理。因此针对需要大量线程的问题，开发建议如下:将多线程任务转变为并发任务，通过TaskPool分发执行I/O型任务不需要单独开启线程，而是在当前线程（可以是TaskPool线程）执行。少量需要常驻的CPU密集型任务，采用Worker，并且需要控制在8个及以下。
 
 **参考链接**
 
@@ -385,7 +380,7 @@ Native侧建议使用FFRT线程池，pthread暂无限制。
 
 **参考链接**
 
-1. [可共享对象](../arkts-utils/serialization-support-types.md)
+1. [可共享对象](../arkts-utils/arkts-sendable.md)
 
 ## 在多线程并发场景中，如何实现安全访问同一块共享内存？(API 10)
 
@@ -457,9 +452,9 @@ SendableClass是基于Actor内存隔离并发模型的扩展，Sendable对象的
 **规格澄清**
 
 Sendable对象需要满足一定的规格：
-1. 成员属性为 Sendable类 或者基础类型（string number boolean等，Array等容器类待扩展后支持）
+1. 成员属性为Sendable类，或者基础类型（string number boolean等，Array等容器类待扩展后支持）
 2. 成员属性必须显式初始化
-3. 成员函数不能使用闭包，只能使用入参 或者 this成员 或者 import导入的变量
+3. 成员函数不能使用闭包，只能使用入参、this成员或者import导入的变量
 4. 只允许Sendable类继承Sendable类
 5. @Sendable只能写在ArkTS(ets)文件中
 6. 不支持#定义私有属性，要用private
@@ -543,7 +538,7 @@ ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程
 ##  在ArkTS的主线程中使用await会堵塞主线程吗？（API 10）
 
 比如如下代码在主线程中执行：  
-``const response = await reqeust.buildCall().execute<string>();``  
+`const response = await reqeust.buildCall().execute<string>();`  
 这种写法会导致主线程堵塞吗？
 
 **解决方案**
@@ -664,69 +659,6 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 
 1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)
 
-
-##  ArkTS 应用运行时出现模块化加载相关的异常报错提示，可能导致报错原因以及解决方法
-
-**报错与定位方法**
-
-1. "Cannot find dynamic-import module 'xxxx'" 报错表示当前加载的模块未被编译到当前应用包内
-
-报错原因: 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
-``` typescript
-  import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
-```
-
-定位方法: 将待加载module路径信息打印出来，评估模块路径是否计算有误。
-
-2. "Cannot find module 'xxxx' , which is application Entry Point" 报错表示拉起应用abc时，执行入口文件查找失败
-
-报错原因: 应用拉起时，应用入口文件模块查找失败。
-
-定位方法:
-(1) 打开应用工程级编译构建文件: entry > src/main/module.json5
-
-([OpenHarmony工程管理介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-project-overview-0000001218440650-V3))
-module.json5部分参数示例如下:
-```
-{
-  "module": {
-    "name": "entry",
-    "type": "entry",
-    ...
-    "abilities": [
-      {
-        "name": "EntryAbility", // 模块名称
-        "srcEntry": "./ets/entryability/EntryAbility.ts",  // 标明src目录相对工程根目录的相对路径
-        "description": "$string:EntryAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
-        "exported": true,
-        "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "action.system.home"
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-(2) 其中，"abilities":"srcEntry" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查module.json5内的"srcEntry"参数是否书写正确。
-
-3. "No export named 'xxxx' which exported by 'xxxx'" 报错表示加载应用hap或har包内so时，该模块内未查找到特定对象
-
-报错原因: ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文件内的导入变量名书写错误时，ide编译器与应用编译阶段均会报错提示。但目前对于应用内native C++模块的依赖关系检测会在运行阶段。
-
-定位方法:
-检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
-
 ## taskpool线程中是否可以使用emitter.on等长时间监听接口
 
 不推荐。
@@ -791,3 +723,21 @@ module.json5部分参数示例如下:
 4. 仅采集主线程任意阶段：hdc shell param set persist.ark.properties 0x2505c
 5. 仅采集worker线程任意阶段：hdc shell param set persist.ark.properties 0x4505c
 6. 同时采集主线程及worker线程任意阶段：hdc shell param set persist.ark.properties 0x6505c
+
+## 当前ArkTS是否采用类Node.js的异步I/O机制
+
+**解决方案**
+
+是的。Node.js使用了事件循环机制来处理异步操作，在Node.js中，异步操作通过回调函数或Promise来处理。ArkTS使用了基于协程的异步I/O机制，I/O事件会分发到I/O线程，不阻塞JS线程，可以通过回调函数或Promise/async/await语法来处理异步操作。
+
+## 对于网络请求这I/O密集型任务是否需要使用多线程进行处理
+
+**解决方案**
+
+根据具体业务场景和实现决定。若I/O操作不频繁，对UI主线程其他业务没有影响，则无需使用多线程。若有频繁I/O请求导致UI主线程分发请求的耗时过长，则需要使用多线程用以提高程序的性能和响应速度，具体需要根据Profiler情况决定。
+
+## 对于@ohos.net.http网络框架是否需要使用TaskPool处理
+
+**解决方案**
+
+根据具体业务场景和实现决定。如果业务的网络请求较少或者后续网络数据的处理耗时不长，则无需使用TaskPool去承担额外的线程开启回收及数据传递耗时。如果业务中需要处理大量的网络请求并且对获取的数据进行二次加工耗时长，可以使用TaskPool进行网络请求及数据处理，降低UI主线程负载。

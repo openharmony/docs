@@ -24,16 +24,7 @@ Not supported
 
 ## APIs
 
-FormComponent(value: {
-    id: number;
-    name: string;
-    bundle: string;
-    ability: string;
-    module: string;
-    dimension?: FormDimension;
-    temporary?: boolean;
-    renderingMode?: FormRenderingMode;
-  })
+FormComponent (value: FormInfo)
 
 Creates a **FormComponent** instance to display the provided widget.
 
@@ -41,14 +32,32 @@ Creates a **FormComponent** instance to display the provided widget.
 
 | Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
-| id        | number                          | Yes  | Widget ID. Set this parameter to **0** for a new widget.<br>**NOTE**<br>Different widget hosts cannot use the same ID.<br>If a widget host uses the same ID for two widgets, the one added later is displayed.                                       |
+| value        | [FormInfo](#forminfo12)                 | Yes  | Widget information.  |
+
+## FormInfo<sup>12+</sup>
+
+Provides the widget information.
+
+| Name   | Type                       | Mandatory| Description                                                               |
+| --------- | ------------------------------- | ---- |-------|
+| id        | number \| string                    | Yes  | Widget ID. Set this parameter to **0** for a new widget.<br>**NOTE**<br>Different widget hosts cannot use the same ID.<br>If a widget host uses the same ID for two widgets, the one added later is displayed.                                       |
 | name      | string                          | Yes  | Widget name.                                                             |
 | bundle    | string                          | Yes  | Bundle name of the widget.                                                         |
 | ability   | string                          | Yes  | Ability name of the widget.                                                  |
 | module    | string                          | Yes  | Module name of the widget.                                                         |
 | dimension | [FormDimension](#formdimension) | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2**|
 | temporary | boolean                         | No  | Whether the widget is a temporary one.                                                   |
-| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode11) | No  | Widget rendering mode. The options are as follows:<br>- **FULL_COLOR** (default): full color mode, where the widget framework does not change the widget effect, which means that the widget is displayed in the effect as you set it.<br>- **SINGLE_COLOR**: single color mode, where the widget framework sets the widget background to transparent. In this mode you need to set the widget style based on the best practices.<br>**NOTE**<br>If the system does not support unified rendering, the widget framework does not set the widget background to transparent in single color mode.|
+| renderingMode | [FormRenderingMode](#formrenderingmode11) | No  | Widget rendering mode. The options are as follows:<br>- **FULL_COLOR** (default): full color mode, where the widget framework does not change the widget effect, which means that the widget is displayed in the effect as you set it.<br>- **SINGLE_COLOR**: single color mode, where the widget framework sets the widget background to transparent. In this mode you need to set the widget style based on the best practices.<br>**NOTE**<br>If the system does not support unified rendering, the widget framework does not set the widget background to transparent in single color mode.|
+
+## FormCallbackInfo<sup>12+</sup>
+
+Represents the parameters for obtaining a widget ID (**formId**) when querying or uninstalling a widget.
+
+| Name   | Type                       | Mandatory| Description                                                               |
+| --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
+| id        | number                 | Yes  | Widget ID of the number type.<br>**NOTE**<br>If the obtained ID is **-1**, the ID is greater than or equal to 2^53. In this case, you need to use **idString** to obtain the ID.                                       |
+| idString      | string            | Yes          | Widget ID of the string type.                            |
+| isLocked<sup>18+</sup>  |boolean  | Yes          | Whether the widget is [locked](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate18). The value **true** means that the widget is locked, and **false** means the opposite.    |
 
 ## FormDimension
 
@@ -61,6 +70,8 @@ Creates a **FormComponent** instance to display the provided widget.
 | Dimension_2_1<sup>9+</sup> | 2 x 1 widget.|
 | Dimension_1_1<sup>11+</sup> | 1 x 1 widget.|
 | Dimension_6_4<sup>12+</sup> | 6 x 4 widget.|
+| Dimension_2_3<sup>18+</sup> | 2 x 3 widget. Available for wearable devices.|
+| Dimension_3_3<sup>18+</sup> | 3 x 3 widget. Available for wearable devices.|
 
 ## FormRenderingMode<sup>11+</sup>
 | Name                      | Description    |
@@ -154,7 +165,7 @@ Sets whether the widget is visible.
 
 ### onAcquired
 
-onAcquired(callback: (info: { id: number }) =&gt; void)
+onAcquired(callback: Callback[\<FormCallbackInfo>](#formcallbackinfo12)): FormComponentAttribute
 
 Called when the widget is obtained.
 
@@ -166,7 +177,7 @@ Called when the widget is obtained.
 
 | Name| Type                               | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
-| info   |  { id: number } | Yes  | Widget ID.|
+| Callback | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID.|
 
 ### onError
 
@@ -182,7 +193,7 @@ Called when an error occurs during component loading.
 
 | Name| Type                                                        | Mandatory| Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error information.|
+| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error message.|
 
 ### onRouter
 
@@ -202,7 +213,7 @@ Called when routing occurs for the widget. This API returns information in [rout
 
 ### onUninstall
 
-onUninstall(callback: (info: { id: number }) =&gt; void)
+onUninstall(callback: Callback[\<FormCallbackInfo>](#formcallbackinfo12)): FormComponentAttribute
 
 Called when the widget is uninstalled. This API returns the ID of the uninstalled widget.
 
@@ -214,17 +225,20 @@ Called when the widget is uninstalled. This API returns the ID of the uninstalle
 
 | Name| Type                               | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
-| info   |  { id: number } | Yes  | Widget ID.|
+| Callback   | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID.|
 
 
 ## Example
 
+ 
+
+This example creates a 2 x 2 widget and registers event callbacks.
 ```ts
 //card.ets
 @Entry
 @Component
 struct CardExample {
-   @State formId:number = 0;
+  @State formId:string = '0';
   build() {
     Column() {
       Text('this is a card')
@@ -242,14 +256,27 @@ struct CardExample {
         .allowUpdate(true)
         .size({width:360,height:360})
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form: FormCallbackInfo)=>{
           console.log(`form info : ${JSON.stringify(form)}`);
-          this.formId = form.id;
+          // Invalid form id
+          if (form.id == -1) {
+            this.formId = form.idString;
+          } else {
+            this.formId = form.id.toString();
+          }
         })
         .onError((err)=>{
           console.log(`fail to add form, err: ${JSON.stringify(err)}`);
         })
-
+        .onUninstall((form: FormCallbackInfo)=>{
+          console.log(`uninstall form success : ${JSON.stringify(form)}`);
+          // Invalid form id
+          if (form.id == -1) {
+            this.formId = form.idString;
+          } else {
+            this.formId = form.id.toString();
+          }
+        })
     }
     .width('100%')
     .height('100%')

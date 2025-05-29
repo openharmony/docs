@@ -46,7 +46,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Inner transact failed.
+Internal transaction failed.
 
 **Description**
 
@@ -83,7 +83,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Background task verification failed.
+Continuous task verification failed.
 
 **Description**
 
@@ -94,7 +94,7 @@ This error code is reported when continuous task verification fails.
 1. The application repeatedly requests a continuous task.
 2. The application repeatedly cancels a continuous task.
 3. The value of **bgMode** is invalid because no continuous task type is configured for **backgroundModes** in the application's configuration file.
-4. A non-PC device requests the continuous task **KEEPING_TASK**, which is available only for PCs.
+4. Only <!--RP1-->specific devices<!--RP1End--> can request continuous tasks of the KEEPING_TASK type.
 
 **Solution**
 
@@ -107,7 +107,7 @@ This error code is reported when continuous task verification fails.
 
 **Error Message**
 
-Notification verification failed.
+Notification verification failed for a continuous task.
 
 **Description**
 
@@ -127,7 +127,7 @@ This error code is reported when notification verification in a continuous task 
 
 **Error Message**
 
-Task storage failed.
+Continuous task storage failed.
 
 **Description**
 
@@ -148,7 +148,7 @@ This error code is reported when information storage in a continuous task fails.
 
 **Error Message**
 
-Caller information verification failed.
+Caller information verification failed for a transient task.
 
 **Description**
 
@@ -170,7 +170,7 @@ This error code is reported when caller information verification in a transient 
 
 **Error Message**
 
-Background task verification failed.
+Transient task verification failed.
 
 **Description**
 
@@ -193,7 +193,7 @@ This error code is reported when transient task verification fails.
 
 **Error Message**
 
-Caller information verification failed.
+Caller information verification failed for an energy resource request.
 
 **Description**
 

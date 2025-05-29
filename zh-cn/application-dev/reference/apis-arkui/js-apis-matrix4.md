@@ -1,10 +1,10 @@
 # @ohos.matrix4 (矩阵变换)
 
-本模块提供矩阵变换功能，可对图形进行平移、旋转和缩放等。
+本模块提供矩阵变换功能，支持对图形进行平移、旋转和缩放等。
 
 > **说明：**
 >
-> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -28,7 +28,7 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
+| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>各number取值范围：(-∞, +∞)<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
 
 **返回值：**
 
@@ -61,11 +61,14 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // 创建一个四阶矩阵
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
+let matrix = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0]);
+
 @Entry
 @Component
 struct Tests {
@@ -102,11 +105,14 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
 ```ts
 // matrix1 和 matrix2 效果一致
 import { matrix4 } from '@kit.ArkUI';
-let matrix1 = matrix4.init([1.0, 0.0, 0.0, 0.0,
-                          0.0, 1.0, 0.0, 0.0,
-                          0.0, 0.0, 1.0, 0.0,
-                          0.0, 0.0, 0.0, 1.0])
-let matrix2 = matrix4.identity()
+
+let matrix1 = matrix4.init(
+  [1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0]);
+let matrix2 = matrix4.identity();
+
 @Entry
 @Component
 struct Tests {
@@ -160,11 +166,12 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({ x: 1.5 })
-  private matrix2 = this.matrix1.copy().translate({ x: 200 })
-  imageSize:Length = '300px'
+  private matrix1 = matrix4.identity().scale({ x: 1.5 });
+  private matrix2 = this.matrix1.copy().translate({ x: 200 });
+  imageSize: Length = '300px';
+
   build() {
-    Column({space:"50px"}) {
+    Column({ space: "50px" }) {
       Image($r("app.media.testImage"))
         .width(this.imageSize)
         .height(this.imageSize)
@@ -181,7 +188,6 @@ struct Test {
     .justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![zh-cn_image_0000001219744181](figures/h-cn_image_0000001219744185.png)
@@ -216,8 +222,8 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 })
-  private matrix2 = matrix4.identity().scale({ x: 2 })
+  private matrix1 = matrix4.identity().translate({ x: 200 });
+  private matrix2 = matrix4.identity().scale({ x: 2 });
 
   build() {
     Column() {
@@ -260,9 +266,10 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 
 ```ts
 import { matrix4 } from '@kit.ArkUI';
+
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-let matrix1 = matrix4.identity().scale({ x: 2 })
-let matrix2 = matrix1.copy().invert()
+let matrix1 = matrix4.identity().scale({ x: 2 });
+let matrix2 = matrix1.copy().invert();
 
 @Entry
 @Component
@@ -316,7 +323,7 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 });
 
   build() {
     Column() {
@@ -363,7 +370,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Component
 struct Test {
   private matrix1 = matrix4.identity()
-    .scale({ x: 2, y: 3, z: 4, centerX: 50, centerY: 50 })
+    .scale({
+      x: 2,
+      y: 3,
+      z: 4,
+      centerX: 50,
+      centerY: 50
+    });
 
   build() {
     Column() {
@@ -406,13 +419,14 @@ Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会�
 ```ts
 // xxx.ets
 import { matrix4 } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().skew(2, 3)
+  private matrix1 = matrix4.identity().skew(2, 3);
 
   build() {
-    Column() { 
+    Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .height(100)
         .margin({
@@ -459,7 +473,13 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
+  private matrix1 = matrix4.identity()
+    .rotate({
+      x: 1,
+      y: 1,
+      z: 2,
+      angle: 30
+    });
 
   build() {
     Column() {
@@ -505,10 +525,10 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private originPoint: number[] = [50, 50]
-  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
-  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]])
-  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
+  private originPoint: number[] = [50, 50];
+  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 });
+  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]]);
+  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] });
 
   build() {
     Column() {
@@ -555,16 +575,21 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 | --------------------------------- | -------------------- |
 | [Matrix4Transit](#matrix4transit) | 当前矩阵变换后的对象。 |
 
+> **说明：**
+> 需要配合scale({centerX:0,centerY:0,x:1})保证变换的中心点是组件左上角。
+
 **示例：**
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:500, y:500} ],
-    dst:[{x:0, y:0}, {x:500, y:0}, {x:0, y:500}, {x:750, y:1000} ], pointCount:4})
+  private matrix1 = matrix4.identity().setPolyToPoly({
+    src: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 500, y: 500 }],
+    dst: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 750, y: 1000 }], pointCount: 4
+  });
 
   build() {
     Stack() {
@@ -572,7 +597,7 @@ struct Index {
         .width('500px')
         .height('500px')
       Image($r('app.media.transition_image1'))
-        .scale({centerX:0,centerY:0,x:1})
+        .scale({ centerX: 0, centerY: 0, x: 1 })
         .transform(this.matrix1)
         .width('500px')
         .height('500px')
@@ -589,9 +614,9 @@ struct Index {
 
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    | number | 否   | x轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
-| y    | number | 否   | y轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
-| z    | number | 否   | z轴的平移距离，单位px。<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| x    | number | 否   | x轴的平移距离。<br/>单位：px<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| y    | number | 否   | y轴的平移距离。<br/>单位：px<br/>默认值：0<br/>取值范围 (-∞, +∞) |
+| z    | number | 否   | z轴的平移距离。<br/>单位：px<br/>默认值：0<br/>取值范围 (-∞, +∞) |
 
 ## ScaleOption
 
@@ -604,8 +629,8 @@ struct Index {
 | x       | number | 否   | x轴的缩放倍数。x>1时以x轴方向放大，0&lt;x&lt;1时以x轴方向缩小，x<0时沿x轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
 | y       | number | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0&lt;y&lt;1时以y轴方向缩小，y<0时沿y轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
 | z       | number | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0&lt;z&lt;1时以z轴方向缩小，z<0时沿z轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
-| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：组件中心点x轴坐标。<br/>取值范围 (-∞, +∞)    |
-| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：组件中心点y轴坐标。<br/>取值范围 (-∞, +∞)    |
+| centerX | number | 否   | 变换中心点x轴坐标。<br/>单位：px<br/>默认值：组件中心点x轴坐标。<br/>取值范围 (-∞, +∞)    |
+| centerY | number | 否   | 变换中心点y轴坐标。<br/>单位：px<br/>默认值：组件中心点y轴坐标。<br/>取值范围 (-∞, +∞)    |
 
 ## RotateOption
 
@@ -613,14 +638,14 @@ struct Index {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型   | 必填 | 说明                                                    |
-| ------- | ------ | ---- | ------------------------------------------------------- |
-| x       | number | 否   | 旋转轴向量x坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞) |
-| y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞) |
+| 名称    | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| x       | number | 否   | 旋转轴向量x坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)      |
+| y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)      |
 | z       | number | 否   | 旋转轴向量z坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)。<br/>**说明：** 旋转向量中x、y、z至少有一个不为0才有意义。 |
-| angle   | number | 否   | 旋转角度。<br/>默认值：0                                |
-| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：组件中心点x轴坐标。                    |
-| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：组件中心点y轴坐标。                   |
+| angle   | number | 否   | 旋转角度。<br/>默认值：0                                     |
+| centerX | number | 否   | 单次矩阵变换中心点相对于组件变换中心点（锚点）的额外x轴偏移值。<br/>单位：px<br/>默认值：0<br/>**说明：** <br/>为0时表示x方向的矩阵变换中心恰好为组件x方向锚点，取值表示相对组件x方向锚点的额外偏移量。具体实现可参考[示例3（按中心点旋转）](arkui-ts/ts-universal-attributes-transformation.md#示例3按中心点旋转)。 |
+| centerY | number | 否   | 单次矩阵变换中心点相对于组件变换中心点（锚点）的额外y轴偏移值。<br/>单位：px<br/>默认值：0<br/>**说明：** <br/>为0时表示y方向的矩阵变换中心恰好为组件y方向锚点，取值表示相对组件y方向锚点的额外偏移量。具体实现可参考[示例3（按中心点旋转）](arkui-ts/ts-universal-attributes-transformation.md#示例3按中心点旋转)。 |
 
 ## PolyToPolyOptions<sup>12+</sup>
 
@@ -631,10 +656,10 @@ struct Index {
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
 | src    |  Array<[Point](#point12)> | 是   | 源点坐标。 |
-| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0。|
+| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
-| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0。 |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2。|
+| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞) |
+| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
 
@@ -644,8 +669,8 @@ struct Index {
 
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    |  number | 是   | x轴坐标。 |
-| y    | number | 是   | y轴坐标。 |
+| x    |  number | 是   | x轴坐标。<br/>取值范围：(-∞, +∞) |
+| y    | number | 是   | y轴坐标。<br/>取值范围：(-∞, +∞) |
 
 ## matrix4.copy<sup>(deprecated)</sup>
 
@@ -676,9 +701,9 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix1 = matrix4.identity().translate({ x: 100 });
   // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
-  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 });
 
   build() {
     Column() {

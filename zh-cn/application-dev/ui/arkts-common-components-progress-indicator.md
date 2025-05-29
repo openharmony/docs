@@ -85,8 +85,8 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 - 胶囊样式进度条
   >**说明：**
   >
-  >-  头尾两端圆弧处的进度展示效果与ProgressType.Eclipse样式相同；
-  >-  中段处的进度展示效果为矩形状长条，与ProgressType.Linear线性样式相似；
+  >-  头尾两端圆弧处的进度展示效果与ProgressType.Eclipse样式相同。
+  >-  中段处的进度展示效果为矩形状长条，与ProgressType.Linear线性样式相似。
   >
   >-  组件高度大于宽度的时候自适应垂直显示。
 
@@ -102,13 +102,13 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 
 ## 场景示例
 
-更新当前进度值，如应用安装进度条。可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
+更新当前进度值，如应用安装进度条，可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
 
 ```ts
 @Entry
 @Component
 struct ProgressCase1 { 
-  @State progressValue: number = 0	// 设置进度条初始值为0
+  @State progressValue: number = 0;	// 设置进度条初始值为0
   build() {
     Column() {
       Column() {
@@ -116,9 +116,9 @@ struct ProgressCase1 {
         Row().width('100%').height(5)
         Button("进度条+5")
           .onClick(()=>{
-            this.progressValue += 5
+            this.progressValue += 5;
             if (this.progressValue > 100){
-              this.progressValue = 0
+              this.progressValue = 0;
             }
           })
       }
@@ -127,5 +127,10 @@ struct ProgressCase1 {
 }
 ```
 
-
 ![progress](figures/progress.gif)
+
+## 相关实例
+
+针对进度条开发，有以下相关实例可供参考：
+
+- [进度条](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/InfoComponent/ProgressProject)

@@ -1,31 +1,27 @@
-# Converting a PEM String into an Asymmetric Key Pair
-
+# Converting a PEM String into an Asymmetric Key Pair (ArkTS)
 
 This topic walks you through on how to convert a string in PEM format into an RSA asymmetric key pair (**KeyPair**).
-
 
 > **NOTE**
 >
 > The **convertPemKey** operation must comply with the following requirements: 
 >
-> - The public key must comply with X.509 specifications, PKCS\#1 specifications, and PEM encoding format.
+> - The public key must comply with X.509 specifications, PKCS \#1 specifications, and PEM encoding format.
 >
-> - The private key must comply with the PKCS\#8 or PKCS\#1 specifications and the PEM encoding format.
+> - The private key must comply with the PKCS \#8 or PKCS \#1 specifications and the PEM encoding format.
 >
 > - Currently, only RSA asymmetric keys can be converted.
-
 
 ## Converting a String in PEM Format into an RSA Key Pair
 
 For details about the algorithm specifications, see [RSA](crypto-asym-key-generation-conversion-spec.md#rsa).
 
-1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
+1. Call [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'RSA1024'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 1024-bit RSA key with two primes.
 
    The default number of primes for creating an RSA asymmetric key is **2**. The **PRIMES_2** parameter is omitted in the string parameter here.
 
-2. Use [AsyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey12) to convert the binary data into an asymmetric key pair (**KeyPair**).
-3. Use [AsyKeyGenerator.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem12) to convert the public key in the asymmetric key object into PKCS #1 or X.509 format and convert the private key into
-PKCS #1 or PKCS #8 format.
+2. Call [AsyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey12) to convert the binary data into an asymmetric key pair (**KeyPair**).
+3. Call [AsyKeyGenerator.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem12) to convert the public key in the asymmetric key object into the PKCS #1 or X509 format and the private key into the PKCS #1 or PKCS #8 format.
 
 - Example: Convert a string in PEM format into an RSA key pair (using promise-based APIs).
 
@@ -66,7 +62,7 @@ PKCS #1 or PKCS #8 format.
   }
   ```
 
-- Synchronously return the result ([convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync12)):
+- Example: Convert a string in PEM format into an RSA key pair (using the synchronous API [convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync12)).
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -97,7 +93,7 @@ PKCS #1 or PKCS #8 format.
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
     try {
       let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
-      if (keyPairData != null) {
+      if (keyPairData !== null) {
         console.info('[Sync]: convert pem key pair success');
       } else {
         console.error("[Sync]: convert pem key pair result fail!");

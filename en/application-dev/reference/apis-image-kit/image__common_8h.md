@@ -5,6 +5,10 @@
 
 The **image_common.h** file declares the common enums and structs used by the image interface.
 
+**Library**: libimage_common.so
+
+**File to include**: &lt;multimedia/image_framework/image/image_common.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 12
@@ -30,6 +34,7 @@ The **image_common.h** file declares the common enums and structs used by the im
 | -------- | -------- |
 | typedef struct [Image_Size](_image___size.md) [Image_Size](_image___native_module.md#image_size) | Defines a struct for the image size.| 
 | typedef struct [Image_Region](_image___region.md) [Image_Region](_image___native_module.md#image_region) | Defines a struct for the region of an image to decode.| 
+| typedef struct [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) | Defines a struct for the picture metadata.| 
 | typedef struct [Image_String](_image___string.md) [Image_String](_image___native_module.md#image_string) | Defines a struct for an image string.| 
 | typedef struct [Image_String](_image___string.md) [Image_MimeType](_image___native_module.md#image_mimetype) | Defines a struct for an image format type.| 
 
@@ -38,7 +43,8 @@ The **image_common.h** file declares the common enums and structs used by the im
 
 | Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br>IMAGE_SUCCESS = 0,<br>IMAGE_BAD_PARAMETER = 401,<br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103,<br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202,<br>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br>IMAGE_INVALID_REGION = 7600204,<br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302,<br>IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101,<br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br>IMAGE_SUCCESS = 0,<br>IMAGE_BAD_PARAMETER = 401,<br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103,<br>IMAGE_DMA_NOT_EXIST = 7600173,<br>IMAGE_DMA_OPERATION_FAILED = 7600174,<br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202,<br>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br>IMAGE_INVALID_REGION = 7600204,<br>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302,<br>IMAGE_LOCK_UNLOCK_FAILED = 7600303,<br>IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101,<br>IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102,<br>IMAGE_SOURCE_TOO_LARGE = 7700103,<br>IMAGE_SOURCE_UNSUPPORTED_ALLOCATOR_TYPE = 7700201,<br>IMAGE_SOURCE_UNSUPPORTED_OPTIONS = 7700203, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_SOURCE_ALLOC_FAILED = 7700302,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
+| [Image_MetadataType](_image___native_module.md#image_metadatatype) {<br>EXIF_METADATA = 1,<br>FRAGMENT_METADATA = 2<br>} | Enumerates the metadata types.| 
 
 
 ### Variables
@@ -47,7 +53,7 @@ The **image_common.h** file declares the common enums and structs used by the im
 | -------- | -------- |
 | static const char \*[MIME_TYPE_BMP](_image___native_module.md#mime_type_bmp) = "image/bmp" | BMP image format. | 
 | static const char \*[MIME_TYPE_JPEG](_image___native_module.md#mime_type_jpeg) = "image/jpeg" | JPEG image format. | 
-| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | HEIF image format. | 
+| static const char \*[MIME_TYPE_HEIC](_image___native_module.md#mime_type_heic) = "image/heic" | HEIC image format. | 
 | static const char \*[MIME_TYPE_PNG](_image___native_module.md#mime_type_png) = "image/png" | PNG image format. | 
 | static const char \*[MIME_TYPE_WEBP](_image___native_module.md#mime_type_webp) = "image/webp" | WebP image format. | 
 | static const char \*[MIME_TYPE_GIF](_image___native_module.md#mime_type_gif) = "image/gif" | GIF image format. | 
@@ -175,7 +181,7 @@ The **image_common.h** file declares the common enums and structs used by the im
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](_image___native_module.md#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | Sensitivity of the camera or input device when the image was captured. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](_image___native_module.md#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | Number of burst shooting times. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](_image___native_module.md#ohos_image_property_face_conf) = "HwMnoteFaceConf" | Face confidence. | 
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](_image___native_module.md#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in **OH_ImageSource_GetImageProperty** and **OH_ImageSource_ModifyImageProperty**. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](_image___native_module.md#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in [OH_ImageSource_GetImageProperty](_image___native_module.md#oh_imagesourcenative_getimageproperty) and [OH_ImageSource_ModifyImageProperty](_image___native_module.md#oh_imagesourcenative_modifyimageproperty). | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](_image___native_module.md#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | Mouth centered. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](_image___native_module.md#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | Face pointer. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](_image___native_module.md#ohos_image_property_face_rect) = "HwMnoteFaceRect" | Face rectangle. | 
@@ -186,3 +192,18 @@ The **image_common.h** file declares the common enums and structs used by the im
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_POINTER](_image___native_module.md#ohos_image_property_scene_pointer) = "HwMnoteScenePointer" | Pointer to the scene. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](_image___native_module.md#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | Scene algorithm version. | 
 | static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](_image___native_module.md#ohos_image_property_gif_loop_count) = "GIFLoopCount" | Number of GIF loops. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_X_IN_ORIGINAL](_image___native_module.md#ohos_image_property_x_in_original) = "XInOriginal" | X coordinate of the upper left corner of the fragment map in the original image. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_IN_ORIGINAL](_image___native_module.md#ohos_image_property_y_in_original) = "YInOriginal" | Y coordinate of the upper left corner of the fragment map in the original image. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_WIDTH](_image___native_module.md#ohos_image_property_fragment_width) = "FragmentImageWidth"| Width of the fragment map. | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRAGMENT_HEIGHT](_image___native_module.md#ohos_image_property_fragment_height) = "FragmentImageHeight" | Height of the fragment map. | 
+
+
+### Functions
+
+| Name| Description| 
+| -------- | -------- |
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Create](_image___native_module.md#oh_picturemetadata_create) ([Image_MetadataType](_image___native_module.md#image_metadatatype) metadataType, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*metadata) | Creates the pointer to an **OH_PictureMetadata** struct.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_GetProperty](_image___native_module.md#oh_picturemetadata_getproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Obtains a property of metadata based on the key.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_SetProperty](_image___native_module.md#oh_picturemetadata_setproperty) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata, [Image_String](_image___string.md) \*key, [Image_String](_image___string.md) \*value) | Sets a property of metadata based on the key.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Release](_image___native_module.md#oh_picturemetadata_release) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*metadata) | Releases the pointer to an **OH_PictureMetadata** struct.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PictureMetadata_Clone](_image___native_module.md#oh_picturemetadata_clone) ([OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*oldMetadata, [OH_PictureMetadata](_image___native_module.md#oh_picturemetadata) \*\*newMetadata) | Clones metadata.| 

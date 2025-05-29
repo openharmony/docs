@@ -17,7 +17,7 @@ init日志根据OpenHarmony版本不同实现方式不同。
 ### 日志类型介绍
   Init的日志记录主要分为hilog 和demsg, hilog主要记录系统业务流程相关的日志，demsg 记录内核相关的日志。
 ### 日志级别的控制
-  init 日志级别分为五级,可以通过设置(INIT_DEBUG_LEVEL)persist.init.debug.loglevel参数来控制
+  init 日志级别分为五级,可以通过设置(INIT_DEBUG_LEVEL)persist.init.debug.loglevel参数来控制。
 
   ```
   InitLogLevel:
@@ -38,9 +38,9 @@ init日志根据OpenHarmony版本不同实现方式不同。
   "<3>" =====> "FATAL"
   ```
 ### 日志控制的关键宏
-  INIT_DMESG 控制是否记录内核日志 /dev/kmsg
-  INIT_FILE  控制是否将日志写入文件 /data/init_agent/begetctl.log
-  INIT_AGENT 控制是否走Hilog记录日志
+  INIT_DMESG 控制是否记录内核日志 /dev/kmsg。
+  INIT_FILE  控制是否将日志写入文件 /data/init_agent/begetctl.log。
+  INIT_AGENT 控制是否走Hilog记录日志。
 
   关键接口：
   ```
@@ -52,7 +52,7 @@ init日志根据OpenHarmony版本不同实现方式不同。
   ```
   STARTUP_LOGI 是对StartupLog 定义的宏，在头文件/base/startup/init/interfaces/innerkits/include/beget_ext.h中定义，其他log都是基于STARTUP_LOGI这个宏重定义的：
 
-  - deviceInfo模块(init/device_info/idevice_info.h):
+  - deviceInfo模块(init/device_info/idevice_info.h)：
   ```
     DINFO_LOGI
     DINFO_LOGE
@@ -107,7 +107,7 @@ init日志根据OpenHarmony版本不同实现方式不同。
   ```
 
 ### 约束与限制
-无
+无。
 
 ## 开发指导
 ### 场景介绍
@@ -133,7 +133,7 @@ init log主要应用在init的启动过程中，启动相关模块（param、uev
 
 ### 开发实例
 
-   1. 调用接口打印日志
+   1. 调用接口打印日志：
 
       例如在 //base/startup/init/services/init/standard/init.c中调用接口INIT_LOGI("Start init first stage.")打印日志。
        ```c
@@ -155,7 +155,7 @@ init log主要应用在init的启动过程中，启动相关模块（param、uev
        ```
       通过dmesg可以查看打印的log，"Start init first stage."。
 
-  2. 通过命令设置日志等级
+  2. 通过命令设置日志等级：
 
      通过命令begetctl setloglevel level，其中level对应log的等级0~4，即INIT_DEBUG，INIT_INFO，INIT_WARN，INIT_ERROR，INIT_FATAL。
   

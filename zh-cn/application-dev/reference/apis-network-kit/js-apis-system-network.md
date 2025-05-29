@@ -2,7 +2,8 @@
 
 > **说明：**
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> - 从API Version 8 开始，该接口不再维护，推荐使用新接口['@ohos.net.connection'](js-apis-net-connection.md)。
 
 ## 导入模块
 
@@ -35,7 +36,7 @@ getType(options?: {<br>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse3) |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse3)。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
@@ -75,7 +76,7 @@ subscribe(options?:{<br>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 网络发生变化的回调函数，返回值为[NetworkResponse](#networkresponse3) |
+| success | Function | 否 | 网络发生变化的回调函数。返回值为[NetworkResponse](#networkresponse3)。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 
 fail返回值：
@@ -123,5 +124,5 @@ network.unsubscribe();
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| metered | boolean | 否 |是否按照流量计费。 |
+| metered | boolean | 否 |是否按照流量计费。true：按照流量计费；false：不按照流量计费。 |
 | type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |

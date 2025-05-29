@@ -40,7 +40,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"，不支持设置百分比字符串。 |
 
 ## fontStyle
 
@@ -130,34 +130,11 @@ decoration(value: DecorationStyleInterface)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
-
-
-## TextRange<sup>12+</sup>
-
-文本范围。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -- | -- | -- | -- |
-| start | number | 否 | 起始索引。 |
-| end | number | 否 | 结束索引。 |
-
-## EditableTextOnChangeCallback<sup>12+</sup>
-
-type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
-
-输入内容发生变化时，触发该回调。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -- | -- | -- | -- |
-| value | string | 是 | 文本框内正式上屏的文本内容。 |
-| previewText | [PreviewText](ts-basic-components-richeditor.md#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
 ## 示例
+
+该示例通过fontColor、fontSize、fontStyle、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -165,7 +142,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 @Component
 struct TextStyleExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 8 }) {
       Text('default text')
       
       Text('text font color red').fontColor(Color.Red)
@@ -190,6 +167,32 @@ struct TextStyleExample {
         .fontColor(Color.Orange)
         .fontSize(18)
         .fontStyle(FontStyle.Normal)
+
+      Text('text lineHeight 30')
+        .lineHeight(30)
+        .backgroundColor(Color.Gray)
+
+      Text('text fontFamily HarmonyOS Sans')
+        .fontFamily("HarmonyOS Sans")
+
+      Text('Underline Black SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.Underline,
+          color: Color.Black,
+          style: TextDecorationStyle.SOLID
+        })
+      Text('Overline Red DOTTED decoration text')
+        .decoration({
+          type: TextDecorationType.Overline,
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
+        })
+      Text('LineThrough Orange SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.LineThrough,
+          color: Color.Orange,
+          style: TextDecorationStyle.WAVY
+        })
     }.width('100%')
   }
 }

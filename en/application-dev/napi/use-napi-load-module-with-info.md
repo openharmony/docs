@@ -1,16 +1,11 @@
 # Loading a Module Using Node-API
 
-You can use **napi_load_module_with_info** to load modules. After a module is loaded, you can use **napi_get_property** to obtain the variables exported by the module or use **napi_get_named_property** to obtain the functions exported by the module. 
-
-The **napi_load_module_with_info** API can be used in a [newly created ArkTS runtime environment](use-napi-ark-runtime.md).
+You can use **napi_load_module_with_info** to load a module. After the module is loaded, you can use **napi_get_property** to obtain the variables of the module or use **napi_get_named_property** to obtain the functions of the module. The **napi_load_module_with_info** API can be used in a [new ArkTS runtime environment](use-napi-ark-runtime.md) created by the **napi_create_ark_runtime** API.
 
 ## Function Description
 
 ```cpp
-napi_status napi_load_module_with_info(napi_env env,
-                                       const char* path,
-                                       const char* module_info,
-                                       napi_value* result);
+napi_status napi_load_module_with_info(napi_env env, const char* path, const char* module_info, napi_value* result);
 ```
 
 | Parameter           | Description         |
@@ -20,33 +15,38 @@ napi_status napi_load_module_with_info(napi_env env,
 | module_info   | Path composed of **bundleName** and **moduleName**.      |
 | result         | Module loaded.         |
 
-**NOTE**:
-
-1. **bundleName** indicates the project name configured in **AppScope/app.json5**.
-2. **moduleName** indicates the module name configured in **module.json5** in the HAP of the module to be loaded.
-3. You can also use [napi_load_module](use-napi-load-module.md) to load modules. However, **napi_load_module** is limited to loading modules in the main thread only.
+> **NOTE**
+>
+> - **bundleName** indicates the project name configured in **AppScope/app.json5**.
+> - **moduleName** must be set to the module name configured in the **module.json5** file in the HAP to which the module belongs.
 
 ## When to Use
 
 | Scenario           | Description          | Description                        |
 | :------------- | :----------------------------- | :--------------------------- |
-| Local project module  | Load a module from a local project file using the relative path to a HAP.      | The file paths must start with **moduleName**.            |
-| Local HAR module  | Load a HAR module to a HAP.          | -                            |
-| Remote HAR module        | Load a remote HAR module to a HAP.       | -                            |
-| Remote ohpm module        | Load an ohpm package to a HAP.           | -                            |
-| API        |    Load @ohos. or @system. to a HAP.         | -                            |
-| Native library module  | Load **libNativeLibrary.so** to a HAP.| -                            |
+| Local project module  | Load the module file.      | The file path must start with **moduleName**.            |
+| Local project module  | Load the HAR module name.          | -                            |
+| Remote package        | Load the remote HAR module name.       | -                            |
+| Remote package        | Load the ohpm package name.           | -                            |
+| API        |    Load **@ohos.** or **@system.**.         | -                            |
+| Native library  | Load **libNativeLibrary.so**.| -                            |
 
-**NOTE**:
+> **NOTE**
+>
+> - The module name to be loaded is the entry file, generally **index.ets/ts**, of the module.
+> - To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP or HSP.
+> - If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package has loaded another module, for example, module A, using **napi_load_module_with_info**, you must add module A in the dependencies of the HAP/HSP.
 
-1. The "module" to be loaded is the entry file, generally **index.ets/ts**, of the module.
-2. To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP.
+## Exception Scenarios
+1. The HSP fails to be loaded due to an incorrect module name, and the error code "napi_generic_failure" is returned.
+2. A link error occurs or a file cannot be found in the package during module loading process, and the API throws **referenceError** and returns "napi_pending_exception".
+3. The module loading fails due to unexpected behavior on the system side, and **cppcrash** is thrown.
 
 ## How to Use
 
-- Loading a module from a local project file to a HAP
+- **Loading a module file**
 
-Load a module from a file as shown in the following ArkTS code.
+Load a module from a file, as shown in the following ArkTS code.
 
 ```javascript
 //./src/main/ets/Test.ets
@@ -57,244 +57,333 @@ function test() {
 export {value, test};
 ```
 
-1. Add the following to the **build-profile.json5** file of the project.
+1. Configure the **build-profile.json5** file of the current module as follows:
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "sources": [
-                    "./src/main/ets/Test.ets"
-                ]
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "sources": [
+                        "./src/main/ets/Test.ets"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-2. Use **napi_load_module_with_info** to load the **Test.ets** file, call the **test()** function, and obtain the variable values.
+2. Call **napi_load_module_with_info** to load the **Test.ets** file, call the **test()** function, and obtain the variable values.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load the module from the Test.ets file.
-    napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
+    > **NOTE**
+    >
+    > When a module file is loaded with **useNormalizedOHMUrl** enabled (the **useNormalizedOHMUrl** field of **strictMode** in the application's **build-profile.json5** file in the same directory as **entry** in the project is set to **true**):
+    >
+    > 1. **bundleName** does not affect the loading logic. The corresponding HAP in the process is intelligently indexed based on the module name. For example, the module can be successfully loaded if **bundleName** is set to **com.example.application1** while the actual bundle name of the project is **com.example.application**.
+    > 2. The file path must start with **packageName**, which is the value of **name** in the **oh-package.json5** file of the module.
 
-    napi_value testFn;
-    // 2. Call napi_get_named_property to obtain the test function.
-    napi_get_named_property(env, result, "test", &testFn);
-    // 3. Call napi_call_function to call the test function.
-    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
-    napi_value value;
-    napi_value key;
-    std::string keyStr = "value";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 4. Call napi_get_property to obtain a variable value.
-    napi_get_property(env, result, key, &value);
-    return result;
-}
-```
+    ~~~c++
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load the module from the Test.ets file.
+        napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+        return nullptr;
+        }
 
-- **Loading a HAR module to a HAP**
+        napi_value testFn;
+        // 2. Call napi_get_named_property to obtain the test function.
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. Call napi_call_function to invoke the test function.
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
-The **Index.ets** file in the HAR package is as follows:
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. Call napi_get_property to obtain a variable value.
+        napi_get_property(env, result, key, &value);
+        return result;
+    }
+    ~~~
+
+- **Loading a source code HAR module**
+
+The **Index.ets** file in the HAR is as follows:
 
 ```javascript
 //library Index.ets
 let value = 123;
 function test() {
-  console.log("Hello OpenHarmony");
+    console.log("Hello OpenHarmony");
 }
 export {value, test};
 ```
 
-1. Configure dependencies in the **oh-package.json5** file.
+1. Configure **dependencies** in the **oh-package.json5** file.
 
-```json
-{
-    "dependencies": {
-        "library": "file:../library"
+    ```json
+    {
+        "dependencies": {
+            "library": "file:../library"
+        }
     }
-}
-```
+    ```
 
-2. Configure the source package in **build-profile.json5**.
+2. Configure **build-profile.json5** for the module that uses **library**.
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "library"
-                ]
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "library"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-3. Use **napi_load_module_with_info** to load **library**, call the **test** function, and obtain the variable values.
+3. Call **napi_load_module_with_info** to load **library**, call the **test** function, and obtain the variable values.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load library.
-    napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
-
-    napi_value testFn;
-    // 2. Call napi_get_named_property to obtain the test function.
-    napi_get_named_property(env, result, "test", &testFn);
-    // 3. Call napi_call_function to call the test function.
-    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
-    napi_value value;
-    napi_value key;
-    std::string keyStr = "value";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 4. Call napi_get_property to obtain a variable value.
-    napi_get_property(env, result, key, &value);
-    return result;
-}
-```
-
-- **Loading a remote HAR module to a HAP**
-
-1. Configure dependencies in the **oh-package.json5** file.
-
-```json
-{
-    "dependencies": {
-        "@ohos/hypium": "1.0.16"
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load library.
+        napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
+    
+        napi_value testFn;
+        // 2. Call napi_get_named_property to obtain the test function.
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. Call napi_call_function to invoke the test function.
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+    
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. Call napi_get_property to obtain a variable value.
+        napi_get_property(env, result, key, &value);
+        return result;
     }
+    ```
+
+- **Loading a source code HSP module**
+
+The **Index.ets** file in the HSP is as follows:
+
+```javascript
+//hsp Index.ets
+let value = 123;
+function test() {
+    console.log("Hello World");
 }
+export {value, test};
 ```
 
-2. Configure the source package in **build-profile.json5**.
+1. Configure **dependencies** in the **oh-package.json5** file.
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "@ohos/hypium"
-                ]
+    ```json
+    {
+        "dependencies": {
+            "hsp": "file:../hsp"
+        }
+    }
+    ```
+
+2. Configure **build-profile.json5** for the module that uses the HSP.
+
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "hsp"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-3. Use **napi_load_module_with_info** to load **@ohos/hypium** and obtain the default variable.
+3. Call **napi_load_module_with_info** to load the HSP, call the **test** function, and obtain the **value** variable.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load @ohos/hypium.
-    napi_status status = napi_load_module_with_info(env, "@ohos/hypium", "com.example.application/entry", &result);
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load the HSP.
+        napi_status status = napi_load_module_with_info(env, "hsp", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
-    napi_value key;
-    std::string keyStr = "DEFAULT";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 2. Call napi_get_property to obtain the default variable.
-    napi_value defaultValue;
-    napi_get_property(env, result, key, &defaultValue);
-    return result;
-}
-```
+        napi_value testFn;
+        // 2. Call napi_get_named_property to obtain the test function.
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. Call napi_call_function to invoke the test function.
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
 
-- **Loading an ohpm package to a HAP**
-
-1. Configure dependencies in the **oh-package.json5** file.
-
-```json
-{
-    "dependencies": {
-        "json5": "^2.2.3"
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. Call napi_get_property to obtain a variable value.
+        napi_get_property(env, result, key, &value);
+        return result;
     }
-}
-```
+    ```
 
-2. Configure the source package in **build-profile.json5**.
+- **Loading a remote HAR module name**
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "json5"
-                ]
+1. Configure **dependencies** in the **oh-package.json5** file.
+
+    ```json
+    {
+        "dependencies": {
+            "@ohos/hypium": "1.0.16"
+        }
+    }
+    ```
+
+2. Configure **build-profile.json5** for the module that uses @ohos/hypium.
+
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "@ohos/hypium"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-3. Use **napi_load_module_with_info** to load **json5** and call the **stringify** function.
+3. Call **napi_load_module_with_info** to load **@ohos/hypium** and obtain the **DEFAULT** variable.
+
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load @ohos/hypium.
+        napi_status status = napi_load_module_with_info(env, "@ohos/hypium", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
+    
+        napi_value key;
+        std::string keyStr = "DEFAULT";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 2. Call napi_get_property to obtain the DEFAULT variable.
+        napi_value defaultValue;
+        napi_get_property(env, result, key, &defaultValue);
+        return result;
+    }
+    ```
+
+- **Loading an ohpm package name**
+
+1. Configure **dependencies** in the **oh-package.json5** file.
+
+    ```json
+    {
+        "dependencies": {
+            "json5": "^2.2.3"
+        }
+    }
+    ```
+
+2. Configure **build-profile.json5** for the module that uses the .json5 file.
+
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "json5"
+                    ]
+                }
+            }
+        }
+    }
+    ```
+
+3. Call **napi_load_module_with_info** to load **json5** and call the **stringify** function.
+
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load json5.
+        napi_status status = napi_load_module_with_info(env, "json5", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+           return nullptr;
+        }
+    
+        napi_value key;
+        std::string keyStr = "default";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 2. Call napi_get_property to obtain the default object.
+        napi_value defaultValue;
+        napi_get_property(env, result, key, &defaultValue);
+    
+        napi_value stringifyFn;
+        // 3. Call napi_get_named_property to obtain the stringify function.
+        napi_get_named_property(env, defaultValue, "stringify", &stringifyFn);
+        // 4. Call napi_call_function to invoke the stringify function.
+        napi_value argStr;
+        std::string text = "call json5 stringify";
+        napi_create_string_utf8(env, text.c_str(), text.size(), &argStr);
+        napi_value args[1] = {argStr};
+    
+        napi_value returnValue;
+        napi_call_function(env, defaultValue, stringifyFn, 1, args, &returnValue);
+        return result;
+    }
+    ```
+
+- **Loading an API module**
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load json5.
-    napi_status status = napi_load_module_with_info(env, "json5", "com.example.application/entry", &result);
-
-    napi_value key;
-    std::string keyStr = "default";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 2. Call napi_get_property to obtain the default object.
-    napi_value defaultValue;
-    napi_get_property(env, result, key, &defaultValue);
-
-    napi_value stringifyFn;
-    // 3. Call napi_get_named_property to obtain the stringify function.
-    napi_get_named_property(env, defaultValue, "stringify", &stringifyFn);
-    // 4. Use napi_call_function to call the stringify function.
-    napi_value argStr;
-    std::string text = "call json5 stringify";
-    napi_create_string_utf8(env, text.c_str(), text.size(), &argStr);
-    napi_value args[1] = {argStr};
-
-    napi_value returnValue;
-    napi_call_function(env, defaultValue, stringifyFn, 1, args, &returnValue);
-    return result;
-}
-```
-
-- **Loading an API module to a HAP**
-
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    // 1. Call napi_load_module_with_info to load the module @ohos.hilog.
+    // 1. Call napi_load_module_with_info to load the @ohos.hilog module.
     napi_value result;
     napi_status status = napi_load_module_with_info(env, "@ohos.hilog", nullptr, &result);
-    
+    if (status != napi_ok) {
+        return nullptr;
+    }
+
     // 2. Call napi_get_named_property to obtain the info function.
     napi_value infoFn;
     napi_get_named_property(env, result, "info", &infoFn);
-    
+
     napi_value tag;
     std::string formatStr = "test";
     napi_create_string_utf8(env, formatStr.c_str(), formatStr.size(), &tag);
-    
+
     napi_value outputString;
     std::string str = "Hello OpenHarmony";
     napi_create_string_utf8(env, str.c_str(), str.size(), &outputString);
-    
+
     napi_value flag;
     napi_create_int32(env, 0, &flag);
 
     napi_value args[3] = {flag, tag, outputString};
-    // 3. Use napi_call_function to call the info function.
+    // 3. Call napi_call_function to invoke the info function.
     napi_call_function(env, result, infoFn, 3, args, nullptr);
     return result;
 }
 ```
 
-- **Loading a native library to a HAP**
+- **Loading a native library**
 
 The **index.d.ts** file of **libentry.so** is as follows:
 
@@ -303,59 +392,65 @@ The **index.d.ts** file of **libentry.so** is as follows:
 export const add: (a: number, b: number) => number;
 ```
 
-1. Configure dependencies in the **oh-package.json5** file.
+1. Configure **dependencies** in the **oh-package.json5** file.
 
-```json
-{
-    "dependencies": {
-        "libentry.so": "file../src/main/cpp/types/libentry"
+    ```json
+    {
+        "dependencies": {
+            "libentry.so": "file:../src/main/cpp/types/libentry"
+        }
     }
-}
-```
+    ```
 
-2. Configure the source package in **build-profile.json5**.
+2. Configure **build-profile.json5** for the module that uses **libentry.so**.
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "libentry.so"
-                ]
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "libentry.so"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-3. Use **napi_load_module_with_info** to load **libentry.so** and call the **add** function.
+3. Call **napi_load_module_with_info** to load **libentry.so** and call the **add** function.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load libentry.so.
-    napi_status status = napi_load_module_with_info(env, "libentry.so", "com.example.application/entry", &result);
-
-    napi_value addFn;
-    // 2. Call napi_get_named_property to obtain the add function.
-    napi_get_named_property(env, result, "add", &addFn);
+    ```cpp
+    static constexpr int INT_NUM_2 = 2; // Integer 2
+    static constexpr int INT_NUM_3 = 3; // Integer 3
     
-    napi_value a;
-    napi_value b;
-    napi_create_int32(env, 2, &a);
-    napi_create_int32(env, 3, &b);
-    napi_value args[2] = {a, b};
-    // 3. Use napi_call_function to call the add function.
-    napi_value returnValue;
-    napi_call_function(env, result, addFn, 2, args, &returnValue);
-    return result;
-}
-```
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load libentry.so.
+        napi_status status = napi_load_module_with_info(env, "libentry.so", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
+        napi_value addFn;
+        // 2. Call napi_get_named_property to obtain the add function.
+        napi_get_named_property(env, result, "add", &addFn);
+    
+        napi_value a;
+        napi_value b;
+        napi_create_int32(env, INT_NUM_2, &a);
+        napi_create_int32(env, INT_NUM_3, &b);
+        napi_value args[2] = {a, b};
+        // 3. Call napi_call_function to invoke the add function.
+        napi_value returnValue;
+        napi_call_function(env, result, addFn, INT_NUM_2, args, &returnValue);
+        return result;
+    }
+    ```
 
-- **Loading a HAR module to a HAR**
+- **Loading another HAR module to a HAR**
 
-Load **har2** to **har1**. The **Index.ets** file of **har2** is as follows:
+For example, load **har2** to **har1**. The **Index.ets** file of **har2** is as follows:
 
 ```javascript
 //har2 Index.ets
@@ -368,50 +463,53 @@ export {value, test};
 
 1. Configure **dependencies** in the **oh-package.json5** file of **har1**.
 
-```json
-{
-    "dependencies": {
-        "har2": "file:../har2"
+    ```json
+    {
+        "dependencies": {
+            "har2": "file:../har2"
+        }
     }
-}
-```
+    ```
 
-2. Configure the source package in the **build-profile.json5** file of **har1**.
+2. Configure the **build-profile.json5** file for **har1**.
 
-```json
-{
-    "buildOption" : {
-        "arkOptions" : {
-            "runtimeOnly" : {
-                "packages": [
-                    "har2"
-                ]
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "har2"
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
-3. In **har1**, use **napi_load_module_with_info** to load **har2**, call the **test** function, and obtain the variable value.
+3. Call **napi_load_module_with_info** to load **har2** to **har1**, call the **test** function, and obtain the **value** variable.
 
-```cpp
-static napi_value loadModule(napi_env env, napi_callback_info info) {
-    napi_value result;
-    // 1. Call napi_load_module_with_info to load har2. Note that moduleName is that of the HAP where the module is located.
-    napi_status status = napi_load_module_with_info(env, "har2", "com.example.application/entry", &result);
-
-    napi_value testFn;
-    // 2. Call napi_get_named_property to obtain the test function.
-    napi_get_named_property(env, result, "test", &testFn);
-    // 3. Call napi_call_function to call the test function.
-    napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
-    napi_value value;
-    napi_value key;
-    std::string keyStr = "value";
-    napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
-    // 4. Call napi_get_property to obtain a variable value.
-    napi_get_property(env, result, key, &value);
-    return result;
-}
-```
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. Call napi_load_module_with_info to load har2. Note that moduleName is that of the HAP where the module is located.
+        napi_status status = napi_load_module_with_info(env, "har2", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
+        }
+    
+        napi_value testFn;
+        // 2. Call napi_get_named_property to obtain the test function.
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. Call napi_call_function to invoke the test function.
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+    
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. Call napi_get_property to obtain a variable value.
+        napi_get_property(env, result, key, &value);
+        return result;
+    }
+    ```

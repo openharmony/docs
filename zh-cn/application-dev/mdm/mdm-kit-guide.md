@@ -2,7 +2,7 @@
 
 ## 功能介绍
 
-设备管理应用可以提供企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等功能。具体功能内容可参考接口说明。
+MDM Kit为企业MDM应用提供设备管理能力，包括企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等，具体API接口说明详见[API参考](../reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)。
 
 设备管理应用：具备[企业设备管理扩展能力](./mdm-kit-admin.md)的应用。
 
@@ -10,13 +10,16 @@
 
 要完成一个设备管理应用开发，需要完成以下步骤：
 
-<!--RP1--><!--RP1End-->
+<!--RP1-->
 
-1. 创建EnterpriseAdminExtensionAbility；
+1. 创建EnterpriseAdminExtensionAbility。
 
-2. 声明接口所需权限；
+2. 声明接口所需权限。
 
-3. MDM功能开发与调试；
+3. MDM功能开发与调试。
+
+<!--RP1End-->
+
 
 <!--RP2--><!--RP2End-->
 
@@ -44,7 +47,7 @@
 
 ### MDM功能开发
 
-1. 导包。MDM Kit目前包含应用管理、通信管理、安全管理、限制策略、系统内管理、设备设置和查询、设备控制等多种类型的API。请根据业务需求。以下为导入adminManager和restrictions的示例。
+1. 导包。MDM Kit目前包含应用管理、通信管理、安全管理、限制策略、系统内管理、设备设置和查询、设备控制等多种类型的API，请根据业务需求导入使用。以下为导入adminManager和restrictions的示例。
 
    ```ts
    import { adminManager, restrictions } from '@kit.MDMKit';
@@ -54,6 +57,7 @@
 
    ```ts
    import { Want } from '@kit.AbilityKit';
+
    let wantTemp: Want = {
      bundleName: 'com.example.xxx',
      abilityName: 'EnterpriseAdminAbility',
@@ -71,15 +75,19 @@
 由于MDM接口需要在激活企业设备管理扩展能力后使用，调试时需通过hdc命令来激活/解除激活扩展能力，命令如下：
 
 ```bash
-:: 激活
+# 激活为超级设备管理应用
 hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名
-:: 解除激活
+# 激活为BYOD设备管理应用
+hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名 -t byod
+# 解除激活
 hdc shell edm disable-admin -n 包名
 ```
 
 > **说明**
-
-> 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
+>
+> 正式使用时，在同一设备上只能激活一个超级设备管理应用。
+>
+> BYOD（bring your own device），自带设备办公。指一些企业允许员工携带自己的笔记本电脑、平板电脑、智能手机等移动终端设备到办公场所，并可以用这些设备获取公司内部信息、使用企业特许应用的一种政策。
 >
 > <!--RP5--><!--RP5End-->
 

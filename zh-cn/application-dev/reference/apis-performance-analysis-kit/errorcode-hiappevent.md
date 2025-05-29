@@ -24,7 +24,7 @@ Function disabled.
 调用配置接口开启打点功能。
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
    hiAppEvent.configure({
        disable: false

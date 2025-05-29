@@ -1,5 +1,5 @@
 # 启动指定页面
-
+<!--deprecated_code_no_check-->
 
 当PageAbility的启动模式设置为单例时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)，缺省情况下是单实例模式），若PageAbility已被拉起，再次启动PageAbility会触发onNewWant回调（即非首次拉起）。应用开发者可以通过want传递启动参数，例如开发者希望指定页面启动PageAbility，可以通过want中的parameters参数传递pages信息，具体示例代码如下：
 
@@ -98,7 +98,7 @@ struct First {
   build() {
     Column() {
       Row() {
-        Text($r('app.string.singleton_first_title'))
+        Text('singleton_first_title')
           .fontSize(24)
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Start)
@@ -108,20 +108,20 @@ struct First {
       .height(56)
       .justifyContent(FlexAlign.Start)
 
-      Image($r('app.media.pic_empty'))
+      Image('pic_empty')
         .width(120)
         .height(120)
         .margin({ top: 224 })
 
-      Text($r('app.string.no_content'))
+      Text('no_content')
         .fontSize(14)
         .margin({ top: 8, bottom: 317, right: 152, left: 152 })
-        .fontColor($r('app.color.text_color'))
+        .fontColor('text_color')
         .opacity(0.4)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor($r('app.color.backGrounding'))
+    .backgroundColor('backGrounding')
   }
 }
 ```

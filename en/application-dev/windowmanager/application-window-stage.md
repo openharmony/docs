@@ -5,7 +5,7 @@
 
 - Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
 
-  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a subwindow (for example, a dialog box or a floating window).
+  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a child window (for example, a dialog box or a floating window).
 
 - Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running in the background.
   
@@ -18,7 +18,7 @@ In the stage model, you can perform the following operations during application 
 
 - Setting the properties and content of the main window of an application
 
-- Setting the properties and content of the subwindow of an application
+- Setting the properties and content of the child window of an application
 
 - Experiencing the immersive window feature
 
@@ -32,19 +32,19 @@ The table below lists the common APIs used for application window development. F
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model. |
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model. |
-| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
-| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model. |
-| Window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.            |
+| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
+| WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a child window.<br>This API can be used only in the stage model.            |
+| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window or system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout.                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar. |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
@@ -52,7 +52,7 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [abilities tag of the module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 ### How to Develop
 
@@ -109,29 +109,36 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## Setting a Subwindow of an Application
+## Setting a Child Window of an Application
 
-You can create an application subwindow, such as a dialog box, and set its properties.
+You can create an application child window, such as a dialog box, and set its properties.
+
+> **NOTE**
+>
+> Due to the following limitations, using child windows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
+> - Child windows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> - In split-screen or freeform window mode, components, when compared with child windows, offer better real-time adaptability to changes in the main window's position and size. 
+> - On certain platforms, system configurations may restrict child windows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
 
 ### How to Develop
 
-1. Create a subwindow.
+1. Create a child window.
 
-   Call **createSubWindow** to create a subwindow.
+   Call **createSubWindow** to create a child window.
 
-2. Set the properties of the subwindow.
+2. Set the properties of the child window.
 
-   After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
+   After the child window is created, you can set its properties, such as the size, position, background color, and brightness.
 
-3. Load content to and show the subwindow.
+3. Load content to and show the child window.
 
-   Call **setUIContent** to load content to the subwindow and **showWindow** to show the subwindow.
+   Call **setUIContent** to load content to the child window and **showWindow** to show the child window.
 
-4. Destroy the subwindow.
+4. Destroy the child window.
 
-   When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
+   When the child window is no longer needed, you can call **destroyWindow** to destroy it.
 
-The code snippet for creating a subwindow in **onWindowStageCreate** is as follows:
+The code snippet for creating a child window in **onWindowStageCreate** is as follows:
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -143,7 +150,7 @@ let sub_windowClass: window.Window | null = null;
 
 export default class EntryAbility extends UIAbility {
   showSubWindow() {
-    // 1. Create a subwindow.
+    // 1. Create a child window.
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
     }
@@ -156,7 +163,7 @@ export default class EntryAbility extends UIAbility {
         }
         sub_windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        // 2. Set the position, size, and other properties of the subwindow.
+        // 2. Set the position, size, and other properties of the child window.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -173,7 +180,7 @@ export default class EntryAbility extends UIAbility {
           }
           console.info('Succeeded in changing the window size.');
         });
-        // 3.1 Load content to the subwindow.
+        // 3.1 Load content to the child window.
         sub_windowClass.setUIContent("pages/page3", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -181,7 +188,7 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in loading the content.');
-          // 3.2 Show the subwindow.
+          // 3.2 Show the child window.
           (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -196,7 +203,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   destroySubWindow() {
-    // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
     (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -209,18 +216,18 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
-    // Create a subwindow when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+    // Create a child window when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
     this.showSubWindow();
   }
 
   onWindowStageDestroy() {
-    // Destroy the subwindow when it is no longer needed, for example, when the Close button in the subwindow is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
+    // Destroy the child window when it is no longer needed, for example, when the Close button in the child window is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
     this.destroySubWindow();
   }
 };
 ```
 
-You can also click a button on a page to create a subwindow. The code snippet is as follows:
+You can also click a button on a page to create a child window. The code snippet is as follows:
 
 ```ts
 // EntryAbility.ets
@@ -252,7 +259,7 @@ struct Index {
   private CreateSubWindow(){
     // Obtain the window stage.
     windowStage_ = AppStorage.get('windowStage');
-    // 1. Create a subwindow.
+    // 1. Create a child window.
     if (windowStage_ == null) {
       console.error('Failed to create the subwindow. Cause: windowStage_ is null');
     }
@@ -265,7 +272,7 @@ struct Index {
         }
         sub_windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        // 2. Set the position, size, and other properties of the subwindow.
+        // 2. Set the position, size, and other properties of the child window.
         sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -282,7 +289,7 @@ struct Index {
           }
           console.info('Succeeded in changing the window size.');
         });
-        // 3. Load content to the subwindow.
+        // 3. Load content to the child window.
         sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -290,7 +297,7 @@ struct Index {
             return;
           }
           console.info('Succeeded in loading the content.');
-          // 3. Show the subwindow.
+          // 3. Show the child window.
           (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -304,7 +311,7 @@ struct Index {
     }
   }
   private destroySubWindow(){
-    // 4. Destroy the subwindow when it is no longer needed (depending on the service logic).
+    // 4. Destroy the child window when it is no longer needed (depending on the service logic).
     (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -410,24 +417,22 @@ export default class EntryAbility extends UIAbility {
 
       // 2. Implement the immersive effect by hiding the status bar and navigation bar.
       let names: Array<'status' | 'navigation'> = [];
-      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarEnable(names)
+        .then(() => {
+          console.info('Succeeded in setting the system bar to be visible.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar to be visible.');
-      });
+        });
       // 2. Alternatively, implement the immersive effect by setting the properties of the status bar and navigation bar.
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+        .then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-      });
+        });
       let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
@@ -435,14 +440,13 @@ export default class EntryAbility extends UIAbility {
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarProperties(sysBarProps)
+        .then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-      });
+        });
     })
     // 3. Load content to the immersive window.
     windowStage.loadContent("pages/page2", (err: BusinessError) => {
@@ -457,7 +461,8 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## <!--RP2-->Setting a floating window<!--RP2End-->
+<!--RP2-->
+## Setting a Floating Window<!--RP2End-->
 
 A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. Generally, the floating window is above all application windows. You can create a floating window and set its properties.
 
@@ -465,7 +470,7 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 <!--RP1-->
-**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+**Prerequisites**: To create a floating window (a window of the type **WindowType.TYPE_FLOAT**), you must request the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 <!--RP1End-->
 
 1. Create a floating window.
@@ -555,7 +560,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Listening for Interactive and Non-Interactive Window Events
 
-When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interacting with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed. To obtain these state changes, you can subscribe to the **'windowStageEvent'** event.
+When running in the foreground, an application may switch between interactive and non-interactive states and process services depending on the state. For example, when the user opens the **Recents** screen, an application becomes non-interactive and pauses the service interaction with the user, such as video playback or camera preview; when the user switched back to the foreground, the application becomes interactive again, and the paused service needs to be resumed.
 
 ### How to Develop
 

@@ -20,15 +20,15 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | No | No | Whether the UIAbility must be started in App Linking mode.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking is degraded to Deep Link. The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode. |
-| parameters | Record\<string, Object> | No | No | List of parameters in Want. |
+| appLinkingOnly | boolean | No| Yes| Whether the UIAbility must be started in App Linking mode.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking is degraded to Deep Link. The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
+| parameters | Record\<string, Object> | No| Yes| List of parameters in Want.<br>**NOTE**: For details about the usage rules, see **parameters** in [want](./js-apis-app-ability-want.md).|
 
 **Example**
 
   ```ts
-  import { common, OpenLinkOptions } from '@kit.AbilityKit';
+  import { common, OpenLinkOptions, wantConstant } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -51,11 +51,19 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
             .height('5%')
             .margin({ bottom: '12vp' })
             .onClick(() => {
-              let context = getContext(this) as common.UIAbilityContext;
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
               let link: string = 'https://www.example.com';
               let openLinkOptions: OpenLinkOptions = {
                 appLinkingOnly: true,
-                parameters: { demo_key: 'demo_value' }
+                parameters: {
+                  [wantConstant.Params.CONTENT_TITLE_KEY]: 'contentTitle',
+                  keyString: 'str',
+                  keyNumber: 200,
+                  keyBool: false,
+                  keyObj: {
+                    keyObjKey: 'objValue',
+                  }
+                }
               };
               try {
                 context.openLink(

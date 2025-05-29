@@ -324,6 +324,4 @@ export default {
 
 针对dialog开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
-
 - [弹窗基本使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

@@ -1,3 +1,5 @@
+# ArkUI子系统Changelog
+
 ## cl.arkui.1 UIExtensionComponent增加使用约束
 
 **访问级别**
@@ -63,45 +65,6 @@ UIExtensionComponent组件。
 **适配指导**
 
 默认行为变更，无需适配。
-
-## cl.arkui.3 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
-
-现在限制其能拖出当前应用的行为，与使用范围保持一致。
-
-**变更影响**
-
-该变更为兼容性变更。
-
-API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
-![](figures/OnItemDragBefore.gif)
-
-API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
-![](figures/OnItemDragNow.gif)
-
-**起始API Level**
-
-8
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32开始。
-
-**变更的接口/组件**
-
-Grid组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.4 List的constraintSize设置生效
 
@@ -207,33 +170,47 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.5 CreateModalUIExtension默认行为变更
+## cl.arkui.5 模态UIExtension创建默认行为变更
 
 **访问级别**
 
-系统接口
+公开接口
 
 **变更原因**
 
-CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡，造成安全风险。
+通过各个应用或者kit提供的开放能力创建出来的模态`UIExtension`，可能被三方应用组件或窗口遮挡，造成安全风险。
+> 各个应用或者kit是通过`CreateModalUIExtension`这个系统接口来创建模态`UIExtension`，
+> 本质上是这个接口的默认行为发生了变化
 
 **变更影响**
 
 该变更为不兼容变更。
 
-CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
+模态`UIExtension`不允许被不安全窗口遮挡，拉起模态`UIExtension`时，会隐藏三方应用已创建的不安全窗口和组件，并阻止三方应用创建新的不安全窗口
 
-CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示。
+变更前后行为如下表所示：
 
-| 变更前 | 变更后 |
-| --- | --- |
-| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
+| 变更前                                   | 变更后                                       |
+| ---------------------------------------- | -------------------------------------------- |
+| 允许不安全窗口遮挡，允许三方应用组件遮挡 | 不允许不安全窗口遮挡，不允许三方应用组件遮挡 |
 
-hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
+不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
-| 变更前 | 变更后 |
-| --- | --- |
+| 变更前                                   | 变更后                                                       |
+| ---------------------------------------- | ------------------------------------------------------------ |
 | 非系统全局悬浮窗<br>宿主创建的非系统子窗 | 非系统全局悬浮窗<br>宿主创建的非系统子窗<br>宿主创建的非系统Dialog窗口 |
+
+**变更前**：
+
+图中的权限弹窗就是一个模态UIExtension，该窗口弹出后，通话子窗口不会被隐藏
+![变更前](figures/modalUIExtension_before.gif)
+
+
+**变更后**：
+
+图中的权限弹窗就是一个模态UIExtension，该窗口弹出后，通话子窗口被隐藏，退出后通话子窗口重新展示
+
+![变更后](figures/modalUIExtension_after.gif)
 
 **起始API Level**
 
@@ -245,7 +222,19 @@ hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog
 
 **变更的接口/组件**
 
-CreateModalUIExtension和hideNonSecureWindows接口。
+| kit名称           | 接口名/组件名                                                |
+| ----------------- | ------------------------------------------------------------ |
+| Core File Kit     | DocumentViewPicker组件                                       |
+| Store Kit         | productViewManager.loadService<br>productViewManager.loadProduct |
+| Media Library Kit | PhotoAccessHelper.createDeleteRequest<br>PhotoAccessHelper. removeAssets<br>PhotoAccessHelper.showAssetsCreationDialog<br>PhotoAccessHelper.createAssetWithShortTermPermission<br>PhotoAccessHelper.select |
+| Scan Kit          | scanBarcode.startScanForResult                               |
+| Ads Kit           | advertising.showAd                                           |
+| AbilityKit        | AtManager.requestPermissionsFromUser                         |
+| ShareKit          | SystemShare.show                                             |
+| Game Service Kit  | gamePlayer.init<br/>gamePlayer.unionLogin<br/>gamePlayer.getLocalPlayer<br/>gamePlayer.verifyLocalPlayer |
+| Map Kit           | sceneMap.chooseLocation<br/>sceneMap.queryLocation<br/>sceneMap.selectDistrict |
+| Account Kit       | authentication.executeRequest.LoginWithHuaweiID<br/>authentication.executeRequest.AuthorizationWithHuaweiID<br/>extendService.verifyAccount<br/>extendService.startAccountCenter<br/>loginComponent.LoginWithHuaweiIDButton<br/>loginComponent.LoginPanel<br/>loginComponent.startFacialRecognitionVerification<br/>realName.startFacialRecognitionVerification<br/>shippingAddress.chooseAddress<br/>minorsProtection.verifyMinorsProtectionCredential<br/>minorsProtection.leadToTurnOnMinorsMode<br/>minorsProtection.leadToTurnOffMinorsMode |
+| ArkUI             | TextInput输入框组件(仅系统密码自动填充服务场景涉及, <br>InputType设置为USER_NAME/Password/NEW_PASSWORD类型) |
 
 **适配指导**
 
@@ -583,15 +572,15 @@ struct Index {
 
 **变更原因**
 
-toast显示期间默认不响应返回事件，当前场景不符合规范。
-
-变更前：toast会响应返回手势，toast消失。
-
-变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
+业界惯例toast不会响应返回手势事件，当前子窗下的toast会响应返回事件，不符合规范。
 
 **变更影响**
 
 该变更为不兼容变更。
+
+变更前：toast会响应返回手势，toast消失。
+
+变更后：toast不会响应返回手势，toast不消失，返回手势事件传递到页面其他组件。
 
 **起始API Level**
 
@@ -607,7 +596,7 @@ promptAction.showToast
 
 **适配指导**
 
-默认行为变更，无需适配，后续不支持通过返回手势退出toast。
+默认行为变更，无需适配，但应注意后续不支持通过返回手势退出toast。
 
 ## cl.arkui.14 带按钮的气泡样式变更
 **访问级别**
@@ -618,14 +607,16 @@ promptAction.showToast
 
 popup的按钮文本过长时，布局显示异常。
 
+**变更影响**
+
+该变更为不兼容变更。
+
+
 | 变更前 | 变更后 |
 |---------|---------|
 | 按钮文本的最大行数没有限制，按钮内容会相互交叉 | 最多可显示两行文本，文本逐渐缩小到9vp，仍然超长"..."省略 |
 | ![Popup_Before](figures/Popup_Before.jpeg) | ![Popup_After](figures/Popup_After.jpeg) |
 
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -641,7 +632,7 @@ bindPopup
 
 **适配指导**
 
-popup样式变更，无需适配。
+默认效果变更，无需适配。
 
 ## cl.arkui.15 toast样式变更
 **访问级别**
@@ -650,16 +641,16 @@ popup样式变更，无需适配。
 
 **变更原因**
 
-toast文本有两行时，文本居中显示，不符合UX规范。
+toast文本有两行时，有概率出现文本居中显示，不符合规范，规范为toast多行显示时，需左对齐显示。
+
+**变更影响**
+
+该变更为不兼容变更。
 
 | 变更前 | 变更后 |
 |---------|---------|
 | 文本居中显示 | 文本左对齐显示 |
 | ![Toast_Before](figures/Toast_Before.PNG) | ![Toast_After](figures/Toast_After.PNG) |
-
-**变更影响**
-
-该变更为不兼容变更。
 
 **起始API Level**
 
@@ -675,9 +666,9 @@ promptAction.showToast
 
 **适配指导**
 
-toast样式变更，无需适配。
+默认效果变更，无需适配。
 
-## cl.arkui.16 高级组件ComposeListItem右边按钮在没有配置action的时候，没有点击效果，显示全局的按压效果
+## cl.arkui.16 高级组件ComposeListItem右边按钮OperateItem类型为arrow或者arrow+text时，在没有配置action的时候，不需要单独响应点击效果，应显示全局的按压效果
 
 **访问级别**
 
@@ -685,7 +676,7 @@ toast样式变更，无需适配。
 
 **变更原因**
 
-高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮在没有提供action的时候，会显示点击效果，不应该显示的。需要修改为在没有提供action的时候，右侧操作区不应该响应点击效果，而是整个组件响应按压效果。
+高级组件ComposeListItem整个组件分为左右两部分，左边是内容区，右边是按钮操作区。现在问题是右边操作区按钮的OperateItem类型为arrow或者arrow+text时，在没有提供action的时候，会单独响应点击效果，预期不应该显示的；需要修改为在没有提供action的时候，右侧操作区不应该响应单独点击效果，而是整个组件响应按压效果。
 
 **变更影响**
 
@@ -693,7 +684,7 @@ toast样式变更，无需适配。
 
 | 变更前 | 变更后 |
 |---------|---------|
-| 右侧操作区没有提供action，右侧操作区单独响应了点击效果 | 右侧操作区没有提供action，整个组件响应了点击效果 |
+| 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，右侧操作区单独响应了阴影效果。 | 右侧操作区OperateItem类型为arrow或者arrow+text时，没有提供action，整个组件响应了阴影效果。 |
 | ![ComposeListItem_before](figures/ComposeListItem_Before.png) | ![ComposeListItem_after](figures/ComposeListItem_After.png) |
 
 **起始API Level**

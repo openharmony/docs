@@ -38,31 +38,25 @@
 2. 调用[createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9)接口，根据名称和选项创建应用账号。
 
    ```ts
-   try {
-     await appAccountManager.createAccount(name, options);
-     console.log('createAccount successfully');
-   } catch (err) {
-     console.log('createAccount failed, error: ' + JSON.stringify(err));
-   }
+   appAccountManager.createAccount(name, options).then(()=>{
+    console.log('createAccount successfully');
+  }).catch((err: BusinessError)=>{
+    console.error('createAccount failed, error: ' + JSON.stringify(err));
+  });
    ```
 
 ## 查询应用账号列表
 
 具体开发实例如下：
 
-1. 准备参数，指定账号所有者。
 
-   ```ts
-   let owner: string = 'com.example.accountjsdemo2';
-   ```
-
-2. 调用[getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9)接口查询账号列表。
+调用[getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9)接口查询账号列表。
 
    ```ts
    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
-       console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
+       console.log('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
-       console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+       console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -84,7 +78,7 @@
    appAccountManager.getCredential(name, credentialType).then((data: string) => {
        console.log('getCredential successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getCredential failed, error: ' + JSON.stringify(err));
+       console.error('getCredential failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -94,7 +88,7 @@
    appAccountManager.setCredential(name, credentialType, credential).then(() => {
        console.log('setCredential successfully');
    }).catch((err: BusinessError) => {
-       console.log('setCredential failed: ' + JSON.stringify(err));
+       console.error('setCredential failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -116,7 +110,7 @@
    appAccountManager.setCustomData(name, key, value).then(() => {
        console.log('setCustomData successfully');
    }).catch((err: BusinessError) => {
-       console.log('setCustomData failed: ' + JSON.stringify(err));
+       console.error('setCustomData failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -126,7 +120,7 @@
    appAccountManager.getCustomData(name, key).then((data: string) => {
        console.log('getCustomData successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getCustomData failed, error: ' + JSON.stringify(err));
+       console.error('getCustomData failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -149,7 +143,7 @@
    appAccountManager.setAuthToken(name, authType, token).then(() => {
        console.log('setAuthToken successfully');
    }).catch((err: BusinessError) => {
-       console.log('setAuthToken failed: ' + JSON.stringify(err));
+       console.error('setAuthToken failed: ' + JSON.stringify(err));
    });
    ```
 
@@ -159,7 +153,7 @@
    appAccountManager.getAuthToken(name, owner, authType).then((data: string) => {
        console.log('getAuthToken successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+       console.error('getAuthToken failed, error: ' + JSON.stringify(err));
    });
    ```
 
@@ -169,13 +163,16 @@
 
 具体开发实例如下：
 
-1. 指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
+指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
 
    ```ts
    let name: string = 'Zhangsan';
    appAccountManager.removeAccount(name).then(() => {
        console.log('removeAccount successfully');
    }).catch((err: BusinessError) => {
-       console.log('removeAccount failed, error: ' + JSON.stringify(err));
+       console.error('removeAccount failed, error: ' + JSON.stringify(err));
    });
    ```
+
+<!--RP1-->
+<!--RP1End-->

@@ -6,11 +6,11 @@ During the development and debugging process of an application, you may need to 
 
 - Use the hdc tool to push files to the application sandbox directory on the device, which is described below.
 
-However, the file paths viewed on the hdc shell are different from the application sandbox paths in the application view. You need to understand the [mappings between application sandbox paths and physical paths](app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths).
+However, the file paths viewed on the hdc shell are different from the application sandbox paths in the application view. You need to understand the [mappings between application sandbox paths and physical paths](app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).
 
 ## Development Example
 
-The following uses the bundle **com.ohos.example** as an example. If the application sandbox path is **/data/storage/el1/bundle**, the physical path is **/data/app/el1/bundle/public/com.ohos.example**.
+The application package **com.ohos.example** is used as an example. If files are read and written in the application sandbox directory **/data/storage/el1/bundle** of **example**, the physical path is **/data/app/el1/bundle/public/&lt;PACKAGENAME&gt;**, that is, **/data/app/el1/bundle/public/com.ohos.example**, according to the [mappings between application sandbox paths and physical paths](app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).
 
 Run the following command to push a file:
 
@@ -26,7 +26,7 @@ hdc shell ps -ef | grep com.ohos.example
 
 Run the following command to set **user_id** and **group_id** of the file based on **user_id** of the application process:
 ```
-hdc shell chown ${user_id}:${user_id} ${file_path}
+hdc shell chown ${user_id}:${user_id} ${File path}
 ```
 
 ## Switching to the Application View

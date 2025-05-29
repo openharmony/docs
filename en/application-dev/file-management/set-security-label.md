@@ -4,7 +4,7 @@ The security capabilities vary with devices. For example, small embedded devices
 
 ## Available APIs
 
-For details about the APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
+For details about APIs, see [ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md).
 
 **Table 1** Security level APIs
 
@@ -25,17 +25,17 @@ Obtain the sandbox path of a file and set the data security level. For details a
 
   
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
+import { securityLabel } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 // Obtain the sandbox path of the file.
 let context = getContext(this) as common.UIAbilityContext; // Obtain UIAbilityContext.
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
-// Open the file.
+// Open a file.
 let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 // Set the data level of the file to S0.
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {

@@ -1,16 +1,16 @@
 # DRM Kit
 
-- ArkTS APIs
+- ArkTS APIs<!--drm-arkts-->
   - [@ohos.multimedia.drm (Digital Rights Management)](js-apis-drm.md)
-- C APIs
-  - Modules
+- C APIs<!--drm-c-->
+  - Modules<!--drm-module-->
     - [Drm](_drm.md)
-  - Header Files
+  - Header Files<!--drm-headerfile-->
     - [native_drm_common.h](native__drm__common_8h.md)
     - [native_drm_err.h](native__drm__err_8h.md)
     - [native_mediakeysession.h](native__mediakeysession_8h.md)
     - [native_mediakeysystem.h](native__mediakeysystem_8h.md)
-  - Structs
+  - Structs<!--drm-struct-->
     - [DRM_KeysInfo](_d_r_m___keys_info.md)
     - [DRM_MediaKeyRequest](_d_r_m___media_key_request.md)
     - [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md)
@@ -22,5 +22,5 @@
     - [DRM_Statistics](_d_r_m___statistics.md)
     - [MediaKeySession_Callback](_media_key_session___callback.md)
     - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
-- Error Codes
+- Error Codes<!--drm-arkts-errcode-->
   - [DRM Error Codes](errorcode-drm.md)

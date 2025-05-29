@@ -1,12 +1,14 @@
 # 组件快捷键事件
 
-开发者可以设置组件的自定义组合键，组件在未获得焦点状态下也可以响应自定义组合键，每个组件可以设置多个组合键。
+开发者可以设置组件的自定义组合键，每个组件可以设置多个组合键。
+
+即使组件未获焦或是在所在页面未展示，只要已经挂载到获焦窗口的组件树上就会响应自定义组合键。
 
 开发者在设置组合键的同时可以设置自定义事件，组合键按下时，触发该自定义事件，若没有设置自定义事件，则组合键行为与click行为一致。
 
 >  **说明：**
 >
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## keyboardShortcut
 
@@ -22,8 +24,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 | 参数名   | 参数类型                                  | 必填   | 参数描述                                     |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
-| value | string \| [FunctionKey](#functionkey) | 是 | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#functionkey)。<br />空字符串意为取消快捷键绑定。<br/> |
-| keys  | Array\<[ModifierKey](#modifierkey)> | 是 | 热键组合。<br />仅当value为[FunctionKey](#functionkey)的情况下可以为空。<br/> |
+| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | 是 | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-appendix-enums.md#functionkey10)。<br />空字符串意为取消快捷键绑定。<br/> |
+| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | 是 | 热键组合。<br />仅当value为[FunctionKey](ts-appendix-enums.md#functionkey10)的情况下可以为空。<br/> |
 | action  | () => void    | 否    | 组合快捷键触发成功后的自定义事件回调。<br/>                               |
 
 **返回值：**
@@ -32,46 +34,9 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## ModifierKey
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 描述           |
-| ----- | ------------ |
-| CTRL  | 表示键盘上Ctrl键。  |
-| SHIFT | 表示键盘上Shift键。 |
-| ALT   | 表示键盘上Alt键。   |
-
-## FunctionKey
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称   | 描述           |
-| ---- | ------------ |
-| ESC  | 表示键盘上ESC功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| F1   | 表示键盘上F1功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F2   | 表示键盘上F2功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F3   | 表示键盘上F3功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F4   | 表示键盘上F4功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F5   | 表示键盘上F5功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F6   | 表示键盘上F6功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F7   | 表示键盘上F7功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F8   | 表示键盘上F8功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F9   | 表示键盘上F9功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| F10  | 表示键盘上F10功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| F11  | 表示键盘上F11功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| F12  | 表示键盘上F12功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| DPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| DPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| DPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| DPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-
 ## 快捷键使用注意事项
 
-快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)
+快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 | 场景                                       | 快捷键处理逻辑                            | 例子                                       |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
@@ -87,25 +52,23 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | 快捷键的响应                                   | `keys`键处于按下状态且`value`键触发down事件（长按会连续响应）              | 无                                        |
 | 隐藏组件<br />                               | 响应快捷键                              | 无                                        |
 | disable状态组件                              | 不响应快捷键                             | 无                                        |
-| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut('c',[ModifierKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
+| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键，先前绑定的组合键仍然有效。          | Button('button1').keyboardShortcut(FunctionKey.F4,[ModifierKey.ALT])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
 
 ### 禁止绑定的系统快捷键
 
 以下组合键绑定为快捷键不生效。
 
-- `Ctrl` + `C`
-- `Ctrl` + `A`
-- `Ctrl` + `V`
-- `Ctrl` + `X`
-- `Ctrl` + `Shift` + `Z`
-- `Ctrl` + `Z`
-- `Ctrl` + `Y`
+- `Alt` + `F4`
+- `Alt` + `Shift` + `F4`
+- `Alt` + `TAB`
+- `Alt` + `Shift` + `TAB`
+- `Ctrl` + `Shift` + `ESC`
 
 ### 系统已存在的按键事件
 
 已存在如下系统响应的按键事件，具体规格如下表。
 
-表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)
+表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 | 快捷键 | 获焦组件 | 用途 | 事件处理类别 |
 | ----- | ---- | ---- | ---- |
@@ -115,9 +78,9 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 示例
 
-### 示例1
+### 示例1（设置组件快捷键）
 
-设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
+该示例通过设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
 ```ts
 @Entry
@@ -161,9 +124,9 @@ struct Index {
 
  ![keyEvent](figures/keyboard-shortcut.gif)
 
-### 示例2
+### 示例2（注册和解注册快捷键绑定）
 
-通过按键注册和解注册快捷键绑定
+该示例演示了如何实现按键注册和解注册快捷键绑定。
 
 ```ts
 @Entry

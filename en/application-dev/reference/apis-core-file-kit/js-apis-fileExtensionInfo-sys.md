@@ -39,7 +39,7 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-### Attributes
+### Properties
 
   | Name| Type  | Read-Only| Writable| Description    |
   | ------ | ------ | ---- | ---- | -------- |
@@ -54,7 +54,7 @@ Defines the values of **mode** used in **FileInfo**.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-### Attributes
+### Properties
 
   | Name| Type  | Read-Only| Writable| Description    |
   | ------ | ------ | ---- | ---- | -------- |
@@ -62,3 +62,4 @@ Defines the values of **mode** used in **FileInfo**.
   | REPRESENTS_DIR   | number | Yes  | No  | Directory.|
   | SUPPORTS_READ   | number | Yes  | No  | This file is readable.|
   | SUPPORTS_WRITE   | number | Yes  | No  | This file is writable.|
+  

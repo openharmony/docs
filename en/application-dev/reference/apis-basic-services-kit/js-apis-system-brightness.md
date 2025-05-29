@@ -16,7 +16,7 @@ import brightness, { BrightnessModeResponse, BrightnessResponse } from '@system.
 ```
 
 
-## brightness.getValue
+## brightness.getValue<sup>(deprecated)</sup>
 
 getValue(options?: GetBrightnessOptions): void
 
@@ -28,7 +28,7 @@ Obtains the current screen brightness.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessOptions](#getbrightnessoptions) | No  | Options for obtaining the screen brightness. This parameter is optional and is left blank by default.|
+| options | [GetBrightnessOptions](#getbrightnessoptionsdeprecated) | No  | Options for obtaining the screen brightness. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -44,7 +44,7 @@ Obtains the current screen brightness.
   ```
 
 
-## brightness.setValue
+## brightness.setValue<sup>(deprecated)</sup>
 
 setValue(options?: SetBrightnessOptions): void
 
@@ -56,7 +56,7 @@ Sets the screen brightness.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessOptions](#setbrightnessoptions) | No  | Options for setting the screen brightness. This parameter is optional and is left blank by default.|
+| options | [SetBrightnessOptions](#setbrightnessoptionsdeprecated) | No  | Options for setting the screen brightness. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -73,7 +73,7 @@ Sets the screen brightness.
   ```
 
 
-## brightness.getMode
+## brightness.getMode<sup>(deprecated)</sup>
 
 getMode(options?: GetBrightnessModeOptions): void
 
@@ -85,7 +85,7 @@ Obtains the screen brightness adjustment mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | No| Options for obtaining the screen brightness mode. This parameter is optional and is left blank by default.|
+| options | [GetBrightnessModeOptions](#getbrightnessmodeoptionsdeprecated) | No| Options for obtaining the screen brightness mode. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -101,7 +101,7 @@ Obtains the screen brightness adjustment mode.
   ```
 
 
-## brightness.setMode
+## brightness.setMode<sup>(deprecated)</sup>
 
 setMode(options?: SetBrightnessModeOptions): void
 
@@ -112,7 +112,7 @@ Sets the screen brightness adjustment mode.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | No  | Options for setting the screen brightness mode. This parameter is optional and is left blank by default.|
+| options | [SetBrightnessModeOptions](#setbrightnessmodeoptionsdeprecated) | No  | Options for setting the screen brightness mode. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -129,7 +129,7 @@ Sets the screen brightness adjustment mode.
   ```
 
 
-## brightness.setKeepScreenOn
+## brightness.setKeepScreenOn<sup>(deprecated)</sup>
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
@@ -143,7 +143,7 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | No| Options for setting the screen to be steady on. This parameter is optional and is left blank by default.|
+| options | [SetKeepScreenOnOptions](#setkeepscreenonoptionsdeprecated) | No| Options for setting the screen to be steady on. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -158,7 +158,7 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
       }
   });
   ```
-## GetBrightnessOptions
+## GetBrightnessOptions<sup>(deprecated)</sup>
 
 Options for obtaining the screen brightness.
 
@@ -166,11 +166,11 @@ Options for obtaining the screen brightness.
 
 | Name    | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessResponse](#brightnessresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessResponse](#brightnessresponse) type.|
+| success  | (data: [BrightnessResponse](#brightnessresponsedeprecated)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessResponse](#brightnessresponsedeprecated) type.|
 | fail     | (data: string, code: number) => void                      | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
 | complete | () => void                                                | No  | Called when an API call is complete.                                    |
 
-## SetBrightnessOptions
+## SetBrightnessOptions<sup>(deprecated)</sup>
 
 Options for setting the screen brightness.
 
@@ -183,7 +183,7 @@ Options for setting the screen brightness.
 | fail     | (data: string, code: number) => void | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
 | complete | () => void                           | No  | Called when an API call is complete.                                    |
 
-## BrightnessResponse
+## BrightnessResponse<sup>(deprecated)</sup>
 
 Defines a response that returns the screen brightness.
 
@@ -193,7 +193,7 @@ Defines a response that returns the screen brightness.
 | -------- | -------- | -------- | -------- | -------- |
 | value | number | Yes| No| Screen brightness. The value ranges from **1** to **255**.|
 
-## GetBrightnessModeOptions
+## GetBrightnessModeOptions<sup>(deprecated)</sup>
 
 Defines the options for obtaining the screen brightness mode.
 
@@ -201,11 +201,11 @@ Defines the options for obtaining the screen brightness mode.
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessModeResponse](#brightnessmoderesponse) type.|
+| success  | (data: [BrightnessModeResponse](#brightnessmoderesponsedeprecated)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessModeResponse](#brightnessmoderesponsedeprecated) type.|
 | fail     | (data: string, code: number) => void                         | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
 | complete | () => void                                                   | No  | Called when an API call is complete.                                    |
 
-## SetBrightnessModeOptions
+## SetBrightnessModeOptions<sup>(deprecated)</sup>
 
 Options for setting the screen brightness mode.
 
@@ -218,7 +218,7 @@ Options for setting the screen brightness mode.
 | fail     | (data: string, code: number) => void | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.|
 | complete | () => void                           | No  | Called when an API call is complete.                              |
 
-## BrightnessModeResponse
+## BrightnessModeResponse<sup>(deprecated)</sup>
 
 Defines a response that returns the screen brightness mode.
 
@@ -228,7 +228,7 @@ Defines a response that returns the screen brightness mode.
 | -------- | -------- | -------- | -------- | -------- |
 | mode | number | Yes| No| The value **0** indicates the manual adjustment mode, and the value **1** indicates the automatic adjustment mode.|
 
-## SetKeepScreenOnOptions
+## SetKeepScreenOnOptions<sup>(deprecated)</sup>
 
 Options for setting the screen to be steady on.
 

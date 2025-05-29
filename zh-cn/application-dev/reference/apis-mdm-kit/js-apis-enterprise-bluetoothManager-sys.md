@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md)。
 
@@ -22,7 +22,7 @@ import { bluetoothManager } from '@kit.MDMKit';
 
 isBluetoothDisabled(admin: Want): boolean
 
-以同步方法查询蓝牙是否被禁用。
+查询蓝牙是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -32,9 +32,9 @@ isBluetoothDisabled(admin: Want): boolean
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -58,7 +58,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -76,7 +76,7 @@ try {
 
 setBluetoothDisabled(admin: Want, disabled: boolean): void
 
-以同步方法设置禁用蓝牙策略。
+设置禁用蓝牙策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -86,10 +86,10 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 **参数：**
 
-| 参数名     | 类型                                | 必填 | 说明                                      |
-| ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
-| disabled   | boolean                             | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------- | ---- | ----------------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                    |
+| disabled | boolean                                                 | 是   | true表示禁用蓝牙，false表示解除蓝牙禁用。 |
 
 **错误码：**
 
@@ -107,7 +107,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

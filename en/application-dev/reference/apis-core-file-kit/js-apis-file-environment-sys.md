@@ -10,7 +10,7 @@ The **Environment** module provides APIs for obtaining the root directories of t
 ## Modules to Import
 
 ```ts
-import environment from '@ohos.file.environment';
+import { Environment } from '@kit.CoreFileKit';
 ```
 
 ## environment.getStorageDataDir
@@ -41,8 +41,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getStorageDataDir().then((path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getStorageDataDir().then((path: string) => {
       console.info("getStorageDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
       console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -77,8 +77,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getStorageDataDir((err: BusinessError, path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getStorageDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getStorageDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -115,8 +115,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getUserDataDir().then((path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getUserDataDir().then((path: string) => {
     console.info("getUserDataDir successfully, Path: " + path);
   }).catch((err: BusinessError) => {
     console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
@@ -151,8 +151,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  environment.getUserDataDir((err: BusinessError, path: string) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  Environment.getUserDataDir((err: BusinessError, path: string) => {
     if (err) {
       console.error("getUserDataDir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -193,10 +193,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getExternalStorageDirExample() {
   try {
-    let path = environment.getExternalStorageDir();
+    let path = Environment.getExternalStorageDir();
     console.log(`success to getExternalStorageDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getExternalStorageDir because: ${JSON.stringify(error)}`);
@@ -236,10 +236,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserHomeDirExample() {
   try {
-    let path = environment.getUserHomeDir();
+    let path = Environment.getUserHomeDir();
     console.log(`success to getUserHomeDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserHomeDir because: ${JSON.stringify(error)}`);

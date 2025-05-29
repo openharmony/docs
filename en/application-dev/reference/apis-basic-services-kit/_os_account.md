@@ -16,7 +16,7 @@ Provides APIs for managing system accounts.
 | Name | Description |
 | -------- | -------- |
 | [os_account.h](os__account_8h.md) | Defines the APIs for accessing and managing system account information. |
-| [os_account_common.h](os__account__common_8h.md) | Defines common types used in **OsAccount** APIs.|
+| [os_account_common.h](os__account__common_8h.md) | Defines common types used in **OsAccount** APIs. |
 
 
 ### Types
@@ -104,8 +104,5 @@ Obtains the name of the system account, to which the caller process belongs.
 
 **Returns**
 
-Returns **OS_ACCOUNT_ERR_OK** if the operation is successful.
+Returns **OS_ACCOUNT_ERR_OK** if the operation is successful.<br>Returns **OS_ACCOUNT_ERR_INTERNAL_ERROR** if an internal error occurred.<br>Returns **OS_ACCOUNT_ERR_INVALID_PARAMETER** if **buffer** is a null pointer or the name length (excluding the end character ('\0')) is greater than or equal to **buffer_size**.
 
-Returns **OS_ACCOUNT_ERR_INTERNAL_ERROR** if an internal error occurs. 
-
-Returns **OS_ACCOUNT_ERR_INVALID_PARAMETER** if **buffer** is a null pointer or the name (excluding the end character ('\0')) is greater than or equal to **buffer_size**.

@@ -15,7 +15,9 @@ Interoperability with JavaScript was a critical consideration in the ArkTS langu
 
 To ensure best experience for UI app development for OpenHarmony ecosystem, ArkTS provides support for ArkUI, including its declarative syntax and other features. Since this feature is outside the scope of the "stock" TypeScript, a verbose ArkUI example is provided in a separate chapter.
 
-This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
+This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS. For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--RP1--><!--RP1End-->
+
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/arkts-utils/arkts-overview.md).
 
 ## The Basics
 
@@ -42,7 +44,7 @@ hi = 'hello, world';
 A declaration starting with the keyword `const` introduces a read-only constant that can be assigned only once.
 
 ```typescript
-const hello: string = 'hello'
+const hello: string = 'hello';
 ```
 
 A compile-time error occurs if a new value is assigned to a constant.
@@ -66,7 +68,7 @@ let hi2 = 'hello, world';
 
 #### Numeric Types
 
-ArkTS has `number` and `Number` numeric types. Any integer and floating-point values can be assigned to a variable of these types.
+ArkTS has numeric types. Any integer and floating-point values can be assigned to a variable of these types.
 
 Numeric literals include integer literals and floating-point literals
 with the decimal base.
@@ -91,7 +93,7 @@ Example:
 let n1 = 3.14;
 let n2 = 3.141592;
 let n3 = .5;
-let n4 = 1e10;
+let n4 = 1e2;
 
 function factorial(n: number): number {
   if (n <= 1) {
@@ -106,6 +108,15 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
+The number type tends to lose precision when it represents very large integers. You can use BigInt to ensure the precision as required.
+
+```typescript
+
+let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+console.log('bigIntger' + bigIntger.toString());
+
+```
+
 #### `Boolean`
 
 The `boolean` type represents logical values that are either `true` or `false`.
@@ -113,12 +124,12 @@ The `boolean` type represents logical values that are either `true` or `false`.
 Usually variables of this type are used in conditional statements:
 
 ```typescript
-let isDone: boolean = false
+let isDone: boolean = false;
 
 // ...
 
 if (isDone) {
-  console.log ('Done!')
+  console.log ('Done!');
 }
 ```
 
@@ -150,7 +161,7 @@ let instance: Class <void>
 
 #### `Object` Type
 
-An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
+An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.`The 'object' type is used to represent types other than the primitive types.
 
 #### `Array` Type
 
@@ -186,12 +197,15 @@ A `union` type is a reference type which is created as a combination of other ty
 
 ```typescript
 class Cat {
+  name: string = 'cat';
   // ...
 }
 class Dog {
+  name: string = 'dog';
   // ...
 }
 class Frog {
+  name: string = 'frog';
   // ...
 }
 type Animal = Cat | Dog | Frog | number
@@ -212,17 +226,14 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog;
 
-let animal: Animal = new Cat()
-if (animal instanceof Frog) {
-  let frog: Frog = animal as Frog // animal is of type Frog here
-  animal.leap()
-  frog.leap()
-  // As a result frog leaps twice
+function foo(animal: Animal) {
+  if (animal instanceof Frog) {
+    animal.leap();  // animal is of type Frog here
+  }
+  animal.sleep(); // Any animal can sleep
 }
-
-animal.sleep () // Any animal can sleep
 ```
 
 #### Type `Aliases`
@@ -232,7 +243,7 @@ Type `aliases` provides names for anonymous types (array, function, object liter
 ```typescript
 type Matrix = number[][];
 type Handler = (s: string, no: number) => string;
-type Predicate <T> = (x: T) => Boolean;
+type Predicate <T> = (x: T) => boolean;
 type NullableObject = Object | null;
 ```
 
@@ -365,13 +376,12 @@ A conditional expression looks as follows:
 condition ? expression1 : expression2
 ```
 
-If that logical expression is truthy(a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
+If that logical expression is truthy (a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
 
 Example:
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false
-let message = isValid ? 'Valid' : 'Failed'
+let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 ```
 
 #### `For` Statements
@@ -488,7 +498,7 @@ A `break` statement with a label identifier transfers control out of the enclosi
 Example:
 
 ```typescript
-let x = 1
+let x = 1;
 label: while (true) {
   switch (x) {
     case 1:
@@ -508,7 +518,7 @@ Example:
 let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
-    continue
+    continue;
   }
   sum += x;
 }
@@ -631,8 +641,8 @@ function sum(...numbers: number[]): number {
   return res;
 }
 
-sum() // returns 0
-sum(1, 2, 3) // returns 6
+sum(); // returns 0
+sum(1, 2, 3); // returns 6
 ```
 
 ### Return Types
@@ -696,7 +706,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // pass the function as the parameter
 ```
 
-### Arrow Functions(Lambdas functions)
+### Arrow Functions (Lambdas Functions)
 
 A function can be defined as an arrow function, for example:
 
@@ -733,8 +743,6 @@ z(); // output: 1
 z(); // output: 2
 ```
 
-In the sample above, the arrow function closure captures the `count` variable.
-
 ### Function Overload Signatures
 
 A function can be specified to be called in different ways by writing overload signatures. To do so, several functions' headers that have the same name but different signatures are written and immediately followed by the single implementation function.
@@ -759,8 +767,8 @@ In the following example, class `Person` is defined, which has fields **name** a
 
 ```typescript
 class Person {
-  name: string = ''
-  surname: string = ''
+  name: string = '';
+  surname: string = '';
   constructor (n: string, sn: string) {
     this.name = n;
     this.surname = sn;
@@ -782,8 +790,8 @@ or an instance can be created by using object literals:
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p: Point = {x: 42, y: 42};
 ```
@@ -802,8 +810,8 @@ An instance of the class is used to access an instance field.
 
 ```typescript
 class Person {
-  name: string = ''
-  age: number = 0
+  name: string = '';
+  age: number = 0;
   constructor(n: string, a: number) {
     this.name = n;
     this.age = a;
@@ -828,7 +836,7 @@ The class name is used to access a static field:
 
 ```typescript
 class Person {
-  static numberOfPersons = 0
+  static numberOfPersons = 0;
   constructor() {
      // ...
      Person.numberOfPersons++;
@@ -847,7 +855,7 @@ The following code (invalid in ArkTS) is error-prone:
 
 ```typescript
 class Person {
-  name: string // undefined
+  name: string; // undefined
   
   setName(n:string): void {
     this.name = n;
@@ -872,7 +880,7 @@ Here is how it should look in ArkTS:
 
 ```typescript
 class Person {
-  name: string = ''
+  name: string = '';
   
   setName(n:string): void {
     this.name = n;
@@ -895,7 +903,7 @@ And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name?: string // The field may be undefined
+  name?: string; // The field may be undefined
 
   setName(n:string): void {
     this.name = n;
@@ -928,12 +936,12 @@ jack.getName()?.length; // Builds ok, no runtime error
 
 Setters and getters can be used to provide controlled access to object properties.
 
-In the following example, a setter is used to forbid setting invalid values of the 'age' property:
+In the following example, a setter is used to forbid setting invalid values of the '_age' property:
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age: number = 0
+  name: string = '';
+  private _age: number = 0;
   get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
@@ -964,10 +972,11 @@ The `calculateArea` method calculates the area of a rectangle by multiplying the
 
 ```typescript
 class RectangleSize {
-  private height: number = 0
-  private width: number = 0
+  private height: number = 0;
+  private width: number = 0;
   constructor(height: number, width: number) {
-    // ...
+    this.height = height;
+    this.width = width;
   }
   calculateArea(): number {
     return this.height * this.width;
@@ -1018,14 +1027,14 @@ Example:
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age = 0
+  name: string = '';
+  private _age = 0;
   get age(): number {
     return this._age;
   }
 }
 class Employee extends Person {
-  salary: number = 0
+  salary: number = 0;
   calculateTaxes(): number {
     return this.salary * 0.42;
   }
@@ -1054,8 +1063,8 @@ It is often used to extend basic functionality of subclass with the required beh
 
 ```typescript
 class RectangleSize {
-  protected height: number = 0
-  protected width: number = 0
+  protected height: number = 0;
+  protected width: number = 0;
 
   constructor (h: number, w: number) {
     this.height = h;
@@ -1095,7 +1104,7 @@ class RectangleSize {
   }
 }
 class Square extends RectangleSize {
-  private side: number = 0
+  private side: number = 0;
   area(): number {
     return this.side * this.side;
   }
@@ -1136,8 +1145,8 @@ If no constructor is defined, then a default constructor with an empty parameter
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p = new Point();
 ```
@@ -1201,8 +1210,8 @@ Example:
 
 ```typescript
 class C {
-  public x: string = ''
-  private y: string = ''
+  public x: string = '';
+  private y: string = '';
   set_y (new_y: string) {
     this.y = new_y // ok, as y is accessible within the class itself
   }
@@ -1219,8 +1228,8 @@ Example:
 
 ```typescript
 class Base {
-  protected x: string = ''
-  private y: string = ''
+  protected x: string = '';
+  private y: string = '';
 }
 class Derived extends Base {
   foo() {
@@ -1238,8 +1247,8 @@ A class composite is written as a comma-separated list of name-value pairs enclo
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 let c: C = {n: 42, s: 'foo'};
@@ -1249,19 +1258,19 @@ Due to the static typing of the ArkTS, object literals can be used in a context 
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 function foo(c: C) {}
 
-let c: C
+let c: C;
 
 c = {n: 42, s: 'foo'};  // type of the variable is used
 foo({n: 42, s: 'foo'}); // type of the parameter is used
 
 function bar(): C {
-  return {n: 42, s: 'foo'} // return type is used
+  return {n: 42, s: 'foo'}; // return type is used
 }
 ```
 
@@ -1269,8 +1278,8 @@ The type of an array element or of a class field can also be used:
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
@@ -1294,12 +1303,58 @@ The K type can be either string or number, while V can be any type.
 
 ```typescript
 interface PersonInfo {
-  age: number
-  salary: number
+  age: number;
+  salary: number;
 }
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
   'Mary': { age: 21, salary: 20}
+}
+```
+
+### Abstract Classes 
+
+A class with the modifier abstract is known as abstract class. Abstract classes can be used to represent notions that are common to some set of more concrete notions.
+
+A compile-time error occurs if an attempt is made to create an instance of an abstract class:
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
+```
+
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### Abstract Methods 
+
+A method with the modifier abstract is considered an abstract method. Abstract methods do not have bodies, i.e., they can be declared but not implemented.
+
+Only abstract classes can have abstract methods. A compile-time error occurs if a non-abstract class has an abstract method:
+
+```typescript
+class Y {
+  abstract method(p: string)  //Compile-time error: Abstract methods can only appear within an abstract class.
 }
 ```
 
@@ -1315,10 +1370,10 @@ Examples:
 
 ```typescript
 interface Style {
-  color: string // property
+  color: string; // property
 }
 interface AreaSize {
-  calculateAreaSize(): number // method header
+  calculateAreaSize(): number; // method header
   someMethod(): void;    // method header
 }
 ```
@@ -1328,14 +1383,14 @@ Examples of a class implementing an interface:
 ```typescript
 // Interface:
 interface AreaSize {
-  calculateAreaSize(): number // method header
+  calculateAreaSize(): number; // method header
   someMethod(): void;    // method header
 }
 
 // Implementation:
 class RectangleSize implements AreaSize {
-  private width: number = 0
-  private height: number = 0
+  private width: number = 0;
+  private height: number = 0;
   someMethod(): void {
     console.log('someMethod called');
   }
@@ -1354,7 +1409,7 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 ```
 
@@ -1369,21 +1424,21 @@ A class that implements an interface may also use a short or a long notation:
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  color: string = ''
+  color: string = '';
 }
 ```
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  private _color: string = ''
+  private _color: string = '';
   get color(): string { return this._color; }
   set color(x: string) { this._color = x; }
 }
@@ -1395,15 +1450,25 @@ An interface may extend other interfaces like in the example below:
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 interface ExtendedStyle extends Style {
-  width: number
+  width: number;
 }
 ```
 
 An extended interface contains all properties and methods of the interface it extends, and can also add its own properties and methods.
+
+
+### Abstract class and interface
+
+Abstract classes and interfaces cannot be instantiated. Abstract classes are abstractions of classes, used to capture the general characteristics of subclasses, and interfaces are abstractions of behavior. The difference between abstract classes and interfaces in ArkTS is as follows:
+
+* Abstract classes can only inherit from a single source, while interfaces can be implemented in multiple layers;
+* In abstract classes, there can be implementations of methods, but interfaces are completely abstract and there is no implementation of methods;
+* The interface cannot contain static code blocks and static methods, while abstract classes can have static code blocks and static functions;
+* Abstract classes can have constructors, while interfaces cannot have constructors.
 
 ## Generic Types and Functions
 
@@ -1442,7 +1507,7 @@ Type parameters of generic types can be bounded. For example, the `Key` type par
 
 ```typescript
 interface Hashable {
-  hash(): number
+  hash(): number;
 }
 class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
@@ -1562,7 +1627,7 @@ In the following example, the method `getNick` returns a nickname if it is set; 
 ```typescript
 class Person {
   // ...
-  nick: string | null = null
+  nick: string | null = null;
   getNick(): string {
     return this.nick ?? '';
   }
@@ -1575,8 +1640,8 @@ Optional chaining operator `?.` allows writing code where the evaluation stops a
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   setSpouse(spouse: Person): void {
     this.spouse = spouse;
@@ -1603,8 +1668,8 @@ Otherwise, the output is `undefined`:
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   constructor(nick: string) {
     this.nick = nick;
@@ -1630,12 +1695,11 @@ A top-level declaration can be exported by using the keyword `export`.
 
 A declared name that is not exported is considered private and can be used only in the module where it is declared.
 
-**NOTE**: Use braces ({}) when importing a declaration that was exported using the keyword `export`.
 
 ```typescript
 export class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
@@ -1664,7 +1728,7 @@ Let's assume a module has the path './utils' and export entities 'X' and 'Y'.
 An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using the qualified name `A.name`:
 
 ```typescript
-import * as Utils from './utils'
+import * as Utils from './utils';
 Utils.X // denotes X from Utils
 Utils.Y // denotes Y from Utils
 ```
@@ -1672,7 +1736,7 @@ Utils.Y // denotes Y from Utils
 An import binding of the form `{ ident1, ..., identN }` binds an exported entity with a specified name, which can be used as a simple name:
 
 ```typescript
-import { X, Y } from './utils'
+import { X, Y } from './utils';
 X // denotes X from Utils
 Y // denotes Y from Utils
 ```
@@ -1680,7 +1744,7 @@ Y // denotes Y from Utils
 If a list of identifiers contains aliasing of the form `ident as alias`, then entity `ident` is bound under the name `alias`:
 
 ```typescript
-import { X as Z, Y } from './utils'
+import { X as Z, Y } from './utils';
 Z // denotes X from Utils
 Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
@@ -1691,10 +1755,18 @@ The **import() **syntax, commonly called dynamic import, is a function-like expr
 In the following example, **import(modulePath)** loads the module and returns a promise that resolves into a module object that contains all its exports. This expression can be called from any place in the code.
 
 ```typescript
-let modulePath = prompt("Which module to load?");
-import(modulePath)
-.then(obj => <module object>)
-.catch(err => <loading error, e.g. if no such module>)
+// Calc.ts
+export function add(a:number, b:number):number {
+  let c = a + b;
+  console.info('Dynamic import, %d + %d = %d', a, b, c);
+  return c;
+}
+// Index.ts
+import("./Calc").then((obj: ESObject) => {
+  console.info(obj.add(3, 5));  
+}).catch((err: Error) => {
+  console.error("Module dynamic import error: ", err);
+});
 ```
 
 You can also use **let module = await import(modulePath)** inside an async function.
@@ -1721,27 +1793,13 @@ async function test() {
 }
 ```
 
-For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
+For more details about dynamic import, see [Dynamic Import](../arkts-utils/arkts-dynamic-import.md).
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### Top-Level Statements
 
 A module can contain any statements at the module level, except `return` ones.
-
-If a module contains a `main` function (program entry point), then top-level statements of the module are executed immediately before the body of this function.
-Otherwise, they are executed before execution of any other function of the module.
-
-### Program Entry Point
-
-An entry point of a program (application) is the top-level `main` function.
-The `main` function must have either an empty parameter list or a single parameter of `string[]` type.
-
-```typescript
-function main() {
-  console.log('this is the program entry');
-}
-```
 
 ## Keywords
 
@@ -1753,7 +1811,7 @@ The keyword `this` can only be used in instance methods of a class.
 
 ```typescript
 class A {
-  count: string = 'a'
+  count: string = 'a';
   m(i: string): void {
     this.count = i;
   }
@@ -1769,7 +1827,7 @@ Constraints:
 
 ```typescript
 class A {
-  n: number = 0
+  n: number = 0;
   f1(arg1: this) {} // Compile-time error. Type notation using this is not supported.
   static f2(arg1: number) {
     this.n = arg1;  // Compile-time error. Using this inside standalone functions is not supported.
@@ -1797,3 +1855,5 @@ This section demonstrates mechanisms that ArkTS provides for creating graphical 
 The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
 
 For more details of the ArkUI features, refer to the ArkUI [Basic Syntax](arkts-basic-syntax-overview.md).
+
+<!--no_check-->

@@ -10,20 +10,20 @@ The **NotificationFlags** module implements a **NotificationFlags** instance.
 
 ## Attributes
 
-| Name            | Type                   | Mandatory| Description                              |
-| ---------------- | ---------------------- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | No  | Whether to enable the sound alert for the notification.                 |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | No  | Whether to enable vibration for the notification.              |
+| Name            | Type                   | Read Only| Optional| Description                                        |
+| ---------------- | ---------------------- | ---- | -----|-------------------------------------------- |
+| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus11) | Yes | Yes| Settings of the sound alert for the notification.   |
+| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus11) | Yes | Yes| Settings of the vibration for the notification.|
 
 
-## NotificationFlagStatus
+## NotificationFlagStatus<sup>11+</sup>
 
-Describes the notification flag status.
+Enumerates the notification flag statuses.
 
 **System capability**: SystemCapability.Notification.Notification
 
 | Name          | Value | Description                              |
 | -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | The default flag is used.                        |
+| TYPE_NONE      | 0   | The default flag is used. The effect is the same as that of **TYPE_OPEN**.         |
 | TYPE_OPEN      | 1   | The notification flag is enabled.                    |
 | TYPE_CLOSE     | 2   | The notification flag is disabled.                    |

@@ -5,12 +5,13 @@
 
 Defines the file descriptor of a large rawfile.
 
-**RawFileDescriptor** is an output parameter of [OH_ResourceManager_GetRawFileDescriptor64](rawfile.md#oh_resourcemanager_getrawfiledescriptor64). It contains the file descriptor of a raw file and the start position and length of the raw file in the HAP.
+**RawFileDescriptor** is an output parameter of [OH_ResourceManager_GetRawFileDescriptor64](rawfile.md#oh_resourcemanager_getrawfiledescriptor64). It contains the file descriptor of a rawfile and the start position and length of the rawfile in the HAP.
 
 **Since**: 11
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
+**Header file**: [raw_file.h](raw__file_8h.md)
 
 ## Summary
 
@@ -33,6 +34,7 @@ Defines the file descriptor of a large rawfile.
 int RawFileDescriptor64::fd
 ```
 **Description**
+
 File descriptor of the rawfile, in int.
 
 
@@ -42,6 +44,7 @@ File descriptor of the rawfile, in int.
 int64_t RawFileDescriptor64::length
 ```
 **Description**
+
 Length of the rawfile in the HAP, in int64_t.
 
 
@@ -51,4 +54,5 @@ Length of the rawfile in the HAP, in int64_t.
 int64_t RawFileDescriptor64::start
 ```
 **Description**
+
 Start position of the rawfile in the HAP, in int64_t.

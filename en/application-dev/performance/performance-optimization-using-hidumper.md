@@ -1,5 +1,5 @@
-
 # Using HiDumper to Improve Performance
+
 
 ## Introduction
 
@@ -98,7 +98,7 @@ Compared with ArkUI Inspector, HiDumper allows you to obtain fine-grained compon
 
 ### Viewing the if/else Component
 
-When **if/else** is used, the **if/else** statement is regarded as a component and exists in the component tree as a node. When you run HiDumper commands, the printed component tree contains the **if/else** component information. (On contrast, in ArkUI Inspector, the **if/else** component is not displayed as a node in the component tree.) In the following code, the **if(this.isShow)** statement is used to create and destroy a **\<Row>** component.
+When **if/else** is used, the **if/else** statement is regarded as a component and exists in the component tree as a node. When you run HiDumper commands, the printed component tree contains the **if/else** component information. (On contrast, in ArkUI Inspector, the **if/else** component is not displayed as a node in the component tree.) In the following code, the **if(this.isShow)** statement is used to create and destroy a **Row** component.
 ```
 @Entry
 @Component
@@ -119,7 +119,7 @@ struct ConditionComponent {
   }
 }
 ```
-When **isShow** is set to **true**, the **\<Row>** component is shown. At this time, in the component tree file from HiDumper, you can find that the **if/else** component is created as a node, and the **\<Row>** component is nested as a child component.
+When **isShow** is set to **true**, the **Row** component is shown. At this time, in the component tree file from HiDumper, you can find that the **if/else** component is created as a node, and the **Row** component is nested as a child component.
 ```
 |-> IfElse childSize:1
   | ID: 9
@@ -137,7 +137,7 @@ When **isShow** is set to **true**, the **\<Row>** component is shown. At this t
       Visible: 0
       ...
 ```
-When **isShow** is set to **false**, the **\<Row>** component is hidden. At this time, in the component tree file from HiDumper, you can find that the **if/else** component is created as a node, but the **\<Row>** component is not loaded.
+When **isShow** is set to **false**, the **Row** component is hidden. At this time, in the component tree file from HiDumper, you can find that the **if/else** component is created as a node, but the **Row** component is not loaded.
 ```
 |-> IfElse childSize:0
     ID: 9
@@ -147,7 +147,7 @@ When **isShow** is set to **false**, the **\<Row>** component is hidden. At this
 
 ### Viewing the visibility Attribute
 
-You can use the **visibility** attribute to control the visibility of components. In the following code, the **visibility(this.isVisible)** attribute is used to show and hide the **\<Row>** component.
+You can use the **visibility** attribute to control the visibility of components. In the following code, the **visibility(this.isVisible)** attribute is used to show and hide the **Row** component.
 ```
 @Entry
 @Component
@@ -174,7 +174,7 @@ struct VisibilityComponent {
   }
 }
 ```
-When **isVisible** is set to **Visible**, the **\<Row>** component is shown. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **0**, and the width and height of the component in the **FrameRect** attribute are **450**.
+When **isVisible** is set to **Visible**, the **Row** component is shown. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **0**, and the width and height of the component in the **FrameRect** attribute are **450**.
 ```
 |-> Row childSize:0
     ID: 13
@@ -188,7 +188,7 @@ When **isVisible** is set to **Visible**, the **\<Row>** component is shown. At 
     Visible: 0
     ...
 ```
-When **isVisible** is set to **Hidden**, the **\<Row>** component is hidden. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **1**, and the width and height of the component in the **FrameRect** attribute are **450**.
+When **isVisible** is set to **Hidden**, the **Row** component is hidden. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **1**, and the width and height of the component in the **FrameRect** attribute are **450**.
 ```
 |-> Row childSize:0
     ID: 13
@@ -202,7 +202,7 @@ When **isVisible** is set to **Hidden**, the **\<Row>** component is hidden. At 
     Visible: 1
     ...
 ```
-When **isVisible** is set to **None**, the **\<Row>** component is hidden. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **2**, and the width and height of the component in the **FrameRect** attribute are **0**.
+When **isVisible** is set to **None**, the **Row** component is hidden. At this time, in the component tree file from HiDumper, you can find that the value of **Visible** is **2**, and the width and height of the component in the **FrameRect** attribute are **0**.
 ```
 |-> Row childSize:0
     ID: 13

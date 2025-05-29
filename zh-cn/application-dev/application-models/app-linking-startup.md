@@ -2,7 +2,7 @@
 
 ## 简介
 
-使用`App Linking`进行跳转时，系统会根据接口传入的uri信息（HTTPS链接）将用户引导至目标应用中的特定内容，无论应用是否已安装，用户都可以访问到链接对应的内容，整个跳转体验相比Deep Linking方式更加顺畅。
+使用App Linking进行跳转时，系统会根据接口传入的uri信息（HTTPS链接）将用户引导至目标应用中的特定内容，无论应用是否已安装，用户都可以访问到链接对应的内容，整个跳转体验相比[Deep Linking](deep-linking-startup.md)方式更加顺畅。
 
 
 ## 适用场景
@@ -36,20 +36,29 @@
 * "uris"列表中包含"scheme"为"https"且"host"为域名地址的元素。
 * "domainVerify"：设置为true，表示开启域名校验开关。
 
+> **说明**：
+>
+> skills标签下默认包含一个skill对象，用于标识应用入口。应用跳转链接不能在该skill对象中配置，需要创建独立的skill对象。如果存在多个跳转场景，需要在skills标签下创建不同的skill对象，否则会导致配置无法生效。
+
+
 例如，声明应用关联在域名是www.example.com，则需进行如下配置：
 
 ```json
 {
   "module": {
+    // ...
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        // ...
         "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
           {
             "entities": [
               // entities须包含"entity.system.browsable"
@@ -71,13 +80,14 @@
             ],
             // domainVerify须设置为true
            "domainVerify": true
-          }
+          } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       }
     ]
   }
 }
 ```
+
 
 ### 在开发者网站上关联应用
 
@@ -95,11 +105,11 @@
           "appIdentifier": "1234"
         }
       ]
-    },
+    }
    }
    ```
 
-   `app-identifer`是在[应用签名](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README_ZH.md)阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](../security/app-provision-structure.md)中声明的`app-identifer`字段的值。
+   `app-identifer`是在应用签名阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](../security/app-provision-structure.md)中声明的`app-identifer`字段的值。
 
 1. 将配置文件放在域名服务器的固定目录下。
    固定目录为：
@@ -127,10 +137,9 @@ export default class EntryAbility extends UIAbility {
       let urlObject = url.URL.parseURL(want?.uri);
       let action = urlObject.params.get('action')
       // 例如，当action为showall时，展示所有的节目。
-      if (action === "showall"){
-         ...
+      if (action === "showall") {
+         // ...
       }
-      ...
     }
   }
 }
@@ -165,7 +174,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "https://www.example.com/programs?action=showall";
         // 仅以App Linking的方式打开应用
         context.openLink(link, { appLinkingOnly: true })

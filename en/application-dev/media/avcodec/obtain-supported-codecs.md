@@ -5,17 +5,27 @@ The codecs and their capabilities that you can use for your application on a dev
 To ensure that the encoding and decoding behavior meets your expectations, first query the audio and video codecs supported by the system and their capability parameters through a series of APIs. Then find the codecs that are suitable for the development scenario, and correctly configure the codec parameters.
 
 ## General Development
-1. Link the dynamic library in the CMake script.
+1. Link the dynamic libraries in the CMake script.
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+   target_link_libraries(sample PUBLIC libnative_media_core.so)
+   target_link_libraries(sample PUBLIC libnative_media_venc.so)
+   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
+   > **NOTE**
+   >
+   > The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+   >
 
 2. Add the header files.
 
    ```c++
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
 
 3. Obtain the audio/video codec capability instance.
@@ -85,10 +95,10 @@ OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AV
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 double frameRate = isHardward ? 60.0 : 30.0;
 if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -147,18 +157,18 @@ OH_BitrateMode bitrateMode = BITRATE_MODE_CBR;
 int32_t bitrate = 3000000;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Check whether a bit rate mode is supported.
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 2. Obtain the bit rate range and check whether the bit rate to be configured is within the range.
 OH_AVRange bitrateRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal) {
    // 3. (Optional) Adjust the bit rate parameters to be configured.
@@ -168,10 +178,10 @@ OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AV
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate)) == false) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -183,18 +193,18 @@ OH_BitrateMode bitrateMode = BITRATE_MODE_CQ;
 int32_t quality = 0;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Check whether a bit rate mode is supported.
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 2. Obtain the quality range and determine whether the quality parameters to be configured are within the range.
 OH_AVRange qualityRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderQualityRange(capability, &qualityRange);
 if (ret != AV_ERR_OK || qualityRange.maxVal < 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (quality > qualityRange.maxVal || quality < qualityRange.minVal) {
    // 3. (Optional) Adjust the quality parameters to be configured.
@@ -204,10 +214,10 @@ OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AV
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality) == false) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -223,7 +233,7 @@ The complexity range determines the number of tools used by the codec. It is sup
 ```c++
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // Check the supported encoding complexity range.
 OH_AVRange complexityRange = {-1, -1};
@@ -248,14 +258,14 @@ int32_t channelCount = 2;
 int32_t bitrate = 261000;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Check whether the sample rate to be configured is supported.
 const int32_t *sampleRates = nullptr;
-uint32_t sampleRateNum = -1;
+uint32_t sampleRateNum = 0;
 int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
-if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum <= 0) {
-   // Exception handling.
+if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum == 0) {
+   // Handle exceptions.
 }
 bool isMatched = false;
 for (int i = 0; i < sampleRateNum; i++) {
@@ -270,7 +280,7 @@ if (!isMatched) {
 OH_AVRange channelRange = {-1, -1};
 ret = OH_AVCapability_GetAudioChannelCountRange(capability, &channelRange);
 if (ret != AV_ERR_OK || channelRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (channelCount > channelRange.maxVal || channelCount < channelRange.minVal ) {
    //4. (Optional) Adjust the number of channels to be configured.
@@ -279,7 +289,7 @@ if (channelCount > channelRange.maxVal || channelCount < channelRange.minVal ) {
 OH_AVRange bitrateRange = {-1, -1};
 ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
    //7. (Optional) Adjust the bit rate to be configured.
@@ -290,19 +300,19 @@ OH_AVFormat *format = OH_AVFormat_Create();
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate) &&
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount) &&
    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate)) == false) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (OH_AudioEncoder_Configure(audioEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
 
 ### Checking the Codec Profile and Level Supported
 
-The codec standard provides lots of encoding tools to deal with various encoding scenarios. However, not all tools are required in a specific scenario. Therefore, the standard uses the codec profile to specify the enabled status of these encoding tools. For example, for H.264, there are baseline, main, and high profiles. For details, see **OH_AVCProfile**.
+The codec standard provides lots of encoding tools to deal with various encoding scenarios. However, not all tools are required in a specific scenario. Therefore, the standard uses the codec profile to specify the enabled status of these encoding tools. For example, for H.264, there are baseline, main, and high profiles. For details, see [OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1).
 
-A codec level is a division of the processing capability and storage space required by a codec. For example, for H.264, there are 20 levels ranging from 1 to 6.2. For details, see **OH_AVCLevel**.
+A codec level is a division of the processing capability and storage space required by a codec. For example, for H.264, there are 20 levels ranging from 1 to 6.2. For details, see [OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1).
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -316,14 +326,14 @@ The code snippet below checks whether a profile is supported and obtains the sup
 OH_AVCProfile profile = AVC_PROFILE_MAIN;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Check whether the profile to be configured is supported.
 const int32_t *profiles = nullptr;
-uint32_t profileNum = -1;
+uint32_t profileNum = 0;
 int32_t ret = OH_AVCapability_GetSupportedProfiles(capability, &profiles, &profileNum);
-if (ret != AV_ERR_OK || profiles == nullptr || profileNum <= 0) {
-   // Exception handling.
+if (ret != AV_ERR_OK || profiles == nullptr || profileNum == 0) {
+   // Handle exceptions.
 }
 bool isMatched = false;
 for (int i = 0; i < profileNum; i++) {
@@ -333,31 +343,31 @@ for (int i = 0; i < profileNum; i++) {
 }
 // 2. Obtain the codec levels supported by the profile.
 const int32_t *levels = nullptr;
-uint32_t levelNum = -1;
+uint32_t levelNum = 0;
 ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
-if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
-   // Exception handling.
+if (ret != AV_ERR_OK || levels == nullptr || levelNum == 0) {
+   // Handle exceptions.
 }
 OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
 // 3. (Optional) Use different service logic based on the maximum level supported.
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // ...
+      // Level 3.1-3.2, with the maximum width and height of 1280 x 720.
       break;
    case AVC_LEVEL_51:
-      // ...
+      // Level 4.0 or higher, with the maximum width and height of 1920 x 1080.
       break;
    default:
-      // ...
+      // An error is reported and no encoding is performed.
 }
 // 4. Set the profile parameters.
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile)) {
-   // Exception handling.
+   // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
@@ -368,7 +378,7 @@ If you already know the required profile and level combination, use the code sni
 // 1. Obtain an H.264 encoder capability instance.
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 2. Check whether the combination of the profile and level is supported.
 bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_MAIN, AVC_LEVEL_51);
@@ -380,13 +390,9 @@ The video codec has restrictions on width and height alignment. For example, for
 
 The width and height of a video codec are restricted by the frame-level encoding and decoding capability of the codec and the frame-level capability defined in the protocol. For example, for H.264, AVC_LEVEL_51 limits the maximum number of macroblocks per frame to 36864.
 
-The formula for calculating the maximum frame rate based on the image width and height is as follows, where **$MaxMBsPerFrameLevelLimits$** indicates the maximum number of macroblocks per frame defined in the protocol that can be supported by the codec, and **$MaxMBsPerFrameSubmit$** indicates the maximum number of macroblocks per frame reported by the codec. In practice, the intersection of the two values is used.
+The formula for calculating the maximum frame rate based on the image width and height is as follows, where *MaxMBsPerFrameLevelLimits* indicates the maximum number of macroblocks per frame defined in the protocol that can be supported by the codec, and *MaxMBsPerFrameSubmit* indicates the maximum number of macroblocks per frame reported by the codec. In practice, the intersection of the two values is used.
 
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
+![](figures/formula-maxmbsperframe.png)
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -422,7 +428,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 int32_t widthAlignment = 0;
 int32_t ret = OH_AVCapability_GetVideoWidthAlignment(capability, &widthAlignment);
 if (ret != AV_ERR_OK || widthAlignment <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 } else if (width % widthAlignment != 0) {
    // 2. (Optional) Align the video width.
    width = (width + widthAlignment - 1) / widthAlignment * widthAlignment;
@@ -431,7 +437,7 @@ if (ret != AV_ERR_OK || widthAlignment <= 0) {
 OH_AVRange widthRange = {-1, -1};
 ret = OH_AVCapability_GetVideoWidthRange(capability, &widthRange);
 if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 } else if (width < widthRange.minVal || width > widthRange.maxVal) {
    // 4. (Optional) Adjust the video width.
    width = min(max(width, widthRange.minVal), widthRange.maxVal);
@@ -440,7 +446,7 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 OH_AVRange heightRange = {-1, -1};
 ret = OH_AVCapability_GetVideoHeightRangeForWidth(capability, width, &heightRange);
 if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 6. Select a proper video height from the range.
 ```
@@ -454,7 +460,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 int32_t heightAlignment = 0;
 int32_t ret = OH_AVCapability_GetVideoHeightAlignment(capability, &heightAlignment);
 if (ret != AV_ERR_OK || heightAlignment <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 } else if (height % heightAlignment != 0) {
    // 2. (Optional) Align the video height.
    height = (height + heightAlignment - 1) / heightAlignment * heightAlignment;
@@ -463,7 +469,7 @@ if (ret != AV_ERR_OK || heightAlignment <= 0) {
 OH_AVRange heightRange = {-1, -1};
 ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
 if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 } else if (height < heightRange.minVal || height > heightRange.maxVal) {
    // 4. (Optional) Adjust the video height.
    height = min(max(height, heightRange.minVal), heightRange.maxVal);
@@ -472,7 +478,7 @@ if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
 OH_AVRange widthRange = {-1, -1};
 ret = OH_AVCapability_GetVideoWidthRangeForHeight(capability, height, &widthRange);
 if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 6. Select a proper video width from the range.
 ```
@@ -481,13 +487,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 The frame rate of a video codec is restricted by the second-level encoding and decoding capability of the codec and the second-level capability defined in the protocol. For example, for H.264, AVC_LEVEL_51 limits the maximum number of macroblocks per second to 983040.
 
-The formula for calculating the maximum frame rate based on the image width and height is as follows, where **$MaxMBsPerSecondLevelLimits$** indicates the maximum number of macroblocks per second defined in the protocol that can be supported by the codec, and **$MaxMBsPerSecondSubmit$** indicates the maximum number of macroblocks per second reported by the codec. In practice, the intersection of the two values is used.
+The formula for calculating the maximum frame rate based on the image width and height is as follows, where *MaxMBsPerSecondLevelLimits* indicates the maximum number of macroblocks per second defined in the protocol that can be supported by the codec, and *MaxMBsPerSecondSubmit* indicates the maximum number of macroblocks per second reported by the codec. In practice, the intersection of the two values is used.
 
-$$
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
+![](figures/formula-maxmbspersecond.png)
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -504,7 +506,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO
 OH_AVRange frameRateRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetVideoFrameRateRange(capability, &frameRateRange);
 if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 2. Check whether the frame rate is within the range.
 bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateRange.maxVal;
@@ -515,7 +517,7 @@ The code snippet below shows how to find a proper frame rate configuration based
 ```c++
 constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
-int32_t frameRate = 120;
+double frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 // 1. Check whether the video size to be configured can reach the ideal frame rate.
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
@@ -524,7 +526,7 @@ if (!isSupported) {
    OH_AVRange frameRateRange = {-1, -1};
    int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, width, height, &frameRateRange);
    if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
-      // Exception handling.
+      // Handle exceptions.
    }
    frameRate = min(max(frameRate, frameRateRange.minVal), frameRateRange.maxVal);
 }
@@ -532,18 +534,18 @@ if (!isSupported) {
 // 3. Set the video size and frame rate.
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
-if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
-   // Exception handling.
+if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
+   // Handle exceptions.
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 OH_AVFormat_Destroy(format);
 ```
 
 ### Setting the Correct Video Pixel Format
 
-The video pixel format determines the pixel arrangement mode of an input image for encoding or an output image of decoding. For details, see **OH_AVPixelFormat**.
+The video pixel format determines the pixel layout of an image that is encoded as input or decoded as output. For details, see [OH_AVPixelFormat](../../reference/apis-avcodec-kit/_core.md#oh_avpixelformat-1).
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -553,14 +555,14 @@ The video pixel format determines the pixel arrangement mode of an input image f
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Obtain the video pixel formats supported by the video codec.
 const int32_t *pixFormats = nullptr;
-uint32_t pixFormatNum = -1;
+uint32_t pixFormatNum = 0;
 int32_t ret = OH_AVCapability_GetVideoSupportedPixelFormats(capability, &pixFormats, &pixFormatNum);
-if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum <= 0) {
-   // Exception handling.
+if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum == 0) {
+   // Handle exceptions.
 }
 // 2. Check whether the pixel format to be configured is supported.
 bool isMatched = false;
@@ -576,8 +578,7 @@ if (!isMatched) {
 
 ### Checking Whether a Codec Feature Is Supported and Obtaining Its Properties
 
-A codec feature refers to an optional feature used only in specific encoding and decoding scenarios. For details, see **OH_AVCapabilityFeature**.
-
+A codec feature refers to an optional feature used only in specific encoding and decoding scenarios. For details, see [OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1).
 | API    | Description                        |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | Check whether a codec supports a given feature.|
@@ -590,7 +591,7 @@ constexpr int32_t NEEDED_LTR_NUM = 2;
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // Exception handling.
+   // Handle exceptions.
 }
 // 1. Check whether the long-term reference frame feature is supported.
 bool isSupported = OH_AVCapability_IsFeatureSupported(capability,VIDEO_ENCODER_LONG_TERM_REFERENCE);
@@ -598,16 +599,16 @@ if (isSupported) {
    // 2. Obtain the number of supported long-term reference frames.
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
-   int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
-   if (ret == AV_ERR_OK && maxLTRCount >= NEEDED_MIN_LTR_NUM) {
+   bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
+   if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
-         // Exception handling.
+         // Handle exceptions.
       }
    }
 }
 // 3. Create and configure an encoder.
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
-   // Exception handling.
+   // Handle exceptions.
 }
 ```

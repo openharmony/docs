@@ -19,17 +19,17 @@
 
 ## ImageAnalyzerType
 
-图像AI分析类型。
+图像AI分析类型，未设置时默认开启主体识别和文字识别功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述           |
-| -------- | -------------- |
-| SUBJECT | 主体识别功能。 |
-| TEXT | 文字识别功能。 |
-| OBJECT_LOOKUP | 对象查找功能。 |
+| 名称     | 值    | 说明           |
+| -------- | ----- | -------- |
+| SUBJECT | 0  | 主体识别功能。 |
+| TEXT | 1  | 文字识别功能。 |
+| OBJECT_LOOKUP | 2  | 对象查找功能。 |
 
 ## ImageAIOptions
 

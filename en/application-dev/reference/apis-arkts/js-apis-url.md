@@ -1,6 +1,6 @@
 # @ohos.url (URL String Parsing)
 
-The **url** module provides APIs for constructing [URLParams](#urlparams9) and [URL](#url) instances to process URL strings.
+The url module provides APIs for parsing URL strings and constructing [URL](#url) instances to process URL strings.
 
 > **NOTE**
 >
@@ -29,7 +29,7 @@ A constructor used to create a **URLParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLParams**: object<br>The default value is **null**.|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLParams**: object.<br>The default value is **null**.|
 
 **Error codes**
 
@@ -37,7 +37,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
 **Example**
 
@@ -241,6 +241,10 @@ get(name: string): string | null
 
 Obtains the value of the first key-value pair based on the specified key.
 
+> **NOTE**
+>
+> If the key-value pair does not exist, **undefined** is returned.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -272,6 +276,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let paramsObject = new url.URLParams('name=Jonathan&age=18');
 let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string "18"
+let getObj = paramsObject.get("abc"); // undefined
 ```
 
 
@@ -471,7 +476,7 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
 ## URL
@@ -527,16 +532,14 @@ constructor(url: string, base?: string | URL)
 
 Creates a URL.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
+| url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
 
 **Example**
 
@@ -548,7 +551,7 @@ new url.URL('path/path1', b); // Output 'https://username:password@host:8080/pat
 let c = new url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output https://www.exampleUrl/path/path1
 new url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
 new url.URL('https://www.example.com', ); // Output https://www.example.com/
@@ -579,8 +582,12 @@ Parses a URL.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
+| url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
+
+> **NOTE**
+>
+> If **url** is a relative URL, the URL parsed by calling this API is not merely a concatenation of **url** and **base**. When **url** is a relative path, it is parsed relative to the current directory of the passed **base**, taking into account all path segments before the last slash in the path of **base**, but excluding the following part (see example url1). When **url** points to a root directory, it is parsed relative to the origin of **base** (see example url2).
 
 **Error codes**
 
@@ -594,9 +601,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let mm = 'https://username:password@host:8080';
+let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
-let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
+// If url is a relative path, the path in the base parameter is test/test1, and the path of the parsed URL is /test/path2/path3.
+let url1 = url.URL.parseURL('path2/path3', 'https://www.example.com/test/test1'); // Output 'https://www.example.com/test/path2/path3'
+// If url is a root directory, the path in the base parameter is /test/test1/test3, and the path of the parsed URL is /path1/path2.
+let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
+url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'
+url.URL.parseURL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+url.URL.parseURL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+url.URL.parseURL('https://www.example.com', ); // Output 'https://www.example.com/'
+url.URL.parseURL('https://www.example.com', urlObject); // Output 'https://www.example.com/'
 ```
 
 ### toString
@@ -619,7 +635,7 @@ Converts the parsed URL into a string.
 
 ```ts
 const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = urlObject.toString();
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/directory/file?query=pppppp#qwer=da'
 ```
 
 ### toJSON
@@ -666,15 +682,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLSearchParams**: object.<br>The default value is **null**.|
 
 **Example**
 
@@ -735,8 +743,8 @@ Deletes key-value pairs of the specified key.
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new url.URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 ### getAll<sup>(deprecated)</sup>
@@ -847,7 +855,9 @@ Obtains the value of the first key-value pair based on the specified key.
 
 > **NOTE**
 >
+> If the key-value pair does not exist, **undefined** is returned.
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.get<sup>9+</sup>](#get9) instead.
+
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -870,6 +880,7 @@ Obtains the value of the first key-value pair based on the specified key.
 let paramsObject = new url.URLSearchParams('name=Jonathan&age=18');
 let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string '18'
+let getObj = paramsObject.get("abc"); // undefined
 ```
 
 
@@ -895,7 +906,7 @@ Checks whether a key has a value.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise.|
+| boolean | Check result. The value **true** means that the key has a value, and **false** means the opposite.|
 
 **Example**
 
@@ -1066,6 +1077,6 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 <!--no_check-->

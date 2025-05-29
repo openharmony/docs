@@ -5,6 +5,8 @@
 
 The **ffrt_mutex_t** struct describes an FFRT mutex.
 
+**Since**: 10
+
 **Related module**: [FFRT](_f_f_r_t.md)
 
 
@@ -15,4 +17,16 @@ The **ffrt_mutex_t** struct describes an FFRT mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| uint32_t [storage](_f_f_r_t.md#storage-26)[([ffrt_mutex_storage_size] (_f_f_r_t.md#enums) + sizeof(uint32_t) - 1)/sizeof(uint32_t)]| Storage size of a mutex.| 
+| uint32_t [storage](#storage) [(ffrt_mutex_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a mutex. | 
+
+
+## Member Variable Description
+
+
+### storage
+
+```
+uint32_t ffrt_mutex_t::storage[(ffrt_mutex_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+```
+**Description**
+Storage size of a mutex.

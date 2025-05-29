@@ -159,7 +159,7 @@ The number of event parameters of the array type exceeds the limit.
 
 **处理步骤**
 
-检查数组类型的参数值的长度是否超过100.
+检查数组类型的参数值的长度是否超过100。
 
 ## 11200101 事件监听者的数量超过限制
 

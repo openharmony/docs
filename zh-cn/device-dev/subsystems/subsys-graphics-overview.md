@@ -146,11 +146,11 @@ WindowImpl *-- RootView
 RenderManager *-- Window
 ```
 
- - 每一个窗口 Window 持有一个 RootView
- - RootView 为当前窗口的根节点，当前窗口所有控件都必须挂载在 RootView 下才能显示
- - UIView 为所有 View 的基类，每个 View 实现自己的 OnDraw 绘制函数
- - 每个 View 显示发生变化时，调用 Invalidate 函数，将当前区域标记为脏区域
- - RootView 统一管理当前窗口所有的脏区域信息
+ - 每一个窗口 Window 持有一个 RootView。
+ - RootView 为当前窗口的根节点，当前窗口所有控件都必须挂载在 RootView 下才能显示。
+ - UIView 为所有 View 的基类，每个 View 实现自己的 OnDraw 绘制函数。
+ - 每个 View 显示发生变化时，调用 Invalidate 函数，将当前区域标记为脏区域。
+ - RootView 统一管理当前窗口所有的脏区域信息。
  - 每次刷新信号触发，会遍历绘制所有的 Window，每个 Window 从 RootView 开始先进行 Measure 布局，然后调用 Render 函数绘制，遍历绘制所有脏区域内的 View。
 
 

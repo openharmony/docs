@@ -11,16 +11,20 @@ The **DrawableDescriptor** module provides APIs for obtaining **pixelMap** objec
 ## Modules to Import
 
 ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 ```
 
 ## DrawableDescriptor
+
+Resources in PNG, JPG, BMP, SVG, GIF, WEBP, ASTC, and SUT formats are supported.
 
 ### getPixelMap
 
 getPixelMap(): image.PixelMap
 
 Obtains this **pixelMap** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,18 +36,39 @@ Obtains this **pixelMap** object.
 
 **Example**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-let resManager = getContext().resourceManager
-let pixmap: DrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.icon')
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
+let resManager = this.getUIContext().getHostContext()?.resourceManager
+let pixmap: DrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.icon')
     .id)) as DrawableDescriptor;
 let pixmapNew: object = pixmap.getPixelMap()
   ```
 
 Creates a **DrawableDescriptor** object when the passed resource ID or name belongs to a common image.
 
+## PixelMapDrawableDescriptor<sup>12+</sup>
+
+Implements a **PixelMapDrawableDescriptor** object , which can be created by passing in a **pixelMap** object. Inherits from [DrawableDescriptor](#drawabledescriptor).
+
+### constructor<sup>12+</sup>
+
+constructor(src?: image.PixelMap)
+
+A constructor used to create a **PixelMapDrawableDescriptor** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type             | Mandatory | Description                                      |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | No| **PixelMap** image data.|
+
+
 ## LayeredDrawableDescriptor
 
-Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. This API is inherited from [DrawableDescriptor](#drawabledescriptor).
+Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources. Inherits from [DrawableDescriptor](#drawabledescriptor).
 
 The **drawable.json** file is located under **entry/src/main/resources/base/media** in the project directory. Below shows the file content:
 
@@ -57,55 +82,108 @@ The **drawable.json** file is located under **entry/src/main/resources/base/medi
 }
 ```
 
-**Example**
-```ts
-// xxx.ets
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+**Example** 
 
-@Entry
-@Component
-struct Index {
-  private resManager = getContext().resourceManager
+1. Create a **LayeredDrawableDescriptor** object from a JSON file.
 
-  build() {
-    Row() {
-      Column() {
-        Image((this.resManager.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
-        Image(((this.resManager.getDrawableDescriptor($r('app.media.drawable')
-          .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
-      }.height('50%')
-    }.width('50%')
-  }
-}
-```
+    ```ts
+    // xxx.ets
+    import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
-### getPixelMap
+    @Entry
+    @Component
+    struct Index {
+      private resManager = this.getUIContext().getHostContext()?.resourceManager;
+ 
+      build() {
+        Row() {
+          Column() {
+            Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
+            Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
+            .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
+          }.height('50%')
+        }.width('50%')
+      }
+    }
+    ```
+2. Creates a **LayeredDrawableDescriptor** object using **PixelMapDrawableDescriptor**.
+   
+    ```ts
+    import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
+    import { image } from '@kit.ImageKit';
 
-getPixelMap(): image.PixelMap
+    @Entry
+    @Component
+    struct Index {
+      @State fore1: image.PixelMap | undefined = undefined;
+      @State back1: image.PixelMap | undefined = undefined;
 
-Obtains the **pixelMap** object where the foreground, background, and mask are blended and cropped.
+      @State foregroundDraw:DrawableDescriptor|undefined=undefined;
+      @State backgroundDraw:DrawableDescriptor|undefined=undefined;
+      @State maskDraw:DrawableDescriptor|undefined=undefined;
+      @State maskPixel: image.PixelMap | undefined = undefined;
+      @State draw : LayeredDrawableDescriptor | undefined = undefined;
+      async aboutToAppear() {
+        this.fore1 = await this.getPixmapFromMedia($r('app.media.foreground'));
+        this.back1 = await this.getPixmapFromMedia($r('app.media.background'));
+        this.maskPixel = await this.getPixmapFromMedia($r('app.media.ohos_icon_mask'));
+        // Create a LayeredDrawableDescriptor object using PixelMapDrawableDescriptor.
+        this.foregroundDraw = new PixelMapDrawableDescriptor(this.fore1);
+        this.backgroundDraw = new PixelMapDrawableDescriptor(this.back1);
+        this.maskDraw = new PixelMapDrawableDescriptor(this.maskPixel);
+
+        this.draw = new LayeredDrawableDescriptor(this.foregroundDraw,this.backgroundDraw,this.maskDraw);
+      }
+      build() {
+        Row() {
+          Column() {
+              Image(this.draw)
+                .width(300)
+                .height(300)
+          }.height('100%').justifyContent(FlexAlign.Center)
+        }.width('100%').height("100%").backgroundColor(Color.Pink)
+      }
+      // Obtain pixelMap from a resource through the image framework based on the resource
+      private async getPixmapFromMedia(resource: Resource) {
+        let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
+          bundleName: resource.bundleName,
+          moduleName: resource.moduleName,
+          id: resource.id
+        });
+        let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
+        let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+          desiredPixelFormat: image.PixelMapFormat.BGRA_8888
+        });
+        await imageSource.release();
+        return createPixelMap;
+      }
+    }
+    ```
+
+### constructor<sup>12+</sup>
+
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor)
+
+A constructor used to create a **LayeredDrawableDescriptor** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Return value**
+**Parameters**
 
-| Type                                      | Description      |
-| ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object.|
-
-**Example**
-  ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
-  ```
+| Name    | Type             | Mandatory | Description                                      |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| foreground | [DrawableDescriptor](#drawabledescriptor)  | No  | Options for the foreground image of the layered drawable.|
+| background   | [DrawableDescriptor](#drawabledescriptor) | No  | Options for the background image of the layered drawable. |
+| mask | [DrawableDescriptor](#drawabledescriptor) | No| Options for the mask of the layered drawable.|
 
 ### getForeground
-getForeground(): DrawableDescriptor;
+getForeground(): DrawableDescriptor
 
 Obtains the **DrawableDescriptor** object of the foreground.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,18 +195,20 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 **Example**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getForeground()
+let drawableNew: object = drawable.getForeground();
   ```
 
 ### getBackground
 
-getBackground(): DrawableDescriptor;
+getBackground(): DrawableDescriptor
 
 Obtains the **DrawableDescriptor** object of the background.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -140,11 +220,11 @@ Obtains the **DrawableDescriptor** object of the background.
 
 **Example**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getBackground()
+let drawableNew: object = drawable.getBackground();
   ```
 
 ### getMask
@@ -153,6 +233,8 @@ getMask(): DrawableDescriptor
 
 Obtains the **DrawableDescriptor** object of the mask.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -163,17 +245,19 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 **Example**
   ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-let resManager = getContext().resourceManager
-let drawable: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
+let resManager = this.getUIContext().getHostContext()?.resourceManager;
+let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
     .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getMask()
+let drawableNew: object = drawable.getMask();
   ```
 ### getMaskClipPath
 
 static getMaskClipPath(): string
 
 Obtains the built-in clipping path parameters of the system. It is a static method of **LayeredDrawableDescriptor**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -187,7 +271,7 @@ Obtains the built-in clipping path parameters of the system. It is a static meth
 
   ```ts
 // xxx.ets
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -197,7 +281,7 @@ struct Index {
       Column() {
         Image($r('app.media.icon'))
           .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+          .clipShape(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
         Text(`Obtain the built-in clip path parameters:`)
           .fontWeight(800)
         Text(JSON.stringify(LayeredDrawableDescriptor.getMaskClipPath()))
@@ -207,3 +291,90 @@ struct Index {
   }
 }
   ```
+
+## AnimationOptions<sup>12+</sup>
+
+Provides the playback options of the animation with a pixel map image array in an **Image** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type   | Mandatory | Description                                   |
+| ---------- | ------ | -----| --------------------------------------- |
+| duration   | number | No  | Total playback duration for the pixel map image array. The default value is 1 second per image.<br> Value range: [0, +∞).     |
+| iterations | number | No  | Number of times that the pixel map image array is played. The default value is **1**. The value **-1** indicates infinite playback, and a value greater than 0 represents the number of playback times.|
+
+**Example**
+
+```ts
+import { AnimationOptions } from '@kit.ArkUI';
+@Entry
+@Component
+struct Example {
+  options: AnimationOptions = { duration: 2000, iterations: 1 };
+  build() {
+  }
+}
+```
+
+## AnimatedDrawableDescriptor<sup>12+</sup>
+
+Implements an **AnimatedDrawableDescriptor** object, which can be passed in when the **Image** component is used to play the pixel map image array. Inherits from [DrawableDescriptor](#drawabledescriptor).
+
+### constructor<sup>12+</sup>
+
+constructor(pixelMaps: Array\<image.PixelMap>, options?: AnimationOptions)
+
+A constructor used to create an **AnimatedDrawableDescriptor** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type             | Mandatory | Description                                      |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | Yes  | **PixelMap** image data.|
+| options   | [AnimationOptions](#animationoptions12) | No  | Animation options.                              |
+
+**Example**
+
+```ts
+import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+
+@Entry
+@Component
+struct Example {
+  pixelmaps: Array<image.PixelMap>  = [];
+  options: AnimationOptions = {duration:1000, iterations:-1};
+  @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  async aboutToAppear() {
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  }
+  build() {
+    Column() {
+      Row() {
+        Image(this.animated)
+      }
+    }
+  }
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    });
+    await imageSource.release();
+    return createPixelMap;
+  }
+}
+
+```

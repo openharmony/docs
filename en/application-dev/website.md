@@ -1,11 +1,15 @@
 # Application Development
-
-- developer<!--developer-->
-    - [Delete a tag.](onlyfortest/media/audio-kit-intro.md)
-    - [Verifying Word Batch Replacement](onlyfortest/media/audio-playback-overview.md)
-    - [Replace the label.](onlyfortest/media/media-kit-intro.md)
-- reference<!--reference-->
-    - [api-info--This requirement can be implemented only in the reference folder.](onlyfortest/reference/test.md)
-    - [@ohos.multimedia.media (media service) (system interface)](onlyfortest/reference/test-sys.md)
-    - error-code<!--reference-error-code-->
-        - [error-code](onlyfortest/reference/apis-media-kit/errorcode-media.md)
+- Test urlpath<!--test-urlpath-->
+  - urlpath Normal<!--urlpath-normal-->
+    - errorCode-1<!--errorcode-full-->
+      - [Media Error Codes](onlyfortest/reference/apis-media-kit/errorcode-media.md)  
+    - errorCode-2<!--errorcode-universal-->
+      - [Universal Error Codes](onlyfortest/reference/errorcode-universal.md)
+  - Parent node urlpath illegal<!--urlpath-illegal-->
+    - errorCode-3<!--errorcode-for-ads-for-enterprise-device-management-level3-parent-node-->
+      - errorCode-4<!--errorcode-for-ads-for-enterprise-device-management-->
+        - [Enterprise Device Management Error Codes](onlyfortest/reference/apis-mdm-kit/errorcode-enterpriseDeviceManager.md) 
+  - Parent-node-urlpath-null<!--urlpath-null-->
+    - errorCode-5<!--level2-parent-node-errorcode-for-ads-->
+      - errorCode-6<!--errorcode-for-ads-->
+        - [Ads Service Framework Error Codes](onlyfortest/reference/apis-ads-kit/errorcode-ads.md) 

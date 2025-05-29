@@ -230,7 +230,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者需要的权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
+**订阅者所需权限：** ohos.permission.RECEIVER_SPLIT_SCREEN
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -248,9 +248,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统能力：** SystemCapability.Notification.CommonEvent
+**订阅者所需权限：** ohos.permission.NOTIFICATION_CONTROLLER
 
 **取值：** "usual.event.SLOT_CHANGE"
 
@@ -324,10 +322,6 @@
 **取值：** "usual.event.hardware.usb.action.USB_DEVICE_DETACHED"
 
 
-
-
-
-
 ### COMMON_EVENT_TIME_CHANGED
 
 设置系统时间的公共事件的动作。
@@ -338,7 +332,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIME_CHANGED"
+**取值：** "usual.event.TIME_CHANGED"
 
 
 ### COMMON_EVENT_TIME_TICK
@@ -351,7 +345,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIME_TICK"
+**取值：** "usual.event.TIME_TICK"
 
 
 ### COMMON_EVENT_TIMEZONE_CHANGED
@@ -364,7 +358,7 @@
 
 **订阅者所需权限：** 无
 
-**取值** "usual.event.TIMEZONE_CHANGED"
+**取值：** "usual.event.TIMEZONE_CHANGED"
 
 
 
@@ -382,8 +376,6 @@
 
 **订阅者所需权限：** 无
 
-**系统能力：** SystemCapability.Notification.CommonEvent
-
 **取值：** "usual.event.USER_INFO_UPDATED"
 
 
@@ -393,15 +385,28 @@
 
 切换到带有锁屏密码的用户，并且首次解锁会发出触发事件通知服务发布该系统公共事件，事件携带标识该用户的系统账号ID。
 
-与这个公共事件相关的接口：auth, 为系统API, 具体参看[系统账号接口文档](../js-apis-osAccount.md)
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.USER_UNLOCKED"
+
+
+### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
+
+表示分布式账号登录成功的动作。
+
+分布式账号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** 无
 
-**系统能力：** SystemCapability.Notification.CommonEvent
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.USER_UNLOCKED"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGIN"
 
 
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
@@ -410,8 +415,7 @@
 
 分布式账号登出时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -419,7 +423,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGOUT"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGOUT"
 
 
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
@@ -428,16 +432,15 @@
 
 分布式账号的token令牌无效时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API, 
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
-
-**订阅者所需权限：** 无
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
+**订阅者所需权限：** 无
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID"
 
 
 
@@ -447,8 +450,7 @@
 
 分布式账号注销成功会时触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -456,7 +458,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGOFF"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGOFF"
 
 
 
@@ -624,9 +626,9 @@
 
 ### COMMON_EVENT_SCREEN_OFF
 
-表示设备屏幕关闭且设备处于睡眠状态的普通事件的动作。
+表示由电源服务发起的设备灭屏完成的普通事件的动作。
 
-当设备屏幕关闭且设备处于睡眠状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备灭屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -637,9 +639,9 @@
 
 ### COMMON_EVENT_SCREEN_ON
 
-表示设备屏幕打开且设备处于交互状态的公共事件的操作。
+表示由电源服务发起的设备亮屏完成的普通事件的动作。
 
-当设备屏幕打开且设备处于交互状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备亮屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -683,7 +685,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.ENTER_FORCE_SLEEP"
 
@@ -696,11 +698,33 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
 
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+<sup>
 
+表示设备即将进入休眠模式的公共事件的动作。
+
+当设备即将进入休眠模式时，将会触发事件通知服务发布该系统公共事件。所有订阅者必须在1秒钟内处理该事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+<sup>
+
+表示设备退出休眠模式的公共事件的动作。
+
+当设备退出休眠模式时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.EXIT_HIBERNATE"
 
 
 
@@ -755,6 +779,8 @@ Wi-Fi状态变化。
 
 当Wi-Fi状态发生变化时（如启用、禁用Wi-Fi），将会触发事件通知服务发布该系统公共事件。
 
+状态值：0：WLAN正在关闭，1：WLAN已关闭，2：WLAN正在打开，3：WLAN已启动。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** 无
@@ -770,7 +796,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.SCAN_FINISHED"
 
@@ -783,7 +809,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.SCAN_STATE"
 
@@ -797,7 +823,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.RSSI_VALUE"
 
@@ -812,7 +838,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** 无
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.wifi.CONN_STATE"
 
@@ -823,9 +849,11 @@ Wi-Fi状态变化。
 
 当Wi-Fi热点状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
+状态值：2：AP正在打开，3：AP已启动，4：AP正在关闭，5：AP已关闭。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** 无
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.wifi.HOTSPOT_STATE"
 
@@ -838,7 +866,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.WIFI_HS_STA_JOIN"
 
@@ -852,7 +880,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.WIFI_HS_STA_LEAVE"
 
@@ -861,12 +889,12 @@ Wi-Fi状态变化。
 
 表示MPLink（增强Wi-Fi功能）状态已更改。
 
-当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件。
+当MPLink（增强Wi-Fi功能）状态发生变化，将会触发事件通知服务发布该系统公共事件（暂不支持）。
 
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.MPLINK_CHANGE_STATE
+**订阅方需要的权限：** 无
 
 **取值：** "usual.event.wifi.mplink.STATE_CHANGE"
 
@@ -880,7 +908,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO和ohos.permission.LOCATION
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO和ohos.permission.LOCATION
 
 **取值：** "usual.event.wifi.p2p.CONN_STATE_CHANGE"
 
@@ -891,9 +919,11 @@ Wi-Fi状态变化。
 
 当Wi-Fi P2P状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
+状态值：2：P2P正在打开，3：P2P已启动，4：P2P正在关闭，5：P2P已关闭。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.STATE_CHANGE"
 
@@ -906,7 +936,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.DEVICES_CHANGE"
 
@@ -919,7 +949,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE"
 
@@ -932,7 +962,7 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE"
 
@@ -945,10 +975,24 @@ Wi-Fi状态变化。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅方需要的权限：** ohos.permission.GET_WIFI_INFO
+**订阅者所需权限：** ohos.permission.GET_WIFI_INFO
 
 **取值：** "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
 
+
+## MDM Kit
+
+### COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED
+
+表示浏览器托管策略已更改。
+
+当浏览器托管策略发生变化，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
 
 
 ## Localization Kit
@@ -1074,14 +1118,12 @@ Wi-Fi状态变化。
 
 **取值：** usual.event.SIGNAL_INFO_CHANGED
 
-**系统能力：** SystemCapability.Notification.CommonEvent
-
 
 
 ## Store Kit
 Store Kit面向应用发布如下系统公共事件。
 
-### COMMON_EVENT_PRIVACY_POLICY_STATE_CHANGED<sup>11+<sup>
+### COMMON_EVENT_PRIVACY_STATE_CHANGED<sup>11+<sup>
 表示隐私签署结果的公共事件。
 隐私弹框场景下，用户点击同意，会发送此事件。
 
@@ -1381,7 +1423,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 **订阅者所需权限：** 无
 
-**取值** usual.event.DATE_CHANGED
+**取值：** usual.event.DATE_CHANGED
 
 ### COMMON_EVENT_USB_ACCESSORY_ATTACHED
 
@@ -1713,7 +1755,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 ### COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
-（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作
+（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1818,6 +1860,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 ### COMMON_EVENT_ABILITY_REMOVED
 （预留事件，暂未支持）表示已删除能力的公共事件的动作。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
@@ -1977,7 +2020,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS（该权限仅系统应用可申请）
 
 **取值：** "usual.event.data.ACCOUNT_DELETED"
 
@@ -2002,4 +2045,5 @@ Store Kit面向应用发布如下系统公共事件。
 **订阅者所需权限：** 无
 
 **取值：** "usual.event.SPN_INFO_CHANGED"
+<!--no_check-->
  

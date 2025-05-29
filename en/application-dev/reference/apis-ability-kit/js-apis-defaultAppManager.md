@@ -12,13 +12,13 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## defaultAppManager.ApplicationType
+## ApplicationType
 
 Enumerates the default application types.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-| Name  | Value | Description                                  |
+| Name  | Value| Description                                  |
 | -------- | -------------------------------------- | -------------------------------------- |
 | BROWSER  | 'Web Browser' | Default browser.                           |
 | IMAGE    | 'Image Gallery' | Default image viewer.                        |
@@ -42,19 +42,19 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                          |
+| type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                          |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<boolean> | Promise used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
+| Promise\<boolean> | Promise used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                   |
+| ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801 | Capability not supported. |
@@ -85,14 +85,14 @@ Checks whether this application is the default application of a system-defined a
 
 | Name        | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
-| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned. |
+| type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).                           |
+| callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                   |
+| ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801 | Capability not supported. |
@@ -122,21 +122,21 @@ Checks whether this application is the default application of a system-defined a
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                    |
+| Name| Type  | Mandatory| Description                                    |
 | -------| ------ | ---- | --------------------------------------- |
-|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmanagerapplicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).  |
+|  type  | string | Yes  | Type of the target application. It must be set to a value defined by [ApplicationType](#applicationtype) or [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).  |
 
 **Return value**
 
 | Type   | Description                |
 | ------- | -------------------- |
-| boolean | Returns **true** if the application is the default application; returns **false** otherwise. |
+| boolean | Returns **true** if the application is the default application; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                   |
+| ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801 | Capability not supported. |

@@ -1,5 +1,7 @@
 # 元数据(ArkTS)
 
+在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+
 元数据（Metadata）是对相机返回的图像信息数据的描述和上下文，针对图像信息，提供的更详细的数据，如照片或视频中，识别人像的取景框坐标等信息。
 
 Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递参数和配置信息，减少内存拷贝操作。
@@ -41,7 +43,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
        console.error('no camera.');
        return;
      }
-     // 获取支持的模式类型
+     // 获取支持的模式类型。
      let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
      let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
      if (!isSupportPhotoMode) {
@@ -54,7 +56,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
        console.error('cameraInput is undefined');
        return;
      }
-     // 打开相机
+     // 打开相机。
      await cameraInput.open();
      let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();
@@ -99,7 +101,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   >
   > 当前的元数据类型仅支持人脸检测（FACE_DETECTION）功能。元数据信息对象为识别到的人脸区域的矩形信息（Rect），包含矩形区域的左上角x坐标、y坐标和矩形的宽高数据。
 
-- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
+- 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
   function onMetadataError(metadataOutput: camera.MetadataOutput): void {

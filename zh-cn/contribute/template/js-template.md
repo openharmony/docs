@@ -29,7 +29,7 @@
 | @form | 卡片能力 | **卡片能力：** 从API version x开始，该接口支持在ArkTS卡片中使用。 |
 | @systemapi | 系统接口 | **系统接口：** 此接口为系统接口。 |
 | @syscap | 系统能力 | **系统能力**：SystemCapability.xxx.xxx |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| @permission | 权限 |  1. 如果仅涉及一个权限，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>2. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B <br/>3. 涉及版本变更时，“需要权限”后跟当前版本的权限要求，历史版本的权限要求换行按列表描述，样例：<br/>**需要权限：** ohos.permission.A <br/>- 在API x-(y-1)时，需要申请权限ohos.permission.A和B。<br/>- 从API y开始，仅需申请ohos.permission.A。<br/>4. 仅在某些固定场景下，需要申请权限。“需要权限”后跟d.ts的@permission保持一致，再补充情况说明，分为两类情况，当情况较为简单时，可采用括号补充描述；当情况较为复杂时，换行描述。<br/>样例1：<br/> **需要权限：** ohos.permission.A（仅当创建窗口类型为AA时需要申请）<br/>样例2：<br/> **需要权限：** ohos.permission.A<br/>- 当应用处于xx情况时，需要同步申请ohos.permission.B。<br/>- 当应用处于yy情况时，无需申请任何权限。|
 | @extends | 继承 |  带有该标签或实际存在extends关系但未带该标签时，在相关描述处应明确说明“xxx继承自xxx（提供链接）。” |
 
 下面进入具体每个API的写作。
@@ -93,12 +93,12 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 >    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
->    import ability_featureAbility from '@ohos.ability.featureAbility';
->    let context = ability_featureAbility.getContext();
+>    import { featureAbility } from '@kit.AbilityKit';
+>    let context = featureAbility.getContext();
 > ```
 
 ```js
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## 属性
@@ -113,7 +113,7 @@ import call from '@ohos.telephony.call';
 >
 > 4. 对于可选属性：如果仅支持固定字段，需要进行说明。如该属性定义时，带有?，即为可选。
 
-**系统能力：** SystemCapability.xxx.xxx。（必选）
+**系统能力：** SystemCapability.xxx.xxx（必选）
 
 | 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
@@ -125,10 +125,10 @@ import call from '@ohos.telephony.call';
 > *写作说明*
 >
 > 1. 可选，如果没有常量可删除此二级标题，对应d.ts中的const。
->
-> 2. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+> 2. 部分const用于定义只读变量，无对应值，此时表格为：名称、类型、只读、说明，四列。
+> 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
 
-**系统能力：** SystemCapability.xxx.xxx。（必选）
+**系统能力：** SystemCapability.xxx.xxx（必选）
 
 | 名称             | 类型                                |  值      | 说明                                       |
 | ---------------- | -----------------------------------| -------- | ------------------------------------------ |
@@ -180,7 +180,7 @@ import call from '@ohos.telephony.call';
 
 | 参数名       | 类型                                          | 必填 | 说明                                                         |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述。给出取值范围、建议值。如果有固定格式，需要给出格式样例，尤其是URI。<br/>自定义类型需要进行建链说明。 |
+| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述（包括参数的含义与用途、什么场景下使用该参数、选取建议、参数间关联关系等）。<br/>参数取值说明（包括取值范围、单位、默认值、取值原则或建议值；边界值涉及限制/异常时，需讲明具体场景；如果有固定格式，需要给出格式样例，尤其是URI）。<br/>自定义类型需要进行建链说明。 |
 | callback     | Callback\<Array<[CustomType](#classinterface)>>   | 否   | 参数描述。可选参数需要说明不填写该参数的后果。<br/>如：不填该参数则取消该type对应的所有回调。<br/>callback写法参考总体写作说明第14项。 |
 
 **返回值**：（可选，如不涉及可删除）
@@ -204,9 +204,10 @@ import call from '@ohos.telephony.call';
 ```js
 // 必选项。
 
-// 所有的示例代码需要进行自检。
+// 所有的示例代码需要进行自检，确保运行结果符合预期。
 // 不能出现缺符号、变量前后不一致等低错。
 // 所有使用到的变量要进行声明。
+// 接口传参异常时，需验证代码能否捕获错误，抛出对应错误码。
 
 // 不允许直接写参数名，必须是可使用、易替代的实际用例。如果非用户自定义填写，需通过注释进行说明。
 // 例如：let result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
@@ -288,7 +289,7 @@ import call from '@ohos.telephony.call';
 
 > *写作说明*
 >
-> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除。
+> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除“属性”小标题，直接写interface名称作为二级标题。
 
 ### Class/Interface中的方法
 
@@ -349,7 +350,7 @@ type Xxx = number | string | 'xxx'
 
 ### Type模板二
 
-*（此处以函数别名为例，如果是interface别名同理，参考interface的模板写作）*
+*（此处以函数别名为例）*
 
 *（在此处给出type的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
 
@@ -368,9 +369,28 @@ type Xxx = number | string | 'xxx'
 | ------ | ------------------------------------- |
 | [Interface1](#interface1) | 返回值描述。与[方法](#方法)要求一致。 |
 
+### Type模板三
+
+*（此处以含有多个属性字段的Interface别名为例）*
+
+*（在此处给出type的具体定义形式）*  type Xxx = { aaa: string; bbb?: number; }
+
+**系统能力：** SystemCapability.xxx.xxx（必选）
+
+
+| 名称   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| aaa | string | 是 | 属性描述。 | 
+| bbb | number | 否 | 属性描述。 | 
+
 ## 变更日志
+
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 优化权限的写作规范，可覆盖多种类型的权限描述，适配扫描工具需求。 | 2025/03/12 |
+| 增加Type模板三，增加以含有多个属性字段的Interface别名。 | 2025/03/04 |
+| 增加示例代码需捕获传参异常的要求。 |  2025/03/03 |
+| 针对const定义的只读变量，增加模板。 |   2024/12/31  |
 | 1. 修改方法模板，增加static等关键字声明的方法描述说明。 |  2024/05/16  |
 | 1. 修改Type模板，除原来的联合类型外，增加交叉类型，以及type作为函数、interface等别名的情况。<br/>2. 修改属性模板，仅针对interface和接口定义而言，明确规则，如果有?，则判定为“可选”。 |  2024/05/10  |
 | 1. 修改属性的模板，将“可读”、“可写”、“必填”，统一为“只读”、“必填”。<br/>2. 修改Type的模板，模板修改为“取值范围/说明”，并增加相关说明。<br/>3. 删除自定义类型，合并进class和interface的模板中。 |  2023/02/01  |

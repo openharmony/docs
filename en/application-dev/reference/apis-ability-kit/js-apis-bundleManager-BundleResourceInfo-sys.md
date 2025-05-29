@@ -14,7 +14,7 @@ The **BundleResourceInfo** module provides resource information of an applicatio
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | bundleName              | string | Yes  | No  | Bundle name of the application.|
 | icon              | string | Yes  | No  | Application icon, which is encoded using Base64. |

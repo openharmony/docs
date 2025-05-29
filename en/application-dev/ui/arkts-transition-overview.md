@@ -15,5 +15,6 @@ Transition animations are classified into basic transition animations and advanc
 
 - [Shared element transition](arkts-shared-element-transition.md): achieved by animating the size and position between styles of the same or similar elements during page switching.
 
-- [Page transition animation (not recommended)](arkts-page-transition-animation.md): achieved by customizing the page transition effects through the **pageTransition** API. To achieve a better transition effect, you are advised to use the [\<Navigation>](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
+- [Page transition animation (not recommended)](arkts-page-transition-animation.md): achieved by customizing the page transition effects through the **pageTransition** API. To achieve a better transition effect, you are advised to use the [Navigation](arkts-navigation-transition.md) component and [modal transition](arkts-modal-transition.md).
 
+- [Rotation transition animation](arkts-rotation-transition-animation.md): designed to create seamless visual transitions when the screen display orientation changes. There are two approaches to choose from: [rotation transition animation with layout switching](arkts-rotation-transition-animation.md#rotation-transition-animation-with-layout-switching) and [rotation transition animation with opacity changing](arkts-rotation-transition-animation.md#rotation-transition-animation-with-opacity-changing).

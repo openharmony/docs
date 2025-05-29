@@ -86,7 +86,7 @@ CSP与Actor之间的主要区别：
    
    ```typescript
    // 请求网络数据
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+   let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
    // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
    workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
    ```
@@ -228,7 +228,7 @@ TaskPool的适用场景主要分为如下三类：
              'Content-Type': 'application/json'
          },
            connectTimeout: 60000, readTimeout: 60000
-         })
+         });
        if (typeof (webData.result) === 'string') {
          // 解析json字符串
          let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
@@ -353,7 +353,7 @@ class MyMath implements MyMathInterface {
   b: number = 1;
 
   constructor(a: number, b: number) {
-    console.log('MyMath constructor a:' + a + ' b:' + b)
+    console.log('MyMath constructor a:' + a + ' b:' + b);
     this.a = a;
     this.b = b;
   }
@@ -381,7 +381,7 @@ class MyMathProxy implements MyMathInterface {
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
   // 方法三：使用代理类构造对象
-  let proxy = new MyMathProxy(e.data)
+  let proxy = new MyMathProxy(e.data);
   console.log('math compute:' + proxy.compute()); // 成功打印出结果：5
 }
 ```
@@ -540,7 +540,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
       'phone': value3,
       'remark': value4,
       'age': value5,
-    }
+    };
     if (this.rdbStore != undefined) {
       let ret = await this.rdbStore.insert(TABLE_NAME, valueBucket, rdb.ConflictResolution.ON_CONFLICT_REPLACE);
       Logger.info(TAG, `insert done:${ret}`);
@@ -572,7 +572,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   import rdb from '@ohos.data.relationalStore';
   import type common from '@ohos.app.ability.common';
   import { Contact } from '../constant/Contact';
-  import { ValuesBucket } from '@ohos.data.ValuesBucket';;
+  import { ValuesBucket } from '@ohos.data.ValuesBucket';
   
   /**
      * 批量插入数据库
@@ -606,13 +606,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
           'phone': value3,
           'remark': value4,
           'age': value5,
-        }
+        };
         valueBuckets.push(valueBucket);
       }
   
       if (this.rdbStore != undefined) {
-        let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets)
-        Logger.info(TAG, `batch insert done:${ret}`)
+        let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets);
+        Logger.info(TAG, `batch insert done:${ret}`);
       }
     }
   ```
@@ -658,7 +658,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     } else {
       // 默认查询所有列
       let resultSet: rdb.ResultSet = await this.rdbStore.query(predicates, this.columns);
-      Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount))
+      Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount));
       // 处理查询到的结果数组
       return this.getListFromResultSet(resultSet);
     }
@@ -689,7 +689,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
         'phone': resultSet.getString(resultSet.getColumnIndex('phone')),
         'age': resultSet.getLong(resultSet.getColumnIndex('age')),
         'remark': resultSet.getString(resultSet.getColumnIndex('remark'))
-      }
+      };
       if (!contacts.includes(contact)) {
         // 如果数据集合中没有这条数据就添加进去
         contacts.push(contact);
@@ -718,7 +718,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     .height(40)
     .onClick(() => {
       for (let index = 0; index < 3000; index++) {
-        this.count++
+        this.count++;
         contact.phone = JSON.stringify(this.count);
         // 插入数据库
         taskPoolExecuteInsert(context, contact));
@@ -755,7 +755,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     .onClick(async  () => {
        // 查询数据库
        taskPoolExecuteQuery(context).then((contact: Array<Contact>) => {
-       this.dataArray = this.dataArray.concat(contact);
+         this.dataArray = this.dataArray.concat(contact);
        }); 
      })
   ```
@@ -786,7 +786,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 运用TaskPool线程池技术创建子线程执行数据库查询任务，可有效避免主线程阻塞，确保其专注于关键操作如界面渲染和用户交互，提升应用流畅度与用户体验。查询结果通过`.then()`异步返回，实现非阻塞处理与列表数据刷新，既充分利用系统资源、加快响应速度，又保持代码结构清晰、易于维护，是一种兼顾效率与可读性的数据库查询优化策略。
 
-同理，数据库的其他操作，包括单条数据插入、批量插入、数据修改及删除等，建议在子线程中执行，以维持应用的流畅互动性。在处理大数据量插入或批量插入任务时，多线程存在线程间通信耗时问题，用[@Sendable](../arkts-utils/arkts-sendable.md)装饰器获取性能提升。该装饰器标记的子线程返回类对象，促使系统采取共享内存策略来处理这些对象，大大减少了反序列化的成本，进一步提升了效率。具体可参考[《避免在主线程中执行耗时操作》](./avoid_time_consuming_operations_in_mainthread.md)。
+同理，数据库的其他操作，包括单条数据插入、批量插入、数据修改及删除等，建议在子线程中执行，以维持应用的流畅互动性。在处理大数据量插入或批量插入任务时，多线程存在线程间通信耗时问题，用[@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)获取性能提升。该装饰器标记的子线程返回类对象，促使系统采取共享内存策略来处理这些对象，大大减少了反序列化的成本，进一步提升了效率。具体可参考[《避免在主线程中执行耗时操作》](./avoid_time_consuming_operations_in_mainthread.md)。
 
 ## 相关实例
 

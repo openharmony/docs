@@ -2,7 +2,7 @@
 
 ## 概述
 
-[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)是AUTO_FILL_PASSWORD/AUTO_FILL_SMART类型的ExtensionAbility组件，提供自动填充能力。
+[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)是AUTO_FILL_PASSWORD/AUTO_FILL_SMART类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供自动填充能力。
 
 自动填充能力根据自动填充控件内容的不同分为账号密码自动填充、情景化自动填充。
 
@@ -21,22 +21,21 @@
 
 ## 开发步骤
 
-为了便于表述，本例中将提供AutoFillExtensionAbility能力的一方称为提供方，将启动AutoFillExtensionAbility的一方称为使用方。
+为了便于表述，本例中将提供[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)能力的一方称为提供方，将启动AutoFillExtensionAbility的一方称为使用方。
 
 ### 开发AutoFillExtensionAbility提供方
 
 #### 生命周期
 
-AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调，根据需要重写对应的回调方法。
+[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground)、[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy)、[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest)和[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest)生命周期回调，根据需要重写对应的回调方法。
 
 - **onCreate**：当AutoFillExtensionAbility创建时回调，执行初始化业务逻辑操作。
-- **onSessionCreate**：当AutoFillExtensionAbility界面内容对象创建后调用。
 - **onSessionDestroy**：当AutoFillExtensionAbility界面内容对象销毁后调用。
 - **onForeground**：当AutoFillExtensionAbility从后台转到前台时触发。
 - **onBackground**：当AutoFillExtensionAbility从前台转到后台时触发。
 - **onDestroy**：当AutoFillExtensionAbility销毁时回调，可以执行资源清理等操作。
-- **onSaveRequest**  表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
-- **onFillRequest** 当fill request发送请求的时候，实现账号密码自动填充。
+- **onSaveRequest**：表单中有数据存在并且切换页面时，会触发自动保存的生命周期回调。
+- **onFillRequest**：当fill request发送请求的时候，实现账号密码自动填充。
 
 #### 实现账号密码自动填充功能
 
@@ -53,7 +52,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
    }
    ```
 
-5. 配置extensionAbilities信息。
+2. 配置extensionAbilities信息。
 
    在entry/src/main/[module.json5配置文件](../quick-start/module-configuration-file.md)中配置AutoFillAbility，例如：
 
@@ -61,7 +60,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
    "extensionAbilities": [
       {
         "name": "AutoFillAbility",
-        "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+        "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
         // ...
         "type": "autoFill/password"
       }
@@ -72,12 +71,12 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
 
    1. 在ets目录右键选择“New &gt; Directory”，新建一个目录并命名为autofillability。
 
-   2. 在autofillability目录，右键选择“New &gt; File”，新建一个.ts文件并命名为AutoFillAbility.ts。例如：
+   2. 在autofillability目录，右键选择“New &gt; File”，新建一个.ets文件并命名为AutoFillAbility.ets。例如：
 
       ```ts
       import { hilog } from '@kit.PerformanceAnalysisKit';
       import { AutoFillExtensionAbility, autoFillManager, UIExtensionContentSession } from '@kit.AbilityKit';
-      
+
       class AutoFillAbility extends AutoFillExtensionAbility {
         // ...
         // 自动填充服务发起自动填充请求时会触发onFillRequest的生命周期
@@ -85,29 +84,30 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
           try {
             // 保存onFillRequest请求过来的页面数据和callback数据
-            let storageFill: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'fillCallback': callback, // 自动填充处理结果通过此callback回调到客户端
-              'viewData': request.viewData, // 将需要回填的数据组装到viewData中，并通过callback带回到客户端用于自动填充
-              'pageNodeInfos': request.viewData.pageNodeInfos
-            });
+              'viewData': request.viewData // 将需要回填的数据组装到viewData中，并通过callback带回到客户端
+            };
+            let storageFill: LocalStorage = new LocalStorage(obj);
             // 加载自动填充处理界面
             session.loadContent('autofillpages/AutoFillPassWord', storageFill);
           } catch (err) {
             hilog.error(0x0000, 'testTag', '%{public}s', 'autofill failed to load content');
           }
         }
-      
+
         // 自动保存服务发起自动保存请求时会触发onSaveRequest的生命周期
         onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, callback: autoFillManager.SaveRequestCallback): void {
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSaveRequest');
           try {
-            // 保存onSaveRequest请求过来的页面数据和callback数据
-            let storageSave: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'saveCallback': callback, // 自动保存处理结果通过此callback回调到客户端
-              'viewData': request.viewData
-            });
+              'viewData': request.viewData // 将需要回填的数据组装到viewData中，并通过callback带回到客户端
+            }
+            // 保存onSaveRequest请求过来的页面数据和callback数据
+            let storageSave: LocalStorage = new LocalStorage(obj);
             // 加载自动保存处理界面
             session.loadContent('autofillpages/SavePage', storageSave);
           } catch (err) {
@@ -123,17 +123,13 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
 
    2. 在autofillpages目录中，右键选择“New &gt; File”，新建一个.ets文件并命名为AutoFillPassWord.ets。
 
-   3. 当点击界面中账号或密码输入框时，自动填充框架会向自动填充服务发起自动填充请求，触发onFillRequest的生命周期。在onFillRequest生命周期中拉起账号密码备选信息页面(AutoFillPassWord.ets)。
+   3. 当点击界面中账号或密码输入框时，自动填充框架会向自动填充服务发起自动填充请求，触发[onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest)的生命周期。在onFillRequest生命周期中拉起账号密码备选信息页面(AutoFillPassWord.ets)。
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
-      
-      const storage = LocalStorage.getShared();
-      let fillCallback: autoFillManager.FillRequestCallback | undefined = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-      let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-      
+
       // 将需要回填的数据组装到viewData中，并通过callback的onSuccess带回到客户端用于自动填充
-      function successFunc(data: autoFillManager.ViewData, target: string) {
+      function successFunc(data: autoFillManager.ViewData, target: string, fillCallback?: autoFillManager.FillRequestCallback) {
         console.info(`data.pageNodeInfos.length`, data.pageNodeInfos.length);
         for (let i = 0; i < data.pageNodeInfos.length; i++) {
           console.info(`data.pageNodeInfos[i].isFocus`, data.pageNodeInfos[i].isFocus);
@@ -147,14 +143,14 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
           fillCallback.onSuccess(response);
         }
       }
-      
-      function failFunc() {
+
+      function failFunc(fillCallback?: autoFillManager.FillRequestCallback) {
         if (fillCallback) {
           fillCallback.onFailure();
         }
       }
-      
-      function cancelFunc(fillContent?: string) {
+
+      function cancelFunc(fillContent?: string, fillCallback?: autoFillManager.FillRequestCallback) {
         if (fillCallback) {
           try {
             fillCallback.onCancel(fillContent);
@@ -163,10 +159,14 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
           }
         }
       }
-      
+
       @Entry
       @Component
       struct AutoFillControl {
+        storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+        fillCallback: autoFillManager.FillRequestCallback | undefined = this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+        viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+
         build() {
           Column() {
             Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
@@ -177,7 +177,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
                 .fontColor('#000000')
                 .margin({ left: '4.4%' })
             }.margin({ top: '8.8%', left: '4.9%' }).height('7.2%')
-      
+
             Row() {
               Column() {
                 List({ space: 10, initialIndex: 0 }) {
@@ -190,9 +190,9 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
                       .borderRadius(5)
                   }
                   .onClick(() => {
-                    if (viewData != undefined) {
+                    if (this.viewData != undefined) {
                       // 将选择的账号信息回填到客户端
-                      successFunc(viewData, '15501212262')
+                      successFunc(this.viewData, '15501212262', this.fillCallback);
                     }
                   })
                 }
@@ -207,27 +207,27 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
                   console.info('last' + lastIndex)
                   console.info('center' + centerIndex)
                 })
-                .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-                  console.info(`onScroll scrollState = ScrollState` + scrollState + `scrollOffset = ` + scrollOffset)
+                .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
+                  console.info(`onDidScroll scrollState = ScrollState` + scrollState + `scrollOffset = ` + scrollOffset)
                 })
               }
               .width('100%')
               .shadow(ShadowStyle.OUTER_FLOATING_SM)
               .margin({ top: 50 })
             }
-      
+
             Row() {
               Button("Cancel")
                 .onClick(() => {
                   // 放弃本次自动填充的场景触发cancelFunc()通知客户端取消自动填充
-                  cancelFunc();
+                  cancelFunc(undefined, this.fillCallback);
                 })
                 .margin({ top: 30, bottom: 10, left: 10, right: 10 })
-      
+
               Button("Failure")
                 .onClick(() => {
                   // 未获取到账号密码数据的情况下触发failFunc()通知客户端自动填充失败
-                  failFunc();
+                  failFunc(this.fillCallback);
                 })
                 .margin({ top: 30, bottom: 10, left: 10, right: 10 })
             }
@@ -241,16 +241,13 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
 
    1. 在autofillpages目录，右键选择“New &gt; File”，新建一个.ets文件并命名为SavePage.ets。
 
-   2. 当TextInput中存在有信息时，页面切换(点击登录按钮)将触发onSaveRequest的生命周期。在onSaveRequest中拉起保存信息处理界面(SavePage.ets)。
+   2. 当TextInput中存在有信息时，页面切换(点击登录按钮)将触发[onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest)的生命周期。在onSaveRequest中拉起保存信息处理界面(SavePage.ets)。
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
       import { hilog } from '@kit.PerformanceAnalysisKit';
-      
-      let storage=LocalStorage.getShared();
-      let saveRequestCallback = storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-      
-      function SuccessFunc(success : boolean) {
+
+      function SuccessFunc(success : boolean, saveRequestCallback?: autoFillManager.SaveRequestCallback) {
         if (saveRequestCallback) {
           if (success) {
             saveRequestCallback.onSuccess();
@@ -260,11 +257,14 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
         }
         hilog.error(0x0000, "testTag", "saveRequestCallback is nullptr!");
       }
-      
+
       @Entry
       @Component
       struct SavePage {
         @State message: string = 'Save Account?'
+        storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+        saveRequestCallback: autoFillManager.SaveRequestCallback | undefined = this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+
         build() {
           Row() {
             Column() {
@@ -278,7 +278,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
                   .fontSize(20)
                   .margin({ top: 30, right: 30 })
                   .onClick(() => {
-                    SuccessFunc(true);
+                    SuccessFunc(true, this.saveRequestCallback);
                   })
                 // 用户保存表单数据失败或放弃保存表单数据，点击页面back按钮触发onFailure()回调通知客户端保存表单数据失败
                 Button("back")
@@ -286,7 +286,7 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
                   .fontSize(20)
                   .margin({ top: 30, left: 30 })
                   .onClick(() => {
-                    SuccessFunc(false);
+                    SuccessFunc(false, this.saveRequestCallback);
                   })
               }
             }
@@ -322,18 +322,18 @@ AutoFillExtensionAbility提供了onCreate、onSessionCreate、onSessionDestroy�
    "extensionAbilities": [
       {
          "name": "AutoFillAbility",
-         "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+         "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
          // ...
          "type": "autoFill/smart"
       }
    ]
    ```
 
-3. 情景化自动填充与自动填充服务的实现基本一致。请参考[实现账号密码自动填充功能](##实现账号密码自动填充功能)。
+3. 情景化自动填充与自动填充服务的实现基本一致。请参考[实现账号密码自动填充功能](#实现账号密码自动填充功能)。
 
 ### 开发AutoFillExtensionAbility使用方
 
-开发者可以在主页面中通过点击自动填充组件启动AutoFillExtensionAbility。 如在主页面中添加如下内容：
+开发者可以在主页面中通过点击自动填充组件启动[AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)。 如在主页面中添加如下内容：
 
 #### 添加支持账号密码自动填充能力的组件
 

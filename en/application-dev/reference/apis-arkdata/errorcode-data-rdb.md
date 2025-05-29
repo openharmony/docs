@@ -55,16 +55,15 @@ Database corrupted.
 
 **Description**
 
-The RDB store is corrupted when an API for adding, deleting, querying, or synchronizing data is invoked.
+The database is abnormal.
 
 **Possible Causes**
 
-The RDB store file has been corrupted.
+The database file is damaged and incomplete, the database FD is incorrectly operated, or the database memory is illegally accessed.
 
 **Solution**
 
-1. Restore the RDB store using a backup file.
-2. If no RDB backup file is available, delete the RDB store and create it again.
+If data loss is acceptable, delete the RDB store and create a new one. Otherwise, restore the RDB store from the backup file. For details, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 ## 14800012 Empty Result Set or Invalid Position
 
@@ -96,10 +95,10 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Possible Causes**
 
-- The result set is empty.
-- The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
-- The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
-- The API called does not support the type of the column data.
+1. The result set is empty.
+2. The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
+3. The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
+4. The API called does not support the type of the column data.
 
 **Solution**
 
@@ -148,7 +147,7 @@ A read, write, attach, or detach operation is being performed, and cannot be com
 
 **Error Message**
 
-The database is already attached.
+The database alias already exists.
 
 **Description**
 
@@ -174,7 +173,7 @@ The key configuration of the RDB store has been modified.
 
 **Possible Causes**
 
-Key configuration, such as **area**, **isEncrypt**, and **securityLevel**, of the RDB store is changed.
+Key configuration, such as **area** and **securityLevel**, of the RDB store is changed.
 
 **Solution**
 
@@ -197,7 +196,7 @@ The SQL statement used for query is incorrect, or the data does not exist.
 **Solution**
 
 Use the correct query statement or add data.
- 
+
 ## 14800019 SQL Query Statement Required
 
 **Error Message**
@@ -215,6 +214,25 @@ The SQL statement used for query does not meet specifications.
 **Solution**
 
 Use SQL statements that comply with specifications.
+
+## 14800020 Key Damaged or Lost
+
+**Error Message**
+
+The secret key is corrupted or lost.
+
+**Description**
+
+The operation for obtaining the secret key fails.
+
+**Possible Causes**
+
+The root key is lost, the application does not have the permission to read the key file, or the key file is damaged.
+
+**Solution**
+
+1. Check the permission for accessing the key file and the content of the key file.
+2. Rebuild or restore the database.
 
 ## 14800021 SQLite: Generic Error
 
@@ -245,7 +263,7 @@ SQLite: Callback routine requested an abort.
 
 **Description**
 
-The asynchronous callback request is aborted.
+The asynchronous callback request is aborted. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -287,7 +305,7 @@ SQLite: The database file is locked.
 
 **Description**
 
-The SQLite database file is locked.
+The SQLite database file is locked. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -307,7 +325,7 @@ SQLite: A table in the database is locked.
 
 **Description**
 
-An SQLite database table is locked.
+An SQLite database table is locked. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -330,10 +348,10 @@ SQLite: The database is out of memory.
 
 **Description**
 
-The database memory is insufficient.
+The database memory is insufficient. This error is reported by the underlying SQLite.
 
 **Possible Causes**
- 
+
 The data volume is too large or the memory allocated is insufficient.
 
 **Solution**
@@ -348,7 +366,7 @@ SQLite: Attempt to write a readonly database.
 
 **Description**
 
-A write operation is invoked on a read-only database.
+A write operation is invoked on a read-only database. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -369,7 +387,7 @@ SQLite: Some kind of disk I/O error occurred.
 
 **Description**
 
-A disk I/O error occurs. 
+A disk I/O error occurs. This error is reported by the underlying SQLite. 
 
 **Possible Causes**
 
@@ -395,7 +413,7 @@ SQLite: The database is full.
 
 **Description**
 
-The SQLite database is full.
+The SQLite database is full. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -413,7 +431,7 @@ SQLite: Unable to open the database file.
 
 **Description**
 
-The database file fails to be opened.
+The database file fails to be opened. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -436,7 +454,7 @@ SQLite: TEXT or BLOB exceeds size limit.
 
 **Description**
 
-The size of the text or BLOB exceeds the limit.
+The size of the text or BLOB exceeds the limit. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -455,7 +473,7 @@ SQLite: Abort due to constraint violation.
 
 **Description**
 
-The database operation violates the constraint rule and is aborted.
+The database operation violates the constraint rule and is aborted. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -474,7 +492,7 @@ SQLite: Data type mismatch.
 
 **Description**
 
-The data types mismatch.
+The data types mismatch. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -493,7 +511,7 @@ SQLite: Library used incorrectly.
 
 **Description**
 
-The SQLite interface is used incorrectly.
+The SQLite interface is used incorrectly. This error is reported by the underlying SQLite.
 
 **Possible Causes**
 
@@ -517,7 +535,7 @@ The WAL file size exceeds the default limit.
 
 **Description**
 
-The WAL file exceeds 200 MB, which is the default limit.
+The WAL file exceeds 512 MB, which is the default limit.
 
 **Possible Causes**
 
@@ -533,7 +551,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 
 **Error Message**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **Description**
 
@@ -551,7 +569,7 @@ Deploy the subscription service on the platform.
 
 **Error Message**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **Description**
 
@@ -569,7 +587,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-The data group id is not valid.
+Invalid data group ID.
 
 **Description**
 

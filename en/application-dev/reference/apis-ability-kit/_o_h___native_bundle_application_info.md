@@ -7,13 +7,11 @@ The **OH_NativeBundle_ApplicationInfo** struct defines the application informati
 
 It is an output parameter of [OH_NativeBundle_GetCurrentApplicationInfo()](_bundle.md#oh_nativebundle_getcurrentapplicationinfo).
 
-**Since**
+**Since**: 9
 
-9
+**Related module**: [Bundle](_bundle.md)
 
-**Related Modules**
-
-[Bundle](_bundle.md)
+**Header file**: [native_interface_bundle.h](native__interface__bundle.md)
 
 
 ## Summary
@@ -41,9 +39,7 @@ char* OH_NativeBundle_ApplicationInfo::bundleName
 
 Bundle name of the application.
 
-**Since**
-
-9
+**Since**: 9
 
 
 ### fingerprint
@@ -57,6 +53,4 @@ char* OH_NativeBundle_ApplicationInfo::fingerprint
 
 Fingerprint information of the bundle.
 
-**Since**
-
-9
+**Since**: 9

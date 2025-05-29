@@ -1,9 +1,9 @@
- # RunningAppClone (System API)
+# RunningAppClone (System API)
 
 The RunningAppClone module defines the information of an application clone in the running state.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.

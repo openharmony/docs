@@ -25,7 +25,7 @@ Carry out the following operations to develop the widget host based on the stage
 
 ## Using FormComponent
 
-**FormComponent** is a component used to display widgets. For details, see [FormComponent](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md).
+**FormComponent** is a component used to display widgets. For details, see [FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md).
 
 > **NOTE**
 >
@@ -37,7 +37,7 @@ Carry out the following operations to develop the widget host based on the stage
 >
 > - The APIs provided by this component are system APIs.
 
-When a widget is added through **FormComponent**, the [onAddForm](../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) API in **FormExtensionAbility** of the widget provider is called.
+When a widget is added through **FormComponent**, the [onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) API in **FormExtensionAbility** of the widget provider is called.
 
 ### Temporary and Normal Widgets
 
@@ -51,7 +51,7 @@ Data of a temporary widget will be deleted on the Widget Manager if the widget f
 
 ## Using formHost APIs
 
-The **formHost** module provides a series of APIs for the widget host to update and delete widgets. For details, see the [API reference](../../application-dev/reference/apis-form-kit/js-apis-app-form-formHost-sys.md).
+The **formHost** module provides a series of APIs for the widget host to update and delete widgets. For details, see the [API reference](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md).
 
 ## Example
 
@@ -116,6 +116,7 @@ struct formHostSample {
     updateDuration: 0,
     defaultDimension: 6,
     supportDimensions: [],
+    supportedShapes: [],
     customizeData: {},
     isDynamic: false,
     transparencyEnabled: false

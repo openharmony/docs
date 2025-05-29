@@ -7,7 +7,7 @@
 ## 导入模块
 ```ts
 import { SceneResourceType, SceneResource, Shader, MaterialType, Material, ShaderMaterial,
-  SubMesh, Mesh, Animation, EnvironmentBackgroundType, Environment, Image } from '@kit.ArkGraphics3D';
+  SubMesh, Mesh, MeshResource, Animation, EnvironmentBackgroundType, Environment, Image } from '@kit.ArkGraphics3D';
 ```
 ## SceneResourceType
 场景资源类型枚举，对场景中的资源进行分类。
@@ -24,6 +24,7 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 | ANIMATION | 5 | 动画类型。 |
 | SHADER | 6 | 着色器类型。 |
 | IMAGE | 7 | 图片类型。 |
+| MESH_RESOURCE<sup>18+</sup> | 8 | 网格资源类型。 |
 
 ## SceneResource
 用于表示场景中的资源。
@@ -36,7 +37,7 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 名称，没有特殊格式要求。 |
 | resourceType | [SceneResourceType](#sceneresourcetype) | 是 | 否 | 场景资源类型，默认值为undefined。|
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 需要加载的资源，默认值为undefined。|
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 是 | 是 | 需要加载的资源，默认值为undefined。|
 
 ### destroy
 destroy(): void
@@ -131,6 +132,11 @@ function destroy() : void {
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。|
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
+## MeshResource<sup>18+</sup>
+网格资源，继承自[SceneResource](#sceneresource)。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource)。
 ### 属性
@@ -139,9 +145,9 @@ function destroy() : void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | 否 | 否 | 动画是否使能，true表示可以播放动画，false表示不可以播放动画。 |
+| enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
 | duration | number | 是 | 否 | 动画持续时间，取值范围大于等于0。 |
-| running | boolean | 是 | 否 | 动画运行状态, true表示动画正在播放，false表示动画停止播放。 |
+| running | boolean | 是 | 否 | 动画运行状态。true表示动画正在播放，false表示动画停止播放。 |
 | progress | number | 是 | 否 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished

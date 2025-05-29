@@ -1,48 +1,42 @@
-# 设置主题换肤
+# 设置应用内主题换肤
 
 ## 概述
 
-针对应用，构建ArkUI应用级和页面级主题设置能力，并提供局部深浅色模式设置、动态换肤等功能。
-本文提供如下场景：
-- [自定义品牌色](#自定义品牌色)
-- [应用级自定义品牌色](#设置应用级自定义品牌色)
-- [局部页面自定义主题风格](#设置应用局部页面自定义主题风格)
-- [局部深浅色](#设置应用页面局部深浅色)
+对于采用ArkTS开发的应用，提供了应用内组件的主题换肤功能，支持局部的深浅色切换及动态换肤。目前，该功能只支持设置应用内主题换肤，暂不支持在UIAbility或窗口层面进行主题设置，同时也不支持C-API和Node-API。
 
-
-## 自定义品牌色
-[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
+## 自定义主题色
+当应用需要使用换肤功能时，应自定义主题颜色。[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题色的内容，其属性可选，仅需要复写需修改的部分，未修改内容将继承系统默认设置，可参考[系统默认的token颜色值](#系统缺省token色值)。请参照以下示例自定义主题色：
 
   ```ts
-    import { CustomColors, CustomTheme } from '@kit.ArkUI'
+    import { CustomColors, CustomTheme } from '@kit.ArkUI';
 
     export class AppColors implements CustomColors {
-      //自定义品牌色
+      //自定义主题色
       brand: ResourceColor = '#FF75D9';
     }
 
     export class AppTheme implements CustomTheme {
-      public colors: AppColors = new AppColors()
+      public colors: AppColors = new AppColors();
     }
     
-    export let gAppTheme: CustomTheme = new AppTheme()
+    export let gAppTheme: CustomTheme = new AppTheme();
   ```
 
-## 设置应用级自定义品牌色
-- 可在页面入口处统一设置，需要在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)。
-其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
+## 设置应用内组件自定义主题色
+- 可以在页面入口处统一设置应用内组件自定义主题色，但需确保在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)。
+  其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { Theme, ThemeControl } from '@kit.ArkUI'
-    import { gAppTheme } from './AppTheme'
+    import { Theme, ThemeControl } from '@kit.ArkUI';
+    import { gAppTheme } from './AppTheme';
     
     //在页面build前执行ThemeControl
-    ThemeControl.setDefaultTheme(gAppTheme)
+    ThemeControl.setDefaultTheme(gAppTheme);
 
     @Entry
     @Component
     struct DisplayPage {
-      @State menuItemColor: ResourceColor = $r('sys.color.background_primary')
+      @State menuItemColor: ResourceColor = $r('sys.color.background_primary');
       
       onWillApplyTheme(theme: Theme) {
         this.menuItemColor = theme.colors.backgroundPrimary;
@@ -136,7 +130,7 @@
     }
   ```
 
-- 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
+- 在UIAbility中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)，设置应用内组件的自定义主题色。
 
   ```ts
     import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -144,9 +138,9 @@
     import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
-      fontPrimary = 0xFFD53032
-      iconOnPrimary = 0xFFD53032
-      iconFourth = 0xFFD53032
+      fontPrimary = 0xFFD53032;
+      iconOnPrimary = 0xFFD53032;
+      iconFourth = 0xFFD53032;
     }
     
     const abilityThemeColors = new AppColors();
@@ -171,7 +165,7 @@
           }
           hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
           // 在onWindowStageCreate()方法中setDefaultTheme
-          ThemeControl.setDefaultTheme({ colors: abilityThemeColors })
+          ThemeControl.setDefaultTheme({ colors: abilityThemeColors });
           hilog.info(0x0000, 'testTag', '%{public}s', 'ThemeControl.setDefaultTheme done');
         });
       }
@@ -181,39 +175,41 @@
 
 ![systemTheme](figures/systemTheme.png)
 
-注：如果setDefaultTheme的参数为undefined时，默认token值对应的色值参考[系统缺省token色值](#系统缺省token色值)。
+> **说明：**
+>
+>如果setDefaultTheme的参数为undefined时，默认token值对应的色值参考[系统缺省token色值](#系统缺省token色值)。
 
 ## 设置应用局部页面自定义主题风格
-将自定义Theme的配色通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
-在下面示例中，通过WithTheme({ theme: this.myTheme })将作用域内的组件配色设置为自定义主题风格。后续可通过更改this.myTheme更换主题风格。
-[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
+通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme)，将自定义主题Theme的配色应用于内部组件的默认样式。在WithTheme的作用范围内，组件的配色会根据Theme的配色进行调整。
+
+如示例所示，使用WithTheme({ theme: this.myTheme })可将作用域内组件的配色设置为自定义主题风格。后续可以通过更新this.myTheme来更换主题风格。[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件能够获取当前生效的Theme对象。
 
   ```ts
-    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI'
+    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
-      fontPrimary: ResourceColor = $r('app.color.brand_purple')
-      backgroundEmphasize: ResourceColor = $r('app.color.brand_purple')
+      fontPrimary: ResourceColor = $r('app.color.brand_purple');
+      backgroundEmphasize: ResourceColor = $r('app.color.brand_purple');
     }
     
     class AppColorsSec implements CustomColors {
-      fontPrimary: ResourceColor = $r('app.color.brand')
-      backgroundEmphasize: ResourceColor = $r('app.color.brand')
+      fontPrimary: ResourceColor = $r('app.color.brand');
+      backgroundEmphasize: ResourceColor = $r('app.color.brand');
     }
     
     class AppTheme implements CustomTheme {
-      public colors: AppColors = new AppColors()
+      public colors: AppColors = new AppColors();
     }
     
     class AppThemeSec implements CustomTheme {
-      public colors: AppColors = new AppColorsSec()
+      public colors: AppColors = new AppColorsSec();
     }
     
     @Entry
     @Component
     struct DisplayPage {
-      @State customTheme: CustomTheme = new AppTheme()
-      @State message: string = '设置应用局部页面自定义主题风格'
+      @State customTheme: CustomTheme = new AppTheme();
+      @State message: string = '设置应用局部页面自定义主题风格';
       count = 0;
     
       build() {
@@ -252,13 +248,27 @@
 ![customTheme](figures/customTheme.gif)
 
 ## 设置应用页面局部深浅色
-通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
-在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
-在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
+通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withtheme)可以设置三种颜色模式，跟随系统模式，浅色模式和深色模式。
+
+在WithTheme的作用范围内，组件的样式资源值会根据指定的模式，读取对应的深浅色模式系统和应用资源值。这意味着，在WithTheme作用范围内，组件的配色会根据所指定的深浅模式进行调整。
+
+如下面的示例所示，通过WithTheme({ colorMode: ThemeColorMode.DARK })，可以将作用范围内的组件设置为深色模式。
 
 设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
 
 ![resources_dark](figures/resources_dark.png)
+
+dark.json数据示例：
+  ```ts
+    {
+      "color": [
+        {
+          "name": "start_window_background",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  ```
 
   ```ts
     @Entry

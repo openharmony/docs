@@ -167,23 +167,23 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
 
 | 方法 | 功能 | 
 | -------- | -------- |
-| void&nbsp;SetText(const&nbsp;char\*&nbsp;text); | 设置文字 | 
-| const&nbsp;char\*&nbsp;GetText()&nbsp;const; | 获取text | 
-| void&nbsp;SetLineBreakMode(const&nbsp;uint8_t&nbsp;lineBreakMode); | 设置label模式，例如截断，自动扩展等。 | 
+| void&nbsp;SetText(const&nbsp;char\*&nbsp;text) | 设置文字 | 
+| const&nbsp;char\*&nbsp;GetText()&nbsp;const | 获取text | 
+| void&nbsp;SetLineBreakMode(const&nbsp;uint8_t&nbsp;lineBreakMode) | 设置label模式（例如截断，自动扩展等） | 
 | uint8_t&nbsp;GetLineBreakMode()&nbsp;const | 获取label模式 | 
 | void&nbsp;SetTextColor(ColorType&nbsp;color) | 设置文本颜色 | 
 | ColorType&nbsp;GetTextColor()&nbsp;const | 获取文本颜色 | 
-| void&nbsp;SetAlign(UITextLanguageAlignment&nbsp;horizontalAlign,<br/>UITextLanguageAlignment&nbsp;verticalAlign&nbsp;=&nbsp;TEXT_ALIGNMENT_TOP); | 设置文本对齐方式 | 
+| void&nbsp;SetAlign(UITextLanguageAlignment&nbsp;horizontalAlign,<br/>UITextLanguageAlignment&nbsp;verticalAlign&nbsp;=&nbsp;TEXT_ALIGNMENT_TOP) | 设置文本对齐方式 | 
 | UITextLanguageAlignment&nbsp;GetHorAlign()&nbsp;const | 获取文本水平对齐方式 | 
 | UITextLanguageAlignment&nbsp;GetVerAlign()&nbsp;const | 获取文本竖直对齐方式 | 
 | void&nbsp;SetDirect(UITextLanguageDirect&nbsp;direct) | 设置文本显示方向 | 
 | UITextLanguageDirect&nbsp;GetDirect()&nbsp;const | 获取文本显示方向 | 
-| void&nbsp;SetFontId(uint8_t&nbsp;fontId); | 设置动态字体id | 
+| void&nbsp;SetFontId(uint8_t&nbsp;fontId) | 设置动态字体id | 
 | uint8_t&nbsp;GetFontId()&nbsp;const | 获取动态字体id | 
-| void&nbsp;SetFont(const&nbsp;char&nbsp;\*name,&nbsp;uint8_t&nbsp;size); | 设置字的名字和大小 | 
-| void&nbsp;SetAnimatorSpeed(uint16_t&nbsp;animSpeed); | 设置字体旋转的速度 | 
-| uint16_t&nbsp;GetTextWidth(); | 获取字体的宽 | 
-| uint16_t&nbsp;GetTextHeight(); | 获取字体的高 | 
+| void&nbsp;SetFont(const&nbsp;char&nbsp;\*name,&nbsp;uint8_t&nbsp;size) | 设置字的名字和大小 | 
+| void&nbsp;SetAnimatorSpeed(uint16_t&nbsp;animSpeed) | 设置字体旋转的速度 | 
+| uint16_t&nbsp;GetTextWidth()| 获取字体的宽 | 
+| uint16_t&nbsp;GetTextHeight() | 获取字体的高 | 
 | void&nbsp;SetRollStartPos(int16_t&nbsp;pos) | 设置旋转的位置 | 
 | int16_t&nbsp;GetRollStartPos()&nbsp;const | 获取旋转的位置 | 
 | void&nbsp;SetTextRotation(LabelRotateDegree&nbsp;angle) | 设置文本旋转角度枚举值 | 
@@ -333,7 +333,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
    label->SetFont("SourceHanSansSC-Regular.otf", 30);
    ```
 
-3. 设置换行模式为DOT模式
+3. 设置换行模式为DOT模式。
      
    ```
    label->SetStyle(STYLE_BACKGROUND_COLOR, Color::Gray().full);
@@ -365,7 +365,7 @@ UIButton组件，提供可点击功能，同时可设置不同状态下样式。
    label->SetFont("SourceHanSansSC-Regular.otf", 30);
    ```
 
-3. 设置换行模式为滚动模式
+3. 设置换行模式为滚动模式。
      
    ```
    label->SetStyle(STYLE_BACKGROUND_COLOR, Color::Gray().full);

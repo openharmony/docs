@@ -99,7 +99,7 @@ The key directories and files are described as follows:
           {
             "subsystem": "aafwk",                         # Subsystem
             "components": [
-              { "component": "ability", "features":[ "enable_ohos_appexecfwk_feature_ability = true" ] }   # Selected component and feature configuration
+              { "component": "ability", "features":[ "ability_lite_enable_ohos_appexecfwk_feature_ability = true" ] }   # Selected component and feature configuration
             ]
           },
           {

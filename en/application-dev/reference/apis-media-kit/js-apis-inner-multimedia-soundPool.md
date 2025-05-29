@@ -1,6 +1,6 @@
 # SoundPool (Sound Pool)
 
-The **SoundPool** module provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
+The SoundPool module provides APIs for loading, unloading, playing, and stopping playing sounds, setting the volume, and setting the number of loops.
 
 Before using these APIs, you must call [media.createSoundPool](js-apis-media.md#mediacreatesoundpool10) to create a **SoundPool** instance.
 
@@ -23,13 +23,13 @@ These parameters are used to control the playback volume, number of loops, and p
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
-| Name           | Type                                    | Mandatory | Description                                                        |
+| Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | No | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever. Default value: **0**                  |
-| rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0** |
+| loop | number   | No | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.<br>The default value is **0**, indicating that the content is played only once.                  |
+| rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0**|
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0. Default value: **1.0**                                   |
-| rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0** |
-| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. Default value: **0**     |
+| rightVolume | number  | No | Volume of the right channel. The value ranges from 0.0 to 1.0. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
+| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. The value is an integer greater than or equal to 0. Default value: **0**     |
 
 ## SoundPool
 
@@ -39,6 +39,7 @@ Implements a sound pool that provides APIs for loading, unloading, playing, and 
 >
 > When using the **SoundPool** instance, you are advised to register the following callbacks to proactively obtain status changes:
 > - [on('loadComplete')](#onloadcomplete): listens for the event indicating that the resource loading is finished.
+> - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18): listens for the event indicating that the playback is finished and returns the stream ID of the audio that finishes playing.
 > - [on('playFinished')](#onplayfinished): listens for the event indicating that the playback is finished.
 > - [on('error')](#onerror): listens for error events.
 
@@ -51,23 +52,23 @@ This API cannot be used to load resources in the **rawfile** directory. Instead,
 
 >**NOTE**
 >
-> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
-> Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+>After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
+>Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory | Description                                 |
+| Name  | Type                                  | Mandatory| Description                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------- |
-| uri   | string | Yes  | URI of the audio file to load. Generally, the URI starts with fd://. |
-| callback | AsyncCallback\<number>                   | Yes  | Callback used to return the sound ID. A valid value must be greater than 0. |
+| uri   | string | Yes  | URI of the audio file to load. Generally, the URI starts with fd://.|
+| callback | AsyncCallback\<number>                   | Yes  | Callback used to return the sound ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by callback.|
 | 5400103  | I/O error. Return by callback. |
@@ -120,28 +121,28 @@ This API cannot be used to load resources in the **rawfile** directory. Instead,
 
 >**NOTE**
 >
-> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
-> Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+>After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
+>Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name | Type                                  | Mandatory | Description                      |
+| Name| Type                                  | Mandatory| Description                      |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| uri | string | Yes  | URI of the audio file to load. Generally, the URI starts with fd://. |
+| uri | string | Yes  | URI of the audio file to load. Generally, the URI starts with fd://.|
 
 **Return value**
 
 | Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| Promise\<number> | Promise used to return the sound ID. A valid value must be greater than 0. |
+| Promise\<number> | Promise used to return the sound ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise.|
 | 5400103  | I/O error. Return by promise. |
@@ -194,31 +195,31 @@ Loads a sound. This API uses an asynchronous callback to obtain the sound ID. Th
 
 >**NOTE**
 >
-> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
-> Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+>After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
+>Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | Yes  | Resource handle, which is obtained by calling **resourceManager.getRawFileDescriptor**.    |
-| offset | number | Yes  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources. |
-| length | number | Yes  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources. |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the sound ID. A valid value must be greater than 0. |
+| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9).    |
+| offset | number | Yes  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
+| length | number | Yes  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the sound ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
-**Example**
+**Example 1:**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -239,9 +240,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; // Obtain the size through fs.stat().
+    let fileSize: number = 1; // Obtain the size through fileIo.stat().
     let uri: string = "";
-    // Obtain the FD.
+    // Obtain the FD. The test_01.mp3 file is not an audio file in the rawfile directory.
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -260,6 +261,44 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
+**Example 2**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
+  }
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('Succeeded in loading soundId:' + soundId_);
+        }
+      });
+    }
+  });
+}
+
+```
+
 ### load
 
 load(fd: number, offset: number, length: number): Promise\<number>
@@ -268,36 +307,36 @@ Loads a sound. This API uses a promise to obtain the sound ID. The input paramet
 
 >**NOTE**
 >
-> After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
-> Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
+>After the resource handle (in the form of an FD) or path description (in the form of a URI) is transferred to the AVPlayer, do not use the resource handle or path description in read or write operations, including but not limited to transferring it to multiple AVPlayers.
+>Competition occurs when multiple AVPlayers use the same resource handle or path description to read and write files at the same time, resulting in playback errors.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| fd     | number | Yes  | Resource handle, which is obtained by calling **resourceManager.getRawFileDescriptor**.    |
-| offset | number | Yes  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources. |
-| length | number | Yes  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources. |
+| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9).    |
+| offset | number | Yes  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
+| length | number | Yes  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<number> | Promise used to return the sound ID. A valid value must be greater than 0. |
+| Promise\<number> | Promise used to return the sound ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise.|
 | 5400103  | I/O error. Return by promise. |
 | 5400105  | Service died. Return by promise. |
 
-**Example**
+**Example 1:**
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -318,9 +357,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let file: fileIo.File;
     let soundID: number = 0;
-    let fileSize: number = 1; // Obtain the size through fs.stat().
+    let fileSize: number = 1; // Obtain the size through fileIo.stat().
     let uri: string = "";
-    // Obtain the FD.
+    // Obtain the FD. The test_01.mp3 file is not an audio file in the rawfile directory.
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -337,6 +376,42 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
+**Example 2**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
+  }
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+        console.info('Succeeded in loading soundpool');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('Failed to load soundpool and catch error is ' + err.message);
+      });
+    }
+  });
+}
+
+```
+
 ### play
 
 play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>): void
@@ -347,17 +422,17 @@ Plays a sound. This API uses an asynchronous callback to obtain the audio stream
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**. |
-| params | [PlayParameters](#playparameters) | Yes | Playback parameters. |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the audio stream ID. A valid value must be greater than 0. |
+| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**.|
+| params | [PlayParameters](#playparameters) | Yes | Playback parameters.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the audio stream ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -384,7 +459,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
-      loop: 3, // The sound loops three times.
+      loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
       leftVolume: 0.5, // range = 0.0-1.0
       rightVolume: 0.5, // range = 0.0-1.0
@@ -413,16 +488,16 @@ Plays a sound. This API uses an asynchronous callback to obtain the audio stream
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**. |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the audio stream ID. A valid value must be greater than 0. |
+| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the audio stream ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -471,22 +546,22 @@ Plays a sound. This API uses a promise to obtain the audio stream ID.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**. |
-| params | [PlayParameters](#playparameters) | No | Playback parameters. |
+| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**.|
+| params | [PlayParameters](#playparameters) | No | Playback parameters.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<number> | Promise used to return the audio stream ID. A valid value must be greater than 0. |
+| Promise\<number> | Promise used to return the audio stream ID. A valid value must be greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -515,8 +590,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let playParameters: media.PlayParameters = {
       loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-      leftVolume: 0.5, // range = 0.0-1.0
-      rightVolume: 0.5, // range = 0.0-1.0
+      leftVolume: 0.5, // range = 0.0-1.0.
+      rightVolume: 0.5, // range = 0.0-1.0.
       priority: 0, // The sound playback has the lowest priority.
     }
 
@@ -541,16 +616,16 @@ Stops playing a sound. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -598,21 +673,21 @@ Stops playing a sound. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -657,17 +732,17 @@ Sets the loop mode for an audio stream. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -716,22 +791,22 @@ Sets the loop mode for an audio stream. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.|
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -778,17 +853,17 @@ Sets the priority for an audio stream. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| priority | number | Yes  | Priority. The value **0** means the lowest priority. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -837,22 +912,22 @@ Sets the priority for an audio stream. This API uses a promise to return the res
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| priority | number | Yes  | Priority. The value **0** means the lowest priority. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -895,26 +970,22 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 Sets the playback rate for an audio stream. This API uses an asynchronous callback to return the result.
-<!--RP1-->
-> **NOTE**
-> This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
-<!--RP1End-->
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| rate | [audio.AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8) | Yes  | Playback rate. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| rate | [audio.AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8) | Yes  | Playback rate.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -959,31 +1030,26 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 Sets the playback rate for an audio stream. This API uses a promise to return the result.
 
-<!--RP1-->
-> **NOTE**
-> This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
-<!--RP1End-->
-
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| rate | [audio.AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8) | Yes  | Playback rate. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| rate | [audio.AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8) | Yes  | Playback rate.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -1030,18 +1096,18 @@ Sets the volume for an audio stream. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0. |
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
@@ -1090,23 +1156,23 @@ Sets the volume for an audio stream. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**. |
-| leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0. |
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used. |
+| streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
+| leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
@@ -1153,16 +1219,16 @@ Unloads a sound. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**. |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback. |
@@ -1210,21 +1276,21 @@ Unloads a sound. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**. |
+| soundID | number | Yes  | Sound ID, which is obtained by calling **load()**.|
 
 **Return value**
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise. |
@@ -1271,15 +1337,15 @@ Releases this **SoundPool** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400105  | Service died. Return by callback.       |
 
@@ -1326,13 +1392,13 @@ Releases this **SoundPool** instance. This API uses a promise to return the resu
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1374,9 +1440,9 @@ Subscribes to events indicating that a sound finishes loading.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'loadComplete'** in this case. This event is triggered when a sound is loaded. |
+| type     | string   | Yes  | Event type, which is **'loadComplete'** in this case. This event is triggered when a sound is loaded.|
 | callback | Callback\<number> | Yes  | ID of the sound that has been loaded.                              |
 
 **Example**
@@ -1415,9 +1481,9 @@ Unsubscribes from events indicating that a sound finishes loading.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'loadComplete'**. |
+| type   | string | Yes  | Event type. The value is fixed at **'loadComplete'**.|
 
 **Example**
 
@@ -1443,6 +1509,87 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ```
 
+### on('playFinishedWithStreamId')<sup>18+</sup>
+
+on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
+
+Subscribes to events indicating the completion of audio playback and returns the stream ID of the audio that finishes playing.
+
+When only [on('playFinished')](#onplayfinished) or [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18) is subscribed to, the registered callback is triggered when the audio playback is complete.
+
+When both [on('playFinished')](#onplayfinished) and [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18) are subscribed to, the 'playFinishedWithStreamId' callback is triggered, but the 'playFinished' callback is not triggered, when the audio playback is complete.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'playFinishedWithStreamId'** in this case. This event is triggered when an audio stream finishes playing, and the stream ID is returned.|
+| callback | Callback\<number> | Yes  |  Callback used to return the result. Stream ID of the audio that finishes playing.  |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.on('playFinishedWithStreamId', (streamId) => {
+      console.info('The stream with streamId: ' + streamId + ' has finished playing.')
+    });
+  }
+});
+
+```
+
+### off('playFinishedWithStreamId')<sup>18+</sup>
+
+off(type: 'playFinishedWithStreamId'): void
+
+Unsubscribes from events indicating that a sound finishes playing.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type. The value is fixed at **'playFinishedWithStreamId'**.|
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.off('playFinishedWithStreamId')
+  }
+});
+
+```
+
 ### on('playFinished')
 
 on(type: 'playFinished', callback: Callback\<void>): void
@@ -1453,9 +1600,9 @@ Subscribes to events indicating that a sound finishes playing.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'playFinished'** in this case. This event is triggered when a sound finishes playing. |
+| type     | string   | Yes  | Event type, which is **'playFinished'** in this case. This event is triggered when a sound finishes playing.|
 | callback | Callback\<void> | Yes  |  Callback used to return the result.       |
 
 **Example**
@@ -1494,9 +1641,9 @@ Unsubscribes from events indicating that a sound finishes playing.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'playFinished'**. |
+| type   | string | Yes  | Event type. The value is fixed at **'playFinished'**.|
 
 **Example**
 
@@ -1532,20 +1679,20 @@ Subscribes to error events of this **SoundPool** instance. This event is used on
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'error'** in this case. This event can be triggered by both user operations and the system. |
-| callback | ErrorCallback | Yes  | Callback used to return the error code ID and error message. |
+| type     | string   | Yes  | Event type, which is **'error'** in this case. This event can be triggered by both user operations and the system.|
+| callback | ErrorCallback | Yes  | Callback used to return the error code ID and error message.|
 
 The **SoundPool** class provides the following error types<a name = error_info></a>:
 
-| ID | Error Message             | Description                                                        |
+| ID| Error Message             | Description                                                        |
 | -------- | --------------------- | ------------------------------------------------------------ |
 | 401      | Invalid Parameter.    | Incorrect input parameter, causing an invalid call.                                    |
 | 801      | Unsupport Capability. | Unsupported API, causing an invalid call.                             |
-| 5400101  | No Memory.            | Insufficient memory. |
+| 5400101  | No Memory.            | Insufficient memory.|
 | 5400102  | Operation Not Allowed.   | Unsupported operation in the current state, causing an invalid call.                      |
-| 5400103  | IO Error.             | I/O exception. |
+| 5400103  | IO Error.             | I/O exception.|
 | 5400105  | Service Died.         | The playback process is dead, and the service on which the sound pool depends is abnormal.|
 
 **Example**
@@ -1585,9 +1732,9 @@ Unsubscribes from error events of this **SoundPool** instance.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                     |
+| Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
-| type   | string | Yes  | Event type, which is **'error'** in this case. |
+| type   | string | Yes  | Event type, which is **'error'** in this case.|
 
 **Example**
 

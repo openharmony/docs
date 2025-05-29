@@ -1,10 +1,10 @@
 # ArkTS语法适配背景
 
-ArkTS在保持TypeScript（简称TS）基本语法风格的基础上，进一步通过规范强化静态检查和分析，使得在程序开发期能检测更多错误，提升程序稳定性，并实现更好的运行性能。本文将进一步解释为什么建议将TS代码适配为ArkTS代码。
+ArkTS在保留TypeScript（简称TS）基本语法风格的基础上，进一步通过规范强化了静态检查和分析，使得在程序开发阶段能够检测出更多错误，提升程序的稳定性和运行性能。本文将详细解释为什么建议将TS代码适配为ArkTS代码。
 
 ## 程序稳定性
 
-动态类型语言，例如JavaScript（简称JS），可以使得开发者非常快速地编写代码，但是同时，它也使得程序容易在运行时产生非预期的错误。例如在代码中，如果开发者没有检查一个值是否为`undefined`，那么程序有可能在运行时崩溃，给开发者造成不便。如果能在代码开发阶段检查此类问题是更有好处的。TS通过标注类型帮助开发者检查错误，许多错误在编译时可以被编译器检测出来，不用等到程序运行时。但是，即使是TS也有局限性，它不强制要求对变量进行类型标注，导致很多编译时检查无法开展。ArkTS尝试克服这些缺点，它强制使用静态类型，旨在通过更严格的类型检查以减少运行时错误。
+动态类型语言如JavaScript（简称JS）虽能提升开发效率，但也容易在运行时引发非预期错误。例如未检查的`undefined`值可能导致程序崩溃，这类问题若能在开发阶段发现将显著提升稳定性。TypeScript（TS）通过类型标注机制，使编译器能在编译时检测出多数类型错误，但其非强制类型系统仍存在局限。例如未标注类型的变量会阻碍完整编译检查。ArkTS通过强制静态类型系统克服这一缺陷，实施更严格的类型验证机制，从而最大限度减少运行时错误的发生。
 
 下面这个例子展示了ArkTS通过强制严格的类型检查来提高代码稳定性和正确性。
 
@@ -33,7 +33,7 @@ let buddy = new Person()
 buddy.getName().length; // 运行时异常：name is undefined
 ```
 
-由于ArkTS要求属性显式初始化，代码应该像下面这样写。
+ArkTS要求属性显式初始化，代码应如下所示：
 
 ```typescript
 class Person {
@@ -54,7 +54,7 @@ let buddy = new Person()
 buddy.getName().length; // 0, 没有运行时异常
 ```
 
-如果`name`可以是`undefined`，那么它的类型应该在代码中被精确地标注。
+如果`name`可以是`undefined`，其类型应在代码中精确标注。
 
 ```typescript
 class Person {
@@ -85,7 +85,7 @@ buddy.getName()?.length; // 编译成功，没有运行时错误
 
 ## 程序性能
 
-为了保证程序的正确性，动态类型语言不得不在运行时检查对象的类型。例如，JS不允许访问`undefined`的属性。但是检查一个值是否为`undefined`的唯一的办法是在运行时进行一次类型检查。所有的JS引擎都会做如下的事：如果一个值不是`undefined`，那么可以访问其属性，否则抛出异常。现代JS引擎可以很好地对这类操作进行优化，但是总有一些运行时的检查是无法被消除的，这就使得程序变慢了。由于TS总是先被编译成JS，所以在TS代码中，也会面临相同的问题。ArkTS解决了这个问题。由于使能了静态类型检查，ArkTS代码将会被编译成方舟字节码文件，而不是JS代码。因此，ArkTS运行速度更快，更容易被进一步地优化。
+为了确保程序的正确性，动态类型语言需要在运行时检查对象的类型。例如JavaScript不允许访问`undefined`的属性。检查一个值是否为`undefined`的唯一方法是在运行时进行类型检查。所有JavaScript引擎都会执行以下操作：如果一个值不是`undefined`，则可以访问其属性；否则，抛出异常。虽然现代JavaScript引擎可以优化这类操作，但仍然存在一些无法消除的运行时检查，这会导致程序变慢。由于TypeScript代码总是先被编译成JavaScript代码，因此在TypeScript中也会遇到相同的问题。ArkTS解决了这个问题。通过启用静态类型检查，ArkTS代码将被编译成方舟字节码文件，而不是JavaScript代码。因此，ArkTS运行速度更快，更容易被进一步优化。
 
 
 **Null Safety**
@@ -126,22 +126,43 @@ notify('Jack', 'You look great today')
 notify(null, undefined) // 编译时错误
 ```
 
-TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被编译成JS的，而JS没有这个特性，因此严格`null`检查只在编译时起作用。从程序稳定性和性能角度考虑，ArkTS将“null-safety”视为一个重要的特性。这就是为什么ArkTS强制进行严格`null`检查，在ArkTS中，上面的代码总是编译报错。作为交换，这样的代码可以给ArkTS引擎带来更多的信息和有关值的类型保证，这有助于更好地优化性能。
+TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译成JS，但因为JS没有这个特性，所以严格`null`检查仅在编译时起效。从程序稳定性和性能的角度考虑，ArkTS将“null-safety”视为一个重要的特性。因此，ArkTS强制进行严格`null`检查，在ArkTS中上述代码将始终编译失败。作为交换，此类代码为ArkTS引擎提供了更多信息和关于值的类型保证，有助于优化性能。
 
 
 ## .ets代码兼容性
 
-在API version 10之前，ArkTS（.ets文件）完全采用了标准TS的语法。从API version 10 Release起，ArkTS的语法规则基于上述设计考虑进行了明确定义，同时，SDK增加了在编译流程中对.ets文件的ArkTS语法检查，通过编译告警或编译失败提示开发者适配新的ArkTS语法。
+在API version 10之前，ArkTS（.ets文件）完全采用了标准TS的语法。从API version 10 Release起，明确定义ArkTS的语法规则，同时，SDK增加了在编译流程中对.ets文件的ArkTS语法检查，通过编译告警或编译失败提示开发者适配新的ArkTS语法。
 
 根据工程的compatibleSdkVersion，具体策略如下：
 
   - compatibleSdkVersion >= 10 为标准模式。在该模式下，对.ets文件，违反ArkTS语法规则的代码会导致工程编译失败，需要完全适配ArkTS语法后方可编译成功。
-  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件，以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但是需要完全适配ArkTS语法后方可在标准模式下编译成功。
+  - compatibleSdkVersion < 10 为兼容模式。在该模式下，对.ets文件以warning形式提示违反ArkTS语法规则的所有代码。尽管违反ArkTS语法规则的工程在兼容模式下仍可编译成功，但需完全适配ArkTS语法后方可在标准模式下编译成功。
 
+## 支持与TS/JS的交互
+
+ArkTS支持与TS/JS的高效互操作。在当前版本中，ArkTS运行时兼容动态类型对象语义。在与TS/JS交互时，将TS/JS的数据和对象作为ArkTS的数据和对象使用，可能会绕过ArkTS的静态编译检查，导致非预期的行为或增加额外的开销。
+
+```typescript
+// lib.ts
+export class C {
+  v: string
+}
+
+export let c = new C()
+
+// app.ets
+import { C, c } from './lib'
+
+function foo(c: C) {
+  c.v.length
+}
+
+foo(c)  //  运行时异常：v is undefined
+```
 
 ## 方舟运行时兼容TS/JS
 
-在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。在应用中，开发者可以使用ECMA2017+的语法进行TS/JS开发。
+在API version 11上，OpenHarmony SDK中的TypeScript版本为4.9.5，target字段为es2017。应用中支持使用ECMA2017及更高版本的语法进行TS/JS开发。
 
 **应用环境限制**
 
@@ -149,7 +170,20 @@ TS通过打开编译选项`strictNullChecks`来实现此特性。但是TS是被�
 2. 禁止使用`eval()`
 3. 禁止使用`with() {}`
 4. 禁止以字符串为代码创建函数
+5. 禁止循环依赖
+
+    循环依赖示例:
+    ```typescript
+    // bar.ets
+    import {v} from './foo' // bar.ets依赖foo.ets
+    export let u = 0;
+
+    // foo.ets
+    import {u} from './bar' // foo.ets同时又依赖bar.ets
+    export let v = 0;
+
+    ```
 
 **与标准TS/JS的差异**
 
-1. 标准TS/JS中，JSON的数字格式，小数点后必须跟着数字，如`2.e3`这类科学计数法不被允许，报出`SyntaxError`。在方舟运行时中，允许使用这类科学计数法。
+在标准的TS/JS中，JSON的数字格式要求小数点后必须跟随数字，例如 `2.e3` 这类科学计数法不被允许，会导致`SyntaxError`。而在方舟运行时中，支持这类科学计数法

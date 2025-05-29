@@ -24,7 +24,7 @@ None.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -39,7 +39,7 @@ Called to initialize the service logic when a ServiceExtensionAbility is being c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -68,7 +68,7 @@ Called to clear resources when this ServiceExtensionAbility is being destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Example**
 
@@ -91,7 +91,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -121,7 +121,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -133,7 +133,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 | Type| Description|
 | -------- | -------- |
-| rpc.RemoteObject | A **RemoteObject** object used for communication between the server and client.|
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) \| Promise\<[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)> | **RemoteObject** object or Promise used to return a **RemoteObject** object, which is used for communication between the client and server.|
 
 **Example**
 
@@ -190,13 +190,19 @@ Called when a client is disconnected from this ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| Yes| Want information related to this ServiceExtensionAbility, including the ability name and bundle name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -231,7 +237,7 @@ Called when a new client attempts to connect to this ServiceExtensionAbility aft
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -259,7 +265,7 @@ Called when the configuration of this ServiceExtensionAbility is updated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -287,13 +293,19 @@ Dumps the client information.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | Yes| Parameters in the form of a command.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Array\<string> | Array of client information.|
 
 **Example**
     

@@ -13,7 +13,7 @@ onContinueDone(result: number): void;
 
 Mission迁移完成后调用，返回迁移结果。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -21,7 +21,7 @@ Mission迁移完成后调用，返回迁移结果。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| result |  number | 是 | 迁移任务的结果。 |
+| result |  number | 是 | 迁移任务的结果，0表示迁移成功，其他表示迁移失败。 |
 
 **示例：**
 

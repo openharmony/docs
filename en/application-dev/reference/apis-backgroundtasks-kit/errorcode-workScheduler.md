@@ -65,7 +65,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Check workInfo failed.
+Check on workInfo failed.
 
 **Description**
 
@@ -84,7 +84,7 @@ Check the **workInfo** parameters.
 
 **Error Message**
 
-StartWork failed.
+Calling startWork failed.
 
 **Description**
 

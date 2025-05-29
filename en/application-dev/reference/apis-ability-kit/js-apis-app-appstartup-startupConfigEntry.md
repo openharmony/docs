@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupConfigEntry
 
 
-The StartupConfigEntry module provides the API for configuring the AppStartup framework.
+The StartupConfigEntry module provides the API for configuring AppStartup.
 
 > **NOTE**
 >
@@ -19,15 +19,15 @@ import { StartupConfigEntry } from '@kit.AbilityKit';
 
 onConfig?(): StartupConfig
 
-Called during application startup to configure the AppStartup framework.
+Called during application startup to configure AppStartup.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| StartupConfig | AppStartup framework configuration. |
+| StartupConfig | AppStartup configuration.|
 
 **Example**
 

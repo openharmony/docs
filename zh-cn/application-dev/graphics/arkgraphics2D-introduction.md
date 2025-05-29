@@ -14,7 +14,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见[@ohos.graphics.drawing (绘制模块)](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
 
-- 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/apis-arkgraphics2d/_native_window.md)、[NativeBuffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md)、[NativeImage](../reference/apis-arkgraphics2d/_o_h___native_image.md)、[NativeVsync](../reference/apis-arkgraphics2d/_native_vsync.md)、[Drawing](../reference/apis-arkgraphics2d/_drawing.md)等模块。
+- 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/apis-arkgraphics2d/capi-nativewindow.md)、[NativeBuffer](../reference/apis-arkgraphics2d/capi-oh-nativebuffer.md)、[NativeImage](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md)、[NativeVsync](../reference/apis-arkgraphics2d/capi-nativevsync.md)、[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)等模块。
 
 ## 使用场景
 
@@ -30,7 +30,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 同个窗口支持多个帧率：支持为同个窗口的不同内容，比如动画或自绘制UI，定制不同的绘制帧率，不同内容之间独立运行。
 
-- 支持帧率动态配置，兼顾体验与功耗：支持三方框架根据UI场景，动态请求绘制帧率，比如游戏、视频等业务，兼顾流畅体验与功耗体验
+- 支持帧率动态配置，兼顾体验与功耗：支持三方框架根据UI场景，动态请求绘制帧率，比如游戏、视频等业务，兼顾流畅体验与功耗体验。
   
 - 支持录制回放机制，提升交互体验：支持录制命令的缓存，可对绘制指令进行回放，以提升UI绘制的跟手性。
   

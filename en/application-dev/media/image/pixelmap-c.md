@@ -1,6 +1,6 @@
 # Using Image_NativeModule for PixelMap Operations
 
-You can use the **Pixelmap** class to create a pixel map, obtain its width, height, pixel format, alpha type, and row stride, operate the pixel map, and release **Pixelmap** instances.
+You can use the **Pixelmap** class to create, operation and release a PixelMap, and obtain its width, height, pixel format, alpha type, and row stride.
 
 ## How to Develop
 
@@ -16,7 +16,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 
 For details about the APIs, see [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md).
 
-Implement the C APIs in **hello.cpp**. Refer to the sample code below.
+Create a native C++ application in DevEco Studio. The project created by default contains the **index.ets** file, and a **hello.cpp** or **napi_init.cpp** file is generated in the **entry\src\main\cpp** directory. In this example, the generated file is **hello.cpp**. Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 **Example of Using the Pixelmap APIs**
 
@@ -96,7 +96,7 @@ Create a **Pixelmap** instance after parameter initialization, read and write pi
           OH_PixelmapImageInfo_Release(imageInfo);
           OH_LOG_INFO(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest GetImageInfo success, width: %{public}d, height: %{public}d, rowStride: %{public}d, pixelFormat: %{public}d, alphaType: %{public}d.", width, height, rowStride, pixelFormat, alphaType);
 
-          // Set the opacity rate to enable the pixel map to achieve the corresponding opacity effect.
+          // Set the opacity rate to enable the image to achieve the corresponding opacity effect.
           errCode = OH_PixelmapNative_Opacity(pixelmap, 0.5);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);

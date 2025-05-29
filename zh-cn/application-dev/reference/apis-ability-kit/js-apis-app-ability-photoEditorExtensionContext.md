@@ -14,7 +14,9 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
+
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
+
 传入编辑过的图片的uri并保存。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -48,6 +50,7 @@ import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
 
@@ -60,21 +63,21 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
             const imagePackerApi: image.ImagePacker = image.createImagePacker();
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-            imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
-              let context = getContext(this) as common.PhotoEditorExtensionContext;
-              let filePath = context.filesDir + "/edited.jpg";
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
+            imagePackerApi.packToData(this.originalImage, packOpts).then((data: ArrayBuffer) => {
+              let context = this.getUIContext().getHostContext() as common.PhotoEditorExtensionContext;
+              let filePath = context.filesDir + '/edited.jpg';
               let file: fileIo.File | undefined;
               try{
                 file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE
                 | fileIo.OpenMode.CREATE | fileIo.OpenMode.TRUNC);
                 let writeLen = fileIo.writeSync(file.fd, data);
-                hilog.info(0x0000, TAG, "write data to file succeed and size is:"
+                hilog.info(0x0000, TAG, 'write data to file succeed and size is:'
                   + writeLen);
                 fileIo.closeSync(file);
                 context.saveEditedContentWithUri(filePath).then
@@ -99,7 +102,9 @@ struct Index {
 }
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
+
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
+
 传入编辑过的图片的PixMap对象并保存。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -145,13 +150,13 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
             try {
-              let context = getContext(this) as common.PhotoEditorExtensionContext;
+              let context = this.getUIContext().getHostContext() as common.PhotoEditorExtensionContext;
               context.saveEditedContentWithImage(this.originalImage as image.PixelMap,
                 packOpts).then(data => {
                   hilog.info(0x0000, TAG,

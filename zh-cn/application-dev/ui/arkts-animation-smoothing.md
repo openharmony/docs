@@ -9,16 +9,19 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 
 ```ts
 import { curves } from '@kit.ArkUI';
-class SetSlt{
-  isAnimation:boolean = true
-  set():void{
+
+class SetSlt {
+  isAnimation: boolean = true
+
+  set(): void {
     this.isAnimation = !this.isAnimation;
   }
 }
+
 @Entry
 @Component
 struct AnimationToAnimationDemo {
-// 第一步：声明相关状态变量
+  // 第一步：声明相关状态变量
   @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
@@ -32,15 +35,17 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
-        // 第二步：将状态变量设置到相关可动画属性接口
-        .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
-        // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
-        .animation({ curve: curves.springMotion(0.4, 0.8) })
+        .scale({
+          // 第二步：将状态变量设置到相关可动画属性接口
+          x: this.SetAnimation.isAnimation ? 2 : 1,
+          y: this.SetAnimation.isAnimation ? 2 : 1
+        })
+        .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过animation接口开启动画，动画终点值改变时，系统自动添加衔接动画
 
       Button('Click')
         .margin({ top: 200 })
-        // 第三步：通过点击事件改变状态变量值，影响可动画属性值
         .onClick(() => {
+          // 第三步：通过点击事件改变状态变量值，影响可动画属性值
           this.SetAnimation.set()
         })
     }
@@ -61,7 +66,7 @@ struct AnimationToAnimationDemo {
 
 离手阶段的属性变化初始速度应与离手前一刻的属性改变速度保持一致。如果离手后属性变化速度从0开始，就好像正在运行的汽车紧急刹车，造成观感上的骤变是用户和开发者都不希望看到的。
 
-针对在[手势](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)和[动画](./arkts-animation.md)之间进行衔接的场景（如列表滑动），可以在跟手阶段每一次更改组件属性时，都做成使用跟手弹簧曲线的属性动画。离手时再用离手弹簧曲线产生离手阶段的属性动画。对于采用[springMotion](../reference/apis-arkui/js-apis-curve.md#curvesspringmotion9)曲线的动画，离手阶段动画将自动继承跟手阶段动画的速度，并以跟手动画当前位置为起点，运动到指定的属性终点。
+针对在[TapGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)和[动画](./arkts-animation.md)之间进行衔接的场景（如列表滑动），可以在跟手阶段每一次更改组件属性时，都做成使用跟手弹簧曲线的属性动画。离手时再用离手弹簧曲线产生离手阶段的属性动画。对于采用[springMotion](../reference/apis-arkui/js-apis-curve.md#curvesspringmotion9)曲线的动画，离手阶段动画将自动继承跟手阶段动画的速度，并以跟手动画当前位置为起点，运动到指定的属性终点。
 
 示例代码如下，小球跟手运动。
 
@@ -71,7 +76,6 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct SpringMotionDemo {
-
   // 第一步：声明相关状态变量
   @State positionX: number = 100;
   @State positionY: number = 100;
@@ -82,14 +86,13 @@ struct SpringMotionDemo {
       Row() {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
-          // 第二步：将状态变量设置到相关可动画属性接口
-          .position({ x: this.positionX, y: this.positionY })
-          // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
+          .position({ x: this.positionX, y: this.positionY })// 第二步：将状态变量设置到相关可动画属性接口
           .onTouch((event?: TouchEvent) => {
-            if(event){
+            // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
+            if (event) {
               if (event.type === TouchType.Move) {
                 // 跟手过程，使用responsiveSpringMotion曲线
-                animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // 减去半径，以使球的中心运动到手指位置
                   this.positionX = event.touches[0].windowX - this.diameter / 2;
                   this.positionY = event.touches[0].windowY - this.diameter / 2;
@@ -97,7 +100,7 @@ struct SpringMotionDemo {
                 })
               } else if (event.type === TouchType.Up) {
                 // 第四步：在离手过程设定状态变量终点值，并且用springMotion动画运动到新的值，springMotion动画将继承跟手阶段的动画速度
-                animateTo({ curve: curves.springMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
                   this.positionX = 100;
                   this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);

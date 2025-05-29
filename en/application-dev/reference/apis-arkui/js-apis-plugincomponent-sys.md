@@ -11,14 +11,14 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 ## Modules to Import
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ### PushParameterForStage
 
 Sets the parameters to be passed in the **PluginManager.Push** API in the stage model.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the [stage model](arkui-ts/ts-basic-components-plugincomponent-sys.md#stage-model).
 
 **System API**: This is a system API.
 
@@ -39,7 +39,7 @@ Sets the parameters to be passed in the **PluginManager.Request** API in the sta
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the [stage model](arkui-ts/ts-basic-components-plugincomponent-sys.md#stage-model).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,7 +59,7 @@ Pushes the component and data to the component user.
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the [stage model](arkui-ts/ts-basic-components-plugincomponent-sys.md#stage-model).
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description          |
@@ -70,16 +70,16 @@ Pushes the component and data to the component user.
 **Example**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     owner: {
       bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility"
+      abilityName: "com.example.provider.MainAbility",
     },
     target: {
-      bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility",
+      bundleName: "com.example.user",
+      abilityName: "com.example.user.MainAbility",
     },
     name: "ets/pages/plugin2.js",
     data: {
@@ -107,28 +107,28 @@ Requests the component from the component provider.
 
 **System API**: This is a system API.
 
-**Model restriction**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the [stage model](arkui-ts/ts-basic-components-plugincomponent-sys.md#stage-model).
 
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| param    | [RequestParameterForStage](js-apis-plugincomponent.md#requestcallbackparameters) | Yes   | Information about the component request.                       |
+| param    | [RequestParameterForStage](js-apis-plugincomponent-sys.md#requestparameterforstage) | Yes   | Information about the component request.                       |
 | callback | AsyncCallback&lt;[RequestCallbackParameters](js-apis-plugincomponent.md#requestcallbackparameters) \| void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
 ```ts
-import pluginComponentManager from '@ohos.pluginComponent'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     owner: {
-      bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility"
+      bundleName: "com.example.user",
+      abilityName: "com.example.user.MainAbility",
     },
     target: {
       bundleName: "com.example.provider",
-      abilityName: "ets/pages/plugin2.js",
+      abilityName: "com.example.provider.MainAbility",
     },
     name: "plugintemplate",
     data: {
@@ -137,8 +137,8 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
   }
 )
 ```

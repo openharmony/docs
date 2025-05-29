@@ -46,13 +46,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -93,7 +94,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -129,14 +130,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-import { promptAction } from '@kit.ArkUI';
 import { display } from '@kit.ArkUI';
 
 /**
  * Callback triggered when the mouse pointer moves to the specified rectangular area.
  */
-function callback(mouseEvent : MouseEvent) {
-  promptAction.showToast({
+let callback = (mouseEvent : MouseEvent) => {
+  this.getUIContext().getPromptAction().showToast({
     message: `Monitor on success: ${JSON.stringify(mouseEvent)}`
   })
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -161,7 +161,7 @@ let rect: display.Rect[] = [{
 try {
   inputMonitor.on('mouse', rect, callback);
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -195,6 +195,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -205,12 +206,13 @@ try {
   inputMonitor.off('touch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -221,7 +223,7 @@ try {
   inputMonitor.off('touch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -255,6 +257,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -265,12 +268,13 @@ try {
   inputMonitor.off('mouse', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -281,7 +285,7 @@ try {
   inputMonitor.off('mouse');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -311,6 +315,7 @@ Defines the callback for touch (touchscreen) events.
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -319,7 +324,7 @@ try {
     return false;
   });
 } catch (error) {
-    console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -353,14 +358,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -406,7 +412,7 @@ try {
   inputMonitor.off('pinch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -423,7 +429,7 @@ try {
   inputMonitor.off('pinch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -463,7 +469,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -509,7 +515,7 @@ try {
   inputMonitor.off("threeFingersSwipe", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -526,7 +532,7 @@ try {
   inputMonitor.off("threeFingersSwipe");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -566,7 +572,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -612,7 +618,7 @@ try {
   inputMonitor.off('fourFingersSwipe', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -629,7 +635,7 @@ try {
   inputMonitor.off('fourFingersSwipe');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -664,14 +670,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
+
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -718,7 +725,7 @@ try {
   inputMonitor.off('rotate', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -735,7 +742,7 @@ try {
   inputMonitor.off('rotate', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -770,14 +777,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -824,7 +832,7 @@ try {
   inputMonitor.off('pinch', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -841,7 +849,7 @@ try {
   inputMonitor.off('pinch', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -881,7 +889,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -927,7 +935,7 @@ try {
   inputMonitor.off("threeFingersTap", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -944,6 +952,318 @@ try {
   inputMonitor.off("threeFingersTap");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('touchscreenSwipe')<sup>18+</sup>
+
+on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+Enables listening for touchscreen swipe events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the swipe. The value range is [3, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes  | Callback used to return touchscreen swipe events asynchronously.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenSwipe')<sup>18+</sup>
+
+off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+Disables listening for touchscreen swipe events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenSwipe**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the swipe. The value range is [3, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, callback);
+  inputMonitor.off('touchscreenSwipe', fingers, callback);
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off('touchscreenSwipe', fingers);
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('touchscreenPinch')<sup>18+</sup>
+
+on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGestureEvent&gt;): void
+
+Enables listening for touchscreen pinch events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenPinch**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the pinch. The value range is [4, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | Yes  | Callback used to return touchscreen pinch events asynchronously.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('touchscreenPinch')<sup>18+</sup>
+
+off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestureEvent&gt;): void
+
+Disables listening for touchscreen pinch events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **touchscreenPinch**.                   |
+| fingers  | number                                                       | Yes  | Number of fingers that trigger the pinch. The value range is [4, 5].|
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (event: TouchGestureEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, callback);
+  inputMonitor.off("touchscreenPinch", fingers, callback);
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
+
+let fingers: number = 4;
+try {
+  inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("touchscreenPinch", fingers);
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.on('keyPressed')<sup>15+</sup>
+
+on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
+
+Listens for the press and release events of the specified key, which can be the **META_LEFT**, **META_RIGHT**, power, or volume key.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description                                |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                      | Yes  | Event type. This parameter has a fixed value of **keyPressed**.|
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | Yes  | Key code list. The options are **KEYCODE_META_LEFT**, **KEYCODE_META_RIGHT**, **KEYCODE_POWER**, **KEYCODE_VOLUME_DOWN**, and **KEYCODE_VOLUME_UP**.                     |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | Yes  | Callback used to receive reported data.        |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Monitor Error Codes](errorcode-inputmonitor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4100001  | Event listening not supported for the key.                   |
+
+**Example**
+
+```js
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('keyPressed')<sup>15+</sup>
+
+off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
+
+Cancels listening for the press and release events of the specified key, which can be the **META_LEFT**, **META_RIGHT**, power, or volume key. This API must be used together with **inputMonitor.on ('keyPressed')**.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | Yes  | Event type. This parameter has a fixed value of **keyPressed**.                        |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+try {
+  let callback = (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  };
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+  inputMonitor.on('keyPressed', keys, callback);
+  inputMonitor.off("keyPressed", callback);
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+try {
+  let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("keyPressed");
+} catch (error) {
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

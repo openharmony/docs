@@ -1,6 +1,6 @@
 # @ohos.app.ability.missionManager (missionManager) (System API)
 
-The **missionManager** module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
+The missionManager module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ohos.permission.MANAGE_MISSIONS
 
-## missionManager.on
+## missionManager.on('mission')
 
 on(type:'mission', listener: MissionListener): number
 
@@ -28,13 +28,13 @@ Registers a listener to observe the mission status.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | Yes| Mission status listener to register.|
 
 **Error codes**
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -130,13 +130,13 @@ Deregisters a mission status listener.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -149,7 +149,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **Example**
 
@@ -218,7 +218,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
@@ -228,13 +228,13 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. The value is fixed at **'mission'**, indicating the system mission status listener.|
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
 
 **Return value**
@@ -252,7 +252,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **Example**
 
@@ -330,7 +330,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -396,7 +396,7 @@ Obtains the information about a given mission. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -451,7 +451,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -504,7 +504,7 @@ Obtains information about all missions. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -557,7 +557,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -608,7 +608,7 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -662,7 +662,7 @@ Obtains the low-resolution snapshot of a given mission. This API uses an asynchr
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -713,7 +713,7 @@ Obtains the low-resolution snapshot of a given mission. This API uses a promise 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -769,7 +769,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -821,7 +821,7 @@ Locks a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -875,7 +875,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -926,7 +926,7 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -981,7 +981,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1033,7 +1033,7 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1087,7 +1087,7 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1135,7 +1135,7 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
@@ -1180,7 +1180,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1232,7 +1232,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1285,7 +1285,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1370,7 +1370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1438,7 +1438,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}.`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1511,7 +1511,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
     if (missionInfos.length < 1) {
@@ -1525,7 +1525,7 @@ try {
       }
     }
     missionManager.moveMissionsToForeground(toShows, toShows[0]).then(() => {
-      console.log("moveMissionsToForeground is called" );
+      console.log(`moveMissionsToForeground is called`);
     });
   });
 } catch (paramError) {
@@ -1574,7 +1574,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1643,7 +1643,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   missionManager.getMissionInfos("", 10, (error: BusinessError, missionInfos: Array<missionManager.MissionInfo>) => {
     if (error.code) {
-      console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code));
+      console.error(`getMissionInfos failed, error code: ${error.code}, error msg: ${error.message}`);
       return;
     }
 
@@ -1654,7 +1654,7 @@ try {
       }
     }
     missionManager.moveMissionsToBackground(toHides).then((hideRes: Array<number>) => {
-      console.log("moveMissionsToBackground is called, res: "+ JSON.stringify(hideRes));
+      console.log(`moveMissionsToBackground is called, res: ${JSON.stringify(hideRes)}`);
     });
   });
 } catch (paramError) {

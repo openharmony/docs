@@ -1,6 +1,6 @@
 # Non-anonymous Key Attestation (C/C++)
 
-The caller must have the ohos.permission.ATTEST_KEY permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
+The caller must have the [ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key) permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Requesting Permissions](../AccessToken/determine-application-mode.md).
 
 ## Add the dynamic library in the CMake script.
 ```txt
@@ -9,11 +9,13 @@ The caller must have the ohos.permission.ATTEST_KEY permission. You need to requ
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
-2. Initialize the parameter set. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset) to construct **paramSet**. **paramSet** must contain [OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose).
+2. Initialize the parameter set: Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset) to construct **paramSet**, and set [OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose) to specify the algorithm, key size, and key purpose, respectively.
 
-3. Use [OH_Huks_AttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_attestkeyitem) with the key alias and parameter set to perform key attestation.
+3. Generate an asymmetric key. For details, see [Key Generation](huks-key-generation-overview.md).
+
+4. Use [OH_Huks_AttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_attestkeyitem) with the key alias and parameter set to perform key attestation.
 
 ```c++
 #include "huks/native_huks_api.h"

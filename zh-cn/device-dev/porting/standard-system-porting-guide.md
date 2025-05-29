@@ -43,16 +43,16 @@
 
 | 配置项 | 说明 |
 |-------|----------|
-|product_name |（必填）产品名称|
-|version|（必填）版本 |
-|type|（必填）配置的系统级别，包含（small、standard等) |
-|target_cpu |（必填）设备的CPU类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等）|
-|ohos_version|（选填）操作系统版本|
-|device_company|（必填）device厂商名|
-|board|（必填）开发板名称|
-|enable_ramdisk|（必填）是否启动ramdisk|
-|kernel_type|（选填）内核类型|
-|kernel_version|（选填）kernel_type与kernel_version在standard是固定的不需要写|
+|product_name |（必填）产品名称。|
+|version|（必填）版本。 |
+|type|（必填）配置的系统级别，包含（small、standard等)。 |
+|target_cpu |（必填）设备的CPU类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等）。|
+|ohos_version|（选填）操作系统版本。|
+|device_company|（必填）device厂商名。|
+|board|（必填）开发板名称。|
+|enable_ramdisk|（必填）是否启动ramdisk。|
+|kernel_type|（选填）内核类型。|
+|kernel_version|（选填）kernel_type与kernel_version在standard是固定的不需要写。|
 |subsystems|（必填）系统需要启用的子系统。子系统可以简单理解为一块独立构建的功能块。|
 |product_company|不体现在配置中，而是目录名，vendor下一级目录就是product_company，BUILD.gn脚本依然可以访问。|
 
@@ -119,8 +119,8 @@ BUILD.gn是subsystem构建的唯一入口。
 
 | 文件 | 文件说明 | 
 | -------- | -------- |
-| $root_build_dir/packages/phone/images/uImage | 内核镜像 | 
-| $root_build_dir/packages/phone/images/uboot | bootloader镜像 | 
+| $root_build_dir/packages/phone/images/uImage | 内核镜像。 | 
+| $root_build_dir/packages/phone/images/uboot | bootloader镜像。 | 
 
 
 ### 移植验证
@@ -164,9 +164,9 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
 
 这些LCD的驱动被放置在`//drivers/hdf_core/framework/model/display/driver/panel`目录中。
 
-1. 创建Panel驱动
+1. 创建Panel驱动。
 
-   在驱动的Init方法中，需要调用RegisterPanel接口注册模型实例。如:
+   在驱动的Init方法中，需要调用RegisterPanel接口注册模型实例。如：
 
 
    ```
@@ -218,7 +218,7 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
 
 本节描述如何移植触摸屏驱动。触摸屏的驱动被放置在`//drivers/hdf_core/framework/model/input/driver/touchscreen`目录中。移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
-1. 创建触摸屏器件驱动
+1. 创建触摸屏器件驱动。
 
    在目录中创建名为touch_ic_name.c的文件。代码模板如下：注意：请替换ic_name为你所适配芯片的名称。
 
@@ -249,12 +249,12 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
 
    | 方法 | 实现说明 | 
    | -------- | -------- |
-   | int32_t&nbsp;(\*Init)(ChipDevice&nbsp;\*device) | 器件初始化 | 
-   | int32_t&nbsp;(\*Detect)(ChipDevice&nbsp;\*device) | 器件探测 | 
-   | int32_t&nbsp;(\*Suspend)(ChipDevice&nbsp;\*device) | 器件休眠 | 
-   | int32_t&nbsp;(\*Resume)(ChipDevice&nbsp;\*device) | 器件唤醒 | 
-   | int32_t&nbsp;(\*DataHandle)(ChipDevice&nbsp;\*device) | 从器件读取数据，将触摸点数据填写入device-&gt;driver-&gt;frameData中 | 
-   | int32_t&nbsp;(\*UpdateFirmware)(ChipDevice&nbsp;\*device) | 固件升级 | 
+   | int32_t&nbsp;(\*Init)(ChipDevice&nbsp;\*device) | 器件初始化。 | 
+   | int32_t&nbsp;(\*Detect)(ChipDevice&nbsp;\*device) | 器件探测。 | 
+   | int32_t&nbsp;(\*Suspend)(ChipDevice&nbsp;\*device) | 器件休眠。| 
+   | int32_t&nbsp;(\*Resume)(ChipDevice&nbsp;\*device) | 器件唤醒。 | 
+   | int32_t&nbsp;(\*DataHandle)(ChipDevice&nbsp;\*device) | 从器件读取数据，将触摸点数据填写入device-&gt;driver-&gt;frameData中。 | 
+   | int32_t&nbsp;(\*UpdateFirmware)(ChipDevice&nbsp;\*device) | 固件升级。 | 
 
 2. 配置产品，加载器件驱动
   
@@ -283,13 +283,13 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 
   ![zh-cn_image_0000001188241031](figures/zh-cn_image_0000001188241031.png)
 
-支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有:
+支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有：
 
 | 接口 | 定义头文件 | 说明 |
 | -------- | -------- | -------- |
-| HdfChipDriverFactory | //drivers/hdf_core/framework/include/wifi/hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个Wi-Fi端口 |
-| HdfChipDriver | //drivers/hdf_core/framework/include/wifi/wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定的WLAN端口 |
-| NetDeviceInterFace | //drivers/hdf_core/framework/include/net/net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等 |
+| HdfChipDriverFactory | //drivers/hdf_core/framework/include/wifi/hdf_wlan_chipdriver_manager.h | ChipDriver的Factory，用于支持一个芯片多个Wi-Fi端口。 |
+| HdfChipDriver | //drivers/hdf_core/framework/include/wifi/wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定的WLAN端口。 |
+| NetDeviceInterFace | //drivers/hdf_core/framework/include/net/net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等。 |
 
 建议适配按如下步骤操作：
 
@@ -324,22 +324,22 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
    | 接口 | 说明 | 
    | -------- | -------- |
    | const&nbsp;char&nbsp;\*driverName | 当前driverName | 
-   | int32_t&nbsp;(\*InitChip)(struct&nbsp;HdfWlanDevice&nbsp;\*device) | 初始化芯片 | 
-   | int32_t&nbsp;(\*DeinitChip)(struct&nbsp;HdfWlanDevice&nbsp;\*device) | 去初始化芯片 | 
-   | void&nbsp;(_ReleaseFactory)(struct&nbsp;HdfChipDriverFactory&nbsp;_factory) | 释放HdfChipDriverFactory对象 | 
-   | struct&nbsp;HdfChipDriver&nbsp;_(_Build)(struct&nbsp;HdfWlanDevice&nbsp;\*device,&nbsp;uint8_t&nbsp;ifIndex) | 创建一个HdfChipDriver；输入参数中，device是设备信息，ifIndex是当前创建的接口在这个芯片中的序号 | 
-   | void&nbsp;(_Release)(struct&nbsp;HdfChipDriver&nbsp;_chipDriver) | 释放chipDriver | 
-   | uint8_t&nbsp;(\*GetMaxIFCount)(struct&nbsp;HdfChipDriverFactory&nbsp;\*factory) | 获取当前芯片支持的最大接口数 | 
+   | int32_t&nbsp;(\*InitChip)(struct&nbsp;HdfWlanDevice&nbsp;\*device) | 初始化芯片。 | 
+   | int32_t&nbsp;(\*DeinitChip)(struct&nbsp;HdfWlanDevice&nbsp;\*device) | 去初始化芯片。 | 
+   | void&nbsp;(_ReleaseFactory)(struct&nbsp;HdfChipDriverFactory&nbsp;_factory) | 释放HdfChipDriverFactory对象。 | 
+   | struct&nbsp;HdfChipDriver&nbsp;_(_Build)(struct&nbsp;HdfWlanDevice&nbsp;\*device,&nbsp;uint8_t&nbsp;ifIndex) | 创建一个HdfChipDriver；输入参数中，device是设备信息，ifIndex是当前创建的接口在这个芯片中的序号。 | 
+   | void&nbsp;(_Release)(struct&nbsp;HdfChipDriver&nbsp;_chipDriver) | 释放chipDriver。 | 
+   | uint8_t&nbsp;(\*GetMaxIFCount)(struct&nbsp;HdfChipDriverFactory&nbsp;\*factory) | 获取当前芯片支持的最大接口数。 | 
 
    HdfChipDriver需要实现的接口有：
 
    | 接口 | 说明 | 
    | -------- | -------- |
-   | int32_t&nbsp;(\*init)(struct&nbsp;HdfChipDriver&nbsp;\*chipDriver,&nbsp;NetDevice&nbsp;\*netDev) | 初始化当前网络接口，这里需要向netDev提供接口NetDeviceInterFace | 
-   | int32_t&nbsp;(\*deinit)(struct&nbsp;HdfChipDriver&nbsp;\*chipDriver,&nbsp;NetDevice&nbsp;\*netDev) | 去初始化当前网络接口 | 
-   | struct&nbsp;HdfMac80211BaseOps&nbsp;\*ops | WLAN基础能力接口集 | 
-   | struct&nbsp;HdfMac80211STAOps&nbsp;\*staOps | 支持STA模式所需的接口集 | 
-   | struct&nbsp;HdfMac80211APOps&nbsp;\*apOps | 支持AP模式所需要的接口集 | 
+   | int32_t&nbsp;(\*init)(struct&nbsp;HdfChipDriver&nbsp;\*chipDriver,&nbsp;NetDevice&nbsp;\*netDev) | 初始化当前网络接口，这里需要向netDev提供接口NetDeviceInterFace。 | 
+   | int32_t&nbsp;(\*deinit)(struct&nbsp;HdfChipDriver&nbsp;\*chipDriver,&nbsp;NetDevice&nbsp;\*netDev) | 去初始化当前网络接口。 | 
+   | struct&nbsp;HdfMac80211BaseOps&nbsp;\*ops | WLAN基础能力接口集。 | 
+   | struct&nbsp;HdfMac80211STAOps&nbsp;\*staOps | 支持STA模式所需的接口集。 | 
+   | struct&nbsp;HdfMac80211APOps&nbsp;\*apOps | 支持AP模式所需要的接口集。 | 
 
 2. 编写配置文件，描述驱动支持的设备。
 
@@ -382,7 +382,7 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
    }
    ```
 
-4. 构建驱动
+4. 构建驱动。
 
    - 创建内核菜单在`//device/MySoCVendor/peripheral`目录中创建Kconfig文件，内容模板如下：
   

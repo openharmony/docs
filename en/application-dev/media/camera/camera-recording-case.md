@@ -1,9 +1,12 @@
-# Camera Recording Sample (ArkTS)
+# Video Recording Practices (ArkTS)
+
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Video Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
+To save videos to the media library, follow the instructions provided in [Saving Media Assets](../medialibrary/photoAccessHelper-savebutton.md).
 ## Development Process
 
 After obtaining the output stream capabilities supported by the camera, create a video stream. The development process is as follows:
@@ -19,11 +22,10 @@ import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
-  // Create a CameraManager instance.
+  // Create a CameraManager object.
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
@@ -62,7 +64,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     return;
   }
 
-  // Obtain the output stream capabilities supported by the camera.
+  // Obtain the output stream capability supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_VIDEO);
   if (!cameraOutputCap) {
     console.error("cameraManager.getSupportedOutputCapability error")
@@ -81,21 +83,14 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCap.videoProfiles;
-  if (!videoProfilesArray) {
+  if (!videoProfilesArray || videoProfilesArray.length === 0) {
     console.error("createOutput videoProfilesArray == null || undefined");
   }
+
   // The width and height of videoProfile must be the same as those of AVRecorderProfile.
-  let videoSize: camera.Size = {
-    width: 640,
-    height: 480
-  }
-  let videoProfile: undefined | camera.VideoProfile = videoProfilesArray.find((profile: camera.VideoProfile) => {
-    return profile.size.width === videoSize.width && profile.size.height === videoSize.height;
-  });
-  if (!videoProfile) {
-    console.error('videoProfile is not found');
-    return;
-  }
+  // In this sample code, the first video profile is selected. You need to select a video profile as required.
+  let videoProfile: camera.VideoProfile = videoProfilesArray[0];
+  let isHdr = videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCBCR_P010 || videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
   // Configure the parameters based on those supported by the hardware device.
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
@@ -104,16 +99,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     audioSampleRate: 48000,
     fileFormat: media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate: 2000000,
-    videoCodec: media.CodecMimeType.VIDEO_AVC,
-    videoFrameWidth: videoSize.width,
-    videoFrameHeight: videoSize.height,
-    videoFrameRate: 30
+    videoCodec: isHdr ? media.CodecMimeType.VIDEO_HEVC : media.CodecMimeType.VIDEO_AVC,
+    videoFrameWidth: videoProfile.size.width,
+    videoFrameHeight: videoProfile.size.height,
+    videoFrameRate: 30,
+    isHdr: isHdr
   };
-  let options: photoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let videoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // Local sandbox path.
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -159,7 +151,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the videoOutput instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the videoOutput instance. error: ${err}`);
   }
   if (videoOutput === undefined) {
     return;
@@ -175,7 +167,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the session instance. error: ${err}`);
   }
   if (videoSession === undefined) {
     return;
@@ -190,7 +182,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.beginConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to beginConfig. error: ${err}`);
   }
 
   // Create a camera input stream.
@@ -199,7 +191,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to createCameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to createCameraInput. error: ${err}`);
   }
   if (cameraInput === undefined) {
     return;
@@ -215,7 +207,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await cameraInput.open();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to open cameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to open cameraInput. error: ${err}`);
   }
 
   // Add the camera input stream to the session.
@@ -223,35 +215,41 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoSession.addInput(cameraInput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add cameraInput. error: ${err}`);
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
+  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
   let previewOutput: camera.PreviewOutput | undefined = undefined;
+  let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
+    return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
+  }); // Select the preview resolution with the same aspect ratio as the recording resolution.
+  if (previewProfile === undefined) {
+    return;
+  }
   try {
-    previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
+    previewOutput = cameraManager.createPreviewOutput(previewProfile, surfaceId);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to create the PreviewOutput instance. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to create the PreviewOutput instance. error: ${err}`);
   }
-
   if (previewOutput === undefined) {
     return;
   }
+
   // Add the preview output stream to the session.
   try {
     videoSession.addOutput(previewOutput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add previewOutput. error: ${err}`);
   }
 
-  // Add a video output stream to the session.
+  // Add the video output stream to the session.
   try {
     videoSession.addOutput(videoOutput);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to add videoOutput. error: ${err}`);
   }
 
   // Commit the session configuration.
@@ -259,7 +257,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await videoSession.commitConfig();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`videoSession commitConfig error: ${JSON.stringify(err)}`);
+    console.error(`videoSession commitConfig error: ${err}`);
   }
 
   // Start the session.
@@ -267,13 +265,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await videoSession.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`videoSession start error: ${JSON.stringify(err)}`);
+    console.error(`videoSession start error: ${err}`);
   }
 
   // Start the video output stream.
   videoOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
+      console.error(`Failed to start the video output. error: ${err}`);
       return;
     }
     console.info('Callback invoked to indicate the video output start success.');
@@ -284,13 +282,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await avRecorder.start();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+    console.error(`avRecorder start error: ${err}`);
   }
 
   // Stop the video output stream.
   videoOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
+      console.error(`Failed to stop the video output. error: ${err}`);
       return;
     }
     console.info('Callback invoked to indicate the video output stop success.');
@@ -301,26 +299,26 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     await avRecorder.stop();
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+    console.error(`avRecorder stop error: ${err}`);
   }
 
   // Stop the session.
-  videoSession.stop();
+  await videoSession.stop();
 
-  // Close the files.
+  // Close the file.
   fs.closeSync(file);
 
   // Release the camera input stream.
-  cameraInput.close();
+  await cameraInput.close();
 
   // Release the preview output stream.
-  previewOutput.release();
+  await previewOutput.release();
 
   // Release the video output stream.
-  videoOutput.release();
+  await videoOutput.release();
 
   // Release the session.
-  videoSession.release();
+  await videoSession.release();
 
   // Set the session to null.
   videoSession = undefined;

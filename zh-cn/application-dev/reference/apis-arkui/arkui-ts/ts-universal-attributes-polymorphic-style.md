@@ -4,9 +4,11 @@
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  从API Version 11开始支持另一种写法[attributeModifier](./ts-universal-attributes-attribute-modifier.md)，可根据开发者需要动态设置属性。
+>  从API version 11开始支持另一种写法[attributeModifier](./ts-universal-attributes-attribute-modifier.md)，可根据开发者需要动态设置属性。
+>
+>  多态样式仅支持[通用属性](ts-component-general-attributes.md)。如果多态样式不生效，则该属性可能为组件的私有属性，例如：[fontColor](./ts-universal-attributes-text-style.md)、[TextInput](./ts-basic-components-textinput.md)组件的[backgroundColor](./ts-universal-attributes-background.md#backgroundcolor18)等。此时，可以通过attributeModifier动态设置组件属性来解决此问题。
 
 ## stateStyles
 
@@ -28,7 +30,7 @@ stateStyles(value: StateStyles)
 
 ## StateStyles接口说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。只支持[通用属性](ts-universal-attributes-size.md)。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -43,7 +45,7 @@ stateStyles(value: StateStyles)
 
 **selected选中状态说明**
 
-- 当前多态样式的选中状态样式依赖组件选中属性值，可以使用[onClick](ts-universal-events-click.md)修改属性值，或使用属性自带[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定功能。
+- 当前多态样式的选中状态样式依赖组件选中属性值，可以使用[onClick](ts-universal-events-click.md)修改属性值，或使用属性自带[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定功能。
 
 - 当前支持selected的组件及其参数/属性值：
 
@@ -57,9 +59,15 @@ stateStyles(value: StateStyles)
   | [GridItem](ts-container-griditem.md) | selected         | 10          |
   | [MenuItem](ts-basic-components-menuitem.md) | selected         | 10          |
 
+**pressed和clicked状态说明**
+
+- 当clicked和pressed同时在一个组件上使用时，只有后注册的状态才能生效。
+
 ## 示例
 
-### 示例1
+### 示例1（设置Text多态样式）
+
+该示例展示了状态为pressed和disabled时Text组件的样式变化。
 
 ```ts
 // xxx.ets
@@ -157,7 +165,9 @@ struct StyleExample {
 
 ![zh-cn_image_0000001188742468](figures/zh-cn_image_0000001188742468.gif)
 
-### 示例2
+### 示例2（设置Radio多态样式）
+
+该示例展示了状态为selected时Radio组件的样式变化。
 
 ```ts
 // xxx.ets

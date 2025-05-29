@@ -24,4 +24,4 @@ import { insightIntent } from '@kit.AbilityKit';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口：** 该接口为系统接口。|
+| SERVICE_EXTENSION_ABILITY | 3 | 拉起ServiceExtensionAbility。<br/>**系统接口**：该接口为系统接口。|

@@ -5,6 +5,7 @@ The **request** module provides applications with basic upload, download, and ba
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](js-apis-request.md).
 
 
@@ -17,9 +18,8 @@ import { request } from '@kit.BasicServicesKit';
 
 
 ## Filter<sup>10+</sup>
-Defines the filter criteria.
 
-**Required permissions**: ohos.permission.INTERNET
+Defines the filter criteria.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -29,9 +29,8 @@ Defines the filter criteria.
 
 
 ## TaskInfo<sup>10+</sup> 
-Defines the data structure of the task information for query. The fields available vary depending on the query type.
 
-**Required permissions**: ohos.permission.INTERNET
+Defines the data structure of the task information for query. The fields available vary depending on the query types: common query and system query.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -62,13 +61,14 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Upload and Download Error Codes](errorcode-request.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 
@@ -112,13 +112,14 @@ Queries a task details based on the task ID. This API uses a promise to return t
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Upload and Download Error Codes](errorcode-request.md).
 
 | ID| Error Message|
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. |
 | 13400003 | task service ability error. |
 | 21900006 | task not found. |
 

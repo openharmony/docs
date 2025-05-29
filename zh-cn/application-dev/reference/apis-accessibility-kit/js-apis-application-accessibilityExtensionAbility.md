@@ -16,9 +16,9 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 类型                                                                                          | 可读   | 可写   | 说明           |
+| 名称      | 类型                                                                                          | 只读   | 可选   | 说明           |
 | ------- |---------------------------------------------------------------------------------------------| ---- | ---- | ------------ |
-| context | [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md) | 是    | 否    | 表示辅助扩展能力上下文。 |
+| context | [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md) | 否    | 否    | 表示辅助扩展能力上下文。 |
 
 ## AccessibilityEvent
 
@@ -28,18 +28,19 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 ### 属性
 
-| 名称      | 类型                                                             | 可读                                                                           | 可写                                 | 说明                                                         |
+| 名称      | 类型              | 只读             | 可选                      | 说明                       |
 | --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。当前版本暂不支持。 |
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是                                                                            | 否                                  | 发生事件的目标组件。                                         |
-| timeStamp | number                                                         | 是                                                                            | 否                                  | 事件时间戳，单位是毫秒。                                                 |
-| elementId<sup>12+</sup> | number                                                         | 是                                                                            | 否                                  | 主动聚焦的组件ID。                                                 |
-| textAnnouncedForAccessibility<sup>12+</sup> | string                                                         | 是                                                                            | 否                                  | 主动播报的内容。                                                 |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 否   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。 |
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 否  | 是    | 发生事件的目标组件。  |
+| timeStamp | number              | 否        | 是         | 事件时间戳，单位是毫秒。默认值为0。                          |
+| elementId<sup>12+</sup> | number            | 否             | 是             | 主动聚焦的组件ID。默认值为0。                 |
+| textAnnouncedForAccessibility<sup>12+</sup> | string    | 否           | 是     | 主动播报的内容。                  |
+| extraInfo<sup>20+</sup> | string    | 否           | 是     | 针对TextArea、TextInput、SearchField、RichEdit组件，当文本内容有新增或删除时，携带的文本内容。                 |
 
 
 ## AccessibilityElement<sup>10+</sup>
 
-[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)二级模块
+表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -53,7 +54,7 @@ let accessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
-[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)二级模块
+表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -67,7 +68,7 @@ let elementAttributeValues: ElementAttributeValues;
 
 ## FocusDirection<sup>10+</sup>
 
-[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)二级模块，表示查询下一焦点元素的方向。
+表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -83,9 +84,9 @@ let focusDirection: FocusDirection;
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 类型                                                                                                                   | 可读   | 可写   | 说明                                                 |
+| 名称      | 类型                                                                                                                   | 只读   | 可选   | 说明                                                 |
 | ------- |----------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
-| ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 是    | 否    | 表示ElementAttributeValues的key。 |
+| ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 否    | 否    | 表示ElementAttributeValues的key。 |
 
 
 **示例：**
@@ -98,7 +99,7 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 ## FocusType<sup>10+</sup>
 
-[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)二级模块，表示查询焦点元素的类型。
+表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -112,7 +113,7 @@ let focusType: FocusType;
 
 ## WindowType <sup>10+</sup>
 
-[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)二级模块，表示窗口的类型。
+表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -126,7 +127,7 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
-[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)二级模块，表示矩形区域。
+表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -188,31 +189,39 @@ let rect: Rect;
 
 ## PageUpdateType
 
-页面刷新类型。当前版本暂不支持。
+type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
+
+页面刷新类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                | 类型                | 描述               |
-| ----------------- | ----------------- | ---------------- |
-| pageContentUpdate | string | 表示页面内容刷新。 |
-| pageStateUpdate   | string | 表示页面状态刷新。 |
+| 类型                | 说明            |
+| ----------------- | ---------------- |
+| 'pageContentUpdate' | 表示页面内容刷新。 |
+| 'pageStateUpdate' | 表示页面状态刷新。 |
 
 ## TouchGuideType
+
+TouchGuideType = 'touchBegin' | 'touchEnd'
 
 触摸浏览事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称         | 类型                | 描述                  |
-| ---------- | ---------- | ------------------- |
-| touchBegin | string | 表示触摸浏览时开始触摸。 |
-| touchEnd   | string | 表示触摸浏览时结束触摸。 |
+| 类型                | 说明                  |
+| ---------- | ------------------- |
+| 'touchBegin' | 表示触摸浏览时开始触摸。 |
+| 'touchEnd' | 表示触摸浏览时结束触摸。 |
 
-## AccessibilityExtensionAbility.onConnect
+## AccessibilityExtensionAbility.onConnect<sup>(deprecated)</sup>
 
 onConnect(): void;
 
 用户启用AccessibilityExtensionAbility时，系统服务完成连接后，回调此接口，可以该方法中执行初始化业务逻辑操作。该方法可以选择性重写。
+
+> **说明：**
+>
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -228,11 +237,15 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onDisconnect
+## AccessibilityExtensionAbility.onDisconnect<sup>(deprecated)</sup>
 
 onDisconnect(): void;
 
 用户停用AccessibilityExtensionAbility时，系统服务完成断开连接后，回调此接口，可以该方法中执行资源回收退出业务逻辑操作。该方法可以选择性重写。
+
+> **说明：**
+>
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -248,11 +261,15 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onAccessibilityEvent
+## AccessibilityExtensionAbility.onAccessibilityEvent<sup>(deprecated)</sup>
 
 onAccessibilityEvent(event: AccessibilityEvent): void;
 
-在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。（目前暂不支持UIExtension组件和onTouch事件）
+在关注的应用及事件类型对应的事件发生时回调此接口，可以在该方法中根据事件信息进行业务逻辑处理。一般情况下需要重写该方法完成业务。
+
+> **说明：**
+>
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -260,7 +277,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 类型                                       | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。<br>目前暂不支持UIExtension组件和onTouch事件 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件。无返回值。 |
 
 **示例：**
 
@@ -277,11 +294,15 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onKeyEvent
+## AccessibilityExtensionAbility.onKeyEvent<sup>(deprecated)</sup>
 
 onKeyEvent(keyEvent: KeyEvent): boolean;
 
 在物理按键按下时回调此方法，可以在该方法中根据业务判断是否对事件进行拦截。
+
+> **说明：**
+>
+> 从API version 12开始废弃。替代接口仅面向系统应用开放。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -289,7 +310,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 | 参数名      | 类型                                               | 必填   | 说明                      |
 | -------- |--------------------------------------------------| ---- | ----------------------- |
-| keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
+| keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。|
 
 **示例：**
 

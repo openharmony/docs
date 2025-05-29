@@ -1,13 +1,18 @@
-# Network Kit（网络服务）
+# Network Kit（网络服务）<!--network-api-->
 
-- ArkTS API
+- ArkTS API<!--network-api-arkts-->
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
+  - [@ohos.net.policy (网络策略管理)](js-apis-net-policy.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+  - [@ohos.net.netFirewall (网络防火墙)](js-apis-net-netfirewall.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
@@ -19,19 +24,20 @@
   - [@ohos.net.statistics (流量管理)（系统接口）](js-apis-net-statistics-sys.md)
   - [@ohos.net.vpn (VPN管理)（系统接口）](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (VPN增强管理)（系统接口）](js-apis-net-vpnExtension-sys.md)
+  - [@ohos.net.netFirewall (网络防火墙)（系统接口）](js-apis-net-netfirewall-sys.md)
   <!--DelEnd-->
-- C API
-  - 模块
+- C API<!--network-c-->
+  - 模块<!--network-module-->
     - [Netstack](netstack.md)
     - [NetConnection](_net_connection.md)
-  - 头文件
+  - 头文件<!--network-headerfile-->
     - [net_connection.h](net__connection_8h.md)
     - [net_connection_type.h](net__connection__type_8h.md)
     - [net_ssl_c.h](net__ssl__c_8h.md)
     - [net_ssl_c_type.h](net__ssl__c__type_8h.md)
     - [net_websocket.h](net__websocket_8h.md)
     - [net_websocket_type.h](net__websocket__type_8h.md)
-  - 结构体
+  - 结构体<!--network-struct-->
     - [NetConn_ConnectionProperties](_net_conn___connection_properties.md)
     - [NetConn_HttpProxy](_net_conn___http_proxy.md)
     - [NetConn_NetAddr](_net_conn___net_addr.md)
@@ -39,7 +45,11 @@
     - [NetConn_NetHandle](_net_conn___net_handle.md)
     - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
     - [NetConn_Route](_net_conn___route.md)
+    - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
+    - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
+    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
+    - [NetStack_Certificates](_net_stack___certificates.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
     - [WebSocket_CloseResult](_web_socket___close_result.md)
@@ -47,12 +57,13 @@
     - [WebSocket_Header](_web_socket___header.md)
     - [WebSocket_OpenResult](_web_socket___open_result.md)
     - [WebSocket_RequestOptions](_web_socket___request_options.md)
-- 已停止维护的接口
+- 已停止维护的接口<!--network-arkts-dep-->
   - [@system.network (网络状态)](js-apis-system-network.md)
   - [@system.fetch (数据请求)](js-apis-system-fetch.md)
-- 错误码
+- 错误码<!--network-arkts-errcode-->
   - [HTTP错误码](errorcode-net-http.md)
   - [Socket错误码](errorcode-net-socket.md)
+  - [webSocket错误码](errorcode-net-webSocket.md)
   - [网络连接管理错误码](errorcode-net-connection.md)
   - [以太网连接错误码](errorcode-net-ethernet.md)
   - [网络共享错误码](errorcode-net-sharing.md)
@@ -60,3 +71,4 @@
   - [MDNS错误码](errorcode-net-mdns.md)
   - [流量管理错误码](errorcode-net-statistics.md)
   - [VPN错误码](errorcode-net-vpn.md)
+  - [NetworkSecurity错误码](errorcode-net-networkSecurity.md)

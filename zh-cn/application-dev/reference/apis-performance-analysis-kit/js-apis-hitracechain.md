@@ -16,7 +16,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪标志组合类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -33,7 +33,7 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪埋点类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -47,20 +47,20 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 
 跟踪通信类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | 缺省通信类型    |
-| THREAD   | 1 | 线程间通信类型  |
-| PROCESS  | 2 | 进程间通信类型  |
-| DEVICE   | 3 | 设备间通信类型  |
+| DEFAULT  | 0 | 缺省通信类型。    |
+| THREAD   | 1 | 线程间通信类型。  |
+| PROCESS  | 2 | 进程间通信类型。  |
+| DEVICE   | 3 | 设备间通信类型。  |
 
 ## HiTraceId
 
 此接口为HiTraceId对象接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiTrace。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -75,7 +75,7 @@ begin(name: string, flags?: number): HiTraceId
 
 开始跟踪，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -105,7 +105,7 @@ end(id: HiTraceId): void
 
 结束跟踪，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -128,7 +128,7 @@ getId(): HiTraceId
 
 获取跟踪标识，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 
@@ -157,7 +157,7 @@ setId(id: HiTraceId): void
 
 设置跟踪标识，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -180,7 +180,7 @@ clearId(): void
 
 清除跟踪标识，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **示例：**
 
@@ -199,7 +199,7 @@ createSpan(): HiTraceId
 
 创建跟踪分支，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **返回值：**
 
@@ -228,7 +228,7 @@ tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTr
 
 信息埋点，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -256,7 +256,7 @@ isValid(id: HiTraceId): boolean
 
 判断HiTraceId对象是否有效，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -290,7 +290,7 @@ isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean
 
 判断HiTraceId对象中指定的跟踪标志是否已置位，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 
@@ -325,7 +325,7 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 
 置位HiTraceId对象中指定的跟踪标志，同步接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiTrace
+**系统能力**：SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
 

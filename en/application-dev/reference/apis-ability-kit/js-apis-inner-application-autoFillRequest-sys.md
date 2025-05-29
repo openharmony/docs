@@ -20,11 +20,11 @@ Defines the information about an auto-fill request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | Yes  | Type of the element to be automatically filled in.         |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
-| customData<sup>12+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | Yes  | Custom data.            |
+| customData<sup>13+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | Yes  | Custom data.            |
 | isPopup<sup>12+</sup>    | boolean               | Yes  | Whether a dialog box is displayed for the auto-fill request.<br>**true**: A dialog box is displayed<br>**false**: A modal window is displayed             |
 
 ## SaveRequest
@@ -33,7 +33,7 @@ Defines the information about an auto-saving request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -43,7 +43,7 @@ Defines the information about an auto-update request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -53,7 +53,7 @@ Defines the information about the response to an auto-fill request.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | Yes  | Page data.             |
 
@@ -71,15 +71,15 @@ Called when an auto-fill request is successfully processed.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](../apis/#fillresponse)  | Yes | Information about the response to the auto-fill response. |
+| response | [FillResponse](#fillresponse)  | Yes| Information about the response to the auto-fill request.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
 | 401  | Mandatory parameters are left unspecified. |
@@ -122,14 +122,14 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+
   build() {
     Row() {
       Column() {
@@ -140,13 +140,13 @@ struct AutoFillPage {
 
       Button('onSuccess')
         .onClick(() => {
-          if (viewData) {
-            viewData.pageNodeInfos[0].value = 'user1';
-            viewData.pageNodeInfos[1].value = 'user1 password';
-            viewData.pageNodeInfos[2].value = 'user1 generate new password';
-            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
+          if (this.viewData) {
+            this.viewData.pageNodeInfos[0].value = 'user1';
+            this.viewData.pageNodeInfos[1].value = 'user1 password';
+            this.viewData.pageNodeInfos[2].value = 'user1 generate new password';
+            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(this.viewData));
             try {
-              fillCallback?.onSuccess({ viewData: viewData });
+              this.fillCallback?.onSuccess({ viewData: this.viewData });
             } catch (error) {
               console.error(`catch error, code: ${(error as BusinessError).code},
                   message: ${(error as BusinessError).message}`);
@@ -172,7 +172,7 @@ Called when an auto-fill request fails to be processed.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
@@ -214,13 +214,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  
   build() {
     Row() {
       Column() {
@@ -233,7 +233,7 @@ struct AutoFillPage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill failure');
           try {
-            fillCallback?.onFailure();
+            this.fillCallback?.onFailure();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
               message: ${(error as BusinessError).message}`);
@@ -246,7 +246,7 @@ struct AutoFillPage {
 }
 ```
 
-### FillRequestCallback.onCancel<sup>12+</sup>
+### FillRequestCallback.onCancel<sup>11+</sup>
 
 onCancel(fillContent?: string): void
 
@@ -256,15 +256,15 @@ Called when an auto-fill request is canceled.
 
 **Parameters**
 
-| Name                   | Type  | Mandatory | Description                |
+| Name                   | Type  | Mandatory| Description                |
 | ------------------------- | ------ | ---- | -------------------- |
-| fillContent | string | No  | Content returned to the input method framework when the auto-fill request is canceled. |
+| fillContent | string | No  | Content returned to the input method framework when the auto-fill request is canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
 | 401  | Parameter error. Possible causes: 1. The input parameter is not valid parameter;2. Mandatory parameters are left unspecified. |
@@ -307,13 +307,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  
   build() {
     Row() {
       Column() {
@@ -326,7 +326,7 @@ struct AutoFillPage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill cancel');
           try {
-            fillCallback?.onCancel();
+            this.fillCallback?.onCancel();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
                 message: ${(error as BusinessError).message}`);
@@ -349,15 +349,15 @@ Sets the size and position of an auto-fill pop-up.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| autoFillPopupConfig | [AutoFillPopupConfig](js-apis-inner-application-autoFillPopupConfig-sys.md) | Yes | Size and position of the auto-fill pop-up. |
+| autoFillPopupConfig | [AutoFillPopupConfig](js-apis-inner-application-autoFillPopupConfig-sys.md) | Yes| Size and position of the auto-fill pop-up.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
 | 401  | Mandatory parameters are left unspecified. |
@@ -367,10 +367,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // MyAutoFillExtensionAbility.ts
+// MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class AutoFillAbility extends AutoFillExtensionAbility {
+  storage: LocalStorage = new LocalStorage();
+
   onCreate(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onCreate');
   }
@@ -394,9 +397,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
   onUpdateRequest(request: autoFillManager.UpdateRequest): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
-    console.log("get fill request viewData: ", JSON.stringify(request.viewData));
-    let storage = LocalStorage.getShared();
-    let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+    console.log(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    let fillCallback = this.storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
     if (fillCallback) {
       try {
@@ -417,8 +419,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
-    console.log('testTag', "Get fill request viewData: ", JSON.stringify(request.viewData));
-    console.log('testTag', "Get fill request type: ", JSON.stringify(request.type));
+    console.log(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
+    console.log(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
 
     try {
       let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
@@ -428,7 +430,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
         'autoFillType': request.type
       }
       let storage_fill = new LocalStorage(localStorageData);
-      console.info('testTag', 'session: ', session);
+      console.info(`testTag. Session: ${JSON.stringify(session)}.`);
       let size: autoFillManager.PopupSize = {
         width: 400,
         height: 200
@@ -478,7 +480,7 @@ Called when a saving request is successfully processed.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
@@ -519,13 +521,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-
 @Entry
 @Component
 struct SavePage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+
   build() {
     Row() {
       Column() {
@@ -538,7 +540,7 @@ struct SavePage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autosave success');
           try {
-            saveCallback?.onSuccess();
+            this.saveCallback?.onSuccess();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
                 message: ${(error as BusinessError).message}`);
@@ -563,7 +565,7 @@ Called when a saving request fails to be processed.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
@@ -605,13 +607,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-
 @Entry
 @Component
 struct SavePage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+  
   build() {
     Row() {
       Column() {
@@ -624,7 +626,7 @@ struct SavePage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill failure');
           try {
-            saveCallback?.onFailure();
+            this.saveCallback?.onFailure();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
               message: ${(error as BusinessError).message}`);

@@ -1,6 +1,8 @@
 # @ohos.web.netErrorList(The List of ArkWeb Network Protocol Stack Errors)
 
-The **netErrorList** module provides APIs for the list of ArkWeb network protocol stack errors.
+Provides a list of ArkWeb network protocol stack errors.
+
+The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End--&gt.
 
 > **NOTE**
 > 
@@ -9,7 +11,7 @@ The **netErrorList** module provides APIs for the list of ArkWeb network protoco
 ## Modules to Import
 
 ```js
-import {WebNetErrorList} from '@ohos.web.netErrorList';
+import { WebNetErrorList } from '@kit.ArkWeb';
 ```
 
 ## WebNetErrorList
@@ -125,7 +127,7 @@ Provides a list of ArkWeb network protocol stack errors.
 |ERR_ECH_FALLBACK_CERTIFICATE_INVALID | -184 | ECH is enabled, the server cannot decrypt ClientHello message, and no certificate valid for the public name is provided.|
 |ERR_CERT_COMMON_NAME_INVALID | -200 | The public name of the certificate used by the server in response does not match the host name. This may mean: 1. The attacker has redirected local traffic to their server and provided a certificate with a private key. 2. The server is incorrectly configured and uses an incorrect certificate to respond. 3. The user is on the wireless network and is redirected to the login page of the network. 4. The operating system uses the DNS search suffix, and the server does not have a certificate with such abbreviated name in the address box.|
 |ERR_CERT_DATE_INVALID | -201 | The certificate has expired. This may mean: 1. The attacker provides an old certificate that they have obtained the private key. 2. The server is incorrectly configured and no valid certificate is provided. 3. The clock of the device is incorrect.|
-|ERR_CERT_AUTHORITY_INVALID | -202 | The CA is not trusted. This may mean: 1. The attacker replaces a real certificate with a certificate that contains its public key and is signed by its associates. 2. The server operator has a valid certificate from a CA that the local end does not know but should trust. 3. The server provides a self-signed certificate that cannot defend against active attackers.|
+|ERR_CERT_AUTHORITY_INVALID | -202 | The CA is not trusted. This may mean: 1. The attacker replaces a real certificate with a certificate that contains its public key and is signed by its cousin. 2. The server operator has a valid certificate from a CA that the local end does not know but should trust. 3. The server provides a self-signed certificate that cannot defend against active attackers.|
 |ERR_CERT_CONTAINS_ERRORS | -203 | The certificate contains errors.|
 |ERR_CERT_NO_REVOCATION_MECHANISM | -204 |There is no revocation mechanism for this certificate.|
 |ERR_CERT_UNABLE_TO_CHECK_REVOCATION | -205 | Revocation information for this website's security certificate is not available. This may mean: 1. The attacker compromises the private key in the certificate and prevents the local end from discovering that the certificate has been revoked. 2. The certificate is not revoked, but the revocation server is busy or unavailable.|

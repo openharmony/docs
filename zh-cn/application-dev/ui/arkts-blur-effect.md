@@ -8,7 +8,7 @@
 
 | 接口                                                         | 说明                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| [backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur) | 为当前组件添加背景模糊效果，入参为模糊半径。 |
+| [backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur) | 为当前组件添加背景模糊效果，入参为模糊半径。 |
 | [blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur) | 为当前组件添加内容模糊效果，入参为模糊半径。 |
 | [backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9) | 为当前组件添加背景模糊效果，入参为模糊样式。 |
 | [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | 为当前组件添加内容模糊效果，入参为模糊样式。 |
@@ -16,7 +16,7 @@
 
 >  **说明：**
 >
->  以上接口是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用[静态模糊接口](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)。
+>  以上接口是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用静态模糊接口[blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)。
 
 ## 使用backdropBlur为组件添加背景模糊
 
@@ -27,13 +27,13 @@
 struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
-      Text('backdropblur')
+      Text('backdropBlur')
         .width('90%')
         .height('90%')
         .fontSize(20)
         .fontColor(Color.White)
         .textAlign(TextAlign.Center)
-        .backdropBlur(10) // 对背景进行模糊
+        .backdropBlur(10)// 对背景进行模糊
         .backgroundImage($r('app.media.share'))
         .backgroundImageSize({ width: 400, height: 300 })
     }
@@ -62,7 +62,7 @@ struct Index1 {
 
   aboutToAppear() {
     this.text = "按住屏幕上下滑动\n" + "当前手指所在y轴位置 ： " + this.y +
-    "\n" + "当前图片模糊程度为 : " + this.radius;
+      "\n" + "当前图片模糊程度为 : " + this.radius;
   }
 
   build() {
@@ -74,14 +74,14 @@ struct Index1 {
         .fontFamily("cursive")
         .fontStyle(FontStyle.Italic)
       Image($r("app.media.wall"))
-        .blur(this.radius) // 使用blur接口为照片组件添加内容模糊效果
+        .blur(this.radius)// 使用blur接口为照片组件添加内容模糊效果
         .height('100%')
         .width("100%")
         .objectFit(ImageFit.Cover)
     }.height('100%')
     .width("100%")
     .onTouch((event?: TouchEvent) => {
-      if(event){
+      if (event) {
         if (event.type === TouchType.Move) {
           this.y = Number(event.touches[0].y.toString()).toString();
           this.radius = Number(this.y) / 10; // 根据跟手过程中的滑动距离修改模糊半径，配合模糊接口，形成跟手模糊效果
@@ -92,7 +92,7 @@ struct Index1 {
         }
       }
       this.text = "按住屏幕上下滑动\n" + "当前手指所在y轴位置 ： " + this.y +
-      "\n" + "当前图片模糊程度为 : " + this.radius;
+        "\n" + "当前图片模糊程度为 : " + this.radius;
     })
   }
 }
@@ -636,12 +636,12 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct motionBlurTest {
-  @State widthSize: number = 400
-  @State heightSize: number = 320
-  @State flag: boolean = true
-  @State radius: number = 0
-  @State x: number = 0
-  @State y: number = 0
+  @State widthSize: number = 400;
+  @State heightSize: number = 320;
+  @State flag: boolean = true;
+  @State radius: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
 
   build() {
     Column() {

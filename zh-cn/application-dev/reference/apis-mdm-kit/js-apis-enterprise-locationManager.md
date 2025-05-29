@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 > 
 
 ## 导入模块
@@ -21,7 +21,7 @@ import { locationManager } from '@kit.MDMKit';
 
 setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
-以同步方法设置位置服务管理策略。失败抛出对应异常。
+设置位置服务管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -32,7 +32,7 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | policy | [LocationPolicy](#locationpolicy) | 是    | 位置服务策略。<br>- 0：默认策略。<br>- 1：禁用。<br>- 2：强制启用。 |
 
 **错误码**：
@@ -50,7 +50,6 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -68,7 +67,7 @@ try {
 
 getLocationPolicy(admin: Want): LocationPolicy
 
-以同步方法查询位置服务策略。成功返回位置服务策略，失败抛出对应异常。
+查询位置服务管理策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_LOCATION
 
@@ -79,13 +78,13 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。        |
 
 **返回值：**
 
 | 类型                              | 说明                                                 |
 | --------------------------------- | ---------------------------------------------------- |
-| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值 0：默认策略 1：禁用 2：强制启用。 |
+| [LocationPolicy](#locationpolicy) | 位置服务策略枚举值。0：默认策略。1：禁用。2：强制启用。 |
 
 **错误码**：
 
@@ -102,7 +101,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,7 +122,7 @@ try {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |

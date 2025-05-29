@@ -7,13 +7,9 @@ Mobile Device Management (MDM) is an enterprise-level IT application solution us
 ## Working Principles
 
 <!--RP1-->
-
-The framework layer and system ability (SA) layer use the enterprise_device_management component to provide the device administrator application framework and basic device management capabilities. The device administrator application uses an **EnterpriseAdminExtensionAbility** to call APIs in MDM Kit to manage devices.
-
-<!--RP1End-->
+The framework layer and system ability (SA) layer use the enterprise_device_management component to provide the device administrator application framework and basic device management capabilities. The device administrator application uses an **EnterpriseAdminExtensionAbility** to call APIs in MDM Kit to manage devices.<!--RP1End-->
 
 ![intro_arch.png](./figures/intro_arch.png)
-
 
 ## Constraints
 

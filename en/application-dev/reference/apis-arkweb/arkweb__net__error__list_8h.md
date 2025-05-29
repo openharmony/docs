@@ -7,6 +7,8 @@ The **arkweb_error_code.h** file declares the error codes of the ArkWeb network 
 
 **Library**: libohweb.so
 
+**File to include**: <web/arkweb_net_error_list.h>
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Since**: 12

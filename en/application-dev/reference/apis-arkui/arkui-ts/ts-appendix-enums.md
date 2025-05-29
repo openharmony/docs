@@ -10,8 +10,10 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Color                    | Value          | Illustration                                    |
-| ------------------------ | ------------- | ---------------------------------------- |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Color                    | Value           | Illustration                                                        |
+| ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a      | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) |
@@ -23,22 +25,30 @@
 | Red                      | 0xff0000      | ![en-us_image_0000001219662665](figures/en-us_image_0000001219662665.png) |
 | White                    | 0xffffff      | ![en-us_image_0000001174582866](figures/en-us_image_0000001174582866.png) |
 | Yellow                   | 0xffff00      | ![en-us_image_0000001174582864](figures/en-us_image_0000001174582864.png) |
-| Transparent<sup>9+</sup> | rgba(0,0,0,0) | Transparent                                     |
+| Transparent<sup>9+</sup> | rgba(0,0,0,0) | Transparent                                                      |
 
 ## ImageFit
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name       | Description                             |
-| --------- | ------------------------------- |
-| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.  |
-| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.|
-| Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.|
-| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.       |
-| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.            |
-| None      | The original size is retained.                      |
+| Name       | Value   | Description                             |
+| --------- | ----- | ------------------------------- |
+| Contain   | 0  | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples01](figures/image_fit_contain.png) |
+| Cover     | 1  | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples02](figures/image_fit_cover.png) |
+| Auto      | 2  | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples03](figures/image_fit_auto.png) |
+| Fill      | 3  | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples04](figures/image_fit_fill.png) |
+| ScaleDown | 4  | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
+| None      | 5  | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples06](figures/image_fit_none.png) |
+| TOP_START<sup>12+</sup> | 7  | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples07](figures/image_fit_top_start.png) |
+| TOP<sup>12+</sup>       | 8  | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples08](figures/image_fit_top.png)  |
+| TOP_END<sup>12+</sup>   | 9  | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples09](figures/image_fit_top_end.png) |
+| START<sup>12+</sup>     | 10  | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples10](figures/image_fit_start.png) |
+| CENTER<sup>12+</sup>    | 11  | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples11](figures/image_fit_center.png) |
+| END<sup>12+</sup>       | 12  | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples12](figures/image_fit_end.png) |
+| BOTTOM_START<sup>12+</sup> | 13  | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
+| BOTTOM<sup>12+</sup>    | 14  | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples14](figures/image_fit_bottom.png) |
+| BOTTOM_END<sup>12+</sup>| 15  | The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| 16  | The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix15), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## BorderStyle
 
@@ -46,28 +56,21 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
 | Dashed | Dashed border.                |
 | Solid  | Solid border.                     |
 
-## OutlineStyle<sup>11+</sup>
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| DOTTED | Dotted border. The radius of a dot is half of **outlineWidth**.|
-| DASHED | Dashed border.                |
-| SOLID  | Solid border.                     |
-
 ## LineJoinStyle
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Description        |
 | ----- | ---------- |
@@ -79,6 +82,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description             |
 | ------ | --------------- |
 | Down   | A finger is pressed.       |
@@ -86,9 +91,11 @@
 | Move   | A finger moves on the screen in pressed state.|
 | Cancel | A touch event is canceled.     |
 
-## MouseButton
+## MouseButton<sup>8+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Description      |
 | ------- | -------- |
@@ -99,22 +106,68 @@
 | Forward | Forward button on the left of the mouse.|
 | None    | No button.    |
 
-## MouseAction
+## MouseAction<sup>8+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Description     |
 | ------- | ------- |
-| Press   | The mouse button is pressed.|
-| Release | The mouse button is released.|
-| Move    | The mouse cursor moves.  |
-| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.<br>  |
+| Press   | The mouse button is pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Release | The mouse button is released.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Move    | The mouse cursor moves.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| CANCEL<sup>18+</sup>  | The mouse button action is canceled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+
+## ModifierKey<sup>10+</sup>
+
+Enumerates the input method modifier keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Description          |
+| ----- | ------------ |
+| CTRL  | Ctrl key on the keyboard. |
+| SHIFT | Shift key on the keyboard.|
+| ALT   | Alt key on the keyboard.  |
+
+## FunctionKey<sup>10+</sup>
+
+Enumerates the input method function keys.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Description          |
+| ---- | ------------ |
+| ESC  | Esc key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F1   | F1 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F2   | F2 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F3   | F3 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F4   | F4 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F5   | F5 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F6   | F6 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F7   | F7 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F8   | F8 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F9   | F9 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F10  | F10 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F11  | F11 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F12  | F12 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| TAB<sup>12+</sup>  | Tab key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_UP<sup>12+</sup>   | Up arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_DOWN<sup>12+</sup> | Down arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_LEFT<sup>12+</sup> | Left arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_RIGHT<sup>12+</sup> | Right arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Curve
+
+Enumerates the interpolation curves. For details about the animation, see <!--RP1-->[Bezier Curve](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                 | Description                                      |
 | ------------------- | ---------------------------------------- |
@@ -138,6 +191,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Description       |
 | ------- | --------- |
 | Initial | The animation is in the initial state.  |
@@ -150,6 +205,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
@@ -164,6 +221,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name              | Description                                      |
 | ---------------- | ---------------------------------------- |
 | Normal           | The animation is played forwards.                                |
@@ -175,6 +234,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name  | Description   |
 | ---- | ----- |
 | Down | The key is pressed.|
@@ -184,28 +245,33 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Description        |
 | -------- | ---------- |
 | Unknown  | Unknown input device. |
 | Keyboard | The input device is a keyboard.|
+| JOYSTICK<sup>15+</sup> | The input device is a joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## Edge
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                              | Description                                      |
-| -------------------------------- | ---------------------------------------- |
-| Top                              | Top edge in the vertical direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
-| Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.        |
-| Bottom                           | Bottom edge in the vertical direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
-| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.   |
-| Start                            | Start position in the horizontal direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
-| Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.     |
-| End                              | End position in the horizontal direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| Name                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| Top                              | Top edge in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.           |
+| Bottom                           | Bottom edge in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.     |
+| Start                            | Start position in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.           |
+| End                              | End position in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Week
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description  |
 | ---- | ---- |
@@ -223,6 +289,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name  | Description         |
 | ---- | ----------- |
 | Ltr  | Components are arranged from left to right.  |
@@ -235,17 +303,32 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name  | Description                |
 | ---- | ------------------ |
 | Off  | Not displayed.              |
 | On   | Always displayed.             |
 | Auto | Displayed when the screen is touched and hidden after 2s.|
 
+## TitleHeight<sup>9+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Description                        |
+| ----------- | -------------------------- |
+| MainOnly    | Recommended height (56 vp) of the title bar when only the main title is available.     |
+| MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist.|
+
 ## EdgeEffect
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description                                      |
 | ------ | ---------------------------------------- |
@@ -258,6 +341,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description      |
 | ----------- | -------- |
@@ -277,6 +362,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description                            |
 | ------ | ------------------------------ |
 | All    | The transition takes effect in all scenarios.|
@@ -286,6 +373,8 @@
 ## RelateType
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description            |
 | ---- | -------------- |
@@ -297,6 +386,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Description              |
 | ------- | ---------------- |
@@ -310,6 +401,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | Butt   | The ends of the line are squared off, and the line does not extend beyond its two endpoints.              |
@@ -322,6 +415,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name        | Description    |
 | ---------- | ------ |
 | Vertical   | Vertical direction.|
@@ -332,6 +427,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -344,6 +441,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Description                                      |
 | ------------ | ---------------------------------------- |
@@ -360,6 +459,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
 | Auto     | The default configuration of the flex container is used.                          |
@@ -375,6 +476,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name           | Description              |
 | ------------- | ---------------- |
 | Row           | The child components are arranged in the same direction as the main axis runs along the rows. |
@@ -388,6 +491,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name         | Description                         |
 | ----------- | --------------------------- |
 | NoWrap      | The child components in the flex container are arranged in a single line. If any of them have minimum size constraints applied, the flex container does not forcibly shrink them when overflow occurs. |
@@ -399,6 +504,8 @@
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -412,6 +519,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Description           |
 | -------- | ------------- |
 | X        | The image is repeatedly drawn only along the horizontal axis.|
@@ -421,20 +530,22 @@
 
 ## ImageSize
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Type     | Description                                 |
-| ------- | ----------------------------------- |
-| Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
-| Auto    | The original image aspect ratio is retained.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.|
+| Name   | Value   | Description                                 |
+| ------- | -------------------------- | ----------------------------------- |
+| Cover   | 1  | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Contain | 2  | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
+| Auto    | 0  | The original image aspect ratio remains unchanged. Default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| FILL<sup>12+</sup> | 3  | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## GradientDirection
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description   |
 | ----------- | ----- |
@@ -452,25 +563,20 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
 | Static   | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
 | Exchange | The element is relocated and scaled properly on the target page.                 |
-
-## ShadowType<sup>10+<sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name      | Description                                  |
-| -------- | ---------------------------------------- |
-| COLOR    | Color.                                   |
-| BLUR     | Blur.                                   |
 
 ## FontStyle
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description      |
 | ------ | -------- |
@@ -483,46 +589,50 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name     | Description     |
-| ------- | ------- |
-| Lighter | The font weight is lighter.  |
-| Normal  | The font weight is normal.|
-| Regular | The font weight is regular.|
-| Medium  | The font weight is medium.|
-| Bold    | The font weight is bold.  |
-| Bolder  | The font weight is bolder. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   |  Value  |    Description  |
+| ------- | ----- | ----------- |
+| Lighter |  100  |   The font weight is lighter.|
+| Normal  |  400  |   The font weight is normal.|
+| Regular |  400  |   The font weight is regular.|
+| Medium  |  500  |   The font weight is medium.|
+| Bold    |  700  |   The font weight is bold.  |
+| Bolder  |  900  |   The font weight is bolder.|
 
 ## TextAlign
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name                   | Description     |
-| --------------------- | ------- |
-| Start                 | Aligned with the start.|
-| Center                | Horizontally centered.|
-| End                   | Aligned with the end.|
-| JUSTIFY<sup>10+</sup> | Aligned with both margins.  |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Start                 | Aligned with the start.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| Center                | Horizontally centered.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| End                   | Aligned with the end.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| JUSTIFY<sup>10+</sup> | Aligned with both margins.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
 
 ## TextOverflow
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Overflowing content is clipped at the limit of the maximum line width.         |
-| Clip                  | Overflowing content is clipped at the limit of the maximum line width.       |
-| Ellipsis              | An ellipsis (...) is used to represent text overflow.|
-| MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.    |
+| None                  | Overflowing content is clipped at the limit of the maximum line width.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| Clip                  | Overflowing content is clipped at the limit of the maximum line width.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| Ellipsis              | An ellipsis (...) is used to represent text overflow.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
+| MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.|
 
 ## TextDecorationType
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description       |
 | ----------- | --------- |
@@ -537,6 +647,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name       | Description        |
 | --------- | ---------- |
 | Normal    | The original case of the text is retained.|
@@ -547,24 +659,18 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name        | Description           |
 | ---------- | ------------- |
 | LongPress  | The menu is displayed when the component is long-pressed.  |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
-## RichEditorResponseType<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name        | Description           |
-| ---------- | ------------- |
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| SELECT | The menu is displayed when the component is selected.|
-
 ## HoverEffect<sup>8+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Description            |
 | --------- | -------------- |
@@ -577,35 +683,39 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name           | Description                                    |
-| ------------- | -------------------------------------- |
-| Left          | The popup is on the left of the component, vertically aligned with the component on the left.                 |
-| Right         | The popup is on the right of the component, vertically aligned with the component on the right.                 |
-| Top           | The popup is at the top of the component, horizontally aligned with the component at the top.                 |
-| Bottom        | The popup is at the bottom of the component, horizontally aligned with the component at the bottom.                 |
-| TopLeft       | The popup is at the top of the component and, since API version 9, aligned with the left of the component.|
-| TopRight      | The popup is at the top of the component and, since API version 9, aligned with the right of the component.|
-| BottomLeft    | The popup is at the bottom of the component and, since API version 9, aligned with the left of the component.|
-| BottomRight   | The popup is at the bottom of the component and, since API version 9, aligned with the right of the component.|
-| LeftTop9+     | The popup is on the left of the component and aligned with the top of the component.                 |
-| LeftBottom9+  | The popup is on the left of the component and aligned with the bottom of the component.                 |
-| RightTop9+    | The popup is on the right of the component and aligned with the top of the component.                 |
-| RightBottom9+ | The popup is on the right of the component and aligned with the bottom of the component.                 |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                    | Description                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| Left                     | The popup is on the left of the component, vertically aligned with the component on the left.                  |
+| Right                    | The popup is on the right of the component, vertically aligned with the component on the right.                  |
+| Top                      | The popup is at the top of the component, horizontally aligned with the component at the top.                  |
+| Bottom                   | The popup is at the bottom of the component, horizontally aligned with the component at the bottom.                  |
+| TopLeft                  | The popup is at the top of the component and, since API version 9, aligned with the left of the component.|
+| TopRight                 | The popup is at the top of the component and, since API version 9, aligned with the right of the component.|
+| BottomLeft               | The popup is at the bottom of the component and, since API version 9, aligned with the left of the component.|
+| BottomRight              | The popup is at the bottom of the component and, since API version 9, aligned with the right of the component.|
+| LeftTop<sup>9+</sup>     | The popup is on the left of the component and aligned with the top of the component.                  |
+| LeftBottom<sup>9+</sup>  | The popup is on the left of the component and aligned with the bottom of the component.                  |
+| RightTop<sup>9+</sup>    | The popup is on the right of the component and aligned with the top of the component.                  |
+| RightBottom<sup>9+</sup> | The popup is on the right of the component and aligned with the bottom of the component.                  |
 
 ## CopyOptions<sup>9+</sup>
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Description      |
-| ----------- | -------- |
-| None        | Copy is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| InApp       | Intra-application copy is allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| LocalDevice | Intra-device copy is allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| CROSS_DEVICE<sup>(deprecated)</sup> | Cross-device copy is allowed.<br>**NOTE**<br>This API is supported since API version 11 and deprecated since API version 12.|
+| Name         | Value| Description      |
+| ----------- | --- | -------- |
+| None        | 0 | Copy is not allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| InApp       | 1 | Intra-application copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LocalDevice | 2 | Intra-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CROSS_DEVICE<sup>(deprecated)</sup> | 3 | Cross-device copy is allowed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.<br>**NOTE**<br>This API is supported since API version 11 and deprecated since API version 12.|
 
 ## HitTestMode<sup>9+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description                                      |
 | ----------- | ---------------------------------------- |
@@ -614,48 +724,24 @@
 | Transparent | Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test.|
 | None        | The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.     |
 
-## BlurStyle<sup>9+</sup>
+## DialogButtonStyle<sup>10+</sup>
 
-This API is supported in ArkTS widgets.
-
-| Name                  | Description       |
-| -------------------- | --------- |
-| Thin                 | Thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| Regular              | Regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Thick                | Thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
-| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| NONE<sup>10+</sup> | No blur.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_THIN<sup>11+</sup> | Component thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
-## ThemeColorMode<sup>10+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Description        |
-| ------ | ---------- |
-| SYSTEM | Following the system color mode.|
-| LIGHT  | Light color mode. |
-| DARK   | Dark color mode. |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## AdaptiveColor<sup>10+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name     | Description                       |
-| ------- | ------------------------- |
-| DEFAULT | Adaptive color mode is not used. The default color is used as the mask color.   |
-| AVERAGE | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
+| Name     | Value  | Description                             |
+| --------- | ---- | --------------------------------- |
+| DEFAULT   | 0    | Blue text on white background (black background under the dark theme).|
+| HIGHLIGHT | 1    | White text on blue background.                       |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                     | Description                      |
 | ----------------------- | ------------------------ |
@@ -663,30 +749,46 @@ This API is supported in ArkTS widgets.
 | MIN_FONT_SIZE_FIRST     | Prioritize the **minFontSize** settings.    |
 | LAYOUT_CONSTRAINT_FIRST | Prioritize the layout constraint settings in terms of height.|
 
+## NestedScrollMode<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                            |
+| ------ | ------------------------------ |
+| SELF_ONLY   | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary. |
+| SELF_FIRST | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.       |
+| PARENT_FIRST  | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| PARALLEL  | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+
 ## ObscuredReasons<sup>10+</sup>
 
-This API is supported in ArkTS widgets.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name       | Description                    |
-| ----------- | ------------------------ |
-| PLACEHOLDER | The content is replaced by a placeholder.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## TransitionEdge<sup>10+</sup>
+| Name       | Value| Description                    |
+| ----------- | -- | ------------------------ |
+| PLACEHOLDER | 0 |The content is replaced by a placeholder.|
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+## ColoringStrategy<sup>10+</sup>
 
-| Name    | Description    |
-| ------ | ------ |
-| TOP    | Top edge of the window.|
-| BOTTOM | Bottom edge of the window.|
-| START  | Left edge of the window.|
-| END    | Right edge of the window.|
+Enumerates the coloring strategies.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value| Description             |
+| ------ | --- | --------------- |
+| INVERT | invert | The foreground colors are the inverse of the component background colors. This strategy is only applicable when set within the [foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AVERAGE<sup>11+</sup> | average | The shadow colors of the component are the average color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PRIMARY<sup>11+</sup> | primary | The shadow colors of the component are the primary color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ClickEffectLevel<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description              | Animation Settings                         | Default Zoom Ratio                    |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -694,42 +796,47 @@ This API is supported in ArkTS widgets.
 | MIDDLE | Medium area (stable)| Spring effect, with stiffness of 350, damping of 35, and initial velocity of 0.5.| 95% |
 | HEAVY  | Large area (heavy)| Spring effect, with stiffness of 240, damping of 28, and initial velocity of 0.| 95% |
 
+## CheckBoxShape<sup>11+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Value  | Description    |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | Circle.    |
+| ROUNDED_SQUARE | 1    | Rounded square.|
+
 ## FoldStatus<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name                     | Description        |
-| ----------------------  | ---------- |
-| FOLD_STATUS_UNKNOWN     | The folding status of the device is unknown.|
-| FOLD_STATUS_EXPANDED    | The device is fully open.  |
-| FOLD_STATUS_FOLDED      | The device is folded (completely closed).  |
-| FOLD_STATUS_HALF_FOLDED | The device is half-folded, somewhere between fully open and completely closed.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                     |Value| Description        |
+| ----------------------  |----| ---------- |
+| FOLD_STATUS_UNKNOWN     |0| The folding status of the device is unknown.|
+| FOLD_STATUS_EXPANDED    |1| The device is fully open.  |
+| FOLD_STATUS_FOLDED      |2| The device is folded (completely closed).  |
+| FOLD_STATUS_HALF_FOLDED |3| The device is half-folded, somewhere between fully open and completely closed.|
 
 ## TextContentStyle<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
-## MenuPreviewMode<sup>11+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+## Nullable\<T><sup>11+</sup>
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| NONE  | No preview is displayed.                      |
-| IMAGE | The preview is a screenshot of the component on which a long-press triggers the context menu.|
-
-## Nullable <sup>11+</sup>
-
-Nullable\<T> {
-
-(data: T);
-
-}
+type Nullable\<T> = T | undefined;
 
 The object of this type can be of a custom type or **undefined**.
 
@@ -737,320 +844,379 @@ The object of this type can be of a custom type or **undefined**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description                      |
-| ---- | ---- | ---- | -------------------------- |
-| data | T    | Yes  | The object of this type can be of a custom type or **undefined**.|
+| Type| Description                      |
+| ---- | -------------------------- |
+| T \| undefined | The object of this type can be of a custom type or **undefined**.|
 
 ## WordBreak<sup>11+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
-| BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
-| BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
+| Name | Value| Description                                  |
+| ----- | --- | -------------------------------------- |
+| NORMAL  | 0 | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| BREAK_ALL | 1 | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| BREAK_WORD | 2 | This option has the same effect as **BREAK_ALL** for non-CJK text, except that it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| HYPHENATION<sup>18+</sup> | 3 | Line breaks can occur between any two syllabic units for non-CJK text. CJK text behavior is the same as for **NORMAL**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## LineBreakStrategy<sup>12+</sup>
-| Name        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| GREEDY       | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
-| HIGH_QUALITY | Fills in lines as much as possible on the basis of **BALANCED**, which may results in a large blank area on the last line.|
-| BALANCED     | Balances the line length when possible without word splitting.  |
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name        | Value| Description                                                        |
+| ------------ | --- | ------------------------------------------------------------ |
+| GREEDY       | 0 | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
+| HIGH_QUALITY | 1 | Fills in lines as much as possible on the basis of **BALANCED**, which may results in a large blank area on the last line.|
+| BALANCED     | 2 | Balances the line length when possible without word splitting.  |
 
 ## TextSelectableMode<sup>12+</sup>
-| Name        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| SELECTABLE_UNFOCUSABLE  | The text is selectable, but not focusable. Setting the **selection**, **bindSelectionMenu**, or **copyOption** attribute does not affect the behavior.|
-| SELECTABLE_FOCUSABLE | The text is selectable and focusable. It obtains focus when touched.|
-| UNSELECTABLE     | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
-
-## GestureJudgeResult<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| CONTINUE  | The system gesture recognition process continues.|
-| REJECT  | Recognition of the custom gesture is determined as failed.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## GestureType<sup>11+</sup>
+| Name        | Value| Description                                                        |
+| ------------ | --- | ------------------------------------------------------------ |
+| SELECTABLE_UNFOCUSABLE  | 0 | The text is selectable, but not focusable. Setting the **selection**, **bindSelectionMenu**, or **copyOption** attribute does not affect the behavior.|
+| SELECTABLE_FOCUSABLE | 1 | The text is selectable and focusable. It obtains focus when touched.|
+| UNSELECTABLE     | 2 | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | Tap gesture.|
-| LONG_PRESS_GESTURE  | Long press gesture.|
-| PAN_GESTURE    | Pan gesture.|
-| PINCH_GESTURE   | Pinch gesture.|
-| SWIPE_GESTURE    | Swipe gesture.|
-| ROTATION_GESTURE   | Rotation gesture.|
-| DRAG    | Drag and drop.|
-| CLICK   | Click.|
-## FinishCallbackType<sup>11+</sup>
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+## AccessibilityHoverType<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name      | Description                                                        |
-| --------- | ------------------------------------------------------------ |
-| REMOVED   | The callback is invoked when the entire animation is removed once it has finished.                        |
-| LOGICALLY | The callback is invoked when the animation logically enters the falling state, though it may still be in its long tail state.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## BlurOptions<sup>11+</sup>
-Describes the grayscale blur parameters.
+| Name        | Value| Description                                                        |
+| ------------ | - | ------------------------------------------------------------ |
+| HOVER_ENTER  | 0 | A finger is pressed.        |
+| HOVER_MOVE   | 1 | The touch moves.        |
+| HOVER_EXIT   | 2 | The finger is lifted.             |
+| HOVER_CANCEL | 3 | The current event is canceled. |
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name       |   Type  |   Mandatory| Description                       |
-| ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   Yes  |  Grayscale blur, with two parameters in the value range of [0, 127]. The color gradation of the black and white in the image is adjusted to create different shades of gray. The first parameter indicates the brightness of the black color, and the second parameter indicates the darkness of the white color. A larger value indicates a more obvious adjustment effect (the black and white colors become grayer). For example, if the value specified is (20,20), the RGB value [0, 0, 0] (black) is converted to [20, 20, 20], RGB value [255, 255, 255] (white) is converted to [235, 235, 235] (255-20), and the color pixels remain unchanged.|
-
-## ForegroundEffectOptions<sup>12+</sup>
-Describes the foreground effect.
-| Name       |   Type        |   Mandatory|  Description                       |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**<br> This parameter takes effect only within the component scope. When it is used with other APIs, the effect beyond the component scope does not apply.    |
-
-## BackgroundEffectOptions<sup>11+</sup>
-Describes the background effect.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name       |   Type        |   Mandatory|  Description                       |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **0**      |
-| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
-| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| START  | An ellipsis is used at the start of the line of text.|
-| CENTER | An ellipsis is used at the center of the line of text.|
-| END | An ellipsis is used at the end of the line of text.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Value| Description                                  |
+| ----- | --- | -------------------------------------- |
+| START  | 0 | An ellipsis is used at the start of the line of text.|
+| CENTER | 1 | An ellipsis is used at the center of the line of text.|
+| END | 2 | An ellipsis is used at the end of the line of text.|
 
 ## ArrowPointPosition<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name           | Description                                    |
-| ------------- | -------------------------------------- |
-| START | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
-| CENTER | In the center of the parent component.|
-| END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## TextDataDetectorType<sup>11+</sup>
+| Name           | Value          | Description                                    |
+| ------------- | -------------------------------------- | -------------------------------------- |
+| START | 'Start' | On the leftmost side of the parent component in the horizontal layout; on the top of the parent component in the vertical layout.|
+| CENTER | 'Center' | In the center of the parent component.|
+| END | 'End' | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | Phone number.|
-| URL | URL.|
-| EMAIL | Email.|
-| ADDRESS | Address.|
-
-## TextSpanType<sup>11+</sup>
-
-Provides the [span](ts-basic-components-span.md) type information.
+## OptionWidthMode<sup>11+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name| Description|
-| -------- | -------- |
-| TEXT | Text span.|
-| IMAGE | Image span.|
-| MIXED | Mixed span, which contains both text and imagery.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## TextResponseType<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name        | Description           |
-| ---------- | ------------- |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| SELECT | The menu is displayed when the component is selected.|
-
-## SelectionMenuOptions<sup>11+</sup>
-
-Provides the span range information.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name| Type | Read Only| Mandatory | Description                              |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | No| No| Callback invoked when the custom context menu on selection is displayed.|
-| onDisappear | () => void | No| No| Callback invoked when the custom context menu on selection is closed.|
-
-## SymbolEffectStrategy<sup>11+</sup>
-
-Enumerates the symbol effects. The setting takes effect immediately once saved.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| NONE | No effect (default value).|
-| SCALE | Overall scale effect.                |
-| HIERARCHICAL  | Hierarchical effect. |
-
-## SymbolRenderingStrategy<sup>11+</sup>
-
-Enumerates the symbol rendering modes.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| SINGLE  | Symbols are rendered with one specified color. This is the default value.<br> The default color is black.<br> If you set multiple colors, only the first color is used.|
-| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|
-|  MULTIPLE_OPACITY   | Symbols are rendered as multiple layers with one specified color and layer-specific opacity.<br> The default color is black. If you set multiple colors, only the first color is used.<br> The opacity is 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
-
-## BlendApplyType<sup>11+</sup>
-
-Defines how the specified blend mode is applied.
-
-| Name          | Description                                                            |
-| ---------------| ---------------------------------------------------------------- |
-| FAST           |   The content of the view is blended in sequence on the target image.                       |
-| OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
-
-## DismissReason<sup>12+</sup>
-
-| Name         | Value  | Description                                                        |
-| ------------- | ---- | ------------------------------------------------------------ |
-| PRESS_BACK    | 0    | Touching the Back button, swiping left or right on the screen, or pressing the Esc key.                          |
-| TOUCH_OUTSIDE | 1    | Touching the mask.                                              |
-| CLOSE_BUTTON  | 2    | Touching the Close button.                                              |
-| SLIDE_DOWN    | 3    | Sliding down.<br>**NOTE**<br>This API is effective only in [sheet transition]ts-universal-attributes-sheet-transition.md).|
-
-## ChainStyle<sup>12+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-Defines the chain style.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| SPREAD | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
-| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 8 in RelativeContainer](ts-container-relativecontainer.md#example-8).                |
-| PACKED  | There is no gap between child components in the chain. For details, see [Example 9 in RelativeContainer](ts-container-relativecontainer.md#example-9).                     |
-
-## BarrierDirection<sup>12+</sup>
-
-Defines the barrier direction.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
-| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).  |
-| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
-| BOTTOM  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).|
+| Name       | Value      | Description                          |
+| ----------- | ------------------------------ | ------------------------------ |
+| FIT_CONTENT | 'fit_content' | Uses the default width, that is, width of two columns.           |
+| FIT_TRIGGER | 'fit_trigger' | Inherits the width of the drop-down list button.|
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-Defines the pixel-level rounding policy for component boundaries.
+Enumerates the pixel rounding policies for component boundaries.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| NO_FORCE_ROUND | The value is not rounded off.|
-| FORCE_CEIL | The value is rounded up to the nearest integer.|
-| FORCE_FLOOR | The value is rounded down to the nearest integer.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## StyledStringKey<sup>12+</sup>
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
-| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
-| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).|
-| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
-| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
-| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
-| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
-| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
-| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
-| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
-| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).|
+| Name    |Value| Description                           |
+| ------ | ----|----------------------------- |
+| NO_FORCE_ROUND |0| The value is not rounded off.|
+| FORCE_CEIL |1| The value is rounded up to the nearest integer.|
+| FORCE_FLOOR |2| The value is rounded down to the nearest integer.|
 
 ## TextDecorationStyle<sup>12+</sup>
 
-| Name         | Description       |
-| ----------- | --------- |
-| SOLID   | Single solid line (default value). |
-| DOUBLE | Double solid line.|
-| DOTTED    | Dotted line. |
-| DASHED        | Dashed line.|
-| WAVY        | Wavy line.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-## FlexSpaceOptions<sup>12+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type       |  Read Only    | Mandatory     | Description     |
-| ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | No| No| Space on the main axis of the flex container.<br> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | No| No| Space on the cross axis of the flex container.<br> space: {cross: LengthMetrics.unit(value)} |
-
-## MenuPolicy<sup>12+</sup>
-
-Defines the menu display policy.
-
-| Name   | Value  | Description                              |
-| ------- | ---- | ---------------------------------- |
-| DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|
-| HIDE    | 1    | The menu is always hidden.                  |
-| SHOW    | 2    | The menu is always displayed.                    |
+| Name         | Value| Description       |
+| ----------- | --- | --------- |
+| SOLID   | 0 | Single solid line (default value). |
+| DOUBLE | 1 | Double solid line.|
+| DOTTED    | 2 | Dotted line. |
+| DASHED        | 3 | Dashed line.|
+| WAVY        | 4 | Wavy line.|
 
 ## EmbeddedType<sup>12+</sup>
-Enumerates the types of the providers that can be started by the **\<EmbeddedComponent>**.
+Enumerates the types of the providers that can be started by the **EmbeddedComponent**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                 | Value| Description                                               |
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | EmbeddedUIExtensionAbility.|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Value     | Description                    |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | After the marquee attributes are updated, the marquee scrolls from the start position.    |
 | PRESERVE_POSITION  | 1 | After the marquee attributes are updated, the marquee scrolls from the current position.|
 
-## FocusPriority<sup>12+</sup>
-
-| Name         | Description       |
-| ----------- | --------- |
-| AUTO | Default priority, that is, the focus priority assigned by default.|
-| PRIOR | Priority that indicates the component is prioritized in the container. This level is higher than **AUTO**.|
-| PREVIOUS | Priority of a previously focused node in the container. This level is higher than **PRIOR**.|
-
 ## AppRotation<sup>12+</sup>
 
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| ROTATION_0 | 0 degrees.|
-| ROTATION_90 |90 degrees.|
-| ROTATION_180 | 180 degrees.|
-| ROTATION_270 | 270 degrees.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-## TextDeleteDirection<sup>12+</sup>
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Defines the direction for deleting text.
+| Name    |Value| Description                           |
+| ------ |-----| ----------------------------- |
+| ROTATION_0 |0| 0 degrees.|
+| ROTATION_90 |1|90 degrees.|
+| ROTATION_180 |2| 180 degrees.|
+| ROTATION_270 |3| 270 degrees.|
+
+## ScrollSource<sup>12+</sup>
+
+Enumerates the sources of scroll operations.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    |  Value | Description                                      |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | Drag event.|
+| FLING |  1  | Inertia scrolling after the drag ends.|
+| EDGE_EFFECT  |  2  | Edge scrolling effect with **EdgeEffect.Spring**.|
+| OTHER_USER_INPUT  |  3  | Other user inputs aside from dragging, such as those from the mouse wheel and keyboard events.|
+| SCROLL_BAR  |  4  | Drag event from the scrollbar.|
+| SCROLL_BAR_FLING  |  5  | Inertia scrolling with velocity after the scrollbar is released.|
+| SCROLLER  |  6  | Non-animated methods of the **Scroller** object.|
+| SCROLLER_ANIMATION  |  7  | Animated methods of the **Scroller** object.|
+
+## ImageSpanAlignment<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                          |
+| -------- | ------------------------------ |
+| TOP      | The image is top aligned with the line.  |
+| CENTER   | The image is centered aligned with the line.      |
+| BOTTOM   | The image is bottom aligned with the line.  |
+| BASELINE | The image is bottom aligned with the text baseline.|
+
+
+## XComponentType<sup>10+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| SURFACE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is displayed individually on the screen. When the background color is set to black, the display subsystem (DSS) is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| COMPONENT<sup>(deprecated)</sup> | The component becomes a container where non-UI logic can be executed to dynamically load the display content.<br>**NOTE**<br>This API is deprecated since API version 12. You are advised to use other container components instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| TEXTURE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is combined with the content of the component and then displayed on the screen. 1. Frame synchronization is maintained, which ensures that the GPU textures and other ArkUI drawing commands are batched and sent to the RenderService within the same frame. 2. Animations are unified with built-in components. 3. As the GPU is used for composition, this type may consume more power compared to the surface type that uses the display subsystem (DSS).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NODE<sup>12+</sup>            | The component is used as a placeholder container for native UI nodes. Page components developed with native APIs can be displayed within this container's area.<br>**NOTE**<br>This type is no longer being evolved. You are advised to use the [ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md) placeholder component for managing components created with native APIs. **ContentSlot** is superior to the NODE-type **XComponent** in terms of memory and performance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## HoverModeAreaType<sup>14+</sup>
+
+Enumerates the types of display areas for the hover mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value   | Description                           |
+| ------ | ----------------------------- | ----------------------------- |
+| TOP_SCREEN | 0 | Upper half screen.|
+| BOTTOM_SCREEN | 1 | Lower half screen.|
+
+## WidthBreakpoint<sup>13+</sup>
+
+Enumerates the width breakpoint values corresponding to different window width thresholds. The value is returned through [getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| WIDTH_XS | 0   | The window width is less than 320 vp.|
+| WIDTH_SM | 1   | The window width is greater than or equal to 320 vp and less than 600 vp.|
+| WIDTH_MD | 2   | The window width is greater than or equal to 600 vp and less than 840 vp.|
+| WIDTH_LG | 3   | The window width is greater than or equal to 840 vp and less than 1440 vp.|
+| WIDTH_XL | 4   | The window width is greater than or equal to 1440 vp.|
+
+## HeightBreakpoint<sup>13+</sup>
+
+Enumerates the height breakpoint values corresponding to different window aspect ratio thresholds. The value is returned through [getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| HEIGHT_SM | 0   | The window aspect ratio is less than 0.8.|
+| HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
+| HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
+
+## AxisModel<sup>15+</sup>
+
+Enumerates the axis types for focus axis events.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Value  | Description                              |
 | ------- | ---- | ---------------------------------- |
-| BACKWARD | 0    | Backward delete.|
-| FORWARD    | 1    | Forward delete.|
-<!--no_check-->
+| ABS_X  | 0    | Game controller x-axis.|
+| ABS_Y  | 1    | Game controller y-axis.|
+| ABS_Z  | 2    | Game controller z-axis.|
+| ABS_RZ | 3    | Game controller rz-axis.|
+| ABS_GAS | 4    | Game controller GAS-axis.|
+| ABS_BRAKE | 5    | Game controller BRAKE-axis.|
+| ABS_HAT0X | 6    | Game controller HAT0X-axis.|
+| ABS_HAT0Y | 7    | Game controller HAT0Y-axis.|
+
+## PageFlipMode<sup>15+</sup>
+
+Enumerates the modes for flipping pages using the mouse wheel.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | Continuous page flipping mode where multiple pages are turned continuously when the user scrolls the mouse wheel without interruption.|
+| SINGLE | 1   | Single-page flipping mode where the mouse wheel event is ignored until the current page flipping animation is complete.|
+
+## RenderFit<sup>10+</sup>
+
+Enumerates the modes in which the final state of the component's content is rendered during its width and height animation process.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                         | Description                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| CENTER                      | The component's content stays at the final size and always aligned with the center of the component.               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | The component's content stays at the final size and always aligned with the top center of the component.             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | The component's content stays at the final size and always aligned with the bottom center of the component.             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | The component's content stays at the final size and always aligned with the left of the component.               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | The component's content stays at the final size and always aligned with the right of the component.              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | The component's content stays at the final size and always aligned with the upper left corner of the component.              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | The component's content stays at the final size and always aligned with the upper right corner of the component.             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | The component's content stays at the final size and always aligned with the lower left corner of the component.              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | The component's content stays at the final size and always aligned with the lower right corner of the component.              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | The component's content is always resized to fill the component's content box, without considering its aspect ratio in the final state.              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| RESIZE_CONTAIN              | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. It is always aligned with the center of the component.   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
+| RESIZE_CONTAIN_TOP_LEFT     | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is left-aligned with the component. When there is remaining space in the height direction of the component, the content is top-aligned with the component.   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
+| RESIZE_CONTAIN_BOTTOM_RIGHT | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is right-aligned with the component. When there is remaining space in the height direction of the component, the content is bottom-aligned with the component.   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
+| RESIZE_COVER                | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. It is always aligned with the center of the component, so that its middle part is displayed.   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
+| RESIZE_COVER_TOP_LEFT       | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is left-aligned with the component, so that its left part is displayed. When there is remaining space in the height direction, the content is top-aligned with the component, so that its top part is displayed.   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
+| RESIZE_COVER_BOTTOM_RIGHT   | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is right-aligned with the component, so that its right part is displayed. When there is remaining space in the height direction, the content is bottom-aligned with the component, so that its bottom part is displayed.   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
+
+
+> **NOTE**
+>
+> - In the illustrative diagrams, the blue area indicates the content, and the orange area indicates the component content box.
+> - Different render fit modes create different effects during the width and height animation process. Choose the one that best fits your need.
+
+## CrownAction<sup>18+</sup>
+
+Enumerates the crown actions.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+|Name            | Value| Description                                  |
+|-------------------| -- | ------------------------------------- |
+| BEGIN             | 0  | The crown starts to rotate.                         |
+| UPDATE	        | 1  | The crown is rotating.                           |
+| END	            | 2  | The crown stops rotating.                         |
+
+## CrownSensitivity<sup>18+</sup>
+
+Enumerates the sensitivity levels for crown rotation.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Value | Description                                     |
+| -------------- | -- | ---------------------------------------- |
+| LOW 	         | 0   | Low sensitivity.                                |
+| MEDIUM         | 1   | Medium sensitivity.                                |
+| HIGH 	         | 2   | High sensitivity.                                |
+
+## AxisAction<sup>18+</sup>
+
+Enumerates the types of axis actions for axis events.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| NONE   | 0    | No axis event.|
+| BEGIN  | 1    | The axis event begins.|
+| UPDATE | 2    | The axis event is in progress.|
+| END    | 3    | The axis event ends.|
+| CANCEL | 4    | The axis event is canceled.|
+
+## InteractionHand<sup>15+</sup>
+
+Defines whether an event is triggered by a left-hand or right-hand tap.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value  | Description                  |
+| -------- | ---- | ---------------------- |
+| NONE     | 0   | Unknown.|
+| LEFT     | 1   | Left hand.|
+| RIGHT    | 2   | Right hand.|
+
+## FocusDrawLevel<sup>18+</sup>
+
+Enumerates the drawing levels of the focus box for a node.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Value | Description                                     |
+| -------------- | -- | ---------------------------------------- |
+| SELF  	     | 0   | The focus box is drawn on the node's own layer.                                |
+| TOP            | 1   | The focus box is drawn on the topmost layer of the current instance's z-order.                                |

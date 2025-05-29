@@ -1,6 +1,6 @@
 # 支持的文件系统
-## FAT
 
+## FAT
 
 ### 基本概念
 
@@ -8,16 +8,13 @@ FAT文件系统是File Allocation Table（文件配置表）的简称，主要�
 
 OpenHarmony内核支持FAT12、FAT16与FAT32三种格式的FAT文件系统，具有代码量小、资源占用小、可裁切、支持多种物理介质等特性，并且与Windows、Linux等系统保持兼容，支持多设备、多分区识别等功能。OpenHarmony内核支持硬盘多分区，可以在主分区以及逻辑分区上创建FAT文件系统。
 
-
 ### 运行机制
 
 FAT文件系统设计与物理布局的相关文档在互联网上非常丰富，请开发者自行搜索查看。
 
 OpenHarmony LiteOS-A内核通过Bcache提升FAT文件系统性能，Bcache是block cache的简称。当发生读写时，Bcache会缓存读写扇区附近的扇区，以减少I/O次数，提高性能。Bcache的基本缓存单位为block，每个block大小一致（默认有28个block，每个block缓存64个扇区的数据）。当Bcache脏块率（脏扇区数/总扇区数）达到阈值时，会触发写回；如果脏块率未达到阈值，则不会将缓存数据写回磁盘。如果需要保证数据写回，开发者应当调用sync和fsync触发写回。FAT文件系统的部分接口也会触发写回操作（如close、umount等），但开发者不应当基于这些接口触发写回。
 
-
 ### 开发指导
-
 
  **开发流程** 
 
@@ -26,7 +23,6 @@ OpenHarmony LiteOS-A内核通过Bcache提升FAT文件系统性能，Bcache是blo
 SD卡或MMC的设备名为mmcblk[x]p[y]，文件系统类型为“vfat”。
 
 示例：
-
   
 ```
 mount("/dev/mmcblk0p0", "/mnt", "vfat", 0, NULL);
@@ -51,13 +47,11 @@ mount("/dev/mmcblk0p0", "/mnt", "vfat", 0, NULL);
 
 ## JFFS2
 
-
 ### 基本概念
 
 JFFS2是Journalling Flash File System Version 2（日志文件系统）的缩写，是针对MTD设备的日志型文件系统。
 
 OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读写、支持数据压缩、提供了崩溃/掉电安全保护、提供“写平衡”支持等。闪存与磁盘介质有许多差异，直接将磁盘文件系统运行在闪存设备上，会导致性能和安全问题。为解决这一问题，需要实现一个特别针对闪存的文件系统，JFFS2就是这样一种文件系统。
-
 
 ### 运行机制
 
@@ -75,7 +69,6 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 
 5. 硬链接机制：JFFS2支持硬链接，底层实际占用的物理空间是一份，对于同一个文件的多个硬连接，并不会增加空间的占用；反之，只有当删除了所有的硬链接时，实际物理空间才会被释放。
 
-
 ### 开发指导
 
 对于基于JFFS2和nor flash的开发，总体而言，与其他文件系统非常相似，因为都有VFS层来屏蔽了具体文件系统的差异，对外接口体现也都是标准的POSIX接口。
@@ -85,7 +78,6 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 **制作JFFS2文件系统镜像**
 
 使用mkfs.jffs2工具，制作镜像默认命令如下。页大小默认为4KiB，eraseblock大小默认64KiB。若实际参数与下面不同时，修改相应参数。
-
   
 ```
 ./mkfs.jffs2 -d rootfs/ -o rootfs.jffs2
@@ -95,11 +87,11 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 
 | 指令 | 含义 | 
 | -------- | -------- |
-| -s | 页大小，不指定默认为4KiB | 
-| -e | eraseblock大小，不指定默认为64KiB | 
+| -s | 页大小，不指定默认为4KiB。 | 
+| -e | eraseblock大小，不指定默认为64KiB。 | 
 | -p | 镜像大小。在镜像文件后面，用0xFF填充至指定大小，不指定则用0xFF填充至eraseblock对齐。 | 
-| -d | 要制作成文件系统镜像的源目录 | 
-| -o | 要制成的镜像名称 | 
+| -d | 要制作成文件系统镜像的源目录。 | 
+| -o | 要制成的镜像名称。 | 
 
 **挂载JFFS2分区**
 
@@ -110,14 +102,12 @@ OpenHarmony内核的JFFS2主要应用于NOR FLASH闪存，其特点是：可读�
 最后两个参数unsigned long mountflags和const void \*data表示挂载标志和数据，默认为0和NULL；这一操作也可以在Shell中使用mount命令实现，最后两个参数不需要用户给出。
 
 运行命令：
-
   
 ```
 OHOS # mount /dev/spinorblk1 /jffs1 jffs2
 ```
 
 将从串口得到如下回应信息，表明挂载成功。
-
   
 ```
 OHOS # mount /dev/spinorblk1 /jffs1 jffs2
@@ -131,14 +121,12 @@ mount OK
 调用int umount(const char \*target)函数卸载分区，只需要正确给出挂载点即可。
 
 运行命令：
-
   
 ```
 OHOS # umount /jffs1
 ```
 
 将从串口得到如下回应信息，表明卸载成功。
-
   
 ```
 OHOS # umount /jffs1
@@ -146,20 +134,17 @@ umount ok
 ```
 ## NFS
 
-
 ### 基本概念
 
 NFS是Network File System（网络文件系统）的缩写。它最大的功能是可以通过网络，让不同的机器、不同的操作系统彼此分享其他用户的文件。因此，用户可以简单地将它看做是一个文件系统服务，在一定程度上相当于Windows环境下的共享文件夹。
-
 
 ### 运行机制
 
 OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户端能够将远程的NFS服务端分享的目录挂载到本地的机器中，运行程序和共享文件，但不占用当前系统的存储空间，在本地端的机器看起来，远程服务端的目录就好像是自己的一个磁盘一样。
 
-
 ### 开发指导
 
-1. 搭建NFS服务器
+1. 搭建NFS服务器。
 
    这里以Ubuntu操作系统为例，说明服务器端设置步骤。
 
@@ -172,7 +157,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
      sudo apt-get install nfs-kernel-server
      ```
 
-   - 创建用于挂载的目录并设置完全权限
+   - 创建用于挂载的目录并设置完全权限。
 
   
      ```
@@ -205,7 +190,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
      sudo /etc/init.d/nfs-kernel-server restart
      ```
 
-2. 设置单板为NFS客户端
+2. 设置单板为NFS客户端。
 
    本指导中的NFS客户端指运行OpenHarmony内核的设备。
 
@@ -270,7 +255,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
    > 
    > 至此，NFS客户端设置完毕。NFS文件系统已成功挂载。
 
-3. 利用NFS共享文件
+3. 利用NFS共享文件。
 
    在NFS服务器下新建目录dir，并保存。在OpenHarmony内核下运行ls命令：
 
@@ -295,7 +280,6 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
    > 目前，NFS客户端仅支持NFS v3部分规范要求，因此对于规范支持不全的服务器，无法完全兼容。在开发测试过程中，建议使用Linux的NFS server，其对NFS支持很完善。
 
 ## Ramfs
-
 
 ### 基本概念
 

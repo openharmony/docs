@@ -16,19 +16,19 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
 
 ## 属性
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | appLinkingOnly | boolean | 否 | 是 | 表示是否必须以AppLinking的方式启动UIAbility。<br />- 取值为true时，如果不存在与AppLinking相匹配的UIAbility，直接返回。<br />- 取值为false时，如果不存在与AppLinking相匹配的UIAbility，AppLinking会退化为DeepLink。默认值为false。<br />aa命令隐式拉起Ability时可以通过设置"--pb appLinkingOnly true/false"以AppLinking的方式进行启动。 |
-| parameters | Record\<string, Object> | 否 | 是 | 表示WantParams参数。 |
+| parameters | Record\<string, Object> | 否 | 是 | 表示WantParams参数。<br/>**说明**：具体使用规则请参考[want](./js-apis-app-ability-want.md)中的parameters属性。 |
 
 **示例：**
 
   ```ts
-  import { common, OpenLinkOptions } from '@kit.AbilityKit';
+  import { common, OpenLinkOptions, wantConstant } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -51,11 +51,19 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
             .height('5%')
             .margin({ bottom: '12vp' })
             .onClick(() => {
-              let context = getContext(this) as common.UIAbilityContext;
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
               let link: string = 'https://www.example.com';
               let openLinkOptions: OpenLinkOptions = {
                 appLinkingOnly: true,
-                parameters: { demo_key: 'demo_value' }
+                parameters: {
+                  [wantConstant.Params.CONTENT_TITLE_KEY]: 'contentTitle',
+                  keyString: 'str',
+                  keyNumber: 200,
+                  keyBool: false,
+                  keyObj: {
+                    keyObjKey: 'objValue',
+                  }
+                }
               };
               try {
                 context.openLink(

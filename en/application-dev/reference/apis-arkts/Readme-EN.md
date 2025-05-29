@@ -1,10 +1,10 @@
 # ArkTS
 
-- ArkTS APIs
+- ArkTS APIs<!--arkts-arkts--> 
   - [@arkts.collections (ArkTS Collections)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS Base Capability)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (High-Precision Math Library Decimal)](js-apis-arkts-decimal.md)
-  - [@arkts.utils (ArkTS Utils)] (js-apis-arkts-utils.md)
+  - [@arkts.utils (ArkTS Utils)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
@@ -28,8 +28,13 @@
   - [@ohos.util.TreeMap (Nonlinear Container TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (Nonlinear Container TreeSet)](js-apis-treeset.md)
   - [@ohos.worker (Starting the Worker)](js-apis-worker.md)
+  <!--Del-->
+  - [@ohos.worker (Starting the Worker) (System API)](js-apis-worker-sys.md)
+  <!--DelEnd-->
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
-  - APIs No Longer Maintained
+  - APIs No Longer Maintained<!--arkts-arkts-dep--> 
     - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
-- Error Codes
+- Error Codes<!--arkts-arkts-errcode-->
   - [Common Library Error Codes](errorcode-utils.md)
+  - [TypeScript Compiler Error Codes](errorcode-tsc.md)
+  - [Compilation Toolchain Error Codes](errorcode-ets-loader.md)

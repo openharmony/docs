@@ -15,7 +15,7 @@ Image classification can be used to recognize objects in images and is widely us
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment Preparation
+## Environment Setup
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
@@ -35,97 +35,130 @@ If you have other pre-trained models for image classification, convert the origi
 
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
-   ```ts
-   import { picker } from '@kit.CoreFileKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let uris: Array<string> = [];
-   
-   // Create an image picker instance.
-   let photoSelectOptions = new picker.PhotoSelectOptions();
-   
-   // Set the media file type to IMAGE and set the maximum number of media files that can be selected.
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-   photoSelectOptions.maxSelectNumber = 1;
-   
-   // Create an album picker instance and call select() to open the album page for file selection. After file selection is done, the result set is returned through photoSelectResult.
-   let photoPicker = new picker.PhotoViewPicker();
-   photoPicker.select(photoSelectOptions, async (
-     err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
-     if (err) {
-       console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
-       return;
-     }
-     console.info('MS_LITE_LOG: PhotoViewPicker.select successfully, ' +
-       'photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
-     uris = photoSelectResult.photoUris;
-     console.info('MS_LITE_LOG: uri: ' + uris);
-   })
-   ```
-
 2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtain the image buffer, and standardizing the image.
 
    ```ts
-   import { image } from '@kit.ImageKit';
+   // Index.ets
    import { fileIo } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { image } from '@kit.ImageKit';
    
-   let modelInputHeight: number = 224;
-   let modelInputWidth: number = 224;
+   @Entry
+   @Component
+   struct Index {
+     @State modelName: string = 'mobilenetv2.ms';
+     @State modelInputHeight: number = 224;
+     @State modelInputWidth: number = 224;
+     @State uris: Array<string> = [];
    
-   // Based on the specified URI, call fileIo.openSync to open the file to obtain the FD.
-   let file = fileIo.openSync(this.uris[0], fileIo.OpenMode.READ_ONLY);
-   console.info('MS_LITE_LOG: file fd: ' + file.fd);
-   
-   // Based on the FD, call fileIo.readSync to read the data in the file.
-   let inputBuffer = new ArrayBuffer(4096000);
-   let readLen = fileIo.readSync(file.fd, inputBuffer);
-   console.info('MS_LITE_LOG: readSync data to file succeed and inputBuffer size is:' + readLen);
-   
-   // Perform image preprocessing through PixelMap.
-   let imageSource = image.createImageSource(file.fd);
-   imageSource.createPixelMap().then((pixelMap) => {
-     pixelMap.getImageInfo().then((info) => {
-       console.info('MS_LITE_LOG: info.width = ' + info.size.width);
-       console.info('MS_LITE_LOG: info.height = ' + info.size.height);
-       // Crop the image based on the input image size and obtain the image buffer readBuffer.
-       pixelMap.scale(256.0 / info.size.width, 256.0 / info.size.height).then(() => {
-         pixelMap.crop(
-           { x: 16, y: 16, size: { height: modelInputHeight, width: modelInputWidth } }
-         ).then(async () => {
-           let info = await pixelMap.getImageInfo();
-           console.info('MS_LITE_LOG: crop info.width = ' + info.size.width);
-           console.info('MS_LITE_LOG: crop info.height = ' + info.size.height);
-           // Set the size of readBuffer.
-           let readBuffer = new ArrayBuffer(modelInputHeight * modelInputWidth * 4);
-           await pixelMap.readPixelsToBuffer(readBuffer);
-           console.info('MS_LITE_LOG: Succeeded in reading image pixel data, buffer: ' +
-           readBuffer.byteLength);
-           // Convert readBuffer to the float32 format, and standardize the image.
-           const imageArr = new Uint8Array(
-             readBuffer.slice(0, modelInputHeight * modelInputWidth * 4));
-           console.info('MS_LITE_LOG: imageArr length: ' + imageArr.length);
-           let means = [0.485, 0.456, 0.406];
-           let stds = [0.229, 0.224, 0.225];
-           let float32View = new Float32Array(modelInputHeight * modelInputWidth * 3);
-           let index = 0;
-           for (let i = 0; i < imageArr.length; i++) {
-             if ((i + 1) % 4 == 0) {
-               float32View[index] = (imageArr[i - 3] / 255.0 - means[0]) / stds[0]; // B
-               float32View[index+1] = (imageArr[i - 2] / 255.0 - means[1]) / stds[1]; // G
-               float32View[index+2] = (imageArr[i - 1] / 255.0 - means[2]) / stds[2]; // R
-               index += 3;
-             }
+     build() {
+       Row() {
+         Column() {
+           Button() {
+             Text('photo')
+               .fontSize(30)
+               .fontWeight(FontWeight.Bold)
            }
-           console.info('MS_LITE_LOG: float32View length: ' + float32View.length);
-           let printStr = 'float32View data:';
-           for (let i = 0; i < 20; i++) {
-             printStr += ' ' + float32View[i];
-           }
-           console.info('MS_LITE_LOG: float32View data: ' + printStr);
-         })
-       })
-     });
-   });
+           .type(ButtonType.Capsule)
+           .margin({
+             top: 20
+           })
+           .backgroundColor('#0D9FFB')
+           .width('40%')
+           .height('5%')
+           .onClick(() => {
+             let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+   
+             // Obtain images in an album.
+             // 1. Create an image picker instance.
+             let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+   
+             // 2. Set the media file type to IMAGE and set the maximum number of media files that can be selected.
+             photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+             photoSelectOptions.maxSelectNumber = 1;
+   
+             // 3. Create an album picker instance and call select() to open the album page for file selection. After file selection is done, the result set is returned through photoSelectResult.
+             let photoPicker = new photoAccessHelper.PhotoViewPicker();
+             photoPicker.select(photoSelectOptions,
+               async (err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+                 if (err) {
+                   console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+                   return;
+                 }
+                 console.info('MS_LITE_LOG: PhotoViewPicker.select successfully, photoSelectResult uri: ' +
+                 JSON.stringify(photoSelectResult));
+                 this.uris = photoSelectResult.photoUris;
+                 console.info('MS_LITE_LOG: uri: ' + this.uris);
+                 // Preprocess the image data.
+                 try {
+                   // 1. Based on the specified URI, call fileIo.openSync to open the file to obtain the FD.
+                   let file = fileIo.openSync(this.uris[0], fileIo.OpenMode.READ_ONLY);
+                   console.info('MS_LITE_LOG: file fd: ' + file.fd);
+   
+                   // 2. Based on the FD, call fileIo.readSync to read the data in the file.
+                   let inputBuffer = new ArrayBuffer(4096000);
+                   let readLen = fileIo.readSync(file.fd, inputBuffer);
+                   console.info('MS_LITE_LOG: readSync data to file succeed and inputBuffer size is:' + readLen);
+   
+                   // 3. Perform image preprocessing through PixelMap.
+                   let imageSource = image.createImageSource(file.fd);
+                   imageSource.createPixelMap().then((pixelMap) => {
+                     pixelMap.getImageInfo().then((info) => {
+                       console.info('MS_LITE_LOG: info.width = ' + info.size.width);
+                       console.info('MS_LITE_LOG: info.height = ' + info.size.height);
+                       // 4. Crop the image based on the input image size and obtain the image buffer readBuffer.
+                       pixelMap.scale(256.0 / info.size.width, 256.0 / info.size.height).then(() => {
+                         pixelMap.crop({
+                           x: 16,
+                           y: 16,
+                           size: { height: this.modelInputHeight, width: this.modelInputWidth }
+                         })
+                           .then(async () => {
+                             let info = await pixelMap.getImageInfo();
+                             console.info('MS_LITE_LOG: crop info.width = ' + info.size.width);
+                             console.info('MS_LITE_LOG: crop info.height = ' + info.size.height);
+                             // Set the size of readBuffer.
+                             let readBuffer = new ArrayBuffer(this.modelInputHeight * this.modelInputWidth * 4);
+                             await pixelMap.readPixelsToBuffer(readBuffer);
+                             console.info('MS_LITE_LOG: Succeeded in reading image pixel data, buffer: ' +
+                             readBuffer.byteLength);
+                             // Convert readBuffer to the float32 format, and standardize the image.
+                             const imageArr =
+                               new Uint8Array(readBuffer.slice(0, this.modelInputHeight * this.modelInputWidth * 4));
+                             console.info('MS_LITE_LOG: imageArr length: ' + imageArr.length);
+                             let means = [0.485, 0.456, 0.406];
+                             let stds = [0.229, 0.224, 0.225];
+                             let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
+                             let index = 0;
+                             for (let i = 0; i < imageArr.length; i++) {
+                               if ((i + 1) % 4 == 0) {
+                                 float32View[index] = (imageArr[i - 3] / 255.0 - means[0]) / stds[0]; // B
+                                 float32View[index+1] = (imageArr[i - 2] / 255.0 - means[1]) / stds[1]; // G
+                                 float32View[index+2] = (imageArr[i - 1] / 255.0 - means[2]) / stds[2]; // R
+                                 index += 3;
+                               }
+                             }
+                             console.info('MS_LITE_LOG: float32View length: ' + float32View.length);
+                             let printStr = 'float32View data:';
+                             for (let i = 0; i < 20; i++) {
+                               printStr += ' ' + float32View[i];
+                             }
+                             console.info('MS_LITE_LOG: float32View data: ' + printStr);
+                           })
+                       })
+                     })
+                   })
+                 } catch (err) {
+                   console.error('MS_LITE_LOG: uri: open file fd failed.' + err);
+                 }
+               })
+           })
+         }.width('100%')
+       }
+       .height('100%')
+     }
+   }
    ```
 
 #### Writing Inference Code
@@ -179,7 +212,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
    }
    ```
    
-3. Create a context, set parameters such as the number of threads and device type, and load the model.
+3. Create a context, set parameters such as the number of threads and device type, and load the model. The sample model does not support NNRt inference.
 
    ```c++
    void DestroyModelBuffer(void **buffer) {
@@ -190,7 +223,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
        *buffer = nullptr;
    }
    
-   OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize) {
+   OH_AI_ContextHandle CreateMSLiteContext(void *modelBuffer) {
        // Set executing context for model.
        auto context = OH_AI_ContextCreate();
        if (context == nullptr) {
@@ -198,11 +231,17 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
            LOGE("MS_LITE_ERR: Create MSLite context failed.\n");
            return nullptr;
        }
+       // The OH_AI_DeviceInfoCreate(OH_AI_DEVICETYPE_NNRT) option is not supported.
        auto cpu_device_info = OH_AI_DeviceInfoCreate(OH_AI_DEVICETYPE_CPU);
    
        OH_AI_DeviceInfoSetEnableFP16(cpu_device_info, true);
        OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
+       
+       LOGI("MS_LITE_LOG: Build MSLite context success.\n");
+       return context;
+   }
    
+   OH_AI_ModelHandle CreateMSLiteModel(void *modelBuffer, size_t modelSize, OH_AI_ContextHandle context) {
        // Create model
        auto model = OH_AI_ModelCreate();
        if (model == nullptr) {
@@ -257,7 +296,6 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
        // Predict model.
        auto predict_ret = OH_AI_ModelPredict(model, inputs, &outputs, nullptr, nullptr);
        if (predict_ret != OH_AI_STATUS_SUCCESS) {
-           OH_AI_ModelDestroy(&model);
            LOGE("MS_LITE_ERR: MSLite Predict error.\n");
            return OH_AI_STATUS_LITE_ERROR;
        }
@@ -323,15 +361,22 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
            return error_ret;
        }
        LOGI("MS_LITE_LOG: Read model file success");
-       auto model = CreateMSLiteModel(modelBuffer, modelSize);
+       
+       auto context = CreateMSLiteContext(modelBuffer);
+       if (context == nullptr) {
+           LOGE("MS_LITE_ERR: MSLiteFwk Build context failed.\n");
+           return error_ret;
+       }
+       auto model = CreateMSLiteModel(modelBuffer, modelSize, context);
        if (model == nullptr) {
-           OH_AI_ModelDestroy(&model);
+           OH_AI_ContextDestroy(&context);
            LOGE("MS_LITE_ERR: MSLiteFwk Build model failed.\n");
            return error_ret;
        }
        int ret = RunMSLiteModel(model, input_data);
        if (ret != OH_AI_STATUS_SUCCESS) {
            OH_AI_ModelDestroy(&model);
+           OH_AI_ContextDestroy(&context);
            LOGE("MS_LITE_ERR: RunMSLiteModel failed.\n");
            return error_ret;
        }
@@ -346,6 +391,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
            napi_set_element(env, out_data, i, element);
        }
        OH_AI_ModelDestroy(&model);
+       OH_AI_ContextDestroy(&context);
        LOGI("MS_LITE_LOG: Exit runDemo()");
        return out_data;
    }
@@ -398,37 +444,71 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
 In **entry/src/main/ets/pages/Index.ets**, call the encapsulated ArkTS module to process the inference result.
 
 ```ts
+// Index.ets
 import msliteNapi from 'libentry.so'
-import { resourceManager } from '@kit.LocalizationKit';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
-let max: number = 0;
-let maxIndex: number = 0;
-let maxArray: Array<number> = [];
-let maxIndexArray: Array<number> = [];
+@Entry
+@Component
+struct Index {
+  @State modelInputHeight: number = 224;
+  @State modelInputWidth: number = 224;
+  @State max: number = 0;
+  @State maxIndex: number = 0;
+  @State maxArray: Array<number> = [];
+  @State maxIndexArray: Array<number> = [];
 
-// Call the runDemo function of C++. Assume that the image buffer is stored in float32View after preprocessing.
-console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
-let output: Array<number> = msliteNapi.runDemo(Array.from(float32View), resMgr);
-// Obtain the maximum number of categories.
-let newArray = output.filter(value => value !== max);
-for (let n = 0; n < 5; n++) {
-  max = output[0];
-  maxIndex = 0;
-  for (let m = 0; m < newArray.length; m++) {
-    if (newArray[m] > max) {
-      max = newArray[m];
-      maxIndex = m;
+  build() {
+    Row() {
+      Column() {
+        Button() {
+          Text('photo')
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({
+          top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('40%')
+        .height('5%')
+        .onClick(() => {
+          let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
+          let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
+          // Image input and preprocessing
+          // Call the C++ runDemo function. The buffer data of the input image is stored in float32View after preprocessing. For details, see Image Input and Preprocessing.
+          console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
+          let output: Array<number> = msliteNapi.runDemo(Array.from(float32View), resMgr);
+
+          // Obtain the maximum number of categories.
+          this.max = 0;
+          this.maxIndex = 0;
+          this.maxArray = [];
+          this.maxIndexArray = [];
+          let newArray = output.filter(value => value !== this.max);
+          for (let n = 0; n < 5; n++) {
+            this.max = output[0];
+            this.maxIndex = 0;
+            for (let m = 0; m < newArray.length; m++) {
+              if (newArray[m] > this.max) {
+                this.max = newArray[m];
+                this.maxIndex = m;
+              }
+            }
+            this.maxArray.push(Math.round(this.max * 10000));
+            this.maxIndexArray.push(this.maxIndex);
+            // Call the array filter function.
+            newArray = newArray.filter(value => value !== this.max);
+          }
+          console.info('MS_LITE_LOG: max:' + this.maxArray);
+          console.info('MS_LITE_LOG: maxIndex:' + this.maxIndexArray);
+          console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
+        })
+      }.width('100%')
     }
+    .height('100%')
   }
-  maxArray.push(Math.round(this.max * 10000));
-  maxIndexArray.push(this.maxIndex);
-  // Call the array filter function.
-  newArray = newArray.filter(value => value !== max);
 }
-console.info('MS_LITE_LOG: max:' + this.maxArray);
-console.info('MS_LITE_LOG: maxIndex:' + this.maxIndexArray);
-console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 ```
 
 ### Debugging and Verification
@@ -473,3 +553,4 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
 <img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
+

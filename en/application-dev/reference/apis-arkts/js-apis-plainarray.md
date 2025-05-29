@@ -27,6 +27,8 @@ import { PlainArray } from '@kit.ArkTS';
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
@@ -39,6 +41,8 @@ import { PlainArray } from '@kit.ArkTS';
 constructor()
 
 A constructor used to create a **PlainArray** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -62,6 +66,8 @@ let plainArray: PlainArray<string> = new PlainArray();
 isEmpty(): boolean
 
 Checks whether this container is empty.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -93,13 +99,15 @@ has(key: number): boolean
 
 Checks whether this container contains the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -131,13 +139,15 @@ get(key: number): T
 
 Obtains the value of the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -170,13 +180,15 @@ getIndexOfKey(key: number): number
 
 Obtains the index of the element with the specified key in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -208,6 +220,8 @@ let result = plainArray.getIndexOfKey(2);
 getIndexOfValue(value: T): number
 
 Obtains the index of the first occurrence of an element with the specified value in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -247,13 +261,15 @@ getKeyAt(index: number): number
 
 Obtains the key of the element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -285,13 +301,15 @@ getValueAt(index: number): T
 
 Obtains the value of an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
   | Name| Type | Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position index of the target element.|
+  | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -323,6 +341,8 @@ let result = plainArray.getValueAt(1);
 clone(): PlainArray&lt;T&gt;
 
 Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -356,13 +376,15 @@ add(key: number, value: T): void
 
 Adds an element to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Key of the target element.|
+| key | number | Yes| Key of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
 
 **Error codes**
@@ -388,13 +410,15 @@ remove(key: number): T
 
 Removes a key-value pair with the specified key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | number | Yes| Target key.|
+| key | number | Yes| Target key. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -427,13 +451,15 @@ removeAt(index: number): T
 
 Removes an element at the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -466,14 +492,16 @@ removeRangeFrom(index: number, size: number): number
 
 Removes elements in a specified range from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Start position of the elements to remove.|
-| size | number | Yes| Number of elements to remove.|
+| index | number | Yes| Start position of the elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
+| size | number | Yes| Number of elements to remove. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -507,13 +535,15 @@ setValueAt(index: number, value: T): void
 
 Sets a value for an element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | value | T | Yes| Value of the target element.|
 
 **Error codes**
@@ -541,6 +571,8 @@ plainArray.setValueAt(1, 3546);
 toString(): String
 
 Obtains a string that contains all elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -574,6 +606,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -599,6 +633,8 @@ plainArray.clear();
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -635,7 +671,17 @@ plainArray.forEach((value: string, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
 ```
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
 
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
+}
+```
 
 ### [Symbol.iterator]
 
@@ -643,9 +689,7 @@ plainArray.forEach((value: string, index?: number) => {
 
 Obtains an iterator object that contains key-value pairs, where the key is of the number type.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -676,5 +720,16 @@ while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
   temp = iter.next();
+}
+```
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let plainArray: PlainArray<string> = new PlainArray();
+for(let i = 0;i < 10;i++) {
+  plainArray.add(i,"123");
+}
+
+for(let i = 0;i < 10;i++) {
+  plainArray.remove(i);
 }
 ```

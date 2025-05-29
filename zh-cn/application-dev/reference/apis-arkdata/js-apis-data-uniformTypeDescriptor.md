@@ -14,7 +14,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 ## UniformDataType
 
-标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
+标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。更多预置数据类型参考[UTD预置列表](../../database/uniform-data-type-list.md)。
+下表以枚举形式，列举了常用的标准化数据类型定义。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -31,7 +32,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | XHTML<sup>12+</sup>    | 'general.xhtml'                   | XHTML文本类型，归属类型为XML。                |
 | RSS<sup>12+</sup>    | 'general.rss'                   | RSS文本类型，归属类型为XML。                |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  同步多媒体集成语言类型，归属类型为XML文本类型。       |
-| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为PLAIN_TEXT。        |
+| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为TEXT。        |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型，归属类型为SOURCE_CODE。   |
 | SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | shell脚本类型，归属类型为SCRIPT。            |
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C-shell脚本类型，归属类型为SHELL_SCRIPT。    |
@@ -39,8 +40,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型，归属类型为SHELL_SCRIPT。        |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型，归属类型为SHELL_SCRIPT。     |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型，归属类型为SHELL_SCRIPT。       |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SCRIPT。 |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SCRIPT。 |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SOURCE_CODE。 |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SOURCE_CODE。 |
 | CSS<sup>12+</sup>    | 'general.css'                   | CSS样式表类型，归属类型为SCRIPT。                |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型，归属类型为SOURCE_CODE。          |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型，归属类型为SOURCE_CODE。          |
@@ -48,7 +49,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型，归属类型为SOURCE_CODE。        |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型，归属类型为SOURCE_CODE。       |
 | TEX<sup>12+</sup>    | 'general.tex'                   | TEX源代码类型，归属类型为SOURCE_CODE。                |
-| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | 标记语言文本类型，归属类型为PLAIN_TEXT。       |
+| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | 标记语言文本类型，归属类型为TEXT。       |
 | ASC_TEXT<sup>12+</sup>    | 'general.asc-text'                   | ASCII文本类型，归属类型为TEXT。                |
 | RICH_TEXT<sup>12+</sup>    | 'general.rich-text'                   | 富文本类型，归属类型为TEXT。                |
 | DELIMITED_VALUES_TEXT<sup>12+</sup>    | 'general.delimited-values-text'                   | 所有分隔值文本的基类型，归属类型为TEXT。                |
@@ -122,7 +123,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | MPEGURL_AUDIO<sup>12+</sup>                         | 'general.mpegurl-audio'                    | MPEG音频播放列表文件类型，归属类型为AUDIO。       |
 | MPEG_4_AUDIO<sup>12+</sup>                         | 'general.mpeg-4-audio'                    | MPEG-4音频类型，归属类型为AUDIO。       |
 | MP2<sup>12+</sup>                         | 'general.mp2'                    | MP2音频类型，归属类型为AUDIO。       |
-| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPGE音频类型，归属类型为AUDIO。       |
+| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG音频类型，归属类型为AUDIO。       |
 | ULAW_AUDIO<sup>12+</sup>                         | 'general.ulaw-audio'                    | ULAW音频类型，归属类型为AUDIO。       |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。       |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealMedia音频类型，归属类型为AUDIO。       |
@@ -141,7 +142,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型，归属类型为ARCHIVE。           |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP存档文件类型，归属类型为ARCHIVE。           |
 | JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAVA存档文件类型，归属类型为ARCHIVE和EXECUTABLE。          |
-| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN存档文件类型，归属类型为ARCHIVE。           |
+| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GNU存档文件类型，归属类型为ARCHIVE。           |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP存档文件类型，归属类型为ARCHIVE。          |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR存档文件类型，归属类型为ARCHIVE。       |
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   开源XML基类型，归属类型为ARCHIVE。       |
@@ -195,6 +196,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | OFD<sup>12+</sup>                         | 'general.ofd'                    | 开放版式文档类型，归属类型为COMPOSITE_OBJECT。       |
 | CAD<sup>12+</sup>                         | 'general.cad'                    | 所有计算机辅助设计类型的基类型，归属类型为OBJECT。       |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | 任意二进制数据类型，归属类型为OBJECT。       |
+| FILE_URI<sup>15+</sup>                         | 'general.file-uri'                    | 文件地址类型，归属类型为TEXT。       |
+| CONTENT_FORM<sup>15+</sup>                         | 'general.content-form'                    | 内容卡片类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
@@ -251,9 +254,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.belongsTo('general.plain-text');
+    let ret = typeObj.belongsTo('general.source-code');
     if(ret) {
-        console.info('type general.type-script belongs to type general.plain-text');
+        console.info('type general.type-script belongs to type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -265,7 +268,7 @@ try{
 
 isLowerLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为TEXT的低层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -297,9 +300,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.isLowerLevelType('general.plain-text');
+    let ret = typeObj.isLowerLevelType('general.source-code');
     if(ret) {
-        console.info('type general.type-script is lower level type of type general.plain-text');
+        console.info('type general.type-script is lower level type of type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -311,7 +314,7 @@ try{
 
 isHigherLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -342,10 +345,10 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.source-code');
     let ret = typeObj.isHigherLevelType('general.type-script');
     if(ret) {
-        console.info('type general.plain-text is higher level type of type general.type-script');
+        console.info('type general.source-code is higher level type of type general.type-script');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -411,7 +414,7 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| typeId    | string  | 是    |标准化数据类型ID。   |
+| typeId    | string  | 是    |[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -457,7 +460,7 @@ try {
 
 getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
 
-根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -466,7 +469,7 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | filenameExtension    | string  | 是    |文件后缀名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -489,7 +492,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.source-code');
     if(typeId) {
         console.info('typeId is general.type-script');
     }
@@ -514,7 +517,7 @@ try {
 
 getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 
-根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -523,7 +526,7 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | mimeType    | string  | 是    |MIME类型名称。   |
-| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询标准化数据类型ID。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
 
 **返回值：**
 
@@ -564,5 +567,119 @@ try {
 } catch(e) {
     let error: BusinessError = e as BusinessError;
     console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypesByFilenameExtension<sup>13+</sup>
+
+getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: string): Array\<string>
+
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID列表。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| filenameExtension    | string  | 是    |文件后缀名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID列表，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型列表。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.ts', 'general.source-code');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// 根据“.myts”，“general.plain-text”查不到预置数据类型则按返回根据入参信息生成的动态类型列表。
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.myts', 'general.plain-text');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypesByMIMEType<sup>13+</sup>
+
+getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<string>
+
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID列表。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| mimeType    | string  | 是    |MIME类型名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询[标准化数据类型ID](../../database/uniform-data-type-list.md#基础类型)。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID列表，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型列表。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('text/plain', 'general.text');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// 根据“image/myimage”, “general.image”查不到预置数据类型则按返回根据入参信息生成的动态类型列表。
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('image/myimage', 'general.image');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```

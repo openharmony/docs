@@ -108,7 +108,7 @@ OpenHarmony LiteOS-M内核的任务管理模块提供下面几种功能，接口
 | 功能分类 | 接口描述 |
 | -------- | -------- |
 | 创建和删除任务 | LOS_TaskCreateOnly：创建任务，并使该任务进入suspend状态。<br/>LOS_TaskCreate：创建任务，并使该任务进入ready状态，如果就绪队列中没有更高优先级的任务，则运行该任务。<br/>LOS_TaskDelete：删除指定的任务。 |
-| 控制任务状态 | LOS_TaskResume：恢复挂起的任务，使该任务进入ready状态。<br/>LOS_TaskSuspend：挂起指定的任务，然后切换任务。<br/>LOS_TaskJoin：挂起当前任务，等待指定任务运行结束并回收其任务控制块资源<br/>LOS_TaskDelay：任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为Tick数目。<br/>LOS_Msleep：任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为毫秒数。<br/>LOS_TaskYield：当前任务时间片设置为0，释放CPU，触发调度运行就绪任务队列中优先级最高的任务。 |
+| 控制任务状态 | LOS_TaskResume：恢复挂起的任务，使该任务进入ready状态。<br/>LOS_TaskSuspend：挂起指定的任务，然后切换任务。<br/>LOS_TaskJoin：挂起当前任务，等待指定任务运行结束并回收其任务控制块资源。<br/>LOS_TaskDelay：任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为Tick数目。<br/>LOS_Msleep：任务延时等待，释放CPU，等待时间到期后该任务会重新进入ready状态。传入参数为毫秒数。<br/>LOS_TaskYield：当前任务时间片设置为0，释放CPU，触发调度运行就绪任务队列中优先级最高的任务。 |
 | 控制任务调度 | LOS_TaskLock：锁任务调度，但任务仍可被中断打断。<br/>LOS_TaskUnlock：解锁任务调度。<br/>LOS_Schedule：触发任务调度。 |
 | 控制任务优先级 | LOS_CurTaskPriSet：设置当前任务的优先级。<br/>LOS_TaskPriSet：设置指定任务的优先级。<br/>LOS_TaskPriGet：获取指定任务的优先级。 |
 | 获取任务信息 | LOS_CurTaskIDGet：获取当前任务的ID。<br/>LOS_NextTaskIDGet：获取任务就绪队列中优先级最高的任务的ID。<br/>LOS_NewTaskIDGet：等同LOS_NextTaskIDGet。<br/>LOS_CurTaskNameGet：获取当前任务的名称。<br/>LOS_TaskNameGet：获取指定任务的名称。<br/>LOS_TaskStatusGet：获取指定任务的状态。<br/>LOS_TaskInfoGet：获取指定任务的信息，包括任务状态、优先级、任务栈大小、栈顶指针SP、任务入口函数、已使用的任务栈大小等。<br/>LOS_TaskIsRunning：获取任务模块是否已经开始调度运行。 |

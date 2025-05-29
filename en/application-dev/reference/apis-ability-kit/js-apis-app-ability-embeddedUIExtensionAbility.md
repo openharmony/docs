@@ -1,6 +1,6 @@
 # @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embedded UIs Across Processes)
 
-**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embedded UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
+**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embedded UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 >

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides model-related APIs for model creation and inference.
+Provides model-related APIs for model creation and inference. These APIs are non-thread-safe.
 
 **Library**: libmindspore_lite_ndk.so
 
@@ -20,7 +20,7 @@ Provides model-related APIs for model creation and inference.
 | Name| Description|
 | -------- | -------- |
 | [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | Defines the operator information passed in a callback.|
 
 
@@ -38,7 +38,7 @@ Provides model-related APIs for model creation and inference.
 | [OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) | Defines the pointer to a model object.|
 | [OH_AI_TrainCfgHandle](_mind_spore.md#oh_ai_traincfghandle) | Defines the pointer to a training configuration object.|
 | [OH_AI_TensorHandleArray](_mind_spore.md#oh_ai_tensorhandlearray) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines the dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](_mind_spore.md#oh_ai_callbackparam) | Defines the operator information passed in a callback.|
 | [OH_AI_KernelCallBack](_mind_spore.md#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | Defines the pointer to a callback.|
 
@@ -47,7 +47,7 @@ Provides model-related APIs for model creation and inference.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_AI_ModelCreate](_mind_spore.md#oh_ai_modelcreate) () | Creates a model object.|
+| [OH_AI_ModelCreate](_mind_spore.md#oh_ai_modelcreate) (void) | Creates a model object.|
 | [OH_AI_ModelDestroy](_mind_spore.md#oh_ai_modeldestroy) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) \*model) | Destroys a model object.|
 | [OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) model_context) | Loads and builds a MindSpore model from the memory buffer.|
 | [OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, const char \*model_path, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) model_context) | Loads and builds a MindSpore model from a model file.|
@@ -74,5 +74,5 @@ Provides model-related APIs for model creation and inference.
 | [OH_AI_ModelSetTrainMode](_mind_spore.md#oh_ai_modelsettrainmode) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, bool train) | Sets the training mode. This API is used only for on-device training.|
 | [OH_AI_ModelSetupVirtualBatch](_mind_spore.md#oh_ai_modelsetupvirtualbatch) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, int virtual_batch_multiplier, float lr, float momentum) | Sets the virtual batch for training. This API is used only for on-device training.|
 | [OH_AI_ExportModel](_mind_spore.md#oh_ai_exportmodel) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const char \*model_file, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports a training model. This API is used only for on-device training.|
-| [OH_AI_ExportModelBuffer](_mind_spore.md#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, char \*\*model_data, size_t \*data_size, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports the memory cache of the training model. This API is used only for on-device training.|
+| [OH_AI_ExportModelBuffer](_mind_spore.md#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, void \*model_data, size_t \*data_size, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | Exports the memory cache of the training model. This API is used only for on-device training.|
 | [OH_AI_ExportWeightsCollaborateWithMicro](_mind_spore.md#oh_ai_exportweightscollaboratewithmicro) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const char \*weight_file, bool is_inference, bool enable_fp16, char \*\*changeable_weights_name, size_t num) | Exports the weight file of the training model for micro inference. This API is used only for on-device training.|

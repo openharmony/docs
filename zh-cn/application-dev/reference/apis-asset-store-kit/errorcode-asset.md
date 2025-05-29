@@ -31,7 +31,7 @@ The asset is not found.
 
 **处理步骤**
 
-1. 根据别名确认该关键资产是否已经写入过，或已经删除。
+1. 根据别名确认该关键资产是否已经写入过或已经删除。
 2. 重新写入关键资产，再访问该关键资产。
 
 ## 24000003 关键资产已存在
@@ -49,13 +49,13 @@ The asset already exists.
 请先确认写入同别名的关键资产是否符合预期，如果不符合需排查别名是否错误，如果符合则可通过以下任意一种方式处理：
 
 1. 先调用[asset.remove](js-apis-asset.md#assetremove)删除同别名的关键资产，再调用[asset.add](js-apis-asset.md#assetadd)重新写入。
-2. 调用[asset.add](js-apis-asset.md#assetadd)时，指定参数asset.Tag.CONFLICT_RESOLUTION的值为asset.ConflictResolution.OVERWRITE
+2. 调用[asset.add](js-apis-asset.md#assetadd)时，指定参数asset.Tag.CONFLICT_RESOLUTION的值为asset.ConflictResolution.OVERWRITE。
 
 ## 24000004 拒绝访问关键资产
 
 **错误信息**
 
-Access to the asset is denied.
+Access denied.
 
 **可能原因**
 
@@ -255,3 +255,17 @@ The capability is not supported.
 **处理步骤**
 
 调整API参数，使用可替代的调用方式，如多次调用API查询关键资产。
+
+## 24000018 参数校验失败
+
+**错误信息**
+
+Parameter verify failed.
+
+**可能原因**
+
+传入的参数不合法。
+
+**处理步骤**
+
+根据错误信息，调整API参数，并重新调用接口。

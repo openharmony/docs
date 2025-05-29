@@ -28,7 +28,7 @@ export default {
 // app.js
 export default {
     data: {
-        test: "by getAPP"
+        test: "by getApp"
     },
     onCreate() {
         console.info('AceApplication onCreate');
@@ -36,7 +36,7 @@ export default {
     onDestroy() {
         console.info('AceApplication onDestroy');
     },
-};
+}
 ```
 
 ```js

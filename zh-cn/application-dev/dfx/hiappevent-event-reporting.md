@@ -40,9 +40,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
-     processorId: number = -1
+     processorId: number = -1;
    
      build() {
        Row() {
@@ -89,7 +89,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
        // 在按钮点击函数中获取刚设置的用户ID
        let userId = hiAppEvent.getUserId('testUserIdName');
-       hilog.info(0x0000, 'testTag', `userId: ${userId}`)
+       hilog.info(0x0000, 'testTag', `userId: ${userId}`);
      })
    ```
 
@@ -102,7 +102,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
        // 在按钮点击函数中获取刚设置的用户属性值
        let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
-       hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
+       hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`);
      })
    ```
 
@@ -120,12 +120,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
          // 事件类型定义
          eventType: hiAppEvent.EventType.BEHAVIOR,
          // 事件参数定义
-         params: eventParams,
+         params: eventParams
        };
        hiAppEvent.write(eventInfo).then(() => {
-         hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+         hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
        }).catch((err: BusinessError) => {
-         hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+         hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
        });
      })
    ```

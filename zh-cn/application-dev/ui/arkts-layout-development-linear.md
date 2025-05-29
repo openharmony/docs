@@ -3,7 +3,7 @@
 
 ## 概述
 
-线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)和[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Column容器内子元素按照垂直方向排列，Row容器内子元素按照水平方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
+线性布局（LinearLayout）是开发中最常用的布局，通过线性容器[Row](../reference/apis-arkui/arkui-ts/ts-container-row.md)和[Column](../reference/apis-arkui/arkui-ts/ts-container-column.md)构建。线性布局是其他布局的基础，其子元素在线性方向上（水平方向和垂直方向）依次排列。线性布局的排列方向由所选容器组件决定，Row容器内子元素按照水平方向排列，Column容器内子元素按照垂直方向排列。根据不同的排列方向，开发者可选择使用Row或Column容器创建线性布局。
 
 
   **图1** Column容器内子元素排列示意图  
@@ -22,9 +22,9 @@
 
 - 布局子元素：布局容器内部的元素。
 
-- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向。
+- 主轴：线性布局容器在布局方向上的轴线，子元素默认沿主轴排列。Row容器主轴为水平方向，Column容器主轴为垂直方向（图示可参考[弹性容器](./arkts-layout-development-flex-layout.md#基本概念)基本概念中的主轴）。
 
-- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向。
+- 交叉轴：垂直于主轴方向的轴线。Row容器交叉轴为垂直方向，Column容器交叉轴为水平方向（图示可参考[弹性容器](./arkts-layout-development-flex-layout.md#基本概念)基本概念中的交叉轴）。
 
 - 间距：布局子元素的间距。
 
@@ -71,130 +71,6 @@ Row({ space: 35 }) {
 
 ![zh-cn_image_0000001562700509](figures/zh-cn_image_0000001562700509.png)
 
-
-## 布局子元素在交叉轴上的对齐方式
-
-在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign)。
-
-alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
-
-
-### Column容器内子元素在水平方向上的排列
-
-  **图5** Column容器内子元素在水平方向上的排列图  
-
-![horizontal-arrangement-child-column](figures/horizontal-arrangement-child-column.png)
-
-- HorizontalAlign.Start：子元素在水平方向左对齐。
-
-  ```ts
-  Column({}) {
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-  }.width('100%').alignItems(HorizontalAlign.Start).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001511580964](figures/zh-cn_image_0000001511580964.png)
-
-- HorizontalAlign.Center：子元素在水平方向居中对齐。
-
-  ```ts
-  Column({}) {
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-  }.width('100%').alignItems(HorizontalAlign.Center).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001562820897](figures/zh-cn_image_0000001562820897.png)
-
-- HorizontalAlign.End：子元素在水平方向右对齐。
-
-  ```ts
-  Column({}) {
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('80%').height(50).backgroundColor(0xF5DEB3)
-  }.width('100%').alignItems(HorizontalAlign.End).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001511421348](figures/zh-cn_image_0000001511421348.png)
-
-
-### Row容器内子元素在垂直方向上的排列
-
-  **图6** Row容器内子元素在垂直方向上的排列图  
-
-![horizontal-arrangement-child-row](figures/horizontal-arrangement-child-row.png)
-
-- VerticalAlign.Top：子元素在垂直方向顶部对齐。
-
-  ```ts
-  Row({}) {
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-  }.width('100%').height(200).alignItems(VerticalAlign.Top).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001563060765](figures/zh-cn_image_0000001563060765.png)
-
-- VerticalAlign.Center：子元素在垂直方向居中对齐。
-
-  ```ts
-  Row({}) {
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-  }.width('100%').height(200).alignItems(VerticalAlign.Center).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001562700505](figures/zh-cn_image_0000001562700505.png)
-
-- VerticalAlign.Bottom：子元素在垂直方向底部对齐。
-
-  ```ts
-  Row({}) {
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xD2B48C)
-
-    Column() {
-    }.width('20%').height(30).backgroundColor(0xF5DEB3)
-  }.width('100%').height(200).alignItems(VerticalAlign.Bottom).backgroundColor('rgb(242,242,242)')
-  ```
-
-  ![zh-cn_image_0000001563060781](figures/zh-cn_image_0000001563060781.png)
-
-
 ## 布局子元素在主轴上的排列方式
 
 在布局容器内，可以通过justifyContent属性设置子元素在容器主轴上的排列方式。可以从主轴起始位置开始排布，也可以从主轴结束位置开始排布，或者均匀分割主轴的空间。
@@ -202,11 +78,11 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
 ### Column容器内子元素在垂直方向上的排列
 
-  **图7** Column容器内子元素在垂直方向上的排列图 
+  **图5** Column容器内子元素在垂直方向上的排列图 
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
-- justifyContent(FlexAlign.Start)：元素在垂直方向方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
+- justifyContent(FlexAlign.Start)：元素在垂直方向首端对齐，第一个元素与行首对齐，同时后续的元素与前一个对齐。
 
   ```ts
   Column({}) {
@@ -223,7 +99,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700501](figures/zh-cn_image_0000001562700501.png)
 
-- justifyContent(FlexAlign.Center)：元素在垂直方向方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
+- justifyContent(FlexAlign.Center)：元素在垂直方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
 
   ```ts
   Column({}) {
@@ -240,7 +116,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562700517](figures/zh-cn_image_0000001562700517.png)
 
-- justifyContent(FlexAlign.End)：元素在垂直方向方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
+- justifyContent(FlexAlign.End)：元素在垂直方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。
 
   ```ts
   Column({}) {
@@ -311,7 +187,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
 ### Row容器内子元素在水平方向上的排列
 
-  **图8** Row容器内子元素在水平方向上的排列图  
+  **图6** Row容器内子元素在水平方向上的排列图  
 
 ![vertial-arrangement-child-row](figures/vertial-arrangement-child-row.png)
 
@@ -417,6 +293,127 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001511421352](figures/zh-cn_image_0000001511421352.png)
 
+## 布局子元素在交叉轴上的对齐方式
+
+在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式，且在各类尺寸屏幕中表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign)类型，水平方向取值为[HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign)类型。
+
+alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
+
+
+### Column容器内子元素在水平方向上的排列
+
+  **图7** Column容器内子元素在水平方向上的排列图  
+
+![horizontal-arrangement-child-column](figures/horizontal-arrangement-child-column.png)
+
+- HorizontalAlign.Start：子元素在水平方向左对齐。
+
+  ```ts
+  Column({}) {
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+  }.width('100%').alignItems(HorizontalAlign.Start).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001511580964](figures/zh-cn_image_0000001511580964.png)
+
+- HorizontalAlign.Center：子元素在水平方向居中对齐。
+
+  ```ts
+  Column({}) {
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+  }.width('100%').alignItems(HorizontalAlign.Center).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001562820897](figures/zh-cn_image_0000001562820897.png)
+
+- HorizontalAlign.End：子元素在水平方向右对齐。
+
+  ```ts
+  Column({}) {
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('80%').height(50).backgroundColor(0xF5DEB3)
+  }.width('100%').alignItems(HorizontalAlign.End).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001511421348](figures/zh-cn_image_0000001511421348.png)
+
+
+### Row容器内子元素在垂直方向上的排列
+
+  **图8** Row容器内子元素在垂直方向上的排列图  
+
+![horizontal-arrangement-child-row](figures/horizontal-arrangement-child-row.png)
+
+- VerticalAlign.Top：子元素在垂直方向顶部对齐。
+
+  ```ts
+  Row({}) {
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+  }.width('100%').height(200).alignItems(VerticalAlign.Top).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001563060765](figures/zh-cn_image_0000001563060765.png)
+
+- VerticalAlign.Center：子元素在垂直方向居中对齐。
+
+  ```ts
+  Row({}) {
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+  }.width('100%').height(200).alignItems(VerticalAlign.Center).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001562700505](figures/zh-cn_image_0000001562700505.png)
+
+- VerticalAlign.Bottom：子元素在垂直方向底部对齐。
+
+  ```ts
+  Row({}) {
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xD2B48C)
+
+    Column() {
+    }.width('20%').height(30).backgroundColor(0xF5DEB3)
+  }.width('100%').height(200).alignItems(VerticalAlign.Bottom).backgroundColor('rgb(242,242,242)')
+  ```
+
+  ![zh-cn_image_0000001563060781](figures/zh-cn_image_0000001563060781.png)
 
 ## 自适应拉伸
 
@@ -439,11 +436,11 @@ struct BlankExample {
 }
 ```
 
-  **图9** 竖屏  
+  **图9** 竖屏（自适应屏幕窄边）
 
 ![zh-cn_image_0000001562820881](figures/zh-cn_image_0000001562820881.png)
 
-  **图10** 横屏  
+  **图10** 横屏（自适应屏幕宽边） 
 
 ![zh-cn_image_0000001511421332](figures/zh-cn_image_0000001511421332.png)
 
@@ -550,7 +547,7 @@ struct BlankExample {
 
 ## 自适应延伸
 
-自适应延伸是指在不同尺寸设备下，当页面的内容超出屏幕大小而无法完全显示时，可以通过滚动条进行拖动展示。这种方法适用于线性布局中内容无法一屏展示的场景。通常有以下两种实现方式。
+自适应延伸是指在不同尺寸设备下，当页面的内容超出屏幕大小而无法完全显示时，可以通过滚动条进行拖动展示。对于线性布局，这种方法适用于容器中内容无法一屏展示的场景。通常有以下两种实现方式。
 
 - [在List中添加滚动条](arkts-layout-development-create-list.md#添加滚动条)：当List子项过多一屏放不下时，可以将每一项子元素放置在不同的组件中，通过滚动条进行拖动展示。可以通过scrollBar属性设置滚动条的常驻状态，edgeEffect属性设置拖动到内容最末端的回弹效果。
 

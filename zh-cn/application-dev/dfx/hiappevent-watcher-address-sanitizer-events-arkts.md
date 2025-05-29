@@ -27,7 +27,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            - napi_init.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -68,7 +68,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.pid=${eventInfo.params['pid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.uid=${eventInfo.params['uid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
-           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${eventInfo.params['external_log']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
          }
        }
@@ -93,32 +93,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        // 构造数组越界写入
        a[10] = 1;
        return {};
-   }
-
-   static napi_value Add(napi_env env, napi_callback_info info)
-   {
-       size_t argc = 2;
-       napi_value args[2] = {nullptr};
-
-       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-
-       napi_valuetype valuetype0;
-       napi_typeof(env, args[0], &valuetype0);
-
-       napi_valuetype valuetype1;
-       napi_typeof(env, args[1], &valuetype1);
-
-       double value0;
-       napi_get_value_double(env, args[0], &value0);
-
-       double value1;
-       napi_get_value_double(env, args[1], &value1);
-
-       napi_value sum;
-       napi_create_double(env, value0 + value1, &sum);
-
-       return sum;
-
    }
 
    EXTERN_C_START
@@ -148,25 +122,19 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，完整示例代码如下：
+6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import testNapi from 'libentry.so';
+   import testNapi from 'libentry.so'
 
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World';
-
      build() {
        Row() {
-       Column() {
-         Text(this.message)
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold)
-           .onClick(() => {
-             hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+         Column() {
+           Button("address-sanitizer").onClick(() => {
+             testNapi.test();
            })
          }
          .width('100%')
@@ -176,7 +144,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 点击IDE界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+7. 点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -190,6 +158,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.pid=12889
    HiAppEvent eventInfo.uid=20020140
    HiAppEvent eventInfo.type=stack-buffer-overflow
-   HiAppEvent eventInfo.external_log=/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log
+   HiAppEvent eventInfo.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log"]
    HiAppEvent eventInfo.log_over_limit=false
    ```

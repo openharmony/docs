@@ -12,14 +12,14 @@
 import { wifiManagerExt } from '@kit.ConnectivityKit';
 ```
 
-## wifiManagerExt.enableHotspot<sup>9+</sup>
+## wifiManagerExt.enableHotspot<sup>(deprecated)</sup>
 
-enableHotspot(): void;
+enableHotspot(): void
 
 使能WLAN热点。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -47,14 +47,14 @@ enableHotspot(): void;
   }
 ```
 
-## wifiManagerExt.disableHotspot<sup>9+</sup>
+## wifiManagerExt.disableHotspot<sup>(deprecated)</sup>
 
-disableHotspot(): void;
+disableHotspot(): void
 
 去使能WLAN热点。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -143,7 +143,6 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2701000 | Operation failed. |
 
@@ -152,7 +151,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getSupportedPowerMode((err, data) => {
+  wifiManagerExt.getSupportedPowerMode((err, data:wifiManagerExt.PowerMode[]) => {
       if (err) {
           console.error("get supported power mode info error");
           return;
@@ -174,7 +173,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 获取功率模式，使用Promise异步回调。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -232,7 +231,6 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2701000 | Operation failed. |
 
@@ -241,7 +239,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getPowerMode((err, data) => {
+  wifiManagerExt.getPowerMode((err, data:wifiManagerExt.PowerMode) => {
       if (err) {
           console.error("get linked info error");
           return;
@@ -256,11 +254,14 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
   });
 ```
 
-## wifiManagerExt.setPowerMode<sup>9+</sup>
+## wifiManagerExt.setPowerMode<sup>(deprecated)</sup>
 
-setPowerMode(mode: PowerMode) : void;
+setPowerMode(mode: PowerMode) : void
 
  设置功率模式。
+
+> **说明：**
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -279,7 +280,6 @@ setPowerMode(mode: PowerMode) : void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2701000 | Operation failed. |
 

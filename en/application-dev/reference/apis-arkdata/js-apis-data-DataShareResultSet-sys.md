@@ -9,7 +9,8 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 > - The APIs provided by this module are system APIs.
 >
 > - The APIs of this module can be used only in the stage model.
-
+>
+> - The system allows a maximum of 32 data share result sets. Release the data share result sets that are no longer used in a timely manner.
 
 ## Modules to Import
 
@@ -57,7 +58,7 @@ Provides APIs for accessing the result sets returned.
 
 The column or key names are returned as a string array, in which the strings are in the same order as the columns or keys in the result set.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -66,7 +67,7 @@ The column or key names are returned as a string array, in which the strings are
 | columnNames | Array&lt;string&gt; | Yes  | Names of all columns in the result set.  |
 | columnCount | number        | Yes  | Number of columns in the result set.        |
 | rowCount    | number        | Yes  | Number of rows in the result set.        |
-| isClosed    | boolean       | Yes  | Whether the result set is closed.|
+| isClosed    | boolean       | Yes  | Whether the result set is closed. The value **true** means the result set is closed; the value **false** means the opposite.|
 
 ### goToFirstRow
 

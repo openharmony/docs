@@ -67,7 +67,7 @@ Regulator主要用于：
 
 ### 接口说明
 
-Regulator模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/regulator_if.h。
+Regulator模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/regulator_if.h)。
 
 **表 1**  Regulator设备API接口说明
 

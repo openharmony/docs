@@ -26,9 +26,9 @@ libdl：dlopen等动态链接器接口，当前在OpenHarmony中是一个链接�
 从OpenHarmony5.0开始，版本升级到1.2.5
 
 ## 支持的能力
-提供兼容C99,C11,POSIX标准的头文件，以及库函数接口，但不是完全兼容；支持armv7a，arm64, x86_64三种架构的支持；
+提供兼容C99、C11、POSIX标准的头文件，以及库函数接口，但不是完全兼容；支持armv7a、arm64、x86_64三种架构的支持；
 
-为了更好的适配OpenHarmony设备的高性能，低内存，高安全，轻量化，支持多种形态设备的基本特征；在musl开源库的基础上进行了优化，增强，对不适用嵌入式设备的接口进行了裁剪。
+为了更好的适配OpenHarmony设备的高性能、低内存、高安全、轻量化、支持多种形态设备的基本特征；在musl开源库的基础上进行了优化，增强，对不适用嵌入式设备的接口进行了裁剪。
 
 ### 新增能力
 1. 动态加载器支持命名空间隔离能力，应用可以dlopen加载的动态库受系统命名空间限制（比如，无法打开系统侧动态库）。
@@ -61,6 +61,11 @@ param set musl.log.ld.app.{app_name} true
 param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
+## musl 差异规格接口说明
+
+| 接口名称          | 说明                                                                                         |
+|:--               |    :--                                                                                       |
+| epoll_create     | 在OpenHarmony5.0 上 该接口逻辑与1.2.3版本保持一致，不会对入参进行判断，不区分入参小于等于0的情况，预计下版本更新此接口逻辑与社区1.2.5保持一致，增加入参逻辑判断，入参小于等于0时创建失败，并返回错误码EINVAL。 |  
 
 ## ICONV支持的字符集编码格式
 
@@ -129,5 +134,5 @@ musl支持的字符集编码格式，以及受支持的别名。
 
 [NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
 
-
+[NDK musl-libc补充api文档](https://gitee.com/openharmony/third_party_musl/tree/master/docs)
 <!--no_check-->

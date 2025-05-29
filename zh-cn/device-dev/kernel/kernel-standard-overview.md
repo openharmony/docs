@@ -15,4 +15,4 @@
 
 ## OpenHarmony内核版本选择
 
-OpenHarmony 中Linux内核从LTS版本中选择合适的版本作为内核的基础版本，目前已完成对Linux-4.19及Linux-5.10的适配及支持。
+OpenHarmony 中Linux内核从LTS版本中选择合适的版本作为内核的基础版本，目前已完成对Linux-4.19及Linux-5.10的适配及支持，rk3568已适配Linux-6.6内核版本。

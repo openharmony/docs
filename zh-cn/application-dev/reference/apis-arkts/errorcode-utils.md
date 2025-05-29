@@ -112,7 +112,7 @@ Worker传输信息序列化异常。
 
 **处理步骤**
 
-确保传输信息属于Worker支持的合法序列化对象，支持的序列化类型详查[序列化类型](../../arkts-utils/serialization-support-types.md
+确保传输信息属于Worker支持的合法序列化对象，支持的序列化类型详查[ArkTS线程间通信概述](../../arkts-utils/interthread-communication-overview.md
 )。
 
 ## 10200007 Worker文件路径异常
@@ -381,7 +381,7 @@ The function is not called in the TaskPool thread.
 
 **可能原因**
 
-在主线程中或在非taskpool的其他线程中调用该函数。
+在UI主线程中或在非taskpool的其他线程中调用该函数。
 
 **处理步骤**
 
@@ -427,7 +427,7 @@ The callback is not registered on the host side.
 
 **错误信息**
 
-A dependent task cannot be added to SequenceRunner.
+dependent task not allowed.
 
 **错误描述**
 
@@ -729,6 +729,81 @@ The periodic task cannot have a dependency.
 
 调用上述接口时，确保任务不是周期任务。无法保证时，需要捕获异常。
 
+## 10200054 异步队列任务被丢弃
+
+**错误信息**
+
+The asyncRunner task discarded.
+
+**错误描述**
+
+异步队列里的等待任务列表中的任务被丢弃。
+
+**可能原因**
+
+调用[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)执行task任务的数量超过等待任务列表容量时，最早入队的task任务就会被丢弃。
+
+**处理步骤**
+
+1. 增加等待任务列表容量。
+2. 定位任务执行慢的原因，排查任务执行逻辑。
+
+## 10200055 异步任务被取消
+
+**错误信息**
+
+The asyncRunner task has been canceled.
+
+**错误描述**
+
+异步队列任务被取消。
+
+**可能原因**
+
+取消异步任务时，该任务在任务池中等待执行，或者该任务还在等待任务列表里。
+
+**处理步骤**
+
+取消任务前，确保任务进入任务池且开始执行。无法保证时，需要捕获异常。
+
+## 10200056 异步队列任务不能具有依赖项
+
+**错误信息**
+
+The task has been executed by AsyncRunner.
+
+**错误描述**
+
+异步队列任务不能具有依赖项。
+
+**可能原因**
+
+异步队列任务调用了[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)或[addDependency](js-apis-taskpool.md#adddependency11)接口来添加或移除依赖关系。
+
+**处理步骤**
+
+调用[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)或[addDependency](js-apis-taskpool.md#adddependency11)接口时，请确保对应任务不是异步队列任务。无法保证时，请注意捕获异常。
+
+## 10200057 任务无法被两种API执行
+
+**错误信息**
+
+The task cannot be executed by two APIs.
+
+**错误描述**
+
+异步队列任务只能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)接口执行，不能被其他API执行；非异步队列任务，不能被[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)接口执行。
+
+**可能原因**
+
+1. 异步任务再次调用[sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11)、[executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11)、[addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1)、[taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)、[asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute18)、[executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12)或[addDependency](js-apis-taskpool.md#adddependency11)执行。
+2. 已经被执行过的任务再次调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute18)执行。
+
+**处理步骤**
+
+1. 调用上述接口时，确保异步任务不再被执行。无法保证时，需要捕获异常。
+2. 调用上述接口时，确保已经被执行过的任务不再调用异步队列的[execute](../apis-arkts/js-apis-taskpool.md#execute18)执行。无法保证时，需要捕获异常。
+
 ## 10200060 超出精度限制
 
 **错误信息**
@@ -747,7 +822,7 @@ Decimal函数使用错误。
 
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来设置有效精度。
 
-如：Decimal.set({ precision: 10 }), 设置有效精度。
+如：Decimal.set({ precision: 10 })，设置有效精度。
 
 ## 10200061 加密方法不可用
 
@@ -768,3 +843,93 @@ Decimal函数使用错误。
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
 
 如：Decimal.set({ crypto: false}), 取消加密算法。
+
+## 10200062 xml的累积长度已超过上限
+
+**错误信息**
+
+The cumulative length of xml has exceeded the upper limit 100000.
+
+**错误描述**
+
+xml的累积字符已超过上限100000。
+
+**可能原因**
+
+已调用的接口中设置的参数总长度超过了上限100000。
+
+**处理步骤**
+
+减小当前接口中设置的参数长度。
+
+## 10200063 xml文件声明或属性位置设置错误
+
+**错误信息**
+
+Illegal position for xml.
+
+**错误描述**
+
+xml文件声明或属性位置设置错误。
+
+**可能原因**
+
+未按照xml标准格式设置元素位置。
+
+**处理步骤**
+
+按照xml标准设置元素的位置。
+
+## 10200064 入参字符串不能为空
+
+**错误信息**
+
+Cannot be an empty string.
+
+**错误描述**
+
+入参字符串不能为空。
+
+**可能原因**
+
+入参字符串为空。
+
+**处理步骤**
+
+传入正确的不为空的字符串。
+
+## 10200065 元素开始标记与元素结束标记未匹配使用
+
+**错误信息**
+
+There is no match between the startElement and the endElement.
+
+**错误描述**
+
+元素开始标记与元素结束标记未匹配使用。
+
+**可能原因**
+
+元素结束标记写入前未写入元素开始标记。
+
+**处理步骤**
+
+先写入元素开始标记，后写入元素结束标记。
+
+## 10200066 编码格式错误
+
+**错误信息**
+
+Incorrect encoding format, only support utf-8.
+
+**错误描述**
+
+编码格式错误，只支持utf-8。
+
+**可能原因**
+
+编码格式非utf-8。
+
+**处理步骤**
+
+修改编码格式为utf-8。

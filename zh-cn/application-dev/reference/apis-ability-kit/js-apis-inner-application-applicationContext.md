@@ -1,6 +1,6 @@
 # ApplicationContext
 
-ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
+ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
 
 > **说明：**
 >
@@ -15,15 +15,15 @@ import { common } from '@kit.AbilityKit';
 
 ## 使用说明
 
-在使用ApplicationContext的功能前，需要通过context的实例获取。
+在使用ApplicationContext的功能前，需要通过Context的实例获取。
 
-## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
+## ApplicationContext.on('abilityLifecycle')
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 注册监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,13 +105,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
 取消监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -158,13 +158,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期。使用Promise异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -210,13 +210,13 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
+## ApplicationContext.on('environment')
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -273,13 +273,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
 取消对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -325,13 +325,13 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
 取消对系统环境变化的监听。使用Promise异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -376,13 +376,13 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.on('applicationStateChange')<sup>10+</sup>
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
 注册对当前应用前后台变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -427,18 +427,22 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.off('applicationStateChange')<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。使用callback异步回调。仅支持主线程调用。
+取消对应用前后台切换事件的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 使用该接口前，需要先使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)注册事件监听。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -447,7 +451,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。取值可以为使用ApplicationContext.on('applicationStateChange')方法定义的callback回调，也可以为空。<br/>-&nbsp;如果传入已定义的回调，则取消该监听。 <br/>-&nbsp;如果未传入参数，则取消当前应用对所有前后台切换事件的监听。  |
 
 **错误码**：
 
@@ -459,15 +463,28 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 **示例：**
 
+假定已使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法注册名为applicationStateChangeCallback回调，下面示例展示如何取消对应的事件监听。
+
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     try {
-      applicationContext.off('applicationStateChange');
+      // 本例中的callback字段取值为ApplicationStateChangeCallback，需要替换为实际值。
+      // 如果callback字段不传入参数，则取消当前应用对所有前后台切换事件的监听。
+      applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
@@ -481,7 +498,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。使用Promise异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -525,7 +542,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。使用callback异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -568,9 +585,13 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -602,13 +623,67 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
+## ApplicationContext.killAllProcesses<sup>14+</sup>
+
+killAllProcesses(clearPageStack: boolean): Promise\<void\>
+
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+let isClearPageStack = false;
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.killAllProcesses(isClearPageStack);
+  }
+}
+```
+
 ## ApplicationContext.killAllProcesses
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -616,7 +691,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当杀死应用所在的进程成功，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当终止应用所在的进程成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -649,7 +724,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -657,7 +732,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -687,7 +762,7 @@ setLanguage(language: string): void
 
 设置应用的语言。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -695,7 +770,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过[getSystemLanguages()](../apis-localization-kit/js-apis-i18n.md#getsystemlanguages9)获取。  |
 
 **错误码**：
 
@@ -810,7 +885,7 @@ restartApp(want: Want): void
 
 应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用，且待重启的应用需要处于获焦状态。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -828,8 +903,8 @@ restartApp(want: Want): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
-| 16000064 | Restart too frequently. Try again at least 10s later. |
+| 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
+| 16000064 | Restart too frequently. Try again at least 3s later. |
 
 **示例：**
 
@@ -858,7 +933,7 @@ getCurrentAppCloneIndex(): number
 
 获取当前应用的分身索引。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -910,7 +985,7 @@ setFont(font: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | 是   | 设置字体类型，字体可以通过[font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont)方法进行注册使用。  |
+| font | string | 是   | 设置字体类型，字体可以通过[UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont)方法进行注册使用。  |
 
 **错误码**：
 
@@ -927,19 +1002,21 @@ setFont(font: string): void
 
 ```ts
 import { font } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
-    font.registerFont({
+    this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
       familySrc: $rawfile('font/medium.ttf')
     })
 
-    getContext().getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont("fontName");
   }
 
   build() {
@@ -966,6 +1043,7 @@ setSupportedProcessCache(isSupported : boolean): void
 >
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
 > - 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，可以重新设置。
+> - 如果需要支持缓存后快速启动，则需要在同一进程中所有[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`生命周期中调用该接口、且入参均配置为“true”。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -990,11 +1068,11 @@ setSupportedProcessCache(isSupported : boolean): void
 **示例：**
 
 ```ts
-import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
     let applicationContext = this.context.getApplicationContext();
     try {
       applicationContext.setSupportedProcessCache(true);
@@ -1002,6 +1080,148 @@ export default class MyAbility extends UIAbility {
       let code = (error as BusinessError).code;
       let message = (error as BusinessError).message;
       console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
+    }
+  }
+}
+```
+
+
+## ApplicationContext.setFontSizeScale<sup>13+</sup>
+
+setFontSizeScale(fontSizeScale: number): void
+
+设置应用字体大小缩放比例。仅支持主线程调用。
+
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| fontSizeScale | number | 是   | 表示字体缩放比例，取值为非负数。当应用字体[跟随系统](../../quick-start/app-configuration-file.md#configuration标签)且该字段取值超过[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值时，实际生效值为[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.setFontSizeScale(2);
+    });
+  }
+}
+```
+
+
+## ApplicationContext.getCurrentInstanceKey<sup>14+</sup>
+
+getCurrentInstanceKey(): string
+
+获取当前应用多实例的唯一实例标识。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| string | 返回当前应用多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    let currentInstanceKey = '';
+    try {
+      currentInstanceKey = applicationContext.getCurrentInstanceKey();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getCurrentInstanceKey fail, code: ${code}, msg: ${message}`);
+    }
+    console.log(`currentInstanceKey: ${currentInstanceKey}`);
+  }
+}
+```
+
+## ApplicationContext.getAllRunningInstanceKeys<sup>14+</sup>
+
+getAllRunningInstanceKeys(): Promise\<Array\<string>>;
+
+获取应用的所有多实例的唯一实例标识。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| Promise\<Array\<string>> | Promise对象，返回应用的所有多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.getAllRunningInstanceKeys();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getAllRunningInstanceKeys fail, code: ${code}, msg: ${message}`);
     }
   }
 }

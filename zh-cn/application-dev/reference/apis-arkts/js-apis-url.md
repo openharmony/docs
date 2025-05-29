@@ -1,6 +1,6 @@
 # @ohos.url (URL字符串解析)
 
-URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了处理URL字符串[URLParams](#urlparams9)和构造[URL](#url)对象等功能。
+URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParam
 
 URLParams的构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -29,7 +29,7 @@ URLParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象<br/>- 默认值：null。 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLParams：对象。<br/>- 默认值：null。 |
 
 **错误码：**
 
@@ -63,7 +63,7 @@ append(name: string, value: string): void
 
 将新的键值对插入到查询字符串。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -97,7 +97,7 @@ delete(name: string): void
 
 删除指定名称的键值对。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -130,7 +130,7 @@ getAll(name: string): string[]
 
 获取指定名称的所有键对应值的集合。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -168,9 +168,9 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -198,7 +198,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -245,7 +245,7 @@ get(name: string): string | null
 >
 > 若查找一个不存在的键值对名称时返回值为undefined。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -286,7 +286,7 @@ has(name: string): boolean
 
 判断一个指定的键名对应的值是否存在。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -325,7 +325,7 @@ set(name: string, value: string): void
 
 将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -359,7 +359,7 @@ sort(): void
 
 对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -378,7 +378,7 @@ keys(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的name的ES6迭代器。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -405,7 +405,7 @@ values(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的value的ES6迭代器。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -430,9 +430,9 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -460,7 +460,7 @@ toString(): string
 
 返回序列化为字符串的搜索参数，必要时对字符进行百分比编码。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -476,7 +476,7 @@ toString(): string
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
 ## URL
@@ -489,37 +489,37 @@ console.log(params.toString());
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
-| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
 ```ts
 let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
-console.log("hash " + that.hash) // hash #fragment
-console.log("host " + that.host) // host host:8080
-console.log("hostname " + that.hostname) // hostname host
-console.log("href " + that.href) // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
-console.log("origin " + that.origin) // origin http://host:8080
-console.log("password " + that.password) // password password
-console.log("pathname " + that.pathname) // pathname /directory/file
-console.log("port " + that.port) // port 8080
-console.log("protocol " + that.protocol) // protocol http:
-console.log("search " + that.search) // search ?foo=1&bar=2
-console.log("username " + that.username) // username username
+console.log("hash " + that.hash); // hash #fragment
+console.log("host " + that.host); // host host:8080
+console.log("hostname " + that.hostname); // hostname host
+console.log("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.log("origin " + that.origin); // origin http://host:8080
+console.log("password " + that.password); // password password
+console.log("pathname " + that.pathname); // pathname /directory/file
+console.log("port " + that.port); // port 8080
+console.log("protocol " + that.protocol); // protocol http:
+console.log("search " + that.search); // search ?foo=1&bar=2
+console.log("username " + that.username); // username username
 // that.params 返回值为URLParams对象
-console.log("params: foo " + that.params.get("foo")) // params: foo 1
+console.log("params: foo " + that.params.get("foo")); // params: foo 1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -538,8 +538,8 @@ URL的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。<br/>- URL：URL对象。|
 
 **示例：**
 
@@ -551,7 +551,7 @@ new url.URL('path/path1', b); // Output 'https://username:password@host:8080/pat
 let c = new url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output https://www.exampleUrl/path/path1
 new url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
 new url.URL('https://www.example.com', ); // Output https://www.example.com/
@@ -564,7 +564,7 @@ constructor()
 
 URL的无参构造函数。parseURL调用后返回一个URL对象，不单独使用。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -574,7 +574,7 @@ static parseURL(url: string, base?: string | URL): URL
 
 URL静态成员函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -582,8 +582,12 @@ URL静态成员函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 入参对象。 |
-| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象<br/>- 默认值是空字符串或空对象。 |
+| url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。当第一个参数是相对URL时，该参数需符合URL标准。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
+
+> **说明：**
+>
+> 当入参url是相对URL时，调用该接口解析后的URL并不是简单地将入参url和base直接拼接。url内容为相对路径格式时，会相对于base的当前目录进行解析，包括base中path字段最后一个斜杠前的所有路径片段，但不包括其后的部分（参照示例中url1）。url内容为指向根目录的格式时，会相对于 base 的原始地址（origin）进行解析（参照示例中url2）。
 
 **错误码：**
 
@@ -597,9 +601,18 @@ URL静态成员函数。
 **示例：**
 
 ```ts
-let mm = 'https://username:password@host:8080';
+let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
-let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
+// url内容为相对路径格式时，此时base参数的path为test/test1,解析后的URL的path为/test/path2/path3
+let url1 = url.URL.parseURL('path2/path3', 'https://www.example.com/test/test1'); // Output 'https://www.example.com/test/path2/path3'
+// url内容为指向根目录的格式时，此时base参数的path为/test/test1/test3，解析后的URL的path为/path1/path2
+let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
+url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'
+url.URL.parseURL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+url.URL.parseURL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+url.URL.parseURL('https://www.example.com', ); // Output 'https://www.example.com/'
+url.URL.parseURL('https://www.example.com', urlObject); // Output 'https://www.example.com/'
 ```
 
 ### toString
@@ -608,7 +621,7 @@ toString(): string
 
 将解析过后的URL转化为字符串。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -616,13 +629,13 @@ toString(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的字符串。 |
 
 **示例：**
 
 ```ts
 const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = urlObject.toString();
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/directory/file?query=pppppp#qwer=da'
 ```
 
 ### toJSON
@@ -631,7 +644,7 @@ toJSON(): string
 
 将解析过后的URL转化为JSON字符串。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -639,7 +652,7 @@ toJSON(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的JSON字符串。 |
 
 **示例：**
 ```ts
@@ -667,15 +680,7 @@ URLSearchParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLSearchParams：对象。<br/>- 默认值：undefined。 |
 
 **示例：**
 
@@ -736,8 +741,8 @@ delete(name: string): void
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new url.URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 ### getAll<sup>(deprecated)</sup>
@@ -777,7 +782,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -898,7 +903,7 @@ has(name: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 是否存在相对应的key值，存在返回true，否则返回false。 |
+| boolean | 是否存在相对应的key值。存在返回true，否则返回false。 |
 
 **示例：**
 
@@ -1020,7 +1025,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -1069,6 +1074,6 @@ toString(): string
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 <!--no_check-->

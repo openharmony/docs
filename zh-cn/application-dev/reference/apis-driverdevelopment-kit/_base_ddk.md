@@ -1,4 +1,4 @@
-# BASE DDK
+# Base DDK
 
 
 ## 概述
@@ -33,7 +33,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [DDK_RetCode](#ddk_retcode) | BASE DDK 错误码定义。  | 
+| [DDK_RetCode](#ddk_retcode) | Base DDK 错误码定义。  | 
 
 
 ### 函数
@@ -43,7 +43,7 @@
 | [OH_DDK_CreateAshmem](#oh_ddk_createashmem) (const uint8_t *name, [DDK_Ashmem](_ddk_ashmem.md) \*\*ashmem) | 创建共享内存。  | 
 | [OH_DDK_MapAshmem](#oh_ddk_mapashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem, const uint8_t ashmemMapType) | 共享内存映射。  | 
 | [OH_DDK_UnmapAshmem](#oh_ddk_unmapashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 取消共享内存映射。  | 
-| [OH_DDK_DestoryAshmem](#oh_ddk_destoryashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 销毁共享内存。  | 
+| [OH_DDK_DestroyAshmem](#oh_ddk_destroyashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 销毁共享内存。  | 
 
 
 ## 枚举类型说明
@@ -58,7 +58,7 @@ enum DDK_RetCode
 
 **描述:**
 
-BASE DDK 错误码定义。
+Base DDK 错误码定义。
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -93,7 +93,9 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_INVALID_PARAMETER](#ddk_retcode) 表示入参name为空指针，size的大小为0或者入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示创建共享内存失败或者创建结构体DDK_Ashmem失败。
 
 
 ### OH_DDK_MapAshmem()
@@ -116,7 +118,10 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
+- [DDK_INVALID_OPERATION](#ddk_retcode) 表示调用接口MapAshmem失败。
 
 
 ### OH_DDK_UnmapAshmem()
@@ -138,10 +143,11 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
 
-
-### OH_DDK_DestoryAshmem()
+### OH_DDK_DestroyAshmem()
 
 
 ```
@@ -160,4 +166,6 @@ DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。

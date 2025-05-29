@@ -1,32 +1,32 @@
 # 应用侧调用前端页面函数
 
+应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10)方法调用前端页面的JavaScript相关函数。
 
-应用侧可以通过[runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript)方法调用前端页面的JavaScript相关函数。
+[runJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascript)和[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10)在参数类型上有以下差异：[runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10)支持string和ArrayBuffer类型参数，而[runJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascript)仅支持string类型参数。
 
-
-在下面的示例中，点击应用侧的“runJavaScript”按钮时，来触发前端页面的htmlTest()方法。
+在下面的示例中，点击应用侧的“runJavaScript”按钮时，触发前端页面的htmlTest()方法。
 
 - 前端页面代码。
-  
+
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
   <html>
   <body>
   <button type="button" onclick="callArkTS()">Click Me!</button>
-  <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为绿色，调用runJavaScriptCodePassed方法后字体为红色</h1>
+  <h1 id="text">这是一个测试信息，默认字体为黑色，调用runJavaScript方法后字体为黄色、调用runJavaScriptParam方法后字体为绿色、调用runJavaScriptCodePassed方法后字体为红色</h1>
   <script>
-      // 调用有参函数时实现。
+      // 有参函数。
       var param = "param: JavaScript Hello World!";
-      function htmlTest(param) {
+      function htmlTestParam(param) {
           document.getElementById('text').style.color = 'green';
           console.log(param);
       }
-      // 调用无参函数时实现。
+      // 无参函数。
       function htmlTest() {
-          document.getElementById('text').style.color = 'green';
+          document.getElementById('text').style.color = 'yellow';
       }
-      // Click Me！触发前端页面callArkTS()函数执行JavaScript传递的代码。
+      // 点击“Click Me！”按钮，触发前端页面callArkTS()函数执行JavaScript传递的代码。
       function callArkTS() {
           changeColor();
       }
@@ -37,7 +37,7 @@
 
 
 - 应用侧代码。
-  
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -54,10 +54,15 @@
 
     build() {
       Column() {
+        Button('runJavaScriptParam')
+          .onClick(() => {
+            // 调用前端页面有参函数。
+            this.webviewController.runJavaScript('htmlTestParam(param)');
+          })
         Button('runJavaScript')
           .onClick(() => {
-            // 前端页面函数无参时，将param删除。
-            this.webviewController.runJavaScript('htmlTest(param)');
+            // 调用前端页面无参函数。
+            this.webviewController.runJavaScript('htmlTest()');
           })
         Button('runJavaScriptCodePassed')
           .onClick(() => {

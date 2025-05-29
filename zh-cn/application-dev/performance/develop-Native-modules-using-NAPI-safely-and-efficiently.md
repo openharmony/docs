@@ -10,7 +10,7 @@ N-API 是 Node.js Addon Programming Interface 的缩写，是 Node.js 提供的�
 
 ## 对象生命周期管理
 
-在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 napi_value 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
+在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 [napi_value](https://nodejs.org/api/n-api.html#napi_value) 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
 
 ### 缩短对象生命周期
 
@@ -65,12 +65,11 @@ for (int i = 0; i < 1000000; i++) {
 #### 使用案例1：保存 napi_value
 
 通过 napi_define_class 创建一个 constructor 并保存下来，后续可以通过保存的 constructor 调用 napi_new_instance 来创建实例。但是，如果 constructor 是以 napi_value 的形式保存下来，一旦超过了 native 方法的 scope，这个 constructor 就会被析构，后续再使用就会造成野指针。推荐写法如下：
-* 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来;
+* 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来；
 * 2、由开发者自己管理 constructor 对象的生命周期，不受 native 方法的 scope 限制。
 ```cpp
 // 1、开发者可以改用 napi_ref 的形式把 constructor 保存下来
-static napi_value TestDefineClass(napi_env env,
-                                  napi_callback_info info) {
+static napi_value TestDefineClass(napi_env env, napi_callback_info info) {
   napi_status status;
   napi_value result, return_value;
 
@@ -86,14 +85,7 @@ static napi_value TestDefineClass(napi_env env,
 
   NODE_API_CALL(env, napi_create_object(env, &return_value));
 
-  status = napi_define_class(NULL,
-                             "TrackedFunction",
-                             NAPI_AUTO_LENGTH,
-                             TestDefineClass,
-                             NULL,
-                             1,
-                             &property_descriptor,
-                             &result);
+  status = napi_define_class(NULL, "TrackedFunction", NAPI_AUTO_LENGTH, TestDefineClass, NULL, 1, &property_descriptor,&result);
   SaveConstructor(env, result);
   ...
 }
@@ -146,7 +138,7 @@ napi_remove_wrap(env, jsobject, result1)
 开发者可以通过如下示例将耗时任务用异步方式实现，大概逻辑包括以下三步： 
 * 用 napi_create_promise 接口创建 promise，将创建一个 deferred 对象并与 promise 一起返回，deferred 对象会绑定到已创建的 promise；
 * 执行耗时任务，并将执行结果传递给 promise；
-* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。
+* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 
 ```cpp
 // 在executeCB、completeCB之间传递数据
@@ -165,7 +157,7 @@ static void addExecuteCB(napi_env env, void *data) {
     addonData->result = addonData->args[0] + addonData->args[1];
 };
 
-// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象;
+// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 static void addPromiseCompleteCB(napi_env env, napi_status status, void *data) {
     AddonData *addonData = (AddonData *)data;
     napi_value result = nullptr;
@@ -225,11 +217,11 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 }
 ```
 
-在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。 
+在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。then() 方法中不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。   
 
 ```js
 import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libentry.so';
 
 @Entry
 @Component
@@ -253,7 +245,7 @@ struct TestAdd {
 
 ### 指定异步任务调度优先级
 
-Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/user_guide.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
+Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-development-guideline.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
 
 * 接口示例：napi_status napi_queue_async_work_with_qos(napi_env env, napi_async_work work, napi_qos_t qos)（） 
   * [in] env:调用API的环境；
@@ -272,7 +264,7 @@ typedef enum {
 
 * N-API 层封装了对外的接口，对接 libuv 层 uv_queue_work_with_qos(uv_loop_t* loop, uv_work_t* req, uv_work_cb work_cb, uv_after_work_cb after_work_cb, uv_qos_t qos) 函数。
 
-* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例:
+* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例：
 ```cpp
 static void PromiseOnExec(napi_env env, void *data) { 
     OH_LOG_INFO(LOG_APP, "PromiseOnExec"); 
@@ -305,7 +297,7 @@ static napi_value Test(napi_env env, napi_callback_info info) {
 #### ArkTS 侧传入回调函数
 ```JS
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {

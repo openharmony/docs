@@ -37,17 +37,31 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-// 开始创建并激活媒体会话
-// 创建session
-let context: Context = getContext(this);
-async function createSession() {
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            // 开始创建并激活媒体会话。
+            // 创建session。
+            let context = this.getUIContext().getHostContext() as Context;
+            async function createSession() {
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
 
-  // 激活接口要在元数据、控制命令注册完成之后再执行
-  await session.activate();
-  console.info(`session create done : sessionId : ${session.sessionId}`);
+            // 激活接口要在元数据、控制命令注册完成之后再执行。
+            await session.activate();
+            console.info(`session create done : sessionId : ${session.sessionId}`);
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -67,24 +81,38 @@ async function createSession() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setSessionInfo() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-  // 设置必要的媒体信息
-  let metadata: AVSessionManager.AVMetadata = {
-    assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
-    title: 'TITLE',
-    mediaImage: 'IMAGE',
-    artist: 'ARTIST',
-  };
-  session.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-  });
- }
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setSessionInfo() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+            // 设置必要的媒体信息。
+            let metadata: AVSessionManager.AVMetadata = {
+                assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+                title: 'TITLE',
+                mediaImage: 'IMAGE',
+                artist: 'ARTIST',
+            };
+            session.setAVMetadata(metadata).then(() => {
+                console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### 歌词
@@ -94,26 +122,44 @@ async function setSessionInfo() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 把歌词信息设置给AVSession
-  let metadata: AVSessionManager.AVMetadata = {
-    assetId: '0',
-    title: 'TITLE',
-    mediaImage: 'IMAGE',
-    lyric: 'http://www.test.lyric',
-  };
-  session.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-  });
-
+            // 把歌词信息设置给AVSession。
+            let metadata: AVSessionManager.AVMetadata = {
+                assetId: '0',
+                title: 'TITLE',
+                mediaImage: 'IMAGE',
+                // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+                // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n。
+                lyric: "lrc格式歌词内容",
+                // singleLyricText字段存储单条歌词文本，不包含时间戳。
+                // 例如："单条歌词内容"。
+                singleLyricText: "单条歌词内容",
+            };
+            session.setAVMetadata(metadata).then(() => {
+                console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -128,26 +174,40 @@ async function setListener() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 把媒体音源信息设置给AVSession
-  let metadata: AVSessionManager.AVMetadata = {
-    assetId: '0',
-    title: 'TITLE',
-    mediaImage: 'IMAGE',
-    // 标识该媒体音源是AudioVivid
-    displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
-  };
-  session.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-  });
+            // 把媒体音源信息设置给AVSession。
+            let metadata: AVSessionManager.AVMetadata = {
+                assetId: '0',
+                title: 'TITLE',
+                mediaImage: 'IMAGE',
+                // 标识该媒体音源是AudioVivid。
+                displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
+            };
+            session.setAVMetadata(metadata).then(() => {
+                console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -161,25 +221,39 @@ async function setListener() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setSessionInfo() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setSessionInfo() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
 
-  // 播放器逻辑··· 引发媒体信息与播放状态的变更
-  // 简单设置一个播放状态 - 暂停 未收藏
-  let playbackState: AVSessionManager.AVPlaybackState = {
-    state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
-    isFavorite:false
-  };
-  session.setAVPlaybackState(playbackState, (err: BusinessError) => {
-   if (err) {
-      console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info(`SetAVPlaybackState successfully`);
-    }
-  });
+            // 播放器逻辑··· 引发媒体信息与播放状态的变更。
+            // 简单设置一个播放状态 - 暂停 未收藏。
+            let playbackState: AVSessionManager.AVPlaybackState = {
+                state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
+                isFavorite:false
+            };
+            session.setAVPlaybackState(playbackState, (err: BusinessError) => {
+            if (err) {
+                console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                } else {
+                console.info(`SetAVPlaybackState successfully`);
+                }
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -190,43 +264,57 @@ async function setSessionInfo() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 设置媒体资源时长
-  let metadata: AVSessionManager.AVMetadata = {
-    assetId: '0',
-    title: 'TITLE',
-    mediaImage: 'IMAGE',
-    duration: 23000, // 资源的时长，以ms为单位
-  };
-  session.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-  });
+            // 设置媒体资源时长。
+            let metadata: AVSessionManager.AVMetadata = {
+                assetId: '0',
+                title: 'TITLE',
+                mediaImage: 'IMAGE',
+                duration: 23000, // 资源的时长，以ms为单位。
+            };
+            session.setAVMetadata(metadata).then(() => {
+                console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
 
-  // 设置状态： 播放状态，进度位置，播放倍速，缓存的时间
-  let playbackState: AVSessionManager.AVPlaybackState = {
-    state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // 播放状态
-    position: {
-      elapsedTime: 1000, // 已经播放的位置，以ms为单位
-      updateTime: new Date().getTime(), // 应用更新当前位置时的时间戳，以ms为单位
-    },
-    speed: 1.0, // 可选，默认是1.0，播放的倍速，按照应用内支持的speed进行设置，系统不做校验
-    bufferedTime: 14000, // 可选，资源缓存的时间，以ms为单位
-  };
-  session.setAVPlaybackState(playbackState, (err) => {
-    if (err) {
-      console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info(`SetAVPlaybackState successfully`);
-    }
-  });
+            // 设置状态： 播放状态，进度位置，播放倍速，缓存的时间。
+            let playbackState: AVSessionManager.AVPlaybackState = {
+                state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // 播放状态。
+                position: {
+                elapsedTime: 1000, // 已经播放的位置，以ms为单位。
+                updateTime: new Date().getTime(), // 应用更新当前位置时的时间戳，以ms为单位。
+                },
+                speed: 1.0, // 可选，默认是1.0，播放的倍速，按照应用内支持的speed进行设置，系统不做校验。
+                bufferedTime: 14000, // 可选，资源缓存的时间，以ms为单位。
+            };
+            session.setAVPlaybackState(playbackState, (err) => {
+                if (err) {
+                console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                } else {
+                console.info(`SetAVPlaybackState successfully`);
+                }
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -254,7 +342,7 @@ async function setListener() {
 3. 广告等内容的时长设置
 
     对于有前贴广告、后贴广告的资源来说，建议这么处理：
-    - 播放广告时，单独设置广告的时长 duration
+    - 播放广告时，单独设置广告的时长 duration。
     - 当进入到正片播放的时候，则重新设置一次新的时长，以与广告进行区分。
 
 ## 注册控制命令
@@ -263,7 +351,7 @@ async function setListener() {
 具体的接口参考[接口注册](../../reference/apis-avsession-kit/js-apis-avsession.md#onplay10)。
 > **说明：**
 >
-> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session 
+> 创建AVSession后，请先注册应用支持的控制命令，再激活 Session。 
 
 媒体资源支持的控制命令列表：
 
@@ -299,20 +387,34 @@ async function setListener() {
 
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function unregisterSessionListener() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function unregisterSessionListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 取消指定session下的相关监听
-  session.off('play');
-  session.off('pause');
-  session.off('stop');
-  session.off('playNext');
-  session.off('playPrevious');
-}
+            // 取消指定session下的相关监听。
+            session.off('play');
+            session.off('pause');
+            session.off('stop');
+            session.off('playNext');
+            session.off('playPrevious');
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
+} 
 ```
 
 ### 快进快退
@@ -322,34 +424,48 @@ async function unregisterSessionListener() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function unregisterSessionListener() {
-  // 假设已经创建了一个session，如何创建session可以参考之前的案例
-  let type: AVSessionManager.AVSessionType = 'audio';
-  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function unregisterSessionListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 设置支持的快进快退的时长设置给AVSession
-  let metadata: AVSessionManager.AVMetadata = {
-    assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
-    title: 'TITLE',
-    mediaImage: 'IMAGE',
-    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
-  };
-  session.setAVMetadata(metadata).then(() => {
-    console.info(`SetAVMetadata successfully`);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-  });
+            // 设置支持的快进快退的时长设置给AVSession。
+            let metadata: AVSessionManager.AVMetadata = {
+                assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+                title: 'TITLE',
+                mediaImage: 'IMAGE',
+                skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
+            };
+            session.setAVMetadata(metadata).then(() => {
+                console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
 
-  session.on('fastForward', (time ?: number) => {
-    console.info(`on fastForward , do fastForward task`);
-    // do some tasks ···
-  });
-  session.on('rewind', (time ?: number) => {
-    console.info(`on rewind , do rewind task`);
-    // do some tasks ···
-  });
+            session.on('fastForward', (time ?: number) => {
+                console.info(`on fastForward , do fastForward task`);
+                // do some tasks ···
+            });
+            session.on('rewind', (time ?: number) => {
+                console.info(`on rewind , do rewind task`);
+                // do some tasks ···
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -360,27 +476,41 @@ async function unregisterSessionListener() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
- // 假设已经创建了一个session，如何创建session可以参考之前的案例
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
- session.on('toggleFavorite', (assetId) => {
-   console.info(`on toggleFavorite `);
-   // 应用收到收藏命令，进行收藏处理
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+            session.on('toggleFavorite', (assetId) => {
+            console.info(`on toggleFavorite `);
+            // 应用收到收藏命令，进行收藏处理。
 
-   // 应用内完成或者取消收藏，把新的收藏状态设置给AVSession
-   let playbackState: AVSessionManager.AVPlaybackState = {
-     isFavorite:true,
-   };
-   session.setAVPlaybackState(playbackState).then(() => {
-     console.info(`SetAVPlaybackState successfully`);
-   }).catch((err: BusinessError) => {
-     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-   });
+            // 应用内完成或者取消收藏，把新的收藏状态设置给AVSession。
+            let playbackState: AVSessionManager.AVPlaybackState = {
+                isFavorite:true,
+            };
+            session.setAVPlaybackState(playbackState).then(() => {
+                console.info(`SetAVPlaybackState successfully`);
+            }).catch((err: BusinessError) => {
+                console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
 
- });
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -396,37 +526,50 @@ async function setListener() {
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
- // 假设已经创建了一个session，如何创建session可以参考之前的案例
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- // 应用启动时/内部切换循环模式，需要把应用内的当前的循环模式设置给AVSession
- let playBackState: AVSessionManager.AVPlaybackState = {
-   loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
- };
- session.setAVPlaybackState(playBackState).then(() => {
-   console.info(`set AVPlaybackState successfully`);
- }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
- });
+            // 应用启动时/内部切换循环模式，需要把应用内的当前的循环模式设置给AVSession。
+            let playBackState: AVSessionManager.AVPlaybackState = {
+            loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+            };
+            session.setAVPlaybackState(playBackState).then(() => {
+            console.info(`set AVPlaybackState successfully`);
+            }).catch((err: BusinessError) => {
+            console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+            });
 
- // 应用注册循环模式的控制监听
- session.on('setLoopMode', (mode) => {
-   console.info(`on setLoopMode ${mode}`);
-   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlaybackState上报切换后的LoopMode
-   let playBackState: AVSessionManager.AVPlaybackState = {
-    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
-   };
-   session.setAVPlaybackState(playBackState).then(() => {
-     console.info(`set AVPlaybackState successfully`);
-   }).catch((err: BusinessError) => {
-     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-   });
- });
-
+            // 应用注册循环模式的控制监听。
+            session.on('setLoopMode', (mode) => {
+            console.info(`on setLoopMode ${mode}`);
+            // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlaybackState上报切换后的LoopMode。
+            let playBackState: AVSessionManager.AVPlaybackState = {
+                loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+            };
+            session.setAVPlaybackState(playBackState).then(() => {
+                console.info(`set AVPlaybackState successfully`);
+            }).catch((err: BusinessError) => {
+                console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+            });
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -436,53 +579,189 @@ async function setListener() {
 
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let context: Context = getContext(this);
-async function setListener() {
- // 假设已经创建了一个session，如何创建session可以参考之前的案例
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let context = this.getUIContext().getHostContext() as Context;
+            async function setListener() {
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- session.on('seek', (position: number) => {
-   console.info(`on seek , the time is ${JSON.stringify(position)}`);
+            session.on('seek', (position: number) => {
+            console.info(`on seek , the time is ${JSON.stringify(position)}`);
 
-   // 由于应用内seek可能会触发较长的缓冲等待，可以先把状态设置为 Buffering
-   let playbackState: AVSessionManager.AVPlaybackState = {
-     state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // 缓冲状态
-   };
-   session.setAVPlaybackState(playbackState, (err) => {
-     if (err) {
-       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-     } else {
-       console.info(`SetAVPlaybackState successfully`);
-     }
-   });
+            // 由于应用内seek可能会触发较长的缓冲等待，可以先把状态设置为 Buffering。
+            let playbackState: AVSessionManager.AVPlaybackState = {
+                state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // 缓冲状态。
+            };
+            session.setAVPlaybackState(playbackState, (err) => {
+                if (err) {
+                console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                } else {
+                console.info(`SetAVPlaybackState successfully`);
+                }
+            });
 
-   // 应用响应seek命令，使用应用内播放器完成seek实现
+            // 应用响应seek命令，使用应用内播放器完成seek实现。
 
-   // 应用内更新新的位置后，也需要同步更新状态给系统
-   playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态
-   playbackState.position = {
-     elapsedTime: position, // 已经播放的位置，以ms为单位
-     updateTime: new Date().getTime(), // 应用更新当前位置的时间戳，以ms为单位
-   }
-   session.setAVPlaybackState(playbackState, (err) => {
-     if (err) {
-       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-     } else {
-       console.info(`SetAVPlaybackState successfully`);
-     }
-   });
-
- });
+            // 应用内更新新的位置后，也需要同步更新状态给系统。
+            playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态。
+            playbackState.position = {
+                elapsedTime: position, // 已经播放的位置，以ms为单位。
+                updateTime: new Date().getTime(), // 应用更新当前位置的时间戳，以ms为单位。
+            }
+            session.setAVPlaybackState(playbackState, (err) => {
+                if (err) {
+                console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                } else {
+                console.info(`SetAVPlaybackState successfully`);
+                }
+            });
+            });
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
 ## 适配媒体通知
 
-当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
+当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用正确接入媒体播控中心并进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
 
 > **说明：**
 >
-> 1. 目前仅audio类型的媒体会话会在通知入口展示，video类型暂时不支持展示。
-> 2. 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
+> 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
+
+## 适配蓝牙按键与有线按键事件
+
+当前系统不直接向应用提供监听多模按键事件的接口，应用如需要监听蓝牙与有线耳机的媒体按键事件，可以通过注册AVSession的控制指令来实现。AVSession提供了如下两种实现方式：
+- 方式一（推荐使用）：
+  按照应用业务需求，正确接入媒体播控中心，[注册需要的控制指令](#注册控制命令)并实现对应的功能。AVSession会监听多模按键事件，将其转换为AVSession的控制指令发送回应用。应用无须区分不同的按键事件，按照AVSession的回调处理即可。按照此方式接入播放暂停，也等同于适配了蓝牙耳机的佩戴检测，在双耳佩戴与摘下时也会收到如下播放暂停控制指令。目前支持转换的AVSession控制指令如下：
+  | 控制命令 | 功能说明   |
+  | ------  | -------------------------|
+  | play    | 播放命令。 |
+  | pause    | 暂停命令。 |
+  | stop    | 停止命令。 |
+  | playNext    | 播放下一首命令。 |
+  | playPrevious    | 播放上一首命令。 |
+  | fastForward    | 快进命令。 |
+  | rewind    | 快退命令。 |
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'hello world';
+
+    build() { 
+      Column() {
+          Text(this.message)
+            .onClick(()=>{
+              let context = this.getUIContext().getHostContext() as Context;
+              async function setListenerForMesFromController() {
+                  let type: AVSessionManager.AVSessionType = 'audio';
+                  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                  // 设置必要的媒体信息，务必设置，否则接收不到控制事件。
+                  let metadata: AVSessionManager.AVMetadata = {
+                  assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+                  title: 'TITLE',
+                  mediaImage: 'IMAGE',
+                  artist: 'ARTIST'
+                  };
+                  session.setAVMetadata(metadata).then(() => {
+                  console.info(`SetAVMetadata successfully`);
+                  }).catch((err: BusinessError) => {
+                  console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+                  });
+                  // 一般在监听器中会对播放器做相应逻辑处理。
+                  // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
+                  session.on('play', () => {
+                  console.info(`on play , do play task`);
+                  // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听。
+                  // 处理完毕后，请使用SetAVPlayState上报播放状态。
+                  });
+                  session.on('pause', () => {
+                  console.info(`on pause , do pause task`);
+                  // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听。
+                  // 处理完毕后，请使用SetAVPlayState上报播放状态。
+                  });
+              }
+            })
+        }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+- 方式二：
+  通过AVSession注册[HandleMediaKeyEvent](../../reference/apis-avsession-kit/js-apis-avsession.md#onhandlekeyevent10)指令。该回调接口会直接转发媒体按键事件[KeyEvent](../../reference/apis-input-kit/js-apis-keyevent.md)。应用需要自行识别按键事件的类型，并响应事件实现对应的功能。目前支持转发的按键事件类型如下：
+  | 按键类型([KeyCode](../../reference/apis-input-kit/js-apis-keycode.md#keycode)) | 功能说明   |
+  | ------  | -------------------------|
+  | KEYCODE_MEDIA_PLAY_PAUSE    | 多媒体键：播放/暂停 |
+  | KEYCODE_MEDIA_STOP    | 多媒体键：停止 |
+  | KEYCODE_MEDIA_NEXT    | 多媒体键：下一首 |
+  | KEYCODE_MEDIA_PREVIOUS    | 多媒体键：上一首 |
+  | KEYCODE_MEDIA_REWIND    | 多媒体键：快退 |
+  | KEYCODE_MEDIA_FAST_FORWARD    | 	多媒体键：快进 |
+  | KEYCODE_MEDIA_PLAY    | 多媒体键：播放 |
+  | KEYCODE_MEDIA_PAUSE   | 多媒体键：暂停|
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'hello world';
+
+    build() { 
+      Column() {
+          Text(this.message)
+            .onClick(()=>{
+              let context = this.getUIContext().getHostContext() as Context;
+              async function setListenerForMesFromController() {
+                  let type: AVSessionManager.AVSessionType = 'audio';
+                  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                  // 设置必要的媒体信息，务必设置，否则接收不到按键事件。
+                  let metadata: AVSessionManager.AVMetadata = {
+                  assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+                  title: 'TITLE',
+                  mediaImage: 'IMAGE',
+                  artist: 'ARTIST'
+                  };
+                  session.setAVMetadata(metadata).then(() => {
+                  console.info(`SetAVMetadata successfully`);
+                  }).catch((err: BusinessError) => {
+                  console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+                  });
+                  session.on('handleKeyEvent', (event) => {
+                  // 解析keycode，应用需要根据keycode对播放器做相应逻辑处理。
+                  console.info(`on handleKeyEvent, keyCode=${event.key.code}`);
+                  });
+              }
+            })
+        }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+> **说明：**
+>
+> 1. 方式一与方式二均需正确设置媒体信息AVMetadata并注册相应控制接口，否则会无法接收到控制指令与按键事件。
+> 2. 方式一与方式二，选择其一接入即可，无须同时接入，系统推荐按照方式一接入。
+
+<!--RP2-->
+<!--RP2End-->

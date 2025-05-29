@@ -15,6 +15,19 @@ import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+Defines the profile connection status of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile connection status of the Bluetooth device.|
+
+
 ## StateChangeParam
 
 Represents the profile state change parameters.
@@ -24,7 +37,7 @@ Represents the profile state change parameters.
 | Name    | Type                          | Readable| Writable| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
-| state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | Yes  | No  | Profile connection state of the device.|
 | cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
 
 
@@ -44,7 +57,7 @@ Enumerates the possible causes of a Bluetooth disconnection.
 | CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
 
 
-## baseProfile.getConnectedDevices
+## BaseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -58,11 +71,11 @@ Obtains the connected devices.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
+| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses.<br> The random MAC address remains unchanged after a device is paired successfully.<br> The random address changes if the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -87,7 +100,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState
+## BaseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 
@@ -111,7 +124,7 @@ Obtains the profile connection state of a device.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -137,7 +150,7 @@ try {
 ```
 
 
-## baseProfile.on('connectionStateChange')
+## BaseProfile.on('connectionStateChange')
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
@@ -156,7 +169,7 @@ Subscribes to profile connection state changes. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -181,7 +194,7 @@ try {
 ```
 
 
-## baseProfile.off('connectionStateChange')
+## BaseProfile.off('connectionStateChange')
 
 off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 
@@ -200,7 +213,7 @@ Unsubscribes from profile connection state changes.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |

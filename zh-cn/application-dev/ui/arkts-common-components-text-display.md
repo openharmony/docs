@@ -1,7 +1,9 @@
 # 文本显示 (Text/Span)
 
 
-Text是文本组件，通常用于展示用户视图，如显示文章的文字。具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)。
+Text是文本组件，用于展示用户视图，如显示文章的文字内容。该组件支持绑定自定义文本选择菜单，用户可根据需要选择不同功能。此外，还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于展示行内文本。  
+
+具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)和[Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md)组件的使用说明。
 
 
 ## 创建文本
@@ -9,7 +11,7 @@ Text是文本组件，通常用于展示用户视图，如显示文章的文字�
 Text可通过以下两种方式来创建：
 
 
-- string字符串
+- string字符串。
 
   ```ts
   Text('我是一段文本')
@@ -19,10 +21,20 @@ Text可通过以下两种方式来创建：
 ![zh-cn_image_0000001563060685](figures/zh-cn_image_0000001563060685.png)
 
 
-- 引用Resource资源
+- 引用Resource资源。
 
-  资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。
+  资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json，具体内容如下：
 
+  ```json
+  {
+    "string": [
+      {
+        "name": "module_desc",
+        "value": "模块描述"
+      }
+    ]
+  }
+  ```
 
   ```ts
   Text($r('app.string.module_desc'))
@@ -42,7 +54,7 @@ Text可通过以下两种方式来创建：
 
 - 创建Span。
 
-  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容时，Span内容覆盖Text内容。
+  Span组件需嵌入在Text组件中才能显示，单独使用时不会显示任何内容。Text与Span同时配置文本内容时，Span内容将覆盖Text内容。
 
 
   ```ts
@@ -57,7 +69,7 @@ Text可通过以下两种方式来创建：
 
 - 设置文本装饰线及颜色。
 
-  通过decoration设置文本装饰线及颜色。
+  通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置文本装饰线及颜色。
 
 
   ```ts
@@ -76,7 +88,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562700437](figures/zh-cn_image_0000001562700437.png)
 
-- 通过textCase设置文字一直保持大写或者小写状态。
+- 通过[textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#textcase)设置文字一直保持大写或者小写状态。
 
   ```ts
   Text() {
@@ -91,23 +103,23 @@ Text可通过以下两种方式来创建：
 
 - 添加事件。
 
-  由于Span组件无尺寸信息，事件仅支持添加点击事件onClick。
+  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
 
 
   ```ts
   Text() {
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
-      .onClick(()=>{
-        console.info('我是Span——onClick')
+      .onClick(() => {
+        console.info('我是Span——onClick');
       })
   }
   ```
 
 
-## 自定义文本样式
+## 创建自定义文本样式
 
-- 通过textAlign属性设置文本对齐样式。
+- 通过[textAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textalign)属性设置文本对齐样式。
 
   ```ts
   Text('左对齐')
@@ -129,7 +141,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511421260](figures/zh-cn_image_0000001511421260.png)
 
-- 通过textOverflow属性控制文本超长处理，textOverflow需配合maxLines一起使用（默认情况下文本自动折行）。
+- 通过[textOverflow](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textoverflow)属性控制文本超长处理，textOverflow需配合[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines)一起使用（默认情况下文本自动折行）。从API version 18开始，文本超长时设置跑马灯的方式展示时，支持设置跑马灯的配置项，比如开关、步长、循环次数、方向等。
 
   ```ts
   Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
@@ -139,25 +151,41 @@ Text可通过以下两种方式来创建：
     .fontSize(12)
     .border({ width: 1 })
     .padding(10)
-  Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess。')
+  Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess.')
     .width(250)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
     .maxLines(1)
     .fontSize(12)
     .border({ width: 1 })
     .padding(10)
-  Text('当文本溢出其尺寸时，文本将滚动显示。When the text overflows its dimensions, the text will scroll for displaying.')       
+  Text('当文本溢出其尺寸时，文本将滚动显示。When the text overflows its dimensions, the text will scroll for displaying.')
     .width(250)
-    .textOverflow({ overflow: TextOverflow.MARQUEE })                 
-    .maxLines(1)       
+    .textOverflow({ overflow: TextOverflow.MARQUEE })
+    .maxLines(1)
     .fontSize(12)
     .border({ width: 1 })
-    .padding(10)                       
+    .padding(10)
+  Text('当文本溢出其尺寸时，文本将滚动显示，支持设置跑马灯配置项。When the text overflows its dimensions, the text will scroll for displaying.')
+    .width(250)
+    .textOverflow({ overflow: TextOverflow.MARQUEE })
+    .maxLines(1)
+    .fontSize(12)
+    .border({ width: 1 })
+    .padding(10)
+    .marqueeOptions({
+      start: true,
+      fromStart: true,
+      step: 6,
+      loop: -1,
+      delay: 0,
+      fadeout: false,
+      marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
+    })                      
   ```
 
   ![zh-cn_image_0000001563060701](figures/zh-cn_image_0000001563060701.gif)
 
-- 通过lineHeight属性设置文本行高。
+- 通过[lineHeight](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#lineheight)属性设置文本行高。
 
   ```ts
   Text('This is the text with the line height set. This is the text with the line height set.')
@@ -169,7 +197,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511740480](figures/zh-cn_image_0000001511740480.png)
 
-- 通过decoration属性设置文本装饰线样式及其颜色。
+- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#decoration)属性设置文本装饰线样式及其颜色。
 
   ```ts
   Text('This is the text')
@@ -194,7 +222,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511580888](figures/zh-cn_image_0000001511580888.png)
 
-- 通过baselineOffset属性设置文本基线的偏移量。
+- 通过[baselineOffset](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#baselineoffset)属性设置文本基线的偏移量。
 
   ```ts
   Text('This is the text content with baselineOffset 0.')
@@ -211,7 +239,6 @@ Text可通过以下两种方式来创建：
     .padding(10)
     .width('100%')
     .margin(5)
-
   Text('This is the text content with baselineOffset -20.')
     .baselineOffset(-20)
     .fontSize(12)
@@ -223,7 +250,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562820789](figures/zh-cn_image_0000001562820789.png)
 
-- 通过letterSpacing属性设置文本字符间距。
+- 通过[letterSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#letterspacing)属性设置文本字符间距。
 
   ```ts
   Text('This is the text content with letterSpacing 0.')
@@ -251,7 +278,9 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562940513](figures/zh-cn_image_0000001562940513.png)
 
-- 通过minFontSize与maxFontSize自适应字体大小，minFontSize设置文本最小显示字号，maxFontSize设置文本最大显示字号，minFontSize与maxFontSize必须搭配同时使用，以及需配合maxline或布局大小限制一起使用，单独设置不生效。
+- 通过[minFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#minfontsize)与[maxFontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxfontsize)自适应字体大小。
+
+  minFontSize用于设置文本的最小显示字号，maxFontSize用于设置文本的最大显示字号。这两个属性必须同时设置才能生效，并且需要与[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#maxlines)属性或布局大小限制配合使用，单独设置任一属性将不会产生效果。
 
   ```ts
   Text('我的最大字号为30，最小字号为5，宽度为250，maxLines为1')
@@ -290,7 +319,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511740472](figures/zh-cn_image_0000001511740472.png)
 
-- 通过textCase属性设置文本大小写。
+- 通过[textCase](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textcase)属性设置文本大小写。
 
   ```ts
   Text('This is the text content with textCase set to Normal.')
@@ -299,14 +328,12 @@ Text可通过以下两种方式来创建：
     .border({ width: 1 })
     .padding(10)
     .margin(5)
-
   // 文本全小写展示
   Text('This is the text content with textCase set to LowerCase.')
     .textCase(TextCase.LowerCase)
     .border({ width: 1 })
     .padding(10)
     .margin(5)
-
   // 文本全大写展示
   Text('This is the text content with textCase set to UpperCase.')
     .textCase(TextCase.UpperCase)
@@ -317,7 +344,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001562940529](figures/zh-cn_image_0000001562940529.png)
 
-- 通过copyOption属性设置文本是否可复制粘贴。
+- 通过[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性设置文本是否可复制粘贴。
 
   ```ts
   Text("这是一段可复制文本")
@@ -330,19 +357,115 @@ Text可通过以下两种方式来创建：
 
 ## 添加事件
 
-Text组件可以添加通用事件，可以绑定onClick、onTouch等事件来响应操作。
-
+Text组件可以添加通用事件，可以绑定[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)、[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)等事件来响应操作。
 
 ```ts
 Text('点我')
-  .onClick(()=>{
+  .onClick(() => {
       console.info('我是Text的点击响应事件');
    })
 ```
 
+## 设置选中菜单
+
+- 设置Text被选中时，会弹出包含复制、翻译、搜索的菜单。
+
+  Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
+
+  ```ts
+  Text("这是一段文本，用来展示选中菜单")
+    .fontSize(30)
+    .copyOption(CopyOptions.InApp)
+  ```
+  ![Text_select_menu](figures/Text_select_menu.jpg)
+
+- Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
+
+  ```ts
+  Text("这是一段文本，用来展示选中菜单", this.options)
+    .fontSize(30)
+    .copyOption(CopyOptions.InApp)
+    .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
+      onAppear: () => {
+        console.info('自定义选择菜单弹出时触发该回调');
+      },
+      onDisappear: () => {
+        console.info('自定义选择菜单关闭时触发该回调');
+      }
+    })
+  ```
+
+  ```ts
+  // 定义菜单项
+  @Builder
+  RightClickTextCustomMenu() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
+            .onClick(() => {
+              // 使用closeSelectionMenu接口关闭菜单
+              this.controller.closeSelectionMenu();
+            })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Two", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Three", labelInfo: "" })
+        }
+      }.backgroundColor('#F0F0F0')
+    }
+  }
+  ```
+  ![text_bindselectionmenu](figures/text_bindselectionmenu.gif)
+
+- Text组件通过设置[editMenuOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#editmenuoptions12)属性扩展自定义选择菜单，可以设置扩展项的文本内容、图标以及回调方法。
+
+  ```ts
+  Text('这是一段文本，用来展示选中菜单')
+    .fontSize(20)
+    .copyOption(CopyOptions.LocalDevice)
+    .editMenuOptions({
+      onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    })
+  ```
+
+  ```ts
+  // 定义onCreateMenu，onMenuItemClick
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'customMenu1',
+      icon: $r('app.media.app_icon'),
+      id: TextMenuItemId.of('customMenu1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'customMenu2',
+      id: TextMenuItemId.of('customMenu2'),
+      icon: $r('app.media.app_icon'),
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
+  }
+  
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("customMenu2"))) {
+      console.log("拦截 id: customMenu2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
+    }
+    return false;
+  };
+  ```
+  ![text_editmenuoptions](figures/text_editmenuoptions.gif)
 
 ## 场景示例
 
+该示例通过maxLines、textOverflow、textAlign、constraintSize属性展示了热搜榜的效果。
 
 ```ts
 // xxx.ets
@@ -430,3 +553,4 @@ struct TextExample {
 ```
 
 ![zh-cn_image_0000001562820805](figures/zh-cn_image_0000001562820805.png)
+<!--RP1--><!--RP1End-->

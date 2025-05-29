@@ -1,8 +1,10 @@
 # 适配指导案例
 
-本文通过更多应用场景中的案例，提供在ArkTS语法规则下将TS代码适配成ArkTS代码的建议。各章以ArkTS语法规则英文名称命名，每个案例提供适配前的TS代码和适配后的ArkTS代码。
+本文通过具体应用场景中的案例，提供在ArkTS语法规则下将TS代码适配成ArkTS代码的建议。各章以ArkTS语法规则的英文名称命名，每个案例展示适配前的TS代码和适配后的ArkTS代码。
 
 ## arkts-identifiers-as-prop-names
+
+当属性名是有效的标识符（即不包含特殊字符、空格等，并且不以数字开头），可以直接使用而无需引号。
 
 **应用代码**
 
@@ -116,7 +118,7 @@ function printProperties(obj: Record<string, Object>) {
 
 ## arkts-no-call-signature
 
-使用函数类型来替代。
+使用函数类型进行替代。
 
 **应用代码**
 
@@ -150,6 +152,8 @@ foo((value: string) => {
 ```
 
 ## arkts-no-ctor-signatures-type
+
+使用工厂函数（() => Instance）替代构造函数签名。
 
 **应用代码**
 
@@ -212,7 +216,7 @@ console.log(t.createController()!.value);
 
 ## arkts-no-indexed-signatures
 
-使用Record类型来替代。
+使用Record类型进行替代。
 
 **应用代码**
 
@@ -236,6 +240,8 @@ function foo(data: Record<string, string>) {
 
 ## arkts-no-typing-with-this
 
+使用具体类型替代`this`。
+
 **应用代码**
 
 ```typescript
@@ -257,6 +263,8 @@ class C {
 ```
 
 ## arkts-no-ctor-prop-decls
+
+显式声明类属性，并在构造函数中手动赋值。
 
 **应用代码**
 
@@ -286,6 +294,8 @@ class Person {
 ```
 
 ## arkts-no-ctor-signatures-iface
+
+使用type定义工厂函数或普通函数类型。
 
 **应用代码**
 
@@ -348,27 +358,29 @@ console.log(t.createController()!.value);
 
 ## arkts-no-props-by-index
 
-可以转换成Record类型，用来访问对象的属性。
+可以将对象转换为Record类型，以便访问其属性。
 
 **应用代码**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params: Object = myRouter.getParams();
-let funNum: number = params['funNum'];
-let target: string = params['target'];
+function foo(params: Object) {
+    let funNum: number = params['funNum'];
+    let target: string = params['target'];
+}
 ```
 
 **建议改法**
 
 ```typescript
-import myRouter from '@ohos.router';
-let params = myRouter.getParams() as Record<string, string | number>;
-let funNum: number = params.funNum as number;
-let target: string = params.target as string;
+function foo(params: Record<string, string | number>) {
+    let funNum: number = params['funNum'] as number;
+    let target: string = params['target'] as string;
+}
 ```
 
 ## arkts-no-inferred-generic-params
+
+所有泛型调用都应显式标注泛型参数类型，如 Map\<string, T\>、.map\<T\>()。
 
 **应用代码**
 
@@ -404,6 +416,8 @@ let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[s
 
 ## arkts-no-regexp-literals
 
+使用new RegExp(pattern, flags) 构造函数替代RegExp字面量。
+
 **应用代码**
 
 ```typescript
@@ -438,7 +452,7 @@ const area = {
 **建议改法**
 
 ```typescript
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 const area: image.PositionArea = {
   pixels: new ArrayBuffer(8),
@@ -448,7 +462,7 @@ const area: image.PositionArea = {
 }
 ```
 
-### 用class为object literal标注类型，需要class的构造函数无参数
+### 用class为object literal标注类型，要求class的构造函数无参数
 
 **应用代码**
 
@@ -507,9 +521,9 @@ let s: C = new C(-2); 	//抛出异常
 let t: C = { value: -2 };	//ArkTS不支持
 ```
 
-例如在上面的例子中，如果允许使用`C`来标注object literal的类型，那么上述代码中的变量`t`会导致行为的二义性。ArkTS禁止通过object literal来绕过这一行为。
+如果允许使用`C`来标注object literal的类型，变量`t`会导致行为的二义性。ArkTS禁止通过object literal绕过这一行为。
 
-### 用class/interface为object literal标注类型，需要使用identifier作为object literal的key
+### 用class/interface为object literal标注类型，要求使用identifier作为object literal的key
 
 **应用代码**
 
@@ -550,7 +564,7 @@ let arr: Test[] = [
 ]
 ```
 
-### 使用Record为object literal标注类型，需要使用字符串作为object literal的key
+### 使用Record类型为object literal标注类型，要求使用字符串作为object literal的key
 
 **应用代码**
 
@@ -653,7 +667,7 @@ let t:T = new T();
 
 **原因**
 
-class/interface中声明的方法应该被所有class的实例共享。ArkTS不支持通过object literal改写实例方法。ArkTS支持函数类型的属性。
+class/interface中声明的方法应被所有实例共享。ArkTS不支持通过object literal改写实例方法。ArkTS支持函数类型的属性。
 
 ### export default对象
 
@@ -734,7 +748,7 @@ test.foo('', option);
 **原因**
 
 对象字面量缺少类型，根据`test.foo`分析可以得知，`option`的类型来源于声明文件，那么只需要将类型导入即可。
-注意到在`test.d.ets`中，`I`是定义在namespace中的，所以在ets文件中，先导入namespace，再通过名称获取相应的类型。
+在`test.d.ets`中，`I`定义在namespace中。在ets文件中，先导入namespace，再通过名称获取相应的类型。
 
 ### object literal传参给Object类型
 
@@ -764,6 +778,8 @@ emit('', emitArg);
 
 ## arkts-no-obj-literals-as-types
 
+使用interface显式定义结构类型。
+
 **应用代码**
 
 ```typescript
@@ -780,6 +796,8 @@ interface Person {
 ```
 
 ## arkts-no-noninferrable-arr-literals
+
+显式声明数组元素的类型（使用interface或class），并为数组变量添加类型注解。
 
 **应用代码**
 
@@ -809,6 +827,8 @@ let permissionList: PermissionItem[] = [
 ```
 
 ## arkts-no-method-reassignment
+
+使用函数类型的类字段（class field）代替原型方法。
 
 **应用代码**
 
@@ -847,6 +867,8 @@ c1.add = sub;
 
 ## arkts-no-polymorphic-unops
 
+使用 Number.parseInt()、new Number() 等显式转换函数。
+
 **应用代码**
 
 ```typescript
@@ -866,6 +888,8 @@ let d = new Number('string');
 ```
 
 ## arkts-no-type-query
+
+使用类、接口或类型别名替代typeof，避免依赖变量做类型推导。
 
 **应用代码**
 
@@ -924,6 +948,8 @@ function test(str: string, obj: Record<string, Object>) {
 
 ## arkts-no-destruct-assignment
 
+使用索引访问元素或手动赋值代替解构赋值。
+
 **应用代码**
 
 ```typescript
@@ -950,32 +976,36 @@ for (let arr of map) {
 
 ## arkts-no-types-in-catch
 
+使用无类型 catch (error)，然后通过类型断言处理。
+
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (e: BusinessError) {
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   // ...
 } catch (error) {
   let e: BusinessError = error as BusinessError;
-  logger.error(e.code, e.message);
+  console.error(e.message, e.code);
 }
 ```
 
 ## arkts-no-for-in
+
+使用 Object.entries(obj) + for of 替代 for in。
 
 **应用代码**
 
@@ -1008,6 +1038,8 @@ for (let ele of Object.entries(p)) {
 
 ## arkts-no-mapped-types
 
+使用 Record\<K, T\> 替代映射类型。
+
 **应用代码**
 
 ```typescript
@@ -1035,10 +1067,12 @@ type OptionsFlags = Record<keyof C, string>
 
 ## arkts-limited-throw
 
+将对象转换为Error，或创建新的Error实例抛出。
+
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error;
@@ -1048,7 +1082,7 @@ function ThrowError(error: BusinessError) {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function ThrowError(error: BusinessError) {
   throw error as Error;
@@ -1153,32 +1187,52 @@ class Test {
 
 ## arkts-no-spread
 
+使用Object.assign()、手动赋值或数组方法替代扩展运算符。
+
 **应用代码**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest(): notification.NotificationRequest {
-  // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = {
-  ...buildNotifyLongRequest(),
-  deliveryTime: new Date().getTime()
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = {
+  ...test.foo(),
+  type: 0
 }
 ```
 
 **建议改法**
 
 ```typescript
-import notification from '@ohos.notificationManager';
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
+  }
 
-function buildNotifyLongRequest():notification.NotificationRequest {
-    // ...
+  function foo(): I;
 }
 
-let notificationRequest: notification.NotificationRequest = buildNotifyLongRequest();
-notificationRequest.deliveryTime = new Date().getTime();
+export default test
+
+// app.ets
+import test from 'test';
+
+let t: test.I = test.foo();
+t.type = 0;
 ```
 
 **原因**
@@ -1243,11 +1297,11 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-由于无法为globalThis添加静态类型，只能通过查找的方式访问globalThis的属性，造成额外的性能开销。另外，无法为globalThis的属性标记类型，无法保证对这些属性操作的安全和高性能。因此ArkTS不支持globalThis。
+ArkTS不支持`globalThis`。一方面无法为`globalThis`添加静态类型，只能通过查找方式访问其属性，导致额外性能开销。另一方面，无法为`globalThis`的属性标记类型，无法保证操作的安全性和高性能。
 
 1. 建议按照业务逻辑根据`import/export`语法实现数据在不同模块的传递。
 
-2. 必要情况下，可以通过构造的**单例对象**来实现全局对象的功能。(**说明：**不能在har中定义单例对象，har在打包时会在不同的hap中打包两份，无法实现单例。)
+2. 必要情况下，可以通过构造的**单例对象**来实现全局对象的功能。(**说明：** 不能在har中定义单例对象，har在打包时会在不同的hap中打包两份，无法实现单例。)
 
 **构造单例对象**
 
@@ -1589,7 +1643,7 @@ a?.bar();
 
 ### 严格属性初始化检查
 
-在class中，如果一个属性没有初始化，且没有在构造函数中被赋值，那么ArkTS将报错。
+在class中，如果一个属性没有初始化，且没有在构造函数中被赋值，ArkTS将报错。
 
 **建议改法**
 
@@ -1627,7 +1681,7 @@ class Test {
 
 ​	方式三(iii) `prop： A | undefined = undefined`
 
-- 从性能角度来说，`null`类型只用在编译期的类型检查中，对虚拟机的性能无影响。而`undefined | A`被视为联合类型，运行时可能有额外的开销。
+- 从性能角度看，`null`类型仅用于编译期的类型检查，不会影响虚拟机性能。而`undefined | A`被视为联合类型，运行时可能产生额外开销。
 - 从代码可读性、简洁性的角度来说，`prop?:A`是`prop： A | undefined = undefined`的语法糖，**推荐使用可选属性的写法**
 
 ### 严格函数类型检查
@@ -1650,7 +1704,7 @@ foo((value?: string) => {}, '');
 
 **原因**
 
-例如，在以下的例子中，如果编译期不开启严格函数类型的检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。具体来看，在`foo`的函数体中，一个`undefined`被传入`fn`（这是可以的，因为`fn`可以接受`undefined`），但是在代码第6行`foo`的调用点，传入的`(value： string) => { console.log(value.toUpperCase()) }`的函数实现中，始终将参数`value`当做string类型，允许其调用`toUpperCase`方法。如果不开启严格函数类型的检查，那么这段代码在运行时，会出现在`undefined`上无法找到属性的错误。
+例如，在以下的例子中，如果编译期不开启严格函数类型的检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。具体来看，在`foo`的函数体中，一个`undefined`被传入`fn`（这是可以的，因为`fn`可以接受`undefined`），但是在代码第6行`foo`的调用点，传入的`(value: string) => { console.info(value.toUpperCase()) }`的函数实现中，始终将参数`value`当做string类型，允许其调用`toUpperCase`方法。如果不开启严格函数类型的检查，那么这段代码在运行时，会出现在`undefined`上无法找到属性的错误。
 
 ```typescript
 function foo(fn: (value?: string) => void, value: string): void {
@@ -1658,10 +1712,10 @@ function foo(fn: (value?: string) => void, value: string): void {
   fn(v);
 }
 
-foo((value: string) => { console.log(value.toUpperCase()) }, ''); // Cannot read properties of undefined (reading 'toUpperCase')
+foo((value: string) => { console.info(value.toUpperCase()) }, ''); // Cannot read properties of undefined (reading 'toUpperCase')
 ```
 
-为了避免运行时的非预期行为，如果在编译时开启了严格类型检查，这段代码将编译不通过，从而可以提醒开发者修改代码，保证程序安全。
+为了避免运行时的非预期行为，开启严格类型检查时，这段代码将无法编译通过，需要提醒开发者修改代码，确保程序安全。
 
 ### 严格空值检查
 
@@ -1682,7 +1736,7 @@ t.printValue();
 
 **建议改法**
 
-在编写代码时，建议减少可空类型的使用。如果对变量、属性标记了可空类型，那么在使用它们之间，需要进行空值的判断，根据是否为空值处理不同的逻辑。
+在编写代码时，建议减少可空类型的使用。如果对变量、属性标记了可空类型，那么在使用它们之前，需要进行空值的判断，根据是否为空值处理不同的逻辑。
 
 ```typescript
 class Test {
@@ -1701,7 +1755,7 @@ t.printValue();
 
 **原因**
 
-在第一段代码中，如果编译期不开启严格空值检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。这是因为`t`的属性`value`为`undefined`（这是因为`value?: string`是`value: string | undefined = undefined`的语法糖），在第11行调用`printValue`方法时，由于在该方法体内未对`this.value`的值进行空值检查，而直接按照`string`类型访问其属性，这就导致了运行时的错误。为了避免运行时的非预期行为，如果在编译时开起来严格空值检查，这段代码将编译不通过从而可以提醒开发者修改代码（如按照第二段代码的方式），保证程序安全。
+在第一段代码中，如果编译期不开启严格空值检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。这是因为`t`的属性`value`为`undefined`（`value?: string`是`value: string | undefined = undefined`的语法糖），在第11行调用`printValue`方法时，由于在该方法体内未对`this.value`的值进行空值检查，而直接按照`string`类型访问其属性，这就导致了运行时的错误。为了避免运行时的非预期行为，如果在编译时开启严格空值检查，这段代码将编译不通过从而可以提醒开发者修改代码（如按照第二段代码的方式），保证程序安全。
 
 ### 函数返回类型不匹配
 
@@ -1738,7 +1792,7 @@ try {
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 try {
   
@@ -1799,7 +1853,7 @@ if (a != null) {
 
 **建议改法2**
 
-如果可以断定此处调用`foo`一定返回非空值，可以使用非空断言`!`。
+如果确定此处调用`foo`一定返回非空值，可以使用非空断言`!`。
 
 ```typescript
 class A {
@@ -1857,7 +1911,7 @@ if (a.foo) {
 
 **原因**
 
-在原先代码的定义中，foo是可选属性，有可能为undefined，对undefined的调用会导致报错。建议按照业务逻辑判断是否需要为可选属性。如果确实需要，那么在访问到该属性后需要进行空值检查。
+在原先代码的定义中，`foo`是可选属性，可能为`undefined`，对`undefined`的调用会导致报错。建议根据业务逻辑判断是否需要将`foo`设为可选属性。如果确实需要，那么在访问该属性后需要进行空值检查。
 
 ### Variable '***' is used before being assigned
 
@@ -1902,7 +1956,7 @@ if (a) {
 
 对于primitive types，可以根据业务逻辑赋值，例如0，''，false。
 
-对于对象类型，可以将类型修改为和null的联合类型，并赋值null，使用时需要进行非空检查。
+对于对象类型，可以将其类型修改为与null的联合类型，并赋值为null。使用时需要进行非空检查。
 
 ### Function lacks ending return statement and return type does not include 'undefined'.
 
@@ -1933,6 +1987,8 @@ function foo(a: number): number | undefined {
 
 ## arkts-strict-typing-required
 
+删除忽略注释，为所有变量显式声明类型。
+
 **应用代码**
 
 ```typescript
@@ -1958,11 +2014,13 @@ ArkTS不支持通过注释的方式绕过严格类型检查。首先将注释（
 
 **建议改法**
 
-方式1.将.ts文件的后缀修改成ets，按照ArkTS语法规则适配代码。
+方式1.将.ts文件的后缀修改为ets，并按ArkTS语法规则适配代码。
 
 方式2.将.ets文件中被.ts文件依赖的代码单独抽取到.ts文件中。
 
 ## arkts-no-special-imports
+
+改为使用普通import { ... } from '...' 导入类型。
 
 **应用代码**
 
@@ -2081,7 +2139,7 @@ console.log(getC2Value());
 
 ## arkts-no-side-effects-imports
 
-改用动态import
+改用动态import。
 
 **应用代码**
 
@@ -2096,6 +2154,8 @@ import('module')
 ```
 
 ## arkts-no-func-props
+
+使用class来组织多个相关函数。
 
 **应用代码**
 
@@ -2132,6 +2192,8 @@ class Foo {
 ```
 
 ## arkts-limited-esobj
+
+使用具体类型（如number, string）或接口代替模糊的ESObject。
 
 **应用代码**
 
@@ -2232,7 +2294,7 @@ function deepCopy(obj: object): object {
 
 ### Struct组件外使用状态变量
 
-由于struct和class不同，不建议把this作为参数传递到struct外部使用，避免引起实例引用无法释放的情况，导致内存泄露。建议将状态变量对象传递到struct外面使用，通过修改对象的属性，来触发UI刷新。
+由于`struct`和`class`的不同，不建议将`this`作为参数传递到`struct`外部使用，以避免实例引用无法释放，导致内存泄露。建议传递状态变量对象到`struct`外部使用，通过修改对象的属性来触发UI刷新。
 
 **不推荐用法**
 
@@ -2263,7 +2325,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // 不建议把this作为参数传递到struct外部使用
   }
 }
 
@@ -2309,7 +2371,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2333,7 +2395,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2374,8 +2436,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // struct不支持泛型，有arkts-no-any-unknown报错
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // struct不支持泛型，有arkts-no-any-unknown报错
 
   @Builder
   componentCloser() {
@@ -2383,7 +2445,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // struct不支持泛型，有arkts-no-any-unknown报错
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2404,7 +2466,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2432,7 +2494,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

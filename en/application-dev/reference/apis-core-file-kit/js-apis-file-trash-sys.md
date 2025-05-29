@@ -57,7 +57,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## trash.recover
 
-recover(uri: string): void;
+recover(uri: string): void
 
 Recovers a file or folder from the trash.
 
@@ -105,7 +105,7 @@ Permanently deletes a file or folder from the **Recently deleted** list.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file or folder to delete.|
+| uri   | string | Yes  | URI of the file or folder to recover.|
 
 **Error codes**
 

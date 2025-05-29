@@ -47,7 +47,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | Calling AddAbilityMonitor failed. |
 
 **Example**
 
@@ -101,7 +101,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitor failed. |
+| 16000100 | Calling AddAbilityMonitor failed. |
 
 **Example**
 
@@ -147,7 +147,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityMonitorSync failed. |
+| 16000100 | Calling AddAbilityMonitorSync failed. |
 
 **Example**
 
@@ -194,7 +194,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | Calling RemoveAbilityMonitor failed. |
 
 **Example**
 
@@ -249,7 +249,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitor failed. |
+| 16000100 | Calling RemoveAbilityMonitor failed. |
 
 - Example
 
@@ -296,7 +296,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityMonitorSync failed. |
+| 16000100 | Calling RemoveAbilityMonitorSync failed. |
 
 **Example**
 
@@ -342,7 +342,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **Example**
 
@@ -396,7 +396,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **Example**
 
@@ -458,7 +458,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityMonitor failed. |
+| 16000100 | Calling WaitAbilityMonitor failed. |
 
 **Example**
 
@@ -532,6 +532,14 @@ Obtains the lifecycle state of an ability.
 | ------ | ------------------------------------------------------------ |
 | number | Lifecycle state of the ability, which is defined by **AbilityLifecycleState**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -574,7 +582,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | GetCurrentTopAbility failed. |
+| 16000100 | Calling GetCurrentTopAbility failed. |
 
 **Example**
 
@@ -615,8 +623,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | GetCurrentTopAbility failed. |
+| 16000100 | Calling GetCurrentTopAbility failed. |
 
 **Example**
 
@@ -660,7 +667,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -724,7 +731,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -780,7 +787,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityForeground failed. |
+| 16000100 | Calling DoAbilityForeground failed. |
 
 **Example**
 
@@ -831,7 +838,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityForeground failed. |
+| 16000100 | Calling DoAbilityForeground failed. |
 
 **Example**
 
@@ -877,7 +884,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityBackground failed. |
+| 16000100 | Calling DoAbilityBackground failed. |
 
 **Example**
 
@@ -928,7 +935,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | DoAbilityBackground failed. |
+| 16000100 | Calling DoAbilityBackground failed. |
 
 **Example**
 
@@ -947,7 +954,7 @@ abilityDelegator.getCurrentTopAbility((err: BusinessError, data: UIAbility) => {
   abilityDelegator.doAbilityBackground(ability).then(() => {
     console.info("doAbilityBackground promise");
   });
-
+});
 ```
 
 ### printSync<sup>9+</sup>
@@ -965,6 +972,14 @@ Prints log information to the unit test console.
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
 | msg    | string | Yes  | Log string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -1181,7 +1196,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | FinishTest failed. |
+| 16000100 | Calling FinishTest failed. |
 
 **Example**
 
@@ -1228,7 +1243,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | FinishTest failed. |
+| 16000100 | Calling FinishTest failed. |
 
 **Example**
 
@@ -1268,7 +1283,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | Calling AddAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1316,7 +1331,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitor failed. |
+| 16000100 | Calling AddAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1357,7 +1372,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | AddAbilityStageMonitorSync failed. |
+| 16000100 | Calling AddAbilityStageMonitorSync failed. |
 
 **Example**
 
@@ -1397,7 +1412,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | Calling RemoveAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1445,7 +1460,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | RemoveAbilityStageMonitor failed. |
+| 16000100 | Calling RemoveAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1486,7 +1501,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | removeAbilityStageMonitorSync failed. |
+| 16000100 | Calling RemoveAbilityStageMonitorSync failed. |
 
 
 **Example**
@@ -1527,7 +1542,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1577,7 +1592,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **Example**
 
@@ -1600,7 +1615,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1621,7 +1636,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | WaitAbilityStageMonitor failed. |
+| 16000100 | Calling WaitAbilityStageMonitor failed. |
 
 **Example**
 

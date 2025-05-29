@@ -1,6 +1,6 @@
 # @ohos.effectKit (图像效果)
 
-图像效果提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。
+图像效果模块提供了处理图像的基础能力，包括亮度调节、模糊化、灰度调节和智能取色等。effectKit用于离线处理图像（如pixelmap、png、jpeg）以获得视觉效果，而uiEffect则实时接入渲染服务，针对屏幕帧缓存进行处理以获得动态视觉效果。
 
 该模块提供以下图像效果相关的常用功能：
 
@@ -39,7 +39,7 @@ createEffect(source: image.PixelMap): Filter
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| [Filter](#filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
+| [Filter](#filter) | 返回不带任何效果的Filter链表头节点，失败时返回null。 |
 
 **示例：**
 
@@ -136,7 +136,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。 |
-| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
 
 **返回值：**
 
@@ -302,6 +302,19 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 | blue  | number | 是   | 否   | 蓝色分量值，取值范围[0x0, 0xFF]。           |
 | alpha | number | 是   | 否   | 透明通道分量值，取值范围[0x0, 0xFF]。       |
 
+## TileMode<sup>14+</sup>
+
+着色器效果平铺模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   | 值   | 说明                           |
+| ---------------------- | ---- | ------------------------------ |
+| CLAMP     | 0    | 如果着色器效果超出其原始边界，剩余区域使用着色器的边缘颜色填充。 |
+| REPEAT    | 1    | 在水平和垂直方向上重复着色器效果。 |
+| MIRROR    | 2    | 在水平和垂直方向上重复着色器效果，交替镜像图像，以便相邻图像始终接合。 |
+| DECAL     | 3    | 仅在其原始边界内渲染着色器效果。|
+
 ## ColorPicker
 
 取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过[createColorPicker](#effectkitcreatecolorpicker)创建一个ColorPicker实例。
@@ -310,7 +323,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColor(): Promise\<Color>
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -358,7 +371,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColorSync(): Color
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -405,7 +418,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getLargestProportionColor(): Color
 
-读取图像占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像中占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口使用中位切分算法划分颜色空间，获取占比最多的颜色空间的平均颜色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -469,7 +482,7 @@ getTopProportionColors(colorCount: number): Array<Color | null>
 
 | 类型                                     | 说明                                            |
 | :--------------------------------------- | :---------------------------------------------- |
-| Array<[Color](#color) \| null> | Color数组，即图像占比前`colorCount`的颜色值数组，按占比排序。<br>- 当实际读取的特征色个数小于`colorCount`时，数组大小为实际特征色个数。<br>- 取色失败返回空数组。<br>- 取色个数小于1返回`[null]`。<br>- 取色个数大于10视为取前10个。 |
+| Array<[Color](#color) \| null> | Color数组，即图像占比前`colorCount`的颜色值数组，按占比排序。<br>- 当实际读取的特征色个数小于`colorCount`时，数组大小为实际特征色个数。<br>- 取色失败或取色个数小于1返回`[null]`。<br>- 取色个数大于10视为取前10个。 |
 
 **示例：**
 
@@ -502,7 +515,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Top_Proportion_Colors.png)
+![zh-ch_image_Top_Proportion_Colors.png](figures/zh-ch_image_Top_Proportion_Colors.png)
 
 ### getHighestSaturationColor<sup>10+</sup>
 
@@ -620,7 +633,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| boolean              | 如果此图像为黑白灰颜色，则返回true；否则返回false。 |
+| boolean              | 如果图像为黑白灰颜色，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -658,7 +671,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 blur(radius: number): Filter
 
-将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+将模糊效果添加到效果链表中，返回链表的头节点。
 
 >  **说明：**
 >
@@ -707,11 +720,61 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 ```
 ![zh-ch_image_Add_Blur.png](figures/zh-ch_image_Add_Blur.png)
 
+### blur<sup>14+</sup>
+
+blur(radius: number, tileMode: TileMode): Filter
+
+将模糊效果添加到效果链表中，返回链表的头节点。
+
+>  **说明：**
+>
+>  该接口为静态模糊接口，为静态图像提供模糊化效果，如果要对组件进行实时渲染的模糊，可以使用[动态模糊](../../ui/arkts-blur-effect.md)。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                         |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  radius   | number | 是   | 模糊半径，单位是像素。模糊效果与所设置的值成正比，值越大效果越明显。 |
+|  tileMode   | [TileMode](#tilemode14) | 是   | 着色器效果平铺模式。影响图像边缘的模糊效果。目前仅支持CPU渲染，所以目前着色器平铺模式仅支持DECAL。 |
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | 返回已添加的图像效果。 |
+
+**示例：**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 30;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius, effectKit.TileMode.DECAL);
+  }
+})
+```
+![zh-ch_image_Add_Blur_With_TileMode.png](figures/zh-ch_image_Add_Blur_With_TileMode.png)
+
 ### invert<sup>12+</sup>
 
 invert(): Filter
 
-将反转效果添加到效果链表中，结果返回效果链表的头节点。
+将反转效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -749,7 +812,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 setColorMatrix(colorMatrix: Array\<number>): Filter
 
-将自定义效果添加到效果链表中，结果返回效果链表的头节点。
+将自定义效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -757,7 +820,7 @@ setColorMatrix(colorMatrix: Array\<number>): Filter
 
 | 参数名 | 类型        | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  colorMatrix  |   Array\<number> | 是   | 自定义颜色矩阵。 <br>用于创建效果滤镜的 5x4 大小的矩阵, 矩阵元素取值范围为[0, 1], 0和1代表的是矩阵中对应位置的颜色通道的权重，0代表该颜色通道不参与计算，1代表该颜色通道参与计算并保持原始权重。 |
+|  colorMatrix  |   Array\<number> | 是   | 自定义颜色矩阵。 <br>用于创建效果滤镜的 5x4 大小的矩阵，矩阵元素取值范围为[0, 1]，0和1代表的是矩阵中对应位置的颜色通道的权重，0代表该颜色通道不参与计算，1代表该颜色通道参与计算并保持原始权重。 |
 
 **返回值：**
 
@@ -806,7 +869,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 brightness(bright: number): Filter
 
-将高亮效果添加到效果链表中，结果返回效果链表的头节点。
+将高亮效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -855,7 +918,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 grayscale(): Filter
 
-将灰度效果添加到效果链表中，结果返回效果链表的头节点。
+将灰度效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
