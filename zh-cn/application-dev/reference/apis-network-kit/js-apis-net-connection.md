@@ -2841,8 +2841,6 @@ type TCPSocket = socket.TCPSocket
 
 获取一个TCPSocket对象。
 
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 |       类型       |            说明             |
@@ -2854,8 +2852,6 @@ type TCPSocket = socket.TCPSocket
 type UDPSocket = socket.UDPSocket
 
 获取一个UDPSocket对象。
-
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
