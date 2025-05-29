@@ -201,10 +201,10 @@ QoS决定了线程调度的优先级，等级定义如下：
 
 ```c
 typedef enum {
-  napi_qos_background = 0,
-  napi_qos_utility = 1,
-  napi_qos_default = 2,
-  napi_qos_user_initiated = 3,
+    napi_qos_background = 0,
+    napi_qos_utility = 1,
+    napi_qos_default = 2,
+    napi_qos_user_initiated = 3,
 } napi_qos_t;
 ```
 
