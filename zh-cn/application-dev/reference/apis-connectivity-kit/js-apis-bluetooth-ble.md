@@ -3857,7 +3857,8 @@ BLE扫描类，提供了扫描相关的操作方法。<br>
 startScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): Promise&lt;void&gt;
 
 发起BLE扫描流程。使用Promise异步回调。<br>
-- 扫描结果会通过[on('BLEDeviceFind')](onbledevicefind15)的回调函数获取到。<br>
+- 该接口只能扫描BLE设备。<br>
+- 扫描结果会通过[on('BLEDeviceFind')](#onbledevicefind15)的回调函数获取到。<br>
 - 调用[stopScan](#stopscan15)可以停止该方法开启的扫描流程。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
@@ -4248,7 +4249,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 
 | 名称       | 类型        | 只读 | 可选   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 取消配对该设备后或蓝牙服务重启后，若重新发起扫描，该虚拟地址会变更。 |
+| deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 |
 | rssi     | number      | 否 | 否    | 扫描到的设备信号强度，单位dBm。                    |
 | data     | ArrayBuffer | 否 | 否    | 扫描到的设备发送的广播报文内容。                    |
 | deviceName | string | 否 | 否    | 扫描到的设备名称。                    |
