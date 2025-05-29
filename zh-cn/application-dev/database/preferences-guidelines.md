@@ -4,7 +4,7 @@
 用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。如果存在大量数据场景，请考虑使用键值型数据库或关系型数据库。
 
 ## 约束限制
-1. API version 18之前，Preferences ArkTS API默认存储方式为XML模式，C API默认存储方式为GSKV模式，不支XML存储模式，Preferences不支持C API与ArkTS API混合使用。从API version 18开始，Preferences C API和ArkTS API支持选择存储模式，当Preferences实例的名称（Options中的name）相同且选择相同存储模式时可以实现C API与ArkTS API之间数据互通。
+1. API version 18之前：ArkTS API 仅支持XML格式存储；C API仅支持GSKV存储格式；存储模式互不兼容，不支持ArkTS和CAPI操作同一个Preferences实例。API version 18及之后：ArkTS和C API均支持XML和GSKV双模式；ArkTs和C API使用相同的存储模式时，可以正常操作同一Preferences实例；禁止ArkTS和C API选择不同的存储模式，来操作同一个Preferences实例。
 2. Key的最大长度限制为1024个字节，Value的最大长度限制为16MB。
 
 
