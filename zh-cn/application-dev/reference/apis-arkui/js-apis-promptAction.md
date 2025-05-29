@@ -471,7 +471,7 @@ struct Index {
 }
 
 ```
-该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等。
 ```ts
 import { promptAction, LevelMode, ImmersiveMode } from '@kit.ArkUI'
 
