@@ -239,16 +239,22 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 开发者等待一段时间后尝试再次触发调用。
 
-## 12000016 需要锁屏密码但未设置
+## 12000018 输入参数非法
 
 **错误信息**
 
-A device password is required but not set.
+The input parameter is invalid.
 
 **可能原因**
 
-业务限制了密钥只有在设置了锁屏密码时才可用，但未设置锁屏密码。
+1. 必选参数没有传入。
+
+2. 参数类型错误（Type Error）。
+
+3. 空参数错误（Null Argument Error）。
+
+4. 参数值范围错误（Value Range Error）。
 
 **处理步骤**
 
-设置锁屏密码，或更换密钥的使用限制。
+请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败原因，请阅读参数规格约束，按照可能原因进行排查。
