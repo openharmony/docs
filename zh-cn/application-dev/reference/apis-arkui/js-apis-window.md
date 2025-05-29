@@ -5586,7 +5586,7 @@ function calculateRect(info: window.RotationChangeInfo): window.Rect {
 
 const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
   let result: window.RotationChangeResult = {
-    rectType: window.RectType.RELATIVE_TO_SCREEN;
+    rectType: window.RectType.RELATIVE_TO_SCREEN,
     windowRect: {
       left: 0,
       top: 0,
