@@ -74,7 +74,7 @@
 | [void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_settextstyledecoration) | 设置指定文本样式中的装饰线类型，只能设置一个装饰线类型，添加多个需要使用[OH_Drawing_AddTextStyleDecoration](capi-drawing-text-typography-h.md#oh_drawing_addtextstyledecoration)。 |
 | [void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_addtextstyledecoration) | 新增指定装饰，可同时显示多种装饰线。 |
 | [void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_removetextstyledecoration) | 删除指定装饰。 |
-| [void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color)](#oh_drawing_settextstyledecorationcolor) | 设置指定文本样式中的装饰线颜色。 |
+| [void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color)](#oh_drawing_settextstyledecorationcolor) | 设置指定文本样式中的装饰线颜色。如果不调用该接口或者设置color为0时，装饰线颜色跟随文本颜色。 |
 | [void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle* style, double fontHeight)](#oh_drawing_settextstylefontheight) | 设置行高，按当前字体大小的倍数进行设置。 |
 | [void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,int fontFamiliesNumber, const char* fontFamilies[])](#oh_drawing_settextstylefontfamilies) | 设置指定文本样式的字体家族类型。 |
 | [void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle)](#oh_drawing_settextstylefontstyle) | 为指定文本样式设置字体样式。 |
@@ -124,7 +124,7 @@
 | [size_t OH_Drawing_GetEndFromRange(OH_Drawing_Range* range)](#oh_drawing_getendfromrange) | 获取OH_Drawing_Range对象结束位置。 |
 | [size_t OH_Drawing_TypographyGetLineCount(OH_Drawing_Typography* typography)](#oh_drawing_typographygetlinecount) | 获取排版对象中文本行数，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
 | [void OH_Drawing_SetTextStyleDecorationStyle(OH_Drawing_TextStyle* style, int decorationStyle)](#oh_drawing_settextstyledecorationstyle) | 设置指定文本样式中的装饰线样式。 |
-| [void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style, double decorationThicknessScale)](#oh_drawing_settextstyledecorationthicknessscale) | 设置文本装饰线的厚度缩放比例。 |
+| [void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style, double decorationThicknessScale)](#oh_drawing_settextstyledecorationthicknessscale) | 设置文本装饰线的粗细缩放比例。 |
 | [void OH_Drawing_SetTextStyleLetterSpacing(OH_Drawing_TextStyle* style, double letterSpacing)](#oh_drawing_settextstyleletterspacing) | 设置文本的字符间距。 |
 | [void OH_Drawing_SetTextStyleWordSpacing(OH_Drawing_TextStyle* style, double wordSpacing)](#oh_drawing_settextstylewordspacing) | 设置文本的单词间距。 |
 | [void OH_Drawing_SetTextStyleHalfLeading(OH_Drawing_TextStyle* style, bool halfLeading)](#oh_drawing_settextstylehalfleading) | 设置文本为一半行间距。 |
@@ -218,7 +218,7 @@
 | [void OH_Drawing_TypographyUpdateFontSize(OH_Drawing_Typography* typography, size_t from, size_t to, float fontSize)](#oh_drawing_typographyupdatefontsize) | 更新排版对象中的字体大小。 |
 | [void OH_Drawing_TypographyUpdateFontColor(OH_Drawing_Typography* typography, uint32_t color)](#oh_drawing_typographyupdatefontcolor) | 更新排版对象中的字体颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。使用该接口更新字体颜色属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
 | [void OH_Drawing_TypographyUpdateDecoration(OH_Drawing_Typography* typography, OH_Drawing_TextDecoration decoration)](#oh_drawing_typographyupdatedecoration) | 更新排版对象中的文本装饰线类型。使用该接口更新文本装饰线类型属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
-| [void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* typography,double decorationThicknessScale)](#oh_drawing_typographyupdatedecorationthicknessscale) | 更新排版对象中的文本装饰线的厚度缩放比例。使用该接口更新文本装饰线厚度缩放比例属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
+| [void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* typography,double decorationThicknessScale)](#oh_drawing_typographyupdatedecorationthicknessscale) | 更新排版对象中的文本装饰线的粗细缩放比例。使用该接口更新文本装饰线粗细缩放比例属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
 | [void OH_Drawing_TypographyUpdateDecorationStyle(OH_Drawing_Typography* typography,OH_Drawing_TextDecorationStyle decorationStyle)](#oh_drawing_typographyupdatedecorationstyle) | 更新排版对象中的文本装饰线样式。使用该接口更新文本装饰线样式属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
 | [bool OH_Drawing_TypographyTextGetLineStyle(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextgetlinestyle) | 获取文本排版是否启用行样式。 |
 | [OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetfontweight) | 获取文本排版行样式字重。 |
@@ -974,7 +974,7 @@ void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_
 
 **描述**
 
-设置指定文本样式中的装饰线颜色。
+设置指定文本样式中的装饰线颜色。如果不调用该接口或者设置color为0时，装饰线颜色跟随文本颜色。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2226,7 +2226,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
 
 **描述**
 
-设置文本装饰线的厚度缩放比例。
+设置文本装饰线的粗细缩放比例。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2238,7 +2238,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-oh-drawing-textstyle.md)* style | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| double decorationThicknessScale | 缩放比例。 |
+| double decorationThicknessScale | 粗细缩放比例。默认值为1，如果设置的粗细缩放比例小于等于0，不会绘制装饰线。 |
 
 ### OH_Drawing_SetTextStyleLetterSpacing()
 
@@ -4465,7 +4465,7 @@ void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* 
 
 **描述**
 
-更新排版对象中的文本装饰线的厚度缩放比例。使用该接口更新文本装饰线厚度缩放比例属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。
+更新排版对象中的文本装饰线的粗细缩放比例。使用该接口更新文本装饰线粗细缩放比例属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4477,7 +4477,7 @@ void OH_Drawing_TypographyUpdateDecorationThicknessScale(OH_Drawing_Typography* 
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Typography](capi-oh-drawing-typography.md)* typography | 表示指向排版对象[OH_Drawing_Typography](capi-oh-drawing-typography.md)的指针，由[OH_Drawing_CreateTypography](capi-drawing-text-typography-h.md#oh_drawing_createtypography)获取。 |
-| double decorationThicknessScale | 表示更新后的文本装饰线的厚度缩放比例。装饰线的粗细会随着这个比例变大而变粗，如果更新的厚度缩放比例小于等于0，那么就不会绘制装饰线。 |
+| double decorationThicknessScale | 表示更新后的文本装饰线的粗细缩放比例。装饰线的粗细会随着这个比例变大而变粗，如果更新的粗细缩放比例小于等于0，那么就不会绘制装饰线。 |
 
 ### OH_Drawing_TypographyUpdateDecorationStyle()
 
