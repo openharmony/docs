@@ -37,7 +37,7 @@
 | -------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | text-color     | &lt;color&gt;              | -          | 否    | 设置菜单的文本颜色。                               |
 | font-size      | &lt;length&gt;             | 30px       | 否    | 设置菜单的文本尺寸。                               |
-| allow-scale    | boolean                    | true       | 否    | 设置菜单的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
+| allow-scale    | boolean                    | true       | 否    | 设置菜单的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。true表示跟随系统放大缩小，false表示不跟随系统放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
 | letter-spacing | &lt;length&gt;             | 0          | 否    | 设置菜单的字符间距。                               |
 | font-style     | string                     | normal     | 否    | 设置菜单的字体样式。见[text组件font-style的样式属性](js-components-basic-text.md#样式)。 |
 | font-weight    | number&nbsp;\|&nbsp;string | normal     | 否    | 设置菜单的字体粗细。见[text组件font-weight的样式属性](js-components-basic-text.md#样式)。 |
