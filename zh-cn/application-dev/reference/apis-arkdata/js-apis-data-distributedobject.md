@@ -17,7 +17,7 @@ import { distributedDataObject } from '@kit.ArkData';
 
 create(context: Context, source: object): DataObject
 
-创建一个分布式数据对象。对象属性支持基本类型（数字类型、布尔类型和字符串类型）以及基本类型的数组。
+创建一个分布式数据对象。对象属性支持基本类型（数字类型、布尔类型和字符串类型）以及复杂类型（数组、基本类型嵌套）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
