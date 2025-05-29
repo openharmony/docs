@@ -114,7 +114,7 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 > **说明：**
 > 
-> 这些错误代码对应于证书验证过程中的各种失败，包括遇到问题的详细信息。
+> 这些错误代码对应于证书验证过程中的各种失败。
 
 **示例：**
 
@@ -196,7 +196,7 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 > **说明：**
 >
-> 这些错误代码对应于证书验证过程中的各种失败，包括遇到问题的详细信息。
+> 这些错误代码对应于证书验证过程中的各种失败。
 
 **示例：**
 
