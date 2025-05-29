@@ -240,7 +240,7 @@ string类型支持number类型取值的字符串形式，可以附带单位，�
 
 自适应字号生效时，fontSize设置不生效。
 
-maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
+maxFontSize小于等于0或者maxFontSize小于minFontSize时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 从API version 18开始支持在子组件和属性字符串上生效，未设置字号的部分会自适应。
 
