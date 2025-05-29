@@ -5,9 +5,9 @@
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-WebSocket是一种在单个TCP连接上进行全双工通信的协议。使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
+WebSocket是基于TCP协议的双向通信协议。使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接后，客户端会收到[close](#onclose6)事件的回调。
 
-若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。[js-apis-http.md](js-apis-http.md)
+若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
 ## 导入模块
 
@@ -25,36 +25,36 @@ let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
-    console.log(JSON.stringify(err));
+    console.error(JSON.stringify(err))
     return;
   }
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("send success");
+      console.info("send success")
     } else {
-      console.log("send fail, err:" + JSON.stringify(err));
+      console.error("send fail, err:" + JSON.stringify(err))
     }
   });
 });
 ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
+  console.info("on message, message:" + value)
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
   if (value === 'bye') {
     ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
-        console.log("close success");
+        console.info("close success")
       } else {
-        console.log("close fail, err is " + JSON.stringify(err));
+        console.error("close fail, err is " + JSON.stringify(err))
       }
     });
   }
 });
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.info("on close, code is " + value.code + ", reason is " + value.reason)
 });
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
+  console.error("on error, error:" + JSON.stringify(err))
 });
 ws.connect(defaultIpAddress, {
   header:{
@@ -70,15 +70,15 @@ ws.connect(defaultIpAddress, {
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {
   if (!err) {
-    console.log("connect success");
+    console.info("connect success")
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
   ws.close((err: BusinessError) => {
     if (!err) {
-      console.log("close success");
+      console.info("close success");
     } else {
-      console.log("close fail, err is " + JSON.stringify(err));
+      console.error("close fail, err is " + JSON.stringify(err))
     }
   });
 });
@@ -159,9 +159,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://";
 ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
-    console.log("connect success");
+    console.info("connect success")
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
 });
 ```
@@ -224,9 +224,9 @@ if (options !=undefined) {
 let url = "ws://"
 ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
-    console.log("connect success");
+    console.info("connect success")
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
 });
 ```
@@ -284,7 +284,7 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.info("connect success")
 }).catch((err:string) => {
   console.error("connect fail, error:" + JSON.stringify(err))
 });
@@ -332,18 +332,18 @@ class OutValue {
 }
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("connect success");
+      console.info("connect success")
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
     ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("send success");
+      console.info("send success")
     } else {
-      console.log("send fail, err:" + JSON.stringify(err))
+      console.error("send fail, err:" + JSON.stringify(err))
     }
   });
 });
@@ -400,17 +400,17 @@ class OutValue {
 }
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("connect success");
+      console.info("connect success")
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
-  let promise = ws.send("Hello, server!");
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
+  let promise = ws.send("Hello, server!")
   promise.then((value: boolean) => {
-    console.log("send success")
+    console.info("send success")
   }).catch((err:string) => {
     console.error("send fail, error:" + JSON.stringify(err))
   });
@@ -457,9 +457,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
   if (!err) {
-    console.log("close success")
+    console.info("close success")
   } else {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
   }
 });
 ```
@@ -507,9 +507,9 @@ if (options != undefined) {
 }
 ws.close(options, (err: BusinessError) => {
     if (!err) {
-        console.log("close success")
+        console.info("close success")
     } else {
-        console.log("close fail, err is " + JSON.stringify(err))
+        console.error("close fail, err is " + JSON.stringify(err))
     }
 });
 ```
@@ -560,7 +560,7 @@ if (options != undefined) {
 }
 let promise = ws.close();
 promise.then((value: boolean) => {
-    console.log("close success")
+    console.info("close success")
 }).catch((err:string) => {
     console.error("close fail, err is " + JSON.stringify(err))
 });
@@ -595,7 +595,7 @@ class OutValue {
   message: string = ""
 }
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
 });
 ```
 
@@ -631,7 +631,7 @@ class OutValue {
   message: string = ""
 }
 let callback1 = (err: BusinessError, value: Object) => {
- console.log("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message));
+ console.info("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message))
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -645,7 +645,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
-> AsyncCallback中的数据可以是字符串(API version 6开始支持)或ArrayBuffer(API version 8开始支持)。
+> AsyncCallback中的数据可以是字符串（API version 6开始支持）或ArrayBuffer（API version 8开始支持）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -666,7 +666,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
+  console.info("on message, message:" + value)
 });
 ```
 
@@ -725,7 +725,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.info("on close, code is " + value.code + ", reason is " + value.reason)
 });
 ```
 
@@ -783,7 +783,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err))
+  console.error("on error, error:" + JSON.stringify(err))
 });
 ```
 
@@ -838,7 +838,7 @@ import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
-  console.log("on dataEnd")
+  console.info("on dataEnd")
 });
 ```
 
@@ -891,7 +891,7 @@ import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
-  console.log("on headerReceive " + JSON.stringify(data));
+  console.info("on headerReceive " + JSON.stringify(data))
 });
 ```
 
@@ -946,7 +946,7 @@ ws.off('headerReceive');
 | ------ | ------ | ---- |-------------------|
 | certPath   | string  | 是   | 证书路径。             |
 | keyPath | string | 是   | 证书密钥的路径。          |
-| keyPassword | string | 否   | 证书密钥的密码。 缺省为空字符串。 |
+| keyPassword | string | 否   | 证书密钥的密码。缺省为空字符串。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
