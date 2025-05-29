@@ -1,6 +1,6 @@
 # OffscreenCanvasRenderingContext2D
 
-使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到canvas上。离屏绘制使用CPU进行绘制，绘制速度较慢，对绘制速度有要求的场景应避免使用离屏绘制。
+使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到Canvas上。离屏绘制使用CPU进行绘制，绘制速度较慢，对绘制速度有要求的场景应避免使用离屏绘制。
 
 >  **说明：**
 >
@@ -1686,7 +1686,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
-创建三次贝赛尔曲线的路径。
+创建三次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1745,7 +1745,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
-创建二次贝赛尔曲线的路径。
+创建二次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2936,7 +2936,7 @@ translate(x: number, y: number): void
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | -------- |
 | x    | number | 是  | 设置水平平移量。<br>默认单位：vp |
-| y    | number | 是  | 设置竖直平移量。<br>默认单位：vp |
+| y    | number | 是  | 设置垂直平移量。<br>默认单位：vp |
 
  **示例：**
 
