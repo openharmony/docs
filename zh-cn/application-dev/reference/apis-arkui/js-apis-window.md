@@ -623,7 +623,9 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## RotationChangeCallback<sup>19+</sup>
 
-(info: T): U
+### (info: T)<sup>19+</sup>
+
+(info: T): U;
 
 旋转事件通知通用回调函数。
 
