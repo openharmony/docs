@@ -38,7 +38,6 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：
@@ -104,7 +103,6 @@ off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;Conti
 
 | 错误码ID    | 错误信息 |
 |----------| -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：
