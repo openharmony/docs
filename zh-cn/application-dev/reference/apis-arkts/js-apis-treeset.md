@@ -44,6 +44,8 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -63,7 +65,7 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 
 ```ts
 //默认构造
-let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
+let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet<string | number | boolean | Object>();
 ```
 
 ```ts
@@ -75,7 +77,7 @@ treeSet.add("d");
 treeSet.add("b");
 let numbers = Array.from(treeSet.values())
 for (let item of numbers) {
-  console.log("TreeSet:" + item);
+  console.info("TreeSet:" + item);
 }
 ```
 
@@ -93,7 +95,78 @@ let entry2: TestEntry = {
 }
 ts1.add(entry1);
 ts1.add(entry2);
-console.log("treeSet: ", ts1.length);
+console.info("treeSet: ", ts1.length);
+```
+
+### constructor<sup>20+</sup>
+
+constructor(comparator?: TreeSetComparator\<T\>)
+
+TreeSet的构造函数，支持通过比较函数对元素进行升序或降序排序。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| comparator | [TreeSetComparator\<T\>](#treesetcomparatort20) | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The TreeSet's constructor cannot be directly invoked. |
+
+**示例：**
+
+```ts
+//默认构造
+let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet<string | number | boolean | Object>();
+```
+
+```ts
+import { TreeSetComparator } from '@ohos.util.TreeSet';
+
+//使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
+let treeSetCb: TreeSetComparator<string> = (firstValue: string, secondValue: string): number => {
+  return secodValue.compareTo(firstValue);
+};
+let treeSet: TreeSet<string> = new TreeSet<string>(treeSetCb);
+treeSet.add("a");
+treeSet.add("c");
+treeSet.add("d");
+treeSet.add("b");
+let numbers = Array.from(treeSet.values());
+for (let item of numbers) {
+  console.info("TreeSet: " + item);
+}
+```
+
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+class TestEntry{
+  public id: number = 0;
+}
+let treeSetCb: TreeSetComparator<TestEntry> = (firstValue: TestEntry, secondValue: TestEntry): number => {
+  return secodValue.compareTo(firstValue);
+};
+let ts1: TreeSet<TestEntry> = new TreeSet<TestEntry>(treeSetCb);
+let entry1: TestEntry = {
+  id: 0
+};
+let entry2: TestEntry = {
+  id: 1
+}
+ts1.add(entry1);
+ts1.add(entry2);
+console.info("treeSet: ", ts1.length);
 ```
 
 
@@ -124,7 +197,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const treeSet : TreeSet<string | number | boolean | Object>  = new TreeSet();
+const treeSet : TreeSet<string | number | boolean | Object>  = new TreeSet<string | number | boolean | Object>();
 let result = treeSet.isEmpty();
 ```
 
@@ -162,7 +235,7 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<number> = new TreeSet();
+let treeSet : TreeSet<number> = new TreeSet<number>();
 treeSet.add(123);
 let result = treeSet.has(123);
 ```
@@ -176,6 +249,8 @@ getFirstValue(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -200,6 +275,32 @@ treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
 ```
 
+### getFirstValue<sup>20+</sup>
+
+getFirstValue(): T \| undefined
+
+获取容器中排序第一的数据，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回排序第一的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.getFirstValue();
+```
 
 ### getLastValue
 
@@ -210,6 +311,8 @@ getLastValue(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -234,6 +337,32 @@ treeSet.add("sparrow");
 let result = treeSet.getLastValue();
 ```
 
+### getLastValue<sup>20+</sup>
+
+getLastValue(): T \| undefined
+
+获取容器中排序最后的数据，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回排序最后的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.getLastValue();
+```
 
 ### add
 
@@ -269,7 +398,7 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 let result = treeSet.add("squirrel");
 ```
 
@@ -307,7 +436,7 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let result = treeSet.remove("sparrow");
@@ -324,6 +453,8 @@ getLowerValue(key: T): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -334,7 +465,7 @@ getLowerValue(key: T): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回排序中对比元素前一位的数据，为空时返回undefined。 |
+| T | 获取容器中比传入元素排序靠前一位的元素，为空时返回undefined。 |
 
 **错误码：**
 
@@ -355,6 +486,39 @@ treeSet.add("gander");
 let result = treeSet.getLowerValue("sparrow");
 ```
 
+### getLowerValue<sup>20+</sup>
+
+getLowerValue(key: T): T \| undefined
+
+获取容器中比传入元素排序靠前一位的元素，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 对比的元素值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 获取容器中比传入元素排序靠前一位的元素，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getLowerValue("sparrow");
+```
 
 ### getHigherValue
 
@@ -365,6 +529,8 @@ getHigherValue(key: T): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -397,16 +563,51 @@ treeSet.add("gander");
 let result = treeSet.getHigherValue("sparrow");
 ```
 
+### getHigherValue<sup>20+</sup>
+
+getHigherValue(key: T): T \| undefined
+
+获取容器中比传入元素排序靠后一位的元素，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 对比的元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回排序中传入元素后一位的数据。为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getHigherValue("sparrow");
+```
 
 ### popFirst
 
 popFirst(): T
 
-删除容器中排序最前的数据，为空时返回undefined。
+删除容器中排序最前面的数据，为空时返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -431,16 +632,44 @@ treeSet.add("sparrow");
 let result = treeSet.popFirst();
 ```
 
+### popFirst<sup>20+</sup>
+
+popFirst(): T \| undefined
+
+删除容器中排序最前面的数据，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回删除的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.popFirst();
+```
 
 ### popLast
 
 popLast(): T
 
-删除容器中排序最后的数据，为空时返回undefined。
+删除容器中排序最后面的数据，为空时返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -465,6 +694,32 @@ treeSet.add("sparrow");
 let result = treeSet.popLast();
 ```
 
+### popLast<sup>20+</sup>
+
+popLast(): T \| undefined
+
+删除容器中排序最后面的数据，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回删除的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.popLast();
+```
 
 ### clear
 
@@ -487,7 +742,7 @@ clear(): void
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 treeSet.clear();
@@ -521,13 +776,13 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let it = treeSet.values();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeSet: " + t.value);
+  console.info("TreeSet: " + t.value);
   t = it.next()
 }
 ```
@@ -542,6 +797,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -578,13 +835,45 @@ treeSet.forEach((value ?: string, key ?: string) :void => {
 ```
 ```ts
 // 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }
 for(let i = 0; i < 10; i++) {
   treeSet.remove("sparrow" + i);
 }
+```
+
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: TreeSetForEachCb\<T\>): void
+
+通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [TreeSetForEachCb\<T\>](#treesetforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { TreeSetForEachCb } from '@ohos.util.TreeSet';
+
+let treeSet: TreeSet<string> = new TreeSet<string>();
+treeSet.add("sparrow");
+treeSet.add("gull");
+let treeSetCb: TreeSetForEachCb<string> = (value: string, key: string, set: TreeSet<string>) => {
+  console.info("value: " + value, " key: "+ key);
+};
+treeSet.forEach(treeSetCb);
 ```
 
 ### entries
@@ -613,8 +902,10 @@ entries(): IterableIterator<[T, T]>
 
 **示例：**
 
+以下示例代码适用于ArkTS1.1。
+
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let it = treeSet.entries();
@@ -626,7 +917,31 @@ while(!t.done) {
 ```
 ```ts
 // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
+for(let i = 0; i < 10; i++) {
+  treeSet.add("sparrow" + i);
+}
+for(let i = 0; i < 10; i++) {
+  treeSet.remove("sparrow" + i);
+}
+```
+
+以下示例代码适用于ArkTS1.2。
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let it = treeSet.entries();
+let t: IteratorResult<[string, string]> = it.next();
+while(!t.done) {
+  console.info("TreeSet: " + t.value);
+  t = it.next()
+}
+```
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let treeSet : TreeSet<string> = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }
@@ -645,6 +960,8 @@ for(let i = 0; i < 10; i++) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -662,7 +979,7 @@ for(let i = 0; i < 10; i++) {
 **示例：**
 
 ```ts
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
 let numbers = Array.from(treeSet.values())
@@ -680,7 +997,7 @@ while(temp != undefined) {
 ```
 ```ts
 // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet();
+let treeSet : TreeSet<string> = new TreeSet<string>();
 for(let i = 0; i < 10; i++) {
   treeSet.add("sparrow" + i);
 }
@@ -688,3 +1005,79 @@ for(let i = 0; i < 10; i++) {
   treeSet.remove("sparrow" + i);
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let treeSet : TreeSet<string> = new TreeSet<string>();
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+// 使用方法一：
+for (let item of treeSet) {
+  console.info("value:" + item);
+}
+// 使用方法二：
+let iter = treeSet.$_iterator();
+let temp: IteratorResult<string> = iter.next().value;
+while(temp != undefined) {
+  console.info("value:" + temp);
+  temp = iter.next().value;
+}
+```
+
+### TreeSetForEachCb\<T\><sup>20+</sup>
+
+type TreeSetForEachCb\<T\> = (value: T, key: T, set: TreeSet\<T\>) => void
+
+Tree中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的value元素。 |
+| key | T | 是 | 当前遍历到的key元素。 |
+| set | [TreeSet&lt;T&gt;](#treeset) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
+### TreeSetComparator\<T\><sup>20+</sup>
+
+type TreeSetComparator\<T\> = (firstValue: T, secondValue: T) => number
+
+TreeSet中[constructor](#constructor20)方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| firstValue | T | 是 | 比较关系中第一个元素。 |
+| secondValue | T | 是 | 比较关系中第二个元素。 |

@@ -58,7 +58,7 @@ LightWeightSet的构造函数。
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet<number | string>();
 ```
 
 
@@ -89,7 +89,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+const lightWeightSet: LightWeightSet<number> = new LightWeightSet<number>();
 let result = lightWeightSet.isEmpty();
 ```
 
@@ -126,7 +126,7 @@ add(obj: T): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 let result = lightWeightSet.add("squirrel");
 ```
 
@@ -165,10 +165,10 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set: LightWeightSet<string> = new LightWeightSet();
+let set: LightWeightSet<string> = new LightWeightSet<string>();
 set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
@@ -208,7 +208,7 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let set: LightWeightSet<string> = new LightWeightSet();
@@ -250,7 +250,7 @@ has(key: T): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<number> = new LightWeightSet<string>();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
 ```
@@ -285,7 +285,7 @@ increaseCapacityTo(minimumCapacity: number): void
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.increaseCapacityTo(10);
 ```
 
@@ -323,7 +323,7 @@ getIndexOf(key: T): number
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
@@ -339,6 +339,8 @@ remove(key: T): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -369,6 +371,38 @@ lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
 ```
 
+### remove<sup>20+</sup>
+
+remove(key: T): T \| undefined
+
+删除并返回指定key对应的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | T | 是 | 指定key。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回删除元素的值，删除失败返回undefined。 |
+
+**示例：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.remove("sparrow");
+```
 
 ### removeAt
 
@@ -384,7 +418,7 @@ removeAt(index: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -404,7 +438,7 @@ removeAt(index: number): boolean
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
@@ -421,11 +455,13 @@ getValueAt(index: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -451,6 +487,38 @@ lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
 ```
 
+### getValueAt<sup>20+</sup>
+
+getValueAt(index: number): T \| undefined
+
+获取此容器中指定下标对应的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回指定下标对应的元素，获取失败返回undefined。 |
+
+**参数：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.getValueAt(1);
+```
 
 ### clear
 
@@ -473,7 +541,7 @@ clear(): void
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
@@ -499,7 +567,7 @@ toString(): String
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
@@ -533,7 +601,7 @@ toArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
@@ -567,13 +635,13 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
+  console.info(JSON.stringify(iter.next().value));
   index++;
 }
 ```
@@ -588,6 +656,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -633,6 +703,38 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: LightWeightSetForEachCb\<T\>): void
+
+通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [LightWeightSetForEachCb\<T\>](#lightweightsetforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { LightWeightSetForEachCb } from '@ohos.util.LightWeightSet';
+
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
+lightWeightSet.add("sparrow");
+lightWeightSet.add("gull");
+let lightWeightSetCb: LightWeightSetForEachCb<string> = (value: string, key: string, set: LightWeightSet<string>) => {
+  console.info("value: " + value, " key: " + key);
+};
+lightWeightSet.forEach(lightWeightSetCb);
+```
+
 ### entries
 
 entries(): IterableIterator<[T, T]>
@@ -660,19 +762,19 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
+  console.info(JSON.stringify(iter.next().value));
   index++;
 }
 ```
 ```ts
 // 不建议在entries中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -690,6 +792,8 @@ for(let i = 0; i < 10; i++) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -737,6 +841,34 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet<string>();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+for (let item of lightWeightSet) {
+  console.info("value:" + item);
+}
+```
 
 ### equal<sup>(deprecated)</sup>
 
@@ -746,9 +878,11 @@ equal(obj: Object): boolean
 
 > **说明：**
 >
-> 此接口从API version 10开始支持，从API version 12开始废弃。无替代接口。
+> 此接口从API version 10开始支持，从API version 12开始废弃，无替代接口。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -779,3 +913,23 @@ lightWeightSet.add("sparrow");
 let obj = ["sparrow", "squirrel"];
 let result = lightWeightSet.equal(obj);
 ```
+
+### LightWeightSetForEachCb\<T\><sup>20+</sup>
+
+type LightWeightSetForEachCb\<T\> = (value: T, key: T, set: LightWeightSet\<T\>) => void
+
+LightWeightSet中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素键值对的值。 |
+| key | T | 是 | 当前遍历到的元素键值对的键（和value相同）。 |
+| set | [LightWeightSet&lt;T&gt;](#lightweightset) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
