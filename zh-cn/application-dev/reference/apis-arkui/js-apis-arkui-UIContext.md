@@ -24,6 +24,27 @@ import {
 
 以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+### isAvailable<sup>20+</sup>
+
+isAvailable(): boolean
+
+判断UIContext对象对应的UI实例是否有效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型            | 说明          |
+| ------------- | ----------- |
+| boolean | 返回UIContext对象对应的UI实例是否有效。true表示有效，false表示无效。 |
+
+**示例：**
+
+```ts
+uiContext.isAvailable();
+```
 ### getFont
 
 getFont(): Font
