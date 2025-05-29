@@ -2274,12 +2274,14 @@ put(key: K,value: V): V
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
 | key    | K    | 是   | 要添加的键。             |
-| value  | V    | 是   | 指示与要添加的键关联的值。 |
+| value  | V    | 是   | 要添加的键所关联的值。 |
 
 **返回值：**
 
@@ -2304,15 +2306,62 @@ console.info('result = ' + result);
 // 输出结果：result = 10
 ```
 
+### put<sup>20+</sup>
+
+put(key: K,value: V): V | undefined
+
+将键值对添加到缓冲区中，返回之前与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                       |
+| ------ | ---- | ---- | -------------------------- |
+| key    | K    | 是   | 要添加的键。             |
+| value  | V    | 是   | 要添加的键所关联的值。 |
+
+**返回值：**
+
+| 类型 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| V \| undefined | 返回键之前关联的值，若键为首次添加则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// 输出结果：result = undefined
+result = pro.put(2, 20);
+console.info('result = ' + result);
+// 输出结果：result = 10
+```
+
 ### values<sup>9+</sup>
 
 values(): V[]
 
-获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表。
+返回一个列表，内部按从最近访问到最近最少访问的顺序提供当前缓冲区中所有键值对中的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -2332,21 +2381,82 @@ console.info('result = ' + result);
 // 输出结果：result = anhu,grfb
 ```
 
-### keys<sup>9+</sup>
+### values<sup>20+</sup>
 
-keys(): K[]
+values(): Array&lt;V&gt;
 
-获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
+返回一个列表，内部按从最近访问到最近最少访问的顺序提供当前缓冲区中所有键值对中的值。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
 
 **返回值：**
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | 按升序返回当前缓冲区中所有键的列表，从最近访问到最近最少访问。 |
+| Array&lt;V&gt; | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
+
+**示例：**
+
+```ts
+let pro = new util.LRUCache<number|string, number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
+let result = pro.values();
+console.info('result = ' + result);
+// 输出结果：result = anhu,grfb
+```
+
+### keys<sup>9+</sup>
+
+keys(): K[]
+
+返回一个列表，内部按从最近访问到最近最少访问的顺序提供当前缓冲区中所有键值对中的键。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
+**返回值：**
+
+| 类型      | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| K&nbsp;[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有键的列表。 |
+
+**示例：**
+
+```ts
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
+let result = pro.keys();
+console.info('result = ' + result);
+// 输出结果：result = 2,3
+```
+
+### keys<sup>20+</sup>
+
+keys(): Array&lt;K&gt;
+
+返回一个列表，内部按从最近访问到最近最少访问的顺序提供当前缓冲区中所有键值对中的键。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型      | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Array&lt;K&gt; | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有键的列表。 |
 
 **示例：**
 
@@ -2495,11 +2605,13 @@ console.info('result = ' + result);
 
 createDefault(key: K): V
 
-如果在缓冲区未匹配到键，则执行后续操作，参数表示未匹配的键，返回与键关联的值，默认返回undefined。
+在缓冲区未匹配到键时将会执行的后续操作。参数表示未匹配的键，返回与键关联的值，默认返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -2528,6 +2640,60 @@ let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
 console.info('result = ' + result);
 // 输出结果：result = undefined
+```
+
+### createDefault<sup>20+</sup>
+
+createDefault(key: K): V | undefined
+
+在缓冲区未匹配到键时将会执行的后续操作。参数表示未匹配的键，返回与键关联的值，默认返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| key    | K    | 是   | 表示未匹配的键。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| V \| undefined   | 返回与键关联的值，默认返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
+    public tC:number ;
+    constructor() {
+        super();
+        this.tC = 0;
+    }
+    override createDefault(key: K): V|undefined {
+        this.tC++;
+        return undefined;
+    }
+}
+
+let that = new ChildLRUCache<string, string>();
+that.get('string');
+let result = that.tC;
+console.info('result = ' + result);
+// 输出结果：result = 1
 ```
 
 ### entries<sup>9+</sup>
@@ -2572,6 +2738,8 @@ for (let value of arrayValue) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型        | 说明                           |
@@ -2587,6 +2755,46 @@ pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
+  console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
+}
+```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator(): IterableIterator\<[K, V]\>
+
+返回一个键值对形式的二维数组。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型        | 说明                           |
+| ----------- | ------------------------------ |
+| IterableIterator<[K, V]> | 返回一个键值对形式的二维数组。 |
+
+**示例：**
+
+```ts
+let pro = new util.LRUCache<object, object>();
+pro.put(2, 10);
+pro.put(3, 15);
+let pair:IterableIterator<[object, object]> = pro.$_iterator();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
+}
+for (let value of pro) {
   console.info(value[0]+ ', '+ value[1]);
   // 输出结果：
   // 2, 10
