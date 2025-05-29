@@ -117,7 +117,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value byteLengthValue = nullptr;
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
-    napi_value bufferData;
+    napi_value bufferData = nullptr;
     void *newData = nullptr;
     napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
     napi_set_named_property(env, result, "buffer", bufferData);
@@ -243,7 +243,7 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // 将ArkTS侧传递的参数转换为size_t类型，作为napi_create_arraybuffer的参数
     napi_get_value_int32(env, argv[0], &value);
     length = size_t(value);
-    void *data;
+    void *data = nullptr;
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {

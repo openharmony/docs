@@ -111,8 +111,8 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
            return;
        }
-       napi_value resolvedCallback;
-       napi_value rejectedCallback;
+       napi_value resolvedCallback = nullptr;
+       napi_value rejectedCallback = nullptr;
        napi_create_function(env, "resolvedCallback", NAPI_AUTO_LENGTH, ResolvedCallback, data,
    					     &resolvedCallback);
        napi_create_function(env, "rejectedCallback", NAPI_AUTO_LENGTH, RejectedCallback, data,
