@@ -54,7 +54,7 @@ Stack的构造函数。
 **示例：**
 
 ```ts
-let stack : Stack<number | string | Object> = new Stack();
+let stack : Stack<number | string | Object> = new Stack<number | string | Object>();
 ```
 
 
@@ -90,12 +90,12 @@ push(item: T): T
 
 **示例：**
 
-```
+```ts
 class C1 {
   name: string = ""
   age: string = ""
 }
-let stack : Stack<number | string | C1> = new Stack();
+let stack : Stack<number | string | C1> = new Stack<number | string | C1>();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let c : C1  = {name : "Dylan", age : "13"};
@@ -111,6 +111,8 @@ pop(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -148,6 +150,8 @@ peek(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -166,6 +170,65 @@ peek(): T
 
 ```ts
 let stack : Stack<number> = new Stack();
+stack.push(2);
+stack.push(4);
+stack.push(5);
+stack.push(2);
+let result = stack.peek();
+```
+
+### pop<sup>20+</sup>
+
+pop(): T \| undefined
+
+删除并返回栈顶元素，栈为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回栈顶元素，栈为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let stack : Stack<number> = new Stack<number>();
+stack.push(2);
+stack.push(4);
+stack.push(5);
+stack.push(2);
+stack.push(4);
+let result = stack.pop();
+```
+
+### peek<sup>20+</sup>
+
+peek(): T \| undefined
+
+获取并返回栈顶元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回栈顶元素。 |
+
+**示例：**
+
+```ts
+let stack : Stack<number> = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -206,7 +269,7 @@ locate(element: T): number
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack : Stack<number> = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -224,6 +287,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -262,6 +327,41 @@ stack.forEach((value : number, index ?: number) :void => {
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: StackForEachCb\<T\>): void
+
+通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [StackForEachCb\<T\>](#stackforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { StackForEachCb } from '@ohos.util.Stack';
+
+let stack : Stack<number> = new Stack<number>();
+stack.push(2);
+stack.push(4);
+stack.push(5);
+stack.push(4);
+let stackCb: StackForEachCb<number> = (value: number, index: number, stack: Stack<number>) :void => {
+  console.info("value:" + value, "index:" + index);
+};
+
+stack.forEach(stackCb);
+```
+
 ### isEmpty
 
 isEmpty(): boolean
@@ -289,7 +389,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack : Stack<number> = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
@@ -306,6 +406,8 @@ let result = stack.isEmpty();
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -344,3 +446,58 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let stack : Stack<number> = new Stack<number>();
+stack.push(2);
+stack.push(4);
+stack.push(5);
+stack.push(4);
+
+let iter = stack.$_iterator();
+let temp = iter.next().value;
+while(temp != undefined) {
+  console.info("value:" + temp);
+  temp = iter.next().value;
+}
+```
+
+### StackForEachCb\<T\><sup>20+</sup>
+
+type StackForEachCb\<T\> = (value: T, index: number, stack: Stack\<T\>) => void
+
+Stack中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| stack | [Stack&lt;T&gt;](#stack) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |

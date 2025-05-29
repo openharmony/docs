@@ -55,7 +55,7 @@ Deque的构造函数。
 **示例：**
 
 ```ts
-let deque: Deque<string | number | boolean | Object> = new Deque();
+let deque: Deque<string | number | boolean | Object> = new Deque<string | number | boolean | Object>();
 ```
 
 ### insertFront
@@ -89,7 +89,8 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+let deque: Deque<string | number | boolean | Array<number> | C1> =
+  new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
@@ -131,7 +132,8 @@ class C1 {
   age: string = ""
 }
 
-let deque: Deque<string | number | boolean | Array<number> | C1> = new Deque();
+let deque: Deque<string | number | boolean | Array<number> | C1> =
+  new Deque<string | number | boolean | Array<number> | C1>();
 deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
@@ -174,7 +176,7 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let deque: Deque<string> = new Deque();
+let deque: Deque<string> = new Deque<string>();
 deque.insertFront("squirrel");
 let result = deque.has("squirrel");
 ```
@@ -188,6 +190,8 @@ popFirst(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -225,6 +229,8 @@ popLast(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -251,6 +257,66 @@ deque.insertFront(4);
 let result = deque.popLast();
 ```
 
+### popFirst<sup>20+</sup>
+
+popFirst(): T \| undefined
+
+删除并返回双端队列的首元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回被删除的首元素，容器为空则返回undefined。 |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertFront(2);
+deque.insertFront(4);
+deque.insertEnd(5);
+deque.insertFront(2);
+deque.insertFront(4);
+let result = deque.popFirst();
+```
+
+### popLast<sup>20+</sup>
+
+popLast(): T \| undefined
+
+删除并返回双端队列的尾元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回被删除的尾元素，容器为空则返回undefined。 |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertFront(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertFront(2);
+deque.insertFront(4);
+let result = deque.popLast();
+```
+
 ### forEach
 
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
@@ -261,6 +327,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -299,6 +367,41 @@ deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> 
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: DequeForEachCb\<T\>): void
+
+通过回调函数来遍历Deque实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [DequeForEachCb\<T\>](#dequeforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { DequeForEachCb } from '@ohos.util.Deque'
+
+let deque: Deque<number> = new Deque<number>();
+deque.insertFront(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertEnd(4);
+let dequeCb: DequeForEachCb<number> = (value: number, index: number, deque: Deque<number>):void => {
+  console.info("value:" + value, "index:" + index);
+};
+
+deque.forEach(dequeCb);
+```
+
 ### getFirst
 
 getFirst(): T
@@ -308,6 +411,8 @@ getFirst(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -344,6 +449,8 @@ getLast(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -369,6 +476,149 @@ deque.insertFront(4);
 let result = deque.getLast();
 ```
 
+### getFirst<sup>20+</sup>
+
+getFirst(): T \| undefined
+
+获取Deque实例中的头元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回T类型的头元素。 |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertEnd(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertFront(4);
+let result = deque.getFirst();
+```
+
+### getLast<sup>20+</sup>
+
+getLast(): T \| undefined
+
+获取Deque实例中的尾元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回T类型的尾元素。 |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertEnd(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertFront(4);
+let result = deque.getLast();
+```
+
+### \$_get(index: number)<sup>20+</sup>
+
+\$_get(index: number): T
+
+取指定索引值对应位置的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 容器中对应索引值为index的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertEnd(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertFront(4);
+let result1: number = deque[2];
+let result2: number = deque.$_get(2);
+```
+
+### \$_set(index: number, val: T)<sup>20+</sup>
+
+\$_set(index: number, val: T): void
+
+将指定位置的元素替换为指定元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+| val | T | 是 | 用来替换的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertEnd(2);
+deque.insertEnd(4);
+deque.insertFront(5);
+deque.insertFront(4);
+deque[0] = 9;
+deque.$_set(3, 7);
+let result1 = deque.getFirst();
+let result2 = deque.getLast();
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
@@ -378,6 +628,8 @@ let result = deque.getLast();
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -415,3 +667,65 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象,并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let deque: Deque<number> = new Deque<number>();
+deque.insertFront(2);
+deque.insertFront(4);
+deque.insertFront(5);
+deque.insertFront(4);
+
+// 使用方法一：
+for (let item of deque) {
+  console.info("value:" + item);
+}
+
+// 使用方法二：
+let iter = deque.$_iterator();
+let temp:IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.info("value:" + temp.value);
+  temp = iter.next();
+}
+```
+
+### DequeForEachCb\<T\><sup>20+</sup>
+
+type DequeForEachCb\<T\> = (value: T, index: number, deque: Deque\<T\>) => void
+
+Deque中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| deque | [Deque&lt;T&gt;](#deque) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
