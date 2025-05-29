@@ -512,7 +512,7 @@ NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合�
 处理逻辑顺序如下列伪代码所示：
 
 	主进程：
-	1. OH_Ability_CreateNativeChildProcess(libName, onProcessStartedCallback)
+	1. OH_Ability_CreateNativeChildProcessWithConfigs(libName, configs, onProcessStartedCallback)
 	
 	子进程 ：
 	2. dlopen(libName)
@@ -531,7 +531,7 @@ NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合�
 
 > 当前支持2in1设备。
 
-**起始版本**：15
+**起始版本**：20
 
 **参数**：
 
@@ -561,7 +561,7 @@ NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合�
 >
 > 当前支持2in1设备。
 
-**起始版本**：15
+**起始版本**：20
 
 **参数**：
 
