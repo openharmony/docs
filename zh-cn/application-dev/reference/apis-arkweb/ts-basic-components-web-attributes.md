@@ -259,7 +259,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容。
+设定当安全源尝试从非安全源加载资源时的行为，默认值为 MixedMode.None，即不允许安全源从非安全源加载内容。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
