@@ -88,7 +88,7 @@ Subscribes to application shortcut key change events based on the specified opti
 
 **Error codes**:
 
-For details about the error codes, see [Global Shortcut Key Error Codes]( errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Global Shortcut Key Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code | Error Message            |
 | ---- | --------------------- |
