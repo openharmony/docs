@@ -30,17 +30,17 @@ target_link_libraries(entry PUBLIC libpixelmap.so libpixelmap_ndk.z.so)
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
-开发者通过引入[avimage_generator.h](../../reference/apis-media-kit/avimage__generator_8h.md)、[avimage_generator_base.h](../../reference/apis-media-kit/avimage__generator__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用获取视频帧相关API。
-详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/_a_v_image_generator.md)。
+开发者通过引入[avimage_generator.h](../../reference/apis-media-kit/capi-avimage-generator-h.md)、[avimage_generator_base.h](../../reference/apis-media-kit/capi-avimage-generator-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用获取视频帧相关API。
+详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/capi-avimagegenerator.md)。
 
-1. 使用[OH_AVImageGenerator_Create()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_create)创建实例。
+1. 使用[OH_AVImageGenerator_Create()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_create)创建实例。
 
-2. 设置视频资源的文件描述符：调用[OH_AVImageGenerator_SetFDSource()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_setfdsource)。
+2. 设置视频资源的文件描述符：调用[OH_AVImageGenerator_SetFDSource()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_setfdsource)。
 
-3. 获取指定时间的视频帧：调用[OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_fetchframebytime)，可以获取到一个OH_PixelmapNative对象，该对象可用于图片显示。
+3. 获取指定时间的视频帧：调用[OH_AVImageGenerator_FetchFrameByTime()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_fetchframebytime)，可以获取到一个OH_PixelmapNative对象，该对象可用于图片显示。
    > - 使用完成需要调用OH_PixelmapNative_Release释放OH_PixelmapNative对象资源，详细使用方法请参阅[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)。
 
-4. 释放资源：调用[OH_AVImageGenerator_Release()](../../reference/apis-media-kit/_a_v_image_generator.md#oh_avimagegenerator_release)销毁实例，释放资源。
+4. 释放资源：调用[OH_AVImageGenerator_Release()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_release)销毁实例，释放资源。
 
 ## 完整示例
 
