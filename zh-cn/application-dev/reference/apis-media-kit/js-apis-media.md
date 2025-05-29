@@ -8022,7 +8022,7 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 **参数：**
 
-| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| 名称  | 类型                                 | 必填 | 说明                                                  |
 | ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
 | streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
