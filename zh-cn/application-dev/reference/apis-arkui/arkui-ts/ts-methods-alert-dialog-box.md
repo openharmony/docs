@@ -68,7 +68,7 @@ type LevelOrder = LevelOrder
 
 | 名称       | 类型     | 必填     | 说明         |
 | ---------- | ---------------- | ---------- | ------------------------------- |
-| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18对象说明) | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
+| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18对象说明) | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键。多重弹窗情况下，可自动获焦并连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
 
 confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
@@ -514,7 +514,7 @@ struct AlertDialogExample {
 
 ### 示例4（设置弹窗的样式）
 
-该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等。
+示例定义了AlertDialog的样式，包括宽度、高度、背景色、阴影等。
 
 ```ts
 // xxx.ets
