@@ -485,7 +485,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
 | configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
-| processName | 设置的进程名称字符串， 必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64。最终的进程名是{bundleName}:{processName}|
+| processName | 设置的进程名称字符串， 必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64，最终的进程名是{bundleName}:{processName}。|
 
 **返回**：  
 NCP_NO_ERROR - 执行成功。    
