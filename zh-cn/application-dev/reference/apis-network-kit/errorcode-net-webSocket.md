@@ -4,6 +4,26 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
+## 200 连接失败
+
+**错误信息**
+
+Websocket connect failed.
+
+**错误描述**
+
+Websocket连接失败。
+
+**可能原因**
+
+1. 服务器拒绝客户端连接、协议出现问题导致握手失败或证书验证失败。
+
+2. 客户端或服务端断开连接时无状态码。
+
+**处理步骤**
+
+检查协议是否有效、证书校验是否通过，重新连接。
+
 ## 2302001 Websocket URL错误
 
 **错误信息**
@@ -45,6 +65,42 @@ Websocket 连接已经存在。
 **可能原因**
 
 Websocket 连接已经建立。
+
+## 2302004 WebsocketServer 无法在指定的NIC（网络接口）上进行网络监听
+
+**错误信息**
+
+Can't listen to the given NIC.
+
+**错误描述**
+
+WebsocketServer无法在指定的NIC上进行网络监听。
+
+**可能原因**
+
+WebsocketServer服务器配置文件中的ip地址无效。
+
+**处理步骤**
+
+检查网络连接是否正常，检查ip地址有效性。
+
+## 2302005 WebsocketServer 无法在指定的端口上进行网络监听
+
+**错误信息**
+
+Can't listen to the given Port.
+
+**错误描述**
+
+WebsocketServer无法在指定的端口上进行网络监听。
+
+**可能原因**
+
+WebsocketServer服务器配置文件中的端口号无效。
+
+**处理步骤**
+
+检查端口号的有效性。
 
 ## 2302998 不允许访问域名
 
