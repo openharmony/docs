@@ -781,7 +781,8 @@ export default class EntryAbility extends UIAbility {
     let config: window.Configuration = {
       name: "test",
       windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
+      ctx: this.context,
+      defaultDensityEnabled: true
     };
     try {
       window.createWindow(config).then((value:window.Window) => {
