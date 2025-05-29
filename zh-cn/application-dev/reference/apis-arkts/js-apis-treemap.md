@@ -48,6 +48,8 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -67,7 +69,7 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 
 ```ts
 //默认构造
-let treeMap : TreeMap<number, number> = new TreeMap();
+let treeMap : TreeMap<number, number> = new TreeMap<number, number>();
 ```
 
 ```ts
@@ -79,7 +81,7 @@ treeMap.set("cc","2");
 treeMap.set("bb","4");
 let numbers = Array.from(treeMap.keys())
 for (let item of numbers) {
-  console.log("treeMap:" + item);
+  console.info("treeMap:" + item);
 }
 ```
 
@@ -97,7 +99,71 @@ for (let item of numbers) {
  }
  ts1.set(entry1, "0");
  ts1.set(entry2, "1");
- console.log("treeMap: ", ts1.length);
+ console.info("treeMap: ", ts1.length);
+
+```
+
+### constructor<sup>20+</sup>
+
+constructor(comparator?: TreeMapComparator\<K\>)
+
+TreeMap的构造函数，支持通过比较函数对元素进行升序或降序排序。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| comparator | [TreeMapComparator\<K\>](#treemapcomparatork20) | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
+
+**示例：**
+
+```ts
+//默认构造
+let treeMap : TreeMap<number, number> = new TreeMap<number, number>();
+```
+
+```ts
+import { TreeMapComparator } from '@ohos.util.TreeMap'
+
+//使用comparator firstValue < secondValue，表示期望结果为升序排序。反之firstValue > secondValue，表示为降序排序。
+let treeMapCb: TreeMapComparator<string> = (firstValue: string, secondValue: string): number => {
+  return firstValue.compareTo(secondValue);
+};
+let treeMap: TreeMap<string, string> = new TreeMap<string, string>(treeMapCb);
+treeMap.set("aa", "3");
+treeMap.set("dd", "1");
+treeMap.set("cc", "2");
+treeMap.set("bb", "4");
+let numbers = Array.from(treeMap.keys());
+for (let item of numbers) {
+  console.info("treeMap: " + item);
+}
+```
+
+```ts
+//当插入自定义类型时，则必须要提供比较函数。
+ class TestEntry{
+   id: number = 0;
+ }
+ let treeMapCb: TreeMapComparator<TestEntry> = (firstValue: TestEntry, secondValue: TestEntry): number => {
+  return firstValue.id - secondValue.id;
+};
+ let ts1: TreeMap<TestEntry, string> = new TreeMap<TestEntry, string>(treeMapCb);
+ let entry1: TestEntry = {
+   id: 0
+ };
+ let entry2: TestEntry = {
+   id: 1
+ }
+ ts1.set(entry1, "0");
+ ts1.set(entry2, "1");
+ console.info("treeMap: ", ts1.length);
 
 ```
 
@@ -129,7 +195,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let treeMap : TreeMap<number, number> = new TreeMap();
+let treeMap : TreeMap<number, number> = new TreeMap<number, number>();
 let result = treeMap.isEmpty();
 ```
 
@@ -167,7 +233,7 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 let result = treeMap.hasKey("squirrel");
 ```
@@ -206,7 +272,7 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 let result = treeMap.hasValue(123);
 ```
@@ -221,6 +287,8 @@ get(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -245,12 +313,44 @@ get(key: K): V
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.get("sparrow");
 ```
 
+### get<sup>20+</sup>
+
+get(key: K): V \| undefined
+
+获取指定键key所对应的value值，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 待查找的键。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回键key映射的value值，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.get("sparrow");
+```
 
 ### getFirstKey
 
@@ -261,6 +361,8 @@ getFirstKey(): K
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -279,12 +381,38 @@ getFirstKey(): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
 ```
 
+### getFirstKey<sup>20+</sup>
+
+getFirstKey(): K \| undefined
+
+获取容器中排序第一的键，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K \| undefined | 返回排序第一的键，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.getFirstKey();
+```
 
 ### getLastKey
 
@@ -295,6 +423,8 @@ getLastKey(): K
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -313,12 +443,38 @@ getLastKey(): K
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
 ```
 
+### getLastKey<sup>20+</sup>
+
+getLastKey(): K \| undefined
+
+获取容器中排序最后的键，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K \| undefined | 返回排序最后的键，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.getLastKey();
+```
 
 ### setAll
 
@@ -348,14 +504,14 @@ setAll(map: TreeMap<K, V>): void
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let map : TreeMap<string, number> = new TreeMap();
+let map : TreeMap<string, number> = new TreeMap<string, number>();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
+  console.info("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
 })
 ```
 
@@ -395,7 +551,7 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 ```
 
@@ -409,6 +565,8 @@ remove(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -433,7 +591,40 @@ remove(key: K): V
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.remove("sparrow");
+```
+
+### remove<sup>20+</sup>
+
+remove(key: K): V | undefined
+
+删除指定key对应的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定key。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回删除元素的值，如果没有则返回undefined |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let result = treeMap.remove("sparrow");
@@ -449,6 +640,8 @@ getLowerKey(key: K): K
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -480,6 +673,39 @@ treeMap.set("gander", 356);
 let result = treeMap.getLowerKey("sparrow");
 ```
 
+### getLowerKey<sup>20+</sup>
+
+getLowerKey(key: K): K \| undefined
+
+获取容器中比传入key排序靠前一位的键，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 对比的key值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K \| undefined | 返回排序中key前一位的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getLowerKey("sparrow");
+```
 
 ### getHigherKey
 
@@ -490,6 +716,8 @@ getHigherKey(key: K): K
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -515,6 +743,40 @@ getHigherKey(key: K): K
 
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getHigherKey("sparrow");
+```
+
+### getHigherKey<sup>20+</sup>
+
+getHigherKey(key: K): K \| undefined
+
+获取容器中比传入key排序靠后一位的键，为空时返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 对比的key值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K \| undefined | 返回排序中key后一位的数据，为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.set("gander", 356);
@@ -555,7 +817,7 @@ replace(key: K, newValue: V): boolean
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("sparrow", 123);
 let result = treeMap.replace("sparrow", 357);
 ```
@@ -582,7 +844,7 @@ clear(): void
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 treeMap.clear();
@@ -616,13 +878,13 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let it = treeMap.keys();
 let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeMap " + t.value);
+  console.info("TreeMap " + t.value);
   t = it.next()
 }
 ```
@@ -655,13 +917,13 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 let it = treeMap.values();
 let t: IteratorResult<number> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.info("TreeMap" + t.value);
   t = it.next()
 }
 ```
@@ -669,13 +931,15 @@ while(!t.done) {
 
 ### forEach
 
-forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: TreeMap\<K, V\>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -721,6 +985,38 @@ treeMap.forEach((value ?: number, key ?: string) : void => {
  }
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: TreeMapForEachCb\<K, V\>): void
+
+通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [TreeMapForEachCb\<K, V\>](#treemapforeachcbk-v20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { TreeMapForEachCb } from '@ohos.util.TreeMap'
+
+let treeMap: TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("sparrow", 123);
+treeMap.set("gull", 357);
+let treeMapCb: TreeMapForEachCb<string, number> = (value: number, key: string, map: TreeMap<string, number>): void => {
+  console.log("value: " + value, " key: " + key);
+};
+treeMap.forEach(treeMapCb);
+```
+
 ### entries
 
 entries(): IterableIterator<[K, V]>
@@ -747,6 +1043,8 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
+以下示例代码适用于ArkTS1.1。
+
 ```ts
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
@@ -769,6 +1067,30 @@ while(!t.done) {
  }
 ```
 
+以下示例代码适用于ArkTS1.2。
+
+```ts
+let treeMap : TreeMap<string, Number> = new TreeMap<string, Number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let it = treeMap.entries();
+let t: IteratorResult<[string, Number]> = it.next();
+while(!t.done) {
+  console.info("TreeMap" + t.value);
+  t = it.next()
+}
+```
+```ts
+ // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+ let treeMap : TreeMap<string, Number> = new TreeMap<string, Number>();
+ for(let i = 0; i < 10; i++) {
+   treeMap.set("sparrow" + i, 123);
+ }
+ for(let i = 0;i < 10; i++) {
+   treeMap.remove("sparrow" + i);
+ }
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
@@ -779,7 +1101,10 @@ while(!t.done) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
@@ -795,7 +1120,7 @@ while(!t.done) {
 **示例：**
 
 ```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 
@@ -818,7 +1143,7 @@ while(!t.done) {
 ```
 ```ts
  // 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
- let treeMap : TreeMap<string, number> = new TreeMap();
+ let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
  for(let i = 0; i < 10; i++) {
    treeMap.set("sparrow" + i, 123);
  }
@@ -826,3 +1151,82 @@ while(!t.done) {
    treeMap.remove("sparrow" + i);
  }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let treeMap : TreeMap<string, number> = new TreeMap<string, number>();
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+
+// 使用方法一：
+for (let item of treeMap) {
+  console.info("key:" + item[0]);
+  console.info("value:" + item[1]);
+}
+
+// 使用方法二：
+ let iter = treeMap.$_iterator();
+ let temp: IteratorResult<[string, number]> = iter.next();
+ while(!temp.done) {
+   console.info("key:" + temp.value![0]);
+   console.info("value:" + temp.value![1]);
+   temp = iter.next();
+ }
+```
+
+### TreeMapForEachCb\<K, V\><sup>20+</sup>
+
+type TreeMapForEachCb\<K, V\> = (value: V, key: K, map: TreeMap\<K, V\>) => void
+
+TreeMap中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 当前遍历到的元素键值对的值。 |
+| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| map | [TreeMap<K, V>](#treemap) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
+### TreeMapComparator\<K\><sup>20+</sup>
+
+type TreeMapComparator\<K\> = (firstValue: K, secondValue: K) => number
+
+TreeMap中[constructor](#constructor20)方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| firstValue | K | 是 | 比较关系中的第一个元素。 |
+| secondValue | K | 是 | 比较关系中的第二个元素。 |
