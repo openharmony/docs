@@ -181,7 +181,7 @@
 | 名称                                     | 类型     | 必填 | 说明 |
 |----------------------------------------|--------|----|----------------------------|
 | abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
-| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。通过 \| 的形式拼接。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
+| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
 
 <!--RP1-->
    ```json
