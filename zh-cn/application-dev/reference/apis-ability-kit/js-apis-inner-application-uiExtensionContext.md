@@ -14,7 +14,9 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 import { common } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContext.startAbility
+## UIExtensionContext
+
+### startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -103,7 +105,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbility
+### startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -194,7 +196,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbility
+### startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -291,14 +293,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。使用callback异步回调。Ability被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。UIAbility被启动后，有如下情况:
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死UIAbility会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -382,14 +384,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
-启动一个Ability。使用callback异步回调。Ability被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
+启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。UIAbility被启动后，有如下情况:
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死UIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -476,14 +478,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
-启动一个Ability。使用Promise异步回调。Ability被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。UIAbility被启动后，有如下情况:
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死UIAbility会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -578,7 +580,7 @@ export default class EntryAbility extends UIExtensionAbility {
 ```
 
 
-## UIExtensionContext.connectServiceExtensionAbility
+### connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -601,7 +603,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回Ability连接的结果code。 |
+| number | 返回连接id，客户端可以通过[disconnectServiceExtensionAbility](#disconnectserviceextensionability)传入该连接id来断开连接。 |
 
 **错误码：**
 
@@ -663,7 +665,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectServiceExtensionAbility
+### disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
@@ -675,7 +677,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的ServiceExtensionAbility的数字代码，即connectServiceExtensionAbility返回的connectionId。 |
+| connection | number | 是 | 连接的ServiceExtensionAbility的标识Id，即[connectServiceExtensionAbility](#connectserviceextensionability)返回的connectionId。 |
 
 **返回值：**
 
@@ -726,7 +728,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectServiceExtensionAbility
+### disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
@@ -786,7 +788,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelf<sup>12+</sup>
+### terminateSelf<sup>12+</sup>
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
@@ -836,7 +838,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelf<sup>12+</sup>
+### terminateSelf<sup>12+</sup>
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -878,7 +880,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+### terminateSelfWithResult<sup>12+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
@@ -940,7 +942,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+### terminateSelfWithResult<sup>12+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
@@ -1005,7 +1007,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.reportDrawnCompleted<sup>12+<sup>
+### reportDrawnCompleted<sup>12+<sup>
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
@@ -1064,15 +1066,15 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.openAtomicService<sup>12+<sup>
+### openAtomicService<sup>12+<sup>
 
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
-跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
+打开一个独立窗口的原子化服务，并返回结果。使用Promise异步回调。
 分为以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死EmbeddableUIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死原子化服务会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个原子化服务，当这个原子化服务调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -1144,7 +1146,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.openLink<sup>12+<sup>
+### openLink<sup>12+<sup>
 
 openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
@@ -1155,7 +1157,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 - "entities"列表中包含"entity.system.browsable"。
 - "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
 
-如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#uiextensioncontextstartabilityforresult)接口。
+如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#startabilityforresult)接口。
 传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
 
 > **说明：**
@@ -1269,7 +1271,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+### startUIServiceExtensionAbility<sup>14+<sup>
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
@@ -1310,7 +1312,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 | 16000008 | The crowdtesting application expires.                                                                       |
 | 16000011 | The context does not exist.                                                                                 |
 | 16000012 | The application is controlled.                                                                              |
-| 16000013 | The EDM prohibits the application from launching.                                                           |
+| 16000013 | The application is controlled by EDM.                                                                       |
 | 16000019 | No matching ability is found.                                                                               |
 | 16000050 | Internal error.                                                                                             |
 | 16200001 | The caller has been released.                                                                               |
@@ -1353,7 +1355,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContext.connectUIServiceExtensionAbility<sup>14+<sup>
+### connectUIServiceExtensionAbility<sup>14+<sup>
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
@@ -1394,7 +1396,7 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 | 16000005 | The specified process does not have the permission.                    |
 | 16000008 | The crowdtesting application expires.                                  |
 | 16000011 | The context does not exist.                                            |
-| 16000013 | The EDM prohibits the application from launching.                      |
+| 16000013 | The application is controlled by EDM.                                  |
 | 16000050 | Internal error.                                                        |
 | 16000055 | Installation-free timed out.                                           |
 
@@ -1443,7 +1445,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>14+<sup>
+### disconnectUIServiceExtensionAbility<sup>14+<sup>
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
@@ -1455,7 +1457,7 @@ disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
 | 参数名               | 类型                             | 必填 | 说明                 |
 | -------------------- | -------------------------------- | ---- | -------------------- |
-| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是  | [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13)返回的Proxy。 |
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是  | [connectUIServiceExtensionAbility](#connectuiserviceextensionability14)返回的Proxy。 |
 
 **返回值：**
 
@@ -1503,7 +1505,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setColorMode<sup>18+</sup>
+### setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
@@ -1523,11 +1525,10 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
 **示例**：
