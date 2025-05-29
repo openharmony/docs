@@ -47,7 +47,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -282,7 +282,7 @@ Redirection to a third-party application is not allowed in API version 11 or lat
 
 **处理步骤**
 
-使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)跳转其他应用。
 
 ## 16000019 隐式启动未查找到匹配应用
 

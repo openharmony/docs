@@ -30,15 +30,15 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 ## LaunchReason
 
-Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
+Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)接口启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | CONTINUATION           | 3    | 跨端迁移启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | SHARE<sup>10+</sup>           | 5    | 通过原子化服务分享启动Ability。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -62,7 +62,7 @@ class MyAbility extends UIAbility {
 
 ## LastExitReason
 
-Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
+Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate()](js-apis-app-ability-uiAbility.md#oncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -142,7 +142,7 @@ class MyAbility extends UIAbility {
 
 ## OnContinueResult 
 
-Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)方法进完成相应的返回。
+Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue()](js-apis-app-ability-uiAbility.md#oncontinue)方法进完成相应的返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -151,8 +151,8 @@ Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(want
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | AGREE           | 0    | 表示同意。 |
-| REJECT           | 1    | 表示拒绝：如应用在[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
-| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
+| REJECT           | 1    | 表示拒绝：如应用在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中异常会导致迁移以后数据恢复时显示异常，则可以建议REJECT。 |
+| MISMATCH  | 2    | 表示版本不匹配：迁移发起端应用可以在[onContinue](js-apis-app-ability-uiAbility.md#oncontinue)中获取到迁移目标端应用的版本号，进行协商后，如果版本不匹配导致无法迁移，可以返回该错误。|
 
 **示例：**
 
@@ -168,7 +168,7 @@ class MyAbility extends UIAbility {
 
 ## MemoryLevel
 
-内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
+内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel()](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -203,7 +203,7 @@ class MyAbility extends UIAbility {
 
 ## WindowMode<sup>12+</sup>
 
-启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。
+启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)使用，指定启动Ability的窗口模式。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -241,7 +241,7 @@ class MyAbility extends UIAbility {
 
 ## OnSaveResult
 
-保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
+保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法完成相应的返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -270,7 +270,7 @@ class MyAbility extends UIAbility {
 
 ## StateType
 
-保存应用数据场景原因，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法根据reason的不同类型执行相应操作。
+保存应用数据场景原因，该类型为枚举，可配合UIAbility的[onSaveState()](js-apis-app-ability-uiAbility.md#onsavestate)方法根据reason的不同类型执行相应操作。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -298,7 +298,7 @@ class MyAbility extends UIAbility {
 
 ## ContinueState<sup>10+</sup>
 
-流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
+流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#setmissioncontinuestate10)方法进行设置。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -326,7 +326,7 @@ class MyAbility extends UIAbility {
 
 ## CollaborateResult<sup>18+</sup>
 
-协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate18)方法进行设置。
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate()](js-apis-app-ability-uiAbility.md#oncollaborate18)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

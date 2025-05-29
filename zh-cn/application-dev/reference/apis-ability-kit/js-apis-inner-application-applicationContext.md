@@ -589,7 +589,7 @@ killAllProcesses(): Promise\<void\>
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#terminateself-1)接口。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -631,7 +631,7 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#terminateself-1)接口。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -681,7 +681,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#terminateself-1)接口。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -977,7 +977,7 @@ setFont(font: string): void
 
 > **说明：**
 >
-> 当页面窗口创建完成后，才能调用该接口，即需要在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期之后调用。
+> 当页面窗口创建完成后，才能调用该接口，即需要在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期之后调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
