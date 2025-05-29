@@ -1,16 +1,15 @@
 # 前端页面调用应用侧函数
 
-
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的方法，实现在前端页面中调用应用侧方法。
 
+## 如何建立应用侧与H5侧的交互通道
 
-注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
-
+注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview-WebviewController.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
 在下面的示例中，将test()方法注册在前端页面中， 该函数可以在前端页面触发运行。
 
 
-- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口使用示例如下。
+- [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy)接口使用示例如下。
 
   ```ts
   // xxx.ets
@@ -63,9 +62,7 @@
     }
   }
   ```
-
-
-- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
@@ -134,7 +131,7 @@
 
   > **说明：**
   >
-  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)方法生效。
+  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#refresh)方法生效。
 
 - 可选参数permission是一个json字符串，示例如下：
   ```json
@@ -214,6 +211,7 @@
   </html>
   ```
 ## 复杂类型使用方法
+
 ### 应用侧和前端页面之间传递Array
 
  Array可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
@@ -288,6 +286,7 @@
   </body>
   </html>
   ```
+
 ### 非Function等复杂类型使用
 
   非Function等复杂类型作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
@@ -443,7 +442,6 @@
   </body>
   </html>
   ```
-
 ### 应用侧调用前端页面Object里的Function
 
   前端页面Object里的Function可以作为注册对象方法的参数或返回值，在应用侧和前端页面之间传递。
