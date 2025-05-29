@@ -265,11 +265,11 @@ IP配置信息。
 
 
 
-## wifiManager.turnOnWifi
+## wifiManager.turnOnWifi<sup>20+</sup>
 
-turnOnWifi(admin: Want, isForce: boolean): **void**
+turnOnWifi(admin: Want, isForce: boolean): void
 
-强制打开Wi-Fi功能。
+强制打开Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -313,11 +313,11 @@ try {
 }
 ```
 
-## wifiManager.turnOffWifi
+## wifiManager.turnOffWifi<sup>20+</sup>
 
-turnOffWifi(admin: Want): **void**
+turnOffWifi(admin: Want): void
 
-关闭Wi-Fi功能。
+关闭Wi-Fi。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
