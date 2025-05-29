@@ -21,23 +21,23 @@ import { uri } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | 是 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| userInfo | string | 是 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| port | string | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| path | string | 是 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| query | string | 是 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| fragment | string | 是 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| authority | string | 是 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| scheme | string \| null | 否 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| userInfo | string \| null | 否 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string \| null | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| port | string \| null | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| path | string \| null | 否 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| query | string \| null | 否 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fragment | string \| null | 否 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| authority | string \| null | 否 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ssp | string | 否 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| encodedUserInfo<sup>12+</sup>  | string \| null | 否   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedPath<sup>12+</sup>      | string \| null | 否   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| encodedQuery<sup>12+</sup>     | string \| null | 否   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedFragment<sup>12+</sup>  | string \| null | 否   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedAuthority<sup>12+</sup> | string \| null | 否   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedSSP<sup>12+</sup>       | string | 否   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 
 ### 命名规则
 
@@ -119,15 +119,15 @@ console.info(uriObj6.encodedAuthority) // username:my+name@host:8080
 console.info(uriObj6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 
 let uriObj7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
-console.log(uriObj7.scheme) // www.abc.com
-console.log(uriObj7.host) // null
-console.log(uriObj7.port) // -1
-console.log(uriObj7.path) // null
-console.log(uriObj7.query) // null
-console.log(uriObj7.authority) // null
-console.log(uriObj7.fragment) // qwer=da
-console.log(uriObj7.ssp) // 8080/directory/file?ab=pppppp
-console.log("result:", uriObj7.checkIsAbsolute()) // result: true
+console.info(uriObj7.scheme) // www.abc.com
+console.info(uriObj7.host) // null
+console.info(uriObj7.port) // -1
+console.info(uriObj7.path) // null
+console.info(uriObj7.query) // null
+console.info(uriObj7.authority) // null
+console.info(uriObj7.fragment) // qwer=da
+console.info(uriObj7.ssp) // 8080/directory/file?ab=pppppp
+console.info("result:", uriObj7.checkIsAbsolute()) // result: true
 ```
 
 ### constructor
@@ -289,10 +289,10 @@ console.info(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
 let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
-console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+console.info(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
 // 如果路径规范化后以 ..（双点）段开头，这表明之前没有足够的非 .. 段可以移除，因此路径将以 .. 段开始。
 let uri2 = uri1.normalize();
-console.log(uri2.path); // /../../patch/path2/path3
+console.info(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
@@ -382,6 +382,8 @@ getQueryValue(key:string): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                    |
@@ -393,6 +395,50 @@ getQueryValue(key:string): string
 | 类型   | 说明                          |
 | ------ | ----------------------------- |
 | string | 返回第一个此URI查询参数的值，若未找到对应值则返回null对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
+console.info(uriInstance.getQueryValue("param1")); // value1
+let uriInstance1 = new uri.URI('https://www.zyy.ss?sa%3D=po%7E');
+console.info(uriInstance1.getQueryValue('sa=')) // po~
+console.info(uriInstance1.getQueryValue('abc')) // null
+```
+
+### getQueryValue<sup>20+</sup>
+
+getQueryValue(key:string): string | null
+
+根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| key    | string | 是   | 此URI查询参数的名称。 |
+
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | ----------------------------- |
+| string \| null | 返回第一个此URI查询参数的值，若未找到对应值则返回null对象。 |
 
 **错误码：**
 
@@ -537,6 +583,8 @@ getQueryNames(): string[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型        | 说明                                |
@@ -551,6 +599,33 @@ const paramNames = uriInstance.getQueryNames();
 console.info(Array.from(paramNames).toString()); // param1,param2
 ```
 
+### getQueryNames<sup>20+</sup>
+
+getQueryNames(): Array&lt;string&gt;
+
+获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型        | 说明                                |
+| ----------- | ----------------------------------- |
+| Array&lt;string&gt; | 返回此URI查询部分中所有不重复键。 |
+
+**示例：**
+
+```ts
+let route = new uri.URI('https://www.test.com?param1=value1&param2=value2');
+let paramNames = route.getQueryNames();
+console.info(paramNames.length); // 2
+console.info(paramNames.values().next().value) // param1
+```
+
 ### getQueryValues<sup>12+</sup>
 
 getQueryValues(key:string): string[]
@@ -563,6 +638,8 @@ getQueryValues(key:string): string[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                    |
@@ -573,7 +650,7 @@ getQueryValues(key:string): string[]
 
 | 类型     | 说明                                |
 | -------- | ----------------------------------- |
-| string[] | 返回此URI中查询参数内所有指定键对应值的集合，若没有找到则返回一个空字符串数组[]。 |
+| string[] | 返回此URI中查询参数内所有指定键对应值的集合，若没有找到则返回一个空字符串数组。 |
 
 **错误码：**
 
@@ -589,6 +666,41 @@ getQueryValues(key:string): string[]
 const uriInstance = new uri.URI("https://www.test.com/search?query=name&query=my");
 console.info(uriInstance.getQueryValues("query").toString()); // name,my
 console.info(JSON.stringify(uriInstance.getQueryValues("abc"))); // []
+```
+
+### getQueryValues<sup>20+</sup>
+
+getQueryValues(key:string): Array&lt;string&gt;
+
+获取此URI中查询参数的所有指定键对应值的集合。若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+
+查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| key    | string | 是   | 指定键的名称。 |
+
+**返回值：**
+
+| 类型     | 说明                                |
+| -------- | ----------------------------------- |
+| Array&lt;string&gt; | 返回此URI中查询参数内所有指定键对应值的集合，若没有找到则返回一个空字符串数组。 |
+
+**示例：**
+
+```ts
+let route = new uri.URI('https://www.test.com/search?query=name&query=my');
+let values = route.getQueryValues("query");
+console.info(values[0]); // name
+console.info(values[1]); // my
 ```
 
 ### getBooleanQueryValue<sup>12+</sup>
@@ -693,6 +805,8 @@ getSegment(): string[]
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型     | 说明                        |
@@ -704,6 +818,34 @@ getSegment(): string[]
 ```ts
 const uriInstance = new uri.URI("http://www.test.com/path/to/image.jpg");
 console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
+```
+
+### getSegment<sup>20+</sup>
+
+getSegment(): Array&lt;string&gt;
+
+获取此URI路径中的所有段。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型     | 说明                        |
+| -------- | --------------------------- |
+| Array&lt;string&gt; | 返回此URI路径中的所有段。 |
+
+**示例：**
+
+```ts
+let route = new uri.URI('http://www.test.com/path/to/image.jpg');
+let segments = route.getSegment();
+console.info(segments.length); // 2
+console.info(segments[0]); // files
+console.info(segments[1]); // images
 ```
 
 ### createFromParts<sup>12+</sup>
@@ -756,6 +898,8 @@ equals(other: URI): boolean
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[equalsTo<sup>9+</sup>](#equalsto9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
