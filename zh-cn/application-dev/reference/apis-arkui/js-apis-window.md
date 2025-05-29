@@ -502,7 +502,7 @@ import { window } from '@kit.ArkUI';
 | rectType | [RectType](#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 否 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
-### RotationChangeCallback<sup>19+</sup>
+## RotationChangeCallback<sup>19+</sup>
 
 (info: T): U
 
