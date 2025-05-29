@@ -24,10 +24,10 @@ import { preferences } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
-| ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
+| 名称             | 类型      | 只读 | 说明                                    |
+| ---------------- | -------- | ---- | --------------------------------------- |
+| MAX_KEY_LENGTH   | number   | 是   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | Value的最大长度限制为16MB。 |
 
 
 ## preferences.getPreferences
@@ -1811,6 +1811,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+  >
+  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
@@ -1857,6 +1859,8 @@ flush(): Promise&lt;void&gt;
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+  >
+  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
