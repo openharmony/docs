@@ -33,7 +33,7 @@ PluginComponent(options: PluginComponentOptions)
 | 参数       | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
 | template   | [PluginComponentTemplate](#plugincomponenttemplate9类型说明) | 组件模板，用于跟提供方定义的组件绑定。                |
-| data       | any    | 传给插件组件提供方使用的数据。 |
+| data       | ArkTS1.1: any<br>ArkTS1.2: Obejct\|undefined\|null    | 传给插件组件提供方使用的数据。 |
 
 ## PluginComponentTemplate<sup>9+</sup>类型说明
 
