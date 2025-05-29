@@ -113,7 +113,7 @@ bind(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> |  Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -288,7 +288,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                           |
 |  -------------- |  --------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -426,7 +426,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -636,7 +636,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -988,7 +988,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。true表示可发送广播，false表示不可发送广播。默认为false。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -1466,7 +1466,7 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 | 参数名         | 类型                  | 必填 | 说明                         |
 | ------------- | --------------------- | ---- | ---------------------------- |
-| flag          | boolean               |  是  | ttl设置数值，类型为boolen 。true：环回模式开启；false：环回模式关闭。  |
+| flag          | boolean               |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。  |
 | callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
@@ -1510,7 +1510,7 @@ setLoopbackMode(flag: boolean): Promise\<void\>
 
 | 参数名         | 类型                   | 必填 | 说明                             |
 | ------------- | ---------------------- | ---- | -------------------------------- |
-| flag          | boolean                |  是  | 环回模式标志位，类型为数字boolean。true：环回模式开启；false：环回模式关闭。|
+| flag          | boolean                |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。|
 
 **返回值：**
 
@@ -1557,7 +1557,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。返回值为环回模式状态，true：环回模式开启；false：环回模式关闭。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。返回值为环回模式状态，true表示环回模式开启，false表示环回模式关闭。  |
 
 **错误码：**
 
@@ -1600,7 +1600,7 @@ getLoopbackMode(): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ----------------  | --------------------------- |
-| Promise\<boolean\> | 回调函数。返回值为环回模式状态，true：环回模式开启；false：环回模式关闭。 |
+| Promise\<boolean\> | Promise对象。返回true表示环回模式开启，返回false表示环回模式关闭。 |
 
 **错误码：**
 
@@ -2027,7 +2027,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                               |
 | -------------- | ------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2121,7 +2121,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | -------------- | ----------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2540,7 +2540,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 | -------------- | --------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2851,7 +2851,7 @@ TCPSocket连接的参数。
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
-| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。默认值为5000。 |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TCPSendOptions
@@ -2981,7 +2981,7 @@ listen(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回， 成功返回空，失败返回错误码错误信息。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -3227,7 +3227,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                       |
 |  -------------- |  --------------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3622,7 +3622,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3713,7 +3713,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 |  -------------- |  ------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4198,7 +4198,7 @@ bind(address: LocalAddress): Promise\<void\>;
 
 | 类型            | 说明                                       |
 | :-------------- | :---------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -4317,7 +4317,7 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------ |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4375,7 +4375,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | :-------------- | :----------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4699,7 +4699,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
-| 401     | Parameter error。        |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -5185,7 +5185,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5529,7 +5529,7 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5571,7 +5571,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -6292,7 +6292,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
