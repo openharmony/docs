@@ -1,10 +1,10 @@
 # 构建弹窗
 
 
-通过弹窗控制器显示自定义弹窗，可以设置自定义弹窗的样式和内容。
+使用弹窗控制器显示自定义弹窗，设置其样式和内容。
 
 
-弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），这些接口围绕弹窗控制器实现各种弹窗控制。
+弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），用于实现各种弹窗控制。
 [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
 
 
@@ -100,7 +100,7 @@
 
 可创建交互页面，打开或关闭弹窗。
 
-1. 创建一个可交互的界面，点击Button之后可以弹窗。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+1. 创建可交互界面，点击Button后弹窗。其中获取与使用ArkUI_NodeContentHandle类型节点可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool isShown = false;
