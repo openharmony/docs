@@ -795,6 +795,305 @@ let domainFilterRule: Array<networkManager.DomainFilterRule>;
 domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 ```
 
+## networkManager.addApn
+
+addApn(admin: Want, apnInfo: Record\<string, string>): void
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnInfo: Record<string, string> = {
+  "apnName": "",
+  "apn": "",
+  "mnc": "",
+  "mcc": "",
+};
+try {
+  networkManager.addApn(wantTemp，apnInfo);
+} catch (err) {
+  console.error(`Failed to add apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.deleteApn
+
+deleteApn(admin: Want, apnId: string): void
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnId  | string | 是   | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnId: string = "1";
+try {
+  networkManager.deleteApn(wantTemp，apnId);
+} catch (err) {
+  console.error(`Failed to delete apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.updateApn
+
+updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
+| apnId  | string | 是   | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnInfo: Record<string, string> = {
+  "apnName": "",
+  "apn": "",
+  "mnc": "",
+  "mcc": "",
+};
+let apnId: string = "1";
+try {
+  networkManager.updateApn(wantTemp，apnInfo, apnId);
+} catch (err) {
+  console.error(`Failed to update apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.setPreferApn
+
+setPreferApn(admin: Want, apnId: string): void
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnId  | string | 是   | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnId: string = "1";
+try {
+  networkManager.setPreferApn(wantTemp，apnId);
+} catch (err) {
+  console.error(`Failed to set prefer apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.queryApn
+
+queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
+
+**返回值：**
+
+| 类型                                          | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Array\<string> | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnInfo: Record<string, string> = {
+  "apnName": "",
+  "apn": "",
+  "mnc": "",
+  "mcc": "",
+};
+try {
+  let queryResult: Array<string> = networkManager.queryApn(wantTemp，apnInfo);
+} catch (err) {
+  console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.queryApn
+
+queryApn(admin: Want, apnId: string): Record\<string, string>
+
+待填内容。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| apnId  | string | 是   | 待填内容。 |
+
+**返回值：**
+
+| 类型                                          | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| Record\<string, string> | 待填内容。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let apnId: string = "1";
+try {
+  let queryResult: Record<string, string> = networkManager.queryApn(wantTemp，apnId);
+} catch (err) {
+  console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## FirewallRule
 
 防火墙过滤规则。
