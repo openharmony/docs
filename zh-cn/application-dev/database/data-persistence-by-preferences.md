@@ -49,7 +49,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
 ### GSKV模式约束限制
 
-- GSKV模式不支持跨平台，使用该模式前需调用isStorageTypeSupported接口判断当前平台是否支持该模式。
+- GSKV模式不支持跨平台，使用该模式前需调用[isStorageTypeSupported](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesisstoragetypesupported18)接口判断当前平台是否支持该模式。
 
 
 
