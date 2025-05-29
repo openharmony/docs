@@ -860,8 +860,11 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
-      console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
-      console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+      if (err) {
+        console.error('queryAllCreatedOsAccounts exception:' + JSON.stringify(err));
+      } else {
+        console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+      }
     });
   } catch (e) {
     console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
@@ -952,8 +955,11 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
   try {
     accountManager.createOsAccount('testName', osAccount.OsAccountType.NORMAL,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('createOsAccount err:' + JSON.stringify(err));
-      console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+      if (err) {
+        console.error('createOsAccount exception:' + JSON.stringify(err));
+      } else {
+        console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+      }
     });
   } catch (e) {
     console.error('createOsAccount exception: ' + JSON.stringify(e));
@@ -1068,8 +1074,11 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
   try {
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('createOsAccountForDomain err:' + JSON.stringify(err));
-      console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+      if (err) {
+        console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
+      } else {
+        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+      }
     });
   } catch (e) {
     console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
@@ -1220,8 +1229,11 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
   let localId: number = 100;
   try {
     accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
-      console.log('queryOsAccountById err:' + JSON.stringify(err));
-      console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+      if (err) {
+        console.error('queryOsAccountById exception:' + JSON.stringify(err));
+      } else {
+        console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+      }
     });
   } catch (e) {
     console.error('queryOsAccountById exception: ' + JSON.stringify(e));
@@ -1318,8 +1330,11 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
-      console.log('getOsAccountProfilePhoto err:' + JSON.stringify(err));
-      console.log('get photo:' + photo + ' by localId: ' + localId);
+      if (err) {
+        console.error('getOsAccountProfilePhoto exception:' + JSON.stringify(err));
+      } else {
+        console.log('get photo:' + photo + ' by localId: ' + localId);
+      }
     });
   } catch (e) {
     console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
@@ -1422,7 +1437,11 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
   '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   try {
     accountManager.setOsAccountProfilePhoto(localId, photo, (err: BusinessError)=>{
-      console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
+      if (err) {
+        console.error('setOsAccountProfilePhoto exception:' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountProfilePhoto successful.');
+      }
     });
   } catch (e) {
     console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
@@ -1775,11 +1794,14 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
-      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
-      console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
+      if (err) {
+        console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
+      }
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1824,10 +1846,10 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1870,7 +1892,7 @@ getBundleIdForUidSync(uid: number): number
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
     console.info('getBundleIdForUidSync bundleId:' + bundleId);
   } catch (e) {
-    console.info('getBundleIdForUidSync exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUidSync exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1908,11 +1930,14 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
-      console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
-      console.info('isMainOsAccount result:' + JSON.stringify(result));
+      if (err) {
+        console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('isMainOsAccount result:' + JSON.stringify(result));
+      }
     });
   } catch (e) {
-    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
+    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1951,10 +1976,10 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
+      console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
+    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1997,11 +2022,14 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
       (err: BusinessError,sourceTypeInfos: osAccount.ConstraintSourceTypeInfo[])=>{
-      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
-      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+      if (err) {
+        console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+      }
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2051,10 +2079,10 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
       (result: osAccount.ConstraintSourceTypeInfo[]) => {
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2102,10 +2130,10 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
     accountManager.getOsAccountType(localId).then((type: osAccount.OsAccountType) => {
       console.info('getOsAccountType Type:' + type);
     }).catch((err: BusinessError) => {
-      console.info('getOsAccountType errInfo:' + JSON.stringify(err));
+      console.error('getOsAccountType errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountType exception: ' + JSON.stringify(e));
+    console.error('getOsAccountType exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2258,8 +2286,11 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
   };
   try {
     userAuth.getProperty(request, (err: BusinessError, result: osAccount.ExecutorProperty) => {
-      console.log('getProperty err = ' + JSON.stringify(err));
-      console.log('getProperty result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getProperty exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getProperty result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getProperty exception = ' + JSON.stringify(e));
@@ -3296,6 +3327,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| localId             | number  | 是   | 系统账号ID。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
@@ -4302,8 +4334,11 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
   let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
-        console.log('openSession error = ' + JSON.stringify(err));
+      if (err) {
+        console.error('openSession exception = ' + JSON.stringify(err));
+      } else {
         console.log('openSession challenge = ' + JSON.stringify(challenge));
+      }
     });
   } catch (e) {
     console.error('openSession exception = ' + JSON.stringify(e));
@@ -4707,8 +4742,11 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
   let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.getAuthInfo((err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo err = ' + JSON.stringify(err));
-      console.log('getAuthInfo result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthInfo result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getAuthInfo exception = ' + JSON.stringify(e));
@@ -4751,8 +4789,11 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
   try {
     userIDM.getAuthInfo(osAccount.AuthType.PIN,
       (err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo err = ' + JSON.stringify(err));
-      console.log('getAuthInfo result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthInfo result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getAuthInfo exception = ' + JSON.stringify(e));

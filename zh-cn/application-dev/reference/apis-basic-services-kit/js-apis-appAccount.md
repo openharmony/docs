@@ -69,7 +69,11 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
   
   try {
     appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
-        console.log('createAccount err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('createAccount code: ' + JSON.stringify(err));
+      } else {
+        console.log('createAccount successful.');
+      }
     });
   } catch (err) {
     console.error('createAccount err: ' + JSON.stringify(err));
@@ -3242,8 +3246,12 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
-      console.log('enableAppAccess: ' + JSON.stringify(err));
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => {
+      if (err) {
+        console.error('enableAppAccess err: ' + JSON.stringify(err));
+      } else {
+        console.log('enableAppAccess successful.');
+      }
    });
   ```
 
@@ -3311,8 +3319,11 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
-      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('checkAppAccountSyncEnable code: ' + JSON.stringify(err));
+    } else {
       console.log('checkAppAccountSyncEnable result: ' + result);
+    }
   });
   ```
 
@@ -3381,7 +3392,11 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
-      console.log('setAccountCredential err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setAccountCredential err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAccountCredential successful.');
+    }
   });
   ```
 
@@ -3450,7 +3465,11 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
-      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAccountExtraInfo successful.');
+    }
   });
   ```
 
@@ -3519,8 +3538,12 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
-      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => {
+    if (err) {
+      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAppAccountSyncEnable successful.');
+    }
   });
   ```
 
@@ -3590,8 +3613,12 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
-      console.log('setAssociatedData err: ' + JSON.stringify(err));
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => {
+    if (err) {
+      console.error('setAssociatedData err: ' + JSON.stringify(err));
+    } else {
+      console.log('setAssociatedData successful.');
+    }
   });
   ```
 
@@ -3795,8 +3822,11 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
-      console.log('getAccountCredential err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAccountCredential err: ' + JSON.stringify(err));
+    } else {
       console.log('getAccountCredential result: ' + result);
+    }
   });
   ```
 
@@ -3862,8 +3892,11 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
-      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
+    } else {
       console.log('getAccountExtraInfo result: ' + result);
+    }
   });
   ```
 
@@ -3929,8 +3962,11 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
-      console.log('getAssociatedData err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('getAssociatedData err: ' + JSON.stringify(err));
+    } else {
       console.log('getAssociatedData result: ' + result);
+    }
   });
   ```
 
@@ -4131,8 +4167,11 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
     (err: BusinessError, data: string) => {
-      console.log('getOAuthToken err: ' + JSON.stringify(err));
-      console.log('getOAuthToken token: ' + data);
+      if (err) {
+        console.error('getOAuthToken err: ' + JSON.stringify(err));
+      } else {
+        console.log('getOAuthToken token: ' + data);
+      }
     });
   ```
 
@@ -4201,7 +4240,11 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
-      console.log('setOAuthToken err: ' + JSON.stringify(err));
+    if (err) {
+      console.error('setOAuthToken err: ' + JSON.stringify(err));
+    } else {
+      console.log('setOAuthToken successful.');
+    }
   });
   ```
 
@@ -4272,7 +4315,11 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
     (err: BusinessError) => {
-      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('deleteOAuthToken err: ' + JSON.stringify(err));
+      } else {
+        console.log('deleteOAuthToken successful.');
+      }
     });
   ```
 
@@ -4344,7 +4391,11 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
     (err: BusinessError) => {
-      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      if (err) {
+        console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      } else {
+        console.log('setOAuthTokenVisibility successful.');
+      }
     });
   ```
 
@@ -4415,8 +4466,11 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
     (err: BusinessError, data: boolean) => {
-      console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
-      console.log('checkOAuthTokenVisibility isVisible: ' + data);
+      if (err) {
+        console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+      } else {
+        console.log('checkOAuthTokenVisibility isVisible: ' + data);
+      }
     });
   ```
 
@@ -4486,8 +4540,11 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.OAuthTokenInfo[]) => {
-      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
-      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      if (err) {
+        console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
+      } else {
+        console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      }
     });
   ```
 
@@ -4555,8 +4612,11 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
   import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
-    console.log('getOAuthList err: ' + JSON.stringify(err));
-    console.log('getOAuthList data: ' + JSON.stringify(data));
+    if (err) {
+      console.error('getOAuthList err: ' + JSON.stringify(err));
+    } else {
+      console.log('getOAuthList data: ' + JSON.stringify(data));
+    }
   });
   ```
 
@@ -4716,8 +4776,11 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
     (err: BusinessError, data: appAccount.AuthenticatorInfo) => {
-      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
-      console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+      if (err) {
+        console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
+      }
     });
   ```
 
