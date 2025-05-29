@@ -72,7 +72,7 @@ SoundPool当前支持播放解码后1MB以下的音频资源，解码后大小�
 
     ```ts
     soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
+      console.error('error happened,message is :' + error.message);
     });
     ```
 
