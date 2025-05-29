@@ -2526,6 +2526,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data。<br/>- false：每个文件使用一个请求传输。 <br/>- true：使用多文件单请求上传。 <br/>默认值为false。 |
 | notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。默认值为`{}`。|
+| minSpeed<sup>20+</sup> | [MinSpeed](#minspeed20) | 否 | 最低限速自定义设置，默认不启用最低限速。|
+| timeout<sup>20+</sup> | [Timeout](#timeout20) | 否 | 超时时间自定义设置，连接超时时间默认60秒，总超时时间默认604800秒（1周）。|
 
 ## State<sup>10+</sup>  
 
@@ -2584,6 +2586,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如：证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
+| LOW_SPEED<sup>20+</sup>  | 0x90 | 表示任务速度过低。                    |
 
 > **说明：**
 >
@@ -2677,6 +2680,29 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | NETWORK_NOT_MATCH | 0x01 | 表示任务因所需网络条件不满足而进入等待状态。   |
 | APP_BACKGROUND | 0x02 | 表示任务因应用长时间处于后台而进入等待状态。   |
 | USER_INACTIVATED | 0x03 | 表示任务因所属用户处于非激活状态而进入等待状态。 |
+
+## MinSpeed<sup>20+</sup>
+
+任务的最低限速配置。若任务速度持续低于设定值并达到指定时长，则任务失败，失败原因为[LOW_SPEED](#faults10)。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称      | 类型   | 只读 | 可选 | 说明                                                           |
+|---------|----------|----|----|--------------------------------------------------------------|
+| speed   | number   | 否  | 否  | 任务最低速度，单位为字节每秒（B/s）。若任务速度持续低于该值达到指定时长，则任务失败。设置为0表示不启用最低速度限制。 |
+| duration    | number   | 否  | 否  | 允许低于最低速度的持续时间，单位为秒。若任务速度持续低于设定值达到该时长，则任务失败。设置为0表示不启用最低速度限制。  |
+
+## Timeout<sup>20+</sup>
+
+任务的超时配置。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称      | 类型     | 只读 | 可选 | 说明                                      |
+|---------|--------|----|----|-----------------------------------------|
+| connectionTimeout   | number | 否  | 是  | 任务连接超时时间，单位为秒。连接超时是指客户端与服务器建立连接的最大耗时。若不设置则使用默认值60秒，允许设置的最小值为1秒。 |
+| totalTimeout    | number | 否  | 是  |任务总超时时间，单位为秒。总超时包括建立连接、发送请求和接收响应的全部时间。未指定时使用默认值604800秒（1周）。允许设置的最小值为1秒，最大值为604800秒（1周）。  |
+
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -4794,9 +4820,9 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                 |
-|-------|--------|----|------------------------------------|
-| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节。 |
+| 参数名   | 类型     | 必填 | 说明                                                                           |
+|-------|--------|----|------------------------------------------------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节，同时该值不得低于[MinSpeed](#minspeed20)设置的最低速度。 |
 
 **返回值：**
 
