@@ -434,7 +434,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 ```
 **描述**
 
-销毁一个子进程配置信息对象，并释放其内存。
+销毁一个子进程配置信息对象，并释放其内存，在调用这个函数之后，要避免继续使用该configs对象。
 
 
 **起始版本**：20
