@@ -322,7 +322,7 @@ try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
-    sendCommand: (cmdData) => {
+    sendCommand: (cmdData: string) => {
       console.info(`The cmdData is ${cmdData}`);
     }
   })
