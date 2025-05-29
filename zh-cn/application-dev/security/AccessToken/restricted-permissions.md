@@ -235,11 +235,13 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：7
 
-**变更信息**：权限级别在API 11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 7-11，权限等级为system_core；从API 12开始，权限等级变更为system_basic，向普通应用开放。
 
 ### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
 
 允许应用保存图片、视频到用户公共目录。
+
+应用获取此权限后，最长可获得30分钟的短时授权，来保存图片/视频。如果超过30分钟，将再次弹窗，需要用户再次确认。
 
 <!--RP21--><!--RP21End-->
 
