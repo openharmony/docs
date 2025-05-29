@@ -22,7 +22,7 @@
 
 ### 接口说明
 
-详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/_u_d_m_f.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/capi-udmf.md)。
 
 | 名称 | 说明                                                                   |
 | -------- |----------------------------------------------------------------------|

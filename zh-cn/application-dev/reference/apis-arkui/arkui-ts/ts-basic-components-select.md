@@ -724,8 +724,6 @@ avoidance(mode: AvoidanceMode)
 
 设置下拉菜单的避让模式。
 
-**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -846,8 +844,6 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 ## AvoidanceMode<sup>19+</sup>枚举说明
 
 下拉菜单避让模式的枚举选项。
-
-**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

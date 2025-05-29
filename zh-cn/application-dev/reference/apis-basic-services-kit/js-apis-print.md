@@ -54,7 +54,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -97,7 +97,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -140,7 +140,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -183,7 +183,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -226,7 +226,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -269,7 +269,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -312,7 +312,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -355,7 +355,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -506,7 +506,7 @@ import { fileUri } from '@kit.CoreFileKit';
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
-        console.log('print err ' + JSON.stringify(err));
+        console.error('print err ' + JSON.stringify(err));
     } else {
         printTask.on('succeed', () => {
             console.log('print state is succeed');
@@ -560,7 +560,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -597,19 +597,34 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
-//传入文件的uri
-let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = this.getUIContext().getHostContext();
-print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
-    if (err) {
-        console.log('print err ' + JSON.stringify(err));
-    } else {
-        printTask.on('succeed', () => {
-            console.log('print state is succeed');
-        })
-        // ...
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
+                        if (err) {
+                            console.error('print err ' + JSON.stringify(err));
+                        } else {
+                            printTask.on('succeed', () => {
+                                console.log('print state is succeed');
+                            })
+                            // ...
+                        }
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
     }
-})
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -649,17 +664,32 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
-//传入文件的uri
-let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = this.getUIContext().getHostContext();
-print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -700,30 +730,46 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-let jobName : string = "jobName";
-let printAdapter : print.PrintDocumentAdapter | null = null;
-let printAttributes : print.PrintAttributes = {
-    copyNumber: 1,
-    pageRange: {
-        startPage: 0,
-        endPage: 5,
-        pages: []
-    },
-    pageSize: print.PrintPageType.PAGE_ISO_A3,
-    directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
-    colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
-    duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
-}
-let context = this.getUIContext().getHostContext();
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let jobName : string = "jobName";
+                    let printAdapter : print.PrintDocumentAdapter | null = null;
+                    let printAttributes : print.PrintAttributes = {
+                        copyNumber: 1,
+                        pageRange: {
+                            startPage: 0,
+                            endPage: 5,
+                            pages: []
+                        },
+                        pageSize: print.PrintPageType.PAGE_ISO_A3,
+                        directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
+                        colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
+                        duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+                    }
+                    let context = this.getUIContext().getHostContext();
 
-print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+                    print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 ## PrintAttributes<sup>11+</sup>
@@ -918,6 +964,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION | 25 | 表示文件转换太慢。 |
 | PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | 表示正在上传文件。 |
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | 表示正在转换文件。 |
+| PRINT_JOB_BLOCK_FILE_UPLOADING_ERROR<sup>18+</sup> | 30 | 表示文件上传失败。 |
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | 表示打印未知问题。 |
 
 ## PrintErrorCode<sup>14+</sup>
@@ -938,6 +985,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | E_PRINT_INVALID_PRINTER | 13100005 | 表示打印机无效。 |
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | 表示打印任务无效。 |
 | E_PRINT_FILE_IO | 13100007 | 表示文件输入/输出错误。 |
+| E_PRINT_TOO_MANY_FILES<sup>18+</sup> | 13100010 | 表示文件数量超过上限，当前上限99个。 |
 
 ## ApplicationEvent<sup>14+</sup>
 
@@ -998,7 +1046,7 @@ let printerInformation : print.PrinterInformation = {
 print.addPrinterToDiscovery(printerInformation).then((data : void) => {
     console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('addPrinterToDiscovery error : ' + JSON.stringify(error));
+    console.error('addPrinterToDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1067,7 +1115,7 @@ let printerInformation : print.PrinterInformation = {
 print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
     console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('updatePrinterInDiscovery error : ' + JSON.stringify(error));
+    console.error('updatePrinterInDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1110,7 +1158,7 @@ let printerId : string = 'testPrinterId';
 print.removePrinterFromDiscovery(printerId).then((data : void) => {
     console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('removePrinterFromDiscovery error : ' + JSON.stringify(error));
+    console.error('removePrinterFromDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1153,7 +1201,7 @@ let printerId : string = 'testPrinterId';
 print.getPrinterInformationById(printerId).then((printerInformation : print.PrinterInformation) => {
     console.log('getPrinterInformationById data : ' + JSON.stringify(printerInformation));
 }).catch((error: BusinessError) => {
-    console.log('getPrinterInformationById error : ' + JSON.stringify(error));
+    console.error('getPrinterInformationById error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1173,6 +1221,8 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | capability | [PrinterCapabilities](#printercapabilities14) | 否 | 表示打印机能力。 |
 | uri | string | 否 | 表示打印机uri。 |
 | printerMake | string | 否 | 表示打印机型号。 |
+| preferences<sup>18+</sup> | [PrinterPreferences](#printerpreferences18) | 否 | 表示打印机首选项。 |
+| alias<sup>18+</sup> | string | 否 | 表示打印机别名。 |
 | options | string | 否 | 表示打印机详细信息。 |
 
 ## PrinterCapabilities<sup>14+</sup>
@@ -1229,3 +1279,174 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 | PRINTER_IDLE | 0 | 表示打印机空闲状态。 |
 | PRINTER_BUSY | 1 | 表示打印机忙碌状态。 |
 | PRINTER_UNAVAILABLE | 2 | 表示打印机脱机状态。 |
+
+## PrinterPreferences<sup>18+</sup>
+
+定义打印机首选项的接口。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**属性：**
+| **名称** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | 否 | 表示默认单双面模式。 |
+| defaultPrintQuality | [PrintQuality](#printquality14) | 否 | 表示默认打印质量。 |
+| defaultMediaType | string | 否 | 表示默认纸张类型。 |
+| defaultPageSizeId | string | 否 | 表示默认纸张尺寸的ID，其范围包含国际标准化组织定义的标准纸张尺寸，如ISO_A4，和系统中定义的非标准的纸张尺寸，如Custom.178x254mm，表示这种纸张尺寸为178毫米 x 254毫米。 |
+| defaultOrientation | [PrintOrientationMode](#printorientationmode14) | 否 | 表示默认打印方向。 |
+| borderless | boolean | 否 | 表示是否无边距打印，true表示无边距，false表示有边距。默认值为false。 |
+| options | string | 否 | 表示打印机首选项中不在以上字段中的其他字段，查询打印机或者从打印机驱动获取，以json格式存储在string中。 |
+
+## PrinterEvent<sup>18+</sup>
+
+打印机相关事件的枚举。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| PRINTER_EVENT_ADDED | 0 | 表示打印机添加事件。 |
+| PRINTER_EVENT_DELETED | 1 | 表示打印机删除事件。 |
+| PRINTER_EVENT_STATE_CHANGED | 2 | 表示打印机状态变化事件。 |
+| PRINTER_EVENT_INFO_CHANGED | 3 | 表示打印机信息变化事件。 |
+| PRINTER_EVENT_PREFERENCE_CHANGED | 4 | 表示打印机首选项变化事件。 |
+| PRINTER_EVENT_LAST_USED_PRINTER_CHANGED | 5 | 表示上次使用的打印机的变化事件。 |
+
+## DefaultPrinterType<sup>18+</sup>
+
+默认打印类型的枚举。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| DEFAULT_PRINTER_TYPE_SET_BY_USER | 0 | 表示将用户手动设置的默认打印机作为当前默认打印机。 |
+| DEFAULT_PRINTER_TYPE_LAST_USED_PRINTER | 1 | 表示自动将上次使用的打印机作为当前默认打印机。 |
+
+## print.getAddedPrinters<sup>18+</sup>
+
+getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
+
+获取系统中已添加的打印机列表，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**返回值：**
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | 获取系统中已添加的打印机列表的完成结果回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.getAddedPrinters().then((printers: string[]) => {
+    console.log('getAddedPrinters success ' + JSON.stringify(printers));
+    // ...
+}).catch((error: BusinessError) => {
+    console.error('failed to getAddedPrinters because ' + JSON.stringify(error));
+})
+```
+
+## PrinterChangeCallback<sup>18+</sup>
+
+type PrinterChangeCallback = (event: PrinterEvent, printerInformation: PrinterInformation) => void
+
+将打印机事件和打印机信息作为参数的回调方法。
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| event | [PrinterEvent](#printerevent18) | 是 | 表示打印机事件。 |
+| printerInformation | PrinterInformation | 是 | 表示打印机信息。 |
+
+## print.on<sup>18+</sup>
+
+on(type: 'printerChange', callback: PrinterChangeCallback): void
+
+注册打印机变动事件回调，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | 是 | 表示打印机变动事件。 |
+| callback | [PrinterChangeCallback](#printerchangecallback18) | 是 | 打印机变动之后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+// Trigger this callback when a added printer is changed.
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+```
+
+## print.off<sup>18+</sup>
+
+off(type: 'printerChange', callback?: PrinterChangeCallback): void
+
+取消注册打印机变动事件回调，使用callback回调。
+
+**需要权限：** ohos.permission.PRINT
+
+**系统能力：** SystemCapability.Print.PrintFramework
+
+**参数：**
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | 是 | 表示打印机变动事件。 |
+| callback | [PrinterChangeCallback](#printerchangecallback18) | 否 | 表示取消注册打印机变动事件后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+// Trigger this callback when a added printer is changed.
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+print.off('printerChange');
+```

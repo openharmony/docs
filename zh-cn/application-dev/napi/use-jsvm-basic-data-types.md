@@ -205,7 +205,7 @@ static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double value;
+    double value = 0;
     JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");

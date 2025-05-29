@@ -46,3 +46,4 @@
   - [智慧化数据构建与检索概述](aip-data-intelligence-overview.md)
   - [应用数据向量化](aip-data-intelligence-embedding.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
+- [ArkData术语](data-terminology.md)

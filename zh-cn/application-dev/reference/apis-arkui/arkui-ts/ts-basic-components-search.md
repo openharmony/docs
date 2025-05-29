@@ -1961,3 +1961,30 @@ struct SearchExample {
 ```
 
 ![searchSetStroke](figures/searchSetStroke.png)
+
+### 示例21（设置中西文自动间距）
+
+该示例通过enableAutoSpacing属性设置中西文自动间距。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('开启中西文自动间距').margin(5)
+        Search({value: '中西文Auto Spacing自动间距'})
+          .enableAutoSpacing(true)
+        Text('关闭中西文自动间距').margin(5)
+        Search({value: '中西文Auto Spacing自动间距'})
+          .enableAutoSpacing(false)
+      }.height('100%')
+    }
+    .width('60%')
+  }
+}
+```
+
+![searchEnableAutoSpacing](figures/searchEnableAutoSpacing.png)

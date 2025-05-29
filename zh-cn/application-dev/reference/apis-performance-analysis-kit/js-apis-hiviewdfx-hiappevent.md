@@ -446,7 +446,9 @@ setSize(size: number): void
 **示例：**
 
 ```ts
-let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher2");
+// 创建订阅数据持有者实例，holder2持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 设置每次取出事件包的数据大小阈值为1000byte
 holder2.setSize(1000);
 ```
 
@@ -478,7 +480,9 @@ setRow(size: number): void
 **示例：**
 
 ```ts
-let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher3");
+// 创建订阅数据持有者实例，holder3持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 设置每次取出的事件包的数据条数为1000条
 holder3.setRow(1000);
 ```
 
@@ -505,7 +509,9 @@ takeNext(): AppEventPackage
 **示例：**
 
 ```ts
-let holder4: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher4");
+// 创建订阅数据持有者实例，holder4持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder4: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 获取订阅事件
 let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 ```
 
@@ -534,11 +540,11 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 | 名称      | 类型     | 只读 | 可选 | 说明                           |
 | --------- | -------- | ---- | ---- | ------------------------------ |
-| packageId | number   | 是 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| row       | number   | 是 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| size      | number   | 是 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| data      | string[] | 是 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| packageId | number   | 否 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| row       | number   | 否 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| size      | number   | 否 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| data      | string[] | 否 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## AppEventGroup<sup>11+</sup>
@@ -551,8 +557,8 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 | 名称          | 类型                            | 只读 | 可选  | 说明          |
 | ------------- | ------------------------------- | ---- | ---- | ------------- |
-| name          | string                          | 是 | 否   | 事件名称。     |
-| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是 | 否   | 事件对象集合。 |
+| name          | string                          | 否 | 否   | 事件名称。     |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。 |
 
 
 ## hiAppEvent.write

@@ -22,8 +22,8 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| stdResult | string | 是   | 是   | 标准输出内容。 |
-| exitCode  | number | 是   | 是   | 结果码。 |
+| stdResult | string | 是   | 是   | Shell命令的标准输出内容。 |
+| exitCode  | number | 是   | 是   | Shell命令的结果码。 |
 
 ## 使用说明
 

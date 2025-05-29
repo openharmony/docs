@@ -33,7 +33,7 @@
 | ---------- | ---------- |
 | SOURCE_TYPE_MIC | 适用于普通录音。|
 | SOURCE_TYPE_RECOGNITION<sup>9+</sup> | 适用于语音识别。 |
-| SOURCE_TYPE_PLAYBACK_CAPTURE | （API12已废弃）适用于录制其他应用送到系统中播放的原始音频数据。<br>AudioKit不再提供内录接口，请通过[录屏接口AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md)进行内录。 |
+| SOURCE_TYPE_PLAYBACK_CAPTURE | （API12已废弃）适用于录制其他应用送到系统中播放的原始音频数据。<br>AudioKit不再提供内录接口，请通过[录屏接口AVScreenCapture](../../reference/apis-media-kit/capi-avscreencapture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
 | SOURCE_TYPE_VOICE_MESSAGE | 适用于录制语音短消息。 |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | 适用于相机录像。 |

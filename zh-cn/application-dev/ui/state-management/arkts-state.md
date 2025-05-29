@@ -16,14 +16,13 @@
 
 ## 概述
 
-\@State装饰的变量，与声明式范式中的其他被装饰变量一样，是私有的，只能从组件内部访问，在声明时必须指定其类型和本地初始化。初始化也可选择使用命名参数机制从父组件完成初始化。
+\@State装饰的变量，与声明式范式中的其他被装饰变量一样，是私有的，只能从组件内部访问，在声明时必须指定其类型和进行本地初始化，若未进行初始化，编译器将会报错。除了本地初始化，也可选择使用命名参数机制从父组件完成初始化。若使用命名参数机制从父组件传入了非undefined的值，那么该值将会覆盖本地初始化的值；若传入的值为undefined，则@State将使用本地初始值进行初始化。
 
 \@State装饰的变量拥有以下特点：
 
 - \@State装饰的变量与子组件中的\@Prop装饰变量之间建立单向数据同步，与\@Link、\@ObjectLink装饰变量之间建立双向数据同步。
 
 - \@State装饰的变量生命周期与其所属自定义组件的生命周期相同。
-
 
 ## 装饰器使用规则说明
 
@@ -34,24 +33,21 @@
 | 允许装饰的变量类型 | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型。<br/>支持undefined和null类型。<br/>支持ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型。 <br/>类型必须被指定。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@State支持联合类型实例](#state支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@State a : string \| undefined = undefined`是支持的，不支持`@State a: string = undefined`。|
 | 被装饰变量的初始值 | 必须本地初始化。                                               |
 
-
 ## 变量的传递/访问规则说明
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | 从父组件初始化     | 可选，从父组件初始化或者本地初始化。如果从父组件初始化，并且从父组件传入的值非undefined，将会覆盖本地初始化；如果从父组件传入的值为undefined，则初值为@State装饰变量自身的初值。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
-| 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
+| 用于初始化子组件   | 被\@State装饰的变量支持用于初始化子组件中的常规变量，以及被\@State、\@Link、\@Prop、\@Provide装饰的变量。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
   **图1** 初始化规则图示  
 
 ![zh-cn_image_0000001502091796](figures/zh-cn_image_0000001502091796.png)
 
-
 ## 观察变化和行为表现
 
 并不是状态变量的所有更改都会引起UI的刷新，只有可以被框架观察到的修改才会引起UI刷新。本小节将介绍什么样的修改才能被观察到，以及观察到变化后，框架是怎么引起UI刷新的，即框架的行为表现是什么。
-
 
 ### 观察变化
 
@@ -208,9 +204,9 @@
   }
   ```
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete`更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
+- 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete`更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
 ### 框架行为
 
@@ -219,7 +215,6 @@
 - 执行依赖该状态变量的组件的更新方法，组件更新渲染；
 
 - 和该状态变量不相关的组件或者UI描述不会发生重新渲染，从而实现页面渲染的按需更新。
-
 
 ## 限制条件
 
@@ -246,7 +241,6 @@
 - 当状态变量count改变时，查询到只有Button组件关联了它；
 
 - 执行Button组件的更新方法，实现按需刷新。
-
 
 ```ts
 @Entry
@@ -326,7 +320,6 @@ struct MyComponent {
 
 从该示例中，我们可以了解到\@State变量的初始化机制：
 
-
 1. 没有外部传入的情况下，使用默认的值进行本地初始化：
 
    ```ts
@@ -344,7 +337,6 @@ struct MyComponent {
    // title和count均有外部传入，分别使用传入的new Model('Hello World 2')和7进行初始化
    MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
-
 
 ### 装饰Map类型变量
 
