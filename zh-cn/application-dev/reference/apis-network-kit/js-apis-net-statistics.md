@@ -16,7 +16,7 @@ import { statistics } from '@kit.NetworkKit';
 
 getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void
 
-获取指定网卡实时下行流量，使用 callback 方式作为异步方法。
+获取指定网卡实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -29,7 +29,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -73,7 +73,7 @@ getIfaceRxBytes(nic: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -111,7 +111,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -155,7 +155,7 @@ getIfaceTxBytes(nic: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -192,7 +192,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -229,7 +229,7 @@ getCellularRxBytes(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -265,7 +265,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -302,7 +302,7 @@ getCellularTxBytes(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -338,7 +338,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -374,7 +374,7 @@ getAllRxBytes(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -409,7 +409,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -445,7 +445,7 @@ getAllTxBytes(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -481,7 +481,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -524,7 +524,7 @@ getUidRxBytes(uid: number): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -561,7 +561,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -604,7 +604,7 @@ getUidTxBytes(uid: number): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -642,7 +642,7 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -686,7 +686,7 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -726,7 +726,7 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
@@ -770,7 +770,7 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
