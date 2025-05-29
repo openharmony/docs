@@ -17,7 +17,7 @@
     - [AVPlayer](capi-avplayer.md)
     - [AVRecorder](_a_v_recorder.md)
     - [AVScreenCapture](_a_v_screen_capture.md)
-    - [VideoProcessing](_video_processing.md)
+    - [VideoProcessing](capi-videoprocessing.md)
   - 头文件<!--media-headerfile-->
     - [avimage_generator.h](avimage__generator_8h.md)
     - [avimage_generator_base.h](avimage__generator__base_8h.md)
@@ -30,8 +30,8 @@
     - [native_avscreen_capture.h](native__avscreen__capture_8h.md)
     - [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
     - [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md)
-    - [video_processing.h](video__processing_8h.md)
-    - [video_processing_types.h](video__processing__types_8h.md)
+    - [video_processing.h](capi-video-processing-h.md)
+    - [video_processing_types.h](capi-video-processing-types-h.md)
   - 结构体<!--media-struct-->
     - [MediaKeySession](capi-mediakeysession.md)
     - [DRM_MediaKeySystemInfo](capi-drm-mediakeysysteminfo.md)
@@ -55,6 +55,8 @@
     - [OH_VideoCaptureInfo](_o_h___video_capture_info.md)
     - [OH_VideoEncInfo](_o_h___video_enc_info.md)
     - [OH_VideoInfo](_o_h___video_info.md)
-    - [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md)
+    - [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)
+    - [OH_VideoProcessing](capi-oh-videoprocessing.md)
+    - [VideoProcessing_Callback](capi-videoprocessing-callback.md)
 - 错误码<!--media-arkts-errcode-->
   - [Media错误码](errorcode-media.md)
