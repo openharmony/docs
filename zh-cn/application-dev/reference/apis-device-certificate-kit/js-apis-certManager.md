@@ -251,7 +251,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
 | 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
@@ -310,7 +310,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 | 17500003 | The keystore is in an invalid format or the keystore password is incorrect. |
 | 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
@@ -370,7 +370,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | ---------------------- | ------------------------------------------------------------ |
 | 201                    | Permission verification failed. The application does not have the permission required to call the API. |
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001               | Internal error.                                              |
+| 17500001               | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                              |
 | 17500003               | The keystore is in an invalid format or the keystore password is incorrect. |
 | 17500004<sup>12+</sup> | The number of certificates or credentials reaches the maximum allowed. |
 
@@ -424,7 +424,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 
 **示例**：
@@ -480,7 +480,7 @@ getPrivateCertificate(keyUri: string): Promise\<CMResult>
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 
 **示例**：
@@ -530,7 +530,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): voi
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 
 **示例**：
@@ -581,7 +581,7 @@ uninstallPrivateCertificate(keyUri: string): Promise\<void>
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 
 **示例**：
@@ -632,7 +632,7 @@ installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMRe
 |------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001               | Internal error.                                                                                                                                 |
+| 17500001               | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                                                                                                                 |
 | 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
 | 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
 | 17500007<sup>18+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
@@ -683,7 +683,7 @@ uninstallUserTrustedCertificateSync(certUri: string) : void
 |------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
 | 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001               | Internal error.                                                                                                                                 |
+| 17500001               | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                                                                                                                 |
 | 17500002               | Indicates that the certificate does not exist.                                                                                                  |
 
 **示例**：
@@ -725,7 +725,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
@@ -783,7 +783,7 @@ init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 | -------- | ------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by the user. |
 
@@ -835,7 +835,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -892,7 +892,7 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -942,7 +942,7 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -996,7 +996,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -1053,7 +1053,7 @@ finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -1117,7 +1117,7 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -1170,7 +1170,7 @@ abort(handle: Uint8Array): Promise\<void>
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.     |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.     |
 
 **示例**：
 ```ts
@@ -1222,7 +1222,7 @@ getPublicCertificate(keyUri: string): Promise\<CMResult>
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 | 17500005 | The application is not authorized by the user. |
 
@@ -1278,7 +1278,7 @@ isAuthorizedApp(keyUri: string): Promise\<boolean>
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 
 **示例**：
 ```ts
@@ -1324,7 +1324,7 @@ getAllUserTrustedCertificates(): Promise\<CMResult>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 
 **示例**：
 ```ts
@@ -1379,7 +1379,7 @@ getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error.                                              |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.                                              |
 
 **示例**：
 
@@ -1437,7 +1437,7 @@ getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500002 | The certificate does not exist. |
 
 **示例**：
@@ -1484,7 +1484,7 @@ getPrivateCertificates(): Promise\<CMResult>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 
 **示例**：
 ```ts
@@ -1535,7 +1535,7 @@ getCertificateStorePath(property: CertStoreProperty): string;
 | 错误码ID    | 错误信息      |
 |----------| ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 17500001 | Internal error. |
+| 17500001 | Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error. |
 | 17500009 | The device does not support the specified certificate store path. |
 
 **示例**：
