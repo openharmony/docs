@@ -13,7 +13,11 @@ Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，
 import { common } from '@kit.AbilityKit';
 ```
 
-## 属性
+## Context
+
+Context提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -33,7 +37,7 @@ import { common } from '@kit.AbilityKit';
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
-## Context.createModuleContext<sup>(deprecated)</sup>
+### createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(moduleName: string): Context
 
@@ -88,7 +92,7 @@ export default class EntryAbility extends UIAbility {
 
 > 说明：仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
 
-## Context.getApplicationContext
+### getApplicationContext
 
 getApplicationContext(): ApplicationContext
 
@@ -131,7 +135,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.getGroupDir<sup>10+</sup>
+### getGroupDir<sup>10+</sup>
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
@@ -184,7 +188,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.getGroupDir<sup>10+</sup>
+### getGroupDir<sup>10+</sup>
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 

@@ -2,7 +2,7 @@
 
 UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
-- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
+- [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
@@ -19,7 +19,11 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 import { UIAbility } from '@kit.AbilityKit';
 ```
 
-## 属性
+## UIAbility
+
+表示包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -27,10 +31,10 @@ import { UIAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | 上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility启动时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 当前UIAbility被多次拉起时，通过[onCreate](#uiabilityoncreate)或[onNewWant](#uiabilityonnewwant)接收到的最近一次Want请求参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 当前UIAbility被多次拉起时，通过[onCreate](#oncreate)或[onNewWant](#onnewwant)接收到的最近一次Want请求参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。|
 
-## UIAbility.onCreate
+### onCreate
 
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
@@ -60,7 +64,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWindowStageCreate
+### onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
@@ -90,7 +94,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+### onWindowStageWillDestroy<sup>12+</sup>
 
 onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
@@ -120,7 +124,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWindowStageDestroy
+### onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
@@ -143,7 +147,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWindowStageRestore
+### onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
@@ -173,7 +177,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
@@ -214,7 +218,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -237,7 +241,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -260,7 +264,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onContinue
+### onContinue
 
 onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
@@ -324,7 +328,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
   ```
 
 
-## UIAbility.onNewWant
+### onNewWant
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
@@ -354,7 +358,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onDump
+### onDump
 
 onDump(params: Array\<string>): Array\<string>
 
@@ -390,7 +394,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onSaveState
+### onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
@@ -427,7 +431,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onShare<sup>10+</sup>
+### onShare<sup>10+</sup>
 
 onShare(wantParam: Record&lt;string, Object&gt;): void
 
@@ -456,17 +460,17 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminate<sup>10+</sup>
+### onPrepareToTerminate<sup>10+</sup>
 
 onPrepareToTerminate(): boolean
 
-UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+UIAbility生命周期回调，在UIAbility关闭时触发，用于在UIAbility正式关闭前执行其他操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
 
 当前仅在2in1设备上生效。
 
 > **说明：**
 >
-> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#uiabilityonpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
+> - 从API version 15开始，当[UIAbility.onPrepareToTerminateAsync](#onpreparetoterminateasync15)实现时，本回调函数将不执行。当[AbilityStage.onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)或[AbilityStage.onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)实现时，在dock栏或系统托盘处右键点击关闭，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -513,11 +517,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminateAsync<sup>15+</sup>
+### onPrepareToTerminateAsync<sup>15+</sup>
 
 onPrepareToTerminateAsync(): Promise\<boolean>
 
-UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口关闭。
+UIAbility生命周期异步回调，在UIAbility关闭时触发，通过使用Promise异步回调的方式，在UIAbility正式关闭前执行操作。例如，询问用户是否确认关闭UIAbility。如果用户确认关闭UIAbility，可配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#terminateself)接口关闭。
 
 当前仅在2in1设备上生效。
 
@@ -554,7 +558,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onBackPressed<sup>10+</sup>
+### onBackPressed<sup>10+</sup>
 
 onBackPressed(): boolean
 
@@ -589,7 +593,7 @@ export default class EntryAbility extends UIAbility {
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
 
-### Caller.call
+### call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
@@ -677,7 +681,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.callWithResult
+### callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
@@ -767,7 +771,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.release
+### release
 
 release(): void
 
@@ -813,7 +817,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRelease
+### onRelease
 
  onRelease(callback: OnReleaseCallback): void
 
@@ -867,7 +871,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRemoteStateChange<sup>10+</sup>
+### onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
@@ -922,7 +926,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on('release')
+### on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -977,7 +981,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off('release')
+### off('release')
 
 off(type: 'release', callback: OnReleaseCallback): void
 
@@ -1033,7 +1037,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off('release')
+### off('release')
 
 off(type: 'release'): void
 
@@ -1092,7 +1096,7 @@ export default class MainUIAbility extends UIAbility {
 
 通用组件服务端注册和解除客户端caller通知送信的callback接口。
 
-### Callee.on
+### on
 
 on(method: string, callback: CalleeCallback): void
 
@@ -1164,7 +1168,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Callee.off
+### off
 
 off(method: string): void
 
