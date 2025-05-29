@@ -4,7 +4,7 @@
 
 A virtual private network (VPN) is a dedicated network established on a public network. Unlike a traditional private network, a VPN does not require an end-to-end physical link between any two nodes. It is built over a network platform (for example, Internet) provided by a public network service provider. User data is transmitted over the logical link.
 
-OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
+OpenHarmony provides the VPN Extension solution for enhanced VPN management. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
 >
@@ -175,10 +175,10 @@ To ensure network connectivity, the system automatically stops the VPN connectio
 | dnsAddresses        | Array\<string\>                                              | No  | IP addresses of DNS servers. Trusted VPN applications can access the network through these IP addresses. If this parameter is not configured, IP address allocated by the system will be used.|
 | searchDomains       | Array\<string\>                                              | No  | List of DNS search domains.                                           |
 | mtu                 | number                                                       | No  | Maximum transmission unit (MTU), in bytes.                              |
-| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**.                                |
-| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**.                               |
-| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**.                            |
-| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**.                               |
+| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.                                |
+| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.                               |
+| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.                            |
+| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.                               |
 | trustedApplications | Array\<string\>                                              | No  | Trusted VPN applications, which are represented by bundle names of the string type             |
 | blockedApplications | Array\<string\>                                              | No  | Blocked VPN applications, which are represented by bundle names of the string type           |
 

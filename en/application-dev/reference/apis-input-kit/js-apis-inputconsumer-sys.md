@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputConsumer (Input Consumer) (System API)
+# @ohos.multimodalInput.inputConsumer (Global Shortcut Keys) (System API)
 
 The **inputConsumer** module implements listening for combination key events.
 
@@ -7,6 +7,9 @@ The **inputConsumer** module implements listening for combination key events.
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs provided by this module are system APIs.
+>
+> - The APIs provided by this module apply only to system shortcut keys, which are global shortcut keys defined by the system.
+
 
 ## Modules to Import
 
@@ -118,7 +121,7 @@ Sets the shortcut key shield status.
 | Name        | Type                        | Mandatory  | Description                                      |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
 | shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | Yes   | Shortcut key shield mode. Currently, only **FACTORY_MODE** is supported, which means to shield all shortcut keys.                      |
-| isShield | boolean  | Yes   | Whether to enable key shielding. The value **true** means to enable key shielding, and the value **false** indicates the opposite.             |
+| isShield | boolean  | Yes   | Whether to enable shortcut key shielding. The value **true** means to enable shortcut key shielding, and the value **false** indicates the opposite.             |
 
 **Example**
 

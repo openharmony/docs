@@ -1,10 +1,12 @@
-# @ohos.multimodalInput.inputConsumer (Input Consumer)
+# @ohos.multimodalInput.inputConsumer (Global Shortcut Keys)
 
-The **inputConsumer** module implements listening for combination key events.
+The **inputConsumer** module provides APIs for subscribing to and unsubscribing from global shortcut keys. 
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Global shortcut keys are combination keys defined by the system or application. System shortcut keys are defined by the system, and application shortcut keys are defined by applications.
 
 
 ## Modules to Import
@@ -14,7 +16,7 @@ The **inputConsumer** module implements listening for combination key events.
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
-## HotkeyOptions<sup>14+</sup>
+## HotkeyOptions
 
 Defines shortcut key options.
 
@@ -23,7 +25,7 @@ Defines shortcut key options.
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
 | preKeys   | Array&lt;number&gt; | Yes     | No     | Modifier key set (including Ctrl, Shift, and Alt). A maximum of two modifier keys are supported. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
-| finalKey  | number  | Yes     | No     | Modified key, which is the key other than the modifier key and meta key.<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
+| finalKey  | number  | Yes     | No     | Modified key, which can be any key except the modifier keys and Meta key. For details about the keys, see [Keycode](js-apis-keycode.md).<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
 | isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## KeyPressedConfig<sup>16+</sup>
@@ -35,10 +37,10 @@ Sets the key event consumption configuration.
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | Yes     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
-| action    | number  | Yes     | No     | Key event type. Currently, the value can only be **1**.<br>- **1**: Key press.<br>- **2**: Key release.|
-| isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events.|
+| action    | number  | Yes     | No     | Key event type. Currently, this parameter can only be set to **1**, indicating key press.|
+| isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
-## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
+## inputConsumer.getAllSystemHotkeys
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
@@ -48,7 +50,7 @@ Obtains all system shortcut keys. This API uses a promise to return the result.
 
 **Return value**
 
-| Parameter        |  Description                                      |
+| Type        |  Description                                      |
 | ---------- |  ---------------------------------------- |
 | Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise used to return the list of all system shortcut keys.|
 
@@ -68,11 +70,11 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyChange')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-Enables listening for global combination key events. This API uses an asynchronous callback to return the combination key data when a combination key event that meets the specified condition occurs.
+Subscribes to application shortcut key change events based on the specified options. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -81,12 +83,12 @@ Enables listening for global combination key events. This API uses an asynchrono
 | Name        | Type                        | Mandatory  | Description                                      |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **hotkeyChange**.                  |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | Yes   | Shortcut key options.                |
-| callback   | Callback&lt;HotkeyOptions&gt; | Yes   | Callback used to return the combination key data when a global combination key event that meets the specified condition occurs.|
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | Yes   | Shortcut key options.                |
+| callback   | Callback&lt;HotkeyOptions&gt; | Yes   | Callback used to return the application shortcut key change event.|
 
 **Error codes**:
 
-For details about the error codes, see [Input Consumer Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Global Shortcut Key Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code | Error Message            |
 | ---- | --------------------- |
@@ -115,11 +117,11 @@ try {
 }
 ```
 
-## inputConsumer.off('hotkeyChange')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-Disables listening for global combination key events. 
+Unsubscribes from application shortcut key change events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -128,8 +130,8 @@ Disables listening for global combination key events.
 | Name        | Type                        | Mandatory  | Description                             |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **hotkeyChange**.       |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | Yes   | Shortcut key options.            |
-| callback   | Callback&lt;HotkeyOptions&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | Yes   | Shortcut key options.            |
+| callback   | Callback&lt;HotkeyOptions&gt; | No   | Callback to unregister. If this parameter is left unspecified, listening will be disabled for all callbacks registered for the specified shortcut key options.|
 
 **Error codes**:
 
@@ -180,7 +182,7 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-Subscribes to key press events. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
+Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -190,7 +192,7 @@ Subscribes to key press events. If the current application is in the foreground 
 | ---------- | --------------------------             | ----  | ---------- |
 | type       | string                                 | Yes    | Event type. This parameter has a fixed value of **keyPressed**.       |
 | options    | [KeyPressedConfig](#keypressedconfig16)| Yes    | Sets the key event consumption configuration.          |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | Yes   | Callback used to return the key event.|
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | Yes   | Callback used to return key press events.|
 
 **Error codes**:
 
@@ -222,7 +224,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-Unsubscribes from key press events.
+Unsubscribes from key press events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -231,7 +233,7 @@ Unsubscribes from key press events.
 | Name        | Type                        | Mandatory  | Description                             |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **keyPressed**.       |
-| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all registered callbacks.|
 
 **Error codes**:
 
