@@ -60,7 +60,7 @@ LightWeightMap的构造函数。
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 ```
 
 
@@ -91,7 +91,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+const lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 let result = lightWeightMap.isEmpty();
 ```
 
@@ -130,10 +130,10 @@ hasAll(map: LightWeightMap<K, V>): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
-let map: LightWeightMap<string, number> = new LightWeightMap();
+let map: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
 ```
@@ -172,7 +172,7 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasKey("squirrel");
 ```
@@ -211,7 +211,7 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasValue(123);
 ```
@@ -244,7 +244,7 @@ increaseCapacityTo(minimumCapacity: number): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.increaseCapacityTo(10);
 ```
 
@@ -257,6 +257,8 @@ get(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -287,6 +289,38 @@ lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.get("sparrow");
 ```
 
+### get<sup>20+</sup>
+
+get(key: K): V \| undefined
+
+获取指定key所对应的value值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定key。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回key映射的value值，不存在返回undefined。 |
+
+**示例：**
+
+```ts
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.get("sparrow");
+```
 
 ### getIndexOfKey
 
@@ -321,7 +355,7 @@ getIndexOfKey(key: K): number
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfKey("sparrow");
@@ -361,7 +395,7 @@ getIndexOfValue(value: V): number
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
@@ -377,6 +411,8 @@ getKeyAt(index: number): K
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -403,7 +439,48 @@ getKeyAt(index: number): K
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.getKeyAt(1);
+```
+
+### getKeyAt<sup>20+</sup>
+
+getKeyAt(index: number): K | undefined
+
+查找指定下标的元素键值对中key值，否则返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 所查找的下标。需要小于等于int32_max即2147483647。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| K | 返回该下标对应的元素键值对中key值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
@@ -438,7 +515,7 @@ setAll(map: LightWeightMap<K, V>): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map: LightWeightMap<string, number> = new LightWeightMap();
@@ -479,7 +556,7 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 let result = lightWeightMap.set("squirrel", 123);
 ```
 
@@ -493,6 +570,8 @@ remove(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -523,6 +602,38 @@ lightWeightMap.set("sparrow", 356);
 lightWeightMap.remove("sparrow");
 ```
 
+### remove<sup>20+</sup>
+
+remove(key: K): V \| undefined
+
+删除并返回指定key映射的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定key。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回删除元素的值，key不存在则返回undefined。 |
+
+**示例：**
+
+```ts
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+lightWeightMap.remove("sparrow");
+```
 
 ### removeAt
 
@@ -558,7 +669,7 @@ removeAt(index: number): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
@@ -601,7 +712,7 @@ setValueAt(index: number, newValue: V): boolean
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
@@ -617,6 +728,8 @@ getValueAt(index: number): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -643,7 +756,48 @@ getValueAt(index: number): V
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.getValueAt(1);
+```
+
+### getValueAt<sup>20+</sup>
+
+getValueAt(index: number): V | undefined
+
+获取指定下标对应键值对中的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回指定下标对应键值对中的元素,如果没有则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
@@ -671,7 +825,7 @@ clear(): void
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
@@ -705,13 +859,13 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
-let temp: IteratorResult<string, number> = iter.next();
+let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -744,13 +898,13 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -765,6 +919,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, th
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -810,6 +966,39 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: LightWeightMapCbFn\<K, V\>)
+
+通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [LightWeightMapCbFn\<K, V\>](#lightweightmapcbfnk-v20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { LightWeightMapCbFn } from '@ohos.util.LightWeightMap';
+
+let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap<string, number>();
+lightWeightMap.set("sparrow", 123);
+lightWeightMap.set("test", 987);
+lightWeightMap.set("gull", 357);
+let lightWeightMapCb: LightWeightMapCbFn<string, number> = (value: number, key: string, map: LightWeightMap<string, number>) => {
+  console.info("value: " + value, " key: " + key);
+};
+lightWeightMap.forEach(lightWeightMapCb);
+```
+
 ### entries
 
 entries(): IterableIterator<[K, V]>
@@ -836,6 +1025,8 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
+以下示例代码适用于ArkTS1.1。
+
 ```ts
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
@@ -851,6 +1042,31 @@ while(!temp.done) {
 ```ts
 // 不建议在entries中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.set("sparrow" + i, 123);
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightMap.remove("sparrow" + i);
+}
+```
+
+以下示例代码适用于ArkTS1.2。
+
+```ts
+let lightWeightMap: LightWeightMap<string, Number> = new LightWeightMap<string, Number>();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let iter = lightWeightMap.entries();
+let temp: IteratorResult<[string, Number]> = iter.next();
+while(!temp.done) {
+  console.log("key:" + temp.value![0]);
+  console.log("value:" + temp.value![1]);
+  temp = iter.next();
+}
+```
+```ts
+// 不建议在entries中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let lightWeightMap: LightWeightMap<string, Number> = new LightWeightMap<string, Number>();
 for(let i = 0; i < 10; i++) {
   lightWeightMap.set("sparrow" + i, 123);
 }
@@ -901,6 +1117,8 @@ let result = lightWeightMap.toString();
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -953,3 +1171,64 @@ for(let i = 0; i < 10; i++) {
   lightWeightMap.remove("sparrow" + i);
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let lightWeightMap: LightWeightMap<string, Number> = new LightWeightMap();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+
+// 使用方法一：
+for (let item of lightWeightMap) {
+  console.info("key:" + item[0]);
+  console.info("value:" + item[1]);
+}
+
+// 使用方法二：
+let iter = lightWeightMap.$_iterator();
+let temp: IteratorResult<[string, Number]> = iter.next();
+while(!temp.done) {
+  console.info("key:" + temp.value![0]);
+  console.info("value:" + temp.value![1]);
+  temp = iter.next();
+}
+```
+
+### LightWeightMapCbFn\<K, V\><sup>20+</sup>
+
+type LightWeightMapCbFn\<K, V\> = (value: V, key: K, map: LightWeightMap\<K, V\>) => void
+
+LightWeightMap中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 当前遍历到的元素键值对的值。 |
+| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| map | [LightWeightMap\<K, V\>](#lightweightmap) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
