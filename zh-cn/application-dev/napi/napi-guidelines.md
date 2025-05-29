@@ -364,6 +364,40 @@ extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
 }
 ```
 
+## dlopen与模块注册
+
+**【规则】**
+如果注册的模块事先有被dlopen，需使用以下方式注册模块。
+
+模块需对外导出固定名称为napi_onLoad的函数，在该函数内调用注册函数。napi_onLoad函数只会在ArkTS代码的import语句中被主动调用，从而避免dlopen时提前触发模块的注册。
+
+**示例**
+
+```cpp
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module nativeModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "nativerender",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
+extern "C" void napi_onLoad()
+{
+    napi_module_register(&nativeModule);
+}
+```
+
 ## 正确的使用napi_create_external系列接口创建的JS Object
 
 **【规则】** napi_create_external系列接口创建出来的JS对象仅允许在当前线程传递和使用，跨线程传递（如使用worker的post_message）将会导致应用crash。若需跨线程传递绑定有Native对象的JS对象，请使用napi_coerce_to_native_binding_object接口绑定JS对象和Native对象。
