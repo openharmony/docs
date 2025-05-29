@@ -21,6 +21,10 @@ domStorageAccess(domStorageAccess: boolean)
 | ---------------- | ------- | ---- | ------------------------------------ |
 | domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启文档对象模型存储接口权限，false表示不开启文档对象模型存储接口权限。<br>默认值：false。 |
 
+> **说明：**
+>
+> - 网页中使用到DOM Storage API则需要设置为true后即可正常加载。
+
 **示例：**
 
   ```ts
