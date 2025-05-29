@@ -371,10 +371,15 @@ export default function abilityTest() {
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
 | dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
-| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>record命令的各个子参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
 | start-daemon|start-daemon| 拉起uitest测试进程。 |
+
+### 查看帮助命令
+```bash
+hdc shell uitest help
+```
 
 ### 截图使用示例
 
@@ -392,13 +397,27 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 ```
 
 ### 用户录制操作
+
+```bash
+hdc shell uitest uiRecord record [-W true/false] [-l] [-c true/false]
+```
+
 >**说明**
 >
 > 录制过程中，需等待当前操作的识别结果在命令行输出后，再进行下一步操作。
 
+| 选项               | 说明                              |
+|--------------------|---------------------------------|
+| -W <true \| false> | 可选参数，录制时是否匹配操作坐标对应的控件。true：匹配并记录坐标对应控件信息。false：仅保存坐标信息。默认值为true。|
+| -l                 | 可选参数，识别到每个操作事件后，保存当前页面控件树的json文件。保存路径：'/data/local/tmp/'。 |
+| -c <true \| false> | 可选参数，控制是否将录制到的事件信息输出到控制台。true：输出到控制台。false：不输出到控制台。默认值为ture。|
+
+
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
 hdc shell uitest uiRecord record
+# 将当前界面操作记录到/data/local/tmp/record.csv，每次操作后保存页面控件树到/data/local/tmp/目录下，结束录制操作使用Ctrl+C结束录制。
+hdc shell uitest uiRecord record -l 
 # 读取并打印录制数据。
 hdc shell uitest uiRecord read
 ```
@@ -409,6 +428,7 @@ hdc shell uitest uiRecord read
  {
 	 "ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
 	 "BUNDLE": "com.ohos.launcher", // 操作应用
+   "FILEPATH": "data/local/tmp/layout_录制起始时间戳_事件序号.json", // 使用-l参数时，该字段有值。记录操作后页面控件树的保存路径。
 	 "CENTER_X": "", // 预留字段,暂未使用
 	 "CENTER_Y": "", // 预留字段,暂未使用
 	 "EVENT_TYPE": "pointer", //  
@@ -445,19 +465,19 @@ hdc shell uitest uiRecord read
 
 ### 注入UI模拟操作
 
-| 命令   | 必填 | 描述              | 
-|------|------|-----------------|
-| help   | 是    | uiInput命令相关帮助信息。 |
-| click   | 是    | 模拟单击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
-| doubleClick   | 是    | 模拟双击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
-| longClick   | 是    | 模拟长按操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。     | 
-| fling   | 是    | 模拟快滑操作。具体请参考下方**uiInput fling使用示例使用示例**。   | 
-| swipe   | 是    | 模拟慢滑操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
-| drag   | 是    | 模拟拖拽操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
-| dircFling   | 是    | 模拟指定方向滑动操作。具体请参考下方**uiInput dircFling使用示例**。     |
-| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。具体请参考下方**uiInput inputText使用示例**。                   |
-| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。具体请参考下方**uiInput text使用示例**。                           |
-| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。具体请参考下方**uiInput keyEvent使用示例**。     | 
+| 命令   | 描述              | 
+|------|-----------------|
+| help   | uiInput命令相关帮助信息。 |
+| click   | 模拟单击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| doubleClick   | 模拟双击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| longClick   | 模拟长按操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。     | 
+| fling   | 模拟快滑操作。具体请参考下方**uiInput fling使用示例使用示例**。   | 
+| swipe   | 模拟慢滑操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| drag   | 模拟拖拽操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| dircFling   | 模拟指定方向滑动操作。具体请参考下方**uiInput dircFling使用示例**。     |
+| inputText   | 指定坐标点，模拟输入框输入文本操作。具体请参考下方**uiInput inputText使用示例**。                   |
+| text   | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。具体请参考下方**uiInput text使用示例**。                           |
+| keyEvent   | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。具体请参考下方**uiInput keyEvent使用示例**。     | 
 
 
 #### uiInput click/doubleClick/longClick使用示例
