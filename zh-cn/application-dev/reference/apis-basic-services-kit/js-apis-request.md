@@ -3307,9 +3307,9 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-### on('fault')<sup>20+</sup>
+### on('faultOccur')<sup>20+</sup>
 
-on(event: 'fault', callback: Callback&lt;Faults&gt;): void
+on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 
 订阅任务失败原因，使用callback形式返回结果。
 
@@ -3319,7 +3319,7 @@ on(event: 'fault', callback: Callback&lt;Faults&gt;): void
 
 | 参数名 | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| -------- |----------------------------|
-| event | string                              | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败原因。 |
+| event | string                              | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。 |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
 
 **示例：**
@@ -3363,7 +3363,7 @@ on(event: 'fault', callback: Callback&lt;Faults&gt;): void
     console.info('upload task failed.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
-    task.on('fault', faultOnCallback);
+    task.on('faultOccur', faultOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {
@@ -4077,9 +4077,9 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-### off('fault')<sup>20+</sup>
+### off('faultOccur')<sup>20+</sup>
 
-off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
+off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 
 取消订阅任务响应头。
 
@@ -4090,7 +4090,7 @@ off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
 
 | 参数名 | 类型                         | 必填 | 说明                                    |
 | -------- |----------------------------| -------- |---------------------------------------|
-| event | string                     | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败。      |
+| event | string                     | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。      |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -4130,19 +4130,19 @@ off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  let faultOffCallback1 = (progress: request.agent.HttpResponse) => {
+  let faultOffCallback1 = (faults: request.agent.Faults) => {
     console.info('upload task failed.');
   };
-  let faultOffCallback2 = (progress: request.agent.HttpResponse) => {
+  let faultOffCallback2 = (faults: request.agent.Faults) => {
     console.info('upload task failed.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
-    task.on('fault', faultOffCallback1);
-    task.on('fault', faultOffCallback2);
+    task.on('faultOccur', faultOffCallback1);
+    task.on('faultOccur', faultOffCallback2);
     // 表示取消faultOffCallback1的订阅
-    task.off('fault', faultOffCallback1);
+    task.off('faultOccur', faultOffCallback1);
     // 表示取消订阅任务移除的所有回调
-    task.off('fault');
+    task.off('faultOccur');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {
