@@ -3885,8 +3885,8 @@ enum ArkUI_NodeCustomEventType
 | ARKUI_NODE_CUSTOM_EVENT_ON_DRAW  | draw 类型。  |
 | ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW  | foreground 类型。  |
 | ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW  | overlay 类型。  |
-| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT  | front 类型。  |
-| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND  | behind 类型。  |
+| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_FRONT  | front 类型。  <br>起始版本：20|
+| ARKUI_NODE_CUSTOM_EVENT_ON_DRAW_BEHIND  | behind 类型。  <br>起始版本：20|
 
 ### ArkUI_NodeDirtyFlag
 
