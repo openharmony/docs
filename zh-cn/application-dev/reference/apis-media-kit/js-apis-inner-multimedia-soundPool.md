@@ -386,10 +386,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function create(context: Context) {
   //创建soundPool实例。
   let soundPool: media.SoundPool;
-
-
-
-
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags: 1
