@@ -47,6 +47,8 @@
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
       - [适配指导案例](quick-start/arkts-more-cases.md)
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
+    - 面向其他语言的的ArkTS迁移教程<!--arkts-for-other-languages-->
+      - [从Java到ArkTS的迁移教程](quick-start/getting-started-with-arkts-for-java-programmers.md)
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -1133,9 +1135,11 @@
         - [Connectivity Kit简介](connectivity/connectivity-kit-intro.md)
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
+          - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
           - 传统蓝牙<!--bluetooth-br-->
-            - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-            - [传输数据](connectivity/bluetooth/spp-development-guide.md)
+            - [查找设备](connectivity/bluetooth/br-discovery-development-guide.md)
+            - [配对连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/spp-development-guide.md)
           - 低功耗蓝牙<!--bluetooth-ble-->
             - [查找设备](connectivity/bluetooth/ble-development-guide.md)
             - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
