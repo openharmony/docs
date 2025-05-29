@@ -34,9 +34,9 @@ AVRecorder支持开发音视频录制，集成了音频捕获，音频编码，�
 > 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
-开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md)、[avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
 
-AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/_a_v_recorder.md)。
+AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/capi-avrecorder.md)。
 
 在 CMake 脚本中链接动态库。
 ```
@@ -280,13 +280,13 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OH_AVRecorder_Stop(g_avRecorder);
    ```
 10. 重置资源，调用OH_AVRecorder_Reset()重新进入idle状态，允许重新配置录制参数。
-   ```
-   OH_AVRecorder_Reset(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Reset(g_avRecorder);
+      ```
 11. 销毁实例，调用OH_AVRecorder_Release()进入released状态，退出录制，释放视频数据输入源相关资源，例如相机资源。
-   ```
-   OH_AVRecorder_Release(g_avRecorder);
-   ```
+      ```
+      OH_AVRecorder_Release(g_avRecorder);
+      ```
 
 
 ## 完整示例

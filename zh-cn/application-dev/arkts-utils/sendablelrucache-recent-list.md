@@ -15,9 +15,10 @@
 
    import { ArkTSUtils } from '@kit.ArkTS';
 
-   // 使用use shared标记为共享模块，使SendableClass实例对象在不同线程间可共享。
+   // 使用use shared标记为共享模块。
    "use shared"
 
+   // SendableClass实例对象在不同线程间可共享。
    @Sendable
    class SendableClass {
      // 使用SendableLruCache实例对象时需加锁，避免多线程同时操作导致数据不一致。

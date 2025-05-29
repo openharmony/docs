@@ -1755,15 +1755,9 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.isKeyItemExist(keyAlias, emptyOptions, (error, data) => {
     if (data) {
-        this.getUIContext().getPromptAction().showToast({
-            message: "keyAlias: " + keyAlias + " is existed！",
-            duration: 2500,
-        })
+        console.info(`keyAlias:${keyAlias} is existed!`)
     } else {
-        this.getUIContext().getPromptAction().showToast({
-            message: "find key failed",
-            duration: 2500,
-        })
+        console.error(`find key failed`)
     }
 });
 ```
@@ -1815,15 +1809,9 @@ let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
-    this.getUIContext().getPromptAction().showToast({
-        message: "keyAlias: " + keyAlias + " is existed！",
-        duration: 500,
-    })
+    console.info(`keyAlias:${keyAlias} is existed!`)
 }).catch((error: Error)=>{
-    this.getUIContext().getPromptAction().showToast({
-        message: "find key failed",
-        duration: 6500,
-    })
+    console.error(`find key failed`)
 })
 ```
 
@@ -1872,15 +1860,9 @@ let emptyOptions: huks.HuksOptions = {
 try {
     huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
         if (data) {
-            this.getUIContext().getPromptAction().showToast({
-                message: "keyAlias: " + keyAlias +" is existed!",
-                duration: 2500,
-            })
+            console.info(`keyAlias:${keyAlias} is existed!`)
         } else {
-            this.getUIContext().getPromptAction().showToast({
-                message: "find key failed",
-                duration: 2500,
-            })
+            console.error(`find key failed`)
         }
     });
 } catch (error) {
@@ -1937,21 +1919,12 @@ let emptyOptions: huks.HuksOptions = {
 };
 huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
     if (data) {
-        this.getUIContext().getPromptAction().showToast({
-            message: "keyAlias: " + keyAlias +" is existed!",
-            duration: 2500,
-        })
+        console.info(`keyAlias:${keyAlias} is existed!`)
     } else {
-        this.getUIContext().getPromptAction().showToast({
-            message: "find key failed",
-            duration: 2500,
-        })
+        console.info(`find key failed!`)
     }
 }).catch((error: Error)=>{
-    this.getUIContext().getPromptAction().showToast({
-        message: "find key failed",
-        duration: 6500,
-    })
+    console.info(`find key failed!`)
 })
 ```
 

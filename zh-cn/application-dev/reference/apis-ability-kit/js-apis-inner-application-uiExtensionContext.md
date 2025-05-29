@@ -1154,9 +1154,9 @@ export default class EntryAbility extends UIExtensionAbility {
 
 openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
-通过[AppLinking](../../application-models/app-linking-startup.md)或[DeepLinking](../../application-models/deep-linking-startup.md)方式启动UIAbility。使用Promise异步回调。
+通过App Linking或Deep Linking方式启动UIAbility。使用Promise异步回调。
 
-通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理App Linking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
 - "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。

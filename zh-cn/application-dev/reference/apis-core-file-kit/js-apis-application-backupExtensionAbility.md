@@ -69,13 +69,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 | 参数名           | 类型                            | 必填 | 说明                          |
 |---------------| ------------------------------- | ---- |-----------------------------|
-| backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+| backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。<br>backupInfo可能为空字符串，需要开发者针对空字符串场景做判断处理。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| Promise&lt;string&gt; |Promise对象，返回应用执行自定义备份操作的信息，包含备份结果和报错信息（返回值为Json格式）。|
+|string \| Promise&lt;string&gt; |返回应用执行自定义备份操作的信息，包含备份结果和报错信息，返回值为Json格式。<br>异步返回Promise对象。<br>同步返回string。 |
 
 > **说明：**
 >
@@ -83,17 +83,21 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    onBackupEx(backupInfo: string): string {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  onBackupEx(backupInfo: string): string {
+    try {
+      if (backupInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -101,9 +105,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 > **说明：**
 >
@@ -111,18 +119,22 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    //异步实现
-    async onBackupEx(backupInfo: string): Promise<string> {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  //异步实现
+  async onBackupEx(backupInfo: string): Promise<string> {
+    try {
+      if (backupInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -130,9 +142,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 ### onRestore
 
@@ -176,13 +192,13 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。 |
+| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。<br>restoreInfo可能为空字符串，需要开发者针对空字符串场景做判断处理。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| Promise&lt;string&gt; |Promise对象，返回应用执行自定义恢复操作的信息，包含恢复结果和报错信息（返回值为Json格式）。|
+| string \| Promise&lt;string&gt; |返回应用执行自定义恢复操作的信息，包含恢复结果和报错信息，返回值为Json格式。<br>异步返回Promise对象。<br>同步返回string。 |
 
 > **说明：**
 >
@@ -190,17 +206,21 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    // 异步实现
-    async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  // 异步实现
+  async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+    try {
+      if (restoreInfo == "") {
+        //当restoreInfo为空时，应用根据业务自行做处理。
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -208,9 +228,13 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+```
 
 > **说明：**
 >
@@ -219,16 +243,21 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 **示例：**
 
 ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
 
-  class BackupExt extends BackupExtensionAbility {
-    // 同步实现
-    onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+class BackupExt extends BackupExtensionAbility {
+  // 同步实现
+  onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+    try {
+      if (restoreInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -236,9 +265,14 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+
+```
 
 ### onProcess<sup>12+</sup>
 

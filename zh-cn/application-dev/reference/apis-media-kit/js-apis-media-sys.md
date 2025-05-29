@@ -36,6 +36,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -130,9 +131,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -1357,7 +1358,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | 是   | 否   | 系统录屏是否处于录屏状态。 |
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 

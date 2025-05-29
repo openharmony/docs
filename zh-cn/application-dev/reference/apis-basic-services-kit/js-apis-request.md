@@ -2526,6 +2526,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data。<br/>- false：每个文件使用一个请求传输。 <br/>- true：使用多文件单请求上传。 <br/>默认值为false。 |
 | notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。默认值为`{}`。|
+| minSpeed<sup>20+</sup> | [MinSpeed](#minspeed20) | 否 | 最低限速自定义设置，默认不启用最低限速。|
+| timeout<sup>20+</sup> | [Timeout](#timeout20) | 否 | 超时时间自定义设置，连接超时时间默认60秒，总超时时间默认604800秒（1周）。|
 
 ## State<sup>10+</sup>  
 
@@ -2584,6 +2586,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如：证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
+| LOW_SPEED<sup>20+</sup>  | 0x90 | 表示任务速度过低。                    |
 
 > **说明：**
 >
@@ -2677,6 +2680,29 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | NETWORK_NOT_MATCH | 0x01 | 表示任务因所需网络条件不满足而进入等待状态。   |
 | APP_BACKGROUND | 0x02 | 表示任务因应用长时间处于后台而进入等待状态。   |
 | USER_INACTIVATED | 0x03 | 表示任务因所属用户处于非激活状态而进入等待状态。 |
+
+## MinSpeed<sup>20+</sup>
+
+任务的最低限速配置。若任务速度持续低于设定值并达到指定时长，则任务失败，失败原因为[LOW_SPEED](#faults10)。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称      | 类型   | 只读 | 可选 | 说明                                                           |
+|---------|----------|----|----|--------------------------------------------------------------|
+| speed   | number   | 否  | 否  | 任务最低速度，单位为字节每秒（B/s）。若任务速度持续低于该值达到指定时长，则任务失败。设置为0表示不启用最低速度限制。 |
+| duration    | number   | 否  | 否  | 允许低于最低速度的持续时间，单位为秒。若任务速度持续低于设定值达到该时长，则任务失败。设置为0表示不启用最低速度限制。  |
+
+## Timeout<sup>20+</sup>
+
+任务的超时配置。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称      | 类型     | 只读 | 可选 | 说明                                      |
+|---------|--------|----|----|-----------------------------------------|
+| connectionTimeout   | number | 否  | 是  | 任务连接超时时间，单位为秒。连接超时是指客户端与服务器建立连接的最大耗时。若不设置则使用默认值60秒，允许设置的最小值为1秒。 |
+| totalTimeout    | number | 否  | 是  |任务总超时时间，单位为秒。总超时包括建立连接、发送请求和接收响应的全部时间。未指定时使用默认值604800秒（1周）。允许设置的最小值为1秒，最大值为604800秒（1周）。  |
+
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -3281,9 +3307,9 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-### on('fault')<sup>20+</sup>
+### on('faultOccur')<sup>20+</sup>
 
-on(event: 'fault', callback: Callback&lt;Faults&gt;): void
+on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 
 订阅任务失败原因，使用callback形式返回结果。
 
@@ -3293,7 +3319,7 @@ on(event: 'fault', callback: Callback&lt;Faults&gt;): void
 
 | 参数名 | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| -------- |----------------------------|
-| event | string                              | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败原因。 |
+| event | string                              | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。 |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
 
 **示例：**
@@ -3337,7 +3363,7 @@ on(event: 'fault', callback: Callback&lt;Faults&gt;): void
     console.info('upload task failed.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
-    task.on('fault', faultOnCallback);
+    task.on('faultOccur', faultOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {
@@ -4051,9 +4077,9 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-### off('fault')<sup>20+</sup>
+### off('faultOccur')<sup>20+</sup>
 
-off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
+off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 
 取消订阅任务响应头。
 
@@ -4064,7 +4090,7 @@ off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
 
 | 参数名 | 类型                         | 必填 | 说明                                    |
 | -------- |----------------------------| -------- |---------------------------------------|
-| event | string                     | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败。      |
+| event | string                     | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。      |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
 **示例：**
@@ -4104,19 +4130,19 @@ off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  let faultOffCallback1 = (progress: request.agent.HttpResponse) => {
+  let faultOffCallback1 = (faults: request.agent.Faults) => {
     console.info('upload task failed.');
   };
-  let faultOffCallback2 = (progress: request.agent.HttpResponse) => {
+  let faultOffCallback2 = (faults: request.agent.Faults) => {
     console.info('upload task failed.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
-    task.on('fault', faultOffCallback1);
-    task.on('fault', faultOffCallback2);
+    task.on('faultOccur', faultOffCallback1);
+    task.on('faultOccur', faultOffCallback2);
     // 表示取消faultOffCallback1的订阅
-    task.off('fault', faultOffCallback1);
+    task.off('faultOccur', faultOffCallback1);
     // 表示取消订阅任务移除的所有回调
-    task.off('fault');
+    task.off('faultOccur');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {
@@ -4794,9 +4820,9 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                 |
-|-------|--------|----|------------------------------------|
-| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节。 |
+| 参数名   | 类型     | 必填 | 说明                                                                           |
+|-------|--------|----|------------------------------------------------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节，同时该值不得低于[MinSpeed](#minspeed20)设置的最低速度。 |
 
 **返回值：**
 

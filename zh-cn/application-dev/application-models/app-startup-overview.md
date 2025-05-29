@@ -55,7 +55,8 @@ Deep Linking与App Linking均可以使用[openLink](../reference/apis-ability-ki
 | appLinkingOnly为true且目标应用已安装 | 直接跳转打开目标应用。 |返回失败，系统不跳转，由应用自行处理。 |
 | appLinkingOnly为true且目标应用未安装 | 返回失败，系统不跳转由应用自行处理。 | 返回失败，系统不跳转，由应用自行处理。 |
 
-
+<!--RP1-->
+<!--RP1End-->
 
 
 

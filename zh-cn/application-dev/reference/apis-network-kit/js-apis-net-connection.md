@@ -2687,8 +2687,6 @@ type TCPSocket = socket.TCPSocket
 
 定义一个TCPSocket对象，可以通过[socket.constructTCPSocketInstance](js-apis-socket.md#socketconstructtcpsocketinstance7)创建。
 
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 |       类型       |            说明             |
@@ -2700,8 +2698,6 @@ type TCPSocket = socket.TCPSocket
 type UDPSocket = socket.UDPSocket
 
 定义一个UDPSocket对象，可以通过[socket.constructUDPSocketInstance](js-apis-socket.md#socketconstructudpsocketinstance)创建。
-
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
