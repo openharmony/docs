@@ -150,7 +150,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 允许应用访问公共目录下Desktop目录及子目录。
 
 <!--RP15-->
-当前仅2in1设备应用可申请此权限。
+当前仅2in1设备和平板上的应用可申请此权限。
 <!--RP15End-->
 
 **权限级别**：system_basic
@@ -473,7 +473,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **授权方式**：系统授权（system_grant）
 
-**起始版本**：16
+**起始版本**：18
 
 ### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
