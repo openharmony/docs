@@ -26,7 +26,7 @@ Invalid Parameter. Error message: ${messageInfo}.
 
 检查入参，修正参数值为合法值。
 
-
+<!--Del-->
 ## 12100002 tokenId不存在
 
 **错误信息**
@@ -41,8 +41,8 @@ TokenId does not exist.
 **处理步骤**
 
 检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
-
-
+<!--DelEnd-->
+<!--Del-->
 ## 12100003 权限名不存在
 
 **错误信息**
@@ -58,7 +58,7 @@ Permission does not exist.
 **处理步骤**
 
 检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
-
+<!--DelEnd-->
 
 ## 12100004 接口未配套使用
 
@@ -92,7 +92,7 @@ The number of listeners exceeds the limit.
 
 及时释放已注册的无用的监听器。
 
-
+<!--Del-->
 ## 12100006 指定的应用不支持被授予或被取消授予指定的权限
 
 **错误信息**
@@ -108,7 +108,7 @@ The specified application does not support the permissions granted or ungranted 
 
 1. 请确认tokenid的获取方式是否正确。
 2. 确认待授权的沙箱应用是否为特殊的受限沙箱应用进程，部分模式下的沙箱应用被禁止授予大部分权限。
-
+<!--DelEnd-->
 
 ## 12100007 系统服务工作异常
 
@@ -126,7 +126,7 @@ The service is abnormal.
 
 系统服务内部工作异常，请稍后重试，或者重启设备。
 
-
+<!--Del-->
 ## 12100008 内存申请失败
 
 **错误信息**
@@ -140,7 +140,7 @@ Out of memory.
 **处理步骤**
 
 系统内存不足，请稍后重试，或者重启设备。
-
+<!--DelEnd-->
 
 ## 12100009 服务内部错误
 
