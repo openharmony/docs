@@ -1,6 +1,6 @@
 # Row
 
-沿水平方向布局容器。
+沿水平方向布局的容器。
 
 >  **说明：**
 >
@@ -50,7 +50,7 @@ Row(options?: RowOptions | RowOptionsV2)
 
 ## RowOptions<sup>14+</sup>对象说明
 
-用于构造Row组件时设置子组件间距属性。
+设置Row组件的子组件间距属性。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -64,7 +64,7 @@ Row(options?: RowOptions | RowOptionsV2)
 
 ## RowOptionsV2<sup>18+</sup>对象说明
 
-用于构造Row组件时设置子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
+设置Row组件的子组件间距属性。间距类型SpaceType支持number、string或Resource类型。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -124,7 +124,7 @@ justifyContent(value: FlexAlign)
 
 reverse(isReversed: Optional\<boolean\>)
 
-设置子组件在主轴（即水平方向）上的排列是否反转。
+设置子组件在水平方向上的排列是否反转。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

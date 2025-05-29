@@ -143,10 +143,6 @@ Decorators for [application state management](arkts-application-state-management
 
 State management V2 adds new features, such as in-depth observation and property-level update, to state management V1.
 
-> **NOTE**
->
-> Currently, the capabilities of state management V2 are still under optimization. You are advised to use them properly.
-
 ### How State Management V2 Stacks Against State Management V1
 
 State management V1 uses a proxy to observe data. When a state variable is created, a data proxy observer is also created. The observer can sense the proxy change but cannot sense the actual data change. Therefore, the observer has the following restrictions:

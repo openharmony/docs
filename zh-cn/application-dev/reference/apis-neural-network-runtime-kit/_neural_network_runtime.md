@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [neural_network_core.h](neural__network__core_8h.md) | Neural Network Core模块接口定义，AI推理框架使用Neural Network Core提供的Native接口，完成模型编译，并在加速硬件上执行推理和计算。 | 
+| [neural_network_core.h](neural__network__core_8h.md) | Neural Network Core模块接口定义，AI推理框架使用Neural Network Core提供的Native接口，完成模型编译，并在加速硬件上执行推理和计算。<br/>部分接口定义从neural_network_runtime.h移动至此头文件统一呈现，对于此类接口，API version 11 版本之前即支持使用，各版本均可正常使用。 | 
 | [neural_network_runtime.h](neural__network__runtime_8h.md) | Neural Network Runtime模块接口定义，AI推理框架使用Neural Network Runtime提供的Native接口，完成模型构建。 | 
 | [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Neural Network Runtime定义的结构体和枚举值。 | 
 
@@ -40,17 +40,8 @@
 | typedef struct [NN_QuantParam](#nn_quantparam)  [NN_QuantParam](#nn_quantparam) | 量化参数的句柄。 | 
 | typedef struct [NN_TensorDesc](#nn_tensordesc)  [NN_TensorDesc](#nn_tensordesc) | Tensor描述的句柄。 | 
 | typedef struct [NN_Tensor](#nn_tensor)  [NN_Tensor](#nn_tensor) | Tensor句柄。 | 
-| typedef enum [OH_NN_PerformanceMode](#oh_nn_performancemode)  [OH_NN_PerformanceMode](#oh_nn_performancemode) | 硬件的性能模式。 | 
-| typedef enum [OH_NN_Priority](#oh_nn_priority)  [OH_NN_Priority](#oh_nn_priority) | 模型推理任务优先级。 | 
-| typedef enum [OH_NN_ReturnCode](#oh_nn_returncode)  [OH_NN_ReturnCode](#oh_nn_returncode) | Neural Network Runtime 定义的错误码类型。 | 
 | typedef void(\* [NN_OnRunDone](#nn_onrundone)) (void \*userData, [OH_NN_ReturnCode](#oh_nn_returncode) errCode, void \*outputTensor[], int32_t outputCount) | 异步推理结束后的回调处理函数句柄。 | 
 | typedef void(\* [NN_OnServiceDied](#nn_onservicedied)) (void \*userData) | 异步推理执行期间设备驱动服务异常终止时的回调处理函数句柄。 | 
-| typedef enum [OH_NN_FuseType](#oh_nn_fusetype)  [OH_NN_FuseType](#oh_nn_fusetype) | Neural Network Runtime 融合算子中激活函数的类型。 | 
-| typedef enum [OH_NN_Format](#oh_nn_format)  [OH_NN_Format](#oh_nn_format) | 张量数据的排布类型。 | 
-| typedef enum [OH_NN_DeviceType](#oh_nn_devicetype)  [OH_NN_DeviceType](#oh_nn_devicetype) | Neural Network Runtime 支持的设备类型。 | 
-| typedef enum [OH_NN_DataType](#oh_nn_datatype)  [OH_NN_DataType](#oh_nn_datatype) | Neural Network Runtime 支持的数据类型。 | 
-| typedef enum [OH_NN_OperationType](#oh_nn_operationtype)  [OH_NN_OperationType](#oh_nn_operationtype) | Neural Network Runtime 支持算子的类型。 | 
-| typedef enum [OH_NN_TensorType](#oh_nn_tensortype)  [OH_NN_TensorType](#oh_nn_tensortype) | 张量的类型。 | 
 | typedef struct [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)  [OH_NN_UInt32Array](#oh_nn_uint32array) | 该结构体用于存储32位无符号整型数组。 | 
 | typedef struct [OH_NN_QuantParam](_o_h___n_n___quant_param.md)  [OH_NN_QuantParam](#oh_nn_quantparam) | 量化信息。 | 
 | typedef struct [OH_NN_Tensor](_o_h___n_n___tensor.md)  [OH_NN_Tensor](#oh_nn_tensor) | 张量结构体。 | 
@@ -104,7 +95,7 @@
 | [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | 获取基于[NN_TensorDesc](#nn_tensordesc)的形状和数据类型计算的数据占用字节数。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_Create](#oh_nntensor_create) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | 从[NN_TensorDesc](#nn_tensordesc)创建一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t size) | 按照指定内存大小和[NN_TensorDesc](#nn_tensordesc)创建[NN_Tensor](#nn_tensor)实例。 | 
-| [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | 按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建{\@Link NN_Tensor}实例。 | 
+| [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | 按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建NN_Tensor实例。 | 
 | [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | 销毁一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensor_GetTensorDesc](#oh_nntensor_gettensordesc) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)的[NN_TensorDesc](#nn_tensordesc)实例。 | 
 | void \* [OH_NNTensor_GetDataBuffer](#oh_nntensor_getdatabuffer) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)数据的内存地址。 | 
@@ -306,6 +297,9 @@ typedef struct OH_NN_Memory OH_NN_Memory
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_Tensor](#nn_tensor)。
 
 ### OH_NN_OperationType
 
@@ -372,6 +366,9 @@ clamp函数定义如下：
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_QuantParam](#nn_quantparam)。
 
 ### OH_NN_ReturnCode
 
@@ -400,6 +397,9 @@ typedef struct OH_NN_Tensor OH_NN_Tensor
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_TensorDesc](#nn_tensordesc)。
 
 ### OH_NN_TensorType
 
@@ -745,7 +745,7 @@ Neural Network Runtime 定义的错误码类型。
 | OH_NN_OPERATION_FORBIDDEN | 非法操作 | 
 | OH_NN_NULL_PTR | 空指针异常 | 
 | OH_NN_INVALID_FILE | 无效文件 | 
-| OH_NN_UNAVALIDABLE_DEVICE | 硬件发生错误，错误可能包含：HDL服务崩溃<br/>**弃用：**从API version 11开始废弃，此接口废弃。<br/>**替代：**推荐使用 OH_NN_UNAVAILABLE_DEVICE。 | 
+| OH_NN_UNAVALIDABLE_DEVICE | 硬件发生错误，错误可能包含：HDL服务崩溃<br/>**弃用：**从API version 11开始，此接口废弃。<br/>**替代：**推荐使用 OH_NN_UNAVAILABLE_DEVICE。 | 
 | OH_NN_INVALID_PATH | 非法路径 | 
 | OH_NN_TIMEOUT<sup>11+</sup> | 执行超时 | 
 | OH_NN_UNSUPPORTED<sup>11+</sup> | 未支持 | 
@@ -1452,6 +1452,10 @@ Neural Network Runtime 提供主动申请硬件共享内存的方法。通过指
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1478,6 +1482,10 @@ OH_NN_Memory *OH_NNExecutor_AllocateOutputMemory (OH_NNExecutor *executor, uint3
 Neural Network Runtime 提供主动申请硬件共享内存的方法。通过指定执行器和输出索引值，该接口在单个输出关联的硬件 上，申请大小为length的共享内存，通过[OH_NN_Memory](_o_h___n_n___memory.md)实例返回。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize)。
 
 **参数:**
 
@@ -1610,6 +1618,10 @@ void OH_NNExecutor_DestroyInputMemory (OH_NNExecutor *executor, uint32_t inputIn
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_Destroy](#oh_nntensor_destroy)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1634,6 +1646,10 @@ void OH_NNExecutor_DestroyOutputMemory (OH_NNExecutor *executor, uint32_t output
 如果memory或\*memory为空指针，该接口仅打印警告日志，不执行释放操作。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_Destroy](#oh_nntensor_destroy)。
 
 **参数:**
 
@@ -1779,6 +1795,10 @@ OH_NN_ReturnCode OH_NNExecutor_Run (OH_NNExecutor *executor)
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1882,6 +1902,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetInput (OH_NNExecutor *executor, uint32_t input
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1910,6 +1934,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetInputWithMemory (OH_NNExecutor *executor, uint
 在需要自行管理内存的场景下，该接口将执行输入和[OH_NN_Memory](_o_h___n_n___memory.md)内存实例绑定。执行计算时，底层硬件从内存实例指向的共享内存 中读取输入数据。通过该接口，可以实现设置输入、执行计算、读取输出的并发执行，提升数据流的推理效率。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
 
 **参数:**
 
@@ -1997,6 +2025,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutput (OH_NNExecutor *executor, uint32_t outp
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -2024,6 +2056,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutputWithMemory (OH_NNExecutor *executor, uin
 在需要自行管理内存的场景下，该接口将执行输出和[OH_NN_Memory](_o_h___n_n___memory.md)内存实例绑定。执行计算时，底层硬件将计算结果直接写入内存实例指向 的共享内存。通过该接口，可以实现设置输入、执行计算、读取输出的并发执行，提升数据流的推理效率。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
 
 **参数:**
 
@@ -2087,6 +2123,10 @@ Neural Network Runtime支持动态形状输入和输出。在添加动态形状�
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -2113,7 +2153,7 @@ Neural Network Runtime模型中的数据节点和算子参数均由模型的张�
 
 Neural Network Runtime支持动态形状的输入和输出张量。在添加动态形状的数据节点时，需要将tensor.dimensions中支持动态 变化的维度设置为-1。例如可将一个四维tensor的dimensions设置为[1, -1, 2, 2]，表示其第二个维度支持 动态变化。
 
-**起始版本：** 9
+**起始版本：** 11
 
 **参数:**
 
@@ -2508,7 +2548,7 @@ NN_Tensor *OH_NNTensor_CreateWithFd (size_t deviceID, NN_TensorDesc *tensorDesc,
 
 **描述**
 
-按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建{\@Link NN_Tensor}实例。
+按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建NN_Tensor实例。
 
 该接口复用文件描述符**fd**对应的共享内存，**fd**可能来自另一个[NN_Tensor](#nn_tensor)实例。 当调用[OH_NNTensor_Destroy](#oh_nntensor_destroy)接口销毁该接口创建的张量时，不会释放该张量数据的内存。
 

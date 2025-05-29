@@ -155,7 +155,7 @@
 
    通过photoOutput类的[capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
-   获取拍照旋转角度的方法为，通过通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值。
+   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {

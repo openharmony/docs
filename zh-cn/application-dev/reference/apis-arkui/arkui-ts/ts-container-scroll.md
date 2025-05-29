@@ -262,7 +262,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 触发该事件的条件：
 
-1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用除fling接口外的其他滚动控制接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -288,7 +288,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 3、越界回弹。
 
-从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+从API version 12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
