@@ -1,6 +1,5 @@
 # AppStorage：应用全局的UI状态存储
 
-
 在阅读本文档前，建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)，从而对状态管理框架中AppStorage的定位有一个宏观了解。
 
 AppStorage是与应用进程绑定的全局UI状态存储容器，由UI框架在应用程序启动时创建，为应用程序的UI状态数据提供中央存储。
@@ -13,7 +12,6 @@ AppStorage推出的目的是为了给开发者提供更大范围的跨ability的
 
 AppStorage还提供了API接口，可以让开发者通过接口在自定义组件外手动触发AppStorage对应key的增删改查，建议配合[AppStorage API文档](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage)阅读。
 
-
 ## 概述
 
 AppStorage是在应用启动时被创建的单例。它为应用提供了状态数据的中心存储，是应用级可访问的状态数据。AppStorage会在应用运行过程中保留其属性。
@@ -23,7 +21,6 @@ AppStorage中保存的属性通过唯一的字符串类型key值访问，该属�
 AppStorage支持应用的[主线程](../../application-models/thread-model-stage.md)内多个[UIAbility](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例间的UI状态数据共享。
 
 AppStorage中的属性可以被双向同步，数据可以是存在于本地或远程设备上，并具有不同的功能，比如数据持久化（详见[PersistentStorage](arkts-persiststorage.md)）。这些数据是通过业务逻辑中实现，与UI解耦，如果希望这些数据在UI中使用，需要用到[@StorageProp](#storageprop)和[@StorageLink](#storagelink)。
-
 
 ## \@StorageProp
 
@@ -45,7 +42,6 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 同步类型                | 单向同步：从AppStorage的对应属性到组件的状态变量。<br/>组件本地的修改是允许的，但是AppStorage中给定的属性一旦发生变化，将覆盖本地的修改。 |
 | 被装饰变量的初始值      | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
-
 ### 变量的传递/访问规则说明
 
 | 传递/访问      | 说明                                       |
@@ -54,17 +50,13 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 否。                                       |
 
-
   **图1** \@StorageProp初始化规则图示  
 
-
 ![zh-cn_image_0000001552978157](figures/zh-cn_image_0000001552978157.png)
-
 
 ### 观察变化和行为表现
 
 **观察变化**
-
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
@@ -78,18 +70,15 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
-
 **框架行为**
-
 
 - 当\@StorageProp(key)装饰的数值改变被观察到时，修改不会被同步回AppStorage对应key的属性中。
 
-- 当前\@StorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他绑定该key的数据不会同步改变。
+- \@StorageProp(key)为单向同步，在当前组件内对装饰的变量进行修改，只会改变当前组件内该私有成员变量的值，而不会将此修改同步到其他同样绑定了AppStorage中该key的数据上。
 
 - 当\@StorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回AppStorage中，但是会引起所属的自定义组件重新渲染。
 
 - 当AppStorage中key对应的属性发生改变时，会同步给所有\@StorageProp(key)装饰的数据，\@StorageProp(key)本地的修改将被覆盖。
-
 
 ## \@StorageLink
 
@@ -112,7 +101,6 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 同步类型               | 双向同步：从AppStorage的对应属性到自定义组件，从自定义组件到AppStorage对应属性。 |
 | 被装饰变量的初始值          | 必须指定，如果AppStorage实例中不存在属性，则用该初始值初始化该属性，并存入AppStorage中。 |
 
-
 ### 变量的传递/访问规则说明
 
 | 传递/访问      | 说明                                       |
@@ -121,17 +109,13 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 | 初始化子节点     | 支持，可用于初始化常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 否。                                       |
 
-
   **图2** \@StorageLink初始化规则图示  
 
-
 ![zh-cn_image_0000001501938718](figures/zh-cn_image_0000001501938718.png)
-
 
 ### 观察变化和行为表现
 
 **观察变化**
-
 
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
@@ -145,16 +129,13 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 - 当装饰的变量是Set时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[装饰Set类型变量](#装饰set类型变量)。
 
-
 **框架行为**
-
 
 1. 当\@StorageLink(key)装饰的数值改变被观察到时，修改将被同步回AppStorage对应属性键值key的属性中。
 
 2. AppStorage中属性键值key对应的数据一旦改变，属性键值key绑定的所有的数据（包括双向\@StorageLink和单向\@StorageProp）都将同步修改。
 
 3. 当\@StorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回AppStorage中，还会引起所属的自定义组件的重新渲染。
-
 
 ## 限制条件
 
@@ -184,14 +165,11 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 5. AppStorage同一进程内共享，UIAbility和<!--Del-->[<!--DelEnd-->UIExtensionAbility<!--Del-->](../../application-models/uiextensionability.md)<!--DelEnd-->是两个进程，所以在<!--Del-->[<!--DelEnd-->UIExtensionAbility<!--Del-->](../../application-models/uiextensionability.md)<!--DelEnd-->中不共享主进程的AppStorage。
 
-
 ## 使用场景
-
 
 ### 从应用逻辑使用AppStorage和LocalStorage
 
 AppStorage是单例，它的所有API都是静态的，使用方法类似于LocalStorage中对应的非静态方法。
-
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
@@ -217,11 +195,9 @@ link2.get() // == 49
 prop.get() // == 49
 ```
 
-
 ### 从UI内部使用AppStorage和LocalStorage
 
 \@StorageLink变量装饰器与AppStorage配合使用，正如\@LocalStorageLink与LocalStorage配合使用一样。此装饰器使用AppStorage中的属性创建双向数据同步。
-
 
 ```ts
 class Data {
@@ -279,7 +255,6 @@ struct Index {
 示例代码中，TapImage中的点击事件，会触发AppStorage中tapIndex对应属性的改变。因为@StorageLink是双向同步，修改会同步回AppStorage中，所以，所有绑定AppStorage的tapIndex自定义组件里都能感知到tapIndex的变化。使用@Watch监听到tapIndex的变化后，修改状态变量tapColor从而触发UI刷新（此处tapIndex并未直接绑定在UI上，因此tapIndex的变化不会直接触发UI刷新）。
 
 使用该机制来实现事件通知需要确保AppStorage中的变量尽量不要直接绑定在UI上，且需要控制@Watch函数的复杂度（如果@Watch函数执行时间长，会影响UI刷新效率）。
-
 
 ```ts
 // xxx.ets
@@ -363,7 +338,6 @@ export struct TapImage {
 > **说明：**
 >
 > emit接口不支持在Previewer预览器中使用。
-
 
 ```ts
 // xxx.ets

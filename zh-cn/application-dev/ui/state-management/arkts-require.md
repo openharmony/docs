@@ -1,8 +1,6 @@
 # \@Require装饰器：校验构造传参
 
-
 \@Require是校验\@Prop、\@State、\@Provide、\@BuilderParam 、\@Param和普通变量(无状态装饰器修饰的变量)是否需要构造传参的一个装饰器。
-
 
 > **说明：**
 >
@@ -11,7 +9,6 @@
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 >
 > 从API version 12开始对\@State/\@Provide/\@Param/和普通变量(无状态装饰器修饰的变量)进行校验。
-
 
 ## 概述
 
@@ -42,6 +39,7 @@ struct Index {
 
   build() {
     Row() {
+      // 构造Child时需传入所有@Require对应参数，否则编译失败。
       Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
         buildTest: this.buildTest, initBuildTest: this.buildTest })
     }
@@ -119,18 +117,20 @@ struct ParentPage {
 
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1。
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info1, state_value: this.label1}) // 调用自定义组件
+      // 父组件ParentPage构造子组件ChildPage时进行了构造赋值。
+      // 为ChildPage中被@Require @Param装饰的childInfo和state_value属性传入了值。
+      ChildPage({ childInfo: this.info1, state_value: this.label1}) // 创建自定义组件。
       Line()
         .width('100%')
         .height(5)
         .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2。
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
-      ChildPage({ childInfo: this.info2, state_value: this.label2}) // 调用自定义组件
+      ChildPage({ childInfo: this.info2, state_value: this.label2}) // 创建自定义组件。
       Line()
         .width('100%')
         .height(5)
@@ -147,7 +147,9 @@ struct ParentPage {
 }
 ```
 
-## 错误场景
+## 常见问题
+
+当Child组件内将\@Require装饰器与\@Prop、\@State、\@Provide、\@BuilderParam、\@Param和普通变量（无状态装饰器修饰的变量）结合使用时，若父组件Index在构造Child时未传递参数，则会导致编译失败。
 
 ```ts
 @Entry
@@ -164,6 +166,7 @@ struct Index {
 
   build() {
     Row() {
+      //构造Child组件时没有传参，会导致编译不通过。
       Child()
     }
   }
