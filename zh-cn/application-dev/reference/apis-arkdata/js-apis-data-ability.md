@@ -648,7 +648,7 @@ distinct(): DataAbilityPredicates
 
 limitAs(value: number): DataAbilityPredicates
 
-设置最大数据记录数的谓词。
+设置谓词的最大数据记录数量。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -656,7 +656,7 @@ limitAs(value: number): DataAbilityPredicates
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 最大数据记录数。 |
+| value | number | 是 | 最大数据记录数，取值为正整数。传入值小于等于0时，不会限制记录数量。 |
 
 **返回值：**
 
@@ -674,7 +674,7 @@ limitAs(value: number): DataAbilityPredicates
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-配置谓词以指定返回结果的起始位置。将此方法必须与limitAs一起使用。
+设置谓词查询结果的起始位置。需要同步调用limitAs接口指定查询数量，否则无查询结果。查询指定偏移位置后的所有行时，limitAs接口需传入参数-1。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -682,7 +682,7 @@ offsetAs(rowOffset: number): DataAbilityPredicates
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。 |
+| rowOffset | number | 是 | 返回结果的起始位置，取值为正整数。传入值小于等于0时，查询结果将从第一个元素位置返回。 |
 
 **返回值：**
 
@@ -746,27 +746,35 @@ indexedBy(field: string): DataAbilityPredicates
 
 **示例：**
 
-  ```js
-  import { dataAbility, relationalStore } from '@kit.ArkData';
+```js
+import { UIAbility } from '@kit.AbilityKit';
+import { dataAbility, relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let context = getContext(this);
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
 
-  const STORE_CONFIG : relationalStore.StoreConfig = {
-      name: 'RdbTest.db', // 数据库文件名
-      securityLevel: relationalStore.SecurityLevel.S3,
-  };
-  // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-  const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
-  relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-    if (err) {
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db', // 数据库文件名
+        securityLevel: relationalStore.SecurityLevel.S3,
+      };
+      // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
+      const SQL_CREATE_TABLE =
+        'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+      await store.executeSql(SQL_CREATE_TABLE); // 创建数据表
+    } catch (e) {
+      const err = e as BusinessError;
       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+
+    if (!store) {
       return;
     }
-    console.info('Succeeded in getting RdbStore.');
-
-
-    await store.executeSql(SQL_CREATE_TABLE); // 创建数据表
-
 
     // 创建索引
     const SQL_CREATE_INDEX = 'CREATE INDEX SALARY_INDEX ON EMPLOYEE(SALARY)'
@@ -777,8 +785,9 @@ indexedBy(field: string): DataAbilityPredicates
     dataAbilityPredicates.indexedBy("SALARY_INDEX")
 
     //  ...
-  })
-  ```
+  }
+}
+```
 
 ### in
 

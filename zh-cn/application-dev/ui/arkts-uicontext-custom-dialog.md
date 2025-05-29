@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 弹出框（openCustomDialog）存在两种入参方式创建自定义弹出框：
-> - openCustomDialog（传参为ComponentContent形式）：通过ComponentContent封装内容可以与UI界面解耦，调用更加灵活，可以满足开发者的封装诉求。拥有更强的灵活性，弹出框样式是完全自定义的，且在弹出框打开之后可以使用updateCustomDialog方法动态更新弹出框的一些参数。
+> - openCustomDialog（传参为ComponentContent形式）：通过ComponentContent封装内容可以与UI界面解耦，调用更加灵活，可以满足开发者的封装诉求。具有较高的灵活性，弹出框样式完全自定义，并且在弹出框打开后可以使用updateCustomDialog方法动态更新弹出框的参数。
 > - openCustomDialog（传builder的形式）：相对于ComponentContent，builder必须要与上下文做绑定，与UI存在一定耦合。此方法有用默认的弹出框样式，适合于开发者想要实现与系统弹窗默认风格一致的效果。
 > 
 > 本文介绍通过入参形式为ComponentContent创建自定义弹出框，传builder形式的弹出框使用方法可参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12-1)。
@@ -43,7 +43,7 @@
    ```ts
    PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
      .then(() => {
-       console.info('OpenCustomDialog complete.')
+       console.info('OpenCustomDialog complete.');
      })
      .catch((error: BusinessError) => {
        let message = (error as BusinessError).message;
@@ -61,7 +61,7 @@
 
    PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
      .then(() => {
-       console.info('CloseCustomDialog complete.')
+       console.info('CloseCustomDialog complete.');
        if (this.contentNode !== null) {
             this.contentNode.dispose();   // 释放contentNode
         }
@@ -75,7 +75,7 @@
 
 ## 更新自定义弹出框的内容
 
-ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](../../application-dev/quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../application-dev/quick-start/arkts-link.md)、[@Provide](../../application-dev/quick-start/arkts-provide-and-consume.md)、[@Consume](../../application-dev/quick-start/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
+ComponentContent与[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)有相同的使用限制，不支持自定义组件使用[@Reusable](../../application-dev/ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../application-dev/ui/state-management/arkts-link.md)、[@Provide](../../application-dev/ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../application-dev/ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步弹出框弹出的页面与ComponentContent中自定义组件的状态。因此，若需要更新弹出框中自定义组件的内容可以通过ComponentContent提供的update方法来实现。
 
 ```ts
 this.contentNode.update(new Params('update'))
@@ -84,12 +84,13 @@ this.contentNode.update(new Params('update'))
 ## 更新自定义弹出框的属性
 
 通过updateCustomDialog可以动态更新弹出框的属性。目前支持的属性包括alignment、offset、autoCancel、maskColor。
+
 需要注意的是，更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
 
 ```ts
 PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
   .then(() => {
-    console.info('UpdateCustomDialog complete.')
+    console.info('UpdateCustomDialog complete.');
   })
   .catch((error: BusinessError) => {
     let message = (error as BusinessError).message;
@@ -98,13 +99,87 @@ PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.con
   })
 ```
 
+## 为弹出框内容和蒙层设置不同的动画效果
+
+当弹出框出现时，内容与蒙层显示动效一致。若开发者希望为弹出框内容及蒙层设定不同动画效果，可通过dialogTransition和maskTransition属性单独配置弹窗内容与蒙层的动画。具体的动画效果请参考[组件内转场 (transition)](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+
+> **说明：** 
+>
+> 当isModal为true时，蒙层将显示，此时可以设置蒙层的动画效果；否则，maskTransition将不生效。
+
+```ts
+dialogTransition:
+  TransitionEffect.translate({ x: 0, y: 290, z: 0 }).animation({ duration: 4000, curve: Curve.Smooth }),
+
+maskTransition:
+  TransitionEffect.asymmetric(
+    TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
+      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 })),
+
+    TransitionEffect.OPACITY.animation({ delay: 3000, duration: 3000 }).combine(
+      TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 3000 }))),
+```
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  private customDialogComponentId: number = 0
+  @Builder
+  customDialogComponent() {
+    Row({ space: 50 }) {
+      Button("这是一个弹窗")
+    }.height(200).padding(5)
+  }
+
+  build() {
+    Row() {
+      Row({ space: 20 }) {
+        Text('打开弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            this.getUIContext().getPromptAction().openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              isModal:true,
+              showInSubWindow:false,
+              maskColor: Color.Pink,
+              maskRect:{ x: 20, y: 20, width: '90%', height: '90%' },
+
+              dialogTransition:
+              TransitionEffect.translate({ x: 0, y: 290, z: 0 })
+                .animation({ duration: 4000, curve: Curve.Smooth }),// 四秒钟的偏移渐变动画
+
+              maskTransition:
+              TransitionEffect.opacity(0)
+                .animation({ duration: 4000, curve: Curve.Smooth }) // 四秒钟的透明渐变动画
+
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![UIContextPromptAction](figures/UIContextPromptActionDialogMask.gif)
+
 ## 完整示例
 
 ```ts
 // PromptActionClass.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent, promptAction } from '@kit.ArkUI';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { ComponentContent, promptAction, UIContext } from '@kit.ArkUI';
 
 export class PromptActionClass {
   static ctx: UIContext;
@@ -127,7 +202,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
         .then(() => {
-          console.info('OpenCustomDialog complete.')
+          console.info('OpenCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -141,7 +216,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
         .then(() => {
-          console.info('CloseCustomDialog complete.')
+          console.info('CloseCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -155,7 +230,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
         .then(() => {
-          console.info('UpdateCustomDialog complete.')
+          console.info('UpdateCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -173,7 +248,7 @@ import { ComponentContent } from '@kit.ArkUI';
 import { PromptActionClass } from './PromptActionClass';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -189,7 +264,7 @@ function buildText(params: Params) {
       .margin({ bottom: 36 })
     Button('Close')
       .onClick(() => {
-        PromptActionClass.closeDialog()
+        PromptActionClass.closeDialog();
       })
   }.backgroundColor('#FFF0F0F0')
 }
@@ -197,7 +272,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private ctx: UIContext = this.getUIContext();
   private contentNode: ComponentContent<Object> =
     new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
@@ -214,22 +289,22 @@ struct Index {
         Button("open dialog and update options")
           .margin({ top: 50 })
           .onClick(() => {
-            PromptActionClass.openDialog()
+            PromptActionClass.openDialog();
 
             setTimeout(() => {
               PromptActionClass.updateDialog({
                 alignment: DialogAlignment.Bottom,
                 offset: { dx: 0, dy: -50 }
-              })
+              });
             }, 1500)
           })
         Button("open dialog and update content")
           .margin({ top: 50 })
           .onClick(() => {
-            PromptActionClass.openDialog()
+            PromptActionClass.openDialog();
 
             setTimeout(() => {
-              this.contentNode.update(new Params('update'))
+              this.contentNode.update(new Params('update'));
             }, 1500)
           })
       }

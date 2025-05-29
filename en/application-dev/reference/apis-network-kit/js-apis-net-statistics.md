@@ -1,8 +1,9 @@
 # @ohos.net.statistics (Traffic Management)
 
-The **statistics** module provides APIs to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
+The **statistics** module provides APIs to obtain the real-time uplink and downlink data traffic of the specified NIC.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import

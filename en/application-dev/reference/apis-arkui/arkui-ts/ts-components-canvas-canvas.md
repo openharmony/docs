@@ -45,12 +45,12 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### enableAnalyzer<sup>12+</sup>
 
 Sets whether to enable the AI analyzer, which supports subject recognition, text recognition, and object lookup.
-For the settings to take effect, this attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12) of [context](ts-canvasrenderingcontext2d.md).
+For the settings to take effect, this attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12) of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#canvasrenderingcontext2d).
 This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md#overlay) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -65,21 +65,33 @@ This attribute cannot be used together with the [overlay](ts-universal-attribute
 
 ## Events
 
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
+
+### onReady
+
+onReady(event: VoidCallback)
+
+Triggered when the **Canvas** component is initialized or when its size changes.
+
+When this event is triggered, the canvas is cleared. The width and height of the **Canvas** component are then determined and can be obtained, allowing you to use APIs related to the **Canvas** component for drawing. If only the position of the canvas changes, only the [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered, not the **onReady** event. The [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered after the **onReady** event.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+**Parameters**
 
-| Name                        | Description                                      |
-| -------------------------- | ---------------------------------------- |
-| onReady(event: () => void) | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If only the position of the canvas changes, only the [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered, not the **onReady** event.<br>The [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered after the **onReady** event.|
+| Name| Type   | Mandatory| Description|
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| event  | [VoidCallback](ts-types.md#voidcallback12) | Yes  | Callback event triggered when the **Canvas** component is initialized or when its size changes.|
 
-**Example**
+## Example
 
-This example describes how to use the methods in **CanvasRenderingContext2D** for drawing on a canvas.
+### Example 1: Using APIs in CanvasRenderingContext2D
+
+This example describes how to use the APIs in **CanvasRenderingContext2D** for drawing on a canvas.
 
 ```ts
 // xxx.ets
@@ -106,8 +118,9 @@ struct CanvasExample {
 ```
   ![en-us_image_0000001194032666](figures/en-us_image_0000001194032666.png)
 
+### Example 2: Using APIs in DrawingRenderingContext
 
-This example describes how to use the methods in **DrawingRenderingContext** for drawing on a canvas.
+This example describes how to use the APIs in **DrawingRenderingContext** for drawing on a canvas.
 
 ```ts
 // xxx.ets

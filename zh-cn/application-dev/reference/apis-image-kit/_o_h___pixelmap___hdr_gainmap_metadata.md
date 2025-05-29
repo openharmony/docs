@@ -9,6 +9,8 @@ HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 2149
 
 **相关模块：**[Image_NativeModule](_image___native_module.md)
 
+**所在头文件：**[pixelmap_native.h](pixelmap__native_8h.md)
+
 
 ## 汇总
 

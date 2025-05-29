@@ -25,11 +25,11 @@ These parameters are used to control the playback volume, number of loops, and p
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | No | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever. Default value: **0**                  |
+| loop | number   | No | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.<br>The default value is **0**, indicating that the content is played only once.                  |
 | rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0**|
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0. Default value: **1.0**                                   |
-| rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
-| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. Default value: **0**     |
+| rightVolume | number  | No | Volume of the right channel. The value ranges from 0.0 to 1.0. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
+| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. The value is an integer greater than or equal to 0. Default value: **0**     |
 
 ## SoundPool
 
@@ -39,6 +39,7 @@ Implements a sound pool that provides APIs for loading, unloading, playing, and 
 >
 > When using the **SoundPool** instance, you are advised to register the following callbacks to proactively obtain status changes:
 > - [on('loadComplete')](#onloadcomplete): listens for the event indicating that the resource loading is finished.
+> - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18): listens for the event indicating that the playback is finished and returns the stream ID of the audio that finishes playing.
 > - [on('playFinished')](#onplayfinished): listens for the event indicating that the playback is finished.
 > - [on('error')](#onerror): listens for error events.
 
@@ -267,32 +268,34 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
-      if (error) {
-        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
-      } else {
-        soundID = soundId_;
-        console.info('Succeeded in loading soundId:' + soundId_);
-      }
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('Succeeded in loading soundId:' + soundId_);
+        }
+      });
+    }
+  });
+}
 
 ```
 
@@ -380,30 +383,32 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
-      console.info('Succeeded in loading soundpool');
-      soundID = soundId;
-    }, (err: BusinessError) => {
-      console.error('Failed to load soundpool and catch error is ' + err.message);
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+        console.info('Succeeded in loading soundpool');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('Failed to load soundpool and catch error is ' + err.message);
+      });
+    }
+  });
+}
 
 ```
 
@@ -454,7 +459,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
-      loop: 3, // The sound loops three times.
+      loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
       leftVolume: 0.5, // range = 0.0-1.0
       rightVolume: 0.5, // range = 0.0-1.0
@@ -585,8 +590,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let playParameters: media.PlayParameters = {
       loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-      leftVolume: 0.5, // range = 0.0-1.0
-      rightVolume: 0.5, // range = 0.0-1.0
+      leftVolume: 0.5, // range = 0.0-1.0.
+      rightVolume: 0.5, // range = 0.0-1.0.
       priority: 0, // The sound playback has the lowest priority.
     }
 
@@ -730,7 +735,7 @@ Sets the loop mode for an audio stream. This API uses an asynchronous callback t
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -789,7 +794,7 @@ Sets the loop mode for an audio stream. This API uses a promise to return the re
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 
 **Return value**
 
@@ -851,7 +856,7 @@ Sets the priority for an audio stream. This API uses an asynchronous callback to
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| priority | number | Yes  | Priority. The value **0** means the lowest priority.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -910,7 +915,7 @@ Sets the priority for an audio stream. This API uses a promise to return the res
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| priority | number | Yes  | Priority. The value **0** means the lowest priority.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
 
 **Return value**
 
@@ -1095,7 +1100,7 @@ Sets the volume for an audio stream. This API uses an asynchronous callback to r
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
 | leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1155,7 +1160,7 @@ Sets the volume for an audio stream. This API uses a promise to return the resul
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
 | leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
 
 **Return value**
 
@@ -1499,6 +1504,87 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     soundPool.off('loadComplete')
+  }
+});
+
+```
+
+### on('playFinishedWithStreamId')<sup>18+</sup>
+
+on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
+
+Subscribes to events indicating the completion of audio playback and returns the stream ID of the audio that finishes playing.
+
+When only [on('playFinished')](#onplayfinished) or [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18) is subscribed to, the registered callback is triggered when the audio playback is complete.
+
+When both [on('playFinished')](#onplayfinished) and [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18) are subscribed to, the 'playFinishedWithStreamId' callback is triggered, but the 'playFinished' callback is not triggered, when the audio playback is complete.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'playFinishedWithStreamId'** in this case. This event is triggered when an audio stream finishes playing, and the stream ID is returned.|
+| callback | Callback\<number> | Yes  |  Callback used to return the result. Stream ID of the audio that finishes playing.  |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.on('playFinishedWithStreamId', (streamId) => {
+      console.info('The stream with streamId: ' + streamId + ' has finished playing.')
+    });
+  }
+});
+
+```
+
+### off('playFinishedWithStreamId')<sup>18+</sup>
+
+off(type: 'playFinishedWithStreamId'): void
+
+Unsubscribes from events indicating that a sound finishes playing.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type. The value is fixed at **'playFinishedWithStreamId'**.|
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Create a SoundPool instance.
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.off('playFinishedWithStreamId')
   }
 });
 

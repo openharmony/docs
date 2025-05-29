@@ -34,6 +34,7 @@ The **Preferences** module provides APIs for key-value (KV) data processing, inc
 | typedef enum [Preference_ValueType](#preference_valuetype) [Preference_ValueType](#preference_valuetype) | Defines an enum for types of **PreferencesValue**.| 
 | typedef struct [OH_PreferencesPair](#oh_preferencespair) [OH_PreferencesPair](#oh_preferencespair) | Defines a struct for the Preferences data in KV format.| 
 | typedef struct [OH_PreferencesValue](#oh_preferencesvalue) [OH_PreferencesValue](#oh_preferencesvalue) | Defines the struct for a **PreferencesValue** object.| 
+| typedef enum [Preferences_StorageType](#preferences_storagetype) [Preferences_StorageType](#preferences_storagetype) | Defines an enum for preferences storage types.| 
 
 
 ### Enums
@@ -42,12 +43,14 @@ The **Preferences** module provides APIs for key-value (KV) data processing, inc
 | -------- | -------- |
 | [OH_Preferences_ErrCode](#oh_preferences_errcode-1) {<br>PREFERENCES_OK = 0, PREFERENCES_ERROR_INVALID_PARAM = 401, PREFERENCES_ERROR_NOT_SUPPORTED = 801, PREFERENCES_ERROR_BASE = 15500000,<br>PREFERENCES_ERROR_DELETE_FILE = 15500010, PREFERENCES_ERROR_STORAGE = 15500011, PREFERENCES_ERROR_MALLOC = 15500012, PREFERENCES_ERROR_KEY_NOT_FOUND = 15500013,<br>PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT = 15500019<br>} | Enumerates the error codes.| 
 | [Preference_ValueType](#preference_valuetype-1) {<br>PREFERENCE_TYPE_NULL = 0, PREFERENCE_TYPE_INT, PREFERENCE_TYPE_BOOL, PREFERENCE_TYPE_STRING,<br>PREFERENCE_TYPE_BUTT<br>} | Enumerates the types of **PreferencesValue**.| 
-
+| [Preferences_StorageType](#preferences_storagetype-1) { PREFERENCES_STORAGE_XML = 0, PREFERENCES_STORAGE_GSKV } | Enumerates the preferences storage types.| 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
+| int [OH_PreferencesOption_SetStorageType](#oh_preferencesoption_setstoragetype) ([OH_PreferencesOption](#oh_preferencesoption) \*option, [Preferences_StorageType](#preferences_storagetype) type) | Sets the storage type for a preferences instance.| 
+| int [OH_Preferences_IsStorageTypeSupported](#oh_preferences_isstoragetypesupported) ([Preferences_StorageType](#preferences_storagetype) type, bool \*isSupported) | Checks whether the specified storage type is supported.| 
 | [OH_Preferences](#oh_preferences) \* [OH_Preferences_Open](#oh_preferences_open) ([OH_PreferencesOption](#oh_preferencesoption) \*option, int \*errCode) | Opens a **Preferences** instance and creates a pointer to it. If the pointer is no longer required, use [OH_Preferences_Close][OH_Preferences_Close](#oh_preferences_close) to close the instance.| 
 | int [OH_Preferences_Close](#oh_preferences_close) ([OH_Preferences](#oh_preferences) \*preference) | Closes a **Preferences** instance.| 
 | int [OH_Preferences_GetInt](#oh_preferences_getint) ([OH_Preferences](#oh_preferences) \*preference, const char \*key, int \*value) | Obtains an integer corresponding to the specified key in a **Preferences** instance.| 
@@ -60,7 +63,7 @@ The **Preferences** module provides APIs for key-value (KV) data processing, inc
 | int [OH_Preferences_Delete](#oh_preferences_delete) ([OH_Preferences](#oh_preferences) \*preference, const char \*key) | Deletes the KV data corresponding to the specified key from a **Preferences** instance.| 
 | int [OH_Preferences_RegisterDataObserver](#oh_preferences_registerdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | Subscribes to data changes of the specified keys. If the value of the specified key changes, a callback will be invoked after **OH_Preferences_Close ()** is called.| 
 | int [OH_Preferences_UnregisterDataObserver](#oh_preferences_unregisterdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | Unsubscribes from data changes of the specified keys.| 
-| [OH_PreferencesOption](#oh_preferencesoption) \* [OH_PreferencesOption_Create](#oh_preferencesoption_create) (void) | Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it. If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.| 
+| [OH_PreferencesOption](#oh_preferencesoption) \* [OH_PreferencesOption_Create](#oh_preferencesoption_create) (void) | Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it.<br>If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.| 
 | int [OH_PreferencesOption_SetFileName](#oh_preferencesoption_setfilename) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*fileName) | Sets the file name for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
 | int [OH_PreferencesOption_SetBundleName](#oh_preferencesoption_setbundlename) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*bundleName) | Sets the bundle name for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
 | int [OH_PreferencesOption_SetDataGroupId](#oh_preferencesoption_setdatagroupid) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*dataGroupId) | Sets the application group ID for an [OH_PreferencesOption](#oh_preferencesoption) instance.| 
@@ -75,6 +78,17 @@ The **Preferences** module provides APIs for key-value (KV) data processing, inc
 
 ## Type Description
 
+### Preferences_StorageType
+
+```
+typedef enum Preferences_StorageType Preferences_StorageType
+```
+
+**Description**
+
+Defines an enum for preferences storage types.
+
+**Since**: 18
 
 ### OH_Preferences
 
@@ -181,6 +195,22 @@ Defines an enum for types of **PreferencesValue**.
 
 ## Enum Description
 
+### Preferences_StorageType
+
+```
+enum Preferences_StorageType
+```
+
+**Description**
+
+Enumerates the preferences storage types.
+
+**Since**: 18
+
+| Enumerated Value| Description| 
+| -------- | -------- |
+| PREFERENCES_STORAGE_XML | XML. In this type is used, data operations are performed in the memory and data is persisted after [OH_Preferences_Close](#oh_preferences_close) is called. This type does not multi-processes operations.| 
+| PREFERENCES_STORAGE_GSKV | CLKV. If this type is used, data operations are flushed on a real-time basis. This type supports multi-process operations.| 
 
 ### OH_Preferences_ErrCode
 
@@ -231,6 +261,66 @@ Enumerates the types of **PreferencesValue**.
 ## Function Description
 
 
+### OH_Preferences_IsStorageTypeSupported()
+
+```
+int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool *isSupported )
+```
+
+**Description**
+
+Checks whether the specified storage type is supported.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| type | Storage type to check.| 
+| isSupported | Pointer to the check result. The value **true** means the storage type is supported; the value **false** means the opposite.| 
+
+**Returns**
+
+Returns the operation status code.
+
+**PREFERENCES_OK** indicates the operation is successful.
+
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+
+
+### OH_PreferencesOption_SetStorageType()
+
+```
+int OH_PreferencesOption_SetStorageType (OH_PreferencesOption *option, Preferences_StorageType type )
+```
+
+**Description**
+
+Sets the storage type for a preferences instance.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| option | Pointer to the configuration whose storage type is to set.| 
+| type | Storage type to set.| 
+
+**Returns**
+
+Returns the error code.
+
+**PREFERENCES_OK** indicates the operation is successful.
+
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
+
+**See**
+
+[OH_PreferencesOption](#oh_preferencesoption).
+
+
 ### OH_Preferences_Close()
 
 ```
@@ -253,13 +343,13 @@ Closes a **Preferences** instance.
 
 Returns [OH_Preferences_ErrCode](#oh_preferences_errcode).
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -291,13 +381,13 @@ Deletes the KV data corresponding to the specified key from a **Preferences** in
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -353,15 +443,15 @@ Obtains a Boolean value corresponding to the specified key in a **Preferences** 
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
-Returns **PREFERENCES_ERROR_KEY_NOT_FOUND** if the specified key does not exist.
+**PREFERENCES_ERROR_KEY_NOT_FOUND** indicates that the specified key does not exist.
 
 **See**
 
@@ -394,15 +484,15 @@ Obtains an integer corresponding to the specified key in a **Preferences** insta
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
-Returns **PREFERENCES_ERROR_KEY_NOT_FOUND** if the specified key does not exist.
+**PREFERENCES_ERROR_KEY_NOT_FOUND** indicates that the specified key does not exist.
 
 **See**
 
@@ -436,15 +526,15 @@ Obtains a string corresponding to the specified key in a **Preferences** instanc
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
-Returns **PREFERENCES_ERROR_KEY_NOT_FOUND** if the specified key does not exist.
+**PREFERENCES_ERROR_KEY_NOT_FOUND** indicates that the specified key does not exist.
 
 **See**
 
@@ -511,15 +601,15 @@ Subscribes to data changes of the specified keys. If the value of the specified 
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
-Returns **PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT** if the data change subscription service fails to be obtained.
+**PREFERENCES_ERROR_GET_DATAOBSMGRCLIENT** indicates a failure in obtaining the data change subscription service.
 
 **See**
 
@@ -554,13 +644,13 @@ Sets a Boolean value based on the specified key in a **Preferences** instance.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -593,13 +683,13 @@ Sets an integer based on the specified key in a **Preferences** instance.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -632,13 +722,13 @@ Sets a string based on the specified key in a **Preferences** instance.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -673,13 +763,13 @@ Unsubscribes from data changes of the specified keys.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -698,7 +788,7 @@ OH_PreferencesOption* OH_PreferencesOption_Create (void )
 
 **Description**
 
-Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it. If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.
+Creates an [OH_PreferencesOption](#oh_preferencesoption) instance and a pointer to it.<br>If this pointer is no longer required, use [OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 13
 
@@ -731,9 +821,7 @@ Destroys an [OH_PreferencesOption](#oh_preferencesoption) instance.
 
 **Returns**
 
-Returns the error code. 
-Returns **PREFERENCES_OK** if the operation is successful. 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+Returns the error code.<br>**PREFERENCES_OK** indicates the operation is successful.<br>**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
 **See**
 
@@ -765,9 +853,9 @@ Sets the bundle name for an [OH_PreferencesOption](#oh_preferencesoption) instan
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
 **See**
 
@@ -805,9 +893,9 @@ If the application group ID is an empty string, the **Preferences** instance wil
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
 **See**
 
@@ -839,9 +927,9 @@ Sets the file name for an [OH_PreferencesOption](#oh_preferencesoption) instance
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
 **See**
 
@@ -872,6 +960,7 @@ Obtains the key based on the specified index from the KV data.
 **Returns**
 
 Returns the pointer to the key obtained if the operation is successful. 
+
 Returns a null pointer if the operation fails or the input parameter is invalid.
 
 **See**
@@ -900,8 +989,7 @@ Obtains the value based on the specified index from the KV pairs.
 
 **Returns**
 
-Returns the pointer to the value obtained if the operation is successful. 
-Returns a null pointer if the operation fails or the input parameter is invalid.
+Returns the pointer to the value obtained if the operation is successful.<br>Returns a null pointer if the operation fails or the input parameter is invalid.
 
 **See**
 
@@ -931,13 +1019,13 @@ Obtains a Boolean value from an [OH_PreferencesValue](#oh_preferencesvalue) inst
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -969,13 +1057,13 @@ Obtains an integer from an [OH_PreferencesValue](#oh_preferencesvalue) instance.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 
@@ -1008,13 +1096,13 @@ Obtains a string from an [OH_PreferencesValue](#oh_preferencesvalue) instance.
 
 Returns the error code.
 
-Returns **PREFERENCES_OK** if the operation is successful.
+**PREFERENCES_OK** indicates the operation is successful.
 
-Returns **PREFERENCES_ERROR_INVALID_PARAM** if invalid parameters are detected.
+**PREFERENCES_ERROR_INVALID_PARAM** indicates invalid parameters are specified.
 
-Returns **PREFERENCES_ERROR_STORAGE** if the storage is abnormal.
+**PREFERENCES_ERROR_STORAGE** indicates the storage is abnormal.
 
-Returns **PREFERENCES_ERROR_MALLOC** if memory allocation fails.
+**PREFERENCES_ERROR_MALLOC** indicates a failure in memory allocation.
 
 **See**
 

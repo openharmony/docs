@@ -2,7 +2,7 @@
 
 **OHAudio** is a set of C APIs introduced in API version 10. These APIs are normalized in design and support both common and low-latency audio channels. They support the PCM format only. They are suitable for playback applications that implement audio input at the native layer.
 
-OHAudio audio recording state transition
+OHAudio audio capturer state transition
 
 ![OHAudioCapturer status change](figures/ohaudiocapturer-status-change.png)
 
@@ -33,14 +33,14 @@ To use APIs for audio recording, import <[native_audiostreambuilder.h](../../ref
 
 The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create) to create a builder:
 
-```
+```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
 After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy) to destroy the builder.
 
-```
+```cpp
 OH_AudioStreamBuilder_Destroy(builder);
 ```
 
@@ -50,10 +50,9 @@ Read [OHAudio](../../reference/apis-audio-kit/_o_h_audio.md) for the API referen
 
 The following walks you through how to implement simple recording:
 
-
 1. Create an audio stream builder.
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder* builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
     ```
@@ -62,7 +61,7 @@ The following walks you through how to implement simple recording:
 
     After creating the builder for audio recording, set the parameters required.
 
-    ```c++
+    ```cpp
     // Set the audio sampling rate.
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
     // Set the number of audio channels.
@@ -81,7 +80,7 @@ The following walks you through how to implement simple recording:
 
     For details about concurrent processing of multiple audio streams, see [Processing Audio Interruption Events](audio-playback-concurrency.md). The procedure is similar, and the only difference is the API programming language in use.
 
-    ```c++
+    ```cpp
     // Customize a data reading function.
     int32_t MyOnReadData(
         OH_AudioCapturer* capturer,
@@ -137,7 +136,7 @@ The following walks you through how to implement simple recording:
 
     - Initialize each callback in [OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks) by a custom callback method or a null pointer.
 
-      ```c++
+      ```cpp
       // Customize a data reading function.
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
@@ -171,7 +170,7 @@ The following walks you through how to implement simple recording:
 
     - Initialize and clear the struct before using it.
 
-      ```c++
+      ```cpp
       // Customize a data reading function.
       int32_t MyOnReadData(
           OH_AudioCapturer* capturer,
@@ -204,7 +203,7 @@ The following walks you through how to implement simple recording:
 
 4. Create an audio capturer instance.
 
-    ```c++
+    ```cpp
     OH_AudioCapturer* audioCapturer;
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
     ```
@@ -215,7 +214,7 @@ The following walks you through how to implement simple recording:
 
     | API                                                        | Description        |
     | ------------------------------------------------------------ | ------------ |
-    | OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | Starts the audio capturer.    |
+    | OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | Starts the audio capturer.   |
     | OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer) | Pauses the audio capturer.    |
     | OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer) | Stops the audio capturer.    |
     | OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer) | Flushes obtained audio data.|
@@ -225,7 +224,7 @@ The following walks you through how to implement simple recording:
 
     When the builder is no longer used, release related resources.
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder_Destroy(builder);
     ```
 
@@ -241,7 +240,7 @@ The development process is similar to that in the common recording scenario. The
 
 Code snippet:
 
-```C
+```cpp
 OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_FAST;
 OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 ```

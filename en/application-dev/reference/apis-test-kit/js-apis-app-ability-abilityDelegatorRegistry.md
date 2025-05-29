@@ -30,7 +30,7 @@ Enumerates the ability lifecycle states. It can be used in [getAbilityState(abil
 | BACKGROUND    | 3    | The ability is running in the background.  |
 | DESTROY       | 4    | The ability is destroyed.|
 
-## AbilityDelegatorRegistry.getAbilityDelegator
+## abilityDelegatorRegistry.getAbilityDelegator
 
 getAbilityDelegator(): AbilityDelegator
 
@@ -67,7 +67,7 @@ abilityDelegator.startAbility(want, (err) => {
 });
 ```
 
-## AbilityDelegatorRegistry.getArguments
+## abilityDelegatorRegistry.getArguments
 
 getArguments(): AbilityDelegatorArgs
 
@@ -94,3 +94,73 @@ console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
 console.info(`getArguments testCaseNames: ${args.testCaseNames}`);
 console.info(`getArguments testRunnerClassName: ${args.testRunnerClassName}`);
 ```
+
+## AbilityDelegator
+
+type AbilityDelegator = _AbilityDelegator
+
+Represents the **AbilityDelegator** module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | The **AbilityDelegator** module.|
+
+## AbilityDelegatorArgs
+
+type AbilityDelegatorArgs = _AbilityDelegatorArgs
+
+Represents the **AbilityDelegatorArgs** module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | The **AbilityDelegatorArgs** module.|
+
+## AbilityMonitor
+
+type AbilityMonitor = _AbilityMonitor
+
+Represents the **AbilityMonitor** module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | The **AbilityMonitor** module.|
+
+## ShellCmdResult
+
+type ShellCmdResult = _ShellCmdResult
+
+Represents the **ShellCmdResult** module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_ShellCmdResult](js-apis-inner-application-shellCmdResult.md) | The **ShellCmdResult** module.|
+
+## AbilityStageMonitor<sup>14+</sup>
+
+type AbilityStageMonitor = _AbilityStageMonitor
+
+Represents the **AbilityStageMonitor** module.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | The **AbilityStageMonitor** module.|

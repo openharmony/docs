@@ -1,5 +1,7 @@
 # Thread Model (Stage Model)
 
+A thread is the basic unit for the operating system to perform computing and scheduling. It is an execution flow within a [process](./process-model-stage.md) and shares the resources of the process. A process can contain multiple threads.
+
 ## Thread Type
 There are three types of threads in the stage model:
 - Main thread
@@ -9,7 +11,7 @@ There are three types of threads in the stage model:
   - Distributes interaction events.
   - Processes application code callbacks (event processing and lifecycle management).
   - Receives messages sent by the **TaskPool** and **Worker** threads.
-- [TaskPool Worker Thread](../reference/apis-arkts/js-apis-taskpool.md)
+- [TaskPool Thread](../reference/apis-arkts/js-apis-taskpool.md)
 
   Used for time-consuming operations and provides APIs for setting the scheduling priority and load balancing. It is recommended.
 - [Worker Thread](../reference/apis-arkts/js-apis-worker.md)

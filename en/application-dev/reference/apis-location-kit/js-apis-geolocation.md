@@ -33,7 +33,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, o
 
 To access the device location information when running in the background, an application needs to request for a continuous task of the LOCATION type. In this way, the system continues to report device location information after your application moves to the background. For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
-A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all-user.md#ohospermissionlocation_in_background).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -163,7 +163,7 @@ Unregisters the listener for location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**

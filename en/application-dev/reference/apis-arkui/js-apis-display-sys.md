@@ -28,13 +28,13 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
+| displayId    | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
 
 **Return value**
 
 | Type                            | Description                                                                   |
 | -------------------------------- |-----------------------------------------------------------------------|
-|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+|boolean | Whether there is a visible privacy window on the display. The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.|
 
 **Error codes**
 
@@ -130,7 +130,7 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 

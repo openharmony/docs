@@ -7,9 +7,11 @@
 
 OH_NativeBundle_ElementName是[OH_NativeBundle_GetMainElementName()](_bundle.md#oh_nativebundle_getmainelementname)的输出参数，描述ElementName信息。
 
-**起始版本**：13
+**起始版本：** 13
 
-**相关模块：**[Bundle](_bundle.md)
+**相关模块：** [Bundle](_bundle.md)
+
+**所在头文件：** [native_interface_bundle.h](native__interface__bundle.md)
 
 
 ## 汇总

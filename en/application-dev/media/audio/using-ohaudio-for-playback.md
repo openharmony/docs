@@ -36,14 +36,14 @@ To use APIs for audio playback, import <[native_audiostreambuilder.h](../../refe
 
 The following code snippet shows how to use [OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create) to create a builder:
 
-```
+```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
 After the audio service is complete, call [OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy) to destroy the builder.
 
-```
+```cpp
 OH_AudioStreamBuilder_Destroy(builder);
 ```
 
@@ -55,16 +55,17 @@ The following walks you through how to implement simple playback:
 
 1. Create an audio stream builder.
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder* builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
     ```
 
 2. Set audio stream parameters.
 
+    For details about the audio sampling rate, see [Configuring the Appropriate Audio Sampling Rate](using-audiorenderer-for-playback.md#configuring-the-appropriate-audio-sampling-rate).<br>
     After creating the builder for audio playback, set the parameters required.
 
-    ```c++
+    ```cpp
     // Set the audio sampling rate.
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
     // Set the number of audio channels.
@@ -97,7 +98,7 @@ The following walks you through how to implement simple playback:
 
     - Since API version 12, you can call [OH_AudioStreamBuilder_SetFrameSizeInCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set **audioDataSize**.
 
-      ```c++
+      ```cpp
       // Customize a data writing function.
       static OH_AudioData_Callback_Result NewAudioRendererOnWriteData(
           OH_AudioRenderer* renderer,
@@ -166,7 +167,7 @@ The following walks you through how to implement simple playback:
       > 
       > - Once the callback function finishes its execution, the audio service queues the data in the buffer for playback. Therefore, do not change the buffered data outside the callback. Regarding the last frame, if there is insufficient data to completely fill the buffer, you must concatenate the available data with padding to ensure that the buffer is full. This prevents any residual dirty data in the buffer from adversely affecting the playback effect.
 
-      ```c++
+      ```cpp
       // Customize a data writing function.
       int32_t MyOnWriteData(
           OH_AudioRenderer* renderer,
@@ -223,7 +224,7 @@ The following walks you through how to implement simple playback:
 
    - Initialize each callback in [OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) by a custom callback method or a null pointer.
    
-     ```c++
+     ```cpp
      // Customize a data writing function.
      int32_t MyOnWriteData(
          OH_AudioRenderer* renderer,
@@ -258,7 +259,7 @@ The following walks you through how to implement simple playback:
    
    - Initialize and clear the struct before using it.
    
-     ```c++
+     ```cpp
      // Customize a data writing function.
      int32_t MyOnWriteData(
          OH_AudioRenderer* renderer,
@@ -291,7 +292,7 @@ The following walks you through how to implement simple playback:
 
 4. Create an audio renderer instance.
 
-    ```c++
+    ```cpp
     OH_AudioRenderer* audioRenderer;
     OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
     ```
@@ -305,30 +306,42 @@ The following walks you through how to implement simple playback:
     | OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer) | Starts the audio renderer.    |
     | OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer) | Pauses the audio renderer.    |
     | OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer) | Stops the audio renderer.    |
-    | OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | Flushes written audio data.|
+    | OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | Flushes obtained audio data.|
     | OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer) | Releases the audio renderer instance.|
 
 6. Destroy the audio stream builder.
 
     When the builder is no longer used, release related resources.
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder_Destroy(builder);
     ```
 
+## Setting the Volume for an Audio Stream
+
+You can use [OH_AudioRenderer_SetVolume](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setvolume) to set the volume for the current audio stream.
+
+```cpp
+// Volume to set. The value range is [0.0, 1.0].
+float volume = 0.5f;
+
+// Set the volume for the audio stream.
+OH_AudioStream_Result OH_AudioRenderer_SetVolume(audioRenderer, volume);
+```
+
 ## Setting the Low Latency Mode
 
-If the device supports the low-latency channel, you can use the low-latency mode to create a player for a higher-quality audio experience.
+If the device supports the low-latency channel and the sampling rate is set to 48000, you can use the low-latency mode to create a player for a higher-quality audio experience.
 
 The development process is similar to that in the common playback scenario. The only difference is that you need to set the low delay mode by calling [OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode) when creating an audio stream builder.
 
 > **NOTE**
-> 
-> In audio recording scenarios, if [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) is set to **AUDIOSTREAM_USAGE_VOICE_COMMUNICATION** or **AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
+> - In audio recording scenarios, if [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) is set to **AUDIOSTREAM_USAGE_VOICE_COMMUNICATION** or **AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION**, the low-latency mode cannot be set. The system determines the output audio channel based on the device capability.
+> - The low-latency mode requires robust data processing capabilities. If your application generates data slowly, it may lead to lag. Therefore, for typical music and video playback, this mode is not recommended. It is best suited for applications that are sensitive to latency, such as gaming and karaoke.
 
 The code snippet is as follows:
 
-```C
+```cpp
 OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 ```
 
@@ -346,21 +359,19 @@ For audio in HOA format, to obtain the correct rendering and playback effect, yo
 
 The code snippet is as follows:
 
-```C
+```cpp
 OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 ```
 
-## Playing Audio Files in AudioVivid Format
+## Playing Audio Files in Audio Vivid Format
 
-In the case of audio file playback in AudioVivid format, the callback function used for writing data is different from that in the common playback scenario. This callback function can write PCM data and metadata at the same time.
+In the case of audio file playback in Audio Vivid format, the callback function used for writing data is different from that in the common playback scenario. This callback function can write PCM data and metadata at the same time.
 
 The development process is similar to that in the common playback scenario. The only difference is that you need to call [OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setwritedatawithmetadatacallback) to set the callback function and call [OH_AudioStreamBuilder_SetEncodingType()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setencodingtype) to set the encoding type to **AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID** when creating an audio stream builder.
 
-When an audio file in AudioVivid format is played, the frame size is fixed. Therefore, do not call [OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set the frame size in the callback. In addition, when setting the number of audio channels and the audio channel layout, use the sum of the number of sound beds written into the audio source and the number of objects.
+When an audio file in Audio Vivid format is played, the frame size is fixed. Therefore, do not call [OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback) to set the frame size in the callback. In addition, when setting the number of audio channels and the audio channel layout, use the sum of the number of sound beds written into the audio source and the number of objects.
 
-The code snippet is as follows:
-
-```C
+```cpp
 // Customize a callback function for simultaneously writing PCM data and metadata.
 int32_t MyOnWriteDataWithMetadata(
     OH_AudioRenderer* renderer,

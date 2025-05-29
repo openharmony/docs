@@ -1,12 +1,12 @@
 # Scene
-本模块作为ArkGraphics 3D基础模块，提供SceneResourceParamters、SceneNodeParamters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
+本模块作为ArkGraphics 3D基础模块，提供SceneResourceParameters、SceneNodeParameters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
 
 > **说明：** 
 > - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
 
 ## 导入模块
 ```ts
-import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
+import { SceneResourceParameters, SceneNodeParameters, RaycastResult, RaycastParameters, SceneResourceFactory, RenderParameters, Scene } from '@kit.ArkGraphics3D';
 ```
 
 ## SceneResourceParameters
@@ -68,6 +68,27 @@ function createNodePromise() : Promise<Node> {
   });
 }
 ```
+
+## RaycastResult<sup>20+</sup>
+射线检测命中结果对象，包含被射线击中的3D物体详细信息。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
+| centerDistance | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
+| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
+
+
+## RaycastParameters<sup>20+</sup>
+射线检测参数配置，用于定义射线检测的行为。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| rootNode | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 是 | 限定检测范围：仅检测该节点及其子节点。未设置时检测全场景。 |
+
+
 ## SceneResourceFactory
 用于创建3D场景中资源的接口，例如相机、光源等。
 
@@ -184,7 +205,7 @@ function createNodePromise() : Promise<Node> {
 ### createMaterial
 createMaterial(params: SceneResourceParameters, materialType: MaterialType): Promise\<Material>
 
-根据场景资源参数和材质类型创建材质, 使用Promise异步回调。
+根据场景资源参数和材质类型创建材质，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -254,7 +275,6 @@ function createShaderPromise() : Promise<Shader> {
   });
 }
 ```
-
 
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
@@ -328,7 +348,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-### createGeometry<sup>16+</sup>
+### createGeometry<sup>18+</sup>
 createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
 
 根据场景结点参数和网格数据创建几何对象，使用Promise异步回调。
@@ -339,7 +359,7 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
-| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource16) | 是 | 网格数据参数。 |
+| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource18) | 是 | 网格数据参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -370,7 +390,7 @@ function createGeometryPromise() : Promise<Geometry> {
 }
 ```
 
-### createMesh<sup>16+</sup>
+### createMesh<sup>18+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据场景资源参数和几何定义创建网格，使用Promise异步回调。
@@ -381,12 +401,12 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
-| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition16) | 是 | 几何实例参数。 |
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition18) | 是 | 几何实例参数。 |
 
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource16)> | Promise对象，返回网格资源对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource18)> | Promise对象，返回网格资源对象。 |
 
 **示例：**
 ```ts
@@ -411,7 +431,7 @@ function createMeshPromise() : Promise<MeshResource> {
 }
 ```
 
-### createScene<sup>16+</sup>
+### createScene<sup>18+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
 根据资源参数创建场景，使用Promise异步回调。
@@ -448,13 +468,13 @@ function createScenePromise() : Promise<Scene> {
 }
 ```
 
-## RenderParameters<sup>16+</sup>
+## RenderParameters<sup>15+</sup>
 渲染参数接口。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 表示是否每一帧都渲染。true表示每一帧都渲染，false表示按需渲染。默认值为true。 |
+| alwaysRender<sup>15+</sup> | boolean | 否 | 是 | 表示是否每一帧都渲染。true表示每一帧都渲染，false表示按需渲染。默认值为true。 |
 
 
 ## Scene
@@ -584,7 +604,7 @@ function destroy() : void {
 }
 ```
 
-### importNode<sup>16+</sup>
+### importNode<sup>18+</sup>
 importNode(name: string, node: Node, parent: Node | null): Node
 
 一般用于从其他场景导入结点。
@@ -626,7 +646,7 @@ function ImportNodeTest() {
 }
 ```
 
-### importScene<sup>16+</sup>
+### importScene<sup>18+</sup>
 importScene(name: string, scene: Scene, parent: Node | null): Node
 
 在当前场景中导入其他场景。
@@ -662,7 +682,7 @@ function ImportSceneTest() {
 }
 ```
 
-### renderFrame<sup>16+</sup>
+### renderFrame<sup>15+</sup>
 renderFrame(params?: RenderParameters): boolean
 
 通过该接口可以实现按需渲染，例如控制渲染帧率。
@@ -672,7 +692,7 @@ renderFrame(params?: RenderParameters): boolean
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [RenderParameters](#renderparameters16) | 否 | 渲染参数，默认值为undefined。|
+| params | [RenderParameters](#renderparameters15) | 否 | 渲染参数，默认值为undefined。|
 
 **返回值：**
 | 类型 | 说明 |

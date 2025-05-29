@@ -61,7 +61,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        console.error("createOutput videoProfilesArray == null || undefined");
        return undefined;
      }
-     // AVRecorderProfile
+     // AVRecorderProfile.
      let aVRecorderProfile: media.AVRecorderProfile = {
        fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
        videoBitrate: 100000, // Video bit rate.
@@ -127,7 +127,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        await avRecorder.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder start error: ${err}`);
      }
    }
    ```
@@ -142,7 +142,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        await avRecorder.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder stop error: ${err}`);
      }
      videoOutput.stop((err: BusinessError) => {
        if (err) {

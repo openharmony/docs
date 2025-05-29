@@ -102,7 +102,7 @@ OH_Drawing_PathEffectDestroy(pathEffect);
 
 着色器效果基于画刷或画笔实现，可使用OH_Drawing_BrushSetShaderEffect()接口设置画刷的着色器效果，或者使用 OH_Drawing_PenSetShaderEffect接口设置画笔的着色器效果。当前支持不同的着色器效果，如线性渐变着色器效果、径向渐变着色器效果、扇形渐变着色器效果。
 
-着色器相关接口和具体参数的说明请见[drawing_shader_effect](../reference/apis-arkgraphics2d/drawing__shader__effect_8h.md)。
+着色器相关接口和具体参数的说明请见[drawing_shader_effect](../reference/apis-arkgraphics2d/capi-drawing-shader-effect-h.md)。
 
 
 ### 线性渐变着色器效果
@@ -247,12 +247,12 @@ OH_Drawing_PointDestroy(centerPt);
 
 滤波器效果可基于画刷或画笔实现。可使用OH_Drawing_PenSetFilter()接口设置画笔的滤波器效果，或者使用OH_Drawing_BrushSetFilter()接口设置画刷的滤波器效果。当前支持不同的滤波器效果，比如图像滤波器、颜色滤波器、蒙版滤波器。
 
-滤波器相关接口和具体参数的说明请见[drawing_filter.h](../reference/apis-arkgraphics2d/drawing__filter_8h.md)。
+滤波器相关接口和具体参数的说明请见[drawing_filter.h](../reference/apis-arkgraphics2d/capi-drawing-filter-h.md)。
 
 
 ### 颜色滤波器效果
 
-颜色滤波器可基于画笔或画刷实现，颜色滤波器的相关接口和具体参数的说明请见[drawing_color_filter.h](../reference/apis-arkgraphics2d/drawing__color__filter_8h.md)。
+颜色滤波器可基于画笔或画刷实现，颜色滤波器的相关接口和具体参数的说明请见[drawing_color_filter.h](../reference/apis-arkgraphics2d/capi-drawing-color-filter-h.md)。
 
 目前可实现多种颜色滤波器，包括如下：
 
@@ -337,7 +337,7 @@ OH_Drawing_FilterDestroy(filter);
 
 ### 图像滤波器效果
 
-图像滤波器可基于画笔或画刷来实现，图像滤波器的相关接口和具体参数的说明请见[drawing_image_filter.h](../reference/apis-arkgraphics2d/drawing__image__filter_8h.md)。
+图像滤波器可基于画笔或画刷来实现，图像滤波器的相关接口和具体参数的说明请见[drawing_image_filter.h](../reference/apis-arkgraphics2d/capi-drawing-image-filter-h.md)。
 
 目前只支持两种图像滤波器：
 
@@ -393,7 +393,7 @@ OH_Drawing_FilterDestroy(filter);
 
 蒙版滤波器的模糊效果仅对透明度和形状边缘进行模糊处理，相对于图像滤波器的模糊效果来说计算成本更低。
 
-蒙版滤波器可基于画笔或画刷实现，蒙版滤波器的相关接口和具体参数的说明请见[drawing_mask_filter.h](../reference/apis-arkgraphics2d/drawing__mask__filter_8h.md)。
+蒙版滤波器可基于画笔或画刷实现，蒙版滤波器的相关接口和具体参数的说明请见[drawing_mask_filter.h](../reference/apis-arkgraphics2d/capi-drawing-mask-filter-h.md)。
 
 可使用H_Drawing_MaskFilterCreateBlur()接口创建想要设置具有模糊效果的蒙版滤波器。接口接受3个参数，分别为：
 
@@ -440,3 +440,11 @@ OH_Drawing_FilterDestroy(filter);
 | 不设置蒙版滤波器效果的示意图 | 设置蒙版滤波器效果的示意图 |
 | -------- | -------- |
 | ![zh-cn_image_0000002194110877](figures/zh-cn_image_0000002194110877.png) | ![zh-cn_image_0000002158744126](figures/zh-cn_image_0000002158744126.png) |
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

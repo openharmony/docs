@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## clip<sup>12+</sup>
 
@@ -22,9 +22,9 @@ clip(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
+| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>true表示按照父容器边缘轮廓进行裁剪，false表示不对子组件进行裁剪。 <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。 |
 
-## clip<sup>16+</sup>
+## clip<sup>18+</sup>
 
 clip(clip: Optional\<boolean>)
 
@@ -32,15 +32,15 @@ clip(clip: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型               | 必填                                                         | 说明 |
 | ------ | ------------------ | ------------------------------------------------------------ | ---- |
-| clip   | Optional\<boolean> | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。<br/>当clip的值为undefined时，恢复为不对子组件超出当前组件范围外的区域进行裁剪。 |      |
+| clip   | Optional\<boolean> | 是 |  参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false <br/>**说明：** 设置为true后，子组件超出当前组件范围外的区域将不响应绑定的手势事件。<br/>当clip的值为undefined时，恢复为不对子组件超出当前组件范围外的区域进行裁剪。    |
 
 ## clip<sup>(deprecated)</sup>
 
@@ -66,7 +66,15 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 
 clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
-按指定的形状对当前组件进行裁剪。
+按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。
+
+> **说明：**  
+>
+> 不同的形状支持的属性范围不同，路径是一种形状，除此之外还有椭圆、矩形等形状。
+>
+> 路径的形状不支持设置宽度和高度。具体形状支持的属性参考具体形状的文档。
+>
+> 形状中的[fill](../js-apis-arkui-shape.md#fill)属性对clipShape接口不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,25 +86,33 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。 |
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。 |
 
-## clipShape<sup>16+</sup>
+## clipShape<sup>18+</sup>
 
 clipShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
-按指定的形状对当前组件进行裁剪。与[clipShape<sup>12+</sup>](#clipshape12)相比，shape参数新增了对undefined类型的支持。
+按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。与[clipShape<sup>12+</sup>](#clipshape12)相比，shape参数新增了对undefined类型的支持。
+
+> **说明：**  
+>
+> 不同的形状支持的属性范围不同，路径是一种形状，除此之外还有椭圆、矩形等形状。
+>
+> 路径的形状不支持设置宽度和高度。具体形状支持的属性参考具体形状的文档。
+>
+> 形状中的[fill](../js-apis-arkui-shape.md#fill)属性对clipShape接口不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | Optional\<[CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)> | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。<br/>当shape的值为undefined时，维持上次取值。 |
+| shape  | Optional\<[CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)> | 是   | 参数为相应类型的组件，按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。<br/>当shape的值为undefined时，维持上次取值。 |
 
 ## mask<sup>12+</sup>
 
@@ -114,7 +130,7 @@ mask(value: ProgressMask)
 | ------ | ------------------------------- | ---- | ---------------------------------------------------- |
 | value  | [ProgressMask](#progressmask10) | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
 
-## mask<sup>16+</sup>
+## mask<sup>18+</sup>
 
 mask(mask: Optional\<ProgressMask>)
 
@@ -122,13 +138,13 @@ mask(mask: Optional\<ProgressMask>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| mask | Optional\<[ProgressMask](#progressmask10)> | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。<br/>当mask的值为undefined时，恢复为无进度遮罩效果。 |      |
+| mask | Optional\<[ProgressMask](#progressmask10)> | 是 | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。<br/>当mask的值为undefined时，恢复为无进度遮罩效果。     |
 
 ## mask<sup>(deprecated)</sup>
 
@@ -168,7 +184,7 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 在当前组件上加上指定形状的遮罩。 |
 
-## maskShape<sup>16+</sup>
+## maskShape<sup>18+</sup>
 
 maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
@@ -176,9 +192,9 @@ maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -188,7 +204,7 @@ maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 ## ProgressMask<sup>10+</sup>
 
-ProgressMask设置遮罩的进度、最大值和遮罩颜色。
+ProgressMask设置遮罩的进度、最大值和颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -208,8 +224,8 @@ constructor(value: number, total: number, color: ResourceColor)
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述           |
 | ------ | ------------------------------------------ | ---- | ------------------ |
-| value  | number                                     | 是   | 进度遮罩的当前值。 |
-| total  | number                                     | 是   | 进度遮罩的最大值。 |
+| value  | number                                     | 是   | 进度遮罩的当前值。<br/> 取值范围：[0.0, +∞) |
+| total  | number                                     | 是   | 进度遮罩的最大值。<br/> 取值范围：[0.0, +∞) |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。   |
 
 ### updateProgress<sup>10+</sup>
@@ -267,6 +283,8 @@ enableBreathingAnimation(value: boolean): void
 
 ```ts
 // xxx.ets
+import { CircleShape, RectShape } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct ClipAndMaskExample {
@@ -281,18 +299,18 @@ struct ClipAndMaskExample {
 
       // 用一个280px直径的圆对图片进行裁剪
       Image($r('app.media.testImg'))
-        .clipShape(new Circle({ width: '280px', height: '280px' }))
+        .clipShape(new CircleShape({ width: '280px', height: '280px' }))
         .width('500px').height('280px')
 
       Text('mask').fontSize(12).width('75%').fontColor('#DCDCDC')
       // 给图片添加了一个500px*280px的方形遮罩
       Image($r('app.media.testImg'))
-        .maskShape(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new RectShape({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
       // 给图片添加了一个280px*280px的圆形遮罩
       Image($r('app.media.testImg'))
-        .maskShape(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
+        .maskShape(new CircleShape({ width: '280px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
     }
     .width('100%')
@@ -309,7 +327,7 @@ struct ClipAndMaskExample {
 @Entry
 @Component
 struct ProgressMaskExample {
-  @State progressflag1: boolean = true;
+  @State progressFlag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
   @State enableBreathingAnimation: boolean = false;
@@ -340,18 +358,18 @@ struct ProgressMaskExample {
       // 更新进度遮罩的颜色
       Button('updateColor')
         .onClick((event?: ClickEvent) => {
-          if (this.progressflag1) {
+          if (this.progressFlag1) {
             this.progress.updateColor(0x9fff0000);
           } else {
             this.progress.updateColor(0x9f0000ff);
           }
-          this.progressflag1 = !this.progressflag1
+          this.progressFlag1 = !this.progressFlag1
         }).width(200).height(50).margin(20)
 
       // 开关呼吸光晕动画
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {
-          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.enableBreathingAnimation = !this.enableBreathingAnimation;
           this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
         }).width(200).height(50).margin(20)
 

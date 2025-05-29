@@ -10,7 +10,7 @@ The **Row** component lays out child components horizontally.
 
 ## Attributes
 
-## pointLight
+### pointLight
 
 pointLight(value: PointLightStyle)
 

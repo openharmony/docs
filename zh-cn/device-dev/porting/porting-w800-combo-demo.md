@@ -211,7 +211,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
      endif #BOARD_NEPTUNE100
      ```
 
-     用于添加 BOARD_NEPTUNE100默认配置
+     用于添加 BOARD_NEPTUNE100默认配置。
 
 5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
 
@@ -413,7 +413,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
 
-内核初始化示例如下:
+内核初始化示例如下：
 
    ```
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化
@@ -760,7 +760,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件
+如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
    ```
    {

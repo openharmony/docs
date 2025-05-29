@@ -23,12 +23,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 |  | 
-| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 |  | 
-| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) |  | 
+| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 | JSVM 实验性版本号。 | 
+| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 | JSVM 版本号。 | 
+| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) | 指定符号对外部可见。 | 
 | [JSVM_AUTO_LENGTH](_j_s_v_m.md#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。  | 
-| **EXTERN_C_START** |  | 
-| **EXTERN_C_END** |  | 
+| **EXTERN_C_START** | 表示接下来的代码使用 C 语言的链接约定。 | 
+| **EXTERN_C_END** | 表示后续的代码使用 C++ 默认的链接约定。 | 
 
 
 ### 函数
@@ -207,11 +207,14 @@
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_CreateFunctionWithScript](_j_s_v_m.md#oh_jsvm_createfunctionwithscript) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, const char \*funcName, size_t length, size_t argc, const [JSVM_Value](_j_s_v_m.md#jsvm_value) \*argv, [JSVM_Value](_j_s_v_m.md#jsvm_value) script, [JSVM_Value](_j_s_v_m.md#jsvm_value) \*result) | 创建一个以给定JavaScript为函数体的函数。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_PumpMessageLoop](_j_s_v_m.md#oh_jsvm_pumpmessageloop) ([JSVM_VM](_j_s_v_m.md#jsvm_vm) vm, bool \*result) | 启动虚拟机内任务队列的运行。这个任务队列可以通过外部事件循环来执行。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_PerformMicrotaskCheckpoint](_j_s_v_m.md#oh_jsvm_performmicrotaskcheckpoint) ([JSVM_VM](_j_s_v_m.md#jsvm_vm) vm) | 检查队列中是否有微任务等待，如果存在则执行它们。  | 
-| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_RetainScript](_j_s_v_m.md#oh_jsvm_retainscript) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Script](_j_s_v_m.md#jsvm_script) script) | 持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外.  | 
-| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_ReleaseScript](_j_s_v_m.md#oh_jsvm_releasescript) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Script](_j_s_v_m.md#jsvm_script) script) | 此函数释放由OH_JSVM_RetainScript保留的脚本，释放后应避免对传入 script 的再次使用.  | 
-| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_OpenInspectorWithName](_j_s_v_m.md#oh_jsvm_openinspectorwithname) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, int pid, const char \*name) | 此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口.  | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_RetainScript](_j_s_v_m.md#oh_jsvm_retainscript) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Script](_j_s_v_m.md#jsvm_script) script) | 持久保存一个JSVM_Script并将其生命周期延长到当前作用域之外。  | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_ReleaseScript](_j_s_v_m.md#oh_jsvm_releasescript) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Script](_j_s_v_m.md#jsvm_script) script) | 此函数释放由OH_JSVM_RetainScript保留的脚本，释放后应避免对传入 script 的再次使用。  | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_OpenInspectorWithName](_j_s_v_m.md#oh_jsvm_openinspectorwithname) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, int pid, const char \*name) | 此函数打开一个命名为传入 name 的 inspector，为其打开对应 pid 的 unix domain 端口。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_CompileWasmModule](_j_s_v_m.md#oh_jsvm_compilewasmmodule) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, const uint8_t \*wasmBytecode, size_t wasmBytecodeLength, const uint8_t \*cacheData, size_t cacheDataLength, bool \*cacheRejected, [JSVM_Value](_j_s_v_m.md#jsvm_value) \*wasmModule) | 将 WebAssembly 字节码编译得到一个 WebAssembly 模块。 如果提供了 WebAssembly 缓存，则会先尝试对缓存进行反序列化。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_CompileWasmFunction](_j_s_v_m.md#oh_jsvm_compilewasmfunction) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Value](_j_s_v_m.md#jsvm_value) wasmModule, uint32_t functionIndex, [JSVM_WasmOptLevel](_j_s_v_m.md#jsvm_wasmoptlevel) optLevel) | 对当前 WebAssembly 模块中指定索引的函数进行指定优化等级的编译优化。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_IsWasmModuleObject](_j_s_v_m.md#oh_jsvm_iswasmmoduleobject) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Value](_j_s_v_m.md#jsvm_value) value, bool \*result) | 判断给定的 JSVM_Value 是否是一个 WebAssembly 模块。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_CreateWasmCache](_j_s_v_m.md#oh_jsvm_createwasmcache) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, [JSVM_Value](_j_s_v_m.md#jsvm_value) wasmModule, const uint8_t \*\*data, size_t \*length) | 为给定的 WebAssembly 模块生成缓存。  | 
 | JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_ReleaseCache](_j_s_v_m.md#oh_jsvm_releasecache) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, const uint8_t \*cacheData, [JSVM_CacheType](_j_s_v_m.md#jsvm_cachetype) cacheType) | 释放给定类型的缓存数据。  | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_AddHandlerForGC](_j_s_v_m.md#oh_jsvm_addhandlerforgc) ([JSVM_VM](_j_s_v_m.md#jsvm_vm) vm, [JSVM_CBTriggerTimeForGC](_j_s_v_m.md#jsvm_cbtriggertimeforgc) triggerTime, [JSVM_HandlerForGC](_j_s_v_m.md#jsvm_handlerforgc) handler, [JSVM_GCType](_j_s_v_m.md#jsvm_gctype) gcType, void \*userData) | 在VM中添加GC的回调函数。 | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_RemoveHandlerForGC](_j_s_v_m.md#oh_jsvm_removehandlerforgc) ([JSVM_VM](_j_s_v_m.md#jsvm_vm) vm, [JSVM_CBTriggerTimeForGC](_j_s_v_m.md#jsvm_cbtriggertimeforgc) triggerTime, [JSVM_HandlerForGC](_j_s_v_m.md#jsvm_handlerforgc) handler, void \*userData) | 在VM中移除GC的回调函数。 | 
+| JSVM_EXTERN [JSVM_Status](_j_s_v_m.md#jsvm_status) [OH_JSVM_SetMicrotaskPolicy](_j_s_v_m.md#oh_jsvm_setmicrotaskpolicy) ([JSVM_VM ](_j_s_v_m.md#jsvm_vm) vm, [JSVM_MicrotaskPolicy ](_j_s_v_m.md#jsvm_microtaskpolicy) policy) | 用于设置虚拟机实例的微任务执行策略。<br/>如果该方法未被调用，虚拟机实例的默认策略为 JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO。 |

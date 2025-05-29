@@ -2,22 +2,22 @@
 
 - [NDK开发导读](ndk-development-overview.md)
 - [创建NDK工程](create-with-ndk.md)
-- 构建NDK工程
+- 构建NDK工程<!--build-with-ndk-->
   - [NDK工程构建概述](build-with-ndk-overview.md)
   - [使用DevEco Studio模板构建NDK工程](build-with-ndk-ide.md)
   - [使用命令行CMake构建NDK工程](build-with-ndk-cmake.md)
   - [在NDK工程中使用预构建库](build-with-ndk-prebuilts.md)
-- 代码开发
+- 代码开发<!--coding-->
   - [代码开发概述](develop-code-overview.md)
-  - C/C++标准库
+  - C/C++标准库<!--c-cpp-->
     - [C/C++标准库机制概述](c-cpp-overview.md)
     - [fdsan使用指导](fdsan.md)
-  - 使用Node-API实现跨语言交互
+  - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
     - [Node-API简介](napi-introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
     - [Node-API开发规范](napi-guidelines.md)
     - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
-    - Node-API使用指导
+    - Node-API使用指导<!--napi-use-->
       - [使用Node-API进行扩展能力功能开发](use-napi-about-extension.md)
       - [使用Node-API进行array相关开发](use-napi-about-array.md)
       - [使用Node-API进行arraybuffer相关开发](use-napi-about-arraybuffer.md)
@@ -38,7 +38,7 @@
       - [使用Node-API进行property相关开发](use-napi-about-property.md)
       - [使用Node-API进行string相关开发](use-napi-about-string.md)
       - [使用Node-API进行自定义异步操作相关开发](use-napi-about-custom-asynchronous-operations.md)
-    - Node-API典型使用场景
+    - Node-API典型使用场景<!--napi-scenarios-->
       - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
       - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
@@ -48,17 +48,18 @@
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
       - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
+      - [使用Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)
       - [使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)
       - [使用Node-API调用返回值为promise的ArkTS方法](use-napi-method-promise.md)
     - [Node-API常见问题](use-napi-faqs.md)
-  - 使用JSVM-API实现JS与C/C++语言交互
+  - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
     - [JSVM-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
     - [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)
-    - JSVM-API开发规范
+    - JSVM-API开发规范<!--jsvm-development-standards-->
       - [JSVM-API使用规范](jsvm-guidelines.md)
       - [JSVM-API常见问题](jsvm-frequently-questions.md)
-    - JSVM-API使用指导
+    - JSVM-API使用指导<!--jsvm-use-->
       - [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md)
       - [使用JSVM-API接口进行虚拟机快照相关开发](use-jsvm-create-snapshot.md)
       - [使用JSVM-API接口进行WebAssembly模块相关开发](use-jsvm-about-wasm.md)
@@ -69,6 +70,7 @@
       - [使用JSVM-API接口操作bigint类型值](use-jsvm-about-bigint.md)
       - [使用JSVM进行class相关开发](use-jsvm-about-class.md)
       - [使用JSVM-API接口进行Date相关开发](use-jsvm-about-date.md)
+      - [使用JSVM-API接口进行debug操作](use-jsvm-about-debug-option.md)
       - [使用JSVM-API接口进行object相关开发](use-jsvm-about-object.md)
       - [使用JSVM-API接口进行primitive类相关开发](use-jsvm-about-primitive.md)
       - [使用JSVM-API接口处理异步操作](use-jsvm-about-promise.md)
@@ -88,32 +90,33 @@
       - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
       - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
       - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
-    - JSVM-API典型使用场景指导
+    - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
-      - JSVM-API调优&高性能使用示例
+      - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
+      - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
         - [JSVM 通用调优实践](jsvm-optimizations.md)
-  - OpenMP支持
+    - JSVM性能调试指导<!--jsvm-performance-->
+      - [使用HiSmartPerf采集V8 trace](use-jsvm-about-v8-trace.md)
+  - OpenMP支持<!--openmp-->
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
   - 资源管理<!--resource-management-->
     - [Rawfile开发指导](rawfile-guidelines.md)
-  - 网络管理
-    - [NetConnection开发指导](native-netmanager-guidelines.md) 
-  - 线程调度
+  - 线程调度<!--thread-scheduling-->
     - [QOS开发指导](qos-guidelines.md)
-  - 内存管理
+  - 内存管理<!--memory-management-->
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
-  - 包管理
+  - 包管理<!--bundle-management-->
     - [NativeBundle开发指导](native-bundle-guidelines.md)
-- 调试和性能分析
+- 调试和性能分析<!--debugging-profiling-->
   - [调试和性能分析概述](debug-performance-profiling-overview.md)
   - [通过DevEco Studio调试](debug-ide.md)
   - [C/C++内存错误检测](debug-asan.md)
-- 硬件兼容性
+- 硬件兼容性<!--hardware-compatibility-->
   - [硬件兼容性简介](hw-guide.md)
   - [OpenHarmony ABI](ohos-abi.md)
   - [CPU特性](cpu-features.md)

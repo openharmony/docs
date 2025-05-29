@@ -4,8 +4,8 @@
 
 该模块提供以下关系型数据库相关的常用功能：
 
-- [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
-- [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
+- [RdbPredicates](#rdbpredicates)：数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
+- [RdbStore](#rdbstore)：提供管理关系数据库（RDB）方法的接口。
 
 > **说明：**
 >
@@ -31,7 +31,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名   | 类型                                       | 必填 | 说明                                                         |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
+| context  | Context                                    | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
 | config   | [StoreConfig](#storeconfig)                | 是   | 与此RDB存储相关的数据库配置。                                |
 | version  | number                                     | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                     |
@@ -89,7 +89,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名  | 类型                        | 必填 | 说明                                                         |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
+| context | Context                     | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 | version | number                      | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
@@ -150,7 +150,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -204,7 +204,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
+| context | Context | 是   | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -1040,7 +1040,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3)
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置RdbPredicates以指定返回结果的起始位置。
+配置RdbPredicates以指定返回结果的起始位置。需要同步调用limitAs接口指定查询数量，否则将无查询结果。如需查询指定偏移位置后的所有行，limitAs接口调用需传参数-1。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1060,7 +1060,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 ```ts
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").offsetAs(3)
+predicates.equalTo("NAME", "Rose").limitAs(-1).offsetAs(3)
 ```
 
 ### groupBy
@@ -1176,7 +1176,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 ## RdbStore
 
-提供管理关系数据库(RDB)方法的接口。
+提供管理关系数据库（RDB）方法的接口。
 
 在使用以下相关接口前，请使用[executeSql](#executesql8)接口初始化数据库表结构和相关数据。
 
@@ -1890,7 +1890,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| tables | Array&lt;string&gt; | 是 | 要设置的分布式列表表名 |
+| tables | Array&lt;string&gt; | 是 | 要设置的分布式列表表名。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
@@ -1942,7 +1942,7 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用callback异步回调。
 
 > **说明：**
 >
@@ -1957,7 +1957,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 远程设备ID 。 |
-| table | string | 是 | 远程设备的本地表名 |
+| table | string | 是 | 远程设备的本地表名。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
@@ -2042,7 +2042,7 @@ promise.then((tableName: String) => {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 使用callback异步回调。
+在设备之间同步数据，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2180,7 +2180,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 使用callback异步回调。
+从数据库中删除指定类型的指定观察者，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

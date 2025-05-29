@@ -75,7 +75,11 @@ Provides C APIs for obtaining resources.
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetStringArrayByName](#oh_resourcemanager_getstringarraybyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, char \*\*\*resultValue, uint32_t \*resultLen) | Obtains a string array based on the specified resource name.| 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_ReleaseStringArray](#oh_resourcemanager_releasestringarray) (char \*\*\*resValue, uint32_t len) | Releases the memory of the string array.| 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralString](#oh_resourcemanager_getpluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t num, char \*\*resultValue) | Obtains singular and plural strings based on the specified resource ID.| 
-| [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralStringByName](#oh_resourcemanager_getpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue) | Obtains singular and plural strings based on the specified resource name.| 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetPluralStringByName](#oh_resourcemanager_getpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue) | Obtains singular and plural strings based on the specified resource name.|
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetIntPluralString](#oh_resourcemanager_getintpluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t num, char \*\*resultValue,...) | Obtains singular and plural strings based on the specified resource ID. | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetDoublePluralString](#oh_resourcemanager_getdoublepluralstring) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, double num, char \*\*resultValue,...) | Obtains singular and plural strings based on the specified resource ID. | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetIntPluralStringByName](#oh_resourcemanager_getintpluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t num, char \*\*resultValue,...) | Obtains singular and plural strings based on the specified resource name. | 
+| [ResourceManager_ErrorCode](#resourcemanager_errorcode)[OH_ResourceManager_GetDoublePluralStringByName](#oh_resourcemanager_getdoublepluralstringbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, double num, char \*\*resultValue,...) | Obtains singular and plural strings based on the specified resource name. |  
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetColor](#oh_resourcemanager_getcolor) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, uint32_t \*resultValue) | Obtains a color value based on the specified resource ID.| 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetColorByName](#oh_resourcemanager_getcolorbyname) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*resName, uint32_t \*resultValue) | Obtains a color value based on the specified resource ID.| 
 | [ResourceManager_ErrorCode](#resourcemanager_errorcode) [OH_ResourceManager_GetInt](#oh_resourcemanager_getint) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, uint32_t resId, int \*resultValue) | Obtains an int value based on the specified resource ID.| 
@@ -311,7 +315,7 @@ Obtains a bool value based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -344,7 +348,7 @@ Obtains a bool value based on the specified resource name.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -377,7 +381,7 @@ Obtains a color value based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -410,7 +414,7 @@ Obtains a color value based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -444,9 +448,86 @@ After using this API, you need to call **OH_ResourceManager_ReleaseConfiguration
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_SYSTEM_RES_MANAGER_GET_FAILED 9001009 - Failed to access system resources.
+
+ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
+
+
+### OH_ResourceManager_GetDoublePluralString()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralString (const NativeResourceManager * mgr, uint32_t resId, double num, char ** resultValue,  ... )
+```
+
+**Description**
+
+Obtains singular and plural strings based on the specified resource ID.
+
+After using this API, you need to call **free()** to release the memory of the strings.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resId | Resource ID. | 
+| num | Quantity value (a floating point number), Its string representation is obtained based on the current language's plural rules. | 
+| resultValue | Result of writing **resultValue**. | 
+| ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
+
+**Returns**
+
+SUCCESS = 0: Operation succeeded.
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - No matching resource is found based on the resource ID.
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - Resources are cyclically referenced.
+
+ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
+
+
+### OH_ResourceManager_GetDoublePluralStringByName()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName (const NativeResourceManager * mgr, const char * resName, double num, char ** resultValue,  ... )
+```
+**Description**
+
+Obtains singular and plural strings based on the specified resource name.
+
+After using this API, you need to call **free()** to release the memory of the strings.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resName | Resource name. | 
+| num | Quantity value (a floating point number), The string representation is obtained based on the current language's plural rules. | 
+| resultValue | Result of writing **resultValue**. | 
+| ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
+
+**Returns**
+
+SUCCESS = 0: Operation succeeded.
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - No matching resource is found based on the resource name.
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - Resources are cyclically referenced.
 
 ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
 
@@ -477,7 +558,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -510,7 +591,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -543,7 +624,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -576,7 +657,7 @@ Obtains the **DrawableDescriptor** object of the icon resource with the specifie
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -607,7 +688,7 @@ Obtains a float value based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -640,7 +721,7 @@ Obtains a float value based on the specified resource name.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -673,7 +754,7 @@ Obtains an int value based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -706,13 +787,90 @@ Obtains an int value based on the specified resource name.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
 ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - No matching resource is found based on the resource name.
 
 ERROR_CODE_RES_REF_TOO_MUCH 9001006 - Resources are cyclically referenced.
+
+
+### OH_ResourceManager_GetIntPluralString()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralString (const NativeResourceManager * mgr, uint32_t resId, uint32_t num, char ** resultValue,  ... )
+```
+
+**Description**
+
+Obtains singular and plural strings based on the specified resource ID.
+
+After using this API, you need to call **free()** to release the memory of the strings.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resId | Resource ID. | 
+| num | Quantity value (an integer). Its string representation is obtained based on the current language's plural rules. | 
+| resultValue | Result of writing **resultValue**. | 
+| ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
+
+**Returns**
+
+SUCCESS = 0: Operation succeeded.
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001002 - No matching resource is found based on the resource ID.
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - Resources are cyclically referenced.
+
+ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
+
+
+### OH_ResourceManager_GetIntPluralStringByName()
+
+```
+ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue,  ... )
+```
+**Description**
+
+Obtains singular and plural strings based on the specified resource name.
+
+After using this API, you need to call **free()** to release the memory of the strings.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resName | Resource name. | 
+| num | Quantity value (an integer). Its string representation is obtained based on the current language's plural rules. | 
+| resultValue | Result of writing **resultValue**. | 
+| ... | Variable representing formatted string resources. Supported types include const char\*, int, and float. | 
+
+**Returns**
+
+SUCCESS = 0: Operation succeeded.
+
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+
+ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
+
+ERROR_CODE_RES_NOT_FOUND_BY_ID 9001004 - No matching resource is found based on the resource name.
+
+ERROR_CODE_RES_REF_TOO_MUCH 9001006 - Resources are cyclically referenced.
+
+ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
 
 
 ### OH_ResourceManager_GetLocales()
@@ -742,7 +900,7 @@ After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
 
@@ -774,7 +932,7 @@ After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
 
@@ -805,7 +963,7 @@ Obtains the content of the media resource with the specified screen density base
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -840,7 +998,7 @@ Obtains the Base64 code of the media resource with the specified screen density 
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -875,7 +1033,7 @@ Obtains the Base64 code of the media resource with the specified screen density 
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -910,7 +1068,7 @@ Obtains the Base64 code of the media resource with the specified screen density 
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -945,7 +1103,7 @@ Obtains the Base64 code of the media resource with the specified screen density 
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -980,7 +1138,7 @@ Obtains the content of the media resource with the specified screen density base
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -1015,7 +1173,7 @@ Obtains the content of the media resource with the specified screen density base
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -1050,7 +1208,7 @@ Obtains the content of the media resource with the specified screen density base
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -1073,20 +1231,24 @@ After using this API, you need to call **free()** to release the memory of the s
 
 **Since**: 12
 
+**Deprecated version**: 18
+
+**Substitute APIs**: [OH_ResourceManager_GetIntPluralString](#oh_resourcemanager_getintpluralstring)
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager).| 
-| resId | Resource ID.| 
-| num | Number.| 
-| resultValue | Result of writing **resultValue**.| 
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resId | Resource ID. | 
+| num | Number. | 
+| resultValue | Result of writing **resultValue**. | 
 
 **Returns**
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -1102,7 +1264,6 @@ ERROR_CODE_OUT_OF_MEMORY 9001100: The memory overflows.
 ```
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue )
 ```
-
 **Description**
 
 Obtains singular and plural strings based on the specified resource name.
@@ -1111,20 +1272,24 @@ After using this API, you need to call **free()** to release the memory of the s
 
 **Since**: 12
 
+**Deprecated version**: 18
+
+**Substitute APIs**: [OH_ResourceManager_GetIntPluralStringByName](#oh_resourcemanager_getintpluralstringbyname)
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
-| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager).| 
-| resName | Resource name.| 
-| num | Number.| 
-| resultValue | Result of writing **resultValue**.| 
+| mgr | Pointer to the [NativeResourceManager](rawfile.md#nativeresourcemanager) object. You can obtain the pointer by using [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager). | 
+| resName | Resource name. | 
+| num | Number. | 
+| resultValue | Result of writing **resultValue**. | 
 
 **Returns**
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -1162,7 +1327,7 @@ The obtain common string resources, use **OH_ResourceManager_GetString(mgr, resI
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -1200,7 +1365,7 @@ After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -1238,7 +1403,7 @@ After using this API, you need to call **OH_ResourceManager_ReleaseStringArray()
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -1276,7 +1441,7 @@ The obtain common string resources, use **OH_ResourceManager_GetString(mgr, resN
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - The resource name is invalid.
 
@@ -1311,7 +1476,7 @@ Obtains a **symbol** resource based on the specified resource ID.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - The resource ID is invalid.
 
@@ -1344,7 +1509,7 @@ Obtains a **symbol** resource based on the specified resource name.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003: The resource name is invalid.
 
@@ -1375,7 +1540,7 @@ Releases the memory requested by using **OH_ResourceManager_GetConfiguration()**
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 
 ### OH_ResourceManager_ReleaseStringArray()
@@ -1401,7 +1566,7 @@ Releases the memory of the string array.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 
 ### OH_ResourceManager_RemoveResource()
@@ -1427,6 +1592,6 @@ Removes overlay resources when an application is running.
 
 SUCCESS = 0: Operation succeeded.
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401: The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - The input parameter is invalid. Possible causes: 1. The parameter type is incorrect. 2. Parameter verification failed.
 
 ERROR_CODE_OVERLAY_RES_PATH_INVALID 9001010 - The resource path is invalid.

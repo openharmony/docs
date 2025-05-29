@@ -4,13 +4,13 @@
 
 半模态页面适用于展示简单的任务或信息面板，例如，个人信息、文本简介、分享面板、创建日程、添加内容等。若需展示可能影响父视图的半模态页面，半模态支持配置为非模态交互形式。
 
-半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions))属性。可以使用bindSheet构建半模态转场效果,详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-transition.md)。
+半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions))属性。可以使用bindSheet构建半模态转场效果，详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-transition.md)。
 
 ## 使用约束
 
  - 半模态内嵌[UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md)时，不支持再在UIExtension内拉起半模态/弹窗。
 
- - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
+ - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
 
 ## 生命周期
 
@@ -61,8 +61,8 @@
 @Entry
 @Component
 struct SheetDemo {
-  @State isShowSheet: boolean = false
-  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State isShowSheet: boolean = false;
+  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   @Builder
   SheetBuilder() {
@@ -98,7 +98,7 @@ struct SheetDemo {
     Column() {
       Button('Open Sheet').width('90%').height('80vp')
         .onClick(() => {
-          this.isShowSheet = !this.isShowSheet
+          this.isShowSheet = !this.isShowSheet;
         })
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
@@ -123,7 +123,7 @@ struct SheetDemo {
 // 第一步：声明onWillDismiss回调
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 // 第二步：确认二次回调交互能力，此处用AlertDialog提示 "是否需要关闭半模态"
-  AlertDialog.show(
+  this.getUIContext().showAlertDialog(
     {
       message: '是否选择关闭半模态',
       autoCancel: true,
@@ -133,7 +133,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
       primaryButton: {
         value: 'cancel',
         action: () => {
-          console.info('Callback when the cancel button is clicked')
+          console.info('Callback when the cancel button is clicked');
         }
       },
       secondaryButton: {
@@ -144,12 +144,12 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
         // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
         action: () => {
           // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
-          DismissSheetAction.dismiss()
-          console.info('Callback when the ok button is clicked')
+          DismissSheetAction.dismiss();
+          console.info('Callback when the ok button is clicked');
         }
       },
       cancel: () => {
-        console.info('AlertDialog Closed callbacks')
+        console.info('AlertDialog Closed callbacks');
       }
     }
   )
@@ -164,7 +164,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
   if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() //注册dismiss行为
+    DismissSheetAction.dismiss(); //注册dismiss行为
   }
 }),
 ```
@@ -177,12 +177,12 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
   if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() //注册dismiss行为
+    DismissSheetAction.dismiss(); //注册dismiss行为
   }
 }),
 
 onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
- //没有注册springBack, 下拉半模态页面无回弹行为
+ //没有注册springBack，下拉半模态页面无回弹行为
 }),
 ```
 

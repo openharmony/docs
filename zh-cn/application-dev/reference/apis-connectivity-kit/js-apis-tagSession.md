@@ -6,6 +6,10 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+> **注意：**
+>
+> 导入tag模块编辑器报错，在某个具体设备型号上能力可能超出工程默认设备定义的能力集范围，如需要使用此部分能力需额外配置自定义syscap，参考[syscap开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/syscap#syscap开发指导)。
+
 ## **导入模块**
 
 ```js
@@ -14,11 +18,11 @@ import { tag } from '@kit.ConnectivityKit';
 
 ## TagSession
 
-TagSession是所有[NFC Tag技术类型](js-apis-nfctech.md)的基类， 提供建立连接和发送数据等共同接口。
+TagSession是所有[nfcTag技术类型](js-apis-nfctech.md)的基类， 提供建立连接和发送数据等共同接口。
 
 需要通过其子类来访问以下接口。在下面的示例中 统一用 getXXX()表示获取子类实例的方法。
 
-具体使用时,请根据实际采用的Nfc tag技术，选择对应的方法，具体请参见[nfcTag](js-apis-nfcTag.md)文档。
+具体使用时,请根据实际采用的nfcTag技术，选择对应的方法，具体请参见[nfcTag](js-apis-nfcTag.md)文档。
 
 ### getTagInfo<sup>(deprecated)</sup>
 
@@ -44,8 +48,8 @@ getTagInfo(): tag.TagInfo
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.info("tag tagInfo: " + tagInfo);
@@ -75,8 +79,8 @@ connectTag(): boolean;
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
 console.info("connectStatus: " + connectStatus);
@@ -109,8 +113,8 @@ connect(): void;
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 try {
     tag.getIsoDep(tagInfo).connect(); 
@@ -138,8 +142,8 @@ reset(): void
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 tag.getIsoDep(tagInfo).reset(); 
 ```
@@ -171,8 +175,8 @@ resetConnection(): void
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
@@ -204,8 +208,8 @@ isTagConnected(): boolean
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected(); 
 console.info("isTagConnected: " + isTagConnected);
@@ -215,7 +219,7 @@ console.info("isTagConnected: " + isTagConnected);
 
 isConnected(): boolean
 
-检查是否已与标签建立连接。
+检查是否已与标签建立连接。如果返回未连接，则需要先调用[tagSession.connect](#connect9)建立连接。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -241,8 +245,8 @@ isConnected(): boolean
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
@@ -275,8 +279,8 @@ getMaxSendLength(): number
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength(); 
 console.info("tag maxSendLen: " + maxSendLen);
@@ -314,8 +318,8 @@ getMaxTransmitSize(): number
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
@@ -349,8 +353,8 @@ getSendDataTimeout(): number
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout(); 
 console.info("tag sendDataTimeout: " + sendDataTimeout);
@@ -389,8 +393,8 @@ getTimeout(): number
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
@@ -430,10 +434,10 @@ setSendDataTimeout(timeout: number): boolean
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
-let timeoutMs = 700;  // change it to be correct.
+let timeoutMs = 700;  // 修改为预期的超时时间
 let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs); 
 console.info("tag setSendDataTimeout setStatus: " + setStatus);
 ```
@@ -472,10 +476,10 @@ setTimeout(timeout: number): void
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
-let timeoutMs = 700;  // change it to be correct.
+let timeoutMs = 700;  // 修改为预期的超时时间
 try {
     tag.getIsoDep(tagInfo).setTimeout(timeoutMs); 
     console.info("tag setTimeout success");
@@ -515,11 +519,11 @@ sendData(data: number[]): Promise<number[]>
 import tag from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 function tagSessionDemo() {
-    // connect the tag at first if not connected.
+    // 如果没有连接，请先连接tag
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
             console.error("tagSession connectTag failed.");
@@ -527,7 +531,7 @@ function tagSessionDemo() {
         }
     }  
 
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 更改为正确的 data
     tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
     console.info("tagSession sendData Promise response: " + response);
     }).catch((err : BusinessError)=> {
@@ -561,11 +565,11 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 function tagSessionDemo() {
-    // connect the tag at first if not connected.
+    // 如果没有连接，请先连接tag
     if (!tag.getIsoDep(tagInfo).isTagConnected()) {
         if (!tag.getIsoDep(tagInfo).connectTag()) {
             console.error("tagSession connectTag failed.");
@@ -573,7 +577,7 @@ function tagSessionDemo() {
         }
     }
 
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 更改为正确的 data
     tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
         if (err) {
             console.error("tagSession sendData AsyncCallback err: " + err);
@@ -626,11 +630,11 @@ transmit(data: number[]): Promise<number[]>
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 function tagSessionDemo() {
-// connect the tag at first if not connected.
+// 如果没有连接，请先连接tag
     try {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
@@ -640,7 +644,7 @@ function tagSessionDemo() {
         return;
     }
 
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 更改为正确的 data
     try {
     tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
         console.info("tagSession transmit Promise response: " + response);
@@ -683,18 +687,18 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100204 | The tag I/O operation failed.. |
 
 **示例：**
 
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-// see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// 参考 @ohos.nfc.tag（标准NFC-Tag）中 tag.TagInfo 接口，tagInfo是nfc服务在分派标签时给出的对象
+// getXXX，可以是getIsoDep、getNdef、getMifareClassic...
 
 function tagSessionDemo() {
-    // connect the tag at first if not connected.
+    // 如果没有连接，请先连接tag
     try {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
@@ -704,7 +708,7 @@ function tagSessionDemo() {
         return;
     }
 
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 更改为正确的 data
     try {
         tag.getIsoDep(tagInfo).transmit(cmdData, (err, response)=> {
             if (err) {

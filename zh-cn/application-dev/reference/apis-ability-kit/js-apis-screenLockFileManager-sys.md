@@ -60,7 +60,7 @@ acquireAccess(dataType: DataType): AccessStatus
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801 | The specified SystemCapability name was not found. |
-| 29300001 | Invalid parameter. |
+| 29300001 | Invalid DataType. |
 | 29300002 | The system ability work abnormally. |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300004 | File access is denied. |
@@ -118,7 +118,7 @@ releaseAccess(dataType: DataType): ReleaseStatus
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | The specified SystemCapability name was not found.           |
-| 29300001 | Invalid parameter.                                           |
+| 29300001 | Invalid DataType.                                           |
 | 29300002 | The system ability work abnormally.                          |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300005 | File access was not acquired.                                |
@@ -142,7 +142,7 @@ try {
 }
 ```
 
-## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
 
 queryAppKeyState(dataType: DataType): KeyStatus
 
@@ -164,7 +164,7 @@ queryAppKeyState(dataType: DataType): KeyStatus
 
 | 类型                                                         | 说明                           |
 | ------------------------------------------------------------ | ------------------------------ |
-| [KeyStatus](js-apis-screenLockFileManager.md#keystatus16) | 锁屏下敏感数据访问权限的状态。 |
+| [KeyStatus](js-apis-screenLockFileManager.md#keystatus18) | 锁屏下敏感数据访问权限的状态。 |
 
 **错误码：**
 
@@ -176,7 +176,7 @@ queryAppKeyState(dataType: DataType): KeyStatus
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801      | The specified SystemCapability name was not found.           |
-| 29300001 | Invalid parameter.                                           |
+| 29300001 | Invalid DataType.                                           |
 | 29300002 | The system ability work abnormally.                          |
 
 **示例：**

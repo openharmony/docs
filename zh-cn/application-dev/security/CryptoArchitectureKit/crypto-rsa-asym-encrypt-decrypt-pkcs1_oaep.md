@@ -1,11 +1,8 @@
 # 使用RSA非对称密钥（PKCS1_OAEP模式）加解密
 
-
 对应的算法规格请查看[非对称密钥加解密算法规格：RSA](crypto-asym-encrypt-decrypt-spec.md#rsa)。
 
-
 **加密**
-
 
 1. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)、[AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3)，指定密钥参数，生成RSA非对称密钥对（KeyPair）。
    
@@ -21,7 +18,6 @@
 
 5. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，传入明文，获取加密后的数据。
 
-
 **解密**
 
 
@@ -33,13 +29,12 @@
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，传入密文，获取解密后的数据。
 
-
 - 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 根据密钥参数属性构造RSA非对称密钥对密钥参数
+  // 根据密钥参数属性构造RSA非对称密钥对密钥参数。
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
       n: nIn,
@@ -55,7 +50,7 @@
     };
     return rsaKeyPairSpec;
   }
-  // 生成RSA2048密钥对参数
+  // 生成RSA2048密钥对参数。
   function genRsa2048KeyPairSpec(): cryptoFramework.RSAKeyPairSpec {
     let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
     let eIn = BigInt("0x010001");
@@ -64,29 +59,29 @@
   }
   async function rsaUseSpecDecryptOAEPPromise() {
     let plan = "This is a test";
-    // 获得RSA密钥对密钥参数对象
+    // 获得RSA密钥对密钥参数对象。
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
-    // 根据RSA密钥对参数生成RSA密钥对
+    // 根据RSA密钥对参数生成RSA密钥对。
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
+    // RSA加解密PKCS1-OAEP模式填充字节流P。
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定。
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
-    // 生成密钥对
+    // 生成密钥对。
     let keyPair = await rsaGeneratorSpec.generateKeyPair();
-    // 进行加密操作初始化
+    // 进行加密操作初始化。
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-    // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
+    // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作。
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
+    // 比较get出来的P字节流与set进去的P字节流是否一致。
     if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
     }
-    // 进行OAEP其他参数的get操作
+    // 进行OAEP其他参数的get操作。
     let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
     console.info("md == " + md);
     let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
@@ -94,26 +89,26 @@
     let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
     console.info("mgf1Md == " + mgf1Md);
     let cipherDataBlob = await cipher.doFinal(input);
-    // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作
+    // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作。
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
+    // 比较get出来的P字节流与set进去的P字节流是否一致。
     if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
     }
-    // 进行OAEP其他参数的get操作
+    // 进行OAEP其他参数的get操作。
     md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
     console.info("md == " + md);
     mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
     console.info("mgf == " + mgf);
     mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
     console.info("mgf1Md == " + mgf1Md);
-    // 初始化解密操作
+    // 初始化解密操作。
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     let decodeData = await decoder.doFinal(cipherDataBlob);
-    // 解密成功
+    // 解密成功。
     if (decodeData.data.toString() === input.data.toString()) {
       console.info("oaep decrypt success");
     } else {
@@ -127,7 +122,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
-  // 根据密钥参数属性构造RSA非对称密钥对密钥参数
+  // 根据密钥参数属性构造RSA非对称密钥对密钥参数。
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
       n: nIn,
@@ -143,7 +138,7 @@
     };
     return rsaKeyPairSpec;
   }
-  // 生成RSA2048密钥对参数
+  // 生成RSA2048密钥对参数。
   function genRsa2048KeyPairSpec(): cryptoFramework.RSAKeyPairSpec {
     let nIn = BigInt("0x9260d0750ae117eee55c3f3deaba74917521a262ee76007cdf8a56755ad73a1598a1408410a01434c3f5bc54a88b57fa19fc4328daea0750a4c44e88cff3b2382621b80f670464433e4336e6d003e8cd65bff211da144b88291c2259a00a72b711c116ef7686e8fee34e4d933c868187bdc26f7be071493c86f7a5941c3510806ad67b0f94d88f5cf5c02a092821d8626e8932b65c5bd8c92049c210932b7afa7ac59c0e886ae5c1edb00d8ce2c57633db26bd6639bff73cee82be9275c402b4cf2a4388da8cf8c64eefe1c5a0f5ab8057c39fa5c0589c3e253f0960332300f94bea44877b588e1edbde97cf2360727a09b775262d7ee552b3319b9266f05a25");
     let eIn = BigInt("0x010001");
@@ -152,29 +147,29 @@
   }
   function main() {
     let plan = "This is a test";
-    // 获得RSA密钥对密钥参数对象
+    // 获得RSA密钥对密钥参数对象。
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
-    // 根据RSA密钥对参数生成RSA密钥对
+    // 根据RSA密钥对参数生成RSA密钥对。
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
     let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    // RSA加解密PKCS1-OAEP模式填充字节流P
-    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定
+    // RSA加解密PKCS1-OAEP模式填充字节流P。
+    let pSource = new Uint8Array([1, 2, 3, 4]); // 此处为示例，可以是任意值，由开发者自行决定。
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
-    // 生成密钥对
+    // 生成密钥对。
     let keyPair = rsaGeneratorSpec.generateKeyPairSync();
-    // 进行加密操作初始化
+    // 进行加密操作初始化。
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
-    // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作
+    // get和set操作可以放在Cipher对象init之后，此处对cipher进行set和get操作。
     cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     let retP = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
+    // 比较get出来的P字节流与set进去的P字节流是否一致。
     if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
     }
-    // 进行OAEP其他参数的get操作
+    // 进行OAEP其他参数的get操作。
     let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
     console.info("md == " + md);
     let mgf = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
@@ -182,26 +177,26 @@
     let mgf1Md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
     console.info("mgf1Md == " + mgf1Md);
     let cipherDataBlob = cipher.doFinalSync(input);
-    // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作
+    // get和set操作可以放在Cipher对象init之前，且与init之后等价，此处对decoder进行set和get操作。
     decoder.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
     retP = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-    // 比较get出来的P字节流与set进去的P字节流是否一致
+    // 比较get出来的P字节流与set进去的P字节流是否一致。
     if (retP.toString() !== pSource.toString()) {
       console.error("error init pSource" + retP);
     } else {
       console.info("pSource changed ==" + retP);
     }
-    // 进行OAEP其他参数的get操作
+    // 进行OAEP其他参数的get操作。
     md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
     console.info("md == " + md);
     mgf = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR);
     console.info("mgf == " + mgf);
     mgf1Md = decoder.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR);
     console.info("mgf1Md == " + mgf1Md);
-    // 初始化解密操作
+    // 初始化解密操作。
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     let decodeData = decoder.doFinalSync(cipherDataBlob);
-    // 解密成功
+    // 解密成功。
     if (decodeData.data.toString() === input.data.toString()) {
       console.info("oaep decrypt success");
     } else {

@@ -40,7 +40,7 @@ The AudioEncoder module provides the functions for audio encoding.
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_Reset](#oh_audioencoder_reset) (OH_AVCodec \*codec) | Resets an audio encoder.| 
 | OH_AVFormat \* [OH_AudioEncoder_GetOutputDescription](#oh_audioencoder_getoutputdescription) (OH_AVCodec \*codec) | Obtains the description information about the output data of an audio encoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_SetParameter](#oh_audioencoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | Sets dynamic parameters for an audio encoder.| 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | Pushes the input buffer filled with data to an audio encoder.| 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_PushInputData](#oh_audioencoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | Notifies the audio encoder that the input data has been written to the buffer identified by **index**.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_FreeOutputData](#oh_audioencoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of an audio encoder.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioEncoder_IsValid](#oh_audioencoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether an audio encoder instance is valid. This function is used to check the encoder validity when the background recovers from a fault or an application is switched from the background.| 
 
@@ -322,7 +322,7 @@ OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 **Description**
 
-Pushes the input buffer filled with data to an audio encoder.
+Notifies the audio encoder that the input data has been written to the buffer identified by **index**.
 
 The [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback reports the available input buffer and the index. After being pushed to the encoder, a buffer is not accessible until the buffer with the same index is reported again through the [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata) callback.
 

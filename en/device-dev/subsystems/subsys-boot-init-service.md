@@ -39,6 +39,7 @@ Service management is implemented by using the init process to parse the service
    | socket | Optional| Standard system| Socket attribute configuration.| This field is required for services that uses a socket connection.|
    | env | Optional| Standard system| Environment variable configuration.| Type: key-value pair array.<br>Multiple environment variables can be configured. For example:<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|
    | period | Optional| Standard system| Scheduled startup upon service exit.| Type: int, for example, 60. This field specifies the interval for starting a scheduled task, in seconds.<br>If this function is enabled, a timer is started to periodically start the service upon service exit. For example, **"period": 60** indicates that the service is started 60 seconds upon service exit.|
+   | cgroup | Optional| Standard system| Whether to enable on-demand **cgroup** configuration.   | Type: bool, for example, **"cgroup": true**.<br>If this function is enabled, the service process and its subprocesses are destroyed synchronously when the service exits.|
 
    **Table 2** Description of socket fields
    | Field| Description|
@@ -52,7 +53,7 @@ Service management is implemented by using the init process to parse the service
    | gid | Group ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
    | option | Socket option. This field is passed when **setsockopt** is called. Currently, the available options include **SOCKET_OPTION_PASSCRED**, **SOCKET_OPTION_RCVBUFFORCE**, **SOCK_CLOEXEC**, and **SOCK_NONBLOCK**.|
 
-  - init service startup control (for standard system or higher)<a name = "section56901555918">
+  - init service startup control (for standard system or higher)
 
     The init process classifies services into three types based on service configurations and starts the services in different phases.
 
@@ -60,7 +61,7 @@ Service management is implemented by using the init process to parse the service
     - **normal**: common services in the system. This type of services are started in the post-init phase. This is the default service type.
     - **condition**: services that are started by running the startup command. You can add the **start xxxx** command to **jobs** to start the corresponding service.
 
-  - init service command execution (for standard system or higher)<a name="section56901555919"></a>
+  - init service command execution (for standard system or higher)
 
     The init module provides the service command execution function, which allows services to execute different commands in different phases.
 

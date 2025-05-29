@@ -28,7 +28,7 @@
 ### SetMotionConfig()
 
 ```
-IMotionInterface::SetMotionConfig ([in] int motionType, [in] unsigned char[] data )
+IMotionInterface::SetMotionConfig ([in] int motionType, [in] unsigned char[] data)
 ```
 **描述**
 

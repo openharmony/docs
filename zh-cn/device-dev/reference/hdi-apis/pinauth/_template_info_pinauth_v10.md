@@ -7,7 +7,7 @@
 
 **弃用:**
 
-从4.0版本开始废弃，使用**GetPropertyType**接口代替。
+从4.0版本开始废弃，使用**[GetPropertyType](_hdf_pin_auth_v11.md#getpropertytype)**接口代替。
 
 **起始版本：** 3.2
 

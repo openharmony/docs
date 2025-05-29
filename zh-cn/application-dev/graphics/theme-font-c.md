@@ -8,6 +8,8 @@
 
 ## 实现机制
 
+**图1** 主题字体的切换和使用 
+
 ![themeText_native](figures/themeText_native.jpg)
 
 针对主题字的切换使用，应用方应确保订阅主题字变更事件，当接收字体变更事件后，由应用方主动调用页面刷新才能实现主题字的切换，否则主题字只能在重启应用后才生效；主题字的绘制需要使用OH_Drawing_GetFontCollectionGlobalInstance来获取全局字体集对象，仅该接口返回的对象拥有主题字体信息。
@@ -19,7 +21,7 @@
 
 ## 接口说明
 
-注册使用主题字体的常用接口如下表所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/_drawing.md)。
+注册使用主题字体的常用接口如下表所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -49,19 +51,18 @@
    };
    ```
 
-   newConfig变化时，会自动触发onConfigurationUpdate函数。应用可从发送的配置信息获取fontId，通过判断是否与应用本地保存的fontId一致来识别主题字的切换。若不一致则刷新本地fontId，并调用C++代码刷新排版结果。
+   系统配置信息（即示例中的newConfig）变化时，会自动触发onConfigurationUpdate函数。应用可从系统发送的配置信息获取fontId，通过判断是否与应用本地保存的fontId一致来识别主题字的切换。若不一致则刷新本地fontId，并调用C++代码刷新排版结果。
 
-3. 本步骤及之后均为主题字体在C++侧的使用，从ArkTS到C++的调用通路需应用根据实际情况选取调用方式，本示例不作推荐。
+3. 本步骤及之后均为主题字体在C++侧的使用，从ArkTS到C++的调用通路需应用根据实际情况选取调用方式，本示例不作推荐。跨语言调用可参考[Node-API简介](../napi/napi-introduction.md)。
 
    导入头文件。
-   
+
    ```c++
    #include <native_drawing/drawing_font_collection.h>
    #include <native_drawing/drawing_text_typography.h>
    #include <native_drawing/drawing_register_font.h>
-   #include "common/log_common.h"
    ```
-   
+
 4. 创建字体管理器。
 
    > **说明：**
@@ -72,7 +73,7 @@
    OH_Drawing_FontCollection *fontCollection = OH_Drawing_GetFontCollectionGlobalInstance();
    ```
 
-5. OH_Drawing_SetTextStyleFontFamilies()接口可以用来指定familyName，从而实现使用指定字体。但使用主题字体，不需要使用OH_Drawing_SetTextStyleFontFamilies()接口指定字体，否则行为变更为优先使用指定字体，而不是主题字体。
+5. OH_Drawing_SetTextStyleFontFamilies()接口可以用来指定字体家族名，从而实现使用指定字体。但使用主题字体，不需要使用OH_Drawing_SetTextStyleFontFamilies()接口指定字体，否则行为变更为优先使用指定字体，而不是主题字体。
 
    ```c++
    OH_Drawing_TextStyle textStyle = OH_Drawing_CreateTextStyle();
@@ -101,11 +102,16 @@
    OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
    ```
 
-
 ## 效果展示
 
 以下展示了在系统**主题应用**中切换使用不同主题字体后，对应的文字渲染效果。
 
 不同主题字体显示效果不同，此处仅示意。
 
-![themeFont_native](figures/themeFont_native.png)
+**图2** 主题字体1的效果 
+
+![themeFont_native_01](figures/themeFont_native_01.png)
+
+**图3** 主题字体2的效果 
+
+![themeFont_native_02](figures/themeFont_native_02.png)

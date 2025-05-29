@@ -1,4 +1,4 @@
-# Serial DDK
+# USB Serial DDK
 
 ## Overview
 
@@ -8,7 +8,7 @@ Serial port communication is often used in industrial scenarios and some legacy 
 
 **System capability**: SystemCapability.Driver.SERIAL.Extension
 
-**Since**: 16
+**Since**: 18
 
 
 ## Summary
@@ -19,7 +19,7 @@ Serial port communication is often used in industrial scenarios and some legacy 
 | Name| Description| 
 | -------- | -------- |
 | [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md) | Declares the USB Serial DDK APIs used by the host to access the serial port device.<br>**File to include**: &lt;serial/usb_serial_ddk_api.h&gt;<br>**Library**: libusb_serial.z.so| 
-| [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_ddk_types.h&gt;<br>**Library**: libusb_serial.z.so| 
+| [usb_serial_types.h](usb__serial__ddk__types_8h.md) | Provides the enum variables, structures, and macros used in USB Serial DDK APIs.<br>**File to include**: &lt;serial/usb_serial_types.h&gt;<br>**Library**: libusb_serial.z.so| 
 
 
 ### Structs
@@ -33,8 +33,8 @@ Serial port communication is often used in industrial scenarios and some legacy 
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [UsbSerial_DeviceHandle](#usbserial_devicehandle)[UsbSerial_DeviceHandle](#usbserial_devicehandle) | Defines the data structures for the USB serial port device (opaque).| 
-| typedef struct [UsbSerial_Params](_usb_serial___params.md) __attribute__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | Defines the USB serial port parameters used by the USB Serial DDK.| 
+| typedef struct [UsbSerial_DeviceHandle](#usbserial_devicehandle) [UsbSerial_DeviceHandle](#usbserial_devicehandle) | Defines the data structures for the USB serial port device (opaque).| 
+| typedef struct [UsbSerial_Params](_usb_serial___params.md) \__attribute\__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | Defines the USB serial port parameters used by the USB Serial DDK.| 
 
 
 ### Enums
@@ -60,7 +60,7 @@ Serial port communication is often used in industrial scenarios and some legacy 
 | int32_t [OH_UsbSerial_SetParams](#oh_usbserial_setparams) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, [UsbSerial_Params](_usb_serial___params.md) \*params) | Sets the parameters of the USB serial port device. If the parameters of the USB serial port device are not set to the default values (the data bit is **8**, the stop bit is **1**, and parity is disabled for data transfer), you only need to call this API to set the related parameters.| 
 | int32_t [OH_UsbSerial_SetTimeout](#oh_usbserial_settimeout) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, int timeout) | Sets the timeout interval (ms) for reading data reported by a USB serial port device. If this function is not called, the timeout value is **0** by default, indicating that data is returned immediately regardless of whether data is read. If you need to wait for a certain period of time or data must be read, call this API to set the timeout interval.| 
 | int32_t [OH_UsbSerial_SetFlowControl](#oh_usbserial_setflowcontrol) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev, [UsbSerial_FlowControl](#usbserial_flowcontrol) flowControl) | Sets flow control parameters. Flow control is used to manage the data transfer rate during communication with the USB serial port device to ensure that the sender does not send data that exceeds the processing capability of the receiver.<br>If flow control is required, call this API to set flow control parameters. If this API is not called, flow control is not performed by default.| 
-| int32_t [OH_UsbSerial_Flush](#oh_usbserial_flush) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | Clears the input and output buffers after the write operation is complete. If a large amount of data is to be transmitted to the USB serial port device, the data may be buffered in the kernel for transmission. If the application closes the file descriptor or exits before the data is completely sent out, some data may be lost.<br> You can call this API to ensure that all data is sent before subsequent operations are performed.| 
+| int32_t [OH_UsbSerial_Flush](#oh_usbserial_flush) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | Clears the input and output buffers after the write operation is complete. If a large amount of data is to be transmitted to the USB serial port device, the data may be buffered in the kernel for transmission. If the application closes the file descriptor or exits before the data is completely sent out, some data may be lost. You can call this API to ensure that all data is sent before subsequent operations are performed.| 
 | int32_t [OH_UsbSerial_FlushInput](#oh_usbserial_flushinput) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | Refreshes the input buffer. The data in the buffer is cleared immediately. During the communication with the USB serial port device, especially in the debugging phase, disordered data packets or other exceptions may occur.<br>You can call this API to clear these exceptions to restore the communication.| 
 | int32_t [OH_UsbSerial_FlushOutput](#oh_usbserial_flushoutput) ([UsbSerial_DeviceHandle](#usbserial_devicehandle) \*dev) | Refreshes the output buffer. The data in the buffer is cleared immediately. During the communication with the USB serial port device, especially in the debugging phase, disordered data packets or other exceptions may occur.<br>You can call this API to clear these exceptions to restore the communication.| 
 
@@ -71,27 +71,27 @@ Serial port communication is often used in industrial scenarios and some legacy 
 ### UsbSerial_DeviceHandle
 
 ```
-typedef struct UsbSerial_DeviceHandleUsbSerial_DeviceHandle
+typedef struct UsbSerial_DeviceHandle UsbSerial_DeviceHandle
 ```
 
 **Description**
 
 Defines the data structures for the USB serial port device (opaque).
 
-**Since**: 16
+**Since**: 18
 
 
 ### UsbSerial_Params
 
 ```
-typedef struct UsbSerial_Params __attribute__((aligned(8))) UsbSerial_Params
+typedef struct UsbSerial_Params \__attribute\__((aligned(8))) UsbSerial_Params
 ```
 
 **Description**
 
 Defines the USB serial port parameters for the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 
 ## Enum Description
@@ -107,7 +107,7 @@ enum UsbSerial_DdkRetCode
 
 Defines the return codes used by the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 | Value| Description| 
 | -------- | -------- |
@@ -132,7 +132,7 @@ enum UsbSerial_FlowControl
 
 Defines the flow control mode for the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 | Value| Description| 
 | -------- | -------- |
@@ -151,7 +151,7 @@ enum UsbSerial_Parity
 
 Defines the enums of the parity parameter used by the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 | Value| Description| 
 | -------- | -------- |
@@ -173,7 +173,7 @@ int32_t OH_UsbSerial_Close (UsbSerial_DeviceHandle * dev)
 
 Disables the USB serial port device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -214,7 +214,7 @@ Clears the input and output buffers after the write operation is complete.
 
 If a large amount of data is to be transmitted to the USB serial port device, the data may be buffered in the kernel for transmission. If the application closes the file descriptor or exits before the data is completely sent out, some data may be lost. You can call this API to ensure that all data is sent before subsequent operations are performed.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -255,7 +255,7 @@ Refreshes the input buffer. The data in the buffer is cleared immediately. Durin
 
 You can call this API to clear these exceptions to restore the communication.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -296,7 +296,7 @@ Refreshes the output buffer. The data in the buffer is cleared immediately. Duri
 
 You can call this API to clear these exceptions to restore the communication.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -328,14 +328,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Init()
 
 ```
-int32_t OH_UsbSerial_Init (void )
+int32_t OH_UsbSerial_Init (void)
 ```
 
 **Description**
 
 Initializes the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 **Required Permissions**
 
@@ -353,21 +353,21 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Open()
 
 ```
-int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev )
+int32_t OH_UsbSerial_Open (uint64_t deviceId, uint8_t interfaceIndex, UsbSerial_DeviceHandle ** dev)
 ```
 
 **Description**
 
 Enables the USB serial port device based on the specified **deviceId** and **interfaceIndex**.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | deviceId | Device ID.| 
-| interfaceIndex | Interface index, which corresponds to **bInterfaceNumber** in the USB protocol.| 
+| interfaceIndex | Interface index, which corresponds to [bInterfaceNumber](usb__ddk__types_8h.md#binterfacenumber) in the USB protocol.| 
 | dev | Device handle.| 
 
 **Required Permissions**
@@ -396,14 +396,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Read()
 
 ```
-int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead )
+int32_t OH_UsbSerial_Read (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesRead)
 ```
 
 **Description**
 
 Reads data from the USB serial port device to the buffer.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -440,14 +440,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Release()
 
 ```
-int32_t OH_UsbSerial_Release (void )
+int32_t OH_UsbSerial_Release (void)
 ```
 
 **Description**
 
 Releases the USB Serial DDK.
 
-**Since**: 16
+**Since**: 18
 
 **Required Permissions**
 
@@ -467,14 +467,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetBaudRate()
 
 ```
-int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate )
+int32_t OH_UsbSerial_SetBaudRate (UsbSerial_DeviceHandle * dev, uint32_t baudRate)
 ```
 
 **Description**
 
 Sets the baud rate for a USB serial port device. If the parameters of the USB serial port device are set to the default values (the data bit is **8**, the stop bit is **1**, and parity is disabled for data transfer), you only need to call this API to set the baud rate.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -507,7 +507,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetFlowControl()
 
 ```
-int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl )
+int32_t OH_UsbSerial_SetFlowControl (UsbSerial_DeviceHandle * dev, UsbSerial_FlowControl flowControl)
 ```
 
 **Description**
@@ -516,7 +516,7 @@ Sets flow control parameters. Flow control is used to manage the data transfer r
 
 If flow control is required, call this API to set flow control parameters. If this API is not called, flow control is not performed by default.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -549,14 +549,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetParams()
 
 ```
-int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params )
+int32_t OH_UsbSerial_SetParams (UsbSerial_DeviceHandle * dev, UsbSerial_Params * params)
 ```
 
 **Description**
 
 Sets the parameters of the USB serial port device. If the parameters of the USB serial port device are not set to the default values (the data bit is **8**, the stop bit is **1**, and parity is disabled for data transfer), you only need to call this API to set the related parameters.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -589,7 +589,7 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_SetTimeout()
 
 ```
-int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout )
+int32_t OH_UsbSerial_SetTimeout (UsbSerial_DeviceHandle * dev, int timeout)
 ```
 
 **Description**
@@ -598,7 +598,7 @@ Sets the timeout interval (ms) for reading data reported by a USB serial port de
 
 If this function is not called, the timeout value is **0** by default, indicating that data is returned immediately regardless of whether data is read. If you need to wait for a certain period of time or data must be read, call this API to set the timeout interval.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -631,14 +631,14 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 ### OH_UsbSerial_Write()
 
 ```
-int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten )
+int32_t OH_UsbSerial_Write (UsbSerial_DeviceHandle * dev, uint8_t * buff, uint32_t bufferSize, uint32_t * bytesWritten)
 ```
 
 **Description**
 
 Writes the data in the buffer to the USB serial port device.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 
@@ -664,8 +664,6 @@ ohos.permission.ACCESS_DDK_USB_SERIAL
 - USB_SERIAL_DDK_INIT_ERROR: DDK initialization error.
 
 - USB_SERIAL_DDK_SERVICE_ERROR: DDK service communication error.
-
-- USB_SERIAL_DDK_MEMORY_ERROR: Invalid buffer address.
 
 - USB_SERIAL_DDK_IO_ERROR: DDK I/O error.
 

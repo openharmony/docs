@@ -7,6 +7,8 @@
 
 **库：** libimage_source.so
 
+**引用文件**：&lt;multimedia/image_framework/image/image_source_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **起始版本：** 12
@@ -22,7 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) | ImageSource结构体类型，用于执行ImageSource相关操作。 | 
-| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | 图片源信息结构体 [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create)。 | 
+| typedef struct [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) [OH_ImageSource_Info](_image___native_module.md#oh_imagesource_info) | ImageSource信息结构体 [OH_ImageSourceInfo_Create](_image___native_module.md#oh_imagesourceinfo_create)，用于获取ImageSource信息。 | 
 | typedef struct [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) | 解码选项参数结构体，被用于[OH_ImageSourceNative_CreatePixelmap](_image___native_module.md#oh_imagesourcenative_createpixelmap)。 | 
 
 
@@ -32,6 +34,7 @@
 | -------- | -------- |
 | [IMAGE_ALLOCATOR_TYPE](_image___native_module.md#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
 | [IMAGE_DYNAMIC_RANGE](_image___native_module.md#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2<br/>} | 解码指定期望动态范围。 | 
+| [Image_CropAndScaleStrategy](_image___native_module.md#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 
 
 ### 函数
@@ -56,13 +59,15 @@
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](_image___native_module.md#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](_image___native_module.md#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](_image___native_module.md#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_DecodingOptions_Release](_image___native_module.md#oh_decodingoptions_release) ([OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromUri](_image___native_module.md#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromFd](_image___native_module.md#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromData](_image___native_module.md#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过缓冲区数据创建OH_ImageSourceNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](_image___native_module.md#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*\*res) | 通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](_image___native_module.md#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*source, [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 通过图片解码参数创建OH_PixelmapNative指针。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, OH_DecodingOptions \*options, [IMAGE_ALLOCATOR_TYPE](_image___native_module.md#image_allocator_type) allocator, OH_PixelmapNative \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreatePixelmapUsingAllocator](_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, OH_DecodingOptions \*options, [IMAGE_ALLOCATOR_TYPE](_image___native_module.md#image_allocator_type) allocator, OH_PixelmapNative \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](_image___native_module.md#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*source, [OH_DecodingOptions](_image___native_module.md#oh_decodingoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*resVecPixMap[], size_t size) | 通过图片解码参数创建OH_PixelmapNative数组。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_CreatePicture](_image___native_module.md#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](_image___native_module.md#oh_picturenative) \*\*picture) | 通过图片解码创建OH_PictureNative指针。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](_image___native_module.md#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](_image___native_module.md#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。 | 

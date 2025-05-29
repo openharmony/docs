@@ -3,15 +3,19 @@
 
 ## 概述
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext)等。[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)、ServiceExtensionContext等Context。
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如[resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)（资源管理）、[applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)（当前应用信息）、[dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#属性)（应用文件路径）、[area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（文件分区）等，以及应用的一些基本方法，例如<!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)、<!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext)等。[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件和各种[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)派生类组件都有各自不同的Context类。分别有基类Context、[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)、[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)<!--Del-->、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)<!--DelEnd-->等Context。
 
-- 各类Context的继承关系  
+> **说明**
+>
+> [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)是指UI实例上下文，用于关联窗口与UI页面。与本文档中的应用上下文Context无直接关联，不存在继承或持有关系。
+
+- 应用Context的继承关系  
   ![context-inheritance](figures/context-inheritance.png)
   
-- 各类Context的持有关系  
+- 应用Context的持有关系  
   ![context-holding](figures/context-holding.png)
   
-- 各类Context的获取方式
+- 应用Context的获取方式
   - 获取[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。每个[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)中都包含了一个Context属性，提供操作应用组件、获取应用组件的配置信息等能力。
     
     ```ts
@@ -28,15 +32,22 @@
      > **说明：**
      >
      > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-  - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以ServiceExtensionContext为例，表示后台服务的上下文环境，继承自ExtensionContext，提供后台服务相关的接口能力。
+  - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以FormExtensionContext为例，表示卡片服务的上下文环境，继承自ExtensionContext，提供卡片服务相关的接口能力。
     
     ```ts
-    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+    import { Want } from '@kit.AbilityKit';
 
-    export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want: Want) {
-        let serviceExtensionContext = this.context;
-        //...
+    export default class MyFormExtensionAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        let formExtensionContext = this.context;
+        // ...
+        let dataObj1: Record<string, string> = {
+          'temperature': '11c',
+          'time': '11:00'
+        };
+        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
       }
     }
     ```
@@ -120,7 +131,7 @@
   @Component
   struct Index {
     @State message: string = 'Hello World';
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Row() {
@@ -211,12 +222,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -231,7 +241,7 @@ struct Page_Context {
             // 存储普通信息前，切换到EL1设备级加密
             if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
               this.context.area = contextConstant.AreaMode.EL1; // 修改area
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL1'
               });
             }
@@ -247,7 +257,7 @@ struct Page_Context {
             // 存储敏感信息前，切换到EL2用户级加密
             if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
               this.context.area = contextConstant.AreaMode.EL2; // 修改area
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL2'
               });
             }
@@ -270,7 +280,6 @@ struct Page_Context {
   
   ```ts
   import { common, application } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
@@ -278,7 +287,7 @@ struct Page_Context {
   @Entry(storageEventCall)
   @Component
   struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Column() {
@@ -294,7 +303,7 @@ struct Page_Context {
                 .then((data: common.Context) => {
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
-                    promptAction.showToast({
+                    this.getUIContext().getPromptAction().showToast({
                       message: ('成功获取Context')
                     });
                   }

@@ -11,7 +11,7 @@ The **inputConsumer** module implements listening for combination key events.
 
 
 ```js
-import { inputConsumer } from '@kit.InputKit';
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
 ```
 
 ## HotkeyOptions<sup>14+</sup>
@@ -25,6 +25,18 @@ Defines shortcut key options.
 | preKeys   | Array&lt;number&gt; | Yes     | No     | Modifier key set (including Ctrl, Shift, and Alt). A maximum of two modifier keys are supported. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
 | finalKey  | number  | Yes     | No     | Modified key, which is the key other than the modifier key and meta key.<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
 | isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
+
+## KeyPressedConfig<sup>16+</sup>
+
+Sets the key event consumption configuration.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ------- | ------- | ------- |
+| key       | number  | Yes     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
+| action    | number  | Yes     | No     | Key event type. Currently, the value can only be **1**.<br>- **1**: Key press.<br>- **2**: Key release.|
+| isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events.|
 
 ## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
 
@@ -56,7 +68,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 });
 ```
 
-## inputConsumer.on('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.on('hotkeyChange')<sup>14+</sup>
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
@@ -99,11 +111,11 @@ let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
 try {
   inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputConsumer.off('hotkeyOptions')<sup>14+</sup>
+## inputConsumer.off('hotkeyChange')<sup>14+</sup>
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
@@ -143,9 +155,10 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
@@ -159,6 +172,87 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputConsumer.on('keyPressed')<sup>16+</sup>
+
+on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
+
+Subscribes to key press events. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Parameters**
+
+| Name        | Type                               | Mandatory | Description                             |
+| ---------- | --------------------------             | ----  | ---------- |
+| type       | string                                 | Yes    | Event type. This parameter has a fixed value of **keyPressed**.       |
+| options    | [KeyPressedConfig](#keypressedconfig16)| Yes    | Sets the key event consumption configuration.          |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | Yes   | Callback used to return the key event.|
+
+**Error codes**:
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+
+**Example**
+
+```js
+try {
+  let options: inputConsumer.KeyPressedConfig = {
+    key: 16,
+    action: 1,
+    isRepeat: false,
+  }
+  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
+    console.log(`Subscribe success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputConsumer.off('keyPressed')<sup>16+</sup>
+
+off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
+
+Unsubscribes from key press events.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Parameters**
+
+| Name        | Type                        | Mandatory  | Description                             |
+| ---------- | -------------------------- | ---- | ---------- |
+| type       | string                     | Yes   | Event type. This parameter has a fixed value of **keyPressed**.       |
+| callback   | Callback&lt;[KeyEvent](./js-apis-keyevent.md#keyevent)&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**:
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+
+**Example**
+
+```js
+try {
+  // Disable listening for a single callback.
+  inputConsumer.off('keyPressed', (event: KeyEvent) => {
+    console.log(`Unsubscribe success ${JSON.stringify(event)}`);
+  });
+  // Disable listening for all callbacks.
+  inputConsumer.off("keyPressed");
+} catch (error) {
+  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

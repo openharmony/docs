@@ -858,7 +858,7 @@ if (wakeupManager != null) {
 | ------------------------- | ---- | ------------    |
 | INTELLIGENT_VOICE_EVENT_WAKEUP_NONE      | 0    | 无唤醒。   |
 | INTELLIGENT_VOICE_EVENT_RECOGNIZE_COMPLETE      | 1    | 唤醒识别完成。   |
-| INTELLIGENT_VOICE_EVENT_HEADSET_RECOGNIZE_COMPLETE      | 2    | 耳机唤醒识别完成。   |
+| INTELLIGENT_VOICE_EVENT_HEADSET_RECOGNIZE_COMPLETE<sup>12+</sup>     | 2    | 耳机唤醒识别完成。   |
 
 ## IntelligentVoiceErrorCode
 

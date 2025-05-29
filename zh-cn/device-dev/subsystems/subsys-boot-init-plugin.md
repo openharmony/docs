@@ -162,17 +162,17 @@ typedef enum {
 ### 开发实例
 #### bootchart 使用示例
   预制条件：
-  1. 准备bootchart测试环境：linux操作系统下安装python及pycairo pip install pycairo
-  2. 在linux解压bootchart-master.tar
+  1. 准备bootchart测试环境：linux操作系统下安装python及pycairo pip install pycairo。
+  2. 在linux解压bootchart-master.tar。
 
      tar -zxvf  bootchart-master.tar
 
   执行步骤：
   1. 启动系统。
-  2. 执行命令行：begetctl bootchart enable
+  2. 执行命令行：begetctl bootchart enable。
   3. 重启系统。
-  4. 执行命令行：begetctl bootchart stop
-  5. 执行命令行：begetctl bootchart disable
+  4. 执行命令行：begetctl bootchart stop。
+  5. 执行命令行：begetctl bootchart disable。
   6. 在/data/service/el0/startup/init/目录下导出如下文件并存放在bootchart文件夹：<br>
         header<br>
         proc_diskstats.log<br>

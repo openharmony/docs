@@ -3,20 +3,20 @@
 
 ## Introduction
 
-The **Window** module provides a mechanism for displaying multiple application UIs and allowing the end user to interact with them on the same physical screen.
+The Window module provides a mechanism for displaying multiple application UIs and allowing the end user to interact with them on the same physical screen.
 
-- For application developers, the **Window** module provides APIs for UI display and user interaction.
+- For application developers, the Window module provides APIs for UI display and user interaction.
 
-- For end users, the **Window** module provides a way to control application UIs.
+- For end users, the Window module provides a way to control application UIs.
 
-- For the entire operating system, the **Window** module provides logic for application UI management.
+- For the entire operating system, the Window module provides logic for application UI management.
 
 
 ## Features
 
-The **Window** module has the following features:
+The Window module has the following features:
 
--  **Provides a `Window` object to hold application and system UIs.** You can load your application UIs through the window to display them to the end user.
+-  **Provides a Window object to hold application and system UIs.** You can load your application UIs through the window to display them to the end user.
 
 -  **Maintains the window relationship (overlay layers and positions).** Different types of application and system windows have different default positions and overlay layers (z-index). End users can adjust the position and overlay layer of a window within a certain range.
 
@@ -24,7 +24,7 @@ The **Window** module has the following features:
 
 -  **Provides window animations.** When a window is displayed, hidden, or switched, an animation is usually used to smooth the interaction process. This is the default behavior for application windows. You do not need to set or modify the code.
 
--  **Provides guidance for input event distribution.** Events are distributed based on the window status and focus. Touch and mouse events are distributed based on the window position and size, and keyboard events are distributed to the focused window. You can call APIs provided by the **Window** module to set whether a window is touchable and can gain focus.
+-  **Provides guidance for input event distribution.** Events are distributed based on the window status and focus. Touch and mouse events are distributed based on the window position and size, and keyboard events are distributed to the focused window. You can call APIs provided by the Window module to set whether a window is touchable and can gain focus.
 
 
 ## Basic Concepts
@@ -32,11 +32,11 @@ The **Window** module has the following features:
 
 ### Window Type
 
-The **Window** module provides system windows and application windows.
+The Window module provides system windows and application windows.
 - A **system window** implements specific functionalities of the system. Examples include the volume bar, wallpaper, notification panel, status bar, and navigation bar.
-- An **application window** is related to the application display. Based on the displayed content, application windows are further classified into main windows and subwindows.
+- An **application window** is related to the application display. Based on the displayed content, application windows are further classified into main windows and child windows.
   - A main window shows the application UI and appears on the **Recents** page.
-  - A subwindow is an auxiliary window of an application, such as a dialog box and floating window. It is not displayed on the **Recents** page. Its lifecycle follows that of the main window.
+  - A child window is an auxiliary window of an application, such as a dialog box and floating window. It is not displayed on the **Recents** page. Its lifecycle follows that of the main window.
 
 
 
@@ -67,6 +67,6 @@ You are advised to use the stage model for window development.
 
 -  You cannot develop system windows in the FA model.
 
--  The application main window and subwindow have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+-  The application main window and child window have the following size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
 
 -  The system window has the following size limits: (0, 2560] in width and (0, 2560] in height, both in units of vp.

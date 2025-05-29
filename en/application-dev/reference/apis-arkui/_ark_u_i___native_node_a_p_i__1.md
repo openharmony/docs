@@ -17,7 +17,7 @@ The APIs related to the native node must be called in the main thread.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | int32_t [version](#version) | Specifies the struct version. | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [createNode](#createnode) )([ArkUI_NodeType](_ark_u_i___native_module.md#arkui_nodetype) type) | Creates a component based on [ArkUI_NodeType](_ark_u_i___native_module.md#arkui_nodetype) and returns the pointer to the component object. | 
@@ -76,14 +76,14 @@ Adds a component to a parent node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### addNodeCustomEventReceiver
@@ -103,14 +103,14 @@ Do not directly save the **ArkUI_NodeCustomEvent** object pointer. The data will
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component for which you want to add the custom event callback function. | 
 | eventReceiver | Custom event callback for the component. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### addNodeEventReceiver
@@ -130,14 +130,14 @@ Avoid directly saving pointers to **ArkUI_NodeEvent** objects, as the data will 
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component for which you want to add the event callback function. | 
 | eventReceiver | Event callback for the component. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### createNode
@@ -151,7 +151,7 @@ Creates a component based on [ArkUI_NodeType](_ark_u_i___native_module.md#arkui_
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | type | Type of the component to create. | 
 
@@ -171,7 +171,7 @@ Disposes of the component to which the specified pointer points.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Pointer to a component object. | 
 
@@ -189,7 +189,7 @@ The pointer returned by this API is an internal buffer pointer of the ArkUI fram
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Node whose attribute needs to be obtained. | 
 | attribute | Type of the attribute to obtain. | 
@@ -210,7 +210,7 @@ Obtains a child node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | position | Position of the child node. | 
@@ -231,7 +231,7 @@ Obtains the first child node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -251,7 +251,7 @@ Obtains the last child node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -271,7 +271,7 @@ Obtains the position of a component after the layout is complete.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -291,7 +291,7 @@ Obtains the width and height of a component after measurement.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -311,7 +311,7 @@ Obtains the next sibling node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -331,7 +331,7 @@ Obtains the parent node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -351,7 +351,7 @@ Obtains the previous sibling node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -371,7 +371,7 @@ Obtains the number of child nodes.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 
@@ -391,7 +391,7 @@ Obtains the custom data saved on the specified component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target component. | 
 
@@ -411,7 +411,7 @@ Mounts this component to a parent node, with the mount position after the specif
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
@@ -419,7 +419,7 @@ Mounts this component to a parent node, with the mount position after the specif
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### insertChildAt
@@ -433,15 +433,15 @@ Mounts this component to a parent node, with the mount position specified by **p
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
-| postion | Position to which the target child node is to be inserted. If the value is a negative number or invalid, the node is inserted at the end of the parent node. | 
+| position| Position to which the target child node is to be inserted. If the value is a negative number or invalid, the node is inserted at the end of the parent node. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### insertChildBefore
@@ -455,7 +455,7 @@ Mounts this component to a parent node, with the mount position before the speci
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
@@ -463,7 +463,7 @@ Mounts this component to a parent node, with the mount position before the speci
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### layoutNode
@@ -477,7 +477,7 @@ Lays outs a component and passes the expected position of the component relative
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | positionX | X-coordinate. | 
@@ -485,7 +485,7 @@ Lays outs a component and passes the expected position of the component relative
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### markDirty
@@ -501,7 +501,7 @@ Regarding updates to system attributes, the ArkUI framework automatically marks 
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Node for which you want to mark as dirty area. | 
 | dirtyFlag | Dirty area type. | 
@@ -518,14 +518,14 @@ Measures a node. You can use the **getMeasuredSize** API to obtain the size afte
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | Constraint | Size constraint. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### registerNodeCustomEvent
@@ -539,7 +539,7 @@ Registers a custom event for a node. When the event is triggered, the value is r
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | eventType | Type of the event to register. | 
@@ -548,7 +548,7 @@ Registers a custom event for a node. When the event is triggered, the value is r
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) if the dynamic implementation library of the native API was not found.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md#arkui_errorcode) if the dynamic implementation library of the native API was not found.
 
 
 ### registerNodeCustomEventReceiver
@@ -560,7 +560,7 @@ void(* ArkUI_NativeNodeAPI_1::registerNodeCustomEventReceiver) (void(*eventRecei
 
 Registers a unified entry point function for custom node event callbacks.
 
-The ArkUI framework collects custom component events generated during the process and calls back the events through the registered **registerNodeCustomEventReceiver**.
+The ArkUI framework collects custom component events generated during the process and calls back the events through the registered <b>registerNodeCustomEventReceiver</b>.
 
 A new call to this API will overwrite the previously registered event receiver.
 
@@ -570,7 +570,7 @@ To bind with a component instance, you can use the **addNodeCustomEventReceiver*
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | eventReceiver | Event receiver to register. | 
 
@@ -586,16 +586,16 @@ Registers an event for the specified node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | eventType | Type of the event to register. | 
 | targetId | Custom event ID, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
-| userData | Custom event parameter, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
+| userData | Custom event parameter, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. |
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) if the dynamic implementation library of the native API was not found; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md#arkui_errorcode) if the dynamic implementation library of the native API was not found. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### registerNodeEventReceiver
@@ -617,7 +617,7 @@ To bind with a component instance, you can use the **addNodeEventReceiver** func
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | eventReceiver | Event receiver to register. | 
 
@@ -633,7 +633,7 @@ Removes all child nodes from the parent component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Target node. | 
 
@@ -660,6 +660,7 @@ void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
 
 Unregisters this event receiver.
 
+
 ### removeChild
 
 ```
@@ -671,14 +672,14 @@ Removes a component from its parent node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### removeNodeCustomEventReceiver
@@ -692,14 +693,14 @@ Removes a registered custom event callback function from a component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component for which you want to remove the custom event callback function. | 
 | eventReceiver | Custom event callback function to remove. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### removeNodeEventReceiver
@@ -713,14 +714,14 @@ Removes the registered component event callback function from a component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component for which you want to add the event callback function. | 
 | eventReceiver | Event callback function to remove. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### resetAttribute
@@ -734,14 +735,14 @@ Resets an attribute.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Node whose attribute needs to be reset. | 
 | attribute | Type of the attribute to reset. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) if the dynamic implementation library of the native API was not found; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md#arkui_errorcode) if the dynamic implementation library of the native API was not found. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### setAttribute
@@ -755,7 +756,7 @@ Sets an attribute.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Node whose attribute needs to be set. | 
 | attribute | Type of the attribute to set. | 
@@ -763,7 +764,7 @@ Sets an attribute.
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs; returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) if the dynamic implementation library of the native API was not found; returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs. Returns [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md#arkui_errorcode) if the dynamic implementation library of the native API was not found. Returns [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md#arkui_errorcode) if the following operations are not allowed on BuilderNode generated nodes: setting or resetting attributes, setting events, or adding or editing child nodes.
 
 
 ### setLayoutPosition
@@ -777,7 +778,7 @@ Sets the position for a component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | positionX | X-coordinate. | 
@@ -785,7 +786,7 @@ Sets the position for a component.
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setLengthMetricUnit
@@ -799,14 +800,14 @@ Sets the unit for a component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component for which you want to set the unit. | 
 | unit | Unit, which is an enumerated value of [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit). The default value is **ARKUI_LENGTH_METRIC_UNIT_DEFAULT**. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setMeasuredSize
@@ -820,7 +821,7 @@ Sets the width and height for a component after the measurement.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | width | Width to set. | 
@@ -828,7 +829,7 @@ Sets the width and height for a component after the measurement.
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### setUserData
@@ -842,14 +843,14 @@ Saves custom data on the specified component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Component on which the custom data will be saved. | 
 | userData | Custom data to be saved. | 
 
 **Returns**
 
- Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) if the operation is successful; returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) if a parameter error occurs.
+Returns [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) if the operation is successful. Returns [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) if a parameter error occurs.
 
 
 ### unregisterNodeCustomEvent
@@ -863,7 +864,7 @@ Unregisters a custom event for a node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | eventType | Type of the event to unregister. | 
@@ -880,7 +881,7 @@ Unregisters an event for the specified node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Target node. | 
 | eventType | Type of the event to unregister. | 

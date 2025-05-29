@@ -61,12 +61,12 @@ export default {
       begin: 0,
       end: 180
     };//设置参数
-    this.animation = animator.createAnimator(options)//创建动画
+    this.animation = animator.createAnimator(options);//创建动画
   },
   playAnimation() {
     var _this = this;
     this.animation.onframe = function(value) {
-      _this.translateVal= value
+      _this.translateVal= value;
     };
     this.animation.play();
   }
@@ -85,7 +85,7 @@ export default {
 
 ## 添加动画事件和调用接口
 
-animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[create](../reference/apis-arkui/js-apis-animator.md#create9)。
+animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[create](../reference/apis-arkui/js-apis-animator.md#createdeprecated)。
 
 ```html
 <!-- xxx.hml -->
@@ -216,7 +216,7 @@ export default {
     this.animation.onfinish = function() {
       promptAction.showToast({
         message: 'finish'
-      })
+      });
     };
     this.animation.finish(); //调用动画完成接口
   },

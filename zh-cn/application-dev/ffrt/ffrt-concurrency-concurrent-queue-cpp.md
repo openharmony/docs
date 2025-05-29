@@ -20,8 +20,8 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 
 ```cpp
 #include <iostream>
-#include <string>
-#include <ffrt.h>
+#include <unistd.h>
+#include "ffrt/ffrt.h"
 
 class BankQueueSystem {
 private:
@@ -30,35 +30,31 @@ private:
 public:
     BankQueueSystem(const char *name, int concurrency)
     {
-        queue_ = std::make_unique<ffrt::queue>(queue_concurrent, name, queue_attr().max_concurrency(concurrency));
-        std::cout << "bank system has been initailized" << std::endl;
+        queue_ = std::make_unique<ffrt::queue>(
+            ffrt::queue_concurrent, name, ffrt::queue_attr().max_concurrency(concurrency));
+        std::cout << "bank system has been initialized" << std::endl;
     }
 
     ~BankQueueSystem()
     {
         queue_ = nullptr;
-        std::cout << "bank system has been destoryed" << std::endl;
+        std::cout << "bank system has been destroyed" << std::endl;
     }
 
     // 开始排队，即提交队列任务
-    task_handle Enter(const std::function<void()>& func, char *name, ffrt_queue_priority_t level, int delay)
+    ffrt::task_handle Enter(const std::function<void()>& func, const char *name, ffrt_queue_priority_t level, int delay)
     {
         return queue_->submit_h(func, ffrt::task_attr().name(name).priority(level).delay(delay));
     }
 
     // 退出排队，即取消队列任务
-    int Exit(const task_handle &t)
+    int Exit(const ffrt::task_handle &t)
     {
         return queue_->cancel(t);
     }
 
-    int GetQueueSize()
-    {
-        return queue_->get_task_cnt();
-    }
-
     // 等待排队，即等待队列任务
-    void Wait(const task_handle& handle)
+    void Wait(const ffrt::task_handle& handle)
     {
         queue_->wait(handle);
     }
@@ -76,27 +72,22 @@ void BankBusinessVIP()
     std::cout << "saving or withdraw VIP" << std::endl;
 }
 
-int main() {
+int main()
+{
     BankQueueSystem bankQueue("Bank", 2);
 
-    bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer3", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
-
+    auto task1 = bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
+    auto task2 = bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
     // VIP享受更优先的服务
-    bankQueue.Enter(BankBusinessVIP, "vip", ffrt_queue_priority_high, 0);
+    auto task3 = bankQueue.Enter(BankBusinessVIP, "customer3 vip", ffrt_queue_priority_high, 0);
+    auto task4 = bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
+    auto task5 = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
 
-    task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
-    task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
-
-    // 取消客户5的服务
-    bankQueue.Exit(handle);
-
-    std::cout << "bank current serving for " << bankQueue.GetQueueSize() << " customers" << std::endl;
+    // 取消客户4的服务
+    bankQueue.Exit(task4);
 
     // 等待所有的客户服务完成
-    bankQueue.Wait(handleLast);
+    bankQueue.Wait(task5);
     return 0;
 }
 ```
@@ -113,7 +104,8 @@ int main() {
 
 > **说明：**
 >
-> 如何使用FFRT C++ API详见：[C++接口使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

@@ -39,9 +39,9 @@ Provides data structure, enum types, and APIs for accessing the system pasteboar
 
 | Name| Description|
 | -------- | -------- |
-| [Pasteboard_NotifyType](_pasteboard.md#pasteboard_notifytype) { [NOTIFY_LOCAL_DATA_CHANGE](_pasteboard.md) = 1, [NOTIFY_REMOTE_DATA_CHANGE](_pasteboard.md) = 2 } | Enumerates the data change types of the pasteboard. |
-| [Pasteboard_FileConflictOptions](_pasteboard.md#pasteboard_fileconflictoptions) { [PASTEBOARD_OVERWRITE](_pasteboard.md) = 0, [PASTEBOARD_SKIP](_pasteboard.md) = 1 } | Enumerates options for a file copy conflict.|
-| [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) { [PASTEBOARD_NONE](_pasteboard.md) = 0, [PASTEBOARD_DEFAULT](_pasteboard.md) = 1 } | Enumerates progress indicator types.|
+| [Pasteboard_NotifyType](_pasteboard.md#pasteboard_notifytype) { [NOTIFY_LOCAL_DATA_CHANGE] = 1, [NOTIFY_REMOTE_DATA_CHANGE] = 2 } | Enumerates the data change types of the pasteboard. |
+| [Pasteboard_FileConflictOptions](_pasteboard.md#pasteboard_fileconflictoptions) { [PASTEBOARD_OVERWRITE] = 0, [PASTEBOARD_SKIP] = 1 } | Enumerates options for a file copy conflict.|
+| [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) { [PASTEBOARD_NONE] = 0, [PASTEBOARD_DEFAULT] = 1 } | Enumerates progress indicator types.|
 
 
 ### Functions
@@ -65,7 +65,7 @@ Provides data structure, enum types, and APIs for accessing the system pasteboar
 | char ** [OH_Pasteboard_GetMimeTypes](_pasteboard.md#oh_pasteboard_getmimetypes) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard. |
 | [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams) *[OH_Pasteboard_GetDataParams_Create](_pasteboard.md#oh_pasteboard_getdataparams_create)(void) | Creates a [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams) instance and a pointer to it.|
 | void [OH_Pasteboard_GetDataParams_Destroy](_pasteboard.md#oh_pasteboard_getdataparams_destroy)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params) | Destroys a [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams) instance.|
-| void [OH_Pasteboard_GetDataParams_SetProgressIndicator](_pasteboard.md#oh_pasteboard_getdataparams_setprogressindicator)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) progressIndicator) | Sets the progress indication options in [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams). You can use the default progress indicator as required.|
+| void [OH_Pasteboard_GetDataParams_SetProgressIndicator](_pasteboard.md#oh_pasteboard_getdataparams_setprogressindicator)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, [Pasteboard_ProgressIndicator](_pasteboard.md#pasteboard_progressindicator) progressIndicator) | Sets the progress indication options in [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams). You can use the default progress indicator as required.|
 | void [OH_Pasteboard_GetDataParams_SetDestUri](_pasteboard.md#oh_pasteboard_getdataparams_setdesturi)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, const char* destUri, uint32_t destUriLen) | Sets the destination path in [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams).|
 | void [OH_Pasteboard_GetDataParams_SetFileConflictOptions](_pasteboard.md#oh_pasteboard_getdataparams_setfileconflictoptions)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, [Pasteboard_FileConflictOptions](_pasteboard.md#pasteboard_fileconflictoptions) option) | Sets the file copy conflict options in [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams).|
 | void [OH_Pasteboard_GetDataParams_SetProgressListener](_pasteboard.md#oh_pasteboard_getdataparams_setprogresslistener)([Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams)* params, const [OH_Pasteboard_ProgressListener](_pasteboard.md#oh_pasteboard_progresslistener) listener) | Sets a progress listener in [Pasteboard_GetDataParams](_pasteboard.md#pasteboard_getdataparams).|

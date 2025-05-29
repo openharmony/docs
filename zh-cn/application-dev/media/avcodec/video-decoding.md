@@ -42,6 +42,8 @@
     - Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface接口设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer接口将解码数据送显。
     - 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
 
+4. Surface模式的数据流转性能优于Buffer模式。
+
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
@@ -166,7 +168,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     };
     ```
 
-4. 全局变量
+4. 全局变量。
 
     仅做参考，可以根据实际情况将其封装到对象中。
 
@@ -227,9 +229,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器。
     // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例。
-    // 软/硬解: 创建H.264解码器实例。
+    // 软/硬解：创建H.264解码器实例。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // 软/硬解: 创建H.265解码器实例。
+    // 软/硬解：创建H.265解码器实例。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
@@ -319,7 +321,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     <!--RP4-->使用示例：<!--RP4End-->
 
     ```c++
-    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例。
+    // 根据DRM信息创建指定的DRM系统，以创建"com.clearplay.drm"为例。
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
     if (system == nullptr) {
@@ -344,7 +346,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     // 获取许可证请求、设置许可证响应等。
 
-    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    // 设置解密配置，即将解密会话、安全视频通路标志设置到解码器中。
     // 如果DRM解决方案支持安全视频通路，在使用安全视频通路时，需将secureVideoPath设置为true，并在此之前须创建安全解码器。
     // 即在步骤2使用OH_VideoDecoder_CreateByName函数、参数为解码器名称后拼接.secure（如“[CodecName].secure”）创建安全解码器。
     bool secureVideoPath = false;
@@ -369,6 +371,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // 可选，配置低时延解码。
+    // 若平台支持，当使能OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时，视频解码器将按照解码序输出帧。
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // 配置解码器。
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
@@ -381,14 +384,39 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 6. 设置surface。
 
     本例中的nativeWindow，有两种方式获取：
-    1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
-    2. 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
+
+    6.1 如果解码后直接显示，则从XComponent组件获取。
+
+    添加头文件。
+
+    ```c++
+    #include <native_window/external_window.h>
+    ```
+
+    在 CMake 脚本中链接动态库。
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_window.so)
+    ```
+
+    6.1.1 在ArkTS侧，通过xComponentController组件的getXComponentSurfaceId接口获取XComponent对应的Surface的ID。详情请参考[自定义渲染 (XComponent)](../../ui/napi-xcomponent-guidelines.md#arkts-xcomponent场景)。
+
+    6.1.2 在Native侧，调用OH_NativeWindow_CreateNativeWindowFromSurfaceId接口创建出NativeWindow实例。
+
+    ```c++
+    OHNativeWindow* nativeWindow;
+    // 基于步骤1.1中获取的surfaceId创建对应的nativeWindow实例。
+    OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, nativeWindow);
+    ```
+
+    6.2 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换surface。
 
     ```c++
+    // 设置surface。
     // 配置送显窗口参数。
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // 从XComponent获取nativeWindow。
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);  // nativeWindow通过以上两种方式获取。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -396,29 +424,26 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
-7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    > **注意：**
+    > 若应用对1号和2号解码器均通过调用OH_VideoDecoder_SetSurface接口绑定至同一个NativeWindow。在2号解码器处于Running状态时，1号解码器调用OH_VideoDecoder_Destroy接口后，会导致2号解码器的视频播放画面卡住。
+    >
+    > 可以采用以下方案进行更改：
+    > 1. 等1号解码器完全释放后，再调用OH_VideoDecoder_Start接口启动2号解码器；
+    > 2. 1号解码器用surface1，2号解码器先调用OH_ConsumerSurface_Create接口创建临时surface，等1号解码器释放后，再调用OH_VideoDecoder_SetSurface接口将2号解码器绑定至surface1上，详情请参见：[创建视频解码器和NativeWindow初始化并行](../../media/avcodec/parallel-decoding-nativeWindow.md)。
 
-    ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 配置显示旋转角度。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
-    OH_AVFormat_Destroy(format);
-    ```
 
-8. 调用OH_VideoDecoder_Prepare()解码器就绪。
+7. 调用OH_VideoDecoder_Prepare()解码器就绪。
 
     该接口将在解码器运行前进行一些数据的准备工作。
 
     ```c++
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
     ```
 
-9. 调用OH_VideoDecoder_Start()启动解码器。
+8. 调用OH_VideoDecoder_Start()启动解码器。
 
     ```c++
     // 启动解码器，开始解码。
@@ -426,6 +451,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
+    ```
+
+9. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 配置显示旋转角度。
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理。
+    }
+    OH_AVFormat_Destroy(format);
     ```
 
 10. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
@@ -504,7 +543,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - size, offset, pts, frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
+    - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
 
     ```c++
@@ -582,7 +621,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     > **注意：**
-    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
+)接口获取。
     >
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
@@ -591,7 +631,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     此时需要调用OH_VideoDecoder_Start接口重新开始解码。
     以下示例中：
 
-    - xpsData, xpsSize：PPS/SPS信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
+    - xpsData、xpsSize：PPS/SPS信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
@@ -608,7 +648,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理。
     }
 
-    std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
+    std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
         // 异常处理。
     }
@@ -694,6 +734,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // 释放nativeWindow实例。
+    if(nativeWindow != nullptr){
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = nullptr;
+    }
     // 调用OH_VideoDecoder_Destroy，注销解码器。
     int32_t ret = AV_ERR_OK;
     if (videoDec != nullptr) {
@@ -738,9 +783,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器。
     // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例。
-    // 软/硬解: 创建H.264解码器。
+    // 软/硬解：创建H.264解码器。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // 硬解: 创建H.265解码器。
+    // 硬解：创建H.265解码器。
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
@@ -775,7 +820,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码数据流变化回调OH_AVCodecOnStreamChanged实现。
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
-        // 可选, 开发者需要获取视频宽、高、跨距等时可配置。
+        // 可选，开发者需要获取视频宽、高、跨距等时可配置。
         // 可通过format获取到变化后的视频宽、高、跨距等。
         (void)codec;
         (void)userData;
@@ -802,7 +847,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 可选, 开发者需要获取视频宽、高、跨距等时可配置。
+        // 可选，开发者需要获取视频宽、高、跨距等时可配置。
         // 获取视频宽、高、跨距。
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
@@ -856,7 +901,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例。
+    // 根据DRM信息创建指定的DRM系统，以创建"com.clearplay.drm"为例。
     MediaKeySystem *system = nullptr;
     int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
     if (system == nullptr) {
@@ -879,7 +924,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         return;
     }
     // 获取许可证请求、设置许可证响应等。
-    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    // 设置解密配置，即将解密会话、安全视频通路标志设置到解码器中。
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
@@ -925,7 +970,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
+8. （可选）OH_VideoDecoder_SetParameter()动态配置解码器参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 配置帧率。
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理。
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
+9. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
     与Surface模式相同，此处不再赘述。
 
@@ -983,7 +1042,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-9. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+10. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     与Surface模式相同，此处不再赘述。
 
@@ -1018,7 +1077,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-10. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+11. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
 
     以下示例中：
 
@@ -1046,7 +1105,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    NV12/NV21图像如果需要依次将Y,U,V三个分量拷贝至另一块buffer中，以NV12图像为例，按行拷贝示例如下：
+    NV12/NV21图像如果需要依次将Y、U、V三个分量拷贝至另一块buffer中，以NV12图像为例，按行拷贝示例如下：
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
@@ -1055,7 +1114,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-decoder.png)
 
     添加头文件。
 

@@ -28,7 +28,7 @@ import { AddFormMenuItem } from '@kit.ArkUI';
 Not supported
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## AddFormMenuItem 
 
@@ -40,7 +40,7 @@ AddFormMenuItem(
 ): void
 
 
-**Decorator**: @Component
+**Decorator**: @Builder
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -48,11 +48,11 @@ AddFormMenuItem(
 
 **Parameters**
 
-| Name          | Type                       | Mandatory| Decorator| Description                                                            |
-| -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | Yes  | \@Prop     | Want information of the functional component.                                        |
-| componentId    | string                          | Yes  | -          | In-application functional component ID, which corresponds to a UI similar to the UI of the service widget to add.|
-| AddFormOptions| [AddFormOptions](#addformoptions) | No  | -          | Options for adding the service widget.                                                        |
+| Name          | Type                       | Mandatory| Description                                                            |
+| -------------- | ------------------------------- | ---- | ---------------------------------------------------------------- |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | Yes  | Want information of the functional component.                                        |
+| componentId    | string                          | Yes  | In-application functional component ID, which corresponds to a UI similar to the UI of the service widget to add.|
+| options| [AddFormOptions](#addformoptions) | No  | Options for adding the service widget.                                                        |
 
 ## AddFormOptions
 
@@ -218,6 +218,6 @@ struct WidgetCard {
 
 **Result of using Add to home screen with the FormMenu component**
 
-On the left is the result of using **Add to home screen** with **formbdingdata** empty, and on the right is the result with **formbdingdata** as **{ data: 'share' }**.
+The figure below shows the results when **formbindingdata** is empty (left), and when it is set to **{ data: 'share' }** (right).
 
 ![en-us_image_0000001616959836](figures/en-us_image_add_form_to_desktop_result.jpeg)

@@ -1,16 +1,16 @@
 # @ohos.util.List (线性容器List)
 
-List底层通过单向链表实现，每个节点有一个指向后一个元素的引用。当需要查询元素时，必须从头遍历，插入、删除效率高，查询效率低。List允许元素为null。
+List底层通过单向链表实现，每个节点有一个指向后一个元素的引用。查询元素必须从头遍历，因此查询效率低，但插入和删除效率高。List允许元素为null。
 
-List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
+List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，不支持双向操作。
 
 > **注意：**
 >
-> 在List中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
+> 在List中使用\[index\]的方式获取元素可能导致未定义结果，推荐使用get()方法。
 
-**推荐使用场景：** 当需要频繁的插入删除元素，并且需要使用单向链表时，推荐使用List高效操作。
+**推荐使用场景：** 当需要频繁的插入删除元素且需要使用单向链表时，推荐使用List。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -150,7 +150,7 @@ list.insert(true, 2);
 
 has(element: T): boolean
 
-判断此List中是否含有该指定元素。
+判断List中是否包含指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -451,7 +451,7 @@ let result = list.remove(2);
 replaceAllElements(callbackFn: (value: T, index?: number, list?: List&lt;T&gt;) => T,
 thisArg?: Object): void
 
-用户操作List中的元素,用操作后的元素替换原元素并返回操作后的元素。
+用户操作List中的元素，用操作后的元素替换原元素并返回操作后的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -462,9 +462,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -500,7 +500,7 @@ list.replaceAllElements((value: number) => {
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历List实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历List实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -511,9 +511,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -547,7 +547,7 @@ list.forEach((value: number, index?: number) => {
 
 sort(comparator: (firstValue: T, secondValue: T) => number): void
 
-对List中的元素进行一个排序操作。
+对List中的元素进行排序。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -635,7 +635,7 @@ let result = list.getSubList(1, 3);
 
 clear(): void
 
-清除List中的所有元素，并把length置为0。
+清除List中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -664,7 +664,7 @@ list.clear();
 
 set(index: number, element: T): T
 
-将此 List 中指定位置的元素替换为指定元素。
+替换List指定位置的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -708,7 +708,7 @@ let result = list.set(2, "b");
 
 convertToArray(): Array&lt;T&gt;
 
-把当前List实例转换成数组，并返回转换后的数组。
+把当前List实例转换成数组并返回。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -743,7 +743,7 @@ let result = list.convertToArray();
 
 isEmpty(): boolean
 
-判断该List是否为空。
+判断List是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -848,7 +848,7 @@ let result = list.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -878,7 +878,7 @@ list.add(5);
 list.add(4);
 
 // 使用方法一：
-let items = Array.from(list)
+let items = Array.from(list);
 for (let item of items) {
   console.log("value: " + item);
 }

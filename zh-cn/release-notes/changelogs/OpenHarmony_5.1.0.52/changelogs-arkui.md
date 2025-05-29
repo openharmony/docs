@@ -1,56 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 Slider支持设置触控反馈（声音和振动）效果
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规范变更。
-
-**变更影响**
-
-此变更涉及应用适配。
-
-- 变更前：Slider组件无触控反馈（声音和振动）效果。
-  
-- 变更后：Slider组件在显示刻度时，滑块在滑动过程中经过刻度会触发触控反馈（声音和振动）效果；在无极滑动模式下，滑块滑动到两侧边缘也会触发触控反馈（声音和振动）效果。
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**适配指导**
-
-Slider 默认支持触控反馈（声音和振动）效果，此变更为系统变更，建议保持现状，开发者无需适配，如果开发者想关闭触控反馈效果，可以通过为Slider组件设置 enableHapticFeedback(false) 来关闭此效果。如下代码实现：
-```ts
-@Entry
-@Component
-struct SlideExample {
-  build() {
-    Row() {
-      Column() {
-        Slider()
-          .enableHapticFeedback(false)
-
-        Slider({
-          step: 10,
-        })
-          .showSteps(true)
-          .enableHapticFeedback(false)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-
-## cl.arkui.2 NavDestination标题栏工具栏支持跟手滑动隐藏后，超过2秒未操作，不恢复显示
+## cl.arkui.1 NavDestination标题栏工具栏支持跟手滑动隐藏后，超过2秒未操作，不恢复显示
 
 **访问级别**
 
@@ -84,7 +34,7 @@ NavDestination.bindToScrollable, NavDestination.bindToNestedScrollable
 
 默认行为变更，无需适配。
 
-## cl.arkui.3 Tabs组件TabBar的显示和隐藏动效变更
+## cl.arkui.2 Tabs组件TabBar的显示和隐藏动效变更
 
 **访问级别**
 
@@ -118,7 +68,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.4 页面退出场景自定义组件删除前移
+## cl.arkui.3 页面退出场景自定义组件删除前移
 
 **访问级别**
 
@@ -152,93 +102,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式由顶部对齐变更为居中对齐
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规范变更。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-- 变更前：MenuItem高度设置百分比，菜单项文本垂直方向顶部对齐。
-  
-- 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/MenuItemHeightPercent_before.png)       |  ![变更后](figures/MenuItemHeightPercent_after.png)       |
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-MenuItem组件
-
-**适配指导**
-
-默认效果变更，无需适配。
-
-## cl.arkui.6 Toast避让行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-优化Toast的避让行为，增强用户体验。
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更点1：default模式弹出键盘时的避让行为变更。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|无论Toast是否会被键盘遮挡，Toast总是上移一定的高度。<br>  ![变更前](figures/toast/toast-avoid-before.png)       |如果Toast的位置高于键盘，其位置保持不变。否则，将其上移至键盘上方80vp的位置。<br>![变更后](figures/toast/toast-avoid-after.png)  |
-
-变更点2：保持Toast在屏幕内显示。
-
-| 变更前 | 变更后 |
-|---------|---------|
-| 部分场景下Toast可能超出屏幕显示。<br> ![变更前](figures/toast/toast-avoid-before2.png)       | 当屏幕可用空间不够时，缩小Toast底部避让的距离。<br> ![变更后](figures/toast/toast-avoid-after2.png)       |
-
-变更点3：Toast与软键盘保持最小8vp间距。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|Toast与软键盘无最小间距。<br> ![变更前](figures/toast/toast-avoid-before3.png)       |Toast与软键盘保持至少8vp间距。<br> ![变更后](figures/toast/toast-avoid-after3.png)  |
-
-**起始API Level**
-
-API 9
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.52开始。
-
-**变更的接口/组件**
-
-promptAction.showToast, promptAction.openToast
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.7 修复fromHtml接口解析颜色rgb顺序错误的问题
+## cl.arkui.4 修复fromHtml接口解析颜色rgb顺序错误的问题
 
 **访问级别**
 
@@ -272,7 +136,7 @@ promptAction.showToast, promptAction.openToast
 
 此变更不涉及应用适配。
 
-## cl.arkui.8 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
+## cl.arkui.5 C API轴事件接口OH_ArkUI_UIInputEvent_GetSourceType和OH_ArkUI_UIInputEvent_GetToolType接口返回值变更
 
 **访问级别**
 
@@ -330,7 +194,7 @@ if (toolType != UI_INPUT_EVENT_TOOL_TYPE_MOUSE) { // 是鼠标滚轮尝试的轴
 }
 ```
 
-## cl.arkui.9 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
+## cl.arkui.6 CanvasRenderingContext2D使用putImageData方法绘制透明度小于1的ImageData效果变更
 
 **访问级别**
 
@@ -393,7 +257,7 @@ struct Demo {
 }
 ```
 
-## cl.arkui.10 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
+## cl.arkui.7 预览器OffscreenCanvasRenderingContext2D使用drawImage方法绘制透明度小于1的ImageBitmap效果变更
 
 **访问级别**
 
@@ -449,4 +313,52 @@ struct Demo {
     .height('100%')
   }
 }
+```
+
+## cl.arkui.8 TextInput/TextArea使用attributeModifier修改borderWidth的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+赋值顺序错误。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+- 变更前：TextInput/TextArea使用attributeModifier修改borderWidth，top实际赋值给bottom，left实际赋值给top，bottom实际赋值给left。
+  
+- 变更后：TextInput/TextArea使用attributeModifier修改borderWidth，top、bottom、left、right赋值给对应的位置。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**适配指导**
+
+TextInput/TextArea使用attributeModifier修改borderWidth属性，top、bottom、left、right会赋值给对应的位置，需要修改之前错误的赋值顺序。
+例如如下代码：
+```ts
+@State myModifier: TextInputModifier = new TextInputModifier().borderWidth({
+    top: 5,
+    bottom: 10,
+    left: 15,
+    right: 20
+  })
+```
+维持原状可以做如下调整：
+```ts
+@State myModifier: TextInputModifier = new TextInputModifier().borderWidth({
+    top: 15,  // 使用原先的left
+    bottom: 5, // 使用原先的top
+    left: 10, // 使用原先的bottom
+    right: 20
+  })
 ```

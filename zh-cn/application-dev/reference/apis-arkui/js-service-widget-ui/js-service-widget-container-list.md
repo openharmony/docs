@@ -25,7 +25,7 @@
 | ------------- | -------------- | ------- | ---- | ---------------------------------------- |
 | cachedcount   | number         | 0       | 否    | 长列表延迟加载时list-item最少缓存数量。                 |
 | scrollbar     | string         | off     | 否    | 侧边滑动栏的显示模式（当前只支持纵向）：<br/>-&nbsp;off：不显示。<br/>-&nbsp;auto：按需显示(触摸时显示，2s后消失)。<br/>-&nbsp;on：常驻显示。 |
-| scrolleffect  | string         | spring  | 否    | 滑动效果，目前支持如下滑动效果：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化。<br/>-&nbsp;no：滑动到边缘后无效果。 |
+| scrolleffect  | string         | spring  | 否    | 滑动效果，目前支持如下滑动效果：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发生一定的变化。<br/>-&nbsp;no：滑动到边缘后无效果。 |
 | divider       | boolean        | false   | 否    | item是否自带分隔线。<br/>其样式参考[样式列表](#样式)的divider-color、divider-height、divider-length、divider-origin。 |
 | shapemode     | string         | default | 否    | 侧边滑动栏的形状类型。<br/>-&nbsp;default：不指定，跟随主题。<br/>-&nbsp;rect：矩形。<br/>-&nbsp;round：圆形。 |
 | updateeffect  | boolean        | false   | 否    | 用于设置当list内部的item发生删除或新增时是否支持动效。<br/>-&nbsp;false：新增删除item时无过渡动效。<br/>-&nbsp;true：新增删除item时播放过程动效。 |
@@ -65,7 +65,7 @@
 ```html
 <!-- index.hml -->
 <div class="container">
-  <list class="todo-wraper">
+  <list class="todo-wrapper">
     <list-item for="{{todolist}}" class="todo-item">
       <text class="todo-title">{{$item.title}}</text>
       <text class="todo-title">{{$item.date}}</text>
@@ -101,7 +101,7 @@
   width: 454px;
   height: 454px;
 }
-.todo-wraper {
+.todo-wrapper {
   width: 454px;
   height: 300px;
 }

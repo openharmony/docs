@@ -15,27 +15,27 @@ Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs
 
 ### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [ipc_cskeleton.h](ipc__cskeleton_8h.md) | Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs), user IDs (UIDs), and thread pool in the IPC framework.|
+| [ipc_cskeleton.h](ipc__cskeleton_8h.md) | Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs), user IDs (UIDs), and thread pool in the IPC framework.| 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| void [OH_IPCSkeleton_JoinWorkThread](#oh_ipcskeleton_joinworkthread) (void) | Joints this thread to the IPC worker thread pool.|
-| void [OH_IPCSkeleton_StopWorkThread](#oh_ipcskeleton_stopworkthread) (void) | Stops this thread.|
-| uint64_t [OH_IPCSkeleton_GetCallingTokenId](#oh_ipcskeleton_getcallingtokenid) (void) | Obtains the token ID of the caller. This function must be called in the IPC context. Otherwise, the local token ID is returned.|
-| uint64_t [OH_IPCSkeleton_GetFirstTokenId](#oh_ipcskeleton_getfirsttokenid) (void) | Obtains the token ID of the first caller. |
-| uint64_t [OH_IPCSkeleton_GetSelfTokenId](#oh_ipcskeleton_getselftokenid) (void) | Obtains the local token ID. |
-| uint64_t [OH_IPCSkeleton_GetCallingPid](#oh_ipcskeleton_getcallingpid) (void) | Obtains the PID of the caller. This function must be called in the IPC context. Otherwise, the local PID is returned.|
-| uint64_t [OH_IPCSkeleton_GetCallingUid](#oh_ipcskeleton_getcallinguid) (void) | Obtains the UID of the caller. This function must be called in the IPC context. Otherwise, the local UID is returned.|
-| int [OH_IPCSkeleton_IsLocalCalling](#oh_ipcskeleton_islocalcalling) (void) | Checks whether a local calling is being made.|
-| int [OH_IPCSkeleton_SetMaxWorkThreadNum](#oh_ipcskeleton_setmaxworkthreadnum) (const int maxThreadNum) | Sets the maximum number of worker threads.|
-| int [OH_IPCSkeleton_ResetCallingIdentity](#oh_ipcskeleton_resetcallingidentity) (char \*\*identity, int32_t \*len, [OH_IPC_MemAllocator](_o_h_i_p_c_parcel.md#oh_ipc_memallocator) allocator) | Resets the caller identity credential (including the token ID, UID, and PID) to that of this process and returns the caller credential information. The credential information is used in **OH_IPCSkeleton_SetCallingIdentity**.|
-| int [OH_IPCSkeleton_SetCallingIdentity](#oh_ipcskeleton_setcallingidentity) (const char \*identity) | Sets the caller credential information to the IPC context.|
-| int [OH_IPCSkeleton_IsHandlingTransaction](#oh_ipcskeleton_ishandlingtransaction) (void) | Checks whether an IPC request is being handled.|
+| void [OH_IPCSkeleton_JoinWorkThread](#oh_ipcskeleton_joinworkthread) (void) | Joints this thread to the IPC worker thread pool.| 
+| void [OH_IPCSkeleton_StopWorkThread](#oh_ipcskeleton_stopworkthread) (void) | Stops this thread.| 
+| uint64_t [OH_IPCSkeleton_GetCallingTokenId](#oh_ipcskeleton_getcallingtokenid) (void) | Obtains the caller token ID. This API must be called in the IPC context. Otherwise, the token ID is returned.| 
+| uint64_t [OH_IPCSkeleton_GetFirstTokenId](#oh_ipcskeleton_getfirsttokenid) (void) | Obtains the token ID of the first caller.| 
+| uint64_t [OH_IPCSkeleton_GetSelfTokenId](#oh_ipcskeleton_getselftokenid) (void) | Obtains the local token ID.| 
+| uint64_t [OH_IPCSkeleton_GetCallingPid](#oh_ipcskeleton_getcallingpid) (void) | Obtains the caller PID. This API must be called in the IPC context. Otherwise, the current PID is returned.| 
+| uint64_t [OH_IPCSkeleton_GetCallingUid](#oh_ipcskeleton_getcallinguid) (void) | Obtains the caller UID. This API must be called in the IPC context. Otherwise, the current UID is returned.| 
+| int [OH_IPCSkeleton_IsLocalCalling](#oh_ipcskeleton_islocalcalling) (void) | Checks whether a local calling is being made.| 
+| int [OH_IPCSkeleton_SetMaxWorkThreadNum](#oh_ipcskeleton_setmaxworkthreadnum) (const int maxThreadNum) | Sets the maximum number of worker threads.| 
+| int [OH_IPCSkeleton_ResetCallingIdentity](#oh_ipcskeleton_resetcallingidentity) (char \*\*identity, int32_t \*len, [OH_IPC_MemAllocator](_o_h_i_p_c_parcel.md#oh_ipc_memallocator) allocator) | Resets the caller identity credential (including the token ID, UID, and PID) to that of this process and returns the caller credential information. The credential information is used in **OH_IPCSkeleton_SetCallingIdentity**.| 
+| int [OH_IPCSkeleton_SetCallingIdentity](#oh_ipcskeleton_setcallingidentity) (const char \*identity) | Sets the caller credential information to the IPC context.| 
+| int [OH_IPCSkeleton_IsHandlingTransaction](#oh_ipcskeleton_ishandlingtransaction) (void) | Checks whether an IPC request is being handled.| 
 
 
 ## Function Description
@@ -44,12 +44,12 @@ Provides C interfaces for managing the token IDs, credentials, process IDs (PIDs
 ### OH_IPCSkeleton_GetCallingPid()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingPid (void )
+uint64_t OH_IPCSkeleton_GetCallingPid (void)
 ```
 
 **Description**
 
-Obtains the PID of the caller. This function must be called in the IPC context. Otherwise, the local PID is returned.
+Obtains the caller PID. This API must be called in the IPC context. Otherwise, the current PID is returned.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -63,12 +63,12 @@ Returns the caller PID.
 ### OH_IPCSkeleton_GetCallingTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingTokenId (void )
+uint64_t OH_IPCSkeleton_GetCallingTokenId (void)
 ```
 
 **Description**
 
-Obtains the token ID of the caller. This function must be called in the IPC context. Otherwise, the local token ID is returned.
+Obtains the caller token ID. This API must be called in the IPC context. Otherwise, the token ID is returned.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -82,12 +82,12 @@ Returns the caller token ID.
 ### OH_IPCSkeleton_GetCallingUid()
 
 ```
-uint64_t OH_IPCSkeleton_GetCallingUid (void )
+uint64_t OH_IPCSkeleton_GetCallingUid (void)
 ```
 
 **Description**
 
-Obtains the UID of the caller. This function must be called in the IPC context. Otherwise, the local UID is returned.
+Obtains the caller UID. This API must be called in the IPC context. Otherwise, the current UID is returned.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -101,7 +101,7 @@ Returns the caller UID.
 ### OH_IPCSkeleton_GetFirstTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetFirstTokenId (void )
+uint64_t OH_IPCSkeleton_GetFirstTokenId (void)
 ```
 
 **Description**
@@ -120,7 +120,7 @@ Returns the token ID of the first caller.
 ### OH_IPCSkeleton_GetSelfTokenId()
 
 ```
-uint64_t OH_IPCSkeleton_GetSelfTokenId (void )
+uint64_t OH_IPCSkeleton_GetSelfTokenId (void)
 ```
 
 **Description**
@@ -139,7 +139,7 @@ Returns the local token ID.
 ### OH_IPCSkeleton_IsHandlingTransaction()
 
 ```
-int OH_IPCSkeleton_IsHandlingTransaction (void )
+int OH_IPCSkeleton_IsHandlingTransaction (void)
 ```
 
 **Description**
@@ -158,7 +158,7 @@ Returns **1** if an IPC request is being handled; returns **0** otherwise.
 ### OH_IPCSkeleton_IsLocalCalling()
 
 ```
-int OH_IPCSkeleton_IsLocalCalling (void )
+int OH_IPCSkeleton_IsLocalCalling (void)
 ```
 
 **Description**
@@ -177,7 +177,7 @@ Returns **1** if a local calling is in progress; returns **0** otherwise.
 ### OH_IPCSkeleton_JoinWorkThread()
 
 ```
-void OH_IPCSkeleton_JoinWorkThread (void )
+void OH_IPCSkeleton_JoinWorkThread (void)
 ```
 
 **Description**
@@ -192,7 +192,7 @@ Joints this thread to the IPC worker thread pool.
 ### OH_IPCSkeleton_ResetCallingIdentity()
 
 ```
-int OH_IPCSkeleton_ResetCallingIdentity (char ** identity, int32_t * len, OH_IPC_MemAllocator allocator )
+int OH_IPCSkeleton_ResetCallingIdentity (char ** identity, int32_t * len, OH_IPC_MemAllocator allocator)
 ```
 
 **Description**
@@ -205,11 +205,11 @@ Resets the caller identity credential (including the token ID, UID, and PID) to 
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| identity | Pointer to the address of the memory for holding the caller identity information. The memory is allocated by the allocator provided by the user and needs to be released. This pointer cannot be NULL.|
-| len | Pointer to the length of the data written to the identity. The value cannot be empty.|
-| allocator | Memory allocator specified by the user for allocating memory. This parameter cannot be empty.|
+| identity | Pointer to the address of the memory for holding the caller identity information. The memory is allocated by the allocator provided by the user and needs to be released. This pointer cannot be NULL.| 
+| len | Pointer to the length of the data written to the identity. The value cannot be empty.| 
+| allocator | Memory allocator specified by the user for allocating memory. This parameter cannot be empty.| 
 
 **Returns**
 
@@ -238,9 +238,9 @@ Sets the caller credential information to the IPC context.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| identity | Pointer to the caller credential, which cannot be empty. The value is returned by **OH_IPCSkeleton_ResetCallingIdentity**.|
+| identity | Pointer to the caller credential, which cannot be empty. The value is returned by **OH_IPCSkeleton_ResetCallingIdentity**.| 
 
 **Returns**
 
@@ -267,9 +267,9 @@ Sets the maximum number of worker threads.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| maxThreadNum | Maximum number of worker threads.<br>Value range: [1, 32]<br>Default value: **16** |
+| maxThreadNum | Maximum number of worker threads.<br>Value range: [1, 32]<br>Default value: **16**| 
 
 **Returns**
 
@@ -283,7 +283,7 @@ Returns [OH_IPC_ErrorCode#OH_IPC_INNER_ERROR](_o_h_i_p_c_error_code.md) in other
 ### OH_IPCSkeleton_StopWorkThread()
 
 ```
-void OH_IPCSkeleton_StopWorkThread (void )
+void OH_IPCSkeleton_StopWorkThread (void)
 ```
 
 **Description**

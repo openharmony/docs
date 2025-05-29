@@ -57,19 +57,21 @@ AtomicServiceTabs ({
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | --------------- | ------ | ---- | ----|----------|
-| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组。|
+| tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组，默认为空。|
 | tabBarOptionsArray | [[TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签容器数组。 |
-| tabBarPosition | [TabBarPosition](#tabbarposition) | 否   |@Prop | 设置页签栏位置。|
-| layoutMode<sup>16+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | 否   |@Prop | 设置底部页签的图片、文字排布的方式。|
-| barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色。|
-| index | number | 否 | @Prop | 设置当前显示页签的索引。|
-| barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上。|
-| controller|[TabsController](ts-container-tabs.md#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
+| tabBarPosition | [TabBarPosition](#tabbarposition) | 否   |@Prop | 设置页签栏位置，默认值为TabBarPosition.Bottom。|
+| layoutMode<sup>18+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | 否   |@Prop | 设置底部页签的图片、文字排布的方式，默认值为LayoutMode.VERTICAL。|
+| barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色，默认值为透明。|
+| index | number | 否 | @Prop | 设置当前显示页签的索引，索引值从0开始。|
+| barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上，默认值：true。|
+| controller|[TabsController](ts-container-tabs.md#tabscontroller) | 否 | - |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件。 |
 | onTabBarClick | Callback\<number\> | 否 | - |Tabs页签点击后触发的事件。|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。|
 
 ## TabContentBuilder
+
+type TabContentBuilder = () => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -81,16 +83,23 @@ AtomicServiceTabs ({
 
 ## TabBarOptions
 
+### constructor
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor)
+
+TabBarOptions的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明 |
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
 | --------------- | ------ |------ |------ |
-| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | 是 | 页签内的图片内容 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol](ts-container-tabcontent.md#tabbarsymbol12) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
-| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 未选择时的页签颜色。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 是 | 被选择时的页签颜色。 |
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 未选择时的页签颜色，默认值：#99182431。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 被选择时的页签颜色，默认值：#FF007DFF。 |
 
 ## TabBarPosition 
 
@@ -104,6 +113,8 @@ AtomicServiceTabs ({
 | BOTTOM  | 1 | 设置TabBar位于屏幕底部 |
 
 ## OnContentWillChangeCallback
+
+type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

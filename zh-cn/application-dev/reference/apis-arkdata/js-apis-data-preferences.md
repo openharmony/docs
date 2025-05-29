@@ -2,7 +2,7 @@
 
 用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
 
-数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
+数据存储采用键值对形式，键为字符串类型，值可为数字、字符、布尔类型及其对应的数组。
 
 用户首选项的持久化文件存储在[preferencesDir](../../application-models/application-context-stage.md#获取应用文件路径)路径下，创建preferences对象前，需要保证preferencesDir路径可读写。持久化文件存储路径中的[加密等级](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)会影响文件的可读写状态，路径访问限制详见[应用文件目录与应用文件路径](../../file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
 
@@ -409,11 +409,11 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-不支持该接口与preference其他接口并发调用。
+不支持该接口与其他preference接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -482,11 +482,11 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-不支持该接口与preference其他接口并发调用。
+不支持该接口与其他preference接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -558,11 +558,11 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-不支持该接口与preference其他接口并发调用。
+不支持该接口与其他preference接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -637,11 +637,11 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-不支持该接口与preference其他接口并发调用。
+不支持该接口与其他preference接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -719,11 +719,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，使用callback异步回调。
+从缓存中移除指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -790,11 +790,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -864,11 +864,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -919,11 +919,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，使用callback异步回调。
+从缓存中移除指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -995,11 +995,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1074,11 +1074,11 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1130,33 +1130,31 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## StorageType<sup>16+</sup>
+## StorageType<sup>18+</sup>
 Preferences的存储模式枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称 | 值   | 说明 |
 | ---- | ---- | ---- |
-| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br> **特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
-| CLKV |  1    |表示CLKV存储模式。<br> **特点：** 数据以CLKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br>**特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
+| GSKV |  1    |表示GSKV存储模式。<br>**特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
 
 
 > **说明：**
 >   - 在选择存储模式前，建议调用isStorageTypeSupported检查当前平台是否支持对应存储模式。
 >   - 当选择某一模式通过getPreferences接口获取实例后，不允许中途切换模式。
->   - 首选项不提供不同模式间数据的迁移，若想将数据从一模式切换至另一模式，需通过读写首选项的形式进行数据迁移。
->   - 若需要变更首选项的存储路径，不能通过移动文件或覆盖文件的方式进行，需通过读写首选项的形式进行数据迁移。
+>   - 首选项不支持不同模式间数据的迁移，若需将数据从一种模式切换至另一种模式，需通过读写首选项的形式进行数据迁移。
+>   - 若需要变更首选项的存储路径，不能通过移动或覆盖文件的方式进行，需通过读写首选项的形式进行数据迁移。
 
-## preferences.isStorageTypeSupported<sup>16+</sup>
+## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
-判断当前平台是否支持传入的存储模式，此为同步接口。
+判断当前平台是否支持传入的存储模式，此为同步接口。如果当前平台支持传入的存储模式时，该接口返回true；反之，返回false。
 
-当当前平台支持传入模式时，该接口返回true；反之，返回false。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1164,7 +1162,7 @@ isStorageTypeSupported(type: StorageType): boolean
 
 | 参数名  | 类型                  | 必填 | 说明                                                         |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type | [StorageType](#storagetype16)               | 是   | 需要判断是否支持的存储模式。 |
+| type | [StorageType](#storagetype18)               | 是   | 需要判断是否支持的存储模式。 |
 
 **返回值：**
 
@@ -1178,21 +1176,21 @@ isStorageTypeSupported(type: StorageType): boolean
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error: Incorrect parameter types.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
 
 
 **示例：**
 
 ```ts
 let xmlType = preferences.StorageType.XML;
-let clkvType = preferences.StorageType.CLKV;
+let gskvType = preferences.StorageType.GSKV;
 let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
-let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
 console.info("Is xml supported in current platform: " + isXmlSupported);
-console.info("Is clkv supported in current platform: " + isClkvSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
-## Options<sup>10+</sup> 
+## Options<sup>10+</sup>
 
 Preferences实例配置选项。
 
@@ -1202,7 +1200,7 @@ Preferences实例配置选项。
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。名称长度需大于零且小于等于255字节，名称中不能包含'/'且不能以'/'结尾。 <br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/>                                    |
 | dataGroupId | string\|null\|undefined | 否   | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应共享沙箱路径下创建Preferences实例。<!--RP1End--><br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。<br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/> |
-| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 16开始，该参数支持在原子化服务中使用。 <br/> |
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 18开始，该参数支持在原子化服务中使用。 <br/> |
 
 
 ## Preferences
@@ -1338,9 +1336,9 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
-从缓存的Preferences实例中获取所有键值数据。
+获取缓存的Preferences实例中的所有键值数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1389,7 +1387,7 @@ dataPreferences.getAll((err: BusinessError, value: Object) => {
 
 getAll(): Promise&lt;Object&gt;
 
-从缓存的Preferences实例中获取所有键值数据。
+获取缓存的Preferences实例中的所有键值数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1399,7 +1397,7 @@ getAll(): Promise&lt;Object&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise对象，返回含有所有键值数据。 |
+| Promise&lt;Object&gt; | Promise对象，返回所有包含的键值数据。 |
 
 **错误码：**
 
@@ -1435,7 +1433,7 @@ promise.then((value: Object) => {
 
 getAllSync(): Object
 
-从缓存的Preferences实例中获取所有键值数据，此为同步接口。
+获取缓存的Preferences实例中的所有键值数据，此为同步接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1445,7 +1443,7 @@ getAllSync(): Object
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Object | 返回含有所有键值数据。 |
+| Object | 返回所有包含的键值数据。|
 
 **错误码：**
 
@@ -1614,7 +1612,7 @@ dataPreferences.putSync('startup', 'auto');
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用callback异步回调。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1659,7 +1657,7 @@ dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用Promise异步回调。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1708,7 +1706,7 @@ promise.then((val: boolean) => {
 
 hasSync(key: string): boolean
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，此为同步接口。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，此为同步接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2081,7 +2079,7 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
   > **说明：**
   >
-  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或者[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2134,7 +2132,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
   >
   > 同一持久化文件在当前进程订阅进程间数据变更的最大数量为50次，超过最大限制后会订阅失败。建议在触发callback回调后及时取消订阅。
   >
-  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或者[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2184,7 +2182,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 
   > **说明：**
   >
-  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或者[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2214,11 +2212,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2358,11 +2356,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2380,7 +2378,7 @@ dataPreferences.off('dataChange', keys, observer);
 
 type ValueType = number | string | boolean | Array\<number> | Array\<string> | Array\<boolean> | Uint8Array | object | bigint
 
-用于表示允许的数据字段类型。
+表示支持的值类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -57,6 +57,10 @@ style(indicatorStyle: DotIndicator | DigitIndicator)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | indicatorStyle  | [DotIndicator](ts-container-swiper.md#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](ts-container-swiper.md#digitindicator10)&nbsp;| 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/>&nbsp;&nbsp;默认类型：DotIndicator。 |
 
+> **说明：**
+>
+> 当indicatorStyle的类型为DotIndicator时，[maxDisplayCount](ts-container-swiper.md#maxDisplayCount12)不生效。
+
 ### count
 
 count(totalCount: number)
@@ -101,7 +105,7 @@ initialIndex(index: number)
 
 loop(isLoop: boolean)
 
-设置是否开启循环。设置为true时表示开启循环。
+设置是否开启循环。
 
 单独导航点组件和Swiper绑定的时候，该属性不生效。
 
@@ -115,7 +119,7 @@ loop(isLoop: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
-| isLoop  | boolean | 是   | 是否开启循环。<br/>默认值：true。 |
+| isLoop  | boolean | 是   | 是否开启循环。true为开启循环，false为不开启循环。<br/>默认值：true。 |
 
 ### vertical
 
@@ -135,7 +139,7 @@ vertical(isVertical: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isVertical  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+| isVertical  | boolean | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ## 事件
 
@@ -157,7 +161,7 @@ onChange(event: Callback\<number>)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当当前显示元素的索引变化时触发的回调。|
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前显示元素的索引变化时触发的回调。|
 
 ## IndicatorComponentController
 
@@ -226,9 +230,9 @@ changeIndex(index: number, useAnimation?: boolean): void
 @Entry
 @Component
 struct DotIndicatorDemo {
-  private indicatorController: IndicatorComponentController = new IndicatorComponentController()
-  private swiperController: SwiperController = new SwiperController()
-  @State list: number[] = []
+  private indicatorController: IndicatorComponentController = new IndicatorComponentController();
+  private swiperController: SwiperController = new SwiperController();
+  @State list: number[] = [];
   aboutToAppear(): void {
     for (let i = 1; i <= 6; i++) {
       this.list.push(i);
@@ -257,7 +261,7 @@ struct DotIndicatorDemo {
       .itemSpace(0)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
 
       IndicatorComponent(this.indicatorController)
@@ -274,7 +278,7 @@ struct DotIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index )
+          console.log("current index: " + index );
         })
     }
   }
@@ -290,9 +294,9 @@ struct DotIndicatorDemo {
 @Entry
 @Component
 struct DigitIndicatorDemo {
-  private indicatorController: IndicatorComponentController = new IndicatorComponentController()
-  private swiperController: SwiperController = new SwiperController()
-  @State list: number[] = []
+  private indicatorController: IndicatorComponentController = new IndicatorComponentController();
+  private swiperController: SwiperController = new SwiperController();
+  @State list: number[] = [];
   aboutToAppear(): void {
     for (let i = 1; i <= 6; i++) {
       this.list.push(i);
@@ -321,7 +325,7 @@ struct DigitIndicatorDemo {
       .itemSpace(0)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
 
       IndicatorComponent(this.indicatorController)
@@ -335,7 +339,7 @@ struct DigitIndicatorDemo {
         .count(6)
         .vertical(true)
         .onChange((index: number) => {
-          console.log("current index: " + index )
+          console.log("current index: " + index );
         })
     }
   }

@@ -99,6 +99,14 @@ Applies the ripple effect onto the component.
 | ----------------- | --------------------------------- |
 | [Filter](#filter) | **Filter** instance with the ripple effect.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -126,6 +134,14 @@ Applies fly-in and fly-out animations onto the component.
 | Type             | Description                              |
 | ----------------- | --------------------------------- |
 | [Filter](#filter) | **Filter** instance with the fly-in and fly-out animations.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 202  | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 

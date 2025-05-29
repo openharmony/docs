@@ -23,7 +23,7 @@ Describes a **FormBindingData** object.
 | data | Object | Yes| Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
 
 
-## createFormBindingData
+## formBindingData.createFormBindingData
 
 createFormBindingData(obj?: Object | string): FormBindingData
 

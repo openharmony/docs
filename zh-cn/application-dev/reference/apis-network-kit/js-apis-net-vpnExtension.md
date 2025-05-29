@@ -1,7 +1,6 @@
 # @ohos.net.vpnExtension (VPN 增强管理)
 
-三方VPN管理模块，支持三方VPN的启动和停止功能。
-三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。
+三方VPN管理模块，支持三方VPN的启动和停止功能。三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。当前提供三方VPN能力主要用于创建虚拟网卡及配置VPN路由信息，连接隧道过程及内部连接的协议需要应用内部自行实现。
 
 > **说明：**
 > 本模块首批接口从 API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -69,7 +68,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -87,7 +86,6 @@ Stage 模型示例：
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -139,7 +137,7 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -156,7 +154,6 @@ Stage 模型示例：
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -217,7 +214,7 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 **错误码：**
 
-| 错误码 ID | 错误信息         |
+| 错误码ID | 错误信息         |
 | --------- | ---------------- |
 | 401       | Parameter error. |
 
@@ -231,8 +228,8 @@ import { common, Want } from '@kit.AbilityKit';
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
   }
 }
 ```
@@ -263,7 +260,7 @@ create(config: VpnConfig): Promise\<number\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                         |
+| 错误码ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
 | 401       | Parameter error.                                 |
 | 2200001   | Invalid parameter value.                         |
@@ -284,8 +281,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
     this.SetupVpn();
   }
   SetupVpn() {
@@ -333,8 +330,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-            VpnConnection.create(config).then((data) => {
+            let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+            vpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -348,7 +345,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 protect(socketFd: number): Promise\<void\>
 
-保护套接字不受 VPN 连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过 VPN 转发, 使用 Promise 方式作为异步方法。
+保护套接字不受 VPN 连接影响，通过该套接字发送的数据将直接基于物理网络收发，因此其流量不会通过 VPN 转发，使用 Promise 方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -356,7 +353,7 @@ protect(socketFd: number): Promise\<void\>
 
 | 参数名   | 类型   | 必填 | 说明                                                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
-| socketFd | number | 是   | 指定保护的 socketfd, 该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
+| socketFd | number | 是   | 指定保护的 socketfd，该文件描述符通过[getSocketFd](js-apis-socket.md#getsocketfd10-1)获取。 |
 
 **返回值：**
 
@@ -366,7 +363,7 @@ protect(socketFd: number): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
@@ -386,8 +383,8 @@ let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
     this.CreateTunnel();
     this.Protect();
   }
@@ -396,8 +393,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-        VpnConnection.protect(g_tunnelFd).then(() => {
+        let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+        vpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
             hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
@@ -422,7 +419,7 @@ destroy(): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200002   | Operation failed. Cannot connect to service. |
@@ -438,9 +435,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
-    VpnConnection.destroy().then(() => {
+    let vpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(vpnConnection));
+    vpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((error : BusinessError) => {
       console.error("destroy fail" + JSON.stringify(error));
@@ -461,11 +458,11 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
 | searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
-| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。     |
-| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。       |
+| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。取值范围：576-1500。     |
+| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。true：支持 IPV4；false：不支持 IPV4。      |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 false。true：支持 IPV6；false：不支持 IPV6。     |
+| isInternal          | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 false。true：支持内置 VPN；false：不支持内置 VPN。   |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。true：阻塞模式；false：非阻塞模式。       |
 | trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
 | blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
 
@@ -502,8 +499,8 @@ let vpnConfig: vpnExtension.VpnConfig = {
 let context: vpnExtension.VpnExtensionContext;
 
 function vpnCreate(){
-  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
-  VpnConnection.create(vpnConfig).then((data) => {
+  let vpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  vpnConnection.create(vpnConfig).then((data) => {
     console.info("vpn create " + JSON.stringify(data));
   })
 }

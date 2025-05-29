@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.networkManager](js-apis-enterprise-networkManager.md)。
 
@@ -22,7 +22,7 @@ import { networkManager } from '@kit.MDMKit';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-指定设备管理应用获取所有激活的网络接口。使用callback异步回调。
+获取所有激活的有线网络接口。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -33,7 +33,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为网络接口名称数组，否则err为错误对象。     |
 
 **错误码**：
@@ -52,6 +52,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -70,7 +71,7 @@ networkManager.getAllNetworkInterfaces(wantTemp, (err, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-指定设备管理应用获取所有激活的网络接口。使用Promise异步回调。
+获取所有激活的有线网络接口。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -79,15 +80,15 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise结果，返回网络接口名称数组。  |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise结果，返回所有激活的有线网络接口名称数组。 |
 
 **错误码**：
 
@@ -106,6 +107,7 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -122,7 +124,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用根据网络接口获取设备IP地址。使用callback异步回调。
+根据网络接口获取设备IP地址。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -133,7 +135,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为IP地址，否则err为错误对象。       |
 
@@ -153,6 +155,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -171,7 +174,7 @@ networkManager.getIpAddress(wantTemp, 'eth0', (err, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-指定设备管理应用根据网络接口获取设备IP地址。使用Promise异步回调。
+根据网络接口获取设备IP地址。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -182,7 +185,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -208,6 +211,7 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -224,7 +228,7 @@ networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用根据网络接口获取设备MAC地址。使用callback异步回调。
+根据网络接口获取设备MAC地址。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -235,7 +239,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备MAC地址，否则err为错误对象。       |
 
@@ -255,6 +259,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -273,7 +278,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 getMac(admin: Want, networkInterface: string): Promise\<string>
 
-指定设备管理应用根据网络接口获取设备MAC地址。使用Promise异步回调。
+根据网络接口获取设备MAC地址。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -284,7 +289,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -310,6 +315,7 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -326,7 +332,7 @@ networkManager.getMac(wantTemp, 'eth0').then((result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-指定设备管理应用查询指定网络接口是否被禁用。使用callback异步回调。
+查询指定网络接口是否被禁用。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -337,7 +343,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为指定网络接口是否被禁用，true表示该网络接口被禁用，false表示该网络接口未被禁用，否则err为错误对象。       |
 
@@ -357,6 +363,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -375,7 +382,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0', (err, result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;boolean&gt;
 
-指定设备管理应用查询指定网络接口是否被禁用。使用Promise异步回调。
+查询指定网络接口是否被禁用。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -386,7 +393,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
@@ -412,6 +419,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -428,7 +436,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用禁止设备使用指定网络。使用callback异步回调。
+禁止设备使用指定网络。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -439,7 +447,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
@@ -460,6 +468,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -478,7 +487,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true, (err) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean): Promise&lt;void&gt;
 
-指定设备管理应用禁止设备使用指定网络。使用Promise异步回调。
+禁止设备使用指定网络。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -489,7 +498,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | networkInterface    | string     | 是    | 指定网络接口。                  |
 | isDisabled    | boolean     | 是    | true表示禁用该网络接口，false表示开启该网络接口。                  |
 
@@ -497,7 +506,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当禁用网络接口失败时抛出错误对象  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当禁用网络接口失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -516,6 +525,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -532,7 +542,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
 
 setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCallback\<void>): void
 
-指定设备管理应用设置网络全局代理，使用callback异步回调。
+设置网络全局代理，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -543,7 +553,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
@@ -564,6 +574,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -589,7 +600,7 @@ networkManager.setGlobalProxy(wantTemp, httpProxy, (err) => {
 
 setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
-指定设备管理应用设置网络全局代理，使用Promise异步回调。
+设置网络全局代理，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -600,14 +611,14 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | httpProxy    | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)     | 是    | 网络全局Http代理配置信息。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当设置网络全局代理失败时抛出错误对象  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当设置网络全局代理失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -627,6 +638,7 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -650,7 +662,7 @@ networkManager.setGlobalProxy(wantTemp, httpProxy).then(() => {
 
 getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): void
 
-指定设备管理应用获取网络全局代理，使用callback异步回调。
+获取网络全局代理，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -661,7 +673,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | callback | AsyncCallback&lt;[connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10)&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -680,6 +692,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -698,7 +711,7 @@ networkManager.getGlobalProxy(wantTemp, (err, result) => {
 
 getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
-指定设备管理应用获取网络全局代理，使用Promise异步回调。
+获取网络全局代理，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -707,9 +720,9 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -734,6 +747,7 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -750,7 +764,7 @@ networkManager.getGlobalProxy(wantTemp).then(() => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCallback\<void>): void
 
-指定设备管理应用为设备添加网络包过滤规则。使用callback异步回调。
+为设备添加网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -761,7 +775,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
@@ -781,6 +795,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -811,7 +826,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
-指定设备管理应用为设备添加网络包过滤规则。使用Promise异步回调。
+为设备添加网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -822,7 +837,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | filterRule    | [AddFilterRule](#addfilterrule)     | 是    | 添加网络包过滤规则。                  |
 
 **返回值：**
@@ -848,6 +863,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -876,7 +892,7 @@ networkManager.addIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: AsyncCallback\<void>): void
 
-指定设备管理应用移除网络包过滤规则。使用callback异步回调。
+移除网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -887,7 +903,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
@@ -907,6 +923,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -935,7 +952,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule, (err) => {
 
 removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<void>
 
-指定设备管理应用移除网络包过滤规则。使用Promise异步回调。
+移除网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -946,7 +963,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | filterRule    | [RemoveFilterRule](#removefilterrule)     | 是    | 移除网络包过滤规则。                  |
 
 **返回值：**
@@ -972,6 +989,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -998,7 +1016,7 @@ networkManager.removeIptablesFilterRule(wantTemp, filterRule).then(() => {
 
 listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
-指定设备管理应用获取网络包过滤规则。使用callback异步回调。
+获取网络包过滤规则。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1009,7 +1027,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。            |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则err为错误对象。       |
 
 **错误码**：
@@ -1028,6 +1046,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1046,7 +1065,7 @@ networkManager.listIptablesFilterRules(wantTemp, (err, result) => {
 
 listIptablesFilterRules(admin: Want): Promise\<string>
 
-指定设备管理应用获取网络包过滤规则。使用Promise异步回调。
+获取网络包过滤规则。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -1055,15 +1074,15 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise对象,返回网络包过滤规则。  |
+| Promise&lt;string&gt; | Promise对象，返回网络包过滤规则。 |
 
 **错误码**：
 
@@ -1082,6 +1101,7 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

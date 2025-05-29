@@ -118,7 +118,7 @@ static void Test(void)
    // 1. Register a callback.
     OH_LOG_SetCallback(MyHiLog);
     
-   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to **MyHiLog()** through the registered callback. Then, **MyHiLog()** is called to process the logs.
+   // 2. Call the hilog API to print logs. Logs are output to HiLog and returned to MyHiLog() through the registered callback. Then, MyHiLog() is called to process the logs.
    HiLog::Info(LABEL, "hello world");
 }
 ```

@@ -64,7 +64,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | 获取视频编解码器支持的视频宽度对齐。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | 获取视频编解码器支持的视频高度对齐。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRangeForHeight](#oh_avcapability_getvideowidthrangeforheight) (OH_AVCapability \*capability, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | 获取指定高度情况下视频编解码器支持的视频宽度范围。  | 
-| OH_AVErrCode [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | 获取指定宽度情况下视频编解码器支持的视频高度范围。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | 获取指定宽度情况下视频编解码器支持的视频高度范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | 获取视频编解码器支持的视频宽度范围。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | 获取视频编解码器支持的视频高度范围。  | 
 | bool [OH_AVCapability_IsVideoSizeSupported](#oh_avcapability_isvideosizesupported) (OH_AVCapability \*capability, int32_t width, int32_t height) | 检查视频编解码器是否支持特定的视频大小。  | 
@@ -76,7 +76,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | 获取特定档次支持的编解码器级别。  | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | 检查编解码器是否支持档次和级别的特定组合。  | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 检查编解码器是否支持指定特性。  | 
-| OH_AVFormat \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。  | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者手动释放。  | 
 
 
 ## 类型定义说明
@@ -283,7 +283,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability *capability
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | bitrateRange | 输出参数。编码器码率范围。  | 
 
 **返回：**
@@ -309,7 +309,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability *capabil
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | complexityRange | 输出参数。编码器复杂度范围。  | 
 
 **返回：**
@@ -335,7 +335,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | qualityRange | 输出参数。编码器质量范围。  | 
 
 **返回：**
@@ -351,7 +351,7 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 OH_AVFormat* OH_AVCapability_GetFeatureProperties (OH_AVCapability *capability, OH_AVCapabilityFeature feature)
 ```
 **描述**
-获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。
+获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者手动释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -725,7 +725,7 @@ bool OH_AVCapability_IsEncoderBitrateModeSupported (OH_AVCapability *capability,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编码器能力指针。不能填入解码器能力指针。  | 
+| capability | 编码器能力指针。如果给的是解码器能力指针，会导致未定义行为。  | 
 | bitrateMode | 比特率模式。  | 
 
 **返回：**

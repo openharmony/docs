@@ -1,6 +1,6 @@
 # Asynchronous Waiting
 
-To address timing control issues in multithreaded tasks, ArkTS has introduced asynchronous waiting and notification capabilities. The [ConditionVariable](../reference/apis-arkts/js-apis-arkts-utils.md#conditionvariable16) object supports pass-by-reference across threads.
+To address timing control issues in multithreaded tasks, ArkTS has introduced asynchronous waiting and notification capabilities. The [ConditionVariable](../reference/apis-arkts/js-apis-arkts-utils.md#conditionvariable18) object supports pass-by-reference across threads.
 
 ArkTS, which supports asynchronous operations, now provides the capability for asynchronous tasks to wait and be awakened. When a wake-up notification is received or the waiting times out, the asynchronous execution continues.
 
@@ -81,5 +81,3 @@ struct Index {
   }
 }
 ```
-
- <!--no_check--> 

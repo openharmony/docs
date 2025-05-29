@@ -25,7 +25,7 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 
 > **说明**：
 >
-> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。如果已经创建的实例仍在启动过程中，调用startAbility接口启动该实例，将收到错误码16000082。
+> 应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
 
 如果需要使用singleton启动模式，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的`launchType`字段配置为`singleton`即可。
 
@@ -131,7 +131,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备
@@ -153,7 +153,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
             // ...
             Button()
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 // context为调用方UIAbility的UIAbilityContext;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备

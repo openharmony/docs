@@ -1,9 +1,9 @@
 # Flex布局
 
 >  **说明：**
->  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 仅当父组件是 [Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)（仅针对[alignSelf](#alignself)）时生效。
+>  - 仅当父组件是 [Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)或[GridRow](ts-container-gridrow.md)（仅针对[alignSelf](#alignself)）时生效。
 
 ## flexBasis
 
@@ -39,7 +39,7 @@ flexGrow(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置父容器在主轴方向上的剩余空间分配给此属性所在组件的比例。<br/>默认值：0 |
+| value  | number | 是   | 设置父容器在主轴方向上的剩余空间分配给此属性所在组件的比例。<br/>取值范围(0,+∞)，默认值：0 |
 
 ## flexShrink
 
@@ -57,7 +57,7 @@ flexShrink(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围，[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
+| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：取值范围(0,+∞)，0。<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围。[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
 
 ## alignSelf
 
@@ -75,7 +75,7 @@ alignSelf(value: ItemAlign)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignsSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
+| value  | [ItemAlign](ts-appendix-enums.md#itemalign) | 是   | 子组件在父容器交叉轴的对齐格式，会覆盖[Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)布局容器中的alignItems设置。<br/>[GridCol](./ts-container-gridcol.md)可以绑定alignSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto |
 
 
 ## 示例
@@ -91,7 +91,7 @@ struct FlexExample {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // 基于主轴的基准尺寸
-      // flexBasis()值可以是字符串'auto',表示基准尺寸是元素本来的大小,也可以是长度设置，相当于.width()/.height()
+      // flexBasis()值可以是字符串'auto'，表示基准尺寸是元素本来的大小，也可以是长度设置，相当于.width()/.height()
       Flex() {
         Text('flexBasis(100)')
           .flexBasis(100) // 这里表示宽度为100vp
@@ -123,7 +123,7 @@ struct FlexExample {
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // flexShrink()表示该元素的压缩比例，基于超出的总尺寸进行计算
-      // 第一个text压缩比例是0,另外两个都是1,因此放不下时等比例压缩后两个,第一个不压缩
+      // 第一个text压缩比例是0，另外两个都是1，因此放不下时等比例压缩后两个，第一个不压缩
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
           .flexShrink(0)

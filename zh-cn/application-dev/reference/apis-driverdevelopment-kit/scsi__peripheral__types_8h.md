@@ -7,6 +7,8 @@
 
 **引用文件：** &lt;scsi_peripheral/scsi_peripheral_types.h&gt;
 
+**库：** libscsi.z.so
+
 **系统能力：** SystemCapability.Driver.SCSI.Extension
 
 **起始版本：** 18
@@ -21,7 +23,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| struct&nbsp;&nbsp;[ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) | 通过调用[OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap)创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) | 读/写操作的请求参数。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Request](_scsi_peripheral___request.md) | 请求参数结构体。 | 
 | struct&nbsp;&nbsp;[ScsiPeripheral_Response](_scsi_peripheral___response.md) | 响应参数结构体。 | 
@@ -44,7 +46,7 @@
 | [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN](_s_c_s_i.md#scsiperipheral_max_cmd_desc_block_len)&nbsp;&nbsp;&nbsp;16 | 命令描述符块的最大长度。 | 
 | [SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](_s_c_s_i.md#scsiperipheral_max_sense_data_len)&nbsp;&nbsp;&nbsp;252 | 在SCSI协议中，Sense Data（感应数据）的最大长度通常为252字节。 | 
 | [SCSIPERIPHERAL_VENDOR_ID_LEN](_s_c_s_i.md#scsiperipheral_vendor_id_len)&nbsp;&nbsp;&nbsp;8 | vendor id的最大长度。 | 
-| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;16 | product id的最大长度。 | 
+| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;18 | product id的最大长度。 | 
 | [SCSIPERIPHERAL_PRODUCT_REV_LEN](_s_c_s_i.md#scsiperipheral_product_rev_len)&nbsp;&nbsp;&nbsp;4 | 产品版本的最大长度。 | 
 
 
@@ -53,7 +55,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) [ScsiPeripheral_Device](_s_c_s_i.md#scsiperipheral_device) | 不透明的SCSI设备结构体。 | 
-| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | 通过调用OH_ScsiPeripheral_CreateDeviceMemMap创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
+| typedef struct [ScsiPeripheral_DeviceMemMap](_scsi_peripheral___device_mem_map.md) [ScsiPeripheral_DeviceMemMap](_s_c_s_i.md#scsiperipheral_devicememmap) | 通过调用[OH_ScsiPeripheral_CreateDeviceMemMap](_s_c_s_i.md#oh_scsiperipheral_createdevicememmap)创建的设备内存映射。 使用该设备内存映射的缓冲区可以提供更好的性能。 | 
 | typedef struct [ScsiPeripheral_IORequest](_scsi_peripheral___i_o_request.md) [ScsiPeripheral_IORequest](_s_c_s_i.md#scsiperipheral_iorequest) | 读/写操作的请求参数。 | 
 | typedef struct [ScsiPeripheral_Request](_scsi_peripheral___request.md) [ScsiPeripheral_Request](_s_c_s_i.md#scsiperipheral_request) | 请求参数结构体。 | 
 | typedef struct [ScsiPeripheral_Response](_scsi_peripheral___response.md) [ScsiPeripheral_Response](_s_c_s_i.md#scsiperipheral_response) | 响应参数结构体。 | 

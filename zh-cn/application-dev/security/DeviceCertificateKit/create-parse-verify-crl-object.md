@@ -1,8 +1,6 @@
 # 证书吊销列表对象的创建、解析和校验
 
-
 以校验证书是否已吊销为例，完成证书吊销列表对象的创建、解析和校验。若证书已被吊销，将打印被吊销日期。
-
 
 ## 开发步骤
 
@@ -16,7 +14,7 @@
 
 3. 解析证书吊销列表信息。
 
-   此处以获取证书吊销列表版本、证书吊销列表类型为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11)。
+   此处以获取证书吊销列表版本、证书吊销列表类型、证书吊销列表颁发者名称、证书吊销列表对象的字符串类型数据为例，更多字段信息获取接口请查看[API参考文档](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11)。
 
 4. 基于已有公钥信息，创建PublicKey公钥对象。
 
@@ -38,7 +36,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
-// CRL数据，以下只是一个示例，需要根据具体业务来赋值
+// CRL数据，以下只是一个示例，需要根据具体业务来赋值。
 let crlData = '-----BEGIN X509 CRL-----\n' +
   'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
   'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
@@ -100,28 +98,38 @@ let pubKeyData = new Uint8Array([
 function crlSample(): void {
   let textEncoder = new util.TextEncoder();
   let encodingBlob: cert.EncodingBlob = {
-    // 将CRL数据从string转为Unit8Array
+    // 将CRL数据从string转为Unit8Array。
     data: textEncoder.encodeInto(crlData),
-    // CRL格式，仅支持PEM和DER格式。在这个例子中，CRL用的是PEM格式
+    // CRL格式，仅支持PEM和DER格式。在这个例子中，CRL用的是PEM格式。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  // 创建X509CRL实例
+  // 创建X509CRL实例。
   cert.createX509CRL(encodingBlob, (err, x509Crl) => {
     if (err != null) {
-      // 创建X509CRL实例失败
+      // 创建X509CRL实例失败。
       console.error(`createX509Crl failed, errCode: ${err.code}, errMsg:${err.message} `);
       return;
     }
-    // 创建X509CRL实例成功
+    // 创建X509CRL实例成功。
     console.log('createX509CRL success');
 
-    // 获取CRL的版本
+    // 获取CRL的版本。
     let version = x509Crl.getVersion();
+    // 获取证书吊销列表类型。
     let revokedType = x509Crl.getType();
     console.log(`X509 CRL version: ${version}, type :${revokedType}`);
 
-    // 公钥的二进制数据需要传入@ohos.security.cryptoFramework的convertKey()方法去获取公钥对象
+    // 获取证书吊销列表颁发者名称。
+    let issuerName = x509Crl.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL issuerName: ${issuerName}`);
+
+    // 获取证书吊销列表对象的字符串类型数据。
+    let crlString = x509Crl.toString(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL crlString: ${crlString}`);
+
+
+    // 公钥的二进制数据需要传入@ohos.security.cryptoFramework的convertKey()方法去获取公钥对象。
     try {
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
       console.log('createAsyKeyGenerator success');
@@ -133,10 +141,10 @@ function crlSample(): void {
           console.log('convert key success');
           x509Crl.verify(keyPair.pubKey, (err, data) => {
             if (err == null) {
-              // 签名验证成功
+              // 签名验证成功。
               console.log('verify success');
             } else {
-              // 签名验证失败
+              // 签名验证失败。
               console.error(`verify failed, errCode: ${err.code}, errMsg: ${err.message}`);
             }
           });
@@ -149,7 +157,7 @@ function crlSample(): void {
       console.error(`get pubKey failed, errCode: ${e.code}, errMsg: ${e.message}` );
     }
 
-    // 使用certFramework的createX509Cert()方法创建一个X509Cert实例
+    // 使用certFramework的createX509Cert()方法创建一个X509Cert实例。
     let certBlob: cert.EncodingBlob = {
       data: textEncoder.encodeInto(certData),
       encodingFormat: cert.EncodingFormat.FORMAT_PEM
@@ -160,21 +168,21 @@ function crlSample(): void {
       serial = cert.getCertSerialNumber();
       if (err == null) {
         try {
-          // 检查证书是否被吊销
+          // 检查证书是否被吊销。
           revokedFlag = x509Crl.isRevoked(cert);
           console.log(`revokedFlag is: ${revokedFlag}`);
           if (!revokedFlag) {
               console.log('the given cert is not revoked.');
               return;
           }
-          // 根据序列号来获取被吊销的证书
+          // 根据序列号来获取被吊销的证书。
           try {
             let crlEntry = x509Crl.getRevokedCert(serial);
             console.log('get getRevokedCert success');
             let serialNumber = crlEntry.getSerialNumber();
             console.log(`crlEntry serialNumber is: ${serialNumber}`);
 
-            // 获取被吊销证书的吊销日期
+            // 获取被吊销证书的吊销日期。
             let date = crlEntry.getRevocationDate();
             console.log(`revocation date is: ${date}`);
           } catch (error) {

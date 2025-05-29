@@ -1,4 +1,4 @@
-# OH_Scan
+# ohscan.h
 
 
 ## 概述
@@ -15,33 +15,33 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Scan_ScannerDevice | 扫描仪设备信息。 |
-| Scan_PictureScanProgress | 图片扫描进度。 |
-| Scan_ScannerOptions | 扫描仪选项。 |
-| Scan_ScannerDiscoveryCallback | 扫描仪发现回调函数。 |
+| [Scan_ScannerDevice](#scan_scannerdevice) | 扫描仪设备信息。 |
+| [Scan_PictureScanProgress](#scan_picturescanprogress) | 图片扫描进度。 |
+| [Scan_ScannerOptions](#scan_scanneroptions) | 扫描仪选项。 |
+| [Scan_ScannerDiscoveryCallback](#scan_scannerdiscoverycallback) | 扫描仪发现回调函数。 |
 
 
 ### 枚举类型
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Scan_ErrorCode | 枚举错误码。 |
+| [Scan_ErrorCode](#scan_errorcode) | 枚举错误码。 |
 
 
 ### 函数
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Scan_Init | 用于拉起扫描服务，初始化客户端，并建立与扫描服务的连接。 |
-| OH_Scan_StartScannerDiscovery | 用于搜索扫描仪，注册一个回调函数来处理发现的扫描仪。 |
-| OH_Scan_OpenScanner | 用于连接扫描仪。 |
-| OH_Scan_CloseScanner | 用于断开与扫描仪的连接。 |
-| OH_Scan_GetScannerParameter | 用于获取扫描仪设置选项。 |
-| OH_Scan_SetScannerParameter | 用于设置扫描仪的选项参数。 |
-| OH_Scan_StartScan | 用于启动扫描仪。 |
-| OH_Scan_CancelScan | 用于取消扫描。 |
-| OH_Scan_GetPictureScanProgress | 用于查询图片扫描进度。 |
-| OH_Scan_Exit | 用于退出扫描服务，释放客户端内存。 |
+| [OH_Scan_Init](#oh_scan_init) | 用于拉起扫描服务，初始化客户端，并建立与扫描服务的连接。 |
+| [OH_Scan_StartScannerDiscovery](#oh_scan_startscannerdiscovery) | 用于搜索扫描仪，注册一个回调函数来处理发现的扫描仪。 |
+| [OH_Scan_OpenScanner](#oh_scan_openscanner) | 用于连接扫描仪。 |
+| [OH_Scan_CloseScanner](#oh_scan_closescanner) | 用于断开与扫描仪的连接。 |
+| [OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter) | 用于获取扫描仪设置选项。 |
+| [OH_Scan_SetScannerParameter](#oh_scan_setscannerparameter) | 用于设置扫描仪的选项参数。 |
+| [OH_Scan_StartScan](#oh_scan_startscan) | 用于启动扫描仪。 |
+| [OH_Scan_CancelScan](#oh_scan_cancelscan) | 用于取消扫描。 |
+| [OH_Scan_GetPictureScanProgress](#oh_scan_getpicturescanprogress) | 用于查询图片扫描进度。 |
+| [OH_Scan_Exit](#oh_scan_exit) | 用于退出扫描服务，释放客户端内存。 |
 
 
 ## 类型定义说明
@@ -272,7 +272,7 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 **描述**
 
-这个接口用于获取扫描仪设置选项，返回的结构体指针在{@link OH_Scan_Exit}时自动释放内存，每个型号的扫描仪在内存中只存储一个副本。
+这个接口用于获取扫描仪设置选项，返回的结构体指针在[OH_Scan_Exit](#oh_scan_exit)时自动释放内存，每个型号的扫描仪在内存中只存储一个副本。
 
 **系统能力：** ohos.permission.PRINT
 
@@ -303,7 +303,7 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
 
 **描述**
 
-这个接口用于设置扫描仪的选项参数，选项值的返回通过{@link OH_Scan_GetScannerParameter}接口获得。
+这个接口用于设置扫描仪的选项参数，选项值的返回通过[OH_Scan_GetScannerParameter](#oh_scan_getscannerparameter)接口获得。
 
 **系统能力：** ohos.permission.PRINT
 

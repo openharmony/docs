@@ -10,7 +10,7 @@
 
 ## 场景和功能介绍
 
-以下接口可以帮助我们在Node-API模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下:
+以下接口可以帮助我们在Node-API模块中更方便地管理对象实例所需的状态信息、引用计数或其他自定义数据，他们的使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_set_instance_data | 绑定与当前运行的环境相关联的数据项。 |
@@ -76,8 +76,8 @@ export const setInstanceData: (data: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let data = 5;
 let value = testNapi.setInstanceData(data);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
@@ -112,8 +112,8 @@ export const getInstanceData: () => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let data = 5;
 testNapi.setInstanceData(data);
 let value = testNapi.getInstanceData();

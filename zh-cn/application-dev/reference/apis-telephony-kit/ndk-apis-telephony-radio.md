@@ -29,8 +29,8 @@
 
 | 名称                               | 描述 |
 | ---------------------------------- | ---- |
-| **TELEPHONY_MAX_OPERATOR_LEN**     | 64   |
-| **TELEPHONY_MAX_PLMN_NUMERIC_LEN** | 6    |
+| TELEPHONY_MAX_OPERATOR_LEN     | 64   |
+| TELEPHONY_MAX_PLMN_NUMERIC_LEN | 6    |
 
 ### 枚举
 
@@ -198,7 +198,7 @@ Telephony_RadioResult OH_Telephony_GetNetworkStateForSlot(int32_t slotId, Teleph
 
 | 名称   | 描述                           |
 | ------ | ------------------------------ |
-| slotId | 卡槽ID                         |
+| slotId | 卡槽ID。                         |
 | state  | 用户接收网络状态信息的结构体。 |
 
 **返回：**

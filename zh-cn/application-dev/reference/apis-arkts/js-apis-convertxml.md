@@ -40,7 +40,7 @@ fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
-| Object | 处理后返回的JavaScript对象。 |
+| Object | 转换后的JavaScript对象。 |
 
 **错误码：**
 
@@ -61,7 +61,7 @@ try {
     '   <title>Hello\r\nWorld</title>' +
     '   <todo><![CDATA[Work\r\n]]></todo>' +
     '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",
@@ -125,7 +125,7 @@ try {
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",
@@ -159,7 +159,7 @@ convert(xml: string, options?: ConvertOptions) : Object
 | 参数名  | 类型                              | 必填 | 说明            |
 | ------- | --------------------------------- | ---- | --------------- |
 | xml     | string                            | 是   | 传入的xml文本。 |
-| options | [ConvertOptions](#convertoptions) | 否   | 转换选项 , 默认值是ConvertOptions对象 , 由其中各个属性的默认值组成。  |
+| options | [ConvertOptions](#convertoptions) | 否   | 转换选项，默认值是ConvertOptions对象，由其中各个属性的默认值组成。  |
 
 **返回值：**
 
@@ -199,14 +199,14 @@ console.log(result);
 
 | 名称              | 类型 | 必填 | 说明                                                        |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
-| trim              | boolean  | 是   | 是否修剪位于文本前后的空白字符。                 |
-| ignoreDeclaration | boolean  | 否   | 是否忽略xml写入声明指示，默认false。                        |
-| ignoreInstruction | boolean  | 否   | 是否忽略xml的写入处理指令，默认false。                      |
-| ignoreAttributes  | boolean  | 否   | 是否忽略元素的属性信息，默认false。                   |
-| ignoreComment     | boolean  | 否   | 是否忽略元素的注释信息，默认false。                         |
-| ignoreCDATA       | boolean  | 否   | 是否忽略元素的CDATA信息，默认false。                        |
-| ignoreDoctype     | boolean  | 否   | 是否忽略元素的Doctype信息，默认false。                      |
-| ignoreText        | boolean  | 否   | 是否忽略元素的文本信息，默认false。                         |
+| trim              | boolean  | 是   | 是否修剪位于文本前后的空白字符，true表示xml文本前后的空白字符将会被修剪，false则表示空白字符会被保留。   |
+| ignoreDeclaration | boolean  | 否   | 是否忽略xml写入声明指示，true表示忽略xml写入声明指示，false则相反，默认false。                        |
+| ignoreInstruction | boolean  | 否   | 是否忽略xml的写入处理指令，true表示忽略xml的写入处理指令，false则相反，默认false。                      |
+| ignoreAttributes  | boolean  | 否   | 是否忽略元素的属性信息，true表示忽略元素的属性信息，false则相反，默认false。                   |
+| ignoreComment     | boolean  | 否   | 是否忽略元素的注释信息，true表示忽略元素的注释信息，false则相反，默认false。                         |
+| ignoreCDATA       | boolean  | 否   | 是否忽略元素的CDATA信息，true表示忽略元素的CDATA信息，false则相反，默认false。                        |
+| ignoreDoctype     | boolean  | 否   | 是否忽略元素的Doctype信息，true表示忽略元素的Doctype信息，false则相反，默认false。                      |
+| ignoreText        | boolean  | 否   | 是否忽略元素的文本信息，true表示忽略元素的文本信息，false则相反，默认false。                         |
 | declarationKey    | string   | 是   | 用于输出对象中declaration的属性键的名称。 |
 | instructionKey    | string   | 是   | 用于输出对象中instruction的属性键的名称。 |
 | attributesKey     | string   | 是   | 用于输出对象中attributes的属性键的名称。   |

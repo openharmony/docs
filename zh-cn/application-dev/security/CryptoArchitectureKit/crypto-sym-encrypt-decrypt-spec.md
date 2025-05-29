@@ -1,11 +1,8 @@
 # 对称密钥加解密算法规格
 
-
 当前章节将说明系统目前支持的算法及其对应的规格。
 
-
 对于每种算法采用支持的加密模式，将会在具体的每个算法规格中介绍。
-
 
 ## AES
 
@@ -43,6 +40,34 @@
   
   举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的AES密钥，其字符串参数为"AES|CFB|NoPadding"。
 
+## DES
+
+[DES](crypto-sym-key-generation-conversion-spec.md#des)算法的加密过程由 16 轮相同的加密函数组成，每轮都使用不同的子密钥。子密钥是通过对原始密钥进行一系列的置换和移位操作生成的。在每一轮中，明文块被分为左右两部分，然后通过一系列的置换、替换和异或操作进行加密。
+
+算法库当前提供了DES加解密常用的4种加密模式：ECB、CBC、OFB和CFB。不同的加密模式适用的加解密参数不同，具体请参考[ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec)。
+
+> **说明：**
+>
+> ECB、CBC加密模式，明文长度不是64位整数倍，必须使用填充方法补足。
+
+当前支持以字符串参数完成DES加解密，具体的“字符串参数”由“对称密钥类型（加解密算法+密钥长度）”、“分组模式”和“填充模式”使用符号“|”拼接而成，用于在创建对称加解密实例时，指定算法规格。
+
+- 如表所示，各取值范围（即[]中的内容）中，只能选取一项完成字符串拼接。
+  
+  举例说明：
+  - 当需要分组模式为ECB、密钥长度为64bit、填充模式为PKCS7的DES密钥，其字符串参数为"DES64|ECB|PKCS7"。
+  
+  - 当需要分组模式为OFB、密钥长度为64bit、填充模式为NoPadding的DES密钥，其字符串参数为"DES64|OFB|NoPadding"。
+
+  | 分组模式 | 密钥长度（bit） | 填充模式 | API版本 | 
+  | -------- | -------- | -------- | -------- |
+  | ECB | 64 | [NoPadding\|PKCS5\|PKCS7] | 20+ | 
+  | CBC | 64 | [NoPadding\|PKCS5\|PKCS7] | 20+ | 
+  | OFB | 64 | [NoPadding\|PKCS5\|PKCS7] | 20+ | 
+  | CFB | 64 | [NoPadding\|PKCS5\|PKCS7] | 20+ | 
+
+- 从API版本10开始，支持对称加解密不带密钥长度的规格。加解密参数输入密钥类型时，支持不带长度，加解密运算取决于实际输入的密钥长度。
+  举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的DES密钥，其字符串参数为"DES|CFB|NoPadding"。
 
 ## 3DES
 
@@ -77,7 +102,6 @@
 - 从API版本10开始，支持对称加解密不带密钥长度的规格。加解密参数输入密钥类型时，支持不带长度，加解密运算取决于实际输入的密钥长度。
   举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的3DES密钥，其字符串参数为"3DES|CFB|NoPadding"。
 
-
 ## SM4
 
 算法库当前提供了[SM4](crypto-sym-key-generation-conversion-spec.md#sm4)加解密常用的7种加密模式：ECB、CBC、CTR、OFB、CFB、CFB128和GCM。不同的加密模式适用的加解密参数不同，具体请参考[ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec)。
@@ -110,7 +134,6 @@
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
-
 
 ## 填充模式
 

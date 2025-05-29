@@ -1,6 +1,5 @@
 # ISensorCallback
 
-
 ## 概述
 
 定义用于上报传感器数据的回调函数。
@@ -11,9 +10,7 @@
 
 **相关模块：**[HdiSensor](_hdi_sensor_v20.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -21,9 +18,7 @@
 | -------- | -------- |
 | [OnDataEvent](#ondataevent) ([in] struct [HdfSensorEvents](_hdf_sensor_events_v20.md) event) | 上报传感器数据的回调函数。 | 
 
-
 ## 成员函数说明
-
 
 ### OnDataEvent()
 

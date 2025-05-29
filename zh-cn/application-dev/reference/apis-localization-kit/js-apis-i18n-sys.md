@@ -22,7 +22,7 @@ import { i18n } from '@kit.LocalizationKit';
 
 static setSystemLanguage(language: string): void
 
-设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
+设置系统语言。
 
 若要监听系统语言变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
@@ -84,9 +84,9 @@ static setSystemLanguage(language: string): void
 
 static setSystemRegion(region: string): void
 
-设置系统区域。
+设置系统地区。
 
-若要监听系统区域变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
+若要监听系统地区变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
 **系统接口**：此接口为系统接口。
 
@@ -128,9 +128,9 @@ static setSystemRegion(region: string): void
 
 static setSystemLocale(locale: string): void
 
-设置系统Locale。
+设置系统区域。
 
-若要监听系统Locale变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
+若要监听系统区域变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
 **系统接口**：此接口为系统接口。
 
@@ -142,7 +142,7 @@ static setSystemLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **错误码：**
 
@@ -159,7 +159,7 @@ static setSystemLocale(locale: string): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
+    i18n.System.setSystemLocale('zh-CN');  // 设置系统当前区域ID为 "zh-CN"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
@@ -171,7 +171,7 @@ static setSystemLocale(locale: string): void
 
 static set24HourClock(option: boolean): void
 
-设置系统时间为24小时。
+设置系统时制是否为24小时制。
 
 **系统接口**：此接口为系统接口。
 
@@ -183,7 +183,7 @@ static set24HourClock(option: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | option为true，表示开启系统24小时制开关；option为false，表示关闭系统24小时开关。 |
+| option | boolean | 是    | true表示设置系统时制为24小时制，false表示设置系统时制为12小时制。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ static set24HourClock(option: boolean): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 将系统时间设置为24小时制
+  // 将系统时制设置为24小时制
   try {
     i18n.System.set24HourClock(true);
   } catch(error) {
@@ -212,7 +212,7 @@ static set24HourClock(option: boolean): void
 
 static addPreferredLanguage(language: string, index?: number): void
 
-在系统偏好语言列表中的指定位置添加偏好语言。
+在系统偏好语言列表的指定位置添加偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -256,7 +256,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 static removePreferredLanguage(index: number): void
 
-删除系统偏好语言列表中指定位置的偏好语言。
+从系统偏好语言列表中移除指定位置的偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -339,7 +339,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位。
+设置系统的温度单位。
 
 **系统接口**：此接口为系统接口。
 
@@ -361,7 +361,6 @@ static setTemperatureType(type: TemperatureType): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 > **说明**
@@ -384,7 +383,7 @@ static setTemperatureType(type: TemperatureType): void
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-设置用户偏好的周起始日。
+设置系统的周起始日。
 
 **系统接口**：此接口为系统接口。
 
@@ -406,7 +405,6 @@ static setFirstDayOfWeek(type: WeekDay): void
 | ------ | ---------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 > **说明**
@@ -448,7 +446,7 @@ constructor()
 
 getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取语言排序数组。
+获取排序后的语言信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -458,14 +456,14 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | 是   | 待排序语言列表，要求是合法的语言ID。|
+| languages | Array&lt;string&gt; | 是   | 待排序的语言列表，要求是合法的语言ID。|
 | options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
 
 **返回值：**
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言信息列表。 |
 
 **错误码：**
 
@@ -481,7 +479,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  // 当系统语言为zh-Hans，系统地区为CN，系统区域为zh-Hans-CN时
   let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
   let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
@@ -499,7 +497,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取国家或地区排序数组。
+获取排序后的国家或地区信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -510,13 +508,13 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
 | regions   | Array&lt;string&gt; | 是   | 待排序的国家或地区列表，要求是合法的国家或地区ID。|
-| options   | [SortOptions](#sortoptions10)   | 否   | 国家或地区排序选项。<br>locale的默认值为系统Locale，isUseLocalName的默认值为false，isSuggestedFirst的默认值为true。 |
+| options   | [SortOptions](#sortoptions10)   | 否   | 国家或地区排序选项。<br>区域ID的默认值为系统当前区域ID，isUseLocalName的默认值为false，isSuggestedFirst的默认值为true。 |
 
 **返回值：**
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区信息列表。 |
 
 **错误码：**
 
@@ -532,7 +530,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  // 当系统语言为zh-Hans，系统地区为CN，系统区域为zh-Hans-CN时
   let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
   let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
@@ -549,7 +547,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
-获取时区城市组合信息的数组。
+获取排序后的时区城市组合信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -559,7 +557,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息列表。 |
 
 **错误码：**
 
@@ -587,7 +585,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 ## LocaleItem<sup>10+</sup>
 
-SystemLocaleManager对语言或国家地区列表的排序结果信息项。
+语言或国家地区的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -597,12 +595,12 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | --------------- | --------------- | ------ | --------------------------------------- |
 | id              | string          |   是   | 语言代码或国家地区代码，如"zh"、"CN"。    |
 | suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
-| displayName     | string          |  是   | id在SystemLocaleManager的Locale下的表示。|
+| displayName     | string          |  是   | id在SystemLocaleManager的指定区域下的表示。|
 | localName       | string          |  否   | id的本地名称。                           |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-时区城市组合信息。
+时区城市的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -610,12 +608,12 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | --------------- | ------  | --------------------------------------- |
-| zoneId          | string          |   是    | 时区Id，例如Asia/Shanghai。              |
-| cityId          | string          |   是    | 城市Id，例如Shanghai。                   |
-| cityDisplayName | string          |   是    | 城市Id在系统Locale下显示的名称。          |
-| offset          | int             |   是    | 时区Id的偏移量。                         |
-| zoneDisplayName | string          |   是    | 时区Id在系统Locale下显示的名称。          |
-| rawOffset       | int             |   否    | 时区Id的固定偏移量。                       |
+| zoneId          | string          |   是    | 时区ID，例如Asia/Shanghai。              |
+| cityId          | string          |   是    | 城市ID，例如Shanghai。                   |
+| cityDisplayName | string          |   是    | 城市ID在系统区域下显示的名称。          |
+| offset          | int             |   是    | 时区ID的偏移量。                         |
+| zoneDisplayName | string          |   是    | 时区ID在系统区域下显示的名称。          |
+| rawOffset       | int             |   否    | 时区ID的固定偏移量。                       |
 
 
 ## SuggestionType<sup>10+</sup>
@@ -643,6 +641,6 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 | 名称            | 类型            |  必填 |   说明                                 |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  否  | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值为系统Locale。    |
-| isUseLocalName  | boolean         |  否  | 表示是否使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
-| isSuggestedFirst | boolean        |  否  | 表示是否将推荐语言或国家地区在排序结果中置顶。<br>isSuggestedFirst属性默认值为true。  |
+| locale          | string          |  否  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
+| isUseLocalName  | boolean         |  否  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
+| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |

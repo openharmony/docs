@@ -33,8 +33,8 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     };
     
     let audioCapturerInfo: audio.AudioCapturerInfo = {
-      source: audio.SourceType.SOURCE_TYPE_MIC,
-      capturerFlags: 0
+      source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
+      capturerFlags: 0 // Flag indicating an AudioCapturer.
     };
     
     let audioCapturerOptions: audio.AudioCapturerOptions = {
@@ -53,10 +53,14 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
    ```
 
 2. Call **on('readData')** to subscribe to the audio data read callback.
+    > **NOTE**
+    > - **Thread management**: You are advised not to use multiple threads for data reading. If multithreading is necessary for data reading, ensure proper thread management.
+    > - **Thread performance**: Do not execute time-consuming tasks in the thread where the **readData** API resides. Failing to do so may delay the data processing thread's response to callbacks, potentially causing issues like missing audio data, lag, and noise.
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -64,7 +68,9 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -129,6 +135,7 @@ Refer to the sample code below to record audio using AudioCapturer.
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -146,14 +153,16 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type.
+  source: audio.SourceType.SOURCE_TYPE_MIC, // Audio source type: microphone. Set this parameter based on the service scenario.
   capturerFlags: 0 // Flag indicating an AudioCapturer.
 };
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {

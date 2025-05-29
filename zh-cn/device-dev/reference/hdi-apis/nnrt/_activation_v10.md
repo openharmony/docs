@@ -1,9 +1,8 @@
 # Activation
 
-
 ## 概述
 
-激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型一句参数来确定。
+激活类型的算子，所有的激活函数都属于该算子，具体的激活函数类型依据参数来确定。
 
 该算子对应的[NodeType](_n_n_rt_v10.md#nodetype)为NODE_TYPE_ACTIVATION。
 
@@ -19,9 +18,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v10.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -33,9 +30,7 @@
 | float [maxVal](#maxval) | 最大值，用于HardTanh激活函数。  | 
 | boolean [approximate](#approximate) | 是否使用近似算法，用于GRLU激活函数。  | 
 
-
 ## 类成员变量说明
-
 
 ### activationType
 
@@ -46,7 +41,6 @@ enum ActivationType Activation::activationType
 
 激活函数类型。
 
-
 ### alpha
 
 ```
@@ -55,7 +49,6 @@ float Activation::alpha
 **描述**
 
 尺寸因子，用于LeakyReLU和ELU激活函数。
-
 
 ### approximate
 
@@ -66,7 +59,6 @@ boolean Activation::approximate
 
 是否使用近似算法，用于GRLU激活函数。
 
-
 ### maxVal
 
 ```
@@ -75,7 +67,6 @@ float Activation::maxVal
 **描述**
 
 最大值，用于HardTanh激活函数。
-
 
 ### minVal
 

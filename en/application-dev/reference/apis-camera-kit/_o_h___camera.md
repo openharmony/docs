@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OH_Camera** module provides C APIs for the camera service.
+The OH_Camera module provides C APIs for the camera service.
 
 You can refer to the corresponding development guide and samples based on your development requirements.
 
@@ -65,6 +65,7 @@ You can refer to the corresponding development guide and samples based on your d
 | struct  [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) | Describes the smooth zoom information.| 
 | struct  [Camera_CaptureStartInfo](_camera___capture_start_info.md) | Describes the capture start information.| 
 | struct  [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) | Describes the frame shutter end information during capture.| 
+| struct  [Camera_ConcurrentInfo](_camera___concurrent_info.md) | Describes the camera's concurrency information.| 
 | struct  [CameraInput_Callbacks](_camera_input___callbacks.md) | Describes the callbacks used to listen for camera input errors.| 
 | struct  [CameraManager_Callbacks](_camera_manager___callbacks.md) | Describes the callbacks used to listen for camera status changes.| 
 | struct  [CaptureSession_Callbacks](_capture_session___callbacks.md) | Describes the callbacks used for a capture session.| 
@@ -99,7 +100,7 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef enum [Camera_SmoothZoomMode](#camera_smoothzoommode) [Camera_SmoothZoomMode](#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
 | typedef enum [Camera_PreconfigType](#camera_preconfigtype) [Camera_PreconfigType](#camera_preconfigtype) | Defines an enum for the preconfigured resolution types.| 
 | typedef enum [Camera_PreconfigRatio](#camera_preconfigratio) [Camera_PreconfigRatio](#camera_preconfigratio) | Defines an enum for the preconfigured aspect ratios.| 
-| typedef enum [Camera_HostDeviceType](#camera_hostdevicetype)[Camera_HostDeviceType](#camera_hostdevicetype) | Defines an enum for the remote device types.| 
+| typedef enum [Camera_HostDeviceType](#camera_hostdevicetype) [Camera_HostDeviceType](#camera_hostdevicetype) | Defines an enum for the remote device types.| 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](#camera_size) | Defines a struct for the parameters related to the size.| 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](#camera_profile) | Defines a struct for the profile of a camera stream.| 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](#camera_frameraterange) | Defines a struct for the frame rate range.| 
@@ -118,6 +119,8 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef struct [Camera_SmoothZoomInfo](_camera___smooth_zoom_info.md) [Camera_SmoothZoomInfo](#camera_smoothzoominfo) | Defines a struct for the smooth zoom information.| 
 | typedef struct [Camera_CaptureStartInfo](_camera___capture_start_info.md) [Camera_CaptureStartInfo](#camera_capturestartinfo) | Defines a struct for the capture start information.| 
 | typedef struct [Camera_FrameShutterEndInfo](_camera___frame_shutter_end_info.md) [Camera_FrameShutterEndInfo](#camera_frameshutterendinfo) | Defines a struct for the frame shutter end information during capture.| 
+| typedef enum [Camera_ConcurrentType](#camera_concurrenttype-1) [Camera_ConcurrentType](#camera_concurrenttype) | Defines an enum for the camera's concurrency types.| 
+| typedef struct [Camera_ConcurrentInfo](_camera___concurrent_info.md) [Camera_ConcurrentInfo](#camera_concurrentinfo) | Defines a struct for the camera's concurrency information.| 
 | typedef struct [Camera_Input](#camera_input) [Camera_Input](#camera_input) | Defines a struct for the camera input object.| 
 | typedef void(\* [OH_CameraInput_OnError](#oh_camerainput_onerror)) (const [Camera_Input](#camera_input) \*cameraInput, [Camera_ErrorCode](#camera_errorcode) errorCode) | Defines the callback defined in the [CameraInput_Callbacks](_camera_input___callbacks.md) struct and used to report camera input errors.| 
 | typedef struct [CameraInput_Callbacks](_camera_input___callbacks.md) [CameraInput_Callbacks](#camerainput_callbacks) | Defines a struct for the callbacks used to listen for camera input errors.| 
@@ -180,6 +183,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_QualityLevel](#camera_qualitylevel) {<br>QUALITY_LEVEL_HIGH = 0,<br>QUALITY_LEVEL_MEDIUM = 1,<br>QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels.| 
 | [Camera_HostDeviceType](#camera_hostdevicetype) {<br>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br>HOST_DEVICE_TYPE_PHONE = 0x0E,<br>HOST_DEVICE_TYPE_TABLET = 0x11 } | Enumerates the remote device types.| 
 | [Camera_QualityPrioritization](#camera_qualityprioritization) {<br>HIGH_QUALITY  = 0,<br>POWER_BALANCE  = 1} | Enumerates the priority levels for video recording quality.| 
+| [Camera_ConcurrentType](#camera_concurrenttype-1) {<br>CAMERA_CONCURRENT_TYPE_LIMITED_CAPABILITY = 0,<br>CAMERA_CONCURRENT_TYPE_FULL_CAPABILITY = 1 } | Enumerates the camera's concurrency types.| 
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types.| 
 | [Camera_TorchMode](#camera_torchmode) { OFF = 0, ON = 1, AUTO = 2 } | Enumerates the flashlight modes.| 
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | Enumerates the smooth zoom modes.| 
@@ -198,13 +202,14 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_UnregisterCallback](#oh_camerainput_unregistercallback) ([Camera_Input](#camera_input) \*cameraInput, [CameraInput_Callbacks](_camera_input___callbacks.md) \*callback) | Unregisters the callback used to listen for camera input events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Open](#oh_camerainput_open) ([Camera_Input](#camera_input) \*cameraInput) | Opens a camera.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_OpenSecureCamera](#oh_camerainput_opensecurecamera) ([Camera_Input](#camera_input) \*cameraInput, uint64_t \*secureSeqId) | Opens a camera in secure mode.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_OpenConcurrentCameras](#oh_camerainput_openconcurrentcameras) ([Camera_Input](#camera_input) \*cameraInput, [Camera_ConcurrentType](#camera_concurrenttype) type) | Opens the camera based on the specified concurrency type.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Close](#oh_camerainput_close) ([Camera_Input](#camera_input) \*cameraInput) | Closes a camera.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraInput_Release](#oh_camerainput_release) ([Camera_Input](#camera_input) \*cameraInput) | Releases a **CameraInput** instance. Either this function or [OH_CameraInput_Close](#oh_camerainput_close) needs to be called.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterCallback](#oh_cameramanager_registercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | Registers a callback to listen for camera status changes.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterCallback](#oh_cameramanager_unregistercallback) ([Camera_Manager](#camera_manager) \*cameraManager, [CameraManager_Callbacks](_camera_manager___callbacks.md) \*callback) | Unregisters the callback used to listen for camera status changes.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_RegisterTorchStatusCallback](#oh_cameramanager_registertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | Registers a callback to listen for flashlight status changes.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_UnregisterTorchStatusCallback](#oh_cameramanager_unregistertorchstatuscallback) ([Camera_Manager](#camera_manager) \*cameraManager, [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback) | Unregisters the callback used to listen for flashlight status changes.| 
-| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | Obtains supported cameras.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameras](#oh_cameramanager_getsupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*\*cameras, uint32_t \*size) | Obtains the supported cameras.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_DeleteSupportedCameras](#oh_cameramanager_deletesupportedcameras) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Device](_camera___device.md) \*cameras, uint32_t size) | Deletes supported cameras.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapability](#oh_cameramanager_getsupportedcameraoutputcapability) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | Obtains the output capability supported by a camera.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode](#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, [Camera_SceneMode](#camera_scenemode) sceneMode, [Camera_OutputCapability](_camera___output_capability.md) \*\*cameraOutputCapability) | Obtains the output capability supported by a camera in the specified mode.| 
@@ -226,6 +231,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupported](#oh_cameramanager_istorchsupported) ([Camera_Manager](#camera_manager) \*cameraManager, bool \*isTorchSupported) | Checks whether the device supports the flashlight.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_IsTorchSupportedByTorchMode](#oh_cameramanager_istorchsupportedbytorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode, bool \*isTorchSupported) | Checks whether the device supports the specified flashlight mode.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_SetTorchMode](#oh_cameramanager_settorchmode) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_TorchMode](#camera_torchmode) torchMode) | Sets a flashlight mode.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice) ([Camera_Manager](#camera_manager) \*cameraManager, [Camera_Position](#camera_position) position, [Camera_Type](#camera_type) type, [Camera_Device](_camera___device.md) \*camera) | Obtains the specified camera based on the camera position and type.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraManager_GetCameraConcurrentInfos](#oh_cameramanager_getcameraconcurrentinfos) ([Camera_Manager](#camera_manager) \*cameraManager, const [Camera_Device](_camera___device.md) \*camera, uint32_t deviceSize, [Camera_ConcurrentInfo](_camera___concurrent_info.md) \*\*cameraConcurrentInfo, uint32_t \*infoSize) | Obtains the concurrency information of the specified camera. If the return value is empty, concurrency is not supported.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterCallback](#oh_capturesession_registercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Registers a callback to listen for capture session events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_UnregisterCallback](#oh_capturesession_unregistercallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [CaptureSession_Callbacks](_capture_session___callbacks.md) \*callback) | Unregisters the callback used to listen for capture session events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_RegisterSmoothZoomInfoCallback](#oh_capturesession_registersmoothzoominfocallback) ([Camera_CaptureSession](#camera_capturesession) \*session, [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo) smoothZoomInfoCallback) | Registers a callback to listen for smooth zoom events.| 
@@ -312,11 +319,12 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | Captures a photo with photographing parameters.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | Releases a **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | Checks whether mirroring is supported.| 
-| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | Enables mirror photography.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | Enables dynamic photo capture.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | Obtains the profile of a **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | Deletes the profile of this **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | Checks whether moving photos are supported.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMovingPhoto](#oh_photooutput_enablemovingphoto) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | Enables moving photos.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetPhotoRotation](#oh_photooutput_getphotorotation) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, int devicedegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the photo rotation angle.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_RegisterCallback](#oh_previewoutput_registercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | Registers a callback to listen for preview output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | Unregisters the callback used to listen for preview output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_Start](#oh_previewoutput_start) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput) | Starts preview output.| 
@@ -328,6 +336,8 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_DeleteFrameRates](#oh_previewoutput_deleteframerates) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Deletes the frame rate list.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetFrameRate](#oh_previewoutput_setframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **PreviewOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetActiveFrameRate](#oh_previewoutput_getactiveframerate) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **PreviewOutput** instance.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_GetPreviewRotation](#oh_previewoutput_getpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, int displayRotation, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the preview rotation angle.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PreviewOutput_SetPreviewRotation](#oh_previewoutput_setpreviewrotation) ([Camera_PreviewOutput](#camera_previewoutput) \*previewOutput, [Camera_ImageRotation](#camera_imagerotation) \*previewRotation, bool isDisplayLocked) | Sets the preview rotation angle.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_RegisterCallback](#oh_videooutput_registercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | Registers a callback to listen for video output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_UnregisterCallback](#oh_videooutput_unregistercallback) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | Unregisters the callback used to listen for video output events.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_Start](#oh_videooutput_start) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput) | Starts video output.| 
@@ -340,8 +350,11 @@ You can refer to the corresponding development guide and samples based on your d
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | Sets the priority level for video recording quality.| 
-| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceName](#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
-| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceType](#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraDevice_GetHostDeviceName](#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_CameraDevice_GetHostDeviceType](#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_IsMirrorSupported](#oh_videooutput_ismirrorsupported) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, bool \*isSupported) | Checks whether a video output supports mirror mode.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_EnableMirror](#oh_videooutput_enablemirror) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, bool mirrorMode) | Enables or disables mirror mode for a video output.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetVideoRotation](#oh_videooutput_getvideorotation) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int deviceDegree, [Camera_ImageRotation](#camera_imagerotation) \*imageRotation) | Obtains the rotation angle of a video output.| 
 
 ## Type Description
 
@@ -385,6 +398,32 @@ typedef struct Camera_CaptureStartInfo Camera_CaptureStartInfo
 Defines a struct for the capture start information.
 
 **Since**: 12
+
+
+### Camera_ConcurrentInfo
+
+```
+typedef struct Camera_ConcurrentInfo Camera_ConcurrentInfo
+```
+
+**Description**
+
+Defines a struct for the camera's concurrency information.
+
+**Since**: 18
+
+
+### Camera_ConcurrentType
+
+```
+typedef enum Camera_ConcurrentType Camera_ConcurrentType
+```
+
+**Description**
+
+Defines an enum for the camera's concurrency types.
+
+**Since**: 18
 
 
 ### Camera_Connection
@@ -540,7 +579,7 @@ typedef enum Camera_HostDeviceTypeCamera_HostDeviceType
 
 Defines an enum for the remote device types.
 
-**Since**: 16
+**Since**: 15
 
 
 ### Camera_ImageRotation
@@ -1047,7 +1086,7 @@ Defines the callback defined in the [CameraInput_Callbacks](_camera_input___call
 
 **See**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - CAMERA_CONFLICT_CAMERA
 
@@ -1624,6 +1663,24 @@ Defines a struct for the callbacks related to video output.
 ## Enum Description
 
 
+### Camera_ConcurrentType
+
+```
+enum Camera_ConcurrentType
+```
+
+**Description**
+
+Enumerates the camera's concurrency types.
+
+**Since**: 18
+
+| Value| Description| 
+| -------- | -------- |
+| CAMERA_CONCURRENT_TYPE_LIMITED_CAPABILITY | Limited camera concurrency.| 
+| CAMERA_CONCURRENT_TYPE_FULL_CAPABILITY | Full camera concurrency.| 
+
+
 ### Camera_Connection
 
 ```
@@ -1780,7 +1837,7 @@ enum Camera_HostDeviceType
 
 Enumerates the remote device types.
 
-**Since**: 16
+**Since**: 15
 
 | Value| Description| 
 | -------- | -------- |
@@ -1823,7 +1880,7 @@ Enumerates the metadata object types.
 
 | Value| Description| 
 | -------- | -------- |
-| FACE_DETECTION | Face detection.| 
+| FACE_DETECTION | Metadata object used for face detection.<br>The detection point must be in the coordinate system (0-1), where the upper left corner is (0, 0) and the lower right corner is (1, 1).<br>The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br>If the layout of a preview screen of an application is based on the vertical direction with the charging port on the lower side,<br>the layout width and height are (w, h) and the return point is (x, y), then the coordinate point after conversion is (1-y, x).| 
 
 
 ### Camera_Position
@@ -2059,7 +2116,7 @@ Deletes a **CameraManager** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2088,7 +2145,7 @@ Obtains a **CameraManager** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2118,7 +2175,7 @@ Obtains the sensor direction of a camera device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2147,7 +2204,7 @@ Closes a camera.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2176,11 +2233,45 @@ Opens a camera.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_CONFLICT_CAMERA**: The camera cannot be used due to a conflict.
+
+- **CAMERA_DEVICE_DISABLED**: The camera is disabled due to security reasons.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_CameraInput_OpenConcurrentCameras()
+
+```
+Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type)
+```
+
+**Description**
+
+Opens the camera based on the specified concurrency type.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| cameraInput | Pointer to the target [Camera_Input](#camera_input) instance.| 
+| type | Concurrency type, which is specified by [Camera_ConcurrentType](#camera_concurrenttype).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 
 - **CAMERA_CONFLICT_CAMERA**: The camera cannot be used due to a conflict.
 
@@ -2206,11 +2297,11 @@ Opens a camera in secure mode.
 | Name| Description| 
 | -------- | -------- |
 | cameraInput | Pointer to the target [Camera_Input](#camera_input) instance.| 
-| secureSeqId | Pointer to the sequence ID of the camera.| 
+| secureSeqId | Pointer to the sequence number of the secure mode camera.| 
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2244,7 +2335,7 @@ Registers a callback to listen for camera input events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2273,7 +2364,7 @@ Either this function or [OH_CameraInput_Close](#oh_camerainput_close) needs to b
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2303,7 +2394,7 @@ Unregisters the callback used to listen for camera input events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2334,7 +2425,7 @@ Creates a **CameraInput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2368,7 +2459,7 @@ Creates a **CameraInput** instance with the specified location and type.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2399,7 +2490,7 @@ Creates a **CaptureSession** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2430,7 +2521,7 @@ Creates a **MetadataOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2462,7 +2553,7 @@ Creates a **PhotoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2493,7 +2584,7 @@ Creates a **PhotoOutput** instance to be used in a preconfiguration stream.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2524,7 +2615,7 @@ Creates a **PhotoOutput** instance. **surfaceId** is not required in this functi
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2556,7 +2647,7 @@ Creates a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2587,7 +2678,7 @@ Creates a **PreviewOutput** instance to be used in a preconfiguration stream.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2619,7 +2710,7 @@ Creates a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2650,7 +2741,7 @@ Creates a **VideoOutput** instance to be used in a preconfiguration stream.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2680,7 +2771,7 @@ Deletes scene modes.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2708,7 +2799,7 @@ Deletes the output capability supported by a camera.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2736,11 +2827,76 @@ Deletes supported cameras.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_CameraManager_GetCameraConcurrentInfos()
+
+```
+Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* cameraManager, const Camera_Device* camera, uint32_t deviceSize, Camera_ConcurrentInfo** cameraConcurrentInfo, uint32_t* infoSize)
+```
+
+**Description**
+
+Obtains the concurrency information of the specified cameras. If the return value is empty, concurrency is not supported.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| cameraManager | Pointer to a [Camera_Manager](#camera_manager) instance.| 
+| camera | Pointer to an array of [Camera_Device](_camera___device.md) instances.| 
+| deviceSize | Length of the array of [Camera_Device](_camera___device.md) instances.| 
+| cameraConcurrentInfo | Double pointer to an array of the concurrency information obtained, which is specified by [Camera_ConcurrentInfo](_camera___concurrent_info.md).| 
+| infoSize | Pointer to the length of the array of the concurrency information obtained.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_CameraManager_GetCameraDevice()
+
+```
+Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager, Camera_Position position, Camera_Type type, Camera_Device* camera)
+```
+
+**Description**
+
+Obtains the specified camera based on the camera position and type.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| cameraManager | Pointer to a [Camera_Manager](#camera_manager) instance.| 
+| position | [Camera_Position](#camera_position) used for query.| 
+| type | [Camera_Type](#camera_type) used for query.| 
+| camera | Pointer to a camera, which is defined in [Camera_Device](_camera___device.md).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
 ### OH_CameraManager_GetSupportedCameraOutputCapability()
@@ -2765,7 +2921,7 @@ Obtains the output capability supported by a camera.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2795,7 +2951,7 @@ Obtains the output capability supported by a camera in the specified mode.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2812,7 +2968,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 
 **Description**
 
-Obtains supported cameras.
+Obtains the supported cameras.
 
 **Since**: 11
 
@@ -2826,7 +2982,7 @@ Obtains supported cameras.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2855,7 +3011,7 @@ Obtains the scene modes supported by a camera.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2885,7 +3041,7 @@ Checks whether a camera is muted.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2913,7 +3069,7 @@ Checks whether the device supports the flashlight.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2942,7 +3098,7 @@ Checks whether the device supports the specified flashlight mode.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -2972,7 +3128,7 @@ Registers a callback to listen for camera status changes.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3000,7 +3156,7 @@ Registers a callback to listen for flashlight status changes.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3028,7 +3184,7 @@ Sets a flashlight mode.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3058,7 +3214,7 @@ Unregisters the callback used to listen for camera status changes.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3086,7 +3242,7 @@ Unregisters the callback used to listen for flashlight status changes.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3115,7 +3271,7 @@ Adds a **CameraInput** instance to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3145,7 +3301,7 @@ Adds a **MetadataOutput** instance to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3175,7 +3331,7 @@ Adds a **PhotoOutput** instance to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3205,7 +3361,7 @@ Adds a **PreviewOutput** instance to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3235,7 +3391,7 @@ Marks a preview output stream as secure output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3267,7 +3423,7 @@ Adds a **VideoOutput** instance to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3296,7 +3452,7 @@ Starts the configuration for a capture session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3327,7 +3483,7 @@ Checks whether a **CameraInput** instance can be added to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3356,7 +3512,7 @@ Checks whether a **PhotoOutput** instance can be added to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3385,7 +3541,7 @@ Checks whether a **PreviewOutput** instance can be added to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3414,7 +3570,7 @@ Checks whether a **VideoOutput** instance can be added to a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3443,7 +3599,7 @@ Checks whether a preconfigured resolution type is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3473,7 +3629,7 @@ Checks whether a preconfigured resolution type with an aspect ratio is supported
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3500,7 +3656,7 @@ Commits the configuration for a capture session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3532,7 +3688,7 @@ Deletes color spaces.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3560,7 +3716,7 @@ Obtains the active color space.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3590,7 +3746,7 @@ Obtains the exposure compensation value in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3622,7 +3778,7 @@ Obtains the exposure compensation values of the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3652,7 +3808,7 @@ Obtains the exposure mode in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3682,7 +3838,7 @@ Obtains the exposure value.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3712,7 +3868,7 @@ Obtains the flash mode in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3742,7 +3898,7 @@ Obtains the current focal length.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3772,7 +3928,7 @@ Obtains the focus mode in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3802,7 +3958,7 @@ Obtains the focal point in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3832,7 +3988,7 @@ Obtains the metering point in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3863,7 +4019,7 @@ Obtains the supported color spaces.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3893,7 +4049,7 @@ Obtains the video stabilization mode in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3923,7 +4079,7 @@ Obtains the zoom ratio in use.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3954,7 +4110,7 @@ Obtains the supported zoom ratio range.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -3984,7 +4140,7 @@ Checks whether the device has flash.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4015,7 +4171,7 @@ Checks whether an exposure mode is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4046,7 +4202,7 @@ Checks whether a flash mode is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4077,7 +4233,7 @@ Checks whether a focus mode is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4108,7 +4264,7 @@ Checks whether a video stabilization mode is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4138,7 +4294,7 @@ Sets a preconfigured resolution type.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4171,7 +4327,7 @@ Sets a preconfigured resolution type with an aspect ratio.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4201,7 +4357,7 @@ Registers a callback to listen for capture session events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4229,7 +4385,7 @@ Registers a callback to listen for smooth zoom events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4256,7 +4412,7 @@ Releases a **CaptureSession** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4286,7 +4442,7 @@ Removes a **CameraInput** instance from a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4316,7 +4472,7 @@ Removes a **MetadataOutput** instance from a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4346,7 +4502,7 @@ Removes a **PhotoOutput** instance from a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4376,7 +4532,7 @@ Removes a **PreviewOutput** instance from a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4406,7 +4562,7 @@ Removes a **VideoOutput** instance from a session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4436,7 +4592,7 @@ Sets the active color space.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4466,7 +4622,7 @@ Sets an exposure compensation value for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4496,7 +4652,7 @@ Sets an exposure mode for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4526,7 +4682,7 @@ Sets a flash mode for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4556,7 +4712,7 @@ Sets a focus mode for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4586,7 +4742,7 @@ Sets a focal point for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4616,7 +4772,7 @@ Sets the metering point, which is the center point of the metering rectangle.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4650,7 +4806,7 @@ Sets the priority level for video recording quality.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4680,7 +4836,7 @@ Sets a session mode.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4715,7 +4871,7 @@ Sets smooth zoom.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4745,7 +4901,7 @@ Sets a video stabilization mode for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4775,7 +4931,7 @@ Sets a zoom ratio for the device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4804,7 +4960,7 @@ Starts a capture session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4835,7 +4991,7 @@ Stops a capture session.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4865,7 +5021,7 @@ Unregisters the callback used to listen for capture session events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4893,7 +5049,7 @@ Unregisters the callback used to listen for smooth zoom events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4921,7 +5077,7 @@ Registers a callback to listen for metadata output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4948,7 +5104,7 @@ Releases a **MetadataOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -4977,7 +5133,7 @@ Starts metadata output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5008,7 +5164,7 @@ Stops metadata output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5038,7 +5194,7 @@ Unregisters the callback used to listen for metadata output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5066,7 +5222,7 @@ Obtains a full quality photo.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5093,7 +5249,7 @@ Releases a full quality photo.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5122,7 +5278,7 @@ Captures a photo.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5154,7 +5310,7 @@ Captures a photo with photographing parameters.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5185,7 +5341,7 @@ Deletes the profile of this **PhotoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5215,7 +5371,7 @@ Enables moving photos.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5245,7 +5401,38 @@ Obtains the profile of a **PhotoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_PhotoOutput_GetPhotoRotation()
+
+```
+Camera_ErrorCode OH_PhotoOutput_GetPhotoRotation(Camera_PhotoOutput* photoOutput, int devicedegree, Camera_ImageRotation* imageRotation)
+```
+
+**Description**
+
+Obtains the photo rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| photoOutput | Pointer to a [Camera_PhotoOutput] instance.| 
+| devicedegree | Rotation angle of the device.| 
+| imageRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5275,7 +5462,7 @@ Checks whether mirroring is supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5292,7 +5479,7 @@ Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bo
 
 **Description**
 
-Enables mirror photography.
+Enables dynamic photo capture.
 
 **Since**: 13
 
@@ -5301,11 +5488,11 @@ Enables mirror photography.
 | Name         | Description                                                     | 
 |-------------|---------------------------------------------------------|
 | photoOutput | Pointer to the target [Camera_PhotoOutput](#camera_photooutput) instance, for which mirror photography will be enabled or disabled.| 
-| enabled     | Whether to enable mirror photography. The value **true** means to enable mirror photography, and **false** means the opposite.       | 
+| enabled     | Whether to enable or disable dynamic photo capture. The value **true** means to enable dynamic photo capture, and **false** means to disable dynamic photo capture.       | 
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5335,7 +5522,7 @@ Checks whether moving photos are supported.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5365,7 +5552,7 @@ Registers a callback to listen for photo output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5393,7 +5580,7 @@ Registers a callback to listen for capture end events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5421,7 +5608,7 @@ Registers a callback to listen for camera ready events. When the callback is rec
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5449,7 +5636,7 @@ Registers a callback to listen for capture start events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5477,7 +5664,7 @@ Registers a callback to listen for estimated capture duration events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5505,7 +5692,7 @@ Registers a callback to listen for frame shutter end events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5533,7 +5720,7 @@ Registers a callback to listen for photo asset availability events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5561,7 +5748,7 @@ Registers a callback to listen for photo availability events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5590,7 +5777,7 @@ Releases a **PhotoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5620,7 +5807,7 @@ Unregisters the callback used to listen for photo output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5648,7 +5835,7 @@ Unregisters the callback used to listen for capture end events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5676,7 +5863,7 @@ Unregisters the callback used to listen for camera ready events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5705,7 +5892,7 @@ Unregisters the callback used to listen for capture start events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5733,7 +5920,7 @@ Unregisters the callback used to listen for estimated capture duration events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5761,7 +5948,7 @@ Unregisters the callback used to listen for frame shutter end events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5789,7 +5976,7 @@ Unregisters the callback used to listen for photo asset availability events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5817,7 +6004,7 @@ Unregisters the callback used to listen for photo availability events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5847,7 +6034,7 @@ Deletes the frame rate list.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5874,7 +6061,7 @@ Deletes the profile of this **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5902,7 +6089,7 @@ Obtains the active frame rates of a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5932,7 +6119,38 @@ Obtains the profile of a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_PreviewOutput_GetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_GetPreviewRotation(Camera_PreviewOutput *previewOutput, int displayRotation, Camera_ImageRotation* imageRotation)
+```
+
+**Description**
+
+Obtains the preview rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
+| displayRotation | Current display rotation angle.| 
+| imageRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5963,7 +6181,7 @@ Obtains the list of frame rates supported by a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -5993,7 +6211,7 @@ Registers a callback to listen for preview output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6020,7 +6238,7 @@ Releases a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6051,11 +6269,42 @@ Sets the frame rates for a **PreviewOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_PreviewOutput_SetPreviewRotation()
+
+```
+Camera_ErrorCode OH_PreviewOutput_SetPreviewRotation(Camera_PreviewOutput* previewOutput, Camera_ImageRotation* previewRotation, bool isDisplayLocked)
+```
+
+**Description**
+
+Sets the preview rotation angle.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
+| previewRotation | Pointer to the preview rotation angle, which is specified by [Camera_ImageRotation](#camera_imagerotation-1).| 
+| isDisplayLocked | Whether the display is locked. The value **TRUE** means that the display is locked.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
 ### OH_PreviewOutput_Start()
@@ -6078,7 +6327,7 @@ Starts preview output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6109,7 +6358,7 @@ Stops preview output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6139,7 +6388,7 @@ Unregisters the callback used to listen for preview output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6167,7 +6416,7 @@ Deletes the frame rate list.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6194,11 +6443,39 @@ Deletes the profile of this **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_VideoOutput_EnableMirror()
+
+```
+Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bool mirrorMode)
+```
+
+**Description**
+
+Enables or disables mirror mode for a video output.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| videoOutput | Pointer to the [Camera_VideoOutput](#camera_videooutput) instance.| 
+| mirrorMode | The value **TRUE** means to enable mirror mode, and **FALSE** means to disable it.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
 ### OH_VideoOutput_GetActiveFrameRate()
@@ -6222,7 +6499,7 @@ Obtains the active frame rates of a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6252,7 +6529,7 @@ Obtains the profile of a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6283,12 +6560,69 @@ Obtains the list of frame rates supported by a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_VideoOutput_GetVideoRotation()
+
+```
+Camera_ErrorCode  OH_VideoOutput_GetVideoRotation(Camera_VideoOutput* videoOutput, int deviceDegree, Camera_ImageRotation* imageRotation)
+```
+
+**Description**
+
+Obtains the rotation angle of a video output.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| videoOutput | Pointer to the [Camera_VideoOutput](#camera_videooutput) instance.| 
+| deviceDegree | Clockwise rotation angle of the device relative to the natural direction (the charging port faces downward).| 
+| imageRotation | Pointer to the rotation angle of the video output.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_VideoOutput_IsMirrorSupported()
+
+```
+Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutput, bool* isSupported)
+```
+
+**Description**
+
+Checks whether a video output supports mirror mode.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| videoOutput | Pointer to the [Camera_VideoOutput](#camera_videooutput) instance.| 
+| isSupported | Pointer to the check result. The value **true** means that mirror mode is supported, and **false** means the opposite.| 
+
+**Returns**
+
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 - **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
@@ -6313,7 +6647,7 @@ Registers a callback to listen for video output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6340,7 +6674,7 @@ Releases a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6371,7 +6705,7 @@ Sets the frame rates for a **VideoOutput** instance.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6398,7 +6732,7 @@ Starts video output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6429,7 +6763,7 @@ Stops video output.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6459,7 +6793,7 @@ Unregisters the callback used to listen for video output events.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful.
 
@@ -6476,7 +6810,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char**
 
 Obtains the name of a remote device.
 
-**Since**: 16
+**Since**: 15
 
 **Parameters**
 
@@ -6487,7 +6821,7 @@ Obtains the name of a remote device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful, and the remote device name is returned.
 
@@ -6506,7 +6840,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera
 
 Obtains the type of a remote device.
 
-**Since**: 16
+**Since**: 15
 
 **Parameters**
 
@@ -6517,7 +6851,7 @@ Obtains the type of a remote device.
 
 **Returns**
 
-In [Camera_ErrorCode](#camera_errorcode-1):
+Returns one of the codes defined in [Camera_ErrorCode](#camera_errorcode-1):
 
 - **CAMERA_OK**: The operation is successful, and the remote device type is returned.
 

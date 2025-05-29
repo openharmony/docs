@@ -22,7 +22,7 @@ Not supported
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## TipsDialog
 
@@ -64,16 +64,16 @@ Displays a dialog box from which the user can select options presented in a list
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name               | Type                                                        | Mandatory| Description                                                        |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| title               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| content             | [ResourceStr](ts-types.md#resourcestr)                       | No  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| selectedIndex       | number                                                       | No  | Index of the selected option in the dialog box.<br>Default value: **-1**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| confirm             | [ButtonOptions](#buttonoptions)                              | No  | Button at the bottom of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes  | List of subitems in the dialog box. You can set text and a select callback for each subitem.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                      |
+| Name               | Type                                                        | Mandatory| Description                                                                                                                     |
+| ------------------- | ------------------------------------------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------------|
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                    |
+| title               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                           |
+| content             | [ResourceStr](ts-types.md#resourcestr)                       | No  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                           |
+| selectedIndex       | number                                                       | No  | Index of the selected option in the dialog box.<br>Value range: an integer no less than -1<br>The default value is **-1**, indicating that there is no selected option. Values less than -1 are treated as no selected option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| confirm             | [ButtonOptions](#buttonoptions)                              | No  | Button at the bottom of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                         |
+| radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes  | List of subitems in the dialog box. You can set text and a select callback for each subitem.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                  |
+| theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                        |
 
 ## ConfirmDialog
 
@@ -195,7 +195,7 @@ Displays a popover dialog box that is positioned relative to the target componen
 | fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No  | Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12) | No  | Role of the button.<br>Default value: **ButtonRole.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
-| defaultFocus<sup>16+</sup> | boolean | No  | Whether the button gains focus by default.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 16.                                                |
+| defaultFocus<sup>18+</sup> | boolean | No  | Whether the button gains focus by default.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                |
 
 >  **NOTE**
 >
@@ -218,7 +218,7 @@ Inherits [CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custo
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 
@@ -227,13 +227,10 @@ This example implements a dialog box with an image above the text content, throu
 
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
-import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct Index {
-  @State pixelMap: PixelMap | undefined = undefined;
-  isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
@@ -274,24 +271,6 @@ struct Index {
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
   }
-  
-  aboutToAppear(): void {
-    this.getPixmapFromMedia($r('app.media.app_icon'));    
-  }
-  
-  async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
-    this.pixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return this.pixelMap;
-  }
 }
 ```
 
@@ -306,6 +285,7 @@ import { SelectDialog } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
+  // Set the index of the default selected option.
   radioIndex = 0;
   dialogControllerList: CustomDialogController = new CustomDialogController({
     builder: SelectDialog({
@@ -349,8 +329,10 @@ struct Index {
               this.dialogControllerList.open()
             })
         }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -374,7 +356,9 @@ struct Index {
     builder: ConfirmDialog({
       title:'Title',
       content: 'This is where content is displayed. This is where content is displayed.',
+      // Selected state of the check box
       isChecked: this.isChecked,
+      // Content of the check box
       checkTips: 'Don't ask again after denying',
       primaryButton: {
         value: 'Deny',
@@ -405,9 +389,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerCheckBox.open()
             })
-        }.margin({bottom: 300})
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({bottom: 300})
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -456,9 +443,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -493,9 +483,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerProgress.open()
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -503,7 +496,7 @@ struct Index {
 }
 ```
 
-![LoadingDialog](figures/LoadingDialog.png)
+![LoadingDialog](figures/LoadingDialog.gif)
 
 ### Example 6: Dialog Box with a Custom Theme
 This example presents a dialog box with a custom theme, through the use of **content**, **theme**, and other properties.
@@ -519,6 +512,7 @@ class CustomThemeImpl implements CustomTheme {
   }
 }
 
+// Custom text content and colors for the dialog box theme
 class CustomThemeColors implements CustomColors {
   fontPrimary = '#ffd0a300';
   iconSecondary = '#ffd000cd';
@@ -545,9 +539,12 @@ struct Index {
             .onClick(() => {
               this.dialogController.open();
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -583,9 +580,12 @@ struct Index {
             .onClick(() => {
               this.dialogController.open();
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -611,9 +611,20 @@ struct Index {
       contentBuilder: () => {
         this.buildContent();
       },
-      buttons: [{ value: 'Button 1', buttonStyle: ButtonStyleMode.TEXTUAL, action: () => {
-        console.info('Callback when the button is clicked')
-      } }, { value: 'Button 2', buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR }],
+      buttons: [
+        { 
+          value: 'Button 1',
+          buttonStyle: ButtonStyleMode.TEXTUAL, 
+          action: () => {
+            console.info('Callback when the button is clicked')
+          }
+        },
+        {
+          value: 'Button 2',
+          buttonStyle: ButtonStyleMode.TEXTUAL,
+          role: ButtonRole.ERROR
+        }
+      ],
     }),
   });
 
@@ -628,12 +639,14 @@ struct Index {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
-
+  
+  // Custom content area of the dialog box
   @Builder
   buildContent(): void {
     Column() {
       Text('Content area')
     }
+    .width('100%')
   }
 }
 ```
@@ -653,9 +666,11 @@ struct Index {
   @State popoverOptions: PopoverOptions = {
     builder: () => {
       this.dialogBuilder();
-    }
+    },
+    width: 320,
   }
-
+  
+  // Content of the popover dialog box
   @Builder dialogBuilder() {
     AlertDialog({
       content: 'Popover dialog box',
@@ -673,9 +688,11 @@ struct Index {
       },
     });
   }
-
+  
+  // Builder for the button that triggers the popover dialog box
   @Builder buttonBuilder() {
-    Button('Target Component').onClick(() => {
+    Button('Target Component')
+    .onClick(() => {
       this.isShow = true;
     });
   }
@@ -732,9 +749,12 @@ struct Index {
             .onClick(() => {
               this.dialogController.open()
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')

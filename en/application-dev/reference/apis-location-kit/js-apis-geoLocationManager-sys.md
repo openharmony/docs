@@ -301,7 +301,7 @@ Enables the location service. This API uses an asynchronous callback to return t
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS and ohos.permission.CONTROL_LOCATION_SWITCH
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -347,7 +347,7 @@ Enables the location service. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS and ohos.permission.CONTROL_LOCATION_SWITCH
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -393,7 +393,7 @@ Disables the location service.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS and ohos.permission.CONTROL_LOCATION_SWITCH
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -429,12 +429,15 @@ Enables the mock location switch.
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Error codes**
 
 For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -462,12 +465,15 @@ Disables the mock location switch.
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Error codes**
 
 For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -497,6 +503,8 @@ This API can be invoked only after [geoLocationManager.enableLocationMock](#geol
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Parameters**
 
   | Name| Type| Mandatory| Description|
@@ -509,6 +517,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
@@ -546,12 +555,15 @@ Enables the mock reverse geocoding function.
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Error codes**
 
 For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.enableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -578,12 +590,15 @@ Disables the mock geocoding function.
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Error codes**
 
 For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.disableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -612,6 +627,8 @@ This API can be invoked only after [geoLocationManager.enableReverseGeocodingMoc
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.MOCK_LOCATION
+
 **Parameters**
 
   | Name| Type| Mandatory| Description|
@@ -624,6 +641,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setReverseGeocodingMockInfo} due to limited device capabilities.          |
@@ -917,7 +935,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```
 
 
-## geoLocationManager.enableLocationByUserId<sup>16+</sup>
+## geoLocationManager.enableLocationByUserId<sup>18+</sup>
 
 enableLocationByUserId(userId: number): Promise&lt;void&gt;
 
@@ -972,7 +990,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```
 
 
-## geoLocationManager.disableLocationByUserId<sup>16+</sup>
+## geoLocationManager.disableLocationByUserId<sup>18+</sup>
 
 disableLocationByUserId(userId: number): void
 
@@ -1015,7 +1033,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```
 
 
-## geoLocationManager.isLocationEnabledByUserId<sup>16+</sup>
+## geoLocationManager.isLocationEnabledByUserId<sup>18+</sup>
 
 isLocationEnabledByUserId(userId: number): boolean
 
@@ -1061,7 +1079,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```
 
 
-## geoLocationManager.setLocationSwitchIgnored<sup>16+</sup>
+## geoLocationManager.setLocationSwitchIgnored<sup>18+</sup>
 
 setLocationSwitchIgnored(isIgnored: boolean): void
 

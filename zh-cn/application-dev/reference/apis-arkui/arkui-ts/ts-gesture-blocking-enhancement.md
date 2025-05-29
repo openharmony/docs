@@ -19,7 +19,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件做触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -100,7 +100,7 @@ isBuiltIn(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前手势识别器是否为系统内置手势。 |
+| boolean | 当前手势识别器是否为系统内置手势。true表示手势识别器为系统内置手势，false表示非系统内置手势。 |
 
 ### setEnabled
 
@@ -182,6 +182,38 @@ isValid(): boolean;
 | ------ | --------- |
 | boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
 
+### getFingerCount<sup>18+</sup>
+
+getFingerCount(): number
+
+返回预设手指识别数阈值。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设手指识别数阈值。<br/>取值范围：[1, 10], 整数。 |
+
+### isFingerCountLimit<sup>18+</sup>
+
+isFingerCountLimit(): boolean
+
+返回预设手势是否会检测触摸屏幕上手指识别数量。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+
 ## GestureRecognizerState
 
 定义手势识别器状态。
@@ -237,7 +269,7 @@ isBegin(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在顶部。 |
+| boolean | 当前滚动类容器组件是否在顶部。true表示组件在顶部，false表示组件不在顶部。 |
 
 ### isEnd
 
@@ -253,39 +285,7 @@ isEnd(): boolean
 
 | 类型     | 说明        |
 | ------ | --------- |
-| boolean | 当前滚动类容器组件是否在底部。 |
-
-### getFingerCount<sup>18+</sup>
-
-getFingerCount(): number
-
-返回预设手指识别数阈值。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| number | 预设手指识别数阈值。 |
-
-### isFingerCountLimit<sup>18+</sup>
-
-isFingerCountLimit(): boolean
-
-返回预设手势是否会检测触摸屏幕上手指识别数量。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+| boolean | 当前滚动类容器组件是否在底部。true表示组件在底部，false表示组件不在底部。 |
 
 ## PanRecognizer
 
@@ -307,6 +307,54 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
+### getDirection<sup>19+</sup>
+
+getDirection(): PanDirection
+
+返回当前拖动手势识别器的方向。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的方向。 |
+
+### getDistance<sup>19+</sup>
+
+getDistance(): number
+
+返回当前拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 当前拖动手势识别器触发的最小滑动距离。 |
+
+### getDistanceMap<sup>19+</sup>
+
+getDistanceMap(): Map\<SourceTool, number\>
+
+返回不同输入源的拖动手势识别器触发的最小滑动距离。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。 |
+
 ## TapRecognizer<sup>18+</sup>
 
 点击手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
@@ -325,7 +373,7 @@ getTapCount(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设点击手势识别器连续点击次数阈值。 |
+| number | 预设点击手势识别器连续点击次数阈值。<br/>取值范围：[0, +∞) |
 
 ## LongPressRecognizer<sup>18+</sup>
 
@@ -361,7 +409,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值。 |
+| number | 返回预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -381,13 +429,13 @@ getVelocityThreshold(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设滑动手势识别器识别滑动最小速度阈值 |
+| number | 预设滑动手势识别器识别滑动最小速度阈值，单位为vp/s。<br/>取值范围：[0, +∞) |
 
 ### getDirection<sup>18+</sup>
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+返回预设滑动手势识别器触发滑动手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -397,7 +445,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 
@@ -417,7 +465,7 @@ getDistance(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设捏合手势识别器最小识别距离阈值。 |
+| number | 预设捏合手势识别器最小识别距离阈值，单位为vp。<br/>取值范围：[0, +∞) |
 
 ## RotationRecognizer<sup>18+</sup>
 
@@ -437,7 +485,7 @@ getAngle(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设旋转手势识别器触发旋转手势最小改变度数阈值。<br/>**说明：** <br/>当输入的改变度数的值小于等于0或大于360时，会被转化为默认值，默认值为1。 |
+| number | 预设旋转手势识别器触发旋转手势最小改变度数阈值，单位为deg。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>当输入的改变度数的值小于等于0或大于360时，会被转化为默认值，默认值为1。 |
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 
@@ -445,8 +493,8 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 给组件绑定自定义手势识别器判定回调。
 
-新增exposeInnerGesture参数作为是否将回调暴露给ArkUI原生组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI原生组合组件的内置组件。<br>
-对于不需要将回调暴露给ArkUI原生组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI原生组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
+新增exposeInnerGesture参数作为是否将回调暴露给ArkUI系统组合组件的内置组件的标识，当该标识置为true时，将回调暴露给ArkUI系统组合组件的内置组件。<br>
+对于不需要将回调暴露给ArkUI系统组合组件内置组件的场景，建议采用原有[onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin)接口。若要求将回调暴露给ArkUI系统组合组件的内置组件，建议使用该接口并将exposeInnerGesture设置为true。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -514,12 +562,12 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -676,11 +724,11 @@ struct FatherControlChild {
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // 记录内层Tabs的索引
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // 记录内层Tabs的索引
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {
@@ -723,24 +771,14 @@ struct Index {
               let target = current.getEventTargetInfo();
               if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
                 console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
-                let swiperTaget = target as ScrollableTargetInfo
-                if (swiperTaget instanceof ScrollableTargetInfo) {
-                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.velocityX < 0 && this.innerSelectedIndex === 1) { // 内层Tabs滑动到尽头
+                  console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                  return GestureJudgeResult.REJECT;
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()或innerSelectedIndex === 内层Tabs的总数 - 1，表明内层Tabs滑动到尽头
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明内层Tabs滑动到开头
-                  let panEvent = event as PanGestureEvent;
-                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
-                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
-                    return GestureJudgeResult.REJECT;
-                  }
-                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
-                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
-                    return GestureJudgeResult.REJECT;
-                  }
+                if (panEvent && panEvent.velocityX > 0 && this.innerSelectedIndex === 0) { // 内层Tabs滑动到开头
+                  console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                  return GestureJudgeResult.REJECT;
                 }
               }
             }

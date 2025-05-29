@@ -9,6 +9,8 @@ The Camera_MetadataObject struct describes the camera metadata.
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 

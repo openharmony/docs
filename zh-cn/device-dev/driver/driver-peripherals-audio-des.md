@@ -158,7 +158,7 @@ Audio驱动需要将Audio相关的Codec（可选）、Dai、DMA、DSP（可选�
 
 下面以Hi3516DV300为例，介绍Audio的Codec驱动、Dai驱动、Platform驱动开发步骤。
 
-### Codec驱动开发实例
+### Audio的Codec驱动开发实例
 
 代码路径：device/board/hisilicon/hispark_taurus/audio_drivers/codec/hi3516
 
@@ -641,7 +641,7 @@ SmartPA归属于codec驱动的一种，其开发流程为：
 3. 注册绑定到HDF框架。
 4. 配置HCS和Makefile。
 
-#### codec数据结构填充
+#### SmartPA的codec数据结构填充
 
 codec模块需要填充如下3个结构体：
 

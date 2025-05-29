@@ -102,7 +102,7 @@ FFRT_C_API void ffrt_task_attr_destroy(ffrt_task_attr_t* attr);
 
 描述
 
-- 去初始化一个`ffrt_task_attr_t`对象。
+- 销毁一个`ffrt_task_attr_t`对象。
 
 ##### ffrt_task_attr_set_name
 
@@ -323,6 +323,9 @@ FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kin
 - 样例1：生成一个不带参数和返回值的任务执行体：
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     void foo(void* data)
     {
         printf("foo\n");
@@ -350,6 +353,9 @@ FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kin
 - 样例2：生成一个带参数和返回值的任务执行体：
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     int foo(int x, int y)
     {
         printf("foo: x = %d, y = %d\n", x, y);
@@ -362,12 +368,12 @@ FFRT_C_API void *ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kin
     }
 
     // 用户自定义任务执行体，可携带参数和返回值
-    struct user_defined_function {
+    typedef struct {
         ffrt_function_header_t header; // 头部内存为ffrt_function_header_t
         int arg1; // 参数1
         int arg2; // 参数2
         int ret; // 返回值
-    };
+    } user_defined_function;
 
     // 将foo包装成void(*)(void*)的exec函数类型
     void exec_func_wrapper(void* header)
@@ -417,6 +423,9 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
 - 样例1：提交带属性的任务：
 
     ```c
+    #include <stdio.h>
+    #include "ffrt/task.h"
+
     void foo(void* data)
     {
         printf("foo\n");
@@ -427,42 +436,48 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
         printf("after_foo\n");
     }
 
-    // 提交一个任务
-    ffrt_function_header_t* func = (ffrt_function_header_t*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    func->exec = foo;
-    func->destroy = after_foo;
-    ffrt_submit_base(func, NULL, NULL, NULL);
+    int main()
+    {
+        // 提交一个任务
+        ffrt_function_header_t* func = (ffrt_function_header_t*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
+        func->exec = foo;
+        func->destroy = after_foo;
+        ffrt_submit_base(func, NULL, NULL, NULL);
 
-    // 提交一个带属性的任务
-    ffrt_task_attr_t attr;
-    ffrt_task_attr_init(&attr);
-    ffrt_task_attr_set_name(&attr, "sample_task");
-    ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
-    ffrt_submit_base(func, NULL, NULL, &attr);
+        // 提交一个带属性的任务
+        ffrt_task_attr_t attr;
+        ffrt_task_attr_init(&attr);
+        ffrt_task_attr_set_name(&attr, "sample_task");
+        ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
+        ffrt_submit_base(func, NULL, NULL, &attr);
+
+        return 0;
+    }
     ```
 
 - 样例2：提交带数据依赖的任务：
 
     ```c
     // 提交两个带数据依赖的任务，任务间存在Read-After-Write依赖关系
-    #include "math.h"
-    #include "ffrt.h"
+    #include <math.h>
+    #include <stdio.h>
+    #include "ffrt/task.h"
 
     void cos_func(float* x, float* y)
     {
-        *y = std::cos(*x);
+        *y = cos(*x);
     }
 
     void tan_func(float* y, float* z)
     {
-        *z = std::tan(*y);
+        *z = tan(*y);
     }
 
-    struct user_defined_function {
+    typedef struct {
         ffrt_function_header_t header;
         float* arg1; // 参数1
         float* arg2; // 参数2
-    };
+    } user_defined_function;
 
     void cos_func_wrapper(void* header)
     {
@@ -522,6 +537,50 @@ FFRT_C_API void ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* i
     }
     ```
 
+### ffrt_submit_f
+
+#### 声明
+
+```c
+FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### 参数
+
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `in_deps`：任务的输入数据依赖。输入数据依赖通常以实际数据的地址表达，也支持`ffrt_task_handle_t`作为一种特殊输入依赖。
+- `out_deps`：任务的输出数据依赖。输出数据依赖通常以实际数据的地址表达，不支持`ffrt_task_handle_t`。
+- `attr`：任务的属性设置。
+
+#### 描述
+
+`ffrt_submit_f`接口是`ffrt_submit_base`接口的简化包装形式。当任务不需要销毁回调函数时，接口内部将任务函数及其参数包装成通用任务结构，再调用`ffrt_submit_base`接口提交任务。
+
+#### 样例
+
+```cpp
+#include <stdio.h>
+#include "ffrt/task.h"
+
+// 待提交执行的函数
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_submit_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    ffrt_wait();
+
+    printf("a = %d\n", a);
+    return 0;
+}
+```
+
 ### ffrt_submit_h_base
 
 #### 声明
@@ -557,6 +616,59 @@ func->destroy = after_foo;
 ffrt_task_handle_t t = ffrt_submit_h_base(func, NULL, NULL, NULL);
 // 注意C API的ffrt_task_handle_t需要用户调用ffrt_task_handle_destroy显式销毁
 ffrt_task_handle_destroy(t);
+```
+
+### ffrt_submit_h_f
+
+#### 声明
+
+```c
+typedef void* ffrt_task_handle_t;
+
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### 参数
+
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `in_deps`：任务的输入数据依赖。输入数据依赖通常以实际数据的地址表达，也支持`ffrt_task_handle_t`作为一种特殊输入依赖。
+- `out_deps`：任务的输出数据依赖。输出数据依赖通常以实际数据的地址表达，不支持`ffrt_task_handle_t`。
+- `attr`：任务的属性设置。
+
+#### 返回值
+
+- `ffrt_task_handle_t`任务的句柄。
+
+#### 描述
+
+相比于`ffrt_submit_f`接口，增加了任务句柄的返回值。
+
+#### 样例
+
+```cpp
+#include <stdio.h>
+#include <vector>
+#include "ffrt/task.h"
+
+// 待提交执行的函数
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_task_handle_t task = ffrt_submit_h_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    printf("a = %d\n", a);
+    return 0;
+}
 ```
 
 ### ffrt_task_handle_inc_ref
@@ -697,9 +809,9 @@ FFRT_C_API int ffrt_this_task_update_qos(ffrt_qos_t qos);
 ```c
 // 一个qos_background的任务执行过程中动态修改QoS等级
 ffrt::submit([]() {
-    ...
+    // ...
     int ret = ffrt_this_task_update_qos(ffrt_qos_user_initiated);
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -724,10 +836,10 @@ FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos(void);
 ```c
 // 一个任务执行过程中动态获取其QoS等级
 ffrt::submit([]() {
-    ...
+    // ...
     // 获取的qos等于ffrt_qos_background
     ffrt_qos_t qos = ffrt_this_task_get_qos();
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -752,10 +864,10 @@ FFRT_C_API uint64_t ffrt_this_task_get_id(void);
 ```c
 // 一个任务执行过程中动态获取其任务id
 ffrt::submit([]() {
-    ...
+    // ...
     // 获取的唯一任务id
     uint64_t task_id = ffrt_this_task_get_id();
-    ...
+    // ...
 }, ffrt::task_attr().qos(ffrt::qos_background));
 ```
 
@@ -780,7 +892,7 @@ typedef struct {
 ##### ffrt_queue_attr_init
 
 ```c
-int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -798,7 +910,7 @@ int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_destroy
 
 ```c
-void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
+void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -812,7 +924,7 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_qos
 
 ```c
-void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
+void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
 ```
 
 参数
@@ -827,7 +939,7 @@ void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
 ##### ffrt_queue_attr_get_qos
 
 ```c
-ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
+ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -845,7 +957,7 @@ ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_timeout
 
 ```c
-void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
+void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
 ```
 
 参数
@@ -860,7 +972,7 @@ void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
 ##### ffrt_queue_attr_get_timeout
 
 ```c
-uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
+uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -878,7 +990,7 @@ uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
 ##### ffrt_queue_attr_set_callback
 
 ```c
-void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
+void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
 ```
 
 参数
@@ -893,7 +1005,7 @@ void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_
 ##### ffrt_queue_attr_get_callback
 
 ```c
-ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)
+ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -911,7 +1023,7 @@ ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* at
 ##### ffrt_queue_attr_set_max_concurrency
 
 ```c
-void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
 ```
 
 参数
@@ -926,7 +1038,7 @@ void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_
 ##### ffrt_queue_attr_get_max_concurrency
 
 ```c
-int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -943,31 +1055,29 @@ int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
 
 #### 样例
 
-```c
-#include <stdio.h>
-#include "ffrt.h"
+```cpp
+#include <functional>
+#include "ffrt/queue.h"
+#include "ffrt/cpp/task.h"
 
-using namespace ffrt;
-using namespace std;
-
-int main(int narg, char** argv)
+int main()
 {
     ffrt_queue_attr_t queue_attr;
     // 初始化队列属性，必需
-    int result = ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_attr_init(&queue_attr);
 
     ffrt_queue_attr_set_qos(&queue_attr, static_cast<int>(ffrt_qos_utility));
 
     ffrt_queue_attr_set_timeout(&queue_attr, 10000);
 
-    ffrt_queue_attr_set_callback(&queue_attr, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue));
-
     int x = 0;
     std::function<void()>&& basicFunc = [&x]() { x += 1; };
     ffrt_function_header_t* func = ffrt_queue_attr_get_callback(&queue_attr);
 
+    ffrt_queue_attr_set_callback(&queue_attr, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue));
     // 销毁队列属性，必需
     ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
 }
 ```
 
@@ -988,7 +1098,7 @@ typedef void* ffrt_queue_t;
 ##### ffrt_queue_create
 
 ```c
-ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
+ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
 ```
 
 参数
@@ -1008,7 +1118,7 @@ ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const f
 ##### ffrt_queue_destroy
 
 ```c
-void ffrt_queue_destroy(ffrt_queue_t queue)
+void ffrt_queue_destroy(ffrt_queue_t queue);
 ```
 
 参数
@@ -1022,7 +1132,7 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 ##### ffrt_queue_submit
 
 ```c
-void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 参数
@@ -1035,10 +1145,27 @@ void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt
 
 - 提交任务到队列中。
 
+##### ffrt_queue_submit_f
+
+```c
+void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+参数
+
+- `queue`：队列的句柄。
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `attr`：任务属性。
+
+描述
+
+- 当任务不需要销毁回调函数时，提交任务到队列中。
+
 ##### ffrt_queue_submit_h
 
 ```c
-ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 参数
@@ -1055,10 +1182,31 @@ ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_
 
 - 提交任务到队列中，并返回任务句柄。
 
+##### ffrt_queue_submit_h_f
+
+```c
+ffrt_task_handle_t ffrt_queue_submit_h_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+参数
+
+- `queue`：队列的句柄。
+- `func`：指定的任务函数。
+- `arg`：传递给任务函数的参数。
+- `attr`：任务属性。
+
+返回值
+
+- `ffrt_task_handle_t`：成功则返回一个非空的任务句柄；否则返回空指针。
+
+描述
+
+- 当任务不需要销毁回调函数时，提交任务到队列中，并返回任务句柄。
+
 ##### ffrt_queue_wait
 
 ```c
-void ffrt_queue_wait(ffrt_task_handle_t handle)
+void ffrt_queue_wait(ffrt_task_handle_t handle);
 ```
 
 参数
@@ -1072,7 +1220,7 @@ void ffrt_queue_wait(ffrt_task_handle_t handle)
 ##### ffrt_queue_cancel
 
 ```c
-int ffrt_queue_cancel(ffrt_task_handle_t handle)
+int ffrt_queue_cancel(ffrt_task_handle_t handle);
 ```
 
 参数
@@ -1113,17 +1261,14 @@ ffrt_queue_t ffrt_get_current_queue();
 
 描述
 
-- 此接口已于API 15版本后废弃，不建议继续使用。
+- 此接口已于API 18版本后废弃，不建议继续使用。
 - 获取ArkTS Worker线程队列，用于FFRT线程与ArkTS Worker线程通信。
 
 #### 样例
 
-```c
-#include <stdio.h>
-#include "ffrt.h"
-
-using namespace ffrt;
-using namespace std;
+```cpp
+#include "ffrt/queue.h"
+#include "ffrt/cpp/task.h"
 
 int main()
 {
@@ -1131,23 +1276,23 @@ int main()
     // 1、初始化队列属性，必需
     (void)ffrt_queue_attr_init(&queue_attr);
 
-    // 2、创建串行队列，并返回队列句柄 queue_handle
+    // 2、创建串行队列，并返回队列句柄queue_handle
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
 
     int result = 0;
     std::function<void()>&& basicFunc = [&result]() { result += 1; };
 
     // 3、提交串行任务
-    ffrt_queue_submit(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
 
     // 4、提交串行任务，并返回任务句柄
-    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 5、等待指定任务执行完成
     ffrt_queue_wait(t1);
 
-    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
+    ffrt_task_handle_t t2 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue), nullptr);
     // 6、取消句柄为 t2 的任务
-    int ret = ffrt_queue_cancel(t2);
+    ffrt_queue_cancel(t2);
 
     // 7、销毁提交给串行队列任务的句柄 t1 和 t2，必需
     ffrt_task_handle_destroy(t1);
@@ -1156,6 +1301,7 @@ int main()
     ffrt_queue_attr_destroy(&queue_attr);
     // 9、销毁队列句柄，必需
     ffrt_queue_destroy(queue_handle);
+    return 0;
 }
 ```
 
@@ -1272,37 +1418,28 @@ FFRT_C_API int ffrt_mutexattr_gettype(ffrt_mutexattr_t* attr, int* type);
 #### 样例
 
 ```c
-#include "ffrt.h"
-
-void ffrt_c_mutexattr_test()
-{
-    ffrt_mutexattr_t attr;
-    ffrt_mutex_t recursive_mtx;
-    EXPECT_EQ(ffrt_mutexattr_init(nullptr), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_settype(nullptr, -1), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_gettype(nullptr, nullptr), ffrt_error_inval);
-    EXPECT_EQ(ffrt_mutexattr_destroy(nullptr), ffrt_error_inval);
-}
+ffrt_mutexattr_t attr;
+// 初始化锁属性
+ffrt_mutexattr_init(&attr);
+// 设置为互斥锁
+ffrt_mutexattr_settype(&attr, ffrt_mutex_normal);
+// 设置为递归锁
+ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+// 获取锁类型
+int type = ffrt_mutex_default;
+ffrt_mutexattr_gettype(&attr, &type);
+// 销毁锁属性
+ffrt_mutexattr_destroy(&attr);
 ```
 
 ### ffrt_mutex_t
 
-- FFRT 提供的类似pthread mutex的性能实现，但不支持类似`PTHREAD_MUTEX_INITIALIZER`的初始化。
+- FFRT提供的类似`pthread_mutex_t`的性能实现，但不支持类似`PTHREAD_MUTEX_INITIALIZER`的初始化。
 
 #### 声明
 
 ```c
-typedef enum {
-    ffrt_error = -1,
-    ffrt_success = 0,
-    ffrt_error_nomem = ENOMEM,
-    ffrt_error_timedout = ETIMEDOUT,
-    ffrt_error_busy = EBUSY,
-    ffrt_error_inval = EINVAL
-} ffrt_error_t;
-
 struct ffrt_mutex_t;
-
 struct ffrt_mutexattr_t;
 
 int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr);
@@ -1316,10 +1453,10 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 
 - 该接口支持在FFRT任务内部调用，也支持在FFRT任务外部调用。
 - 该接口能够避免pthread传统的`pthread_mutex_t`在抢不到锁时陷入内核态的问题，在使用得当的条件下将会有更好的性能。
-- C API 中的`ffrt_mutexattr_t`需要用户调用`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`显示创建和销毁，否则其行为是未定义的。
-- C API 中的`ffrt_mutex_t`需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁，否则其行为是未定义的。
-- C API 中的`ffrt_mutex_t`对象的置空和销毁由用户完成，对同一个`ffrt_mutex_t`仅能调用一次`ffrt_mutex_destroy`，重复对同一个 ffrt_mutex_t 调用`ffrt_mutex_destroy`，其行为是未定义的。
-- C API 中的同一个`ffrt_mutexattr_t`只能调用一次`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`，重复调用其行为是未定义的。
+- C API中的`ffrt_mutexattr_t`需要用户调用`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`显示创建和销毁，否则其行为是未定义的。
+- C API中的`ffrt_mutex_t`需要用户调用`ffrt_mutex_init`和`ffrt_mutex_destroy`显式创建和销毁，否则其行为是未定义的。
+- C API中的`ffrt_mutex_t`对象的置空和销毁由用户完成，对同一个`ffrt_mutex_t`仅能调用一次`ffrt_mutex_destroy`，重复对同一个`ffrt_mutex_t`调用`ffrt_mutex_destroy`，其行为是未定义的。
+- C API中的同一个`ffrt_mutexattr_t`只能调用一次`ffrt_mutexattr_init`和`ffrt_mutexattr_destroy`，重复调用其行为是未定义的。
 - 用户需要在调用`ffrt_mutex_init`之后和调用`ffrt_mutex_destroy`之前显示调用`ffrt_mutexattr_destroy`。
 - 在`ffrt_mutex_destroy`之后再对`ffrt_mutex_t`进行访问，其行为是未定义的。
 
@@ -1418,30 +1555,26 @@ FFRT_C_API int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
 
 #### 样例
 
-```c
-#include "ffrt.h"
+```cpp
+#include "ffrt/mutex.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_mutex_test()
+int main()
 {
     ffrt_mutexattr_t attr;
     ffrt_mutex_t lock;
-    int ret = 0;
     int sum = 0;
     int type = ffrt_mutex_default;
-    ret = ffrt_mutexattr_init(&attr);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutexattr_gettype(&attr, &type);
-    EXPECT_EQ(ret, ffrt_success);
-    ret = ffrt_mutex_init(&lock, &attr);
-    EXPECT_EQ(type, ffrt_mutex_recursive);
+    ffrt_mutexattr_init(&attr);
+    ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+    ffrt_mutexattr_gettype(&attr, &type);
+    ffrt_mutex_init(&lock, &attr);
     ffrt::submit([&]() {
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_lock(&lock);
-        EXPECT_EQ(ffrt_mutex_trylock(&lock), ffrt_success);
+        ffrt_mutex_trylock(&lock);
         sum++;
         ffrt_mutex_unlock(&lock);
         ffrt_mutex_unlock(&lock);
@@ -1453,6 +1586,211 @@ void ffrt_c_mutex_test()
 
     ffrt_mutexattr_destroy(&attr);
     ffrt_mutex_destroy(&lock);
+    return 0;
+}
+```
+
+### ffrt_rwlock_t
+
+- FFRT提供的类似`pthread_rwlock_t`的性能实现。
+
+#### 声明
+
+```c
+struct ffrt_rwlock_t;
+struct ffrt_rwlockattr_t;
+
+int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr);
+int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
+int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
+```
+
+#### 描述
+
+- 该接口支持在FFRT任务内部调用，也支持在FFRT任务外部调用。
+- 该接口能够避免pthread传统的`pthread_rwlock_t`在ffrt使用场景下睡眠不释放线程的问题，在使用得当的条件下将会有更好的性能。
+- C API中的`ffrt_rwlock_t`需要用户调用`ffrt_rwlock_init`和`ffrt_rwlock_destroy`显式创建和销毁，否则其行为是未定义的。
+- C API中的`ffrt_rwlockattr_t`需要用户调用`ffrt_rwlock_init`时此参数传参必须为空指针。
+- C API中的`ffrt_rwlock_t`对象的置空和销毁由用户完成，对同一个`ffrt_rwlock_t`仅能调用一次`ffrt_rwlock_destroy`，重复对同一个`ffrt_rwlock_t`调用`ffrt_rwlock_destroy`，其行为是未定义的。
+- 在`ffrt_rwlock_destroy`之后再对`ffrt_rwlock_t`进行访问，其行为是未定义的。
+
+#### 方法
+
+##### ffrt_rwlock_init
+
+```c
+FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* attr);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+- `attr`：指向所操作的读写锁属性指针。
+
+返回值
+
+- `rwlock`和`attr`都不为空返回`ffrt_success`，否则返回`ffrt_error_inval`或者阻塞当前任务。
+
+描述
+
+- 初始化读写锁。
+
+##### ffrt_rwlock_wrlock
+
+```c
+FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval`。
+
+描述
+
+- 对指定读写锁加写锁操作。
+
+##### ffrt_rwlock_rdlock
+
+```c
+FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval。
+
+描述
+
+- 对指定读写锁加读锁操作。
+
+##### ffrt_rwlock_trywrlock
+
+```c
+FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空且没有其他线程持有读写锁返回`ffrt_success`，否则返回`ffrt_error_inval`。
+
+描述
+
+- 对指定的读写锁进行尝试加写锁操作。
+
+##### ffrt_rwlock_tryrdlock
+
+```c
+FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空且没有其他线程持有写锁则返回`ffrt_success`，否则返回`ffrt_error_inval`。
+
+描述
+
+- 对指定的读写锁进行尝试加读锁操作。
+
+##### ffrt_rwlock_unlock
+
+```c
+FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval`。
+
+描述
+
+- 对指定的读写锁进行解锁操作。
+
+##### ffrt_rwlock_destroy
+
+```c
+FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
+```
+
+参数
+
+- `rwlock`：指向所操作的读写锁指针。
+
+返回值
+
+- `rwlock`不为空返回`ffrt_success`，否则返回`ffrt_error_inval`。
+
+描述
+
+- 对指定的读写锁进行销毁操作。
+
+#### 样例
+
+```cpp
+#include "ffrt/shared_mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
+
+int main()
+{
+    ffrt_rwlock_t rwlock;
+    int x = 0;
+    ffrt_rwlock_init(&rwlock, nullptr);
+    ffrt::submit([&]() {
+        ffrt_rwlock_wrlock(&rwlock);
+        ffrt_usleep(10);
+        x++;
+        ffrt_rwlock_unlock(&rwlock);
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        ffrt_rwlock_rdlock(&rwlock);
+        ffrt_rwlock_unlock(&rwlock);
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        if(ffrt_rwlock_trywrlock(&rwlock)){
+            x++;
+            ffrt_rwlock_unlock(&rwlock);
+        }
+    },{},{});
+
+    ffrt::submit([&]() {
+        ffrt_usleep(2);
+        if(ffrt_rwlock_tryrdlock(&rwlock)){
+            ffrt_rwlock_unlock(&rwlock);
+        }
+    },{},{});
+
+    ffrt::wait();
+
+    ffrt_rwlock_destroy(&rwlock);
+    return 0;
 }
 ```
 
@@ -1610,10 +1948,26 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
 
 #### 样例
 
-```c
-#include "ffrt.h"
+```cpp
+#include <iostream>
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_cond_test()
+struct timespec timeoutms_to_tm(int timeout_ms) {
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += timeout_ms / 1000;
+    ts.tv_nsec += (timeout_ms % 1000) * 1000000;
+    if (ts.tv_nsec >= 1000000000) {
+        ts.tv_sec += 1;
+        ts.tv_nsec -= 1000000000;
+    }
+    return ts;
+}
+
+int main()
 {
     int a = 0;
     ffrt_cond_t cond;
@@ -1627,14 +1981,13 @@ void ffrt_c_cond_test()
             struct timespec tm = timeoutms_to_tm(timeout);
             ffrt_mutex_lock(&lock_);
             auto start = std::chrono::high_resolution_clock::now();
-            int ret = ffrt_cond_timedwait(&cond, &lock_, &tm);
+            ffrt_cond_timedwait(&cond, &lock_, &tm);
             auto end = std::chrono::high_resolution_clock::now();
             a = 123;
             ffrt_mutex_unlock(&lock_);
-            std::chrono::duration<double, std::milli> elapsed = end-start;
+            std::chrono::duration<double, std::milli> elapsed = end - start;
             double t = elapsed.count();
-            std::cout << "ffrt_cond_timedwait " << t << " ms\n";
-            EXPECT_EQ(ret, ffrt_success);
+            std::cout << "ffrt_cond_timedwait " << t << " ms" << std::endl;
             }, {}, {});
     }
 
@@ -1648,7 +2001,7 @@ void ffrt_c_cond_test()
     ffrt::wait();
     ffrt_cond_destroy(&cond);
     ffrt_mutex_destroy(&lock_);
-    EXPECT_EQ(a, 123);
+    return 0;
 }
 ```
 
@@ -1675,13 +2028,15 @@ FFRT_C_API int ffrt_usleep(uint64_t usec);
 
 #### 样例
 
-```c
-#include "ffrt.h"
+```cpp
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_usleep_test()
+int main()
 {
     ffrt::submit([=]() { ffrt_usleep(10); }, {}, {});
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1703,22 +2058,23 @@ FFRT_C_API void ffrt_yield();
 
 #### 样例
 
-```c
-#include "ffrt.h"
+```cpp
+#include <iostream>
+#include "ffrt/sleep.h"
+#include "ffrt/cpp/task.h"
 
-void ffrt_c_yield_test()
+int main()
 {
     int count = 12;
     for (int i = 0; i < count; i++) {
-        ffrt::submit(
-            [&]() {
+        ffrt::submit([&]() {
             ffrt_usleep(100);
-            printf("test");
+            std::cout << "test" << std::endl;
             ffrt_yield();
-        },
-            {}, {});
+        }, {}, {});
     }
     ffrt::wait();
+    return 0;
 }
 ```
 
@@ -1789,9 +2145,9 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 - 样例1：使用单次定时器：
 
     ```c
-    #include <stdint.h>
+    #include <stdio.h>
     #include <unistd.h>
-    #include "ffrt.h"
+    #include "ffrt/timer.h"
 
     static void test_fun(void *data)
     {
@@ -1800,7 +2156,7 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -1818,9 +2174,9 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 - 样例2：使用循环定时器：
 
     ```c
-    #include <stdint.h>
+    #include <stdio.h>
     #include <unistd.h>
-    #include "ffrt.h"
+    #include "ffrt/timer.h"
 
     static void test_fun(void *data)
     {
@@ -1829,7 +2185,7 @@ FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
 
     void (*cb)(void *) = test_fun;
 
-    int main(int narg, char** argv)
+    int main()
     {
         static int x = 0;
         void *data = &x;
@@ -2012,9 +2368,8 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
     ```c
     #include <pthread.h>
-    #include <unistd.h>
     #include <stdio.h>
-    #include "c/loop.h"
+    #include "ffrt/loop.h"
 
     void* ThreadFunc(void* p)
     {
@@ -2022,10 +2377,10 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         if (ret == 0) {
             printf("loop normal operation.");
         }
-        return nullptr;
+        return NULL;
     }
 
-    int main(int narg, char** argv)
+    int main()
     {
         // 创建并发队列
         ffrt_queue_attr_t queue_attr;
@@ -2033,7 +2388,7 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
 
         // 创建loop
-        auto loop = ffrt_loop_create(queue_handle);
+        ffrt_loop_t loop = ffrt_loop_create(queue_handle);
 
         // 启动独立线程来执行loop
         pthread_t thread;
@@ -2041,7 +2396,7 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
         // 终止并销毁loop
         ffrt_loop_stop(loop);
-        int ret = ffrt_loop_destroy(loop);
+        ffrt_loop_destroy(loop);
 
         // 销毁并发队列
         ffrt_queue_attr_destroy(&queue_attr);
@@ -2052,19 +2407,19 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
 
 - 样例2：循环、并发队列和定时器：
 
-    ```c
+    ```cpp
     #include <pthread.h>
     #include <unistd.h>
     #include <stdio.h>
     #include <functional>
     #include <sys/epoll.h>
     #include <sys/eventfd.h>
-    #include "c/loop.h"
-    #include "ffrt.h"
+    #include "ffrt/loop.h"
+    #include "ffrt/cpp/task.h"
 
     void* ThreadFunc(void* p)
     {
-        int ret = ffrt_loop_run(p);
+        ffrt_loop_run(p);
         return nullptr;
     }
 
@@ -2082,7 +2437,7 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         uint64_t expected;
     };
 
-    int main(int narg, char** argv)
+    int main()
     {
         // 创建并发队列
         ffrt_queue_attr_t queue_attr;
@@ -2094,8 +2449,8 @@ FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle);
         int result1 = 0;
 
         // 向loop队列提交一个任务
-        std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
-        ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+        std::function<void()> &&basicFunc1 = [&result1]() { result1 += 10; };
+        ffrt_task_handle_t task = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
 
         // 启动独立线程来执行loop
         pthread_t thread;

@@ -8,28 +8,28 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 正常连接设备。
+- 确保设备已正常连接，并执行hdc shell。
 
 
 ## 命令行说明
 
 | 短选项 | 长选项 | 参数 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| -h | --help |  | 帮助命令。 | 
-| 缺省 | 缺省 |  | 阻塞读日志，不退出。 | 
-| -x | --exit |  | 非阻塞读日志，读完退出。 | 
-| -g |  |  | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
+| -h | --help | - | 帮助命令。 | 
+| 缺省 | 缺省 | - | 阻塞读日志，不退出。 | 
+| -x | --exit | - | 非阻塞读日志，读完退出。 | 
+| -g | - | - | 查询buffer的大小，配合-t指定某一类型使用，默认app和core。 | 
 | -G | --buffer-size | &lt;size&gt; | 设置指定&lt;type&gt;日志类型缓冲区的大小，配合-t指定某一类型使用，默认app和core， 可使用B/K/M为单位，范围为64K-16M。 | 
-| -r |  |  | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
+| -r | - | - | 清除buffer日志，配合-t指定某一类型使用，默认app和core。 | 
 | <!--DelRow-->-p | --privacy | &lt;on/off&gt; | 支持系统调试时日志隐私开关控制。 | 
 | <!--DelRow--> |  | on | 打开隐私开关，显示&lt;private&gt;。 | 
 | <!--DelRow--> |  | off | 关闭隐私开关，显示明文。 | 
-| -k |  | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
+| -k | - | &lt;on/off&gt; | Kernel日志读取开关控制。 | 
 |  |  | on | 打开读取kernel日志。 | 
 |  |  | off | 关闭读取kernel日志。 | 
-| -s | --statistics |  | 查询统计信息，需配合-t或-D使用。 | 
-| -S |  |  | 清除统计信息，需配合-t或-D使用。 | 
-| -Q |  | &lt;control-type&gt; | 流控缺省配额开关控制。 | 
+| -s | --statistics | - | 查询统计信息，需配合-t或-D使用。 | 
+| -S | - | - | 清除统计信息，需配合-t或-D使用。 | 
+| -Q | - | &lt;control-type&gt; | 流控缺省配额开关控制。 | 
 |  |  | pidon | 进程流控开关打开。 | 
 |  |  | pidoff | 进程流控开关关闭。 | 
 |  |  | domainon | domain流控开关打开。 | 
@@ -56,7 +56,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | none | 无压缩方式落盘。 | 
 |  |  | zlib | zlib压缩算法落盘，落盘文件为.gz。 | 
 |  |  | zstd | zstd压缩算法落盘，落盘文件为.zst。 | 
-| -v | --format | &lt;format&gt; |  | 
+| -v | --format | &lt;format&gt; | 显示格式控制。 | 
 |  |  | time | 显示本地时间。 | 
 |  |  | color | 显示不同级别显示不同颜色，参数缺省级别颜色模式处理（按黑白方式）。 | 
 |  |  | epoch | 显示相对1970时间。 | 
@@ -67,7 +67,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | zone | 显示将本地时区添加到显示的时间。 | 
 |  |  | wrap | 日志换行显示时，新行不增加时间戳等前缀。 |
 | -b | --baselevel | &lt;loglevel&gt; | 设置可打印日志的最低等级：D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL)。 | 
-| | --persist||配置日志级别设置命令持久化（重启设置不会丢失）|
+| | --persist| - |配置日志级别设置命令持久化（重启设置不会丢失）。|
 
 ## 常用命令
 
@@ -263,7 +263,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
    ```
    $ hilog -L E
-   08-28 09:01:25.730  2678  2678 E A00F00/com.huawei.hmos.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
+   08-28 09:01:25.730  2678  2678 E A00F00/com.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
    08-28 09:01:56.058  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: DB not ready request = datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=analysis_service_switch_on , retry after DB startup
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: clearXml failed:No such file or directory, error code:13900002
@@ -337,13 +337,13 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    ```
    $ hilog -a 8
    11-15 16:04:08.628     0     0 I I00000/HiLog: ========Zeroth log of type: init
-   11-15 16:04:08.603   506   506 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
-   11-15 16:04:08.604   506   506 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to mount carrier to shared
-   11-15 16:04:15.394   972   972 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
-   11-15 16:04:15.396   972   972 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
-   11-15 16:04:15.887   972   972 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to update cota carrier
-   11-15 16:04:48.749  5777  5901 I A00001/com.huawei.hmsapp.hiai.core/HiAI_Metadata: metadata is null
-   11-15 16:04:48.749  5777  5901 I A00001/com.huawei.hmsapp.hiai.core/HiAI_PluginAbilityInfo: abilityInfo is null
+   11-15 16:04:08.603   506   506 I I02C01/cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
+   11-15 16:04:08.604   506   506 I I02C01/cust_carrier_mount/CustCarrierMount: success to mount carrier to shared
+   11-15 16:04:15.394   972   972 I I02C01/cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
+   11-15 16:04:15.396   972   972 W I02C01/cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+   11-15 16:04:15.887   972   972 I I02C01/cust_carrier_mount/CustCarrierMount: success to update cota carrier
+   11-15 16:04:48.749  5777  5901 I A00001/com.hiai.core/HiAI_Metadata: metadata is null
+   11-15 16:04:48.749  5777  5901 I A00001/com.hiai.core/HiAI_PluginAbilityInfo: abilityInfo is null
    ```
 
 ### 查看缓冲区后n行日志

@@ -40,7 +40,7 @@ export default class EntryAbility extends UIAbility {
 After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it enters the Foreground state, the system creates a WindowStage instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
-![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
+![Ability-Life-Cycle-WindowStage](figures/UIAbility-Life-Cycle-WindowStage.png)
 
 In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground.
 
@@ -146,7 +146,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     // Release the resources obtained through the windowStage object.
-    // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageDestroy() callback.
+    // Unsubscribe from the WindowStage events (having or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground) in the onWindowStageWillDestroy() callback.
     try {
       if (this.windowStage) {
         this.windowStage.off('windowStageEvent');

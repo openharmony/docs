@@ -6,7 +6,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,6 +16,8 @@
 
 ## 接口
 GridRow(option?: GridRowOptions)
+
+栅格行布局容器。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -30,6 +32,8 @@ GridRow(option?: GridRowOptions)
 
 ## GridRowOptions对象说明
 
+设置栅格行布局容器的布局选项。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -38,7 +42,7 @@ GridRow(option?: GridRowOptions)
 
 | 名称 |类型|必填|说明|
 |-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />默认值：12 |
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  否  |设置布局列数。<br />取值为大于0的整数。<br/>- API version 20之前：默认值为12。<br/>- API version 20及之后：默认值为{ xs: 2, sm: 4, md: 8, lg: 12, xl: 12, xxl: 12 }。|
 |gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   否  |栅格布局间距。<br />默认值：0 |
 |breakpoints|[BreakPoints](#breakpoints)|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。<br />默认值：<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />} |
 |direction|[GridRowDirection](#gridrowdirection枚举说明)|   否  |栅格布局排列方向。<br />默认值：GridRowDirection.Row |
@@ -78,16 +82,17 @@ GridRow(option?: GridRowOptions)
 | xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
 
 **说明：**
-
-在GridRow栅格组件中，允许开发者使用breakpoints自定义修改[断点](../../../ui/arkts-layout-development-grid-layout.md#栅格系统断点)的取值范围，最多支持xs、sm、md、lg、xl、xxl六个断点，且名称不可修改。假设传入的数组是[n0, n1, n2, n3, n4]，各个断点取值如下：  
-|断点|取值范围|
-|---|-----------|
-|xs |[0, n0)    |
-|sm |[n0, n1)   |
-|md |[n1, n2)   |
-|lg |[n2, n3)   |
-|xl |[n3, n4)   |
-|xxl|[n4, INF)  |
+- API version 20之前，仅配置部分断点下GridRow组件的栅格列数，取已配置的更小断点的栅格列数补全未配置的栅格列数。若未配置更小断点的栅格列数，以默认栅格列数12补全未配置的栅格列数。
+  ```ts
+  columns: {xs:2, md:4, lg:8} // 等于配置 columns: {xs:2, sm:2, md:4, lg:8, xl:8, xxl:8}
+  columns: {md:4, lg:8} // 等于配置 columns: {xs:12, sm:12, md:4, lg:8, xl:8, xxl:8}
+  ```
+- API version 20及以后，仅配置部分断点下GridRow组件的栅格列数，取已配置的更小断点的栅格列数补全未配置的栅格列数。若未配置更小断点的栅格列数，取已配置的更大断点的栅格列数补全未配置的栅格列数。
+  ```ts
+  columns: {xs:2, md:4, lg:8} // 等于配置 columns: {xs:2, sm:2, md:4, lg:8, xl:8, xxl:8}
+  columns: {md:4, lg:8} // 等于配置 columns: {xs:4, sm:4, md:4, lg:8, xl:8, xxl:8}
+  ```
+- 建议手动配置不同断点下GridRow组件的栅格列数，避免默认补全的栅格列数的布局效果不符合预期。
 
 ## GridRowSizeOption
 
@@ -110,7 +115,7 @@ GridRow(option?: GridRowOptions)
 
 ## BreakPoints
 
-设置栅格容器组件的断点。
+设置栅格容器组件的断点。更多断点的说明参考[栅格容器断点](../../../ui/arkts-layout-development-grid-layout.md#栅格容器断点)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -133,6 +138,8 @@ GridRow(option?: GridRowOptions)
 
 ## BreakpointsReference枚举说明
 
+设置栅格容器组件的断点参照物。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -145,6 +152,8 @@ GridRow(option?: GridRowOptions)
 | ComponentSize | 以容器为参照。 |
 
 ## GridRowDirection枚举说明
+
+栅格元素排列方向。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -194,6 +203,8 @@ alignItems(value: ItemAlign)
 
 
 ## 事件
+
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onBreakpointChange
 

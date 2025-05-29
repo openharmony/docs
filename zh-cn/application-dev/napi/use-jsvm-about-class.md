@@ -36,6 +36,7 @@ cpp部分代码
 ```cpp
 // hello.cpp
 #include <string.h>
+#include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;
@@ -78,6 +79,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"newInstance", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_newinstance](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 
@@ -99,7 +101,7 @@ NewInstance:{"name":"apple"}
 
 ### OH_JSVM_DefineClass
 
-用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持
+用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持。
 
 cpp部分代码
 
@@ -177,6 +179,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
+<!-- @[oh_jsvm_defineclass](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 
@@ -289,6 +292,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_removewrap](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 
@@ -322,6 +326,7 @@ JSVM deref_item
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
 #### cpp代码
 ```c++
+#include <string>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -343,7 +348,8 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
-    double num1, num2;
+    double num1 = 0;
+    double num2 = 0;
     OH_JSVM_GetValueDouble(env, args[0], &num1);
     OH_JSVM_GetValueDouble(env, args[1], &num2);
     JSVM_Value sum = nullptr;
@@ -373,10 +379,10 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, s, JSVM_AUTO_LENGTH, &str));
     // 2. 将JS_String转换成JS_Script。
     JSVM_Script script;
-    OH_JSVM_CompileScript(jsvm_env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
+    OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. 执行JS_Script。
     JSVM_Value result;
-    OH_JSVM_RunScript(jsvm_env, script, &result);
+    OH_JSVM_RunScript(env, script, &result);
     return result;
 }
 
@@ -395,7 +401,8 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
         OH_JSVM_GetCbInfo(env, info, nullptr, nullptr, &thisVar, nullptr);
         return thisVar;
     };
-    JSVM_Value fooVal = Str(env, "bar");
+    JSVM_Value fooVal;
+    OH_JSVM_CreateStringUtf8(env, "bar", JSVM_AUTO_LENGTH, &fooVal);
     JSVM_PropertyDescriptor des[2];
     des[0] = {
         .utf8name = "foo",
@@ -463,10 +470,10 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
     // 6. Verify the validity of 'options'.
     Run(env, "obj()");
     Run(env, "obj.x = 123;");
-    if (g_call_as_function_flag == true &&
-    g_set_named_property_flag == true &&
-    g_call_as_constructor_flag == true &&
-    g_properties_flag == true) {
+    if (g_call_as_function_flag &&
+    g_set_named_property_flag &&
+    g_call_as_constructor_flag &&
+    g_properties_flag) {
         OH_LOG_INFO(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Success");
     } else {
         OH_LOG_ERROR(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Failed");

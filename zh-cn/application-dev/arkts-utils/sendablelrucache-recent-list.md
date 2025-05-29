@@ -1,13 +1,13 @@
 # 获取最近访问列表
 
-为了快速访问最近使用的[Sendable](./arkts-sendable.md)对象，从API version 18开始，ArkTS引入了[SendableLruCache](../reference/apis-arkts/js-apis-arkts-utils.md#sendablelrucachek-v18)，用户可以通过向SendableLruCache实例对象中添加、删除、获取Sendable对象，来实现快速访问最近使用的Sendable对象。此处提供使用SendableLruCache实现获取最近使用列表的开发指导，以书架为例，用户每次打开一本图书后，需要将图书的信息更新到图书的最近访问列表中，并在下次访问书架页面时显示最近访问的图书列表。
+为了快速访问最近使用的[Sendable](arkts-sendable.md)对象，从API version 18开始，ArkTS引入了[SendableLruCache](../reference/apis-arkts/js-apis-arkts-utils.md#sendablelrucachek-v18)。开发者可以通过向SendableLruCache实例中添加、删除和获取Sendable对象，实现快速访问最近使用的Sendable对象。本文提供使用SendableLruCache实现获取最近使用列表的开发指导，以书架为例，每次打开一本图书后，需将图书信息更新到最近访问列表中，并在下次访问书架页面时显示最近访问的图书列表。
 
 > **说明：**
 >
-> SendableLruCache实例对象的使用需要加锁，避免多线程同时操作导致数据不一致。
-> 存放到SendableLruCache实例中的对象必须是Sendable对象。
+> 使用SendableLruCache实例对象时需加锁，避免多线程同时操作导致数据不一致。
+> 存放到SendableLruCache实例中的对象应为Sendable对象。
 
-1. 创建SendableLruCache实例对象，并按业务情况预设最大容量。<br/>
+1. 创建SendableLruCache实例对象，并根据业务需求预设最大容量。<br/>
    此例设置SendableLruCache实例的最大容量为4，用SendableClass类来管理，并导出SendableClass类实例对象。
 
    ```ts
@@ -20,7 +20,7 @@
 
    @Sendable
    class SendableClass {
-     // SendableLruCache实例对象的使用需要加锁，避免多线程同时操作导致数据不一致。
+     // 使用SendableLruCache实例对象时需加锁，避免多线程同时操作导致数据不一致。
      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
      books_: ArkTSUtils.SendableLruCache<string, string> = new ArkTSUtils.SendableLruCache<string, string>(4);
 
@@ -54,12 +54,10 @@
    export let lruCache = new SendableClass();
    ```
 
-2. 在Index.ets页面同目录下创建4个图书页面，每个页面显示各自的图书信息，并将每个页面的路径注册到`src/main/resources/base/profile/`的`main_pages.json`文件中。
+2. 在Index.ets页面同目录下创建4个图书页面，每个页面显示相应的图书信息，并将每个页面的路径注册到`src/main/resources/base/profile/main_pages.json`文件中。
 
    ```ts
    // Book1.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -82,9 +80,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -94,8 +90,6 @@
    ```
    ```ts
    // Book2.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -118,9 +112,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -130,8 +122,6 @@
    ```
    ```ts
    // Book3.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -154,9 +144,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -166,8 +154,6 @@
    ```
    ```ts
    // Book4.ets
-
-   import { router } from '@kit.ArkUI';
 
    @Entry
    @Component
@@ -190,9 +176,7 @@
            .padding(10)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             router.pushUrl({
-               url: 'pages/Index',
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
        }
        .height('100%')
@@ -214,13 +198,12 @@
    }
    ```
 
-3. 每次访问书架页面时，自动获取最近访问的图书列表并展示。
+3. 访问书架页面时，自动展示最近访问的图书列表。
 
    ```ts
    // Index.ets
 
    import { taskpool } from '@kit.ArkTS';
-   import { router } from '@kit.ArkUI';
    import { lruCache } from './LruCache'
 
    @Concurrent
@@ -259,9 +242,7 @@
              let value = await lruCache.get(this.books[3]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[3], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[2])
            .fontSize(20)
@@ -272,9 +253,7 @@
              let value = await lruCache.get(this.books[2]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[2], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[1])
            .fontSize(20)
@@ -285,9 +264,7 @@
              let value = await lruCache.get(this.books[1]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[1], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
          Button(this.books[0])
            .fontSize(20)
@@ -298,9 +275,7 @@
              let value = await lruCache.get(this.books[0]);
              // 更新最近访问列表
              taskpool.execute(updateBooks, this.books[0], value);
-             router.pushUrl({
-               url: 'pages/' + value,
-             });
+             this.getUIContext().getRouter().pushUrl({ url: 'pages/' + value });
            })
        }
        .height('100%')

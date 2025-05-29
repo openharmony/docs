@@ -45,11 +45,11 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
-## DisplaySourceMode<sup>18+</sup>
+## DisplaySourceMode<sup>19+</sup>
 
 屏幕显示内容的显示模式枚举。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -128,10 +128,10 @@ import { display } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数应为整数。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数应为整数。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数应为整数。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数应为整数。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -171,8 +171,8 @@ import { display } from '@kit.ArkUI';
 | 名称                        | 类型      | 只读 | 可选 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
-| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
-| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数为大于0的整数。|
 
 ## ScreenShape<sup>18+</sup>
 
@@ -186,6 +186,20 @@ import { display } from '@kit.ArkUI';
 | -------- | -------- | -------- |
 | RECTANGLE | 0 | 表示设备屏幕形状为矩形。|
 | ROUND | 1 | 表示设备屏幕形状为圆形。|
+
+## VirtualScreenConfig<sup>16+</sup>
+
+创建虚拟屏幕的参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| name      | string   | 否   | 否   | 指定虚拟屏幕的名称，用户可自行定义。               |
+| width     | number   | 否   | 否   | 指定虚拟屏幕的宽度，单位为px，该参数应为正整数。 |
+| height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为正整数。 |
+| density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
+| surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId，用户可自行定义。        |
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -442,7 +456,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明                                                                                                                              |
 | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数为整数。                                                                                                     |
 
 **错误码：**
 
@@ -479,7 +493,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数应为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -570,7 +584,7 @@ console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data)
 ## display.getFoldDisplayMode<sup>10+</sup>
 getFoldDisplayMode(): FoldDisplayMode
 
-获取可折叠设备的显示模式。
+获取可折叠设备的显示模式，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -637,7 +651,7 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
 
-本接口监听设备物理折叠状态的变化，[display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10)则监听屏幕显示模式的变化。
+本接口监听设备物理折叠状态的变化，如果要监听屏幕显示模式的变化，需要使用[display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10)接口。
 
 两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
 
@@ -784,7 +798,15 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('foldAngleChange');
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+// 关闭传入的callback监听
+display.off('foldAngleChange', callback);
 ```
 
 ## display.on('captureStatusChange')<sup>12+</sup>
@@ -802,7 +824,7 @@ on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏或者录屏状态发生变化。|
-| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。|
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏或录屏时状态发生变化。true表示设备开始投屏或者录屏，false表示结束投屏或者录屏；截屏仅返回一次true。|
 
 **错误码：**
 
@@ -839,7 +861,7 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏、录屏状态发生变化。|
-| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
+| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。表示设备截屏、投屏或录屏状态发生变化。true表示设备开始投屏或者录屏，false表示结束投屏或者录屏；截屏仅返回一次true。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
 
 **错误码：**
 
@@ -853,7 +875,15 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('captureStatusChange');
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+// 关闭传入的callback监听
+display.off('captureStatusChange', callback);
 ```
 
 ## display.isCaptured<sup>12+</sup>
@@ -892,9 +922,9 @@ ret = display.isCaptured();
 
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
-开启折叠设备屏幕显示模式变化的监听。
+开启折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
-本接口监听设备屏幕显示模式的变化，[display.on('foldStatusChange')](#displayonfoldstatuschange10)则监听设备物理折叠状态的变化。
+本接口监听设备屏幕显示模式的变化，如果要监听设备物理折叠状态的变化，需要使用[display.on('foldStatusChange')](#displayonfoldstatuschange10)接口。
 
 两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
 
@@ -937,7 +967,7 @@ display.on('foldDisplayModeChange', callback);
 
 off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): void
 
-关闭折叠设备屏幕显示模式变化的监听。
+关闭折叠设备屏幕显示模式变化的监听，不适用于2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1106,6 +1136,210 @@ promise.then((data: Array<display.Display>) => {
 });
 ```
 
+## display.createVirtualScreen<sup>16+</sup>
+
+createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
+
+创建虚拟屏幕，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明                     |
+| ------- | ------------------------------------------- | ---- | ------------------------ |
+| config | [VirtualScreenConfig](#virtualscreenconfig16) | 是   | 用于创建虚拟屏幕的参数。|
+
+**返回值：**
+
+| 类型                             | 说明                                  |
+| -------------------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回创建的虚拟屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function createVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class VirtualScreenConfig {
+  name : string = '';
+  width : number = 0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let config : VirtualScreenConfig = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+display.createVirtualScreen(config).then((screenId: number) => {
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(screenId));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.destroyVirtualScreen<sup>16+</sup>
+
+destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
+
+销毁虚拟屏幕，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明       |
+| -------- | ------ | ---- | ---------- |
+| screenId | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用createVirtualScreen()接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function destroyVirtualScreen can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+display.destroyVirtualScreen(screenId).then(() => {
+  console.info('Succeeded in destroying the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.setVirtualScreenSurface<sup>16+</sup>
+
+setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
+
+设置虚拟屏幕的surfaceId，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用createVirtualScreen()接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。    |
+| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801     | Capability not supported.function setVirtualScreenSurface can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 1;
+let surfaceId: string = '2048';
+display.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## display.makeUnique<sup>16+</sup>
+
+makeUnique(screenId:number): Promise&lt;void&gt;
+
+将屏幕设置为异源模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**需要权限**：ohos.permission.ACCESS_VIRTUAL_SCREEN
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于0的整数，否则返回401错误码。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 801     | Capability not supported.function makeUnique can not work correctly due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let screenId: number = 0;
+display.makeUnique(screenId).then(() => {
+  console.info('Succeeded in making unique screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## Display
 屏幕实例。描述display对象的属性和方法。
 
@@ -1117,14 +1351,14 @@ promise.then((data: Array<display.Display>) => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 显示设备的id号，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| id | number | 是 | 否 | 显示设备的id号，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
-| alive | boolean | 是 | 否 | 显示设备是否启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
+| alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
-| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数为整数，单位为hz。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
-| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
@@ -1136,9 +1370,9 @@ promise.then((data: Array<display.Display>) => {
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 
-| sourceMode<sup>18+</sup> | [DisplaySourceMode](#displaysourcemode18) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| x<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
-| y<sup>18+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                    |
+| sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| y<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 
 
 ### getCutoutInfo<sup>9+</sup>
@@ -1224,6 +1458,8 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 获取当前设备屏幕的可用区域，使用Promise异步回调。
 
+仅支持2in1设备。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -1267,6 +1503,8 @@ try {
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 开启当前设备屏幕的可用区域监听。当前设备屏幕有可用区域变化时，触发回调函数，返回可用区域。
+
+仅支持2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1312,6 +1550,8 @@ try {
 off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
 关闭当前设备屏幕可用区域变化的监听。
+
+仅支持2in1设备。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

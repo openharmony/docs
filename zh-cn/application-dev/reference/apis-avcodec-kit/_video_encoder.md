@@ -149,7 +149,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat-1) | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
 | OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
 | OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
 | OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |
@@ -198,6 +198,8 @@ AV_ERR_UNKNOWN：未知错误。
 AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoEncoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
+
+AV_ERR_UNSUPPORT：未支持的功能。
 
 
 ### OH_VideoEncoder_CreateByMime()
@@ -327,7 +329,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 **描述**
 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
 
-详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-13或Buffer模式步骤-10”。
+详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-13或Buffer模式步骤-11”。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 

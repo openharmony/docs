@@ -22,7 +22,7 @@ The **native_avformat.h** file declares the functions and enums related to **OH_
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [OH_AVFormat](_core.md#oh_avformat) [OH_AVFormat](_core.md#oh_avformat) | Defines a struct that describes a native object for the media format interface. |
-| typedef enum [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) [OH_AVPixelFormat](_core.md#oh_avpixelformat) | Defines an enum for video pixel formats.| 
+| typedef enum [OH_AVPixelFormat](_core.md#oh_avpixelformat-1) [OH_AVPixelFormat](_core.md#oh_avpixelformat) | Defines an enum for the video pixel formats.| 
 
 
 ### Enums

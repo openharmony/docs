@@ -8,7 +8,7 @@ ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问
 
 **推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -147,7 +147,7 @@ arrayList.insert(true, 2);
 
 has(element: T): boolean
 
-判断此ArrayList中是否含有该指定元素。
+判断此ArrayList中是否包含该指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -185,7 +185,7 @@ let result: boolean = arrayList.has("squirrel");
 
 getIndexOf(element: T): number
 
-返回指定元素第一次出现时的下标值，查找失败返回-1。
+返回指定元素第一次出现的下标，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -229,7 +229,7 @@ let result: number = arrayList.getIndexOf(2);
 
 getLastIndexOf(element: T): number
 
-返回指定元素最后一次出现时的下标值，查找失败返回-1。
+返回指定元素最后一次出现的下标，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -317,7 +317,7 @@ let result: number = arrayList.removeByIndex(2);
 
 remove(element: T): boolean
 
-删除查找到的第一个指定的元素。
+删除查找到的第一个指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -358,7 +358,7 @@ let result: boolean = arrayList.remove(2);
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-从一段范围内删除元素，包括起始值但不包括终止值。
+删除指定范围内的元素，包括起始值但不包括终止值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -408,9 +408,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -446,7 +446,7 @@ arrayList.replaceAllElements((value: number): number => {
 forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
+使用回调函数遍历ArrayList实例对象的元素及其对应的下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,9 +457,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -657,7 +657,7 @@ getCapacity(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回arraylist的容量大小。 |
+| number | 获取当前实例的容量大小。 |
 
 **错误码：**
 
@@ -752,7 +752,7 @@ let result: boolean = arrayList.isEmpty();
 
 \[index: number\]: T
 
-取指定索引值对应位置的元素。
+获取指定索引值对应位置的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -860,7 +860,7 @@ arrayList.trimToCurrentLength();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -890,7 +890,7 @@ arrayList.add(5);
 arrayList.add(4);
 
 // 使用方法一：
-let numbers: Array<number> = arrayList.convertToArray()
+let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
   console.log(`value : ${item}`);
 }

@@ -26,24 +26,22 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 ## MenuItemOptions
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type                                       | Mandatory| Description                            |
 | --------- | ------------------------------------------- | ---- | -------------------------------------- |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)      | No  | Path to the icon displayed on the left of the menu item.      |
-| content   | [ResourceStr](ts-types.md#resourcestr)      | No  | Content of the menu item.                      |
-| endIcon   | [ResourceStr](ts-types.md#resourcestr)      | No  | Path to the icon displayed on the right of the menu item.      |
-| labelInfo | [ResourceStr](ts-types.md#resourcestr)      | No  | Information about the ending label, for example, shortcut **Ctrl+C**.|
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No  | Builder for a level-2 menu.                    |
+| startIcon | [ResourceStr](ts-types.md#resourcestr)      | No  | Path to the icon displayed on the left of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
+| content   | [ResourceStr](ts-types.md#resourcestr)      | No  | Content of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| endIcon   | [ResourceStr](ts-types.md#resourcestr)      | No  | Path to the icon displayed on the right of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| labelInfo | [ResourceStr](ts-types.md#resourcestr)      | No  | Information about the ending label, for example, shortcut **Ctrl+C**.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No  | Builder for a level-2 menu.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
 | symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Path to the symbol icon displayed on the left of the menu item. When this parameter is set, the icon set through **startIcon** is not displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Path to the symbol icon displayed on the right of the menu item. When this parameter is set, the icon set through **endIcon** is not displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### selected
 
@@ -51,7 +49,8 @@ selected(value: boolean)
 
 Sets whether the menu item is selected.
 
-Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -59,9 +58,9 @@ Since API version 10, this parameter supports two-way binding through [$$](../..
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                               |
-| ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | Yes  | Whether the menu item is selected.<br>Default value: **false**|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the menu item is selected.<br>Default value: **false**<br>**true**: The menu item is selected.<br> **false**: The menu item is not selected.|
 
 ### selectIcon
 

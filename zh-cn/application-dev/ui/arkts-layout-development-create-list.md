@@ -5,7 +5,7 @@
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)方式生成子组件。
 
 在圆形屏幕设备上，推荐使用[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)。
 
@@ -28,7 +28,7 @@ ListItemGroup用于列表数据的分组展示，其子组件也是ListItem。Li
 
 ### 布局
 
-List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md#延伸能力)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
+List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应延伸能力之外，还提供了自适应交叉轴方向上排列个数的布局能力。
 
 利用垂直布局能力可以构建单列或者多列垂直滚动列表，如下图所示。
 
@@ -98,7 +98,7 @@ List() {
 
 List组件的交叉轴布局可以通过lanes和alignListItem属性进行设置，lanes属性用于确定交叉轴排列的列表项数量，alignListItem用于设置子组件在交叉轴方向的对齐方式。
 
-List组件的lanes属性通常用于在不同尺寸的设备自适应构建不同行数或列数的列表，即一次开发、多端部署的场景，例如[歌单列表](../key-features/multi-device-app-dev/music-album-page.md#歌单列表)。lanes属性的取值类型是"number | [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain)"，即整数或者LengthConstrain类型。以垂直列表为例，如果将lanes属性设为2，表示构建的是一个两列的垂直列表，如图2中右图所示。lanes的默认值为1，即默认情况下，垂直列表的列数是1。
+List组件的lanes属性通常用于在不同尺寸的设备自适应构建不同行数或列数的列表，即一次开发、多端部署的场景。lanes属性的取值类型是"number | [LengthConstrain](../reference/apis-arkui/arkui-ts/ts-types.md#lengthconstrain)"，即整数或者LengthConstrain类型。以垂直列表为例，如果将lanes属性设为2，表示构建的是一个两列的垂直列表，如图2中右图所示。lanes的默认值为1，即默认情况下，垂直列表的列数是1。
 
 
 ```ts
@@ -115,7 +115,7 @@ List() {
 @Entry
 @Component
 struct EgLanes {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 }
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
   build() {
     List() {
       // ...
@@ -214,13 +214,13 @@ List() {
 
 ## 迭代列表内容
 
-通常，应用通过数据集合动态地创建列表。使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
+通常，应用通过数据集合动态地创建列表。使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
 
-ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
+ArkTS通过[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -239,7 +239,7 @@ struct SimpleContacts {
   private contacts: Array<object> = [
     new Contact('小明', $r("app.media.iconA")),
     new Contact('小红', $r("app.media.iconB")),
-  ]
+  ];
 
   build() {
     List() {
@@ -295,22 +295,22 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 ```ts
 class DividerTmp {
-  strokeWidth: Length = 1
-  startMargin: Length = 60
-  endMargin: Length = 10
-  color: ResourceColor = '#ffe9f0f0'
+  strokeWidth: Length = 1;
+  startMargin: Length = 60;
+  endMargin: Length = 10;
+  color: ResourceColor = '#ffe9f0f0';
 
   constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
-    this.strokeWidth = strokeWidth
-    this.startMargin = startMargin
-    this.endMargin = endMargin
-    this.color = color
+    this.strokeWidth = strokeWidth;
+    this.startMargin = startMargin;
+    this.endMargin = endMargin;
+    this.color = color;
   }
 }
 @Entry
 @Component
 struct EgDivider {
-  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
   build() {
     List() {
       // ...
@@ -359,7 +359,7 @@ List() {
    private listScroller: Scroller = new Scroller();
    ```
 
-2. 然后，列表通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions16对象说明)参数绑定滚动控制器。
+2. 然后，列表通过[scroller](../reference/apis-arkui/arkui-ts/ts-container-list.md#listoptions18对象说明)参数绑定滚动控制器。
 
    ```ts
    // listScroller初始化List组件的scroller参数，绑定listScroller与列表。
@@ -381,7 +381,7 @@ List() {
 
 >**说明：**
 >- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
->- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
+>- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-list.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
 
 ## 支持分组列表
 
@@ -442,7 +442,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -453,11 +453,34 @@ class Contact {
     this.icon = icon;
   }
 }
-class ContactsGroup {
-  title: string = ''
-  contacts: Array<object> | null = null
-  key: string = ""
+export class ContactsGroup {
+  title: string = '';
+  contacts: Array<object> | null = null;
+  key: string = "";
 }
+
+export class ContactsGroupDataSource implements IDataSource {
+  private list: object[] = [];
+
+  constructor(list: object[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): object {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+  }
+}
+
 export let contactsGroups: object[] = [
   {
     title: 'A',
@@ -478,6 +501,8 @@ export let contactsGroups: object[] = [
   } as ContactsGroup,
   // ...
 ]
+export let contactsGroupsDataSource: ContactsGroupDataSource = new ContactsGroupDataSource(contactsGroups);
+
 @Entry
 @Component
 struct ContactsList {
@@ -493,11 +518,11 @@ struct ContactsList {
   build() {
     List() {
       // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
-      ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+      LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
           // 循环渲染ListItem
           if (itemGroup.contacts) {
-            ForEach(itemGroup.contacts, (item: Contact) => {
+            LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
                 // ...
               }
@@ -543,7 +568,7 @@ Stack({ alignContent: Alignment.Bottom }) {
   }
   .onClick(() => {
     // 点击按钮时，指定跳转位置，返回列表顶部
-    this.listScroller.scrollToIndex(0)
+    this.listScroller.scrollToIndex(0);
   })
 }
 ```
@@ -709,7 +734,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -728,8 +753,8 @@ ListItem() {
    import { ToDo } from './ToDo';
    @Component
    export struct ToDoListItem {
-     @Link isEditMode: boolean
-     @Link selectedItems: ToDo[]
+     @Link isEditMode: boolean;
+     @Link selectedItems: ToDo[];
      private toDoItem: ToDo = new ToDo("");
 
      build() {
@@ -763,14 +788,14 @@ ListItem() {
    @Entry
    @Component
    struct ToDoList {
-     @State toDoData: ToDo[] = []
-     @Watch('onEditModeChange') @State isEditMode: boolean = false
-     @State selectedItems: ToDo[] = []
-    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌']
+     @State toDoData: ToDo[] = [];
+     @Watch('onEditModeChange') @State isEditMode: boolean = false;
+     @State selectedItems: ToDo[] = [];
+    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    
      onEditModeChange() {
        if (!this.isEditMode) {
-         this.selectedItems = []
+         this.selectedItems = [];
        }
     }
    
@@ -867,7 +892,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -884,11 +909,11 @@ ListItem() {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            this.selectedItems.push(toDoList.toDoItem) // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
+            this.selectedItems.push(toDoList.toDoItem); // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
           } else {
-            let index = this.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem);
             if (index !== -1) {
-              this.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              this.selectedItems.splice(index, 1); // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -899,7 +924,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import { util } from '@kit.ArkTS'
+    import { util } from '@kit.ArkTS';
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -926,9 +951,9 @@ ListItem() {
 
 ## 长列表的处理
 
-[循环渲染](../quick-start/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
+[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
 
-关于长列表按需加载优化的具体实现可参考[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，只在懒加载LazyForEach中生效。
 
@@ -965,6 +990,7 @@ List() {
 1. 定义列表项数据结构。
 
     ```ts
+    import { curves } from '@kit.ArkUI';
     interface ItemInfo {
       index: number,
       name: string,
@@ -1118,7 +1144,7 @@ List() {
       .onClick(() => {
         if (itemGroup.children.length) {
           this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
-            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index];
           })
         }
       })
@@ -1149,7 +1175,7 @@ List() {
     @State messages: Message[] = [
         { id: 1, content: '欢迎来到直播间！', sender: '系统' },
         { id: 2, content: '大家好啊~', sender: '主播' }
-    ]
+    ];
     build() {
       Column() {
         List({ space: 10 }) {

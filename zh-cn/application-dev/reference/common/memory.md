@@ -36,9 +36,9 @@
 | -------- | -------- |
 | \*[OH_PurgeableMemory_Create](#oh_purgeablememory_create) (size_t size, [OH_PurgeableMemory_ModifyFunc](#oh_purgeablememory_modifyfunc) func, void \*funcPara) | 创建**PurgeableMemory**对象。 | 
 | [OH_PurgeableMemory_Destroy](#oh_purgeablememory_destroy) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 销毁**PurgeableMemory**对象。 | 
-| [OH_PurgeableMemory_BeginRead](#oh_purgeablememory_beginread) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 开始读取**PurgeableMemory**对象。检查PurgeableMemory是否被回收， 若被回收则调用重建方法进行重建 | 
+| [OH_PurgeableMemory_BeginRead](#oh_purgeablememory_beginread) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 开始读取**PurgeableMemory**对象。检查PurgeableMemory是否被回收，若被回收则调用重建方法进行重建。 |
 | [OH_PurgeableMemory_EndRead](#oh_purgeablememory_endread) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 结束读取**PurgeableMemory**对象。表示系统可回收该**PurgeableMemory**对象内存数据。 | 
-| [OH_PurgeableMemory_BeginWrite](#oh_purgeablememory_beginwrite) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 开始修改**PurgeableMemory**对象。检查PurgeableMemory是否被回收， 若被回收则调用重建方法进行重建 | 
+| [OH_PurgeableMemory_BeginWrite](#oh_purgeablememory_beginwrite) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 开始修改**PurgeableMemory**对象。检查PurgeableMemory是否被回收，若被回收则调用重建方法进行重建。 |
 | [OH_PurgeableMemory_EndWrite](#oh_purgeablememory_endwrite) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 结束修改**PurgeableMemory**对象。表示系统可回收该**PurgeableMemory**对象内存数据。 | 
 | [OH_PurgeableMemory_GetContent](#oh_purgeablememory_getcontent) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 获取**PurgeableMemory**对象内存数据。 | 
 | [OH_PurgeableMemory_ContentSize](#oh_purgeablememory_contentsize) ([OH_PurgeableMemory](#oh_purgeablememory) \*purgObj) | 获取**PurgeableMemory**对象内存数据大小。 | 
@@ -132,7 +132,7 @@ bool OH_PurgeableMemory_BeginRead (OH_PurgeableMemory * purgObj)
 
 **描述:**
 
-开始读取**PurgeableMemory**对象。检查PurgeableMemory是否被回收， 若被回收则调用重建方法进行重建
+开始读取**PurgeableMemory**对象。检查PurgeableMemory是否被回收，若被回收则调用重建方法进行重建
 
 **参数:**
 
@@ -158,7 +158,7 @@ bool OH_PurgeableMemory_BeginWrite (OH_PurgeableMemory * purgObj)
 
 **描述:**
 
-开始修改**PurgeableMemory**对象。检查PurgeableMemory是否被回收， 若被回收则调用重建方法进行重建
+开始修改**PurgeableMemory**对象。检查PurgeableMemory是否被回收，若被回收则调用重建方法进行重建
 
 **参数:**
 

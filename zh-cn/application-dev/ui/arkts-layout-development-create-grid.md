@@ -5,7 +5,7 @@
 
 网格布局是由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。网格布局具有较强的页面均分能力，子组件占比控制能力，是一种重要自适应布局，其使用场景有九宫格图片展示、日历、计算器等。
 
-ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../quick-start/arkts-rendering-control-ifelse.md)、[循环渲染](../quick-start/arkts-rendering-control-foreach.md)、[懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
+ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../ui/state-management/arkts-rendering-control-ifelse.md)、[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)、[懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
 
 ## 布局与约束
@@ -81,7 +81,7 @@ Grid() {
 
 在网格中，可以通过onGetRectByIndex返回的[rowStart,columnStart,rowSpan,columnSpan]来实现跨行跨列布局，其中rowStart和columnStart属性表示指定当前元素起始行号和起始列号，rowSpan和columnSpan属性表示指定当前元素的占用行数和占用列数。
 
-所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为5和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为4和3，rowSpan和columnSpan设为2和1即可。
+所以“0”按键横跨第一列和第二列，“=”按键横跨第五行和第六行，只要将“0”对应onGetRectByIndex的rowStart和columnStart设为6和0，rowSpan和columnSpan设为1和2，将“=”对应onGetRectByIndex的rowStart和columnStart设为5和3，rowSpan和columnSpan设为2和1即可。
 
 
 ```ts
@@ -89,9 +89,9 @@ layoutOptions: GridLayoutOptions = {
   regularSize: [1, 1],
   onGetRectByIndex: (index: number) => {
     if (index == key1) { // key1是“0”按键对应的index
-      return [5, 0, 1, 2]
+      return [6, 0, 1, 2];
     } else if (index == key2) { // key2是“=”按键对应的index
-      return [4, 3, 2, 1]
+      return [5, 3, 2, 1];
     }
     // ...
     // 这里需要根据具体布局返回其他item的位置
@@ -102,7 +102,7 @@ Grid(undefined, this.layoutOptions) {
   // ...
 }
 .columnsTemplate('1fr 1fr 1fr 1fr')
-.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
+.rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -176,7 +176,7 @@ Grid() {
 @Entry
 @Component
 struct OfficeService {
-  @State services: Array<string> = ['会议', '投票', '签到', '打印']
+  @State services: Array<string> = ['会议', '投票', '签到', '打印'];
 
   build() {
     Column() {
@@ -232,7 +232,7 @@ Grid() {
 @Entry
 @Component
 struct Shopping {
-  @State services: Array<string> = ['直播', '进口']
+  @State services: Array<string> = ['直播', '进口'];
 
   build() {
     Column({ space: 5 }) {
@@ -263,7 +263,7 @@ Grid组件初始化时，可以绑定一个[Scroller](../reference/apis-arkui/ar
 
 
 ```ts
-private scroller: Scroller = new Scroller()
+private scroller: Scroller = new Scroller();
 ```
 
 在日历页面中，用户在点击“下一页”按钮时，应用响应点击事件，通过指定scrollPage方法的参数next为true，滚动到下一页。
@@ -275,19 +275,19 @@ Column({ space: 5 }) {
   }
   .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
 
-  Row({space: 20}) {
+  Row({ space: 20 }) {
     Button('上一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: false
-        })
+        });
       })
 
     Button('下一页')
       .onClick(() => {
         this.scroller.scrollPage({
           next: true
-        })
+        });
       })
   }
 }
@@ -330,9 +330,9 @@ Column({ space: 5 }) {
 
 ## 性能优化
 
-与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../quick-start/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升列表性能。
+与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升列表性能。
 
-关于按需加载优化的具体实现可参考[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染网格时，为了更好的滚动体验，减少滑动时出现白块，Grid组件中也可通过cachedCount属性设置GridItem的预加载数量，只在懒加载LazyForEach中生效。
 

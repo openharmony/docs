@@ -22,8 +22,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp |
-| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp |
+| width  | number | 是   | 是   | 组件大小的宽度。<br/>单位：vp<br/>取值范围：[0, +∞) |
+| height | number | 是   | 是   | 组件大小的高度。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 ## Position
 
@@ -63,10 +63,10 @@ type PositionT\<T> = Vector2T\<T>
 
 | 名称   | 类型   | 只读 | 可选 | 说明                        |
 | ------ | ------ | ---- | ---- | --------------------------- |
-| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp |
-| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp |
-| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp   |
-| height | number | 是   | 是   | 组件的高度。<br/>单位：vp   |
+| x      | number | 是   | 是   | 水平方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| y      | number | 是   | 是   | 垂直方向位置。<br/>单位：vp<br/>取值范围：(-∞, +∞) |
+| width  | number | 是   | 是   | 组件的宽度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
+| height | number | 是   | 是   | 组件的高度。<br/>单位：vp<br/>取值范围：[0, +∞)   |
 
 ## Pivot
 
@@ -150,7 +150,7 @@ type Matrix4 = [number,number,number,number,number,number,number,number,number,n
 
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。 |
+| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。<br/>各number取值范围：(-∞, +∞) |
 
 用于设置组件的变换信息，该类型为一个 4x4 矩阵，使用一个长度为16的`number[]`进行表示，例如：
 ```ts
@@ -162,10 +162,6 @@ const transform: Matrix4 = [
 ]
 ```
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ## Vector2
 
 用于表示包含x和y两个值的向量。
@@ -176,8 +172,8 @@ const transform: Matrix4 = [
 
 | 名称 | 类型   | 只读 | 可选 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | 否   | 否   | 向量x轴方向的值。 |
-| y    | number | 否   | 否   | 向量y轴方向的值。 |
+| x    | number | 否   | 否   | 向量x轴方向的值。<br/>取值范围：(-∞, +∞) |
+| y    | number | 否   | 否   | 向量y轴方向的值。<br/>取值范围：(-∞, +∞) |
 
 ## Vector3
 
@@ -189,9 +185,9 @@ const transform: Matrix4 = [
 
 | 名称 | 类型   | 只读 | 可选 | 说明                |
 | ---- | ------ | ---- | ---- | ------------------- |
-| x    | number | 否   | 否   | x轴方向的旋转角度。 |
-| y    | number | 否   | 否   | y轴方向的旋转角度。 |
-| z    | number | 否   | 否   | z轴方向的旋转角度。 |
+| x    | number | 否   | 否   | x轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
+| y    | number | 否   | 否   | y轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
+| z    | number | 否   | 否   | z轴方向的旋转角度。<br/>取值范围：(-∞, +∞) |
 
 ## Vector2T\<T><sup>12+</sup>
 
@@ -330,11 +326,11 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+| PX | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| VP | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| FP | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| PERCENT | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| LPX | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## SizeT\<T><sup>12+</sup>
 
@@ -364,7 +360,7 @@ struct Index {
 
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
+用于设置长度属性，当长度单位为PERCENT时，值为1表示100%。
 
 ### 属性
 
@@ -391,7 +387,7 @@ LengthMetrics的构造函数。若参数unit不传入值或传入undefined，返
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, +∞) |
 | unit   | [LengthUnit](#lengthunit12) | 否   | 长度属性的单位。 |
 
 ### px<sup>12+</sup>
@@ -408,7 +404,7 @@ static px(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -430,7 +426,7 @@ static vp(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -452,7 +448,7 @@ static fp(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -464,7 +460,7 @@ static fp(value: number): LengthMetrics
 
 static percent(value: number): LengthMetrics
 
-用于生成单位为PERCENT的长度属性。
+用于生成单位为PERCENT的长度属性，值为1表示100%。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -474,7 +470,7 @@ static percent(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 1] |
 
 **返回值：**
 
@@ -496,7 +492,7 @@ static lpx(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。 |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：(-∞, +∞) |
 
 **返回值：**
 
@@ -555,7 +551,7 @@ static numeric(value: number): ColorMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | HEX格式颜色，支持rgb或者argb。 |
+| value   | number | 是   | HEX格式颜色。<br/>取值范围：支持rgb或者argb |
 
 **返回值：**
 
@@ -580,7 +576,7 @@ static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetr
 | red   | number | 是   | 颜色的R分量（红色），值是0~255的整数。 |
 | green | number | 是   | 颜色的G分量（绿色），值是0~255的整数。 |
 | blue  | number | 是   | 颜色的B分量（蓝色），值是0~255的整数。 |
-| alpha | number | 否   | 颜色的A分量（透明度），值是0~1.0的浮点数。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0.0~1.0的浮点数，默认值为1.0，不透明。|
 
 **返回值：**
 
@@ -742,7 +738,7 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
     //可能返回的arkui子系统错误码有401和180003
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
@@ -776,7 +772,7 @@ struct ColorMetricsSample {
 | 名称        | 类型 | 可读 | 可写 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
 | topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
-| topRight    | T    | 是   | 是   | 右上上边框的圆角属性。 |
+| topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
 | bottomLeft  | T    | 是   | 是   | 左下边框的圆角属性。   |
 | bottomRight | T    | 是   | 是   | 右下边框的圆角属性。   |
 
@@ -847,7 +843,7 @@ type Rect = common2D.Rect
 | ------- | ------ | ---- | ---- | ------------------------- |
 | centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
 | centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为px。    |
+| radius  | number | 是   | 是   | 圆形的半径，单位为px。 <br/> 取值范围：[0, +∞)   |
 
 ## CommandPath<sup>12+</sup>
 
@@ -896,21 +892,20 @@ setRectShape(rect: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setRectShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(150) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -955,30 +950,29 @@ setRoundRectShape(roundRect: RoundRect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask,RoundRect} from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
-  corners: {
-    topLeft: { x: 32, y: 32 },
-    topRight: { x: 32, y: 32 },
-    bottomLeft: { x: 32, y: 32 },
-    bottomRight: { x: 32, y: 32 }
-  }
-}
-mask.setRoundRectShape(roundRect);
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    const roundRect: RoundRect = {
+      rect: { left: 0, top: 0, right: uiContext.vp2px(150), bottom: uiContext.vp2px(150) },
+      corners: {
+        topLeft: { x: 32, y: 32 },
+        topRight: { x: 32, y: 32 },
+        bottomLeft: { x: 32, y: 32 },
+        bottomRight: { x: 32, y: 32 }
+      }
+    }
+    mask.setRoundRectShape(roundRect);
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1023,21 +1017,20 @@ setCircleShape(circle: Circle): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setCircleShape({ centerY: uiContext.vp2px(75), centerX: uiContext.vp2px(75), radius: uiContext.vp2px(75) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1082,21 +1075,20 @@ setOvalShape(oval: Rect): void
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
-const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
-mask.fillColor = 0X55FF0000;
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
-renderNode.backgroundColor = 0XFF00FF00;
-renderNode.shapeMask = mask;
-
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
+
+    const mask = new ShapeMask();
+    mask.setOvalShape({ left: 0, right: uiContext.vp2px(150), top: 0, bottom: uiContext.vp2px(100) });
+    mask.fillColor = 0X55FF0000;
+
+    const renderNode = new RenderNode();
+    renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+    renderNode.backgroundColor = 0XFF00FF00;
+    renderNode.shapeMask = mask;
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
@@ -1491,8 +1483,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -1639,9 +1631,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
@@ -1727,7 +1719,7 @@ edgeColors(all: number): Edges\<number>
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | 是   | 边框颜色，ARGB格式。 |
+| all    | number | 是   | 边框颜色，ARGB格式，示例：0xffff00ff。<br/>取值范围：[0, 0xffffffff] |
 
 **返回值：**
 
@@ -1789,7 +1781,7 @@ edgeWidths(all: number): Edges\<number>
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| all    | number | 是   | 边框宽度，单位为vp。 |
+| all    | number | 是   | 边框宽度，单位为vp。<br/>取值范围：[0, +∞) |
 
 **返回值：**
 
@@ -1914,7 +1906,7 @@ borderRadiuses(all: number): BorderRadiuses
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| all    | number | 是   | 边框圆角。 |
+| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 **返回值：**
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS参数集的能力，支持HUKS密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等HUKS参数集生命周期管理函数， 还包括获取参数、复制参数集、查询参数集、检查是否有效等函数。
+HUKS参数集支持密钥管理接口的使用，包括初始化参数集、添加参数、构造参数集、释放参数集等生命周期管理函数， 还包括获取参数、复制参数集、查询参数集、检查有效性等函数。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -25,7 +25,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_InitParamSet](#oh_huks_initparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 初始化参数集。给paramSet预分配内存。  | 
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | 添加参数到参数集里面。需要先调用OH_Huks_InitParamSet对paramSet进行初始化  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | 添加参数到参数集里面。需要先调用OH_Huks_InitParamSet对paramSet进行初始化。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_BuildParamSet](#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 构造正式的参数集。往paramSet中添加完参数之后，需要调用OH_Huks_BuildParamSet整合参数集。  | 
 | void [OH_Huks_FreeParamSet](#oh_huks_freeparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 销毁参数集。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CopyParamSet](#oh_huks_copyparamset) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*fromParamSet, uint32_t fromParamSetSize, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 复制参数集（深拷贝）。  | 
@@ -90,7 +90,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet (struct OH_Huks_ParamSet ** paramSet
 struct OH_Huks_Result OH_Huks_CheckParamMatch (const struct OH_Huks_Param * baseParam, const struct OH_Huks_Param * param )
 ```
 **描述**
-比较两个参数是否相同
+比较两个参数是否相同。
 
 **起始版本：** 9
 

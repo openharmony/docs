@@ -174,3 +174,42 @@ The current carrier does not support sending of UT requests over a Wi-Fi network
 **Procedure**
 
 Disconnect the Wi-Fi connection, and send a new UT request.
+
+
+## 3120001 Service Connection Error
+
+**Error Message**
+
+Service connection failed.
+
+**Description**
+
+This error code is reported if the attempt to connect to a service fails.
+
+**Possible Causes**
+
+Service startup or IPC connection has failed.
+
+**Procedure**
+
+Operation error. Try again later.
+
+
+
+## 3120002 System Internal Error
+
+**Error Message**
+
+System internal error.
+
+**Description**
+
+This error code is reported if an internal system error occurs.
+
+**Possible Causes**
+
+The possible cause is that data read/write has failed because the network is abnormal.
+
+**Procedure**
+
+Operation error. Try again later.

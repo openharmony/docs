@@ -1,6 +1,5 @@
 # 签名/验签(C/C++)
 
-
 以密钥算法为RSA2048、摘要算法为SHA384、填充模式为PSS的密钥为例，完成签名、验签。具体的场景介绍及支持的算法规格，请参考[签名/验签支持的算法](huks-signing-signature-verification-overview.md#支持的算法)。
 
 ## 在CMake脚本中链接相关动态库

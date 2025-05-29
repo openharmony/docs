@@ -15,21 +15,21 @@ HiLog is a log system that provides logging for the system framework, services, 
 
 | Short Option| Long Option| Parameter| Description| 
 | -------- | -------- | -------- | -------- |
-| -h | --help |  | Shows help information.| 
-| Default| Default|  | Performs a blocking read on logs, with no exiting after the read finishes.| 
-| -x | --exit |  | Performs a non-blocking read on logs, with exiting after the read finishes.| 
-| -g |  |  | Checks the buffer size for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
+| -h | --help | - | Shows help information.| 
+| Default| Default| - | Performs a blocking read on logs, with no exiting after the read finishes.| 
+| -x | --exit | - | Performs a non-blocking read on logs, with exiting after the read finishes.| 
+| -g | - | - | Checks the buffer size for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
 | -G | --buffer-size | &lt;size&gt; | Sets the size of the buffer for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used. The unit can be B, KB, MB, or GB. The value ranges from 64 KB to 16 MB.| 
-| -r |  |  | Clears the buffer for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
+| -r | - | - | Clears the buffer for logs of a specified type. This option is used together with **-t**, which specifies a log type. By default, the **app** or **core** types are used.| 
 | <!--DelRow-->-p | --privacy | &lt;on/off&gt; | Specifies whether to enable privacy for logs during system debugging.| 
 | <!--DelRow--> |  | on | Enables privacy so that parameters are displayed as **\<private>** in printed logs.| 
 | <!--DelRow--> |  | off | Disables privacy so that parameters are displayed as they are in printed logs.| 
-| -k |  | &lt;on/off&gt; | Specifies whether to enable kernel logging.| 
+| -k | - | &lt;on/off&gt; | Specifies whether to enable kernel logging.| 
 |  |  | on | Enables kernel logging.| 
 |  |  | off | Disables kernel logging.| 
-| -s | --statistics |  | Shows statistics. This option must be used together with **-t** or **-D**.| 
-| -S |  |  | Clears statistics. This option must be used together with **-t** or **-D**.| 
-| -Q |  | &lt;control-type&gt; | Specifies whether to enable the default quota for flow control.| 
+| -s | --statistics | - | Shows statistics. This option must be used together with **-t** or **-D**.| 
+| -S | - | - | Clears statistics. This option must be used together with **-t** or **-D**.| 
+| -Q | - | &lt;control-type&gt; | Specifies whether to enable the default quota for flow control.| 
 |  |  | pidon | Enables process flow control.| 
 |  |  | pidoff | Disables process flow control.| 
 |  |  | domainon | Enables domain flow control.| 
@@ -56,7 +56,7 @@ HiLog is a log system that provides logging for the system framework, services, 
 |  |  | none | Indicates that data is flushed to disks in non-compression mode.| 
 |  |  | zlib | Indicates that data is flushed to disks using the zlib compression algorithm. The flushed file is in .gz format.| 
 |  |  | zstd | Indicates that data is flushed to disks using the zstd compression algorithm. The flushed file is in .zst format.| 
-| -v | --format | &lt;format&gt; |  | 
+| -v | --format | &lt;format&gt; | Sets the display format.| 
 |  |  | time | Displays the local time.| 
 |  |  | color | Adds colors to logs at different levels. By default, logs are displayed in black and white.| 
 |  |  | epoch | Displays the amount of time elapsed since the epoch time.| 
@@ -67,7 +67,7 @@ HiLog is a log system that provides logging for the system framework, services, 
 |  |  | zone | Displays the time with the local time zone.| 
 |  |  | wrap | Displays logs in different lines without adding prefixes such as the timestamp to the new line.|
 | -b | --baselevel | &lt;loglevel&gt; | Sets the lowest level of logs that can be printed: D(DEBUG)/I(INFO)/W(WARN)/E(ERROR)/F(FATAL).| 
-| | --persist||Persists the log level setting command. (The setting will not be lost after the system is restarted.)|
+| | --persist| - |Persists the log level setting command. (The setting will not be lost after the system is restarted.)|
 
 ## Examples
 
@@ -263,7 +263,7 @@ HiLog is a log system that provides logging for the system framework, services, 
 
    ```
    $ hilog -L E
-   08-28 09:01:25.730  2678  2678 E A00F00/com.huawei.hmos.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
+   08-28 09:01:25.730  2678  2678 E A00F00/com.aidataservice/AiDataService_5.10.7.320: DataChangeNotifyManager: notifyDataChange CommonEntity no valid entity to notify
    08-28 09:01:56.058  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: DB not ready request = datashare:///com.ohos.settingsdata/entry/settingsdata/SETTINGSDATA?Proxy=true&key=analysis_service_switch_on , retry after DB startup
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    08-28 09:01:56.082  8560  8560 E A00500/com.ohos.settingsdata/SettingsData: clearXml failed:No such file or directory, error code:13900002
@@ -337,13 +337,13 @@ HiLog is a log system that provides logging for the system framework, services, 
    ```
    $ hilog -a 8
    11-15 16:04:08.628     0     0 I I00000/HiLog: ========Zeroth log of type: init
-   11-15 16:04:08.603   506   506 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
-   11-15 16:04:08.604   506   506 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to mount carrier to shared
-   11-15 16:04:15.394   972   972 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
-   11-15 16:04:15.396   972   972 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
-   11-15 16:04:15.887   972   972 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to update cota carrier
-   11-15 16:04:48.749  5777  5901 I A00001/com.huawei.hmsapp.hiai.core/HiAI_Metadata: metadata is null
-   11-15 16:04:48.749  5777  5901 I A00001/com.huawei.hmsapp.hiai.core/HiAI_PluginAbilityInfo: abilityInfo is null
+   11-15 16:04:08.603   506   506 I I02C01/cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
+   11-15 16:04:08.604   506   506 I I02C01/cust_carrier_mount/CustCarrierMount: success to mount carrier to shared
+   11-15 16:04:15.394   972   972 I I02C01/cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
+   11-15 16:04:15.396   972   972 W I02C01/cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+   11-15 16:04:15.887   972   972 I I02C01/cust_carrier_mount/CustCarrierMount: success to update cota carrier
+   11-15 16:04:48.749  5777  5901 I A00001/com.hiai.core/HiAI_Metadata: metadata is null
+   11-15 16:04:48.749  5777  5901 I A00001/com.hiai.core/HiAI_PluginAbilityInfo: abilityInfo is null
    ```
 
 ### Displaying Logs in the Last N Lines of the Buffer

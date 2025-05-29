@@ -64,7 +64,7 @@ For details about the development guide and sample, see [Obtaining Supported Cod
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthAlignment](#oh_avcapability_getvideowidthalignment) (OH_AVCapability \*capability, int32_t \*widthAlignment) | Obtains the video width alignment supported by a video codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightAlignment](#oh_avcapability_getvideoheightalignment) (OH_AVCapability \*capability, int32_t \*heightAlignment) | Obtains the video height alignment supported by a video codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRangeForHeight](#oh_avcapability_getvideowidthrangeforheight) (OH_AVCapability \*capability, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec based on a given height. | 
-| OH_AVErrCode [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec based on a given width. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRangeForWidth](#oh_avcapability_getvideoheightrangeforwidth) (OH_AVCapability \*capability, int32_t width, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec based on a given width. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*widthRange) | Obtains the video width range supported by a video codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*heightRange) | Obtains the video height range supported by a video codec. | 
 | bool [OH_AVCapability_IsVideoSizeSupported](#oh_avcapability_isvideosizesupported) (OH_AVCapability \*capability, int32_t width, int32_t height) | Checks whether a video codec supports a specific video size. | 
@@ -76,7 +76,7 @@ For details about the development guide and sample, see [Obtaining Supported Cod
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile. | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level. | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Checks whether a codec supports a feature. | 
-| OH_AVFormat \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. The caller must manually release the **OH_AVFormat** instance in the return value. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value. | 
 
 
 ## Type Description
@@ -293,7 +293,7 @@ Obtains the bit rate range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | bitrateRange | Output parameter. Pointer to the bit rate range supported. | 
 
 **Returns**
@@ -320,7 +320,7 @@ Obtains the complexity range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | complexityRange | Output parameter. Pointer to the complexity range supported. | 
 
 **Returns**
@@ -347,7 +347,7 @@ Obtains the quality range supported by an encoder.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | qualityRange | Output parameter. Pointer to the quality range supported. | 
 
 **Returns**
@@ -364,7 +364,7 @@ OH_AVFormat* OH_AVCapability_GetFeatureProperties (OH_AVCapability *capability, 
 ```
 **Description**
 
-Obtains the properties of a feature. The caller must manually release the **OH_AVFormat** instance in the return value.
+Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -752,7 +752,7 @@ Checks whether an encoder supports a specific bit rate mode.
 
 | Name| Description| 
 | -------- | -------- |
-| capability | Pointer to the encoder capability. A pointer to the decoder capability cannot be filled in. | 
+| capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
 | bitrateMode | Bit rate mode. | 
 
 **Returns**
@@ -852,7 +852,7 @@ Obtains the codec capability recommended by the system.
 
 | Name| Description| 
 | -------- | -------- |
-| mime | Pointer to a string that describes the MIME type. For details, see **AVCODEC_MIME_TYPE**. | 
+| mime | Pointer to a string that describes the MIME type. For details, see [AVCODEC_MIME_TYPE](_codec_base.md#variables). | 
 | isEncoder | Whether the instance is an encoder. The value **true** means an encoder and **false** means a decoder. | 
 
 **Returns**

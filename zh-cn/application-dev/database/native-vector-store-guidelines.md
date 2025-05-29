@@ -3,7 +3,8 @@
 
 ## 场景介绍
 
-向量数据库是一种支持存储、管理和检索向量数据的数据库，也支持标量的关系型数据处理。数据类型"floatvector"用来存储数据向量化的结果，从而实现对这些数据的快速检索和相似性搜索‌。
+向量数据库是一种支持存储、管理和检索向量数据的数据库，也支持标量的关系型数据处理。数据类型"floatvector"用来存储数据向量化的结果，从而实现对这些数据的快速检索和相似性搜索‌。</br>
+从API version 18开始，支持通过向量数据库实现数据持久化。
 
 ## 基本概念
 
@@ -24,7 +25,7 @@
 
 ## 接口说明
 
-详细的接口说明请参考[RDB](../reference/apis-arkdata/_r_d_b.md)。
+详细的接口说明请参考[RDB](../reference/apis-arkdata/capi-rdb.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -134,7 +135,7 @@ libnative_rdb_ndk.z.so
 
    // 使用参数绑定删除数据
    OH_Data_Values *values2 = OH_Values_Create();
-   OH_Values_PutInt(values2, 01);
+   OH_Values_PutInt(values2, 1);
    OH_Rdb_ExecuteV2(store_, "delete from test where id = ?", values2, nullptr);
    OH_Values_Destroy(values2);
    ```
@@ -252,7 +253,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_ExecuteV2(store_, "CREATE INDEX diskann_l2_idx ON test USING GSDISKANN(repr L2) WITH (queue_size=20, out_degree=50);", nullptr, nullptr);
    ```
 
-8. 配置数据老化功能。当应用的数据需要经常清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
+8. 配置数据老化功能。当应用的数据需要定期清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
    
    语法如下所示：
 
@@ -269,13 +270,25 @@ libnative_rdb_ndk.z.so
    | time_col | 是 | 列名。类型必须为整数且不为空。 |
    | interval | 否 | 老化任务线程的执行间隔时间，超过该时间后执行写操作，触发老化任务，删除符合老化条件的数据；若在间隔时间内执行写操作，不会触发老化任务。取值范围是[5 second, 1 year]，时间单位支持second、minute、hour、day、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是1 day。 |
    | ttl | 否 | 数据保留时间。取值范围是[1 hour, 1 year]，时间单位支持second、minute、hour、day、month、year，不区分大小写或复数形式(1 hour和1 hours均可)，默认是3 month。 |
-   | max_num | 否 | 数据量限制。取值范围是[100, 1024]，默认是1024。 |
+   | max_num | 否 | 数据量限制。取值范围是[100, 1024]，默认是1024。老化任务在执行完过期数据删除后，如剩余表内数据超过max_num行，则会找到距离过期时间最近的时间点，删除该时间点对应的所有数据，直到数据量少于max_num。 |
+
+   时间相关参数会按数值换算为秒作为原子单位，取值规则如下所示：
+
+   | 单位 | 向下换算为秒取值 |
+   | ------ | -------- |
+   | year | 365 * 24 * 60 * 60 |
+   | month | 30 * 24 * 60 * 60 |
+   | day | 24 * 60 * 60 |
+   | hour | 60 * 60 |
+   | minute | 60 |
+
+   例如配置`ttl = '3 months'`，实际ttl会被换算为`3 * (30 * 24 * 60 * 60) = 7776000 seconds`。
 
    示例代码如下：
 
    ```c
    // 每隔五分钟执行写操作后，会触发数据老化任务
-   OH_Rdb_ExecuteV2(store_, "CREATE TABLE test2(id integer not null) WITH (time_col = 'id', interval = '5 minute');", nullptr, nullptr);
+   OH_Rdb_ExecuteV2(store_, "CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');", nullptr, nullptr);
    ```
 
 9. 删除数据库。示例代码如下：

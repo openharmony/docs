@@ -36,7 +36,7 @@ You need a custom class to implement the **AttributeModifier** API.
 
 >  **NOTE**
 >
->  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update. However, since API version 16, setting the same resource type object will take effect and trigger an update.
+>  In the following APIs, setting the same value or object for the same attribute of the **instance** object will not trigger an update.
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
@@ -93,7 +93,7 @@ In the preceding APIs, **instance** indicates the component type. You can custom
 
 **Value range of the instance parameter**
 
-AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, CalendarPickerAttribute, CanvasAttribute, CheckboxAttribute, CheckboxGroupAttribute, CircleAttribute, ColumnAttribute, ColumnSplitAttribute, ShapeAttribute, CommonAttribute, CounterAttribute, DataPanelAttribute, DatePickerAttribute, DividerAttribute, EllipseAttribute, FlexAttribute, FlowItemAttribute, FormLinkAttribute, GaugeAttribute, GridAttribute, GridColAttribute, ColumnAttribute, GridItemAttribute, GridRowAttribute, HyperlinkAttribute, ImageAttribute, ImageAnimatorAttribute, ImageSpanAttribute, LineAttribute, ListAttribute, ListItemAttribute, ListItemGroupAttribute, LoadingProgressAttribute, MarqueeAttribute, MenuAttribute, MenuItemAttribute, MenuItemGroupAttribute, NavDestinationAttribute, NavigationAttribute, NavigatorAttribute, NavRouterAttribute, PanelAttribute, PathAttribute, PatternLockAttribute, PolygonAttribute, PolylineAttribute, ProgressAttribute, QRCodeAttribute, RadioAttribute, RatingAttribute, RectAttribute, RefreshAttribute, RelativeContainerAttribute, RichEditorAttribute, RichTextAttribute, RowAttribute, RowSplitAttribute, ScrollAttribute, ScrollBarAttribute, SearchAttribute, SelectAttribute, ShapeAttribute, SideBarContainerAttribute, SliderAttribute, SpanAttribute, StackAttribute, StepperAttribute, StepperItemAttribute, SwiperAttribute, SymbolGlyphAttribute, TabContentAttribute, TabsAttribute, TextAttribute, TextAreaAttribute, TextClockAttribute, TextInputAttribute, TextPickerAttribute, TextTimerAttribute, TimePickerAttribute, ToggleAttribute, VideoAttribute, WaterFlowAttribute, XComponentAttribute, ParticleAttribute<!--Del-->, EffectComponentAttribute, FormComponentAttribute, PluginComponentAttribute, RemoteWindowAttribute, UIExtensionComponentAttribute<!--DelEnd-->
+AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, CalendarPickerAttribute, CanvasAttribute, CheckboxAttribute, CheckboxGroupAttribute, CircleAttribute, ColumnAttribute, ColumnSplitAttribute, ShapeAttribute, CommonAttribute, CounterAttribute, DataPanelAttribute, DatePickerAttribute, DividerAttribute, EllipseAttribute, FlexAttribute, FlowItemAttribute, FormLinkAttribute, GaugeAttribute, GridAttribute, GridColAttribute, ColumnAttribute, GridItemAttribute, GridRowAttribute, HyperlinkAttribute, IndicatorComponentAttribute, ImageAttribute, ImageAnimatorAttribute, ImageSpanAttribute, LineAttribute, LinearIndicatorAttribute, ListAttribute, ListItemAttribute, ListItemGroupAttribute, LoadingProgressAttribute, MarqueeAttribute, MenuAttribute, MenuItemAttribute, MenuItemGroupAttribute, NavDestinationAttribute, NavigationAttribute, NavigatorAttribute, NavRouterAttribute, PanelAttribute, PathAttribute, PatternLockAttribute, PolygonAttribute, PolylineAttribute, ProgressAttribute, QRCodeAttribute, RadioAttribute, RatingAttribute, RectAttribute, RefreshAttribute, RelativeContainerAttribute, RichEditorAttribute, RichTextAttribute, RowAttribute, RowSplitAttribute, ScrollAttribute, ScrollBarAttribute, SearchAttribute, SelectAttribute, ShapeAttribute, SideBarContainerAttribute, SliderAttribute, SpanAttribute, StackAttribute, StepperAttribute, StepperItemAttribute, SwiperAttribute, SymbolGlyphAttribute, TabContentAttribute, TabsAttribute, TextAttribute, TextAreaAttribute, TextClockAttribute, TextInputAttribute, TextPickerAttribute, TextTimerAttribute, TimePickerAttribute, ToggleAttribute, VideoAttribute, WaterFlowAttribute, XComponentAttribute, ParticleAttribute<!--Del-->, EffectComponentAttribute, FormComponentAttribute, PluginComponentAttribute, RemoteWindowAttribute, UIExtensionComponentAttribute<!--DelEnd-->
 
 **Supported attributes**
 
@@ -167,7 +167,7 @@ struct attributeDemo {
 
 ### Example 2: Implementing the Pressed State Effect with a Modifier
 
-This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
+This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier).
 
 ```ts
 // xxx.ets
@@ -337,12 +337,14 @@ Attributes not listed in the table below are supported by default.
 | bindContextMenu          | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindPopup                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
 | bindSheet                | Not supported  | Method not implemented.   | Attributes that accept a CustomBuilder are not supported.              |
+| chainWeight              | Not supported  | is not callable           | -                                         |
 | compositingFilter        | Not supported  | is not callable           | -                                         |
 | drawModifier             | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
 | foregroundFilter         | Not supported  | is not callable           | -                                         |
 | freeze                   | Not supported  | is not callable           | -                                         |
 | gesture                  | Not supported  | Method not implemented.   | Gesture-related attributes are not supported.                |
 | gestureModifier          | Not supported  | is not callable           | Modifier-related attributes are not supported.               |
+| onAccessibilityHover     | Not supported  | is not callable           | -                                         |
 | onChildTouchTest         | Not supported  | is not callable           | -                                         |
 | onDragStart              | Not supported  | Method not implemented.   | Attributes that return a CustomBuilder are not supported.            |
 | onPreDrag                | Not supported  | Method not implemented.   | -                                         |

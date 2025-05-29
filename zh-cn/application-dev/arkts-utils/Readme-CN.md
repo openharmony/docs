@@ -9,6 +9,7 @@
         - [XML解析](xml-parsing.md)
         - [XML转换](xml-conversion.md)
     - [Buffer介绍](buffer.md)
+    - [JSON扩展库](arkts-json.md)
     - ArkTS容器类库<!--containers-->
         - [容器类库概述](container-overview.md)
         - [线性容器](linear-container.md)
@@ -44,6 +45,7 @@
             - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)
             - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
             - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
+            - [多级Worker间高性能消息通信](worker-postMessage-sendable.md)
     - 应用多线程开发<!--multithread-develop-guide-->
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景<!--time-consuming-task-->
@@ -67,6 +69,9 @@
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
             - [获取最近访问列表场景](sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
+            - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
+            - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
+    - [并发常见问题](concurrency-faq.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
     - [ArkTS运行时概述](arkts-runtime-overview.md)

@@ -6,7 +6,7 @@ OffscreenCanvas组件用于自定义绘制图形。
 
 > **说明：** 
 >
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -28,7 +28,7 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 | ------ | -------- | ---- | ------------------------------------- |
 | width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
 | height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ## 属性
 
@@ -54,7 +54,7 @@ OffscreenCanvas支持以下属性：
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -90,7 +90,7 @@ struct OffscreenCanvasPage {
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -144,9 +144,9 @@ transferToImageBitmap(): ImageBitmap
 @Entry
 @Component
 struct OffscreenCanvasPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -190,7 +190,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 | 参数名  | 类型 | 必填 | 说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。|
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null。 |
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null |
 
 **返回值：**
 
@@ -206,7 +206,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -319,5 +319,5 @@ workerPort.onmessage = (e: MessageEvents) => {
 }
 ```
 
-![zh-cn_image_0000001194032666](figures/offscreen_canvas_width.png)
+![offscreenCanvasPostMessage](figures/offscreen_canvas_postMessage.png)
 

@@ -5,6 +5,12 @@
 
 The Digital Rights Management (DRM) module provides C APIs to implement digital rights protection.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [DRM Development (C/C++)](../../media/drm/drm-c-dev-guide.md)
+- [Using AVCodec to Play DRM Content (C/C++)](../../media/drm/drm-avcodec-integration.md)
+
+
 **Since**: 11
 
 
@@ -35,7 +41,7 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | struct  [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the DRM information, which is used to encrypt content.| 
 | struct  [MediaKeySession_Callback](_media_key_session___callback.md) | Describes a media key session callback, which is used to listen for events such as key changes. This struct applies to the scenario where a single media file is decrypted.| 
 | struct  [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) | Describes a media key session callback, which is used to listen for events such as key changes. This struct applies to the scenario where multiple media files are decrypted.| 
-| struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the DRM scheme name and UUID list. | 
+| struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the DRM solution name and UUID list. | 
 
 
 ### Macros
@@ -60,7 +66,7 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | [MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)&nbsp;&nbsp;&nbsp;64 | Maximum number of media key statuses.| 
 | [MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of a media key status name.| 
 | [MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)&nbsp;&nbsp;&nbsp;256 | Maximum length of a media key status value.| 
-| [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Length of the UUID of a DRM scheme.| 
+| [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Length of the UUID of a DRM solution.| 
 | [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of PSSH data.| 
 | [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Maximum number of pieces of PSSH data.| 
 | [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a **MediaKeySystem** instance name. | 
@@ -85,7 +91,7 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](#drm_mediakeystatus) | Defines a struct for the media key status.| 
 | typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](#drm_psshinfo) | Defines a struct for PSSH data in DRM information.| 
 | typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines a struct for the DRM information, which is used to encrypt content.| 
-| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) | Defines a struct for the DRM scheme name and UUID list. | 
+| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) | Defines a struct for the DRM solution name and UUID list. | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Defines a callback for media key system information.| 
 | typedef struct [MediaKeySystem](#mediakeysystem) [MediaKeySystem](#mediakeysystem) | Defines a struct for a media key system.| 
 | typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a struct for a media key session.| 
@@ -93,8 +99,8 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_EventCallback](#mediakeysession_eventcallback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a media key session event is triggered. No **MediaKeySession** instance is returned. This callback applies to the scenario where a single media file is decrypted.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the media key in a **MediaKeySession** instance is changed. No **MediaKeySession** instance is returned. This callback applies to the scenario where a single media file is decrypted.| 
 | typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | Defines a struct for the media key session callback. This struct applies to the scenario where a single media file is decrypted.| 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a media key session event is triggered. A **MediaKeySession** instance is returned. This callback applies to the scenario where multiple media files are decrypted.| 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the media key in a **MediaKeySession** instance is changed. A **MediaKeySession** instance is returned. This callback applies to the scenario where multiple media files are decrypted.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a media key session event is triggered. A **MediaKeySession** instance is returned. This callback applies to the scenario where multiple media files are decrypted.| 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the media key in a **MediaKeySession** instance is changed. A **MediaKeySession** instance is returned. This callback applies to the scenario where multiple media files are decrypted.| 
 | typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](#oh_mediakeysession_callback) | Defines a struct for the media key session callback. This struct applies to the scenario where multiple media files are decrypted.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a media key system event is triggered. No **MediaKeySystem** instance is returned. This callback applies to the scenario where a single **MediaKeySystem** instance is used.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback)) (MediaKeySystem \*mediaKeySystem, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a media key system event is triggered. A **MediaKeySystem** instance is returned. This callback applies to the scenario where multiple **MediaKeySystem** instances are used.| 
@@ -119,28 +125,28 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | -------- | -------- |
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateMediaKeyRequest](#oh_mediakeysession_generatemediakeyrequest) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) \*info, [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) \*mediaKeyRequest) | Generates a media key request.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessMediaKeyResponse](#oh_mediakeysession_processmediakeyresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*response, int32_t responseLen, uint8_t \*offlineMediaKeyId, int32_t \*offlineMediaKeyIdLen) | Processes a media key response.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_CheckMediaKeyStatus](#oh_mediakeysession_checkmediakeystatus) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) \*mediaKeyStatus) | Checks the status of media keys.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ClearMediaKeys](#oh_mediakeysession_clearmediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin) | Clears media keys.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateOfflineReleaseRequest](#oh_mediakeysession_generateofflinereleaserequest) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseRequest, int32_t \*releaseRequestLen) | Generates a request to release offline media keys.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessOfflineReleaseResponse](#oh_mediakeysession_processofflinereleaseresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseReponse, int32_t releaseReponseLen) | Processes a response to a request for releasing offline media keys.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RestoreOfflineMediaKeys](#oh_mediakeysession_restoreofflinemediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen) | Restores offline media keys.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the content protection level of a media key session.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, const char \*mimeType, bool \*status) | Checks whether secure decoding is required.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | Sets a media key session event callback. It applies to the scenario where a single media file is decrypted.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetCallback](#oh_mediakeysession_setcallback) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | Sets a media key session event callback. It applies to the scenario where multiple media files are decrypted.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_Destroy](#oh_mediakeysession_destroy) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin) | Releases a **MediaKeySession** instance.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_CheckMediaKeyStatus](#oh_mediakeysession_checkmediakeystatus) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) \*mediaKeyStatus) | Checks the status of media keys.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ClearMediaKeys](#oh_mediakeysession_clearmediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySession) | Clears media keys.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GenerateOfflineReleaseRequest](#oh_mediakeysession_generateofflinereleaserequest) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseRequest, int32_t \*releaseRequestLen) | Generates a request to release offline media keys.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_ProcessOfflineReleaseResponse](#oh_mediakeysession_processofflinereleaseresponse) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t \*releaseReponse, int32_t releaseReponseLen) | Processes a response to a request for releasing offline media keys.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RestoreOfflineMediaKeys](#oh_mediakeysession_restoreofflinemediakeys) ([MediaKeySession](#mediakeysession) \*mediaKeySession, uint8_t \*offlineMediaKeyId, int32_t offlineMediaKeyIdLen) | Restores offline media keys.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the content protection level of a media key session.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](#mediakeysession) \*mediaKeySession, const char \*mimeType, bool \*status) | Checks whether secure decoding is required.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | Sets a media key session event callback. It applies to the scenario where a single media file is decrypted.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_SetCallback](#oh_mediakeysession_setcallback) ([MediaKeySession](#mediakeysession) \*mediaKeySession, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | Sets a media key session event callback. It applies to the scenario where multiple media files are decrypted.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySession_Destroy](#oh_mediakeysession_destroy) ([MediaKeySession](#mediakeysession) \*mediaKeySession) | Releases a **MediaKeySession** instance.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetCallback](#oh_mediakeysystem_setcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback) callback) | Sets a media key system event callback.| 
-| bool [OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported) (const char \*name) | Checks whether the device supports the specified DRM scheme.| 
-| bool [OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | Checks whether the device supports the combination of the DRM scheme and MIME type.| 
-| bool [OH_MediaKeySystem_IsSupported3](#oh_mediakeysystem_issupported3) (const char \*name, const char \*mimeType, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) contentProtectionLevel) | Checks whether the device supports the combination of the DRM scheme, MIME type, and content protection level.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMediaKeySystems](#oh_mediakeysystem_getmediakeysystems) ([DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) \*infos, uint32_t \*count) | Obtains the list of DRM schemes supported by the device.| 
+| bool [OH_MediaKeySystem_IsSupported](#oh_mediakeysystem_issupported) (const char \*name) | Checks whether the device supports the specified DRM solution.| 
+| bool [OH_MediaKeySystem_IsSupported2](#oh_mediakeysystem_issupported2) (const char \*name, const char \*mimeType) | Checks whether the device supports the combination of the DRM solution and MIME type.| 
+| bool [OH_MediaKeySystem_IsSupported3](#oh_mediakeysystem_issupported3) (const char \*name, const char \*mimeType, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) contentProtectionLevel) | Checks whether the device supports the combination of the DRM solution, MIME type, and content protection level.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMediaKeySystems](#oh_mediakeysystem_getmediakeysystems) ([DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) \*infos, uint32_t \*count) | Obtains the list of DRM solutions supported by the device.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_Create](#oh_mediakeysystem_create) (const char \*name, [MediaKeySystem](#mediakeysystem) \*\*mediaKeySystem) | Creates a **MediaKeySystem** instance.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationString](#oh_mediakeysystem_setconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, const char \*value) | Sets a configuration item in the form of a string.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationString](#oh_mediakeysystem_getconfigurationstring) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, char \*value, int32_t valueLen) | Obtains the value of a configuration item in the form of a string.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetConfigurationByteArray](#oh_mediakeysystem_setconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t valueLen) | Sets a configuration item in the form of a byte array.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetConfigurationByteArray](#oh_mediakeysystem_getconfigurationbytearray) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, const char \*configName, uint8_t \*value, int32_t \*valueLen) | Obtains the value of a configuration item in the form of a byte array.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetStatistics](#oh_mediakeysystem_getstatistics) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_Statistics](_d_r_m___statistics.md) \*statistics) | Obtains the statistical information of a media key system.| 
-| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMaxContentProtectionLevel](#oh_mediakeysystem_getmaxcontentprotectionlevel) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the maximum content protection level supported by the current DRM scheme.| 
+| [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GetMaxContentProtectionLevel](#oh_mediakeysystem_getmaxcontentprotectionlevel) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*contentProtectionLevel) | Obtains the maximum content protection level supported by the current DRM solution.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_SetMediaKeySystemCallback](#oh_mediakeysystem_setmediakeysystemcallback) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [MediaKeySystem_Callback](#mediakeysystem_callback) callback) | Sets a media key system event callback.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_CreateMediaKeySession](#oh_mediakeysystem_createmediakeysession) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) \*level, [MediaKeySession](#mediakeysession) \*\*mediaKeySession) | Creates a **MediaKeySession** instance.| 
 | [Drm_ErrCode](#drm_errcode) [OH_MediaKeySystem_GenerateKeySystemRequest](#oh_mediakeysystem_generatekeysystemrequest) ([MediaKeySystem](#mediakeysystem) \*mediaKeySystem, uint8_t \*request, int32_t \*requestLen, char \*defaultUrl, int32_t defaultUrlLen) | Generates a provision request.| 
@@ -179,13 +185,13 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 | uint32_t [DRM_MediaKeyStatus::statusCount](#statuscount) | Number of media key statuses.| 
 | char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | Array of media key status names.| 
 | char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | Array of media key status values.| 
-| uint8_t [DRM_PsshInfo::uuid](#uuid-12) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of a DRM scheme.| 
+| uint8_t [DRM_PsshInfo::uuid](#uuid-12) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of a DRM solution.| 
 | int32_t [DRM_PsshInfo::dataLen](#datalen-22) | Length of PSSH data.| 
 | uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | PSSH data.| 
 | uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | Number of pieces of PSSH data.| 
 | [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH data.| 
-| char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | DRM scheme name. | 
-| uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of a DRM scheme. | 
+| char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | DRM solution name. | 
+| uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of a DRM solution. | 
 | [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback-12) | Media key session event callback, for example, a media key expiry event.| 
 | [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback-12) | Callback of the media key change event| 
 | [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback) [OH_MediaKeySession_Callback::eventCallback](#eventcallback-22) | Media key session event callback, for example, a media key expiry event.| 
@@ -204,7 +210,7 @@ The Digital Rights Management (DRM) module provides C APIs to implement digital 
 
 **Description**
 
-Length of the UUID of a DRM scheme.
+Length of the UUID of a DRM solution.
 
 **Since**: 11
 
@@ -372,7 +378,7 @@ Maximum length of a media key status value.
 ```
 **Description**
 
-Maximum length of a DRM scheme name.
+Maximum length of a DRM solution name.
 
 **Since**: 12
 
@@ -384,7 +390,7 @@ Maximum length of a DRM scheme name.
 ```
 **Description**
 
-Maximum number of DRM schemes supported.
+Maximum number of DRM solutions supported.
 
 **Since**: 12
 
@@ -628,7 +634,7 @@ typedef struct DRM_MediaKeySystemDescription DRM_MediaKeySystemDescription
 ```
 **Description**
 
-Defines a struct for the name and UUID of a DRM scheme.
+Defines a struct for the name and UUID of a DRM solution.
 
 **Since**: 12
 
@@ -715,7 +721,7 @@ typedef struct DRM_PsshInfo DRM_PsshInfo
 
 **Description**
 
-Defines a struct for the PSSH data that contains the UUID of a DRM scheme.
+Defines a struct for the PSSH data that contains the UUID of a DRM solution.
 
 **Since**: 11
 
@@ -802,7 +808,7 @@ Defines the callback that is invoked when the key is changed.
 | Name| Description| 
 | -------- | -------- |
 | keysInfo | Pointer to the media key information.| 
-| newKeysAvailable | Whether the new key is available.| 
+| newKeysAvailable | Whether the new key is available.|
 
 **Returns**
 
@@ -866,7 +872,7 @@ Defines the callback used to listen for events such as media key expiry, with me
 ### OH_MediaKeySession_EventCallback
 
 ```
-typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaKeySessoin, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
+typedef Drm_ErrCode(* OH_MediaKeySession_EventCallback) (MediaKeySession *mediaKeySession, DRM_EventType eventType, uint8_t *info, int32_t infoLen, char *extra)
 ```
 
 **Description**
@@ -879,7 +885,7 @@ Defines the callback that is invoked when a media key system event is triggered.
 
 | Name| Description| 
 | -------- | -------- |
-| mediaKeySessoin | Pointer to the **MediaKeySession** instance.| 
+| mediaKeySession | Pointer to the **MediaKeySession** instance.| 
 | eventType | Event type.| 
 | info | Pointer to the event information.| 
 | infoLen | Length of the event information.| 
@@ -893,7 +899,7 @@ Returns an error code defined in **Drm_ErrCode**.
 ### OH_MediaKeySession_KeyChangeCallback
 
 ```
-typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo, bool newKeysAvailable)
+typedef Drm_ErrCode(* OH_MediaKeySession_KeyChangeCallback) (MediaKeySession *mediaKeySession, DRM_KeysInfo *keysInfo, bool newKeysAvailable)
 ```
 
 **Description**
@@ -906,7 +912,7 @@ Defines the callback that is invoked when the key is changed.
 
 | Name| Description| 
 | -------- | -------- |
-| mediaKeySessoin | Pointer to the **MediaKeySession** instance.| 
+| mediaKeySession | Pointer to the **MediaKeySession** instance.| 
 | keysInfo | Pointer to the media key information.| 
 | newKeysAvailable | Whether the new keys are available. The value **true** means that the new keys are available, and **false** means the opposite.| 
 
@@ -963,11 +969,11 @@ Enumerates the DRM certificate statuses.
 
 | Value| Description| 
 | -------- | -------- |
-| CERT_STATUS_PROVISIONED | A DRM certificate has been installed on the device.| 
-| CERT_STATUS_NOT_PROVISIONED | No device certificate is installed on the device or the certificate status is abnormal.| 
-| CERT_STATUS_EXPIRED | The DRM certificate has expired.| 
-| CERT_STATUS_INVALID | The DRM certificate is invalid.| 
-| CERT_STATUS_UNAVAILABLE | The DRM certificate is unavailable.| 
+| CERT_STATUS_PROVISIONED | A DRM certificate has been installed on the device.|
+| CERT_STATUS_NOT_PROVISIONED | No device certificate is installed on the device or the certificate status is abnormal.|
+| CERT_STATUS_EXPIRED | The DRM certificate has expired.|
+| CERT_STATUS_INVALID | The DRM certificate is invalid.|
+| CERT_STATUS_UNAVAILABLE | The DRM certificate is unavailable.|
 
 
 ### DRM_ContentProtectionLevel
@@ -986,11 +992,11 @@ Enumerates the content protection levels.
 
 | Value| Description| 
 | -------- | -------- |
-| CONTENT_PROTECTION_LEVEL_UNKNOWN | Unknown/Default content protection level.| 
-| CONTENT_PROTECTION_LEVEL_SW_CRYPTO | Software content protection level.| 
-| CONTENT_PROTECTION_LEVEL_HW_CRYPTO | Hardware content protection level.| 
-| CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO | Hardware enhancement level.| 
-| CONTENT_PROTECTION_LEVEL_MAX | Highest content protection level.| 
+| CONTENT_PROTECTION_LEVEL_UNKNOWN | Unknown/Default content protection level.|
+| CONTENT_PROTECTION_LEVEL_SW_CRYPTO | Software content protection level.|
+| CONTENT_PROTECTION_LEVEL_HW_CRYPTO | Hardware content protection level.|
+| CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO | Hardware enhancement level.|
+| CONTENT_PROTECTION_LEVEL_MAX | Highest content protection level.|
 
 
 ### Drm_ErrCode
@@ -1014,7 +1020,7 @@ Enumerates the DRM error codes.
 | DRM_ERR_NO_MEMORY | Insufficient memory.| 
 | DRM_ERR_OPERATION_NOT_PERMITTED | Operation not allowed.| 
 | DRM_ERR_INVALID_VAL | Invalid parameters.| 
-| DRM_ERR_IO | I/O error.| 
+| DRM_ERR_IO | I/O error.|
 | DRM_ERR_TIMEOUT | Network timeout.| 
 | DRM_ERR_UNKNOWN | Unknown error.| 
 | DRM_ERR_SERVICE_DIED | DRM service error.| 
@@ -1039,12 +1045,12 @@ Enumerates the types of events that can be subscribed to.
 
 | Value| Description| 
 | -------- | -------- |
-| EVENT_DRM_BASE | DRM event.| 
-| EVENT_PROVISION_REQUIRED | Event indicating that the application needs to request a DRM certificate.| 
-| EVENT_KEY_REQUIRED | Event indicating that the application needs to request a media key.| 
-| EVENT_KEY_EXPIRED | Event indicating that the media key expires.| 
-| EVENT_VENDOR_DEFINED | Vendor-defined event.| 
-| EVENT_EXPIRATION_UPDATE | Event indicating that the media key updates on expiry.| 
+| EVENT_DRM_BASE | DRM event.|
+| EVENT_PROVISION_REQUIRED | Event indicating that the application needs to request a DRM certificate.|
+| EVENT_KEY_REQUIRED | Event indicating that the application needs to request a media key.|
+| EVENT_KEY_EXPIRED | Event indicating that the media key expires.|
+| EVENT_VENDOR_DEFINED | Vendor-defined event.|
+| EVENT_EXPIRATION_UPDATE | Event indicating that the media key updates on expiry.|
 
 
 ### DRM_MediaKeyRequestType
@@ -1063,12 +1069,12 @@ Enumerates the types of media key requests.
 
 | Value| Description| 
 | -------- | -------- |
-| MEDIA_KEY_REQUEST_TYPE_UNKNOWN | Unknown type.| 
-| MEDIA_KEY_REQUEST_TYPE_INITIAL | Initial request.| 
-| MEDIA_KEY_REQUEST_TYPE_RENEWAL | Renewal request.| 
-| MEDIA_KEY_REQUEST_TYPE_RELEASE | Release request.| 
-| MEDIA_KEY_REQUEST_TYPE_NONE | None.| 
-| MEDIA_KEY_REQUEST_TYPE_UPDATE | Update request.| 
+| MEDIA_KEY_REQUEST_TYPE_UNKNOWN | Unknown type.|
+| MEDIA_KEY_REQUEST_TYPE_INITIAL | Initial request.|
+| MEDIA_KEY_REQUEST_TYPE_RENEWAL | Renewal request.|
+| MEDIA_KEY_REQUEST_TYPE_RELEASE | Release request.|
+| MEDIA_KEY_REQUEST_TYPE_NONE | None.|
+| MEDIA_KEY_REQUEST_TYPE_UPDATE | Update request.|
 
 
 ### DRM_MediaKeyType
@@ -1087,8 +1093,8 @@ Enumerates the types of media keys.
 
 | Value| Description| 
 | -------- | -------- |
-| MEDIA_KEY_TYPE_OFFLINE | Offline.| 
-| MEDIA_KEY_TYPE_ONLINE | Online.| 
+| MEDIA_KEY_TYPE_OFFLINE | Offline.|
+| MEDIA_KEY_TYPE_ONLINE | Online.|
 
 
 ### DRM_OfflineMediaKeyStatus
@@ -1107,9 +1113,9 @@ Enumerates the statuses of offline media keys.
 
 | Value| Description| 
 | -------- | -------- |
-| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN | Unknown status.| 
-| OFFLINE_MEDIA_KEY_STATUS_USABLE | The media key is available.| 
-| OFFLINE_MEDIA_KEY_STATUS_INACTIVE | The media key is inactive.| 
+| OFFLINE_MEDIA_KEY_STATUS_UNKNOWN | Unknown status.|
+| OFFLINE_MEDIA_KEY_STATUS_USABLE | The media key is available.|
+| OFFLINE_MEDIA_KEY_STATUS_INACTIVE | The media key is inactive.|
 
 
 ## Function Description
@@ -1118,7 +1124,7 @@ Enumerates the statuses of offline media keys.
 ### OH_MediaKeySession_CheckMediaKeyStatus()
 
 ```
-Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession *mediaKeySessoin, DRM_MediaKeyStatus *mediaKeyStatus)
+Drm_ErrCode OH_MediaKeySession_CheckMediaKeyStatus (MediaKeySession *mediaKeySession, DRM_MediaKeyStatus *mediaKeyStatus)
 ```
 
 **Description**
@@ -1146,7 +1152,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_ClearMediaKeys()
 
 ```
-Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession *mediaKeySessoin)
+Drm_ErrCode OH_MediaKeySession_ClearMediaKeys (MediaKeySession *mediaKeySession)
 ```
 
 **Description**
@@ -1172,7 +1178,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_Destroy()
 
 ```
-Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession *mediaKeySessoin)
+Drm_ErrCode OH_MediaKeySession_Destroy (MediaKeySession *mediaKeySession)
 ```
 
 **Description**
@@ -1227,7 +1233,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_GenerateOfflineReleaseRequest()
 
 ```
-Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest, int32_t *releaseRequestLen)
+Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseRequest, int32_t *releaseRequestLen)
 ```
 
 **Description**
@@ -1252,13 +1258,13 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 - **DRM_ERR_OK**: The operation is successful.
 - **DRM_ERR_NO_MEMORY**: The memory fails to be allocated due to insufficient memory.
 - **DRM_ERR_INVALID_VAL**: The value of **mediaKeySession** is a null pointer or invalid, or the value of another parameter of the pointer type is a null pointer.
-- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM scheme on the device does not support offline media key release. Check the log details.
+- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM solution on the device does not support offline media key release. Check the log details.
 
 
 ### OH_MediaKeySession_GetContentProtectionLevel()
 
 ```
-Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession *mediaKeySessoin, DRM_ContentProtectionLevel *contentProtectionLevel)
+Drm_ErrCode OH_MediaKeySession_GetContentProtectionLevel (MediaKeySession *mediaKeySession, DRM_ContentProtectionLevel *contentProtectionLevel)
 ```
 
 **Description**
@@ -1316,7 +1322,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_ProcessOfflineReleaseResponse()
 
 ```
-Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse, int32_t releaseReponseLen)
+Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen, uint8_t *releaseReponse, int32_t releaseReponseLen)
 ```
 
 **Description**
@@ -1340,13 +1346,13 @@ Processes a response to a request for releasing offline media keys.
 Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 - **DRM_ERR_OK**: The operation is successful.
 - **DRM_ERR_INVALID_VAL**: The value of **mediaKeySession** is a null pointer or invalid, or the value of another parameter of the pointer type is a null pointer.
-- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM scheme on the device does not support offline media key release. Check the log details.
+- **DRM_ERR_UNKNOWN**: An internal error occurs or the DRM solution on the device does not support offline media key release. Check the log details.
 
 
 ### OH_MediaKeySession_RequireSecureDecoderModule()
 
 ```
-Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *mediaKeySessoin, const char *mimeType, bool *status)
+Drm_ErrCode OH_MediaKeySession_RequireSecureDecoderModule (MediaKeySession *mediaKeySession, const char *mimeType, bool *status)
 ```
 
 **Description**
@@ -1360,7 +1366,7 @@ Checks whether secure decoding is required.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySession | Pointer to the **MediaKeySession** instance.| 
-| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM scheme. Example types are video/avc and video/hev.| 
+| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are video/avc and video/hev.| 
 | status | Pointer to the result indicating whether secure decoding is required.| 
 
 **Returns**
@@ -1374,7 +1380,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_RestoreOfflineMediaKeys()
 
 ```
-Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKeySessoin, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
+Drm_ErrCode OH_MediaKeySession_RestoreOfflineMediaKeys (MediaKeySession *mediaKeySession, uint8_t *offlineMediaKeyId, int32_t offlineMediaKeyIdLen)
 ```
 
 **Description**
@@ -1402,7 +1408,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_SetCallback()
 
 ```
-Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession *mediaKeySessoin, OH_MediaKeySession_Callback *callback)
+Drm_ErrCode OH_MediaKeySession_SetCallback (MediaKeySession *mediaKeySession, OH_MediaKeySession_Callback *callback)
 ```
 
 **Description**
@@ -1428,7 +1434,7 @@ Returns a result code defined in [Drm_ErrCode](#drm_errcode-1).
 ### OH_MediaKeySession_SetMediaKeySessionCallback()
 
 ```
-Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession *mediaKeySessoin, MediaKeySession_Callback *callback)
+Drm_ErrCode OH_MediaKeySession_SetMediaKeySessionCallback (MediaKeySession *mediaKeySession, MediaKeySession_Callback *callback)
 ```
 
 **Description**
@@ -1495,8 +1501,8 @@ Creates a **MediaKeySystem** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| name | Pointer to the DRM scheme name.| 
-| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
+| name | Pointer to the DRM solution name.| 
+| mediaKeySystem | Double pointer to the **MediaKeySystem** instance.| 
 
 **Returns**
 
@@ -1555,7 +1561,7 @@ Destroys a **MediaKeySystem** instance.
 
 | Name| Description| 
 | -------- | -------- |
-| mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
+| mediaKeySystem | Double pointer to the **MediaKeySystem** instance created.| 
 
 **Returns**
 
@@ -1640,7 +1646,7 @@ Obtains the value of a configuration item in the form of an array.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
+| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM solution on the device and cannot be empty.| 
 | value | Pointer to the value of the configuration item.| 
 | valueLen | Pointer to the length of the value.| 
 
@@ -1718,7 +1724,7 @@ Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems (DRM_MediaKeySystemDescription 
 
 **Description**
 
-Obtains the name and ID list of the DRM schemes supported by the device.
+Obtains the name and ID list of the DRM solutions supported by the device.
 
 **Since**: 12
 
@@ -1726,7 +1732,7 @@ Obtains the name and ID list of the DRM schemes supported by the device.
 
 | Name| Description| 
 | -------- | -------- |
-| infos | Pointer to the list of the names and UUIDs of DRM schemes.| 
+| infos | Pointer to the list of the names and UUIDs of DRM solutions.| 
 | count | Pointer to the length of the list.| 
 
 **Returns**
@@ -1830,7 +1836,7 @@ bool OH_MediaKeySystem_IsSupported (const char *name)
 
 **Description**
 
-Checks whether the device supports the specified DRM scheme.
+Checks whether the device supports the specified DRM solution.
 
 **Since**: 11
 
@@ -1838,11 +1844,11 @@ Checks whether the device supports the specified DRM scheme.
 
 | Name| Description| 
 | -------- | -------- |
-| name | Pointer to the DRM scheme name.| 
+| name | Pointer to the DRM solution name.| 
 
 **Returns**
 
-Returns **true** if the device supports the DRM scheme; returns **false** otherwise.
+Returns **true** if the device supports the DRM solution; returns **false** otherwise.
 
 
 ### OH_MediaKeySystem_IsSupported2()
@@ -1853,7 +1859,7 @@ bool OH_MediaKeySystem_IsSupported2 (const char *name, const char *mimeType)
 
 **Description**
 
-Checks whether the device supports the combination of the specified DRM scheme and MIME type.
+Checks whether the device supports the combination of the specified DRM solution and MIME type.
 
 **Since**: 11
 
@@ -1861,8 +1867,8 @@ Checks whether the device supports the combination of the specified DRM scheme a
 
 | Name| Description| 
 | -------- | -------- |
-| name | Pointer to the DRM scheme name.| 
-| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM scheme. Example types are video/avc and video/hev.| 
+| name | Pointer to the DRM solution name.| 
+| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are video/avc and video/hev.| 
 
 **Returns**
 
@@ -1877,7 +1883,7 @@ bool OH_MediaKeySystem_IsSupported3 (const char *name, const char *mimeType, DRM
 
 **Description**
 
-Checks whether the device supports the combination of the specified DRM scheme, MIME type, and content protection level.
+Checks whether the device supports the combination of the specified DRM solution, MIME type, and content protection level.
 
 **Since**: 11
 
@@ -1885,8 +1891,8 @@ Checks whether the device supports the combination of the specified DRM scheme, 
 
 | Name| Description| 
 | -------- | -------- |
-| name | Pointer to the DRM scheme name.| 
-| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM scheme. Example types are video/avc and video/hev.| 
+| name | Pointer to the DRM solution name.| 
+| mimeType | Pointer to the MIME type. The supported MIME types depend on the DRM solution. Example types are video/avc and video/hev.| 
 | contentProtectionLevel | Content protection level.| 
 
 **Returns**
@@ -1912,7 +1918,7 @@ Processes a provision response.
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
 | response | Pointer to the provision response.| 
-| responseLen | Length of the provision response.| 
+| responseLen | Length of the provision response.|
 
 **Returns**
 
@@ -1965,8 +1971,8 @@ Sets a configuration item in the form of an array.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
-| value | Pointer to the value of the configuration item in the form of a character array. It is determined by the DRM scheme on the device and cannot be empty.| 
+| configName | Pointer to the name of the configuration item in the form of a character array. It is determined by the DRM solution on the device and cannot be empty.| 
+| value | Pointer to the value of the configuration item in the form of a character array. It is determined by the DRM solution on the device and cannot be empty.| 
 | valueLen | Length of the value.| 
 
 **Returns**
@@ -1994,8 +2000,8 @@ Sets a configuration item in the form of a string.
 | Name| Description| 
 | -------- | -------- |
 | mediaKeySystem | Pointer to the **MediaKeySystem** instance.| 
-| configName | Pointer to the name of the configuration item in the form of a string. It is determined by the DRM scheme on the device and cannot be empty.| 
-| value | Pointer to the value of the configuration item in the form of a string. It is determined by the DRM scheme on the device and cannot be empty.| 
+| configName | Pointer to the name of the configuration item in the form of a string. It is determined by the DRM solution on the device and cannot be empty.| 
+| value | Pointer to the value of the configuration item in the form of a string. It is determined by the DRM solution on the device and cannot be empty.| 
 
 **Returns**
 
@@ -2224,7 +2230,7 @@ Media key type.
 char DRM_MediaKeySystemDescription::name[MAX_MEDIA_KEY_SYSTEM_NAME_LEN]
 ```
 **Description**
-DRM scheme name.
+DRM solution name.
 
 
 ### optionData
@@ -2388,7 +2394,7 @@ uint8_t DRM_PsshInfo::uuid[DRM_UUID_LEN]
 ```
 
 **Description**
-UUID of a DRM scheme in PSSH data.
+UUID of a DRM solution in PSSH data.
 
 
 ### uuid [2/2]
@@ -2397,4 +2403,4 @@ UUID of a DRM scheme in PSSH data.
 uint8_t DRM_MediaKeySystemDescription::uuid[DRM_UUID_LEN]
 ```
 **Description**
-UUID of a DRM scheme supported by the device.
+UUID of a DRM solution supported by the device.

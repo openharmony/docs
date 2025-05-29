@@ -17,7 +17,7 @@
 
 - strides，1维张量，strides的长度等于n，strides[i]指定第i维上截取的步长，允许存在负值。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](../../../../readme/public_sys-resources/icon-note.gif) **说明：**
 > 输入的张量有如下情况：begin, end 和 strides 的shape必须相同。 begin,end 是从0开始进行索引。 strides 的元素必须非零。
 
 输出：

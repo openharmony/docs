@@ -18,9 +18,9 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 在打印日志前调用该接口，用于检查指定领域标识、日志标识和级别的日志是否可以打印。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -46,9 +46,9 @@ hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 
 日志级别。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 | 名称  |   值   | 说明                                                         |
 | ----- | ------ | ------------------------------------------------------------ |
@@ -66,9 +66,9 @@ debug(domain: number, tag: string, format: string, ...args: any[]) : void
 
 DEBUG级别的日志在正式发布版本中默认不被打印，只有在调试版本或打开调试开关的情况下才会打印。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -99,9 +99,9 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印INFO级别的日志。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -132,9 +132,9 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印WARN级别的日志。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -165,9 +165,9 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印ERROR级别的日志。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -198,9 +198,9 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印FATAL级别的日志。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -227,13 +227,13 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 ## hilog.setMinLogLevel<sup>15+</sup>
 
-setMinLogLevel(level: LogLevel): void;
+setMinLogLevel(level: LogLevel): void
 
 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.HiviewDFX.HiLog
+**系统能力**：SystemCapability.HiviewDFX.HiLog
 
 **参数：**
 
@@ -279,6 +279,7 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 | ------------ | ---- | ---- |
 |      d/i      | 支持打印number和bigint类型。 | 123 |
 |   s     | 支持打印string undefined bool 和null类型。 | "123" |
+| o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
 
 **示例：**
 ```js
@@ -289,6 +290,7 @@ let testObj: Record<string, string | number> = {
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
 hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}o", testObj);
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);
@@ -296,8 +298,9 @@ hilog.info(0x0001, "jsHilogTest", "print bigNum: %{public}d %{public}i", bigNum,
 hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 ```
 
-打印结果
+**打印结果：**
 ```
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print undefined: undefined

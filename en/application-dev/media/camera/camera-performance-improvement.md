@@ -1,6 +1,6 @@
-# Using Performance Improvement Features (for System Applications Only) (ArkTS)
+# Performance Optimization Practices (for System Applications Only) (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
@@ -69,7 +69,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 | API| Description|
 | ---- | ---- |
-| isQuickThumbnailSupported() : boolean | Checks whether the quick thumbnail feature is supported.|
+| isQuickThumbnailSupported() : boolean | Checks whether the quick thumbnail feature is supported. The value **true** means that the feature is supported, and **false** means the opposite.|
 | enableQuickThumbnail(enabled:bool): void | Enables or disables the quick thumbnail feature.|
 | on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void | Listens for camera thumbnails.|
 
@@ -121,13 +121,14 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfil
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  //do something
+  // Do something.
 }
 ```
 
 ## Prelaunch
 
 Generally, the startup of the camera application is triggered when the user touches the camera icon on the home screen. The home screen senses the touch event and instructs the application manager to start the camera application. This takes a relatively long time. After the camera application is started, the camera startup process starts. A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream, which is also time-consuming.
+
 
 ​The prelaunch feature triggers the action of starting the camera device before the camera application is started. In other words, when the user touches the camera icon on the home screen, the system starts the camera device. At this time, the camera application is not started yet. The figure below shows the camera application process before and after the prelaunch feature is introduced.
 
@@ -139,7 +140,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 | API| Description|
 | ---- | ---- |
-| isPrelaunchSupported(camera: CameraDevice) : boolean |  Checks whether the camera supports prelaunch.|
+| isPrelaunchSupported(camera: CameraDevice) : boolean |  Checks whether the camera supports prelaunch. The value **true** means that the camera supports prelaunch, and **false** means the opposite.|
 | setPrelaunchConfig(prelaunchConfig: PrelaunchConfig) : void | Sets the prelaunch parameters.|
 | prelaunch() : void | Prelaunches the camera. This API is called when a user touches the system camera icon to start the camera application.|
 

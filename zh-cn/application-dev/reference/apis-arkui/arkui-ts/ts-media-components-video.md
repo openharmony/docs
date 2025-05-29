@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
 >  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/js-apis-media.md#avplayer9)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
 
 ## 权限列表
@@ -41,12 +41,12 @@ Video(value: VideoOptions)
 
 | 名称              | 类型                                                     | 必填 | 说明                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
+| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number格式取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>string格式支持number格式取值的字符串形式："0.75"，"1.0"，"1.25"，"1.75"，"2.0"。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\\$rawfile引用图片。<br/>- 支持通过\\$r引用系统资源或者应用资源中的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| posterOptions<sup>16+</sup>  | [PosterOptions](#posteroptions16对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
@@ -80,7 +80,7 @@ muted(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | 是   | 是否静音。<br/>默认值：false |
+| value  | boolean | 是   | 是否静音。<br/>true：开启静音；false：关闭静音。<br/>默认值：false |
 
 ### autoPlay
 
@@ -96,7 +96,7 @@ autoPlay(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                             |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | 是   | 是否自动播放。<br/>默认值：false |
+| value  | boolean | 是   | 是否自动播放。<br/>true：开启自动播放；false：关闭自动播放。<br/>默认值：false |
 
 ### controls
 
@@ -112,13 +112,13 @@ controls(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                            |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>默认值：true |
+| value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>true：控制栏显示；false：控制栏不显示。<br/>默认值：true |
 
 ### objectFit
 
 objectFit(value: ImageFit)
 
-设置视频显示模式。
+设置视频填充模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +128,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                      | 必填 | 说明                             |
 | ------ | ----------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover。<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
 
 ### loop
 
@@ -144,13 +144,13 @@ loop(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 是否单个视频循环播放。<br/>默认值：false |
+| value  | boolean | 是   | 是否单个视频循环播放。<br/>true：开启循环播放；false：关闭循环播放。<br/>默认值：false |
 
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
 
-设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时[overlay](ts-universal-attributes-overlay.md)中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。
 
@@ -162,7 +162,7 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用AI分析功能 |
+| enable | boolean | 是 | 是否启用AI分析功能<br/>true：开启AI分析功能；false：关闭AI分析功能。<br/>默认值：false |
 
 > **说明：**
 >
@@ -173,7 +173,7 @@ enableAnalyzer(enable: boolean)
 
 analyzerConfig(config: ImageAnalyzerConfig)
 
-设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
+设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -197,7 +197,7 @@ enableShortcutKey(enabled: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                                   |
 | ------- | ------- | ---- | -------------------------------------- |
-| enabled | boolean | 是   | 是否启用快捷键响应。<br/>默认值：false |
+| enabled | boolean | 是   | 是否启用快捷键响应。<br/>true：开启快捷键响应；false：关闭快捷键响应。<br/>默认值：false |
 
 ## 事件
 
@@ -207,7 +207,7 @@ enableShortcutKey(enabled: boolean)
 
 onStart(event:&nbsp;VoidCallback)
 
-播放时触发该事件。
+播放时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -223,7 +223,7 @@ onStart(event:&nbsp;VoidCallback)
 
 onPause(event:&nbsp;VoidCallback)
 
-暂停时触发该事件。
+暂停时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +239,7 @@ onPause(event:&nbsp;VoidCallback)
 
 onFinish(event:&nbsp;VoidCallback)
 
-播放结束时触发该事件。
+播放结束时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -253,19 +253,32 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event: () => void)
+onError(event: VoidCallback | ErrorCallback)
 
-播放失败时触发该事件。
+播放失败时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+
+以下是错误信息的详细介绍。
+
+|错误码|错误信息|错误描述|
+|--|--|--|
+|103601 |Failed to create the media player.|播放器创建失败。|
+|103602 |Not a valid source.|视频资源设置无效。|
+
 ### onStop<sup>12+</sup>
 
 onStop(event: Callback&lt;void&gt;)
 
-播放停止时触发该事件(当stop()方法被调用后触发)。
+播放停止时触发该事件(当stop()方法被调用后触发)，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -275,7 +288,7 @@ onStop(event: Callback&lt;void&gt;)
 
 onPrepared(callback: Callback\<PreparedInfo>)
 
-视频准备完成时触发该事件。
+视频准备完成时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -285,13 +298,13 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | Callback\<[PreparedInfo](#preparedinfo16对象说明)> | 是   | 当前视频的时长。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo18对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
 onSeeking(callback: Callback\<PlaybackInfo>)
 
-操作进度条过程时上报时间信息。
+操作进度条过程时上报时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -301,13 +314,13 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
 onSeeked(callback: Callback\<PlaybackInfo>)
 
-操作进度条完成后，上报播放时间信息。
+操作进度条完成后，上报播放时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -317,13 +330,13 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
 onUpdate(callback: Callback\<PlaybackInfo>)
 
-播放进度变化时触发该事件。
+播放进度变化时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -333,13 +346,13 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
 onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
-在全屏播放与非全屏播放状态之间切换时触发该事件。
+在全屏播放与非全屏播放状态之间切换时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -349,59 +362,59 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | Callback\<[FullscreenInfo](#fullscreeninfo16对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo18对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
-### FullscreenInfo<sup>16+</sup>对象说明
+### FullscreenInfo<sup>18+</sup>对象说明
 
 用于描述当前视频是否进入全屏播放状态。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| fullscreen<sup>10+</sup>  | boolean | 否 | 否  | 当前视频是否进入全屏播放状态。<br/>true：进入全屏播放状态；false：未进入全屏播放状态。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
-### PreparedInfo<sup>16+</sup>对象说明
+### PreparedInfo<sup>18+</sup>对象说明
 
 用于描述当前视频的时长。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| duration<sup>10+</sup> | number  | 否 | 否  | 当前视频的时长。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-### PlaybackInfo<sup>16+</sup>对象说明
+### PlaybackInfo<sup>18+</sup>对象说明
 
 用于描述当前视频播放的进度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| time<sup>10+</sup> | number  | 否 | 否  | 当前视频播放的进度。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-### PosterOptions<sup>16+</sup>对象说明
+### PosterOptions<sup>18+</sup>对象说明
 
 用于描述当前视频是否配置首帧送显。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| showFirstFrame   | boolean  | 否   | 当前视频是否配置首帧送显。<br/>默认值：false      |
+| 名称       | 类型    | 只读 | 可选 | 说明                         |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
-一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
+一个VideoController对象可以控制一个或多个Video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +470,7 @@ stop()
 
 reset(): void
 
-video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+Video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -477,7 +490,7 @@ setCurrentTime(value: number)
 
 | 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
-| value | number | 是    | 视频播放进度位置，单位为s。 |
+| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
 
 ### requestFullscreen
 
@@ -493,7 +506,7 @@ requestFullscreen(value: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。 |
+| value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。<br/>true：请求全屏播放；false：不请求全屏播放。<br/>默认值：false |
 
 ### exitFullscreen
 
@@ -546,23 +559,23 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State isShortcutKeyEnabled: boolean = false
-  @State showFirstFrame: boolean = false
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State isShortcutKeyEnabled: boolean = false;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
+        previewUri: this.previewUri, //设置预览图
+        currentProgressRate: this.curRate, //设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame }
+        posterOptions: { showFirstFrame: this.showFirstFrame } //关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -677,14 +690,14 @@ interface FullscreenObject {
 @Entry
 @Component
 struct ImageAnalyzerExample {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
@@ -696,7 +709,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options
+        imageAIOptions: this.options //设置图像AI分析选项
       })
         .width('100%')
         .height(600)
@@ -765,3 +778,231 @@ struct Index {
   }
 }
 ```
+### 示例4（视频填充模式）
+
+使用objectFit属性设置视频填充模式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct video {
+  @State videoSrc: Resource = $rawfile('rabbit.mp4')
+  @State previewUri: Resource = $r('app.media.tree')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = true
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+
+  build() {
+    Column() {
+      Text("ImageFit.Contain").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Contain)//设置视频填充模式为ImageFit.Contain
+        .margin(5)
+
+      Text("ImageFit.Fill").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Fill)//设置视频填充模式为ImageFit.Fill
+        .margin(5)
+
+      Text("ImageFit.START").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.START)//设置视频填充模式为ImageFit.START
+        .margin(5)
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![VideoObjectFit](figures/video_objectfit.png)
+
+### 示例5（onError事件上报错误码）
+
+以下示例以传入不存在的视频资源路径为例，展示了如何使Video组件能够通过onError事件获取错误码。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct VideoErrorComponent {
+  @State videoSrc: string = "video.mp4" // 传入不存在的视频资源路径。
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+  @State showFirstFrame: boolean = false
+  controller: VideoController = new VideoController()
+  @State errorMessage: string = ""
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        currentProgressRate: this.curRate,
+        controller: this.controller,
+      })
+        .width(200)
+        .height(120)
+        .margin(5)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .onError((err) => {
+          // 通过onError事件获取错误码，code为错误码，message为错误信息。
+          console.error(`code is ${err.code}, message is ${err.message}`);
+          this.errorMessage = `code is ${err.code}, message is ${err.message}`;
+        })
+      // 传入不存在的视频资源路径，预期："code is 103602, message is Not a valid source"。
+      Text(this.errorMessage)
+    }
+    .width("100%")
+    .height("100%")
+    .backgroundColor('rgb(213,213,213)')
+  }
+}
+```
+
+![](figures/onError.png)
+
+### 示例6（使用attributeModifier动态设置Video组件的属性及方法）
+
+以下示例展示了如何使用attributeModifier动态设置Video组件的enableAnalyzer、analyzerConfig属性和onStart、onPause、onFinish、onError、onStop、onPrepared、onSeeking、onSeeked、onUpdate、onFullscreenChange方法。
+
+```ts
+// xxx.ets
+class MyVideoModifier implements AttributeModifier<VideoAttribute> {
+  applyNormalAttribute(instance: VideoAttribute): void {
+    // 设置开启组件AI分析功能，长按触发AI识别功能
+    instance.enableAnalyzer(true)
+    let config: ImageAnalyzerConfig = {
+      types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+    }
+    instance.analyzerConfig(config)
+    instance.onStart(() => {
+      console.info('video: onStart')
+    })
+    instance.onPause(() => {
+      console.info('video: onPause')
+    })
+    instance.onFinish(() => {
+      console.info('video: onFinish')
+    })
+    instance.onError((err) => {
+      console.error('video: onError is code = ' + err.code + ', message = ' + err.message)
+    })
+    instance.onStop(() => {
+      console.info('video: onStop')
+    })
+    instance.onPrepared((e?: DurationObject) => {
+      if (e != undefined) {
+        console.info('video: onPrepared is ' + e.duration)
+      }
+    })
+    instance.onSeeking((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onSeeking is ' + e.time)
+      }
+    })
+    instance.onSeeked((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onSeeked is ' + e.time)
+      }
+    })
+    instance.onUpdate((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onUpdate is ' + e.time)
+      }
+    })
+    instance.onFullscreenChange((e?: FullscreenObject) => {
+      if (e != undefined) {
+        console.info('video: onFullscreenChange is ' + e.fullscreen)
+      }
+    })
+  }
+}
+
+@Entry
+@Component
+struct VideoModifierDemo {
+  @State videoSrc: Resource = $rawfile('video.mp4');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = false;
+  controller: VideoController = new VideoController();
+  @State modifier: MyVideoModifier = new MyVideoModifier()
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        currentProgressRate: this.curRate, //设置播放速度
+        controller: this.controller
+      })
+        .width(300)
+        .height(180)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .attributeModifier(this.modifier)
+      Row() {
+        Button('start').onClick(() => {
+          this.controller.start() // 开始播放
+        }).margin(2)
+        Button('pause').onClick(() => {
+          this.controller.pause() // 暂停播放
+        }).margin(2)
+        Button('stop').onClick(() => {
+          this.controller.stop() // 结束播放
+        }).margin(2)
+        Button('reset').onClick(() => {
+          this.controller.reset() // 重置AVPlayer
+        }).margin(2)
+      }
+
+      Row() {
+        Button('Fullscreen').onClick(() => {
+          this.controller.requestFullscreen(true) // 全屏
+        }).margin(2)
+        Button('showControls').onClick(() => {
+          this.showControls = !this.showControls // 显示控制栏
+        }).margin(2)
+      }
+    }
+  }
+}
+
+interface DurationObject {
+  duration: number;
+}
+
+interface TimeObject {
+  time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
+}
+```
+
+![](figures/videoModifier.png)

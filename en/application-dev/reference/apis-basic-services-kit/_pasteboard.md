@@ -16,33 +16,33 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | Name| Description|
 | -------- | -------- |
 | [oh_pasteboard.h](oh__pasteboard_8h.md) | Provides data structure, enum types, and APIs for accessing the system pasteboard.|
-| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | Defines the error code information of the pasteboard.|
+| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | Declares the error code information of the pasteboard.|
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Enumerates the data change types of the pasteboard. |
+| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Defines an enum for the data change types of the pasteboard. |
 | typedef void(\* [Pasteboard_Notify](#pasteboard_notify)) (void \*context, [Pasteboard_NotifyType](#pasteboard_notifytype) type) | Defines a callback to be invoked when the pasteboard content changes. |
 | typedef void(\* [Pasteboard_Finalize](#pasteboard_finalize)) (void \*context) | Defines a callback to be invoked to release the context when the pasteboard observer object is destroyed. |
-| typedef struct [OH_PasteboardObserver](#oh_pasteboardobserver) [OH_PasteboardObserver](#oh_pasteboardobserver) | Defines the pasteboard observer. |
-| typedef struct [OH_Pasteboard](#oh_pasteboard) [OH_Pasteboard](#oh_pasteboard) | Define the pasteboard object to operate the system pasteboard. |
-| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Enumerates the error codes. |
-| typedef enum [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) | Defines an enum for options for file copy conflicts.|
+| typedef struct [OH_PasteboardObserver](#oh_pasteboardobserver) [OH_PasteboardObserver](#oh_pasteboardobserver) | Defines a struct for the pasteboard observer. |
+| typedef struct [OH_Pasteboard](#oh_pasteboard) [OH_Pasteboard](#oh_pasteboard) | Defines a struct for the pasteboard object to operate the system pasteboard. |
+| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Defines an enum for the error codes. |
+| typedef enum [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) | Defines an enum for the file conflict options.|
 | typedef enum [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) | Defines an enum for progress indicator options. You can use the default progress indicator as required.|
-| typedef struct [Pasteboard_ProgressInfo](#pasteboard_progressinfo) [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | Defines the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **PASTEBOARD_NONE**.|
-| typedef void (* [OH_Pasteboard_ProgressListener](#oh_pasteboard_progresslistener))([Pasteboard_ProgressInfo](#pasteboard_progressinfo)* progressInfo) | Defines a callback function for obtaining the progress information. If the default progress indicator is not used, you can set this parameter to obtain the pasting progress.|
+| typedef struct [Pasteboard_ProgressInfo](#pasteboard_progressinfo) [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | Defines a struct for the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **PASTEBOARD_NONE**.|
+| typedef void (* [OH_Pasteboard_ProgressListener](#oh_pasteboard_progresslistener))([Pasteboard_ProgressInfo](#pasteboard_progressinfo)* progressInfo) | Defines a callback for obtaining the progress information. If the default progress indicator is not used, you can set this parameter to obtain the pasting progress.|
 | typedef struct [Pasteboard_GetDataParams](#pasteboard_getdataparams) [Pasteboard_GetDataParams](#pasteboard_getdataparams) | Defines a struct for the pasteboard parameters required for displaying progress, including progress indicator options, destination path, and file conflict options.|
 
 
-### Enumerated value
+### Enums
 
 | Name| Description|
 | -------- | -------- |
 | [Pasteboard_NotifyType](#pasteboard_notifytype) { NOTIFY_LOCAL_DATA_CHANGE = 1, NOTIFY_REMOTE_DATA_CHANGE = 2 } | Enumerates the data change types of the pasteboard. |
 | [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003, ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007, ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008, ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009, ERR_PASTEBOARD_GET_DATA_FAILED = 12900010, ERR_BUSY_PROCESSING = 27787277, ERR_COPY_FORBIDDEN = 27787278<br>} | Enumerates the error codes. |
-| [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) { PASTEBOARD_OVERWRITE = 0, PASTEBOARD_SKIP = 1} | Enumerates options for a file copy conflict.|
+| [Pasteboard_FileConflictOptions](#pasteboard_fileconflictoptions) { PASTEBOARD_OVERWRITE = 0, PASTEBOARD_SKIP = 1} | Enumerates the file conflict options.|
 | [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) { PASTEBOARD_NONE = 0, PASTEBOARD_DEFAULT = 1 } | Enumerates progress indicator types.|
 
 
@@ -87,7 +87,7 @@ typedef struct OH_Pasteboard OH_Pasteboard
 ```
 **Description**
 
-Define the pasteboard object to operate the system pasteboard.
+Defines a struct for the pasteboard object to operate the system pasteboard.
 
 **Since**: 13
 
@@ -99,7 +99,7 @@ typedef struct OH_PasteboardObserver OH_PasteboardObserver
 ```
 **Description**
 
-Defines the pasteboard observer.
+Defines a struct for the pasteboard observer.
 
 **Since**: 13
 
@@ -111,7 +111,7 @@ typedef enum PASTEBOARD_ErrCode PASTEBOARD_ErrCode
 ```
 **Description**
 
-Enumerates the error codes.
+Defines an enum for the error codes.
 
 **Since**: 13
 
@@ -160,7 +160,7 @@ typedef enum Pasteboard_NotifyType Pasteboard_NotifyType
 ```
 **Description**
 
-Enumerates the data change types of the pasteboard.
+Defines an enum for the data change types of the pasteboard.
 
 **Since**: 13
 
@@ -172,7 +172,7 @@ typedef enum Pasteboard_FileConflictOptions Pasteboard_FileConflictOptions
 
 **Description**
 
-File conflict options for a copy-and-paste task. The default value is **PASTEBOARD_OVERWRITE**.
+Defines an enum for the file conflict options. The default value is **PASTEBOARD_OVERWRITE**.
 
 **Since**: 15
 
@@ -184,7 +184,7 @@ typedef enum Pasteboard_ProgressIndicator Pasteboard_ProgressIndicator
 
 **Description**
 
-Defines options for the progress indicator. You can use the default progress indicator as required.
+Defines an enum for progress indicator options. You can use the default progress indicator as required.
 
 **Since**: 15
 
@@ -196,7 +196,7 @@ typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo
 
 **Description**
 
-Defines the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.
+Defines a struct for the progress information. This information is reported only when [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) is set to **NONE**.
 
 **Since**: 15
 
@@ -208,7 +208,7 @@ typedef void (*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progress
 
 **Description**
 
-Notifies the application of the copy and paste task progress when the default progress indicator is not used.
+Defines a callback to be invoked to obtain the progress information when the default progress indicator is not used.
 
 **Since**: 15
 
@@ -283,7 +283,7 @@ enum Pasteboard_FileConflictOptions
 
 **Description**
 
-Defines options for file copy conflicts.
+Enumerates the file conflict options.
 
 **Since**: 15
 
@@ -300,7 +300,7 @@ enum Pasteboard_ProgressIndicator
 
 **Description**
 
-Defines options for the progress indicator. You can use the default progress indicator as required.
+Enumerates the progress indicator options. You can use the default progress indicator as required.
 
 **Since**: 15
 
@@ -331,7 +331,7 @@ Clears data from the pasteboard.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br> Returns **ERR_OK** if the operation is successful.<br> Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -402,13 +402,13 @@ Obtains data from the pasteboard.
 
 **Returns**
 
-Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful; returns <b>nullptr</b> otherwise.
+Returns the pointer to the [OH_UdmfData](../apis-arkdata/_u_d_m_f.md) instance obtained if the operation is successful; returns a null pointer otherwise.
 
 **See**
 
 [OH_Pasteboard](#oh_pasteboard)
 
-OH_UdmfData
+[OH_UdmfData](../apis-arkdata/_u_d_m_f.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -434,7 +434,7 @@ Obtains the pasteboard data source.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br> Returns **ERR_OK** if the operation is successful.<br> Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -538,7 +538,7 @@ Writes the unified data object to the pasteboard.
 | Name| Description|
 | -------- | -------- |
 | pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance. |
-| data | Pointer to an **OH_UdmfData** instance. |
+| data | Pointer to the [OH_UdmfData](../apis-arkdata/_u_d_m_f.md) instance. |
 
 **Returns**
 
@@ -548,7 +548,7 @@ Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode
 
 [OH_Pasteboard](#oh_pasteboard)
 
-OH_UdmfData
+[OH_UdmfData](../apis-arkdata/_u_d_m_f.md)
 
 [PASTEBOARD_ErrCode](#pasteboard_errcode)
 
@@ -660,7 +660,7 @@ Destroys an [OH_PasteboardObserver](_pasteboard.md#oh_pasteboardobserver) instan
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br> Returns **ERR_OK** if the operation is successful.<br> Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -807,7 +807,7 @@ void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, co
 
 **Description**
 
-Sets the destination path in [Pasteboard_GetDataParams](#pasteboard_getdataparams) for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.
+ Sets the destination path in [Pasteboard_GetDataParams](#pasteboard_getdataparams) for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.
 
 **Since**: 15
 
@@ -947,7 +947,7 @@ Obtains the pasteboard content and progress. Folders cannot be copied.
 
 **Returns**
 
-Returns a pointer to the **OH_UdmfData** instance obtained if the operation is successful; returns <b>nullptr</b> otherwise.
+Returns the pointer to the [OH_UdmfData](../apis-arkdata/_u_d_m_f.md) instance obtained if the operation is successful; returns a null pointer otherwise.
 
 **See**
 
@@ -966,7 +966,7 @@ Even though the pasteboard data expires, or the data becomes empty because of th
 
 When the system is restarted, or the pasteboard service is restarted due to an exception, the number of pasteboard data changes counts from 0. In addition, copying the same data repeatedly is considered to change the data for multiple times. Therefore, each time the data is copied, the number of data changes increases.
 
-**Since**: 16
+**Since**: 18
 
 **Parameters**
 

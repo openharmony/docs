@@ -7,6 +7,8 @@
 
 **库：** libimage_packer.so
 
+**引用文件**：&lt;multimedia/image_framework/image/image_packer_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **起始版本：** 12

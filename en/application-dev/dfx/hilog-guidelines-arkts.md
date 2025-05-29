@@ -115,7 +115,7 @@ Add a click event in a button, which prints a log when the button is clicked.
    ```txt
    '%{public}s World %{public}d'
    ```
-   *%{public}s* indicates a string, and *%{public}d* indicates an integer. Both of them are displayed in plaintext. 
+   *%{public}s* indicates a string, and *%{public}d* indicates an integer. Both of them are displayed in plaintext.
 
 4. Run the project on a real device, and click the **Next** button on the app/service.
 

@@ -10,30 +10,28 @@ The **Observer** module provides APIs for listening for UI component behavior ch
 ## Modules to Import
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 ```
 
 ## NavDestinationState
 
 Describes the state of the **NavDestination** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Value | Description                    |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | The **NavDestination** component is displayed.|
-| ON_HIDDEN | 1   | The **NavDestination** component is hidden.|
-| ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is attached to the component tree.|
-| ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is detached from the component tree.|
-| ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** is about to be displayed.|
-| ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden.|
-| ON_WILL_APPEAR<sup>12+</sup>| 6   | The **NavDestination** component is about to be mounted to the component tree.|
-| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | The **NavDestination** component is about to be unmounted from the component tree.|
-| ON_ACTIVE<sup>16+</sup> | 8 | The **NavDestination** component is active.|
-| ON_INACTIVE<sup>16+</sup> | 9 | The **NavDestination** component is inactive.|
-| ON_BACKPRESS<sup>12+</sup> | 100   | The back button is pressed on the **NavDestination** component.|
+| ON_SHOWN  | 0   | The **NavDestination** component is displayed. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_HIDDEN | 1   | The **NavDestination** component is hidden. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is attached to the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is detached from the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** is about to be displayed. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_WILL_APPEAR<sup>12+</sup>| 6   | The **NavDestination** component is about to be mounted to the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | The **NavDestination** component is about to be unmounted from the component tree. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| ON_ACTIVE<sup>18+</sup> | 8 | The **NavDestination** component is active. **Atomic service API**: This API can be used in atomic services since API version 18.|
+| ON_INACTIVE<sup>18+</sup> | 9 | The **NavDestination** component is inactive. **Atomic service API**: This API can be used in atomic services since API version 18.|
+| ON_BACKPRESS<sup>12+</sup> | 100   | The back button is pressed on the **NavDestination** component. **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ScrollEventType<sup>12+</sup>
 
@@ -81,20 +79,18 @@ Enumerates the states of the **NavDestination** component.
 
 Provides information about the **NavDestination** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.|
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **NavDestination** component.|
-| state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **NavDestination** component.|
-| index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.                  |
-| param<sup>12+</sup>        | Object        | No  | Parameters of the **NavDestination** component.                  |
-| navDestinationId<sup>12+</sup>        | string        | Yes  | Unique ID of the **NavDestination** component.                  |
-| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode11)        | No  | Mode of the **NavDestination** component.                  |
-| uniqueId<sup>15+</sup>        | number        | No  | Unique ID of the **NavDestination** component.                  |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
+| param<sup>12+</sup>        | Object        | No  | Parameters of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.              |
+| navDestinationId<sup>12+</sup>        | string        | Yes  | Unique ID of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.           |
+| mode<sup>15+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode11)        | No  | Mode of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 15.              |
+| uniqueId<sup>15+</sup>        | number        | No  | Unique ID of the **NavDestination** component.<br>**Atomic service API**: This API can be used in atomic services since API version 15.            |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -164,7 +160,7 @@ Provides the information contained in the callback when the screen pixel density
 | Name   | Type                                     | Mandatory| Description                                  |
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
 | context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context corresponding to the page when the screen pixel density changes.|
-| density | number                                    | Yes  | Screen pixel density after the change.                |
+| density | number                                    | Yes  | Screen pixel density after the change.<br>Value range: [0, +∞)                |
 
 ## NavDestinationSwitchInfo<sup>12+</sup>
 
@@ -206,11 +202,11 @@ Provides the **TabContent** switching information.
 | tabContentId | string                                             | Yes  | ID of the **TabContent** component.                         |
 | tabContentUniqueId | number                                       | Yes  | Unique ID of the **TabContent** component.                   |
 | state        | [TabContentState](#tabcontentstate12)              | Yes  | State of the **TabContent** component.                       |
-| index        | number                                             | Yes  | Index of the **TabContent** component.                            |
+| index        | number                                             | Yes  | Index of the **TabContent** component. The index is zero-based.       |
 | id           | string                                             | Yes  | ID of the **Tabs** component.                               |
 | uniqueId     | number                                             | Yes  | Unique ID of the **Tabs** component.                         |
 
-## observer.on('navDestinationUpdate')
+## uiObserver.on('navDestinationUpdate')
 
 on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 
@@ -231,9 +227,9 @@ Subscribes to status changes of the **NavDestination** component.
 
 ```ts
 // Index.ets
-// Example usage of observer.on('navDestinationUpdate', callback)
-// observer.off('navDestinationUpdate', callback)
-import { uiObserver as observer } from '@kit.ArkUI';
+// Example usage of uiObserver.on('navDestinationUpdate', callback)
+// uiObserver.off('navDestinationUpdate', callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -255,13 +251,13 @@ struct Index {
   }
 
   aboutToAppear() {
-    observer.on('navDestinationUpdate', (info) => {
+    uiObserver.on('navDestinationUpdate', (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
-    observer.off('navDestinationUpdate');
+    uiObserver.off('navDestinationUpdate');
   }
 
   build() {
@@ -280,7 +276,7 @@ struct Index {
 }
 ```
 
-## observer.off('navDestinationUpdate')
+## uiObserver.off('navDestinationUpdate')
 
 off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
 
@@ -299,9 +295,9 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **Example**
 
-See the example for [observer.on('navDestinationUpdate')](#observeronnavdestinationupdate).
+See the example for [uiObserver.on('navDestinationUpdate')](#uiobserveronnavdestinationupdate).
 
-## observer.on('navDestinationUpdate')
+## uiObserver.on('navDestinationUpdate')
 
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo\>): void
 
@@ -323,9 +319,9 @@ Subscribes to status changes of the **NavDestination** component.
 
 ```ts
 // Index.ets
-// Example usage of observer.on('navDestinationUpdate', navigationId, callback)
-// observer.off('navDestinationUpdate', navigationId, callback)
-import { uiObserver as observer } from '@kit.ArkUI';
+// Example usage of uiObserver.on('navDestinationUpdate', navigationId, callback)
+// uiObserver.off('navDestinationUpdate', navigationId, callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -347,13 +343,13 @@ struct Index {
   }
 
   aboutToAppear() {
-    observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    uiObserver.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
       console.info('NavDestination state update', JSON.stringify(info));
     });
   }
 
   aboutToDisappear() {
-    observer.off('navDestinationUpdate', { navigationId: "testId" });
+    uiObserver.off('navDestinationUpdate', { navigationId: "testId" });
   }
 
   build() {
@@ -373,7 +369,7 @@ struct Index {
 }
 ```
 
-## observer.off('navDestinationUpdate')
+## uiObserver.off('navDestinationUpdate')
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo\>): void
 
@@ -393,9 +389,9 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **Example**
 
-See the example for [observer.on('navDestinationUpdate')](#observeronnavdestinationupdate-1).
+See the example for [uiObserver.on('navDestinationUpdate')](#uiobserveronnavdestinationupdate-1).
 
-## observer.on('scrollEvent')<sup>12+</sup>
+## uiObserver.on('scrollEvent')<sup>12+</sup>
 
 on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
@@ -414,9 +410,9 @@ Subscribes to the start and end of a scroll event.
 
 **Example**
 
-See the example of [offscrollevent](#observeroffscrollevent12-1).
+See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
-## observer.off('scrollEvent')<sup>12+</sup>
+## uiObserver.off('scrollEvent')<sup>12+</sup>
 
 off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
@@ -435,9 +431,9 @@ Unsubscribes from the start and end of a scroll event.
 
 **Example**
 
-See the example of [offscrollevent](#observeroffscrollevent12-1).
+See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
-## observer.on('scrollEvent')<sup>12+</sup>
+## uiObserver.on('scrollEvent')<sup>12+</sup>
 
 on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEventInfo\>): void
 
@@ -457,9 +453,9 @@ Subscribes to the start and end of a scroll event.
 
 **Example**
 
-See the example of [offscrollevent](#observeroffscrollevent12-1).
+See the example for [offscrollevent](#uiobserveroffscrollevent12-1).
 
-## observer.off('scrollEvent')<sup>12+</sup>
+## uiObserver.off('scrollEvent')<sup>12+</sup>
 
 off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEventInfo\>): void
 
@@ -480,13 +476,13 @@ Unsubscribes from the start and end of a scroll event.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: observer.ObserverOptions = { id: "testId" };
+  options: uiObserver.ObserverOptions = { id: "testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -514,26 +510,26 @@ struct Index {
       Row() {
         Button('UIObserver on')
           .onClick(() => {
-            observer.on('scrollEvent', (info) => {
+            uiObserver.on('scrollEvent', (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
-            observer.off('scrollEvent');
+            uiObserver.off('scrollEvent');
           })
       }
 
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            observer.on('scrollEvent', this.options, (info) => {
+            uiObserver.on('scrollEvent', this.options, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            observer.off('scrollEvent', this.options);
+            uiObserver.off('scrollEvent', this.options);
           })
       }
     }
@@ -542,7 +538,7 @@ struct Index {
 }
 ```
 
-## observer.on('routerPageUpdate')<sup>11+</sup>
+## uiObserver.on('routerPageUpdate')<sup>11+</sup>
 
 on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<RouterPageInfo\>): void
 
@@ -565,7 +561,7 @@ Subscribes to state changes of the page during routing.
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext, window, uiObserver as observer } from '@kit.ArkUI';
+import { UIContext, window, uiObserver } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -573,7 +569,7 @@ export default class EntryAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // Subscribe to the target events within the scope of the page under the ability context.
-    observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
+    uiObserver.on('routerPageUpdate', this.context, (info: uiObserver.RouterPageInfo) => {
       console.info('[uiObserver][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
@@ -585,7 +581,7 @@ export default class EntryAbility extends UIAbility {
         // Obtain a UIContext instance.
         this.uiContext = windowInfo.getUIContext();
         // Subscribe to the target events within the scope of the page under the UI context.
-        observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
+        uiObserver.on('routerPageUpdate', this.uiContext, (info: uiObserver.RouterPageInfo)=>{
           console.info('[uiObserver][uiContext] got info: ' + JSON.stringify(info))
         })
       })
@@ -596,7 +592,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## observer.off('routerPageUpdate')<sup>11+</sup>
+## uiObserver.off('routerPageUpdate')<sup>11+</sup>
 
 off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<RouterPageInfo\>): void
 
@@ -619,21 +615,21 @@ Unsubscribes to state changes of the page during routing.
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { uiObserver as observer, UIContext } from '@kit.ArkUI';
+import { uiObserver, UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-  // Before actual use, uiContext must be assigned a value. For details, see the example of observer.on('routerPageUpdate').
+  // Before actual use, uiContext must be assigned a value. For details, see the example for uiObserver.on('routerPageUpdate').
   private uiContext: UIContext | null = null;
 
   onDestroy(): void {
     // Unregister all callbacks for the routerPageUpdate event under the current ability context.
-    observer.off('routerPageUpdate', this.context)
+    uiObserver.off('routerPageUpdate', this.context)
   }
 
   onWindowStageDestroy(): void {
     // Unregister all callbacks for the routerPageUpdate event under the UI context.
     if (this.uiContext) {
-      observer.off('routerPageUpdate', this.uiContext);
+      uiObserver.off('routerPageUpdate', this.uiContext);
     }
   }
 
@@ -641,7 +637,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## observer.on('densityUpdate')<sup>12+</sup>
+## uiObserver.on('densityUpdate')<sup>12+</sup>
 
 on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>): void
 
@@ -662,7 +658,7 @@ Subscribes to the pixel density changes of the screen.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -670,7 +666,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = 'Listener not registered'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = 'DPI after change:' + this.density.toString();
   }
@@ -680,17 +676,17 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button('Subscribe to Screen Pixel Density Changes')
+      Button ('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
-          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+          uiObserver.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
         })
     }
   }
 }
 ```
 
-## observer.off('densityUpdate')<sup>12+</sup>
+## uiObserver.off('densityUpdate')<sup>12+</sup>
 
 off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\>): void
 
@@ -709,7 +705,7 @@ Unsubscribes from the pixel density changes of the screen.
 | callback | Callback\<[DensityInfo](#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context.|
 
 ```ts
-import { uiObserver as observer, UIContext } from '@kit.ArkUI';
+import { uiObserver, UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -717,7 +713,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = 'Listener not registered'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = 'DPI after change:' + this.density.toString();
   }
@@ -727,23 +723,23 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button('Subscribe to Screen Pixel Density Changes')
+      Button ('Subscribe to Screen Pixel Density Changes')
         .margin({ bottom: 10 })
         .onClick(() => {
           this.message = 'Listener registered'
-          observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+          uiObserver.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
         })
-      Button('Unsubscribe from Screen Pixel Density Changes')
+      Button ('Unsubscribe from Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener not registered'
-          observer.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
+          uiObserver.off('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
         })
     }
   }
 }
 ```
 
-## observer.on('willDraw')<sup>12+</sup>
+## uiObserver.on('willDraw')<sup>12+</sup>
 
 on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
 
@@ -764,7 +760,7 @@ Subscribes to the dispatch of drawing instructions in each frame.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -776,14 +772,14 @@ struct Index {
     Column() {
       Button('Subscribe to Drawing Instruction Dispatch')
         .onClick(() => {
-          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+          uiObserver.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
     }
   }
 }
 ```
 
-## observer.off('willDraw')<sup>12+</sup>
+## uiObserver.off('willDraw')<sup>12+</sup>
 
 off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
 
@@ -802,7 +798,7 @@ Unsubscribes from the dispatch of drawing instructions in each frame.
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -816,18 +812,18 @@ struct Index {
       Button('Subscribe to Drawing Instruction Dispatch')
         .margin({ bottom: 10 })
         .onClick(() => {
-          observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
+          uiObserver.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
       Button('Unsubscribe from Drawing Instruction Dispatch')
         .onClick(() => {
-          observer.off('willDraw', this.getUIContext(), this.willDrawCallback);
+          uiObserver.off('willDraw', this.getUIContext(), this.willDrawCallback);
         })
     }
   }
 }
 ```
 
-## observer.on('didLayout')<sup>12+</sup>
+## uiObserver.on('didLayout')<sup>12+</sup>
 
 on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 
@@ -848,7 +844,7 @@ Subscribes to layout completion status in each frame.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -860,14 +856,14 @@ struct Index {
     Column() {
       Button('Subscribe to Layout Completion')
         .onClick(() => {
-          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+          uiObserver.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
     }
   }
 }
 ```
 
-## observer.off('didLayout')<sup>12+</sup>
+## uiObserver.off('didLayout')<sup>12+</sup>
 
 off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
 
@@ -886,7 +882,7 @@ Unsubscribes from layout completion status in each frame.
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -900,18 +896,18 @@ struct Index {
       Button('Subscribe to Layout Completion')
         .margin({ bottom: 10 })
         .onClick(() => {
-          observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
+          uiObserver.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
-      Button('Unsubscribe from Layout Completion')
+      Button ('Unsubscribe from Layout Completion')
         .onClick(() => {
-          observer.off('didLayout', this.getUIContext(), this.didLayoutCallback);
+          uiObserver.off('didLayout', this.getUIContext(), this.didLayoutCallback);
         })
     }
   }
 }
 ```
 
-## observer.on('navDestinationSwitch')<sup>12+</sup>
+## uiObserver.on('navDestinationSwitch')<sup>12+</sup>
 
 on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback: Callback\<NavDestinationSwitchInfo\>): void
 
@@ -933,25 +929,25 @@ Subscribes to the page switching event of the **Navigation** component.
 
 ```ts
 // EntryAbility.ets
-// observer.on('navDestinationSwitch', UIAbilityContext, callback) demo
-// observer.off('navDestinationSwitch', UIAbilityContext, callback)
+// Example usage of uiObserver.on('navDestinationSwitch', UIAbilityContext, callback)
+// uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { uiObserver as observer, window } from '@kit.ArkUI';
+import { uiObserver, window } from '@kit.ArkUI';
 import { hilog } from "@kit.PerformanceAnalysisKit"
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    observer.on('navDestinationSwitch', this.context, callBackFunc);
+    uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    observer.off('navDestinationSwitch', this.context, callBackFunc);
+    uiObserver.off('navDestinationSwitch', this.context, callBackFunc);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -986,9 +982,9 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-// observer.on('navDestinationSwitch', UIContext, callback) demo
-// observer.off('navDestinationSwitch', UIContext, callback)
-import { uiObserver as observer } from '@kit.ArkUI';
+// Example usage of uiObserver.on('navDestinationSwitch', UIContext, callback)
+// uiObserver.off('navDestinationSwitch', UIContext, callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -999,7 +995,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -1014,11 +1010,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    observer.on('navDestinationSwitch', this.getUIContext(), callBackFunc)
+    uiObserver.on('navDestinationSwitch', this.getUIContext(), callBackFunc)
   }
 
   aboutToDisappear() {
-    observer.off('navDestinationSwitch', this.getUIContext(), callBackFunc)
+    uiObserver.off('navDestinationSwitch', this.getUIContext(), callBackFunc)
   }
 
   build() {
@@ -1037,7 +1033,7 @@ struct Index {
 }
 ```
 
-## observer.off('navDestinationSwitch')<sup>12+</sup>
+## uiObserver.off('navDestinationSwitch')<sup>12+</sup>
 
 off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback?: Callback\<NavDestinationSwitchInfo\>): void
 
@@ -1057,9 +1053,9 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **Example**
 
-See the example of [observer.on('navDestinationSwitch')](#observeronnavdestinationswitch12).
+See the example for [uiObserver.on('navDestinationSwitch')](#uiobserveronnavdestinationswitch12).
 
-## observer.on('navDestinationSwitch')<sup>12+</sup>
+## uiObserver.on('navDestinationSwitch')<sup>12+</sup>
 
 on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observerOptions: NavDestinationSwitchObserverOptions, callback: Callback\<NavDestinationSwitchInfo\>): void
 
@@ -1082,27 +1078,27 @@ Subscribes to the page switching event of the **Navigation** component.
 
 ```ts
 // EntryAbility.ets
-// observer.on('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback) demo
-// observer.off('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
+// Example usage of uiObserver.on('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
+// uiObserver.off('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { uiObserver as observer, window } from '@kit.ArkUI';
+import { uiObserver, window } from '@kit.ArkUI';
 import { hilog } from "@kit.PerformanceAnalysisKit"
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    observer.on('navDestinationSwitch', this.context, {
+    uiObserver.on('navDestinationSwitch', this.context, {
       navigationId: "myNavId"
     }, callBackFunc);
   }
 
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
-    observer.off('navDestinationSwitch', this.context, {
+    uiObserver.off('navDestinationSwitch', this.context, {
       navigationId: "myNavId"
     }, callBackFunc);
   }
@@ -1139,9 +1135,9 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-// observer.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback) demo
-// observer.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
-import { uiObserver as observer } from '@kit.ArkUI';
+// Example usage of uiObserver.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
+// uiObserver.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -1152,7 +1148,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -1167,11 +1163,11 @@ struct Index {
   }
 
   aboutToAppear() {
-    observer.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    uiObserver.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
   }
 
   aboutToDisappear() {
-    observer.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+    uiObserver.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
   }
 
   build() {
@@ -1191,7 +1187,7 @@ struct Index {
 }
 ```
 
-## observer.off('navDestinationSwitch')<sup>12+</sup>
+## uiObserver.off('navDestinationSwitch')<sup>12+</sup>
 
 off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observerOptions: NavDestinationSwitchObserverOptions, callback?: Callback\<NavDestinationSwitchInfo\>): void
 
@@ -1212,9 +1208,9 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **Example**
 
-See the example of [observer.on('navDestinationSwitch')](#observeronnavdestinationswitch12-1).
+See the example for [uiObserver.on('navDestinationSwitch')](#uiobserveronnavdestinationswitch12-1).
 
-## observer.on('tabContentUpdate')<sup>12+</sup>
+## uiObserver.on('tabContentUpdate')<sup>12+</sup>
 
 on(type: 'tabContentUpdate', callback: Callback\<TabContentInfo\>): void
 
@@ -1234,9 +1230,9 @@ Subscribes to the **TabContent** switching event.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
-function callbackFunc(info: observer.TabContentInfo) {
+function callbackFunc(info: uiObserver.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
 
@@ -1245,11 +1241,11 @@ function callbackFunc(info: observer.TabContentInfo) {
 struct TabsExample {
 
   aboutToAppear(): void {
-    observer.on('tabContentUpdate', callbackFunc);
+    uiObserver.on('tabContentUpdate', callbackFunc);
   }
 
   aboutToDisappear(): void {
-    observer.off('tabContentUpdate', callbackFunc);
+    uiObserver.off('tabContentUpdate', callbackFunc);
   }
 
   build() {
@@ -1280,7 +1276,7 @@ struct TabsExample {
 }
 ```
 
-## observer.off('tabContentUpdate')<sup>12+</sup>
+## uiObserver.off('tabContentUpdate')<sup>12+</sup>
 
 off(type: 'tabContentUpdate', callback?: Callback\<TabContentInfo\>): void
 
@@ -1299,9 +1295,9 @@ Unsubscribes from the **TabContent** switching event.
 
 **Example**
 
-See the example of [observer.on('tabContentUpdate')](#observerontabcontentupdate12).
+See the example for [uiObserver.on('tabContentUpdate')](#uiobserverontabcontentupdate12).
 
-## observer.on('tabContentUpdate')<sup>12+</sup>
+## uiObserver.on('tabContentUpdate')<sup>12+</sup>
 
 on(type: 'tabContentUpdate', options: ObserverOptions, callback: Callback\<TabContentInfo\>): void
 
@@ -1322,9 +1318,9 @@ Subscribes to the **TabContent** switching event.
 **Example**
 
 ```ts
-import { uiObserver as observer } from '@kit.ArkUI';
+import { uiObserver } from '@kit.ArkUI';
 
-function callbackFunc(info: observer.TabContentInfo) {
+function callbackFunc(info: uiObserver.TabContentInfo) {
   console.info('tabContentUpdate', JSON.stringify(info));
 }
 
@@ -1333,11 +1329,11 @@ function callbackFunc(info: observer.TabContentInfo) {
 struct TabsExample {
 
   aboutToAppear(): void {
-    observer.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+    uiObserver.on('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
   aboutToDisappear(): void {
-    observer.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
+    uiObserver.off('tabContentUpdate', { id: 'tabsId' }, callbackFunc);
   }
 
   build() {
@@ -1368,7 +1364,7 @@ struct TabsExample {
 }
 ```
 
-## observer.off('tabContentUpdate')<sup>12+</sup>
+## uiObserver.off('tabContentUpdate')<sup>12+</sup>
 
 off(type: 'tabContentUpdate', options: ObserverOptions, callback?: Callback\<TabContentInfo\>): void
 
@@ -1388,4 +1384,4 @@ Unsubscribes from the **TabContent** switching event.
 
 **Example**
 
-See the example of [observer.on('tabContentUpdate')](#observerontabcontentupdate12-1).
+See the example for [uiObserver.on('tabContentUpdate')](#uiobserverontabcontentupdate12-1).

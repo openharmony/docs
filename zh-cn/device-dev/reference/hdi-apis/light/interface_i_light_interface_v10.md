@@ -92,7 +92,7 @@ ILightInterface::TurnOnLight ([in] int lightId, [in] struct HdfLightEffect effec
 | 名称 | 描述 | 
 | -------- | -------- |
 | lightId | 表示灯类型ID。详见[HdfLightId](_light.md#hdflightid)。  | 
-| effect | 表示指向灯效果的指针，如果lightbrightness字段为0时， 灯的亮度根据HCS配置的默认亮度进行设置。详见[HdfLightEffect](_hdf_light_effect_v10.md)。 | 
+| effect | 表示指向灯效果的指针，如果lightbrightness字段为0时，灯的亮度根据HCS配置的默认亮度进行设置。详见[HdfLightEffect](_hdf_light_effect_v10.md)。 | 
 
 **返回：**
 
@@ -121,7 +121,7 @@ ILightInterface::TurnOnMultiLights ([in] int lightId, [in] struct HdfLightColor[
 | 名称 | 描述 | 
 | -------- | -------- |
 | lightId | 表示灯类型ID，详见[HdfLightId](_light.md#hdflightid)。  | 
-| colors | 多个子灯对应的颜色和亮度, 详见[HdfLightColor](_hdf_light_color_v10.md)。 | 
+| colors | 多个子灯对应的颜色和亮度，详见[HdfLightColor](_hdf_light_color_v10.md)。 | 
 
 **返回：**
 

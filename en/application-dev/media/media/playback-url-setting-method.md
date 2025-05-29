@@ -26,7 +26,7 @@ This guide describes the following scenarios:
 
 **Case 3: setting the HTTP request header information for playback**
 
-If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#createmediasourcewithurl12).
+If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/js-apis-media.md#mediacreatemediasourcewithurl12).
 ```ts
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
@@ -43,11 +43,15 @@ If the server needs to verify the HTTP request header, you can set the HTTP requ
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the local raw file folder, the application can obtain the file descriptor through [resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9), combine the file descriptor into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12).
 ```ts
   import { resourceManager } from '@kit.LocalizationKit';
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   // Obtain the context instance.
-  let context = getContext(this) as common.UIAbilityContext;
-  let mgr = context.resourceManager;
+  let mgr = this.context.resourceManager;
   // Set the local M3U8 file name.
   let m3u8FileName : string = "xxx.m3u8";
   // Obtain the file descriptor based on the local M3U8 file name.
@@ -79,12 +83,16 @@ If an application needs to play an online streaming media asset by parsing an M3
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the application sandbox, the application can obtain the file handle through [fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync), combine the file handle into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/js-apis-media.md#setmimetype12).
 ```ts
   import { fileIo as fs } from '@kit.CoreFileKit';
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
 
   // Obtain the context instance.
-  let context = getContext(this) as common.UIAbilityContext;
-  let mgr = context.resourceManager;
+  let mgr = this.context.resourceManager;
   // Set the local M3U8 file name.
   let m3u8FileName : string = "xxx.m3u8";
   // Set the sandbox path of the local M3U8 file.
@@ -114,12 +122,16 @@ If an application needs to play an online streaming media asset by parsing an M3
 ## Setting URLs for Local Raw File Playback
 **Case 1: application sandbox file playback**
 ```ts
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   let fdPath = 'fd://';
   // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-  let context = getContext(this) as common.UIAbilityContext;
-  let pathDir = context.filesDir;
+  let pathDir = this.context.filesDir;
   let path = '/data/storage/el1/bundle/01.mp3';
   // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
   let file = await fs.open(path);
@@ -128,13 +140,21 @@ If an application needs to play an online streaming media asset by parsing an M3
 ```
 
 **Case 2: local file playback**
+
+> **NOTE**
+> When the AVPlayer is used to play local resources, it exclusively occupies the file descriptor.
+
 ```ts
+  import { common } from '@kit.AbilityKit';
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Create an AVPlayer instance.
   let avPlayer: media.AVPlayer = await media.createAVPlayer();
   // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
   // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
-  let context = getContext(this) as common.UIAbilityContext;
-  let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
+  let fileDescriptor = await this.context.resourceManager.getRawFd('01.mp3');
   let avFileDescriptor: media.AVFileDescriptor =
     { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
   // Assign a value to fdSrc to trigger the reporting of the initialized state.

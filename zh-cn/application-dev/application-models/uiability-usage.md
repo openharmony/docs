@@ -55,7 +55,7 @@ export default class EntryAbility extends UIAbility {
   @Entry
   @Component
   struct Page_EventHub {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startAbilityTest(): void {
       let want: Want = {
@@ -81,7 +81,7 @@ export default class EntryAbility extends UIAbility {
   @Component
   struct Page_UIAbilityComponentsBasicUsage {
     startAbilityTest(): void {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       let want: Want = {
         // Want参数信息
       };
@@ -110,25 +110,111 @@ export default class EntryAbility extends UIAbility {
         //...
         Button('FuncAbilityB')
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             try {
               context.terminateSelf((err: BusinessError) => {
                 if (err.code) {
                   // 处理业务逻辑错误
-                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
                   return;
                 }
                 // 执行正常业务
-                console.info('terminateSelf succeed');
+                console.info(`terminateSelf succeed.`);
               });
             } catch (err) {
               // 捕获同步的参数错误
               let code = (err as BusinessError).code;
               let message = (err as BusinessError).message;
-              console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
             }
           })
       }
     }
   }
   ```
+
+
+## 获取UIAbility拉起方的信息
+
+拉起方（UIAbilityA）通过startAbility启动目标方（UIAbilityB）时，UIAbilityB可以通过[parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md#属性)参数获取UIAbilityA的Pid、BundleName和AbilityName等信息。
+
+
+1. 通过点击UIAbilityA中的"拉起UIAbilityB"按钮，拉起UIAbilityB。
+
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+      build() {
+        Scroll() {
+          Column() {
+            Text(this.message)
+              .id('HelloWorld')
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .alignRules({
+                center: { anchor: '__container__', align: VerticalAlign.Center },
+                middle: { anchor: '__container__', align: HorizontalAlign.Center }
+              })
+              .onClick(() => {
+                this.message = 'Welcome';
+              })
+            Button('terminateSelf').onClick(() => {
+              this.context.terminateSelf()
+            })
+
+            Button('拉起UIAbilityB').onClick((event: ClickEvent) => {
+              let want: Want = {
+                bundleName: this.context.abilityInfo.bundleName,
+                abilityName: 'UIAbilityB',
+              }
+
+              this.context.startAbility(want, (err: BusinessError) => {
+                if (err.code) {
+                  console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}.`);
+                }
+              });
+            })
+          }
+        }
+      }
+    }
+    ```
+
+2. 在UIAbilityB的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期中，获取并打印UIAbilityA的Pid、BundleName和AbilityName。
+
+    ```ts
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+
+    export default class UIAbilityB extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        // 调用方无需手动传递parameters参数，系统会自动向Want对象中传递调用方信息。
+        console.log(`onCreate, callerPid: ${want.parameters?.['ohos.aafwk.param.callerPid']}.`);
+        console.log(`onCreate, callerBundleName: ${want.parameters?.['ohos.aafwk.param.callerBundleName']}.`);
+        console.log(`onCreate, callerAbilityName: ${want.parameters?.['ohos.aafwk.param.callerAbilityName']}.`);
+      }
+
+      onDestroy(): void {
+        console.log(`UIAbilityB onDestroy.`);
+      }
+
+      onWindowStageCreate(windowStage: window.WindowStage): void {
+        console.log(`Ability onWindowStageCreate.`);
+
+        windowStage.loadContent('pages/Index', (err) => {
+          if (err.code) {
+            console.error(`Failed to load the content, error code: ${err.code}, error msg: ${err.message}.`);
+            return;
+          }
+          console.log(`Succeeded in loading the content.`);
+        });
+      }
+    }
+    ```

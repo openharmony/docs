@@ -18,7 +18,7 @@ import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 
 onAbilityCreate(ability: UIAbility): void
 
-Called when an ability is created.
+Called when the ability is created.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -122,7 +122,7 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 onAbilityDestroy(ability: UIAbility): void
 
-Called when an ability is destroyed.
+Called when the ability is destroyed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -498,7 +498,7 @@ import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 // Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 
 // Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
@@ -593,7 +593,7 @@ Second ability of the application
 import { UIAbility } from '@kit.AbilityKit';
 
 // Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {

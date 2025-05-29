@@ -26,15 +26,15 @@ Matrix constructor, which is used to create a 4 x 4 matrix with the input parame
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
+| Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
+| options | [number,number,number,number,<br>number,number,number,number,<br>number,number,number,number,<br>number,number,number,number] | Yes  | A number array whose length is 16 (4 x 4). For details, see **4 x 4 matrix description**.<br>Value range of each number: (-∞, +∞)<br>Default value:<br>[1, 0, 0, 0,<br>0, 1, 0, 0,<br>0, 0, 1, 0,<br>0, 0, 0, 1] |
 
 **Return value**
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameters. |
+| [Matrix4Transit](#matrix4transit) | 4 x 4 matrix object created based on the input parameters.|
 
 **4 x 4 matrix description**
 
@@ -52,9 +52,9 @@ Matrix constructor, which is used to create a 4 x 4 matrix with the input parame
 | m21  | number | Yes   | The tenth value, which is affected by the rotation of the x, y, and z axes. |
 | m22  | number | Yes   | Scaling value of the z-axis. The default value is **1** for the identity matrix.     |
 | m23  | number | Yes   | The 12th value, which is affected by perspective projection.              |
-| m30  | number | Yes   | Translation value of the x-axis, in px. The default value is **0** for the identity matrix. |
-| m31  | number | Yes   | Translation value of the y-axis, in px. The default value is **0** for the identity matrix. |
-| m32  | number | Yes   | Translation value of the z-axis, in px. The default value is **0** for the identity matrix. |
+| m30  | number | Yes   | Translation value of the x-axis, in px. The default value is **0** for the identity matrix.|
+| m31  | number | Yes   | Translation value of the y-axis, in px. The default value is **0** for the identity matrix.|
+| m32  | number | Yes   | Translation value of the z-axis, in px. The default value is **0** for the identity matrix.|
 | m33  | number | Yes   | Valid in homogeneous coordinates, presenting the perspective projection effect.   |
 
 **Example**
@@ -98,7 +98,7 @@ Constructs an identity matrix.
 
 | Type                             | Description          |
 | --------------------------------- | -------------- |
-| [Matrix4Transit](#matrix4transit) | Identity matrix object. |
+| [Matrix4Transit](#matrix4transit) | Identity matrix object.|
 
 **Example**
 
@@ -154,7 +154,7 @@ Copies this matrix object.
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix. |
+| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
 
 
 **Example**
@@ -203,15 +203,15 @@ Combines the effects of two matrices to generate a new matrix object. The origin
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description              |
+| Name| Type                             | Mandatory| Description              |
 | ------ | --------------------------------- | ---- | ------------------ |
-| options | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined. |
+| options | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
 
 **Return value**
 
 | Type                             | Description              |
 | --------------------------------- | ------------------ |
-| [Matrix4Transit](#matrix4transit) | Object after matrix combination. |
+| [Matrix4Transit](#matrix4transit) | Object after matrix combination.|
 
 **Example**
 
@@ -260,7 +260,7 @@ Inverts this matrix object. The original matrix that calls this API will be chan
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix. |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
 
 **Example**
 
@@ -304,15 +304,15 @@ Translates this matrix object along the x, y, and z axes. The original matrix th
 
 **Parameters**
 
-| Name | Type                               | Mandatory | Description          |
+| Name| Type                               | Mandatory| Description          |
 | ------ | ----------------------------------- | ---- | -------------- |
-| options | [TranslateOption](#translateoption) | Yes  | Translation configuration. |
+| options | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
 
 **Return value**
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after the translation. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the translation.|
 
 **Example**
 
@@ -350,15 +350,15 @@ Scales this matrix object along the x, y, and z axes. The matrix that calls this
 
 **Parameters**
 
-| Name | Type                       | Mandatory | Description          |
+| Name| Type                       | Mandatory| Description          |
 | ------ | --------------------------- | ---- | -------------- |
-| options | [ScaleOption](#scaleoption) | Yes  | Scaling configuration. |
+| options | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
 
 **Return value**
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after the scaling. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the scaling.|
 
 **Example**
 
@@ -403,16 +403,16 @@ Skews this matrix object along the x and y axes. The matrix that calls this API 
 
 **Parameters**
 
-| Name | Type                       | Mandatory | Description          |
+| Name| Type                       | Mandatory| Description          |
 | ------ | --------------------------- | ---- | -------------- |
-| x | number | Yes  | Amount of skewing on the x-axis. |
-| y | number | Yes  | Amount of skewing on the y-axis. |
+| x | number | Yes  | Amount of skewing on the x-axis.|
+| y | number | Yes  | Amount of skewing on the y-axis.|
 
 **Return value**
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after the skewing. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the skewing.|
 
 **Example**
 
@@ -454,15 +454,15 @@ Rotates this matrix object along the x, y, and z axes. The matrix that calls thi
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
-| options | [RotateOption](#rotateoption) | Yes  | Rotation configuration. |
+| options | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
 
 **Return value**
 
 | Type                             | Description                        |
 | --------------------------------- | ---------------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after the rotation. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the rotation.|
 
 **Example**
 
@@ -506,15 +506,15 @@ Applies the current transformation effect to a coordinate point.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description              |
+| Name | Type            | Mandatory| Description              |
 | ------- | ---------------- | ---- | ------------------ |
-| options | [number, number] | Yes  | Point to be transformed. |
+| options | [number, number] | Yes  | Point to be transformed.|
 
 **Return value**
 
 | Type            | Description                       |
 | ---------------- | --------------------------- |
-| [number, number] | Point object after matrix transformation |
+| [number, number] | Point object after matrix transformation|
 
 **Example**
 
@@ -565,15 +565,15 @@ Maps the vertex coordinates of a polygon to those of another polygon.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description              |
+| Name| Type            | Mandatory| Description              |
 | ------ | ---------------- | ---- | ------------------ |
-| options | [PolyToPolyOptions](#polytopolyoptions12)  | Yes  | Parameters for mapping. |
+| options | [PolyToPolyOptions](#polytopolyoptions12)  | Yes  | Parameters for mapping.|
 
 **Return value**
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after the mapping. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after the mapping.|
 
 > **NOTE**
 >
@@ -613,7 +613,7 @@ struct Index {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Mandatory | Description                                                       |
+| Name| Type  | Mandatory| Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
 | x    | number | No  | Translation distance along the x-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
 | y    | number | No  | Translation distance along the y-axis.<br>Unit: px<br>Default value: **0**<br>Value range: (-∞, +∞)|
@@ -625,11 +625,11 @@ struct Index {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type  | Mandatory | Description                                                        |
+| Name   | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| x       | number | No  | Scaling multiple along the x-axis. x > 1: The image is scaled up along the x-axis.<br>0 < x < 1: The image is scaled down along the x-axis.<br>x < 0: The image is scaled in the reverse direction of the x-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
-| y       | number | No  | Scaling multiple along the y-axis. y > 1: The image is scaled up along the y-axis.<br>0 < y < 1: The image is scaled down along the y-axis.<br>y < 0: The image is scaled in the reverse direction of the y-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
-| z       | number | No  | Scaling multiple along the z-axis. z > 1: The image is scaled up along the z-axis.<br>0 < z < 1: The image is scaled down along the z-axis.<br>z < 0: The image is scaled in the reverse direction of the z-axis.<br>Default value: **1**<br>Value range: (-∞, +∞) |
+| x       | number | No  | Scaling multiple along the x-axis. x > 1: The image is scaled up along the x-axis.<br>0 < x < 1: The image is scaled down along the x-axis.<br>x < 0: The image is scaled in the reverse direction of the x-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| y       | number | No  | Scaling multiple along the y-axis. y > 1: The image is scaled up along the y-axis.<br>0 < y < 1: The image is scaled down along the y-axis.<br>y < 0: The image is scaled in the reverse direction of the y-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
+| z       | number | No  | Scaling multiple along the z-axis. z > 1: The image is scaled up along the z-axis.<br>0 < z < 1: The image is scaled down along the z-axis.<br>z < 0: The image is scaled in the reverse direction of the z-axis.<br>Default value: **1**<br>Value range: (-∞, +∞)|
 | centerX | number | No  | X coordinate of the center point.<br>Unit: px<br>Default value: X-coordinate of the component center<br>Value range: (-∞, +∞)   |
 | centerY | number | No  | Y coordinate of the center point.<br>Unit: px<br>Default value: Y-coordinate of the component center<br>Value range: (-∞, +∞)   |
 
@@ -639,12 +639,12 @@ struct Index {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type  | Mandatory | Description                                                   |
+| Name   | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞) |
-| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞) |
-| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)<br>**NOTE**<br>The rotation axis vector is valid only when at least one of **x**, **y**, and **z** is not 0. |
-| angle   | number | No  | Rotation angle.<br>Default value: **0**                               |
+| x       | number | No  | X coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)     |
+| y       | number | No  | Y coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)     |
+| z       | number | No  | Z coordinate of the rotation axis vector.<br>Default value: **0**<br>Value range: (-∞, +∞)<br>**NOTE**<br>The rotation axis vector is valid only when at least one of **x**, **y**, and **z** is not 0.|
+| angle   | number | No  | Rotation angle.<br>Default value: **0**                                    |
 | centerX | number | No  | Additional x-axis offset of the transformation center relative to the component's anchor.<br>Unit: px<br>Default value: **0**<br>**NOTE**<br>The value **0** indicates that the transformation center coincides with the component's x-axis anchor. For details about the implementation, see [Example 3: Implementing Rotation Around a Center Point](arkui-ts/ts-universal-attributes-transformation.md#example-3-implementing-rotation-around-a-center-point).|
 | centerY | number | No  | Additional y-axis offset of the transformation center relative to the component's anchor.<br>Unit: px<br>Default value: **0**<br>**NOTE**<br>The value **0** indicates that the transformation center coincides with the component's y-axis anchor. For details about the implementation, see [Example 3: Implementing Rotation Around a Center Point](arkui-ts/ts-universal-attributes-transformation.md#example-3-implementing-rotation-around-a-center-point).|
 
@@ -654,13 +654,13 @@ struct Index {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Mandatory | Description                                                       |
+| Name| Type  | Mandatory| Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point. |
-| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**|
-| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point. |
-| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **0** |
-| pointCount    | number | No  | Number of used points.<br>Default value: **src.length/2**|
+| src    |  Array<[Point](#point12)> | Yes  | Coordinates of the source point.|
+| srcIndex    | number | No  | Start index of the source point coordinates.<br>Default value: **0**.<br> Value range: [0, +∞).|
+| dst    |  Array<[Point](#point12)>  | Yes  | Coordinates of the destination point.|
+| dstIndex    | number | No  |  Start index of the destination point coordinates.<br>Default value: **0**.<br> Value range: [0, +∞).|
+| pointCount    | number | No  | Number of used points.<br>Default value: **src.length/2**.<br> Value range: [0, +∞).|
 
 ## Point<sup>12+</sup>
 
@@ -668,10 +668,10 @@ struct Index {
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Mandatory | Description                                                       |
+| Name| Type  | Mandatory| Description                                                       |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    |  number | Yes  | X-coordinate. |
-| y    | number | Yes  | Y-coordinate. |
+| x    |  number | Yes  | X-coordinate.<br>Value range: (-∞, +∞)|
+| y    | number | Yes  | Y-coordinate.<br>Value range: (-∞, +∞)|
 
 ## matrix4.copy<sup>(deprecated)</sup>
 
@@ -691,7 +691,7 @@ Copies this matrix object.
 
 | Type                             | Description                |
 | --------------------------------- | -------------------- |
-| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix. |
+| [Matrix4Transit](#matrix4transit) | Copy object of the current matrix.|
 
 **Example**
 
@@ -740,7 +740,7 @@ Inverts this matrix object.
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix. |
+| [Matrix4Transit](#matrix4transit) | Inverse matrix object of the current matrix.|
 
 ## matrix4.combine<sup>(deprecated)</sup>
 
@@ -756,15 +756,15 @@ Combines the effects of two matrices to generate a new matrix object.
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description              |
+| Name | Type                             | Mandatory| Description              |
 | ------- | --------------------------------- | ---- | ------------------ |
-| options | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined. |
+| options | [Matrix4Transit](#matrix4transit) | Yes  | Matrix object to be combined.|
 
 **Return value**
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after combination. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after combination.|
 
 ## matrix4.translate<sup>(deprecated)</sup>
 
@@ -780,15 +780,15 @@ Translates this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name | Type                               | Mandatory | Description          |
+| Name | Type                               | Mandatory| Description          |
 | ------- | ----------------------------------- | ---- | -------------- |
-| options | [TranslateOption](#translateoption) | Yes  | Translation configuration. |
+| options | [TranslateOption](#translateoption) | Yes  | Translation configuration.|
 
 **Return value**
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after translation. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after translation.|
 
 ## matrix4.scale<sup>(deprecated)</sup>
 
@@ -804,15 +804,15 @@ Scales this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name | Type                       | Mandatory | Description          |
+| Name | Type                       | Mandatory| Description          |
 | ------- | --------------------------- | ---- | -------------- |
-| options | [ScaleOption](#scaleoption) | Yes  | Scaling configuration. |
+| options | [ScaleOption](#scaleoption) | Yes  | Scaling configuration.|
 
 **Return value**
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after scaling. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after scaling.|
 
 ## matrix4.rotate<sup>(deprecated)</sup>
 
@@ -828,15 +828,15 @@ Rotates this matrix object along the x, y, and z axes.
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description          |
+| Name | Type                         | Mandatory| Description          |
 | ------- | ----------------------------- | ---- | -------------- |
-| options | [RotateOption](#rotateoption) | Yes  | Rotation configuration. |
+| options | [RotateOption](#rotateoption) | Yes  | Rotation configuration.|
 
 **Return value**
 
 | Type                             | Description                  |
 | --------------------------------- | ---------------------- |
-| [Matrix4Transit](#matrix4transit) | Matrix object after rotation. |
+| [Matrix4Transit](#matrix4transit) | Matrix object after rotation.|
 
 ## matrix4.transformPoint<sup>(deprecated)</sup>
 
@@ -852,12 +852,12 @@ Applies the current transformation effect to a coordinate point.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description              |
+| Name | Type            | Mandatory| Description              |
 | ------- | ---------------- | ---- | ------------------ |
-| options | [number, number] | Yes  | Point to be transformed. |
+| options | [number, number] | Yes  | Point to be transformed.|
 
 **Return value**
 
 | Type            | Description                       |
 | ---------------- | --------------------------- |
-| [number, number] | Point object after matrix transformation |
+| [number, number] | Point object after matrix transformation|

@@ -111,7 +111,7 @@ String SimLockInfo::passwd
 ```
 **描述**
 
-密码文本
+密码文本。
 
 
 ### serial
@@ -121,7 +121,7 @@ int SimLockInfo::serial
 ```
 **描述**
 
-请求的序列号
+请求的序列号。
 
 
 ### status

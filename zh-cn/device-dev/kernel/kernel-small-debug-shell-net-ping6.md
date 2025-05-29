@@ -1,6 +1,5 @@
 # ping6
 
-
 ## 命令功能
 
 ping6用于测试IPv6网络连接是否正常。
@@ -48,7 +47,7 @@ shell端暂不支持。
 
 ## 输出说明
 
-1. 输入`ping6 2001:a:b:c:d:e:f:b`
+1. 输入`ping6 2001:a:b:c:d:e:f:b`。
 
    ```
    OHOS # ping6 2001:a:b:c:d:e:f:b PING 2001:A:B:C:D:E:F:B with 56 bytes of data.
@@ -61,7 +60,7 @@ shell端暂不支持。
    rtt min/avg/max = 0/0.00/0 ms
    ```
 
-2. 输入 `ping6 -c 3 2001:a:b:c:d:e:f:b`   指定3次进行网络测试
+2. 输入 `ping6 -c 3 2001:a:b:c:d:e:f:b`   指定3次进行网络测试。
 
    ```
    OHOS # ping6 -c 3 2001:a:b:c:d:e:f:b    PING 2001:A:B:C:D:E:F:B with 56 bytes of data.

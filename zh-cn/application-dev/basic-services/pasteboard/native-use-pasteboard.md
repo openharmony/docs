@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超本文、URI等内容的操作。
+剪贴板为开发者提供数据的复制粘贴能力。支持对纯文本、超文本、URI等内容的操作。
 
 ## 基本概念
 
@@ -12,7 +12,7 @@
 
 ## 约束限制
 
-- 单次写入剪贴板的数据大小不能超过128MB。
+- 剪贴板内容包含剪贴板系统服务元数据和应用设置的数据，总大小上限默认为128MB，PC/2in1设备可通过系统配置修改上限，有效范围为128MB~2GB。
 - 为保证剪贴板数据的准确性，同一时间只能支持一个复制操作。
 - 当前支持的数据类型：纯文本类型(OH_UdsPlainText)、超文本标记语言类型(OH_UdsHtml)、文件Uri类型(OH_UdsFileUri)、像素图片类型(OH_UdsPixelMap)、超链接类型(OH_UdsHyperlink)、桌面图标类型(OH_UdsAppItem)、自定义类型。JS接口与NDK接口支持数据类型不完全一致，使用时须匹配接口支持类型，详情见[JS接口与NDK接口数据类型对应关系](../pasteboard/use_pasteboard_to_copy_and_paste.md)。
 - 自定义类型数据在复制粘贴时，指定的类型名称不能和已有的类型名称重复。
@@ -120,7 +120,7 @@
    ```c
    // 1. 创建一个剪贴板实例
    OH_Pasteboard* pasteboard = OH_Pasteboard_Create();
-   // 2. 判断剪贴板中有是否有文本类型数据
+   // 2. 判断剪贴板中是否有文本类型数据
    bool hasPlainTextData = OH_Pasteboard_HasType(pasteboard, "text/plain");
    if (hasPlainTextData) {
      // 3. 从剪贴板中获取统一类型数据OH_UdmfData

@@ -1,4 +1,4 @@
-# Native子进程开发指导（C/C++）
+# 创建Native子进程（C/C++）
 
 本模块提供了两种创建子进程的方式，开发者可根据需要进行选择。
 - [创建支持IPC回调的子进程](#创建支持ipc回调的子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。
@@ -283,3 +283,76 @@ libchild_process.so
         # ...
     )
     ```
+
+## 子进程获取启动参数
+
+### 场景介绍
+
+从API version 17开始，支持子进程获取启动参数。
+
+### 接口说明
+
+| 名称                                                                                                                                                                                                                                                                                                                                | 描述                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)* [OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)() | 返回子进程自身的启动参数。 |
+
+### 开发步骤
+
+
+**动态库文件**
+
+```txt
+libchild_process.so
+```
+
+**头文件**
+
+```c++
+#include <AbilityKit/native_child_process.h>
+```
+
+**获取启动参数**
+
+[OH_Ability_StartNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)创建子进程后，子进程内的任意so和任意子线程可以通过调用[OH_Ability_GetCurrentChildProcessArgs](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess)()获取到子进程的启动参数[NativeChildProcess_Args](../reference/apis-ability-kit/c-apis-ability-childprocess.md#nativechildprocess_args)，便于操作相关的文件描述符。
+
+```c++
+#include <AbilityKit/native_child_process.h>
+#include <thread>
+
+extern "C" {
+
+void ThreadFunc()
+{
+    // 获取子进程的启动参数
+    NativeChildProcess_Args *args = OH_Ability_GetCurrentChildProcessArgs();
+    // 获取启动参数失败时返回nullptr
+    if (args == nullptr) {
+        return;
+    }
+    // 获取启动参数中的entryPrams
+    char *entryParams = args.entryParams;
+    // 获取fd列表
+    NativeChildProcess_Fd *current = args.fdList.head;
+    while (current != nullptr) {
+        char *fdName = current->fdName;
+        int32_t fd = current->fd;
+        current = current->next;
+        // 业务逻辑..
+    }
+}
+
+/**
+ * 子进程的入口函数，实现子进程的业务逻辑
+ * args是子进程的启动参数
+ */
+void Main(NativeChildProcess_Args args)
+{
+    // 业务逻辑..
+
+    // 创建线程
+    std::thread tObj(ThreadFunc);
+}
+
+} // extern "C"
+```
+

@@ -49,7 +49,7 @@ ohos开头的模板与内建模板的差异主要在于：推荐使用ohos定制
 
 ohos开头的模板对应的.gni文件路径在：openharmony/build/templates/cxx/cxx.gni。
 
-ohos_shared_library示例
+ohos_shared_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -103,7 +103,7 @@ ohos_shared_library("helloworld") {
 }
 ```
 
-ohos_static_library示例
+ohos_static_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -146,7 +146,7 @@ ohos_static_library("helloworld") {
 }
 ```
 
-ohos_executable示例
+ohos_executable示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -193,7 +193,7 @@ ohos_executable("helloworld") {
 }
 ```
 
-ohos_source_set示例
+ohos_source_set示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -239,14 +239,14 @@ ohos_source_set("helloworld") {
 ```
 
 ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：
-  - 只有sources和part_name是必选，其他都是可选的；
-  - Sanitizer配置详见：[Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)
+  - 只有sources和part_name是必选，其他都是可选的。
+  - Sanitizer配置详见：[Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)。
 
 ### 预编译模板示例
 
 预编译模板的.gni相关文件路径在：openharmony/build/templates/cxx/prebuilt.gni。
 
-ohos_prebuilt_executable示例
+ohos_prebuilt_executable示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -274,7 +274,7 @@ ohos_prebuilt_executable("helloworld") {
 }
 ```
 
-ohos_prebuilt_shared_library示例
+ohos_prebuilt_shared_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -302,7 +302,7 @@ ohos_prebuilt_shared_library("helloworld") {
 }
 ```
 
-ohos_prebuilt_static_library示例
+ohos_prebuilt_static_library示例：
 
 ```shell
 import("//build/ohos.gni")
@@ -327,11 +327,11 @@ ohos_prebuilt_static_library("helloworld") {
 
 ### Hap模板
 
-hap模板详见：[ HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
+hap模板详见：[ HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)。
 
 ### Rust模板
 
-rust模板详见：[ Rust模块配置规则和指导](subsys-build-rust-compilation.md)
+rust模板详见：[ Rust模块配置规则和指导](subsys-build-rust-compilation.md)。
 
 ### 其他常用模板
 
@@ -376,11 +376,11 @@ ohos_sa_profile("helloworld") {
 
 新建模块可以分为以下三种情况。主要的添加逻辑如下面的流程图所示，若没有子系统则需新建子系统并在该子系统的部件下添加模块，若没有部件则需新建部件并在其中添加模块，否则直接在原有部件中添加模块即可，需要注意的是芯片解决方案作为特殊部件是没有对应子系统的。
 
-- 在原有部件中添加一个模块
+- 在原有部件中添加一个模块。
 
-- 新建部件并在其中添加模块
+- 新建部件并在其中添加模块。
 
-- 新建子系统并在该子系统的部件下添加模块
+- 新建子系统并在该子系统的部件下添加模块。
 
   ![模块添加流程](figures/module_addition_process.png)
 

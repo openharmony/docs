@@ -40,7 +40,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -81,7 +81,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
@@ -144,7 +144,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
@@ -187,7 +187,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
+    console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
@@ -213,7 +213,7 @@ try {
 }
 ```
 
-## WantAgent.setWantAgentMultithreading<sup>16+</sup>
+## WantAgent.setWantAgentMultithreading<sup>18+</sup>
 
 setWantAgentMultithreading(isMultithreadingSupported: boolean) : void
 
@@ -277,7 +277,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 // 定义getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`Failed to call getWantAgentCallback. Code is ${err.code}. Message is ${err.message}.`);
+    console.error(`Failed to call getWantAgentCallback. Code is ${err.code}. Message is ${err.message}.`);
   } else {
     wantAgentData = data;
   }

@@ -76,50 +76,7 @@ router.getState()
 
 当开发者在代码中有通过router.getState()使用path值时，需要根据获取到的内容进行整改。
 
-
-## cl.arkui.2 enabled属性UX样式变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-Rating组件与Slider组件enabled属性UX样式不符合规范
-
-**变更影响**
-
-该变更为不兼容变更。
-
-Rating组件变更场景：
-
-| 变更前 | 变更后 |
-|------ |--------|
-|Rating组件设置enable为false时，未叠加40%透明度。</br>![rating_enable](figures/rating_enable.PNG)|Rating组件设置enable为false时，叠加40%透明度。</br>![rating_enable_opacity](figures/rating_enable_opacity.PNG)|
-
-Slider组件变更场景：
-
-| 变更前 | 变更后 |
-|------ |--------|
-|Slider组件设置enable为false时，未叠加40%透明度。</br>![slider_enable](figures/slider_enable.PNG)|Slider组件设置enable为false时，叠加40%透明度。</br>![slider_enable_opacity](figures/slider_enable_opacity.PNG)|
-
-**起始API Level**
-
-7
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.49 版本开始。
-
-**变更的接口/组件**
-
-通用属性enabled属性。
-
-**适配指导**
-
-默认行为变更，无需适配。
-
-## cl.arkui.3 禁止在转场动画过程中，更新消失节点的属性。
+## cl.arkui.2 禁止在转场动画过程中，更新消失节点的属性。
 
 **访问级别**
 
@@ -217,7 +174,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.4 Tabs组件barOverlap接口默认效果变更
+## cl.arkui.3 Tabs组件barOverlap接口默认效果变更
 
 **访问级别**
 
@@ -299,75 +256,3 @@ struct barHeightTest {
   }
 }
 ```
-
-## cl.arkui.5 小窗模式下，获取组件相对于屏幕位置的接口，其返回值变更为正确的位置
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-小窗模式下，获取组件相对于屏幕位置的接口在获取组件相对于屏幕的位置时，不会自动按照窗口的缩放比例进行缩放，返回值错误。
-
-**变更影响**
-
-该变更不涉及应用适配。
-
-变更前：在小窗模式下，获取组件相对于屏幕的位置时，不会自动按照窗口的缩放比例进行缩放，计算的位置仍然是将窗口作为全屏展示时的位置。
-
-变更后：在小窗模式下，获取组件相对于屏幕的位置时，会自动按照窗口的缩放比例进行缩放。
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.49开始。
-
-**变更的接口/组件**
-
-ArkTS API: getPositionToScreen, getPositionToScreenWithTransform
-
-C API: OH_ArkUI_NodeUtils_GetLayoutPositionInScreen, OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-
-## cl.arkui.6 setSpecificSystemBarEnabled接口在横屏的行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-修复该接口当前的实现bug。
-
-当前行为：应用窗口处于横屏状态时，应用使用该接口设置状态栏显隐不生效，状态栏始终处于隐藏状态。
-
-变更之后的行为：应用启动之后，若使用该接口设置过状态栏的显隐，状态栏的显隐状态则以应用的设置（多次设置，以最后一次设置状态为准）为准来生效。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-可能产生的影响：应用预期在横屏时隐藏状态栏，该接口行为变更后应用横屏时状态栏可能因为应用自启动之后使用该接口主动设置过状态栏显示而变为显示状态。
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.49开始
-
-**变更的接口/组件**
-
-Window#setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise\<void\>
-
-**适配指导**
-
-针对应用预期在横屏时隐藏状态栏的场景，需确认应用自启动之后是否使用该接口主动设置过状态栏显示，若应用设置过状态栏显示，需再次设置状态栏隐藏，才能实现应用横屏时隐藏状态栏。

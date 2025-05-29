@@ -38,19 +38,6 @@ type SignalInformation = radio.SignalInformation
 | [radio.SignalInformation](js-apis-radio.md#signalinformation) | 网络信号强度信息对象。 |
 
 
-## CellInformation
-
-type CellInformation = radio.CellInformation
-
-小区信息。
-
-**系统能力**：SystemCapability.Telephony.StateRegistry
-
-|       类型       |            说明             |
-| ---------------- | --------------------------- |
-| [radio.CellInformation](js-apis-radio.md#cellinformation8) | 小区信息。 |
-
-
 ## DataConnectState
 
 type DataConnectState = data.DataConnectState
@@ -397,7 +384,7 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 | 参数名   | 类型                                           | 必填 | 说明                                                        |
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                        | 是   | 通话状态变化事件，参数固定为'callStateChange'。                |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\> | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)。<br />number：电话号码。 |
 
 **错误码：**
 
@@ -438,7 +425,7 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
 | options  | [ObserverOptions](#observeroptions11)                        | 是   | 电话相关事件订阅参数可选项。                                  |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)。<br />number：电话号码。 |
 
 **错误码：**
 
@@ -481,7 +468,7 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 否   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 否   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)。<br />number：电话号码。 |
 
 **错误码：**
 

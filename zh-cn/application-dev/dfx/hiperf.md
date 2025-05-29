@@ -6,7 +6,7 @@ hiperf为开发人员提供用于调试的命令行工具，用于抓取特定�
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 正常连接设备。
+- 确保设备已正常连接，并执行hdc shell。
 
 ## hiperf命令行说明
 
@@ -26,17 +26,44 @@ hiperf为开发人员提供用于调试的命令行工具，用于抓取特定�
 
 可用 --help 查看帮助。
 
-```
+```shell
 hiperf --help
 ```
+**使用样例：**
 
-![](figures/hipref-help.png)
+```shell
+$ hiperf --help
+Usage: hiperf [options] command [args for command]
+options:
+        --debug                 show debug log, usage format: --debug [command] [args]
+        --help                  show help
+        --hilog                 use hilog not file to record log
+        --logpath               log file name full path, usage format: --logpath [filepath] [command] [args]
+        --logtag                enable log level for HILOG_TAG, usage format: --logtag <tag>[:level][,<tag>[:level]] [command] [args]
+                                tag: Dump, Report, Record, Stat... level: D, V, M...
+                                example: hiperf --verbose --logtag Record:D [command] [args]
+        --mixlog                mix the log in output, usage format: --much [command] [args]
+        --much                  show extremely much debug log, usage format: --much [command] [args]
+        --nodebug               disable debug log, usage format: --nodebug [command] [args]
+        --verbose               show debug log, usage format: --verbose [command] [args]
+        -h                      show help
+command:
+        dump:   Dump content of a perf data file, like perf.data
+        help:   Show more help information for hiperf
+        list:   List the supported event types.
+        record: Collect performance sample information
+        report: report sampling information from perf.data format file
+        stat:   Collect performance counter information
+
+See 'hiperf help [command]' for more information on a specific command.
+```
 
 使用如下命令查看子功能的帮助信息。
 
 ```
-hiperf [command] --help
+Usage: hiperf [command] --help
 ```
+
 
 ## list命令
 
@@ -59,19 +86,46 @@ Usage: hiperf list [event type name]
 
 使用help命令查询支持的事件类型。
 
-```
+```shell
 hiperf list --help
 ```
+**使用样例：**
 
-![](figures/hipref-list-help.png)
+```shell
+$ hiperf list --help
+Usage: hiperf list [event type name]
+       List all supported event types on this devices.
+   To list the events of a specific type, specify the type name
+       hw          hardware events
+       sw          software events
+       tp          tracepoint events
+       cache       hardware cache events
+       raw         raw pmu events
+```
 
 下面列出了设备支持的HW事件，并且会提示哪些事件此设备不支持。
 
-```
+```shell
 hiperf list hw
 ```
+**使用样例：**
 
-![](figures/hipref-list-hw.png)
+```shell
+$ hiperf list hw
+event not support hw-ref-cpu-cycles
+
+Supported events for hardware:
+        hw-cpu-cycles
+        hw-instructions
+        hw-cache-references
+        hw-cache-misses
+        hw-branch-instructions
+        hw-branch-misses
+        hw-bus-cycles
+        hw-stalled-cycles-frontend
+        hw-stalled-cycles-backend
+```
+
 
 ## record命令
 
@@ -121,21 +175,31 @@ hiperf list hw
 | --cmdline-size | 设置/sys/kernel/tracing/saved_cmdlines_size节点的值，取值范围：512 - 4096。 |
 | --report | 采集后回栈报告，不能和-a一起使用。 |
 | --backtrack | 采集之前一段时间的数据，必须和--control prepare一起使用。 |
-| --backtrack-sec | 采集之前数据的时长，取值范围5-30，默认10s，必须和--backtrack一起使用 |
+| --backtrack-sec | 采集之前数据的时长，取值范围5-30，默认10s，必须和--backtrack一起使用。 |
 | --dumpoptions | dump命令选项。 |
 
 ```
-Usage: hiperf record [options] [command [command-args]] 
+Usage: hiperf record [options] [command [command-args]]
 ```
 
-对指定的PID为267的进程采样10秒，并且使用dwarf回栈。
+对指定的PID为1273的进程采样10秒，并且使用dwarf回栈。
 
+```shell
+hiperf record -p 1273 -d 10 -s dwarf
 ```
-hiperf record -p 267 -d 10 -s dwarf
+**使用样例：**
+
+```shell
+$ hiperf record -p 1273 -d 10 -s dwarf
+Profiling duration is 10.000 seconds.
+Start Profiling...
+Timeout exit (total 10000 ms)
+Process and Saving data...
+/proc/sys/kernel/kptr_restrict is NOT 0, will try set it to 0.
+[ hiperf record: Captured 0.297 MB perf data. ]
+[ Sample records: 97, Non sample records: 2426 ]
+[ Sample lost: 0, Non sample lost: 0 ]
 ```
-
-![](figures/hipref-record-pid.png)
-
 
 
 ## stat命令
@@ -163,16 +227,35 @@ hiperf record -p 267 -d 10 -s dwarf
 | --restart | 收集应用启动的性能指标信息，如果进程在30秒内未启动，记录将退出。 |
 | --verbose | 输出更详细的报告。 |
 | --dumpoptions | dump命令选项。 |
+| --control [command]| 采集命令控制参数。命令包括prepare/start/stop。</br>**说明**：从API version 20开始，支持该参数。 |
+| -o | 设置输出文件路径，必须和--control prepare一起使用。</br>**说明**：从API version 20开始，支持该参数。 |
 
 ```
 Usage: hiperf stat [options] [command [command-args]]
 ```
 
-下面展示了一个 stats 监听2349进程在CPU0上3秒的性能计数器命令。
+下面展示了一个 stats 监听1273进程在CPU0上3秒的性能计数器命令。
 
+```shell
+hiperf stat -p 1273 -d 3 -c 0
 ```
-hiperf stat -p 2349 -d 3 -c 0
+**使用样例：**
+
+```shell
+$ hiperf stat -p 1273 -d 3 -c 0
+Profiling duration is 3.000 seconds.
+Start Profiling...
+Timeout exit (total 3000 ms)
+                    count  name                           | comment                          | coverage
+                      521  hw-branch-instructions         |                                  | (9%)
+                      217  hw-branch-misses               |                                  | (9%)
+                   32,491  hw-cpu-cycles                  |                                  | (9%)
+                    4,472  hw-instructions                |                                  | (9%)
+                        1  sw-context-switches            |                                  | (9%)
+                        0  sw-page-faults                 |                                  | (9%)
+                   39,083  sw-task-clock                  | 0.000143 cpus used               | (9%)
 ```
+
 
 ## dump命令
 
@@ -199,12 +282,15 @@ Usage: hiperf dump [option] \<filename\>
 
 使用dump命令将/data/local/tmp/perf.data文件读取出来，输出到/data/local/tmp/perf.dump文件中。
 
-```
+```shell
 hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 ```
+**使用样例：**
 
-![](figures/hipref-dump.png)
-
+```shell
+$ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
+dump result will save at '/data/local/tmp/perf.dump'
+```
 
 
 ## report命令
@@ -237,10 +323,9 @@ Usage: hiperf report [option] \<filename\>
 
 范例输出普通报告的命令，限制为占比不超过1%。
 
-```
+```shell
 hiperf report --limit-percent 1
 ```
-
 
 
 ## 脚本
@@ -252,7 +337,7 @@ hiperf report --limit-percent 1
    由 command_script.py 完成，它是 report 命令的包装脚本。
 
    ```
-   usage: command_script.py [-h]                         
+   usage: command_script.py [-h]
                             (-app PACKAGE_NAME | -lp LOCAL_PROGRAM | -cmd CMD | -p [PID [PID ...]] | -t [TID [TID ...]] | -sw)
                             [-a ABILITY] [-r RECORD_OPTIONS] [-lib LOCAL_LIB_DIR]
                             [-o OUTPUT_PERF_DATA] [--not_hdc_root]

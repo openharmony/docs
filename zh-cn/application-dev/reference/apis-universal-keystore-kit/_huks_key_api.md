@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。 管理的密钥可以由应用导入或者由应用调用HUKS接口生成。
+HUKS向应用提供密钥库能力，支持密钥管理和密钥的密码学操作。应用可以导入密钥或者调用HUKS接口生成密钥。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -314,7 +314,7 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * 
 | keyAlias | 待导入密钥的别名，需要保证业务所在进程内唯一，否则会发生覆盖。  | 
 | wrappingKeyAlias | 密钥别名，该对应密钥用于密钥协商出密钥解密待导入密钥。  | 
 | paramSet | 待导入加密密钥的属性参数。  | 
-| wrappedKeyData | 需要导入的加密的密钥数据，需要符合Huks定义的格式，具体见[OH_Huks_AlgSuite](_huks_type_api.md#oh_huks_algsuite) | 
+| wrappedKeyData | 需要导入的加密的密钥数据，需要符合Huks定义的格式，具体见[OH_Huks_AlgSuite](_huks_type_api.md#oh_huks_algsuite)。 | 
 
 **返回：**
 
@@ -338,7 +338,7 @@ struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias,
 | keyAlias | 操作的密钥的别名。  | 
 | paramSet | 初始化操作的密钥参数集合。  | 
 | handle | 密钥会话的句柄，后续其他操作时传入该句柄，包括[OH_Huks_UpdateSession](#oh_huks_updatesession), [OH_Huks_FinishSession](#oh_huks_finishsession), [OH_Huks_AbortSession](#oh_huks_abortsession)。  | 
-| token | 存放安全访问控制时传回的token  | 
+| token | 存放安全访问控制时传回的token。  | 
 
 **返回：**
 

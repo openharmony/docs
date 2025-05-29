@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 开发者在UI界面中使用定时器时，定时器的触发机制会受UI底层原理管控，如果UI界面退到后台，定时器会被冻结。
+> 在UI界面中使用定时器时，定时器的触发机制会受UI底层原理管控。如果UI界面退到后台，定时器会被冻结。
 
 ## setTimeout
 
@@ -23,9 +23,9 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | 是 | 定时器到期后执行函数。类型为string则打印Error信息，不进行其他处理。 |
-| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0，意味着“马上”执行，更准确的说，在下一个事件循环执行。<br>注意：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。 |
-| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，它们会作为参数传递给handler。 |
+| handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**
 
@@ -33,7 +33,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | -------- | -------- |
 | number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
-**示例1：不带参数**
+**示例1**：不带参数。
 
   ```ts
   setTimeout(() => {
@@ -41,7 +41,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
   }, 1000);
   ```
 
-**示例2：带参数传递给函数**
+**示例2**：带参数传递给函数(handle为function时参数与arguments参数个数一致)。
 
   ```ts
   function myFunction(param1: string, param2: string) {
@@ -50,13 +50,40 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
   setTimeout(myFunction, 1000, 'Hello', 'World');
   ```
 
+**示例3**：带参数传递给函数(handle为function时参数比arguments参数个数少)。
+
+  ```ts
+  function myFunction(a: string, b: string) {
+    console.info(a);
+    // Output: hello
+    console.info(b);
+    // Output: world
+    console.info(JSON.stringify(arguments));
+    // Output: {"0":"hello","1":"world","2":"c++","3":"js"}
+  }
+  setTimeout(myFunction, 1000, 'hello', 'world', 'C++', 'js');
+  ```
+**示例4**：带参数传递给函数(handle为function时参数比arguments参数个数多)。
+
+  ```ts
+  function myFunction(a: string, b: string) {
+    console.info(a);
+    // Output: hello
+    console.info(b);
+    // Output: undefined
+    console.info(JSON.stringify(arguments));
+    // Output: {"0":"hello"}
+  }
+  setTimeout(myFunction, 1000, 'hello');
+  ```
+
 ## clearTimeout
 
 clearTimeout(timeoutID?: number): void
 
 可取消通过调用setTimeout()建立的定时器。
 
-定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
+定时器对象保存在创建它的线程内，删除定时器时需要在该线程中进行。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -66,7 +93,7 @@ clearTimeout(timeoutID?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| timeoutID | number | 否 | 要取消定时器的ID，&nbsp;是由setTimeout()返回的。如果省略该参数，则不取消任何定时任务，无任何处理。|
+| timeoutID | number | 否 | 要取消定时器的ID，需要与调用setTimeout设置定时器的返回值一致。如果省略该参数或指定的定时器ID不存在时，不会取消任何定时任务。|
 
 **示例：**
 
@@ -93,9 +120,9 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | 是 | 要重复调用的函数。类型为string则打印Error信息，不进行其他处理。|
-| delay | number | 是 | 延迟的毫秒数，函数的调用会在该延迟之后发生。 |
-| ...arguments | any[] | 否 | 附加参数，一旦定时器到期，他们会作为参数传递给handler。 |
+| handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，将被默认设置为0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**
 
@@ -118,7 +145,7 @@ clearInterval(intervalID?: number): void
 
 可取消通过setInterval()设置的重复定时任务。
 
-定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
+定时器对象保存在创建它的线程内，删除定时器时需要在该线程中进行。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +155,7 @@ clearInterval(intervalID?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| intervalID | number | 否 | 要取消的重复定时器的ID，是由&nbsp;setInterval()&nbsp;返回的。如果省略该参数，则不取消任何定时任务，无任何处理。|
+| intervalID | number | 否 | 要取消的重复定时器的ID，需要与调用setInterval设置重复定时器的返回值一致。如果省略该参数或指定的重复定时器ID不存在时，不会取消任何定时任务。|
 
 **示例：**
 
@@ -141,7 +168,7 @@ clearInterval(intervalID?: number): void
 
 ## 其他说明
 ### 超时延迟
-如果页面正忙于其他任务，超时也可能比预期的晚。setTimeout的函数或代码片段是在下一个时间周期执行的。例如：
+如果页面正忙于其他任务，超时可能比预期晚。setTimeout的函数或代码片段在下一个时间周期执行。例如：
   ```ts
   function foo() {
     console.info('OH test foo is called')
@@ -153,13 +180,12 @@ clearInterval(intervalID?: number): void
   After OH test setTimeout
   OH test foo is called
   ```
-这是因为，虽然setTimeout设置了0ms的延迟，但任务不是立即执行，而是会被放入队列中，等待下一次事件循环执行。当前正在执行的代码必须先完成，队列中的函数才会被执行，因此最终的执行顺序可能和预期不一致。
+这是因为，虽然setTimeout设置了0ms的延迟，但任务不会立即执行，而是被放入队列中，等待下一次事件循环。当前代码执行完毕后，队列中的函数才会被执行，因此最终的执行顺序可能与预期不一致。
 
 ### 最大延迟值
-timer内部以32位带符号整数存储延时，这就会导致如果一个延时大于2147483647毫秒（大约24.8天）时就会溢出，导致定时器将会被立即执行。
+定时器内部使用32位带符号整数存储延时。因此，当延时超过2147483647毫秒（约24.8天）时，定时器会溢出并立即执行。
 
 ### 定时器冻结
-定时器的触发受底层任务调度。当前应用被切换到后台后，定时器到期也不会触发。应用被重新拉起到前台后，到期定时器会按序触发。可使用trace查看进程是否还存在调度，如果没有调度，则定时器被冻结。
-
+定时器的触发受底层任务调度。当前应用被切换到后台后，定时器到期不会触发。应用被重新拉起到前台后，到期定时器会按序触发。可以使用trace查看进程是否还存在调度，如果没有调度，定时器会被冻结。
 ### 定时器ID
-setTimeout()和setInterval()使用共享的ID池，意味着在技术上可以混用clearTimeout()和clearInterval()。但出于代码清晰性考虑，我们应该避免混用它们。
+setTimeout()和setInterval()使用同一个ID池，这意味着技术上可以混用clearTimeout()和clearInterval()。然而，为了代码的清晰性，建议不要混用它们。

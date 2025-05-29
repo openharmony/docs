@@ -6,16 +6,16 @@
 
 开发者可以通过hiappevent接口订阅主线程超时事件，获取维测信息。
 
-- [订阅主线程超时事件(ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
-- [订阅主线程超时事件(C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
+- [订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)
+- [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
 
 ## 主线程超时事件默认时间规格
 
 主线程超时150ms~450ms，触发采样调用栈流程；主线程超时450ms，触发采集trace流程。
 
-1. 启动时间
+1. 启动时间。
 
-    主线程超时采样栈(150ms < 主线程处理时长 < 450ms)。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开，一小时一次。应用启动10s内不进行检测。**
+    主线程超时采样栈（150ms < 主线程处理时长 < 450ms）。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开，一小时一次。应用启动10s内不进行检测。**
 
     主线程超时采样Trace（主线程处理时长 > 450ms）。**同一个应用的UID一天仅会触发一次主线程超时事件采样trace。**
 
@@ -27,31 +27,31 @@
     >
     > 关闭开发者模式后，可能无法使用DevEco Studio。因此，可以提前安装应用，再关闭开发者模式。
 
-2. 抓栈时间
+2. 抓栈时间。
 
-    主线程处理事件超时后，开始执行周期性任务检测，每隔150ms检测主线程是否再次发生超时事件(1 <= 检测次数 <= 2)，共三种情况：
+    主线程处理事件超时后，开始执行周期性任务检测，每隔150ms检测主线程是否再次发生超时事件（1 <= 检测次数 <= 2），共三种情况：
 
-    (1) 第一次检测发现超时事件，开始执行堆栈采样，每隔150ms采样一次，共采样10次堆栈，第11次收集堆栈并上报事件，结束检测。
+    （1）第一次检测发现超时事件，开始执行堆栈采样，每隔150ms采样一次，共采样10次堆栈，第11次收集堆栈并上报事件，结束检测。
 
     ![抓栈时间示例1](figures/sample_stack_1.png)
 
-    (2) 第一次检测未发生超时事件，第二次检测发现超时事件，开始执行堆栈采样，每隔150ms采样一次，共采样10次堆栈，第11次收集堆栈并上报事件，结束检测。
+    （2）第一次检测未发生超时事件，第二次检测发现超时事件，开始执行堆栈采样，每隔150ms采样一次，共采样10次堆栈，第11次收集堆栈并上报事件，结束检测。
 
     ![抓栈时间示例2](figures/sample_stack_2.png)
 
-    (3) 两次检测均未发现超时事件，结束检测。
+    （3）两次检测均未发现超时事件，结束检测。
 
     ![抓栈时间示例3](figures/sample_stack_3.png)
 
-3. 抓trace时间  
+3. 抓trace时间。
 
-   主线程超时抓Trace调用录制函数后，每隔150ms检测主线程是否再次发生超时事件(检测次数 = 20)，其中，只要在20个间隔检测时，有一次主线程事件超时150ms，3s检测结束后落盘trace。
+   主线程超时抓Trace调用录制函数后，每隔150ms检测主线程是否再次发生超时事件（检测次数 = 20），其中，只要在20个间隔检测时，有一次主线程事件超时150ms，3s检测结束后落盘trace。
 
-   (1) 20次检测均未发生主线程超时150ms事件。
+   （1）20次检测均未发生主线程超时150ms事件。
 
    ![抓trace示例](figures/dump-trace1.PNG)
 
-   (2) 20次检测至少有一次发生主线程超时150ms事件。
+   （2）20次检测至少有一次发生主线程超时150ms事件。
 
    ![抓trace示例](figures/dump-trace2.PNG)
 
@@ -59,19 +59,19 @@
 
 系统提供了基础的主线程超时检测功能，一些应用主线程对检测事件的检测间隔、采集次数等有更高的要求，因此开放可配置参数的接口提供给开发者使用。
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点seteventconfig接口说明](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点setEventConfig接口说明](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventseteventconfig15)。
 
 ### 接口说明
 
 | 接口名                                                                                | 描述                                         |
 | -------------------------------------------------------------------------------------| -------------------------------------------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **现阶段仅提供MAIN_THREAD_JANK事件参数自定义，因此name为MAIN_THREAD_JANK。** |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise\<void>       | 设置主线程采样栈参数接口。 **name为MAIN_THREAD_JANK。** |
 
 ### 参数设置说明
 
 开发者可以使用上述hiappevent提供的接口，在Record<string, ParamType>中自定义配置采集MAIN_THREAD_JANK事件的参数。
 
-开发者通过设置log_type(采集MAIN_THREAD_JANK事件日志类型)的值，定制不同的MAIN_THREAD_JANK事件的规格，具体规格如下：
+开发者通过设置log_type（采集MAIN_THREAD_JANK事件日志类型）的值，定制不同的MAIN_THREAD_JANK事件的规格，具体规格如下：
 
 1. log_type设置0：默认值，采集调用栈150ms~450ms，采集trace阈值450ms。如果之前使用log_type=1设置过抓采样栈参数，自定义参数无效。参数配置示例如下：
 
@@ -81,27 +81,27 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         };
     ```
 
-2. log_type设置1：采集调用栈，触发检测的阈值用户自定义。需要配置采样栈相关的参数，具体参数如下：
+2. log_type设置1：采集调用栈，触发检测的阈值用户自定义。**log_type=1，必须配置采样栈相关的5个参数**，具体参数如下：
 
-    (1) sample_interval：主线程超时采样检测间隔。系统根据开发者设置的interval进行超时检测判断，并使用该interval作为周期性任务检测的间隔。范围：`[50, 500](单位：ms)`。默认值：150ms。
+    （1）sample_interval：主线程超时采样检测间隔。系统根据开发者设置的interval进行超时检测判断，并使用该interval作为周期性任务检测的间隔。范围：[50, 500]，单位：ms。默认值：150ms。
 
-    (2) ignore_startup_time：线程启动一定时间内，不进行超时检测。一些进程启动时间较长，此时抓全的超时采样栈，分析意义不大。因此，在开发者定义启动时间间隔内，不进行超时检测。最小值：3s。默认值：10s。
+    （2）ignore_startup_time：线程启动一定时间内，不进行超时检测。一些进程启动时间较长，此时抓全的超时采样栈，分析意义不大。因此，在开发者定义启动时间间隔内，不进行超时检测。最小值：3s。默认值：10s。
 
-    (3)  sample_count：主线程超时采样次数。系统检测到当前主线程执行任务超过采样限制后，开始周期性采集堆栈，每个间隔采集一次堆栈，共采集sample_count次。最小值：1次，最大值需要结合自定义的sample_interval进行动态计算，计算公式：**sample_count <= (2500 / sample_interval - 4)**。开发者要结合需求场景，进行合理的设置。
+    （3）sample_count：主线程超时采样次数。系统检测到当前主线程执行任务超过采样限制后，开始周期性采集堆栈，每个间隔采集一次堆栈，共采集sample_count次。最小值：1次，最大值需要结合自定义的sample_interval进行动态计算，计算公式：**sample_count <= (2500 / sample_interval - 4)**。开发者要结合需求场景，进行合理的设置。
 
     > **说明：**
     >
-    > 2500的含义：根据系统规定，主线程超时事件从检测到上报的时间不可以超过2.5s(2500ms)。因此sample_count的设置值不能超过系统按计算公式得出的最大值。
+    > 2500的含义：根据系统规定，主线程超时事件从检测到上报的时间不可以超过2.5s（即：2500ms）。因此sample_count的设置值不能超过系统按计算公式得出的最大值。
     >
     > 4的含义：第一次超时间隔检测时间 + 第二次超时间隔（系统提供两次再次发生超时事件的检测机会）时间 + 收集并上报堆栈信息的时间。
 
-    (4)  report_times_per_app：同一个应用的PID一个生命周期内，主线程超时采样上报次数。一个生命周期内只能设置一次。
+    （4）report_times_per_app：同一个应用的PID一个生命周期内，主线程超时采样上报次数。一个生命周期内只能设置一次。
 
     > **说明：**
     >
-    > 开发者选项打开，每小时范围：[1, 3](单位：次)，默认值：1次；
+    > 开发者选项打开，每小时范围：[1, 3]，单位：次。默认值：1次；
     >
-    > 开发者选项关闭，每天上报次数范围：[1, 3](单位：次)，默认值：1次。
+    > 开发者选项关闭，每天上报次数范围：[1, 3]，单位：次。默认值：1次。
 
     参数配置示例如下:
 
@@ -111,7 +111,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         "sample_interval": "100",
         "ignore_startup_time": "11",
         "sample_count": "21",
-        "report_times_per_app": "3",
+        "report_times_per_app": "3"
         };
     ```
 
@@ -123,13 +123,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         };
     ```
 
-## 主线程超时事件规格
+## 主线程超时事件日志规格
 
-1. 日志老化规格
+1. 日志老化规格。
 
-    一般情况，栈文件的大小为7-10KB，trace大小为1-5M。应用沙箱内的watchdog目录最大保存10M内容，超出后，需要用户手动清理文件。目录地址：/data/app/el2/100/log/应用bundle name/watchdog。
+    一般情况，栈文件的大小为7-10KB，trace大小为1-5M。应用沙箱内的watchdog目录最大保存10M内容，超出后，需要用户手动清理文件。目录地址：/data/storage/el2/log/watchdog/。
 
-2. 事件里如何获取日志
+2. 事件里如何获取日志。
 
     从external_logs中获取日志路径。
 
@@ -168,12 +168,12 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     ^  ^       ^               ^              ^                   ^ 
     1  2       3               4              5                   6
 
-    1 表示采样到此帧的次数
-    2 表示帧的调用层级，行缩进大小与该层级对应，所有同一层级帧采样到的次数和不大于10次，#00采样次数和为10(设置采样的次数)
-    3 为native帧PC值
-    4 表示调用的文件路径
-    5 调用的函数名及代码行偏移(unstripped版本，stripped版本可能没有)
-    6 so文件md5值
+    1 表示采样到此帧的次数。
+    2 表示帧的调用层级，行缩进大小与该层级对应，所有同一层级帧采样到的次数和不大于10次，#00采样次数和为10（设置采样的次数）。
+    3 为native帧PC值。
+    4 表示调用的文件路径。
+    5 调用的函数名及代码行偏移（unstripped版本，stripped版本可能没有）。
+    6 so文件md5值。
     ```
 
    JS帧格式如下：
@@ -183,19 +183,17 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     ^  ^    ^               ^
     1  2    3               4
 
-    1 表示采样到此帧的次数，同样最大为采样次数
-    2 表示帧的调用层级，与native帧意义相同
-    3 表示调用函数名wait2
-    4 表示调用函数所在的路径，文件及行列号
+    1 表示采样到此帧的次数，同样最大为采样次数。
+    2 表示帧的调用层级，与native帧意义相同。
+    3 表示调用函数名wait2。
+    4 表示调用函数所在的路径，文件及行列号。
     ```
 
-4. trace规格简介
+4. trace规格简介。
 
-    trace大小为1-5M，对于trace文件的解析可以使用[smpartperf在线工具](https://www.smartperf.host)进行解读。
+    trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
 
-    导入trace文件后页面解读：从上往下主要展示时间轴、cpu使用率、cpu使用情况、进程间通讯数据的方法调用情况、进程、线程和方法调用情况，由此可以在事件维度上对这些数据进行直观展示。
-
-    更多对trace文件使用的介绍可以参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
+    trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)。
 
 ## 事件params属性描述
 

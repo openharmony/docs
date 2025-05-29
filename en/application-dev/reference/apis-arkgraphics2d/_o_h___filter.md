@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OH_Filter struct describes a filter used to generate a filter pixel map.
+The OH_Filter struct describes a filter used to generate a filter PixelMap.
 
 **Since**: 12
 

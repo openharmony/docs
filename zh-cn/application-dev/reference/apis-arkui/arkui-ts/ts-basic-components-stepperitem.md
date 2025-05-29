@@ -5,7 +5,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,6 +16,8 @@
 ## 接口
 
 StepperItem()
+
+创建[Stepper](ts-basic-components-stepper.md)组件的页面子组件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -37,7 +39,7 @@ prevLabel(value: string)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 左侧文本按钮内容。 |
+| value | string | 是 | 左侧文本按钮内容。字符串超长时，先缩小再换行（2行）最后截断。 |
 
 ### nextLabel
 
@@ -53,7 +55,7 @@ nextLabel(value: string)
 
 | 参数名 | 类型                            | 必填 | 说明                                                         |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string                          | 是   | 右侧文本按钮内容。                                           |
+| value  | string                          | 是   | 右侧文本按钮内容。字符串超长时，先缩小再换行（2行）最后截断。                        |
 
 ### status
 
@@ -77,6 +79,8 @@ status(value?: ItemState)
 >  - StepperItem组件不支持设置通用高度属性，其高度由Stepper父组件高度减去label按钮组件高度。
 >  - StepperItem组件不支持设置aspectRadio/constrainSize影响长宽的属性。
 ## ItemState枚举说明
+
+步骤导航器nextLabel的显示状态。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

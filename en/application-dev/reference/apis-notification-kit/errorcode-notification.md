@@ -130,7 +130,7 @@ The notification has been canceled or deleted.
 
 **Solution**
 
-N/A
+None.
 
 ## 1600008 User Not Found
 
@@ -367,6 +367,24 @@ The application is restricted by the enterprise-customized devices.
 
 The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
 
+## 1600021 Cross-Device Communication Timeout
+
+**Error Message**
+
+Distributed operation timed out.
+
+**Description**
+
+This error code is reported when the cross-device collaboration APIs (for example, redirection or quick reply) of notification is called but the communication times out.
+
+**Possible Causes**
+
+Device connection error.
+
+**Solution**
+
+Make sure that devices (for example, mobile phone and the watch) are properly connected.
+
 ## 2300007 Network Access Failure
 
 **Error Message**
@@ -402,4 +420,4 @@ This error code is reported when the bundle name is incorrect or the application
 
 **Solution**
 
-1. Verify the bundle name and make sure the application is installed.
+Verify the bundle name and make sure the application is installed.

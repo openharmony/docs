@@ -1,11 +1,8 @@
 # 随机生成非对称密钥对(ArkTS)
 
-
 以RSA和SM2为例，随机生成非对称密钥对（KeyPair），并获得二进制数据。
 
-
 非对称密钥对可用于后续加解密等操作，二进制数据可用于存储或运输。
-
 
 ## 随机生成RSA密钥对
 
@@ -24,14 +21,14 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKey() {
-    // 创建一个AsyKeyGenerator实例
+    // 创建一个AsyKeyGenerator实例。
     let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
-    // 使用密钥生成器随机生成非对称密钥对
+    // 使用密钥生成器随机生成非对称密钥对。
     let keyGenPromise = rsaGenerator.generateKeyPair();
     keyGenPromise.then(keyPair => {
       let pubKey = keyPair.pubKey;
       let priKey = keyPair.priKey;
-      // 获取非对称密钥对的二进制数据
+      // 获取非对称密钥对的二进制数据。
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
       console.info('pk bin data' + pkBlob.data);
@@ -45,15 +42,15 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateAsyKeySync() {
-    // 创建一个AsyKeyGenerator实例
+    // 创建一个AsyKeyGenerator实例。
     let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_2');
-    // 使用密钥生成器随机生成非对称密钥对
+    // 使用密钥生成器随机生成非对称密钥对。
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
       if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
-        // 获取非对称密钥对的二进制数据
+        // 获取非对称密钥对的二进制数据。
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
         console.info('pk bin data' + pkBlob.data);
@@ -66,7 +63,6 @@
     }
   }
   ```
-
 
 ## 随机生成SM2密钥对
 
@@ -85,14 +81,14 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2Key() {
-    // 创建一个AsyKeyGenerator实例
+    // 创建一个AsyKeyGenerator实例。
     let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
-    // 使用密钥生成器随机生成非对称密钥对
+    // 使用密钥生成器随机生成非对称密钥对。
     let keyGenPromise = sm2Generator.generateKeyPair();
     keyGenPromise.then(keyPair => {
       let pubKey = keyPair.pubKey;
       let priKey = keyPair.priKey;
-      // 获取非对称密钥对的二进制数据
+      // 获取非对称密钥对的二进制数据。
       let pkBlob = pubKey.getEncoded();
       let skBlob = priKey.getEncoded();
       console.info('pk bin data' + pkBlob.data);
@@ -106,15 +102,15 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function generateSM2KeySync() {
-    // 创建一个AsyKeyGenerator实例
+    // 创建一个AsyKeyGenerator实例。
     let rsaGenerator = cryptoFramework.createAsyKeyGenerator('SM2_256');
-    // 使用密钥生成器随机生成非对称密钥对
+    // 使用密钥生成器随机生成非对称密钥对。
     try {
       let keyPair = rsaGenerator.generateKeyPairSync();
       if (keyPair !== null) {
         let pubKey = keyPair.pubKey;
         let priKey = keyPair.priKey;
-        // 获取非对称密钥对的二进制数据
+        // 获取非对称密钥对的二进制数据。
         let pkBlob = pubKey.getEncoded();
         let skBlob = priKey.getEncoded();
         console.info('pk bin data' + pkBlob.data);

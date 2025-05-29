@@ -68,7 +68,7 @@ SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且
 
 ### 接口说明
 
-SDIO模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/sdio_if.h。
+SDIO模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/sdio_if.h)。
 
 **表 1** SDIO驱动API接口功能介绍
 
@@ -306,14 +306,14 @@ if (ret != HDF_SUCCESS) {
   
     | 参数 | 参数描述 | 
     | -------- | -------- |
-    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
-    | data | uint8_t类型指针，待写入数据 | 
-    | addr | uint32_t类型，待写入数据的固定地址 | 
-    | size | uint32_t类型，待写入数据的长度 | 
+    | handle | DevHandle类型，SDIO控制器的设备句柄。 | 
+    | data | uint8_t类型指针，待写入数据。 | 
+    | addr | uint32_t类型，待写入数据的固定地址。 | 
+    | size | uint32_t类型，待写入数据的长度。 | 
     | scatterLen | uint32_t类型，集散表的长度。如果该字段不为0，则data为集散表类型。 | 
     | **返回值** | **返回值描述** | 
-    | HDF_SUCCESS | SDIO写数据成功 | 
-    | 负数 | SDIO写数据失败 | 
+    | HDF_SUCCESS | SDIO写数据成功。 | 
+    | 负数 | SDIO写数据失败。 | 
 
     向SDIO设备的固定地址写入指定长度的数据的示例如下：
 
@@ -341,14 +341,14 @@ if (ret != HDF_SUCCESS) {
   
     | 参数 | 参数描述 | 
     | -------- | -------- |
-    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
-    | data | uint8_t类型指针，接收读取数据 | 
-    | addr | uint32_t类型，待读取数据的起始地址 | 
-    | size | uint32_t类型，待读取数据的长度 | 
+    | handle | DevHandle类型，SDIO控制器的设备句柄。 | 
+    | data | uint8_t类型指针，接收读取数据。 | 
+    | addr | uint32_t类型，待读取数据的起始地址。 | 
+    | size | uint32_t类型，待读取数据的长度。 | 
     | scatterLen | uint32_t类型，集散表的长度。如果该字段不为0，则data为集散表类型。 | 
     | **返回值** | **返回值描述** | 
-    | HDF_SUCCESS | SDIO读数据成功 | 
-    | 负数 | SDIO读数据失败 | 
+    | HDF_SUCCESS | SDIO读数据成功。 | 
+    | 负数 | SDIO读数据失败。 | 
 
     从SDIO设备的固定地址读取指定长度的数据的示例如下：
 

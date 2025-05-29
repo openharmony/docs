@@ -98,8 +98,8 @@ export const add: (a: number, b: number) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
 ```
@@ -154,8 +154,8 @@ export const createObjectWithProperties: (data: string) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s', JSON.stringify(value));
@@ -204,8 +204,8 @@ export const createObjectWithNameProperties: (data: string) => string | { name: 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
@@ -258,8 +258,8 @@ export const runScriptPath: () => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 try {
   // 在此处执行错误返回false，成功就返回true
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-test.js代码，将js代码编成.abc文件，步骤如下:
+test.js代码，将js代码编成.abc文件，步骤如下：
 
 1. 在SDK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
 2. 执行命令如es2abc.exe test.js  --output test.abc后便可生成test.abc文件
@@ -716,8 +716,8 @@ export const aboutSerialize: (obj: Object) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   numKey:number = 0;
 }
@@ -790,8 +790,8 @@ export const isSendable: <T>(a: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.isSendable('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
@@ -889,8 +889,8 @@ export class SendableClass {
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
@@ -927,8 +927,8 @@ export const getSendableObject: () => { x: true };
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableObject();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
@@ -960,8 +960,8 @@ export const getSendableArray: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArray();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
@@ -991,8 +991,8 @@ export const getSendableArrayWithLength: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArrayWithLength();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
@@ -1030,8 +1030,8 @@ export const getSendableArrayBuffer: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
 ```
@@ -1072,8 +1072,8 @@ export const getSendableTypedArray: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
 ```
@@ -1113,8 +1113,8 @@ export const wrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
 ```
@@ -1154,8 +1154,8 @@ export const wrapSendableWithSize: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
 ```
@@ -1199,8 +1199,8 @@ export const unwrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
 ```
@@ -1244,8 +1244,8 @@ export const removeWrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
 ```
@@ -1258,3 +1258,74 @@ add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
+
+
+## napi_wrap接口增强
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
+
+### 使用示例
+
+#### napi_wrap_enhance
+
+在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value TestNapiWrapEnhance(napi_env env, napi_callback_info info)
+{
+    napi_value testClass = nullptr;
+    napi_define_class(
+        env, "TestClass", NAPI_AUTO_LENGTH,
+        [](napi_env env, napi_callback_info info) -> napi_value {
+            napi_value thisVar = nullptr;
+            napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+            return thisVar;
+        },
+        nullptr, 0, nullptr, &testClass);
+
+    napi_value obj = nullptr;
+    napi_new_instance(env, testClass, 0, nullptr, &obj);
+    const char* testStr = "test";
+    napi_ref wrappedRef = nullptr;
+    napi_wrap_enhance(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, false, nullptr, sizeof(testStr), &wrappedRef);
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const testNapiWrapEnhance: () => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+
+testNapi.testNapiWrapEnhance();
+```
+
+## napi提供多上下文环境能力
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_create_ark_context | 创建基础运行时上下文环境。 |
+| napi_destroy_ark_context | 销毁基础运行时上下文环境。 |
+### 使用示例
+
+#### napi_create_ark_context、napi_destroy_ark_context
+
+[使用扩展的Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)

@@ -35,7 +35,7 @@
 
 4. 共享元素转场时，由于页面元素会被隐藏，故页面元素配置的动画样式/动画方法失效。
 
-5. 动态修改shareid<sup>5+</sup>：组件A的shareid被组件B的shareid覆盖，则组件A的共享元素效果失效，即使组件B的shareid被修改，此时组件A的共享元素效果也不会恢复。
+5. 动态修改shareid<sup>5+</sup>：若组件A的shareid被组件B的shareid覆盖，组件A的共享元素效果将失效。即使后续修改组件B的shareid，组件A的共享元素效果也不会恢复。
 
 
 ### 示例
@@ -51,7 +51,7 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
       <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
     </list-item>
     <list-item>
-      <text onclick="jump">Click on picture to Jump to ths details</text>
+      <text onclick="jump">Click on picture to Jump to the details</text>
     </list-item>
   </list>
 </div>
@@ -147,7 +147,7 @@ source_page包含顶部内容以及卡片列表，点击卡片可以跳转到tar
 
 ```js
 // xxx.js
-import router from '@ohos.router'
+import router from '@ohos.router';
 export default {
   data: { list: [] },
   onInit() {

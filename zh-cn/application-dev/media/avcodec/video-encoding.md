@@ -39,6 +39,8 @@
     - Buffer模式下，开发者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，开发者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
     - Buffer模式下，开发者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
+4. Surface模式的数据流转性能优于Buffer模式。
+
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
 ## 状态机调用关系
@@ -166,7 +168,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     };
     ```
 
-4. 全局变量
+4. 全局变量。
 
     仅做参考，可以根据实际情况将其封装到对象中。
 
@@ -245,7 +247,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示：
 
-    <!--RP5-->
     ```c++
     // 设置OH_AVCodecOnError 回调函数，编码异常。
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -256,8 +257,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)userData;
     }
     ```
-    <!--RP5End-->
-
+    
     <!--RP12-->
     ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化。
@@ -283,7 +283,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-    <!--RP6-->
     ```c++
     // 设置 OH_AVCodecOnNewOutputBuffer 回调函数，编码完成帧送入输出队列。
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -294,7 +293,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         outQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
     }
     ```
-    <!--RP6End-->
 
     ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口。
@@ -409,7 +407,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，可通过生产者接口获取待填充数据地址。
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)。
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)。
 
 7. 调用OH_VideoEncoder_Prepare()编码器就绪。
 
@@ -495,6 +493,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
 
+    <!--RP6-->
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
@@ -515,6 +514,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理。
     }
     ```
+    <!--RP6End-->
 
 14. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 
@@ -795,7 +795,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)；
     - widthStride: 获取到的buffer数据的跨距。
 
     ```c++
@@ -817,7 +816,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     info.size = frameSize;
     info.offset = 0;
     info.pts = 0;
-    info.flags = flags;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理。
@@ -843,12 +841,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
-    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
-    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_WIDTH表示width；
+    - OH_MD_KEY_HEIGHT表示height；
     - OH_MD_KEY_VIDEO_STRIDE表示wStride；
     - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-encoder.png)
 
     添加头文件。
 

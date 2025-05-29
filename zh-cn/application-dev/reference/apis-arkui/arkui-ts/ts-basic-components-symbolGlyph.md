@@ -1,10 +1,10 @@
 # SymbolGlyph
 
-显示图标小符号的组件。
+显示图标小符号的组件。<!--RP1--><!--RP1End-->
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -24,7 +24,7 @@ SymbolGlyph(value?: Resource)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
+| value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
 >  **说明：**
 >
@@ -56,7 +56,7 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 fontSize(value: number | string | Resource)
 
-设置SymbolGlyph组件大小。
+设置SymbolGlyph组件大小。设置string类型时，支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。
 
@@ -70,7 +70,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：系统默认值。<br/>不支持设置百分比字符串。|
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：16fp<br/>单位：[fp](ts-pixel-units.md#像素单位)<br/>不支持设置百分比字符串。|
 
 ### fontWeight
 
@@ -149,7 +149,7 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
 | symbolEffect  | [SymbolEffect](#symboleffect12对象说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12对象说明) |
-| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
+| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>true表示播放，false表示不播放。<br/>默认值：false |
 
 ### symbolEffect<sup>12+</sup>
 
@@ -174,13 +174,13 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 >
 >  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
 
-### minFontScale<sup>16+</sup>
+### minFontScale<sup>18+</sup>
 
 minFontScale(scale: Optional\<number | Resource>)
 
 设置SymbolGlyph组件最小的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -188,15 +188,15 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 否   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1]。<br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。   |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最小的字体缩放倍数。<br/>取值范围：[0, 1] <br/>设置为0，缩放最小。<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。   |
 
-### maxFontScale<sup>16+</sup>
+### maxFontScale<sup>18+</sup>
 
 maxFontScale(scale: Optional\<number | Resource>)
 
 设置SymbolGlyph组件最大的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -204,7 +204,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ----- |
-| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 否   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
+| scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
 ## ScaleSymbolEffect<sup>12+</sup>
 
@@ -424,11 +424,11 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                          |
-| ------ | ----------------------------- |
-| NONE | 无动效（默认值）。 |
-| SCALE | 整体缩放动效。                 |
-|  HIERARCHICAL  | 层级动效。  |
+| 名称     | 值 | 说明                          |
+| ------ | --- | ----------------------------- |
+| NONE | 0 | 无动效（默认值）。 |
+| SCALE | 1 | 整体缩放动效。                 |
+|  HIERARCHICAL  | 2 | 层级动效。  |
 
 ## SymbolRenderingStrategy<sup>11+</sup>枚举说明
 
@@ -440,11 +440,11 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                          |
-| ------ | ----------------------------- |
-| SINGLE  | 单色模式（默认值）。<br/> 可以设置一个或者多个颜色，默认为黑色。<br/> 当设置多个颜色时，仅生效第一个颜色。 |
-| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当只设置一个颜色时，修改symbol图标的第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，设置透明度设置不生效。|
-|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个或者多个颜色。当设置多个颜色时，仅生效第一个颜色。<br/>不透明度与图层相关，symbol图标的第一层透明度为100%、第二层透明度为50%、第三层透明度为20%。  |
+| 名称     | 值 | 说明                          |
+| ------ | --- | ----------------------------- |
+| SINGLE  | 0 | 单色模式（默认值）。<br/> 可以设置一个或者多个颜色，默认为黑色。<br/> 当设置多个颜色时，仅生效第一个颜色。 |
+| MULTIPLE_COLOR  | 1 | 多色模式。<br/> 最多可以设置三个颜色。当只设置一个颜色时，修改symbol图标的第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，设置透明度设置不生效。|
+|  MULTIPLE_OPACITY   | 2 | 分层模式。<br/> 默认为黑色，可以设置一个或者多个颜色。当设置多个颜色时，仅生效第一个颜色。<br/>不透明度与图层相关，symbol图标的第一层透明度为100%、第二层透明度为50%、第三层透明度为20%。  |
 
 ## SymbolEffect<sup>12+</sup>对象说明
 

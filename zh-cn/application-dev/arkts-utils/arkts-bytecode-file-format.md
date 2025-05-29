@@ -20,7 +20,8 @@
 
 
 ### 字符串
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -30,7 +31,8 @@
 
 
 ### TaggedValue
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                |
@@ -40,7 +42,7 @@
 
 
 ## TypeDescriptor
-TypeDescriptor是类([Class](#class)) 名称的格式，由`'L'`、`'_'`、`ClassName`和`';'`组成：`L_ClassName;`。其中，`ClassName`是类的全名，名字中的`'.'`会被替换为`'/'`。
+TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`ClassName`和`';'`组成：`L_ClassName;`。其中，`ClassName`是类的全名，名字中的`'.'`会被替换为`'/'`。
 
 
 ## 字节码文件布局
@@ -50,14 +52,15 @@ TypeDescriptor是类([Class](#class)) 名称的格式，由`'L'`、`'_'`、`Clas
 
 
 ### Header
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称**    | **格式** | **说明**                                               |
 | ----------------- | -------------- | ------------------------------------------------------------ |
 | `magic`             | `uint8_t[8]`     | 文件头魔数，值必须是`'P' 'A' 'N' 'D' 'A' '\0' '\0' '\0'`。    |
 | `checksum`          | `uint32_t`       | 字节码文件除文件头魔数和本校验字段之外的内容的adler32校验和。 |
-| `version`           | `uint8_t[4]`     | 字节码文件的版本号 ([Version](#version)) 。 |
+| `version`           | `uint8_t[4]`     | 字节码文件的版本号（[Version](#version)）。 |
 | `file_size`         | `uint32_t`       | 字节码文件的大小，以字节为单位。                             |
 | `foreign_off`       | `uint32_t`       | 一个偏移量，指向外部区域。外部区域中仅包含类型为[ForeignClass](#foreignclass)或[ForeignMethod](#foreignmethod)的元素。`foreign_off`指向该区域的第一个元素。 |
 | `foreign_size`      | `uint32_t`       | 外部区域的大小，以字节为单位。                               |
@@ -84,7 +87,8 @@ TypeDescriptor是类([Class](#class)) 名称的格式，由`'L'`、`'_'`、`Clas
 
 ### ForeignClass
 描述字节码文件中的外部类。外部类在其他文件中声明，并在当前字节码文件中被引用。
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -94,7 +98,8 @@ TypeDescriptor是类([Class](#class)) 名称的格式，由`'L'`、`'_'`、`Clas
 
 ### ForeignMethod
 描述字节码文件中的外部方法。外部方法在其他文件中声明，并在当前字节码文件中被引用。
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -104,13 +109,15 @@ TypeDescriptor是类([Class](#class)) 名称的格式，由`'L'`、`'_'`、`Clas
 | `name_off`       | `uint32_t`       | 一个偏移量，指向[字符串](#字符串)，表示方法名称。 |
 | `index_data`     | `uleb128`        | 方法的[MethodIndexData](#methodindexdata)数据。 |
 
-**注意：**<br>
-通过ForeignMethod的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> **注意：**
+> 
+> 通过ForeignMethod的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
 
 
 ### ClassIndex
 ClassIndex结构的作用是通过名称快速地定位到Class的定义。
-- 对齐方式：4个字节
+
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -121,7 +128,7 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 ### Class
 在字节码文件中，一个类可以表示方舟字节码的一个源代码文件或者一种内置的[Annotation](#annotation)。当表示源代码文件时，类的方法对应源代码文件中的函数，类的字段对应源文件中的内部信息；当表示内置的Annotation时，类中不包含字段与方法。源代码文件中的一个类在字节码文件中表示为一个对应其构造函数的方法。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -145,7 +152,8 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 
 
 ### ClassTag
-- 对齐方式：单字节对齐
+
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **值** | **数量** | **格式** | **说明**                                               |
@@ -154,14 +162,15 @@ ClassIndex结构的作用是通过名称快速地定位到Class的定义。
 | `SOURCE_LANG`    | `0x02`  | `0-1 ` | `uint8_t` | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是0，表示源码语言是ArkTS/TS/JS。 |
 | `SOURCE_FILE`    | `0x07`  | `0-1`  | `uint32_t`| 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[字符串](#字符串)，表示源文件的名称。 |
 
-**注意：**<br>
-ClassTag是`class_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标记，表头中的“数量”指的是在某一个[Class](#class)的`class_data`中拥有此标记的元素出现的次数。
+> **注意：**
+> 
+> ClassTag是`class_data`中元素（[TaggedValue](#taggedvalue)）所具备的标记，表头中的“数量”指的是在某一个[Class](#class)的`class_data`中拥有此标记的元素出现的次数。
 
 
 ### Field
 描述字节码文件中的字段。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -172,13 +181,14 @@ ClassTag是`class_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标�
 | `reserved`       | `uleb128`        | 方舟字节码文件内部使用的保留字段。                           |
 | `field_data`     | `TaggedValue[]`  | 不定长度的数组，数组中每个元素都是[TaggedValue](#taggedvalue)类型，元素的标记是[FieldTag](#fieldtag)类型，数组中的元素按照标记递增排序（`0x00`标记除外）。 |
 
-**注意：**<br>
-通过Field的偏移量，可以找到适当的IndexHeader以解析`class_idx`和`type_idx`。
+> **注意：**
+> 
+> 通过Field的偏移量，可以找到适当的IndexHeader以解析`class_idx`和`type_idx`。
 
 
 ### FieldTag
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **值** | **数量** | **格式** | **说明**  |
@@ -187,14 +197,15 @@ ClassTag是`class_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标�
 | `INT_VALUE`      | `0x01`   | `0-1` | `sleb128`  | 拥有此标记的[TaggedValue](#taggedvalue)的`data`的类型为`boolean`、`byte`、`char`、`short` 或 `int`。 |
 | `VALUE`          | `0x02`   | `0-1` | `uint32_t` | 拥有此标记的[TaggedValue](#taggedvalue)的`data`的类型为[Value formats](#value-formats)中的`FLOAT`或`ID`。 |
 
-**注意：**<br>
-FieldTag是`field_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标记，表头中的“数量”指的是在某一个[Field](#field)的`field_data`中拥有此标记的元素出现的次数。
+> **注意：**
+> 
+> FieldTag是`field_data`中元素（[TaggedValue](#taggedvalue)）所具备的标记，表头中的“数量”指的是在某一个[Field](#field)的`field_data`中拥有此标记的元素出现的次数。
 
 
 ### Method
 描述字节码文件中的方法。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -205,8 +216,9 @@ FieldTag是`field_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标�
 | `index_data`     | `uleb128`        | 方法的[MethodIndexData](#methodindexdata)数据。 |
 | `method_data`    | `TaggedValue[]`  | 不定长度的数组，数组中每个元素都是[TaggedValue](#taggedvalue)类型，元素的标记是[MethodTag](#methodtag)类型，数组中的元素按照标记递增排序（`0x00`标记除外）。 |
 
-**注意：**<br>
-通过Method的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> **注意：**
+> 
+> 通过Method的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
 
 
 ### MethodIndexData
@@ -214,8 +226,8 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 | **位** | **名称** | **格式** | **说明**                                               |
 | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
-| 0 - 15       | `header_index`   | `uint16_t`       | 指向一个在[IndexSection](#indexsection)中的位置，该位置的值是[IndexHeader](#indexheader)。通过IndexHeader可以找到该方法引用的所有方法 ([Method](#method)) 、[字符串](#字符串)或字面量数组 ([LiteralArray](#literalarray)) 的偏移量。 |
-| 16 - 23      | `function_kind`  | `uint8_t`        | 表示方法的函数类型 ([FunctionKind](#functionkind)) 。 |
+| 0 - 15       | `header_index`   | `uint16_t`       | 指向一个在[IndexSection](#indexsection)中的位置，该位置的值是[IndexHeader](#indexheader)。通过IndexHeader可以找到该方法引用的所有方法（[Method](#method)）、[字符串](#字符串)或字面量数组（[LiteralArray](#literalarray)）的偏移量。 |
+| 16 - 23      | `function_kind`  | `uint8_t`        | 表示方法的函数类型（[FunctionKind](#functionkind)）。 |
 | 24 - 31      | `reserved`       | `uint8_t`        | 方舟字节码文件内部使用的保留字段。                           |
 
 
@@ -242,13 +254,14 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | `DEBUG_INFO`     | `0x05`         | `0-1`            | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[DebugInfo](#debuginfo)，表示方法的调试信息。 |
 | `ANNOTATION`     | `0x06`         | `>=0`            | `uint32_t`       | 拥有此标记的[TaggedValue](#taggedvalue)的`data`是一个偏移量，指向[Annotation](#annotation)， 表示方法的注解。 |
 
-**注意：**<br>
-MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标记，表头中的“数量”指的是在某一个[Method](#method)的`method_data`中拥有此标记的元素出现的次数。
+> **注意：**
+> 
+> MethodTag是`method_data`中元素（[TaggedValue](#taggedvalue)）所具备的标记，表头中的“数量”指的是在某一个[Method](#method)的`method_data`中拥有此标记的元素出现的次数。
 
 
 ### Code
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -263,7 +276,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 ### TryBlock
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -276,7 +289,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 ### CatchBlock
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                  |
@@ -299,8 +312,9 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 | `elements`       | AnnotationElement[] | 一个数组，数组的每个元素都是[AnnotationElement](#annotationelement)类型。 |
 | `element_types`  | `uint8_t[]`  | 一个数组，数组的每个元素都是[AnnotationElementTag](#annotationelementtag)类型，用于描述一个AnnotationElement。每个元素在`element_types`数组中的位置和其对应的AnnotationElement在`elements`数组中的位置一致。 |
 
-**注意：**<br>
-通过Annotation的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
+> **注意：**
+> 
+> 通过Annotation的偏移量，可以找到适当的IndexHeader以解析`class_idx`。
 
 
 ### AnnotationElementTag
@@ -327,7 +341,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 ### AnnotationElement
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -349,9 +363,9 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 
 ### LineNumberProgramIndex
-行号程序索引 (LineNumberProgramIndex) 结构是一个数组，便于使用更紧凑的索引访问行号程序 ([Line number program](#line-number-program)) 。
+行号程序索引（LineNumberProgramIndex）结构是一个数组，便于使用更紧凑的索引访问行号程序（[Line number program](#line-number-program)）。
 
-- 对齐方式：4个字节
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -360,9 +374,9 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 
 ### DebugInfo
-调试信息 (DebugInfo) 包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机 ([State machine](#state-machine)) 的执行模型对行号程序 ([Line number program](#line-number-program))进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池 ([Constant pool](#constant-pool)) 中。
+调试信息（DebugInfo）包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机（[State machine](#state-machine)）的执行模型对行号程序（[Line number program](#line-number-program))进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池（[Constant pool](#constant-pool)）中。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称**          | **格式** | **说明**                                               |
@@ -376,11 +390,11 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 
 #### Constant pool
-常量池 (Constant pool) 是DebugInfo中存放常量的结构。很多方法都具有相似的行号程序，其区别仅在于变量名、变量类型和文件名。为了对这类行号程序进行去重，程序中引用的所有常量都存储在常量池。在解释程序时，状态机维护一个指向常量池的指针。当状态机解释一条需要常量参数的指令时，会从内存常量池指针指向的位置读取值，然后递增指针。
+常量池（Constant pool）是DebugInfo中存放常量的结构。很多方法都具有相似的行号程序，其区别仅在于变量名、变量类型和文件名。为了对这类行号程序进行去重，程序中引用的所有常量都存储在常量池。在解释程序时，状态机维护一个指向常量池的指针。当状态机解释一条需要常量参数的指令时，会从内存常量池指针指向的位置读取值，然后递增指针。
 
 
 #### State machine
-状态机 (State machine) 的作用是产生[DebugInfo](#debuginfo)信息。状态机中有以下的寄存器：
+状态机（State machine）的作用是产生[DebugInfo](#debuginfo)信息。状态机中有以下的寄存器：
 
 | **名称**    | **初始值**                                             | **说明**                                               |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -393,19 +407,19 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 
 
 #### Line number program
-一个行号程序 (Line number program) 由指令组成。每条指令都包含一个字节的操作码以及可选参数。根据操作码的不同，参数的值可能被编码在指令中（称为指令参数），或者需要从常量池中获取（称为常量池参数）。
+一个行号程序（Line number program）由指令组成。每条指令都包含一个字节的操作码以及可选参数。根据操作码的不同，参数的值可能被编码在指令中（称为指令参数），或者需要从常量池中获取（称为常量池参数）。
 
 | **操作码**  | **值** | **指令参数**   | **常量池参数**    | **参数说明** | **说明**  |
 | ----- | ----- | ------- | ---- | ------- | ------ |
 | `END_SEQUENCE`         | `0x00`  |       |          |        | 标记行号程序的结束。    |
-| `ADVANCE_PC`           | `0x01`  |    | `uleb128 addr_diff`   | `addr_diff`：`address`寄存器的值待增加的数值    | `address`寄存器中的值加上`addr_diff`，指向下一个地址，而不生成位置条目。 |
-| `ADVANCE_LINE`         | `0x02` |     | `sleb128 line_diff`  | `line_diff`：`line`寄存器的值待增加的数值    | `line`寄存器中的值加上`line_diff`，指向下一个行位置，而不生成位置条目。 |
-| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | `register_num`：将包含局部变量的寄存器<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型 | 在当前地址中引入一个带有名称和类型的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`和`type_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | `register_num`：将包含局部变量的寄存器<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型<br>`sig_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的签名 | 在当前地址中引入一个带有名称、类型和签名的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`、`type_idx`和`sig_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | `register_num`：包含局部变量的寄存器  | 在当前地址将指定寄存器中的局部变量标记为超出范围。寄存器的编号为-1，则意味着是累加器寄存器。 |
-| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | `name_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的名称 | 设置file寄存器的值。`name_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | `source_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的源码 | 设置`source_code`寄存器的值。`source_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
-| `SET_COLUMN`           | `0x0b` |    | `uleb128 column_num`   | `column_num`：待设置的列号   | 设置`column`寄存器的值，并生成一个位置条目。  |
+| `ADVANCE_PC`           | `0x01`  |    | `uleb128 addr_diff`   | `addr_diff`：`address`寄存器的值待增加的数值。    | `address`寄存器中的值加上`addr_diff`，指向下一个地址，而不生成位置条目。 |
+| `ADVANCE_LINE`         | `0x02` |     | `sleb128 line_diff`  | `line_diff`：`line`寄存器的值待增加的数值。    | `line`寄存器中的值加上`line_diff`，指向下一个行位置，而不生成位置条目。 |
+| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。 | 在当前地址中引入一个带有名称和类型的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`和`type_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
+| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | `register_num`：将包含局部变量的寄存器。<br>`name_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的名称。<br>`type_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的类型。<br>`sig_idx`：一个偏移量，指向[字符串](#字符串)，表示变量的签名。 | 在当前地址中引入一个带有名称、类型和签名的局部变量。将要包含这个变量的寄存器的编号被编码在指令中。如果寄存器的编号是-1，则意味着这个是累加器寄存器。`name_idx`、`type_idx`和`sig_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
+| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | `register_num`：包含局部变量的寄存器。  | 在当前地址将指定寄存器中的局部变量标记为超出范围。寄存器的编号为-1，则意味着是累加器寄存器。 |
+| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | `name_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的名称。 | 设置file寄存器的值。`name_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
+| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | `source_idx`：一个偏移量，指向[字符串](#字符串)，表示文件的源码。 | 设置`source_code`寄存器的值。`source_idx`的值可能是0，如果是0，则代表着对应的信息是不存在的。 |
+| `SET_COLUMN`           | `0x0b` |    | `uleb128 column_num`   | `column_num`：待设置的列号。   | 设置`column`寄存器的值，并生成一个位置条目。  |
 | 特殊操作码           | `0x0c..0xff`   |   |  |   | 使 `line` 和 `address` 寄存器指向下一个地址，并生成一个位置条目。详情参阅下文中的说明。 |
 
 
@@ -418,14 +432,15 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 | 3     | `line += LINE_BASE + (adjusted_opcode % LINE_RANGE)` | 增加`line`寄存器中的值。`LINE_BASE`的值是-4，是最小的行号增量值；最大的行号增量值是`LINE_BASE + LINE_RANGE - 1`。 |
 | 4     |                                                    | 生成一个新的位置条目。                                       |
 
-**注意：**<br>
-“特殊操作码”是通过此公式计算得到：`(line_increment - LINE_BASE) + (address_increment * LINE_RANGE) + OPCODE_BASE`。
+> **注意：**
+> 
+> 特殊操作码计算方式：`(line_increment - LINE_BASE) + (address_increment * LINE_RANGE) + OPCODE_BASE`。
 
 
 ### IndexSection
-通常情况下，字节码文件的各个结构使用32位偏移量来引用，当一个结构引用另一个结构时，需要在当前结构中记录被引用结构的32位偏移量。为了减小文件体积，字节码文件被分割成多个索引区域 (Index region)，每个索引区域内的结构使用16位索引。IndexSection结构描述了索引区域的集合。
+通常情况下，字节码文件的各个结构使用32位偏移量来引用，当一个结构引用另一个结构时，需要在当前结构中记录被引用结构的32位偏移量。为了减小文件体积，字节码文件被分割成多个索引区域（Index region），每个索引区域内的结构使用16位索引。IndexSection结构描述了索引区域的集合。
 
-- 对齐方式：4个字节
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称** | **格式** | **说明**       |
@@ -436,7 +451,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 ### IndexHeader
 每个IndexHeader结构描述一个索引区域。每个索引区域都有两类索引：指向[Type](#type)的索引和指向方法、字符串或者字面量数组的索引。
 
-- 对齐方式：4个字节
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称**        | **格式** | **说明**    |
@@ -456,7 +471,7 @@ MethodTag是`method_data`中元素 ([TaggedValue](#taggedvalue)) 所具备的标
 ### ClassRegionIndex
 ClassRegionIndex结构的作用是允许通过更紧凑的索引，找到对应的[Type](#type)。
 
-- 对齐方式：4个字节
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -488,7 +503,7 @@ ClassRegionIndex结构的作用是允许通过更紧凑的索引，找到对应�
 ### MethodStringLiteralRegionIndex
 MethodStringLiteralRegionIndex结构的作用是允许通过更紧凑的索引，找到对应的方法、字符串或者字面量数组。
 
-- 对齐方式：4个字节
+- 对齐方式：4个字节。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -499,7 +514,7 @@ MethodStringLiteralRegionIndex结构的作用是允许通过更紧凑的索引�
 ### LiteralArray
 描述字节码文件中的字面量数组。
 
-- 对齐方式：单字节对齐
+- 对齐方式：单字节对齐。
 - 格式：
 
 | **名称** | **格式** | **说明**                                               |
@@ -509,12 +524,14 @@ MethodStringLiteralRegionIndex结构的作用是允许通过更紧凑的索引�
 
 
 ### Literal
-描述字节码文件中的字面量，根据字面量值的字节数的不同，有四种编码格式。
+描述字节码文件中的字面量，根据字面量值的字节数的不同，有四种编码格式，分别是单字节编码、双字节编码、四字节编码、八字节编码。根据不同数值长度对应相适应的编译格式，优化字节码文件大小。
 
-| **名称** | **格式** | **对齐方式** | **说明** |
-| -------------- | -------------- | ------------------ | -------------- |
-| ByteOne        | `uint8_t`        | 1个字节            | 单字节的值。   |
-| ByteTwo        | `uint16_t`       | 2个字节            | 双字节的值。   |
-| ByteFour       | `uint32_t`       | 4个字节            | 四字节的值。   |
-| ByteEight      | `uint64_t`       | 8个字节            | 八字节的值。   |
+- 对齐方式：每种格式都有对应的对齐规则。
+- 格式：
 
+| **名称** | **格式** | **说明** |
+| -------------- | ------------ | -------------- |
+| 单字节编码      | `uint8_t`    | 单字节的值，单字节对齐，存储用于简单类型的字面量，例如`BOOL`字面量。   |
+| 双字节编码      | `uint16_t`   | 双字节的值，2个字节对齐，存储16位整型字面量。   |
+| 四字节编码      | `uint32_t`   | 四字节的值，4个字节对齐，存储32位数值字面量，例如`INTEGER`整数型字面量，或`FLOAT`浮点型字面量。   |
+| 八字节编码      | `uint64_t`   | 八字节的值，8个字节对齐，存储64位数值字面量，例如`DOUBLE`双精度浮点型字面量。   |

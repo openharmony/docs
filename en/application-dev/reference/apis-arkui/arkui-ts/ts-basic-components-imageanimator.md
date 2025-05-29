@@ -43,7 +43,7 @@ Sets the image frame information. Dynamic update is not supported.
 
 | Name| Type                                                  | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**|
+| value  | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Yes  | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br> **NOTE**<br>If the input array is too large, memory usage may increase. Therefore, as the controller of memory usage, be sure to assess potential memory consumption before passing in the data to avoid issues such as insufficient memory.|
 
 ### state
 
@@ -167,13 +167,13 @@ Sets the number of times that the animation is played.
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | Yes  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
 
-### monitorInvisibleArea<sup>16+</sup>
+### monitorInvisibleArea<sup>18+</sup>
 
 monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 Sets whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,10 +192,10 @@ Sets whether the component should automatically pause or resume based on its vis
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| width    | number \| string | No | Image width.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
-| height   | number \| string | No | Image height.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
-| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
-| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
+| width    | number \| string | No | Image width. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
+| height   | number \| string | No | Image height. For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget For the string type, numeric string values with optional units, for example, **"2"** or **"2px"**, are supported.<br>Default value: **0**<br>Unit: vp<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
 
 ## Events
@@ -430,7 +430,7 @@ struct ImageAnimatorExample {
 
 ### Example 3: Enabling Automatic Pause on Invisibility
 
-This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea16) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
+This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea18) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
 
 ```ts
 @Entry
@@ -519,4 +519,3 @@ struct ImageAnimatorAutoPauseTest {
 ```
 
 ![imageAnimatorMonitorInvisibleAreaExample](figures/imageAnimatorMonitorInvisibleArea.gif)
-<!--no_check-->

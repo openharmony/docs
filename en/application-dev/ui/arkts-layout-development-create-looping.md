@@ -77,13 +77,13 @@ Swiper() {
 ![autoPlay](figures/autoPlay.gif)
 
 
-## Navigation Point Indicator
+## Navigation Indicator
 
-The **Swiper** component comes with default navigation point and arrow styles, with navigation points centered at the bottom and arrows hidden.
+The **Swiper** component comes with default indicator and arrow styles, with the indicators centered at the bottom and arrows hidden.
 
-With the **indicator** attribute, you can set the position of the navigation point indicator relative to the edges of the **Swiper** component, in addition to the size, color, and mask of each navigation point as well as the color of the selected navigation point.
+With the **indicator** attribute, you can set the position of the indicator relative to the edges of the **Swiper** component, in addition to the size, color, and mask of each indicator as well as the color of the selected indicator.
 
-- Example of using the navigation point indicator in its default style:
+- Example of using the navigation indicator in its default style:
 
 ```ts
 Swiper() {
@@ -112,7 +112,7 @@ Swiper() {
 
 ![indicator](figures/indicator.PNG)
 
-- Example of customizing the style of the navigation point indicator, with the dot diameter of 30 vp, left margin of 0, and color of red:
+- Example of customizing the style of the navigation indicator, with the diameter of 30 vp, left margin of 0, and color of red:
 
  
 

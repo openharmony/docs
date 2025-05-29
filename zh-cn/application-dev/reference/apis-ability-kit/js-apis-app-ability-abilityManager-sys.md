@@ -868,7 +868,7 @@ export default class UiExtAbility extends UIExtensionAbility {
 }
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -955,7 +955,7 @@ setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process |
+| 16200006 | The caller application can only set the resident status of the configured process. |
 
 **示例：**
 
@@ -980,7 +980,7 @@ try {
 }
 ```
 
-## AtomicServiceStartupRule<sup>16+</sup>
+## AtomicServiceStartupRule<sup>18+</sup>
 
 嵌入式拉起原子化服务的规则。
 
@@ -990,10 +990,10 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
-| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
 
-## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 
 queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
 
@@ -1014,7 +1014,7 @@ queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicS
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
 
 **错误码**：
 

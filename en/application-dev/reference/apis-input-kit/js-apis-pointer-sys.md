@@ -46,13 +46,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setPointerSpeed(5, (error: Error) => {
     if (error) {
-      console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -95,7 +95,7 @@ try {
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -131,7 +131,7 @@ try {
   let speed = pointer.setPointerSpeedSync(5);
   console.log(`Set pointer speed success`);
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -166,13 +166,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.getPointerSpeed((error: Error, speed: number) => {
     if (error) {
-      console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -200,7 +200,7 @@ try {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -236,7 +236,7 @@ try {
   let speed = pointer.getPointerSpeedSync();
   console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -272,13 +272,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
-      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -321,7 +321,7 @@ try {
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -358,7 +358,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -395,7 +395,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -431,13 +431,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
-      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -480,7 +480,7 @@ try {
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -517,7 +517,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -554,7 +554,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -590,13 +590,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setMouseScrollRows(1, (error: Error) => {
     if (error) {
-      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -639,7 +639,7 @@ try {
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -676,7 +676,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -713,7 +713,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -749,13 +749,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadScrollSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -798,7 +798,7 @@ try {
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -835,7 +835,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -872,7 +872,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -908,13 +908,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadScrollDirection(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -957,7 +957,7 @@ try {
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -994,7 +994,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1031,7 +1031,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1067,13 +1067,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1116,7 +1116,7 @@ try {
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1153,7 +1153,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1190,7 +1190,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1226,13 +1226,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadPointerSpeed(1, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1275,7 +1275,7 @@ try {
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1312,7 +1312,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1349,7 +1349,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1385,13 +1385,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1434,7 +1434,7 @@ try {
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1471,7 +1471,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1508,7 +1508,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1544,13 +1544,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1593,7 +1593,7 @@ try {
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1630,7 +1630,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1667,7 +1667,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1685,7 +1685,7 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the right-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -1703,13 +1703,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
     if (error) {
-      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1725,9 +1725,9 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the right-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 
 **Return value**
 
@@ -1752,7 +1752,7 @@ try {
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1789,7 +1789,7 @@ try {
     console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1826,7 +1826,7 @@ try {
     console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1862,13 +1862,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setPointerSize(1, (error: Error) => {
     if (error) {
-      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1911,13 +1911,13 @@ try {
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 Sets the pointer size. This API returns the result synchronously.
 
@@ -1947,7 +1947,7 @@ try {
   pointer.setPointerSizeSync(5);
   console.log(`setPointerSizeSync success`);
 } catch (error) {
-  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1984,7 +1984,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2021,7 +2021,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2057,7 +2057,7 @@ try {
   let pointerSize = pointer.getPointerSizeSync();
   console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
 } catch (error) {
-  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2097,13 +2097,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setPointerColor(0xF6C800, (error: Error) => {
     if (error) {
-      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2150,13 +2150,13 @@ try {
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 Sets the pointer color. This API returns the result synchronously.
 
@@ -2190,7 +2190,7 @@ try {
   pointer.setPointerColorSync(0xF6C800);
   console.log(`setPointerColorSync success`);
 } catch (error) {
-  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2227,7 +2227,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2264,7 +2264,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2300,7 +2300,7 @@ try {
   let pointerColor = pointer.getPointerColorSync();
   console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
 } catch (error) {
-  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2336,13 +2336,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadDoubleTapAndDragState success`);
   });
 } catch (error) {
-  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2385,7 +2385,7 @@ try {
     console.log(`setTouchpadDoubleTapAndDragState success`);
   });
 } catch (error) {
-  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2422,7 +2422,7 @@ try {
     console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -2458,6 +2458,6 @@ try {
     console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

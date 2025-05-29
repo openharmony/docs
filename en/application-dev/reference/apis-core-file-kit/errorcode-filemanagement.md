@@ -4,13 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The error codes of the file management subsystem include the following:
-
-- [Basic File IO Error Codes](#basic-file-io-error-codes)
-- [User Data Management Error Codes](#user-data-management-error-codes)
-- [User File Access Error Codes](#user-file-access-error-codes)
-- [Space Statistics Error Codes](#space-statistics-error-codes)
-- [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
+The error codes of the file management subsystem include the following:<br>- [Basic File IO Error Codes](#basic-file-io-error-codes)<br>- [User Data Management Error Codes](#user-data-management-error-codes)<br>- [User File Access Error Codes](#user-file-access-error-codes)<br>- [Space Statistics Error Codes](#space-statistics-error-codes)<br>- [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
 
 ## Basic File IO Error Codes
 
@@ -54,7 +48,7 @@ No such process
 
 **Possible Causes**
 
-The process does not exist.
+This error code is reported if a process does not exist.
 
 **Solution**
 
@@ -90,7 +84,7 @@ The I/O request is invalid.
 
 **Solution**
 
-Initiate the I/O request again.
+Make the I/O request again.
 
 ### 13900006 Device or Address Not Exist
 
@@ -196,7 +190,7 @@ Permission denied
 
 1. Check the UGO permission of the file.
 
-2. Check the kernel log for AVC log information. If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
+2. Check the kernel log for [AVC log information](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md). If yes,<!--RP1--> see [SELinux Development](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md).<!--RP1End-->
 
 3. Check whether the file path is a [sandbox path](../../file-management/app-sandbox-directory.md). The File Management system does not allow operations on files outside the sandbox directory.
 
@@ -282,7 +276,7 @@ The specified directory is invalid.
 
 **Solution**
 
-Check that the specified directory is correct.
+Check that the specified data is correct.
 
 ### 13900019 The Specified Object Is a Directory
 
@@ -446,11 +440,11 @@ Filename too Long
 
 **Possible Causes**
 
-The length of the path or file name exceeds the limit.
+The file name length exceeds 256 bytes.
 
 **Solution**
 
-Modify the path or file name.
+Check the file name length.
 
 ### 13900031 Function Not Implemented
 
@@ -602,7 +596,7 @@ Quota exceeded
 
 **Possible Causes**
 
-The storage space is insufficient.
+Insufficient storage space.
 
 **Solution**
 
@@ -628,7 +622,7 @@ Internal error
 
 **Error Message**
 
-No record locks available
+No record is locks available
 
 **Possible Causes**
 
@@ -946,7 +940,7 @@ The BMS interface is abnormal.
 
 **Solution**
 
-Check for basic system capability errors.
+Check for basic system capability errors. <!--RP1-->Please contact the OpenHarmony team for support.<!--RP1End-->
 
 ### 14300004 Incorrect Result Returned by js-server
 
@@ -1006,7 +1000,7 @@ The specified Notify agent has not been registered.
 
 **Solution**
 
-Check whether the specified Notify agent is registered.
+Check whether the Notify agent has been registered.
 
 ### 14300008 Failed to Notify the Agent
 
@@ -1040,9 +1034,9 @@ Cloud status not ready
 
 **Solution**
 
-1. Check that the user has logged in with a cloud account.
+1. Check whether the user has logged in using an account.
 
-2. Check that the cloud synchronization switch is enabled.
+2. Check whether the cloud synchronization switch is enabled.
 
 ### 22400002 Network Unavailable
 

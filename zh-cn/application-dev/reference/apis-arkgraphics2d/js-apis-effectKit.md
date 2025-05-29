@@ -1,6 +1,6 @@
 # @ohos.effectKit (图像效果)
 
-图像效果提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。
+图像效果模块提供了处理图像的基础能力，包括亮度调节、模糊化、灰度调节和智能取色等。effectKit用于离线处理图像（如pixelmap、png、jpeg）以获得视觉效果，而uiEffect则实时接入渲染服务，针对屏幕帧缓存进行处理以获得动态视觉效果。
 
 该模块提供以下图像效果相关的常用功能：
 
@@ -39,7 +39,7 @@ createEffect(source: image.PixelMap): Filter
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| [Filter](#filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
+| [Filter](#filter) | 返回不带任何效果的Filter链表头节点，失败时返回null。 |
 
 **示例：**
 
@@ -136,7 +136,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。 |
-| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，数组元素分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
+| region   | Array\<number> | 是   |  指定图片的取色区域。<br>数组元素个数为4，取值范围为[0, 1]，分别表示图片区域的左、上、右、下位置，图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。数组第三个元素需大于第一个元素，第四个元素需大于第二个元素。|
 
 **返回值：**
 
@@ -323,7 +323,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColor(): Promise\<Color>
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -371,7 +371,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getMainColorSync(): Color
 
-读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口通过图像缩放算法，根据周围像素的加权计算，将原图缩小到1个像素以得到主色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -418,7 +418,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 getLargestProportionColor(): Color
 
-读取图像占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+读取图像中占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。该接口使用中位切分算法划分颜色空间，获取占比最多的颜色空间的平均颜色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -515,7 +515,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Top_Proportion_Colors.png)
+![zh-ch_image_Top_Proportion_Colors.png](figures/zh-ch_image_Top_Proportion_Colors.png)
 
 ### getHighestSaturationColor<sup>10+</sup>
 
@@ -633,7 +633,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| boolean              | 如果此图像为黑白灰颜色，则返回true；否则返回false。 |
+| boolean              | 如果图像为黑白灰颜色，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -671,7 +671,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 blur(radius: number): Filter
 
-将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+将模糊效果添加到效果链表中，返回链表的头节点。
 
 >  **说明：**
 >
@@ -724,7 +724,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 blur(radius: number, tileMode: TileMode): Filter
 
-将模糊效果添加到效果链表中，结果返回效果链表的头节点。
+将模糊效果添加到效果链表中，返回链表的头节点。
 
 >  **说明：**
 >
@@ -774,7 +774,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 invert(): Filter
 
-将反转效果添加到效果链表中，结果返回效果链表的头节点。
+将反转效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -812,7 +812,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 setColorMatrix(colorMatrix: Array\<number>): Filter
 
-将自定义效果添加到效果链表中，结果返回效果链表的头节点。
+将自定义效果添加到效果链表中，返回链表的头节点。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -820,7 +820,7 @@ setColorMatrix(colorMatrix: Array\<number>): Filter
 
 | 参数名 | 类型        | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  colorMatrix  |   Array\<number> | 是   | 自定义颜色矩阵。 <br>用于创建效果滤镜的 5x4 大小的矩阵, 矩阵元素取值范围为[0, 1], 0和1代表的是矩阵中对应位置的颜色通道的权重，0代表该颜色通道不参与计算，1代表该颜色通道参与计算并保持原始权重。 |
+|  colorMatrix  |   Array\<number> | 是   | 自定义颜色矩阵。 <br>用于创建效果滤镜的 5x4 大小的矩阵，矩阵元素取值范围为[0, 1]，0和1代表的是矩阵中对应位置的颜色通道的权重，0代表该颜色通道不参与计算，1代表该颜色通道参与计算并保持原始权重。 |
 
 **返回值：**
 
@@ -869,7 +869,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 brightness(bright: number): Filter
 
-将高亮效果添加到效果链表中，结果返回效果链表的头节点。
+将高亮效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -918,7 +918,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 grayscale(): Filter
 
-将灰度效果添加到效果链表中，结果返回效果链表的头节点。
+将灰度效果添加到效果链表中，返回链表的头节点。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

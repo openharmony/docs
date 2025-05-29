@@ -37,7 +37,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     };
     // 开发者可以设置卡死事件的自定义参数
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -147,3 +147,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

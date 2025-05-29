@@ -426,7 +426,7 @@ Sensor.unsubscribeOnBodyState();
 
 | 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
-| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器磨损状态时调用。 |
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | 是   | 获取传感器所在设备穿戴状态时调用。 |
 
 **示例**：
 
@@ -716,28 +716,28 @@ Sensor.unsubscribeGyroscope();
 
 ## SubscribeOnBodyStateOptions
 
-当穿着状态改变时调用。
+当传感器所在设备穿戴状态改变时调用，穿戴状态分为已穿戴和未穿戴。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
 | 名称    | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
-| success | [OnBodyStateResponse](#onbodystateresponse) | 是   | 穿戴状态改变后的回调函数。 |
+| success | [OnBodyStateResponse](#onbodystateresponse) | 是   | 传感器所在设备穿戴状态改变后的回调函数。 |
 | fail    | Function                                    | 否   | 接口调用失败的回调函数。   |
 
 ## OnBodyStateResponse 
 
-传感器是否磨损。
+传感器所在设备是否穿戴。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-| 名称  | 类型    | 必填 | 说明         |
-| ----- | ------- | ---- | ------------ |
-| value | boolean | 是   | 是否已佩戴。 |
+| 名称  | 类型    | 必填 | 说明                                               |
+| ----- | ------- | ---- | -------------------------------------------------- |
+| value | boolean | 是   | 是否已佩戴设备，当返回true表示已佩戴，否则未佩戴。 |
 
 ## GetOnBodyStateOptions
 
- 获取传感器磨损状态时调用。
+ 获取传感器所在设备穿戴状态时调用。
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 

@@ -16,45 +16,45 @@ import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## Attributes
-The [universal attributes](ts-universal-attributes-size.md) are not supported.
+The [universal attributes](ts-component-general-attributes.md) are not supported.
 
 ## ProgressButton
 
-ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable: boolean})
+ProgressButton({progress: number, content: string, progressButtonWidth?: Length, clickCallback: () =&gt; void, enable:
+boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: LengthMetrics})
 
 **Decorator**: @Component
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                               | Type                                                           | Mandatory| Decorator | Description                                                                             |
-|-----------------------------------|---------------------------------------------------------------|----|--------|---------------------------------------------------------------------------------|
-| progress                          | number                                                        | Yes | \@Prop | Current download progress.                                                                    |
-| content                           | string                                                        | Yes | \@Prop | Button text.                                                                       |
-| progressButtonWidth               | [Length](ts-types.md#length)                                  | No | -      | Width of the button.<br>Default value: **44**                                                           |
-| clickCallback                     | () =&gt; void                                                 | Yes | -      | Callback invoked when the button is clicked.                                                                     |
-| enable                            | boolean                                                       | Yes | \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.                 |
-| colorOptions<sup>16+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions16)   | No | \@Prop | Color options of the button.                                                                     |
-| progressButtonRadius<sup>16+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Prop | Corner radius of the button. It cannot be set in percentage.<br>Value range: [0, height/2]<br>Default value: height/2<br>If an invalid value is set, the default value is used.|
+| Name                               | Type                                                           | Mandatory| Decorator | Description                                                                                                                                  |
+|-----------------------------------|---------------------------------------------------------------|----|--------|--------------------------------------------------------------------------------------------------------------------------------------|
+| progress                          | number                                                        | Yes | \@Prop | Current download progress.<br>The value ranges from 0 to 100. Values less than 0 are adjusted to **0**, and values greater than 100 are capped at **100**.<br>Default value: **0**<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+| content                           | string                                                        | Yes | \@Prop | Button text.<br>The default value is an empty string.<br>**NOTE**<br>The text is truncated with an ellipsis (...) if it exceeds the maximum display width of the component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
+| progressButtonWidth               | [Length](ts-types.md#length)                                  | No | -      | Button width, in vp.<br>The value must be greater than or equal to 44 vp.<br>The default value is **44vp**. Values less than the default value and invalid values are adjusted to the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                  |
+| clickCallback                     | () =&gt; void                                                 | Yes | -      | Callback invoked when the button is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                      |
+| enable                            | boolean                                                       | Yes | \@Prop | Whether the button can be clicked.<br> **true**: The button can be clicked.<br> **false**: The button cannot be clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                  |
+| colorOptions<sup>18+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions18)   | No | \@Prop | Color options of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                         |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No | \@Prop | Corner radius of the button. It cannot be set in percentage.<br>Value range: [0, height/2]<br>Default value: height/2<br>If an invalid value is set, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
-## ProgressButtonColorOptions<sup>16+<sup>
+## ProgressButtonColorOptions<sup>18+<sup>
 
 Defines the color options for the download button.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Attributes             | Type                                    | Mandatory| Description     |
-|-----------------|----------------------------------------|----|---------|
-| progressColor   | [ResourceStr](ts-types.md#resourcestr) | No | Color of the progress indicator. |
-| borderColor     | [ResourceStr](ts-types.md#resourcestr) | No | Border color of the button.|
-| textColor       | [ResourceStr](ts-types.md#resourcestr) | No | Text color of the button.|
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | No | Background color of the button. |
+| Name             | Type                                    | Mandatory| Description                                                               |
+|-----------------|----------------------------------------|----|-------------------------------------------------------------------|
+| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | No | Color of the progress indicator.<br>Default value: **#330A59F7**                                         |
+| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | No | Border color of the button.<br>Default value: **#330A59F7**                                        |
+| textColor       | [ResourceColor](ts-types.md#resourcecolor) | No | Text color of the button.<br>Default value: system default value                                            |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No | Background color of the button.<br>Default value: **\$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ## Events
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 

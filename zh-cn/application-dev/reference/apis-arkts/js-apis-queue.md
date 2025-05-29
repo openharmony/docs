@@ -6,7 +6,7 @@ Queue和[Deque](js-apis-deque.md)相比，Queue只能在一端删除一端增加
 
 **推荐使用场景：** 一般符合先进先出的场景可以使用Queue。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：<br>
 - T：Type，类
 
 > **说明：**
@@ -73,7 +73,7 @@ add(element: T): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| element | T | 是 | 添加进去的元素。 |
+| element | T | 是 | 要插入的元素。 |
 
 **返回值：**
 
@@ -181,7 +181,7 @@ let result = queue.getFirst();
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
+通过回调函数遍历Queue实例对象的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -228,7 +228,7 @@ queue.forEach((value : number, index ?: number) : void => {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+返回一个迭代器，每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -258,7 +258,7 @@ queue.add(4);
 
 // 使用方法一：
 while(queue.length) {
-  let item = queue.pop()
+  let item = queue.pop();
   console.log("value:" + item);
 }
 

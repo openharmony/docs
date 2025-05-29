@@ -65,8 +65,8 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 
 | 选项 | 描述 | 举例 |
 | -------- | ----------------- | ---------------------------------- |
-| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
-| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
+| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录（如：D:\temp\rawheap）下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
+| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径（如：D:\temp）下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
 > **注意：**
 >
 > [heapsnapshot_file] 需要指向具有读写权限的路径，如果未指定参数，需要保证当前执行cmd命令时所在目录具有读写权限。<br>
@@ -207,7 +207,7 @@ rawheap文件大小、生成耗时，与当前ArkTS堆内存大小、存活对�
 
 ## 常见问题
 ### 工具版本过低
-工具解析时，提示：The rawheap file's version 2.0.0 is not matched the current rawheap translator, please use the newest version of the translator!
+工具解析时，提示：The rawheap file's version 1.1.0 is not matched the current rawheap translator, please use the newest version of the translator!
 ```bash
 [INFO] Main: start to translate rawheap!
 [INFO] Meta::ParseVersion: current metadata version is 1.0.0

@@ -7,7 +7,9 @@
 
 **起始版本：** 12
 
-**相关模块：**[JSVM](_j_s_v_m.md)
+**相关模块：** [JSVM](_j_s_v_m.md)
+
+**所在头文件：** [jsvm_types.h](jsvm__types_8h.md)
 
 
 ## 汇总
@@ -31,8 +33,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [JSVM_Value](_j_s_v_m.md#jsvm_value) [namedPropertyData](#namedpropertydata) | 命名属性回调使用的数据  | 
-| [JSVM_Value](_j_s_v_m.md#jsvm_value) [indexedPropertyData](#indexedpropertydata) | 索引属性回调使用的数据  | 
+| [JSVM_Value](_j_s_v_m.md#jsvm_value) [namedPropertyData](#namedpropertydata) | 命名属性回调使用的数据。  | 
+| [JSVM_Value](_j_s_v_m.md#jsvm_value) [indexedPropertyData](#indexedpropertydata) | 索引属性回调使用的数据。  | 
 
 
 ## 成员函数说明
@@ -117,7 +119,7 @@ JSVM_PropertyHandlerConfigurationStruct::JSVM_Value (JSVM_CDECL * genericIndexed
 JSVM_Value JSVM_PropertyHandlerConfigurationStruct::indexedPropertyData
 ```
 **描述**
-索引属性回调使用的数据
+索引属性回调使用的数据。
 
 
 ### namedPropertyData
@@ -126,4 +128,4 @@ JSVM_Value JSVM_PropertyHandlerConfigurationStruct::indexedPropertyData
 JSVM_Value JSVM_PropertyHandlerConfigurationStruct::namedPropertyData
 ```
 **描述**
-命名属性回调使用的数据
+命名属性回调使用的数据。

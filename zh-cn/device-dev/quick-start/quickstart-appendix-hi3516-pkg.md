@@ -84,7 +84,7 @@ applications/sample/hello
    ```
 
 2. 新建编译组织文件。
-   1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示：
+   1. 新建applications/sample/hello/BUILD.gn文件，内容如下所示。
       
        ```
        import("//build/ohos.gni")  # 导入编译模板

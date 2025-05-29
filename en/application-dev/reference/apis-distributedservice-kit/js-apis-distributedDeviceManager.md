@@ -5,23 +5,20 @@ The **distributedDeviceManager** module provides APIs for distributed device man
 Applications can call the APIs to:
 
 - Subscribe to or unsubscribe from device state changes.
-- Discover untrusted devices nearby.
+- Discover devices nearby.
 - Authenticate or deauthenticate a device.
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
 
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
-
 
 ## distributedDeviceManager.createDeviceManager
 
@@ -35,7 +32,7 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 | Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name of the application.                                 |
+| bundleName | string                                               | Yes  | Bundle name of the application. The value is a string of 1 to 255 characters. |
 
 **Return value**
 
@@ -71,8 +68,6 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 Releases a **DeviceManager** instance that is no longer used.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
 **Parameters**
@@ -87,7 +82,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -131,7 +125,6 @@ Enumerates the device states.
 | AVAILABLE   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
 | UNAVAILABLE | 2    | The device goes offline, and the device state is unknown.          |
 
-
 ## DeviceManager
 
 Provides APIs to obtain information about trusted devices and local devices. Before calling any API in **DeviceManager**, you must use **createDeviceManager** to create a **DeviceManager** instance, for example, **dmInstance**.
@@ -159,12 +152,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -205,6 +198,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -251,6 +245,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -290,6 +285,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -330,6 +326,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -370,6 +367,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -410,6 +408,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -436,7 +435,7 @@ Obtains the device name based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
@@ -457,6 +456,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -485,7 +485,7 @@ Obtains the device type based on the network ID of the specified device.
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
 
 **Return value**
 
@@ -506,6 +506,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -551,6 +552,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -597,13 +599,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery unavailable.                                          |
 
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -629,7 +630,7 @@ Binds a device.
 
   | Name    | Type                                               | Mandatory | Description        |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
-  | deviceId   | string                                              | Yes   | Device ID.  |
+  | deviceId   | string                                              | Yes   | Device ID. The value is a string of 1 to 255 characters.  |
   | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory.<br>The value **1** means PIN authentication.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
@@ -647,6 +648,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -692,7 +694,7 @@ Unbinds a device.
 
   | Name  | Type                     | Mandatory| Description      |
   | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | Yes  | Device ID.|
+  | deviceId | string                    | Yes  | Device ID. The value is a string of 1 to 255 characters.|
 
 **Error codes**
 
@@ -707,6 +709,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -748,6 +751,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -801,6 +805,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -854,6 +859,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -957,6 +963,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1003,6 +1010,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1049,6 +1057,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1095,6 +1104,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1141,6 +1151,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1183,6 +1194,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
+
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

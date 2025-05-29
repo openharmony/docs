@@ -3,17 +3,21 @@
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as **createBundleContext()** and [getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md), and ServiceExtensionContext.
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, such as [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) (resource management), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md) (application information), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as <!--Del-->[createBundleContext()](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12) and <!--DelEnd-->[getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), <!--Del-->[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), <!--DelEnd-->and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
-- The figure below illustrates the inheritance relationship of contexts. 
+> **NOTE**
+>
+> [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) refers to the context of a UI instance, which is used to associate windows with UI pages. It is not directly related to the application context discussed in this topic and does not involve inheritance or holding relationships.
+
+- The figure below illustrates the inheritance relationship of application contexts. 
 
   ![context-inheritance](figures/context-inheritance.png)
   
-- The figure below illustrates the holding relationship of contexts. 
+- The figure below illustrates the holding relationship of application contexts. 
 
   ![context-holding](figures/context-holding.png)
   
-- The following describes the information provided by different contexts.
+- The following describes how to obtain different contexts.
   - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
     ```ts
@@ -30,15 +34,22 @@
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
+  - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, FormExtensionContext, inherited from ExtensionContext, provides APIs related to widget services.
     
     ```ts
-    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+    import { Want } from '@kit.AbilityKit';
 
-    export default class ServiceExtAbility extends ServiceExtensionAbility {
-      onCreate(want: Want) {
-        let serviceExtensionContext = this.context;
-        //...
+    export default class MyFormExtensionAbility extends FormExtensionAbility {
+      onAddForm(want: Want) {
+        let formExtensionContext = this.context;
+        // ...
+        let dataObj1: Record<string, string> = {
+          'temperature': '11c',
+          'time': '11:00'
+        };
+        let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
       }
     }
     ```
@@ -81,135 +92,88 @@ This topic describes how to use the context in the following scenarios:
 
 ### Obtaining Application File Paths
 
-The [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
+The [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) inherit this capability. However, the specific paths retrieved can differ based on the type of the context used.
 
-The application file paths obtained by the preceding contexts are different.
+- [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): This context provides access to the application-level file path, which is used to store global application information. Files in this path are removed when the application is uninstalled.
+- [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): These contexts provide access to [module-level](../quick-start/application-package-overview.md) file paths. Files in these paths are removed when the corresponding [HAP](../quick-start/hap-package.md) or [HSP](../quick-start/in-app-hsp.md) module is uninstalled. Uninstalling an HAP or HSP module does not affect files under the application-level path unless all HAP and HSP modules of the application are uninstalled.
 
-- The application file path obtained through [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) is at the application level. This path is recommended for storing global application information, and the files in the path will be deleted when the application is uninstalled.
+  - UIAbilityContext: This context can be used to obtain the file paths of the module containing the UIAbility.
+  - ExtensionContext: This context can be used to obtain the file paths of the module containing the ExtensionAbility.
+  - AbilityStageContext: Given that AbilityStageContext is initialized earlier than UIAbilityContext and ExtensionContext, it is typically used to obtain file paths within the AbilityStage.
 
-  | Name| Path|
-  | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/cache|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/files|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/preferences|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
-  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud|
+>**NOTE**
+>
+> The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
-  The sample code is as follows:
+**Table 1** Description of application file paths obtained by different types of contexts
+| Name| Description| Path Obtained by ApplicationContext| Path Obtained by AbilityStageContext, UIAbilityContext, and ExtensionContext|
+| -------- | -------- | -------- | -------- |
+| bundleCodeDir | Bundle code directory.| \<Path prefix>/el1/bundle| \<Path prefix>/el1/bundle|
+| cacheDir | Cache directory.| \<Path prefix>/\<Encryption level>/base/cache| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache|
+| filesDir | File directory.| \<Path prefix>/\<Encryption level>/base/files| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files|
+| preferencesDir | Preferences directory.| \<Path prefix>/\<Encryption level>/base/preferences| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences|
+| tempDir | Temporary directory.| \<Path prefix>/\<Encryption level>/base/temp| \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
+| databaseDir | Database directory.| \<Path prefix>/\<Encryption level>/database| \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
+| distributedFilesDir | Distributed file directory.| \<Path prefix>/el2/distributedFiles| \<Path prefix>/el2/distributedFiles/|
+| resourceDir<sup>11+<sup> | Resource directory.<br>**NOTE**<br> You are required to manually create the **resfile** directory in **\<module-name>\resource**.| N/A| \<Path prefix>/el1/bundle/**\<module-name>**/resources/resfile|
+| cloudFileDir<sup>12+</sup> | Cloud file directory.| \<Path prefix>/el2/cloud| \<Path prefix>/el2/cloud/|
+
+This section uses ApplicationContext as an example to describe how to obtain the application file path, create a file in the path, and read and write the file. The sample code is as follows:
 
   ```ts
   import { common } from '@kit.AbilityKit';
+  import { buffer } from '@kit.ArkTS';
+  import { fileIo, ReadOptions } from '@kit.CoreFileKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
 
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
 
   @Entry
   @Component
-  struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+  struct Index {
+    @State message: string = 'Hello World';
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let applicationContext = this.context.getApplicationContext();
-              let cacheDir = applicationContext.cacheDir;
-              let tempDir = applicationContext.tempDir;
-              let filesDir = applicationContext.filesDir;
-              let databaseDir = applicationContext.databaseDir;
-              let bundleCodeDir = applicationContext.bundleCodeDir;
-              let distributedFilesDir = applicationContext.distributedFilesDir;
-              let preferencesDir = applicationContext.preferencesDir;
-              let cloudFileDir = applicationContext.cloudFileDir;
-              // Obtain the application file path.
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
+      Row() {
+        Column() {
+          Text(this.message)
+          // ...
+          Button() {
+            Text('create file')
+              // ...
+              .onClick(() => {
+                let applicationContext = this.context.getApplicationContext();
+                // Obtain the application file path.
+                let filesDir = applicationContext.filesDir;
+                hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filesDir}`);
+                // Create and open the file if it does not exist. Open the file if it already exists.
+                let file = fileIo.openSync(filesDir + '/test.txt', fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+                // Write data to the file.
+                let writeLen = fileIo.writeSync(file.fd, "Try to write str.");
+                hilog.info(DOMAIN_NUMBER, TAG, `The length of str is: ${writeLen}`);
+                // Create an ArrayBuffer object with a size of 1024 bytes to store the data read from the file.
+                let arrayBuffer = new ArrayBuffer(1024);
+                // Set the offset and length to read.
+                let readOptions: ReadOptions = {
+                  offset: 0,
+                  length: arrayBuffer.byteLength
+                };
+                // Read the file content to the ArrayBuffer object and return the number of bytes that are actually read.
+                let readLen = fileIo.readSync(file.fd, arrayBuffer, readOptions);
+                // Convert the ArrayBuffer object into a Buffer object and output it as a string.
+                let buf = buffer.from(arrayBuffer, 0, readLen);
+                hilog.info(DOMAIN_NUMBER, TAG, `the content of file: ${buf.toString()}`);
+                // Close the file.
+                fileIo.closeSync(file);
+              })
           }
-          //...
+          // ...
         }
-        //...
+        // ...
       }
-      //...
-    }
-  }
-  ```
-
-- The application file path obtained through [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) is at the [HAP](../quick-start/hap-package.md) level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
-
-  | Name| Path|
-  | -------- | -------- |
-  | bundleCodeDir | \<Path prefix>/el1/bundle|
-  | cacheDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/cache|
-  | filesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/files|
-  | preferencesDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/preferences|
-  | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
-  | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
-  | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
-  | cloudFileDir<sup>12+</sup> | \<Path prefix>/el2/cloud/**\<module-name>**|
-
-  The sample code is as follows:
-
-  ```ts
-  import { common } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
-
-  const TAG: string = '[Page_Context]';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  @Entry
-  @Component
-  struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
-
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let cacheDir = this.context.cacheDir;
-              let tempDir = this.context.tempDir;
-              let filesDir = this.context.filesDir;
-              let databaseDir = this.context.databaseDir;
-              let bundleCodeDir = this.context.bundleCodeDir;
-              let distributedFilesDir = this.context.distributedFilesDir;
-              let preferencesDir = this.context.preferencesDir;
-              let cloudFileDir = applicationContext.cloudFileDir;
-              // Obtain the application file path.
-              let filePath = tempDir + 'test.txt';
-              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-              if (filePath !== null) {
-                promptAction.showToast({
-                  message: filePath
-                });
-              }
-            })
-          }
-          //...
-        }
-        //...
-      }
-      //...
+      // ...
     }
   }
   ```
@@ -260,12 +224,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 // Index.ets
 import { contextConstant, common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -278,9 +241,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing common information, switch the encryption level to EL1.
-            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL1; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL1'
               });
             }
@@ -294,9 +257,9 @@ struct Page_Context {
           }
           .onClick(() => {
             // Before storing sensitive information, switch the encryption level to EL2.
-            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-              this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-              promptAction.showToast({
+            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the encryption level.
+              this.context.area = contextConstant.AreaMode.EL2; // Change the encryption level.
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SwitchToEL2'
               });
             }
@@ -316,10 +279,9 @@ struct Page_Context {
 ### Obtaining the Context of Other Modules in the Current Application
 
 Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-  
+
   ```ts
   import { common, application } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
@@ -327,7 +289,7 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
   @Entry(storageEventCall)
   @Component
   struct Page_Context {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     build() {
       Column() {
@@ -343,13 +305,13 @@ Call [createModuleContext(context: Context, moduleName: string)](../reference/ap
                 .then((data: common.Context) => {
                   console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
                   if (data !== null) {
-                    promptAction.showToast({
-                      message: ('Context obtained.')
+                    this.getUIContext().getPromptAction().showToast({
+                      message: ('Context obtained')
                     });
                   }
                 })
                 .catch((err: BusinessError) => {
-                  console.error(`CeateMudleContext failed, err code:${err.code}, err msg: ${err.message}`);
+                  console.error(`CreateModuleContext failed, err code:${err.code}, err msg: ${err.message}`);
                 });
             })
           }

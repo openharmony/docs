@@ -1,11 +1,11 @@
 # ArcScrollBar
 
-The **ArcScrollBar** component is designed to be used with scrollable components such as [List](ts-container-list.md), [Grid](ts-container-grid.md), and [Scroll](ts-container-scroll.md) to provide a circular scrollbar.
+The **ArcScrollBar** component is designed to be used together with scrollable components such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), and [WaterFlow](ts-container-waterflow.md) to provide a circular scrollbar.
 
 >  **NOTE**
 >
->  - This component is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
->  - If no width or height is set for the **ArcScrollBar** component, it will inherit the size of its parent component.
+>  - This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
+>  - When the width and height of the **ArcScrollBar** component are not set, the **maxSize** value in the [layout constraint](../js-apis-arkui-frameNode.md#layoutconstraint12) of its parent component is used as the width and height. If the parent component of the **ArcScrollBar** component contains scrollable components, such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), or [WaterFlow](ts-container-waterflow.md), you are advised to set the width and height of the **ArcScrollBar** component. Otherwise, the width and height of the component may be infinite.
 
 
 ## Child Components
@@ -18,9 +18,9 @@ ArcScrollBar(options: ArcScrollBarOptions)
 
 Creates an instance of the **ArcScrollBar** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 **Parameters**
 
@@ -32,9 +32,9 @@ Creates an instance of the **ArcScrollBar** component.
 
 Represents the parameters used to construct an **ArcScrollBar** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -59,38 +59,30 @@ struct ArcScrollBarExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
-    Column() {
-      Stack({ alignContent: Alignment.Center }) {
-        Scroll(this.scroller) {
-          Flex({ direction: FlexDirection.Column }) {
-            ForEach(this.arr, (item: number) => {
-              Row() {
-                Text(item.toString())
-                  .width('80%')
-                  .height(60)
-                  .backgroundColor('#3366CC')
-                  .borderRadius(15)
-                  .fontSize(16)
-                  .textAlign(TextAlign.Center)
-                  .margin({ top: 5 })
-              }
-            }, (item: number) => item.toString())
-          }.margin({ right: 15 })
-        }
-        .width('90%')
-        .scrollBar(BarState.Off)
-        .scrollable(ScrollDirection.Vertical)
-        .edgeEffect(EdgeEffect.Spring)
-
-        ArcScrollBar({ scroller: this.scroller, state: BarState.Auto })
+    Stack({ alignContent: Alignment.Center }) {
+      Scroll(this.scroller) {
+        Flex({ direction: FlexDirection.Column }) {
+          ForEach(this.arr, (item: number) => {
+            Row() {
+              Text(item.toString())
+                .width('80%')
+                .height(60)
+                .backgroundColor('#3366CC')
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 5 })
+            }
+          }, (item: number) => item.toString())
+        }.margin({ right: 15 })
       }
-      .width('100%')
-      .height('100%')
+      .width('90%')
+      .scrollBar(BarState.Off)
+
+      ArcScrollBar({ scroller: this.scroller, state: BarState.Auto })
     }
-    .justifyContent(FlexAlign.Center)
     .width('100%')
     .height('100%')
-    .clip(new Circle({ width: '100%', height: '100%' }))
   }
 }
 ```

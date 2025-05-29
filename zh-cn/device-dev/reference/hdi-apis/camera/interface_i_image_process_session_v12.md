@@ -1,6 +1,5 @@
 # IImageProcessSession
 
-
 ## 概述
 
 图像处理会话进程。
@@ -11,9 +10,7 @@
 
 **相关模块：**[Camera](_camera_v12.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -27,9 +24,7 @@
 | [Interrupt](#interrupt) () | 中断进程会话。  | 
 | [Reset](#reset) () | 重置进程会话。  | 
 
-
 ## 成员函数说明
-
 
 ### GetCoucurrency()
 
@@ -49,7 +44,6 @@ IImageProcessSession::GetCoucurrency ([in] enum ExecutionMode mode, [out] int ta
 | mode | 执行模式。  | 
 | taskCount | coucurrency任务计数。 | 
 
-
 ### GetPendingImages()
 
 ```
@@ -67,7 +61,6 @@ IImageProcessSession::GetPendingImages ([out] List< String > imageIds)
 | -------- | -------- |
 | imageIds | 待处理的图像ID。 | 
 
-
 ### Interrupt()
 
 ```
@@ -78,7 +71,6 @@ IImageProcessSession::Interrupt ()
 中断进程会话。
 
 **起始版本：** 4.1
-
 
 ### ProcessImage()
 
@@ -97,7 +89,6 @@ IImageProcessSession::ProcessImage ([in] String imageId)
 | -------- | -------- |
 | imageId | 图像ID。 | 
 
-
 ### RemoveImage()
 
 ```
@@ -115,7 +106,6 @@ IImageProcessSession::RemoveImage ([in] String imageId)
 | -------- | -------- |
 | imageId | 图像ID。 | 
 
-
 ### Reset()
 
 ```
@@ -126,7 +116,6 @@ IImageProcessSession::Reset ()
 重置进程会话。
 
 **起始版本：** 4.1
-
 
 ### SetExecutionMode()
 

@@ -27,6 +27,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | NOT_SUPPORT                           | 801      | 操作不支持。                  |
 | ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。                    |
 | ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。              |
+| ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>             | 19020003 | 参数检查失败。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。               |
 | ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。       |
 | ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。            |
 | ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。                |
@@ -34,7 +35,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。        |
 | ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。   |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。  |
-| ERR_MAYBE_WRONG_PASSWORD<sup>16+</sup>              | 19030008 | 私钥密码错误。                |
+| ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## DataBlob
 buffer数组。
@@ -71,11 +72,11 @@ buffer数组的列表。
 | FORMAT_PEM | 1      | PEM格式。 |
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7格式。 |
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
  表示生成CSR的编码格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -84,12 +85,12 @@ buffer数组的列表。
 | PEM | 0      | PEM格式。 |
 | DER | 1      | DER格式。 |
 
-## CsrAttribute<sup>16+</sup>
+## CsrAttribute<sup>18+</sup>
  表示生成CSR的编码格式配置参数中的拓展。
 
 openssl中规定了拓展类型，例如challengePassword、keyUsage等。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -98,10 +99,10 @@ openssl中规定了拓展类型，例如challengePassword、keyUsage等。
 | type | 指定的拓展类型 | openssl指定的拓展类型。 |
 | value | 拓展值 | 拓展值。 |
 
-## CsrGenerationConfig<sup>16+</sup>
+## CsrGenerationConfig<sup>18+</sup>
 RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -109,8 +110,8 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
 | mdName | string | 是   | 是   | 摘要算法名。 |
-| attributes | [CsrAttribute](#csrattribute16) | 是   | 是   | 拓展。 |
-| outFormat | [EncodingBaseFormat](#encodingbaseformat16) | 是   | 是   | 输出类型。 |
+| attributes | Array\<[CsrAttribute](#csrattribute18)> | 是   | 是   | 拓展。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
 
 > **说明：**
 >
@@ -168,7 +169,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 ## EncodingType<sup>12+</sup>
 
- 表示获取X509证书主体名称编码格式的枚举。
+ 表示获取编码格式的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -256,13 +257,13 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
 | issuer | Uint8Array | 否  | 指定证书颁发者，为DER编码格式。 |
-| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。 |
+| keyUsage | Array\<boolean> | 否  | 指定是否需要匹配密钥用途。true为需要，false为不需要。 |
 | serialNumber | bigint    | 否  |  指定证书的序列号。  |
 | subject | Uint8Array | 否  | 指定证书主题，DER编码格式。 |
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。true为需要，false为不需要。 |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
@@ -360,6 +361,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 ## KeyUsageType<sup>12+</sup>
 
  表示证书中密钥用途的枚举。
+ 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
@@ -425,11 +427,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是   | 否   | 表示信任锚。   |
 | entityCert  | [X509Cert](#x509cert)                 | 是   | 否   | 表示实体证书。 |
 
-## EncodingBaseFormat<sup>16+</sup>
+## EncodingBaseFormat<sup>18+</sup>
 
 编码基础格式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -438,11 +440,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | PEM  | 0   | 表示PEM格式。      |
 | DER  | 1   | 表示DER格式。      |
 
-## Pkcs12Data<sup>16+</sup>
+## Pkcs12Data<sup>18+</sup>
 
 表示返回P12文件的解析后的证书、私钥及其他证书合集。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -452,27 +454,27 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | cert         | [X509Cert](#x509cert)                             | 否   | 表示P12文件解析后的证书。                       |
 | otherCerts   | Array\<[X509Cert](#x509cert)>                     | 否   | 表示P12文件解析后的其他证书合集。 |
 
-## Pkcs12ParsingConfig<sup>16+</sup>
+## Pkcs12ParsingConfig<sup>18+</sup>
 
 表示解析P12文件的配置。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | 是   | 表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat16)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
-| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。 |
-| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。 |
+| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
+| needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。true为获取，false为不获取。 |
+| needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
 
-## CmsContentType<sup>16+</sup>
+## CmsContentType<sup>18+</sup>
 
 表示Cms内容类型的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -480,11 +482,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | --------------------------------------| -------- | -----------------------------|
 | SIGNED_DATA | 0 | 签名数据。 |
 
-## CmsContentDataFormat<sup>16+</sup>
+## CmsContentDataFormat<sup>18+</sup>
 
 表示Cms内容数据格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -493,11 +495,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | BINARY | 0   | 表示二进制数据格式。     |
 | TEXT   | 1   | 表示文本数据格式。       |
 
-## CmsFormat<sup>16+</sup>
+## CmsFormat<sup>18+</sup>
 
 表示Cms签名格式的枚举。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -506,11 +508,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | PEM  | 0   | 表示PEM格式。      |
 | DER  | 1   | 表示DER格式。      |
 
-## PrivateKeyInfo<sup>16+</sup>
+## PrivateKeyInfo<sup>18+</sup>
 
 表示私钥信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -519,34 +521,34 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 | key          | string \| Uint8Array                     | 是   | 未加密或加密的私钥，支持PEM或DER格式。 |
 | password     | string                                  | 否   | 私钥的密码，如果私钥是加密的。         |
 
-## CmsSignerConfig<sup>16+</sup>
+## CmsSignerConfig<sup>18+</sup>
 
 表示Cms签名者的配置选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称         | 类型                                                  | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | mdName                | string              | 是   | 消息摘要算法的名称，例如 "SHA384", 当前支持"SHA1"、"SHA256"、"SHA384"、"SHA512"。                 |
-| addCert               | boolean            | 否   | 是否添加证书。默认为true。                             |
-| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。           |
-| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。            |
+| addCert               | boolean            | 否   | 是否添加证书。默认为true。true为需要，false为不需要。                             |
+| addAttr               | boolean            | 否   | 是否添加签名属性。默认为true。true为需要，false为不需要。           |
+| addSmimeCapAttr       | boolean            | 否   | 是否将SMIME能力添加到Cms对象。默认为true。true为需要，false为不需要。            |
 
-## CmsGeneratorOptions<sup>16+</sup>
+## CmsGeneratorOptions<sup>18+</sup>
 
 表示生成Cms签名结果的配置选项。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称                  | 类型                          | 必填 | 说明                                                   |
 | --------------------- | ----------------------------- | ---- | ------------------------------------------------------ |
-| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat16)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
-| outFormat             | [CmsFormat](#cmsformat16)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
-| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。         |
+| contentDataFormat     | [CmsContentDataFormat](#cmscontentdataformat18)               | 否   | 内容数据的格式。默认为CmsContentDataFormat.BINARY。   |
+| outFormat             | [CmsFormat](#cmsformat18)                          | 否   | Cms最终数据的输出格式。默认为DER。         |
+| isDetached     | boolean                            | 否   | Cms最终数据是否不包含原始数据。默认为false。true为包含，false为不包含。         |
 
 ## cert.createX509Cert
 
@@ -573,14 +575,15 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -589,7 +592,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -602,7 +605,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -645,7 +648,8 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -653,7 +657,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -662,7 +666,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -675,7 +679,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -722,7 +726,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -731,7 +735,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -744,7 +748,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -754,11 +758,11 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   } else {
     console.log('createX509Cert success');
 
-    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
     try {
       let pubKey = x509Cert.getPublicKey();
 
-      // 验证证书签名
+      // 验证证书签名。
       x509Cert.verify(pubKey, (err, data) => {
         if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -811,7 +815,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -820,7 +824,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -833,7 +837,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -841,7 +845,7 @@ cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 
   try {
-    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey
+    // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
     let pubKey = x509Cert.getPublicKey();
     x509Cert.verify(pubKey).then(result => {
       console.log('verify success');
@@ -879,8 +883,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -888,7 +892,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -897,7 +901,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -910,7 +914,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -953,8 +957,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -963,7 +967,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -972,7 +976,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
   'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
@@ -983,10 +987,10 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob).then(x509Cert => {
@@ -1023,7 +1027,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1032,7 +1036,7 @@ getPublicKey() : cryptoFramework.PubKey
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1041,7 +1045,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1054,7 +1058,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1096,7 +1100,7 @@ checkValidityWithDate(date: string) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
+| 19020001 | memory malloc failed.                                     |
 | 19030001 | crypto operation error.|
 | 19030003 | the certificate has not taken effect.                                     |
 | 19030004 | the certificate has expired.|
@@ -1107,7 +1111,7 @@ checkValidityWithDate(date: string) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1116,7 +1120,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1129,7 +1133,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1172,7 +1176,7 @@ getVersion() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1181,7 +1185,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1194,7 +1198,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
@@ -1230,7 +1234,7 @@ getSerialNumber() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1239,7 +1243,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1252,7 +1256,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1288,7 +1292,7 @@ getCertSerialNumber() : bigint
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020002 | runtime error.                                    |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 
 **示例：**
 
@@ -1296,7 +1300,7 @@ getCertSerialNumber() : bigint
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1305,7 +1309,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1318,7 +1322,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1343,6 +1347,10 @@ getIssuerName() : DataBlob
 
 表示获取X509证书颁发者名称。
 
+> **说明：**
+>
+> 获取到的X509证书颁发者名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -1359,8 +1367,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1369,7 +1377,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1378,7 +1386,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1391,7 +1399,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1410,11 +1418,108 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 });
 ```
 
+### getIssuerName<sup>20+</sup>
+
+getIssuerName(encodingType: EncodingType): string
+
+根据编码类型获取X509证书颁发者名称。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型                  | 说明                   |
+| --------------------- | ---------------------- |
+| string  | 表示X509证书颁发者名称，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error.|
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 证书二进制数据，需业务自行赋值。
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
+    'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
+    '5rWL6K+VMRUwEwYDVQQDDAzkuK3mlofmtYvor5UwHhcNMjUwMzA1MDk1MTIzWhcN\n' +
+    'MzUwMzAzMDk1MTIzWjBXMQswCQYDVQQGEwJDTjEPMA0GA1UECAwG6ZmV6KW/MQ8w\n' +
+    'DQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMGA1UEAwwM5Lit5paH\n' +
+    '5rWL6K+VMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkonJ4UIuxRzX\n' +
+    'gr8fLU1PjadDWJp/GrxkYGe30TXqQHDh7O14Rc0xxacj3aLMNffzj+rhxUzl3C9p\n' +
+    'wLzIVO2e3iC3Fx2csRzOSIdbimR8879/3uaW8CPkgqlKQw8FDwrGk0S26sdDV8of\n' +
+    '8AAHlrnUO2yyL53rAunn4ZKo4EyxHrvHmZKuv006onj0SByu8RNHx97v+4KaaY7p\n' +
+    'HngTC55F0KVALiNGygJHeKP7GGxS7kpYV/CvBuABpA00WMqc7nmo2vCa4yC/mIk2\n' +
+    '5CF7l860rQ50HLjrmlDYJHpc8p88NJ2BEyHQWiN4YkSKDAKNr+SssD3Tf2wHSYxA\n' +
+    'UwdgsatGlwIDAQABo1MwUTAdBgNVHQ4EFgQUMFEfTXLVm7D6fsC7LYtTMhIgVQUw\n' +
+    'HwYDVR0jBBgwFoAUMFEfTXLVm7D6fsC7LYtTMhIgVQUwDwYDVR0TAQH/BAUwAwEB\n' +
+    '/zANBgkqhkiG9w0BAQsFAAOCAQEABCr9+iK30OSp67ksK1qhkKCzwKYDH2E5KEF4\n' +
+    '1E1/o4haXIR14V+5DGcX/1OH3Znd863TecQdNnCFMGArWygq8j7O0uStbWMb3Rhu\n' +
+    '+7RJ9GOCbBSeR3v2fC6+T3LI0Sm1G77xIYADmHGt33IW0DRKr44iOalwi6IbcqzD\n' +
+    's9XlNO8e6ht2apeL656fjv1gCo/PA7e+A0QHn6zapggzEccEwKdFixCsw5ZMZaHm\n' +
+    'adGz3lBCK+0QKYXYL1CtX/6wcDgQ9PuZSgdQgrudLKRN+843m3LJSUJ7AIyL1kQW\n' +
+    'kY1ah7eSx4wwaKrLOM06ZkzORMnY5GAy8Aup+UCh6mWU3dPv3w==\n' +
+    '-----END CERTIFICATE-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
+  if (error) {
+    console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509Cert success');
+    try {
+      let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuerName output is ' + issuerName);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
 ### getSubjectName
 
 getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
+
+> **说明：**
+>
+> 获取到的X509证书主体名称数据带字符串结束符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1430,7 +1535,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书主体名称。 |
+| [DataBlob](#datablob) | 表示X509证书主体名称，转化成字符串后使用逗号分隔相对可分辨名称。 |
 
 **错误码：**
 
@@ -1439,8 +1544,8 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1449,7 +1554,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1458,7 +1563,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1471,7 +1576,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1518,8 +1623,8 @@ getNotBeforeTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1528,7 +1633,7 @@ getNotBeforeTime() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1537,7 +1642,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1550,7 +1655,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1591,8 +1696,8 @@ getNotAfterTime() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1602,7 +1707,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1611,7 +1716,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1624,7 +1729,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1665,8 +1770,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1676,7 +1781,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1685,7 +1790,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1698,7 +1803,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1739,8 +1844,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1750,7 +1855,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1759,7 +1864,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1772,7 +1877,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1805,7 +1910,7 @@ getSignatureAlgOid() : string
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| string | 表示X509证书签名算法对象标志符OID。 |
+| string | 表示X509证书签名算法对象标志符OID。若OID长度超过128字节，则会被截断。 |
 
 **错误码：**
 
@@ -1813,8 +1918,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1823,7 +1928,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1832,7 +1937,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1845,7 +1950,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1887,8 +1992,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1897,7 +2002,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1906,7 +2011,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1919,7 +2024,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -1960,7 +2065,7 @@ getKeyUsage() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                    |
+| 19020001 | memory malloc failed.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -1969,7 +2074,7 @@ getKeyUsage() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -1978,7 +2083,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -1991,7 +2096,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2032,8 +2137,8 @@ getExtKeyUsage() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2042,7 +2147,7 @@ getExtKeyUsage() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2051,7 +2156,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2064,7 +2169,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2104,7 +2209,7 @@ getBasicConstraints() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2113,7 +2218,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2126,7 +2231,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2146,6 +2251,10 @@ getSubjectAltNames() : DataArray
 
 表示获取X509证书主体可选名称。
 
+> **说明：**
+>
+> 获取到的X509证书主体可选名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2162,8 +2271,8 @@ getSubjectAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2172,7 +2281,7 @@ getSubjectAltNames() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2181,7 +2290,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2194,7 +2303,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2219,6 +2328,10 @@ getIssuerAltNames() : DataArray
 
 表示获取X509证书颁发者可选名称。
 
+> **说明：**
+>
+> 获取到的X509证书颁发者可选名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2235,8 +2348,8 @@ getIssuerAltNames() : DataArray
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2245,7 +2358,7 @@ getIssuerAltNames() : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2254,7 +2367,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2267,7 +2380,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2315,8 +2428,8 @@ getItem(itemType: CertItemType) : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2325,7 +2438,7 @@ getItem(itemType: CertItemType) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2334,7 +2447,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
   'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2347,7 +2460,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2395,7 +2508,7 @@ match(param: X509CertMatchParameters): boolean
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2404,7 +2517,7 @@ match(param: X509CertMatchParameters): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2437,7 +2550,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2454,7 +2567,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
-    // 需业务自行赋值
+    // 需业务自行赋值。
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20241121074700Z',
@@ -2491,8 +2604,8 @@ getCRLDistributionPoint(): DataArray
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2501,7 +2614,7 @@ getCRLDistributionPoint(): DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2524,10 +2637,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "AiAtRlOa6/mTD68faQTdhsAaQP955QfW34B4yFqU2Bq72A==\n" +
   "-----END CERTIFICATE-----\n";
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -2566,8 +2679,8 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2576,7 +2689,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2609,10 +2722,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2651,8 +2764,8 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2661,7 +2774,7 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2694,10 +2807,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2736,8 +2849,8 @@ toString(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2746,7 +2859,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2779,10 +2892,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2792,6 +2905,96 @@ async function certToString() {
     x509Cert = await cert.createX509Cert(encodingBlob);
     console.log('createX509Cert success');
     console.info('certToString success: ' + JSON.stringify(x509Cert.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>20+</sup>
+
+toString(encodingType: EncodingType): string
+
+根据编码类型获取对象的字符串类型数据。  
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   | 表示编码类型。                |
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| string | 表示对象的字符串类型数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
+    'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
+    '5rWL6K+VMRUwEwYDVQQDDAzkuK3mlofmtYvor5UwHhcNMjUwMzA1MDk1MTIzWhcN\n' +
+    'MzUwMzAzMDk1MTIzWjBXMQswCQYDVQQGEwJDTjEPMA0GA1UECAwG6ZmV6KW/MQ8w\n' +
+    'DQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMGA1UEAwwM5Lit5paH\n' +
+    '5rWL6K+VMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkonJ4UIuxRzX\n' +
+    'gr8fLU1PjadDWJp/GrxkYGe30TXqQHDh7O14Rc0xxacj3aLMNffzj+rhxUzl3C9p\n' +
+    'wLzIVO2e3iC3Fx2csRzOSIdbimR8879/3uaW8CPkgqlKQw8FDwrGk0S26sdDV8of\n' +
+    '8AAHlrnUO2yyL53rAunn4ZKo4EyxHrvHmZKuv006onj0SByu8RNHx97v+4KaaY7p\n' +
+    'HngTC55F0KVALiNGygJHeKP7GGxS7kpYV/CvBuABpA00WMqc7nmo2vCa4yC/mIk2\n' +
+    '5CF7l860rQ50HLjrmlDYJHpc8p88NJ2BEyHQWiN4YkSKDAKNr+SssD3Tf2wHSYxA\n' +
+    'UwdgsatGlwIDAQABo1MwUTAdBgNVHQ4EFgQUMFEfTXLVm7D6fsC7LYtTMhIgVQUw\n' +
+    'HwYDVR0jBBgwFoAUMFEfTXLVm7D6fsC7LYtTMhIgVQUwDwYDVR0TAQH/BAUwAwEB\n' +
+    '/zANBgkqhkiG9w0BAQsFAAOCAQEABCr9+iK30OSp67ksK1qhkKCzwKYDH2E5KEF4\n' +
+    '1E1/o4haXIR14V+5DGcX/1OH3Znd863TecQdNnCFMGArWygq8j7O0uStbWMb3Rhu\n' +
+    '+7RJ9GOCbBSeR3v2fC6+T3LI0Sm1G77xIYADmHGt33IW0DRKr44iOalwi6IbcqzD\n' +
+    's9XlNO8e6ht2apeL656fjv1gCo/PA7e+A0QHn6zapggzEccEwKdFixCsw5ZMZaHm\n' +
+    'adGz3lBCK+0QKYXYL1CtX/6wcDgQ9PuZSgdQgrudLKRN+843m3LJSUJ7AIyL1kQW\n' +
+    'kY1ah7eSx4wwaKrLOM06ZkzORMnY5GAy8Aup+UCh6mWU3dPv3w==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  // 证书二进制数据，需业务自行赋值。
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certToString() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certToString success: ' + JSON.stringify(x509Cert.toString(cert.EncodingType.ENCODING_UTF8)));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2821,8 +3024,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2831,7 +3034,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2864,10 +3067,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2906,8 +3109,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -2916,7 +3119,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -2949,10 +3152,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
     "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
     "-----END CERTIFICATE-----\n"
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -2994,14 +3197,15 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3016,7 +3220,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3059,7 +3263,8 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
@@ -3067,7 +3272,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3082,7 +3287,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3119,8 +3324,8 @@ getEncoded() : EncodingBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3129,7 +3334,7 @@ getEncoded() : EncodingBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3144,7 +3349,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3192,8 +3397,8 @@ getOidList(valueType : ExtensionOidType) : DataArray
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3202,7 +3407,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3217,7 +3422,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3266,8 +3471,8 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3276,7 +3481,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3291,7 +3496,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
@@ -3337,8 +3542,8 @@ checkCA() : number
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3347,7 +3552,7 @@ checkCA() : number
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 证书扩展域段二进制数据，需业务自行赋值
+// 证书扩展域段二进制数据，需业务自行赋值。
 let extData = new Uint8Array([
   0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D,
   0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
@@ -3362,7 +3567,7 @@ let extData = new Uint8Array([
 
 let encodingBlob: cert.EncodingBlob = {
   data: extData,
-  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
+  // 根据encodingData的格式进行赋值，仅支持FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 cert.createCertExtension(encodingBlob, (error, certExt) => {
@@ -3402,8 +3607,8 @@ hasUnsupportedCriticalExtension(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3464,14 +3669,14 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3489,10 +3694,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3537,7 +3742,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3545,7 +3750,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3563,10 +3768,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3591,7 +3796,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。     |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。     |
 | callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
@@ -3602,14 +3807,14 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3627,10 +3832,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3657,7 +3862,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。当前支持的数据长度不超过8192字节。 |
 
 **返回值**：
 
@@ -3673,7 +3878,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 
 **示例：**
 
@@ -3681,7 +3886,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3699,10 +3904,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3759,7 +3964,7 @@ isRevoked(cert : X509Cert) : boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3787,16 +3992,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3845,7 +4050,7 @@ getType() : string
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3863,10 +4068,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3905,8 +4110,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3914,7 +4119,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -3932,10 +4137,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -3980,8 +4185,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -3990,7 +4195,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4008,10 +4213,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4062,7 +4267,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4137,10 +4342,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4221,7 +4426,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4296,10 +4501,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4307,7 +4512,7 @@ cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 
   try {
-    // 生成公钥对象
+    // 生成公钥对象。
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.log('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
@@ -4358,7 +4563,7 @@ getVersion() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4376,10 +4581,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4417,8 +4622,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4427,7 +4632,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4445,10 +4650,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4491,8 +4696,8 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4501,7 +4706,7 @@ getLastUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4519,10 +4724,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4565,8 +4770,8 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4575,7 +4780,7 @@ getNextUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4593,10 +4798,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4646,7 +4851,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4655,7 +4860,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4673,10 +4878,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4727,7 +4932,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4736,7 +4941,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4757,7 +4962,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -4781,14 +4986,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4797,7 +5002,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
-    // 创建X509证书对象.
+    // 创建X509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509Crl.getRevokedCertWithCert(x509Cert);
@@ -4838,7 +5043,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4847,7 +5052,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4865,10 +5070,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4913,7 +5118,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4922,7 +5127,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -4940,10 +5145,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -4983,8 +5188,8 @@ getTbsInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -4993,7 +5198,7 @@ getTbsInfo() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5011,10 +5216,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5057,8 +5262,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5067,7 +5272,7 @@ getSignature() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5085,10 +5290,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5131,8 +5336,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5141,7 +5346,7 @@ getSignatureAlgName() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5159,10 +5364,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5205,8 +5410,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5215,7 +5420,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5233,10 +5438,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5280,8 +5485,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5290,7 +5495,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5308,10 +5513,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5369,7 +5574,7 @@ isRevoked(cert : X509Cert) : boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5397,16 +5602,16 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'BetUokslUfjT6+s/X4ByaxycAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5453,7 +5658,7 @@ getType() : string
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5471,10 +5676,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5511,8 +5716,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5520,7 +5725,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5538,10 +5743,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5576,6 +5781,7 @@ getEncoded() : Promise\<EncodingBlob>
 | 类型                                    | 说明                             |
 | --------------------------------------- | -------------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
@@ -5583,8 +5789,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5593,7 +5799,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5611,10 +5817,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5663,7 +5869,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5738,10 +5944,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5820,7 +6026,7 @@ import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5895,10 +6101,10 @@ let priKeyData = new Uint8Array([
   0xA0, 0xB9, 0x96, 0x2D, 0xC4, 0x70, 0xE9, 0x99, 0x10, 0x67, 0x8D
 ]);
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5906,7 +6112,7 @@ cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509Crl success');
 
   try {
-    // 生成公钥对象
+    // 生成公钥对象。
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
     console.log('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
@@ -5955,7 +6161,7 @@ getVersion() : number
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -5973,10 +6179,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -5996,6 +6202,10 @@ getIssuerName() : DataBlob
 
 表示获取X509证书吊销列表颁发者名称。
 
+> **说明：**
+>
+> 获取到的X509证书吊销列表颁发者名称数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -6012,8 +6222,8 @@ getIssuerName() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6022,7 +6232,7 @@ getIssuerName() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6040,10 +6250,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6054,6 +6264,89 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.log('createX509CRL success');
     try {
       let issuerName = x509CRL.getIssuerName();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+});
+```
+
+### getIssuerName<sup>20+</sup>
+
+getIssuerName(encodingType: EncodingType): string
+
+根据编码类型获取X509证书吊销列表颁发者名称。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示X509证书吊销列表颁发者名称，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+  'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
+  'A1UEAwwM5Lit5paH5rWL6K+VFw0yNDEwMTYwODUwMDlaFw0yNDExMTUwODUwMDla\n' +
+  'MBkwFwIGAXKnJjrAFw0yNDEwMTYwODQ5NDBaoA4wDDAKBgNVHRQEAwIBADANBgkq\n' +
+  'hkiG9w0BAQsFAAOCAQEAU0JPK/DnGmjCi5lKyun506JE+FVDuQsEWuF5CZPqE2um\n' +
+  'hA04Qffi+8AfwLpG2KPBaAYTteU4fx30y8Wm0kLutalk32FgrbQX0VQ7EaCOmkMU\n' +
+  '2dnQMmFmaFiVcOTaRzgqDOYKuzSAptCo6hqtk9kgjbda5HnsNiVC7dNMRp1Jlzwr\n' +
+  'k/42mqZ3fFIy3wYLaxRlq368BX3u94J9Cx754V2V/XEApiRI/FsiSRzRX+jfUBa4\n' +
+  '+wwu3WhWxisQj6z3bBkQD4RTg3S+ic8hhP44wt/1MmSLG946Dc9uVYJKUVZqTco9\n' +
+  'QDoDwYfBJBzcXjManSkPsGCb7RfTAr5HqcEtIHsK+w==\n' +
+  '-----END X509 CRL-----\n';
+// 证书吊销列表二进制数据，需业务自行赋值。
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
+  if (error) {
+    console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+  } else {
+    console.log('createX509CRL success');
+    try {
+      let issuerName = x509CRL.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuerName output is ' + issuerName);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getIssuerName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -6084,8 +6377,8 @@ getLastUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6094,7 +6387,7 @@ getLastUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6112,10 +6405,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6156,8 +6449,8 @@ getNextUpdate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6166,7 +6459,7 @@ getNextUpdate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6184,10 +6477,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6235,7 +6528,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6244,7 +6537,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6262,10 +6555,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6314,7 +6607,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6323,7 +6616,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6344,7 +6637,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书二进制数据，需业务自行赋值
+// 证书二进制数据，需业务自行赋值。
 let certData = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -6368,14 +6661,14 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6384,7 +6677,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
-    // 创建X509证书对象.
+    // 创建X509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509CRL.getRevokedCertWithCert(x509Cert);
@@ -6423,7 +6716,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6432,7 +6725,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6450,10 +6743,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6496,7 +6789,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6505,7 +6798,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6523,10 +6816,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6564,8 +6857,8 @@ getSignature() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6574,7 +6867,7 @@ getSignature() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6592,10 +6885,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6636,8 +6929,8 @@ getSignatureAlgName() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6646,7 +6939,7 @@ getSignatureAlgName() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6664,10 +6957,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6708,8 +7001,8 @@ getSignatureAlgOid() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6718,7 +7011,7 @@ getSignatureAlgOid() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6736,10 +7029,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6781,8 +7074,8 @@ getSignatureAlgParams() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6791,7 +7084,7 @@ getSignatureAlgParams() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6809,10 +7102,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6853,8 +7146,8 @@ getTBSInfo() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6863,7 +7156,7 @@ getTBSInfo() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6881,10 +7174,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -6925,8 +7218,8 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -6935,7 +7228,7 @@ getExtensions(): DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -6956,10 +7249,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '+i2osvdPWRia0dJCL1PCA14k\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7007,7 +7300,7 @@ match(param: X509CRLMatchParameters): boolean
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.  |
+| 19020001 | memory malloc failed.  |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7016,7 +7309,7 @@ match(param: X509CRLMatchParameters): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7034,10 +7327,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7115,8 +7408,8 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7125,7 +7418,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7143,10 +7436,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7185,8 +7478,8 @@ toString(): string
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7195,7 +7488,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7213,10 +7506,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7226,6 +7519,86 @@ async function crlToString() {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
     console.log('createX509CRL success');
     console.info('crlToString success: ' + JSON.stringify(x509Crl.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>20+</sup>
+
+toString(encodingType: EncodingType): string
+
+根据编码类型获取对象的字符串类型数据。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示对象的字符串类型数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+  'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
+  'A1UEAwwM5Lit5paH5rWL6K+VFw0yNDEwMTYwODUwMDlaFw0yNDExMTUwODUwMDla\n' +
+  'MBkwFwIGAXKnJjrAFw0yNDEwMTYwODQ5NDBaoA4wDDAKBgNVHRQEAwIBADANBgkq\n' +
+  'hkiG9w0BAQsFAAOCAQEAU0JPK/DnGmjCi5lKyun506JE+FVDuQsEWuF5CZPqE2um\n' +
+  'hA04Qffi+8AfwLpG2KPBaAYTteU4fx30y8Wm0kLutalk32FgrbQX0VQ7EaCOmkMU\n' +
+  '2dnQMmFmaFiVcOTaRzgqDOYKuzSAptCo6hqtk9kgjbda5HnsNiVC7dNMRp1Jlzwr\n' +
+  'k/42mqZ3fFIy3wYLaxRlq368BX3u94J9Cx754V2V/XEApiRI/FsiSRzRX+jfUBa4\n' +
+  '+wwu3WhWxisQj6z3bBkQD4RTg3S+ic8hhP44wt/1MmSLG946Dc9uVYJKUVZqTco9\n' +
+  'QDoDwYfBJBzcXjManSkPsGCb7RfTAr5HqcEtIHsK+w==\n' +
+  '-----END X509 CRL-----\n';
+// 证书吊销列表二进制数据，需业务自行赋值。
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlToString success: ' + JSON.stringify(x509Crl.toString(cert.EncodingType.ENCODING_UTF8)));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7255,8 +7628,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7265,7 +7638,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7283,10 +7656,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7325,8 +7698,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7335,7 +7708,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7358,10 +7731,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
     '+X48g7VE2o2X4cfy\n' +
     '-----END X509 CRL-----\n';
 
-// 证书吊销列表二进制数据，需业务自行赋值
+// 证书吊销列表二进制数据，需业务自行赋值。
 let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7408,8 +7781,8 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7430,8 +7803,6 @@ try {
 
 证书链校验器对象。
 
-
-### 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7467,8 +7838,8 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7483,7 +7854,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7492,7 +7863,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链二进制数据
+// 证书链二进制数据。
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -7548,9 +7919,9 @@ certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + ca
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
-  // 证书链包含的证书个数，需业务自行赋值
+  // 证书链包含的证书个数，需业务自行赋值。
   count: 2,
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7599,8 +7970,8 @@ validate(certChain : CertChainData) : Promise\<void>
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -7615,7 +7986,7 @@ validate(certChain : CertChainData) : Promise\<void>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7624,7 +7995,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链数据
+// 证书链数据。
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -7680,9 +8051,9 @@ certChainBuff.set(caPemData, certPemDataLenData.length + certPemData.length + ca
 
 let certChainData: cert.CertChainData = {
   data: certChainBuff,
-  // 证书链包含的证书个数，需业务自行赋值
+  // 证书链包含的证书个数，需业务自行赋值。
   count: 2,
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7732,8 +8103,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7742,7 +8113,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7762,7 +8133,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7815,8 +8186,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7825,7 +8196,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7845,7 +8216,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7895,7 +8266,7 @@ getSerialNumber() : number
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7915,7 +8286,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -7962,8 +8333,8 @@ getCertIssuer() : DataBlob
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.  |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.  |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 
 **示例：**
 
@@ -7971,7 +8342,7 @@ getCertIssuer() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -7991,7 +8362,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8037,8 +8408,8 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8047,7 +8418,7 @@ getRevocationDate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8067,7 +8438,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8116,8 +8487,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8126,7 +8497,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8146,7 +8517,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8197,8 +8568,8 @@ getEncoded() : Promise\<EncodingBlob>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8207,7 +8578,7 @@ getEncoded() : Promise\<EncodingBlob>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8227,7 +8598,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8275,8 +8646,8 @@ getSerialNumber() : bigint
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8285,7 +8656,7 @@ getSerialNumber() : bigint
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8305,7 +8676,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8333,6 +8704,10 @@ getCertIssuer() : DataBlob
 
 表示获取被吊销证书的颁发者信息。
 
+> **说明：**
+>
+> 获取到的被吊销证书的颁发者信息数据带字符串结束符。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
@@ -8350,8 +8725,8 @@ getCertIssuer() : DataBlob
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 801 | this operation is not supported. |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8360,7 +8735,7 @@ getCertIssuer() : DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8380,7 +8755,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8402,11 +8777,95 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
 })
 ```
 
+### getCertIssuer<sup>20+</sup>
+
+getCertIssuer(encodingType: EncodingType): string
+
+根据编码类型获取被吊销证书的颁发者信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType | [EncodingType](#encodingtype12)     | 是   |  表示编码类型。  |
+
+**返回值**：
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 表示被吊销证书的颁发者信息，使用逗号分隔相对可分辨名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 801 | this operation is not supported. |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array。
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+ let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIIBTDCBtgIBATANBgkqhkiG9w0BAQsFADBZMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+    'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEXMBUG\n' +
+    'A1UEAwwO5Lit5paH5rWL6K+VIyMXDTI1MDMyNDA5MTExNVoXDTI1MDQyMzA5MTEx\n' +
+    'NVowGTAXAgYBcqcmOsAXDTI1MDIyMDA2MTMwM1qgDjAMMAoGA1UdFAQDAgECMA0G\n' +
+    'CSqGSIb3DQEBCwUAA4GBACedFnn4unfYLiRCl1ZAFXx6LFdX6U+IZ/buW44xKAWi\n' +
+    'fyvcSxKIeGtMVjmQSs4HeNfNujIjaDN1+/J2nLSmHPiQ/c0LAc47zefVt2VnFuR4\n' +
+    'TMUJEDUlnekYfDMxQqtihAO/Bpw33twK6otDvaAPm9vJoCu8JmGXxt6g+8vbYuNT\n' +
+    '-----END X509 CRL-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
+  if (err) {
+    console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+  } else {
+    console.log('create x509 CRL success');
+
+    try {
+      let serialNumber = BigInt(1591942200000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
+      let issuer = crlEntry.getCertIssuer(cert.EncodingType.ENCODING_UTF8);
+      console.info('issuer output is ' + issuer);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('getRevokedCert or getCertIssuer failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  }
+})
+```
+
 ### getRevocationDate<sup>11+</sup>
 
 getRevocationDate() : string
 
-表示获取证书被吊销的日期，日期为ASN.1时间格式。
+表示获取证书被吊销的日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8416,7 +8875,7 @@ getRevocationDate() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书被吊销的日期，日期为ASN.1时间格式。 |
+| string | 表示证书被吊销的日期。 |
 
 **错误码：**
 
@@ -8424,8 +8883,8 @@ getRevocationDate() : string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8434,7 +8893,7 @@ getRevocationDate() : string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8454,7 +8913,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8498,8 +8957,8 @@ getExtensions(): DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8508,7 +8967,7 @@ getExtensions(): DataBlob
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8531,7 +8990,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8575,8 +9034,8 @@ hasExtensions(): boolean
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8585,7 +9044,7 @@ hasExtensions(): boolean
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8605,7 +9064,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8649,8 +9108,8 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8659,7 +9118,7 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8679,7 +9138,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8718,8 +9177,8 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8728,7 +9187,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8748,7 +9207,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8787,8 +9246,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8797,7 +9256,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8817,7 +9276,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -8856,8 +9315,8 @@ getExtensionsObject(): CertExtension
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error.           |
-| 19020002 | runtime error.          |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.          |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -8866,7 +9325,7 @@ getExtensionsObject(): CertExtension
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -8953,7 +9412,7 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
 
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -9000,7 +9459,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 
 **示例：**
 
@@ -9008,7 +9467,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9027,10 +9486,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值
+  // 证书吊销列表二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9056,7 +9515,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9115,7 +9574,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9124,7 +9583,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9146,7 +9605,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9204,7 +9663,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9213,7 +9672,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9235,7 +9694,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9252,7 +9711,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
 async function selectCerts() {
   const x509Cert = await createX509Cert();
   const collection = cert.createCertCRLCollection([x509Cert]);
-  // 需业务自行赋值
+  // 需业务自行赋值。
     const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
@@ -9299,7 +9758,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9308,7 +9767,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9327,10 +9786,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值
+  // 证书吊销列表二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9419,7 +9878,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9428,7 +9887,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9447,10 +9906,10 @@ async function createX509CRL(): Promise<cert.X509CRL> {
     'eavsH0Q3\n' +
     '-----END X509 CRL-----\n';
 
-  // 证书吊销列表二进制数据，需业务自行赋值
+  // 证书吊销列表二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CRL: cert.X509CRL = {} as cert.X509CRL;
@@ -9545,7 +10004,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9554,7 +10013,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9619,10 +10078,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // 证书链二进制数据，需业务自行赋值
+  // 证书链二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -9662,7 +10121,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9670,7 +10129,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9734,10 +10193,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值
+// 证书链二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -9779,7 +10238,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
+| 19020001 | memory malloc failed. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -9788,7 +10247,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9808,10 +10267,10 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9854,7 +10313,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。  <br> [CertChainBuildParameters](#certchainbuildparameters12)中的maxLength要小于证书集合中证书数量。|
 
 **返回值：**
 
@@ -9869,8 +10328,8 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -9885,7 +10344,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -9894,7 +10353,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// 证书链数据
+// 证书链数据。
 let certPem = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDTjCCAjagAwIBAgIBBDANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDDAdSb290\n' +
   'IENBMB4XDTI0MDMxOTAyMDQwMVoXDTM0MDMxNzAyMDQwMVowEjEQMA4GA1UEAwwH\n' +
@@ -9937,10 +10396,10 @@ let caPem = '-----BEGIN CERTIFICATE-----\n' +
 '-----END CERTIFICATE-----';
 
 async function createX509Cert(certData: string): Promise<cert.X509Cert> {
-  // 证书二进制数据，需业务自行赋值
+  // 证书二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
@@ -9958,7 +10417,7 @@ async function buildX509CertChain() {
   try {
     const caCert = await createX509Cert(caPem);
     const x509Cert = await createX509Cert(certPem);
-    let certCrlCollection = await cert.createCertCRLCollection([x509Cert]);
+    let certCrlCollection = cert.createCertCRLCollection([x509Cert]);
     let param: cert.CertChainBuildParameters = {
       certMatchParameters: {validDate:'20240812080000Z'},
       maxLength: 3,
@@ -9980,13 +10439,13 @@ async function buildX509CertChain() {
 buildX509CertChain();
 ```
 
-## cert.parsePkcs12<sup>16+</sup>
+## cert.parsePkcs12<sup>18+</sup>
 
 parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 表示从P12文件中解析证书、私钥及其他证书合集，并返回结果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9995,13 +10454,13 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
 | data | Uint8Array | 是 | P12文件，DER格式。 |
-| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig16) | 是 | P12文件的解析配置。 |
+| config | [Pkcs12ParsingConfig](#pkcs12parsingconfig18) | 是 | P12文件的解析配置。 |
 
 **返回值：**
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| [Pkcs12Data](#pkcs12data16) | 表示P12文件解析后的证书、私钥及其他证书合集。 |
+| [Pkcs12Data](#pkcs12data18) | 表示P12文件解析后的证书、私钥及其他证书合集。 |
 
 **错误码：**
 
@@ -10010,8 +10469,8 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030008 | maybe wrong password.            |
 
@@ -10222,8 +10681,8 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
+| 19020001 | memory malloc failed.                                     |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
 | 19030001 | crypto operation error.                           |
 | 19030002 | the certificate signature verification failed.    |
 | 19030003 | the certificate has not taken effect.             |
@@ -10278,7 +10737,7 @@ getCertList(): Array\<X509Cert>
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
+| 19020001 | memory malloc failed.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10287,7 +10746,7 @@ getCertList(): Array\<X509Cert>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10351,10 +10810,10 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值
+// 证书链二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10402,8 +10861,8 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10418,7 +10877,7 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10483,10 +10942,10 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
     "xjoE\n" +
     "-----END CERTIFICATE-----\n";
 
-  // 证书链二进制数据，需业务自行赋值
+  // 证书链二进制数据，需业务自行赋值。
   let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
@@ -10502,7 +10961,7 @@ async function createX509CertChain(): Promise<cert.X509CertChain> {
 
 async function validate() {
   const certChain = await createX509CertChain();
-  // 证书链校验数据，需业务自行赋值
+  // 证书链校验数据，需业务自行赋值。
   const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
@@ -10546,8 +11005,8 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error.           |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed.           |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error.           |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect.           |
@@ -10561,7 +11020,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10625,14 +11084,14 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "xjoE\n" +
   "-----END CERTIFICATE-----\n";
 
-// 证书链二进制数据，需业务自行赋值
+// 证书链二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-// 证书链校验数据，需业务自行赋值
+// 证书链校验数据，需业务自行赋值。
 let param: cert.CertChainValidationParameters = {
   date: '20231212080000Z',
   trustAnchors: [{
@@ -10679,8 +11138,8 @@ toString(): string
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10689,7 +11148,7 @@ toString(): string
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10765,10 +11224,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书链二进制数据，需业务自行赋值
+// 证书链二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10806,8 +11265,8 @@ hashCode(): Uint8Array
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -10816,7 +11275,7 @@ hashCode(): Uint8Array
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -10892,10 +11351,10 @@ let certChainData = '-----BEGIN CERTIFICATE-----\n' +
   'tPO+\n' +
   '-----END CERTIFICATE-----\n';
 
-// 证书链二进制数据，需业务自行赋值
+// 证书链二进制数据，需业务自行赋值。
 let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
-  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7。
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
@@ -10912,13 +11371,13 @@ async function certChainHashCode() {
 }
 ```
 
-## cert.generateCsr<sup>16+</sup>
+## cert.generateCsr<sup>18+</sup>
 
 generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
 
 表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10926,8 +11385,8 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 包含私钥跟口令的配置参数。 |
-| config | [CsrGenerationConfig](#csrgenerationconfig16) | 是 | 包含生成CSR的配置参数。 |
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 包含私钥跟口令的配置参数。 |
+| config | [CsrGenerationConfig](#csrgenerationconfig18) | 是 | 包含生成CSR的配置参数。 |
 
 **返回值：**
 
@@ -10942,15 +11401,10 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
-| 19030002 | the certificate signature verification failed. |
-| 19030003 | the certificate has not taken effect. |
-| 19030004 | the certificate has expired. |
-| 19030005 | failed to obtain the certificate issuer. |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature. |
+| 19030008 | maybe wrong password. |
 
 **示例：**
 
@@ -11045,8 +11499,8 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11061,7 +11515,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -11116,8 +11570,8 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030002 | the certificate signature verification failed. |
 | 19030003 | the certificate has not taken effect. |
@@ -11174,8 +11628,8 @@ getName(): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11231,8 +11685,8 @@ getName(type: string): Array\<string>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11248,6 +11702,63 @@ async function getName() {
       .then((data) => {
         console.log('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getName<sup>20+</sup>
+
+getName(encodingType: EncodingType): string
+
+根据指定的编码类型获取可分辨名的字符串。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名       | 类型          | 必填 | 说明           |
+| ------------ | ------------- | ---- | -------------- |
+| encodingType | [EncodingType](#encodingtype12) | 是 | 表示编码类型。|
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| string | 表示可分辨名的字符串，使用逗号分隔相对可分辨名称。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let nameStr = '/CN=陕西@西安/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName(cert.EncodingType.ENCODING_UTF8)))
       })
       .catch((err: BusinessError) => {
         console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -11281,8 +11792,8 @@ getEncoded(): EncodingBlob
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11309,13 +11820,13 @@ async function getEncoded() {
 }
 ```
 
-## cert.createCmsGenerator<sup>16+</sup>
+## cert.createCmsGenerator<sup>18+</sup>
 
 createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 表示创建CmsGenerator对象。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11323,13 +11834,13 @@ createCmsGenerator(contentType: CmsContentType): CmsGenerator
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| contentType | [CmsContentType](#cmscontenttype16) | 是 | 指定CMS内容类型。|
+| contentType | [CmsContentType](#cmscontenttype18) | 是 | 指定CMS内容类型。|
 
 **返回值：**
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| [CmsGenerator](#cmsgenerator16) | CmsGenerator对象。 |
+| [CmsGenerator](#cmsgenerator18) | CmsGenerator对象。 |
 
 **错误码：**
 
@@ -11338,8 +11849,8 @@ createCmsGenerator(contentType: CmsContentType): CmsGenerator
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11364,10 +11875,19 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 function testcreateCmsGenerator() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11387,7 +11907,7 @@ function testcreateCmsGenerator() {
 }
 ```
 
-## CmsGenerator<sup>16+</sup>
+## CmsGenerator<sup>18+</sup>
 
 CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消息。
 
@@ -11396,13 +11916,13 @@ CmsGenerator对象用于生成CMS（Cryptographic Message Syntax）格式的消�
 > PKCS#7是用于存储签名或加密数据的标准语法。注意CMS是PKCS#7的扩展，PKCS#7支持的数据类型包括数据、签名数据、信封数据、
 > 签名和信封数据、摘要数据、加密数据。常用于保护数据的完整性和机密性。
 
-### addSigner<sup>16+</sup>
+### addSigner<sup>18+</sup>
 
 addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): void;
 
 用于添加签名者信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11411,8 +11931,8 @@ addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): voi
 | 参数名       | 类型   | 必填 | 说明           |
 | ------------ | ------ | ---- | -------------- |
 | cert |  [X509Cert](#x509cert) | 是 | 指定X509证书。|
-| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 指定私钥信息。|
-| config | [CmsSignerConfig](#cmssignerconfig16) | 是 | 指定签名者选项。|
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo18) | 是 | 指定私钥信息。|
+| config | [CmsSignerConfig](#cmssignerconfig18) | 是 | 指定签名者选项。|
 
 **错误码：**
 
@@ -11421,8 +11941,8 @@ addSigner(cert: X509Cert, keyInfo: PrivateKeyInfo, config: CmsSignerConfig): voi
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 | 19030008 | maybe wrong password. |
 
@@ -11467,7 +11987,7 @@ let rsaStr1024: string  =
     '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
     '-----END RSA PRIVATE KEY-----\n';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -11479,7 +11999,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testAddSigner() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11494,7 +12014,7 @@ function testAddSigner() {
             key: rsaStr1024,
             password: '123456'
           };
-          // addCert设置为true时，第二次addSigner增加相同的证书，会报错
+          // addCert设置为true时，第二次addSigner增加相同的证书，会报错。
           let config: cert.CmsSignerConfig = {
             mdName:'SHA256',
             addCert:false,
@@ -11512,13 +12032,13 @@ function testAddSigner() {
 }
 ```
 
-### addCert<sup>16+</sup>
+### addCert<sup>18+</sup>
 
 addCert(cert: X509Cert): void
 
 用于添加证书，例如签名证书的颁发者证书。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11535,8 +12055,8 @@ addCert(cert: X509Cert): void
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11561,7 +12081,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'a26pkDJhNeB/E3eBIbeydSY0A/dIGb6vbGo6BSq2KvnWAA==\n' +
   '-----END CERTIFICATE-----\n';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -11573,7 +12093,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testAddCert() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11584,7 +12104,7 @@ function testAddCert() {
           let cmsContentType = cert.CmsContentType.SIGNED_DATA;
           let cmsGenerator = cert.createCmsGenerator(cmsContentType);
           console.info('testAddCert createCmsGenerator success.');
-          // 第二次addCert增加相同的证书，会报错
+          // 第二次addCert增加相同的证书，会报错。
           cmsGenerator.addCert(x509Cert);
           console.info('testAddCert addCert success.');
         } catch (err) {
@@ -11596,13 +12116,13 @@ function testAddCert() {
 }
 ```
 
-### doFinal<sup>16+</sup>
+### doFinal<sup>18+</sup>
 
 doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | string>
 
 用于获取Cms最终数据，例如Cms签名数据。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11611,7 +12131,7 @@ doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | s
 | 参数名      | 类型                | 必填 | 说明                                       |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | 是   | Cms操作的内容。                           |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
 
 **返回值：**
 
@@ -11626,8 +12146,8 @@ doFinal(data: Uint8Array, options?: CmsGeneratorOptions): Promise<Uint8Array | s
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11671,7 +12191,7 @@ let rsaStr1024: string  =
     '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
     '-----END RSA PRIVATE KEY-----\n';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -11683,7 +12203,7 @@ function stringToUint8Array(str: string): Uint8Array {
 async function testDoFinalByPromise() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11698,7 +12218,7 @@ async function testDoFinalByPromise() {
           key: rsaStr1024,
           password: '123456'
         };
-        // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+        // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错。
         let config: cert.CmsSignerConfig = {
           mdName:'SHA256',
           addCert:false,
@@ -11729,13 +12249,13 @@ async function testDoFinalByPromise() {
 }
 ```
 
-### doFinalSync<sup>16+</sup>
+### doFinalSync<sup>18+</sup>
 
 doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | string
 
 用于获取Cms最终数据，例如Cms签名数据（同步方法）。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -11744,7 +12264,7 @@ doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | strin
 | 参数名      | 类型                | 必填 | 说明                                       |
 | ----------- | ------------------- | ---- | ------------------------------------------ |
 | data        | Uint8Array         | 是   | Cms操作的内容。                           |
-| options     | [CmsGeneratorOptions](#cmsgeneratoroptions16)  | 否   | Cms操作的配置选项。                       |
+| options     | [CmsGeneratorOptions](#cmsgeneratoroptions18)  | 否   | Cms操作的配置选项。                       |
 
 **返回值：**
 
@@ -11759,8 +12279,8 @@ doFinalSync(data: Uint8Array, options?: CmsGeneratorOptions): Uint8Array | strin
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 19020001 | memory error. |
-| 19020002 | runtime error. |
+| 19020001 | memory malloc failed. |
+| 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11804,7 +12324,7 @@ let rsaStr1024: string  =
     '1m7YmBROb2qy4w3lv/uwVnPGLg/YV465irRaN3hgz7/1lm8STKQhmQ==\n' +
     '-----END RSA PRIVATE KEY-----\n';
 
-// string转Uint8Array
+// string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
   let arr: Array<number> = [];
   for (let i = 0, j = str.length; i < j; i++) {
@@ -11816,7 +12336,7 @@ function stringToUint8Array(str: string): Uint8Array {
 function testDoFinalSync() {
   let certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER。
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
   cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
@@ -11831,7 +12351,7 @@ function testDoFinalSync() {
             key: rsaStr1024,
             password: '123456'
           };
-          // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错
+          // addCert设置为true时，第二次addSigner或者addCert增加相同的证书，会报错。
           let config: cert.CmsSignerConfig = {
             mdName:'SHA256',
             addCert:false,

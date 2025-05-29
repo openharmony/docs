@@ -47,7 +47,17 @@ import { window } from '@kit.ArkUI';
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | 表示钱包刷卡窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | 表示悬浮的三键导航窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_DYNAMIC<sup>20+</sup> | 25      | 表示可设置窗口层级的系统窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_MUTISCREEN_COLLABORATION<sup>20+</sup> | 26      | 表示多屏协同窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
+## Configuration<sup>9+</sup>
+
+创建子窗口或系统窗口时的参数。
+
+| 名称 | 类型 | 必填 | 说明                       |
+| ---------- | --------- | ---- | -------------- |
+| zIndex<sup>20+</sup>       | number | 否 | 当前系统窗口的层级，仅在[WindowType](#windowtype7)为TYPE_DYNAMIC时生效。<br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## WindowMode<sup>7+</sup>
 
@@ -167,23 +177,6 @@ import { window } from '@kit.ArkUI';
 | x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-
-## WindowInfo<sup>12+</sup>
-
-当前窗口的详细信息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.Window.SessionManager
-
-| 名称   | 类型   | 只读 | 可选 | 说明                                       |
-| ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](js-apis-window.md#rect7)   | 是   | 否   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。 |
-| bundleName  | string   | 是   | 否   | 应用Bundle的名称。          |
-| abilityName | string   | 是   | 否   | Ability的名称。               |
-| windowId | number | 是   | 否   | 窗口ID。   |
-| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
-| isFocused<sup>14+</sup> | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -573,7 +566,7 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -656,7 +649,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for watermark flag changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -814,7 +807,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8)接口获取。|
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
@@ -874,7 +867,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8)接口获取。|
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 
 **返回值：**
@@ -973,57 +966,6 @@ try {
 } catch (exception) {
   console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
 }
-```
-
-## window.getVisibleWindowInfo<sup>12+</sup>
-
-getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
-
-获取当前屏幕的可见窗口（未退至后台的窗口）信息。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-
-**返回值：**
-
-| 类型 | 说明 |
-| ------------------- | ----------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回当前可见窗口的相关信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed, non-system application uses system API. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
 ```
 
 ## Window
@@ -1768,7 +1710,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-截屏录屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏的场景。
+截屏录屏或投屏是否忽略当前窗口。此接口一般用于禁止截屏/录屏/投屏的场景。
+
+若要实现窗口始终在前台忽略截屏/录屏或投屏，在窗口从后台回到前台时，需要通过[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口生命周期变化，在后台状态时设置为false，而在前台状态时设置为true。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2366,6 +2310,8 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 提升应用子窗口到应用顶层。使用callback异步回调。
 
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -2391,16 +2337,34 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.raiseToAppTop((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        subWindow.raiseToAppTop((err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the window to app top.');
+        });
+      });
+    });
   }
-  console.info('Succeeded in raising the window to app top.');
-});
+}
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -2560,7 +2524,9 @@ try {
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-将同一个主窗口下的子窗口提升到目标子窗口之上。使用callback异步回调。
+将同一个主窗口下的子窗口抬升到目标子窗口之上。使用callback异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2591,6 +2557,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2598,26 +2565,27 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // windowClass的获取需放在targetWindow之上
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        windowClass.raiseAboveTarget(targetId, (err) => {
-          if (err.code) {
-            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        windowClass.showWindow().then(() => {
+          // windowClass的获取需放在targetWindow之上
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId, (err: BusinessError) => {
+            if (err.code) {
+              console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          });
         });
       });
     } catch (exception) {
@@ -2632,6 +2600,8 @@ export default class EntryAbility extends UIAbility {
 raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 将同一个主窗下的子窗口提升到目标子窗口之上。使用Promise异步回调。
+
+使用该接口需要确保要抬升的子窗口和目标子窗口都已创建完成，分别调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2667,6 +2637,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2674,25 +2645,25 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // 创建子窗
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // windowClass的获取需放在targetWindow之上
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        let promise = windowClass.raiseAboveTarget(targetId);
-        promise.then(()=> {
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        windowClass.showWindow().then(() => {
+          // windowClass的获取需放在targetWindow之上
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId).then(()=> {
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
@@ -2709,6 +2680,8 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 禁止/使能子窗口点击抬升功能。使用callback异步回调。
 
 通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
+
+使用该接口需要先创建子窗口，并确保该子窗口调用[showWindow()](js-apis-window.md#showwindow9)并执行完毕。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2739,6 +2712,7 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2746,28 +2720,27 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // 创建子窗
-    try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        windowClass = data;
-        let enabled = false;
-        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        try {
+          let enabled = false;
+          subWindow.setRaiseByClickEnabled(enabled, (err) => {
           if (err.code) {
             console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
           console.info('Succeeded in disabling the raise-by-click function.');
-        });
+          });
+        } catch (err) {
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -2778,7 +2751,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 使能/禁止拖拽窗口。使用Promise异步回调。
 
-使能后，将允许通过鼠标对窗口进行拉伸操作。
+使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
 
 仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
@@ -2887,14 +2860,18 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // 调用带callback参数的hideNonSystemFloatingWindows接口
-      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
-        if (err.code) {
-          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in hiding the non-system floating windows.');
-      });
+      try {
+        // 调用带callback参数的hideNonSystemFloatingWindows接口
+        mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+          if (err.code) {
+            console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in hiding the non-system floating windows.');
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -2966,13 +2943,17 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // 调用hideNonSystemFloatingWindows接口，获取promise对象
-      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-      promise.then(()=> {
-        console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err: BusinessError)=>{
-        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-      });
+      try {
+        // 调用hideNonSystemFloatingWindows接口，获取promise对象
+        let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+        promise.then(()=> {
+          console.info('Succeeded in hiding the non-system floating windows.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -3026,10 +3007,9 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // ...
-    windowStage.getMainWindow().then((window) => {
+    windowStage.getMainWindow().then((mainWindow) => {
       let isTopmost: boolean = true;
-      let promise = window.setTopmost(isTopmost);
-      promise.then(() => {
+      mainWindow.setTopmost(isTopmost).then(() => {
         console.info('Succeeded in setting the main window to be topmost.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
@@ -3080,12 +3060,16 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
-let promise = windowClass.setSingleFrameComposerEnabled(enable);
-promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
-}).catch((err: BusinessError)=>{
-    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-});
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setTitleButtonVisible<sup>12+</sup>
@@ -3430,7 +3414,7 @@ completeTransition(isCompleted: boolean): void
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // 动画时长
     tempo: 0.5, // 播放速率
     curve: Curve.EaseInOut, // 动画曲线
@@ -3538,7 +3522,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线
@@ -3621,7 +3605,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // 动画时长
       tempo: 0.5, // 播放速率
       curve: Curve.EaseInOut, // 动画曲线

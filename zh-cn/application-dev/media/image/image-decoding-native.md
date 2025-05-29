@@ -1,6 +1,6 @@
-# 使用Image完成图片解码
+# 图片解码
 
-图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF(不同硬件设备支持情况不同)。
+图片解码指将所支持格式的图片文件解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF（不同硬件设备支持情况不同）。
 
 ## 开发步骤
 
@@ -149,7 +149,7 @@ EXTERN_C_END
             OH_ImageSource_GetImageInfo(imageSourceNative_c, 0, &info);
             OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, "[decode]", "imageInfo width:%{public}d , height:%{public}d", info.size.width, info.size.height);
             
-            // 读取图片源的ImageWidth配置参数并打印日志。
+            // 读取ImageSource的ImageWidth配置参数并打印日志。
             OhosImageSourceProperty target;
             char exifKey_c[] = "ImageWidth";
             target.size = strlen(exifKey_c);

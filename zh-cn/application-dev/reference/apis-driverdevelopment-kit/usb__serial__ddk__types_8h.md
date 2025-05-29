@@ -1,4 +1,4 @@
-# usb_serial_ddk_types.h
+# usb_serial_types.h
 
 
 ## 概述
@@ -7,9 +7,9 @@
 
 **库：** libusb_serial.z.so
 
-**引用文件：**&lt;serial/usb_serial_ddk_types.h&gt;
+**引用文件：**&lt;serial/usb_serial_types.h&gt;
 
-**系统能力：** SystemCapability.Driver.SERIAL.Extension
+**系统能力：** SystemCapability.Driver.UsbSerial.Extension
 
 **起始版本：** 18
 
@@ -23,7 +23,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[UsbSerial_Params](_usb_serial___params.md) | 定义USB Serial DDK使用的USB串口参数. | 
+| struct&nbsp;&nbsp;[UsbSerial_Params](_usb_serial___params.md) | 定义USB Serial DDK使用的USB串口参数。 | 
 
 
 ### 类型定义
@@ -31,7 +31,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle) [UsbSerial_DeviceHandle](_serial_ddk.md#usbserial_devicehandle) | USB串口设备数据结构（不透明）。 | 
-| typedef struct [UsbSerial_Params](_usb_serial___params.md) __attribute__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
+| typedef struct [UsbSerial_Params](_usb_serial___params.md) \__attribute\__((aligned(8))) [UsbSerial_Params](_usb_serial___params.md) | USB Serial DDK使用的USB串口参数。 | 
 
 
 ### 枚举

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  - 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 目前仅支持通过开启无障碍模式触发。
 
 ## onAccessibilityHover
@@ -38,12 +38,12 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | 是   | 表示开启无障碍模式后，手指是否悬浮在组件上，手指进入时为true,&nbsp;退出时为false。 |
+| isHover             | boolean                             | 是   | 表示开启无障碍模式后，手指在组件上触发由Touch事件转换成的无障碍悬浮事件，手指进入时为true，退出时为false。 |
 | event | [AccessibilityHoverEvent](#accessibilityhoverevent对象说明) | 是   | 获得AccessibilityHoverEvent对象。                                   |
 
 ## AccessibilityHoverEvent对象说明
 
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

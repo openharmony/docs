@@ -17,6 +17,8 @@
 
 **相关模块：**[ImageProcessing](_image_processing.md)
 
+**所在头文件：**[image_processing_types.h](image__processing__types_8h.md)
+
 
 ## 汇总
 
@@ -26,7 +28,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | int32_t [metadataType](#metadatatype) | 定义元数据类型[OH_Pixelmap_HdrMetadataKey](../apis-image-kit/_image___native_module.md#oh_pixelmap_hdrmetadatakey)。 | 
-| int32_t [colorSpace](#colorspace) | 定义色彩空间[ColorSpaceName](../apis-arkgraphics2d/_native_color_space_manager.md#colorspacename-1)。 | 
+| int32_t [colorSpace](#colorspace) | 定义色彩空间[ColorSpaceName](../apis-arkgraphics2d/capi-native-color-space-manager-h.md#colorspacename)。 | 
 | int32_t [pixelFormat](#pixelformat) | 定义像素格式[PIXEL_FORMAT](../apis-image-kit/_image___native_module.md#pixel_format)。 | 
 
 
@@ -41,7 +43,7 @@ int32_t ImageProcessing_ColorSpaceInfo::colorSpace
 
 **描述**
 
-定义色彩空间[ColorSpaceName](../apis-arkgraphics2d/_native_color_space_manager.md#colorspacename-1)。
+定义色彩空间[ColorSpaceName](../apis-arkgraphics2d/capi-native-color-space-manager-h.md#colorspacename)。
 
 
 ### metadataType

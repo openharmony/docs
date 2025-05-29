@@ -24,7 +24,7 @@ Counter()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### enableInc<sup>10+</sup>
 
@@ -40,7 +40,7 @@ Sets whether to enable the increment button.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the increment button.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the increment button.<br>**true** (default): Enable the increment button.<br>**false**: Disable the increment button.|
 
 ### enableDec<sup>10+</sup>
 
@@ -56,11 +56,11 @@ Sets whether to enable the decrement button.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether to enable the decrement button.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to enable the decrement button.<br>**true** (default): Enable the decrement button.<br>**false**: Disable the decrement button.|
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onInc
 

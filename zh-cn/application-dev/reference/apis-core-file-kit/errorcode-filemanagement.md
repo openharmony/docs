@@ -20,11 +20,11 @@ Operation not permitted
 
 **处理步骤**
 
-1、根据当前系统的[访问控制机制](../../security/AccessToken/access-token-overview.md)，应用无法使用分享给其他应用的URI。
+1.根据当前系统的[访问控制机制](../../security/AccessToken/access-token-overview.md)，应用无法使用分享给其他应用的URI。
 
-2、根据[系统Picker](../../application-models/system-app-startup.md)的运行机制，通过Picker获取到的URI仅有临时权限，无法持久化保存使用。
+2.根据[系统Picker](../../application-models/system-app-startup.md)的运行机制，通过Picker获取到的URI仅有临时权限，无法持久化保存使用。
 
-3、URI路径不推荐进行拼接，拼接后的URI默认未授权。
+3.URI路径不推荐进行拼接，拼接后的URI默认未授权。
 
 ### 13900002 没有这个文件或目录
 
@@ -122,13 +122,15 @@ Bad file descriptor
 
 **可能原因**
 
-1. 此文件描述符已关闭。
-2. 读写权限不匹配。
+1.此文件描述符已关闭。
+
+2.读写权限不匹配。
 
 **处理步骤**
 
-1. 确认此文件描述符是否已关闭。
-2. 确认此文件读写权限是否匹配
+1.确认此文件描述符是否已关闭。
+
+2.确认此文件读写权限是否匹配。
 
 ### 13900009 没有子进程
 
@@ -630,7 +632,7 @@ No record is locks available
 
 **处理步骤**
 
-释放锁资源后重试
+释放锁资源后重试。
 
 ### 13900044 网络无法访问
 
@@ -658,9 +660,9 @@ Connection failed
 
 **处理步骤**
 
-1. 检查设备，确认设备状态正常。
+1.检查设备，确认设备状态正常。
 
-2. 检查WiFi和蓝牙，确认状态正常。
+2.检查WiFi和蓝牙，确认状态正常。
 
 ### 13900046 软件造成连接中断
 
@@ -674,9 +676,9 @@ Software caused connection abort
 
 **处理步骤**
 
-1. 检查设备，确认设备状态正常。
+1.检查设备，确认设备状态正常。
 
-2. 检查WiFi和蓝牙，确认状态正常。
+2.检查WiFi和蓝牙，确认状态正常。
 
 ## 用户数据管理错误码
 
@@ -706,7 +708,7 @@ URI不合法。
 
 **处理步骤**
 
-直接使用查询获取的uri。
+直接使用查询获取的URI。
 
 ### 14000003 文件后缀非法
 
@@ -840,7 +842,7 @@ Incorrect volume state
 
 **错误信息**
 
-Failed to create the drectory or node
+Failed to create the directory or node
 
 **可能原因**
 
@@ -854,7 +856,7 @@ Failed to create the drectory or node
 
 **错误信息**
 
-Failed to delete the drectory or node
+Failed to delete the directory or node
 
 **可能原因**
 
@@ -922,7 +924,7 @@ Invalid URI
 
 **可能原因**
 
-使用非法uri。
+使用非法URI。
 
 **处理步骤**
 
@@ -960,7 +962,7 @@ server端返回值检查。
 
 **错误信息**
 
-Failed to register Notify
+Failed to register notify
 
 **可能原因**
 
@@ -976,7 +978,7 @@ Failed to register Notify
 
 **错误信息**
 
-Failed to unregister Notify
+Failed to unregister notify
 
 **可能原因**
 
@@ -992,7 +994,7 @@ Failed to unregister Notify
 
 **错误信息**
 
-Failed to initialize the Notify agent
+Failed to initialize the notify agent
 
 **可能原因**
 
@@ -1065,3 +1067,65 @@ Low battery level
 **处理步骤**
 
 充电状态或电量恢复后再执行。
+
+### 22400004  入参请求超过最大限制
+
+**错误信息**
+
+Exceeded the maximum limit
+
+**可能原因**
+
+请求数量超过接口规格定义的上限。
+
+**处理步骤**
+
+检查入参，保证请求数量符合规格要求。
+
+### 22400005  内部错误
+
+**错误信息**
+
+Inner error
+
+**可能原因**
+
+1.系统内部数据库请求失败或者SQL执行失败。
+
+2.系统出现空指针等异常。
+
+3.系统内存不足或内存异常。
+
+4.JS框架异常。
+
+**处理步骤**
+
+系统基础能力问题，<!--RP1-->请向OpenHarmony团队反馈，获取支持。<!--RP1End-->
+
+### 22400006  已经有同类型任务正在运行
+
+**错误信息**
+
+The same task is already in progress
+
+**可能原因**
+
+有同类型任务正在运行。
+
+**处理步骤**
+
+等待现有同类型任务完成，或通过调用对应业务的stop接口终止现有任务后，再触发新任务。
+
+### 22400007  指定用于替换原始文件的历史版本文件不存在
+
+**错误信息**
+
+The version file specified to replace the original file does not exist
+
+**可能原因**
+
+历史版本文件未下载或已删除。
+
+**处理步骤**
+
+重新下载指定的历史版本文件，保证文件存在。

@@ -44,6 +44,7 @@
             - [Communication Between the TaskPool Task and Host Thread](taskpool-communicates-with-mainthread.md)
             - [Real-Time Communication Between the Worker Thread and Host Thread](worker-communicates-with-mainthread.md)
             - [Synchronous Calls to Host Thread Interfaces from Worker](worker-invoke-mainthread-interface.md)
+            - [High-Performance Communication Between Multi-Level Workers](worker-postMessage-sendable.md)
     - Multithreaded Development<!--multithread-develop-guide-->
         - [Overview of Multithreaded Development](multithread-develop-overview.md)
         - Concurrency in Time-Consuming Tasks<!--time-consuming-task-->
@@ -65,6 +66,8 @@
             - [C++ Inter-Thread Data Sharing](native-interthread-shared.md)
             - [Specifying Task Concurrency with TaskPool](taskpool-async-task-guide.md)
             - [ArkUI Waterfall Rendering](taskpool-waterflow.md)
+            - [Obtaining the Recently Accessed List](sendablelrucache-recent-list.md)
+            - [Canceling Tasks in Multithreading with TaskPool](multi-thread-cancel-task.md)
 - [ArkTS Cross-Language Interaction](arkts-cross-language-interaction.md)
 - ArkTS Runtime<!--arkts-runtime-->
     - [Overview of ArkTS Runtime](arkts-runtime-overview.md)

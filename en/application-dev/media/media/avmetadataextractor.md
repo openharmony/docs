@@ -19,7 +19,7 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmet
    >
    > - To set **dataSrc**, set **callback** in **dataSrc** to ensure that the corresponding resource can be correctly read when the callback is invoked, and use the application sandbox directory to access the resource. For details, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    >
-   > - If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
+   > - If different AVMetadataExtractor or [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avimagegenerator12) instances need to operate the same resource, the file descriptor needs to be opened for multiple times. Therefore, do not share a file descriptor.
 
 3. Obtain the metadata. Specifically, call **fetchMetadata()** to obtain an **AVMetadata** object, the attributes of which are the metadata of the media asset.
 
@@ -45,7 +45,8 @@ struct Index {
   @State message: string = 'Hello World';
   // Declare a pixelMap object, which is used for image display.
   @State pixelMap: image.PixelMap | undefined = undefined;
-  rootPath: string = getContext(this).getApplicationContext().filesDir;
+  context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  rootPath: string = this.context.getApplicationContext().filesDir;
   testFilename: string = '/cover.mp3';
 
   build() {
@@ -93,7 +94,8 @@ struct Index {
       let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
 
       // Set the fdSrc attribute.
-      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      avMetadataExtractor.fdSrc = await context.resourceManager.getRawFd('cover.mp3');
 
       // Obtain the metadata (callback mode).
       avMetadataExtractor.fetchMetadata((error, metadata) => {
@@ -131,7 +133,8 @@ struct Index {
       // Create an AVMetadataExtractor instance.
       let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor();
       // Set the fdSrc attribute.
-      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+      avMetadataExtractor.fdSrc = await context.resourceManager.getRawFd('cover.mp3');
 
       // Obtain the metadata (promise mode).
       let metadata = await avMetadataExtractor.fetchMetadata();
@@ -172,7 +175,6 @@ struct Index {
   // The demo below uses the fs API to open the sandbox directory and obtain the audio file address. By setting dataSrc, it obtains and displays the audio metadata,
   // obtains the audio album cover, and displays it on the screen through the Image component.
   async testFetchMetadataFromDataSrc() {
-    let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let fd: number = fs.openSync(this.rootPath + this.testFilename).fd;
     let fileSize: number = fs.statSync(this.rootPath + this.testFilename).size;

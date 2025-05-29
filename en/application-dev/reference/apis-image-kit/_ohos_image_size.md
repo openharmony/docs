@@ -3,13 +3,15 @@
 
 ## Overview
 
-The **OhosImageSize** struct defines the image size.
+The **OhosImageSize** struct defines the image size. It is a member variable of [OhosImageDecodingOps](_ohos_image_decoding_ops.md).
 
 **System capability**: SystemCapability.Multimedia.Image
 
 **Since**: 10
 
 **Related module**: [Image](image.md)
+
+**Header file**: [image_mdk_common.h](image__mdk__common_8h.md)
 
 
 ## Summary
@@ -19,8 +21,8 @@ The **OhosImageSize** struct defines the image size.
 
 | Name| Description| 
 | -------- | -------- |
-| int32_t [width](#width) | Defines the image width, in pixels. | 
-| int32_t [height](#height) | Defines the image height, in pixels. | 
+| int32_t [width](#width) | Image width, in pixels. |
+| int32_t [height](#height) | Image height, in pixels. |
 
 
 ## Member Variable Description
@@ -34,7 +36,7 @@ int32_t OhosImageSize::height
 
 **Description**
 
-Defines the image height, in pixels.
+Image height, in pixels.
 
 
 ### width
@@ -45,4 +47,4 @@ int32_t OhosImageSize::width
 
 **Description**
 
-Defines the image width, in pixels.
+Image width, in pixels.

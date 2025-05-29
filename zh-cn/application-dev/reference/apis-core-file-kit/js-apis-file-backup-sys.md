@@ -22,7 +22,7 @@ import backup from '@ohos.file.backup';
 | 名称       | 类型   | 必填 | 说明                                                                                                |
 | ---------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
 | bundleName | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
-| uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称      |
+| uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称。      |
 
 ## FileData
 
@@ -47,6 +47,7 @@ import backup from '@ohos.file.backup';
 > 关闭的方法可参考[fs.closeSync](js-apis-file-fs.md#fsclosesync)等关闭接口。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
 | 名称       | 类型   | 必填 | 说明                                     |
 | ---------- | ------ | ---- | ---------------------------------------- |
 | manifestFd | number | 是   | 已经打开的文件描述符，通过备份服务获取。 |
@@ -70,7 +71,7 @@ import backup from '@ohos.file.backup';
 
 | 名称       | 类型   | 必填 | 说明                                               |
 | ---------- | ------ | ---- | -------------------------------------------------- |
-| parameters | string | 否   | 以json格式为配置项的字符串，为备份恢复提供可选选项。 |
+| parameters | string | 否   | 以json格式为配置项的字符串，为备份恢复提供可选选项。默认为空。 |
 
 ## BackupPriority<sup>12+</sup>
 
@@ -80,7 +81,7 @@ import backup from '@ohos.file.backup';
 
 | 名称     | 类型   | 必填 | 说明                                                   |
 | -------- | ------ | ---- | ------------------------------------------------------ |
-| priority | number | 否   | 数值越大优先级越高；优先级相同的情况下，先调用的先执行。 |
+| priority | number | 否   | 数值越大优先级越高；优先级相同的情况下，先调用的先执行。默认为0。 |
 
 ## IncrementalBackupData<sup>12+</sup>
 
@@ -103,7 +104,7 @@ import backup from '@ohos.file.backup';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-## File <sup>12+</sup>
+## File<sup>12+</sup>
 
 一个文件对象。
 继承[FileMeta](#filemeta)和[FileData](#filedata)和[FileManifestData](#filemanifestdata12)。
@@ -126,7 +127,7 @@ import backup from '@ohos.file.backup';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onBackupSizeReport<sup>16+</sup>  | [OnBackupSizeReport](#onbackupsizereport16) | 否 | 是 |  框架获取到的待备份的数据量大小的信息。 |
+| onBackupSizeReport<sup>18+</sup>  | [OnBackupSizeReport](#onbackupsizereport18) | 否 | 是 |  框架获取到的待备份的数据量大小的信息。 |
 
 ### onFileReady
 
@@ -140,18 +141,24 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
+**返回值：**
+
+| 参数名     | 类型          | 必填 | 说明                                                        |
+| ---------- | ------------- | ---- | ----------------------------------------------------------- |
+| File | [File](#file)     | 是   | 返回对应文件的[File](#file)内容。                       |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -171,7 +178,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 ### onBundleBegin
 
-onBundleBegin : AsyncCallback&lt;string, void | string&gt;
+onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
 回调函数。当应用备份/恢复开始时，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
 
@@ -190,15 +197,14 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500001 | The application is not added to the backup or restore |
-| 13500002 | Failed to start application extension Procedure       |
-| 13600001 | IPC error                                             |
-| 13900005 | I/O error                                             |
-| 13900011 | Out of memory                                         |
-| 13900020 | Invalid argument                                      |
-| 13900025 | No space left on device                               |
-| 13900042 | Unknown error                                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13500001 | The application is not added to the backup or restore. |
+| 13500002 | Failed to start application extension Procedure.       |
+| 13600001 | IPC error.                                             |
+| 13900005 | I/O error.                                             |
+| 13900011 | Out of memory.                                         |
+| 13900025 | No space left on device.                               |
+| 13900042 | Unknown error.                                         |
 
 **示例：**
 
@@ -228,7 +234,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 ### onBundleEnd
 
-onBundleEnd : AsyncCallback&lt;string, void | string&gt;
+onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 
 回调函数。当应用备份/恢复结束后，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
 
@@ -247,15 +253,15 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500003 | Backup or restore timed out     |
-| 13500004 | Application extension death     |
-| 13600001 | IPC error                       |
-| 13900005 | I/O error                       |
-| 13900011 | Out of memory                   |
-| 13900020 | Invalid argument                |
-| 13900025 | No space left on device         |
-| 13900042 | Unknown error                   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13500003 | Backup or restore timed out.     |
+| 13500004 | Application extension death.     |
+| 13600001 | IPC error.                       |
+| 13900005 | I/O error.                      |
+| 13900011 | Out of memory.                   |
+| 13900020 | Invalid argument.                |
+| 13900025 | No space left on device.         |
+| 13900042 | Unknown error.                   |
 
 **示例：**
 
@@ -285,7 +291,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 ### onAllBundlesEnd
 
-onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
+onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
 
 回调函数。当所有bundle的备份/恢复过程结束成功时触发回调，如果触发失败，则返回err错误对象。
 
@@ -297,12 +303,12 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -320,7 +326,7 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
 ### onBackupServiceDied
 
-onBackupServiceDied : Callback&lt;undefined&gt;
+onBackupServiceDied: Callback&lt;undefined&gt;
 
 回调函数。备份服务死亡时触发回调，如果触发失败，则返回err错误对象。
 
@@ -334,7 +340,7 @@ onBackupServiceDied : Callback&lt;undefined&gt;
   }
   ```
 
-### onResultReport
+### onResultReport<sup>12+</sup>
 
 onResultReport (bundleName: string, result: string)
 
@@ -360,7 +366,7 @@ onResultReport (bundleName: string, result: string)
   }
   ```
 
-### onProcess
+### onProcess<sup>12+</sup>
 
 onProcess (bundleName: string, process: string)
 
@@ -386,9 +392,9 @@ onProcess (bundleName: string, process: string)
   }
   ```
 
-## backup.getBackupVersion<sup>16+</sup>
+## backup.getBackupVersion<sup>18+</sup>
 
-getBackupVersion(): string;
+getBackupVersion(): string
 
 获取备份恢复版本号信息。
 
@@ -456,11 +462,11 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.          |
 
 **示例：**
 
@@ -525,11 +531,11 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -580,6 +586,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 **参数：**
+
 | 参数名   | 类型                                                           | 必填 | 说明                                           |
 | -------- | -------------------------------------------------------------- | ---- | ---------------------------------------------- |
 | dataList | Array&lt;[IncrementalBackupTime](#incrementalbackuptime12)&gt; | 是   | 增量备份数据列表，用于描述增量备份的文件信息。 |
@@ -598,13 +605,13 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -629,9 +636,9 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
   }
   ```
 
-## backup.getBackupInfo
+## backup.getBackupInfo<sup>12+</sup>
 
-getBackupInfo(bundleToBackup: string): string;
+getBackupInfo(bundleToBackup: string): string
 
 获取需要备份的应用信息。
 
@@ -657,13 +664,9 @@ getBackupInfo(bundleToBackup: string): string;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
 
 **示例：**
 
@@ -684,9 +687,9 @@ getBackupInfo(bundleToBackup: string): string;
   }
   ```
 
-## backup.updateTimer
+## backup.updateTimer<sup>12+</sup>
 
-updateTimer(bundleName: string, timeout: number): void;
+updateTimer(bundleName: string, timeout: number): boolean
 
 调用时机为onBundleBegin之后，onBundleEnd之前。
 
@@ -699,7 +702,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称。 |
-| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位:ms。 |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位：ms。 |
 
 **返回值：**
 
@@ -738,9 +741,9 @@ updateTimer(bundleName: string, timeout: number): void;
   }
   ```
 
-## backup.updateSendRate
+## backup.updateSendRate<sup>12+</sup>
 
-updateSendRate(bundleName: string, sendRate: number): boolean;
+updateSendRate(bundleName: string, sendRate: number): boolean
 
 调用时机为onBundleBegin之后，onBundleEnd之前。
 
@@ -792,9 +795,9 @@ updateSendRate(bundleName: string, sendRate: number): boolean;
   }
   ```
 
-## OnBackupSizeReport<sup>16+</sup>
+## OnBackupSizeReport<sup>18+</sup>
 
-type OnBackupSizeReport = (reportInfo: string) => void;
+type OnBackupSizeReport = (reportInfo: string) => void
 
 框架返回的应用待备份的数据量大小。
 
@@ -821,7 +824,7 @@ type OnBackupSizeReport = (reportInfo: string) => void;
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 备份流程的构造函数，用于获取SessionBackup类的实例。
 
@@ -884,7 +887,7 @@ constructor(callbacks: GeneralCallbacks);
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -908,16 +911,16 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **示例：**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -1019,7 +1022,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 **能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.stat](js-apis-file-fs.md#fsstat-1)等相关接口获取，能力文件内容示例：**
 
@@ -1040,12 +1043,11 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
  }
  ```
 
-### getBackupDataSize<sup>16+</sup>
+### getBackupDataSize<sup>18+</sup>
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
 用于获取应用待备份数据量，在appendBundles之前调用。以异步callback方式（generalCallbacks中的onBackupSizeReport）每隔固定时间（每隔5秒返回一次，如果5秒内获取完则立即返回）返回一次扫描结果，直到datalist中所有的应用数据量全部返回。
-
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1057,8 +1059,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 参数名        | 类型                                                     | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
+| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | 是   | 备份应用列表，用于描述待获取数据量的应用和上一次备份时间（全量备份填0）。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -1066,17 +1074,17 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **示例：**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -1157,7 +1165,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     let err: BusinessError = error as BusinessError;
     console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
   }
-```
+  ```
 
 **异步返回JSON串示例：**
 
@@ -1291,7 +1299,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应。从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应。默认值为空。从API version 12开始支持。|
 
 **返回值：**
 
@@ -1442,11 +1450,11 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -1495,20 +1503,13 @@ release(): Promise&lt;void&gt;
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
-  async function release() {
-    try {
-      await sessionBackup.release();
-      console.info('release success');
-    } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('release failed with err: ' + JSON.stringify(err));
-    }
-  }
+  sessionBackup.release(); // 备份业务执行完成后，释放session
+  console.info('release success');
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
 备份任务过程中，工具应用发现数据异常，需要取消某应用的备份时调用此接口，使此应用的备份任务终止。
 
@@ -1536,7 +1537,7 @@ cancel(bundleName: string): number;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
@@ -1599,7 +1600,7 @@ cancel(bundleName: string): number;
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 恢复流程的构造函数，用于获取SessionRestore类的实例。
 
@@ -1662,7 +1663,7 @@ constructor(callbacks: GeneralCallbacks);
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -1686,16 +1687,16 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **示例：**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -1797,7 +1798,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 **能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.stat](js-apis-file-fs.md#fsstat-1)等相关接口获取，能力文件内容示例：**
 
@@ -1847,13 +1848,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.          |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -1951,7 +1952,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应。从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应。默认值为空。从API version 12开始支持。 |
 
 **返回值：**
 
@@ -1965,13 +1966,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -2078,7 +2079,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
-> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
+> - 所需恢复的文件，不支持使用相对路径（../）和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -2097,10 +2098,10 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -2173,7 +2174,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
-> - 所需恢复的文件，不支持使用相对路径(../)和软链接。
+> - 所需恢复的文件，不支持使用相对路径（../）和软链接。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -2197,10 +2198,10 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.              |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.          |
 
 **示例：**
 
@@ -2293,10 +2294,10 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -2407,10 +2408,10 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900020 | Invalid argument        |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -2509,11 +2510,11 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -2592,9 +2593,9 @@ release(): Promise&lt;void&gt;
   console.info('release success');
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
 恢复任务过程中，工具应用发现数据异常，需要取消某应用的恢复时调用此接口，使此应用的恢复任务终止。
 
@@ -2622,7 +2623,7 @@ cancel(bundleName: string): number;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
@@ -2685,7 +2686,7 @@ cancel(bundleName: string): number;
 
 ### constructor<sup>12+</sup>
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 增量备份流程的构造函数，用于获取IncrementalBackupSession类的实例。
 
@@ -2707,7 +2708,7 @@ constructor(callbacks: GeneralCallbacks);
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 
@@ -2758,7 +2759,7 @@ constructor(callbacks: GeneralCallbacks);
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
   ```
 
-### getLocalCapabilities<sup>16+</sup>
+### getLocalCapabilities<sup>18+</sup>
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -2782,16 +2783,16 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **示例：**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -2893,7 +2894,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 **能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.stat](js-apis-file-fs.md#fsstat-1)等相关接口获取，能力文件内容示例：**
 
@@ -2914,7 +2915,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
  }
  ```
 
-### getBackupDataSize<sup>16+</sup>
+### getBackupDataSize<sup>18+</sup>
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
@@ -2930,8 +2931,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 参数名        | 类型                                                     | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
+| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | 是   | 备份应用列表，用于描述待获取数据量的应用和上一次备份时间（全量备份填0）。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -2939,17 +2946,17 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken |
-| 202      | Permission verification failed, application which is not a system application uses system API |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild |
-| 13600001 | IPC error                                                    |
-| 13900001 | Operation not permitted                                      |
-| 13900020 | Invalid argument                                             |
-| 13900042 | Internal error                                                |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild. |
+| 13600001 | IPC error.                                                    |
+| 13900001 | Operation not permitted.                                      |
+| 13900020 | Invalid argument.                                             |
+| 13900042 | Internal error.                                                |
 
 **示例：**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -3031,7 +3038,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     let err: BusinessError = error as BusinessError;
     console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
   }
-```
+  ```
 
 **异步返回JSON串示例：**
 
@@ -3083,14 +3090,14 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -3154,7 +3161,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 
 ### appendBundles<sup>12+</sup>
 
-appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;, infos: string[]): Promise&lt;void&gt;
 
 添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
 
@@ -3183,14 +3190,14 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900011 | Out of memory                                                                                  |
-| 13900020 | Invalid argument                                                                               |
-| 13900025 | No space left on device                                                                        |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900011 | Out of memory.                                                                                  |
+| 13900020 | Invalid argument.                                                                               |
+| 13900025 | No space left on device.                                                                        |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -3292,6 +3299,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[
     console.error('appendBundles failed with err: ' + JSON.stringify(err));
   }); 
   ```
+
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;
@@ -3316,12 +3324,12 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13600001 | IPC error                                                                                      |
-| 13900001 | Operation not permitted                                                                        |
-| 13900005 | I/O error                                                                                      |
-| 13900020 | Invalid argument                                                                               |
-| 13900042 | Unknown error                                                                                  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
+| 13600001 | IPC error.                                                                                      |
+| 13900001 | Operation not permitted.                                                                        |
+| 13900005 | I/O error.                                                                                      |
+| 13900020 | Invalid argument.                                                                               |
+| 13900042 | Unknown error.                                                                                  |
 
 **示例：**
 
@@ -3374,9 +3382,9 @@ release(): Promise&lt;void&gt;
   console.info('release success');
   ```
 
-### cancel<sup>16+</sup>
+### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
 增量备份任务过程中，工具应用发现数据异常，需要取消某应用的增量备份时调用此接口，使此应用的增量备份任务终止。
 
@@ -3404,7 +3412,7 @@ cancel(bundleName: string): number;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild.|
 
 **示例：**
 

@@ -73,6 +73,7 @@ This error code is reported when an application fails to be enabled as a device 
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. Multiple applications are enabled as the super device administrator application.
 2. The application has been enabled as a device administrator application, but the administrator type has changed.
 3. Multiple device administrator ability components are enabled for the same application.
@@ -95,8 +96,9 @@ This error code is reported when the operation for disabling a device administra
 
 **Possible Causes**
 
-1. The device administrator application to be disabled has not been enabled.
-2. The caller cannot disable other device administrator applications.
+The possible causes are as follows:
+1. The application to be disabled has not been enabled.
+2. The caller cannot deactivate other device administrator applications.
 
 **Solution**
 
@@ -116,8 +118,9 @@ This error code is reported when the specified user ID does not exist or the spe
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The user ID specified for setting a user policy does not exist.
-2. When the application is not a super device administrator application, the specified user ID is different from the caller's user ID.
+2. The specified user ID is different from the caller user ID when the application is not a super device administrator application.
 
 **Solution**
 
@@ -136,6 +139,7 @@ This error code is reported when the enterprise device management ability is not
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The EnterpriseAdminAbility is not started.
 2. The RPC object for enterprise device management cannot be obtained.
 3. Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
@@ -199,6 +203,27 @@ A conflict policy is defined and to be delivered.
 
 Resolve the conflict, and then deliver the policy.
 
+<!--Del-->
+## 9200011 Failed to Replace the Device Administrator Application
+
+**Error Message**
+
+Failed to replace the administrator application of the device.
+
+**Description**
+
+Failed to replace the device administrator application.
+
+**Possible Causes**
+
+The specified application is a delegated or authorized device administrator application or a common device administrator application. It cannot be a super administrator application.
+
+**Solution**
+
+1. Call [disableSuperAdmin](js-apis-enterprise-adminManager-sys.md#adminmanagerdisablesuperadmin) to disable the super device management permission of a specified application.
+2. Call [disableAdmin](js-apis-enterprise-adminManager.md#adminmanagerdisableadmin) to disable the common device management permission of a specified application.
+<!--DelEnd-->
+
 ## 9201001 Failed to Manage the Certificate
 
 **Error Message**
@@ -229,6 +254,7 @@ This error code is reported when a device administrator application fails to ins
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The application installation path is empty or invalid, or does not exist.
 2. The operation attempts to install multiple applications with different bundle names.
 3. The application to be installed already exists when the installation parameter flag is 0.
@@ -251,6 +277,8 @@ Failed to add an OS account.
 This error code is reported when an account fails to be added.
 
 **Possible Causes**
+
+The possible causes are as follows:
 
 1. The account already exists.
 2. The account name is invalid.
@@ -275,6 +303,8 @@ This error code is reported when the enterprise device administrator application
 
 **Possible Causes**
 
+The possible causes are as follows:
+
 1. The system update package does not exist.
 2. The verification of the system update package name fails.
 3. The system update package fails to be opened.
@@ -286,3 +316,30 @@ This error code is reported when the enterprise device administrator application
 2. Check whether the name of the system update package is valid.
 3. Check whether the system update package is readable.
 4. Check whether the system update package is complete.
+
+## 9201005 Failed to Add an Application Kept Alive
+
+**Error Message**
+
+1. Add keep alive applications failed.
+
+**Description**
+
+This error code is reported when an application kept alive fails to be added.
+
+**Possible Causes**
+
+The possible causes are as follows:
+
+1. The application is not installed.
+2. The application does not have the MainAbility.
+3. The application does not have the tray service.
+4. The application is not added to the tray.
+5. The current device does not support adding applications kept alive.
+
+**Solution**
+
+1. Check whether the application is installed.
+2. Check whether the application has the MainAbility.
+3. Check whether the application has the tray service.
+4. Check whether the application has been added to the tray.

@@ -16,7 +16,9 @@
   - [使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)
   - [使用AudioHaptic开发音振协同播放功能](using-audiohaptic-for-playback.md)
   - [播放音量管理](volume-management.md)
+  - [音频时延管理](audio-latency.md)
   - [音效管理](audio-effect-management.md)
+  - [空间音频管理](public-audio-spatialization-management.md)
   <!--Del-->
   - [空间音频管理(仅对系统应用开放)](audio-spatialization-management.md)
   <!--DelEnd-->
@@ -32,6 +34,8 @@
   - [管理麦克风](mic-management.md)
   - [音频录制流管理](audio-recording-stream-management.md)
   - [管理全局音频输入设备](audio-input-device-management.md)
+  - [共享音频输入](audio-recording-concurrency.md)
+  - [实现音频耳返](audio-ear-monitor.md)
 - 音频通话<!--audio-call-->
   - [音频通话开发概述](audio-call-overview.md)
   - [开发音频通话功能](audio-call-development.md)

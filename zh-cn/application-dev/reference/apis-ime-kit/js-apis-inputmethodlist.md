@@ -67,7 +67,7 @@ import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 @Entry
 // 设置组件
 @Component
-export struct settingsItem {
+struct settingsItem {
   @State defaultPattern: number = 1;
   private oneHandAction: PatternOptions = {
     defaultSelected: this.defaultPattern,
@@ -110,3 +110,5 @@ export struct settingsItem {
   }
 }
 ```
+示例效果图：
+![示例效果图](./figures/示例效果图.png)

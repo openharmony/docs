@@ -6,6 +6,8 @@
 > **说明：**
 >
 > 该组件及其子组件从 API version 10 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -25,7 +27,7 @@ import { SwipeRefresher } from '@kit.ArkUI';
 
 ## SwipeRefresher
 
-SwipeRefresher ({content?: string, isLoading: boolean})
+SwipeRefresher ({content?: ResourceStr, isLoading: boolean})
 
 **装饰器类型：**\@Component
 
@@ -35,13 +37,13 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| content | string | 否 | \@Prop | 内容加载时显示的文本。 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明                                                                 |
+| -------- | -------- | -------- | -------- |--------------------------------------------------------------------|
+| content | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop | 内容加载时显示的文本。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。从API version 20开始，支持Resource类型。   |
 | isLoading | boolean | 是 | \@Prop | 当前是否正在加载。<br> isLoading为true时，表示正在加载。<br> isLoading为false时，表示未在加载。 |
 
 ## 事件
-支持[通用事件](ts-component-general-events.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 展示设置属性content为空字串及不为空、isLoading为true和false的不同加载效果。

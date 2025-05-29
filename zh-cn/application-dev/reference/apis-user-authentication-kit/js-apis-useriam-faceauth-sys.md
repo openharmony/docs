@@ -60,7 +60,7 @@ setSurfaceId(surfaceId: string): void;
 | -------------- | ---------------------------------- | ---- | -------------------------- |
 | surfaceId       | string     | 是   | [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
 
-以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)
+以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 
 **错误码：**
 
@@ -68,7 +68,7 @@ setSurfaceId(surfaceId: string): void;
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 12700001 | Operation failed. |
+| 12700001 | The service is unavailable. |
 
 **示例：**
 

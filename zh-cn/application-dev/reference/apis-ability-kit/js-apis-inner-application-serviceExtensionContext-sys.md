@@ -38,9 +38,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -50,8 +50,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -63,12 +63,12 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -83,8 +83,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -120,9 +119,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbility
 
-startAbility(want: Want, options?: StartOptions): Promise\<void>;
+startAbility(want: Want, options?: StartOptions): Promise\<void>
 
-启动Ability，结果以Promise的形式返回。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -132,14 +131,14 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含启动的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -151,12 +150,12 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -171,8 +170,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -213,7 +211,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability，结果以Callback的形式返回。仅支持在主线程调用。
+启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -223,9 +221,9 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的Want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -237,12 +235,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -257,8 +255,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -298,9 +295,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-根据account启动Ability（callback形式）。仅支持在主线程调用。
+根据accountId启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -316,9 +313,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当根据accountId启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -331,12 +328,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -351,8 +348,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -390,9 +386,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void
 
-根据account启动Ability（callback形式）。仅支持在主线程调用。
+根据accountId启动Ability。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -408,10 +404,10 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当根据accountId启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -424,12 +420,12 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -444,8 +440,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -487,9 +482,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>
 
-根据account启动Ability（Promise形式）。仅支持在主线程调用。
+根据accountId启动Ability。仅支持在主线程调用。使用Promise异步回调。
 
 > **说明：**
 >
@@ -505,7 +500,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
@@ -513,7 +508,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -526,12 +521,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -546,8 +541,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -588,9 +582,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -600,8 +594,8 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当启动一个新的ServiceExtensionAbility成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -614,7 +608,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -659,9 +653,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbility
 
-startServiceExtensionAbility(want: Want): Promise\<void>;
+startServiceExtensionAbility(want: Want): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -671,13 +665,13 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -690,7 +684,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -735,9 +729,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 > **说明：**
 > 
@@ -754,9 +748,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当启动一个新的ServiceExtensionAbility成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -769,7 +763,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -815,9 +809,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
 
-startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -834,14 +828,14 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -854,7 +848,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -900,9 +894,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
+使用设置的caller信息启动一个Ability，caller信息由Want携带，在系统服务层识别，Ability可以在onCreate生命周期的Want参数中获取到caller信息。使用该接口启动一个Ability时，Want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -916,7 +910,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的Want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -930,12 +924,12 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -949,8 +943,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -980,9 +973,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
+使用设置的caller信息启动一个Ability，caller信息由Want携带，在系统服务层识别，Ability可以在onCreate生命周期的Want参数中获取到caller信息。使用该接口启动一个Ability时，Want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -996,7 +989,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的Want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
@@ -1010,7 +1003,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 202 | The application is not system-app, can not use system-api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1028,8 +1021,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1063,9 +1055,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
 
-startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
+startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
+使用设置的caller信息启动一个Ability，caller信息由Want携带，在系统服务层识别，Ability可以在onCreate生命周期的Want参数中获取到caller信息。使用该接口启动一个Ability时，Want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。仅支持在主线程调用。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1079,7 +1071,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的Want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -1099,12 +1091,12 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1118,8 +1110,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1154,9 +1145,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内的服务（callback形式）。
+停止同一应用程序内的服务。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1166,8 +1157,8 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
-| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的Want信息。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当停止同一应用程序内的服务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1180,7 +1171,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist.        |
@@ -1221,9 +1212,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
 
-stopServiceExtensionAbility(want: Want): Promise\<void>;
+stopServiceExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序内的服务（Promise形式）。
+停止同一应用程序内的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1233,13 +1224,13 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的Want信息。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1252,7 +1243,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist.        |
@@ -1293,9 +1284,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-使用帐户停止同一应用程序内的服务（callback形式）。
+使用账户停止同一应用程序内的服务。使用callback异步回调。
 
 > **说明：**
 > 
@@ -1311,9 +1302,9 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的Want信息。 |
 | accountId | number | 是 | 需要停止的系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
-| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数。当使用账户停止同一应用程序内的服务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1326,7 +1317,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist.        |
@@ -1368,9 +1359,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
 
-stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-使用帐户停止同一应用程序内的服务（Promise形式）。
+使用账户停止同一应用程序内的服务。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -1386,14 +1377,14 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 停止Ability的Want信息。 |
 | accountId | number | 是 | 需要停止的系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated-1)。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1406,7 +1397,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist.        |
@@ -1448,9 +1439,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
+terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
-停止Ability自身。仅支持在主线程调用。
+停止Ability自身。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1460,7 +1451,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止Ability自身成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1470,7 +1461,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
@@ -1499,9 +1490,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.terminateSelf
 
-terminateSelf(): Promise&lt;void&gt;;
+terminateSelf(): Promise&lt;void&gt;
 
-停止Ability自身。通过Promise返回结果。仅支持在主线程调用。
+停止Ability自身。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1511,7 +1502,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1520,7 +1511,7 @@ terminateSelf(): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
@@ -1547,7 +1538,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbility
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 将当前Ability连接到一个ServiceExtensionAbility。仅支持在主线程调用。
 
@@ -1563,7 +1554,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | ConnectOptions类型的回调函数，返回服务连接成功、断开或连接失败后的信息。 |
 
 **返回值：**
@@ -1582,7 +1573,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1632,7 +1623,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.connectServiceExtensionAbilityWithAccount
 
-connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
@@ -1653,7 +1644,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的Want信息。 |
 | accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getcreatedosaccountscountdeprecated)。 |
 | options | ConnectOptions | 是 | 远端对象实例。 |
 
@@ -1674,7 +1665,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1726,9 +1717,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1739,7 +1730,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当Ability与绑定服务类型的Ability解绑成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1786,9 +1777,9 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.disconnectServiceExtensionAbility
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。仅支持在主线程调用。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1804,7 +1795,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1852,15 +1843,16 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCall
 
-startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。仅支持在主线程调用。
+启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
@@ -1878,7 +1870,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;Caller&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -1890,13 +1882,13 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | Static permission denied. The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released.        |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1974,9 +1966,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。
+启动一个指定的Ability，如果该Ability有多个实例，将拉起最近启动的那个实例。仅支持在主线程调用。使用callback异步回调。
 
 > **说明：**
 >
@@ -1990,8 +1982,8 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的Want信息。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动一个指定的Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2003,17 +1995,16 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2050,10 +2041,11 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。仅支持在主线程调用。
+启动一个指定的Ability，如果该Ability有多个实例，将拉起最近启动的那个实例。仅支持在主线程调用。使用callback异步回调。
+
+当开发者需要携带启动参数时可以选择此API。
 
 > **说明：**
 >
@@ -2067,9 +2059,9 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的Want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当启动一个指定的Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2081,17 +2073,16 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2132,10 +2123,9 @@ class EntryAbility extends ServiceExtensionAbility {
 ```
 ## ServiceExtensionContext.startRecentAbility
 
-startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
+startRecentAbility(want: Want, options?: StartOptions): Promise\<void>
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。仅支持在主线程调用。
+启动一个指定的Ability，如果该Ability有多个实例，将拉起最近启动的那个实例。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2149,7 +2139,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的want信息。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 需要启动Ability的Want信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **错误码：**
@@ -2162,17 +2152,16 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2213,16 +2202,17 @@ class EntryAbility extends ServiceExtensionAbility {
 
 ## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
 
-startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
- - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
- - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+ - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限。
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -2241,7 +2231,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;Caller&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -2254,15 +2244,15 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | Static permission denied. The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
+| 16000012 | The application is controlled. |
+| 16000013 | The application is controlled by EDM. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released.        |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -2309,7 +2299,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。仅支持在主线程调用。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用promise形式异步回调。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2325,7 +2315,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的Want信息。 |
 
 **返回值：**
 
@@ -2386,7 +2376,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。仅支持在主线程调用。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过Want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。仅支持在主线程调用。使用callback形式异步回调。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2402,7 +2392,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的want信息。 |
+| pickerWant | [Want](js-apis-app-ability-want.md)  | 是 | 拉起UIExtension的Want信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当拉起UIExtension成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2457,9 +2447,9 @@ class ServiceExtension extends ServiceExtensionAbility {
 ## ServiceExtensionContext.openLink<sup>12+<sup>
 openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
-通过AppLinking启动UIAbility，使用Promise异步回调。仅支持在主线程调用。
+通过AppLinking启动UIAbility。仅支持在主线程调用。使用Promise异步回调。
 
-通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式Want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
 - "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
@@ -2498,18 +2488,17 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | No matching ability is found. |
 | 16200001 | The caller has been released. |
-| 16000082 | The UIAbility is being started. |
 
 **示例：**
 
@@ -2554,6 +2543,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 ```
 
 ## ServiceExtensionContext.preStartMission<sup>12+<sup>
+
 preStartMission(bundleName:string, moduleName: string, abilitName: string, startTime: string): Promise&lt;void&gt;
 
 打开原子化服务跳过loading框并预打开窗口，使用Promise异步回调。
@@ -2575,7 +2565,6 @@ preStartMission(bundleName:string, moduleName: string, abilitName: string, start
 | abilityName | string | 是 | 打开原子化服务对应的能力名。 |
 | startTime | string | 是 | 打开原子化服务对应的开始时间，单位为毫秒级的时间戳。 |
 
-
 **返回值：**
 
 | 类型 | 说明 |
@@ -2591,7 +2580,7 @@ preStartMission(bundleName:string, moduleName: string, abilitName: string, start
 | 201 | The application does not have permission to call the interface. |
 | 202 | The application is not system-app, can not use system-api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300007 | The target free install task does not exist. |
+| 16300007 | The target free-installation task does not exist. |
 | 16000011 | The context does not exist.        |
 
 **示例：**
@@ -2634,16 +2623,15 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+## ServiceExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)（Promise形式）。
-
+启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。使用Promise异步回调。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
->
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2652,7 +2640,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 **参数：**
 | 参数名 | 类型 | 只读 | 可选 | 说明                 |
 | ------ | ---- | ---- | -------------------- | -------------------- |
-| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | [Want](js-apis-app-ability-want.md)类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 
 **返回值：**
 
@@ -2671,7 +2659,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 | 801      | The Ability is not supported.                       |
 | 16000001 | The specified ability does not exist.               |
 | 16000002 | Incorrect ability type.                             |
-| 16000004 | Failed to start the invisible ability.              |
+| 16000004 | Cannot start an invisible component.              |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed.              |
 | 16000008 | The crowdtesting application expires.               |
@@ -2704,7 +2692,7 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
 }
 ```
 
-## ServiceExtensionContext.openAtomicService<sup>16+<sup>
+## ServiceExtensionContext.openAtomicService<sup>18+<sup>
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;void&gt;
 
 通过应用ID，拉起原子化服务。使用Promise异步回调。
@@ -2739,7 +2727,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;voi
 | 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type.                                      |
-| 16000004 | Failed to start the invisible ability.                       |
+| 16000004 | Cannot start an invisible component.                       |
 | 16000011 | The context does not exist.                                  |
 | 16000012 | The application is controlled.                               |
 | 16000050 | Internal error.                                              |

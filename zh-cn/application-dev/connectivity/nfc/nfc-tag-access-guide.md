@@ -1,8 +1,8 @@
 # NFC标签读写开发指南
 
 ## 简介
-近场通信(Near Field Communication，NFC)是一种短距高频的无线电技术，在13.56MHz频率运行，通信距离一般在10厘米距离内。电子设备可以通过NFC通信技术和NFC标签通信，从标签中读取数据，或写入数据到标签。
-NFC标签可能会支持一种或多种通信技术，具体技术如下：
+近场通信(Near Field Communication，NFC)是一种短距高频的无线电技术，在13.56MHz频率运行，通信距离一般在10厘米距离内。电子设备可以通过NFC通信技术和NFC标签通信，从标签中读取数据，或写入数据到标签。<br>
+NFC标签支持一种或多种通信技术，具体技术如下：
 - NfcA (也称为 ISO 14443-3A)
 - NfcB (也称为 ISO 14443-3B)
 - NfcF (也称为 JIS 6319-4)
@@ -13,7 +13,7 @@ NFC标签可能会支持一种或多种通信技术，具体技术如下：
 - MifareUltralight
 
 ## 场景介绍
-电子设备通过NFC天线位置触碰NFC标签卡片，完成NFC标签卡片的读取或写入。从使用场景上，可以分成NFC标签前台读写，和NFC标签后台读写。
+电子设备通过NFC天线位置触碰NFC标签卡片，完成NFC标签卡片的读取或写入。从使用场景上，可以分成NFC标签前台读写和NFC标签后台读写。
 - NFC标签前台读写<br>
 前台读写是指在触碰NFC标签之前，用户先在电子设备上打开特定的应用程序，用户明确想使用所打开的应用程序和NFC标签进行读写操作。用户打开应用程序在前台，并且进入应用的刷卡页面之后，电子设备触碰NFC标签，只会把读取到的卡片分发给前台应用。
 - NFC标签后台读写<br>
@@ -176,7 +176,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // 应用到前台
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (nfcTagElementName != undefined) {
       // 调用tag模块中前台优先的接口，使能前台应用程序优先处理所发现的NFC标签功能
@@ -241,7 +241,7 @@ export default class EntryAbility extends UIAbility {
               {
                   "type":"tag-tech/IsoDep"
               }
-              // 如有必要时添加其他技术
+              // 必要时可添加其他技术类型
               // 例如: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
             ]
           }

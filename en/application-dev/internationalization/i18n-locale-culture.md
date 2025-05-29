@@ -1,18 +1,18 @@
-# Locale and Cultural Habit Division
+# Locale ID and Cultural Habit Division
 
 
 ## Use Cases
 
-In a broad sense, a locale uniquely identifies a specific geographical region by using digits, letters, symbols, or their combinations.
+In a broad sense, a locale ID uniquely identifies a specific geographical region by using digits, letters, symbols, or their combinations.
 
-Regarding internationalization, a locale is an abstraction of a user group, including the user language, script (for example, simplified Chinese or traditional Chinese), country/region, and other cultural habits (for example, calendar and numeral system). Locales are the basis for an application to implement internationalization capabilities.
+Regarding internationalization, a locale ID is an abstraction of a user group, including the user language, script (for example, simplified Chinese or traditional Chinese), country/region, and other cultural habits (for example, calendar and numeral system). Locales ID are the basis for an application to implement internationalization capabilities.
 
 
 ## How It Works
 
-A locale consists of four parts: language, script, country/region, and extended parameters. The language is mandatory. For details, see Table 1. For supported extended parameters, see Table 2. For numeral systems corresponding to different languages, see Table 3. The Arabic numeral system is used for languages that are not listed in the table by default. 
+A locale ID consists of four parts: language, script, country/region, and extended parameters. The language is mandatory. For details, see Table 1. For supported extended parameters, see Table 2. For numeral systems corresponding to different languages, see Table 3. The Arabic numeral system is used for languages that are not listed in the table by default. 
 
-**Table 1** Description of the locale
+**Table 1** Description of the locale ID
 
 | Part| Description| 
 | -------- | -------- |
@@ -49,44 +49,43 @@ A locale consists of four parts: language, script, country/region, and extended 
 
 ## How to Develop
 
-The following uses date and time formatting as an example. For details about APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
+The following uses date and time formatting as an example. For details about APIs, see [DateTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#datetimeformat).
 
 1. Import the **intl** module.
    ```ts
    import { intl } from '@kit.LocalizationKit';
    ```
 
-2. Create a **Locale** object. Three methods are provided:
-   - According to the format provided in [How It Works](#how-it-works), pass in the locale string to the **Locale** constructor to create a **Locale** object.
-   - Configure locale features in **LocaleOptions**, and then use the locale string and **LocaleOptions** to create a **Locale** object. The attributes configured in **LocaleOptions** automatically overwrite the corresponding attributes in the locale string.
+2. Create a **Locale** object using any of the following methods:
+   - According to the format provided in [How It Works](#how-it-works), pass in the locale ID to the **Locale** constructor to create a **Locale** object.
+   - Configure locale features in **LocaleOptions**, and then use the locale ID and **LocaleOptions** to create a **Locale** object. The attributes configured in **LocaleOptions** automatically overwrite the corresponding attributes in the locale string.
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 15);
-   
-   // Method 1: Create a Locale object using the locale string.
-   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
-   
-   // Method 2: Create a Locale object using the locale string and LocaleOptions.
-   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
-   
+   let zhLocale: intl.Locale = new intl.Locale('zh-Hans-CN-u-nu-latn');
+
+   // Method 2: Create a Locale object using the locale ID and LocaleOptions.
+   let enLocale: intl.Locale = new intl.Locale('en', { numberingSystem: 'latn' });
+
    // Method 3: Create a Locale object using the default Locale constructor.
-   let systemLocale = new intl.Locale();
+   let systemLocale: intl.Locale = new intl.Locale();
    ```
 
 3. Format the date and time.
-   Pass the **Locale** object to the **DateTimeFormat** constructor to create a **DateTimeFormat** class to implement date and time formatting for the locale. Similarly, three methods are provided.
+   Pass the **Locale** object to the **DateTimeFormat** constructor to create a **DateTimeFormat** class to implement date and time formatting for the specified locale ID. Similarly, three methods are provided.
 
    ```ts
+   let date: Date = new Date(2023, 9, 15);
+
    // Method 1
-   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
-   let result = zhDateTimeFmt.format(date); // result = "2023/10/15"
-   
+   let zhDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(zhLocale.toString());
+   let formattedResult: string = zhDateTimeFmt.format(date); // formattedResult = '2023/10/15'
+
    // Method 2
-   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
-   result = enDateTimeFmt.format(date); // result = "10/15/23"
-   
+   let enDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(enLocale.toString());
+   formattedResult = enDateTimeFmt.format(date); // formattedResult = '10/15/23'
+
    // Method 3
-   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
-   result = systemDateTimeFmt.format(date); // result = "2023/10/15" (The display effect depends on the current system environment.)
+   let systemDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(systemLocale.toString());
+   formattedResult = systemDateTimeFmt.format(date); // formattedResult = "2023/10/15" (The display effect is subject to the system environment.)
    ```

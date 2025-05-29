@@ -14,13 +14,15 @@ The WorkSchedulerExtensionAbility module provides callbacks for deferred task sc
 import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
-## WorkSchedulerExtensionContext
+## WorkSchedulerExtensionContext<sup>10+</sup>
 
 type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
 
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler
+
 | Type| Description|
 | -------- |  -------- |
-| WorkSchedulerExtensionContext|  Context of the WorkSchedulerExtensionAbility.|
+| [_WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)|  Context of the WorkSchedulerExtensionAbility.|
 
 ## WorkSchedulerExtensionAbility
 

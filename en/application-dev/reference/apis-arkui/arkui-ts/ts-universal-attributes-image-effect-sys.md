@@ -1,4 +1,4 @@
-# Image Effects (System API)
+# Image Effect (System API)
 
 With image effects, you can define how a component blends with the existing content on the canvas below.
 
@@ -34,6 +34,7 @@ This example shows how to add a brightness effect to a component using **advance
 ```ts
 // xxx.ets
 import { uiEffect } from "@kit.ArkGraphics2D"
+
 // Use uiEffect.createBrightnessBlender to create a BrightnessBlender instance, which can be used to apply the brightness effect to a component.
 let blender: uiEffect.BrightnessBlender = uiEffect.createBrightnessBlender({
   cubicRate: 0.5,

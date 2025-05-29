@@ -1,6 +1,5 @@
 # ISensorInterface
 
-
 ## 概述
 
 提供Sensor设备基本控制操作接口。
@@ -11,9 +10,7 @@
 
 **相关模块：**[HdiSensor](_hdi_sensor_v11.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -29,9 +26,7 @@
 | [Unregister](#unregister) ([in] int groupId, [in] [ISensorCallback](interface_i_sensor_callback_v11.md) callbackObj) | 订阅者取消注册传感器数据回调函数。 | 
 | [ReadData](#readdata) ([in] int sensorId, [out] struct [HdfSensorEvents](_hdf_sensor_events_v11.md)[] event) | 获取小系统中的传感器事件数据。 | 
 
-
 ## 成员函数说明
-
 
 ### Disable()
 
@@ -40,7 +35,6 @@ ISensorInterface::Disable ([in] int sensorId)
 ```
 
 **描述**
-
 
 根据传感器设备类型标识去使能传感器信息列表里存在的设备。
 
@@ -58,7 +52,6 @@ ISensorInterface::Disable ([in] int sensorId)
 
 如果操作失败，则返回负值。
 
-
 ### Enable()
 
 ```
@@ -66,7 +59,6 @@ ISensorInterface::Enable ([in] int sensorId)
 ```
 
 **描述**
-
 
 根据传感器设备类型标识使能传感器信息列表里存在的设备，只有数据订阅者使能传感器后，才能获取订阅的传感器数据。
 
@@ -84,7 +76,6 @@ ISensorInterface::Enable ([in] int sensorId)
 
 如果操作失败，则返回负值。
 
-
 ### GetAllSensorInfo()
 
 ```
@@ -92,7 +83,6 @@ ISensorInterface::GetAllSensorInfo ([out] struct HdfSensorInformation[] info)
 ```
 
 **描述**
-
 
 获取当前系统中所有类型的传感器信息。
 
@@ -110,7 +100,6 @@ ISensorInterface::GetAllSensorInfo ([out] struct HdfSensorInformation[] info)
 
 如果操作失败，则返回负值。
 
-
 ### ReadData()
 
 ```
@@ -119,24 +108,22 @@ ISensorInterface::ReadData ([in] int sensorId, [out] struct HdfSensorEvents[] ev
 
 **描述**
 
-
 获取小系统中的传感器事件数据。
 
-**起始版本： **4.0
+**起始版本：** 4.0
 
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | sensorId | 表示传感器ID。有关详细信息。 | 
-| event | 表示系统中传感器事件数据的矢量。 传感器事件数据包括传感器ID、传感器算法版本、数据生成时间等，数据选项（如测量范围和精度）、数据报 告模式、数据地址和数据长度。有关详细信息，请参阅[HdfSensorEvents](_hdf_sensor_events_v11.md)。 | 
+| event | 表示系统中传感器事件数据的矢量。 传感器事件数据包括传感器ID、传感器算法版本、数据生成时间等，数据选项（如测量范围和精度）、数据报告模式、数据地址和数据长度。有关详细信息，请参阅[HdfSensorEvents](_hdf_sensor_events_v11.md)。 | 
 
 **返回：**
 
 如果操作成功，则返回0。
 
 如果操作失败，则返回负值。
-
 
 ### Register()
 
@@ -146,7 +133,6 @@ ISensorInterface::Register ([in] int groupId, [in] ISensorCallback callbackObj )
 
 **描述**
 
-
 订阅者注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。
 
 **起始版本：** 2.2
@@ -155,7 +141,7 @@ ISensorInterface::Register ([in] int groupId, [in] ISensorCallback callbackObj )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。 | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务，只需成功订阅一次，无需重复订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅，只需成功订阅一次，无需重复订阅。 | 
 | callbackObj | 要注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v11.md)。 | 
 
 **返回：**
@@ -164,7 +150,6 @@ ISensorInterface::Register ([in] int groupId, [in] ISensorCallback callbackObj )
 
 如果操作失败，则返回负数。
 
-
 ### SetBatch()
 
 ```
@@ -172,7 +157,6 @@ ISensorInterface::SetBatch ([in] int sensorId, [in] long samplingInterval, [in] 
 ```
 
 **描述**
-
 
 设置指定传感器的数据上报模式，不同的工作模式，上报数据的方式不同。
 
@@ -192,7 +176,6 @@ ISensorInterface::SetBatch ([in] int sensorId, [in] long samplingInterval, [in] 
 
 如果操作失败，则返回负值。
 
-
 ### SetMode()
 
 ```
@@ -200,7 +183,6 @@ ISensorInterface::SetMode ([in] int sensorId, [in] int mode )
 ```
 
 **描述**
-
 
 设置指定传感器数据上报模式。
 
@@ -219,7 +201,6 @@ ISensorInterface::SetMode ([in] int sensorId, [in] int mode )
 
 如果操作失败，则返回负数。
 
-
 ### SetOption()
 
 ```
@@ -227,7 +208,6 @@ ISensorInterface::SetOption ([in] int sensorId, [in] unsigned int option )
 ```
 
 **描述**
-
 
 设置指定传感器量程、精度等可选配置。
 
@@ -246,7 +226,6 @@ ISensorInterface::SetOption ([in] int sensorId, [in] unsigned int option )
 
 如果操作失败，则返回负数。
 
-
 ### Unregister()
 
 ```
@@ -254,7 +233,6 @@ ISensorInterface::Unregister ([in] int groupId, [in] ISensorCallback callbackObj
 ```
 
 **描述**
-
 
 订阅者取消注册传感器数据回调函数。
 
@@ -264,7 +242,7 @@ ISensorInterface::Unregister ([in] int groupId, [in] ISensorCallback callbackObj
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| groupId | 传感器组ID。 groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。 groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。 | 
+| groupId | 传感器组ID。groupId枚举值范围为128-160，表示已订阅医疗传感器服务。只需成功取消订阅一次，无需重复取消订阅。groupId枚举值范围不在128-160之间，这意味着传统传感器已订阅。并且成功取消订阅。 | 
 | callbackObj | 要取消注册的回调函数，详见[ISensorCallback](interface_i_sensor_callback_v11.md)。 | 
 
 **返回：**

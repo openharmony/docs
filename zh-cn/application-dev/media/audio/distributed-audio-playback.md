@@ -81,8 +81,8 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let outputAudioRendererFilter: audio.AudioRendererFilter  = {
   uid: 20010041,
   rendererInfo: {
-    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags: 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
   } as audio.AudioRendererInfo,
   rendererId: 0
 };

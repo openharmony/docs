@@ -1310,7 +1310,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000008 | The crowdtesting application expires.                                                                       |
 | 16000011 | The context does not exist.                                                                                 |
 | 16000012 | The application is controlled.                                                                              |
-| 16000013 | The EDM prohibits the application from launching.                                                           |
+| 16000013 | The application is controlled by EDM.                                                                       |
 | 16000019 | No matching ability is found.                                                                               |
 | 16000050 | Internal error.                                                                                             |
 | 16200001 | The caller has been released.                                                                               |
@@ -1331,7 +1331,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIExtensionContext;
+            let context = this.getUIContext().getHostContext() as common.UIExtensionContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -1394,7 +1394,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000005 | The specified process does not have the permission.                    |
 | 16000008 | The crowdtesting application expires.                                  |
 | 16000011 | The context does not exist.                                            |
-| 16000013 | The EDM prohibits the application from launching.                      |
+| 16000013 | The application is controlled by EDM.                                  |
 | 16000050 | Internal error.                                                        |
 | 16000055 | Installation-free timed out.                                           |
 
@@ -1415,7 +1415,7 @@ struct Page_UIServiceExtensionAbility {
       Row() {
         //...
       }.onClick(() => {
-        const context = getContext(this) as common.UIExtensionContext;
+        const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         const want: Want = {
           deviceId: '',
           bundleName: 'com.example.myapplication',
@@ -1490,7 +1490,7 @@ struct Page_UIServiceExtensionAbility {
       Row() {
         //...
       }.onClick(() => {
-        const context = getContext(this) as common.UIExtensionContext;
+        const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy is the proxy object saved during connection.
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
           console.log('disconnectUIServiceExtensionAbility success');
@@ -1503,7 +1503,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setColorMode<sup>16+</sup>
+## UIExtensionContext.setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 

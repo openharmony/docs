@@ -6,7 +6,7 @@ UIServiceExtensionContext模块提供访问[UIServiceExtension](js-apis-app-abil
 
 > **说明：**
 >
->  - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 >  - 本模块接口为系统接口。
@@ -34,7 +34,7 @@ class UIServiceExtAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.startAbility<sup>13+<sup>
+## UIServiceExtensionContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -71,12 +71,12 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -121,7 +121,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 ```
 
 
-## UIServiceExtensionContext.terminateSelf<sup>13+<sup>
+## UIServiceExtensionContext.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -160,7 +160,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.startAbilityByType<sup>13+<sup>
+## UIServiceExtensionContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
     abilityStartCallback: AbilityStartCallback): Promise&lt;void&gt;
@@ -217,7 +217,7 @@ struct SubIndex {
           .fontSize(10)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context = getContext(this) as common.UIServiceExtensionContext;
+            let context = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             let startWant: Record<string, Object> = {
               'sceneType': 1,
               'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
@@ -237,7 +237,7 @@ struct SubIndex {
               // 按目标ability的类型启动UIAbility或UIExtensionAbility
               context.startAbilityByType("mail", startWant, abilityStartCallback)
                 .then(() => {
-                  console.log(TAG + `Successed in windows starting ability`);
+                  console.log(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
                 console.log(TAG + `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}`);
               })
@@ -253,7 +253,7 @@ struct SubIndex {
 }
 ```
 
-## UIServiceExtensionContext.connectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -291,7 +291,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001  | The specified ability does not exist.         |
 | 16000002   | Incorrect ability type.         |
-| 16000004   | Failed to start the invisible ability.         |
+| 16000004   | Cannot start an invisible component.         |
 | 16000005   | The specified process does not have the permission.         |
 | 16000006   | Cross-user operations are not allowed.         |
 | 16000008   | The crowdtesting application expires.        |
@@ -306,7 +306,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
-import { promptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // The client needs to import idl_service_ext_proxy.ts provided by the server to the local project.
 import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
@@ -356,11 +355,11 @@ struct Page_UIServiceExtensionAbility {
             //...
           }
           .onClick(() => {
-            let context: common.UIServiceExtensionContext = getContext(this) as common.UIServiceExtensionContext;
+            let context: common.UIServiceExtensionContext = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             // The ID returned after the connection is set up must be saved. The ID will be used for disconnection.
             connectionId = context.connectServiceExtensionAbility(want, options);
             // The background service is connected.
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: $r('app.string.SuccessfullyConnectBackendService')
             });
             // connectionId = context.connectAbility(want, options);
@@ -376,11 +375,11 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIServiceExtensionContext.disconnectServiceExtensionAbility<sup>13+<sup>
+## UIServiceExtensionContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)功能相反。
+断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接，与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -391,7 +390,7 @@ disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
 | 参数名                | 类型                     | 只读 | 可选 | 说明              |
 | -------------------- | ------------------------ | ---- | ----------------- | ----------------- |
-| connectionId         | number                   | 是  | 否 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)接口返回的连接Id。 |
+| connectionId         | number                   | 是  | 否 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)接口返回的连接Id。 |
 
 
 **返回值：**
@@ -414,7 +413,6 @@ disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
 ```ts
 import { common } from '@kit.AbilityKit';
-import { promptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -434,12 +432,12 @@ struct Page_UIServiceExtensionAbility {
             //...
           }
           .onClick(() => {
-            let context: common.UIServiceExtensionContext = getContext(this) as common.UIServiceExtensionContext;
+            let context: common.UIServiceExtensionContext = this.getUIContext().getHostContext() as common.UIServiceExtensionContext;
             // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
             context.disconnectServiceExtensionAbility(connectionId).then(() => {
               hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
               // 成功断连后台服务
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: $r('app.string.SuccessfullyDisconnectBackendService')
               });
             }).catch((error: BusinessError) => {

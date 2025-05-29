@@ -128,8 +128,8 @@
     @Component
     struct Index {
       @State message: string = 'ContinuousTask';
-     // 通过getContext方法，来获取page所在的UIAbility上下文。
-      private context: Context = getContext(this);
+     // 通过getUIContext().getHostContext()方法，来获取page所在的UIAbility上下文
+      private context: Context | undefined = this.getUIContext().getHostContext();
 
       OnContinuousTaskCancel() {
         try {
@@ -167,6 +167,7 @@
           // 点击通知后，动作执行属性
           actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
           // 车钥匙长时任务子类型。只有申请bluetoothInteraction类型的长时任务，车钥匙子类型才能生效。
+          // 确保extraInfo参数中的Key值为backgroundTaskManager.BackgroundModeType.SUB_MODE，否则子类型不生效。
           // extraInfo: { [backgroundTaskManager.BackgroundModeType.SUB_MODE] : backgroundTaskManager.BackgroundSubMode.CAR_KEY }
         };
 

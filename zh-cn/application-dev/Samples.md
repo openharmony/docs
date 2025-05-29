@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/state-management/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
@@ -61,7 +61,7 @@
 
 #### 状态管理
 ##### 介绍
-本示例通过使用[页面级的状态变量](quick-start/arkts-localstorage.md) 和[应用级的状态变量](quick-start/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
+本示例通过使用[页面级的状态变量](ui/state-management/arkts-localstorage.md) 和[应用级的状态变量](ui/state-management/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -1407,7 +1407,7 @@ Preferences.flush()保存并刷新文件内容。
 + 游戏中图片裁剪分割的效果实现在ImageModel中:
   + 获取本地图片：首先使用getMediaLibrary获取媒体库实例，然后使用getFileAssets方法获取文件资源，最后使用getAllObject获取检索结果中的所有文件资产方便展示；
   + 裁剪图片准备：裁剪图片需要使用[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)接口，裁剪前需要申请图片编辑权限，使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)申请;
-  + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建图片源实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
+  + 图片编辑：首先使用createImagePacker创建ImagePacker实例，然后使用fileAsset.open打开文件，调用createImageSource接口创建ImageSource实例方便操作图片，接下来使用getImageInfo方法获取图片大小便于分割，最后使用createPixelMap方法传入每一份的尺寸参数完成图片裁剪。
 
 ##### 约束与限制
 
@@ -1441,7 +1441,7 @@ Preferences.flush()保存并刷新文件内容。
 + 图片编辑功能在EditImage中实现:
     + 图片编辑：图片编辑权限需要使用[requestPermissionsFromUser](reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)
     申请
-    ，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建图片源实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。亮度调节使用effectKit.getHighestSaturationColor()
+    ，首先根据选择图片获取到的uri打开图片文件，fileAsset.open选择‘rw'读写模式，然后使用image.createImageSource创建ImageSource实例，接下来使用createPixelMap创建PixelMap对象，便于处理图片，最后使用crop对图像进行裁剪处理，使用scale对图像进行缩放处理，rotate进行旋转处理。亮度调节使用effectKit.getHighestSaturationColor()
     接口实现对图片的高亮调节。添加文字/贴纸，编辑模式下，使用组件组合（Image、Shape、Text）进行交互完成素材大小和位置选择；编辑确认后，再使用OffscreenCanvasRenderingContext2D进行离屏绘制，保存为新的pixelMap。
 
 ##### 约束与限制
@@ -1998,9 +1998,9 @@ Preferences.flush()保存并刷新文件内容。
 
 开发语言：ArkTS
 
-配套版本：API10版本SDK，版本号：4.0.10.13
+配套版本：API12版本SDK，版本号：5.0.0.20
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)
 
 #### Native Drawing
 
@@ -2034,7 +2034,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/_native_window.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
+本示例中主要介绍开发者在利用[Native XComponent](reference/apis-arkui/native__interface__xcomponent_8h.md)来获取[NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)实例，通过数据填充改变矩形框颜色。并提供从[NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)中获取NativeWindow进行buffer轮转的案例，通过NativeWindow生产buffer来触发NativeImage的可用帧回调。
 
 ##### 使用
 
@@ -2959,7 +2959,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](quick-start/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
+本示例使用 [SystemCapability.Telephony.CellularData系统能力](reference/apis-telephony-kit/js-apis-telephony-data.md) 获取SIM卡信息及网络信息。使用 [@Builder](ui/state-management/arkts-builder.md) 在一个自定义组件内快速生成多个布局内容。通过获取SIM卡相关信息，展示打开本应用时网络信息。
 
 ##### 使用
 
@@ -4483,7 +4483,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 * 使用getImage()方法获取从图库中选择的图片资源PixelMap类型，首先使用photoAccessHelper.getPhotoAccessHelper(context)获取相册管理模块的实例，使用phAccessHelper.getAssets()获取图片资源,使用photoAsset.getThumbnail()获取所选的图片的PixelMap类型数据。接口参考：[ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 
 
-* 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建图片源实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)
+* 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建ImageSource实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)
 
 ##### 约束与限制
 

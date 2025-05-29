@@ -19,7 +19,7 @@ import { hfp } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-Defines **BaseProfile** APIs.
+**BaseProfile** API definition.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -44,7 +44,7 @@ Creates an **HfpAgProfile** instance.
 
 **Error codes**
 
-For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------- |
@@ -66,4 +66,4 @@ try {
 
 ## HandsFreeAudioGatewayProfile
 
-Before using any API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **createHfpAgProfile()**.
+Before using any API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using [createHfpAgProfile()](#hfpcreatehfpagprofile).

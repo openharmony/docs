@@ -82,7 +82,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | mount_fstab | mount_fstab fstab.test<br>如：mount_fstab /vendor/etc/fstab.test| 按照fstab挂载分区的命令。<br>系统类型：标准系统 |
    | umount_fstab | umount_fstab  fstab.test<br>如：umount_fstab  /vendor/etc/fstab.test | 按照fstab卸载分区的命令。<br>系统类型：标准系统 |
    | restorecon | restorecon file or dir<br>如：restorecon /file | 重新加载selinux 的context。<br>系统类型：标准系统 |
-   | stopAllServices | stopAllServices [bool]<br>如：stopAllServices false 或 stopAllServices | 停止所有服务, 最长响应时间默认10毫秒。<br>系统类型：标准系统 |
+   | stopAllServices | stopAllServices [bool]<br>如：stopAllServices false 或 stopAllServices | 停止所有服务，最长响应时间默认10毫秒。<br>系统类型：标准系统 |
    | umount |umount path<br>如：umount /vendor | 卸载已经挂载的硬件设备 。<br>系统类型：标准系统 |
    | sync | 如：sync&nbsp; | 同步写入数据到磁盘。sync后有且仅有一个空格。<br>系统类型：标准系统 |
    | timer_start | timer_start serviceName<br>如：timer_start console | 启动服务计时器。<br>系统类型：标准系统 |
@@ -97,7 +97,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
 ### 接口说明
 jobs管理属于init启动过程中的一环，是一个流程化的功能，是完全服务于init启动过程的，并不对其他组件提供任何功能接口，其运行逻辑契合cfg中命令组的管理，无法对其他类型管理提供帮助。下述主要介绍其在init当中的调用逻辑。
 
-**表2 job解析接口说明**
+**表2** job解析接口说明
 | 函数名 | 函数解释 | 支持系统类型 |
 |:--------|:-----|:------|
 |void ParseAllJobs(const cJSON *fileRoot)|jobs解析总入口。| 小型系统和标准系统 |
@@ -106,13 +106,13 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
 |int ParseTriggerConfig(const cJSON *fileRoot, <br>int (*checkJobValid)(const char *jobName))|解析job中Trigger命令。| 标准系统 |
 |static int ParseTrigger_(const TriggerWorkSpace *workSpace,<br>const cJSON *triggerItem, <br/>int (*checkJobValid)(const char *jobName))|获取job名称，condition属性以及cmds命令组的功能，解析到的<br/>job以hash表的形式存储，而命令的保存则使用了队列结构。| 标准系统 |
 
-**表3 job触发接口说明**
+**表3** job触发接口说明
 | 函数名 | 函数解释 | 支持系统类型 |
 |:--------|:-----|:------|
 |void PostTrigger(EventType type, const char *content, uint32_t contentLen)|校验名称的有效性并发送触发job事件的功能。| 标准系统 |
 |static void SendTriggerEvent(int type, const char *content, uint32_t contentLen)|通过系统参数进行整机控制以及服务的启动与停止等。| 标准系统 |
-|static void DoTriggerCmd(const struct CmdArgs *ctx)|trigger命令执行接口| 标准系统 |
-|void DoTriggerExec(const char *triggerName)|仅标准系统可用。通过参数中的job名称<br>找到对应命令组，并将命令推入执行队列依次执行。| 标准系统 |
+|static void DoTriggerCmd(const struct CmdArgs *ctx)|trigger命令执行接口。| 标准系统 |
+|void DoTriggerExec(const char *triggerName)|仅标准系统可用。通过参数中的job名称找到对应命令组，<br>并将命令推入执行队列依次执行。| 标准系统 |
 |void DoJob(const char *jobName)|通过jobName匹配对应job，调用DoCmdByIndex<br>执行其中的命令。| 小型系统 |
 |void DoCmdByIndex(int index, const char *cmdContent)|拼接参数与命令。| 小型系统和标准系统 |
 

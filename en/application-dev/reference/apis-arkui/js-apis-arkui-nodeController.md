@@ -73,7 +73,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### onAttach<sup>16+</sup>
+### onAttach<sup>18+</sup>
 
 onAttach?(): void
 
@@ -83,11 +83,11 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 >
 > For details about the callback timing, see [onAttach](arkui-ts/ts-universal-events-show-hide.md#onattach12).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### onDetach<sup>16+</sup>
+### onDetach<sup>18+</sup>
 
 onDetach?(): void
 
@@ -97,17 +97,17 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 >
 > For details about the callback timing, see [onDetach](arkui-ts/ts-universal-events-show-hide.md#ondetach12).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### onWillBind<sup>16+</sup>
+### onWillBind<sup>18+</sup>
 
 onWillBind?(containerId: number): void
 
 Called when this **NodeController** instance is about to be bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,13 +117,13 @@ Called when this **NodeController** instance is about to be bound to a [NodeCont
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is about to be bound.|
 
-### onWillUnbind<sup>16+</sup>
+### onWillUnbind<sup>18+</sup>
 
 onWillUnbind?(containerId: number): void
 
 Called when this **NodeController** instance is about to be unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,13 +133,13 @@ Called when this **NodeController** instance is about to be unbound from a [Node
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component from which the **NodeController** instance is about to be unbound.|
 
-### onBind<sup>16+</sup>
+### onBind<sup>18+</sup>
 
 onBind?(containerId: number): void
 
 Called after this **NodeController** instance is bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,13 +149,13 @@ Called after this **NodeController** instance is bound to a [NodeContainer](arku
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
 | containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is bound.|
 
-### onUnbind<sup>16+</sup>
+### onUnbind<sup>18+</sup>
 
 onUnbind?(containerId: number): void
 
 Called after this **NodeController** instance is unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

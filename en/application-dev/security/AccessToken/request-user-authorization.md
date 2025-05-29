@@ -43,7 +43,9 @@ The following example steps you through on how to request the location permissio
 
 **Figure 1** Requesting the location permissions
 
+<!--RP4-->
 ![en_image_location](figures/en_image_location.png)
+<!--RP4End-->
 
 1. Request the ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION permissions. For details, see [Declaring Permissions](declare-permissions.md).
 
@@ -59,7 +61,7 @@ The following example steps you through on how to request the location permissio
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
-     // Obtain the token ID of the application.
+     // Obtain accessTokenID of the application.
      let tokenId: number = 0;
      try {
        let bundleInfo: bundleManager.BundleInfo = await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
@@ -90,7 +92,7 @@ The following example steps you through on how to request the location permissio
      } else if (!grantStatus1 && !grantStatus2) {
         // Request the ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION permissions, or request the ohos.permission.APPROXIMATELY_LOCATION permission.
      } else {
-        // If the user grants the permission, the application can access location information.
+        // If the user grants the permission, the application can access the target.
      }
    }
    ```
@@ -122,13 +124,13 @@ The following example steps you through on how to request the location permissio
           let length: number = grantStatus.length;
           for (let i = 0; i < length; i++) {
             if (grantStatus[i] === 0) {
-              // If the user grants the permission, the application can perform the subsequent operation.
+              // If the user grants the permission, the application can access the target.
             } else {
-              // If the user denies the permission, display a message indicating that user authorization is required, and direct the user to set the permission in the Settings page.
+              // If the user denies the permission, display a message indicating that user authorization is required, and direct the user to set the permission in Settings.
               return;
             }
           }
-          // The authorization is successful.
+          // Authorization is successful.
         }).catch((err: BusinessError) => {
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
@@ -161,13 +163,13 @@ The following example steps you through on how to request the location permissio
           let length: number = grantStatus.length;
           for (let i = 0; i < length; i++) {
             if (grantStatus[i] === 0) {
-              // If the user grants the permission, the application can perform the subsequent operation.
+              // If the user grants the permission, the application can access the target.
             } else {
-              // If the user denies the permission, display a message indicating that user authorization is required, and direct the user to set the permission in the Settings page.
+              // If the user denies the permission, display a message indicating that user authorization is required, and direct the user to set the permission in Settings.
               return;
             }
           }
-          // The authorization is successful.
+          // Authorization is successful.
         }).catch((err: BusinessError) => {
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
@@ -177,7 +179,7 @@ The following example steps you through on how to request the location permissio
       @Component
       struct Index {
         aboutToAppear() {
-          const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+          const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
           reqPermissionsFromUser(permissions, context);
         }
       

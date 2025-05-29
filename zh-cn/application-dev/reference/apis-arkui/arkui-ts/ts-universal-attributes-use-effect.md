@@ -21,7 +21,7 @@ useEffect(value: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数。<br/>默认值：false|
+| value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数，为false时子组件不继承EffectComponent组件的特效属性参数。<br/>默认值：false|
 
 ## useEffect<sup>14+</sup>
 
@@ -40,13 +40,13 @@ useEffect(useEffect: boolean, effectType: EffectType)
 | useEffect  | boolean                                                      | 是   | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false |
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | 是   | 设置组件应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：EffectType.DEFAULT |
 
-## useEffect<sup>16+</sup>
+## useEffect<sup>18+</sup>
 
 useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 
 用于设置组件是否应用<!--Del-->父级[EffectComponent](ts-container-effectcomponent-sys.md)或<!--DelEnd-->窗口定义的效果模板。与[useEffect<sup>14+</sup>](#useeffect)相比，useEffect参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,6 +83,8 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 ## 示例
 
 该示例主要通过背景模糊等特效进行绘制合并效果。
+
+<!--code_no_check-->
 
 ```ts
 //Index.ets

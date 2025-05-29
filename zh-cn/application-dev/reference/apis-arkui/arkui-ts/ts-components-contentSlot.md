@@ -43,8 +43,8 @@ type Content = Content
 下面的示例展示了ContentSlot的基本用法。
 
 ```ts
-import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@kit.ArkUI'
+import { nativeNode } from 'libNativeNode.so'; // 开发者自己实现的so
+import { NodeContent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -64,3 +64,6 @@ struct Parent {
   }
 }
 ```
+
+上述代码中so的实现可参考[Native XComponent](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)。
+

@@ -2,11 +2,11 @@
 
 ## 功能介绍
 
-多模提供为应用提供了按键、输入事件（鼠标、触屏和轴事件）监听能力，当前仅支持录屏类应用。使用场景例如：用户在录屏应用开启录屏时，监听设备的按键、鼠标、触摸和轴事件。
+多模为应用提供了按键、输入事件（鼠标、触屏和轴事件）监听能力，当前仅支持录屏类应用。使用场景例如：用户在录屏应用开启录屏时，监听设备的按键、鼠标、触摸和轴事件。
 
 ## 接口说明
 
-创建和删除事件监听相关接口如下表所示，接口详细介绍请参考[Input文档](../../reference/apis-input-kit/input.md)。
+创建和删除事件监听相关接口如下表所示，接口详细介绍请参考[Input文档](../../reference/apis-input-kit/capi-input.md)。
 
 | 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
@@ -25,7 +25,7 @@
 
 ### 链接动态库
 
-调用创建和删除事件拦截前，需链接相关动态库。链接动态库的方法是，在CMakeList.txt文件中做下面例子所示的配置：
+调用创建和删除事件拦截前，需链接相关动态库。链接动态库的方法是，在CMakeList.txt文件中新增如下配置：
 
 ```txt
 target_link_libraries(entry PUBLIC libohinput.so)
@@ -60,7 +60,7 @@ struct KeyEvent {
 void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
 {
     KeyEvent event;
-    //Input_KeyEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_KeyEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     event.action = OH_Input_GetKeyEventAction(keyEvent);
     event.keyCode = OH_Input_GetKeyEventKeyCode(keyEvent);
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
@@ -94,7 +94,7 @@ struct MouseEvent {
 void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
 {
     MouseEvent event;
-    //Input_MouseEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_MouseEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     event.action = OH_Input_GetMouseEventAction(mouseEvent);
     event.displayX = OH_Input_GetMouseEventDisplayX(mouseEvent);
     event.displayY = OH_Input_GetMouseEventDisplayY(mouseEvent);
@@ -130,7 +130,7 @@ struct TouchEvent {
 void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
 {
     TouchEvent event;
-    //Input_TouchEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_TouchEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     event.action = OH_Input_GetTouchEventAction(touchEvent);
     event.id = OH_Input_GetTouchEventFingerId(touchEvent);
     event.displayX = OH_Input_GetTouchEventDisplayX(touchEvent);
@@ -168,7 +168,7 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    //Input_AxisEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -201,7 +201,7 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    //Input_AxisEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -226,7 +226,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    //Input_AxisEvent的生命周期仅在回调函数内，出了回调函数会被销毁
+    //Input_AxisEvent的生命周期仅限于回调函数内，回调函数执行完毕后会被自动销毁
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;

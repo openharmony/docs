@@ -1,8 +1,8 @@
 # ringtonePlayer (Ringtone Player) (System API)
 
-The **ringtonePlayer** module provides APIs for playing, configuring, and obtaining system ringtones.
+The ringtonePlayer module provides APIs for playing, configuring, and obtaining ringtones.
 
-This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md) to manage system ringtones.
+This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md) to manage ringtones.
 
 > **NOTE**
 >
@@ -30,7 +30,7 @@ Enumerates the ringtone parameters.
 
 ## RingtonePlayer
 
-Provides APIs for setting and obtaining system ringtone parameters as well as playing and stopping system ringtones. Before calling any API in **RingtonePlayer**, you must use [getSystemRingtonePlayer](js-apis-systemSoundManager-sys.md#getsystemringtoneplayer) to create a **RingtonePlayer** instance.
+Provides APIs for setting and obtaining ringtone parameters as well as playing and stopping ringtones. Before calling any API in **RingtonePlayer**, you must use [getRingtonePlayer](./js-apis-systemSoundManager-sys.md#getringtoneplayer11) to obtain a **RingtonePlayer** instance.
 
 ### Attributes
 
@@ -53,7 +53,7 @@ let state: media.AVPlayerState = systemRingtonePlayer.state;
 
 getTitle(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the title of a system ringtone. This API uses an asynchronous callback to return the result.
+Obtains the title of the ringtone. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -63,7 +63,7 @@ Obtains the title of a system ringtone. This API uses an asynchronous callback t
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;string&gt;              | Yes  | Callback used to return the ringtone title obtained.    |
+| callback | AsyncCallback&lt;string&gt;              | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the title obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -83,7 +83,7 @@ systemRingtonePlayer.getTitle((err: BusinessError, value: string) => {
 
 getTitle(): Promise&lt;string&gt;
 
-Obtains the title of a system ringtone. This API uses a promise to return the result.
+Obtains the title of the ringtone. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -93,7 +93,7 @@ Obtains the title of a system ringtone. This API uses a promise to return the re
 
 | Type                 | Description                             |
 | --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the ringtone title obtained.|
+| Promise&lt;string&gt; | Promise used to return the title obtained.|
 
 **Example**
 
@@ -121,7 +121,7 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Yes| Callback used to return the audio renderer information obtained.|
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the renderer information obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -155,7 +155,7 @@ Obtains the information about the audio renderer used by the ringtone. This API 
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the audio renderer information obtained.|
+| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise used to return the renderer information.|
 
 **Example**
 
@@ -188,7 +188,7 @@ Sets ringtone parameters. This API uses an asynchronous callback to return the r
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
 | options  | [RingtoneOptions](#ringtoneoptions)      | Yes  | Ringtone parameters.            |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -230,7 +230,7 @@ Sets ringtone parameters. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -264,7 +264,7 @@ Starts playing the ringtone. This API uses an asynchronous callback to return th
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -294,7 +294,7 @@ Starts playing the ringtone. This API uses a promise to return the result.
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -322,7 +322,7 @@ Stops playing the ringtone. This API uses an asynchronous callback to return the
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -352,7 +352,7 @@ Stops playing the ringtone. This API uses a promise to return the result.
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -380,7 +380,7 @@ Releases the ringtone player. This API uses an asynchronous callback to return t
 
 | Name  | Type                                     | Mandatory| Description                      |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.    |
+| callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -410,7 +410,7 @@ Releases the ringtone player. This API uses a promise to return the result.
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -438,8 +438,8 @@ Subscribes to the audio interruption event, which is triggered when the audio fo
 
 | Name  | Type                    | Mandatory| Description                                                                      |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the audio interruption event received by the application when playback is interrupted.|
+| type     | string                  | Yes  | Event type. The event **'audioInterrupt'** is triggered when the audio focus is changed.|
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | Yes  | Callback used to return the event information.|
 
 **Error codes**
 
@@ -514,7 +514,7 @@ Unsubscribes from the audio interruption event.
 
 | Name| Type  | Mandatory| Description                                             |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **'audioInterrupt'**.|
+| type   | string | Yes  | Event type. The event **'audioInterrupt'** is triggered when the audio focus is changed.|
 
 **Error codes**
 

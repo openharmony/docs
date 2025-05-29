@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md)。
 
@@ -22,7 +22,7 @@ import { securityManager } from '@kit.MDMKit';
 
 getSecurityPatchTag(admin: Want): string
 
-以同步方法查询设备安全补丁Tag。成功返回安全补丁Tag，失败抛出对应异常。
+查询设备安全补丁Tag。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -32,9 +32,9 @@ getSecurityPatchTag(admin: Want): string
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -75,7 +75,7 @@ try {
 
 getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
-以同步方法查询设备文件系统加密状态。成功返回设备文件系统加密状态，失败抛出对应异常。
+查询设备文件系统加密状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -87,13 +87,13 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 
 **返回值：**
 
-| 类型                   | 说明                                                   |
-| ---------------------- | ------------------------------------------------------ |
-| DeviceEncryptionStatus | 文件加密状态结构体，现只含有是否进行加密字段（bool）。 |
+| 类型                                              | 说明                                                   |
+| ------------------------------------------------- | ------------------------------------------------------ |
+| [DeviceEncryptionStatus](#deviceencryptionstatus) | 文件加密状态结构体，现只含有是否进行加密字段（bool）。 |
 
 **错误码**：
 
@@ -111,6 +111,7 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

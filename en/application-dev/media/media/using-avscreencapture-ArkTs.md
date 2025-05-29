@@ -10,7 +10,7 @@ The full screen capture process involves creating an **AVScreenCaptureRecorder**
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **SCREENCAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
-This topic describes how to use the **AVScreenCaptureRecorder** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecoder](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12).
+This topic describes how to use the **AVScreenCaptureRecorder** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCaptureRecorder](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12).
 
 If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
@@ -19,12 +19,12 @@ If microphone data collection is configured, configure the permission **ohos.per
 Before your development, configure the following permissions for your application.
 
 - To use the microphone, request the ohos.permission.MICROPHONE permission. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-- To read images or videos, you are advised to use the media library [Picker to access them](../medialibrary/photoAccessHelper-photoviewpicker.md).
-- To save images or videos, use the [security component to save them](../medialibrary/photoAccessHelper-savebutton.md).
+- To read images or videos, preferentially use the media library [Picker for access](../medialibrary/photoAccessHelper-photoviewpicker.md).
+- To save images or videos, preferentially use the [security component for storage](../medialibrary/photoAccessHelper-savebutton.md).
 
 > **NOTE**
 >
-> When the application needs to clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
+> To clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
 
 ## How to Develop
 
@@ -101,7 +101,9 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
     ​After creating the **screenCapture** instance, you can set the parameters required for screen capture.
 
-    ​Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, and **preset** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
+    ​Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, **preset**, and **displayId** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
+
+    If **displayId** is set to the extended display ID of a 2-in-1 device, a dialog box for screen capture selection can be opened. Users can select the screen to capture in the dialog box, and the recorded content will match the user's choices.
 
     ```javascript
     captureConfig: media.AVScreenCaptureRecordConfig = {
@@ -115,6 +117,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
         audioSampleRate: 48000,
         audioChannelCount: 2,
         audioBitrate: 96000,
+        displayId: 0,
         preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
     };
     ```
@@ -174,6 +177,7 @@ export class AVScreenCaptureDemo {
     audioSampleRate: 48000,
     audioChannelCount: 2,
     audioBitrate: 96000,
+    displayId: 0,
     preset: media.AVScreenCaptureRecordPreset.SCREEN_RECORD_PRESET_H264_AAC_MP4
   };
 
@@ -181,9 +185,9 @@ export class AVScreenCaptureDemo {
   public async startRecording() {
     this.screenCapture = await media.createAVScreenCaptureRecorder();
     if (this.screenCapture != undefined) {
-      // success
+      // success.
     } else {
-      // failed
+      // failed.
         return;
     }
     this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
@@ -245,7 +249,7 @@ export class AVScreenCaptureDemo {
   // Proactively call stopRecording to stop screen capture.
   public async stopRecording() {
     if (this.screenCapture == undefined) {
-      // Error
+      // Error.
       return;
     }
     await this.screenCapture?.stopRecording();

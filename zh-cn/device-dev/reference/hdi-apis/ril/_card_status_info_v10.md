@@ -32,7 +32,7 @@ int CardStatusInfo::index
 ```
 **描述**
 
-SIM卡索引
+SIM卡索引。
 
 
 ### simState

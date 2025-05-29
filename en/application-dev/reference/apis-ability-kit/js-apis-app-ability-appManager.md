@@ -262,11 +262,12 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-Obtains information about the running processes. This API uses a promise to return the result.
+Obtains information about the running processes of this application. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -303,11 +304,12 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+Obtains information about the running processes of this application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+> - In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications.
+> - Since API version 11, this API is used only to obtain the process information of the caller. No permission is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -495,7 +497,7 @@ try {
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
-Deregisters the application state observer.
+Deregisters the application state observer. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -573,6 +575,94 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
   });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
+## appManager.off('applicationState')<sup>15+</sup>
+
+off(type: 'applicationState', observerId: number, callback: AsyncCallback\<void>): void
+
+Deregisters the application state observer. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
+| observerId | number | Yes| Digital code of the observer.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the application state observer is deregistered, **err** is undefined; otherwise, **error** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let observerId = 0;
+
+// 1. Register an application state observer.
+let applicationStateObserver: appManager.ApplicationStateObserver = {
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
+};
+let bundleNameList = ['bundleName1', 'bundleName2'];
+
+try {
+  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+
+function offCallback(err: BusinessError) {
+  if (err) {
+    console.error(`appmanager.off failed, code: ${err.code}, msg: ${err.message}`);
+  } else {
+    console.info(`appmanager.off success.`);
+  }
+}
+
+// 2. Deregister the application state observer.
+try {
+  appManager.off('applicationState', observerId, offCallback);
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;

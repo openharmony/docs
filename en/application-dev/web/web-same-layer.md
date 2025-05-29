@@ -67,17 +67,21 @@ Currently, only mobile phones and tablets are supported.
 
 - The tag types contain only English characters and are case insensitive.
 
-**Supported Attributes of Same-Layer Tags**:
-CSS attributes that comply with the W3C standard.
+**Supported CSS Attributes**:
 
-**Lifecycle Management of Same-Layer Tags**:
+**display**, **position**, **z-index**, **visibility**, **opacity**,
+**background-color**, **background-image**, **width**, **height**, **padding**, **padding-left**, **padding-top**, **padding-right**, **padding-bottom**, **margin**, **margin-left**, **margin-top**, **margin-right**, **margin-bottom**, **border-width**, **border-style**, **border-color**, **border-left-width**, **border-left-style**, **border-left-color**, **border-top-width**, **border-top-style**, **border-top-color**, **border-right-width**, **border-right-style**, **border-right-color**, **border-bottom-width**, **border-bottom-style**, **border-bottom-color**, **border-left**, **border-right**, **border-top**, **border-bottom**, **border**, **border-top-left-radius**, **border-top-right-radius**, **border-bottom-left-radius**, **border-bottom-right-radius**, **border-radius**, **transition**, and **transform** (Only **translate** and **scale** are supported. The value of **scale** must be greater than or equal to 0.)
+
+ Other CSS attributes, such as **rotate** and **shew** in the **transform** attribute, may not meet the expectation.
+
+**Lifecycle Management**:
 The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11) callback is triggered when the lifecycle of the **Embed** tag changes.
 
 - Creation, destruction, and position width and height change are supported. The visibility status change is not supported.
 
 - Web pages containing same-layer components support back-forward cache.
 
-**Distributing and Processing the Input Events of Same-Layer Tags**:
+**Distributing and Processing the Input Events**:
 - The **DOWN**, **UP**, **MOVE**, and **CANCEL** touch events are supported. The [onnativeembedgestureevent11](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11) can be configured. By default, the touch event is consumed on the application side.
 
 - The application page containing same-layer components cannot be scaled, and the scaling APIs such as [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin) and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout) are not supported.
@@ -954,7 +958,7 @@ You can enable or disable same-layer rendering through [enableNativeEmbedMode()]
     async avPlayerLiveDemo(){
       // Create an AVPlayer instance.
       let avPlayer: media.AVPlayer = await media.createAVPlayer();
-      // Set a callback for state changes.
+      // Create a callback for state changes.
       this.setAVPlayerCallback(avPlayer);
       this.isSeek = false; // The seek operation is not supported.
       // Replace the URL with the actual URL of the video source.

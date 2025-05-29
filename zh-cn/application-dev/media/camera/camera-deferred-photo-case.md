@@ -1,4 +1,4 @@
-# 高性能拍照实现方案(仅对系统应用开放)(ArkTS)
+# 高性能拍照实践(仅对系统应用开放)(ArkTS)
 
 在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
 
@@ -20,41 +20,71 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-let context = getContext(this);
-
 // 写文件方式落盘真图。
-async function savePicture(photoObj: camera.Photo): Promise<void> {
-  let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let testFileName = 'testFile' + Date.now() + '.jpg';
-  //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限。
-  let photoAsset = await accessHelper.createAsset(testFileName);
-  const fd = await photoAsset.open('rw');
+async function savePicture(photoObj: camera.Photo, context: Context, showSaveToMediaLibrary: boolean = true): Promise<void> {
+  let filePath = `${context.filesDir}/${Date.now()}.jpg`;
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let buffer: ArrayBuffer | undefined = undefined;
-  photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
-    if (errCode || component === undefined) {
-      console.error('getComponent failed');
-      return;
-    }
-    if (component.byteBuffer) {
-      buffer = component.byteBuffer;
-    } else {
-      console.error('byteBuffer is null');
-      return;
-    }
-  });
-  if (buffer) {
-    await fs.write(fd, buffer);
+  let component = await photoObj.main.getComponent(image.ComponentType.JPEG);
+  if (component === undefined) {
+    console.error('getComponent failed');
+    return;
   }
-  await photoAsset.close(fd);
-  await photoObj.release(); 
+  if (component.byteBuffer) {
+    buffer = component.byteBuffer;
+  } else {
+    console.error('byteBuffer is null');
+    return;
+  }
+  if (buffer) {
+    fileIo.writeSync(file.fd, buffer);
+    if (showSaveToMediaLibrary) {
+      await saveToMediaLibrary(context, filePath, file.fd);
+    } else {
+      fileIo.closeSync(file.fd);
+    }
+  }
+}
+
+async function saveToMediaLibrary(context: Context, filePath: string, fd: number): Promise<void> {
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let res = fileIo.accessSync(filePath);
+    if (res) {
+      await fileIo.unlink(filePath);
+    }
+    // 指定待保存到媒体库的位于应用沙箱的图片uri。
+    let srcFileUri = fileUri.getUriFromPath(filePath); // 获取资源的绝对路径
+    let srcFileUris: Array<string> = [
+      srcFileUri // 需要传入绝对路径
+    ];
+    // 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test', // 可选。
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // 可选。
+      }
+    ];
+    // 基于弹窗授权的方式获取媒体库的目标uri。
+    let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
+    // 将来源于应用沙箱的照片内容写入媒体库的目标uri。
+    let desFile: fileIo.File = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
+    await fileIo.copyFile(fd, desFile.fd);
+    fileIo.closeSync(fd);
+    fileIo.closeSync(desFile);
+    console.info('create asset by dialog successfully');
+  } catch (err) {
+    console.error(`failed to create asset by dialog successfully errCode is: ${err.code}, ${err.message}`);
+  }
 }
 
 // 调用媒体库方式落盘缩略图。
-async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
+async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context): Promise<void> {    
   try {
     // 创建 photoAsset。
     let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -66,13 +96,13 @@ async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<v
     let res = await accessHelper.applyChanges(mediaRequest);
     console.info('saveDeferredPhoto success.');
   } catch (err) {
-    console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+    console.error(`Failed to saveDeferredPhoto. error: ${err}`);
   }
 }
 
-async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function deferredPhotoCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;
@@ -224,10 +254,10 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   // 注册原图回调监听。
   photoOutput.on('photoAvailable', (err: BusinessError, photoObj: camera.Photo): void => {
     if (err) {
-      console.info(`photoAvailable error: ${JSON.stringify(err)}.`);
+      console.error(`photoAvailable error: ${err}.`);
       return;
     }
-    savePicture(photoObj).then(() => {
+    savePicture(photoObj, context).then(() => {
       // 落盘完成后，释放photo对象。
       photoObj.release();
     });
@@ -236,7 +266,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
   // 注册分段式缩略图代理回调监听。
   photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
     if (err) {
-      console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+      console.error(`deferredPhotoProxyAvailable error: ${err}.`);
       return;
     }
     console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
@@ -245,7 +275,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
       AppStorage.setOrCreate('proxyThumbnail', thumbnail); 
     });
     // 调用媒体库接口落盘缩略图。
-    saveDeferredPhoto(proxyObj).then(() => {
+    saveDeferredPhoto(proxyObj, context).then(() => {
       // 落盘完成后，释放代理类对象。
       proxyObj.release();
     });
@@ -351,7 +381,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     console.info('Callback invoked to indicate the photo capture request success.');
   });
 
-  // 需要在拍照结束之后调用以下关闭摄像头和释放会话流程，避免拍照未结束就将会话释放。
+  // 需要在拍照结束之后调用以下关闭相机和释放会话流程，避免拍照未结束就将会话释放。
   // 停止当前会话。
   await photoSession.stop();
 

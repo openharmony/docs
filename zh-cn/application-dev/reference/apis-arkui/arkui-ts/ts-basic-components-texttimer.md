@@ -38,7 +38,7 @@ TextTimer(options?: TextTimerOptions)
 
 | 名称   | 类型     | 必填  | 说明                   |
 | ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br/>默认值：false |
+| isCountDown | boolean  | 否   | 是否倒计时。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br/>默认值：false |
 | count       | number   | 否   | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。&nbsp;0&lt;count&lt;86400000时，count值为计时器初始值。否则，使用默认值为计时器初始值。<br/>默认值：60000 |
 | controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
 
@@ -121,7 +121,7 @@ fontStyle(value: FontStyle)
 
 ### fontWeight
 
-fontWeight(value: number | FontWeight | string)
+fontWeight(value: number | FontWeight | ResourceStr)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
@@ -135,7 +135,7 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型  | 必填 | 说明      |
 | ------ | ---------- | ------ | ----------------- |
-| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。[ResourceStr](ts-types.md#resourcestr)类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal <br>从API version 20开始，支持Resource类型。|
 
 ### fontFamily
 
@@ -185,7 +185,7 @@ contentModifier(modifier: ContentModifier\<TextTimerConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<TextTimerConfiguration>](#texttimerconfiguration12对象说明) | 是   | 在TextTimer组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<TextTimerConfiguration>](#texttimerconfiguration12对象说明) | 是   | 在TextTimer组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## 事件
 
@@ -220,7 +220,7 @@ TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组�
 ### 导入对象
 
 ```
-textTimerController: TextTimerController = new TextTimerController()
+textTimerController: TextTimerController = new TextTimerController();
 ```
 
 ### constructor
@@ -282,8 +282,8 @@ reset()
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | count | number | 是 | 计时器时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。 0<count<86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。<br> 默认值：60000。 |
-| isCountDown | boolean| 是 | 是否倒计时。值为true时，计时器开启倒计时，值为false时，计时器开始计时。<br> 默认值：false |
-| started | boolean | 是 | 是否已经开始了计时。 |
+| isCountDown | boolean| 是 | 是否倒计时。值为true时，计时器开启倒计时，例如从30秒 ~ 0秒。值为false时，计时器开始计时，例如从0秒 ~ 30秒。<br> 默认值：false |
+| started | boolean | 是 | 是否已经开始了计时。默认值：false， 表示未开始计时。|
 | elapsedTime | number | 是 | 计时器经过的时间，单位为设置格式的最小单位。 |
 
 ## 示例
@@ -298,8 +298,8 @@ reset()
 @Entry
 @Component
 struct TextTimerExample {
-  textTimerController: TextTimerController = new TextTimerController()
-  @State format: string = 'mm:ss.SS'
+  textTimerController: TextTimerController = new TextTimerController();
+  @State format: string = 'mm:ss.SS';
 
   build() {
     Column() {
@@ -308,17 +308,17 @@ struct TextTimerExample {
         .fontColor(Color.Black)
         .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
-          console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+          console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime);
         })
       Row() {
         Button("start").onClick(() => {
-          this.textTimerController.start()
+          this.textTimerController.start();
         })
         Button("pause").onClick(() => {
-          this.textTimerController.pause()
+          this.textTimerController.pause();
         })
         Button("reset").onClick(() => {
-          this.textTimerController.reset()
+          this.textTimerController.reset();
         })
       }
     }
@@ -363,7 +363,7 @@ struct TextTimerExample {
     color: Color.Yellow,
     offsetX: 100,
     offsetY: 0
-  }]
+  }];
 
   build() {
     Column({ space: 8 }) {
@@ -385,7 +385,7 @@ class MyTextTimerModifier implements ContentModifier<TextTimerConfiguration> {
   }
 
   applyContent(): WrappedBuilder<[TextTimerConfiguration]> {
-    return wrapBuilder(buildTextTimer)
+    return wrapBuilder(buildTextTimer);
   }
 }
 
@@ -412,10 +412,10 @@ function buildTextTimer(config: TextTimerConfiguration) {
 @Entry
 @Component
 struct Index {
-  @State count: number = 10000
-  @State myTimerModifier: MyTextTimerModifier = new MyTextTimerModifier()
-  countDownTextTimerController: TextTimerController = new TextTimerController()
-  countUpTextTimerController: TextTimerController = new TextTimerController()
+  @State count: number = 10000;
+  @State myTimerModifier: MyTextTimerModifier = new MyTextTimerModifier();
+  countDownTextTimerController: TextTimerController = new TextTimerController();
+  countUpTextTimerController: TextTimerController = new TextTimerController();
 
   build() {
     Row() {
@@ -423,26 +423,26 @@ struct Index {
         TextTimer({ isCountDown: true, count: this.count, controller: this.countDownTextTimerController })
           .contentModifier(this.myTimerModifier)
           .onTimer((utc: number, elapsedTime: number) => {
-            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime);
           })
           .margin(10)
         TextTimer({ isCountDown: false, controller: this.countUpTextTimerController })
           .contentModifier(this.myTimerModifier)
           .onTimer((utc: number, elapsedTime: number) => {
-            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime);
           })
         Row() {
           Button("start").onClick(() => {
-            this.countDownTextTimerController.start()
-            this.countUpTextTimerController.start()
+            this.countDownTextTimerController.start();
+            this.countUpTextTimerController.start();
           }).margin(10)
           Button("pause").onClick(() => {
-            this.countDownTextTimerController.pause()
-            this.countUpTextTimerController.pause()
+            this.countDownTextTimerController.pause();
+            this.countUpTextTimerController.pause();
           }).margin(10)
           Button("reset").onClick(() => {
-            this.countDownTextTimerController.reset()
-            this.countUpTextTimerController.reset()
+            this.countDownTextTimerController.reset();
+            this.countUpTextTimerController.reset();
           }).margin(10)
         }.margin(20)
       }.width('100%')
@@ -461,8 +461,8 @@ struct Index {
 @Entry
 @Component
 struct TextTimerStart {
-  textTimerController: TextTimerController = new TextTimerController()
-  @State format: string = 'mm:ss.SS'
+  textTimerController: TextTimerController = new TextTimerController();
+  @State format: string = 'mm:ss.SS';
 
   build() {
     Column() {
@@ -473,10 +473,10 @@ struct TextTimerStart {
         .fontColor(Color.Black)
         .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
-          console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+          console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime);
         })
         .onAppear(() => {
-          this.textTimerController.start()
+          this.textTimerController.start();
         })
     }
   }

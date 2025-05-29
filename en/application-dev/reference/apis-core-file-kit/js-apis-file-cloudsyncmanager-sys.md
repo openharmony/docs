@@ -26,7 +26,7 @@ Changes the device-cloud file sync switch for an application. This API uses a pr
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 | status | boolean | Yes  | State of the cloud-device file sync switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
 
 **Return value**
@@ -113,7 +113,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -148,7 +148,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Notifies the cloud sync service of the application data change in the cloud. This API uses a promise to return the result.
+Notifies the cloud sync service of the application data change in the cloud. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -157,7 +157,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the application data change in the cloud.|
 
 **Error codes**
@@ -575,3 +575,4 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     }
   });
   ```
+  

@@ -1,11 +1,8 @@
 # 使用AES对称密钥（CBC模式）加解密(ArkTS)
 
-
-对应的算法规格请查看[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
-
+对应的算法规格请参见[对称密钥加解密算法规格：AES](crypto-sym-encrypt-decrypt-spec.md#aes)。
 
 **加密**
-
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)，生成密钥算法为AES、密钥长度为128位的对称密钥（SymKey）。
    
@@ -15,8 +12,7 @@
 
 3. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为加密（CryptoMode.ENCRYPT_MODE），指定加密密钥（SymKey）和CBC模式对应的加密参数（IvParamsSpec），初始化加密Cipher实例。
 
-4. 加密内容较短时，可以不调用update，直接调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
-
+4. 当加密内容长度较短时，可以直接调用 [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) 而无需调用update，以获取加密后的数据。
 
 **解密**
 
@@ -24,8 +20,7 @@
 
 2. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为解密（CryptoMode.DECRYPT_MODE），指定解密密钥（SymKey）和CBC模式对应的解密参数（IvParamsSpec），初始化解密Cipher实例。
 
-3. 解密内容较短时，可以不调用update，直接调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
-
+3. 当解密内容长度较短时，可以省略调用update，直接调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
 - 异步方法示例：
 
@@ -48,14 +43,14 @@
     return ivParamsSpec;
   }
   let iv = genIvParamsSpec();
-  // 加密消息
+  // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
     let cipherData = await cipher.doFinal(plainText);
     return cipherData;
   }
-  // 解密消息
+  // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
@@ -86,7 +81,7 @@
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC “${error}“, error code: ${error.code}`);
+      console.error(`AES CBC "${error}", error code: ${error.code}`);
     }
   }
   ```
@@ -112,14 +107,14 @@
     return ivParamsSpec;
   }
   let iv = genIvParamsSpec();
-  // 加密消息
+  // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('AES128|CBC|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
     let cipherData = cipher.doFinalSync(plainText);
     return cipherData;
   }
-  // 解密消息
+  // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('AES128|CBC|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
@@ -150,7 +145,7 @@
         console.error('decrypt failed');
       }
     } catch (error) {
-      console.error(`AES CBC “${error}“, error code: ${error.code}`);
+      console.error(`AES CBC "${error}", error code: ${error.code}`);
     }
   }
   ```

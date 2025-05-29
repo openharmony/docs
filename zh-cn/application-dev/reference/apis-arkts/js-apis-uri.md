@@ -1,6 +1,6 @@
 # @ohos.uri (URI字符串解析)
 
-本模块提供URI字符串解析的相关功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
+本模块提供URI字符串解析功能。URI遵循RFC3986规范标准，该标准定义了如何编码和解析用于定位网络资源的标识符，对于非标准场景解析不支持。
 
 > **说明：**
 >
@@ -21,35 +21,35 @@ import { uri } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | 是 | 否 | 获取URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| userInfo | string | 是 | 否 | 获取URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| scheme | string | 否 | 否 | 获取和设置URI的协议部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| userInfo | string | 否 | 否 | 获取和设置URI的用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | host | string | 是 | 否 | 获取URI的主机名部分（不带端口），若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | port | string | 是 | 否 | 获取URI的端口部分。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| path | string | 是 | 否 | 获取URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| query | string | 是 | 否 | 获取URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| fragment | string | 是 | 否 | 获取URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| authority | string | 是 | 否 | 获取此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ssp | string | 是 | 否 | 获取URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| encodedUserInfo<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedPath<sup>12+</sup>      | string | 是   | 否   | 获取URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| encodedQuery<sup>12+</sup>     | string | 是   | 否   | 获取URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedFragment<sup>12+</sup>  | string | 是   | 否   | 获取URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| encodedAuthority<sup>12+</sup> | string | 是   | 否   | 获取URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| encodedSSP<sup>12+</sup>       | string | 是   | 否   | 获取URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| path | string | 否 | 否 | 获取和设置URI的路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| query | string | 否 | 否 | 获取和设置URI的查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fragment | string | 否 | 否 | 获取和设置URI的片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| authority | string | 否 | 否 | 获取和设置此URI的解码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ssp | string | 否 | 否 | 获取和设置URI的解码方案特定部分，方案特定部分是URI的一部分，它包含了特定于协议或方案的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| encodedUserInfo<sup>12+</sup>  | string | 否   | 否   | 获取和设置URI的编码用户信息部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedPath<sup>12+</sup>      | string | 否   | 否   | 获取和设置URI的编码路径部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| encodedQuery<sup>12+</sup>     | string | 否   | 否   | 获取和设置URI的编码查询部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedFragment<sup>12+</sup>  | string | 否   | 否   | 获取和设置URI的编码片段部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| encodedAuthority<sup>12+</sup> | string | 否   | 否   | 获取和设置URI的编码权限组件部分，若无此部分则返回null对象。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| encodedSSP<sup>12+</sup>       | string | 否   | 否   | 获取和设置URI的编码方案特定部分。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 
 ### 命名规则
 
 **命名形式：**
 
-标准uri定义主要由以下三个部分组成：
+标准URI定义主要由以下三个部分组成：
 [scheme:]scheme-specific-part[#fragment]。
 
-将URI格式细化一些则可分为：
+细化URI格式，可以将其分为：
 [scheme:][//authority][path][?query][#fragment]。
 
-将URI格式进一步细化可分为：
+将URI格式进一步细化，可以分为：
 [scheme:][//[user-info@]host[:port]][path][?query][#fragment]。
 
 - scheme: 协议名，与scheme-specific-part以:进行分隔，包含scheme部分的URI为绝对URI，不包含scheme部分的URI为相对URI，根据需要填写。例如http、https、ftp、datashare等。
@@ -66,75 +66,75 @@ import { uri } from '@kit.ArkTS';
 
 ```ts
 const uriObj1 = new uri.URI("ftp://ftp.aaa.bbb.ccc/dddd/eee.txt");
-console.info(uriObj1.host) // ftp.aaa.bbb.ccc
-console.info(uriObj1.fragment) // null
-console.info(uriObj1.path) // /dddd/eee.txt
-console.info(uriObj1.scheme) // ftp
-console.info(uriObj1.userInfo) // null
-console.info(uriObj1.port) // -1
-console.info(uriObj1.query) // null
+console.info(uriObj1.host); // ftp.aaa.bbb.ccc
+console.info(uriObj1.fragment); // null
+console.info(uriObj1.path); // /dddd/eee.txt
+console.info(uriObj1.scheme); // ftp
+console.info(uriObj1.userInfo); // null
+console.info(uriObj1.port); // -1
+console.info(uriObj1.query); // null
 
 const uriObj2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
-console.info(uriObj2.host) // spinaltap.micro.umn.edu
-console.info(uriObj2.fragment) // fragment
-console.info(uriObj2.path) // /00/Weather/California/Los Angeles
-console.info(uriObj2.scheme) // gopher
-console.info(uriObj2.userInfo) // null
-console.info(uriObj2.port) //-1
-console.info(uriObj2.query) // null
+console.info(uriObj2.host); // spinaltap.micro.umn.edu
+console.info(uriObj2.fragment); // fragment
+console.info(uriObj2.path); // /00/Weather/California/Los Angeles
+console.info(uriObj2.scheme); // gopher
+console.info(uriObj2.userInfo); // null
+console.info(uriObj2.port); //-1
+console.info(uriObj2.query); // null
 
 const uriObj3 = new uri.URI("datashare:///com.samples.datasharetest.DataShare/DB00/TBL00");
-console.info(uriObj3.host) // null
-console.info(uriObj3.fragment) // null
-console.info(uriObj3.path) // /com.samples.datasharetest.DataShare/DB00/TBL00
-console.info(uriObj3.scheme) // datashare
-console.info(uriObj3.userInfo) // null
-console.info(uriObj3.port) // -1
-console.info(uriObj3.query) // null
+console.info(uriObj3.host); // null
+console.info(uriObj3.fragment); // null
+console.info(uriObj3.path); // /com.samples.datasharetest.DataShare/DB00/TBL00
+console.info(uriObj3.scheme); // datashare
+console.info(uriObj3.userInfo); // null
+console.info(uriObj3.port); // -1
+console.info(uriObj3.query); // null
 
 const uriObj4 = new uri.URI("https://username:password@host:8080/directory/file?foo=1&bar=2#fragment");
-console.info(uriObj4.host) // host
-console.info(uriObj4.fragment) // fragment
-console.info(uriObj4.path) // /directory/file
-console.info(uriObj4.scheme) // https
-console.info(uriObj4.userInfo) // username:password
-console.info(uriObj4.port) // 8080
-console.info(uriObj4.query) // foo=1&bar=2
+console.info(uriObj4.host); // host
+console.info(uriObj4.fragment); // fragment
+console.info(uriObj4.path); // /directory/file
+console.info(uriObj4.scheme); // https
+console.info(uriObj4.userInfo); // username:password
+console.info(uriObj4.port); // 8080
+console.info(uriObj4.query); // foo=1&bar=2
 
 const uriObj5 = new uri.URI("dataability:///com.example.DataAbility");
-console.info(uriObj5.host) // null
-console.info(uriObj5.fragment) // null
-console.info(uriObj5.path) // /com.example.DataAbility:
-console.info(uriObj5.scheme) // dataability
-console.info(uriObj5.userInfo) // null
-console.info(uriObj5.port) // -1
-console.info(uriObj5.query) // null
+console.info(uriObj5.host); // null
+console.info(uriObj5.fragment); // null
+console.info(uriObj5.path); // /com.example.DataAbility:
+console.info(uriObj5.scheme); // dataability
+console.info(uriObj5.userInfo); // null
+console.info(uriObj5.port); // -1
+console.info(uriObj5.query); // null
 
 const uriObj6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
-console.info(uriObj6.encodedUserInfo) // username:my+name
-console.info(uriObj6.encodedPath) // /directory/my+file
-console.info(uriObj6.encodedQuery) // foo=1&bar=2
-console.info(uriObj6.encodedFragment) // fragment
-console.info(uriObj6.encodedAuthority) // username:my+name@host:8080
-console.info(uriObj6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
+console.info(uriObj6.encodedUserInfo); // username:my+name
+console.info(uriObj6.encodedPath); // /directory/my+file
+console.info(uriObj6.encodedQuery); // foo=1&bar=2
+console.info(uriObj6.encodedFragment); // fragment
+console.info(uriObj6.encodedAuthority); // username:my+name@host:8080
+console.info(uriObj6.encodedSSP); // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 
 let uriObj7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
-console.log(uriObj7.scheme) // www.abc.com
-console.log(uriObj7.host) // null
-console.log(uriObj7.port) // -1
-console.log(uriObj7.path) // null
-console.log(uriObj7.query) // null
-console.log(uriObj7.authority) // null
-console.log(uriObj7.fragment) // qwer=da
-console.log(uriObj7.ssp) // 8080/directory/file?ab=pppppp
-console.log("result:", uriObj7.checkIsAbsolute()) // result: true
+console.log(uriObj7.scheme); // www.abc.com
+console.log(uriObj7.host); // null
+console.log(uriObj7.port); // -1
+console.log(uriObj7.path); // null
+console.log(uriObj7.query); // null
+console.log(uriObj7.authority); // null
+console.log(uriObj7.fragment); // qwer=da
+console.log(uriObj7.ssp); // 8080/directory/file?ab=pppppp
+console.log("result:", uriObj7.checkIsAbsolute()); // result: true
 ```
 
 ### constructor
 
 constructor(uri: string)
 
-constructor是URI的构造函数。
+构造函数用于创建URI对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -376,7 +376,7 @@ getQueryValue(key:string): string
 
 根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值，若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
 
-查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+查询参数在问号“?”后，由键值对组成。键和值用等号“=”连接，键值对用与号“&”分隔。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +416,7 @@ console.info(uriInstance1.getQueryValue('abc')) // null
 
 addQueryValue(key:string, value:string): URI
 
-在当前URI的基础上添加查询参数，并创建一个新的URI，同时保持原有URI对象不变。
+在当前URI对象上添加查询参数后返回新对象，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -426,8 +426,8 @@ addQueryValue(key:string, value:string): URI
 
 | 参数名 | 类型   | 必填 | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| key    | string | 是   | 需要增添查询参数的名称。 |
-| value  | string | 是   | 需要增添查询参数的值。   |
+| key    | string | 是   | 需要添加查询参数的名称。 |
+| value  | string | 是   | 需要添加查询参数的值。   |
 
 **返回值：**
 
@@ -455,7 +455,7 @@ console.info(newRoute.toString()); // https://www.test.com?param1=hello%20world
 
 addSegment(pathSegment:string): URI
 
-对给定的字段进行编码并将其追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
+对指定字段进行编码，并将其追加到当前URI的path中，创建并返回新的URI，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -493,7 +493,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 addEncodedSegment(pathSegment:string): URI
 
-通过将已编码的字段追加到当前URI的path字段中，并创建一个新的URI返回，同时保持原有URI对象不变。
+将已编码的字段追加到当前URI的path字段中，创建新URI并返回，保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -531,7 +531,7 @@ console.info(newRoute.toString()); // http://www.test.com/my%20image.jpg
 
 getQueryNames(): string[]
 
-获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+获取URI查询部分中所有不重复的键。查询参数出现在问号“?”之后，由键值对组成，键和值用等号“=”连接，键值对间用与号“&”分隔。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -555,9 +555,9 @@ console.info(Array.from(paramNames).toString()); // param1,param2
 
 getQueryValues(key:string): string[]
 
-获取此URI中查询参数的所有指定键对应值的集合。若查询参数中存在已编码过的内容，需将对应Key进行解码后获取Value。
+获取URI中查询参数指定键的所有值。如果查询参数已编码，需先解码键再获取值。
 
-查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，键值对之间使用与号“&”分隔。
+查询参数是出现在问号“?”之后的部分，由键值对组成，键和值用等号“=”连接，键值对间用与号“&”分隔。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -573,7 +573,7 @@ getQueryValues(key:string): string[]
 
 | 类型     | 说明                                |
 | -------- | ----------------------------------- |
-| string[] | 返回此URI中查询参数内所有指定键对应值的集合，若没有找到则返回一个空字符串数组[]。 |
+| string[] | 返回此URI中查询参数内指定键对应所有值的集合，若没有找到则返回一个空字符串数组[]。 |
 
 **错误码：**
 
@@ -595,7 +595,7 @@ console.info(JSON.stringify(uriInstance.getQueryValues("abc"))); // []
 
 getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
-从URI查询参数中获取布尔类型的参数值。
+使用给定的键在查询字符串中搜索第一个值，并将其转换为布尔值。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -606,13 +606,13 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | 参数名       | 类型    | 必填 | 说明                                  |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | 是   | 要获取的查询参数的名称。               |
-| defaultValue | boolean | 是   | 设置查询参数中未包含指定键时返回的默认值。 |
+| defaultValue | boolean | 是   | 设置查询参数中未包含指定键时返回的值。|
 
 **返回值：**
 
-| 类型    | 说明                                                                   |
-| ------- | ---------------------------------------------------------------------- |
-| boolean | 如果指定的查询参数不存在，则返回默认值；查询参数对应第一个值为“false”或者“0”返回false，否则返回true。 |
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 如果指定的查询参数不存在，则返回defaultValue的值；查询参数对应第一个值为“false”或者“0”返回false，否则返回true。 |
 
 **错误码：**
 
@@ -641,7 +641,7 @@ console.info(`${uriInstance4.getBooleanQueryValue("active", true)}`); // true
 
 clearQuery(): URI
 
-清除URI路径查询部分，并创建一个新的URI，同时保持原有URI对象不变。
+清除URI路径查询部分，并创建一个新的URI返回，同时保持原有URI对象不变。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -664,7 +664,7 @@ console.info(uriInstance.clearQuery().toString()); // https://www.test.com
 
 getLastSegment(): string
 
-获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的不代表段。
+获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的部分不计入段。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -710,7 +710,7 @@ console.info(uriInstance.getSegment().toString()); // path,to,image.jpg
 
 createFromParts(scheme: string, ssp: string, fragment: string): URI
 
-根据提供的协议、方案特定部分以及片段部分创建一个新的URI。
+根据提供的协议、方案以及片段创建一个新的URI。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -720,9 +720,9 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 | 参数名   | 类型   | 必填 | 说明                            |
 | -------- | ------ | ---- | ------------------------------- |
-| scheme   | string | 是   | 此URI协议部分。               |
+| scheme   | string | 是   | 此URI协议部分。该参数需符合URI协议标准。|
 | ssp      | string | 是   | 此URI的方案特定部分。 |
-| fragment | string | 是   | 此URI的片段部分。片段部分是URI中的一个特定部分，即“#”符号后面的部分。             |
+| fragment | string | 是   | 此URI的片段部分，即“#”符号后面的内容。|
 
 **返回值：**
 

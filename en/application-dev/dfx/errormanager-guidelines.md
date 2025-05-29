@@ -23,6 +23,8 @@ Application error management APIs are provided by the [errorManager](../referenc
 | off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void | Unregisters the previously registered callback observer. (**Recommended**) |
 | on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | Registers an observer for the message processing duration of the main thread. A callback will be invoked if a main thread jank event occurs. This API can be called only in the main thread. A new observer will overwrite the previous one. |
 | off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | Unregisters the observer for message processing timeouts of the main thread. |
+| on(type: 'freeze', observer: FreezeObserver): void<sup>18+</sup> | Registers an observer for the main thread freeze event of the application. This API can be called only in the main thread. A new observer will overwrite the previous one. |
+| off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | Unregisters an observer for the main thread freeze event of the application. This API can be called only in the main thread. |
 
 When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
 
@@ -219,6 +221,63 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         console.log("[Demo] EntryAbility onDestroy");
         errorManager.off("globalUnhandledRejectionDetected", errorFunc);
+    }
+
+    onWindowStageCreate(windowStage: window.WindowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] EntryAbility onWindowStageCreate");
+
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+        });
+    }
+
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
+    }
+
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] EntryAbility onForeground");
+    }
+
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] EntryAbility onBackground");
+    }
+};
+```
+
+### Listening for Main Thread Freeze Exceptions
+
+```ts
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
+
+// Define freezeCallback
+function freezeCallback() {
+    console.log("freezecallback");
+}
+
+
+let abilityWant: Want;
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate");
+        errorManager.on("freeze", freezeCallback);
+        abilityWant = want;
+    }
+
+    onDestroy() {
+        console.log("[Demo] EntryAbility onDestroy");
+        errorManager.off("freeze", freezeCallback);
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {

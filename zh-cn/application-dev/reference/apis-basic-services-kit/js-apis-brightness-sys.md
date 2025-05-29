@@ -64,8 +64,8 @@ setValue(value: number, continuous: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | 是   | 亮度的值。范围：0~255；该参数必须为数字类型。 |
-| continuous  | boolean | 是   | 亮度调节是否连续；该参数必须为布尔类型。 |
+| value  | number | 是   | 亮度的值。范围：0~255。 |
+| continuous  | boolean | 是   | 亮度调节是否连续。true表示亮度调节连续，false表示亮度调节不连续，默认为false。 |
 
 **错误码：**
 

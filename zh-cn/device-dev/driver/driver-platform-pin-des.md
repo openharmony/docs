@@ -43,6 +43,7 @@ PIN模块各分层作用：
 - 适配层主要是将钩子函数的功能实例化，实现具体的功能。
 
 **图 1**  PIN统一服务模式
+
 ![PIN统一服务模式](figures/统一服务模式结构图.png)
 
 ### 约束与限制<a name="section5"></a>
@@ -57,7 +58,7 @@ PIN模块仅是一个软件层面的概念，主要工作是管脚资源管理�
 
 ### 接口说明<a name="section8"></a>
 
-PIN模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/pin_if.h。
+PIN模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/pin_if.h)。
 
 **表 1**  PIN驱动API接口功能介绍
 <a name="table1"></a>

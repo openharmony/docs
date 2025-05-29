@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -15,7 +15,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -24,14 +24,16 @@ import {
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
 >- 不建议在执行翻页动画过程中增加或减少子组件，会导致未进行动画的子组件提前进入视窗，引起显示异常。
 
 ## 接口
 
 ArcSwiper(controller?: ArcSwiperController)
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+创建弧形滑块视图容器。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -48,11 +50,11 @@ ArcSwiper(controller?: ArcSwiperController)
 
 ### index
 
-index(value: number)
+index(index: Optional\<number>)
 
 设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -60,15 +62,15 @@ index(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                             |
 | ------ | ------ | ---- | ------------------------------------------------ |
-| value  | number | 是   | 当前在容器中显示的子组件的索引值。<br/>默认值：0 |
+| index  | Optional\<number> | 是   | 当前在容器中显示的子组件的索引值。<br/>默认值：0 |
 
 ### indicator
 
-indicator(value: ArcDotIndicator | boolean)
+indicator(style: Optional\<ArcDotIndicator | boolean>)
 
 设置弧形圆点指示器样式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -76,15 +78,15 @@ indicator(value: ArcDotIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：ArcDotIndicator |
+| style  | Optional\<[ArcDotIndicator](#arcdotindicator)&nbsp;&nbsp;\|&nbsp;boolean> | 是   | 弧形圆点指示器样式。<br/> \- ArcDotIndicator：弧形圆点指示器属性及功能。<br/> \- boolean：是否启用弧形圆点指示器。设置为true启用，false不启用。<br/> 默认值：true<br/> 默认类型：ArcDotIndicator |
 
 ### duration
 
-duration(value: number)
+duration(duration: Optional\<number>)
 
 设置子组件切换的动画时长。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -92,15 +94,15 @@ duration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
 | ------ | ------ | ---- | ----------------------------------------------------- |
-| value  | number | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
+| duration  | Optional\<number> | 是   | 子组件切换的动画时长。<br/>默认值：400<br/>单位：毫秒 |
 
 ### vertical
 
-vertical(value: boolean)
+vertical(isVertical: Optional\<boolean>)
 
 设置是否为纵向滑动。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -108,15 +110,15 @@ vertical(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | 是   | 是否为纵向滑动。<br/>默认值：false |
+| isVertical  | Optional\<boolean> | 是   | 是否为纵向滑动。true为纵向滑动，false为横向滑动。<br/>默认值：false |
 
 ### disableSwipe
 
-disableSwipe(value: boolean)
+disableSwipe(disabled: Optional\<boolean>)
 
 设置禁用组件滑动切换功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -124,15 +126,15 @@ disableSwipe(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 禁用组件滑动切换功能。<br/>默认值：false |
+| disabled  | Optional\<boolean> | 是   | 禁用组件滑动切换功能。设置为true禁用，false不禁用。<br/>默认值：false |
 
 ### digitalCrownSensitivity
 
-disableSwipe(value: CrownSensitivity)
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 设置旋转表冠的灵敏度。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -140,15 +142,15 @@ disableSwipe(value: CrownSensitivity)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity16) | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.LOW |
+| sensitivity  | Optional\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是   | 旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 
 ### effectMode
 
-effectMode(value: EdgeEffect)
+effectMode(edgeEffect: Optional\<EdgeEffect>)
 
 设置边缘滑动效果。 目前支持的滑动效果参见[EdgeEffect](ts-appendix-enums.md#edgeeffect)的枚举说明。调用控制器接口时回弹不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -156,25 +158,7 @@ effectMode(value: EdgeEffect)
 
 | 参数名 | 类型                                          | 必填 | 说明                                         |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
-| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
-
-### customContentTransition
-
-customContentTransition(transition: SwiperContentAnimatedTransition)
-
-自定义ArcSwiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调。开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
-
-在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
-
-**参数：**
-
-| 参数名     | 类型                                                         | 必填 | 说明                              |
-| ---------- | ------------------------------------------------------------ | ---- | --------------------------------- |
-| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition) | 是   | ArcSwiper自定义切换动画相关信息。 |
+| edgeEffect  | Optional\<[EdgeEffect](ts-appendix-enums.md#edgeeffect)> | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
 ### disableTransitionAnimation
 
@@ -182,7 +166,7 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 是否关闭特殊动效效果。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -190,13 +174,13 @@ disableTransitionAnimation(disabled: Optional\<boolean>)
 
 | 参数名   | 类型               | 必填 | 说明                                    |
 | -------- | ------------------ | ---- | --------------------------------------- |
-| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false |
+| disabled | Optional\<boolean> | 是   | 是否关闭特殊动效效果。<br>默认值：false，不关闭特殊动效效果。 |
 
 ## ArcSwiperController
 
 ArcSwiper容器组件的控制器，可以将此对象绑定至ArcSwiper组件，可以通过它控制翻页。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -206,37 +190,37 @@ constructor()
 
 ArcSwiperController的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 ### showNext
 
-showNext(): void
+showNext()
 
 翻至下一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 ### showPrevious
 
-showPrevious(): void
+showPrevious()
 
 翻至上一页。翻页带动效切换过程，时长通过[duration](#duration)指定。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
 ### finishAnimation
 
-finishAnimation(handler?: FinishAnimationHandler): void
+finishAnimation(handler?: FinishAnimationHandler)
 
 停止播放动画。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -250,7 +234,7 @@ finishAnimation(handler?: FinishAnimationHandler): void
 
 提供弧形圆点指示器属性及功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -260,7 +244,7 @@ constructor()
 
 ArcDotIndicator的构造函数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -270,7 +254,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 设置弧形指示器的方向。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -278,7 +262,7 @@ arcDirection(direction: Optional\<ArcDirection>): ArcDotIndicator
 
 | 参数名    | 类型                                     | 必填 | 说明                                                         |
 | --------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| direction | [Optional\<ArcDirection>](#arcdirection) | 否   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向 |
+| direction | [Optional\<ArcDirection>](#arcdirection) | 是   | 设置弧形指示器的方向。<br/>默认值：ArcDirection.SIX_CLOCK_DIRECTION，6点钟方向。 |
 
 **返回值：** 
 
@@ -292,7 +276,7 @@ itemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器中，未选中导航点的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -300,7 +284,7 @@ itemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器中，未选中导航点的颜色。<br/>默认值：'#A9FFFFFF' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器中，未选中导航点的颜色。<br/>默认值：'#A9FFFFFF' |
 
 **返回值：** 
 
@@ -314,7 +298,7 @@ selectedItemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器中，选中导航点的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -322,7 +306,7 @@ selectedItemColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器中，选中导航点的颜色。<br/>默认值：'#FF5EA1FF' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器中，选中导航点的颜色。<br/>默认值：'#FF5EA1FF' |
 
 **返回值：** 
 
@@ -336,7 +320,7 @@ backgroundColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 设置弧形指示器被长按时，弧形指示器的颜色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -344,7 +328,7 @@ backgroundColor(color: Optional\<ResourceColor>): ArcDotIndicator
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 否   | 设置弧形指示器被长按时，弧形指示器的颜色。<br/>默认值：'#FF404040' |
+| color  | [Optional\<ResourceColor>](ts-types.md#resourcecolor) | 是   | 设置弧形指示器被长按时，弧形指示器的颜色。<br/>默认值：'#FF404040' |
 
 **返回值：** 
 
@@ -358,7 +342,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 设置弧形指示器的遮罩渐变色。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -366,7 +350,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| color  | [Optional\<LinearGradient>](ts-basic-components-datapanel.md#lineargradient10) | 否   | 设置弧形指示器的遮罩渐变色。<br/>起始颜色默认值：'#00000000'<br/>结束颜色默认值：'#FF000000' |
+| color  | [Optional\<LinearGradient>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 设置弧形指示器的遮罩渐变色。<br/>起始颜色默认值：'#00000000'<br/>结束颜色默认值：'#FF000000' |
 
 **返回值：** 
 
@@ -378,7 +362,7 @@ maskColor(color: Optional\<LinearGradient>): ArcDotIndicator
 
 弧形方向。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -394,7 +378,7 @@ type FinishAnimationHandler = () => void
 
 停止播放动画时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -404,7 +388,7 @@ type IndexChangedHandler = (index: number) => void
 
 当前显示元素的索引变化时，告知应用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -420,7 +404,7 @@ type AnimationStartHandler = (index: number, targetIndex: number, event: SwiperA
 
 切换动画开始时的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -438,7 +422,7 @@ type AnimationEndHandler = (index: number, event: SwiperAnimationEvent) => void
 
 切换动画结束时的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -455,7 +439,7 @@ type GestureSwipeHandler = (index: number, event: SwiperAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -478,7 +462,7 @@ onChange(handler: Optional\<IndexChangedHandler>)
 
 ArcSwiper组件结合LazyForEach使用时，不能在onChange事件里触发子页面UI的刷新。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -494,7 +478,7 @@ onAnimationStart(handler: Optional\<AnimationStartHandler>)
 
 切换动画开始时触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -512,7 +496,7 @@ onAnimationEnd(handler: Optional\<AnimationEndHandler>)
 
 当ArcSwiper切换动效结束时触发，包括动画过程中手势中断，通过SwiperController调用finishAnimation。参数为动画结束后的index值，多列ArcSwiper时，index为最左侧组件的索引。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -528,7 +512,7 @@ onGestureSwipe(handler: Optional\<GestureSwipeHandler>)
 
 在页面跟手滑动过程中，逐帧触发该回调。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -538,11 +522,29 @@ onGestureSwipe(handler: Optional\<GestureSwipeHandler>)
 | ------- | ------------------------------------------------------ | ---- | -------------------------------------- |
 | handler | [Optional\<GestureSwipeHandler>](#gestureswipehandler) | 是   | 在页面跟手滑动过程中，逐帧触发该回调。 |
 
+### customContentTransition
+
+customContentTransition(transition: Optional\<SwiperContentAnimatedTransition>)
+
+自定义ArcSwiper页面切换动画。在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发回调。开发者可以在回调中设置透明度、缩放比例、位移等属性来自定义切换动画。
+
+在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                              |
+| ---------- | ------------------------------------------------------------ | ---- | --------------------------------- |
+| transition | Optional\<[SwiperContentAnimatedTransition](#swipercontentanimatedtransition)> | 是   | ArcSwiper自定义切换动画相关信息。 |
+
 ## SwiperContentAnimatedTransition
 
 ArcSwiper自定义切换动画相关信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -555,7 +557,7 @@ ArcSwiper自定义切换动画相关信息。
 
 ArcSwiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知ArcSwiper组件页面自定义动画已结束。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -585,7 +587,7 @@ finishTransition(): void
 
 通知ArcSwiper组件，此页面的自定义动画已结束。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -596,26 +598,27 @@ finishTransition(): void
 ```ts
 // xxx.ets
 import {
+  CircleShape,
   ArcSwiper,
   ArcSwiperAttribute,
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 class MyDataSource implements IDataSource {
-  private list: Color[] = []
+  private list: Color[] = [];
 
   constructor(list: Color[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): Color {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -628,19 +631,20 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TestNewInterface {
-  @State itemSimpleColor: Color | number | string = ''
-  @State selectedItemSimpleColor: Color | number | string = ''
-  private wearableSwiperController: ArcSwiperController = new ArcSwiperController()
-  private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator()
-  private data: MyDataSource = new MyDataSource([])
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent]
+  @State itemSimpleColor: Color | number | string = '';
+  @State selectedItemSimpleColor: Color | number | string = '';
+  private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
+  private arcDotIndicator: ArcDotIndicator = new ArcDotIndicator();
+  private data: MyDataSource = new MyDataSource([]);
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.White, Color.Gray, Color.Orange, Color.Transparent];
+  innerSelectedIndex: number = 0;
 
   aboutToAppear(): void {
-    let list: Color[] = []
+    let list: Color[] = [];
     for (let i = 1; i <= 6; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(this.backgroundColors)
+    this.data = new MyDataSource(this.backgroundColors);
   }
 
   build() {
@@ -656,7 +660,7 @@ struct TestNewInterface {
               .fontSize(30)
           })
         }
-        .clip(new Circle({ width: 233, height: 233 }))
+        .clipShape(new CircleShape({ width: 233, height: 233 }))
         .effectMode(EdgeEffect.None)
         .backgroundColor(Color.Transparent)
         .index(0)
@@ -670,18 +674,36 @@ struct TestNewInterface {
         .disableSwipe(false)
         .digitalCrownSensitivity(CrownSensitivity.MEDIUM)
         .onChange((index: number) => {
-          console.info("onChange:" + index.toString())
+          console.info("onChange:" + index.toString());
         })
         .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-          console.info("index: " + index)
-          console.info("targetIndex: " + targetIndex)
-          console.info("current offset: " + extraInfo.currentOffset)
-          console.info("target offset: " + extraInfo.targetOffset)
-          console.info("velocity: " + extraInfo.velocity)
+          this.innerSelectedIndex = targetIndex;
+          console.info("index: " + index);
+          console.info("targetIndex: " + targetIndex);
+          console.info("current offset: " + extraInfo.currentOffset);
+          console.info("target offset: " + extraInfo.targetOffset);
+          console.info("velocity: " + extraInfo.velocity);
+        })
+        .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+          if (current) {
+            let target = current.getEventTargetInfo();
+            if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              let swiperTarget = target as ScrollableTargetInfo
+              if (swiperTarget instanceof ScrollableTargetInfo &&
+                (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTarget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
+                let panEvent = event as PanGestureEvent;
+                if (panEvent && panEvent.offsetX > 0 && (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
+                  return GestureJudgeResult.REJECT;
+                }
+              }
+            }
+          }
+          return GestureJudgeResult.CONTINUE;
         })
         .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-          console.info("index: " + index)
-          console.info("current offset: " + extraInfo.currentOffset)
+          console.info("index: " + index);
+          console.info("current offset: " + extraInfo.currentOffset);
         })
         .disableTransitionAnimation(false)
       }.height('100%')

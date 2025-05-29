@@ -214,9 +214,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -307,9 +309,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -404,9 +408,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700058 | Failed to install the HAP because the device has been controlled. |
 | 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 | 17700076 | Failed to install the HAP or HSP because the app distribution type is not allowed. |
+| 17700077 | Failed to install the HAP and restore to preinstalled bundle. |
 
 **Example**
 
@@ -1470,7 +1476,7 @@ Destroys an application clone. This API uses a promise to return the result.
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | Yes  | Bundle name of the application for which a clone is to be destroyed.                                        |
 | appIndex     | number                        | Yes  | Index of the clone to destroy.                                        |
-| userId       | number                        | No  | ID of the user to whom the clone to destroy belongs. The default value is the user ID of the caller.                |
+| userId       | number                        | No  | ID of the user for whom the clone is to be destroyed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.                |
 
 **Return value**
 
@@ -1608,7 +1614,7 @@ Installs a bundle. This API uses a promise to return the result.
 | Name       | Type                         | Mandatory| Description                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | Yes  | Bundle name of the application to install.                                          |
-| userId       | number                        | No  | ID of the user for whom the application is to be installed. The value must be greater than 0. The default value is the user ID of the caller.   |
+| userId       | number                        | No  | ID of the user for whom the bundle is to be installed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The value must be greater than 0. The default value is the user ID of the caller.   |
 
 **Return value**
 
@@ -1655,13 +1661,158 @@ try {
 }
 ```
 
+## BundleInstaller.installPlugin<sup>19+</sup>
+
+installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginParam?: PluginParam): Promise\<void\> 
+
+Installs a plugin for an application. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | Yes  | Bundle name of the application for which the plugin is to be installed.                                          |
+| pluginFilePaths  | Array\<string\>                  | Yes  | Paths where the plugin package files are stored. If multiple file paths or a directory is provided, ensure that these files are HSPs of the same plugin program and their signatures are consistent. |
+| pluginParam  | [PluginParam](#pluginparam19)      | No  | Parameters required for installing the plugin. For details about the default value, see [PluginParam](#pluginparam19).|
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+| 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
+| 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
+| 17700012 | Failed to install the plugin because the HSP path is invalid or the HSP is too large. |
+| 17700015 | Failed to install the plugin because they have different configuration information. |
+| 17700016 | Failed to install the plugin because of insufficient system disk space. |
+| 17700017 | Failed to install the plugin since the version of the plugin to install is too early. |
+| 17700048 | Failed to install the plugin because the code signature verification is failed. |
+| 17700052 | Failed to install the plugin because debug bundle cannot be installed under non-developer mode. |
+| 17700073 | Failed to install the plugin because a plugin with the same bundle name but different signature information exists on the device. |
+| 17700087 | Failed to install the plugin because the current device does not support plugin. |
+| 17700088 | Failed to install the plugin because the host application lacks ohos.permission.kernel.SUPPORT_PLUGIN. |
+| 17700089 | Failed to install the plugin because the plugin id fails to be parsed. |
+| 17700090 | Failed to install the plugin because the plugin id fails to be verified. |
+| 17700091 | Failed to install the plugin because the plugin name is same as host bundle name. |
+
+**Example**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginFilePaths = ['/data/bms_app_install/test.hsp'];
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPlugin(hostBundleName, pluginFilePaths, pluginParam)
+            .then(() => {
+                console.info('installPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('installPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallPlugin<sup>19+</sup>
+
+uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: PluginParam): Promise\<void\>
+
+Uninstalls a plugin for an application. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | Yes  | Bundle name of the application for which the plugin is to be uninstalled.                      |
+| pluginBundleName  | string                  | Yes  |   Bundle name of the plugin.|
+| pluginParam  | [PluginParam](#pluginparam19)      | No  | Parameters required for uninstalling the plugin. For details about the default value, see [PluginParam](#pluginparam19).|
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+| 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
+
+**Example**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginBundleName = 'com.ohos.pluginDemo';
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallPlugin(hostBundleName, pluginBundleName, pluginParam)
+            .then(() => {
+                console.info('uninstallPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('uninstallPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 Defines the hash parameters for bundle installation and uninstall.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1672,30 +1823,30 @@ Defines the hash parameters for bundle installation and uninstall.
 
 Defines the parameters that need to be specified for bundle installation, uninstall, or recovering.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
 | userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
-| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
+| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files. By default, no value is passed.|
-| specifiedDistributionType<sup>10+</sup> | string | No|Distribution type specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
+| specifiedDistributionType<sup>10+</sup> | string | No|[Distribution type](../../security/app-provision-structure.md) specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
 | additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | No| Information about the code signature file. The default value is null.        |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | No| Parameters of the Profile-guided Optimization (PGO) configuration file. The default value is null.        |
-| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.enterpriseForAllUser**: If the value is **true**, the enterprise application is installed for all users.<br> - **ohos.bms.param.verifyUninstallForced**: If the value is **true**, the preinstalled application is forcibly uninstalled.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.<br> If both **("ohos.bms.param.verifyUninstallRule," "true")** and **("ohos.bms.param.verifyUninstallForced," "true")** are configured, the later rule prevails.|
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | No| Extended parameters, represented as an array of the Parameters type. The default value is empty. The options of **Parameters.key** are as follows:<br> - **ohos.bms.param.renameInstall**: If the value is **true**, the installation package is moved from the application sandbox to the installation directory using a shared directory. Otherwise, it is copied from the application sandbox to the installation directory using a regular directory.<br> - **ohos.bms.param.enterpriseForAllUser**: If the value is **true**, the enterprise application is installed for all users.<br> - **ohos.bms.param.verifyUninstallRule**: If the value is **true**, an uninstallation handling rule is set to block application uninstallation.|
 ## UninstallParam<sup>10+</sup>
 
 Defines the parameters required for the uninstall of a shared bundle.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1708,9 +1859,9 @@ Defines the parameters required for the uninstall of a shared bundle.
 
 Defines the information about the code signature file.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1721,9 +1872,9 @@ Defines the information about the code signature file.
 
 Defines the parameters of the PGO configuration file.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1734,9 +1885,9 @@ Defines the parameters of the PGO configuration file.
 
 Describes the extended parameter information.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1753,18 +1904,31 @@ Describes the parameters used for creating an application clone.
 
 | Name       | Type  | Mandatory| Description                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | ID of the user for whom the clone is created. The default value is the user ID of the caller.            |
+| userId      | number | No  | ID of the user for whom the clone is to be created. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
 | appIndex    | number | No  | Index of the clone. The default value is the currently available minimum index.          |
 
 ## DestroyAppCloneParam<sup>15+</sup>
 
 Describes the parameters used for destroying an application clone.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API.
+**System API**: This is a system API.
 
 | Name       | Type  | Mandatory| Description                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | No  | ID of the user for whom the clone is destroyed. The default value is the user ID of the caller.            |
+| userId      | number | No  | ID of the user for whom the clone is to be destroyed. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
 | parameters  | Array<[Parameters](#parameters15)> | No  | Extended parameters for destroying the clone. The default value is null.           |
+
+## PluginParam<sup>19+</sup>
+
+Defines the parameters for installing or uninstalling a plugin.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**System API**: This is a system API.
+
+| Name       | Type  | Mandatory| Description                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | No  | ID of the user for whom the plugin is to be installed or uninstalled. You can obtain the user ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller.            |
+| parameters  | Array<[Parameters](#parameters15)> | No  | Extension parameters for installing or uninstalling the plugin. The default value is empty.           |

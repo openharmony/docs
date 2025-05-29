@@ -14,7 +14,7 @@ The application sandbox directory specifies the data range visible to an applica
 
 The system has process domain and data domain labels set based on the Ability Privilege Level (APL) of an application, and uses the access control mechanism to restrict the data accessible to each application. This minimizes the risks of application data leakage.
 
-Applications of different APLs can apply for different levels of permissions, and different system resources (such as the Contacts) or system capabilities (such as the capability for accessing a camera or a microphone) are protected by different application permissions. Strict hierarchical permission protection effectively defends against malicious attacks and ensures system security and reliability.
+Applications of different APLs are assigned permissions at different levels. The strict hierarchical permission management provides robust defense against malicious attacks and ensures system security and reliability. In addition to system resources (such as Contacts) and system capabilities (such as Camera and Microphone), some kernel resources (such as executable anonymous memory) are also protected by permissions. These permissions are called KernelPermissions.
 
 For more information, see [Application Permission Management Overview](app-permission-mgmt-overview.md).
 
@@ -30,4 +30,4 @@ Specifically, the secure access mechanism is implemented by system Pickers and s
 
 - [Security components](security-component-overview.md)
 
-  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the **LocationButton** component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
+  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, if your application needs to access pasteboard data, you can use **PasteButton** in the UI. After the user taps the **PasteButton** button, the application can access the pasteboard data without displaying any permission request dialog box. This ensures security while minimizing the interference of pop-ups to users.

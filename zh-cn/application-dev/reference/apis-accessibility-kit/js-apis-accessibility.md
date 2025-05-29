@@ -49,7 +49,7 @@ type AbilityState = 'enable' | 'disable' | 'install'
 
 ### 属性
 
-| 名称                             | 类型                                       | 可读   | 可写   | 说明               |
+| 名称                             | 类型                                       | 只读   | 可选   | 说明               |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
 | id                             | string                                   | 是    | 否    | ability&nbsp;id。 |
 | name                           | string                                   | 是    | 否    | ability 名。       |
@@ -157,14 +157,14 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称              | 类型                                       | 可读   | 可写   | 说明          |
+| 名称              | 类型                                    | 只读   | 可选   | 说明          |
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
-| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 是    | 否    | 描述字幕字体。     |
-| fontScale       | number                                   | 是    | 否    | 描述字幕字体缩放系数，单位%，参数范围1~200。 |
-| fontColor       | number \| string                         | 是    | 否    | 描述字幕字体颜色，例如red对应#FF0000。   |
-| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 是    | 否    | 描述字幕字体边缘。   |
-| backgroundColor | number \| string                         | 是    | 否    | 描述字幕背景颜色，例如red对应#FF0000。   |
-| windowColor     | number \| string                         | 是    | 否    | 描述字幕窗口颜色，例如red对应#FF0000。   |
+| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 否    | 否    | 描述字幕字体。     |
+| fontScale       | number                                   | 否    | 否    | 描述字幕字体缩放系数，单位%，参数范围1~200。 |
+| fontColor       | number \| string                         | 否    | 否    | 描述字幕字体颜色，例如red对应#FF0000。   |
+| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 否    | 否    | 描述字幕字体边缘。   |
+| backgroundColor | number \| string                         | 否    | 否    | 描述字幕背景颜色，例如red对应#FF0000。   |
+| windowColor     | number \| string                         | 否    | 否    | 描述字幕窗口颜色，例如red对应#FF0000。   |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -174,12 +174,10 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 
 ### 属性
 
-| 名称      | 类型                               | 可读   | 可写   | 说明          |
+| 名称      | 类型                               | 只读   | 可选   | 说明          |
 | ------- | -------------------------------- | ---- | ---- | ----------- |
-| enabled | boolean                          | 是    | 否    | 表示是否启用字幕配置。 |
-| style   | [CaptionsStyle](#captionsstyle8) | 是    | 否    | 表示字幕风格。     |
-
-boolean返回值的含义：True表示开启，False表示关闭。
+| enabled | boolean                          | 否    | 否    | 表示是否启用字幕配置。true表示字幕配置开启，false表示字幕配置关闭。 |
+| style   | [CaptionsStyle](#captionsstyle8) | 否    | 否    | 表示字幕风格。     |
 
 ### on('enableChange')<sup>(deprecated)</sup>
 
@@ -189,7 +187,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -227,7 +225,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -266,7 +264,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -305,7 +303,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -344,26 +342,26 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 
 ### 属性
 
-| 名称               | 类型                                    | 必填  | 说明                    |
-| ---------------- | ------------------------------------- |-----|-----------------------|
-| type             | [EventType](#eventtype)               | 是   | 无障碍事件类型；不可缺省。         |
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 窗口变化类型。               |
-| bundleName       | string                                | 是   | 目标应用名；不可缺省。           |
-| componentType    | string                                | 否   | 事件源组件类型，如按钮、图表。       |
-| pageId           | number                                | 否   | 事件源的页面 ID。            |
-| description      | string                                | 否   | 事件描述。        |
-| triggerAction    | [Action](#action)                     | 是   | 触发事件的 Action；不可缺省。    |
-| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 文本移动粒度。      |
-| contents         | Array&lt;string&gt;                   | 否   | 内容列表。                 |
-| lastContent      | string                                | 否   | 最新内容。                 |
-| beginIndex       | number                                | 否   | 画面显示条目的开始序号。 |
-| currentIndex     | number                                | 否   | 当前条目序号。      |
-| endIndex         | number                                | 否   | 画面显示条目的结束序号。 |
-| itemCount        | number                                | 否   | 条目总数。        |
-| elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
-| textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
-| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
-| customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
+| 名称             | 类型                                   | 只读 | 可选 | 说明            |
+| ---------------- | ------------------------------------- |----- |------|-----------------------|
+| type             | [EventType](#eventtype)               | 是   | 否   | 无障碍事件类型，不可缺省。         |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | 否   | 是   | 窗口变化类型。               |
+| bundleName       | string                                | 是   | 否   | 目标应用名；不可缺省。           |
+| componentType    | string                                | 否   | 是   | 事件源组件类型，如按钮、图表。       |
+| pageId           | number                                | 否   | 是   | 事件源的页面ID。默认值为0。            |
+| description      | string                                | 否   | 是   | 事件描述。        |
+| triggerAction    | [Action](#action)                     | 是   | 否   | 触发事件的Action，不可缺省。    |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | 否   | 是   | 文本移动粒度。      |
+| contents         | Array&lt;string&gt;                   | 否   | 是   | 内容列表。                 |
+| lastContent      | string                                | 否   | 是   | 最新内容。                 |
+| beginIndex       | number                                | 否   | 是   | 画面显示条目的开始序号。默认值为0。 |
+| currentIndex     | number                                | 否   | 是   | 当前条目序号。默认值为0。      |
+| endIndex         | number                                | 否   | 是   | 画面显示条目的结束序号。默认值为0。 |
+| itemCount        | number                                | 否   | 是   | 条目总数。默认值为0。        |
+| elementId<sup>12+</sup>        | number                  | 否   | 是   | 组件elementId。默认值为0。        |
+| textAnnouncedForAccessibility<sup>12+</sup>     | string     | 否   | 是   | 主动播报的内容。        |
+| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | 否   | 是   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
+| customId<sup>12+</sup>        | string                                | 否   | 是   | 主动聚焦的组件ID。        |
 
 ### constructor
 
@@ -442,9 +440,9 @@ type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 | 'scroll'                  | 表示滚动视图的事件。    |
 | 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
 | 'announceForAccessibility'         | 表示主动播报的事件。 |
-| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。<br>此事件从API version 16开始支持。 |
-| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。<br>此事件从API version 16开始支持。 |
-| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。<br>此事件从API version 16开始支持。 |
+| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。<br>此事件从API version 18开始支持。 |
+| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。<br>此事件从API version 18开始支持。 |
+| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。<br>此事件从API version 18开始支持。 |
 
 ## TextMoveUnit
 
@@ -694,7 +692,7 @@ getCaptionsManager(): CaptionsManager
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关功能。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -778,7 +776,7 @@ accessibility.on('touchGuideStateChange', (data: boolean) => {
 });
 ```
 
-## accessibility.on('screenReaderStateChange')<sup>16+</sup>
+## accessibility.on('screenReaderStateChange')<sup>18+</sup>
 
 on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
@@ -877,7 +875,7 @@ accessibility.off('touchGuideStateChange', (data: boolean) => {
 });
 ```
 
-## accessibility.off('screenReaderStateChange')<sup>16+</sup>
+## accessibility.off('screenReaderStateChange')<sup>18+</sup>
 
 off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
 
@@ -914,7 +912,7 @@ accessibility.off('screenReaderStateChange', (data: boolean) => {
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
-判断是否启用了辅助功能, 使用Promise异步回调。
+判断是否启用了辅助功能，使用Promise异步回调。
 
 > **说明：**
 >
@@ -992,7 +990,7 @@ isOpenAccessibilitySync(): boolean
 
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 启用辅助功能返回true，否则返回false。 |
+| boolean | 表示是否启用了辅助功能。true表示启用了辅助功能，false表示未启用辅助功能。 |
 
 **示例：**
 
@@ -1007,7 +1005,7 @@ let status: boolean = accessibility.isOpenAccessibilitySync();
 
 isOpenTouchGuide(): Promise&lt;boolean&gt;
 
-判断触摸浏览模式是否开启, 使用Promise异步回调。
+判断触摸浏览模式是否开启，使用Promise异步回调。
 
 > **说明：**
 >
@@ -1040,7 +1038,7 @@ accessibility.isOpenTouchGuide().then((data: boolean) => {
 
 isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断触摸浏览模式是否开启, 使用callback异步回调。
+判断触摸浏览模式是否开启，使用callback异步回调。
 
 > **说明：**
 >
@@ -1085,7 +1083,7 @@ isOpenTouchGuideSync(): boolean
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| boolean | 启用辅助功能返回true，否则返回false。 |
+| boolean | 表示是否开启了触摸浏览模式。true表示开启了触摸浏览，false表示未开启触摸浏览。|
 
 **示例：**
 
@@ -1095,13 +1093,13 @@ import { accessibility } from '@kit.AccessibilityKit';
 let status: boolean = accessibility.isOpenTouchGuideSync();
 ```
 
-## accessibility.isScreenReaderOpenSync<sup>16+</sup>
+## accessibility.isScreenReaderOpenSync<sup>18+</sup>
 
 isScreenReaderOpenSync(): boolean
 
 是否开启了屏幕朗读模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -1109,7 +1107,7 @@ isScreenReaderOpenSync(): boolean
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| boolean | 启用屏幕朗读返回true，否则返回false。 |
+| boolean | 表示是否开启了屏幕朗读。true表示开启了屏幕朗读，false表示未开启屏幕朗读。 |
 
 **示例：**
 
@@ -1123,7 +1121,7 @@ let status: boolean = accessibility.isScreenReaderOpenSync();
 
 sendEvent(event: EventInfo): Promise&lt;void&gt;
 
-发送无障碍事件, 使用Promise异步回调。
+发送无障碍事件，使用Promise异步回调。
 
 > **说明：**
 >
@@ -1167,7 +1165,7 @@ accessibility.sendEvent(eventInfo).then(() => {
 
 sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-发送无障碍事件, 使用callback异步回调。
+发送无障碍事件，使用callback异步回调。
 
 > **说明：**
 >
@@ -1208,7 +1206,7 @@ accessibility.sendEvent(eventInfo, (err: BusinessError) => {
 
 sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
-发送无障碍事件, 使用Promise异步回调。
+发送无障碍事件，使用Promise异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1255,7 +1253,7 @@ accessibility.sendAccessibilityEvent(eventInfo).then(() => {
 
 sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-发送无障碍事件, 使用callback异步回调。
+发送无障碍事件，使用callback异步回调。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1330,7 +1328,7 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 });
 ```
 
-**主动播报支持Resource示例<sup>16+</sup>：**
+**主动播报支持Resource示例<sup>18+</sup>：**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';

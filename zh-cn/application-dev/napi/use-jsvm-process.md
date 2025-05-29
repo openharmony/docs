@@ -14,30 +14,7 @@
 
 ## Native侧方法的实现
 
-- 设置模块注册信息
-
-  具体见[设置模块注册信息](use-napi-process.md#native侧方法的实现)
-
-- 模块初始化
-
-  实现ArkTS接口与C++接口的绑定和映射。
-
-  ```cpp
-  // entry/src/main/cpp/hello.cpp
-  EXTERN_C_START
-  // 模块初始化
-  static napi_value Init(napi_env env, napi_value exports)
-  {
-      // ArkTS接口与C++接口的绑定和映射
-      napi_property_descriptor desc[] = {
-          {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
-      };
-      // 在exports对象上挂载RunJsVm的Native方法
-      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      return exports;
-  }
-  EXTERN_C_END
-  ```     
+参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md#native侧方法的实现)，以下代码提供了“使用JSVM-API实现JS与C/C++语言交互开发流程”Native侧方法实现的一个demo。
 
 - 在index.d.ts文件中，提供JS侧的接口方法。
 
@@ -45,6 +22,7 @@
   // entry/src/main/cpp/types/libentry/index.d.ts
   export const runTest: () => void;
   ```
+  <!-- @[export_native](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - 在oh-package.json5文件中将index.d.ts与cpp文件关联起来。
 
@@ -80,15 +58,16 @@
 - 实现Native侧的runTest接口。具体代码如下：
 
   ```cpp
+  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
   #include "hilog/log.h"
   #include "ark_runtime/jsvm.h"
-
+  
   #define LOG_DOMAIN 0x3200
   #define LOG_TAG "APP"
-
+  
   static int g_aa = 0;
-
+  
   #define CHECK_RET(theCall)                                                                                             \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -100,7 +79,7 @@
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   #define CHECK(theCall)                                                                                                 \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -110,7 +89,7 @@
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   // 用于调用theCall并检查其返回值是否为JSVM_OK。
   // 如果不是，则调用OH_JSVM_GetLastErrorInfo处理错误并返回retVal。
   #define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
@@ -124,10 +103,10 @@
               return retVal;                                                                                             \
           }                                                                                                              \
       } while (0)
-
+  
   // JSVM_CALL_BASE的简化版本，返回nullptr
   #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
-
+  
   // OH_JSVM_StrictEquals的样例方法
   static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info) {
       // 接受两个入参
@@ -159,7 +138,7 @@
   const char *srcCallNative = R"JS(    let data = '123';
       let value = 123;
       isStrictEquals(data,value);)JS";
-
+  
   static int32_t TestJSVM() {
       JSVM_InitOptions initOptions = {0};
       JSVM_VM vm;
@@ -179,14 +158,14 @@
       CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
       CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
       CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
-
+  
       // 通过script调用测试函数
       JSVM_Script script;
       JSVM_Value jsSrc;
       CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
       CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
       CHECK_RET(OH_JSVM_RunScript(env, script, &result));
-
+  
       // 销毁JSVM环境
       CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
       CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
@@ -195,41 +174,46 @@
       CHECK(OH_JSVM_DestroyVM(vm));
       return 0;
   }
-
+  
   static napi_value RunTest(napi_env env, napi_callback_info info)
   {
       TestJSVM();
       return nullptr;
   }
-
-  // 模块注册信息，供arkts侧调用
+  
+  // 模块初始化
   EXTERN_C_START
   static napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}};
-  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-  return exports;
+      // 实现ArkTS接口与C++接口的绑定和映射  
+      napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}
+      };
+      // 在exports对象上挂载RunJsVm的Native方法
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
   }
   EXTERN_C_END
   
   static napi_module demoModule = {
-  .nm_version = 1,
-  .nm_flags = 0,
-  .nm_filename = nullptr,
-  .nm_register_func = Init,
-  .nm_modname = "entry",
-  .nm_priv = ((void *)0),
-  .reserved = {0},
+      .nm_version = 1,
+      .nm_flags = 0,
+      .nm_filename = nullptr,
+      .nm_register_func = Init,
+      .nm_modname = "entry",
+      .nm_priv = ((void *)0),
+      .reserved = {0},
   };
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
+  <!-- @[oh_jsvm_process](K3278code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/cpp/hello.cpp) -->
   
 ## ArkTS侧调用C/C++方法实现
 
 ```ts
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 // 通过import的方式，引入Native能力。
-import napitest from 'libentry.so'
+import napitest from 'libentry.so';
 
 @Entry
 @Component
@@ -253,6 +237,7 @@ struct Index {
   }
 }
 ```
+<!-- @[call_native_cpp](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmProcess/entry/src/main/ets/pages/Index.ets) -->
 
 预期输出结果
 ```ts

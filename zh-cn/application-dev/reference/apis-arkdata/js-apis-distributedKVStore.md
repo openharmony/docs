@@ -1,16 +1,16 @@
 # @ohos.data.distributedKVStore (分布式键值数据库)
 
-分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
+分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、端端同步等操作。
 
-该模块提供以下分布式键值数据库相关的常用功能：
+该模块提供以下常用功能：
 
 - [KVManager](#kvmanager)：分布式键值数据库管理实例，用于获取数据库的相关信息。
 - [KVStoreResultSet](#kvstoreresultset)：提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。
 - [Query](#query)：使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
-- [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和同步数据的方法。
-- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和同步数据的方法。
+- [SingleKVStore](#singlekvstore)：单版本分布式键值数据库，不对数据所属设备进行区分，提供查询数据和端端同步数据的方法。
+- [DeviceKVStore](#devicekvstore)：设备协同数据库，继承自[SingleKVStore](#singlekvstore)，以设备维度对数据进行区分，提供查询数据和端端同步数据的方法。
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -52,14 +52,14 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称       | 说明                   |
-| ---------- | ---------------------- |
-| STRING     | 表示值类型为字符串。   |
-| INTEGER    | 表示值类型为整数。     |
-| FLOAT      | 表示值类型为浮点数。   |
-| BYTE_ARRAY | 表示值类型为字节数组。 |
-| BOOLEAN    | 表示值类型为布尔值。   |
-| DOUBLE     | 表示值类型为双浮点数。 |
+| 名称       | 值 | 说明                 |
+| ---------- | - | -------------------- |
+| STRING     | 0 | 表示值类型为字符串。   |
+| INTEGER    | 1 | 表示值类型为整数。     |
+| FLOAT      | 2 | 表示值类型为浮点数。   |
+| BYTE_ARRAY | 3 | 表示值类型为字节数组。 |
+| BOOLEAN    | 4 | 表示值类型为布尔值。   |
+| DOUBLE     | 5 | 表示值类型为双浮点数。 |
 
 ## Value
 
@@ -102,11 +102,11 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称      | 说明                                                 |
-| --------- | ---------------------------------------------------- |
-| PULL_ONLY | 表示只能从远端拉取数据到本端。                       |
-| PUSH_ONLY | 表示只能从本端推送数据到远端。                       |
-| PUSH_PULL | 表示从本端推送数据到远端，然后从远端拉取数据到本端。 |
+| 名称      | 值 | 说明                                           |
+| --------- | - | ---------------------------------------------- |
+| PULL_ONLY | 0 | 表示只能从远端拉取数据到本端。                    |
+| PUSH_ONLY | 1 | 表示只能从本端推送数据到远端。                    |
+| PUSH_PULL | 2 | 表示从本端推送数据到远端，然后从远端拉取数据到本端。|
 
 ## SubscribeType
 
@@ -114,39 +114,39 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称                  | 说明                         |
-| --------------------- | ---------------------------- |
-| SUBSCRIBE_TYPE_LOCAL  | 表示订阅本地数据变更。       |
-| SUBSCRIBE_TYPE_REMOTE | 表示订阅远端数据变更。       |
-| SUBSCRIBE_TYPE_ALL    | 表示订阅远端和本地数据变更。 |
+| 名称                  | 值 | 说明                         |
+| --------------------- | - | ---------------------------- |
+| SUBSCRIBE_TYPE_LOCAL  | 0 | 表示订阅本地数据变更。         |
+| SUBSCRIBE_TYPE_REMOTE | 1 | 表示订阅远端数据变更。         |
+| SUBSCRIBE_TYPE_ALL    | 2 | 表示订阅远端和本地数据变更。   |
 
 ## KVStoreType
 
 分布式键值数据库类型枚举。
 
-| 名称                 | 说明                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| 名称                 | 值 | 说明                                                         |
+| -------------------- | - | ------------------------------------------------------------ |
+| DEVICE_COLLABORATION | 0 | 表示多设备协同数据库。<br>**数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION       | 1 | 表示单版本数据库。<br>**数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
 数据库的安全级别枚举。
 > **说明**：
 >
-> 在单设备使用场景下，KV数据库支持修改securityLevel开库参数进行安全等级升级。数据库安全等级升级操作需要注意以下几点：
-> * 该操作不支持需要进行跨设备同步的数据库，不同安全等级的数据库之间不能进行数据同步，需要跨设备同步的数据库如果要升级安全等级，建议重新创建更高安全等级的数据库。
-> * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
-> * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
+> 在单设备使用场景下，KV数据库支持修改securityLevel参数进行安全等级升级。升级操作需要注意以下几点：
+> * 该操作不支持跨设备同步的数据库。不同安全等级的数据库之间不能进行数据同步。若需升级数据库的安全等级，建议重新创建更高安全等级的数据库。
+> * 关闭当前数据库后，修改securityLevel参数以重新设置数据库的安全等级，然后重新打开数据库。
+> * 该操作仅支持升级，例如从S2到S3，不支持降级，例如从S3到S2。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称        | 说明                                                         |
-| -------:   | ------------------------------------------------------------ |
-| S1         | 表示数据库的安全级别为低级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致有限的不利影响。<br>例如，性别、国籍，用户申请记录等。 |
-| S2         | 表示数据库的安全级别为中级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严重的不利影响。<br>例如，个人详细通信地址，姓名昵称等。 |
-| S3         | 表示数据库的安全级别为高级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严峻的不利影响。<br>例如，个人实时精确定位信息、运动轨迹等。 |
-| S4         | 表示数据库的安全级别为关键级别，业界法律法规中定义的特殊数据类型，涉及个人的最私密领域的信息或者一旦泄露、篡改、破坏、销毁可能会给个人或组织造成重大的不利影响数据。<br>例如，政治观点、宗教、和哲学信仰、工会成员资格、基因数据、生物信息、健康和性生活状况、性取向等或设备认证鉴权、个人的信用卡等财务信息。 |
+| 名称        | 值 | 说明                                                         |
+| -------:   | - | ------------------------------------------------------------ |
+| S1         | 2 | 表示数据库的安全级别为低级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致有限的不利影响。<br>例如，性别、国籍，用户申请记录等。 |
+| S2         | 3 | 表示数据库的安全级别为中级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严重的不利影响。<br>例如，个人详细通信地址，姓名昵称等。 |
+| S3         | 5 | 表示数据库的安全级别为高级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严峻的不利影响。<br>例如，个人实时精确定位信息、运动轨迹等。 |
+| S4         | 6 | 表示数据库的安全级别为关键级别，业界法律法规中定义的特殊数据类型，涉及个人的最私密领域的信息或者一旦泄露、篡改、破坏、销毁可能会给个人或组织造成重大的不利影响数据。<br>例如，政治观点、宗教、和哲学信仰、工会成员资格、基因数据、生物信息、健康和性生活状况、性取向等或设备认证鉴权、个人的信用卡等财务信息。 |
 
 ## Options
 
@@ -175,9 +175,9 @@ import { distributedKVStore } from '@kit.ArkData';
 | mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
 | skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0, 4 * 1024 * 1024 - 2]字节。|
 
-STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
+STRICT：STRICT模式要求用户插入的值必须与Schema定义严格匹配，字段数量和格式都不能有差异。如果不匹配，数据库将在插入数据时返回错误。
 
-COMPATIBLE：选择为COMPATIBLE模式则数据库检查Value格式时比较宽松，只需要Value具有Schema描述的特征即可，允许有多出的字段，例如：定义了id、name字段可以插入id、name、age等多个字段。
+COMPATIBLE：选择为COMPATIBLE模式时，数据库在检查Value格式时较为宽松，只要Value具有Schema描述的特征即可，允许存在额外字段。例如，定义了id、name字段时，可以插入id、name、age等多个字段。
 
 ### constructor
 
@@ -217,7 +217,7 @@ schema.skip = 0;
 | 名称     | 类型    | 可读 | 可写 | 说明                           |
 | -------- | ------- | ---- | ---- | ------------------------------ |
 | nullable | boolean | 是   | 是   | 表示数据库字段是否可以为空。true表示此节点数据可以为空，false表示此节点数据不能为空。|
-| default  | string  | 是   | 是   | 表示Fieldnode的默认值。        |
+| default  | string  | 是   | 是   | 表示FieldNode的默认值。        |
 | type     | number  | 是   | 是   | 表示指定节点对应的数据类型，取值为[ValueType](#valuetype)对应的枚举值。暂不支持BYTE_ARRAY，使用此类型会导致[getKVStore](#getkvstore)失败。|
 
 ### constructor
@@ -232,7 +232,7 @@ constructor(name: string)
 
 | 参数名 | 类型 | 必填 | 说明            |
 | ------ | -------- | ---- | --------------- |
-| name   | string   | 是   | FieldNode的值， 不能为空。 |
+| name   | string   | 是   | FieldNode的值，不能为空。 |
 
 **错误码：**
 
@@ -332,11 +332,11 @@ let kvManager: distributedKVStore.KVManager;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.info("MyAbilityStage onCreate")
-    let context = this.context
+    console.info("MyAbilityStage onCreate");
+    let context = this.context;
     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
-      bundleName: 'com.example.datamanagertest',
+      bundleName: 'com.example.datamanagertest'
     }
     try {
       kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -362,10 +362,10 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
-  bundleName: 'com.example.datamanagertest',
+  bundleName: 'com.example.datamanagertest'
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -393,7 +393,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+> 在获取已有的分布式键值数据库时，如果数据库文件无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。建议对重要且无法重新生成的数据使用备份恢复功能，以防止数据丢失。有关备份恢复的使用方法，请参阅[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -412,9 +412,8 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -429,7 +428,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -454,11 +453,11 @@ if (kvStore !== null) {
 
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
+指定options和storeId，创建并获取分布式键值数据库，使用Promise回调。
 
 > 注意：
 >
-> 在获取已有的分布式键值数据库时，若该数据库文件已无法打开（例如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。对于重要且无法重新生成的数据推荐使用备份恢复功能，防止数据丢失，备份恢复使用方法可见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
+> 获取已有的分布式键值数据库时，如果数据库文件无法打开（如文件头损坏），将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。建议对重要且无法重新生成的数据使用备份恢复功能，防止数据丢失。备份恢复的使用方法详见[数据库备份与恢复](../../database/data-backup-and-restore.md)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -473,7 +472,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;T&gt; | Promise对象。返回创建的分布式键值数据库实例（根据kvStoreType的不同，可以创建SingleKVStore实例和DeviceKVStore实例。 |
+| Promise&lt;T&gt; | Promise对象。返回创建的分布式键值数据库实例（根据kvStoreType的不同，可以创建SingleKVStore实例和DeviceKVStore实例）。 |
 
 **错误码：**
 
@@ -482,9 +481,8 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **示例：**
 
@@ -499,7 +497,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -550,7 +548,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -619,7 +617,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -664,7 +662,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **示例：**
 
@@ -680,7 +678,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -734,7 +732,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **示例：**
 
@@ -750,7 +748,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -866,7 +864,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知。如果服务终止，需要重新注册数据变更通知和同步完成事件回调通知，并且同步操作会返回失败。
+订阅服务状态变更通知。如果服务终止，需要重新注册数据变更通知和端端同步完成事件回调通知，并且端端同步操作会返回失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -947,6 +945,10 @@ try {
 提供获取数据库结果集的相关方法，包括查询和移动数据读取位置等。同时允许打开的结果集的最大数量为8个。
 
 在调用KVStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个SingleKVStore或者DeviceKVStore实例。
+
+> **说明：**
+>
+> KVStoreResultSet的游标起始位置为-1。
 
 ### getCount
 
@@ -1173,7 +1175,7 @@ move(offset: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| offset | number   | 是   | 表示与当前位置的相对偏移量，负偏移表示向后移动，正偏移表示向前移动。 |
+| offset | number   | 是   | 表示与当前位置的相对偏移量，正偏移表示向前移动，负偏移表示向后移动。当游标超出结果集最前或者最后的位置时，接口返回false。|
 
 **返回值：**
 
@@ -1223,7 +1225,7 @@ moveToPosition(position: number): boolean
 
 | 参数名   | 类型 | 必填 | 说明           |
 | -------- | -------- | ---- | -------------- |
-| position | number   | 是   | 表示绝对位置。 |
+| position | number   | 是   | 表示绝对位置。当绝对位置超出结果集最前或者最后的位置时，接口返回false。|
 
 **返回值：**
 
@@ -1490,7 +1492,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1535,7 +1537,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1579,7 +1581,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 **参数：**
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1625,7 +1627,7 @@ lessThan(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1671,7 +1673,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1717,7 +1719,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。  |
+| field  | string  | 是    |表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1762,7 +1764,7 @@ isNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -1806,7 +1808,7 @@ inNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1851,7 +1853,7 @@ inString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1896,7 +1898,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | number[] | 是   | 表示指定的值列表。            |
 
 **返回值：**
@@ -1941,7 +1943,7 @@ notInString(field: string, valueList: string[]): Query
 
 | 参数名    | 类型 | 必填 | 说明                          |
 | --------- | -------- | ---- | ----------------------------- |
-| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field     | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | valueList | string[] | 是   | 表示指定的字符串值列表。      |
 
 **返回值：**
@@ -1986,7 +1988,7 @@ like(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -2031,7 +2033,7 @@ unlike(field: string, value: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | value  | string   | 是   | 表示指定的字符串值。          |
 
 **返回值：**
@@ -2138,7 +2140,7 @@ orderByAsc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2183,7 +2185,7 @@ orderByDesc(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2228,8 +2230,8 @@ limit(total: number, offset: number): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | 是   | 表示指定的结果数。 |
-| offset | number   | 是   | 表示起始位置。     |
+| total  | number   | 是   | 表示最大数据记录数，取值应为非负整数。<br/>当total为负数时，表示查询整个结果集。|
+| offset | number   | 是   | 指定查询结果的起始位置，取值应为非负整数。<br/>当offset为负数时，表示查询整个结果集。<br/>当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 
@@ -2276,7 +2278,7 @@ isNotNull(field: string): Query
 
 | 参数名 | 类型 | 必填 | 说明                          |
 | ------ | -------- | ---- | ----------------------------- |
-| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| field  | string   | 是   | 表示指定字段，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2382,7 +2384,7 @@ prefixKey(prefix: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | 是   | 表示指定的键前缀，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| prefix | string   | 是   | 表示指定的键前缀，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2427,7 +2429,7 @@ setSuggestIndex(index: string): Query
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | 是   | 指示要设置的索引，不能包含'^'。包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| index  | string   | 是   | 指示要设置的索引，不能包含'^'。包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -2465,10 +2467,10 @@ try {
 deviceId(deviceId:string):Query
 
 添加设备ID作为Key的前缀。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
-> deviceId具体获取方式请参考[sync接口示例](#sync)
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2537,7 +2539,7 @@ try {
 
 ## SingleKVStore
 
-SingleKVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅数据同步完成的方法。
+SingleKVStore数据库实例，提供增加数据、删除数据和订阅数据变更、订阅数据端端同步完成的方法。
 
 在调用SingleKVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个SingleKVStore实例。
 
@@ -3076,7 +3078,7 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定设备的数据，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
@@ -3136,7 +3138,7 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 删除指定设备的数据，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId，通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)
@@ -3217,7 +3219,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3279,7 +3281,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3321,7 +3323,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                               | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -3389,7 +3391,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3596,7 +3598,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                   | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。                 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -3606,7 +3608,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3674,7 +3676,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3689,7 +3691,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3758,7 +3760,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3832,7 +3834,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4064,7 +4066,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 
 | 类型                  | 说明                                            |
 | --------------------- | ----------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。获取与指定QuerV9对象匹配的结果数。 |
+| Promise&lt;number&gt; | Promise对象。获取与指定Query对象匹配的结果数。 |
 
 **错误码：**
 
@@ -4134,7 +4136,6 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4184,7 +4185,6 @@ backup(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4227,7 +4227,6 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4277,7 +4276,6 @@ restore(file:string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4679,7 +4677,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设定是否开启同步，使用callback异步回调。
+设定是否开启端端同步，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4687,7 +4685,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                  | 必填 | 说明                                                      |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
-| enabled  | boolean                   | 是   | 设定是否开启同步，true表示开启同步，false表示不启用同步。 |
+| enabled  | boolean                   | 是   | 设定是否开启端端同步，true表示开启端端同步，false表示不启用端端同步。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。设定成功，err为undefined，否则为错误对象。      |
 
 **错误码：**
@@ -4721,7 +4719,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-设定是否开启同步，使用Promise异步回调。
+设定是否开启端端同步，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4729,7 +4727,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 | 参数名  | 类型 | 必填 | 说明                                                      |
 | ------- | -------- | ---- | --------------------------------------------------------- |
-| enabled | boolean  | 是   | 设定是否开启同步，true表示开启同步，false表示不启用同步。 |
+| enabled | boolean  | 是   | 设定是否开启端端同步，true表示开启端端同步，false表示不启用端端同步。 |
 
 **返回值：**
 
@@ -4859,7 +4857,11 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置数据库同步允许的默认延迟，使用callback异步回调。
+设置数据库端端同步允许的默认延时，使用callback异步回调。
+
+> **说明：**
+>
+> 设置默认延时后，调用[sync](#sync)接口不会立即触发端端同步，而是等待指定的延时时间后再执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4867,7 +4869,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名                | 类型                  | 必填 | 说明                                         |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | 是   | 表示数据库同步允许的默认延迟，以毫秒为单位。 |
+| defaultAllowedDelayMs | number                    | 是   | 表示一个延时时间，以毫秒为单位。 |
 | callback              | AsyncCallback&lt;void&gt; | 是   | 回调函数。设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -4902,7 +4904,11 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-设置数据库同步允许的默认延迟，使用Promise异步回调。
+设置数据库端端同步允许的默认延时，使用Promise异步回调。
+
+> **说明：**
+>
+> 设置默认延时后，调用[sync](#sync)接口不会立即触发端端同步，而是等待指定的延时时间后再执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4910,7 +4916,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
 | 参数名                | 类型 | 必填 | 说明                                         |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | 是   | 表示数据库同步允许的默认延迟，以毫秒为单位。 |
+| defaultAllowedDelayMs | number   | 是   | 表示一个延时时间，以毫秒为单位。 |
 
 **返回值：**
 
@@ -4948,8 +4954,8 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
-> **说明：** 
+在手动同步方式下，触发数据库端端同步。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
+> **说明：**
 >
 > 其中deviceIds为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
@@ -4963,7 +4969,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
 
@@ -4973,7 +4979,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **示例：**
 
@@ -5034,8 +5040,8 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
-> **说明：** 
+在手动同步方式下，触发数据库端端同步，此方法为同步方法。关于键值型数据库的端端同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
+> **说明：**
 >
 > 其中deviceIds为[DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)中的networkId, 通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
@@ -5049,8 +5055,8 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
+| query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件。                      |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。设置delayMs后，调用sync接口时延时时间为delayMs。未设置时以[setSyncParam](#setsyncparam)设置的时长为准。|
 
 **错误码：**
 
@@ -5060,7 +5066,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **示例：**
 
@@ -5143,7 +5149,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5165,7 +5171,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅端端同步完成事件回调通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5269,7 +5275,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知。
+取消订阅端端同步完成事件回调通知。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5404,7 +5410,7 @@ try {
 
 ## DeviceKVStore
 
-设备协同数据库，继承自SingleKVStore，提供查询数据和同步数据的方法，可以使用SingleKVStore的方法例如：put、putBatch等。
+设备协同数据库，继承自SingleKVStore，提供查询数据和端端同步数据的方法，可以使用SingleKVStore的方法例如：put、putBatch等。
 
 设备协同数据库，以设备维度对数据进行区分，每台设备仅能写入和修改本设备的数据，其它设备的数据对其是只读的，无法修改其它设备的数据。
 
@@ -5435,7 +5441,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5496,7 +5502,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5530,7 +5536,7 @@ try {
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 获取与指定设备ID和Key匹配的string值，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5553,7 +5559,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5591,7 +5597,7 @@ try {
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 获取与指定设备ID和Key匹配的string值，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5619,7 +5625,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5660,7 +5666,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                                   | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -5728,7 +5734,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -5789,7 +5795,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Key前缀匹配的所有键值对，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5801,7 +5807,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 | 参数名    | 类型                               | 必填 | 说明                                           |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | 是   | 标识要查询其数据的设备。                       |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数，返回满足给定条件的所有键值对的列表。 |
 
 **错误码：**
@@ -5862,7 +5868,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和Key前缀匹配的所有键值对，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -5874,7 +5880,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 
@@ -6077,7 +6083,7 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6155,7 +6161,7 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6240,7 +6246,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                       | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -6250,7 +6256,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6317,7 +6323,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6332,7 +6338,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6384,7 +6390,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6396,7 +6402,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -6406,7 +6412,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6445,7 +6451,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6457,7 +6463,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^'，包含'^'将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6472,7 +6478,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6508,7 +6514,7 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6530,7 +6536,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6592,7 +6598,7 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 获取与指定设备ID和Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6619,7 +6625,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6701,7 +6707,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6748,7 +6754,7 @@ try {
 getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 获取与本设备指定Query对象匹配的KVStoreResultSet对象，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -6770,7 +6776,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6961,7 +6967,7 @@ try {
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定设备ID和Query对象匹配的结果数，使用callback异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。
@@ -7033,7 +7039,7 @@ try {
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 获取与指定设备ID和Query对象匹配的结果数，使用Promise异步回调。
-> **说明：** 
+> **说明：**
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 > deviceId具体获取方式请参考[sync接口示例](#sync)。

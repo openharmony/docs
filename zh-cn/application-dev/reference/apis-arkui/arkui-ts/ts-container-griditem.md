@@ -7,7 +7,7 @@
 >  * 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  * 仅支持作为[Grid](ts-container-grid.md)组件的子组件使用。
 >  * 当GridItem配合LazyForEach使用时，GridItem子组件在GridItem创建时创建。配合if/else、ForEach使用时，或父组件为Grid时，GridItem子组件在GridItem布局时创建。
-
+>  * 当Grid中存在大量GridItem时，使用columnStart/columnEnd、rowStart/rowEnd设置GridItem大小会导致在使用scrollToIndex滑动到指定Index时，依次遍历GridItem节点，耗时较长。建议使用GridLayoutOptions布局，以提高查找GridItem位置的效率。最佳实践请参考[优化Grid组件加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-improve_grid_performance)。
 
 ## 子组件
 
@@ -17,6 +17,8 @@
 
 GridItem(value?: GridItemOptions)
 
+创建网格容器中单项内容容器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -25,7 +27,7 @@ GridItem(value?: GridItemOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
+| value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数，该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
@@ -43,7 +45,7 @@ rowStart(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素起始行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。 |
+| value  | number | 是   | 当前元素起始行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。<br/>取值范围：[0, 总行数-1] |
 
 ### rowEnd
 
@@ -59,7 +61,7 @@ rowEnd(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素终点行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。 |
+| value  | number | 是   | 当前元素终点行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。<br/>取值范围：[0, 总行数-1] |
 
 ### columnStart
 
@@ -75,7 +77,7 @@ columnStart(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素起始列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。 |
+| value  | number | 是   | 当前元素起始列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。<br/>取值范围：[0, 总列数-1] |
 
 ### columnEnd
 
@@ -91,7 +93,7 @@ columnEnd(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素终点列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。 |
+| value  | number | 是   | 当前元素终点列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10对象说明)，详细可参考[Grid的示例1](ts-container-grid.md#示例1固定行列grid)和[Grid的示例3](ts-container-grid.md#示例3可滚动grid设置跨行跨列节点)。<br/>取值范围：[0, 总列数-1] |
 
 >  **说明：**
 >
@@ -121,7 +123,7 @@ forceRebuild(value: boolean)
 
 设置在触发组件build时是否重新创建此节点。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。
 
-从API version9开始废弃。
+从API version 9开始废弃。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,13 +149,13 @@ selectable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                  |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| value  | boolean | 是   | 当前GridItem元素是否可以被鼠标框选。<br/>默认值：true |
+| value  | boolean | 是   | 当前GridItem元素是否可以被鼠标框选。设置为true时可以被鼠标框选，设置为false时无法被鼠标框选。<br/>默认值：true |
 
 ### selected<sup>10+</sup>
 
 selected(value: boolean)
 
-设置当前GridItem选中状态。该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+设置当前GridItem选中状态。该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
@@ -165,9 +167,11 @@ selected(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | 是   | 当前GridItem选中状态。<br/>默认值：false |
+| value  | boolean | 是   | 当前GridItem选中状态。设置为true时为选中状态，设置为false时为默认状态。<br/>默认值：false |
 
 ## GridItemOptions<sup>11+</sup>对象说明
+
+GridItem样式对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -175,9 +179,11 @@ selected(value: boolean)
 
 | 名称  | 类型                  | 必填 | 说明                         |
 | ----- | -------------------- | ---- | ---------------------------- |
-| style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
+| style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值：GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
+
+GridItem样式枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -220,7 +226,7 @@ GridItem通过设置合理的ColumnStart、ColumnEnd、RowStart、RowEnd属性�
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+  @State numbers: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
 
   build() {
     Column() {
@@ -273,7 +279,7 @@ struct GridItemExample {
 @Entry
 @Component
 struct GridItemExample {
-  @State numbers: String[] = ['0', '1', '2']
+  @State numbers: String[] = ['0', '1', '2'];
 
   build() {
     Column({ space: 5 }) {

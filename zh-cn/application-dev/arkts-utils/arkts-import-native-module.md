@@ -1,7 +1,7 @@
 # 静态方式加载native模块
 
 在ES6(ECMAScript6.0)模块设计中，社区使用import语法加载其他文件导出的内容（ECMA规范定义语法规格）。
-为支持开发者便捷使用该功能导入native模块(so)导出的内容，ArkTS进行相关适配，并给出以下几种支持写法。
+为支持开发者使用该功能导入native模块（so）导出的内容，ArkTS进行了相关适配，并提供了以下几种支持写法。
 
 ## 直接导入
 在native模块的index.d.ts文件中导出，在文件内直接导入。
@@ -24,8 +24,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import add from 'libentry.so'
-add.add(2, 3);
+import entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ### 命名空间导入
@@ -67,7 +67,10 @@ export * from 'libentry.so'
 import { add } from './test1'
 add(2, 3);
 ```
-**注意：** 不支持native模块导出和导入同时使用命名空间。  
+> **注意：** 
+> 
+> 不支持native模块导出和导入同时使用命名空间。
+
 **反例：** 
 ```ts
 // test1.ets
@@ -75,7 +78,7 @@ export * from 'libentry.so'
 ```
 ```ts
 // test2.ets
-import * as add from 'file1'
+import * as add from './test1'
 // 无法获取add对象
 ```
 
@@ -104,7 +107,10 @@ import('./test1').then((ns:ESObject) => {
 })
 ```
 
-**注意：** 不支持动态加载时，导出文件使用命名空间导出。  
+> **注意：** 
+> 
+> 不支持动态加载时，导出文件使用命名空间导出。
+
 **反例：** 
 ```ts
 // test1.ets

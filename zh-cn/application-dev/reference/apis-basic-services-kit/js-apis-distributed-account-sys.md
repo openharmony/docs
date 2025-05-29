@@ -56,13 +56,13 @@ try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
     (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
-        console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+        console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
         console.log('distributed information: ' + JSON.stringify(data));
       }
     });
 } catch (err) {
-  console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -77,6 +77,12 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 **系统能力：** SystemCapability.Account.OsAccount
 
 **需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | localId | number | 是 | 系统账号ID。 |
 
 **返回值：**
 
@@ -105,10 +111,10 @@ try {
     data: distributedAccount.DistributedInfo) => {
     console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    console.error('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
-  console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -129,7 +135,7 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | localId | number | 是 | 系统账号ID。 |
-  | accountInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是 | 分布式账号信息。 |
+  | distributedInfo | [DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是 | 分布式账号信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置指定系统账号的分布式信息成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -155,13 +161,13 @@ let accountInfo: distributedAccount.DistributedInfo =
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
     if (err) {
-      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
     } else {
       console.log('setOsAccountDistributedInfoByLocalId successfully');
     }
   });
 } catch (err) {
-    console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+    console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -214,9 +220,9 @@ try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
       console.log('setOsAccountDistributedInfoByLocalId successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
-    console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+    console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```

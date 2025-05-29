@@ -74,6 +74,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueUint32(123))JS";
 ```
+<!-- @[oh_jsvm_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueuint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -127,6 +128,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueInt32(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -159,7 +161,7 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}d", result64);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}ld", result64);
     }
     return args[0];
 }
@@ -177,6 +179,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueInt64(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -202,7 +205,7 @@ static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double value;
+    double value = 0;
     JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");
@@ -225,6 +228,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getDouble(-110.0456))JS";
 ```
+<!-- @[oh_jsvm_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvaluedouble/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -234,7 +238,7 @@ JSVM GetDouble success: -110.045600
 
 ### OH_JSVM_CreateInt32
 
-用于创建一个JavaScript number（int32类型）的值。
+根据int32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -274,6 +278,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createInt32())JS";
 ```
+<!-- @[oh_jsvm_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -283,7 +288,7 @@ JSVM CreateInt32 success: -20
 
 ### OH_JSVM_CreateUint32
 
-用于创建一个JavaScript number（uint32类型）的值。
+根据uint32_t数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -327,6 +332,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createUInt32())JS";
 ```
+<!-- @[oh_jsvm_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createuint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -336,7 +342,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-用于创建一个JavaScript number（int64类型）的值。
+根据int64_t数据创建一个JavaScript number对象。注意，如果需要表示JS超大数，建议使用BigInt相关接口。
 
 cpp部分代码
 
@@ -349,8 +355,6 @@ cpp部分代码
 // OH_JSVM_CreateInt64的样例方法
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64是有符号的64位整数类型，可以表示范围从-2^63到2^63 - 1的整数，即 -9223372036854775808到9223372036854775807
-    // 要表示的整数值
     int64_t value = 2147483648;
     // 创建JavaScript中的int64数字
     JSVM_Value result = nullptr;
@@ -378,6 +382,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createInt64())JS";
 ```
+<!-- @[oh_jsvm_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -387,7 +392,7 @@ JSVM CreateInt64 success: 2147483648
 
 ### OH_JSVM_CreateDouble
 
-用于创建一个JavaScript number（double类型）的值。
+根据double数据创建一个JavaScript number对象。
 
 cpp部分代码
 
@@ -427,6 +432,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createDouble())JS";
 ```
+<!-- @[oh_jsvm_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createdouble/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 

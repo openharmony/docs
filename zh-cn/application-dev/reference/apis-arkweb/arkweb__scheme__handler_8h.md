@@ -15,6 +15,8 @@
 
 **相关模块：**[Web](_web.md)
 
+**相关示例：**[ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)
+
 
 ## 汇总
 

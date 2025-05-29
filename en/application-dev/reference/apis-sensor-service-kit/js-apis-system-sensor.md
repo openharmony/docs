@@ -562,7 +562,7 @@ Defines the type of data to return for a subscription to the acceleration sensor
 
 | Name    | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>**game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>**ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>**normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
 | success  | [AccelerometerResponse](#accelerometerresponse) | Yes  | Called when the acceleration sensor data changes.                          |
 | fail     | Function                                        | No  | Callback upon an API call failure.                                    |
 
@@ -731,9 +731,9 @@ Defines the wearing state.
 
 **System capability**: SystemCapability.Sensors.Sensor.Lite
 
-| Name | Type   | Mandatory| Description        |
-| ----- | ------- | ---- | ------------ |
-| value | boolean | Yes  | Whether the wearable device is worn.|
+| Name | Type   | Mandatory| Description                                              |
+| ----- | ------- | ---- | -------------------------------------------------- |
+| value | boolean | Yes  | Boolean value indicating whether the device is worn. The value true indicates that the device is worn, and the value **false** indicates the opposite.|
 
 ## GetOnBodyStateOptions
 
@@ -781,7 +781,7 @@ Defines the type of data to return for a subscription to the gyroscope sensor da
 
 | Name    | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                   | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>**game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>**ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>**normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| interval | string                                   | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
 | success  | [GyroscopeResponse](#gyroscoperesponse6) | Yes  | Called when the gyroscope sensor data changes.                          |
 | fail     | Function                                 | No  | Callback upon an API call failure.                                    |
 

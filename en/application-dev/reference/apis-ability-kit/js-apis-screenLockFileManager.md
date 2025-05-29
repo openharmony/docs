@@ -35,7 +35,7 @@ Enumerates the statuses for releasing access permissions to sensitive data on th
 | RELEASE_DENIED |  -1 | Release of access to sensitive data on the lock screen is denied.|
 | RELEASE_GRANTED |  0  |  Release of access to sensitive data on the lock screen is granted. |
 
-## KeyStatus<sup>16+</sup>
+## KeyStatus<sup>18+</sup>
 
 Enumerates the statuses for access permissions for sensitive data on the lock screen.
 
@@ -135,7 +135,7 @@ try {
 }
 ```
 
-## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+## screenLockFileManager.queryAppKeyState<sup>18+</sup>
 
 queryAppKeyState(): KeyStatus
 
@@ -147,7 +147,7 @@ Obtains the state of access permissions for sensitive data on the lock screen. T
 
 | Type                           | Description                          |
 | ------------------------------- | ------------------------------ |
-| [KeyStatus](#keystatus16) | State of access permissions for sensitive data on the lock screen.|
+| [KeyStatus](#keystatus18) | State of access permissions for sensitive data on the lock screen.|
 
 **Error codes**
 

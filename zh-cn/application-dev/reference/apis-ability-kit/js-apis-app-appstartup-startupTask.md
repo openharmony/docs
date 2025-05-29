@@ -72,7 +72,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Object | void\> | Promise对象，返回启动任务执行结果对象。 |
+| Promise\<Object \| void\> | Promise对象，返回启动任务执行结果对象。 |
 
 **示例：**
 

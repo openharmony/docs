@@ -433,7 +433,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetConfiguration (const NativeResou
 
 获取设备配置。
 
-使用此接口后，需要调用OH_ResourceManager_ReleaseConfiguration()方法来释放内存。 如果使用malloc创建ResourceManager_Configuration对象，还需要调用free()方法来释放它。
+使用此接口后，需要调用OH_ResourceManager_ReleaseConfiguration()方法来释放内存。如果使用malloc创建ResourceManager_Configuration对象，还需要调用free()方法来释放它。
 
 **起始版本：** 12
 
@@ -500,6 +500,7 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ResourceManager_ErrorCode OH_ResourceManager_GetDoublePluralStringByName (const NativeResourceManager * mgr, const char * resName, double num, char ** resultValue,  ... )
 ```
 **描述**
+
 通过指定资源名称，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。
@@ -840,6 +841,7 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ResourceManager_ErrorCode OH_ResourceManager_GetIntPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue,  ... )
 ```
 **描述**
+
 通过指定资源名称，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。
@@ -1263,6 +1265,7 @@ ERROR_CODE_OUT_OF_MEMORY 9001100 - 内存溢出。
 ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const NativeResourceManager * mgr, const char * resName, uint32_t num, char ** resultValue )
 ```
 **描述**
+
 通过指定资源名称，获取对应的单复数字符串。
 
 使用此接口后，需要调用free()方法来释放字符串的内存。

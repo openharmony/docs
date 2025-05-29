@@ -166,7 +166,7 @@ let summarys: Array<dragInteraction.Summary> = dragInteraction.getDataSummary();
 console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
 ```
 
-## dragInteraction.setDragSwitchState<sup>16+</sup>
+## dragInteraction.setDragSwitchState<sup>18+</sup>
 
 setDragSwitchState(enabled: boolean): void
 
@@ -189,7 +189,6 @@ setDragSwitchState(enabled: boolean): void
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
@@ -197,7 +196,7 @@ setDragSwitchState(enabled: boolean): void
 dragInteraction.setDragSwitchState(false);
 ```
 
-## dragInteraction.setAppDragSwitchState<sup>16+</sup>
+## dragInteraction.setAppDragSwitchState<sup>18+</sup>
 
 setAppDragSwitchState(enabled: boolean, bundleName: string): void
 

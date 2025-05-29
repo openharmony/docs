@@ -44,7 +44,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -93,10 +93,10 @@
 1. 注册缩略图监听回调。
 
    ```ts
-   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
@@ -105,7 +105,7 @@
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
        // 调用媒体库接口落盘缩略图，详细实现见2。
-       saveDeferredPhoto(proxyObj);
+       saveDeferredPhoto(proxyObj, context);
      });
    }
    ```
@@ -117,9 +117,7 @@
    Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = getContext(this);
-   
-   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
+   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
        // 创建 photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -131,7 +129,7 @@
        let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to saveDeferredPhoto. error: ${err}`);
      }
    }
    ```

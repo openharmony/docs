@@ -45,15 +45,15 @@ Sets the background color of the component.
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component.|
 
-## backgroundColor<sup>16+</sup>
+## backgroundColor<sup>18+</sup>
 
 backgroundColor(color: Optional\<ResourceColor>)
 
-Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), the **color** parameter supports the **undefined** type.
+Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), this API supports the **undefined** type for the **color** parameter.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,15 +86,15 @@ Sets the background image of the component.
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | No  | Whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.|
 
-## backgroundImage<sup>16+</sup>
+## backgroundImage<sup>18+</sup>
 
 backgroundImage(src: ResourceStr | PixelMap, options?: BackgroundImageOptions)
 
 Sets the background image of the component. Compared to [backgroundImage](#backgroundimage), this API supports the **BackgroundImageOptions** type, but not the **ImageRepeat** type.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -103,7 +103,7 @@ Sets the background image of the component. Compared to [backgroundImage](#backg
 | Name| Type                                           | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
-| options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#BackgroundImageOptions) | No  | Whether to load the background image synchronously.<br>**NOTE**<br><br>By default, the image is loaded asynchronously.|
+| options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#backgroundimageoptions18) | No  | Background image loading mode.<br> **NOTE**<br>By default, the image is loaded asynchronously.|
 
 ## backgroundImageSize
 
@@ -163,6 +163,20 @@ Sets the position of the component background image.
 | COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
+## SystemAdaptiveOptions<sup>18+</sup>
+
+Provides parameters for system adaptive adjustments. By default, the system performs adaptive adjustments based on chip performance.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name       |   Type  |   Mandatory| Description                       |
+| ----        |  ----   |   ---- | --------------------------  |
+| disableSystemAdaptation   |  boolean   |   No  |  Whether to disable system adaptive adjustment. Whenever possible, do not include this parameter. This parameter only affects low-computing-power devices, the definition of which is determined by the device manufacturer. On low-computing-power devices, the system automatically decides whether to adjust effects (such as blur) to lower-computing-power alternatives based on conditions including computing power and load. To disable this feature, set this parameter to **true**.<br>Default value: **false**|
+
 ## backgroundBlurStyle<sup>9+</sup>
 
 backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
@@ -182,15 +196,15 @@ Defines the blur style to apply between the background and content of a componen
 | value                 | [BlurStyle](#blurstyle9)                                     | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
 
-## backgroundBlurStyle<sup>16+</sup>
+## backgroundBlurStyle<sup>18+</sup>
 
-backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions)
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions)
 
-Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values. Compared to [backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9), the **style** parameter supports the **undefined** type.
+Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values. Compared to [backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9), this API supports the **undefined** type for the **style** parameter.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -200,6 +214,7 @@ Defines the blur style to apply between the background and content of a componen
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style                 | Optional\<[BlurStyle](#blurstyle9)>                          | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.<br>If **style** is **undefined**, the background blur reverts to its default state (that is, no blur).|
 | options<sup>16+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 >  **NOTE**
 >
@@ -209,7 +224,7 @@ Defines the blur style to apply between the background and content of a componen
 
 backdropBlur(value: number, options?: BlurOptions)
 
-Applies a background blur effect to the component.
+Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -224,15 +239,15 @@ Applies a background blur effect to the component.
 | value                 | number                                                       | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
 
-## backdropBlur<sup>16+</sup>
+## backdropBlur<sup>18+</sup>
 
-backdropBlur(radius: Optional\<number>, options?: BlurOptions)
+backdropBlur(radius: Optional\<number>, options?: BlurOptions, sysOptions?: SystemAdaptiveOptions)
 
-Applies a background blur effect to the component. Compared to [backdropBlur](#backdropblur), the **radius** parameter supports the **undefined** type.
+Applies a background blur effect to the component. You can customize the blur radius and grayscale parameters. Compared to [backdropBlur](#backdropblur), this API supports the **undefined** type for the **radius** parameter.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -242,6 +257,7 @@ Applies a background blur effect to the component. Compared to [backdropBlur](#b
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | radius                | Optional\<number>                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.<br>If **radius** is **undefined**, the background blur reverts to its default state (that is, no blur).|
 | options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 >  **NOTE**
 >
@@ -263,13 +279,13 @@ Sets the background effect of the component, including the blur radius, brightne
 | ------- | ----------------------------------------------------- | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
 
-## backgroundEffect<sup>16+</sup> 
+## backgroundEffect<sup>18+</sup> 
 
-backgroundEffect(options: Optional\<BackgroundEffectOptions>)
+backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: SystemAdaptiveOptions)
 
-Sets the background effect of the component, including the blur radius, brightness, saturation, and color. Compared to [backgroundEffect<sup>11+</sup>](#backgroundeffect11), the **options** parameter supports the **undefined** type.
+Sets the background effect of the component, including the blur radius, brightness, saturation, and color. Compared to [backgroundEffect<sup>11+</sup>](#backgroundeffect11), this API supports the **undefined** type for the **options** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -278,6 +294,7 @@ Sets the background effect of the component, including the blur radius, brightne
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | Yes  | Background effect, including saturation, brightness, and color.<br>If **options** is **undefined**, the background reverts to its default state with no effect.|
+| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](#systemadaptiveoptions18)    |   No  |  System adaptive adjustment options.<br>Default value: **{ disableSystemAdaptation: false }**   |
 
 ## BackgroundEffectOptions<sup>11+</sup>
 Describes the background effect.
@@ -358,13 +375,13 @@ Sets the background brightness of the component.
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12) | Yes  | Parameters for setting the background brightness.|
 
-## backgroundBrightness<sup>16+</sup> 
+## backgroundBrightness<sup>18+</sup> 
 
 backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>)
 
-Sets the background brightness of the component. Compared to [backgroundBrightness<sup>12+</sup>](#backgroundbrightness12), the **options** parameter supports the **undefined** type.
+Sets the background brightness of the component. Compared to [backgroundBrightness<sup>12+</sup>](#backgroundbrightness12), this API supports the **undefined** type for the **options** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -588,7 +605,7 @@ struct BlurEffectsExample {
         Text('blur text')
           .blur(5).margin(10)
         Text('blur text')
-          .blur(10).margin(10)
+          .blur(10, undefined).margin(10) // Set the foreground blur radius to 5 and disable system adaptive adjustment.
         Text('blur text')
           .blur(15).margin(10)
       }.width('90%').height(40)

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> - 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 该组件支持继承父组件Text的属性，即如果子组件未设置属性且父组件设置属性，则继承父组件设置的全部属性。
 >
@@ -60,7 +60,7 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 fontSize(value: number | string | Resource)
 
-设置SymbolSpan组件大小。
+设置SymbolSpan组件大小。设置string类型时，支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -72,7 +72,7 @@ fontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                          |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolSpan组件大小。<br/>默认值：系统默认值。 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolSpan组件大小。<br/>默认值：16fp<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### fontWeight
 

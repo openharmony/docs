@@ -10,7 +10,10 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 ## Constraints
 
 - An HAR can only be referenced as a dependency of an application module. It cannot be installed or run independently on a device.
-- An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.<br>**NOTE**<br>If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
+- An HAR does not support the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) component in the configuration file, but supports the [UIAbility](../application-models/uiability-overview.md) component.
+> **NOTE**
+>
+> If the [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) API is used to start the UIAbility in the HAR, the value of **moduleName** in the API parameter must be the module name of the [HAP](hap-package.md) or [HSP](in-app-hsp.md) that depends on the HAR.
 - An HAR does not support the declaration of the [pages](./module-configuration-file.md#pages) tag in the configuration file. Still, it can include pages, which can be redirected through a [named route](../ui/arkts-routing.md#named-route).
 - An HAR does not support referencing resources in the **AppScope** folder. This is because the content in the **AppScope** folder is not packaged into the HAR during building.
 - An HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
@@ -290,9 +293,9 @@ struct Index {
 ```
 ## Building an HAR
 
-HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation.md).
+HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation-guide.md).
 
-To better protect your source code, enable obfuscation for the HAR so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
+After [code obfuscation](../arkts-utils/source-obfuscation.md) is enabled, DevEco Studio compiles, obfuscates, and compresses code when building HARs to protect code assets.
 
 The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Code Obfuscation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-build-obfuscation-V13). The configuration is as follows:
 
@@ -333,7 +336,7 @@ The obfuscation capability is enabled by default for the HAR module. When the co
 >
 >Enable this configuration when using **Sendable** in an HAR.
 
-> **Restrictions**
+> **Constraints**
 >
 >When depend on TS HAR, the ArkUI component in TS HAR cannot be referenced.
 

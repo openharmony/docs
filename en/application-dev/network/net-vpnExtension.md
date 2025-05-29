@@ -7,6 +7,7 @@ A virtual private network (VPN) is a dedicated network established on a public n
 OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
+>
 > To maximize the application running efficiency, all APIs are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
 
 ## VPN Extension Ability UI
@@ -41,9 +42,13 @@ To enable your application to support the VPN functionality, you need to create 
 ]
 ```
 
+> **NOTE**
+>
+> If the DevEco Studio tool displays a message indicating unrecognizable **"type": "vpn"**, you need to manually add **vpn** to the **type** enums corresponding to **extensionAbilities** in the **toolchains\modulecheck\module.json** file of the SDK and clear the build cache.
+
 Next, you need to configure, start, and stop the VPN in the created **VpnExtensionAbility**.
 
-- Establish a VPN tunnel. The following uses the UDP tunnel as an example.
+- Establish a VPN tunnel. The following uses the UDP tunnel as an example. For details, see the **UdpConnect()** API in the [napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp) demo project.
 - Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the UDP tunnel.
 - Construct VPN Config parameters. For details, see [VPN Config Parameters](#description-of-vpn-config-parameters).
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
@@ -58,7 +63,6 @@ To start a connection from the VPN application, you need to call **startVpnExten
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -102,7 +106,6 @@ The sample code is as follows:
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -144,7 +147,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  onDestroy(want: Want) {
+  onDestroy() {
     let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     VpnConnection.destroy().then(() => {
@@ -187,7 +190,10 @@ import { vpnExtension} from '@kit.NetworkKit';
 let vpnConfig: vpnExtension.VpnConfig = {
   // Configure the IP address of the vNIC.
   addresses: [{
-    address:'192.x.x.5',
+    address: {
+      address:'192.x.x.5',
+      family:1
+    },
     prefixLength:24
   }],
   // Configure route information.
@@ -233,4 +239,4 @@ function vpnCreate(){
 
 ## VPN Demo
 
-The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN), which showcases how to implement the VPN service.
+The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case), which showcases how to implement the VPN service.

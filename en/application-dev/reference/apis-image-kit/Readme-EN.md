@@ -1,18 +1,18 @@
 # Image Kit
 
-- ArkTS APIs
+- ArkTS APIs<!--image-arkts-->
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](js-apis-sendableImage.md)
   <!--Del-->
   - [@ohos.multimedia.image (Image Processing) (System API)](js-apis-image-sys.md)
   <!--DelEnd-->
-- C APIs
-  - Modules
+- C APIs<!--image-c-->
+  - Modules<!--image-module-->
     - [Image](image.md)
     - [Image_NativeModule](_image___native_module.md)
     - [ImageEffect](_image_effect.md)
     - [ImageProcessing](_image_processing.md)
-  - Header Files
+  - Header Files<!--image-headerfile-->
     - [image_mdk.h](image__mdk_8h.md)
     - [image_mdk_common.h](image__mdk__common_8h.md)
     - [image_packer_mdk.h](image__packer__mdk_8h.md)
@@ -32,7 +32,7 @@
     - [image_effect_filter.h](image__effect__filter_8h.md)
     - [image_processing.h](image__processing_8h.md)
     - [image_processing_types.h](image__processing__types_8h.md)
-  - Structs
+  - Structs<!--image-struct-->
     - [ImagePacker_Opts](_image_packer___opts__.md)
     - [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md)
     - [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md)
@@ -65,5 +65,5 @@
     - [ImageEffect_Region](_image_effect___region.md)
     - [ImageEffect_Size](_image_effect___size.md)
     - [ImageProcessing_ColorSpaceInfo](_image_processing___color_space_info.md)
-- Error Codes
-  - [Image Error Code](errorcode-image.md)
+- Error Codes<!--image-arkts-errcode-->
+  - [Image Error Codes](errorcode-image.md)

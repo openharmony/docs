@@ -50,11 +50,11 @@ FormLink(options: FormLinkOptions)
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are not supported.
+The [universal events](ts-component-general-events.md) are not supported.
 
 ## Example
 

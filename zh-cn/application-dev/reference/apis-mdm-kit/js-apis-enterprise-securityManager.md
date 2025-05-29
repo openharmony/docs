@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -37,7 +37,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当卸载用户证书失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -56,11 +56,12 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let aliasStr = "certName"
+let aliasStr = "certName";
 securityManager.uninstallUserCertificate(wantTemp, aliasStr).then(() => {
   console.info(`Succeeded in uninstalling user certificate.`);
 }).catch((err: BusinessError) => {
@@ -106,16 +107,18 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
@@ -124,8 +127,8 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
     console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
   })
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get row file content. message: ${err.message}`);
-  return
+  console.error(`Failed to get raw file content. message: ${err.message}`);
+  return;
 });
 ```
 
@@ -163,21 +166,22 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 9201001  | Failed to manage the certificate.                            |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
 let accountId: number = 100;
-// 在MainAbility的onCreate回调函数中初始化Context变量
-// 把测试文件test.cer放入rawfile目录
-getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+// The variable context needs to be initialized in MainAbility's onCreate callback function
+// test.cer needs to be placed in the rawfile directory
+const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+context.resourceManager.getRawFileContent("test.cer").then((value) => {
   certFileArray = value;
   try {
     let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
@@ -191,7 +195,7 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
 
 getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
-获取指定系统账户下的用户证书。
+获取指定系统账户下的用户证书信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -219,12 +223,12 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -242,7 +246,7 @@ try {
 
 getSecurityStatus(admin: Want, item: string): string
 
-获取安全策略信息。
+获取当前设备安全策略信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -276,6 +280,7 @@ getSecurityStatus(admin: Want, item: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -310,7 +315,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -321,6 +326,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -365,7 +371,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -376,6 +382,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -411,7 +418,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -422,6 +429,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -456,13 +464,13 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| [ClipboardPolicy](#clipboardpolicy) | 设备剪贴板策略。|
+| string | 返回JSON字符串形式的设备剪贴板策略。|
 
 **错误码**：
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -473,6 +481,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -486,11 +495,112 @@ try {
 }
 ```
 
+## securityManager.setAppClipboardPolicy<sup>18+</sup>
+
+setAppClipboardPolicy(admin: Want, bundleName: string, accountId: number, policy: ClipboardPolicy): void
+
+设置指定包名和用户Id的设备剪贴板策略。当前只支持最多保存100个策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填  | 说明                                                                                                                                                        |
+| -------    | ------------------------------------------------------- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                                                                                                                          |
+| bundleName | string                                                  | 是   | 被设置剪贴板策略的应用包名。                                                                                                                                      |
+| accountId  | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+| policy     | [ClipboardPolicy](#clipboardpolicy)                     | 是   | 剪贴板策略。                                                                                                                                                    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                                                                                                                            |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                                                                              |
+| 9200002 | The administrator application does not have permission to manage the device.                                                                    |
+| 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    securityManager.setAppClipboardPolicy(wantTemp, bundleName, accountId, securityManager.ClipboardPolicy.IN_APP);
+    console.info(`Succeeded in setting clipboard policy.`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getAppClipboardPolicy<sup>18+</sup>
+
+getAppClipboardPolicy(admin: Want, bundleName: string, accountId: number): string
+
+获取指定包名和用户Id的设备剪贴板策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填  | 说明                                                                                                                                                        |
+| -------    | ------------------------------------------------------- | --- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                                                                                                                               |
+| bundleName | string                                                  | 是   | 被设置剪贴板策略的应用包名。                                                                                                                            |
+| accountId  | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+
+**返回值：**
+
+| 类型                                  | 说明       |
+| ----------------------------------- | -------- |
+| string | 返回JSON字符串形式的设备剪贴板策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID   | 错误信息                                                                                                                                            |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                                                                              |
+| 9200002 | The administrator application does not have permission to manage the device.                                                                    |
+| 201     | Permission verification failed. The application does not have the permission required to call the API.                                          |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let bundleName: string = 'com.example.myapplication';
+let accountId: number = 100;
+try {
+    let result: string = securityManager.getAppClipboardPolicy(wantTemp, bundleName, accountId);
+    console.info(`Succeeded in getting password policy, result : ${result}`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## securityManager.setWatermarkImage<sup>14+</sup>
 
 setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelMap, accountId: number): void
 
-设置水印策略，当前仅支持2in1使用。
+设置水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -509,7 +619,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -520,6 +630,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -539,7 +650,7 @@ try {
 
 cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
-取消水印策略，当前仅支持2in1使用。
+取消水印策略，当前仅支持2in1设备使用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -557,7 +668,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                                       |          
+| 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -568,6 +679,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

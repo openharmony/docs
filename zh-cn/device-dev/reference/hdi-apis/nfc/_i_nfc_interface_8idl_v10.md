@@ -25,4 +25,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| interface&nbsp;&nbsp;[INfcInterface](interface_i_nfc_interface_v10.md) | 声明操作nfc芯片的API，包括关闭、打开nfc，初始化nfc，读写数据、配置RF参数、发送nci指令。  | 
+| interface&nbsp;&nbsp;[INfcInterface](interface_i_nfc_interface_v10.md) | 声明操作NFC芯片的API，包括关闭、打开NFC，初始化NFC，读写数据、配置RF参数、发送nci指令。  | 

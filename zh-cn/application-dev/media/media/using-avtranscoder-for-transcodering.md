@@ -7,6 +7,9 @@
 ## 开发步骤及注意事项
 
 详细的API说明请参考[AVTranscoder API参考](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12)。
+> **说明：**
+>
+> 如需对转码后的文件进行转发、上传、转存等处理，应用须收到complete事件后调用系统接口await avTranscoder.release()，以保证视频文件完整性。
 
 1. 创建AVTranscoder实例。
 
@@ -14,7 +17,7 @@
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   let avTranscoder: media.AVTranscoder;
+   let avTranscoder: media.AVTranscoder | undefined = undefined;
    media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
      avTranscoder = transcoder;
      // 需要在avTranscoder完成赋值后，再进行其他操作。
@@ -34,9 +37,12 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    // 转码完成回调函数。
-   avTranscoder.on('complete', () => {
+   avTranscoder.on('complete', async () => {
      console.log(`transcoder is completed`);
-     // 用户可以在此监听转码完成事件。
+     // 用户须在此监听转码完成事件，并调用release
+     // 须等待avTranscoder.release()完成之后，再对转码后的文件进行转发、上传、转存等处理
+     await avTranscoder.release();
+     avTranscoder = undefined;
    });
    
    // 错误上报回调函数。
@@ -52,14 +58,40 @@
    > 
    > - 如果使用本地资源转码，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    > 
+   > - 应通过Context属性获取应用文件路径，建议使用getUIContext获取UIContext实例，并使用getHostContext调用绑定实例的getContext，请参考[获取Context](../../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12)。
+   >
    > - 如果使用ResourceManager.getRawFd()打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
+
+   ```ts
+   import {AVTranscoderDemo} from '../transcoder/AVTranscoderManager'
+
+   @Entry
+   @Component
+   struct Index {
+     private context:Context | undefined = this.getUIContext().getHostContext();
+     private avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     build() {
+       Column() {
+        Button('转码').onClick(() => {
+          this.avTranscoder.avTranscoderDemo();
+        })
+      }
+     }
+   }
+   ```
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
    import { common } from '@kit.AbilityKit';
 
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+   private context: Context | undefined;
+    constructor(context: Context | undefined) {
+      if (context != undefined) {
+        this.context = context; // this.getUIContext().getHostContext();
+      }
+   }
+   // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+   let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // 设置转码的源文件属性fdSrc。
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
@@ -70,15 +102,20 @@
    > 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
    
    ```ts
+   // 设置输出目标文件的沙箱路径
+   let outputFilePath = this.context.filesDir + "/output.mp4";
+   // 文件不存在时创建并打开文件，文件存在时打开文件
+   let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    // 设置转码的目标文件属性fdDst。
-   this.avTranscoder.fdDst = 55; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处。
+   this.avTranscoder.fdDst = file.fd; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处。
    ```
 
 5. 配置视频转码参数，调用prepare()接口。
 
    > **说明：**
    >
-   > 写入配置参数时需要注意，prepare()接口的入参avConfig中仅设置转码相关的配置参数。
+   > 写入配置参数时需要注意，prepare()接口的入参avConfig中仅设置转码相关的配置参数。<br>
+   > 受限于解析/封装/编解码能力，只能使用[支持的转码格式](media-kit-intro.md#avtranscoder)。
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -90,8 +127,6 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
      videoBitrate: 2000000, // 视频比特率。
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-     videoFrameWidth: 640, // 视频分辨率的宽为640。
-     videoFrameHeight: 480, // 视频分辨率的高为480。
    };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
@@ -99,6 +134,7 @@
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
+   <!--RP2--><!--RP2End-->
 
 6. 开始转码，调用start()接口。
 
@@ -143,17 +179,22 @@
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
+  private context: Context | undefined;
+  constructor(context: Context | undefined) {
+    if (context != undefined) {
+      this.context = context;
+    }
+  }
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // 音频比特率。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式。
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
     videoBitrate: 200000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-    videoFrameWidth: 640, // 视频分辨率的宽。
-    videoFrameHeight: 480, // 视频分辨率的高。
   };
 
   // 注册avTranscoder回调函数。
@@ -184,10 +225,18 @@ export class AVTranscoderDemo {
       this.avTranscoder = await media.createAVTranscoder();
       this.setAVTranscoderCallback();
       // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档。
-      let context = getContext(this) as common.UIAbilityContext;
-      let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-      this.avTranscoder.fdSrc = fileDescriptor;
-      this.avTranscoder.fdDst = 55;
+      if (this.context != undefined) {
+        try {
+          // 获取输入文件fd，H264_AAC.mp4为rawfile目录下的预置资源，需要开发者根据实际情况进行替换。
+          let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+          this.avTranscoder.fdSrc = fileDescriptor;
+        } catch (error) {
+          console.error('Failed to get the file descriptor, please check the resource and path.');
+        }
+        let outputFilePath = this.context.filesDir + "/output.mp4";
+        let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        this.avTranscoder.fdDst = file.fd;
+      }
       // 3.配置转码参数完成准备工作。
       await this.avTranscoder.prepare(this.avConfig);
       // 4.开始转码。

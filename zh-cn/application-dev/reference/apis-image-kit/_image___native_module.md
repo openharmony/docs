@@ -11,7 +11,7 @@
 
 - [使用Image_NativeModule完成图片解码](../../media/image/image-source-c.md)
 - [使用Image_NativeModule完成多图对象解码](../../media/image/image-source-picture-c.md)
-- [使用Image_NativeModule完成图片接收器](../../media/image/image-receiver-c.md)
+- [使用Image_NativeModule完成图片接收](../../media/image/image-receiver-c.md)
 - [使用Image_NativeModule完成位图操作](../../media/image/pixelmap-c.md)
 - [使用Image_NativeModule处理图像信息](../../media/image/image-info-c.md)
 - [使用Image_NativeModule完成图片编码](../../media/image/image-packer-c.md)
@@ -91,9 +91,10 @@
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
 | [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br/>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br/>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br/>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | 用于分配 PixelMap 内存的分配器类型。 | 
+| [Image_CropAndScaleStrategy](#image_cropandscalestrategy) {<br/>IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST = 1,<br/>IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST = 2 } | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br/>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Pixelmap透明度类型。 | 
-| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, <br/>PIXEL_FORMAT_RGB_565 = 2, PIXEL_FORMAT_RGBA_8888 = 3, <br/>PIXEL_FORMAT_BGRA_8888 = 4, PIXEL_FORMAT_RGB_888 = 5, <br/>PIXEL_FORMAT_ALPHA_8 = 6, PIXEL_FORMAT_RGBA_F16 = 7, <br/>PIXEL_FORMAT_NV21 = 8, PIXEL_FORMAT_NV12 = 9,  <br/>PIXEL_FORMAT_RGBA_1010102 = 10, PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 } | HDR_METADATA_TYPE关键字对应的值。  | 
@@ -151,7 +152,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | 设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | 释放 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | 创建应用层 OH_ImageReceiverNative 对象。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | 注册一个[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。  | 
@@ -177,13 +178,15 @@
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) ([OH_DecodingOptions](#oh_decodingoptions) \*options, [Image_Region](_image___region.md) \*desiredRegion) | 设置解码区域。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*desiredDynamicRange) | 获取解码时设置的期望动态范围。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t desiredDynamicRange) | 设置解码时的期望动态范围。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_SetCropAndScaleStrategy](#oh_decodingoptions_setcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t cropAndScaleStrategy) | 设置解码选项的裁剪和缩放策略。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_GetCropAndScaleStrategy](#oh_decodingoptions_getcropandscalestrategy) ([OH_DecodingOptions](#oh_decodingoptions) \*options, int32_t \*cropAndScaleStrategy) | 获取解码选项的裁剪和缩放策略。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_DecodingOptions_Release](#oh_decodingoptions_release) ([OH_DecodingOptions](#oh_decodingoptions) \*options) | 释放OH_DecodingOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri) (char \*uri, size_t uriSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过uri创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd) (int32_t fd, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过fd创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过缓冲区数据创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | 通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过图片解码参数创建OH_PixelmapNative指针。  | 
-| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 根据解码参数创建一个PixelMap，PixelMap使用的内存类型可以通过allocatorType来指定。<br/>默认情况下，系统会根据图像类型、图像大小、平台能力等选择内存类型。 在处理通过此接口返回的PixelMap时，请始终考虑步幅（stride）的影响。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | 通过图片解码参数创建OH_PixelmapNative数组。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | 通过图片解码创建OH_PictureNative指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | 获取图像延迟时间数组。  | 
@@ -237,6 +240,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetRowStride](#oh_pixelmapinitializationoptions_setrowstride) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t rowStride) | 设置图像跨距。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | 获取透明度类型。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | 设置透明度类型。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetEditable](#oh_pixelmapinitializationoptions_geteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool \*editable) | 获取可编辑标志。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetEditable](#oh_pixelmapinitializationoptions_seteditable) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, bool editable) | 设置可编辑标志。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | 释放OH_Pixelmap_InitializationOptions指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*\*info) | 创建OH_Pixelmap_ImageInfo指针。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, uint32_t \*width) | 获取图片宽。  | 
@@ -250,7 +255,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeToNapi](#oh_pixelmapnative_convertpixelmapnativetonapi) (napi_env env, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmapNative, napi_value \*pixelmapNapi) | 将nativePixelMap对象转换为PixelMapnapi对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertPixelmapNativeFromNapi](#oh_pixelmapnative_convertpixelmapnativefromnapi) (napi_env env, napi_value pixelmapNapi, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmapNative) | 将PixelMapnapi对象转换为nativePixelMap对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | 读取图像像素数据，结果写入ArrayBuffer里。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | 读取缓冲区中的图片数据，结果写入PixelMap中.  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | 读取缓冲区中的图片数据，结果写入PixelMap中。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetArgbPixels](#oh_pixelmapnative_getargbpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | 从PixelMap中读取ARGB格式的数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ToSdr](#oh_pixelmapnative_tosdr) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 将HDR的图像内容转换为SDR的图像内容。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*imageInfo) | 获取图像像素信息。  | 
@@ -263,8 +268,9 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, float angle) | 根据输入的角度对图片进行旋转。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically) | 根据输入的条件对图片进行翻转。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy)。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy) (OH_PixelmapNative \*\*pixelmap) | 释放OH_PixelmapNative指针。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixelmap的像素数据做预乘和非预乘之间的转换。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | 获取元数据。  | 
@@ -272,10 +278,10 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | 设置NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | 获取NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | 设置pixelMap内存名字。  | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | 获取Pixelmap用于储存像素数据的内存字节数。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
-| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | 获取Pixelmap用于储存像素数据的内存字节数。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
 
 
 ### 变量
@@ -306,7 +312,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | 图像压缩方案。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。 | 
@@ -401,7 +407,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。 | 
@@ -412,7 +418,7 @@
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | 此标签指示拍摄图像时相机或输入设备的灵敏度。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | 连拍次数。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | 人脸置信度。 | 
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | 左眼中心。被用于 [OH_ImageSource_GetImageProperty](#oh_imagesourcenative_getimageproperty) 和 [OH_ImageSource_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty)。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | 左眼中心。  | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | 嘴中心。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | 脸部指针。 | 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | 脸部矩形。 | 
@@ -504,9 +510,29 @@ AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。
 typedef struct OH_DecodingOptions OH_DecodingOptions
 ```
 **描述**
-解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
+OH_DecodingOptions是native层封装的解码选项参数结构体，用于设置解码选项参数，在创建Pixelmap时作为入参传入，详细信息见 [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
+OH_DecodingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
+
+创建OH_DecodingOptions对象使用[OH_DecodingOptions_Create](#oh_decodingoptions_create)函数。
+
+释放OH_DecodingOptions对象使用[OH_DecodingOptions_Release](#oh_decodingoptions_release)函数。
+
+OH_DecodingOptions结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| int32_t | pixelFormat | 像素格式 | [OH_DecodingOptions_GetPixelFormat](#oh_decodingoptions_getpixelformat)	|获取pixel格式。|
+| int32_t | pixelFormat | 像素格式 | [OH_DecodingOptions_SetPixelFormat](#oh_decodingoptions_setpixelformat)	| 设置像素格式。|
+| uint32_t | index | 解码图片序号 | [OH_DecodingOptions_GetIndex](#oh_decodingoptions_getindex)	| 获取解码图片序号。|
+| uint32_t | index | 解码图片序号 | [OH_DecodingOptions_SetIndex](#oh_decodingoptions_setindex)	| 设置解码图片序号。|
+| float | rotate | 旋转角度 | [OH_DecodingOptions_GetRotate](#oh_decodingoptions_getrotate)	| 获取旋转角度。|
+| float | rotate | 旋转角度 | [OH_DecodingOptions_SetRotate](#oh_decodingoptions_setrotate)	| 设置旋转角度。|
+| Image_Size | desiredSize | 期望输出大小 | [OH_DecodingOptions_GetDesiredSize](#oh_decodingoptions_getdesiredsize)	| 获取期望输出大小。|
+| Image_Size | desiredSize | 期望输出大小 | [OH_DecodingOptions_SetDesiredSize](#oh_decodingoptions_setdesiredsize)	| 设置期望输出大小。|
+| Image_Region | desiredRegion | 解码区域 | [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) | 获取解码区域。|
+| Image_Region | desiredRegion | 解码区域 | [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) | 设置解码区域。|
+| int32_t | desiredDynamicRange | 期望动态范围 | [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange)	|获取解码时设置的期望动态范围。|
+| int32_t | desiredDynamicRange | 期望动态范围 | [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange)|设置解码时的期望动态范围。|
 
 **起始版本：** 12
 
@@ -519,7 +545,18 @@ typedef struct OH_ImageNative OH_ImageNative
 **描述**
 为图像接口定义native层图像对象的别名。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageNative结构体介绍](../../media/image/image-structure-c.md#oh_imagenative结构体)。
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式如下：
+
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| Image_Size| imageSize | 图像大小 |[OH_ImageNative_GetImageSize](#oh_imagenative_getimagesize) | 获取 OH_ImageNative 对象的 Image_Size 信息。|
+| uint32_t | types |组件类型，用于描述图像颜色分量。 |[OH_ImageNative_GetComponentTypes](#oh_imagenative_getcomponenttypes) | 获取 OH_ImageNative 对象的组件列表信息。 |
+| OH_NativeBuffer | nativeBuffer | 组件缓冲区|[OH_ImageNative_GetByteBuffer](#oh_imagenative_getbytebuffer) | 获取 OH_ImageNative 对象中某个组件类型所对应的缓冲区。|
+| size_t | bufferSize | 缓冲区的大小 | [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) | 获取 OH_ImageNative 对象中某个组件类型所对应的缓冲区的大小。|
+| int32_t | rowStride | 像素行宽 | [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) | 获取 OH_ImageNative 对象中某个组件类型所对应的像素行宽。 |
+| int32_t | pixelStride | 像素大小 | [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) | 获取 OH_ImageNative 对象中某个组件类型所对应的像素大小。 |
+
+释放OH_ImageNative对象使用[OH_ImageNative_Release](#oh_imagenative_release)函数。
 
 **起始版本：** 12
 
@@ -532,7 +569,18 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 **描述**
 ImagePacker结构体类型，用于执行ImagePacker相关操作。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImagePackerNative结构体介绍](../../media/image/image-structure-c.md#oh_imagepackernative结构体)。
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式如下：
+
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| OH_ImageSourceNative | imageSource | 图片源 | [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) | 将ImageSource编码为指定格式的数据。 |
+|OH_PixelmapNative | pixelmap | native层的pixelmap | [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) | 将Pixelmap编码为指定格式的数据。|
+|int32_t | imagesourceFd | imagesource关联的文件描述符 | [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) | 将一个ImageSource编码到文件中。|
+|int32_t | pixelmapFd | pixelmap关联的文件描述符| [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) | 将一个Pixelmap编码到文件中。|
+
+创建OH_ImagePackerNative对象使用[OH_ImagePackerNative_Create](#oh_imagepackernative_create)函数。
+
+释放OH_ImagePackerNative对象使用[OH_ImagePackerNative_Release](#oh_imagepackernative_release)函数。
 
 **起始版本：** 12
 
@@ -554,9 +602,22 @@ typedef void(* OH_ImageReceiver_OnCallback) (OH_ImageReceiverNative *receiver)
 typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 ```
 **描述**
-用于定义OH_ImageReceiverNative数据类型名称。
+OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageReceiverNative结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverNative结构体介绍](../../media/image/image-structure-c.md#oh_imagereceivernative结构体)。
+创建OH_ImageReceiverNative对象使用[OH_ImageReceiverNative_Create](#oh_imagereceivernative_create)函数。
+
+释放OH_ImageReceiverNative对象使用[OH_ImageReceiverNative_Release](#oh_imagereceivernative_release)函数。
+
+OH_ImageReceiverNative结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| uint64_t | surfaceId | 接收器的surfaceId | [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |通过OH_ImageReceiverNative获取SurfaceId。|
+| OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | 通过OH_ImageReceiverNative获取最新的一张图片。|
+| OH_ImageNative | image | native层的image | [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |通过OH_ImageReceiverNative获取下一张图片。|
+| OH_ImageReceiver_OnCallback | callback| 图片接收器回调函数 | [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |注册一个OH_ImageReceiver_OnCallback回调事件。|
+| OH_ImageReceiver_OnCallback | callback| 图片接收器回调函数 | [OH_ImageReceiverNative_Off](#oh_imagereceivernative_off) |关闭OH_ImageReceiver_OnCallback回调事件。|
+| Image_Size | size | ImageReceiver的大小 | [OH_ImageReceiverNative_GetSize](#oh_imagereceivernative_getsize) |通过OH_ImageReceiverNative获取ImageReceiver的大小。|
+|int32_t | capacity| 图片接收器容量 | [OH_ImageReceiverNative_GetCapacity](#oh_imagereceivernative_getcapacity) |通过OH_ImageReceiverNative获取ImageReceiver的容量。|
 
 **起始版本：** 12
 
@@ -569,7 +630,20 @@ typedef struct OH_ImageReceiverOptionsOH_ImageReceiverOptions
 **描述**
 用于定义OH_ImageReceiverOptions数据类型名称。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverOptions结构体介绍](../../media/image/image-structure-c.md#oh_imagereceiveroptions结构体)。
+OH_ImageReceiverOptions是native层封装的图片接收器选项设置器结构体，用于创建OH_ImageReceiverNative时传入设置参数。
+OH_ImageReceiverOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
+
+创建OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create)函数。
+
+释放OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_release)函数。
+
+OH_ImageReceiverOptions结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_GetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getsize)	|获取 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
+| Image_Size | size | 图像大小 | [OH_ImageReceiverOptions_SetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setsize)	|设置 OH_ImageReceiverOptions 对象的 Image_Size 信息。|
+| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_GetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getcapacity)	|获取 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
+| int32_t | capacity | 图片缓存容量 | [OH_ImageReceiverOptions_SetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setcapacity)	|设置 OH_ImageReceiverOptions 对象的图片缓存容量的信息。|
 
 **起始版本：** 12
 
@@ -580,9 +654,18 @@ typedef struct OH_ImageReceiverOptionsOH_ImageReceiverOptions
 typedef struct OH_ImageSource_Info OH_ImageSource_Info
 ```
 **描述**
-图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)。
+OH_ImageSource_Info是native层封装的ImageSource信息结构体，OH_ImageSource_Info结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSource_Info结构体介绍](../../media/image/image-structure-c.md#oh_imagesource_info结构体)。
+创建OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)函数。
+
+释放OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Release](#oh_imagesourceinfo_release)函数。
+
+OH_ImageSource_Info结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | 图片宽度 | [OH_ImageSourceInfo_GetWidth](#oh_imagesourceinfo_getwidth)	|获取图片的宽。|
+| uint32_t | height | 图片高度 | [OH_ImageSourceInfo_GetHeight](#oh_imagesourceinfo_getheight)	|获取图片的高。|
+| bool | isHdr | 是否为高动态范围的信息 | [OH_ImageSourceInfo_GetDynamicRange](#oh_imagesourceinfo_getdynamicrange)	|获取图片是否为高动态范围的信息。|
 
 **起始版本：** 12
 
@@ -593,9 +676,28 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 typedef struct OH_ImageSourceNative OH_ImageSourceNative
 ```
 **描述**
-ImageSource结构体类型，用于执行ImageSource相关操作。
+OH_ImageSourceNative是native层封装的ImageSource结构体，用于创建图片数据。OH_ImageSourceNative结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSourceNative结构体介绍](../../media/image/image-structure-c.md#oh_imagesourcenative结构体)。
+有多种方式创建OH_ImageSourceNative，具体如下：
+| 函数 | 描述 |
+| -------- | -------- |
+| [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri)	|通过uri创建OH_ImageSourceNative对象。|
+| [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd)	|通过fd创建OH_ImageSourceNative对象。|
+| [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata)	|通过缓冲区数据创建OH_ImageSourceNative对象。|
+| [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile)	|通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative对象。|
+| [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)	|通过图片解码参数创建OH_PixelmapNative对象。|
+| [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist)	|通过图片解码参数创建OH_PixelmapNative数组。|
+
+释放OH_ImageSourceNative对象使用[OH_ImageSourceNative_Release](#oh_imagesourcenative_release)函数。
+
+OH_ImageSourceNative结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| int32_t | delayTimeList | 图像延迟时间数组 | [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist)	|获取图像延迟时间数组。 |
+| OH_ImageSource_Info | info | ImageSource信息 | [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo)	|获取指定序号的图片信息。|
+| Image_String | value | 配置项 | [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty)	|获取图片指定属性键的值。|
+| Image_String | value | 配置项 | [OH_ImageSourceNative_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty)	|通过指定的键修改图片属性的值。|
+| uint32_t | frameCount | 图像帧数 | [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount)	|获取图像帧数。|
 
 **起始版本：** 12
 
@@ -617,9 +719,21 @@ NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相�
 typedef struct OH_PackingOptions OH_PackingOptions
 ```
 **描述**
-图像编码选项。
+OH_PackingOptions是native层封装的图像编码选项结构体，OH_PackingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PackingOptions结构体介绍](../../media/image/image-structure-c.md#oh_packingoptions结构体)。
+创建PackingOptions结构体的对象使用[OH_PackingOptions_Create](#oh_packingoptions_create)函数。
+
+释放OH_PackingOptions对象使用[OH_PackingOptions_Release](#oh_packingoptions_release)函数。
+
+OH_PackingOptions结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| Image_MimeType | mimeType | MIME类型 | [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) | 获取MIME类型。|
+| Image_MimeType | mimeType | MIME类型 | [OH_PackingOptions_SetMimeType](#oh_packingoptions_setmimetype) | 设置MIME类型。|
+| uint32_t | quality | 编码质量 | [OH_PackingOptions_GetQuality](#oh_packingoptions_getquality) | 获取编码质量。|
+| uint32_t | quality | 编码质量 | [OH_PackingOptions_SetQuality](#oh_packingoptions_setquality) | 设置编码质量。|
+| int32_t | desiredDynamicRange | 图片动态范围 | [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) | 获取编码时期望的图片动态范围。|
+| int32_t | desiredDynamicRange | 图片动态范围 | [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) | 设置编码时期望的图片动态范围。|
 
 **起始版本：** 12
 
@@ -632,7 +746,7 @@ typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
 **描述**
 图像序列编码选项。
 
-**起始版本：** 13
+**起始版本：** 18
 
 
 ### OH_PictureMetadata
@@ -709,9 +823,21 @@ HDR_STATIC_METADATA关键字对应的静态元数据值。
 typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 ```
 **描述**
-图像像素信息结构体。
+OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_ImageInfo结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo结构体)。
+创建OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create)函数。
+
+释放OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release)函数。
+
+OH_Pixelmap_ImageInfo结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | 图片宽 | [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth)	| 获取图片宽。|
+| uint32_t | height | 图片高 | [OH_PixelmapImageInfo_GetHeight](#oh_pixelmapimageinfo_getheight)	| 获取图片高。|
+| uint32_t | rowStride | 行跨距 | [OH_PixelmapImageInfo_GetRowStride](#oh_pixelmapimageinfo_getrowstride)	| 获取行跨距。|
+| int32_t | pixelFormat| 像素格式 | [OH_PixelmapImageInfo_GetPixelFormat](#oh_pixelmapimageinfo_getpixelformat)	|获取像素格式。|
+| int32_t | alphaType | 透明度类型 | [OH_PixelmapImageInfo_GetAlphaType](#oh_pixelmapimageinfo_getalphatype)	|获取透明度类型。|
+| bool | isHdr | 是否为高动态范围的信息 | [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange)	|获取Pixelmap是否为高动态范围的信息。|
 
 **起始版本：** 12
 
@@ -722,9 +848,23 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptions
 ```
 **描述**
-初始化参数结构体。
+OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_InitializationOptions结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions结构体)。
+创建OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create)函数。
+
+释放OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release)函数。
+
+OH_Pixelmap_InitializationOptions结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | 图片宽 | [OH_PixelmapInitializationOptions_GetWidth](#oh_pixelmapinitializationoptions_getwidth)	|获取图片宽。|
+| uint32_t | width | 图片宽 | [OH_PixelmapInitializationOptions_SetWidth](#oh_pixelmapinitializationoptions_setwidth)	|设置图片宽。|
+| uint32_t | height | 图片高 | [OH_PixelmapInitializationOptions_GetHeight](#oh_pixelmapinitializationoptions_getheight)	|获取图片高。|
+| uint32_t | height | 图片高 | [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight)	|设置图片高。|
+| int32_t | pixelFormat | 像素格式 | [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat)	|获取像素格式。|
+| int32_t | pixelFormat | 像素格式 | [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat)	|设置像素格式。|
+| int32_t | alphaType | 透明度类型 | [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype)	|获取透明度类型。|
+| int32_t | alphaType | 透明度类型 | [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype)	|设置透明度类型。|
 
 **起始版本：** 12
 
@@ -735,9 +875,24 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 typedef struct OH_PixelmapNative OH_PixelmapNative
 ```
 **描述**
-Pixelmap结构体类型，用于执行Pixelmap相关操作。
+OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图格式结构体。
 
-此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PixelmapNative结构体介绍](../../media/image/image-structure-c.md#oh_pixelmapnative结构体)。
+函数创建OH_PixelmapNative使用[OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap)函数，默认采用BGRA_8888格式处理数据。
+
+释放OH_PixelmapNative对象使用[OH_PixelmapNative_Release](#oh_pixelmapnative_release)函数。
+
+OH_PixelmapNative结构体内容和操作方式如下：
+| 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| uint8_t | data | 图像像素数据 | [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels)	| 读取图像像素数据，结果写入ArrayBuffer里。|
+| uint8_t | data | 图像像素数据 | [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels)	| 读取缓冲区中的图片数据，结果写入PixelMap中。|
+| OH_Pixelmap_ImageInfo | imageInfo | 图像像素信息 | [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo)	| 获取图像像素信息。|
+| float | alphaRate | 透明度 | [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity)	| 通过设置透明比率来让PixelMap达到对应的透明效果。|
+|float, float, | scaleX, scaleY | scaleX沿X轴缩放比例，scaleY沿Y轴缩放比例 |[OH_PixelmapNative_Scale](#oh_pixelmapnative_scale)	| 根据输入的宽高对图片进行缩放。|
+| float, float| x, y | x平移量，y平移量 | [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate)	| 根据输入的坐标对图片进行位置变换。|
+| float | angle | 旋转角度 |[OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) | 根据输入的角度对图片进行旋转。|
+| bool, bool | shouldFilpHorizontally, shouldFilpVertically | 是否水平翻转，是否垂直翻转 | [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip)	| 根据输入的条件对图片进行翻转。|
+| Image_Region | region | 裁剪区间 | [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop)	| 根据输入的尺寸对图片进行裁剪。|
 
 **起始版本：** 12
 
@@ -749,7 +904,6 @@ typedef struct OH_NativeBuffer OH_NativeBuffer
 ```
 **描述**
 NativeBuffer结构体类型，用于执行NativeBuffer相关操作。
-
 
 **起始版本：** 12
 
@@ -793,6 +947,24 @@ enum Image_AuxiliaryPictureType
 | AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP  | 人像未对焦的原图，提供了一种在人像拍摄中突出背景模糊效果的方式，能够帮助用户在后期处理中选择焦点区域，增加创作自由度。   | 
 | AUXILIARY_PICTURE_TYPE_LINEAR_MAP  | 线性图，用于提供额外的数据视角或补充信息，通常用于视觉效果的增强，它可以包含场景中光照、颜色或其他视觉元素的线性表示。   | 
 | AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP  | 水印裁剪图，表示在原图中被水印覆盖的区域，该图像用于修复或移除水印影响，恢复图像的完整性和可视性。   | 
+
+
+### Image_CropAndScaleStrategy
+
+```
+enum Image_CropAndScaleStrategy
+```
+
+**描述**
+
+在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。
+
+**起始版本：** 18
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IMAGE_CROP_AND_SCALE_STRATEGY_SCALE_FIRST | 先裁剪，后缩放。 | 
+| IMAGE_CROP_AND_SCALE_STRATEGY_CROP_FIRST | 先缩放，后裁剪。 | 
 
 
 ### IMAGE_DYNAMIC_RANGE
@@ -976,10 +1148,10 @@ Pixelmap透明度类型。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式 | 
-| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式 | 
-| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式 | 
-| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式 |
+| PIXELMAP_ALPHA_TYPE_UNKNOWN | 未知格式。 | 
+| PIXELMAP_ALPHA_TYPE_OPAQUE | 不透明的格式。 | 
+| PIXELMAP_ALPHA_TYPE_PREMULTIPLIED | 预乘透明度格式。 | 
+| PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED | 非预乘透明度格式。 |
 
 
 ## 函数说明
@@ -995,7 +1167,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info)
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1016,7 +1188,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1038,7 +1210,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *in
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1060,7 +1232,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, I
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1082,7 +1254,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, I
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1104,7 +1276,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Release(OH_AuxiliaryPictureInfo *info)
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1125,7 +1297,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1147,7 +1319,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *in
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1169,7 +1341,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, I
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1191,7 +1363,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, I
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1213,7 +1385,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1238,7 +1410,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *aux
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1260,7 +1432,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1283,7 +1455,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *aux
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1305,7 +1477,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1328,7 +1500,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *pic
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1349,7 +1521,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1371,7 +1543,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1394,7 +1566,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1417,7 +1589,7 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1426,6 +1598,30 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_GetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_GetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t *cropAndScaleStrategy)
+```
+
+**描述**
+
+获取解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 指向在同时指定desiredSize和desiredRegion时执行裁剪和缩放策略的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options或者cropAndScaleStrategy为空指针返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_DecodingOptions_GetDesiredDynamicRange()
@@ -1438,7 +1634,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredDynamicRange(OH_DecodingOptions *op
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1460,7 +1656,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredRegion(OH_DecodingOptions *options,
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1482,7 +1678,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredSize(OH_DecodingOptions *options, I
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1504,7 +1700,7 @@ Image_ErrorCode OH_DecodingOptions_GetIndex(OH_DecodingOptions *options, uint32_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1526,7 +1722,7 @@ Image_ErrorCode OH_DecodingOptions_GetPixelFormat(OH_DecodingOptions *options, i
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1548,7 +1744,7 @@ Image_ErrorCode OH_DecodingOptions_GetRotate(OH_DecodingOptions *options, float 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1570,7 +1766,7 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1579,6 +1775,30 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetCropAndScaleStrategy()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetCropAndScaleStrategy(OH_DecodingOptions *options, int32_t cropAndScaleStrategy)
+```
+
+**描述**
+
+设置解码选项的裁剪和缩放策略。
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| cropAndScaleStrategy | 在同时指定desiredSize和desiredRegion时执行裁剪和缩放的策略。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果options空指针或者cropAndScaleStrategy取值不在Image_CropAndScaleStrategy枚举值定义之中返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_DecodingOptions_SetDesiredDynamicRange()
@@ -1591,7 +1811,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1613,7 +1833,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredRegion(OH_DecodingOptions *options,
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1635,7 +1855,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredSize(OH_DecodingOptions *options, I
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1657,7 +1877,7 @@ Image_ErrorCode OH_DecodingOptions_SetIndex(OH_DecodingOptions *options, uint32_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1679,7 +1899,7 @@ Image_ErrorCode OH_DecodingOptions_SetPixelFormat(OH_DecodingOptions *options, i
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1701,7 +1921,7 @@ Image_ErrorCode OH_DecodingOptions_SetRotate(OH_DecodingOptions *options, float 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1723,7 +1943,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_Create(OH_DecodingOptionsForPicture
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1744,7 +1964,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_GetDesiredAuxiliaryPictures(OH_Deco
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1767,7 +1987,7 @@ Image_ErrorCode OH_DecodingOptionsForPicture_Release(OH_DecodingOptionsForPictur
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1788,11 +2008,11 @@ Image_ErrorCode OH_DecodingOptionsForPicture_SetDesiredAuxiliaryPictures(OH_Deco
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptionsForPicture指针  | 
+| options | 被操作的OH_DecodingOptionsForPicture指针。  | 
 | desiredAuxiliaryPictures | 将要设置的期望辅助图。  | 
 | length | 期望辅助图长度。  | 
 
@@ -1811,7 +2031,7 @@ Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image, uint32_t com
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1834,7 +2054,7 @@ Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image, uint32_t com
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1857,7 +2077,7 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image, uint32_t
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1880,7 +2100,7 @@ Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *s
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1902,7 +2122,7 @@ Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image, uint32_t co
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1925,7 +2145,7 @@ Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image, uint32_t comp
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1949,7 +2169,7 @@ Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *time
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1971,7 +2191,7 @@ Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1992,7 +2212,7 @@ Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2013,15 +2233,15 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNat
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | imageSource | 用于编码的image source指针。  | 
-| outData | 用于存储打包图像输出数据的缓冲区。  | 
-| size | 用于存储打包图像输出数据的缓冲区大小。  | 
+| outData | 用于存储编码图像输出数据的缓冲区。  | 
+| size | 用于存储编码图像输出数据的缓冲区大小。  | 
 
 **返回：**
 
@@ -2038,15 +2258,15 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPicture(OH_ImagePackerNative 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | picture | 用于编码的Picture指针。  | 
-| outData | 用于存储打包图像输出数据的缓冲区。  | 
-| size | 用于存储打包图像输出数据的缓冲区大小。  | 
+| outData | 用于存储编码图像输出数据的缓冲区。  | 
+| size | 用于存储编码图像输出数据的缓冲区大小。  | 
 
 **返回：**
 
@@ -2063,15 +2283,15 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap(OH_ImagePackerNative
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | pixelmap | 用于编码的Pixelmap指针。  | 
-| outData | 用于存储打包图像输出数据的缓冲区。  | 
-| size | 用于存储打包图像输出数据的缓冲区大小。  | 
+| outData | 用于存储编码图像输出数据的缓冲区。  | 
+| size | 用于存储编码图像输出数据的缓冲区大小。  | 
 
 **返回：**
 
@@ -2086,9 +2306,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePack
 **描述**
 将Pixelmap序列编码为数据。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2114,12 +2334,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource(OH_ImagePackerNat
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | imageSource | 用于编码的image source指针。  | 
 | fd | 可写的文件描述符。  | 
 
@@ -2138,12 +2358,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPicture(OH_ImagePackerNative 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | picture | 用于编码的picture指针。  | 
 | fd | 可写的文件描述符。  | 
 
@@ -2162,12 +2382,12 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap(OH_ImagePackerNative
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | imagePacker | 被操作的OH_ImagePackerNative指针。  | 
-| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
+| options | 编码选项参数 [OH_PackingOptions](#oh_packingoptions)。  | 
 | pixelmap | 用于编码的pixelmap指针。  | 
 | fd | 可写的文件描述符。  | 
 
@@ -2184,9 +2404,9 @@ Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePack
 **描述**
 将一个Pixelmap序列编码到文件中。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2211,7 +2431,7 @@ Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2232,7 +2452,7 @@ Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2254,7 +2474,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2276,11 +2496,11 @@ Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* recei
 Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
 ```
 **描述**
-通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取SurfaceId。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2306,7 +2526,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver,
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2334,7 +2554,7 @@ Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2361,7 +2581,7 @@ Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_I
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2389,7 +2609,7 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2417,7 +2637,7 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2443,7 +2663,7 @@ Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2468,7 +2688,7 @@ Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2489,7 +2709,7 @@ Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* opt
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2511,7 +2731,7 @@ Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2533,7 +2753,7 @@ Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2558,7 +2778,7 @@ Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* opt
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2580,7 +2800,7 @@ Image_ErrorCode OH_ImageReceiverOptions_SetSize(OH_ImageReceiverOptions* options
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2602,7 +2822,7 @@ Image_ErrorCode OH_ImageSourceInfo_Create(OH_ImageSource_Info **info)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2623,7 +2843,7 @@ Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange(OH_ImageSource_Info *info, bo
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2645,12 +2865,12 @@ Image_ErrorCode OH_ImageSourceInfo_GetHeight(OH_ImageSource_Info *info, uint32_t
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | info | 被操作的OH_ImageSource_Info指针。  | 
-| height | 图片的高，单位：像素高  | 
+| height | 图片的高，单位：像素。  | 
 
 **返回：**
 
@@ -2667,7 +2887,7 @@ Image_ErrorCode OH_ImageSourceInfo_GetWidth(OH_ImageSource_Info *info, uint32_t 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2689,7 +2909,7 @@ Image_ErrorCode OH_ImageSourceInfo_Release(OH_ImageSource_Info *info)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2712,7 +2932,7 @@ data数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2735,7 +2955,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNati
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2753,11 +2973,11 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromFd(int32_t fd, OH_ImageSourceNati
 Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile(RawFileDescriptor *rawFile, OH_ImageSourceNative **res)
 ```
 **描述**
-通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针
+通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2779,7 +2999,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromUri(char *uri, size_t uriSize, OH
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2802,7 +3022,7 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2818,20 +3038,20 @@ Image_ErrorCode OH_ImageSourceNative_CreatePicture(OH_ImageSourceNative *source,
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative指针
+通过图片解码参数创建OH_PixelmapNative指针。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
 | options | 解码参数。  | 
-| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。  | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象指针的指针。  | 
 
 **返回：**
 
@@ -2844,14 +3064,14 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source
 Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative *resVecPixMap[], size_t size)
 ```
 **描述**
-通过图片解码参数创建OH_PixelmapNative数组
+通过图片解码参数创建OH_PixelmapNative数组。
 
 > **注意：**
 > 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2879,12 +3099,12 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourc
 
 **起始版本：** 15
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。 | 
-| options | 解码参数。 详情请参见 **OH_DecodingOptions**。 | 
+| options | 解码参数。 详情请参见 [OH_DecodingOptions](#oh_decodingoptions)。 | 
 | allocator | 指示返回的PixelMap将使用哪种内存类型。 | 
 | pixelmap | 指向c++本地层创建的OH_PixelmapNative对象的指针。 | 
 
@@ -2919,11 +3139,11 @@ Image_ErrorCode OH_ImageSourceNative_CreatePixelmapUsingAllocator (OH_ImageSourc
 Image_ErrorCode OH_ImageSourceNative_GetDelayTimeList(OH_ImageSourceNative *source, int32_t *delayTimeList, size_t size)
 ```
 **描述**
-获取图像延迟时间数组
+获取图像延迟时间数组。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2946,7 +3166,7 @@ Image_ErrorCode OH_ImageSourceNative_GetFrameCount(OH_ImageSourceNative *source,
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2968,7 +3188,7 @@ Image_ErrorCode OH_ImageSourceNative_GetImageInfo(OH_ImageSourceNative *source, 
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -2991,12 +3211,12 @@ Image_ErrorCode OH_ImageSourceNative_GetImageProperty(OH_ImageSourceNative *sour
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | source | 被操作的OH_ImageSourceNative指针。  | 
-| key | 指示指向属性的指针，详情请参见[Image_String](_image___string.md)，key的取值范围参考OHOS_IMAGE_PROPERTY_XXX定义。 使用ImageSource后释放，参见[OH_ImageSourceNative_Release](#oh_imagesourcenative_release)。  | 
+| key | 指示指向属性的指针，详情请参见[Image_String](_image___string.md)，key的取值范围参考[OHOS_IMAGE_PROPERTY_XXX](#变量)定义。 使用ImageSource后释放，参见[OH_ImageSourceNative_Release](#oh_imagesourcenative_release)。  | 
 | value | 指向获取的值的指针。用户可以传入一个空指针和零大小， 我们将分配内存，但用户必须在使用后释放内存。  | 
 
 **返回：**
@@ -3014,7 +3234,7 @@ Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty(OH_ImageSourceNative *s
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3037,7 +3257,7 @@ Image_ErrorCode OH_ImageSourceNative_Release(OH_ImageSourceNative *source)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3058,7 +3278,7 @@ Image_ErrorCode OH_PackingOptions_Create(OH_PackingOptions **options)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3079,7 +3299,7 @@ Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange(OH_PackingOptions *opti
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3101,7 +3321,7 @@ Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Imag
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3123,7 +3343,7 @@ Image_ErrorCode OH_PackingOptions_GetQuality(OH_PackingOptions *options, uint32_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3145,7 +3365,7 @@ Image_ErrorCode OH_PackingOptions_Release(OH_PackingOptions *options)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3166,7 +3386,7 @@ Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange(OH_PackingOptions *opti
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3188,7 +3408,7 @@ Image_ErrorCode OH_PackingOptions_SetMimeType(OH_PackingOptions *options, Image_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3210,7 +3430,7 @@ Image_ErrorCode OH_PackingOptions_SetQuality(OH_PackingOptions *options, uint32_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3230,9 +3450,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence
 **描述**
 创建OH_PackingOptionsForSequence结构体的指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3251,9 +3471,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsF
 **描述**
 获取编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3274,9 +3494,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsF
 **描述**
 获取编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3297,9 +3517,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForS
 **描述**
 获取编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3319,9 +3539,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSe
 **描述**
 获取编码时图片循环播放次数。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3341,9 +3561,9 @@ Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequenc
 **描述**
 释放OH_PackingOptionsForSequence指针。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3362,14 +3582,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsF
 **描述**
 设定编码时图片的延迟时间数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| delayTimeList | 图片延迟时间数组的指针。  | 
+| delayTimeList | 图片延迟时间数组的指针，每帧输出图像的延迟时间，取值需大于0。<br>- 单位为10毫秒。例如，取值为10时，实际单帧延迟是100毫秒。<br>- 如果长度小于frameCount，不足的部分将使用delayTimeList中的最后一个值进行填充。| 
 | delayTimeListLength | 图片延迟时间数组的长度。  | 
 
 **返回：**
@@ -3385,14 +3605,14 @@ Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsF
 **描述**
 设定编码时图片的过渡帧模式数组。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 用于操作的OH_PackingOptionsForSequence指针。  | 
-| disposalTypes | 图片过渡帧模式数组的指针。  | 
+| disposalTypes | 图片过渡帧模式数组的指针，图片帧过渡模式的参数，如果长度小于frameCount，不足的部分将使用disposalTypes中的最后一个值进行填充，可取值如下：<br>- 0：不需要任何操作。<br>- 1：保持图形不变。<br>- 2：恢复背景色。<br>- 3：恢复到之前的状态。| 
 | disposalTypesLength | 图片过渡帧模式数组的长度。  | 
 
 **返回：**
@@ -3408,9 +3628,9 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 **描述**
 设置编码时指定的帧数。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3428,11 +3648,11 @@ mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSe
 Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
 ```
 **描述**
-设定编码时图片循环播放次数。
+设定编码时图片循环播放次数，取值范围为[0，65535]，<br>0表示无限循环；若无此字段，则表示不循环播放。
 
-**起始版本：** 13
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3454,7 +3674,7 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3476,7 +3696,7 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3498,7 +3718,7 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3521,7 +3741,7 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3542,7 +3762,7 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3565,7 +3785,7 @@ Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3587,7 +3807,7 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3610,7 +3830,7 @@ Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, O
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3632,7 +3852,7 @@ Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *pictur
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3654,7 +3874,7 @@ Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_P
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3676,7 +3896,7 @@ Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_Me
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3699,7 +3919,7 @@ Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture)
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3720,7 +3940,7 @@ Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, 
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3743,7 +3963,7 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3766,7 +3986,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Create(OH_Pixelmap_ImageInfo **info)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3787,7 +4007,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType(OH_Pixelmap_ImageInfo *info, i
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3809,7 +4029,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange(OH_Pixelmap_ImageInfo *info
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3831,7 +4051,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetHeight(OH_Pixelmap_ImageInfo *info, uint
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3853,7 +4073,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat(OH_Pixelmap_ImageInfo *info,
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3875,7 +4095,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetRowStride(OH_Pixelmap_ImageInfo *info, u
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3897,7 +4117,7 @@ Image_ErrorCode OH_PixelmapImageInfo_GetWidth(OH_Pixelmap_ImageInfo *info, uint3
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3919,7 +4139,7 @@ Image_ErrorCode OH_PixelmapImageInfo_Release(OH_Pixelmap_ImageInfo *info)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3940,7 +4160,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Create(OH_Pixelmap_Initializati
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3961,7 +4181,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -3971,6 +4191,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType(OH_Pixelmap_Initia
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_GetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetEditable(OH_Pixelmap_InitializationOptions *options, bool *editable)
+```
+
+**描述**
+
+获取可编辑标志。
+
+**起始版本：** 18
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| editable | 可编辑标志。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapInitializationOptions_GetHeight()
@@ -3983,7 +4227,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight(OH_Pixelmap_Initializ
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4005,7 +4249,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat(OH_Pixelmap_Init
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4029,7 +4273,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetRowStride(OH_Pixelmap_Initia
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4051,7 +4295,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_I
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4073,7 +4317,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth(OH_Pixelmap_Initializa
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4095,7 +4339,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_Release(OH_Pixelmap_Initializat
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4116,7 +4360,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4126,6 +4370,30 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType(OH_Pixelmap_Initia
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetEditable()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetEditable(OH_Pixelmap_InitializationOptions *options, bool editable)
+```
+
+**描述**
+
+设置可编辑标志。
+
+**起始版本：** 18
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| editable | 可编辑标志。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapInitializationOptions_SetHeight()
@@ -4138,7 +4406,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight(OH_Pixelmap_Initializ
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4160,7 +4428,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat(OH_Pixelmap_Init
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4184,7 +4452,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetRowStride(OH_Pixelmap_Initia
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4206,7 +4474,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_I
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4228,7 +4496,7 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4254,7 +4522,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
 
 **起始版本：** 15
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4272,11 +4540,11 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
 Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat(OH_PixelmapNative* srcpixelmap, OH_PixelmapNative* dstpixelmap, const bool isPremul)
 ```
 **描述**
-将pixlemap的像素数据做预乘和非预乘之间的转换。
+将pixelmap的像素数据做预乘和非预乘之间的转换。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4299,7 +4567,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi(napi_env env, na
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4322,7 +4590,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi(napi_env env, OH_P
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4345,7 +4613,7 @@ Image_ErrorCode OH_PixelmapNative_CreateEmptyPixelmap(OH_Pixelmap_Initialization
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4367,7 +4635,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap(uint8_t *data, size_t dataLengt
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4391,9 +4659,9 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMap(OH_PixelmapNative *srcPix
 
 根据输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4417,9 +4685,9 @@ Image_ErrorCode OH_PixelmapNative_CreateScaledPixelMapWithAntiAliasing(OH_Pixelm
 
 根据指定的缩放算法和输入的宽高的缩放比例，创建一个新的缩放后的图片。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4444,7 +4712,7 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4454,6 +4722,29 @@ Image_ErrorCode OH_PixelmapNative_Crop(OH_PixelmapNative *pixelmap, Image_Region
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Destroy()
+
+```
+Image_ErrorCode OH_PixelmapNative_Destroy(OH_PixelmapNative **pixelmap)
+```
+
+**描述**
+
+释放OH_PixelmapNative指针。
+
+**起始版本：** 18
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被释放的OH_PixelmapNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_Flip()
@@ -4466,7 +4757,7 @@ Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldF
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4489,9 +4780,9 @@ Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixe
 
 获取Pixelmap用于储存像素数据的内存字节数。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4513,7 +4804,7 @@ Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uin
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4536,9 +4827,9 @@ Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint
 
 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。
 
-**起始版本：** 16
+**起始版本：** 18
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4560,7 +4851,7 @@ Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative(OH_PixelmapNative *pixelma
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4582,7 +4873,7 @@ Image_ErrorCode OH_PixelmapNative_GetImageInfo(OH_PixelmapNative *pixelmap, OH_P
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4604,7 +4895,7 @@ Image_ErrorCode OH_PixelmapNative_GetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4627,7 +4918,7 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4649,7 +4940,7 @@ Image_ErrorCode OH_PixelmapNative_Opacity(OH_PixelmapNative *pixelmap, float rat
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4671,7 +4962,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4690,11 +4981,11 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels(OH_PixelmapNative *pixelmap, uint8_
 Image_ErrorCode OH_PixelmapNative_Release(OH_PixelmapNative *pixelmap)
 ```
 **描述**
-释放OH_PixelmapNative指针。
+释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](#oh_pixelmapnative_destroy)。
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4715,7 +5006,7 @@ Image_ErrorCode OH_PixelmapNative_Rotate(OH_PixelmapNative *pixelmap, float angl
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4737,7 +5028,7 @@ Image_ErrorCode OH_PixelmapNative_Scale(OH_PixelmapNative *pixelmap, float scale
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4760,7 +5051,7 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing(OH_PixelmapNative *pixel
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4784,7 +5075,7 @@ Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative(OH_PixelmapNative *pixelma
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4806,7 +5097,7 @@ Image_ErrorCode OH_PixelmapNative_SetMemoryName(OH_PixelmapNative *pixelmap, cha
 
 **起始版本：** 13
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4829,7 +5120,7 @@ Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pi
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4852,7 +5143,7 @@ Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4873,7 +5164,7 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4900,7 +5191,7 @@ Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
 
 **起始版本：** 15
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -4921,7 +5212,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -5399,7 +5690,7 @@ static const char* OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER = "HwMnoteFaceLeyeCenter
 
 **描述**
 
-左眼中心。被用于 **OH_ImageSource_GetImageProperty** 和 **OH_ImageSource_ModifyImageProperty**。
+左眼中心。
 
 **起始版本：** 12
 
@@ -6218,7 +6509,7 @@ static const char* OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE = "NewSubfileType"
 
 **描述**
 
-在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
+在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
 
 **起始版本：** 12
 
@@ -6400,7 +6691,7 @@ static const char* OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL = "SamplesPerPixel"
 
 **描述**
 
-每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。
+每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在JPEG压缩数据中，使用JPEG标记代替该标签。
 
 **起始版本：** 12
 

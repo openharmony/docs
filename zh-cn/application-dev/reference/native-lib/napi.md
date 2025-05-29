@@ -711,6 +711,9 @@ libace_napi.z.so
 |FUNC|napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|12|
 |FUNC|napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|12|
 |FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|12|
+|FUNC|napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行（若异步则需线程安全）。|18|
+|FUNC|napi_create_ark_context|创建一个新的运行时上下文环境。|20|
+|FUNC|napi_destroy_ark_context|销毁通过接口napi_create_ark_context创建的一个上下文环境。|20|
 
 > 说明：
 >
@@ -728,7 +731,7 @@ typedef enum {
 ```
 
 **描述：**
-表示QoS的枚举值，QoS决定了线程调度的优先级
+表示QoS的枚举值，QoS决定了线程调度的优先级。
 
 ### napi_event_mode
 
@@ -1404,5 +1407,74 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 **返回：**
 
 如果API成功，则返回napi_ok。
+
+### napi_wrap_enhance
+
+```cpp
+napi_status napi_wrap_enhance(napi_env env,
+                              napi_value js_object,
+                              void* native_object,
+                              napi_finalize finalize_cb,
+                              bool async_finalizer,
+                              void* finalize_hint,
+                              size_t native_binding_size,
+                              napi_ref* result);
+```
+
+**描述：**
+
+在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。
+
+**参数：**
+
+- [in] env：Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object：ArkTS对象。
+
+- [in] native_object：将被包裹在ArkTS对象中的native实例。
+
+- [in] finalize_cb：[可选]ArkTS对象被销毁时调用的回调函数，详情请参见[napi_finalize回调函数说明](#napi_finalize回调函数说明)。
+
+- [in] async_finalizer：一个布尔值，表示ArkTS对象被销毁时调用的回调函数是否异步执行。如果为true，表示异步执行，需确保线程安全；如果为false，则表示同步执行。
+
+- [in] finalize_hint：[可选]上下文提示，会传递给回调函数。
+
+- [in] native_binding_size：[可选]绑定的native实例的大小。
+
+- [out] result：[可选]接收ArkTS对象引用的指针。
+
+**返回：**
+
+- napi_ok：如果API成功，则返回napi_ok。
+
+- napi_invalid_arg：参数env、js_object或native_object为空时返回。
+
+- napi_object_expected：参数js_object不是ArkTs对象或函数时返回。
+
+- napi_pending_exception：如果有未捕获的异常或执行过程中发生异常时返回。
+
+#### napi_finalize回调函数说明
+
+```cpp
+typedef void (*napi_finalize)(napi_env env,
+                              void* finalize_data,
+                              void* finalize_hint);
+```
+
+**描述：**
+
+用于定义在Node-API对象生命周期结束时触发的回调函数。
+
+**参数：**
+
+- [in] env：Node-API的环境对象，表示当前的执行环境。
+
+- [in] finalize_data：指向需要清理的用户数据的指针。
+
+- [in] finalize_hint：上下文提示，用于辅助清理过程。
+
+**返回：**
+
+- void：此回调函数无返回值。
 
 <!--no_check-->

@@ -11,6 +11,7 @@ HiTraceId定义。
 
 **相关模块：**[Hitrace](_hitrace.md)
 
+**所在头文件：** [trace.h](trace_8h.md)
 
 ## 汇总
 

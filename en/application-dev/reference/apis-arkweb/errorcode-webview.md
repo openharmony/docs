@@ -23,7 +23,7 @@ Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) 
 
 **Error Message**
 
-Invalid url.
+URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **Description**
 
@@ -31,7 +31,7 @@ This error code is reported when the URL format is incorrect.
 
 **Solution**
 
-Verify the URL format.
+Check whether the URL is correct and contains a maximum of 2048 characters.
 
 
 ## 17100003 Incorrect Resource Path
@@ -72,7 +72,7 @@ Make sure the related function is enabled.
 
 **Error Message**
 
-Invalid cookie value.
+The provided cookie value is invalid. It must follow the format specified in RFC 6265.
 
 **Description**
 

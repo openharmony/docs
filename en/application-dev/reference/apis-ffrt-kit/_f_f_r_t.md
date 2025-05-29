@@ -17,165 +17,210 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 
 | Name| Description| 
 | -------- | -------- |
-| [condition_variable.h](condition__variable_8h.md) | Declares the condition variable interfaces in C.| 
-| [loop.h](loop_8h.md) | Declares the loop interfaces in C.| 
-| [mutex.h](mutex_8h.md) | Declares the mutex interfaces in C.| 
-| [queue.h](queue_8h.md) | Declares the queue interfaces in C.| 
-| [sleep.h](sleep_8h.md) | Declares the sleep and yield interfaces in C.| 
-| [task.h](task_8h.md) | Declares the task interfaces in C.| 
-| [timer.h](timer_8h.md) | Declares the timer interfaces in C.| 
-| [type_def.h](type__def_8h.md) | Declares the common types.| 
+| [condition_variable.h](condition__variable_8h.md) | Declares the condition variable interfaces in C. | 
+| [loop.h](loop_8h.md) | Declares the loop interfaces in C. | 
+| [mutex.h](mutex_8h.md) | Declares the mutex interfaces in C. | 
+| [queue.h](queue_8h.md) | Declares the queue interfaces in C. | 
+| [sleep.h](sleep_8h.md) | Declares the sleep and yield interfaces in C. | 
+| [task.h](task_8h.md) | Declares the task interfaces in C. | 
+| [timer.h](timer_8h.md) | Declares the timer interfaces in C. | 
+| [type_def.h](type__def_8h.md) | Declares the common types. | 
 
 
 ### Structs
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ffrt_function_header_t](ffrt__function__header__t.md) | Describes a task execution function.| 
-| struct&nbsp;&nbsp;[ffrt_dependence_t](ffrt__dependence__t.md) | Describes dependency data.| 
-| struct&nbsp;&nbsp;[ffrt_deps_t](ffrt__deps__t.md) | Describes dependencies.| 
-| struct&nbsp;&nbsp;[ffrt_task_attr_t](ffrt__task__attr__t.md) | Describes a task attribute.| 
-| struct&nbsp;&nbsp;[ffrt_queue_attr_t](ffrt__queue__attr__t.md) | Describes a queue attribute.| 
-| struct&nbsp;&nbsp;[ffrt_condattr_t](ffrt__condattr__t.md) | Describes a condition variable attribute.| 
-| struct&nbsp;&nbsp;[ffrt_mutexattr_t](ffrt__mutexattr__t.md) | Describes a mutex attribute.| 
-| struct&nbsp;&nbsp;[ffrt_mutex_t](ffrt__mutex__t.md) | Describes a mutex.| 
-| struct&nbsp;&nbsp;[ffrt_cond_t](ffrt__cond__t.md) | Describes a condition variable.| 
+| struct&nbsp;&nbsp;[ffrt_function_header_t](ffrt__function__header__t.md) | Describes a task execution function. | 
+| struct&nbsp;&nbsp;[ffrt_dependence_t](ffrt__dependence__t.md) | Describes dependency data. | 
+| struct&nbsp;&nbsp;[ffrt_deps_t](ffrt__deps__t.md) | Describes dependencies. | 
+| struct&nbsp;&nbsp;[ffrt_task_attr_t](ffrt__task__attr__t.md) | Describes a task attribute. | 
+| struct&nbsp;&nbsp;[ffrt_queue_attr_t](ffrt__queue__attr__t.md) | Describes a queue attribute. | 
+| struct&nbsp;&nbsp;[ffrt_condattr_t](ffrt__condattr__t.md) | Describes a condition variable attribute. | 
+| struct&nbsp;&nbsp;[ffrt_mutexattr_t](ffrt__mutexattr__t.md) | Describes a mutex attribute. | 
+| struct&nbsp;&nbsp;[ffrt_mutex_t](ffrt__mutex__t.md) | Describes a mutex. | 
+| struct&nbsp;&nbsp;[ffrt_cond_t](ffrt__cond__t.md) | Describes a condition variable. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void\*&nbsp;&nbsp;**ffrt_loop_t** |  | 
-| typedef void\*&nbsp;&nbsp;ffrt_queue_t | Defines the handle to a queue.| 
-| typedef int ffrt_qos_t | Defines the QoS type.| 
-| typedef void(\*ffrt_function_t ) (void\*) | Defines the type of the pointer to a task execution function.| 
-| typedef void\*&nbsp;&nbsp;ffrt_task_handle_t | Defines the handle to a task.| 
-| typedef void (\*[ffrt_poller_cb](#ffrt_poller_cb)) (void\* data, uint32_t event) | Defines the callback for ffrt_poller_cb.| 
-| typedef void (\*[ffrt_timer_cb](#ffrt_timer_cb)) (void\* data) | Defines the callback for ffrt_timer_cb.| 
-| typedef int [ffrt_timer_t](#ffrt_timer_t) | Defines the ffrt_timer_t type.| 
+| typedef void \* [ffrt_loop_t](#ffrt_loop_t) | Defines the handle to a loop. | 
+| typedef void \* [ffrt_queue_t](#ffrt_queue_t) | Defines the handle to a queue. | 
+| typedef int [ffrt_qos_t](#ffrt_qos_t) | Defines the QoS type. | 
+| typedef void(\* [ffrt_function_t](#ffrt_function_t)) (void \*) | Defines the type of the pointer to a task execution function. | 
+| typedef void \* [ffrt_task_handle_t](#ffrt_task_handle_t) | Defines the handle to a task. | 
+| typedef void(\* [ffrt_poller_cb](#ffrt_poller_cb)) (void \*data, uint32_t event) | Defines the poller callback function. | 
+| typedef void(\* [ffrt_timer_cb](#ffrt_timer_cb)) (void \*data) | Defines the timer callback function. | 
+| typedef int [ffrt_timer_t](#ffrt_timer_t) | Handle to the timer. | 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [ffrt_queue_type_t](#ffrt_queue_type_t) { ffrt_queue_serial = 0, ffrt_queue_concurrent, ffrt_queue_max } | Enumerates the queue types.| 
-| [ffrt_task_priority_t](#ffrt_task_priority_t) { ffrt_task_priority_immediate = 0, ffrt_task_priority_high = 1, ffrt_task_priority_low = 2, ffrt_task_priority_idle } | Enumerates the task priority types.| 
-| [ffrt_qos_default_t](#ffrt_qos_default_t) {<br>ffrt_qos_inherit = -1, ffrt_qos_background, ffrt_qos_utility, ffrt_qos_default,<br>ffrt_qos_user_initiated<br>} | Enumerates the task QoS types.| 
-| [ffrt_storage_size_t](#ffrt_storage_size_t) {<br>ffrt_task_attr_storage_size = 128, ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), ffrt_mutex_storage_size = 64, ffrt_cond_storage_size = 64,<br>ffrt_queue_attr_storage_size = 128<br>} | Enumerates the storage sizes available for different types of structs.| 
-| [ffrt_function_kind_t](#ffrt_function_kind_t) { ffrt_function_kind_general, ffrt_function_kind_queue } | Enumerates the task types.| 
-| [ffrt_dependence_type_t](#ffrt_dependence_type_t) { ffrt_dependence_data, ffrt_dependence_task } | Enumerates the dependency types.| 
-| [ffrt_error_t](#ffrt_error_t) {<br>ffrt_error = -1, ffrt_success = 0, ffrt_error_nomem = ENOMEM, ffrt_error_timedout = ETIMEDOUT,<br>ffrt_error_busy = EBUSY, ffrt_error_inval = EINVAL<br>} | Enumerates the FFRT error codes.| 
+| [ffrt_queue_type_t](#ffrt_queue_type_t) {<br>ffrt_queue_serial, <br>ffrt_queue_concurrent, <br>ffrt_queue_max <br>} | Enumerates the queue types. | 
+| [ffrt_queue_priority_t](#ffrt_queue_priority_t) { <br>ffrt_queue_priority_immediate = 0, <br>ffrt_queue_priority_high, <br>ffrt_queue_priority_low, <br>ffrt_queue_priority_idle <br>} | Enumerates the task priority types. | 
+| [ffrt_qos_default_t](#ffrt_qos_default_t) {<br>ffrt_qos_inherit = -1, <br>ffrt_qos_background, <br>ffrt_qos_utility, <br>ffrt_qos_default,<br>ffrt_qos_user_initiated<br>} | Enumerates the task QoS types. | 
+| [ffrt_storage_size_t](#ffrt_storage_size_t) {<br>ffrt_task_attr_storage_size = 128, <br>ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), <br>ffrt_mutex_storage_size = 64, <br>ffrt_cond_storage_size = 64,<br>ffrt_queue_attr_storage_size = 128<br>} | Enumerates the storage sizes available for different types of structs. | 
+| [ffrt_function_kind_t](#ffrt_function_kind_t) { <br>ffrt_function_kind_general, <br>ffrt_function_kind_queue <br>} | Enumerates the task types. | 
+| [ffrt_dependence_type_t](#ffrt_dependence_type_t) { <br>ffrt_dependence_data, <br>ffrt_dependence_task<br> } | Enumerates the dependency types. | 
+| [ffrt_error_t](#ffrt_error_t) {<br>ffrt_error = -1, <br>ffrt_success = 0, <br>ffrt_error_nomem = ENOMEM, <br>ffrt_error_timedout = ETIMEDOUT,<br>ffrt_error_busy = EBUSY, <br>ffrt_error_inval = EINVAL<br>} | Enumerates the FFRT error codes. | 
+| [ffrt_mutex_type](#ffrt_mutex_type) { <br>ffrt_mutex_normal = 0, <br>ffrt_mutex_recursive = 2, <br>ffrt_mutex_default = ffrt_mutex_normal <br>} | Enumerates the mutex types. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| FFRT_C_API int [ffrt_cond_init](#ffrt_cond_init) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, const [ffrt_condattr_t](ffrt__condattr__t.md)\* attr) | Initializes a condition variable.| 
-| FFRT_C_API int [ffrt_cond_signal](#ffrt_cond_signal) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | Unblocks at least one of the threads that are blocked on a condition variable.| 
-| FFRT_C_API int [ffrt_cond_broadcast](#ffrt_cond_broadcast) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | Unblocks all threads currently blocked on a condition variable.| 
-| FFRT_C_API int [ffrt_cond_wait](#ffrt_cond_wait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | Blocks the calling thread on a condition variable.| 
-| FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const struct timespec\* time_point) | Blocks the calling thread on a condition variable for a given duration.| 
-| FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | Destroys a condition variable.| 
-| FFRT_C_API ffrt_loop_t [ffrt_loop_create](#ffrt_loop_create) (ffrt_queue_t queue) | Creates a loop.| 
-| FFRT_C_API int [ffrt_loop_destroy](#ffrt_loop_destroy) (ffrt_loop_t loop) | Destroys a loop.| 
-| FFRT_C_API int [ffrt_loop_run](#ffrt_loop_run) (ffrt_loop_t loop) | Runs a loop.| 
-| FFRT_C_API void [ffrt_loop_stop](#ffrt_loop_stop) (ffrt_loop_t loop) | Stops a loop.| 
-| FFRT_C_API int [ffrt_loop_epoll_ctl](#ffrt_loop_epoll_ctl) (ffrt_loop_t loop, int op, int fd, uint32_t events, void\* data, [ffrt_poller_cb](#ffrt_poller_cb) cb) | Manages listening events on a loop.| 
-| FFRT_C_API [ffrt_timer_t](#ffrt_timer_t)[ffrt_loop_timer_start](#ffrt_loop_timer_start) (ffrt_loop_t loop, uint64_t timeout, void\* data, [ffrt_timer_cb](#ffrt_timer_cb) cb, bool repeat) | Starts the timer on a loop.| 
-| FFRT_C_API int [ffrt_loop_timer_stop](#ffrt_loop_timer_stop) (ffrt_loop_t loop, [ffrt_timer_t](#ffrt_timer_t) handle) | Stops the timer on a loop.| 
-| FFRT_C_API int [ffrt_mutex_init](#ffrt_mutex_init) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const [ffrt_mutexattr_t](ffrt__mutexattr__t.md)\* attr) | Initializes a mutex.| 
-| FFRT_C_API int [ffrt_mutex_lock](#ffrt_mutex_lock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | Locks a mutex.| 
-| FFRT_C_API int [ffrt_mutex_unlock](#ffrt_mutex_unlock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | Unlocks a mutex.| 
-| FFRT_C_API int [ffrt_mutex_trylock](#ffrt_mutex_trylock) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | Attempts to lock a mutex.| 
-| FFRT_C_API int [ffrt_mutex_destroy](#ffrt_mutex_destroy) ([ffrt_mutex_t](ffrt__mutex__t.md)\* mutex) | Destroys a mutex.| 
-| FFRT_C_API int [ffrt_queue_attr_init](#ffrt_queue_attr_init) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Initializes a queue attribute.| 
-| FFRT_C_API void [ffrt_queue_attr_destroy](#ffrt_queue_attr_destroy) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Destroys a queue attribute.| 
-| FFRT_C_API void [ffrt_queue_attr_set_qos](#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, ffrt_qos_t qos) | Sets the queue QoS.| 
-| FFRT_C_API ffrt_qos_t[ffrt_queue_attr_get_qos](#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Obtains the queue QoS.| 
-| FFRT_C_API void [ffrt_queue_attr_set_timeout](#ffrt_queue_attr_set_timeout) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, uint64_t timeout_us) | Sets the queue timeout.| 
-| FFRT_C_API uint64_t [ffrt_queue_attr_get_timeout](#ffrt_queue_attr_get_timeout) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Obtains the queue timeout.| 
-| FFRT_C_API void [ffrt_queue_attr_set_callback](#ffrt_queue_attr_set_callback) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, [ffrt_function_header_t](ffrt__function__header__t.md)\* f) | Sets a callback that is invoked when a queue task times out.| 
-| FFRT_C_API [ffrt_function_header_t](ffrt__function__header__t.md)\*&nbsp;&nbsp;[ffrt_queue_attr_get_callback](#ffrt_queue_attr_get_callback) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Obtains the callback that is invoked when a queue task times out.| 
-| FFRT_C_API void [ffrt_queue_attr_set_max_concurrency](#ffrt_queue_attr_set_max_concurrency) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr, const int max_concurrency) | Sets the maximum concurrency for a queue, which must be a concurrent queue.| 
-| FFRT_C_API int [ffrt_queue_attr_get_max_concurrency](#ffrt_queue_attr_get_max_concurrency) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Obtains the maximum concurrency of a queue, which must be a concurrent queue.| 
-| FFRT_C_API ffrt_queue_t[ffrt_queue_create](#ffrt_queue_create) ([ffrt_queue_type_t](#ffrt_queue_type_t) type, const char\* name, const [ffrt_queue_attr_t](ffrt__queue__attr__t.md)\* attr) | Creates a queue.| 
-| FFRT_C_API void [ffrt_queue_destroy](#ffrt_queue_destroy) (ffrt_queue_t queue) | Destroys a queue.| 
-| FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Submits a task to a queue.| 
-| FFRT_C_API ffrt_task_handle_t[ffrt_queue_submit_h](#ffrt_queue_submit_h) (ffrt_queue_t queue, [ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Submits a task to a queue, and obtains the task handle.| 
-| FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) (ffrt_task_handle_t handle) | Waits until a task in the queue is complete.| 
-| FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) (ffrt_task_handle_t handle) | Cancels a task in the queue.| 
-| FFRT_C_API ffrt_queue_t[ffrt_get_main_queue](#ffrt_get_main_queue) () | Obtains the main thread queue.| 
-| FFRT_C_API ffrt_queue_t[ffrt_get_current_queue](#ffrt_get_current_queue) () | Obtains the ArkTS Worker thread queue.| 
-| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | Suspends the calling thread for a given duration.| 
-| FFRT_C_API void [ffrt_yield](#ffrt_yield) (void) | Passes control to other tasks so that they can be executed.| 
-| FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Initializes a task attribute.| 
-| FFRT_C_API void [ffrt_task_attr_set_name](#ffrt_task_attr_set_name) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, const char\* name) | Sets a task name.| 
-| FFRT_C_API const char\*&nbsp;&nbsp;[ffrt_task_attr_get_name](#ffrt_task_attr_get_name) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Obtains a task name.| 
-| FFRT_C_API void [ffrt_task_attr_destroy](#ffrt_task_attr_destroy) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Destroys a task attribute.| 
-| FFRT_C_API void [ffrt_task_attr_set_qos](#ffrt_task_attr_set_qos) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, ffrt_qos_t qos) | Sets the task QoS.| 
-| FFRT_C_API ffrt_qos_t[ffrt_task_attr_get_qos](#ffrt_task_attr_get_qos) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Obtains the task QoS.| 
-| FFRT_C_API void [ffrt_task_attr_set_delay](#ffrt_task_attr_set_delay) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, uint64_t delay_us) | Sets the task delay time.| 
-| FFRT_C_API uint64_t [ffrt_task_attr_get_delay](#ffrt_task_attr_get_delay) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Obtains the task delay time.| 
-| FFRT_C_API void [ffrt_task_attr_set_queue_priority](#ffrt_task_attr_set_queue_priority) ([ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr, ffrt_queue_priority_t priority) | Sets the task priority in the queue.| 
-| FFRT_C_API ffrt_queue_priority_t [ffrt_task_attr_get_queue_priority](#ffrt_task_attr_get_queue_priority) (const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Obtains the task priority in the queue.| 
-| FFRT_C_API int [ffrt_this_task_update_qos](#ffrt_this_task_update_qos) (ffrt_qos_t qos) | Updates the QoS of this task.| 
-| FFRT_C_API ffrt_qos_t[ffrt_this_task_get_qos](#ffrt_this_task_get_qos) () | Obtains the QoS of this task.| 
-| FFRT_C_API uint64_t [ffrt_this_task_get_id](#ffrt_this_task_get_id) (void) | Obtains the ID of this task.| 
-| FFRT_C_API void\*&nbsp;&nbsp;[ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | Applies for memory for the task execution function struct.| 
-| FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_deps_t](ffrt__deps__t.md)\* in_deps, const [ffrt_deps_t](ffrt__deps__t.md)\* out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Submits a task.| 
-| FFRT_C_API ffrt_task_handle_t[ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md)\* f, const [ffrt_deps_t](ffrt__deps__t.md)\* in_deps, const [ffrt_deps_t](ffrt__deps__t.md)\* out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md)\* attr) | Submits a task, and obtains the task handle.| 
-| FFRT_C_API void [ffrt_task_handle_destroy](#ffrt_task_handle_destroy) (ffrt_task_handle_t handle) | Destroys a task handle.| 
-| FFRT_C_API void [ffrt_wait_deps](#ffrt_wait_deps) (const [ffrt_deps_t](ffrt__deps__t.md)\* deps) | Waits until the dependent tasks are complete.| 
-| FFRT_C_API void [ffrt_wait](#ffrt_wait) (void) | Waits until all submitted tasks are complete.| 
-| FFRT_C_API [ffrt_timer_t](#ffrt_timer_t)[ffrt_timer_start](#ffrt_timer_start) (ffrt_qos_t qos, uint64_t timeout, void\* data, [ffrt_timer_cb](#ffrt_timer_cb) cb, bool repeat) | Starts the timer.| 
-| FFRT_C_API int [ffrt_timer_stop](#ffrt_timer_stop) (ffrt_qos_t qos, [ffrt_timer_t](#ffrt_timer_t) handle) | Stops the timer.| 
-
-
-### Variables
-
-| Name| Description| 
-| -------- | -------- |
-| ffrt_function_t[ffrt_function_header_t::exec](#exec) | Function used to execute a task.| 
-| ffrt_function_t[ffrt_function_header_t::destroy](#destroy) | Function used to destroy a task.| 
-| uint64_t [ffrt_function_header_t::reserve](#reserve) [2] | Reserved bit.| 
-| [ffrt_dependence_type_t](#ffrt_dependence_type_t)[ffrt_dependence_t::type](#type) | Dependency type.| 
-| const void\*&nbsp;&nbsp;[ffrt_dependence_t::ptr](#ptr) | Address of the dependency data.| 
-| uint32_t [ffrt_deps_t::len](#len) | Number of dependencies.| 
-| const [ffrt_dependence_t](ffrt__dependence__t.md)\*&nbsp;&nbsp;[ffrt_deps_t::items](#items) | Dependency data.| 
-| uint32_t [ffrt_task_attr_t::storage](#storage-46) [(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a task attribute.| 
-| uint32_t [ffrt_queue_attr_t::storage](#storage-36) [(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a queue attribute.| 
-| long [ffrt_condattr_t::storage](#storage-56) | Storage size of a condition variable attribute.| 
-| long [ffrt_mutexattr_t::storage](#storage-66) | Storage size of a mutex attribute.| 
-| uint32_t [ffrt_mutex_t::storage](#storage-26) [(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a mutex.| 
-| uint32_t [ffrt_cond_t::storage](#storage-16) [(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a condition variable.| 
+| FFRT_C_API int [ffrt_cond_init](#ffrt_cond_init) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, const [ffrt_condattr_t](ffrt__condattr__t.md) \*attr) | Initializes a condition variable. | 
+| FFRT_C_API int [ffrt_cond_signal](#ffrt_cond_signal) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | Unblocks at least one of the threads that are blocked on a condition variable. | 
+| FFRT_C_API int [ffrt_cond_broadcast](#ffrt_cond_broadcast) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | Unblocks all threads currently blocked on a condition variable. | 
+| FFRT_C_API int [ffrt_cond_wait](#ffrt_cond_wait) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, [ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | Blocks the calling thread on a condition variable. | 
+| FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md) \*cond, [ffrt_mutex_t](ffrt__mutex__t.md) \*mutex, const struct timespec \*time_point) | Blocks the calling thread on a condition variable for a given duration. | 
+| FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md) \*cond) | Destroys a condition variable. | 
+| FFRT_C_API [ffrt_loop_t](#ffrt_loop_t) [ffrt_loop_create](#ffrt_loop_create) ([ffrt_queue_t](#ffrt_queue_t) queue) | Creates a loop. | 
+| FFRT_C_API int [ffrt_loop_destroy](#ffrt_loop_destroy) ([ffrt_loop_t](#ffrt_loop_t) loop) | Destroys a loop. | 
+| FFRT_C_API int [ffrt_loop_run](#ffrt_loop_run) ([ffrt_loop_t](#ffrt_loop_t) loop) | Runs a loop. | 
+| FFRT_C_API void [ffrt_loop_stop](#ffrt_loop_stop) ([ffrt_loop_t](#ffrt_loop_t) loop) | Stops a loop. | 
+| FFRT_C_API int [ffrt_loop_epoll_ctl](#ffrt_loop_epoll_ctl) ([ffrt_loop_t](#ffrt_loop_t) loop, int op, int fd, uint32_t events, void \*data, [ffrt_poller_cb](#ffrt_poller_cb) cb) | Manages listening events on a loop. | 
+| FFRT_C_API [ffrt_timer_t](#ffrt_timer_t) [ffrt_loop_timer_start](#ffrt_loop_timer_start) ([ffrt_loop_t](#ffrt_loop_t) loop, uint64_t timeout, void \*data, [ffrt_timer_cb](#ffrt_timer_cb) cb, bool repeat) | Starts the timer on a loop. | 
+| FFRT_C_API int [ffrt_loop_timer_stop](#ffrt_loop_timer_stop) ([ffrt_loop_t](#ffrt_loop_t) loop, [ffrt_timer_t](#ffrt_timer_t) handle) | Stops the timer on a loop. | 
+| FFRT_C_API int [ffrt_mutexattr_init](#ffrt_mutexattr_init) ([ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr) | Initializes the mutex attribute. | 
+| FFRT_C_API int [ffrt_mutexattr_settype](#ffrt_mutexattr_settype) ([ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr, int type) | Sets the mutex attribute type. | 
+| FFRT_C_API int [ffrt_mutexattr_gettype](#ffrt_mutexattr_gettype) ([ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr, int \*type) | Obtains the mutex type. | 
+| FFRT_C_API int [ffrt_mutexattr_destroy](#ffrt_mutexattr_destroy) ([ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr) | Destroys the mutex attribute. This API needs to be called by users. | 
+| FFRT_C_API int [ffrt_mutex_init](#ffrt_mutex_init) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex, const [ffrt_mutexattr_t](ffrt__mutexattr__t.md) \*attr) | Initializes a mutex. | 
+| FFRT_C_API int [ffrt_mutex_lock](#ffrt_mutex_lock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | Locks a mutex. | 
+| FFRT_C_API int [ffrt_mutex_unlock](#ffrt_mutex_unlock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | Unlocks a mutex. | 
+| FFRT_C_API int [ffrt_mutex_trylock](#ffrt_mutex_trylock) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | Attempts to lock a mutex. | 
+| FFRT_C_API int [ffrt_mutex_destroy](#ffrt_mutex_destroy) ([ffrt_mutex_t](ffrt__mutex__t.md) \*mutex) | Destroys a mutex. | 
+| FFRT_C_API int [ffrt_queue_attr_init](#ffrt_queue_attr_init) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Initializes the queue attribute. | 
+| FFRT_C_API void [ffrt_queue_attr_destroy](#ffrt_queue_attr_destroy) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Destroys the queue attribute. | 
+| FFRT_C_API void [ffrt_queue_attr_set_qos](#ffrt_queue_attr_set_qos) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, [ffrt_qos_t](#ffrt_qos_t) qos) | Sets the queue QoS. | 
+| FFRT_C_API [ffrt_qos_t](#ffrt_qos_t) [ffrt_queue_attr_get_qos](#ffrt_queue_attr_get_qos) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Obtains the queue QoS. | 
+| FFRT_C_API void [ffrt_queue_attr_set_timeout](#ffrt_queue_attr_set_timeout) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, uint64_t timeout_us) | Sets the queue timeout. | 
+| FFRT_C_API uint64_t [ffrt_queue_attr_get_timeout](#ffrt_queue_attr_get_timeout) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Obtains the queue timeout. | 
+| FFRT_C_API void [ffrt_queue_attr_set_callback](#ffrt_queue_attr_set_callback) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, [ffrt_function_header_t](ffrt__function__header__t.md) \*f) | Sets a callback that is invoked when a queue task times out. | 
+| FFRT_C_API [ffrt_function_header_t](ffrt__function__header__t.md) \* [ffrt_queue_attr_get_callback](#ffrt_queue_attr_get_callback) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Obtains the callback that is invoked when a queue task times out. | 
+| FFRT_C_API void [ffrt_queue_attr_set_max_concurrency](#ffrt_queue_attr_set_max_concurrency) ([ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr, const int max_concurrency) | Sets the maximum concurrency for a queue, which must be a concurrent queue. | 
+| FFRT_C_API int [ffrt_queue_attr_get_max_concurrency](#ffrt_queue_attr_get_max_concurrency) (const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Obtains the maximum concurrency of a queue, which must be a concurrent queue. | 
+| FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_queue_create](#ffrt_queue_create) ([ffrt_queue_type_t](#ffrt_queue_type_t) type, const char \*name, const [ffrt_queue_attr_t](ffrt__queue__attr__t.md) \*attr) | Creates a queue. | 
+| FFRT_C_API void [ffrt_queue_destroy](#ffrt_queue_destroy) ([ffrt_queue_t](#ffrt_queue_t) queue) | Destroys a queue. | 
+| FFRT_C_API void [ffrt_queue_submit](#ffrt_queue_submit) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue. | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_queue_submit_h](#ffrt_queue_submit_h) ([ffrt_queue_t](#ffrt_queue_t) queue, [ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task to a queue, and obtains the task handle. | 
+| FFRT_C_API void [ffrt_queue_wait](#ffrt_queue_wait) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Waits until a task in the queue is complete. | 
+| FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Cancels a task in the queue. | 
+| FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_main_queue](#ffrt_get_main_queue) (void) | Obtains the main thread queue. | 
+| FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_current_queue](#ffrt_get_current_queue) (void) | Obtains the ArkTS Worker thread queue. | 
+| FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | Sets the fixed sleep time. | 
+| FFRT_C_API void [ffrt_yield](#ffrt_yield) (void) | Passes control to other tasks so that they can be executed. | 
+| FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Initializes a task attribute. | 
+| FFRT_C_API void [ffrt_task_attr_set_name](#ffrt_task_attr_set_name) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, const char \*name) | Sets a task name. | 
+| FFRT_C_API const char \* [ffrt_task_attr_get_name](#ffrt_task_attr_get_name) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Obtains a task name. | 
+| FFRT_C_API void [ffrt_task_attr_destroy](#ffrt_task_attr_destroy) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Destroys a task attribute. | 
+| FFRT_C_API void [ffrt_task_attr_set_qos](#ffrt_task_attr_set_qos) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, [ffrt_qos_t](#ffrt_qos_t) qos) | Sets the task QoS. | 
+| FFRT_C_API [ffrt_qos_t](#ffrt_qos_t) [ffrt_task_attr_get_qos](#ffrt_task_attr_get_qos) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Obtains the task QoS. | 
+| FFRT_C_API void [ffrt_task_attr_set_delay](#ffrt_task_attr_set_delay) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, uint64_t delay_us) | Sets the task delay time. | 
+| FFRT_C_API uint64_t [ffrt_task_attr_get_delay](#ffrt_task_attr_get_delay) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Obtains the task delay time. | 
+| FFRT_C_API void [ffrt_task_attr_set_queue_priority](#ffrt_task_attr_set_queue_priority) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, [ffrt_queue_priority_t](#ffrt_queue_priority_t) priority) | Sets the task priority in the queue. | 
+| FFRT_C_API [ffrt_queue_priority_t](#ffrt_queue_priority_t) [ffrt_task_attr_get_queue_priority](#ffrt_task_attr_get_queue_priority) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Obtains the task priority in the queue. | 
+| FFRT_C_API void [ffrt_task_attr_set_stack_size](#ffrt_task_attr_set_stack_size) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr, uint64_t size) | Sets the task stack size. | 
+| FFRT_C_API uint64_t [ffrt_task_attr_get_stack_size](#ffrt_task_attr_get_stack_size) (const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Obtains the task stack size. | 
+| FFRT_C_API int [ffrt_this_task_update_qos](#ffrt_this_task_update_qos) ([ffrt_qos_t](#ffrt_qos_t) qos) | Updates the task QoS. | 
+| FFRT_C_API [ffrt_qos_t](#ffrt_qos_t) [ffrt_this_task_get_qos](#ffrt_this_task_get_qos) (void) | Obtains the task QoS. | 
+| FFRT_C_API uint64_t [ffrt_this_task_get_id](#ffrt_this_task_get_id) (void) | Obtains the ID of this task. | 
+| FFRT_C_API void \* [ffrt_alloc_auto_managed_function_storage_base](#ffrt_alloc_auto_managed_function_storage_base) ([ffrt_function_kind_t](#ffrt_function_kind_t) kind) | Applies for memory for the task execution function struct. | 
+| FFRT_C_API void [ffrt_submit_base](#ffrt_submit_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task. | 
+| FFRT_C_API [ffrt_task_handle_t](#ffrt_task_handle_t) [ffrt_submit_h_base](#ffrt_submit_h_base) ([ffrt_function_header_t](ffrt__function__header__t.md) \*f, const [ffrt_deps_t](ffrt__deps__t.md) \*in_deps, const [ffrt_deps_t](ffrt__deps__t.md) \*out_deps, const [ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Submits a task, and obtains the task handle. | 
+| FFRT_C_API uint32_t [ffrt_task_handle_inc_ref](#ffrt_task_handle_inc_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Increases the number of task handle references. | 
+| FFRT_C_API uint32_t [ffrt_task_handle_dec_ref](#ffrt_task_handle_dec_ref) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Decreases the number of task handle references. | 
+| FFRT_C_API void [ffrt_task_handle_destroy](#ffrt_task_handle_destroy) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Destroys a task handle. | 
+| FFRT_C_API void [ffrt_wait_deps](#ffrt_wait_deps) (const [ffrt_deps_t](ffrt__deps__t.md) \*deps) | Waits until the dependent tasks are complete. | 
+| FFRT_C_API void [ffrt_wait](#ffrt_wait) (void) | Waits until all submitted tasks are complete. | 
+| FFRT_C_API [ffrt_timer_t](#ffrt_timer_t) [ffrt_timer_start](#ffrt_timer_start) ([ffrt_qos_t](#ffrt_qos_t) qos, uint64_t timeout, void \*data, [ffrt_timer_cb](#ffrt_timer_cb) cb, bool repeat) | Starts the timer. | 
+| FFRT_C_API int [ffrt_timer_stop](#ffrt_timer_stop) ([ffrt_qos_t](#ffrt_qos_t) qos, [ffrt_timer_t](#ffrt_timer_t) handle) | Stops the timer. | 
 
 
 ## Type Description
 
 
+### ffrt_function_t
+
+```
+typedef void(* ffrt_function_t) (void *)
+```
+**Description**
+Defines the type of the pointer to a task execution function.
+
+**Since**: 10
+
+
+### ffrt_loop_t
+
+```
+typedef void* ffrt_loop_t
+```
+**Description**
+Defines the handle to a loop.
+
+**Since**: 12
+
+
 ### ffrt_poller_cb
 
 ```
-typedef void(*ffrt_poller_cb) (void* data, uint32_t event)
+typedef void(* ffrt_poller_cb) (void *data, uint32_t event)
 ```
-
 **Description**
+Defines the poller callback function.
 
-Defines the callback for ffrt_poller_cb.
+**Since**: 12
+
+
+### ffrt_qos_t
+
+```
+typedef int ffrt_qos_t
+```
+**Description**
+Defines the QoS type.
+
+**Since**: 10
+
+
+### ffrt_queue_t
+
+```
+typedef void* ffrt_queue_t
+```
+**Description**
+Defines the handle to a queue.
+
+**Since**: 10
+
+
+### ffrt_task_handle_t
+
+```
+typedef void* ffrt_task_handle_t
+```
+**Description**
+Defines the handle to a task.
+
+**Since**: 10
 
 
 ### ffrt_timer_cb
 
 ```
-typedef void(*ffrt_timer_cb) (void* data)
+typedef void(* ffrt_timer_cb) (void *data)
 ```
-
 **Description**
+Defines the timer callback function.
 
-Defines the callback for ffrt_timer_cb.
+**Since**: 12
 
 
 ### ffrt_timer_t
@@ -183,10 +228,10 @@ Defines the callback for ffrt_timer_cb.
 ```
 typedef int ffrt_timer_t
 ```
-
 **Description**
+Handle to the timer.
 
-Defines the ffrt_timer_t type.
+**Since**: 12
 
 
 ## Enum Description
@@ -197,15 +242,15 @@ Defines the ffrt_timer_t type.
 ```
 enum ffrt_dependence_type_t
 ```
-
 **Description**
-
 Enumerates the dependency types.
 
-| Name| Description| 
+**Since**: 10
+
+| Value| Description| 
 | -------- | -------- |
-| ffrt_dependence_data | Data dependency.| 
-| ffrt_dependence_task | Task dependency.| 
+| ffrt_dependence_data  | Data dependency.| 
+| ffrt_dependence_task  | Task dependency.| 
 
 
 ### ffrt_error_t
@@ -213,19 +258,19 @@ Enumerates the dependency types.
 ```
 enum ffrt_error_t
 ```
-
 **Description**
-
 Enumerates the FFRT error codes.
 
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| ffrt_error | -1 | Failure.| 
-| ffrt_success | 0 | Success.| 
-| ffrt_error_nomem | ENOMEM | Insufficient memory.| 
-| ffrt_error_timedout | ETIMEDOUT | Timeout.| 
-| ffrt_error_busy | EBUSY | Try again.| 
-| ffrt_error_inval | EINVAL | Invalid value.| 
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| ffrt_error  | Failure.| 
+| ffrt_success  | Success.| 
+| ffrt_error_nomem  | Insufficient memory.| 
+| ffrt_error_timedout  | Timeout.| 
+| ffrt_error_busy  | Try again.| 
+| ffrt_error_inval  | Invalid value.| 
 
 
 ### ffrt_function_kind_t
@@ -233,15 +278,34 @@ Enumerates the FFRT error codes.
 ```
 enum ffrt_function_kind_t
 ```
-
 **Description**
-
 Enumerates the task types.
 
-| Name| Description| 
+**Since**: 10
+
+| Value| Description| 
 | -------- | -------- |
-| ffrt_function_kind_general | General task.| 
-| ffrt_function_kind_queue | Queue task.| 
+| ffrt_function_kind_general  | General task.| 
+| ffrt_function_kind_queue  | Queue task.| 
+
+
+### ffrt_mutex_type
+
+```
+enum ffrt_mutex_type
+```
+**Description**
+Enumerates the mutex types.
+
+**ffrt_mutex_normal** indicates a normal mutex, **ffrt_mutex_recursive** indicates a recursive mutex, and **ffrt_mutex_default** indicates a default mutex.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| ffrt_mutex_normal  | Normal mutex.| 
+| ffrt_mutex_recursive  | Recursive mutex.| 
+| ffrt_mutex_default  | Default mutex.| 
 
 
 ### ffrt_qos_default_t
@@ -249,18 +313,36 @@ Enumerates the task types.
 ```
 enum ffrt_qos_default_t
 ```
-
 **Description**
-
 Enumerates the task QoS types.
 
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| ffrt_qos_inherit | ffrt_qos_inherit | Inherits the QoS of the current task.| 
-| ffrt_qos_background | ffrt_qos_background | Background task.| 
-| ffrt_qos_utility | ffrt_qos_utility | Real-time tool.| 
-| ffrt_qos_default | ffrt_qos_default | Default type.| 
-| ffrt_qos_user_initiated | ffrt_qos_user_initiated | User initiated.| 
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| ffrt_qos_inherit  | Inherited task QoS.| 
+| ffrt_qos_background  | Background task.| 
+| ffrt_qos_utility  | Real-time utility.| 
+| ffrt_qos_default  | Default type.| 
+| ffrt_qos_user_initiated  | User initiated.| 
+
+
+### ffrt_queue_priority_t
+
+```
+enum ffrt_queue_priority_t
+```
+**Description**
+Enumerates the task priority types.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| ffrt_queue_priority_immediate  | Immediate priority.| 
+| ffrt_queue_priority_high  | High priority.| 
+| ffrt_queue_priority_low  | Low priority.| 
+| ffrt_queue_priority_idle  | Lowest priority.| 
 
 
 ### ffrt_queue_type_t
@@ -268,16 +350,16 @@ Enumerates the task QoS types.
 ```
 enum ffrt_queue_type_t
 ```
-
 **Description**
-
 Enumerates the queue types.
 
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| ffrt_queue_serial | 0 | Queue queue.| 
-| ffrt_queue_concurrent |  | Concurrent queue.| 
-| ffrt_queue_max |  | Invalid queue type.| 
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| ffrt_queue_serial  | Serial queue| 
+| ffrt_queue_concurrent  | Concurrent queue.| 
+| ffrt_queue_max  | Invalid queue type.| 
 
 
 ### ffrt_storage_size_t
@@ -285,36 +367,18 @@ Enumerates the queue types.
 ```
 enum ffrt_storage_size_t
 ```
-
 **Description**
-
 Enumerates the storage sizes available for different types of structs.
 
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| ffrt_task_attr_storage_size | 128 | Storage size for the task attribute struct.| 
-| ffrt_auto_managed_function_storage_size | 64 + sizeof(ffrt_function_header_t) | Storage size for the task execution function struct.| 
-| ffrt_mutex_storage_size | 64 | Storage size for the mutex struct.| 
-| ffrt_cond_storage_size | 64 | Storage size for the condition variable struct.| 
-| ffrt_queue_attr_storage_size | 128 | Storage size for the queue attribute struct.| 
+**Since**: 10
 
-
-### ffrt_task_priority_t
-
-```
-enum ffrt_task_priority_t
-```
-
-**Description**
-
-Enumerates the task priority types.
-
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| ffrt_task_priority_immediate | 0 | Immediate priority.| 
-| ffrt_task_priority_high | 1 | High priority.| 
-| ffrt_task_priority_low | 2 | Low priority.| 
-| ffrt_task_priority_idle |  | Lowest priority.| 
+| Value| Description| 
+| -------- | -------- |
+| ffrt_task_attr_storage_size  | Pointer to the task attribute.| 
+| ffrt_auto_managed_function_storage_size  | Describes a task execution function.| 
+| ffrt_mutex_storage_size  | Storage size for the mutex struct.| 
+| ffrt_cond_storage_size  | Storage size for the condition variable struct.| 
+| ffrt_queue_attr_storage_size  | Pointer to the queue attribute.| 
 
 
 ## Function Description
@@ -325,9 +389,7 @@ Enumerates the task priority types.
 ```
 FFRT_C_API void* ffrt_alloc_auto_managed_function_storage_base (ffrt_function_kind_t kind)
 ```
-
 **Description**
-
 Applies for memory for the task execution function struct.
 
 **Since**: 10
@@ -336,7 +398,7 @@ Applies for memory for the task execution function struct.
 
 | Name| Description| 
 | -------- | -------- |
-| kind | Type of the task execution function, which can be general or queue.| 
+| kind | Type of the task execution function, which can be general or queue. | 
 
 **Returns**
 
@@ -346,11 +408,9 @@ Returns a non-null pointer if the memory is allocated; returns a null pointer ot
 ### ffrt_cond_broadcast()
 
 ```
-FFRT_C_API int ffrt_cond_broadcast (ffrt_cond_t*  cond)
+FFRT_C_API int ffrt_cond_broadcast (ffrt_cond_t * cond)
 ```
-
 **Description**
-
 Unblocks all threads currently blocked on a condition variable.
 
 **Since**: 10
@@ -359,7 +419,7 @@ Unblocks all threads currently blocked on a condition variable.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
+| cond | Pointer to the condition variable. | 
 
 **Returns**
 
@@ -369,11 +429,9 @@ Returns **ffrt_success** if all the threads are unblocked; returns **ffrt_error_
 ### ffrt_cond_destroy()
 
 ```
-FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t*  cond)
+FFRT_C_API int ffrt_cond_destroy (ffrt_cond_t * cond)
 ```
-
 **Description**
-
 Destroys a condition variable.
 
 **Since**: 10
@@ -382,7 +440,7 @@ Destroys a condition variable.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
+| cond | Pointer to the condition variable. | 
 
 **Returns**
 
@@ -392,11 +450,9 @@ Returns **ffrt_success** if the condition variable is destroyed; returns **ffrt_
 ### ffrt_cond_init()
 
 ```
-FFRT_C_API int ffrt_cond_init (ffrt_cond_t*  cond, const ffrt_condattr_t*  attr )
+FFRT_C_API int ffrt_cond_init (ffrt_cond_t * cond, const ffrt_condattr_t * attr )
 ```
-
 **Description**
-
 Initializes a condition variable.
 
 **Since**: 10
@@ -405,8 +461,8 @@ Initializes a condition variable.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
-| attr | Pointer to the condition variable attribute.| 
+| cond | Pointer to the condition variable. | 
+| attr | Pointer to the condition variable attribute. | 
 
 **Returns**
 
@@ -416,11 +472,9 @@ Returns **ffrt_success** if the condition variable is initialized; returns **ffr
 ### ffrt_cond_signal()
 
 ```
-FFRT_C_API int ffrt_cond_signal (ffrt_cond_t*  cond)
+FFRT_C_API int ffrt_cond_signal (ffrt_cond_t * cond)
 ```
-
 **Description**
-
 Unblocks at least one of the threads that are blocked on a condition variable.
 
 **Since**: 10
@@ -429,7 +483,7 @@ Unblocks at least one of the threads that are blocked on a condition variable.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
+| cond | Pointer to the condition variable. | 
 
 **Returns**
 
@@ -439,12 +493,12 @@ Returns **ffrt_success** if at least one of the threads is unblocked; returns **
 ### ffrt_cond_timedwait()
 
 ```
-FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t*  cond, ffrt_mutex_t*  mutex, const struct timespec*  time_point )
+FFRT_C_API int ffrt_cond_timedwait (ffrt_cond_t * cond, ffrt_mutex_t * mutex, const struct timespec * time_point )
 ```
-
 **Description**
-
 Blocks the calling thread on a condition variable for a given duration.
+
+If **ffrt_cond_signal** or **ffrt_cond_broadcast** is not called to unblock the thread when the maximum wait time is reached, the thread is automatically unblocked.
 
 **Since**: 10
 
@@ -452,23 +506,21 @@ Blocks the calling thread on a condition variable for a given duration.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
-| mutex | Pointer to the mutex.| 
-| time_point | Pointer to the maximum duration that the thread is blocked. If **ffrt_cond_signal** or **ffrt_cond_broadcast** is not called to unblock the thread when the maximum duration reaches, the thread is automatically unblocked.| 
+| cond | Pointer to the condition variable. | 
+| mutex | Pointer to the mutex. | 
+| time_point | Pointer to the maximum duration that the thread is blocked. If **ffrt_cond_signal** or **ffrt_cond_broadcast** is not called to unblock the thread when the maximum duration reaches, the thread is automatically unblocked. | 
 
 **Returns**
 
-Returns **ffrt_success** if the thread is blocked; returns **ffrt_error_timedout** if the maximum duration reaches; returns **ffrt_error_inval** if the blocking fails.
+Returns **ffrt_success** if the thread is blocked; returns **ffrt_error_timedout** if the maximum duration reaches; returns **ffrt_error_inval** if the waiting fails.
 
 
 ### ffrt_cond_wait()
 
 ```
-FFRT_C_API int ffrt_cond_wait (ffrt_cond_t*  cond, ffrt_mutex_t*  mutex )
+FFRT_C_API int ffrt_cond_wait (ffrt_cond_t * cond, ffrt_mutex_t * mutex )
 ```
-
 **Description**
-
 Blocks the calling thread on a condition variable.
 
 **Since**: 10
@@ -477,8 +529,8 @@ Blocks the calling thread on a condition variable.
 
 | Name| Description| 
 | -------- | -------- |
-| cond | Pointer to the condition variable.| 
-| mutex | Pointer to the mutex.| 
+| cond | Pointer to the condition variable. | 
+| mutex | Pointer to the mutex. | 
 
 **Returns**
 
@@ -488,35 +540,33 @@ Returns **ffrt_success** if the thread is blocked; returns **ffrt_error_inval** 
 ### ffrt_get_current_queue()
 
 ```
-FFRT_C_API ffrt_queue_t ffrt_get_current_queue ()
+FFRT_C_API ffrt_queue_t ffrt_get_current_queue (void )
 ```
-
 **Description**
-
 Obtains the ArkTS Worker thread queue.
 
 **Since**: 12
 
+**Deprecated version**: 18
+
 **Returns**
 
-Returns a non-null queue handle if the queue is created; returns a null pointer otherwise.
+Returns the handle to the thread queue.
 
 
 ### ffrt_get_main_queue()
 
 ```
-FFRT_C_API ffrt_queue_t ffrt_get_main_queue ()
+FFRT_C_API ffrt_queue_t ffrt_get_main_queue (void )
 ```
-
 **Description**
-
 Obtains the main thread queue.
 
 **Since**: 12
 
 **Returns**
 
-Returns a non-null queue handle if the queue is created; returns a null pointer otherwise.
+Returns the handle to the main thread queue.
 
 
 ### ffrt_loop_create()
@@ -524,9 +574,7 @@ Returns a non-null queue handle if the queue is created; returns a null pointer 
 ```
 FFRT_C_API ffrt_loop_t ffrt_loop_create (ffrt_queue_t queue)
 ```
-
 **Description**
-
 Creates a loop.
 
 **Since**: 12
@@ -535,7 +583,7 @@ Creates a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| queue | Concurrent queue.| 
+| queue | Concurrent queue. | 
 
 **Returns**
 
@@ -547,9 +595,7 @@ Returns the **ffrt_loop_t** object if the loop is created; returns a null pointe
 ```
 FFRT_C_API int ffrt_loop_destroy (ffrt_loop_t loop)
 ```
-
 **Description**
-
 Destroys a loop.
 
 **Since**: 12
@@ -558,7 +604,7 @@ Destroys a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
+| loop | Loop object. | 
 
 **Returns**
 
@@ -568,11 +614,9 @@ Returns **0** if the loop is destroyed; returns **-1** otherwise.
 ### ffrt_loop_epoll_ctl()
 
 ```
-FFRT_C_API int ffrt_loop_epoll_ctl (ffrt_loop_t loop, int op, int fd, uint32_t events, void*  data, ffrt_poller_cb cb )
+FFRT_C_API int ffrt_loop_epoll_ctl (ffrt_loop_t loop, int op, int fd, uint32_t events, void * data, ffrt_poller_cb cb )
 ```
-
 **Description**
-
 Manages listening events on a loop.
 
 **Since**: 12
@@ -581,12 +625,12 @@ Manages listening events on a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
-| op | Operation to be performed.| 
-| fd | File descriptor.| 
-| events | Events linked to the file descriptor.| 
-| data | Pointer to the input parameter in the callback function invoked upon event changes.| 
-| cb | Callback function invoked upon event changes.| 
+| loop | Loop object. | 
+| op | Operation to be performed. | 
+| fd | File descriptor. | 
+| events | Events linked to the file descriptor. | 
+| data | Pointer to the input parameter in the callback function invoked upon event changes. | 
+| cb | Callback function invoked upon event changes. | 
 
 **Returns**
 
@@ -598,9 +642,7 @@ Returns **0** if the operation is successful; returns **-1** otherwise.
 ```
 FFRT_C_API int ffrt_loop_run (ffrt_loop_t loop)
 ```
-
 **Description**
-
 Runs a loop.
 
 **Since**: 12
@@ -609,7 +651,7 @@ Runs a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
+| loop | Loop object. | 
 
 **Returns**
 
@@ -621,9 +663,7 @@ Returns **0** if the loop runs successfully; returns **-1** otherwise.
 ```
 FFRT_C_API void ffrt_loop_stop (ffrt_loop_t loop)
 ```
-
 **Description**
-
 Stops a loop.
 
 **Since**: 12
@@ -632,17 +672,15 @@ Stops a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
+| loop | Loop object. | 
 
 
 ### ffrt_loop_timer_start()
 
 ```
-FFRT_C_API ffrt_timer_t ffrt_loop_timer_start (ffrt_loop_t loop, uint64_t timeout, void*  data, ffrt_timer_cb cb, bool repeat )
+FFRT_C_API ffrt_timer_t ffrt_loop_timer_start (ffrt_loop_t loop, uint64_t timeout, void * data, ffrt_timer_cb cb, bool repeat )
 ```
-
 **Description**
-
 Starts the timer on a loop.
 
 **Since**: 12
@@ -651,11 +689,11 @@ Starts the timer on a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
-| timeout | Timeout duration of the timer.| 
-| data | Pointer to the input parameter in the callback function invoked upon event changes.| 
-| cb | Callback function invoked upon event changes.| 
-| repeat | Whether to repeat the timer.| 
+| loop | Loop object. | 
+| timeout | Timeout duration of the timer. | 
+| data | Pointer to the input parameter in the callback function invoked upon event changes. | 
+| cb | Callback function invoked upon event changes. | 
+| repeat | Whether to repeat the timer. | 
 
 **Returns**
 
@@ -667,9 +705,7 @@ Returns the timer handle.
 ```
 FFRT_C_API int ffrt_loop_timer_stop (ffrt_loop_t loop, ffrt_timer_t handle )
 ```
-
 **Description**
-
 Stops the timer on a loop.
 
 **Since**: 12
@@ -678,22 +714,20 @@ Stops the timer on a loop.
 
 | Name| Description| 
 | -------- | -------- |
-| loop | Loop object.| 
-| handle | Timer handle.| 
+| loop | Loop object. | 
+| handle | Timer handle. | 
 
 **Returns**
 
-Returns **0** if the timer is stopped; returns **-1** otherwise.
+Returns **0** if the operation is successful; returns **-1** otherwise.
 
 
 ### ffrt_mutex_destroy()
 
 ```
-FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t*  mutex)
+FFRT_C_API int ffrt_mutex_destroy (ffrt_mutex_t * mutex)
 ```
-
 **Description**
-
 Destroys a mutex.
 
 **Since**: 10
@@ -702,7 +736,7 @@ Destroys a mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| mutex | Pointer to the mutex.| 
+| mutex | Pointer to the mutex. | 
 
 **Returns**
 
@@ -712,11 +746,9 @@ Returns **ffrt_success** if the mutex is destroyed; returns **ffrt_error_inval**
 ### ffrt_mutex_init()
 
 ```
-FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t*  mutex, const ffrt_mutexattr_t*  attr )
+FFRT_C_API int ffrt_mutex_init (ffrt_mutex_t * mutex, const ffrt_mutexattr_t * attr )
 ```
-
 **Description**
-
 Initializes a mutex.
 
 **Since**: 10
@@ -725,22 +757,20 @@ Initializes a mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| mutex | Pointer to the mutex.| 
-| attr | Pointer to the mutex attribute.| 
+| mutex | Pointer to the mutex. | 
+| attr | Pointer to the mutex attribute. | 
 
 **Returns**
 
-Returns **ffrt_success** if the mutex is initialized; returns **ffrt_error** or **ffrt_error_inval** otherwise.
+Returns **ffrt_success** if the mutex is initialized; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_mutex_lock()
 
 ```
-FFRT_C_API int ffrt_mutex_lock (ffrt_mutex_t*  mutex)
+FFRT_C_API int ffrt_mutex_lock (ffrt_mutex_t * mutex)
 ```
-
 **Description**
-
 Locks a mutex.
 
 **Since**: 10
@@ -749,7 +779,7 @@ Locks a mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| mutex | Pointer to the mutex.| 
+| mutex | Pointer to the mutex. | 
 
 **Returns**
 
@@ -759,11 +789,9 @@ Returns **ffrt_success** if the mutex is locked; returns **ffrt_error_inval** or
 ### ffrt_mutex_trylock()
 
 ```
-FFRT_C_API int ffrt_mutex_trylock (ffrt_mutex_t*  mutex)
+FFRT_C_API int ffrt_mutex_trylock (ffrt_mutex_t * mutex)
 ```
-
 **Description**
-
 Attempts to lock a mutex.
 
 **Since**: 10
@@ -772,7 +800,7 @@ Attempts to lock a mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| mutex | Pointer to the mutex.| 
+| mutex | Pointer to the mutex. | 
 
 **Returns**
 
@@ -782,11 +810,9 @@ Returns **ffrt_success** if the mutex is locked; returns **ffrt_error_inval** or
 ### ffrt_mutex_unlock()
 
 ```
-FFRT_C_API int ffrt_mutex_unlock (ffrt_mutex_t*  mutex)
+FFRT_C_API int ffrt_mutex_unlock (ffrt_mutex_t * mutex)
 ```
-
 **Description**
-
 Unlocks a mutex.
 
 **Since**: 10
@@ -795,22 +821,106 @@ Unlocks a mutex.
 
 | Name| Description| 
 | -------- | -------- |
-| mutex | Pointer to the mutex.| 
+| mutex | Pointer to the mutex. | 
 
 **Returns**
 
 Returns **ffrt_success** if the mutex is unlocked; returns **ffrt_error_inval** otherwise.
 
 
+### ffrt_mutexattr_destroy()
+
+```
+FFRT_C_API int ffrt_mutexattr_destroy (ffrt_mutexattr_t * attr)
+```
+**Description**
+Destroys the mutex attribute. This API needs to be called by users.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the mutex attribute. | 
+
+**Returns**
+
+Returns **ffrt_success** if the mutex is destroyed; returns **ffrt_error_inval** otherwise.
+
+
+### ffrt_mutexattr_gettype()
+
+```
+FFRT_C_API int ffrt_mutexattr_gettype (ffrt_mutexattr_t * attr, int * type )
+```
+**Description**
+Obtains the mutex type.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the mutex attribute. | 
+| type | Pointer to the mutex type. | 
+
+**Returns**
+
+Returns **ffrt_success** if the mutex is obtained; returns **ffrt_error_inval** if the pointer to the mutex attribute or mutex type is null.
+
+
+### ffrt_mutexattr_init()
+
+```
+FFRT_C_API int ffrt_mutexattr_init (ffrt_mutexattr_t * attr)
+```
+**Description**
+Initializes the mutex attribute.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the mutex attribute. | 
+
+**Returns**
+
+Returns **ffrt_success** if the mutex is initialized; returns **ffrt_error_inval** otherwise.
+
+
+### ffrt_mutexattr_settype()
+
+```
+FFRT_C_API int ffrt_mutexattr_settype (ffrt_mutexattr_t * attr, int type )
+```
+**Description**
+Sets the mutex attribute type.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the mutex attribute. | 
+| type | Mutex type. | 
+
+**Returns**
+
+Returns **ffrt_success** if the mutex is set; returns **ffrt_error_inval** if the pointer to the mutex attribute is null or the mutex is not of the **ffrt_mutex_normal** or **ffrt_mutex_recursive** type.
+
+
 ### ffrt_queue_attr_destroy()
 
 ```
-FFRT_C_API void ffrt_queue_attr_destroy (ffrt_queue_attr_t*  attr)
+FFRT_C_API void ffrt_queue_attr_destroy (ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
-Destroys a queue attribute.
+Destroys the queue attribute.
 
 **Since**: 10
 
@@ -818,17 +928,15 @@ Destroys a queue attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 
 ### ffrt_queue_attr_get_callback()
 
 ```
-FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback (const ffrt_queue_attr_t*  attr)
+FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback (const ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the callback that is invoked when a queue task times out.
 
 **Since**: 10
@@ -837,7 +945,7 @@ Obtains the callback that is invoked when a queue task times out.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
@@ -847,11 +955,9 @@ Returns the callback.
 ### ffrt_queue_attr_get_max_concurrency()
 
 ```
-FFRT_C_API int ffrt_queue_attr_get_max_concurrency (ffrt_queue_attr_t*  attr)
+FFRT_C_API int ffrt_queue_attr_get_max_concurrency (const ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the maximum concurrency of a queue, which must be a concurrent queue.
 
 **Since**: 12
@@ -860,7 +966,7 @@ Obtains the maximum concurrency of a queue, which must be a concurrent queue.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
@@ -870,11 +976,9 @@ Returns the maximum concurrency.
 ### ffrt_queue_attr_get_qos()
 
 ```
-FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos (const ffrt_queue_attr_t*  attr)
+FFRT_C_API ffrt_qos_t ffrt_queue_attr_get_qos (const ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the queue QoS.
 
 **Since**: 10
@@ -883,21 +987,19 @@ Obtains the queue QoS.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
-Returns the QoS.
+Returns the queue QoS.
 
 
 ### ffrt_queue_attr_get_timeout()
 
 ```
-FFRT_C_API uint64_t ffrt_queue_attr_get_timeout (const ffrt_queue_attr_t*  attr)
+FFRT_C_API uint64_t ffrt_queue_attr_get_timeout (const ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the queue timeout.
 
 **Since**: 10
@@ -906,7 +1008,7 @@ Obtains the queue timeout.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
@@ -916,12 +1018,10 @@ Returns the timeout.
 ### ffrt_queue_attr_init()
 
 ```
-FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t*  attr)
+FFRT_C_API int ffrt_queue_attr_init (ffrt_queue_attr_t * attr)
 ```
-
 **Description**
-
-Initializes a queue attribute.
+Initializes the queue attribute.
 
 **Since**: 10
 
@@ -929,7 +1029,7 @@ Initializes a queue attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
@@ -939,11 +1039,9 @@ Returns **0** if the queue attribute is initialized; returns **-1** otherwise.
 ### ffrt_queue_attr_set_callback()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t*  attr, ffrt_function_header_t*  f )
+FFRT_C_API void ffrt_queue_attr_set_callback (ffrt_queue_attr_t * attr, ffrt_function_header_t * f )
 ```
-
 **Description**
-
 Sets a callback that is invoked when a queue task times out.
 
 **Since**: 10
@@ -952,18 +1050,16 @@ Sets a callback that is invoked when a queue task times out.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
-| f | Pointer to the callback function invoked upon a timeout.| 
+| attr | Pointer to the queue attribute. | 
+| f | Pointer to the callback function invoked upon a timeout. | 
 
 
 ### ffrt_queue_attr_set_max_concurrency()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_max_concurrency (ffrt_queue_attr_t*  attr, const int max_concurrency )
+FFRT_C_API void ffrt_queue_attr_set_max_concurrency (ffrt_queue_attr_t * attr, const int max_concurrency )
 ```
-
 **Description**
-
 Sets the maximum concurrency for a queue, which must be a concurrent queue.
 
 **Since**: 12
@@ -972,18 +1068,16 @@ Sets the maximum concurrency for a queue, which must be a concurrent queue.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
-| max_concurrency | Maximum concurrency.| 
+| attr | Pointer to the queue attribute. | 
+| max_concurrency | Maximum concurrency. | 
 
 
 ### ffrt_queue_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t*  attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_queue_attr_set_qos (ffrt_queue_attr_t * attr, ffrt_qos_t qos )
 ```
-
 **Description**
-
 Sets the queue QoS.
 
 **Since**: 10
@@ -992,18 +1086,16 @@ Sets the queue QoS.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
-| qos | QoS.| 
+| attr | Pointer to the queue attribute. | 
+| qos | QoS. | 
 
 
 ### ffrt_queue_attr_set_timeout()
 
 ```
-FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t*  attr, uint64_t timeout_us )
+FFRT_C_API void ffrt_queue_attr_set_timeout (ffrt_queue_attr_t * attr, uint64_t timeout_us )
 ```
-
 **Description**
-
 Sets the queue timeout.
 
 **Since**: 10
@@ -1012,8 +1104,8 @@ Sets the queue timeout.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the queue attribute.| 
-| timeout_us | Timeout.| 
+| attr | Pointer to the queue attribute. | 
+| timeout_us | Timeout. | 
 
 
 ### ffrt_queue_cancel()
@@ -1021,9 +1113,7 @@ Sets the queue timeout.
 ```
 FFRT_C_API int ffrt_queue_cancel (ffrt_task_handle_t handle)
 ```
-
 **Description**
-
 Cancels a task in the queue.
 
 **Since**: 10
@@ -1032,7 +1122,7 @@ Cancels a task in the queue.
 
 | Name| Description| 
 | -------- | -------- |
-| handle | Task handle.| 
+| handle | Task handle. | 
 
 **Returns**
 
@@ -1042,11 +1132,9 @@ Returns **0** if the task is canceled; returns **-1** otherwise.
 ### ffrt_queue_create()
 
 ```
-FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char*  name, const ffrt_queue_attr_t*  attr )
+FFRT_C_API ffrt_queue_t ffrt_queue_create (ffrt_queue_type_t type, const char * name, const ffrt_queue_attr_t * attr )
 ```
-
 **Description**
-
 Creates a queue.
 
 **Since**: 10
@@ -1055,9 +1143,9 @@ Creates a queue.
 
 | Name| Description| 
 | -------- | -------- |
-| type | Queue type.| 
-| name | Pointer to the queue name.| 
-| attr | Pointer to the queue attribute.| 
+| type | Queue type. | 
+| name | Pointer to the queue name. | 
+| attr | Pointer to the queue attribute. | 
 
 **Returns**
 
@@ -1069,9 +1157,7 @@ Returns a non-null queue handle if the queue is created; returns a null pointer 
 ```
 FFRT_C_API void ffrt_queue_destroy (ffrt_queue_t queue)
 ```
-
 **Description**
-
 Destroys a queue.
 
 **Since**: 10
@@ -1080,17 +1166,15 @@ Destroys a queue.
 
 | Name| Description| 
 | -------- | -------- |
-| queue | Queue handle.| 
+| queue | Queue handle. | 
 
 
 ### ffrt_queue_submit()
 
 ```
-FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t*  f, const ffrt_task_attr_t*  attr )
+FFRT_C_API void ffrt_queue_submit (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
 ```
-
 **Description**
-
 Submits a task to a queue.
 
 **Since**: 10
@@ -1099,19 +1183,17 @@ Submits a task to a queue.
 
 | Name| Description| 
 | -------- | -------- |
-| queue | Queue handle.| 
-| f | Pointer to the task execution function.| 
-| attr | Pointer to the task attribute.| 
+| queue | Queue handle. | 
+| f | Pointer to the task execution function. | 
+| attr | Pointer to the task attribute. | 
 
 
 ### ffrt_queue_submit_h()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t*  f, const ffrt_task_attr_t*  attr )
+FFRT_C_API ffrt_task_handle_t ffrt_queue_submit_h (ffrt_queue_t queue, ffrt_function_header_t * f, const ffrt_task_attr_t * attr )
 ```
-
 **Description**
-
 Submits a task to a queue, and obtains the task handle.
 
 **Since**: 10
@@ -1120,9 +1202,9 @@ Submits a task to a queue, and obtains the task handle.
 
 | Name| Description| 
 | -------- | -------- |
-| queue | Queue handle.| 
-| f | Pointer to the task execution function.| 
-| attr | Pointer to the task attribute.| 
+| queue | Queue handle. | 
+| f | Pointer to the task execution function. | 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1134,9 +1216,7 @@ Returns a non-null task handle if the task is submitted; returns a null pointer 
 ```
 FFRT_C_API void ffrt_queue_wait (ffrt_task_handle_t handle)
 ```
-
 **Description**
-
 Waits until a task in the queue is complete.
 
 **Since**: 10
@@ -1145,17 +1225,15 @@ Waits until a task in the queue is complete.
 
 | Name| Description| 
 | -------- | -------- |
-| handle | Task handle.| 
+| handle | Task handle. | 
 
 
 ### ffrt_submit_base()
 
 ```
-FFRT_C_API void ffrt_submit_base (ffrt_function_header_t*  f, const ffrt_deps_t*  in_deps, const ffrt_deps_t*  out_deps, const ffrt_task_attr_t*  attr )
+FFRT_C_API void ffrt_submit_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
 ```
-
 **Description**
-
 Submits a task.
 
 **Since**: 10
@@ -1164,20 +1242,18 @@ Submits a task.
 
 | Name| Description| 
 | -------- | -------- |
-| f | Pointer to the task execution function.| 
-| in_deps | Pointer to the input dependencies.| 
-| out_deps | Pointer to the output dependencies.| 
-| attr | Pointer to the task attribute.| 
+| f | Pointer to the task execution function. | 
+| in_deps | Pointer to the input dependencies. | 
+| out_deps | Pointer to the output dependencies. | 
+| attr | Pointer to the task attribute. | 
 
 
 ### ffrt_submit_h_base()
 
 ```
-FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t*  f, const ffrt_deps_t*  in_deps, const ffrt_deps_t*  out_deps, const ffrt_task_attr_t*  attr )
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base (ffrt_function_header_t * f, const ffrt_deps_t * in_deps, const ffrt_deps_t * out_deps, const ffrt_task_attr_t * attr )
 ```
-
 **Description**
-
 Submits a task, and obtains the task handle.
 
 **Since**: 10
@@ -1186,10 +1262,10 @@ Submits a task, and obtains the task handle.
 
 | Name| Description| 
 | -------- | -------- |
-| f | Pointer to the task execution function.| 
-| in_deps | Pointer to the input dependencies.| 
-| out_deps | Pointer to the output dependencies.| 
-| attr | Pointer to the task attribute.| 
+| f | Pointer to the task execution function. | 
+| in_deps | Pointer to the input dependencies. | 
+| out_deps | Pointer to the output dependencies. | 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1199,11 +1275,9 @@ Returns a non-null task handle if the task is submitted; returns a null pointer 
 ### ffrt_task_attr_destroy()
 
 ```
-FFRT_C_API void ffrt_task_attr_destroy (ffrt_task_attr_t*  attr)
+FFRT_C_API void ffrt_task_attr_destroy (ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Destroys a task attribute.
 
 **Since**: 10
@@ -1212,17 +1286,15 @@ Destroys a task attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 
 ### ffrt_task_attr_get_delay()
 
 ```
-FFRT_C_API uint64_t ffrt_task_attr_get_delay (const ffrt_task_attr_t*  attr)
+FFRT_C_API uint64_t ffrt_task_attr_get_delay (const ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the task delay time.
 
 **Since**: 10
@@ -1231,7 +1303,7 @@ Obtains the task delay time.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1241,11 +1313,9 @@ Returns the delay time.
 ### ffrt_task_attr_get_name()
 
 ```
-FFRT_C_API const char* ffrt_task_attr_get_name (const ffrt_task_attr_t*  attr)
+FFRT_C_API const char* ffrt_task_attr_get_name (const ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Obtains a task name.
 
 **Since**: 10
@@ -1254,7 +1324,7 @@ Obtains a task name.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1264,11 +1334,9 @@ Returns a non-null pointer to the task name if the name is obtained; returns a n
 ### ffrt_task_attr_get_qos()
 
 ```
-FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos (const ffrt_task_attr_t*  attr)
+FFRT_C_API ffrt_qos_t ffrt_task_attr_get_qos (const ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the task QoS.
 
 **Since**: 10
@@ -1277,7 +1345,7 @@ Obtains the task QoS.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1287,11 +1355,9 @@ Returns the QoS, which is **ffrt_qos_default** by default.
 ### ffrt_task_attr_get_queue_priority()
 
 ```
-FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority (const ffrt_task_attr_t*  attr)
+FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority (const ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Obtains the task priority in the queue.
 
 **Since**: 12
@@ -1300,21 +1366,40 @@ Obtains the task priority in the queue.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
 Returns the task priority.
 
 
+### ffrt_task_attr_get_stack_size()
+
+```
+FFRT_C_API uint64_t ffrt_task_attr_get_stack_size (const ffrt_task_attr_t * attr)
+```
+**Description**
+Obtains the task stack size.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the task attribute. | 
+
+**Returns**
+
+Returns the task stack size, in bytes.
+
+
 ### ffrt_task_attr_init()
 
 ```
-FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t*  attr)
+FFRT_C_API int ffrt_task_attr_init (ffrt_task_attr_t * attr)
 ```
-
 **Description**
-
 Initializes a task attribute.
 
 **Since**: 10
@@ -1323,7 +1408,7 @@ Initializes a task attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
+| attr | Pointer to the task attribute. | 
 
 **Returns**
 
@@ -1333,11 +1418,9 @@ Returns **0** if the task attribute is initialized; returns **-1** otherwise.
 ### ffrt_task_attr_set_delay()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t*  attr, uint64_t delay_us )
+FFRT_C_API void ffrt_task_attr_set_delay (ffrt_task_attr_t * attr, uint64_t delay_us )
 ```
-
 **Description**
-
 Sets the task delay time.
 
 **Since**: 10
@@ -1346,18 +1429,16 @@ Sets the task delay time.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
-| delay_us | Delay time, in microseconds.| 
+| attr | Pointer to the task attribute. | 
+| delay_us | Delay time, in microseconds. | 
 
 
 ### ffrt_task_attr_set_name()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t*  attr, const char*  name )
+FFRT_C_API void ffrt_task_attr_set_name (ffrt_task_attr_t * attr, const char * name )
 ```
-
 **Description**
-
 Sets a task name.
 
 **Since**: 10
@@ -1366,18 +1447,16 @@ Sets a task name.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
-| name | Pointer to the task name.| 
+| attr | Pointer to the task attribute. | 
+| name | Pointer to the task name. | 
 
 
 ### ffrt_task_attr_set_qos()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t*  attr, ffrt_qos_t qos )
+FFRT_C_API void ffrt_task_attr_set_qos (ffrt_task_attr_t * attr, ffrt_qos_t qos )
 ```
-
 **Description**
-
 Sets the task QoS.
 
 **Since**: 10
@@ -1386,18 +1465,16 @@ Sets the task QoS.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
-| qos | QoS.| 
+| attr | Pointer to the task attribute. | 
+| qos | Task QoS. | 
 
 
 ### ffrt_task_attr_set_queue_priority()
 
 ```
-FFRT_C_API void ffrt_task_attr_set_queue_priority (ffrt_task_attr_t*  attr, ffrt_queue_priority_t priority )
+FFRT_C_API void ffrt_task_attr_set_queue_priority (ffrt_task_attr_t * attr, ffrt_queue_priority_t priority )
 ```
-
 **Description**
-
 Sets the task priority in the queue.
 
 **Since**: 12
@@ -1406,8 +1483,47 @@ Sets the task priority in the queue.
 
 | Name| Description| 
 | -------- | -------- |
-| attr | Pointer to the task attribute.| 
-| priority | Task priority.| 
+| attr | Pointer to the task attribute. | 
+| priority | Task priority. | 
+
+
+### ffrt_task_attr_set_stack_size()
+
+```
+FFRT_C_API void ffrt_task_attr_set_stack_size (ffrt_task_attr_t * attr, uint64_t size )
+```
+**Description**
+Sets the task stack size.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| attr | Pointer to the task attribute. | 
+| size | Size of the task stack, in bytes. | 
+
+
+### ffrt_task_handle_dec_ref()
+
+```
+FFRT_C_API uint32_t ffrt_task_handle_dec_ref (ffrt_task_handle_t handle)
+```
+**Description**
+Decreases the number of task handle references.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| handle | Task handle. | 
+
+**Returns**
+
+Returns the original number of task handle references.
 
 
 ### ffrt_task_handle_destroy()
@@ -1415,9 +1531,7 @@ Sets the task priority in the queue.
 ```
 FFRT_C_API void ffrt_task_handle_destroy (ffrt_task_handle_t handle)
 ```
-
 **Description**
-
 Destroys a task handle.
 
 **Since**: 10
@@ -1426,7 +1540,28 @@ Destroys a task handle.
 
 | Name| Description| 
 | -------- | -------- |
-| handle | Task handle.| 
+| handle | Task handle. | 
+
+
+### ffrt_task_handle_inc_ref()
+
+```
+FFRT_C_API uint32_t ffrt_task_handle_inc_ref (ffrt_task_handle_t handle)
+```
+**Description**
+Increases the number of task handle references.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| handle | Task handle. | 
+
+**Returns**
+
+Returns the original number of task handle references.
 
 
 ### ffrt_this_task_get_id()
@@ -1434,9 +1569,7 @@ Destroys a task handle.
 ```
 FFRT_C_API uint64_t ffrt_this_task_get_id (void )
 ```
-
 **Description**
-
 Obtains the ID of this task.
 
 **Since**: 10
@@ -1449,18 +1582,16 @@ Returns the ID.
 ### ffrt_this_task_get_qos()
 
 ```
-FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos ()
+FFRT_C_API ffrt_qos_t ffrt_this_task_get_qos (void )
 ```
-
 **Description**
-
-Obtains the QoS of this task.
+Obtains the task QoS.
 
 **Since**: 12
 
 **Returns**
 
-Returns the QoS.
+Returns the task QoS.
 
 
 ### ffrt_this_task_update_qos()
@@ -1468,10 +1599,8 @@ Returns the QoS.
 ```
 FFRT_C_API int ffrt_this_task_update_qos (ffrt_qos_t qos)
 ```
-
 **Description**
-
-Updates the QoS of this task.
+Updates the task QoS.
 
 **Since**: 10
 
@@ -1479,7 +1608,7 @@ Updates the QoS of this task.
 
 | Name| Description| 
 | -------- | -------- |
-| qos | New QoS.| 
+| qos | QoS to be updated. | 
 
 **Returns**
 
@@ -1489,11 +1618,9 @@ Returns **0** if the QoS is updated; returns **-1** otherwise.
 ### ffrt_timer_start()
 
 ```
-FFRT_C_API ffrt_timer_t ffrt_timer_start (ffrt_qos_t qos, uint64_t timeout, void*  data, ffrt_timer_cb cb, bool repeat )
+FFRT_C_API ffrt_timer_t ffrt_timer_start (ffrt_qos_t qos, uint64_t timeout, void * data, ffrt_timer_cb cb, bool repeat )
 ```
-
 **Description**
-
 Starts the timer.
 
 **Since**: 12
@@ -1502,11 +1629,11 @@ Starts the timer.
 
 | Name| Description| 
 | -------- | -------- |
-| qos | QoS.| 
-| timeout | Timeout duration of the timer.| 
-| data | Pointer to the input parameter in the callback function invoked upon a timeout.| 
-| cb | Callback function invoked upon a timeout.| 
-| repeat | Whether to repeat the timer.| 
+| qos | QoS. | 
+| timeout | Timeout duration of the timer. | 
+| data | Pointer to the input parameter in the callback function invoked upon a timeout. | 
+| cb | Callback function invoked upon a timeout. | 
+| repeat | Whether to repeat the timer (not supported yet). | 
 
 **Returns**
 
@@ -1518,9 +1645,7 @@ Returns the timer handle.
 ```
 FFRT_C_API int ffrt_timer_stop (ffrt_qos_t qos, ffrt_timer_t handle )
 ```
-
 **Description**
-
 Stops the timer.
 
 **Since**: 12
@@ -1529,12 +1654,12 @@ Stops the timer.
 
 | Name| Description| 
 | -------- | -------- |
-| qos | QoS.| 
-| handle | Handle to the timer.| 
+| qos | QoS. | 
+| handle | Handle to the timer. | 
 
 **Returns**
 
-Returns **0** if the timer stops; returns other values if the timer fails to stop.
+Returns **0** if the timer is stopped; returns **-1** otherwise.
 
 
 ### ffrt_usleep()
@@ -1542,10 +1667,8 @@ Returns **0** if the timer stops; returns other values if the timer fails to sto
 ```
 FFRT_C_API int ffrt_usleep (uint64_t usec)
 ```
-
 **Description**
-
-Suspends the calling thread for a given duration.
+Sets the fixed sleep time.
 
 **Since**: 10
 
@@ -1553,11 +1676,11 @@ Suspends the calling thread for a given duration.
 
 | Name| Description| 
 | -------- | -------- |
-| usec | Duration that the calling thread is suspended, in microseconds.| 
+| usec | Sleep time, in microseconds. | 
 
 **Returns**
 
-Returns **ffrt_success** if the thread is suspended.
+Returns **ffrt_success** if the thread is suspended; returns **ffrt_error** otherwise.
 
 
 ### ffrt_wait()
@@ -1565,9 +1688,7 @@ Returns **ffrt_success** if the thread is suspended.
 ```
 FFRT_C_API void ffrt_wait (void )
 ```
-
 **Description**
-
 Waits until all submitted tasks are complete.
 
 **Since**: 10
@@ -1576,11 +1697,9 @@ Waits until all submitted tasks are complete.
 ### ffrt_wait_deps()
 
 ```
-FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t*  deps)
+FFRT_C_API void ffrt_wait_deps (const ffrt_deps_t * deps)
 ```
-
 **Description**
-
 Waits until the dependent tasks are complete.
 
 **Since**: 10
@@ -1589,7 +1708,7 @@ Waits until the dependent tasks are complete.
 
 | Name| Description| 
 | -------- | -------- |
-| deps | Pointer to the dependencies.| 
+| deps | Pointer to the dependencies. | 
 
 
 ### ffrt_yield()
@@ -1597,155 +1716,7 @@ Waits until the dependent tasks are complete.
 ```
 FFRT_C_API void ffrt_yield (void )
 ```
-
 **Description**
-
 Passes control to other tasks so that they can be executed.
 
 **Since**: 10
-
-
-## Variable Description
-
-
-### destroy
-
-```
-ffrt_function_t ffrt_function_header_t::destroy
-```
-
-**Description**
-
-Function used to destroy a task.
-
-
-### exec
-
-```
-ffrt_function_t ffrt_function_header_t::exec
-```
-
-**Description**
-
-Function used to execute a task.
-
-
-### items
-
-```
-const ffrt_dependence_t* ffrt_deps_t::items
-```
-
-**Description**
-
-Dependency data.
-
-
-### len
-
-```
-uint32_t ffrt_deps_t::len
-```
-
-**Description**
-
-Number of dependencies.
-
-
-### ptr
-
-```
-const void* ffrt_dependence_t::ptr
-```
-
-**Description**
-
-Address of the dependency data.
-
-
-### reserve
-
-```
-uint64_t ffrt_function_header_t::reserve[2]
-```
-
-**Description**
-
-Reserved bit.
-
-
-### storage [1/6]
-
-```
-uint32_t ffrt_cond_t::storage[(ffrt_cond_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
-```
-
-**Description**
-
-Storage size of a condition variable.
-
-
-### storage [2/6]
-
-```
-uint32_t ffrt_mutex_t::storage[(ffrt_mutex_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
-```
-
-**Description**
-
-Storage size of a mutex.
-
-
-### storage [3/6]
-
-```
-uint32_t ffrt_queue_attr_t::storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
-```
-
-**Description**
-
-Storage size of a queue attribute.
-
-
-### storage [4/6]
-
-```
-uint32_t ffrt_task_attr_t::storage[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1)/sizeof(uint32_t)]
-```
-
-**Description**
-
-Storage size of a task attribute.
-
-
-### storage [5/6]
-
-```
-long ffrt_condattr_t::storage
-```
-
-**Description**
-
-Storage size of a condition variable attribute.
-
-
-### storage [6/6]
-
-```
-long ffrt_mutexattr_t::storage
-```
-
-**Description**
-
-Storage size of a mutex attribute.
-
-
-### type
-
-```
-ffrt_dependence_type_t ffrt_dependence_t::type
-```
-
-**Description**
-
-Dependency type.

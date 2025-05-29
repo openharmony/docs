@@ -28,15 +28,16 @@ import { uniformDataStruct } from '@kit.ArkData';
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let plainTextDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is plainText textContent example',
   abstract : 'this is abstract',
-  details : plainTextDetails,
+  details : plainTextDetails
 }
 console.info('plainText.uniformDataType: ' + plainText.uniformDataType);
 if(plainText.details != undefined){
@@ -45,6 +46,7 @@ if(plainText.details != undefined){
     console.info('plainText.details.attr: ' + kv[0] + ', value:' + kv[1]);
   }
 }
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 ```
 
 ## Hyperlink
@@ -63,17 +65,19 @@ if(plainText.details != undefined){
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let hyperlinkDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
   description : 'This is the description of this hyperlink',
-  details : hyperlinkDetails,
+  details : hyperlinkDetails
 }
 console.info('hyperlink.uniformDataType: ' + hyperlink.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 ```
 
 ## HTML
@@ -92,17 +96,19 @@ HTML类型数据，用于描述超文本标记语言数据。
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let htmlObjDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let htmlObj : uniformDataStruct.HTML = {
   uniformDataType :'general.html',
   htmlContent : '<div><p>标题</p></div>',
   plainContent : 'this is plainContent',
-  details : htmlObjDetails,
+  details : htmlObjDetails
 }
 console.info('htmlObj.uniformDataType: ' + htmlObj.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
 ```
 
 ## OpenHarmonyAppItem
@@ -126,11 +132,12 @@ console.info('htmlObj.uniformDataType: ' + htmlObj.uniformDataType);
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let appItemDetails : Record<string, number | string | Uint8Array> = {
   'appItemKey1': 123,
   'appItemKey2': 'appItemValue',
-  'appItemKey3': u8Array,
+  'appItemKey3': u8Array
 }
 let appItem : uniformDataStruct.OpenHarmonyAppItem = {
   uniformDataType:'openharmony.app-item',
@@ -140,9 +147,10 @@ let appItem : uniformDataStruct.OpenHarmonyAppItem = {
   appLabelId : 'MyAppLabelId',
   bundleName : 'MyBundleName',
   abilityName : 'MyAbilityName',
-  details : appItemDetails,
+  details : appItemDetails
 }
 console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_APP_ITEM, appItem);
 ```
 
 ## ContentForm<sup>14+</sup>
@@ -165,18 +173,20 @@ console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let thumbDataU8Array = new Uint8Array([1, 2, 3, 4, 5]);
 let appIconU8Array = new Uint8Array([6, 7, 8, 9, 10]);
 let contentForm : uniformDataStruct.ContentForm = {
-    uniformDataType : 'general.content-form',
-    title : 'MyTitle',
-    thumbData : thumbDataU8Array,
-    description : 'MyDescription',
-    appName : 'MyAppName',
-    linkUri : 'MyLinkUri',
-    appIcon : appIconU8Array
+  uniformDataType : 'general.content-form',
+  title : 'MyTitle',
+  thumbData : thumbDataU8Array,
+  description : 'MyDescription',
+  appName : 'MyAppName',
+  linkUri : 'MyLinkUri',
+  appIcon : appIconU8Array
 }
 console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.CONTENT_FORM, contentForm);
 ```
 
 ## Form<sup>15+</sup>
@@ -199,11 +209,12 @@ console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let formDetails : Record<string, number | string | Uint8Array> = {
   'formKey1': 123,
   'formKey2': 'formValue',
-  'formKey3': u8Array,
+  'formKey3': u8Array
 }
 let form : uniformDataStruct.Form = {
   uniformDataType : 'openharmony.form',
@@ -215,6 +226,7 @@ let form : uniformDataStruct.Form = {
   details : formDetails
 }
 console.info('form.uniformDataType: ' + form.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
 ```
 
 ## FileUri<sup>15+</sup>
@@ -234,11 +246,12 @@ console.info('form.uniformDataType: ' + form.uniformDataType);
 **示例：**
 
 ```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let fileUriDetails : Record<string, number | string | Uint8Array> = {
   'fileUriKey1': 123,
   'fileUriKey2': 'fileUriValue',
-  'fileUriKey3': u8Array,
+  'fileUriKey3': u8Array
 }
 let fileUri : uniformDataStruct.FileUri = {
   uniformDataType : 'general.file-uri',
@@ -247,6 +260,8 @@ let fileUri : uniformDataStruct.FileUri = {
   details : fileUriDetails
 }
 console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
+// 当使用FileUri类型的标准化数据结构构造record时，推荐入参中的type值设为uniformTypeDescriptor.UniformDataType.FILE_URI
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
 ```
 
 ## PixelMap<sup>15+</sup>
@@ -265,7 +280,8 @@ console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let arrayBuffer = new ArrayBuffer(4*200*200);
@@ -273,7 +289,7 @@ let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: 
 let pixelMapDetails : Record<string, number | string | Uint8Array> = {
   'pixelMapKey1': 123,
   'pixelMapKey2': 'pixelMapValue',
-  'pixelMapKey3': u8Array,
+  'pixelMapKey3': u8Array
 }
 let pixelMap : uniformDataStruct.PixelMap = {
   uniformDataType : 'openharmony.pixel-map',
@@ -281,4 +297,5 @@ let pixelMap : uniformDataStruct.PixelMap = {
   details : pixelMapDetails
 }
 console.info('pixelMap.uniformDataType: ' + pixelMap.uniformDataType);
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
 ```

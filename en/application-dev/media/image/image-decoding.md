@@ -1,6 +1,6 @@
 # Using ImageSource to Decode Images
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
+Image decoding refers to the process of decoding an image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
 
 ## How to Develop
 
@@ -13,7 +13,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    ```
 
 2. Obtain an image.
-   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
+   - Method 1: Directly obtain the image through the sandbox path. This method applies only to images in the application sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
 
       ```ts
       const context : Context = getContext(this);
@@ -152,66 +152,8 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       ```
    After the decoding is complete and the PixelMap is obtained, you can perform subsequent [image processing](image-transformation.md).
 
-5. Release the **PixelMap** instance.
+5. Release the **PixelMap** and **ImageSource** instances.
 
-   ```ts
-   pixelMap.release();
-   ```
-
-## Sample Code - Decoding an Image in Resource Files
-
-1. Obtain a resource manager.
-
-   ```ts
-   // Import the resourceManager module.
-   import { resourceManager } from '@kit.LocalizationKit';
-
-   const context : Context = getContext(this);
-   // Obtain a resource manager.
-   const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-   ```
-
-2. Create an **ImageSource** instance.
-   - Method 1: Create an **ImageSource** instance by using the array buffer of **test.jpg** in the **rawfile** folder.
-
-     ```ts
-      import { BusinessError } from '@kit.BasicServicesKit';
-
-      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
-         console.log("Succeeded in getting RawFileContent")
-         // Obtain the array buffer of the image.
-         const buffer = fileData.buffer.slice(0);
-         const imageSource : image.ImageSource = image.createImageSource(buffer);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileContent")
-      });
-     ```
-
-   - Method 2: Create an **ImageSource** instance by using the raw file descriptor of **test.jpg** in the **rawfile** folder.
-
-     ```ts
-      import { BusinessError } from '@kit.BasicServicesKit';
-
-      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting RawFd")
-         const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFd")
-      });
-     ```
-
-3. Create a **PixelMap** instance.
-
-   ```ts
-   imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
-      console.log("Succeeded in creating PixelMap")
-   }).catch((err : BusinessError) => {
-      console.error("Failed to creating PixelMap")
-   });
-   ```
-
-4. Release the **PixelMap** and **ImageSource** instances.
-   
    Ensure that the asynchronous operations of the **PixelMap** and **ImageSource** instances have finished executing. After these variables are no longer needed, you can manually call the APIs below to release them.
    ```ts
    pixelMap.release();

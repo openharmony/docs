@@ -80,7 +80,7 @@ OpenHarmony系统采用ELF文件格式作为全系统的二进制文件格式，
     }
 }
 ```
-
+**注意**：如果DevEco Studio中不设置abiFilters字段，则默认配置的指定架构为：arm64-v8a。
 ### cmake中设置
 
 通过SDK CAPI开发native代码的时候，在build/cmake/ohos.toolchain.cmake中定义了OpenHarmony系统一些交叉编译常用的环境变量设置。其中OHOS_ARCH变量定义了当前目标编译的ABI，可以设置下面三个ABI中的一种，arm64-v8a，armeabi-v7a，x86_64。

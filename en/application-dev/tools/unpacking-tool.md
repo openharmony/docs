@@ -73,6 +73,27 @@ java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out
 | --out-path | Yes        | NA            | Path of the target rpcid file.                                       |
 | --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking. |
 
+### Unpacking HAP Files Based on the Architecture Type
+
+You can use the unpacking tool to unpack HAP files based on the architecture type of **libs** and then pack multiple HAP files that contain only single-architecture type libraries.
+
+#### Example
+
+```
+java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
+```
+
+#### Parameters
+
+| Name      | Mandatory| Option         | Description                                                        |
+| ---------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode     | Yes        | hap    | Unpacking mode.                                                  |
+| --hap-path | Yes        | NA            | Path of the HAP file.                                            |
+| --out-path | Yes        | NA            | Path of the target files.                                          |
+| --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking. |
+| --libs     | No        | true or false| Whether to unpack HAP files based on the architecture type of the **libs** directory. The value **true** indicates that HAP files are unpacked based on the architecture type.|
+| --cpu-abis | No        | NA            | Specifies the architecture type of the **libs** to be unpacked. You can specify multiple architecture types and use commas (,) to separate them. This parameter does not take effect when **--libs** is set to **false**.|
+
 ### Unpacking Commands for HSP Files
 
 You can use the JAR package of the unpacking tool to unpack an HSP file by importing unpacking options and file paths.
@@ -91,6 +112,27 @@ java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> 
 | --hsp-path | Yes        | NA            | Path of the HSP file.                           |
 | --out-path | Yes        | NA            | Path of the target files.                         |
 | --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking.|
+
+### Unpacking HSP Files Based on the Architecture Type
+
+You can use the unpacking tool to unpack HSP files based on the architecture type of **libs** and then pack multiple HSP files that contain only single-architecture type libraries.
+
+#### Example
+
+```
+java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true] [--libs true] [--cpu-abis option]
+```
+
+#### Parameters
+
+| Name      | Mandatory| Option         | Description                                                        |
+| ---------- | ---------- | ------------- | ------------------------------------------------------------ |
+| --mode     | Yes        | hsp    | Unpacking mode.                                                  |
+| --hsp-path | Yes        | NA            | Path of the HSP file.                                            |
+| --out-path | Yes        | NA            | Path of the target files.                                          |
+| --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking. |
+| --libs     | No        | true or false| Whether to unpack HAP files based on the architecture type of the **libs** directory. The value **true** indicates that HAP files are unpacked based on the architecture type.|
+| --cpu-abis | No        | NA            | Specifies the architecture type of the **libs** to be unpacked. You can specify multiple architecture types and use commas (,) to separate them. This parameter does not take effect when **--libs** is set to **false**.|
 
 ### Unpacking Commands for APPQF Files
 
@@ -402,6 +444,7 @@ The package parsing APIs are used by the application market to parse an HAP, HSP
 | -------- | ------------------- |----------------------| ---- |
 | actions  | List\<String>       | Actions of the Want that the ExtensionAbility can receive.| NA   |
 | entities | List\<String>       | Entities of the Want that the ExtensionAbility can receive.  | NA   |
+| domainVerify | boolean       | Whether an ability supports domain verification.  | NA   |
 
 ### UriInfo Struct
 

@@ -165,6 +165,7 @@
   环境中未安装“Crypto”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install Crypto”，在线安装。
 
   方法2：离线安装。
@@ -194,9 +195,10 @@
   环境中未安装“ecdsa”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install ecdsa”，在线安装。
 
-  方法2：离线安装
+  方法2：离线安装。
 
   通过网页[https://pypi.org/project/ecdsa/#files](https://pypi.org/project/ecdsa/#files)，下载安装包。
 
@@ -223,6 +225,7 @@
   环境中未安装合适的“six”。
 
 - **解决办法**
+
   方法1：通过命令“pip3 install six”，在线安装。
 
   方法2：离线安装。

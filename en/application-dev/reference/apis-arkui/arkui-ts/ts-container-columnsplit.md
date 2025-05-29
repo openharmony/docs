@@ -16,6 +16,10 @@ After initialization, if, due to dynamic changes to the [margin](ts-universal-at
 
 ColumnSplit()
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 ### resizeable
@@ -54,6 +58,8 @@ Margin of the divider.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name       | Type     | Mandatory| Description                      |
 | ----------- | ------------- | ---- |--------------------------|
 | startMargin | [Dimension](ts-types.md#dimension10)       | No  | Distance between the divider and the child component above it.<br>Default value: **0**|
@@ -63,10 +69,12 @@ Margin of the divider.
 >
 > Similar to [RowSplit](ts-container-rowsplit.md#rowsplit), the divider of **ColumnSplit** can change the height of the upper and lower child components, but only to the extent that the resultant height falls within the maximum and minimum heights of the child components.
 >
-> Universal attributes such as [clip](ts-universal-attributes-sharp-clipping.md#clip) and [margin](ts-universal-attributes-size.md#margin) are supported. If **clip** is not set, the default value **true** is used.
+> Universal attributes such as [clip](ts-universal-attributes-sharp-clipping.md#clip12) and [margin](ts-universal-attributes-size.md#margin) are supported. If **clip** is not set, the default value **true** is used.
 
 
 ## Example
+
+This example demonstrates the basic usage of **ColumnSplit**, which allows you to create draggable, vertically laid-out child components.
 
 ```ts
 // xxx.ets

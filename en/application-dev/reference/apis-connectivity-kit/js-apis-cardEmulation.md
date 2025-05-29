@@ -13,10 +13,10 @@ Before developing an application related to HCE, you must declare NFC-related at
 ```json
 {
   "module": {
-    // other declared attributes.
+    // Other declared attributes
     "abilities": [
       {
-        // other declared attributes.
+        // Other declared attributes
         "skills": [
           {
             "actions": [
@@ -39,7 +39,7 @@ Before developing an application related to HCE, you must declare NFC-related at
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // should add variable card_emulation_reason in string.json
+        // Set reason to card_emulation_reason.
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -62,7 +62,8 @@ import { cardEmulation } from '@kit.ConnectivityKit';
 Enumerates the NFC card emulation types.
 
 > **NOTE**
-> This API is supported since API version 6 and deprecated since API version 9. Use [hasHceCapability](#hashcecapability9) instead.
+> 
+> This API is supported since API version 6 and deprecated since API version 9. Use [hasHceCapability](#cardemulationhashcecapability9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
@@ -85,14 +86,15 @@ Enumerates the types of services used by the card emulation application.
 | PAYMENT | "payment" | Payment service.|
 | OTHER   | "other"   | Other services.|
 
-## isSupported<sup>(deprecated)</sup>
+## cardEmulation.isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
 Checks whether a certain type of card emulation is supported.
 
 > **NOTE**
-> This API is supported since API version 6 and deprecated since API version 9. Use [hasHceCapability](#hashcecapability9) instead.
+> 
+> This API is supported since API version 6 and deprecated since API version 9. Use [hasHceCapability](#cardemulationhashcecapability9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
@@ -119,7 +121,7 @@ if (!isHceSupported) {
 }
 ```
 
-## hasHceCapability<sup>9+</sup>
+## cardEmulation.hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
 
@@ -157,7 +159,7 @@ if (!hasHceCap) {
 }
 ```
 
-## isDefaultService<sup>9+</sup>
+## cardEmulation.isDefaultService<sup>9+</sup>
 
 isDefaultService(elementName: ElementName, type: CardType): boolean
 
@@ -173,7 +175,7 @@ Checks whether an application is the default application of the specified servic
 
 | Name        | Type                                      | Mandatory  | Description                     |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
 | type        | [CardType](#cardtype9)                   | Yes   | Card emulation service type. Currently, only the default payment application can be queried.  |
 
 **Error codes**
@@ -198,12 +200,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { cardEmulation } from '@kit.ConnectivityKit';
 import { bundleManager, Want } from '@kit.AbilityKit';
 
-// Initialize elementName here. bundleName and abilityName are required.
-let want: Want = {
-  bundleName: "com.example.myapplication",
-  moduleName: "entry",
-  abilityName: "EntryAbility"
-};
+// Initialize elementName, bundleName, and abilityName and set their values correctly based on the actual application information.
 let elementName: bundleManager.ElementName = {
   bundleName: "com.example.myapplication",
   moduleName: "entry",
@@ -211,9 +208,7 @@ let elementName: bundleManager.ElementName = {
 };
 
 let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-// do something according to the isDefaultService value
 ```
-
 
 ## HceService<sup>8+</sup>
 
@@ -246,7 +241,7 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
 Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.
 
@@ -260,7 +255,7 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
 | aidList | string[] | Yes  | List of AIDs to register. This parameter can be left empty.|
 
 **Error codes**
@@ -313,7 +308,7 @@ Stops HCE, including canceling the subscription of APDU data, exiting this appli
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName** and cannot be empty.|
 
 **Error codes**
 
@@ -345,6 +340,15 @@ Subscribes to events indicating receiving of APDUs from the peer card reader. Th
 | type     | string                  | Yes  | Event type. It has a fixed value of **hceCmd**.                        |
 | callback | AsyncCallback\<number[]> | Yes  | Event callback, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message |
+| ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+
 **Example**
 ```js
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -365,7 +369,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      // Implement data processing and handle exceptions.
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -374,11 +378,11 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
     hceService.stop(element);
   }
-  // other life cycle method...
+  // Implement other lifecycle functions as demanded.
 }
 ```
 
-### off<sup>16+</sup>
+### off<sup>18+</sup>
 
 off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 
@@ -388,7 +392,7 @@ Unsubscribes from events indicating receiving of APDUs from the peer card reader
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **Parameters**
 
@@ -404,7 +408,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message |
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **Example**
@@ -418,7 +422,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 const apduCallback: AsyncCallback<number[]> = (err, data) => {
-  //handle the data and err
+  // Implement data processing and handle exceptions.
   console.log("AsyncCallback got apdu data");
 };
 
@@ -431,7 +435,7 @@ export default class EntryAbility extends UIAbility {
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      // Implement data processing and handle exceptions.
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
@@ -441,7 +445,7 @@ export default class EntryAbility extends UIAbility {
     hceService.off('hceCmd', apduCallback);
     hceService.stop(element);
   }
-  // other life cycle method...
+  // Implement other lifecycle functions as demanded.
 }
 ```
 
@@ -506,10 +510,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// Data to be sent by the application. The following data is for reference only.
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
-  // handle the transmit promise
+  // Process the promise.
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
   console.log("transmit Promise error:", err);
@@ -533,7 +537,7 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -553,7 +557,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// Data to be sent by the application. The following data is for reference only.
 try {
   const responseData = [0x1, 0x2];
 

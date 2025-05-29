@@ -19,6 +19,14 @@ The **native_audiorenderer.h** file declares the functions related to an audio r
 ## Summary
 
 
+### Types
+
+| Name| Description| 
+| -------- | -------- |
+| typedef void(\* [OH_AudioRenderer_OnInterruptCallback](_o_h_audio.md#oh_audiorenderer_oninterruptcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) hint) | Defines the callback for interruption events of an audio renderer.| 
+| typedef void(\* [OH_AudioRenderer_OnErrorCallback](_o_h_audio.md#oh_audiorenderer_onerrorcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) error) | Defines the callback for error events of an audio renderer.| 
+
+
 ### Functions
 
 | Name| Description| 
@@ -38,6 +46,7 @@ The **native_audiorenderer.h** file declares the functions related to an audio r
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](_o_h_audio.md#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](_o_h_audio.md#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio renderer. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](_o_h_audio.md#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, int64_t \*frames) | Obtains the number of frames that have been written since the stream was created. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](_o_h_audio.md#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an output audio stream. | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](_o_h_audio.md#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an output audio stream. It adapts to the speed adjustment interface. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](_o_h_audio.md#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, int32_t \*frameSize) | Obtains the frame size in the callback. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](_o_h_audio.md#oh_audiorenderer_getspeed)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, float \*speed) | Obtains the audio renderer rate. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](_o_h_audio.md#oh_audiorenderer_setspeed)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, float speed) | Sets the audio renderer rate. | 

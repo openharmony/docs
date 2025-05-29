@@ -8,39 +8,58 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
 
 | Name           | Type                                                        | Mandatory| Description|
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| sceneType            | number                          | No| The options are as follows: 1: transfer; 2: credit card repayment. The default value is **1**.|
+| sceneType            | number                          | No| Intent scene, which indicates the purpose of the current request. The options are as follows: 1: transfer; 2: credit card repayment. The default value is **1**.|
 | bankCardNo      | string                                               | No | Bank card number.|
 
 ## Developing a Caller Application
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
 2. Construct parameters and call the **startAbilityByType** API.
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      "bankCardNo": '123456789'
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("finance", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                "bankCardNo": '123456789'
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("finance", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                        console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     Effect
     
@@ -87,7 +106,7 @@ If the **type** field in **startAbilityByType** is set to **finance**, **wantPar
 2. Parse and process the parameters transferred from the panel.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.

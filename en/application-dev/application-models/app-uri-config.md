@@ -1,7 +1,7 @@
 # Application Link Description
 
 ## Description of uris
-**uris** declared in **skills** of the **module.json5** file contains the following fields.
+**uris** declared in [skills](../quick-start/module-configuration-file.md#skills) of the [module.json5 file](../quick-start/module-configuration-file.md) contains the following fields.
 
 > **NOTE**
 >
@@ -36,6 +36,11 @@ URIs can be expressed in different formats based on the available fields. Among 
 
 ### Description of linkFeature
 
+> **NOTE**
+>
+> The number of **linkFeature** declared in a bundle cannot exceed 150.
+
+
 The use of the **linkFeature** field enables an application to deliver a more user-friendly redirection experience. (The declaration of the **linkFeature** field must be reviewed by the application market before being released.) The use scenarios are as follows:
 
 1. Identification of applications of the same type: When the caller starts a vertical application (for example, navigation applications), the system identifies the matched applications based on the **linkFeature** field and displays the applications on the vertical domain panel.
@@ -56,10 +61,10 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |Pay|Payment and cashier.|
     |Share|Sharing.|
 
-## Example
+## Examples
 
 
-The following uses the authorized login scenario as an example:
+### Authorization Login
 
 ```json
 "uris": [
@@ -71,3 +76,44 @@ The following uses the authorized login scenario as an example:
     }
 ]
 ```
+
+### Clearing Application Sandbox Cache Data
+
+You can go to **Settings > Storage** to access the application details page of a specific application. By default, this page includes a **Clear cache** option to clear all cached data of the current application.
+
+If you have implemented a custom data clearing page and want to provide a redirection entry on the application details page, you can configure the **linkFeature** field.
+
+1. In the [module.json5 file](../quick-start/module-configuration-file.md), add the following skills configuration to the ability that implements data clearing.
+
+   The **linkFeature** field must be set to **AppStorageMgmt**, and other field values should be set based on project requirements.
+
+    ```json
+    {
+      "name": "ClearAbility",
+      "srcEntry": "./ets/clearability/ClearAbility.ets",
+      "description": "$string:ClearAbility_desc",
+      "icon": "$media:layered_image",
+      "label": "$string:ClearAbility_label",
+      "skills": [
+        {
+          "uris": [
+            {
+              "scheme": "storage",
+              "host": "developer.huawei.com",
+              "path": "clearcache",
+              "linkFeature": "AppStorageMgmt"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+2. Verify the function.
+
+   1. On the phone, go to **Settings > Storage**, and select the current application to access the application details page.
+   2. Tap **Clear data in *xx*** to go to the corresponding cache data clearing page.
+
+The following figures show the effects.
+
+![app-uri-config_storage](figures/app_uri_config_storage.png)

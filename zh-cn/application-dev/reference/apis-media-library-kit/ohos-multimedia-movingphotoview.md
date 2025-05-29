@@ -20,7 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - 当前不支持动态属性设置。
 > - 当前不支持ArkUI通用属性ComponentOptions中expandSafeArea属性设置。
 > - 该组件长按触发播放时组件区域放大为1.1倍。
-> - 该组件使用[AVPlayer](../apis-media-kit/_a_v_player.md#avplayer)进行播放，同时开启的[AVPlayer](../apis-media-kit/_a_v_player.md#avplayer)个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
+> - 该组件使用[AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -38,7 +38,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
-| imageAIOptions<sup>16+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -130,15 +130,15 @@ repeatPlay(isRepeatPlay: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放。<br/>true：循环播放。<br/>默认值：false|
+| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放。<br/>true：循环播放。<br/>默认值：false。|
 
-### enableAnalyzer<sup>16+</sup>
+### enableAnalyzer<sup>18+</sup> 
 
 enableAnalyzer(enabled: boolean)
 
 设置该图片是否支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -147,7 +147,7 @@ enableAnalyzer(enabled: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| 是   | 是否开启AI分析。<br/>。false：不开启AI分析。<br/>true：开启AI分析。<br/>默认值：true|
+| enabled| boolean| 是   | 是否开启AI分析。<br/>false：不开启AI分析。<br/>true：开启AI分析。<br/>默认值：true。|
 
 ## 事件
 
@@ -285,13 +285,13 @@ stopPlayback(): void
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### refreshMovingPhoto<sup>16+</sup>
+### refreshMovingPhoto<sup>18+</sup> 
 
 refreshMovingPhoto(): void
 
 强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -312,6 +312,7 @@ struct MovingPhotoViewDemo {
   @State src: photoAccessHelper.MovingPhoto | undefined = undefined
   @State isMuted: boolean = false
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -332,7 +333,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -342,7 +342,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -463,6 +463,7 @@ struct MovingPhotoViewDemo {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
     aiController: this.aiController
   }
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -483,7 +484,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -493,7 +493,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -599,9 +599,8 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 // xxx.ets
 import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
-async function loading() {
+async function loading(context: Context) {
   try {
     // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在。
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
@@ -616,6 +615,7 @@ async function loading() {
 @Component
 struct Index {
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
   @State ImageFit: ImageFit | undefined | null = ImageFit.Contain;
   @State flag: boolean = true;
   @State autoPlayFlag: boolean = true;
@@ -623,7 +623,7 @@ struct Index {
   @State autoPlayPeriodStart: number = 0;
   @State autoPlayPeriodEnd: number = 500;
   aboutToAppear(): void {
-    loading()
+    loading(this.uiContext.getHostContext()!)
   }
 
   build() {

@@ -1,13 +1,15 @@
 # Marquee
 
-跑马灯组件，用于滚动展示一段单行文本。仅当文本内容宽度超过跑马灯组件宽度时滚动，不超过时不滚动。
+跑马灯组件，用于滚动展示一段单行文本。仅当文本内容宽度大于等于跑马灯组件宽度时滚动，当文本内容宽度小于跑马灯组件宽度时不滚动。
 
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  为了不影响滚动帧率，建议在滚动类组件中Marquee的个数不超过4个，或者使用[Text](ts-basic-components-text.md)组件的[TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow)替代。
+>
+> 对于Marquee组件动态帧率的场景，可以使用[MarqueeDynamicSyncScene](../js-apis-arkui-UIContext.md#marqueedynamicsyncscene14)接口实现。
 
 ## 子组件
 
@@ -28,27 +30,27 @@ Marquee(options: MarqueeOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [MarqueeOptions](#marqueeoptions16对象说明) | 是 | 配置跑马灯组件的参数。|
+| options | [MarqueeOptions](#marqueeoptions18对象说明) | 是 | 配置跑马灯组件的参数。|
 
-## MarqueeOptions<sup>16+</sup>对象说明
+## MarqueeOptions<sup>18+</sup>对象说明
 
 Marquee初始化参数。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | boolean | 是 | 控制跑马灯是否进入播放状态。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。|
-| step | number | 否 | 滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6，单位vp。|
-| loop | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。|
-| fromStart | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>默认值：true。 |
-| src | string | 是 | 需要滚动的文本。 |
+| start<sup>8+</sup> | boolean | 是 | 控制跑马灯是否进入播放状态。<br/>true表示播放，false表示不播放。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| step<sup>8+</sup> | number | 否 | 滚动动画文本滚动步长。当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6 <br/>单位：[vp](ts-pixel-units.md#像素单位) <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| loop<sup>8+</sup> | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| fromStart<sup>8+</sup> | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| src<sup>8+</sup> | string | 是 | 需要滚动的文本。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -142,7 +144,7 @@ allowScale(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
+| value  | boolean | 是   | 是否允许文本缩放。<br/>true表示允许文本缩放，false表示不允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
 
 ### marqueeUpdateStrategy<sup>12+</sup>
 

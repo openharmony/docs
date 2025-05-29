@@ -12,11 +12,15 @@ The following figure shows the effect.
 
 ![Figure 1](figures/app-clone1.png)
 
+## Constraints
+The input method application cannot create an application clone.
 
 ## How to Develop
 
-1.  Configure the [multiAppMode](app-configuration-file.md#multiappmode) field in the **AppScope/application.json5** configuration file in the project. The code snippet is as follows:
-```json
+1.  
+
+    Configure the [multiAppMode](app-configuration-file.md#multiappmode) field in the **AppScope/application.json5** configuration file in the project. The code snippet is as follows:
+    ```json
     {
       "app": {
         "multiAppMode": {
@@ -27,10 +31,12 @@ The following figure shows the effect.
     }
     ```
 
+
+
 2. Create an application clone.
 
     - Build and package the configured project and install it on the device.
-
+ 
       ![Figure 2](figures/app-clone4.png)
 
     - Choose **Settings** > **System** > **App Clone**, and touch **Create**.
@@ -44,4 +50,3 @@ The following figure shows the effect.
       ![Figure 1](figures/app-clone1.png)
 
       The three applications in the figure are independent of each other in terms of running, data, and notification.
-

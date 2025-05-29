@@ -1,6 +1,6 @@
 # @ohos.file.AlbumPickerComponent (AlbumPickerComponent)
 
-The **AlbumPickerComponent** component embedded in the UI of an application allows the application to access the albums in the user directory without any permission.
+The AlbumPickerComponent embedded in the UI of an application allows the application to access the albums in the user directory without any permission.
 
 This component must be used together with [PhotoPickerComponent](ohos-file-PhotoPickerComponent.md). When a user selects an album by using **AlbumPickerComponent**, **PhotoPickerComponent** is instructed to update the photos and videos in the album.
 
@@ -11,13 +11,12 @@ This component must be used together with [PhotoPickerComponent](ohos-file-Photo
 ## Modules to Import
 
 ```ts
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 ```
 
 ## Properties
 
-The [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attributes.md) are supported.
 
 ## AlbumPickerComponent
 
@@ -79,8 +78,7 @@ Represents album information.
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper } from '@kit.MediaLibraryKit';
-import { EmptyAreaClickCallback } from '@ohos.file.AlbumPickerComponent';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper, EmptyAreaClickCallback } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
@@ -112,7 +110,7 @@ struct PickerDemo {
       AlbumPickerComponent({
         albumPickerOptions: this.albumPickerOptions,
         onAlbumClick:(albumInfo: AlbumInfo): boolean => this.onAlbumClick(albumInfo),
-        onEmptyAreaClick(): this.emptyAreaClickCallback,
+        onEmptyAreaClick: this.emptyAreaClickCallback,
       }).height('100%').width('100%')
     }
   }

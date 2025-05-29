@@ -40,7 +40,7 @@ Sets the font size.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
+| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported. Percentage values are not supported.|
 
 ## fontStyle
 
@@ -134,13 +134,15 @@ Sets the style and color for the text decorative line.
 
 ## Example
 
+This example showcases various text styles by using the **fontColor**, **fontSize**, **fontStyle**, and **fontWeight** attributes.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextStyleExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 8 }) {
       Text('default text')
       
       Text('text font color red').fontColor(Color.Red)
@@ -165,6 +167,32 @@ struct TextStyleExample {
         .fontColor(Color.Orange)
         .fontSize(18)
         .fontStyle(FontStyle.Normal)
+
+      Text('text lineHeight 30')
+        .lineHeight(30)
+        .backgroundColor(Color.Gray)
+
+      Text('text fontFamily HarmonyOS Sans')
+        .fontFamily("HarmonyOS Sans")
+
+      Text('Underline Black SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.Underline,
+          color: Color.Black,
+          style: TextDecorationStyle.SOLID
+        })
+      Text('Overline Red DOTTED decoration text')
+        .decoration({
+          type: TextDecorationType.Overline,
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
+        })
+      Text('LineThrough Orange SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.LineThrough,
+          color: Color.Orange,
+          style: TextDecorationStyle.WAVY
+        })
     }.width('100%')
   }
 }

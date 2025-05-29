@@ -416,111 +416,6 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles<sup>11+</sup>
-
-connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
-
-连接远端设备所有允许连接的profiles。使用Callback异步回调。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core
-
-**参数：**
-
-| 参数名      | 类型     | 必填   | 说明                                  |
-| -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 以callback形式异步返回结果。当发起连接成功，err为undefined，否则为错误对象。   |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------- |
-|201     | Permission denied.                       |
-|202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
-|801     | Capability not supported.                |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth disabled.                 |
-|2900099 | Operation failed.                        |
-
-**示例：**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-try {
-    connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
-        if (err) {
-            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            return;
-        }
-        console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
-    });
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
-## connection.connectAllowedProfiles<sup>11+</sup>
-
-connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
-
-连接远端设备所有允许连接的profiles。使用Promise异步回调。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core
-
-**参数：**
-
-| 参数名      | 类型     | 必填   | 说明                                  |
-| -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-
-**返回值：**
-
-| 类型                                              | 说明                |
-| ------------------------------------------------- | ------------------- |
-| Promise&lt;void&gt; | 以Promise形式返回连接profiles的结果，返回true为成功，false为失败。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------- |
-|201     | Permission denied.                       |
-|202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
-|801     | Capability not supported.                |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth disabled.                 |
-|2900099 | Operation failed.                        |
-
-**示例：**
-
-```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-try {
-    connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
-        console.info('connectAllowedProfiles');
-    }, (err: BusinessError) => {
-        console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
-    });
-} catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-
-
 ## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -726,7 +621,7 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-获取蓝牙远端设备自定义类型。使用Promise异步回调。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
+获取蓝牙远端设备自定义类型。使用Promise异步回调。从API18开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **系统接口**：此接口为系统接口。
 
@@ -874,40 +769,39 @@ import { connection } from '@kit.ConnectivityKit';
 /**
  * 更新云设备到蓝牙设置项。
  */
-public updateCloudBluetoothDevice() {
-    const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
-    let descBuffer = new ArrayBuffer(1);
-    trustPairDeviceArr.push({
-        sn: '',
-        deviceType: '',
-        modelId: '',
-        manufactory: '',
-        productId: '',
-        hiLinkVersion: '',
-        macAddress: '11:22:33:44:55:66',
-        serviceType: '',
-        serviceId: '',
-        deviceName: '',
-        uuids: '',
-        bluetoothClass: 0,
-        token: descBuffer,
-        deviceNameTime: 0,
-        secureAdvertisingInfo: descBuffer,
-        pairState: 0
+const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
+let descBuffer = new ArrayBuffer(1);
+trustPairDeviceArr.push({
+    sn: '',
+    deviceType: '',
+    modelId: '',
+    manufactory: '',
+    productId: '',
+    hiLinkVersion: '',
+    macAddress: '11:22:33:44:55:66',
+    serviceType: '',
+    serviceId: '',
+    deviceName: '',
+    uuids: '',
+    bluetoothClass: 0,
+    token: descBuffer,
+    deviceNameTime: 0,
+    secureAdvertisingInfo: descBuffer,
+    pairState: 0
+    });
+const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
+try {
+    connection.updateCloudBluetoothDevice(trustPairDevices)
+        .then(() => {
+            console.info('updateCloudBluetoothDevice success!');
+        })
+        .catch((err: BusinessError) => {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         });
-    const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
-    try {
-        connection.updateCloudBluetoothDevice(trustPairDevices)
-            .then(() => {
-                console.info('updateCloudBluetoothDevice success!');
-            })
-            .catch((err: BusinessError) => {
-                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
+
 ```
 
 

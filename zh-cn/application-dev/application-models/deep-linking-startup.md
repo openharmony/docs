@@ -114,7 +114,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "link://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
@@ -159,9 +159,9 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let want: Want = {
-            uri: "link://www.example.com"
+          uri: "link://www.example.com"
         };
 
         try {
@@ -201,7 +201,7 @@ struct WebComponent {
         .onLoadIntercept((event) => {
           const url: string = event.data.getRequestUrl();
           if (url === 'link://www.example.com') {
-            (getContext() as common.UIAbilityContext).openLink(url)
+            (this.getUIContext().getHostContext() as common.UIAbilityContext).openLink(url)
               .then(() => {
                 console.log('openLink success');
               }).catch((err: BusinessError) => {

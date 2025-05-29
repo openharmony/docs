@@ -1,9 +1,8 @@
 # LMS调测
 
-
 ## 基本概念
 
-LMS（Lite Memory Sanitizer）是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free), 在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
+LMS（Lite Memory Sanitizer）是一种实时检测内存操作合法性的调测工具。LMS能够实时检测缓冲区溢出（buffer overflow），释放后使用（use after free) 和重复释放（double free)，在异常发生的第一时间通知操作系统，结合backtrace等定位手段，能准确定位到产生内存问题的代码行，极大提升内存问题定位效率。
 
 OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能：
 
@@ -14,7 +13,6 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能：
 - 支持安全函数的访问检测（默认开启）。
 
 - 支持libc 高频函数的访问检测，包括：memset、memcpy、memmove、strcat、strcpy、strncat、strncpy。
-
 
 ## 运行机制
 
@@ -27,7 +25,6 @@ LMS使用影子内存映射标记系统内存的状态，一共可标记为三�
 - 编译代码时，会在代码中的读写指令前插入检测函数，对地址的合法性进行检验。主要是检测访问内存的影子内存的状态值，若检测到影子内存为不可读写，则会报溢出错误；若检测到影子内存为已释放，则会报释放后使用错误。
 
 - 在内存释放时，会检测被释放地址的影子内存状态值，若检测到影子内存非可读写，则会报重复释放错误。
-
 
 ## 接口说明
 
@@ -42,9 +39,7 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
 | 使能指定内存段锁保护 | LOS_LmsAddrProtect | 为某段内存地址上锁，设置为不可读写，一旦访问则报错。 | 
 | 去能指定内存段锁保护 | LOS_LmsAddrDisableProtect | 为某段内存地址解锁，设置为可读写。 | 
 
-
 ## 开发指导
-
 
 ### 开发流程
 
@@ -88,7 +83,6 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
 
 3. 重新编译，查看串口输出。如果检测到内存问题，会输出检测结果。
 
-
 ### 编程实例
 
 本实例实现如下功能：
@@ -97,8 +91,7 @@ OpenHarmony LiteOS-M内核的LMS模块提供下面几种功能，接口详细信
 
 2. 构造内存溢出错误和释放后使用错误。
 
-3. 添加-fsanitize=kernel-address后编译执行，观察输出结果
-
+3. 添加-fsanitize=kernel-address后编译执行，观察输出结果。
 
 ### 示例代码
 
@@ -162,7 +155,6 @@ UINT32 Example_Lms_test(VOID){
     return LOS_OK;
 }
 ```
-
 
 ### 结果验证
 

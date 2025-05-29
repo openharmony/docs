@@ -31,7 +31,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -45,13 +45,11 @@
 
     需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
    ```ts
-   let context = getContext(this);
-
-   function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+   function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context) {
    //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中。
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
-        console.info(`err: ${JSON.stringify(errCode)}`);
+        console.info(`err: ${errCode}`);
         if (errCode || photo === undefined) {
           console.error('getPhoto failed');
           return;
@@ -91,7 +89,7 @@
        flashStatus = photoSession.hasFlash();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to hasFlash. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to hasFlash. error: ${err}`);
      }
      console.info(`Returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
@@ -102,7 +100,7 @@
          flashModeStatus = status;
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to check whether the flash mode is supported. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to check whether the flash mode is supported. error: ${err}`);
        }
        if (flashModeStatus) {
          // 设置自动闪光灯模式。
@@ -110,7 +108,7 @@
            photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
            let err = error as BusinessError;
-           console.error(`Failed to set the flash mode. error: ${JSON.stringify(err)}`);
+           console.error(`Failed to set the flash mode. error: ${err}`);
          }
        }
      }
@@ -121,7 +119,7 @@
        focusModeStatus = status;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to check whether the focus mode is supported. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to check whether the focus mode is supported. error: ${err}`);
      }
      if (focusModeStatus) {
        // 设置连续自动变焦模式。
@@ -129,7 +127,7 @@
          photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to set the focus mode. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to set the focus mode. error: ${err}`);
        }
      }
      // 获取相机支持的可变焦距比范围。
@@ -138,7 +136,7 @@
        zoomRatioRange = photoSession.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to get the zoom ratio range. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to get the zoom ratio range. error: ${err}`);
      }
      if (zoomRatioRange.length <= 0 ) {
        return;
@@ -148,7 +146,7 @@
        photoSession.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to set the zoom ratio value. error: ${err}`);
      }
    }
    ```
@@ -157,7 +155,7 @@
 
    通过photoOutput类的[capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2)方法，执行拍照任务。该方法有两个参数，第一个参数为拍照设置参数的setting，setting中可以设置照片的质量和旋转角度，第二参数为回调函数。
 
-   获取拍照旋转角度的方法为，通过通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值。
+   获取拍照旋转角度的方法为，通过[PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput)类中的[getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12)方法获取rotation实际的值。
 
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
@@ -169,7 +167,7 @@
      };
      photoOutput.capture(settings, (err: BusinessError) => {
        if (err) {
-         console.error(`Failed to capture the photo. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to capture the photo. error: ${err}`);
          return;
        }
        console.info('Callback invoked to indicate the photo capture request success.');

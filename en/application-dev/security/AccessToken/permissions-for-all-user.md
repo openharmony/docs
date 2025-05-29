@@ -37,6 +37,8 @@ Allows an application to access geographical locations in the user's media file.
 
 Allows an application to read the open anonymous device identifier (OAID).
 
+<!--RP3--><!--RP3End-->
+
 **Permission level**: normal
 
 **Authorization mode**: user_grant
@@ -182,11 +184,13 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: normal
 
 **Authorization mode**: user_grant
 
 **Valid since**: 11
+
+**Changelog**: The permission level is system_basic in API version 11, and is changed to normal since API version 12.
 
 ## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
@@ -196,11 +200,27 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: normal
 
 **Authorization mode**: user_grant
 
 **Valid since**: 11
+
+**Changelog**: The permission level is system_basic in API version 11, and is changed to normal since API version 12.
+
+## ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+Allows an application to capture screen information.
+
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only to applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
 
 ## ohos.permission.READ_MEDIA
 

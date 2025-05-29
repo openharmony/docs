@@ -273,97 +273,6 @@ try {
 }
 ```
 
-## appManager.off('applicationState')
-
-off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
-
-取消注册应用程序状态观测器。
-
-**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统接口**：此接口为系统接口。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
-| observerId | number | 是 | 表示观测器的编号代码。 |
-| callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**示例：**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let observerId = 0;
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message} `);
-}
-
-// 2.注销应用状态监听器
-function unregisterApplicationStateObserverCallback(err: BusinessError) {
-  if (err) {
-    console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
-  } else {
-    console.log('unregisterApplicationStateObserverCallback success.');
-  }
-}
-
-try {
-  appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
 ## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
@@ -1598,7 +1507,7 @@ try {
 }
 ```
 
-## appManager.terminateMission<sup>12+</sup>
+## appManager.terminateMission<sup>13+</sup>
 
 terminateMission(missionId: number): Promise\<void>
 
@@ -1760,7 +1669,7 @@ clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-| 16000073 | The app clone index does not exist. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -1802,7 +1711,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
 | userId    | number   | 是    | 表示要设置保活应用所属的用户ID。 |
-| enable    | boolean   | 是    | 表示对应用保活或者取消保活。 |
+| enable    | boolean   | 是    | 表示对应用保活或者取消保活。true表示对应用保活，false表示对应用取消保活。 |
 
 **返回值：**
 
@@ -1822,9 +1731,9 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16300005 | The target bundle does not exist. |
-| 16300008 | The target bundle has no main ability. |
+| 16300008 | The target bundle has no MainAbility. |
 | 16300009 | The target bundle has no status-bar ability. |
-| 16300010 | The target application is not attached to status bar. |
+| 16300010 | The target application is not attached to the status bar. |
 
 **示例：**
 

@@ -29,7 +29,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
@@ -46,7 +46,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法，具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
-在单元测试框架，测试脚本需要包含如下基本元素:
+在单元测试框架，测试脚本需要包含如下基本元素：
 
 1. 依赖导包，以便使用依赖的测试接口。
 
@@ -61,8 +61,7 @@ import { describe, it, expect } from '@ohos/hypium';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator = abilityDelegatorRegistry.getAbilityDelegator()
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
@@ -70,6 +69,8 @@ export default function abilityTest() {
   describe('ActsAbilityTest', () =>{
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
+      await sleep(1000);
+      const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
       //start tested ability
       const want: Want = {
         bundleName: bundleName,
@@ -97,7 +98,7 @@ export default function abilityTest() {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
       Row() {
@@ -129,8 +130,7 @@ export default function abilityTest() {
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
   import { UIAbility, Want } from '@kit.AbilityKit';
 
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   function sleep(time: number) {
     return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
   }
@@ -138,6 +138,8 @@ export default function abilityTest() {
     describe('ActsAbilityTest', () => {
        it('testUiExample',0, async (done: Function) => {
           console.info("uitest: TestUiExample begin");
+          await sleep(1000);
+          const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
           //start tested ability
           const want: Want = {
              bundleName: bundleName,
@@ -217,12 +219,12 @@ export default function abilityTest() {
 | notClass     | 指定不需要执行的测试套或测试用例。                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
 | itName       | 指定要执行的测试用例。                                         | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | 测试用例执行的超时时间。                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
-| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true/false(默认值)                                           | -s breakOnError true                      |
-| random | 测试用例随机顺序执行 | true/false(默认值)。                                           | -s random true                      |
-| testType     | 指定要执行用例的用例类型。                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
-| level        | 指定要执行用例的用例级别。                                      | 0,1,2,3,4                                                    | -s level 0                                |
-| size         | 指定要执行用例的用例规模。                                    | small，medium，large                                         | -s size small        
-| stress       | 指定要执行用例的执行次数。                                    |  正整数                                         | -s stress 1000                            |
+| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true，false（默认值）                                          | -s breakOnError true                      |
+| random | 测试用例随机顺序执行。                  | true，false（默认值）                                           | -s random true                      |
+| testType     | 指定要执行用例的用例类型。                     | function，performance，power，reliability，security，global，compatibility，user，standard，safety，resilience | -s testType function                      |
+| level        | 指定要执行用例的用例级别。                     | 0, 1, 2, 3, 4                                              | -s level 0                                |
+| size         | 指定要执行用例的用例规模。                     | small，medium，large                                        | -s size small        
+| stress       | 指定要执行用例的执行次数。                     |  正整数                                         | -s stress 1000                            |
 
 **在cmd窗口执行test命令**
 
@@ -446,16 +448,16 @@ hdc shell uitest uiRecord read
 | 命令   | 必填 | 描述              | 
 |------|------|-----------------|
 | help   | 是    | uiInput命令相关帮助信息。 |
-| click   | 是    | 模拟单击操作。      | 
-| doubleClick   | 是    | 模拟双击操作。      | 
-| longClick   | 是    | 模拟长按操作。     | 
-| fling   | 是    | 模拟快滑操作。   | 
-| swipe   | 是    | 模拟慢滑操作。     | 
-| drag   | 是    | 模拟拖拽操作。     | 
-| dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
-| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
-| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。     | 
+| click   | 是    | 模拟单击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| doubleClick   | 是    | 模拟双击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| longClick   | 是    | 模拟长按操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。     | 
+| fling   | 是    | 模拟快滑操作。具体请参考下方**uiInput fling使用示例使用示例**。   | 
+| swipe   | 是    | 模拟慢滑操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| drag   | 是    | 模拟拖拽操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| dircFling   | 是    | 模拟指定方向滑动操作。具体请参考下方**uiInput dircFling使用示例**。     |
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。具体请参考下方**uiInput inputText使用示例**。                   |
+| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。具体请参考下方**uiInput text使用示例**。                           |
+| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。具体请参考下方**uiInput keyEvent使用示例**。     | 
 
 
 #### uiInput click/doubleClick/longClick使用示例
@@ -484,7 +486,7 @@ hdc shell uitest uiInput longClick 100 100
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位：（px/s），取值范围：200-40000。<br> 默认值：600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值：600。 | 
 | stepLength_   | 否 | 滑动步长。默认值：滑动距离/50。<br>  **为实现更好的模拟效果，推荐参数缺省/使用默认值。**  | 
 
 
@@ -501,7 +503,7 @@ hdc shell uitest uiInput fling 10 10 200 200 500
 | from_y   | 是                | 滑动起点y坐标。 | 
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
-| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+| swipeVelocityPps_   | 否      | 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。 | 
 
 ```shell  
 # 执行慢滑操作。
@@ -516,7 +518,7 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 | 配置参数             | 必填       | 描述 |
 |-------------------|-------------|----------|
 | direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
-| swipeVelocityPps_ | 否| 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。    | 
+| swipeVelocityPps_ | 否| 滑动速度，单位：px/s，取值范围：200-40000。<br> 默认值: 600。    | 
 | stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
 
 ```shell  
@@ -556,15 +558,11 @@ hdc shell uitest uiInput text hello
 
 #### uiInput keyEvent使用示例
 
-| 配置参数             | 必填       | 描述 |                
-|------|------|----------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
-| keyID2    | 否    | 实体按键对应ID。 |
-| keyID3    | 否    | 实体按键对应ID。 |
-
->**说明**
->
-> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
+| 配置参数             | 必填       | 描述                                                                                                                              |                
+|------|------|---------------------------------------------------------------------------------------------------------------------------------|
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 <br>当前注入大写锁定键（KeyCode=2074）无效，请使用组合键实现大写字母输入。如“按键shift+按键V”输入大写字母V。 | 
+| keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
+| keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 
 ```shell  
 # 返回主页。
@@ -573,6 +571,10 @@ hdc shell uitest uiInput keyEvent Home
 hdc shell uitest uiInput keyEvent Back
 # 组合键粘贴。
 hdc shell uitest uiInput keyEvent 2072 2038
+# 输入小写字母v。
+hdc shell uitest uiInput keyEvent 2038
+# 输入大写字母V。
+hdc shell uitest uiInput keyEvent 2047 2038
 ```
 
 ### 获取版本信息
@@ -603,7 +605,7 @@ hdc shell uitest start-daemon
 介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)。
 
 #### 单元测试测试套定义使用实例
-介绍单元测试框架测试套嵌如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
+介绍单元测试框架测试套嵌套如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
 
 #### 单元测试测试应用自定义函数使用实例
 介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)。
@@ -620,10 +622,10 @@ hdc shell uitest start-daemon
 介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)。
 
 #### 模拟鼠标操作能力实例
-介绍模拟鼠标左击、右击、滑轮事件,具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
+介绍模拟鼠标左击、右击、滑轮事件，具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
 
 #### 模拟文本输入能力实例
-介绍模拟输入中文、英文文本内容，使用前提是针对可以输入文本的组件类似文本框等组件进行操作，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
+介绍模拟输入中文、英文文本内容，仅支持可输入文本的组件进行操作，例如文本框等，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
 
 #### 截图能力实例
 介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
@@ -643,7 +645,7 @@ hdc shell uitest start-daemon
 ### UI测试脚本实例（窗口类）
 
 #### 查找指定窗口能力实例
-介绍通过应用报名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
+介绍通过应用包名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
 
 #### 模拟窗口移动能力实例
 介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)。

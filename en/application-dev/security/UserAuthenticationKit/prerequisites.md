@@ -1,12 +1,10 @@
 # Before You Start
 
-
-Before you get started, learn the development process.
-
+Before you get started, learn about the development process.
 
 - [Obtain supported authentication capabilities](obtain-supported-authentication-capabilities.md).
 
-- [Initiate a request for user authentication and obtain the authentication result](start-authentication.md).
+- [Initiate a user authentication request and obtain the authentication result](start-authentication.md).
 
 - Verify and use the authentication result. For details, see [Key Access Control via Secondary Authentication](../UniversalKeystoreKit/huks-identity-authentication-overview.md).
 
@@ -14,9 +12,9 @@ Before you get started, learn the development process.
 
 - (Optional) [Apply custom authentication](apply-custom-authentication.md).
 
-
 ## Requesting Permissions
 
-The application capable of user authentication based on biometric features (such as facial and fingerprints) must have the ohos.permission.ACCESS_BIOMETRIC permission.
+The application capable of user authentication based on biometric features (such as face and fingerprints) must have the ohos.permission.ACCESS_BIOMETRIC permission.
 
-This permission is a system_grant (system authorization) permission. You can declare it in the **requestPermissions** tag in the **module.json5** file. For details, see [Declaring Permissions](../AccessToken/declare-permissions.md).
+This permission is a system_grant permission and must be declared in the **requestPermissions** tag in the **module.json5** file. For details, see [Declaring Permissions](../AccessToken/declare-permissions.md).
+

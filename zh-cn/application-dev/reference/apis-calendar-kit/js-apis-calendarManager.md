@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```typescript
-import { calendarManager } from '@kit.CalendarKit'
+import { calendarManager } from '@kit.CalendarKit';
 ```
 
 ## calendarManager.getCalendarManager
@@ -587,7 +587,7 @@ editEvent(event: Event): Promise\<number>
 
 | 类型           | 说明                                                                          |
 | -------------- |-----------------------------------------------------------------------------|
-| Promise&lt;number&gt; | Promise对象，返回日程的id，日程id是日程的唯一标识符，是数据库的自增主键，小于0代表日程创建失败，大于0代表日程创建成功，没有等于0的情况。 |
+| Promise&lt;number&gt; | Promise对象，返回日程的id，日程id是日程的唯一标识符，是数据库的自增主键。创建失败时没有返回值；当返回值小于0时代表用户取消创建；当返回值大于0时代表日程创建成功；没有等于0的情况。 |
 
 **示例**：
 
@@ -1497,13 +1497,15 @@ queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyo
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **参数**：
 
 | 参数名      | 类型                        | 必填   | 说明         |
 | ----------- | --------------------------- |------|------------|
-| start  | number | 是    | 日程开始时间。    |
-| end    | number | 是    | 日程结束时间。    |
-| ids    | number[] | 否    | 日程id数组。    |
+| start  | number | 是    | 日程开始时间，类型为13位时间戳。    |
+| end    | number | 是    | 日程结束时间，类型为13位时间戳。    |
+| ids    | number[] | 否    | 需要查询的日程id数组，可为空数组或undefined，id>0。    |
 | eventKey    | (keyof [Event](#event))[]   | 否    | 所有查询日程的字段。 |
 
 **返回值**：
@@ -1592,7 +1594,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | reminderTime   | number[]                          | 否   | 是  | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。为负值时表示延期多长时间提醒。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 是  | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | description    | string                            | 否   | 是  | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                 |
-| service        | [EventService](#eventservice)     | 否   | 是  | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
+| service        | [EventService](#eventservice)     | 否   | 是  | <!--RP1-->日程服务。不填时，默认没有一键服务。暂不支持此功能。<!--RP1End-->   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | identifier<sup>12+</sup>     | string                            | 否   | 是  | 写入方可指定日程唯一标识。不填时，默认为null。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                         |
 | isLunar<sup>12+</sup>     | boolean                            | 否   | 是  | 是否为农历日程。当取值为true时，说明为农历日程；当取值为false时，说明不是农历日程，默认为非农历日程。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                           |
 | instanceStartTime<sup>18+</sup> | number                            | 否   | 是  | 日程实例开始时间，需要13位时间戳。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                 |

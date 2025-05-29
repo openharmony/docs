@@ -37,7 +37,7 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | lunar | boolean | No| Whether to display the lunar calendar. The value **true** means to display the lunar calendar, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| showTime<sup>10+</sup> | boolean | No| Whether to display the time item. The value **true** means to display the time item, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| showTime<sup>10+</sup> | boolean | No| Whether to display the time item. The value **true** means to display the time item, and **false** means the opposite.<br>Default value: **false**<br>With **showTime=true**, the **mode** parameter has no effect and the default three columns for year, month, and day are displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format. The value **true** means to display time in 24-hour format, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>When the display time is in 12-hour format, the AM/PM zone does not change depending on the hour portion.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lunarSwitch<sup>10+</sup> | boolean | No| Whether to display the lunar calendar switch. The value **true** means to display the lunar calendar switch, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14) | No| Style of the lunar calendar switch.<br>Default value: **{ selectedColor: $r('sys.color.ohos_id_color_text_primary_actived'), unselectedColor: $r('sys.color.ohos_id_color_switch_outline_off'), strokeColor: Color.White }**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
@@ -56,6 +56,8 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | onDateChange<sup>10+</sup> | [Callback](ts-types.md#callback12)\<Date> | No| Callback invoked when the selected item in the picker changes.<br>**NOTE**<br>When **showTime** is set to **true**, the hour and minute in the value returned by the callback are the hour and minute selected in the picker. Otherwise, the hour and minute are the hour and minute of the system time.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | No| Backplane color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10) | No| Options for customizing the background blur style.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | No| Options for customizing the background effect.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | onDidAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box appears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onDidAppear**. The settings take effect next time the dialog box appears.<br>3. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>4. If the dialog box is closed before its entrance animation is finished, this callback is not invoked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onDidDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onWillAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -64,6 +66,7 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | No| Whether to display a leading zero for the hours and minutes. Currently only the configuration of the **hour** and **minute** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| enableHapticFeedback<sup>16+</sup> | boolean | No  | Whether to enable haptic feedback.<br>The value **true** means to enable haptic feedback, and **false** means the opposite. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>**NOTE**<br>To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.<br>"requestPermissions": [{"name": "ohos.permission.VIBRATE"}]|
 
 ## LunarSwitchStyle<sup>14+</sup>
 
@@ -125,9 +128,9 @@ The exception detection and handling with the selected date comes after that wit
 >
 > For clarity in UI execution context, you are advised to use the [showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1: Setting the Display Time Format
+### Example 1: Setting the Display Time
 
-This example demonstrates how to set the display time format using **showTime**, **useMilitaryTime**, and **dateTimeOptions**.
+This example demonstrates how to set the display time using **showTime**, **useMilitaryTime**, and **dateTimeOptions**.
 
 ```ts
 // xxx.ets
@@ -262,7 +265,7 @@ struct DatePickerDialogExample {
 
 > **NOTE**
 >
-> To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [\<DatePicker>](ts-basic-components-datepicker.md) component.
+> To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [DatePicker](ts-basic-components-datepicker.md) component.
 
 ### Example 3: Configuring a Dialog Box in the Hover State
 
@@ -320,7 +323,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialog_HoverMode.gif)
+
 
 ### Example 4: Setting the Dialog Box Position
 
@@ -357,7 +360,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogDemo4.png)
+
 
 ### Example 5: Setting the Mask Area
 
@@ -397,7 +400,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogDemo5.png)
+
 
 ### Example 6: Setting the Background
 
@@ -434,7 +437,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogDemo6.png)
+
 
 ### Example 7: Switching Between Gregorian and Lunar Calendars
 
@@ -485,7 +488,7 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogDemo7.gif)
+
 
 ### Example 8: Setting Display of Month and Day Columns
 
@@ -520,5 +523,4 @@ struct DatePickerDialogExample {
 }
 ```
 
-![DataPickerDialog](figures/DatePickerDialogDemo8.png)
-<!--no_check-->
+

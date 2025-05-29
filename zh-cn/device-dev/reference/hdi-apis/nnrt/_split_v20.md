@@ -1,6 +1,5 @@
 # Split
 
-
 ## 概述
 
 算子沿 axis 维度将x拆分成多个张量，张量数量由outputNum指定。
@@ -9,7 +8,7 @@
 
 输入：
 
-- x，n维tensor
+- x，n维tensor。
 
 输出：
 
@@ -19,9 +18,7 @@
 
 **相关模块：**[NNRt](_n_n_rt_v20.md)
 
-
 ## 汇总
-
 
 ### Public 属性
 
@@ -31,9 +28,7 @@
 | long[] [sizeSplits](#sizesplits) | 指定 输入的张量沿 axis 轴拆分后，每个张量的大小。 如果 sizeSplits 的数据为空，则 sizeSplits 被拆分成大小均等的 张量，此时要求 x.shape[axis] 可以被 outputNum 整除； 如果 sizeSplits 不为空，则要求 sizeSplits 所有元素之和等于 x.shape[axis]。  | 
 | long [axis](#axis) | 指定分割的维度。  | 
 
-
 ## 类成员变量说明
-
 
 ### axis
 
@@ -44,7 +39,6 @@ long Split::axis
 
 指定分割的维度。
 
-
 ### outputNum
 
 ```
@@ -53,7 +47,6 @@ long Split::outputNum
 **描述**
 
 指定分割数量。
-
 
 ### sizeSplits
 

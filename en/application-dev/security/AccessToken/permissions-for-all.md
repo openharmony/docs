@@ -105,6 +105,18 @@ Allows an application to obtain network information.
 
 **Valid since**: 8
 
+## ohos.permission.SET_NETWORK_INFO
+
+Allows an application to set data network information.
+
+With this permission, the application can activate or deactivate a network, and obtain and listen for network information.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 8
+
 ## ohos.permission.GET_WIFI_INFO
 
 Allows an application to obtain Wi-Fi information.
@@ -169,11 +181,13 @@ Allows an application to read and write NFC tags.
 
 Allows an application to set screens that cannot be captured or recorded.
 
-**Permission level**: system_basic for API versions 9 to 10; normal for API version 11 and later
+**Permission level**: normal
 
 **Authorization mode**: system_grant
 
 **Valid since**: 9
+
+**Changelog**: The permission level is system_basic in API versions 9 to 10 and changed to normal since API version 11.
 
 ## ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -349,18 +363,6 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 **Valid since**: 12
 
-## ohos.permission.FILE_ACCESS_PERSIST
-
-Allows an application to support persistent access to file URIs.
-
-<!--RP2--><!--RP2End-->
-
-**Permission level**: system_basic for API version 11; normal for API version 12 and later
-
-**Authorization mode**: system_grant
-
-**Valid since**: 11
-
 ## ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
 Allows an application to access the distributed travel service engine.
@@ -381,62 +383,6 @@ Allows an application to set pinned windows.
 
 **Valid since**: 13
 
-## ohos.permission.USE_FRAUD_MESSAGES_PICKER
-
-Allows an application to use the scam message Picker to obtain SMS messages.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 15
-
-## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
-
-Allows an application to use the scam call log Picker to obtain call logs.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 15
-
-## ohos.permission.USE_FRAUD_APP_PICKER
-
-Allows an application to use the fraud app Picker to obtain application information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 16
-
-## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
-
-Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
-
-After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for just-in-time (JIT) compilation, which increase the runtime execution efficiency.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 14
-
-<!--Del-->
-## ohos.permission.PRELOAD_FILE
-
-Allows an application to preload files to improve the file opening speed.
-
-This permission is available only to document editing applications.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 15
-<!--DelEnd-->
-
 ## ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 Allows a system application to use infrared interfaces.
@@ -449,13 +395,13 @@ With this permission, the application can obtain the maximum frequency supported
 
 **Valid since**: 12
 
-**Changelog**: This permission is available to system applications in API versions 12 to 15, and available to normal applications since API version 16.
+**Changelog**: This permission is available to system applications in API versions 12 to 15, and becomes available to normal applications since API version 16.
 
 ## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
 Allows an application to set the status of keyboard function keys.
 
-With this permission, the application can turn on or off the function keys, such as **CapsLock**.
+With this permission, the application can turn on or off the function keys, such as **CapsLock**. This permission is available only to input method applications.
 
 **Permission level**: normal
 
@@ -467,7 +413,7 @@ With this permission, the application can turn on or off the function keys, such
 
 Allows an application to set the icon and label information for each ability.
 
-The configured icon and label information can be displayed in the Task Center and shortcut bar.
+The configured icon and label information can be displayed in **Task Center** and the shortcut bar.
 
 **Permission level**: normal
 
@@ -487,43 +433,14 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 **Valid since**: 15
 
-## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.GET_FILE_ICON
 
-Allows a device administrator application to manage personal device restrictions.
+Allows an application to obtain the icon of the specified file type.
 
-**Permission level**: system_basic
+With this permission, the application can obtain the icon of the specified file type.
 
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 15
-
-## ohos.permission.START_PROVISIONING_MESSAGE
-
-Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
-
-**Permission level**: system_basic
+**Permission level**: normal
 
 **Authorization mode**: system_grant
 
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 15
-
-## ohos.permission.ACCESS_DISK_PHY_INFO
-
-Allows an application to obtain the disk hardware information.
-
-This permission is available only to securities applications for securities and stock trading.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-<!--Del-->
-**Enable via ACL**: true<!--DelEnd-->
-
-**Valid since**: 15
+**Valid since**: 17

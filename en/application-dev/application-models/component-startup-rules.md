@@ -26,7 +26,7 @@ In view of this, the system formulates a set of component startup rules, as foll
 
   If the **exported** field of the component is set to **true**, the component can be called by other applications. If the field is set to **false**, the component cannot be called by other applications. If this is the case, you must also verify the permission **ohos.permission.START_INVISIBLE_ABILITY**, which is available only for system applications. For details about the **exported** fields, see [abilities](../quick-start/module-configuration-file.md#abilities).
 
-- Before starting a UIAbility component of a background application, verify the permission **ohos.permission.START_ABILITIES_FROM_BACKGROUND**, which is available only for system applications.
+- Before starting a UIAbility component of a background application, the caller must verify the permission ohos.permission.START_ABILITIES_FROM_BACKGROUND, which is available only for system applications. For 2-in-1 devices and tablets, if an application has created a floating window in the foreground, it can start other abilities without verifying this permission after it transitions to the background.
 
   > **NOTE**
   > 

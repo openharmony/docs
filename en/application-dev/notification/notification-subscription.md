@@ -55,7 +55,7 @@ For details about the API, see [NotificationSubscriber](../reference/apis-notifi
 2. Import the **notificationSubscribe** module.
    
    ```ts
-   import { notificationSubscribe } from '@kit.NotificationKit';
+   import { notificationSubscribe, notificationManager } from '@kit.NotificationKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { hilog } from '@kit.PerformanceAnalysisKit';
 

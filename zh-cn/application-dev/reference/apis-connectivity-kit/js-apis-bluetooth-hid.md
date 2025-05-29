@@ -19,9 +19,9 @@ import { hid } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-基础Profile接口定义
+基础Profile接口定义。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
@@ -34,7 +34,7 @@ createHidHostProfile(): HidHostProfile
 
 创建hid profile实例。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -44,7 +44,7 @@ createHidHostProfile(): HidHostProfile
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |

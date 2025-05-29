@@ -20,6 +20,7 @@ This topic is applicable only to Ark bytecode of version 12.0.6.0. The version n
 
 
 ### String
+
 - Alignment: single-byte aligned
 - Format
 
@@ -30,6 +31,7 @@ This topic is applicable only to Ark bytecode of version 12.0.6.0. The version n
 
 
 ### TaggedValue
+
 - Alignment: single-byte aligned
 - Format
 
@@ -50,6 +52,7 @@ All multi-byte values in bytecode files are stored in little-endian format.
 
 
 ### Header
+
 - Alignment: single-byte aligned
 - Format
 
@@ -84,6 +87,7 @@ The bytecode version number consists of four parts in the format of major.minor.
 
 ### ForeignClass
 Represents foreign classes referenced in the bytecode file but declared in other files.
+
 - Alignment: single-byte aligned
 - Format
 
@@ -94,6 +98,7 @@ Represents foreign classes referenced in the bytecode file but declared in other
 
 ### ForeignMethod
 Represents foreign methods referenced in the bytecode file but declared in other files.
+
 - Alignment: single-byte aligned
 - Format
 
@@ -104,12 +109,14 @@ Represents foreign methods referenced in the bytecode file but declared in other
 | `name_off`       | `uint32_t`       | An offset to a [string](#string) representing the method name.|
 | `index_data`     | `uleb128`        | [MethodIndexData](#methodindexdata) data of the method.|
 
-**NOTE**<br>
-The offset of **ForeignMethod** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
+> **NOTE**
+> 
+> The offset of **ForeignMethod** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
 
 
 ### ClassIndex
 Facilitates quick lookup of class definitions by name.
+
 - Alignment: 4-byte aligned
 - Format
 
@@ -145,6 +152,7 @@ Represents either a source code file or an internal [Annotation](#annotation). F
 
 
 ### ClassTag
+
 - Alignment: single-byte aligned
 - Format
 
@@ -154,8 +162,9 @@ Represents either a source code file or an internal [Annotation](#annotation). F
 | `SOURCE_LANG`    | `0x02`  | `0-1 ` | `uint8_t` | **data** of a [TaggedValue](#taggedvalue) with this tag is **0**, indicating that the source code language is in ArkTS, TS, or JS.|
 | `SOURCE_FILE`    | `0x07`  | `0-1`  | `uint32_t`| **data** of a [TaggedValue](#taggedvalue) with this tag is an offset that points to a [string](#string) representing the source file name.|
 
-**NOTE**<br>
-**ClassTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **class_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **class_data** of a [class](#class).
+> **NOTE**
+> 
+> **ClassTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **class_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **class_data** of a [class](#class).
 
 
 ### Field
@@ -172,8 +181,9 @@ Represents fields within the bytecode file.
 | `reserved`       | `uleb128`        | Reserved field for internal use by the Ark bytecode file.                          |
 | `field_data`     | `TaggedValue[]`  | Array with variable length. Each element in the array is of the [TaggedValue](#taggedvalue) type, and the element tag is of the [FieldTag](#fieldtag) type. Elements in the array are sorted in ascending order based on the tag (except the **0x00** tag).|
 
-**NOTE**<br>
-The offset of **Field** can be used to locate the appropriate **IndexHeader** for parsing **class_idx** and **type_idx**.
+> **NOTE**
+> 
+> The offset of **Field** can be used to locate the appropriate **IndexHeader** for parsing **class_idx** and **type_idx**.
 
 
 ### FieldTag
@@ -187,8 +197,9 @@ The offset of **Field** can be used to locate the appropriate **IndexHeader** fo
 | `INT_VALUE`      | `0x01`   | `0-1` | `sleb128`  | The **data** type of a [TaggedValue](#taggedvalue) with this tag is of **boolean**, **byte**, **char**, **short**, or **int**.|
 | `VALUE`          | `0x02`   | `0-1` | `uint32_t` | The **data** type of a [TaggedValue](#taggedvalue) with this tag is of **FLOAT** or **ID** in [Value formats](#value-formats).|
 
-**NOTE**<br>
-**FieldTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **field_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **field_data** of a [field](#field).
+> **NOTE**
+> 
+> **FieldTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **field_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **field_data** of a [field](#field).
 
 
 ### Method
@@ -205,8 +216,9 @@ Represents methods within the bytecode file.
 | `index_data`     | `uleb128`        | [MethodIndexData](#methodindexdata) data of the method.|
 | `method_data`    | `TaggedValue[]`  | Array with variable length. Each element in the array is of the [TaggedValue](#taggedvalue) type, and the element tag is of the [MethodTag](#methodtag) type. Elements in the array are sorted in ascending order based on the tag (except the **0x00** tag).|
 
-**NOTE**<br>
-The offset of **Method** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
+> **NOTE**
+> 
+> The offset of **Method** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
 
 
 ### MethodIndexData
@@ -242,8 +254,9 @@ A 32-bit unsigned integer, divided into three parts.
 | `DEBUG_INFO`     | `0x05`         | `0-1`            | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [DebugInfo](#debuginfo), indicating the debugging information of the method.|
 | `ANNOTATION`     | `0x06`         | `>=0`            | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [Annotation](#annotation), indicating the annotation of the method.|
 
-**NOTE**<br>
-**MethodTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **method_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **method_data** of a [method](#method).
+> **NOTE**
+> 
+> **MethodTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **method_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **method_data** of a [method](#method).
 
 
 ### Code
@@ -299,8 +312,9 @@ Represents annotations in the bytecode file.
 | `elements`       | AnnotationElement[] | An array of [AnnotationElement](#annotationelement) elements.|
 | `element_types`  | `uint8_t[]`  | An array, in which each element is of the [AnnotationElementTag](#annotationelementtag) type and is used to describe an **AnnotationElement.** The position of each element in the **element_types** array is the same as that of the corresponding **AnnotationElement** in the **elements** array.|
 
-**NOTE**<br>
-The offset of **Annotation** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
+> **NOTE**
+> 
+> The offset of **Annotation** can be used to locate the appropriate **IndexHeader** for parsing **class_idx**.
 
 
 ### AnnotationElementTag
@@ -418,8 +432,9 @@ For special operation codes in the range **0x0c** to **0xff** (included), the st
 | 3     | `line += LINE_BASE + (adjusted_opcode % LINE_RANGE)` | Increments the **line** register. The value of **LINE_BASE** is **-4**, which is the minimum line number increment. The maximum increment is **LINE_BASE + LINE_RANGE - 1**.|
 | 4     |                                                    | Generates a new location entry.                                      |
 
-**NOTE**<br>
-Special operation codes are calculated by using the following formula: **(line_increment - LINE_BASE) + (address_increment * LINE_RANGE) + OPCODE_BASE**.
+> **NOTE**
+> 
+> Special operation codes are calculated by using the following formula: (line_increment - LINE_BASE) + (address_increment * LINE_RANGE) + OPCODE_BASE.
 
 
 ### IndexSection
@@ -517,3 +532,5 @@ Describes literals in the bytecode file. There are four encoding formats based o
 | ByteTwo        | `uint16_t`       | 2 bytes           | Double-byte value.  |
 | ByteFour       | `uint32_t`       | 4 bytes           | Four-byte value.  |
 | ByteEight      | `uint64_t`       | 8 bytes           | Eight-byte value.  |
+
+ <!--no_check--> 

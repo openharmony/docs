@@ -34,17 +34,17 @@ FolderStack(options?: FolderStackOptions)
 
 | Name      | Type        | Mandatory| Description                      |
 | ------------ | -------------------------- | ---- |----------------------------|
-| upperItems |    Array<string\>  | No  | Configuration of the **FolderStack** component.<br>**upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.|
+| upperItems<sup>11+</sup> |    Array<string\>  | No  | Configuration of the **FolderStack** component.<br>**upperItems**: array of IDs of child components that will be moved to the upper half screen in the hover state. On hover, child components with IDs in this array automatically shift away from the folding screen's crease area and move to the upper half screen, while other components are stacked in the lower half screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### alignContent
 
 alignContent(value: Alignment)
 
-Alignment of child components in the container. When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.
+Sets the alignment of child components in the container. When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -60,7 +60,7 @@ Alignment of child components in the container. When both this attribute and the
 
 enableAnimation(value: boolean)
 
-Whether to enable the default animation.
+Sets whether to enable the default animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -94,7 +94,7 @@ Sets whether to enable auto rotation. This attribute is effective only when auto
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onFolderStateChange
 
@@ -117,7 +117,7 @@ Called when the folding state changes. This API takes effect only in landscape m
 
 onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
-Invoked when the hover status changes.
+Called when the hover status changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -168,7 +168,7 @@ Called when the folding state changes. This API takes effect only in landscape m
 
 | Name    | Type                                           | Mandatory| Description                |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | Yes  | Current fold state of the device.|
+| foldStatus<sup>11+</sup> | [FoldStatus](ts-appendix-enums.md#foldstatus11) | Yes  | Current fold state of the device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## HoverEventParam<sup>12+</sup>
 
@@ -181,7 +181,7 @@ Called when the folding state changes. This API takes effect only in landscape m
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | Yes  | Current fold state of the device.|
 | isHoverMode      | boolean                                                     | Yes  | Whether the device is in hover state. |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | Yes  | Current orientation.   |
-| windowStatusType | [WindowStatusType<sup>12+</sup>](#windowstatustype12) | Yes  | Window mode.   |
+| windowStatusType | [WindowStatusType](#windowstatustype12) | Yes  | Window mode.   |
 
 ## WindowStatusType<sup>12+</sup>
 

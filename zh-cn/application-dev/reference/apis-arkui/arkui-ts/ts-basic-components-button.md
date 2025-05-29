@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -50,16 +50,30 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 参数名  | 类型                                    | 必填 | 说明                 |
 | ------- | --------------------------------------- | ---- | -------------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。       |
+| label   | [ResourceStr](ts-types.md#resourcestr)  | 是   | 按钮文本内容。<br/>**说明：** 当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
 | options | [ButtonOptions](#buttonoptions对象说明) | 否   | 配置按钮的显示样式。 |
 
+### Button
+
+Button()
+
+创建一个空按钮。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## ButtonOptions对象说明
+
+按钮的样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 16开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 15及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 18及之后，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 18之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -85,7 +99,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>从API version 18及之后，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 18之前的版本，ButtonType的默认值为ButtonType.Capsule。 |
 
 ### fontSize
 
@@ -103,7 +117,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`。<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。<br/>**说明**：设置string类型时，不支持百分比。 |
 
 ### fontColor
 
@@ -231,7 +245,7 @@ buttonStyle(value: ButtonStyleMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的样式和重要程度。<br/>默认值:ButtonStyleMode.EMPHASIZED |
+| value  | [ButtonStyleMode](#buttonstylemode11枚举说明) | 是   | Button组件的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED |
 
 ### controlSize<sup>11+</sup>
 
@@ -247,9 +261,9 @@ controlSize(value: ControlSize)
 
 **参数：** 
 
-| 参数名 | 类型                                  | 必填 | 说明                                             |
-| ------ | ------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值:ControlSize.NORMAL |
+| 参数名 | 类型                                  | 必填 | 说明                                              |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------- |
+| value  | [ControlSize](#controlsize11枚举说明) | 是   | Button组件的尺寸。<br/>默认值：ControlSize.NORMAL |
 
 ### role<sup>12+</sup>
 
@@ -265,9 +279,9 @@ role(value: ButtonRole)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                             |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值:ButtonRole.NORMAL |
+| 参数名 | 类型                                | 必填 | 说明                                                 |
+| ------ | ----------------------------------- | ---- | ---------------------------------------------------- |
+| value  | [ButtonRole](#buttonrole12枚举说明) | 是   | 设置Button组件的角色。<br/>默认值：ButtonRole.NORMAL |
 
 ### contentModifier<sup>12+</sup>
 
@@ -283,15 +297,15 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
-### minFontScale<sup>16+</sup>
+### minFontScale<sup>18+</sup>
 
 minFontScale(scale: number | Resource)
 
 设置文本最小的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -299,15 +313,15 @@ minFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。<br/>倍数设置为0时不显示内容。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。 |
 
-### maxFontScale<sup>16+</sup>
+### maxFontScale<sup>18+</sup>
 
 maxFontScale(scale: number | Resource)
 
 设置文本最大的字体缩放倍数。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -315,9 +329,11 @@ maxFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。<br/>未设置最大缩放倍数时，圆形按钮最大缩放倍数为1倍。 |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。<br/>未设置最大缩放倍数时，圆形按钮最大缩放倍数为1倍，胶囊型按钮、普通按钮、圆角矩形按钮最大缩放倍数跟随系统设置。 |
 
 ## ButtonType枚举说明
+
+按钮的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -338,6 +354,8 @@ maxFontScale(scale: number | Resource)
 
 ## LabelStyle<sup>10+</sup>对象说明
 
+按钮中文本的显示样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -345,13 +363,15 @@ maxFontScale(scale: number | Resource)
 | 名称                 | 类型                                                         | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
-| maxLines             | number                                                       | 否   | 设置label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
+| maxLines             | number                                                       | 否   | 设置label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
 | minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。<br/>**说明：**  <br/>minFontSize小于或等于0时，自适应字号不生效。 |
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置label文本自适应高度的方式。<br>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST。 |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置label文本字体样式。<br>默认值：默认值参考[Font](ts-types.md#font)。 |
 
 ## ButtonStyleMode<sup>11+</sup>枚举说明
+
+按钮的重要程度。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -367,6 +387,8 @@ maxFontScale(scale: number | Resource)
 
 ## ControlSize<sup>11+</sup>枚举说明
 
+按钮的尺寸。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -379,6 +401,8 @@ maxFontScale(scale: number | Resource)
 | NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
+
+按钮的角色。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -401,8 +425,8 @@ maxFontScale(scale: number | Resource)
 
 | 名称  | 类型    | 只读  | 可选 | 说明              |
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
-| label | string | 否 | 否 | Button的文本标签。 |
-| pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
+| label | string | 否 | 否 | Button的文本标签。<br/>**说明**：当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
+| pressed | boolean | 否 | 否 | 指示是否按下Button。值为true时，表示按下，值为false时，表示未按下。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。<br/>默认值：false |
 | triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
 ## ButtonTriggerClickCallback<sup>12+</sup>
@@ -419,8 +443,8 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| xPos | number | 是 | 点击位置x的坐标。 |
-| yPos | number | 是 | 点击位置y的坐标。 |
+| xPos | number | 是 | 点击位置x的坐标。<br/>单位：vp |
+| yPos | number | 是 | 点击位置y的坐标。<br/>单位：vp |
 
 ## 事件
 
@@ -498,14 +522,14 @@ struct ButtonExample {
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State count: number = 0
+  @State count: number = 0;
 
   build() {
     Column() {
       Text(`${this.count}`)
         .fontSize(30)
         .onClick(() => {
-          this.count++
+          this.count++;
         })
       if (this.count <= 0) {
         Button('count is negative').fontSize(30).height(50)
@@ -633,23 +657,24 @@ struct ButtonExample {
 该示例实现了自定义样式的功能，自定义样式实现了一个圆圈替换原本的按钮样式。如果按压，圆圈将变成红色，标题会显示按压字样；如果没有按压，圆圈将变成黑色，标题会显示非按压字样。
 ```ts
 class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
-  x: number = 0
-  y: number = 0
-  selectedColor:Color = Color.Black
+  x: number = 0;
+  y: number = 0;
+  selectedColor: Color = Color.Black;
 
-  constructor(x : number, y: number,ColorType:Color) {
-    this.x = x
-    this.y = y
-    this.selectedColor = ColorType
+  constructor(x: number, y: number, ColorType: Color) {
+    this.x = x;
+    this.y = y;
+    this.selectedColor = ColorType;
   }
-  applyContent() : WrappedBuilder<[ButtonConfiguration]>
-  {
-    return wrapBuilder(buildButton1)
+
+  applyContent(): WrappedBuilder<[ButtonConfiguration]> {
+    return wrapBuilder(buildButton1);
   }
 }
 
-@Builder function buildButton1(config: ButtonConfiguration) {
-  Column({space:30}) {
+@Builder
+function buildButton1(config: ButtonConfiguration) {
+  Column({ space: 30 }) {
     Text(config.enabled ? "enabled true" : "enabled false")
     Text('圆圈状态' + (config.pressed ? "（ 按压 ）" : "（ 非按压 ）"))
     Text('点击位置x坐标：' + (config.enabled ? (config.contentModifier as MyButtonStyle).x : "0"))
@@ -657,8 +682,8 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
     Circle({ width: 50, height: 50 })
       .fill(config.pressed ? (config.contentModifier as MyButtonStyle).selectedColor : Color.Black)
       .gesture(
-        TapGesture({count:1}).onAction((event: GestureEvent)=>{
-          config.triggerClick(event.fingerList[0].localX,event.fingerList[0].localY)
+        TapGesture({ count: 1 }).onAction((event: GestureEvent) => {
+          config.triggerClick(event.fingerList[0].localX, event.fingerList[0].localY)
         })).opacity(config.enabled ? 1 : 0.1)
   }
 }
@@ -667,27 +692,28 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration> {
 @Component
 struct ButtonExample {
   @State buttonEnabled: boolean = true;
-  @State positionX: number = 0
-  @State positionY: number = 0
-  @State state : boolean[] = [true,false]
-  @State index:number = 0
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  @State state: boolean[] = [true, false];
+  @State index: number = 0;
+
   build() {
     Column() {
       Button('OK')
-        .contentModifier(new MyButtonStyle(this.positionX,this.positionY,Color.Red))
+        .contentModifier(new MyButtonStyle(this.positionX, this.positionY, Color.Red))
         .onClick((event) => {
-          console.info('change' + JSON.stringify(event))
-          this.positionX = event.displayX
-          this.positionY = event.displayY
+          console.info('change' + JSON.stringify(event));
+          this.positionX = event.displayX;
+          this.positionY = event.displayY;
         }).enabled(this.buttonEnabled)
       Row() {
         Toggle({ type: ToggleType.Switch, isOn: true }).onChange((value: boolean) => {
           if (value) {
-            this.buttonEnabled = true
+            this.buttonEnabled = true;
           } else {
-            this.buttonEnabled = false
+            this.buttonEnabled = false;
           }
-        }).margin({left:-80})
+        }).margin({ left: -80 })
       }
     }.height('100%').width('100%').justifyContent(FlexAlign.Center)
   }

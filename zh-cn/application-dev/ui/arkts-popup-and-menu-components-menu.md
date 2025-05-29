@@ -26,7 +26,7 @@ Button('click for Menu')
     {
       value: 'Menu1',
       action: () => {
-        console.info('handle Menu1 select')
+        console.info('handle Menu1 select');
       }
     }
   ])
@@ -36,25 +36,25 @@ Button('click for Menu')
 
 ## 创建自定义样式的菜单
 
-当默认样式不满足开发需求时，可使用[@Builder](../../application-dev/quick-start/arkts-builder.md)自定义菜单内容，通过bindMenu接口进行菜单的自定义。
+当默认样式不满足开发需求时，可使用[@Builder](../../application-dev/ui/state-management/arkts-builder.md)自定义菜单内容，通过bindMenu接口进行菜单的自定义。
 
-### @Builder开发菜单内的内容
+### 使用@Builder自定义菜单内容
 
 ```ts
 class Tmp {
-  iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  iconStr2: ResourceStr = $r("app.media.view_list_filled");
 
   set(val: Resource) {
-    this.iconStr2 = val
+    this.iconStr2 = val;
   }
 }
 
 @Entry
 @Component
 struct menuExample {
-  @State select: boolean = true
-  private iconStr: ResourceStr = $r("app.media.view_list_filled")
-  private iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  @State select: boolean = true;
+  private iconStr: ResourceStr = $r("app.media.view_list_filled");
+  private iconStr2: ResourceStr = $r("app.media.view_list_filled");
 
   @Builder
   SubMenu() {
@@ -82,8 +82,8 @@ struct menuExample {
           .selected(this.select)
           .onChange((selected) => {
             console.info("menuItem select" + selected);
-            let Str: Tmp = new Tmp()
-            Str.set($r("app.media.icon"))
+            let Str: Tmp = new Tmp();
+            Str.set($r("app.media.icon"));
           })
         MenuItem({
           startIcon: $r("app.media.view_list_filled"),
@@ -108,7 +108,7 @@ struct menuExample {
 
 ```
 
-### bindMenu属性绑定组件
+### 使用bindMenu属性绑定组件
 
 ```ts
 Button('click for Menu')
@@ -121,8 +121,8 @@ Button('click for Menu')
 
 通过bindContextMenu接口自定义菜单，设置菜单弹出的触发方式，触发方式为右键或长按。使用bindContextMenu弹出的菜单项是在独立子窗口内的，可显示在应用窗口外部。
 
-- @Builder开发菜单内的内容与上文写法相同。
-- 确认菜单的弹出方式，使用bindContextMenu属性绑定组件。示例中为右键弹出菜单。
+- 使用@Builder自定义菜单内容，与上文写法相同。
+- 确认菜单的弹出方式，并使用bindContextMenu属性绑定组件。示例中为右键弹出菜单。
   
   ```ts
   Button('click for Menu')

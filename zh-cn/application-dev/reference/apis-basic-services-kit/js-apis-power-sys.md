@@ -103,7 +103,7 @@ wakeup(detail: string): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -144,7 +144,7 @@ suspend(isImmediate?: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -152,7 +152,7 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。true表示灭屏后立即进入休眠，不填该参数则默认为false，表示灭屏后由系统自动检测何时进入休眠。如果只想做灭屏操作，建议不填参数。<br>**说明：** 从API version 10开始，支持该参数。|
 
 
 **错误码：**
@@ -273,7 +273,7 @@ setScreenOffTime(timeout: number): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -314,7 +314,7 @@ hibernate(clearMemory: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

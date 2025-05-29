@@ -45,6 +45,22 @@ Enumerates the orientations of a display.
 | PORTRAIT_INVERTED | 2 | The display is in reverse portrait mode.|
 | LANDSCAPE_INVERTED | 3 | The display is in reverse landscape mode.|
 
+## DisplaySourceMode<sup>18+</sup>
+
+Enumerates the display modes for screen content.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NONE | 0 | The device is currently not in use.|
+| MAIN | 1 | The primary screen of the device is currently in use.|
+| MIRROR | 2 | The device is currently in mirror display mode.|
+| EXTEND | 3 | The device is currently in extended display mode.|
+| ALONE | 4 | The device is currently in independent display mode.|
+
 ## FoldStatus<sup>10+</sup>
 
 Enumerates the fold statuses of a foldable device. For dual-fold axis devices, when oriented with the charging port at the bottom, the hinges are identified from right to left as the first and second fold axes, respectively.
@@ -53,10 +69,10 @@ Enumerates the fold statuses of a foldable device. For dual-fold axis devices, w
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN<sup>12+</sup> | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_EXPANDED<sup>12+</sup> | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_FOLDED<sup>12+</sup> | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| FOLD_STATUS_HALF_FOLDED<sup>12+</sup> | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_UNKNOWN<sup>10+</sup> | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED<sup>10+</sup> | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_FOLDED<sup>10+</sup> | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_HALF_FOLDED<sup>10+</sup> | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
@@ -82,13 +98,14 @@ Enumerates the display modes of a foldable device.
 | -------- | -------- | -------- |
 | FOLD_DISPLAY_MODE_UNKNOWN | 0 | The display mode of the device is unknown.|
 | FOLD_DISPLAY_MODE_FULL | 1 | The device is displayed in full screen.|
-| FOLD_DISPLAY_MODE_MAIN | 2 | The main screen of the device is displayed.|
-| FOLD_DISPLAY_MODE_SUB | 3 | The subscreen of the device is displayed.|
+| FOLD_DISPLAY_MODE_MAIN | 2 | The primary screen of the device is displayed.|
+| FOLD_DISPLAY_MODE_SUB | 3 | The secondary screen of the device is displayed.|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
 
->**NOTE**<br>
->&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
->&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_MAIN** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
+>**NOTE**
+>For foldable devices where both the inner and outer screens can serve as the primary screen, the inner screen's display mode is **FOLD_DISPLAY_MODE_FULL**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_MAIN**.<br>
+>
+>For foldable devices where the outer screen serves only as an auxiliary display, the inner screen's display mode is **FOLD_DISPLAY_MODE_MAIN**, and the outer screen's display mode is **FOLD_DISPLAY_MODE_SUB**.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -143,7 +160,7 @@ Describes the unusable area of a display, including punch hole, notch, and curve
 
 | Name                       | Type     | Readable| Writable| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches.|
+| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches. If there are no punch holes or notches, an empty array is returned.|
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on a waterfall display.|
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -159,11 +176,11 @@ Describes the display mode of a foldable device and the corresponding physical s
 | physicalWidth   | number | Yes| No| Width of the foldable device, in px. The value must be an integer greater than 0.|
 | physicalHeight  | number | Yes| No| Height of the foldable device, in px. The value must be an integer greater than 0.|
 
-## ScreenShape<sup>16+</sup>
+## ScreenShape<sup>18+</sup>
 
 Enumerates the screen shapes of a display.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -178,9 +195,9 @@ getDisplayByIdSync(displayId: number): Display
 
 Obtains a **Display** object based on the display ID.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
@@ -464,7 +481,7 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display, which is an integer. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -678,7 +695,7 @@ Unsubscribes from fold status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used to return the fold status. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -755,7 +772,7 @@ Unsubscribes from folding angle change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                    | Yes | Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used to return the folding angle (0–180 degrees). If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -824,7 +841,7 @@ Unsubscribes from screen capture, casting, or recording status changes.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the screen capture, casting, or recording status change. The value **true** means that the device starts screen capture, casting, or recording, and **false** means that the device stops screen capture, casting, or recording. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -933,7 +950,7 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used to return the display mode. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -1102,25 +1119,29 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 
 | Name| Type| Read-Only| Optional| Description                                                                                                           |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | Yes| No| ID of the display. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
-| name | string | Yes| No| Name of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| alive | boolean | Yes| No| Whether the display is alive.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
-| state | [DisplayState](#displaystate) | Yes| No| State of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
-| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
-| rotation | number | Yes| No| Clockwise rotation angle of the display.<br>The value **0** indicates that the display rotates clockwise by 0°.<br>The value **1** indicates that the display rotates clockwise by 90°.<br>The value **2** indicates that the display rotates clockwise by 180°.<br>The value **3** indicates that the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| width | number | Yes| No| Width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| height | number | Yes| No| Height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
-| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
-| xDPI | number | Yes| No| Exact physical pixels per inch of the display in the X dimension. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes| No| All color spaces supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
-| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
-| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| screenShape<sup>16+</sup> | [ScreenShape](#screenshape16) | Yes| Yes| Screen shape of the display. The default value is **RECTANGLE**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.                                                                                   |
+| id | number | Yes| No| ID of the display. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| name | string | Yes| No| Name of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
+| alive | boolean | Yes| No| Whether the display is alive.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
+| state | [DisplayState](#displaystate) | Yes| No| State of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
+| refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
+| rotation | number | Yes| No| Clockwise rotation angle of the display.<br>The value **0** indicates that the display rotates clockwise by 0°.<br>The value **1** indicates that the display rotates clockwise by 90°.<br>The value **2** indicates that the display rotates clockwise by 180°.<br>The value **3** indicates that the display rotates clockwise by 270°.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| width | number | Yes| No| Width of the display, in px. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| height | number | Yes| No| Height of the display, in px. The value must be an integer.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
+| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
+| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
+| xDPI | number | Yes| No| Exact physical pixels per inch of the display in the X dimension. The value must be a floating point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes| No| All color spaces supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
+| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | Yes| Yes| Screen shape of the display. The default value is **RECTANGLE**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.
+| sourceMode<sup>18+</sup> | [DisplaySourceMode](#displaysourcemode18) | Yes| Yes| Display mode for screen content.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                   |
+| x<sup>18+</sup> | number | Yes| Yes| X coordinate of the upper left corner of the screen relative to the origin, which is the upper left corner of the primary screen, measured in px. The value is an integer.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                   |
+| y<sup>18+</sup> | number | Yes| Yes| Y coordinate of the upper left corner of the screen relative to the origin, which is the upper left corner of the primary screen, measured in px. The value is an integer.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 18.                                                                                   |
+
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -1303,7 +1324,7 @@ Unsubscribes from changes of the available area on the display of the current de
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the display changes.|
-| callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used to return the new available area. If this parameter is not specified, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 

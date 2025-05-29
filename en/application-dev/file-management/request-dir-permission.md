@@ -141,7 +141,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
 #include <hilog/log.h>
 ```
 
-- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder. The memory allocated by **malloc()** must be released using **free()**. <br>Example:
+1. Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder. The memory allocated by **malloc()** must be released using **free()**. <br>Example:
 
     ```c++
     void GetUserDownloadDirExample()
@@ -157,7 +157,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
     }
     ```
 
-- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the **Download** folder and view the files in it. <br>Example:
+2. Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the **Download** folder and view the files in it. <br>Example:
 
     ```c++
     void ScanUserDownloadDirPathExample()
@@ -187,7 +187,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so libhilog_ndk.z.so)
     }
     ```
 
-- Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder and save **temp.txt** to this folder. <br>Example:
+3. Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** folder and save **temp.txt** to this folder. <br>Example:
 
     ```c++
     void WriteUserDownloadDirPathExample()

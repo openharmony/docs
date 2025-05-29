@@ -24,7 +24,7 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 ## AppStorageV2
 
-For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../quick-start/arkts-new-appstoragev2.md).
+For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../ui/state-management/arkts-new-appstoragev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -36,9 +36,9 @@ static connect\<T extends object\>( <br>
       type: TypeConstructorWithArgs\<T\>, <br>
       keyOrDefaultCreator?: string | StorageDefaultCreator\<T\>, <br>
       defaultCreator?: StorageDefaultCreator\<T\> <br>
-): T | undefined;
+): T | undefined
 
-Stores key-value pair data in the application memory. If the given key already exists in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it.
+Stores key-value pair data in the application memory. If the given key already exists in [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -90,9 +90,9 @@ const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 
 ### remove
 
-static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
+static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void
 
-Removes the specified key-value pair from [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md). If the specified key does not exist in AppStorageV2, the removal will fail.
+Removes the specified key-value pair from [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md). If the specified key does not exist in AppStorageV2, the removal will fail.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -125,9 +125,9 @@ AppStorageV2.remove('key_as1');
 
 ### keys
 
-static keys(): Array\<string\>;
+static keys(): Array\<string\>
 
-Obtains all keys in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md).
+Obtains all keys in [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -154,25 +154,25 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
-Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Persisting Application State](../../quick-start/arkts-new-persistencev2.md).
+Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Persisting Application State](../../ui/state-management/arkts-new-persistencev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### globalConnect<sup>16+</sup>
+### globalConnect<sup>18+</sup>
 
-static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined;
+static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefined
 
-Stores key-value pair data on the application disk. If the given key already exists in [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), the corresponding value is returned. Otherwise, a default value is constructed using the default value constructor and returned. If **globalConnect** is used for an @ObservedV2 decorated object, changes to the object's @Trace properties will trigger automatic refresh of the associated object, while changes to non-@Trace properties will not. If necessary, the **PersistenceV2.save** API can be called to store the data manually.
+Stores key-value pair data on the application disk. If the given key already exists in [PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md), the corresponding value is returned. Otherwise, a default value is constructed using the default value constructor and returned. If **globalConnect** is used for an @ObservedV2 decorated object, changes to the object's @Trace properties will trigger automatic refresh of the associated object, while changes to non-@Trace properties will not. If necessary, the **PersistenceV2.save** API can be called to store the data manually.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  |Type  |Mandatory  | Description                                                     |
 | ------------- | ------------|-------------------|-------------------------- |
-| type    |[ConnectOptions\<T\>](#connectoptions16)    |Yes |**connect** parameter passed in. For details, see the description of **ConnectOptions**.|
+| type    |[ConnectOptions\<T\>](#connectoptions18)    |Yes |**connect** parameter passed in. For details, see the description of **ConnectOptions**.|
 
 **Return value**
 
@@ -190,7 +190,7 @@ Stores key-value pair data on the application disk. If the given key already exi
 >
 > 4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 >
-> 5. When matching the key with an [\@Observed](../../quick-start/arkts-observed-and-objectlink.md) object, specify the key or customize the **name** property.
+> 5. When matching the key with an [\@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) object, specify the key or customize the **name** property.
 >
 > 6. The storage path for data is application-level. If different modules use the same key and the same encryption partition for **globalConnect**, only one copy of the data will be stored in the application.
 >
@@ -202,6 +202,7 @@ Stores key-value pair data on the application disk. If the given key already exi
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { PersistenceV2, Type, ConnectOptions } from '@kit.ArkUI';
 import { contextConstant } from '@kit.AbilityKit';
@@ -226,8 +227,7 @@ export class Sample {
 @Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
 
 // Use the key 'global2' with the constructor function for connection. If no encryption level is specified, the default EL2 level is used.
-options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:() => new Sample()};
-@Local p2: Sample = PersistenceV2.globalConnect(this.options)!;
+@Local p2: Sample = PersistenceV2.globalConnect({type: Sample, key: 'global2', defaultCreator:() => new Sample()})!;
 
 // Use the key 'global3' with an explicit encryption level value (3 in this example) for connection. Note that values outside the valid range of 0-4 will cause application crashes.
 @Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
@@ -236,7 +236,7 @@ options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:
 
 ### save
 
-static save\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
+static save\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void
 
 Persists the specified key-value pair data once.
 
@@ -252,7 +252,7 @@ Persists the specified key-value pair data once.
 
 >**NOTE**
 >
->Since changes to non-[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md) decorated data do not automatically trigger persistence through [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), you can call this API to manually persist the data for the corresponding key when needed.
+>Since changes to non-[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md) decorated data do not automatically trigger persistence through [PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md), you can call this API to manually persist the data for the corresponding key when needed.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
@@ -273,7 +273,7 @@ PersistenceV2.remove('key_as1');
 
 ### notifyOnError
 
-static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
+static notifyOnError(callback: PersistenceErrorCallback | undefined): void
 
 Called when persistence fails.
 
@@ -296,9 +296,9 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 });
 ```
 
-## ConnectOptions<sup>16+</sup>
+## ConnectOptions<sup>18+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -307,7 +307,7 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 |type        | TypeConstructorWithArgs\<T\>   |No  |No  |Specified type.        |
 |key         | string   |No  |Yes  |key used for connection. If it is not provided, the name of the type is used as the key.            |
 |defaultCreator   | StorageDefaultCreator\<T\>   |No  |Yes  |Default constructor. It is recommended that this parameter be passed in. If **globalConnect** is called for the first time with a key and this parameter is not provided, an error will occur.|
-|areaMode      | contextConstant.AreaMode   |No  |Yes   |Encryption level, ranging from EL1 to EL5 (corresponding to the value from 0 to 4). For details, see [Obtaining and Modifying Encryption Levels](../../application-models/application-context-stage.md). If no value is passed in, the default EL2 level is used. Different encryption levels correspond to different storage paths. Values outside the valid range of 0-4 will cause the application to crash.|
+|areaMode      | contextConstant.AreaMode   |No  |Yes   |Encryption level, ranging from EL1 to EL5 (corresponding to the value from 0 to 4). For details, see [Encryption Levels](../../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels). If no value is passed in, EL2 is used by default. Storage paths vary based on the encryption levels. If the input value of encryption level is not in the range of **0** to **4**, a crash occurs.|
 
 ## UIUtils
 
@@ -319,9 +319,9 @@ Provides APIs for handling data transformations related to state management.
 
 ### getTarget
 
-static getTarget\<T extends object\>(source: T): T;
+static getTarget\<T extends object\>(source: T): T
 
-Obtains the original object from a proxy object wrapped by the state management framework. For details, see [getTarget API: Obtaining Original Objects](../../quick-start/arkts-new-getTarget.md).
+Obtains the original object from a proxy object wrapped by the state management framework. For details, see [getTarget API: Obtaining Original Objects](../../ui/state-management/arkts-new-getTarget.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -362,9 +362,9 @@ struct Index {
 ```
 ### makeObserved
 
-static makeObserved\<T extends object\>(source: T): T;
+static makeObserved\<T extends object\>(source: T): T
 
-Converts ordinary unobservable data into observable data. For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../quick-start/arkts-new-makeObserved.md).
+Converts ordinary unobservable data into observable data. For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../ui/state-management/arkts-new-makeObserved.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -374,7 +374,7 @@ Converts ordinary unobservable data into observable data. For details, see [make
 
 | Name| Type| Mandatory| Description    |
 | ------ | ---- | ---- | ------------ |
-| source | T    | Yes  | Source object. It supports classes not decorated by @Observed or @ObserveV2, objects returned by **JSON.parse**, and classes decorated by @Sendable.<br>Array, Map, Set, and Date types are supported.<br>**collection.Array**, **collection.Set**, and **collection.Map** are supported.<br>For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../quick-start/arkts-new-makeObserved.md).|
+| source | T    | Yes  | Source object. It supports classes not decorated by @Observed or @ObserveV2, objects returned by **JSON.parse**, and classes decorated by @Sendable.<br>Array, Map, Set, and Date types are supported.<br>**collection.Array**, **collection.Set**, and **collection.Map** are supported.<br>For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../ui/state-management/arkts-new-makeObserved.md).|
 
 **Return value**
 
@@ -410,9 +410,142 @@ struct Index {
 }
 ```
 
+### enableV2Compatibility<sup>19+</sup>
+
+static enableV2Compatibility\<T extends object\>(source: T): T
+
+Enables V1 state variables to be observable in @ComponentV2. This API is primarily used in scenarios where V1 and V2 state management are mixed. For details, see [Mixing Use of State Management V1 and V2](../../ui/state-management/arkts-v1-v2-mixusage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description    |
+| ------ | ---- | ---- | ------------ |
+| source | T    | Yes  | Data source, which must be V1 state data.|
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| T    | If the data source is V1 state data, returns data that can be observed in @ComponentV2; otherwise, returns the data source itself.|
+
+
+**Example**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Observed
+class ObservedClass {
+  name: string = 'Tom';
+}
+
+@Entry
+@Component
+struct CompV1 {
+  @State observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    Column() {
+      Text(`@State observedClass: ${this.observedClass.name}`)
+        .onClick(() => {
+          this.observedClass.name = 'State'; // Refresh
+        })
+      // Enable V2 observability for the V1 state variable.
+      CompV2({ observedClass: UIUtils.enableV2Compatibility(this.observedClass) })
+    }
+  }
+}
+
+@ComponentV2
+struct CompV2 {
+  @Param observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    // After V2 observability is enabled for the V1 state variable, the first-layer changes can be observed in V2.
+    Text(`@Param observedClass: ${this.observedClass.name}`)
+      .onClick(() => {
+        this.observedClass.name = 'Param'; // Refresh
+      })
+  }
+}
+```
+
+### makeV1Observed<sup>19+</sup>
+static makeV1Observed\<T extends object\>(source: T): T
+
+Wraps an unobservable object into an object that is observable by V1 state management. This API is equivalent to @Observed and can be used to initialize @ObjectLink.
+
+This API can be used in conjunction with [enableV2Compatibility](#enablev2compatibility19) for scenarios where V1 and V2 state management are mixed. For details, see [Mixing Use of State Management V1 and V2](../../ui/state-management/arkts-v1-v2-mixusage.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description    |
+| ------ | ---- | ---- | ------------ |
+| source | T    | Yes  | Data source. Common class, Array, Map, Set, and Date types are supported.<br>The [collections](../apis-arkts/js-apis-arkts-collections.md) type and [\@Sendable](../../arkts-utils/arkts-sendable.md) decorated classes are not supported.<br>**undefined** and **null** are not supported. V2 state management data and the return value of [makeObserved](#makeobserved) are not supported.|
+
+**Return value**
+
+| Type| Description                                            |
+| ---- | ------------------------------------------------ |
+| T    | For supported input parameter types, returns data observable by V1 state management. For unsupported input parameter types, returns the data source object itself.|
+
+**Example**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+class Outer {
+  outerValue: string = 'outer';
+  inner: Inner;
+
+  constructor(inner: Inner) {
+    this.inner = inner;
+  }
+}
+
+class Inner {
+  interValue: string = 'inner';
+}
+
+@Entry
+@Component
+struct Index {
+  @State outer: Outer = new Outer(UIUtils.makeV1Observed(new Inner()));
+
+  build() {
+    Column() {
+      // The return value of makeV1Observed can be used to initialize @ObjectLink.
+      Child({ inner: this.outer.inner })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink inner: Inner;
+
+  build() {
+    Text(`${this.inner.interValue}`)
+      .onClick(() => {
+        this.inner.interValue += '!';
+      })
+  }
+}
+```
+
 ## StorageDefaultCreator\<T\>
 
-type StorageDefaultCreator\<T\> = () => T;
+type StorageDefaultCreator\<T\> = () => T
 
 Obtains the default constructor.
 
@@ -469,7 +602,7 @@ Represents a class constructor that accepts arbitrary arguments.
 
 ### new
 
-new(...args: any): T;
+new(...args: any): T
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -522,7 +655,7 @@ struct SampleComp {
 
 ## PersistenceErrorCallback
 
-type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void
 
 Represents the callback invoked when persistence fails.
 
@@ -590,7 +723,7 @@ Class constructor.
 
 ### new
 
-new(): T;
+new(): T
 
 **Return value**
 
@@ -640,7 +773,7 @@ struct Index {
 
 ## TypeDecorator
 
-type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator
 
 Property decorator.
 

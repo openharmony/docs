@@ -17,6 +17,10 @@ After initialization, if, due to dynamic changes to the [margin](ts-universal-at
 
 RowSplit()
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 ### resizeable
@@ -39,10 +43,12 @@ Sets whether the divider can be dragged.
 >
 > The divider of **RowSplit** can change the width of the left and right child components, but only to the extent that the resultant width falls within the maximum and minimum widths of the child components.
 >
-> Universal attributes such as [clip](ts-universal-attributes-sharp-clipping.md#clip) and [margin](ts-universal-attributes-size.md#margin) are supported. If **clip** is not set, the default value **true** is used.
+> Universal attributes such as [clip](ts-universal-attributes-sharp-clipping.md#clip12) and [margin](ts-universal-attributes-size.md#margin) are supported. If **clip** is not set, the default value **true** is used.
 
 
 ## Example
+
+This example demonstrates the basic usage of **RowSplit**, which allows you to create draggable, horizontally laid-out child components.
 
 ```ts
 // xxx.ets

@@ -1,4 +1,4 @@
-# Test Kit (Application Test Service)
+# Test Kit<!--test-api-->
 
 - [arkXtest User Guide](arkxtest-guidelines.md)
 - [SmartPerf User Guide](smartperf-guidelines.md)

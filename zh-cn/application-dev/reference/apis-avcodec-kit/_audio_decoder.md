@@ -328,7 +328,7 @@ OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 通知音频解码器已完成对index所对应缓冲区进行输入数据的填充。
 
-[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频解码器，则无法再次访问此缓冲区， 直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
+[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频解码器，则无法再次访问此缓冲区，直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
 
 此外，对于某些解码器，需要在开始时向解码器输入特定配置参数，以初始化解码器的解码过程。
 
@@ -484,7 +484,7 @@ OH_AVErrCode OH_AudioDecoder_Stop (OH_AVCodec *codec)
 
 停止解码器。
 
-停止后，您可以通过Start重新进入已启动状态，但需要注意的是， 如果解码器之前已输入数据，则需要重新输入解码器数据。
+停止后，您可以通过Start重新进入已启动状态，但需要注意的是，如果解码器之前已输入数据，则需要重新输入解码器数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioDecoder
 

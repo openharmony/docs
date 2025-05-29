@@ -838,7 +838,7 @@ set(index: number, element: T): T
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 

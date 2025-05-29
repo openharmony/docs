@@ -28,11 +28,7 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
 1. 导入模块。
    
    ```ts
-   import { emitter } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-
-   const TAG: string = 'ProcessModel';
-   const DOMAIN_NUMBER: number = 0xFF00;
+   import { emitter, Callback } from '@kit.BasicServicesKit';
    ```
 
 2. 订阅事件。
@@ -43,19 +39,19 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
     let event: emitter.InnerEvent = {
       eventId: 1
     };
-    
-    // on订阅事件，收到eventId为1的事件后执行回调函数。
-    emitter.on(event, () => {
-      hilog.info(DOMAIN_NUMBER, TAG, 'on callback');
-    });
+    // 定义一个事件的回调处理函数，当收到对应的事件后执行回调函数
+    let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+      console.info(`eventData: ${JSON.stringify(eventData)}`);
+    }
+
+    // 收到eventId为1的事件后执行回调函数
+    emitter.on(innerEvent, callback);
    ```
 
    ```ts
-   // 收到eventId为1的事件后执行回调函数。
-   // 注意：once订阅只接收一次事件，on订阅则一直接收直到取消订阅为止。
-   emitter.once(event, () => {
-     hilog.info(DOMAIN_NUMBER, TAG, 'once callback');
-   });
+    // 收到eventId为1的事件后执行回调函数。
+    // 注意：once订阅只接收一次事件，on订阅则一直接收直到取消订阅为止。
+    emitter.once(innerEvent, callback);
    ```
 
 3. 发送事件。
@@ -68,12 +64,11 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
      priority: emitter.EventPriority.LOW
    };
 
+   let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+     console.info(`eventData: ${JSON.stringify(eventData)}`);
+   }
    //订阅该事件，并接收eventData数据。
-   emitter.once(event, (eventData : emitter.EventData) => {
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-content:' + eventData?.data?.content);
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-id:' + eventData?.data?.id);
-     hilog.info(DOMAIN_NUMBER, TAG, 'enter callback, eventData-isEmpty:' + eventData?.data?.isEmpty);
-   });
+   emitter.once(event, callback);
 
    let eventData: emitter.EventData = {
      data: {
@@ -90,9 +85,8 @@ Emitter通过维护一个内部事件队列，来进行任务分发。应用需�
 4. 取消事件订阅。
     > **说明：**
     >
-    > 当不需要订阅某个事件时，需要及时取消订阅避免造成内存泄漏。
-
-    取消事件订阅使用off接口进行取消，设置要取消的事件ID。
+    > - 当不需要订阅某个事件时，需要及时取消订阅避免造成内存泄漏。
+    > - 使用[off](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteroff)接口取消某个事件订阅后，已通过[emit](../../reference/apis-basic-services-kit/js-apis-emitter.md#emitteremit)接口发布但尚未被执行的事件将被取消。
    ```ts
    // 取消eventId为1的事件。
    emitter.off(1);

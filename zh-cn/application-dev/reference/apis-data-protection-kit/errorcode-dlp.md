@@ -1,6 +1,5 @@
 # DLP服务错误码
 
-
 > **说明：**
 > 
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
@@ -9,7 +8,7 @@
 
 **错误信息**
 
-Invalid parameter.
+Invalid parameter value.
 
 **错误描述**
 
@@ -31,7 +30,7 @@ Invalid parameter.
 
 7. 包名为空。
 
-8. appinde小于0。
+8. appIndex小于0。
 
 9. userId小于0。
 
@@ -39,12 +38,11 @@ Invalid parameter.
 
 请传入正确的参数。
 
-
 ## 19100002 加解密出错
 
 **错误信息**
 
-Begin encryption or decryption error.
+Credential service busy due to too many tasks or duplicate tasks.
 
 **错误描述**
 
@@ -60,12 +58,11 @@ Begin encryption or decryption error.
 
 请等待一段时间后重试。
 
-
 ## 19100003 加解密超时
 
 **错误信息**
 
-Encryption or decryption timeout.
+Credential task time out.
 
 **错误描述**
 
@@ -78,7 +75,6 @@ DLP文件加解密时间超过10秒。
 **处理步骤**
 
 请等待一段时间后重试。
-
 
 ## 19100004 凭据服务错误
 
@@ -100,7 +96,6 @@ Credential service error.
 
 请等待一段时间后重试，或者重启设备。
 
-
 ## 19100005 凭据认证服务器错误
 
 **错误信息**
@@ -121,7 +116,6 @@ Credential authentication server error.
 
 请检查凭据认证服务器后重试。
 
-
 ## 19100006 非DLP沙箱应用
 
 **错误信息**
@@ -139,7 +133,6 @@ No permission to call this API, which is available only for DLP sandbox applicat
 **处理步骤**
 
 请确认调用场景后重试。
-
 
 ## 19100007 DLP沙箱应用不允许调用此接口
 
@@ -159,7 +152,6 @@ No permission to call this API, which is available only for non-DLP sandbox appl
 
 请确认调用场景后重试。
 
-
 ## 19100008 非DLP文件
 
 **错误信息**
@@ -177,7 +169,6 @@ The file is not a DLP file.
 **处理步骤**
 
 请使用经过DLP加密的DLP文件。
-
 
 ## 19100009 操作DLP文件失败
 
@@ -205,7 +196,6 @@ step1：请确认访问权限。
 
 step2：请等待一段时间或重启后重试。
 
-
 ## 19100010 只读DLP文件
 
 **错误信息**
@@ -225,7 +215,6 @@ DLP文件只读。
 **处理步骤**
 
 请确认文件权限。
-
 
 ## 19100011 系统服务工作异常
 
@@ -253,12 +242,11 @@ The system ability works abnormally.
 
 系统服务内部工作异常，请稍后重试，或者重启设备尝试。
 
-
 ## 19100012 内存申请失败
 
 **错误信息**
 
-Out of memory.
+System memory is insufficient.
 
 **错误描述**
 
@@ -271,7 +259,6 @@ Out of memory.
 **处理步骤**
 
 系统内存不足，请稍后重试，或者重启设备。
-
 
 ## 19100013 用户无权限
 
@@ -287,7 +274,6 @@ The user does not have the permission.
 
 请检查权限。
 
-
 ## 19100014 账号未登录
 
 **错误信息**
@@ -302,12 +288,11 @@ Account not logged in.
 
 请登录账号。
 
-
 ## 19100015 系统需要升级
 
 **错误信息**
 
-Upgrade required.
+The system needs to be upgraded.
 
 **错误描述**
 
@@ -317,12 +302,11 @@ Upgrade required.
 
 请升级系统。
 
-
 ## 19100016 want参数中没有uri
 
 **错误信息**
 
-uri missing in want.
+The uri field is missing in the want parameter.
 
 **错误描述**
 
@@ -332,12 +316,11 @@ want参数中没有uri。
 
 请传入正确的参数。
 
-
 ## 19100017 want参数中parameters内没有displayName
 
 **错误信息**
 
-displayName missing in want.
+The displayName field is missing in the want parameter.
 
 **错误描述**
 
@@ -347,12 +330,11 @@ want参数中parameters内没有displayName。
 
 请传入正确的参数。
 
-
 ## 19100018 应用未授权
 
 **错误信息**
 
-Application not authorized.
+The application is not authorized.
 
 **错误描述**
 
@@ -365,7 +347,6 @@ Application not authorized.
 **处理步骤**
 
 请设置授信应用白名单。
-
 
 ## 19100019 DLP文件已过期
 
@@ -380,7 +361,6 @@ DLP文件已过期。
 **处理步骤**
 
 请联系文件拥有者重新授权。
-
 
 ## 19100020 网络未连接
 

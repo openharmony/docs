@@ -2,9 +2,9 @@
 
 The **esim** module provides basic eSIM management capabilities, including checking whether a specified card slot supports the eSIM function.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 
 ## Modules to Import
@@ -13,7 +13,7 @@ The **esim** module provides basic eSIM management capabilities, including check
 import { eSIM } from '@kit.TelephonyKit';
 ```
 
-## eSIM.isSupported<sup>14+</sup>
+## eSIM.isSupported<sup>18+</sup>
 
 isSupported\(slotId: number\): boolean
 
@@ -25,18 +25,21 @@ Checks whether the specified card slot supports the eSIM function.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID. <br>- **0**: card slot 1.<br>- **1**: card slot 2|
 
 **Returns**
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
 | boolean | A boolean value indicating whether the specified card slot supports the eSIM function. The value **true** indicates that the card slot supports the eSIM function, and the value **false** indicates the opposite.|
+
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID             | Error Message                          |
 | --------------------- | ---------------------------------- |
-| 401 | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>    2. Incorrect parameter types. <br>3. Invalid parameter value.|
+| 401 | Invalid parameter value.     |
 |3120001| Service connection failed. |
 |3120002| System internal error.     |
 
@@ -49,11 +52,13 @@ let isSupported: boolean = eSIM.isSupported(0);
 console.log(`the esim is Supported:` + isSupported);
 ```
 
-## eSIM.addProfile<sup>14+</sup>
+## eSIM.addProfile<sup>18+</sup>
 
 addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 Launches the download page for the user to add a single profile. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
@@ -67,13 +72,16 @@ Launches the download page for the user to add a single profile. This API uses a
 
 | Type                 | Description                              |
 | --------------------- | ---------------------------------- |
-| Promise\<boolean\> | Promise used to return the result of adding a profile. The **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID             | Error Message                          |
 | --------------------- | ---------------------------------- |
-| 401 | Parameter error. Possible causes: <br>1. Mandatory parameters are left unspecified. <br>    2. Incorrect parameter types. <br>3. Invalid parameter value.|
+| 201 | Permission denied.           |
+| 401 | Invalid parameter value.     |
 | 801 | Capability not supported.    |
 |3120001| Service connection failed. |
 |3120002| System internal error.     |
@@ -84,7 +92,7 @@ Launches the download page for the user to add a single profile. This API uses a
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-let profile: eSIM.DownloadableProfile={
+let profile: eSIM.DownloadableProfile = {
   activationCode:'1',
   confirmationCode:'1',
   carrierName:'test',

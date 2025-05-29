@@ -4,7 +4,7 @@ The **ArcList** component is a circular layout container that displays a series 
 
 > **NOTE**
 >
-> This component is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -30,8 +30,6 @@ Only the [ArcListItem](ts-container-arclistitem.md) component is supported.
 > - If the values of [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) change, the indexes of subnodes are updated. 
 >
 > - Child components of **ArcList** whose [visibility](ts-universal-attributes-visibility.md#visibility) attribute is set to **Hidden** or **None** are still included in the index calculation. 
->
-> - Child components of **ArcList** whose [visibility](ts-universal-attributes-visibility.md#visibility) attribute is set to **None** are not displayed, but the spacing above and below them still takes effect. 
 
 
 ## APIs
@@ -40,7 +38,7 @@ ArcList(options?: ArkListOptions)
 
 Creates an instance of the **ArcList** component with optional configuration parameters.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -52,7 +50,7 @@ Creates an instance of the **ArcList** component with optional configuration par
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### digitalCrownSensitivity
 
@@ -60,7 +58,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 Sets the sensitivity of the digital crown's response to events.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -68,7 +66,7 @@ Sets the sensitivity of the digital crown's response to events.
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity16) | Yes  | Sensitivity of the digital crown's response.<br>Default value: **CrownSensitivity.MEDIUM**, indicating moderate response speed|
+| sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity18) | Yes  | Sensitivity of the digital crown's response.<br>Default value: **CrownSensitivity.MEDIUM**, indicating moderate response speed|
 
 ### space
 
@@ -76,7 +74,7 @@ space(space: Optional\<LengthMetrics>)
 
 Sets the spacing between list items.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -84,7 +82,7 @@ Sets the spacing between list items.
 
 | Name| Type                                                        | Mandatory| Description                              |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Spacing between list items.<br>Default value: **0**|
+| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Spacing between list items.<br>Default value: **0**<br>Child components of **ArcList** whose [visibility](ts-universal-attributes-visibility.md#visibility) attribute is set to **None** are not displayed, but the spacing above and below them still takes effect.|
 
 ### scrollBar
 
@@ -92,7 +90,7 @@ scrollBar(status: Optional\<BarState>)
 
 Sets the state of the scrollbar.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -100,17 +98,17 @@ Sets the state of the scrollbar.
 
 | Name| Type                                                | Mandatory| Description                                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------------------------- |
-| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | No  | State of the scrollbar.<br>Default value: **BarState.Auto**|
+| status | [Optional\<BarState>](ts-appendix-enums.md#barstate) | Yes  | State of the scrollbar.<br>Default value: **BarState.Auto**|
 
 ### cachedCount
 
 cachedCount(count: Optional\<number>)
 
-Sets the number of list items to preload (cache) in the [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md) component.
+Sets the number of arc list items to be preloaded (cached). In a lazy loading scenario, only the content equivalent to **cachedCount** outside the visible area of the arc list is preloaded. In a non-lazy loading scenario, all items are loaded at once. For both lazy and non-lazy loading, only the content within the visible area of the arc list plus the content equivalent to **cachedCount** outside the visible area is laid out.
 
-This attribute specifies the number of items to cache before and after the visible items in the **ArcList** component.
+When **cachedCount** is set for the arc list, the system preloads and lays out the **cachedCount**-specified number of rows of arc list items both above and below the currently visible area of the arc list.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -118,7 +116,7 @@ This attribute specifies the number of items to cache before and after the visib
 
 | Name| Type             | Mandatory| Description                                      |
 | ------ | ----------------- | ---- | ------------------------------------------ |
-| value  | Optional\<number> | Yes  | Number of list items to preload.<br>Default value: **1**|
+| count  | Optional\<number> | Yes  | Number of list items to preload.<br>Default value: number of nodes visible on the screen, with the maximum value of 16.<br>Value range: [0, +∞).|
 
 ### chainAnimation
 
@@ -130,7 +128,7 @@ The list items are separated with even space, and one item animation starts afte
 
 For chained animations to work properly, the edge scrolling effect of the **ArcList** component must be set to [EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -146,7 +144,7 @@ enableScrollInteraction(enable: Optional\<boolean>)
 
 Sets whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the [Scroller](ts-container-scroll.md#scroller) controller API is not affected.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -156,13 +154,29 @@ Sets whether to support scroll gestures. When this attribute is set to **false**
 | ------ | ------------------ | ---- | ----------------------------------- |
 | enable | Optional\<boolean> | Yes  | Whether to support scroll gestures.<br>Default value: **true**|
 
+### fadingEdge
+
+fadingEdge(enable: Optional&lt;boolean&gt;)
+
+Sets whether to enable the edge fading effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Circle
+
+**Parameters**
+
+| Name | Type                                             | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enable | Optional&lt;boolean&gt;                           | Yes  | Whether to enable the edge fading effect.<br>When **fadingEdge** is set to **true**, it overrides the **.overlay()** attribute of the component.<br>With **fadingEdge** set to **true**, avoid setting background-related attributes on the component, as this may affect the display of the fading effect.<br>With **fadingEdge** set to **true**, the component is clipped to the boundary, and setting the component's **clip** attribute to **false** will not take effect.<br>Default value: **false**, which means not to enable the edge fading effect.|
+
 ### friction
 
 friction(friction: Optional\<number>)
 
 Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. If this attribute is set to a value less than or equal to 0, the default value is used.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -170,7 +184,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 | Name  | Type             | Mandatory| Description                        |
 | -------- | ----------------- | ---- | ---------------------------- |
-| friction | Optional\<number> | No  | Friction coefficient.<br>Default value: **0.8**|
+| friction | Optional\<number> | Yes  | Friction coefficient.<br>Default value: **0.8**<br>Value range: (0, +∞).|
 
 ### scrollBarWidth
 
@@ -178,7 +192,7 @@ scrollBarWidth(width: Optional\<LengthMetrics>)
 
 Sets the width of the scrollbar. Once the width is set, the scrollbar will use this width in its pressed state.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -194,7 +208,7 @@ scrollBarColor(color: Optional\<ColorMetrics>)
 
 Sets the color of the scrollbar.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -208,9 +222,9 @@ Sets the color of the scrollbar.
 
 flingSpeedLimit(speed: Optional\<number>)
 
-Sets the maximum initial speed for inertial scrolling after a fling gesture. The unit is vp/s.
+Sets the maximum initial speed for inertial scrolling after a fling gesture. If this attribute is set to a value less than or equal to 0, the default value is used.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -218,7 +232,7 @@ Sets the maximum initial speed for inertial scrolling after a fling gesture. The
 
 | Name| Type             | Mandatory| Description                           |
 | ------ | ----------------- | ---- | ------------------------------- |
-| speed  | Optional\<number> | Yes  | Maximum initial speed for inertial scrolling.|
+| speed  | Optional\<number> | Yes  | Maximum initial speed for inertial scrolling.<br>Default value: **9000**.<br>Unit: vp/s.<br>Value range: (0, +∞).|
 
 ### childrenMainSize
 
@@ -226,7 +240,7 @@ childrenMainSize(size: Optional\<ChildrenMainSize>)
 
 Sets the size information of the child components of the **ArcList** component along the main axis.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -246,7 +260,7 @@ Triggered when a child component enters or leaves the visible area of the **ArcL
 
 If the edge scrolling effect of the **ArcList** component is set to spring, this event is not triggered during continued scrolling at the edge or during the bounce-back process
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -264,13 +278,13 @@ Triggered when the list reaches the start position.
 
 This event is triggered during initialization of the **ArcList** component if [initialIndex](#arklistoptions) is set to **0**, and whenever the list scrolls to the start position. If the edge scrolling effect is set to spring, this event is triggered when scrolling past the start position and again when bouncing back to it.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name | Type                                            | Mandatory| Description                    |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback) | Yes  | Callback triggered when the list reaches the start position.|
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | Yes  | Callback triggered when the list reaches the start position.|
 
 ### onReachEnd
 
@@ -280,13 +294,13 @@ Triggered when the list reaches the end position.
 
 If the edge scrolling effect is set to spring, this event is triggered when scrolling past the end position and again when bouncing back to it.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name | Type                                            | Mandatory| Description                    |
 | ------- | ------------------------------------------------ | ---- | ------------------------ |
-| handler | [Optional\<VoidCallback>](#voidcallback) | Yes  | Callback triggered when the list reaches the end position.|
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | Yes  | Callback triggered when the list reaches the end position.|
 
 ### onScrollStart
 
@@ -294,13 +308,13 @@ onScrollStart(handler: Optional\<VoidCallback>)
 
 Triggered when the list starts scrolling initiated by the user's finger dragging the list or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name | Type                                            | Mandatory| Description                |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback) | Yes  | Callback triggered when the list starts scrolling.|
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | Yes  | Callback triggered when the list starts scrolling.|
 
 ### onScrollStop
 
@@ -308,21 +322,21 @@ onScrollStop(handler: Optional\<VoidCallback>)
 
 Triggered when the list stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
 | Name | Type                                            | Mandatory| Description                |
 | ------- | ------------------------------------------------ | ---- | -------------------- |
-| handler | [Optional\<VoidCallback>](#voidcallback) | Yes  | Callback triggered when the list stops scrolling.|
+| handler | [Optional\<VoidCallback>](ts-types.md#voidcallback12) | Yes  | Callback triggered when the list stops scrolling.|
 
 ### onWillScroll
 
 onWillScroll(handler: Optional\<OnWillScrollCallback>)
 
-Triggered when the list is about to scroll. The return value is the offset amount by which the list will scroll and the current scroll state. The returned offset is obtained by calculation, not the actual offset.
+Triggered before each frame when the list is being scrolled. The return value is the offset amount by which the list will scroll and the current scroll state. The returned offset is obtained by calculation, not the actual offset.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -330,7 +344,7 @@ Triggered when the list is about to scroll. The return value is the offset amoun
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------|
-| handler | [Optional\<OnWillScrollCallback>](#onwillscrollcallback) | Yes| Callback triggered when the list is about to scroll.|
+| handler | [Optional\<OnWillScrollCallback>](ts-container-scrollable-common.md#onwillscrollcallback12) | Yes| Callback triggered before each frame when the list is being scrolled.|
 
 > **NOTE**
 > 
@@ -341,7 +355,7 @@ onDidScroll(handler: Optional\<OnScrollCallback>)
 
 Triggered when the list scrolls. The return value is the offset amount by which the list has scrolled and the current scroll state.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -355,7 +369,7 @@ Triggered when the list scrolls. The return value is the offset amount by which 
 
 Provides basic parameters for creating an **ArcList** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -365,15 +379,13 @@ Provides basic parameters for creating an **ArcList** component.
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | No  | Scroller, which can be bound to scrollable components for scrolling control.<br>**NOTE**<br>The same scroller cannot be bound to multiple scrollable components.|
 | header       | [ComponentContent](../js-apis-arkui-ComponentContent.md)                            | No  | Header component.                                              |
 
-## VoidCallback
-
-The **VoidCallback** object has no parameters and returns no value.
-
 ## ArcScrollIndexHandler
+
+type ArcScrollIndexHandler = (start: number, end: number, center: number) => void
 
 Represents the callback triggered when a child component enters or leaves the visible area of the **ArcList** component.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Circle
 
@@ -382,20 +394,6 @@ Represents the callback triggered when a child component enters or leaves the vi
 | start  | number | Yes  | Index of the first child component in the visible area of the **ArcList** component.  |
 | end    | number | Yes  | Index of the last child component in the visible area of the **ArcList** component.|
 | center | number | Yes  | Index of the center child component in the visible area of the **ArcList** component.|
-
-## OnWillScrollCallback
-
-Represents the callback invoked when the list is about to scroll.
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Circle
-
-| Name      | Type                                                   | Mandatory| Description                                                        |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | Yes  | Scroll offset of each frame. Positive values indicate upward scrolling, while negative values indicate downward scrolling.<br>Unit: vp|
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate) | Yes  | Current scroll state.                                              |
-| scrollSource | ScrollSource                                            | Yes  | Source of the current scrolling operation.                                              |
 
 ## Example
 

@@ -1,6 +1,6 @@
-# MDM Kit (Enterprise Device Management Service)
+# MDM Kit<!--mdm-api-->
 
-- ArkTS APIs
+- ArkTS APIs<!--mdm-arkts-->
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
@@ -35,5 +35,5 @@
   - [@ohos.enterprise.usbManager (USB Management) (System API)](js-apis-enterprise-usbManager-sys.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management) (System API)](js-apis-enterprise-wifiManager-sys.md)
   <!--DelEnd-->
-- Error Codes
+- Error Codes<!--mdm-arkts-errcode-->
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)

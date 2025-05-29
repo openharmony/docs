@@ -62,5 +62,5 @@ Battery.getStatus({
 
 | 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| charging | boolean | 是 | 否 | 当前电池是否在充电中。 |
+| charging | boolean | 是 | 否 | 当前电池是否在充电中。true表示在充电，false表示没有充电，默认为false。 |
 | level | number | 是 | 否 | 当前电池的电量，取值范围：0.00&nbsp;-&nbsp;1.00&nbsp;。 |

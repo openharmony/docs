@@ -11,11 +11,13 @@ Deep Linking searches for an application based on the URI matching rules in impl
 
 ### Configuring the module.json5 File
 
-To be accessed by other applications, an application must configure the [skills](../quick-start/module-configuration-file.md#skills) field of the [module.json5 file](../quick-start/module-configuration-file.md). The value of **scheme** under **uri** can be customized. It can be any string that does not contain special characters or start with **ohos**.
+To be accessed by other applications, an application must configure the [skills](../quick-start/module-configuration-file.md#skills) field of the [module.json5 file](../quick-start/module-configuration-file.md).
 
 > **NOTE**
 > 
-> The value of **scheme** in Deep Linking cannot be **https**, **http**, or **file**. Otherwise, the default system browser is started.
+> By default, the **skills** field contains a **skill** object, which is used to identify the application entry. Application redirection links should not be configured in this object. Instead, separate **skill** objects should be used. If there are multiple redirection scenarios, create different **skill** objects under **skills**. Otherwise, the configuration does not take effect.
+> 
+> In Deep Linking, the **scheme** value can be customized to any string that does not contain special characters and does not start with **ohos**. It is generally recommended to avoid using **https**, **http**, or **file** to prevent the default system browser from being launched.
 
 
 A configuration example is as follows:
@@ -29,6 +31,14 @@ A configuration example is as follows:
         // ...
         "skills": [
           {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
+          {
             "actions": [
               // actions cannot be empty. Otherwise, matching the target application fails.
               "ohos.want.action.viewData"
@@ -41,7 +51,7 @@ A configuration example is as follows:
                 "host": "www.example.com"
               }
             ]
-          }
+          } // Add a skill object for redirection. If there are multiple redirection scenarios, create multiple skill objects.
         ]
       }
     ]
@@ -104,7 +114,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "link://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
@@ -149,9 +159,9 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let want: Want = {
-            uri: "link://www.example.com"
+          uri: "link://www.example.com"
         };
 
         try {
@@ -191,7 +201,7 @@ struct WebComponent {
         .onLoadIntercept((event) => {
           const url: string = event.data.getRequestUrl();
           if (url === 'link://www.example.com') {
-            (getContext() as common.UIAbilityContext).openLink(url)
+            (this.getUIContext().getHostContext() as common.UIAbilityContext).openLink(url)
               .then(() => {
                 console.log('openLink success');
               }).catch((err: BusinessError) => {

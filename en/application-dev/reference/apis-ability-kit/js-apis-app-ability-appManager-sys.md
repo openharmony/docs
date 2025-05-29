@@ -273,97 +273,6 @@ try {
 }
 ```
 
-## appManager.off('applicationState')
-
-off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
-
-Deregisters the application state observer. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
-| observerId | number | Yes| Digital code of the observer.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
-
-| ID| Error Message|
-| ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000050 | Internal error. |
-
-**Example**
-
-```ts
-import { appManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let observerId = 0;
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-  onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-  },
-  onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-  },
-  onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-  },
-  onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-  },
-  onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-  },
-  onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
-  },
-  onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
-  }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-
-try {
-  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-  console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message} `);
-}
-
-// 2. Deregister the application state observer.
-function unregisterApplicationStateObserverCallback(err: BusinessError) {
-  if (err) {
-    console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
-  } else {
-    console.log('unregisterApplicationStateObserverCallback success.');
-  }
-}
-
-try {
-  appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
-} catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
-}
-```
-
 ## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
@@ -1598,7 +1507,7 @@ try {
 }
 ```
 
-## appManager.terminateMission<sup>12+</sup>
+## appManager.terminateMission<sup>13+</sup>
 
 terminateMission(missionId: number): Promise\<void>
 
@@ -1802,7 +1711,7 @@ Keeps an application of a specified user alive, or cancels its keep-alive status
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | Yes   | Bundle name.|
 | userId    | number   | Yes   | User ID.|
-| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status.|
+| enable    | boolean   | Yes   | Whether to keep the application alive or cancel its keep-alive status. The value **true** means to keep the application alive, and **false** means to cancel its keep-alive status.|
 
 **Return value**
 

@@ -13,11 +13,17 @@ import { http } from '@kit.NetworkKit';
 
 ## 完整示例 
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用。
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息。
@@ -67,10 +73,10 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
         name: "Part2", // 数据名，自API 11开始支持该属性。
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性。
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性。
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性。
       }
-    ]
+    ],
     addressFamily: http.AddressFamily.DEFAULT // 可选，系统默认选择目标域名的IPv4地址或IPv6地址，自API 15开始支持该属性。
   },
   (err: BusinessError, data: http.HttpResponse) => {
@@ -189,8 +195,9 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -274,8 +281,9 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -387,8 +395,9 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -497,8 +506,9 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -572,8 +582,9 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -674,8 +685,9 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
-| 2300999 | Unknown error.                                                 |
+| 2300999 | Internal error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
@@ -1098,14 +1110,14 @@ httpRequest.off("dataSendProgress");
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
 | extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />1. 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。<br />(1) 当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String。<br />(2) 当'content-Type'为'text/xml'时，该字段对应的类型通常为String。<br />(3) 当'content-Type'为'application/json'时，该字段对应的类型通常为Object。<br />(4) 当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer。<br />(5) 当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。<br>以上信息仅供参考，并可能根据具体情况有所不同。<br />2. 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送。ArrayBuffer类型的参数不会做拼接处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。当指定其类型为Object时，最大长度为65536。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存；false：不使用缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | priority<sup>9+</sup>        | number                          | 否   | http/https请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
-| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒(ms)，默认为60000ms。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒(ms)，默认为60000ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
+| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br />如果head中包含number类型的字段，最大支持int64的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径(开发者可通过getContext().filesDir获取应用沙箱路径)。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | 是否使用HTTP代理，默认为false，不使用代理；true：使用HTTP代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径(开发者可通过UIAbilityContext提供的能力获取应用沙箱路径)。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
 | resumeFrom<sup>11+</sup> | number | 否 | 用于设置下载起始位置，该参数只能用于GET方法，不要用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | resumeTo<sup>11+</sup> | number | 否 | 用于设置下载结束位置，该参数只能用于GET方法，不要用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书。 |
@@ -1115,6 +1127,9 @@ httpRequest.off("dataSendProgress");
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
 | certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
 | addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。 |
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | 否 | 证书颁发机构（CA），用于验证远程服务器的身份。如果未设置此字段，系统CA将用于验证远程服务器的标识。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | 否 | TLS配置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | 否 | 安全连接期间的服务器身份验证配置。默认不认证。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## RequestMethod
 
@@ -1203,10 +1218,10 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------| --- | ----------- |
-| certPath | string | 是 | 证书路径 |
-| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM |
-| keyPath | string | 是 | 证书秘钥的路径 |
-| keyPassword | string | 否  | 证书秘钥的密码 |
+| certPath | string | 是 | 证书路径。 |
+| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM。 |
+| keyPath | string | 是 | 证书秘钥的路径。 |
+| keyPassword | string | 否  | 证书秘钥的密码。 |
 
 ## PerformanceTiming<sup>11+</sup>
 
@@ -1229,18 +1244,18 @@ request方法回调函数的返回值类型。
 
 ## DataReceiveProgressInfo<sup>11+</sup>
 
-数据接收信息
+数据接收信息。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 |  receiveSize        | number | 是  | 已接收的数据量(字节)。           |
-| totalSize| number | 是 | 总共要接收的数据量(字节)|
+| totalSize| number | 是 | 总共要接收的数据量(字节)。|
 
 ## DataSendProgressInfo<sup>11+</sup>
 
-数据发送信息
+数据发送信息。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -1261,7 +1276,7 @@ request方法回调函数的返回值类型。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| name        | string | 是  | 数据名称                                                                      |
+| name        | string | 是  | 数据名称。                                                                      |
 | contentType | string | 是 | 数据类型，如'text/plain'，'image/png', 'image/jpeg', 'audio/mpeg', 'video/mp4'等。 |
 | remoteFileName | string | 否 | 上传到服务器保存为文件的名称。                                                 |
 | data | string \| Object \| ArrayBuffer | 否 | 表单数据内容。                                                 |
@@ -1525,11 +1540,11 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 说明       |
-| --- | ---------- |
-| PEM | 证书类型PEM |
-| DER | 证书类型DER |
-| P12 | 证书类型P12 |
+| 名称 |   值   | 说明       |
+| --- | ------ | ---------- |
+| PEM | PEM | 证书类型PEM。 |
+| DER | DER | 证书类型DER。 |
+| P12 | P12 | 证书类型P12。 |
 
 ## CertificatePinning<sup>12+</sup>
 
@@ -1562,8 +1577,259 @@ type HttpProxy = connection.HttpProxy
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|       名称       |            说明             |
-| ---------------- | --------------------------- |
-| DEFAULT | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
-| ONLY_V4 | 设置此选项后，系统将仅解析目标域名的IPv4地址，忽略IPv6地址。     |
-| ONLY_V6 | 设置此选项后，系统将仅解析目标域名的IPv6地址，忽略IPv4地址。     |
+|       名称       |     值     |            说明             |
+| ---------------- | --------------- | --------------------------- |
+| DEFAULT | CURL_IPRESOLVE_WHATEVER | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
+| ONLY_V4 | CURL_IPRESOLVE_V4 | 设置此选项后，系统仅解析目标域名的IPv4地址，忽略IPv6地址。     |
+| ONLY_V6 | CURL_IPRESOLVE_V6 | 设置此选项后，系统仅解析目标域名的IPv6地址，忽略IPv4地址。     |
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+证书颁发机构（CA），用于验证远程服务器的身份，可以通过RemoteValidation配置使用系统CA或跳过验证远程服务器CA。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明            |
+| ---------------- |---------------|
+| 'system' | 表示使用系统CA配置验证。 |
+| 'skip' | 跳过验证远程服务器CA。  |
+
+## Credential<sup>18+</sup>
+
+会话中服务器身份验证设置所使用的身份验证凭据，包括用户名和密码。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|  名称  |  类型  |  只读  | 可选  |说明     |
+| ------------------  |---- |-- | -- |----------- |
+| username       | string | 否 |否 |用于身份验证的用户名。默认值为' '。 |
+| password        | string |  否  |否 |用于身份验证的密码。默认值为' '。 |
+
+## ServerAuthentication<sup>18+</sup>
+
+HTTP服务器身份验证。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|  名称               |  类型                                            | 只读    |    可选     |说明     |
+| ------------------  |-------------------------------------------------|-------- |------------ |---------------|
+| credential          | [Credential](#credential18)                     | 否      | 否         |服务器的凭证。默认值为undefined。     |
+| authenticationType  | [AuthenticationType](#authenticationtype18)     | 否      | 是        | 服务器的认证类型。如果没有设置，需与服务器协商。     |
+
+
+## TlsConfig<sup>18+</sup>
+
+TLS加密版本及套件配置。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|  名称               |  类型                            | 只读    |    可选     |说明     |
+| ------------------  |---------------------------------|-------- |-------- |---------------|
+| tlsVersionMin       | [TlsVersion](#tlsversion18)     | 否      |否       | TLS最低版本号。     |
+| tlsVersionMax        | [TlsVersion](#tlsversion18)    | 否      |否       | TLS最高版本号。     |
+| cipherSuites        | [CipherSuite](#ciphersuite18)[] | 否      |是       | 声明加密套件类型的数组。 |
+
+## TlsVersion<sup>18+</sup>
+
+枚举，TLS版本号。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称        | 值 | 说明         |
+|:----------|:--|:-----------|
+| TLS_V_1_0 | 4 | TLS版本号1.0。 |
+| TLS_V_1_1 | 5 | TLS版本号1.1。 |
+| TLS_V_1_2 | 6 | TLS版本号1.2。 |
+| TLS_V_1_3 | 7 | TLS版本号1.3。 |
+
+## TlsOptions<sup>18+</sup>
+
+type TlsOptions = 'system' | TlsConfig
+
+TLS配置。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 类型                         | 说明                                                                                 |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | 表示使用系统的TLS版本，是未进行TLS设置的默认值，值固定为'system'字符串。 |
+| TlsOptions | 表示使用自定义的TLS版本号和加密套件。 |
+
+## RemoteValidation<sup>18+</sup>
+
+type RemoteValidation = 'system' | 'skip'
+
+验证远程服务器身份的方式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 类型                         | 说明                                                                                 |
+|-------------------------------|------------------------------------------------------------------------------------|
+| 'system'  | 表示使用系统CA验证远端服务器身份，值固定为'system'字符串，是未配置时的默认值。 |
+| 'skip'   | 表示跳过验证远端服务器身份流程，值固定为'skip'字符串。 |
+
+## AuthenticationType<sup>18+</sup>
+
+type AuthenticationType = 'basic' | 'ntlm' | 'digest'
+
+在会话中的服务器身份验证时可以设置使用不同的身份验证机制。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|类型                          | 说明                                                                                                 |
+|-------------------------------|----------------------------------------------------------------------------------------------------|
+| 'basic'  | 表示使用基本认证方式，值固定为'basic'字符串。 |
+| 'ntlm'   | 表示使用ntlm认证方式，值固定为'ntlm'字符串。 |
+| 'digest' | 表示使用摘要认证方式，值固定为'digest'字符串。 |
+
+## CipherSuite<sup>18+</sup>
+
+type CipherSuite = TlsV13CipherSuite
+
+加密套件声明函数。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明                                                                |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV13CipherSuite | 表示值的类型为[TlsV13CipherSuite](#tlsv13ciphersuite18)。                 |
+
+## TlsV13CipherSuite<sup>18+</sup>
+
+type TlsV13CipherSuite = TlsV12CipherSuite | TlsV13SpecificCipherSuite
+
+TLS1.3的加密套件声明函数，支持TLS1.3版本，兼容TLS1.2版本。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明                                                                |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV12CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsv11ciphersuite18)。                 |
+| TlsV13SpecificCipherSuite | 表示值的类型为[TlsV13SpecificCipherSuite](#tlsv13specificciphersuite18)。 |
+
+## TlsV12CipherSuite<sup>18+</sup>
+
+type TlsV12CipherSuite = TlsV11CipherSuite | TlsV12SpecificCipherSuite
+
+TLS1.2的加密套件声明函数，支持TLS1.2版本，兼容TLS1.1版本。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明                                                                |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV11CipherSuite | 表示值的类型为[TlsV11CipherSuite](#tlsv11ciphersuite18)。                 |
+| TlsV12SpecificCipherSuite | 表示值的类型为[TlsV12SpecificCipherSuite](#tlsv12specificciphersuite18)。 |
+
+## TlsV11CipherSuite<sup>18+</sup>
+
+type TlsV11CipherSuite = TlsV10CipherSuite
+
+TLS1.1的加密套件声明函数，与TLS1.0的加密套件相同。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明                                                |
+| ---------------- |---------------------------------------------------|
+| TlsV10CipherSuite | 表示值的类型为[TlsV10CipherSuite](#tlsv10ciphersuite18)。 |
+
+## TlsV10CipherSuite<sup>18+</sup>
+
+type TlsV10CipherSuite = TlsV10SpecificCipherSuite
+
+TLS1.0的加密套件声明函数。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明                                                                |
+| ---------------- |-------------------------------------------------------------------|
+| TlsV10SpecificCipherSuite | 表示值的类型为[TlsV10SpecificCipherSuite](#tlsv10specificciphersuite18)。 |
+
+## TlsV13SpecificCipherSuite<sup>18+</sup>
+
+type TlsV13SpecificCipherSuite = 'TLS_AES_128_GCM_SHA256' | 'TLS_AES_256_GCM_SHA384' | 'TLS_CHACHA20_POLY1305_SHA256'
+
+TLS1.3及以上版本支持的加密套件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明   |
+| ---------------- |------|
+| 'TLS_AES_128_GCM_SHA256' | 表示值的类型为字符串，可取'TLS_AES_128_GCM_SHA256'。 |
+| 'TLS_AES_256_GCM_SHA384' | 表示值的类型为字符串，可取'TLS_AES_256_GCM_SHA384'。 |
+| 'TLS_CHACHA20_POLY1305_SHA256' | 表示值的类型为字符串，可取'TLS_CHACHA20_POLY1305_SHA256'。 |
+
+## TlsV12SpecificCipherSuite<sup>18+</sup>
+
+type TlsV12SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' |
+'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' |
+'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_GCM_SHA384'
+
+TLS1.2及以上版本支持的加密套件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明   |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256'。 |
+| 'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256'。 |
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384'。 |
+| 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384'。 |
+| 'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256'。 |
+| 'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256'。 |
+| 'TLS_RSA_WITH_AES_128_GCM_SHA256' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_128_GCM_SHA256'。 |
+| 'TLS_RSA_WITH_AES_256_GCM_SHA384' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_256_GCM_SHA384'。 |
+
+## TlsV10SpecificCipherSuite<sup>18+</sup>
+
+type TlsV10SpecificCipherSuite = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_AES_128_CBC_SHA' |
+'TLS_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA'
+
+TLS1.0及以上版本支持的加密套件。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       | 说明   |
+| ---------------- |------|
+| 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA'。 |
+| 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA'。 |
+| 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA'。 |
+| 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'。 |
+| 'TLS_RSA_WITH_AES_128_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_128_CBC_SHA'。 |
+| 'TLS_RSA_WITH_AES_256_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_AES_256_CBC_SHA'。 |
+| 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' | 表示值的类型为字符串，可取'TLS_RSA_WITH_3DES_EDE_CBC_SHA'。 |

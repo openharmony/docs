@@ -13,8 +13,11 @@ Supported
 
 
 ## APIs
+### Row
 
-Row(value?:{space?:  number | string })
+Row(options?: RowOptions)
+
+Creates a horizontal linear layout container. You can set the spacing between child components, which can be of type number or string.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,12 +29,56 @@ Row(value?:{space?:  number | string })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| space | number \| string | No| Horizontal spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround** or **FlexAlign.SpaceEvenly**.<br>Default value: **0**, in vp<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| options | [RowOptions](#rowoptions14) | No| Spacing between child components.|
 
+### Row<sup>16+</sup>
+Row(options?: RowOptions | RowOptionsV2)
+
+Creates a horizontal linear layout container. You can set the spacing between child components, which can be of type number, string, or Resource.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options | [RowOptions](#rowoptions14)  \| [RowOptionsV2](#rowoptionsv216) | No| Spacing between child components.|
+
+## RowOptions<sup>14+</sup>
+
+Defines the spacing properties for child components used for constructing a **Row** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| space | number \| string | No| Spacing between child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number or when **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround** or **FlexAlign.SpaceEvenly**.<br>Default value: **0**, in vp<br>**NOTE**<br>The value of **space** can be a number greater than or equal to 0 or a string that can be converted to a number.|
+
+## RowOptionsV2<sup>16+</sup>
+
+Defines the spacing properties for child components used for constructing a **Row** component.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| space | [SpaceType](ts-container-column.md#spacetype16) | No| Horizontal spacing between two adjacent child components.<br>This parameter does not take effect if the value specified is a negative number, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>Default value: **0**, in vp<br>**NOTE**<br>The value of **space** can be a number greater than or equal to 0, a string that can be converted to a number, or a Resource type that can be converted to a number.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### alignItems
 
@@ -97,9 +144,23 @@ Sets whether to reverse the arrangement of child components on the main axis (ho
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
+
+This example demonstrates how to set horizontal layout properties, such as spacing and alignment, using the **Row** component.
+
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
 
 ```ts
 // xxx.ets
@@ -111,6 +172,13 @@ struct RowExample {
       // Set the horizontal spacing between two adjacent child components to 5.
       Text('space').width('90%')
       Row({ space: 5 }) {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').height(107).border({ width: 1 })
+
+      // Set the spacing between child components using the Resource type.
+      Text('Resource space').width('90%')
+      Row({ space: $r("app.string.stringSpace") }) {
         Row().width('30%').height(50).backgroundColor(0xAFEEEE)
         Row().width('30%').height(50).backgroundColor(0x00FFFF)
       }.width('90%').height(107).border({ width: 1 })

@@ -14,15 +14,11 @@
 
 **表1** 扩展外设管理基本能力接口
 
-| 接口名                                                                                                                                                       | 描述                                                                                    |
-| -----------------------------------------------------------------------------------------------------------------------------------------------------------  | --------------------------------------------------------------------------------------- |
-| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                          | 查询扩展外设列表。                                                                       |
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
-| bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;                       | 绑定设备的Promise形式。                                                                 |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&gt;RemoteDeviceDriver&gt;): void;                                  | 绑定设备，API11开始支持。                                                                 |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;                                                        | 绑定设备的Promise形式，API11开始支持。    
-| unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                  | 解绑设备。                                                                              |
-| unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                        | 解绑设备的Promise形式。                                                                              |
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt; | 查询扩展外设列表。                                           |
+| bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;; | 绑定设备的Promise形式，API18开始支持。                       |
+| unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt; | 解绑设备的Promise形式，API18开始支持。                       |
 
 <!--Del-->
 扩展外设管理系统接口如下，具体请查阅[API参考文档](../../reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)。
@@ -41,7 +37,7 @@
 
 开发示例如下（仅供参考）：为开发者提供的示例代码为同时开发客户端和服务端的Demo，并实现IPC通信。
 
-1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)，创建一个OpenHarmony工程。
+1. 创建新工程，请参考[创建一个新的工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project)，创建一个OpenHarmony工程。
 
     **注意：**
 
@@ -104,18 +100,18 @@
     }
     ```
 
-5. 定义获取对应驱动远程对象的接口，通过bindDeviceDriver获取远程对象。
+5. 定义获取对应驱动远程对象的接口，通过bindDriverWithDeviceId获取远程对象。
 
     ```ts
     private async getDriverRemote(deviceId: number): Promise<rpc.IRemoteObject | null> {
     try {
-      let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDeviceDriver(deviceId,
+      let remoteDeviceDriver: deviceManager.RemoteDeviceDriver = await deviceManager.bindDriverWithDeviceId(deviceId,
         (err: BusinessError, id: number) => {
         hilog.info(0, 'testTag', `device[${id}] id disconnect, err: ${JSON.stringify(err)}}`);
       });
       return remoteDeviceDriver.remote;
     } catch (error) {
-      hilog.error(0, 'testTag', `bindDeviceDriver failed, err: ${JSON.stringify(error)}`);
+      hilog.error(0, 'testTag', `bindDriverWithDeviceId failed, err: ${JSON.stringify(error)}`);
     }
       return null;
     }
@@ -215,13 +211,30 @@
     }
     ```
 <!--DelEnd-->
-
+<!--RP1-->
 ## 应用签名
 
 **注意：** 先配置权限，再自动签名。
 
-应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER。
+应用需要配置签名文件才能在设备上运行，并且扩展外设管理客户端开发，需要配置扩展外设的权限：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER及ohos.permission.ACCESS_DDK_DRIVERS。
+- ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER（API version 10及以上版本，需要申请此权限。）
+
+  在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)后，即可获得授权。
+
+- ohos.permission.ACCESS_DDK_DRIVERS（API version 18及以上版本，需要申请此权限。）
+
+  1. 在module.json5配置文件的requestPermissions标签中[声明权限](../../security/AccessToken/declare-permissions.md)。
+  2. HarmonyAppProvision配置文件中，修改acls字段，跨级别申请权限，可参考[申请使用受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
+  3. 在HarmonyAppProvision配置文件（即SDK目录下的“Sdk/openharmony/_{Version} _/toolchains /lib/UnsgnedReleasedProfileTemplate.json”文件）中，配置当前客户需要连接的驱动服务端的bundleName，如果存在多个服务端，多个服务端的bundleName以逗号分隔。
+
+      具体配置方法如下：
+
+      在文件的根节点加上app-services-capabilities节点，并采用以下格式进行配置。
+      ```json
+      "app-services-capabilities": {
+        "ohos.permission.ACCESS_DDK_DRIVERS": {"bundleNames": "bundleName0,bundleName1,bundleName2"}
+      }
+      ```
 
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。
-
-权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section157591551175916)。
+<!--RP1End-->

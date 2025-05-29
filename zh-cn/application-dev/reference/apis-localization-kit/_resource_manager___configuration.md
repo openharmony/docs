@@ -9,6 +9,7 @@
 
 **相关模块：**[Resourcemanager](resourcemanager.md)
 
+**所在头文件：**[resmgr_common.h](resmgr__common_8h.md)
 
 ## 汇总
 

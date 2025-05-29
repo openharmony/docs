@@ -5,7 +5,11 @@
 
 提供了模型相关接口，可以用于模型创建、模型推理等，该接口是非线程安全的。
 
+**引用文件：** <mindspore/model.h>
+
 **库：** libmindspore_lite_ndk.so
+
+**系统能力：** SystemCapability.Ai.MindSpore
 
 **起始版本：** 9
 
@@ -47,7 +51,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ModelCreate](_mind_spore.md#oh_ai_modelcreate) () | 创建一个模型对象。 |
+| [OH_AI_ModelCreate](_mind_spore.md#oh_ai_modelcreate) (void) | 创建一个模型对象。 |
 | [OH_AI_ModelDestroy](_mind_spore.md#oh_ai_modeldestroy) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) \*model) | 释放一个模型对象。 |
 | [OH_AI_ModelBuild](_mind_spore.md#oh_ai_modelbuild) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) model_context) | 从内存缓冲区加载并编译MindSpore模型。 |
 | [OH_AI_ModelBuildFromFile](_mind_spore.md#oh_ai_modelbuildfromfile) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, const char \*model_path, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](_mind_spore.md#oh_ai_contexthandle) model_context) | 通过模型文件加载并编译MindSpore模型。 |
@@ -74,5 +78,5 @@
 | [OH_AI_ModelSetTrainMode](_mind_spore.md#oh_ai_modelsettrainmode) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, bool train) | 设置训练模式，仅用于端侧训练。 |
 | [OH_AI_ModelSetupVirtualBatch](_mind_spore.md#oh_ai_modelsetupvirtualbatch) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, int virtual_batch_multiplier, float lr, float momentum) | 设置虚拟batch用于训练，仅用于端侧训练。 |
 | [OH_AI_ExportModel](_mind_spore.md#oh_ai_exportmodel) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const char \*model_file, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型，仅用于端侧训练。 |
-| [OH_AI_ExportModelBuffer](_mind_spore.md#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, char \*\*model_data, size_t \*data_size, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型内存缓存，仅用于端侧训练。 |
+| [OH_AI_ExportModelBuffer](_mind_spore.md#oh_ai_exportmodelbuffer) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, void \*model_data, size_t \*data_size, [OH_AI_QuantizationType](_mind_spore.md#oh_ai_quantizationtype) quantization_type, bool export_inference_only, char \*\*output_tensor_name, size_t num) | 导出训练模型内存缓存，仅用于端侧训练。 |
 | [OH_AI_ExportWeightsCollaborateWithMicro](_mind_spore.md#oh_ai_exportweightscollaboratewithmicro) ([OH_AI_ModelHandle](_mind_spore.md#oh_ai_modelhandle) model, [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) model_type, const char \*weight_file, bool is_inference, bool enable_fp16, char \*\*changeable_weights_name, size_t num) | 导出模型权重，只能用于micro推理，仅用于端侧训练。 |

@@ -20,14 +20,14 @@ FFRT并发队列提供了设置任务优先级（Priority）和队列并发度�
 
 ```c
 #include <stdio.h>
-#include <string.h>
-#include <ffrt.h>
+#include <unistd.h>
+#include "ffrt/ffrt.h"
 
 ffrt_queue_t create_bank_system(const char *name, int concurrency)
 {
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
-    ffrt_queue_attr_set_max_concurrency(&queue_attr, 4);
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
 
     // 创建一个并发队列
     ffrt_queue_t queue = ffrt_queue_create(ffrt_queue_concurrent, name, &queue_attr);
@@ -39,14 +39,14 @@ ffrt_queue_t create_bank_system(const char *name, int concurrency)
         return NULL;
     }
 
-    printf("create bank system successful\n");
+    printf("create bank system successfully\n");
     return queue;
 }
 
-void destory_bank_system(ffrt_queue_t queue_handle)
+void destroy_bank_system(ffrt_queue_t queue_handle)
 {
     ffrt_queue_destroy(queue_handle);
-    printf("destory bank system successful\n");
+    printf("destroy bank system successfully\n");
 }
 
 void bank_business(void *arg)
@@ -57,7 +57,8 @@ void bank_business(void *arg)
 }
 
 // 封装提交队列任务函数
-ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), char *name, ffrt_queue_priority_t level, int delay)
+ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), const char *name,
+    ffrt_queue_priority_t level, int delay)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
@@ -65,18 +66,13 @@ ffrt_task_handle_t commit_request(ffrt_queue_t bank, void (*func)(void *), char 
     ffrt_task_attr_set_queue_priority(&task_attr, level);
     ffrt_task_attr_set_delay(&task_attr, delay);
 
-    return ffrt_queue_submit_h(bank, ffrt_create_function_wrapper(func, NULL, name), &task_attr);
+    return ffrt_queue_submit_h_f(bank, func, name, &task_attr);
 }
 
 // 封装取消队列任务函数
 int cancel_request(ffrt_task_handle_t request)
 {
     return ffrt_queue_cancel(request);
-}
-
-int get_bank_queue_size(ffrt_queue_t bank)
-{
-    return ffrt_queue_get_task_cnt(bank);
 }
 
 // 封装等待队列任务函数
@@ -89,73 +85,30 @@ int main()
 {
     ffrt_queue_t bank = create_bank_system("Bank", 2);
     if (!bank) {
-        printf("create bank system failed");
+        printf("create bank system failed\n");
         return -1;
     }
-    commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer3", ffrt_queue_priority_low, 0);
-    commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
 
+    ffrt_task_handle_t task1 = commit_request(bank, bank_business, "customer1", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task2 = commit_request(bank, bank_business, "customer2", ffrt_queue_priority_low, 0);
     // VIP享受更优先的服务
-    commit_request(bank, bank_business, "VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task3 = commit_request(bank, bank_business, "customer3 VIP", ffrt_queue_priority_high, 0);
+    ffrt_task_handle_t task4 = commit_request(bank, bank_business, "customer4", ffrt_queue_priority_low, 0);
+    ffrt_task_handle_t task5 = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
 
-    ffrt_task_handle_t task = commit_request(bank, bank_business, "customer5", ffrt_queue_priority_low, 0);
-    ffrt_task_handle_t task_last = commit_request(bank, bank_business, "customer6", ffrt_queue_priority_low, 0);
-
-    // 取消客户5的服务
-    cancel_request(task);
-
-    printf("bank current serving for %d customers\n", get_bank_queue_size(bank));
+    // 取消客户4的服务
+    cancel_request(task4);
 
     // 等待所有的客户服务完成
-    wait_for_request(task_last);
-    destory_bank_system(bank);
+    wait_for_request(task5);
+    destroy_bank_system(bank);
 
+    ffrt_task_handle_destroy(task1);
+    ffrt_task_handle_destroy(task2);
+    ffrt_task_handle_destroy(task3);
+    ffrt_task_handle_destroy(task4);
+    ffrt_task_handle_destroy(task5);
     return 0;
-}
-```
-
-C风格构建FFRT任务需要一些额外的封装，封装方式为公共代码，与具体业务场景无关，使用方可以考虑用公共机制封装管理。
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_queue);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
 }
 ```
 
@@ -169,6 +122,12 @@ static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_fu
 | [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_destroy)                                   | 销毁队列。             |
 | [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_set_queue_priority)     | 设置队列任务优先级。   |
 | [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_set_max_concurrency) | 设置并发队列的并发度。 |
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_submit_h_f)                             | 向队列提交一个任务。   |
+
+> **说明：**
+>
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

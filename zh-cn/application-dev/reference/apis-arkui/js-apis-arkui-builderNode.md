@@ -1,6 +1,6 @@
 # BuilderNode
 
-提供能够挂载原生组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。
+提供能够挂载系统组件的自定义节点BuilderNode。BuilderNode仅可作为叶子节点使用。使用方式参考[BuilderNode开发指南](../../ui/arkts-user-defined-arktsNode-builderNode.md)。
 
 > **说明：**
 >
@@ -33,7 +33,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 >
 > RENDER_TYPE_TEXTURE类型目前仅在[BuilderNode](#buildernode-1)持有组件树的根节点为自定义组件时以及[XComponentNode](./js-apis-arkui-xcomponentNode.md)中设置生效。
 >
-> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
+> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不含全屏播放能力）、Web、XComponent。
 >
 > 从API version 12开始，新增以下组件支持纹理导出：DatePicker、ForEach、Grid、IfElse、LazyForEach、List、Scroll、Swiper、TimePicker、@Component修饰的自定义组件、NodeContainer以及NodeContainer下挂载的FrameNode和RenderNode。
 >
@@ -51,13 +51,13 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
 | type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
-| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage)。 |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage.md)。 |
 
 ## BuilderNode
 
 class BuilderNode\<Args extends Object[]>
 
-BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
+BuilderNode支持通过无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -85,9 +85,9 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
-依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
+依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
+支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器，来同步BuilderNode挂载的页面与BuilderNode中自定义组件的状态。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
@@ -105,7 +105,7 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                   |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。 |
 | arg     | Object                                                          | 否   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                          |
 
 
@@ -113,25 +113,39 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 build的可选参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
+### InputEventType<sup>20+</sup>
+
+type InputEventType = TouchEvent | MouseEvent | AxisEvent
+
+postInputEvent的参数，定义用于透传的输入事件类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明                                   |
+| ------------- | -------------------------------------- |
+| [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 触摸事件。 | 
+| [MouseEvent](arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)  | 鼠标事件。 |
+| [AxisEvent](arkui-ts/ts-universal-events-axis.md#axisevent)  | 轴事件。 |
 
 ### build<sup>12+</sup>
 
 build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buildoptions12)): void
 
-依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
-从API version 12开始，自定义组件支持接收[LocalStorage](../../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../quick-start/arkts-localstorage.md#localstoragelink)。
+依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../ui/state-management/arkts-builder.md)最多拥有一个根节点。
+支持自定义组件。不支持自定义组件使用[@Reusable](../../ui/state-management/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../ui/state-management/arkts-link.md)、[@Provide](../../ui/state-management/arkts-provide-and-consume.md)、[@Consume](../../ui/state-management/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+从API version 12开始，自定义组件支持接收[LocalStorage](../../ui/state-management/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../../ui/state-management/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../../ui/state-management/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../../ui/state-management/arkts-localstorage.md#localstoragelink)。
 
 > **说明**
 > 
-> @Builder进行创建和更新的规格参考[@Builder](../../quick-start/arkts-builder.md)。
+> @Builder进行创建和更新的规格参考[@Builder](../../ui/state-management/arkts-builder.md)。
 > 
 > 最外层的@Builder只支持一个入参。
 
@@ -143,7 +157,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 | 参数名  | 类型                                                            | 必填 | 说明                                                                                    |
 | ------- | --------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | [WrappedBuilder\<Args>](../../quick-start/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。   |
+| builder | [WrappedBuilder\<Args>](../../ui/state-management/arkts-wrapBuilder.md) | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../ui/state-management/arkts-builder.md)。   |
 | arg     | Object                                                          | 是   | builder的入参。当前仅支持一个入参，且入参对象类型与@Builder定义的入参类型保持一致。                                                            |
 | options | BuildOptions                                                    | 是   | build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
@@ -179,7 +193,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -190,7 +204,7 @@ struct Index {
             let buildNode = new BuilderNode<[ParamsInterface]>(this.getUIContext());
             buildNode.build(wrapBuilder<[ParamsInterface]>(buildText), {
               text: this.message, func: () => {
-                return "FUNCTION"
+                return "FUNCTION";
               }
             }, { nestingBuilderSupported: true });
             this.content.addFrameNode(buildNode.getFrameNode());
@@ -232,7 +246,7 @@ BuilderNode作为NodeContainer的根节点返回。
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -259,7 +273,7 @@ class TextNodeController extends NodeController {
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
 
     return this.textNode.getFrameNode();
   }
@@ -268,7 +282,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -294,7 +308,7 @@ BuilderNode的FrameNode挂到其它FrameNode下。
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -336,7 +350,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -362,7 +376,7 @@ BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布
 import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -410,7 +424,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -449,7 +463,7 @@ update(arg: Object): void
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -490,13 +504,13 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
-    this.message = message
+    super();
+    this.message = message;
   }
 
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
-    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message))
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 
@@ -510,7 +524,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -581,7 +595,7 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder
@@ -610,12 +624,12 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new BuilderNode(uiContext);
-    this.rootNode.build(this.wrapBuilder, { text: "this is a string" })
+    this.rootNode.build(this.wrapBuilder, { text: "this is a string" });
     return this.rootNode.getFrameNode();
   }
 
   // 坐标转换示例
-  postTouchEvent(event: TouchEvent): boolean {
+  postTouchEvent(event: TouchEvent, uiContext: UIContext): boolean {
     if (this.rootNode == null) {
       return false;
     }
@@ -626,8 +640,8 @@ class MyNodeController extends NodeController {
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
-        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
-        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+        event.changedTouches[i].x = uiContext.vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = uiContext.vp2px(offsetY + event.changedTouches[i].y);
       }
     }
     let result = this.rootNode.postTouchEvent(event);
@@ -653,7 +667,7 @@ struct MyComponent {
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
           if (event != undefined) {
-            this.nodeController.postTouchEvent(event);
+            this.nodeController.postTouchEvent(event, this.getUIContext());
           }
         })
     }
@@ -791,7 +805,7 @@ const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -963,7 +977,7 @@ struct Index {
 
 ### updateConfiguration<sup>12+</sup>
 
-updateConfiguration(): void  
+updateConfiguration(): void
 
 传递[系统环境变化](../apis-ability-kit/js-apis-app-ability-configuration.md)事件，触发节点的全量更新。
 
@@ -981,7 +995,7 @@ import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -1022,7 +1036,7 @@ class TextNodeController extends NodeController {
   private message: string = "";
 
   constructor(message: string) {
-    super()
+    super();
     this.message = message;
   }
 
@@ -1062,7 +1076,7 @@ function updateColorMode() {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -1075,7 +1089,7 @@ struct Index {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
         updateColorMode();
       }
-    }
+    };
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
     // 设置应用深浅色跟随系统
@@ -1121,3 +1135,327 @@ struct Index {
   }
 }
 ```
+### postInputEvent<sup>20+</sup>
+
+postInputEvent(event: InputEventType): boolean
+
+将事件分发到目标节点。
+
+> **说明：**
+>
+> 传入的坐标值需要转换为px。
+>
+> 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
+>
+> 注入事件为[轴事件](arkui-ts/ts-universal-events-axis.md#axisevent)时，由于轴事件中缺少旋转轴信息与捏合轴信息，因此注入的事件无法触发[pinch捏合手势](arkui-ts/ts-basic-gestures-pinchgesture.md)与[rotate旋转手势](arkui-ts/ts-basic-gestures-rotationgesture.md)。
+>
+> 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
+>
+> 针对同一个事件，在事件分发流程中不可以转发多次。
+>
+> [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
+>
+> 不建议同一个事件转发多次。<!--Del-->不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。<!--DelEnd-->
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                                      | 必填 | 说明       |
+| ------ | ------------------------------------------------------------------------- | ---- | ---------- |
+| event  | [InputEventType](#inputeventtype20) | 是   | 用于透传的输入事件。 |
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------- | ------------------ |
+| boolean | 事件是否被消费。 |
+
+## 示例
+
+### 示例1（鼠标事件）
+
+该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过onMouse回调读取本地x/y，再结合FrameNode.getPositionToParent()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新MouseEvent的windowX/windowY、displayX/displayY。最后通过rootNode.postInputEvent(event)将转换后的鼠标事件分发给子节点进行处理。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext, promptAction  } from '@kit.ArkUI';
+import { InputEventType } from '@ohos.arkui.node';
+
+class Params {
+  text: string = "this is a text"
+}
+@Builder
+function ButtonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .borderWidth(2)
+      .align(Alignment.Center)
+      .backgroundColor(Color.Orange)
+      .fontSize(20)
+      .width("45%")
+      .height("30%")
+      .offset({x: 100, y: 100})
+      .onMouse((event) => {
+        promptAction.showToast({
+          message: 'onMouse',
+          duration: 3000
+        });
+        console.log('onMouse')
+      })
+  }
+  .width(500)
+  .height(300)
+  .backgroundColor(Color.Gray)
+}
+class MyNodeController extends NodeController {
+  private rootNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new BuilderNode(uiContext);
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    return this.rootNode.getFrameNode();
+  }
+
+  postInputEvent(event: InputEventType): boolean {
+    if (this.rootNode == null) {
+      return false;
+    }
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+
+    if (event.source == SourceType.Mouse) {
+      let mouseEvent = event as MouseEvent;
+      if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+        mouseEvent.windowX = vp2px(offsetX + mouseEvent.x)
+        mouseEvent.windowY = vp2px(offsetY + mouseEvent.y)
+        mouseEvent.displayX = vp2px(offsetX + mouseEvent.x)
+        mouseEvent.displayY = vp2px(offsetY + mouseEvent.y)
+        mouseEvent.x = vp2px(mouseEvent.x)
+        mouseEvent.y = vp2px(mouseEvent.y)
+      }
+    }
+
+    let result = this.rootNode.postInputEvent(event);
+    return result;
+  }
+}
+@Entry
+@Component
+struct MyComponent {
+  private nodeController: MyNodeController = new MyNodeController();
+  build() {
+    Stack() {
+      NodeContainer(this.nodeController)
+        .height(300)
+        .width(500)
+      Column()
+        .width(500)
+        .height(300)
+        .backgroundColor(Color.Transparent)
+        .onMouse((event) => {
+          if (event != undefined) {
+            this.nodeController.postInputEvent(event);
+          }
+        })
+    }.offset({top: 100})
+  }
+}
+```
+
+![OnMouse](figures/OnMouse.gif)
+
+### 示例2（触摸事件）
+
+该示例演示了在自定义组件中截获触摸事件并对触点坐标进行转换的完整流程。在onTouch回调中，遍历TouchEvent的changedTouches和touches数组，对每个触点的x/y加上组件偏移量并调用vp2px转换为像素，更新各自的windowX/windowY、displayX/displayY。最后同样通过rootNode.postInputEvent(event)将转换后的触摸事件分发给子节点处理。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext, promptAction  } from '@kit.ArkUI';
+import { InputEventType } from '@ohos.arkui.node';
+
+class Params {
+  text: string = "this is a text"
+}
+@Builder
+function ButtonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .borderWidth(2)
+      .align(Alignment.Center)
+      .backgroundColor(Color.Orange)
+      .fontSize(20)
+      .width("45%")
+      .height("30%")
+      .offset({x: 100, y: 100})
+      .onTouch((event) => {
+        promptAction.showToast({
+          message: 'onTouch',
+          duration: 3000
+        });
+        console.log('onTouch')
+      })
+  }
+  .width(500)
+  .height(300)
+  .backgroundColor(Color.Gray)
+}
+class MyNodeController extends NodeController {
+  private rootNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new BuilderNode(uiContext);
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    return this.rootNode.getFrameNode();
+  }
+
+  postInputEvent(event: InputEventType): boolean {
+    if (this.rootNode == null) {
+      return false;
+    }
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+
+    // 只转发原始事件，不转发鼠标模拟的触摸事件
+    if (event.source == SourceType.TouchScreen) {
+      let touchevent = event as TouchEvent;
+      let changedTouchLen = touchevent.changedTouches.length;
+      for (let i = 0; i < changedTouchLen; i++) {
+        if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+          touchevent.changedTouches[i].windowX = vp2px(offsetX + touchevent.changedTouches[i].x);
+          touchevent.changedTouches[i].windowY = vp2px(offsetY + touchevent.changedTouches[i].y);
+          touchevent.changedTouches[i].displayX = vp2px(offsetX + touchevent.changedTouches[i].x);
+          touchevent.changedTouches[i].displayY = vp2px(offsetY + touchevent.changedTouches[i].y);
+        }
+      }
+      let touchesLen = touchevent.touches.length;
+      for (let i = 0; i < touchesLen; i++) {
+        if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+          touchevent.touches[i].windowX = vp2px(offsetX + touchevent.touches[i].x);
+          touchevent.touches[i].windowY = vp2px(offsetY + touchevent.touches[i].y);
+          touchevent.touches[i].displayX = vp2px(offsetX + touchevent.touches[i].x);
+          touchevent.touches[i].displayY = vp2px(offsetY + touchevent.touches[i].y);
+        }
+      }
+    }
+
+    let result = this.rootNode.postInputEvent(event);
+    return result;
+  }
+}
+@Entry
+@Component
+struct MyComponent {
+  private nodeController: MyNodeController = new MyNodeController();
+  build() {
+    Stack() {
+      NodeContainer(this.nodeController)
+        .height(300)
+        .width(500)
+      Column()
+        .width(500)
+        .height(300)
+        .backgroundColor(Color.Transparent)
+        .onTouch((event) => {
+          if (event != undefined) {
+            this.nodeController.postInputEvent(event);
+          }
+        })
+    }.offset({top: 100})
+  }
+}
+```
+
+![OnTouch](figures/OnTouch.gif)
+
+### 示例3（轴事件）
+
+该示例演示了在自定义组件中截获滚轮或触控板轴事件并进行坐标转换的完整流程。在onAxisEvent回调中，先获取事件的相对x/y，再加上组件偏移量后调用vp2px转换为像素，更新AxisEvent的windowX/windowY、displayX/displayY，最后通过rootNode.postInputEvent(event)将转换后的轴事件分发给子节点进行处理。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext, promptAction } from '@kit.ArkUI';
+import { InputEventType } from '@ohos.arkui.node';
+
+class Params {
+  text: string = "this is a text"
+}
+@Builder
+function ButtonBuilder(params: Params) {
+  Column() {
+    Button(params.text)
+      .borderWidth(2)
+      .align(Alignment.Center)
+      .backgroundColor(Color.Orange)
+      .fontSize(20)
+      .width("45%")
+      .height("30%")
+      .offset({x: 100, y: 100})
+      .onAxisEvent((event) => {
+        promptAction.showToast({
+          message: 'onAxisEvent',
+          duration: 3000
+        });
+        console.log('onAxisEvent')
+      })
+  }
+  .width(500)
+  .height(300)
+  .backgroundColor(Color.Gray)
+}
+class MyNodeController extends NodeController {
+  private rootNode: BuilderNode<[Params]> | null = null;
+  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(ButtonBuilder);
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new BuilderNode(uiContext);
+    this.rootNode.build(this.wrapBuilder, { text: "This is a string" })
+    return this.rootNode.getFrameNode();
+  }
+
+  postInputEvent(event: InputEventType): boolean {
+    if (this.rootNode == null) {
+      return false;
+    }
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+
+    let axiseEvent = event as AxisEvent;
+    if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+      axiseEvent.windowX = vp2px(offsetX + axiseEvent.x)
+      axiseEvent.windowY = vp2px(offsetY + axiseEvent.y)
+      axiseEvent.displayX = vp2px(offsetX + axiseEvent.x)
+      axiseEvent.displayY = vp2px(offsetY + axiseEvent.y)
+      axiseEvent.x = vp2px(axiseEvent.x)
+      axiseEvent.y = vp2px(axiseEvent.y)
+    }
+
+    let result = this.rootNode.postInputEvent(event);
+    return result;
+  }
+}
+@Entry
+@Component
+struct MyComponent {
+  private nodeController: MyNodeController = new MyNodeController();
+  build() {
+    Stack() {
+      NodeContainer(this.nodeController)
+        .height(300)
+        .width(500)
+      Column()
+        .width(500)
+        .height(300)
+        .backgroundColor(Color.Transparent)
+        .onAxisEvent((event) => {
+          if (event != undefined) {
+            this.nodeController.postInputEvent(event);
+          }
+        })
+    }.offset({top: 100})
+  }
+}
+```
+
+![onAxisEvent](figures/onAxisEvent.gif)

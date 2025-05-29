@@ -42,14 +42,13 @@
      accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
-     console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
    }
    ```
 
 ## 判断目标系统账号的指定约束是否使能
 
-业务应用需要判断目标系统账号的指定约束是否使能，以此来决策是否对目标系统账号的行为做管控。
-开发者可以使用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口完成此操作。
+业务应用需要判断目标系统账号的指定约束是否使能，以此来决策是否对目标系统账号的行为做管控。开发者可以使用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口完成此操作。
 
 具体开发实例如下：
 
@@ -63,8 +62,9 @@
 2. 调用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口，判断指定约束是否使能。
 
    ```ts
-   let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
-   if (isEnabled) {
-     // your business logic
-   }
+   accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+     if (isEnabled) {
+        // your business logic
+     }
+   });
    ```

@@ -76,15 +76,23 @@ The widget configuration information field is missing or invalid.
 
 Use the correct configuration information.
 
-## 16501000 Functional Error
+## 16501000 Internal Function Error
 
 **Error Message**
 
-A functional error occurred.
+An internal functional error occurred.
 
 **Description**
 
 An internal error occurs when the system executes the request.
+
+**Possible Causes**
+
+An internal service execution exception occurs.
+
+**Solution**
+
+Try again after the system is restarted.
 
 ## 16501001 Widget ID Not Exist
 

@@ -2,59 +2,19 @@
 
 [Worker](../../arkts-utils/worker-introduction.md) is mainly used to offer applications a multithreaded environment. It enables applications to perform time-consuming operations in background threads. This greatly prevents computing-intensive or high-latency tasks from blocking the running of the main thread.
 
-When using camera capabilities, you often need to create camera sessions and continuously receive and process preview, photo, and video streams to achieve the desired camera functionalities. If these resource-demanding operations are performed in the main thread (UI thread), UI rendering may be blocked. Therefore, you are advised to implement the camera functionalities in the worker thread.
+When using camera capabilities, you often need to create camera sessions and continuously receive and process preview, photo, and video streams to achieve the desired camera functionalities. If these resource-demanding operations are performed in the main thread (UI thread), UI rendering may be blocked. Therefore, you are advised to implement the camera functionalities in the Worker thread.
 
 ## How to Develop
-
-1. Create a worker thread file and configure the worker.
-
-   DevEco Studio supports one-click generation of worker threads. Right-click any position in the {moduleName} directory and choose **New > Worker** to generate the template file and configuration information of the worker thread. You do not need to configure the related fields in **build-profile.json5**.
-
-   Example of the CameraWorker.ets file:
-
-   ```ts
-   import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-   import CameraService from '../CameraService';
-   
-   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
-   
-   // Custom message format.
-   interface MessageInfo {
-     hasResolve: boolean;
-     type: string;
-     context: Context; // The worker thread cannot use getContext() to obtain the context of the host thread. Instead, the context must be passed through messages from the host thread to the worker thread.
-     surfaceId: string;
-   }
-   
-   workerPort.onmessage = async (e: MessageEvents) => {
-     const messageInfo: MessageInfo = e.data;
-     console.info(`worker onmessage type:${messageInfo.type}`)
-     if ('initCamera' === messageInfo.type) {
-       // The worker thread receives a camera initialization message from the host thread.
-       console.info(`worker initCamera surfaceId:${messageInfo.surfaceId}`)
-       // Initialize the camera in the worker thread.
-       await CameraService.initCamera(messageInfo.context, messageInfo.surfaceId);
-     } else if ('releaseCamera' === messageInfo.type) {
-       // The worker thread receives a camera release message from the host thread.
-       console.info('worker releaseCamera.');
-       // Release the camera in the worker thread.
-       await CameraService.releaseCamera();
-     }
-   }
-   
-   workerPort.onmessageerror = (e: MessageEvents) => {
-   }
-   
-   workerPort.onerror = (e: ErrorEvent) => {
-   }
-   ```
-   
-2. Create a camera service proxy class, in which all APIs provided by Camera Kit method are called.
-
+1. Import dependencies, including dependencies related to Worker and camera framework.
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { camera } from '@kit.CameraKit';
-   
+   import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+   ```
+
+2. Create a camera service proxy class, in which all APIs provided by Camera Kit method are called.
+
+   ```ts
    class CameraService {
      private imageWidth: number = 1920;
      private imageHeight: number = 1080;
@@ -84,7 +44,7 @@ When using camera capabilities, you often need to create camera sessions and con
            console.error('Failed to create the camera input.');
            return;
          }
-         // Open a camera.
+         // Open the camera.
          await this.cameraInput.open();
    
          let previewProfile: camera.Profile = {
@@ -125,7 +85,7 @@ When using camera capabilities, you often need to create camera sessions and con
          await this.session.start();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`initCamera fail: ${JSON.stringify(err)}`);
+         console.error(`initCamera fail: ${err}`);
        }
      }
    
@@ -139,7 +99,7 @@ When using camera capabilities, you often need to create camera sessions and con
          await this.cameraInput?.close();
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`releaseCamera fail: error: ${JSON.stringify(err)}`);
+         console.error(`releaseCamera fail: error: ${err}`);
        } finally {
          this.previewOutput = undefined;
          this.photoOutput = undefined;
@@ -150,15 +110,52 @@ When using camera capabilities, you often need to create camera sessions and con
        console.info('releaseCamera success');
      }
    }
-   
-   export default new CameraService();
    ```
 
-3. Create a component to display the preview stream, create a ThreadWorker instance in the page-related lifecycle, and initialize and release the camera in the worker thread.
+3. Create a Worker thread file and configure the Worker.
+
+   DevEco Studio supports one-click generation of Worker threads. Right-click any position in the {moduleName} directory and choose **New > Worker** to generate the template file and configuration information of the Worker thread. You do not need to configure the related fields in **build-profile.json5**.
+
+   Example of the CameraWorker.ets file:
 
    ```ts
-   import { worker } from '@kit.ArkTS';
+   let cameraService = new CameraService();
+   const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    
+   // Custom message format.
+   interface MessageInfo {
+     hasResolve: boolean;
+     type: string;
+     context: Context; // The Worker thread cannot use getContext() to obtain the context of the host thread. Instead, the context must be passed through messages from the host thread to the Worker thread.
+     surfaceId: string;
+   }
+   
+   workerPort.onmessage = async (e: MessageEvents) => {
+     const messageInfo: MessageInfo = e.data;
+     console.info(`worker onmessage type:${messageInfo.type}`)
+     if ('initCamera' === messageInfo.type) {
+       // The Worker thread receives a camera initialization message from the host thread.
+       console.info(`worker initCamera surfaceId:${messageInfo.surfaceId}`)
+       // Initialize the camera in the Worker thread.
+       await cameraService.initCamera(messageInfo.context, messageInfo.surfaceId);
+     } else if ('releaseCamera' === messageInfo.type) {
+       // The Worker thread receives a camera release message from the host thread.
+       console.info('worker releaseCamera.');
+       // Release the camera in the Worker thread.
+       await cameraService.releaseCamera();
+     }
+   }
+   
+   workerPort.onmessageerror = (e: MessageEvents) => {
+   }
+   
+   workerPort.onerror = (e: ErrorEvent) => {
+   }
+   ```
+
+4. Create a component to display the preview stream, create a ThreadWorker instance in the page-related lifecycle, and initialize and release the camera in the Worker thread.
+
+   ```ts
    @Entry
    @Component
    struct Index {
@@ -166,22 +163,24 @@ When using camera capabilities, you often need to create camera sessions and con
      private surfaceId: string = '';
      @State imageWidth: number = 1920;
      @State imageHeight: number = 1080;
-     // Create a ThreadWorker object to obtain a worker instance.
+     // Create a ThreadWorker object to obtain a Worker instance.
      private workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/CameraWorker.ets');
+     private uiContext: UIContext = this.getUIContext();
+     private context: Context | undefined = this.uiContext.getHostContext();
    
      onPageShow(): void {
        if ('' !== this.surfaceId) {
-         // Send a message to the worker thread through the worker instance to initialize the camera.
+         // Send a message to the Worker thread through the Worker instance to initialize the camera.
          this.workerInstance.postMessage({
            type: 'initCamera',
-           context: getContext(this),
+           context: this.context,
            surfaceId: this.surfaceId,
          })
        }
      }
    
      onPageHide(): void {
-       // Send a message to the worker thread through the worker instance to destroy the camera.
+       // Send a message to the Worker thread through the Worker instance to destroy the camera.
        this.workerInstance.postMessage({
          type: 'releaseCamera',
        })
@@ -209,15 +208,15 @@ When using camera capabilities, you often need to create camera sessions and con
                  console.error('create stage worker failed');
                  return;
                }
-               // The host thread sends a camera initialization message to the worker thread.
+               // The host thread sends a camera initialization message to the Worker thread.
                this.workerInstance.postMessage({
                  type: 'initCamera',
-                 context: getContext(this), // Pass the context of the host thread to the worker thread.
-                 surfaceId: this.surfaceId, // Pass the surface ID to the worker thread.
+                 context: this.context, // Pass the context of the host thread to the Worker thread.
+                 surfaceId: this.surfaceId, // Pass the surface ID to the Worker thread.
                })
              })// The width and height of the surface are opposite to those of the XComponent.
-             .width(px2vp(this.imageHeight))
-             .height(px2vp(this.imageWidth))
+             .width(this.uiContext.px2vp(this.imageHeight))
+             .height(this.uiContext.px2vp(this.imageWidth))
    
          }.justifyContent(FlexAlign.Center)
          .height('90%')

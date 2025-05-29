@@ -1,8 +1,6 @@
 # 明文导入密钥(ArkTS)
 
-
 分别以导入AES256与RSA2048密钥为例，具体的场景介绍及支持的算法规格，请参考[密钥导入的支持的算法](huks-key-import-overview.md#支持的算法)。
-
 
 ## 开发步骤
 
@@ -124,14 +122,14 @@ let properties: Array<huks.HuksParam> = [
     value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
   },
   {
-    // 此 tag表示密钥导入后的用途，导入后将不可更改
+    // 此 tag表示密钥导入后的用途，导入后将不可更改。
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
   },
   {
-    // 此 tag表示需导入的密钥类型
+    // 此 tag表示需导入的密钥类型。
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-    // 此 value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥
+    // 此 value表示导入密钥对，若改为HUKS_KEY_TYPE_PUBLIC_KEY时表示仅导入公钥。
     value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR
   },
 ]
@@ -175,14 +173,14 @@ let properties: Array<huks.HuksParam> = [
     value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
   },
   {
-    // 此 tag表示密钥导入后的用途，导入后将不可更改
+    // 此 tag表示密钥导入后的用途，导入后将不可更改。
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
   },
   {
-    // 此 tag表示需导入的密钥类型
+    // 此 tag表示需导入的密钥类型。
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
-    // 此 value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对
+    // 此 value表示导入密钥的公钥，若改为HUKS_KEY_TYPE_KEY_PAIR时表示导入密钥对。
     value: huks.HuksImportKeyType.HUKS_KEY_TYPE_PUBLIC_KEY
   },
 ]
@@ -220,8 +218,8 @@ let keyProperties: Array<huks.HuksParam> = [
   }
 ]
 let huksOptions: huks.HuksOptions = {
-  properties: keyProperties, // 非空填充
-  inData: new Uint8Array(new Array()) // 非空填充
+  properties: keyProperties, // 非空填充。
+  inData: new Uint8Array(new Array()) // 非空填充。
 }
 try {
   huks.isKeyItemExist(keyAlias, huksOptions, (error, data) => {

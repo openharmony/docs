@@ -6,19 +6,20 @@
 
 > **说明：**
 >
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API，均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-connection.md)。
 
 ## 基本概念
 
-- 网络生产者：数据网络的提供方。比如WiFi、蜂窝、Ethernet等。
-- 网络消费者：数据网络的使用方。比如应用或系统服务。
-- 网络探测：检测网络有效性，避免将网络从可用网络切换到不可用网络。内容包括绑定网络探测、DNS探测、HTTP探测及HTTPS探测。
+- 网络生产者：数据网络的提供方。例如WiFi、蜂窝、Ethernet等。
+- 网络消费者：数据网络的使用方。例如应用或系统服务。
+- 网络探测：检测网络有效性，避免将网络从可用网络切换到不可用网络。包括绑定网络探测、DNS探测、HTTP探测及HTTPS探测。
 - 网络优选：处理多网络共存时选择最优网络。在网络状态、网络信息及评分发生变化时被触发。
+- 默认网络：默认路由所在的网络。
 
 ## 约束
 
 - 开发语言：JS
-- 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+- 该模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
 
@@ -43,19 +44,19 @@
 | setAppHttpProxy(httpProxy: HttpProxy): void;| 设置网络应用级Http代理配置信息。 |
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调。 |
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调。 |
-| getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
+| getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。 |
 | hasDefaultNet(callback: AsyncCallback\<boolean>): void; |检查默认数据网络是否被激活，使用callback回调。 |
 | getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的NetHandle对象列表，使用callback回调。 |
 | getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询netHandle对应的网络的连接信息，使用callback回调。 |
 | getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |获取netHandle对应的网络的能力信息，使用callback回调。 |
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法。 |
-| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性(ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED)与网络管理不一致。使用callback回调。 |
-| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性(ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED)与网络管理不一致。使用callback回调。 |
+| reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口表示应用程序认为网络的可用性(ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED)与网络管理不一致。使用callback回调。 |
+| reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口表示应用程序认为网络的可用性(ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED)与网络管理不一致。使用callback回调。 |
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调。 |
 | <!--DelRow--> enableAirplaneMode(callback: AsyncCallback\<void>): void; | 设置网络为飞行模式，使用callback回调。 |
 | <!--DelRow--> disableAirplaneMode(callback: AsyncCallback\<void>): void;| 关闭网络飞行模式，使用callback回调。 |
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | 返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征。timeout是超时时间(单位：毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。 |
-| bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSockett绑定到当前网络，使用callback回调。 |
+| bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | 将TCPSocket或UDPSocket绑定到当前网络，使用callback回调。 |
 | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |使用对应网络解析域名，获取一个IP，调用callback。 |
 | on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |订阅网络可用事件。 |
 | on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |订阅网络能力变化事件。 |
@@ -250,7 +251,7 @@ async function socketTest() {
 
 #### 原网络连接使用Socket Library建立网络连接
 
-请在监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
+监控到默认网络变化后关闭原有Socket并重新建立Socket连接。
 
 ## 获取所有注册的网络
 
@@ -423,7 +424,7 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 
 ## 使用对应网络解析域名，获取所有IP
 
-1. 声明接口调用所需要的权限：ohos.permission.INTERNET
+1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@kit.NetworkKit中导入connection命名空间。

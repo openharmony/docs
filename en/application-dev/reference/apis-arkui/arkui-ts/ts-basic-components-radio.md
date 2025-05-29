@@ -51,15 +51,15 @@ Creates a radio button.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Description                          |
-| --------------- | -------------------------------- |
-| TICK            | Default tick icon. |
-| DOT             | Default dot icon.  |
-| CUSTOM          | Custom component.|
+| Name           | Value          | Description                          |
+| --------------- | -------------------------------- | -------------------------------- |
+| TICK            | 0           | Default tick icon. |
+| DOT             | 1            | Default dot icon.  |
+| CUSTOM          | 2         | Custom component.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### checked
 
@@ -68,6 +68,7 @@ checked(value: boolean)
 Sets whether the radio button is selected.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -77,9 +78,30 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                |
-| ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | Yes  | Whether the radio button is selected.<br>Default value: **false**|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the radio button is selected.<br>Default value: **false**<br>**true**: The radio button is selected. **false**: The radio button is not selected.|
+
+### checked<sup>18+</sup>
+
+checked(isChecked: Optional\<boolean>)
+
+Sets whether the radio button is selected. Compared to [checked](#checked), this API supports the **undefined** type for the **isChecked** parameter.
+
+This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                                        | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| isChecked | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the radio button is selected.<br>If **isChecked** is set to **undefined**, the default value **false** is used.<br>**true**: The radio button is selected. **false**: The radio button is not selected.|
 
 ### radioStyle<sup>10+</sup>
 
@@ -99,7 +121,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 | ------ | ----------------------------------- | ---- | ---------------------------------- |
 | value  | [RadioStyle](#radiostyle10) | No  | Style of the radio button in selected or deselected state.|
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
@@ -115,9 +137,25 @@ Creates a content modifier.
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12) | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
+### contentModifier<sup>18+</sup>
+
+contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
+
+Creates a content modifier. Compared to [contentModifier](#contentmodifier12)<sup>12+</sup>, this API supports the **undefined** type for the **modifier** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12)> | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.<br>If **modifier** is set to **undefined**, no content modifier is used.|
+
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
@@ -128,6 +166,40 @@ Triggered when the selected state of the radio button changes.
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                            |
+| --------- | ------- | ---- | -------------------------------- |
+| isChecked | boolean | Yes  | Selected state of the radio button.|
+
+### onChange<sup>18+</sup>
+
+onChange(callback: Optional\<OnRadioChangeCallback>)
+
+Triggered when the selected state of the radio button changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback18)> | Yes  | Called invoked when the selected state of the radio button changes.<br>If **callback** is set to **undefined**, the callback function is not used.|
+
+## OnRadioChangeCallback<sup>18+</sup>
+
+type OnRadioChangeCallback = (isChecked: boolean) => void
+
+Triggered when the selected state of the radio button changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,9 +217,9 @@ Triggered when the selected state of the radio button changes.
 
 | Name                  | Type                                      | Mandatory| Description                                                        |
 | ---------------------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the background when the radio button is selected.<br>Default value: **#007DFF**                      |
-| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the border when the radio button is deselected.<br>Default value: **#182431**                      |
-| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the indicator when the radio button is selected. Since API version 12, this parameter takes effect only when **indicatorType** is set to **RadioIndicatorType.TICK** or **RadioIndicatorType.DOT**.  <br>Default value: **#FFFFFF**|
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the background when the radio button is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**                     |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the border when the radio button is deselected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**                      |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the indicator when the radio button is selected. Since API version 12, this parameter takes effect only when **indicatorType** is set to **RadioIndicatorType.TICK** or **RadioIndicatorType.DOT**.  <br>Default value: **$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ## RadioConfiguration<sup>12+</sup>
 
@@ -160,8 +232,8 @@ You need a custom class to implement the **ContentModifier** API.
 | Name | Type   | Read Only| Optional |  Description             |
 | ------ | ------ |-------------------------------- |-------------------------------- |-------------------------------- |
 | value | string | No| No|Current value of the radio button.|
-| checked | boolean| No| No| Whether the radio button is selected.<br>Default value: **false**|
-| triggerChange |Callback\<boolean>|No|No|Changes the selected state of the radio button.|
+| checked | boolean| No| No| Whether the radio button is selected.<br>Default value: **false**<br>**true**: The radio button is selected. **false**: The radio button is not selected.|
+| triggerChange |Callback\<boolean>|No|No|Changes the selected state of the radio button.<br>The value **true** means that the radio button changes from unselected to selected, and **false** means that the radio button changes from selected to unselected.|
 
 
 ## Example

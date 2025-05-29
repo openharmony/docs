@@ -152,6 +152,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     (void)userData;
 }
 
+// The callback OnDisplaySelected() is invoked to obtain the display ID.
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+    (void)capture;
+    (void)displayId;
+    (void)userData;
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
@@ -215,6 +222,12 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Set a callback to respond to state changes.
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
+    // (Optional) Set a callback to obtain the display ID. This operation must be performed before screen capture starts.
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+
+    // (Optional) Set the cursor display switch. This operation must be performed before screen capture starts.
+    OH_AVScreenCapture_ShowCursor(capture, false);
+
     // Initialize AVScreenCapture.
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
     
@@ -230,7 +243,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Release the AVScreenCapture instance.
     int32_t retRelease = OH_AVScreenCapture_Release(capture);
 
-    // Return the invoking result. In the example, only a random number is returned.
+    // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);
 

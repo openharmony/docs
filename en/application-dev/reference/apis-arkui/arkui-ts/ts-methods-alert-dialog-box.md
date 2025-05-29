@@ -41,31 +41,52 @@ Shows an alert dialog box.
 | cancel                            | [VoidCallback](ts-types.md#voidcallback12) | No  | Callback invoked when the dialog box is closed after the overlay is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                              |
 | alignment                         | [DialogAlignment](#dialogalignment)                  | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**<br>If **showInSubWindow** is set to **true** in **UIExtension**, the dialog box is aligned with the host window based on **UIExtension**.|
 | offset                            | [Offset](ts-types.md#offset)                                 | No  | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| gridCount                         | number                                                       | No  | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                   |
+| gridCount                         | number                                                       | No  | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**<br>Value range: an integer no less than 0<br>**Atomic service API**: This API can be used in atomic services since API version 11.                   |
 | maskRect<sup>10+</sup>            | [Rectangle](#rectangle8)                             | No  | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| showInSubWindow<sup>11+</sup>     | boolean                                                      | No  | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| showInSubWindow<sup>11+</sup>     | boolean                                                      | No  | Whether to show the dialog box in a subwindow when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | isModal<sup>11+</sup>             | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundColor<sup>11+</sup>     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the dialog box.<br>Default value: **Color.Transparent**<br>**NOTE**<br>When **backgroundColor** is set to a non-transparent color, **backgroundBlurStyle** must be set to **BlurStyle.NONE**; otherwise, the color display may not meet the expected effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No  | Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10)| No| Options for customizing the background blur style.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | No| Options for customizing the background effect.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | onWillDismiss<sup>12+</sup>       | Callback<[DismissDialogAction](#dismissdialogaction12)> | No  | Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| cornerRadius<sup>12+</sup>        |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }**<br> The radius of the rounded corners is subject to the component size. Its maximum value is half of the component width or height. If the value is negative, the default value is used.<br> When set to a percentage, the value defines the radius as a percentage of the parent component's width or height.<br>**NOTE**<br>When **cornerRadius** is of type LocalizedBorderRadiuses, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| cornerRadius<sup>12+</sup>        |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }**<br> The radius of the rounded corners is subject to the component size. Its maximum value is half of the component width or height. If the value is negative, the default value is used.<br> When set to a percentage, the value defines the radius as a percentage of the parent component's width or height.<br>**NOTE**<br>When **cornerRadius** is of type LocalizedBorderRadiuses, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | transition<sup>12+</sup>          | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | No  | Transition effect for the entrance and exit of the dialog box.<br>**NOTE**<br> 1. If this parameter is not set, the default effect is used.<br> 2. Touching the Back button during the entrance animation pauses the entrance animation and starts the exit animation. The final effect is one obtained after the curves of the entrance and exit animations are combined.<br> 3. Touching the Back button during the exit animation does not affect the animation playback. Touching the Back button again closes the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | width<sup>12+</sup>               | [Dimension](ts-types.md#dimension10) | No  | Width of the dialog box.<br>**NOTE**<br>- Default maximum width of the dialog box: 400 vp<br>- When this parameter is set to a percentage, the reference width of the dialog box is the width of the window where the dialog box is located. You can decrease or increase the width as needed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | height<sup>12+</sup>              | [Dimension](ts-types.md#dimension10)                         | No  | Height of the dialog box.<br>**NOTE**<br>- Default maximum height of the dialog box: 0.9 x (Window height – Safe area)<br>- When this parameter is set to a percentage, the reference height of the dialog box is the height of the window where the dialog box is located minus the safe area. You can decrease or increase the height as needed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| borderWidth<sup>12+</sup>         | [Dimension](ts-types.md#dimension10) \| [EdgeWidths](ts-types.md#edgewidths9) \| [LocalizedEdgeWidths](ts-types.md#LocalizedEdgeWidths12) | No  | <br>You can set the width for all four sides or set separate widths for individual sides.<br>Default value: **0**<br> When set to a percentage, the value defines the border width as a percentage of the parent dialog box's width.<br>If the left and right borders are greater than its width, or the top and bottom borders are greater than its height, the dialog box may not display as expected.<br>**NOTE**<br>When **borderWidth** is of type LocalizedEdgeWidths, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| borderColor<sup>12+</sup>         | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](ts-types.md#edgecolors9) \| [LocalizedEdgeColors](ts-types.md#LocalizedEdgeColors12) | No  | Border color of the dialog box.<br>Default value: **Color.Black**<br> **borderColor** must be used with **borderWidth** in pairs. **NOTE**<br>When **borderColor** is of type LocalizedEdgeColors, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| borderWidth<sup>12+</sup>         | [Dimension](ts-types.md#dimension10) \| [EdgeWidths](ts-types.md#edgewidths9) \| [LocalizedEdgeWidths](ts-types.md#localizededgewidths12) | No  | <br>You can set the width for all four sides or set separate widths for individual sides.<br>Default value: **0**<br> When set to a percentage, the value defines the border width as a percentage of the parent dialog box's width.<br>If the left and right borders are greater than its width, or the top and bottom borders are greater than its height, the dialog box may not display as expected.<br>**NOTE**<br>When **borderWidth** is of type LocalizedEdgeWidths, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| borderColor<sup>12+</sup>         | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](ts-types.md#edgecolors9) \| [LocalizedEdgeColors](ts-types.md#localizededgecolors12) | No  | Border color of the dialog box.<br>Default value: **Color.Black**<br> **borderColor** must be used with **borderWidth** in pairs. **NOTE**<br>When **borderColor** is of type LocalizedEdgeColors, the layout order can be dynamically adjusted based on the user's language settings.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](ts-types.md#edgestyles9) | No  | Border style of the dialog box.<br>Default value: **BorderStyle.Solid**<br>**borderStyle** must be used with **borderWidth** in pairs.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | textStyle<sup>12+</sup>              | [TextStyle](#textstyle12) | No  | Text style of the message in the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
-| levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY.**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| onWillAppear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onDidAppear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box appears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onDidAppear**. The settings take effect next time the dialog box appears.<br>3. If the dialog is dismissed before its entrance animation is finished, the animation will be interrupted, and **onDidAppear** will not be triggered.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| onWillDisappear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br> **Atomic service API**: This API can be used in atomic services since API version 18.|
+| onDidDisappear<sup>18+</sup> | Callback&lt;void&gt; | No| Event callback when the dialog box disappears.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > onWillDisappear > onDidDisappear.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | levelUniqueId<sup>15+</sup>       | number | No  | [Unique ID](../js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| levelOrder<sup>18+</sup>       | [LevelOrder](#levelorder18) | No  | Display order of the dialog box.<br>**NOTE**<br>- Default value: **LevelOrder.clamp(0)**<br>- Dynamic updating is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+
+## LevelOrder<sup>18+</sup>
+
+type LevelOrder = LevelOrder
+
+Defines the display order of the dialog box.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type                                                 | Description                |
+| ----------------------------------------------------- | -------------------- |
+| [LevelOrder](../js-apis-promptAction.md#levelorder18) | Display order of the dialog box.|
 
 ## AlertDialogParamWithConfirm
 
-Inherits [AlertDialogParam](#alertdialogparam).
+Inherits from [AlertDialogParam](#alertdialogparam).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -73,7 +94,7 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name      | Type    | Mandatory    | Description        |
 | ---------- | ---------------- | ---------- | ------------------------------- |
-| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | No  | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
+| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18) | No  | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
 
 Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
 
@@ -95,7 +116,7 @@ Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** 
 
 ## AlertDialogParamWithButtons
 
-Inherits [AlertDialogParam](#alertdialogparam).
+Inherits from [AlertDialogParam](#alertdialogparam).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -103,12 +124,12 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name            | Type               | Mandatory    | Description                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | Yes| Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
-| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | Yes| Information about the confirm button.|
+| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18) | Yes| Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
+| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18) | Yes| Information about the confirm button.|
 
 ## AlertDialogParamWithOptions<sup>10+</sup>
 
-Inherits [AlertDialogParam](#alertdialogparam).
+Inherits from [AlertDialogParam](#alertdialogparam).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -121,7 +142,7 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 ## AlertDialogButtonOptions<sup>10+</sup>
 
-Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14).
+Inherits from [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions18).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,21 +150,21 @@ Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14).
 | --------------------- | ------- | ---- | ------------------------------------------------------------ |
 | primary<sup>12+</sup> | boolean | No  | Whether the button responds to the **Enter** key by default when the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation. If there are multiple buttons, set this parameter to **true** for only one button. Otherwise, no button will respond. Multiple dialog boxes can automatically gain focus and respond to user interactions in a sequential manner. This parameter does not take effect when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## AlertDialogButtonBaseOptions<sup>14+</sup>
+## AlertDialogButtonBaseOptions<sup>18+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name            | Type               | Mandatory    | Description                   |
 | ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | No    | Whether to respond when the button is clicked.<br>Default value: **true**|
-| defaultFocus           | boolean | No    | Whether the button is the default focus.<br>Default value: **false**|
-| style           | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | No    | Style of the button.<br>Default value: **DialogButtonStyle.DEFAULT**|
-| value           | [ResourceStr](ts-types.md#resourcestr) | Yes    | Text of the button. If the value is null, the button is not displayed. |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Font color of the button.|
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | No    | Background color of the button.|
-| action           | [VoidCallback](ts-types.md#voidcallback12) | Yes    | Callback upon button clicking.|
+| enabled<sup>10+</sup> | boolean | No    | Whether to respond when the button is clicked.<br>Default value: **true**<br>**true**: Respond when the button is clicked. <br>**false**: Do not respond when the button is clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| defaultFocus<sup>10+</sup> | boolean | No    | Whether the button is the default focus.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| style<sup>10+</sup> | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | No    | Style of the button.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | Yes    | Text of the button. If the value is null, the button is not displayed. <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No    | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | No    | Background color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| action<sup>10+</sup> | [VoidCallback](ts-types.md#voidcallback12) | Yes    | Callback upon button clicking.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## DialogButtonDirection<sup>10+</sup>
 
@@ -151,11 +172,11 @@ Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                      | Description   |
-| -------------------------- | --------- |
-| AUTO                      | Buttons are laid out horizontally when there are two or fewer buttons and vertically otherwise.|
-| HORIZONTAL                      | Buttons are laid out horizontally.|
-| VERTICAL                      | Buttons are laid out vertically.|
+| Name                      | Value                     | Description   |
+| -------------------------- | --------- | --------- |
+| AUTO                      | 0                     | Buttons are laid out horizontally when there are two or fewer buttons and vertically otherwise.|
+| HORIZONTAL                      | 1                     | Buttons are laid out horizontally.|
+| VERTICAL                      | 2                     | Buttons are laid out vertically.|
 
 ## DialogAlignment
 
@@ -381,7 +402,7 @@ struct AlertDialogExample {
 
 ### Example 2: Opening a Dialog Box Outside the Main Window
 
-This example demonstrates how to configure a dialog box to display outside the main window by setting **showInSubWindow** to **true**.
+This example demonstrates how to configure a dialog box to display outside the main window on a 2-in-1 device by setting **showInSubWindow** to **true**.
 
 > **NOTE**
 > 
@@ -617,4 +638,3 @@ struct AlertDialogExample {
 ```
 
 ![en-us_image_alert](figures/en-us_image_alert_hovermode.gif)
-<!--no_check-->

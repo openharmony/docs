@@ -15,7 +15,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
 
     | Name              | Type                  | Mandatory| Description                                                |
     | -------------------- | ---------------------- | ---- | ---------------------------------------------------- |
-    | sceneType            | number                 | No  | Intent. The default value is **1**. In route planning scenarios, set it to **1** or leave it empty.                  |
+    | sceneType            | number                 | No  | Intent scene, which indicates the purpose of the current request. The default value is **1**. In route planning scenarios, set it to **1** or leave it empty.                  |
     | originName           | string                 | No  | Name of the source.                                            |
     | originLatitude       | number                 | No  | Latitude of the source.                                            |
     | originLongitude      | number                 | No  | Longitude of the source.                                            |
@@ -30,7 +30,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
 
     | Name              | Type                  | Mandatory| Description             |
     | -------------------- | ---------------------- | ---- | ----------------- |
-    | sceneType            | number                 | Yes  | Intent. Set it to **2** for navigation scenarios.|
+    | sceneType            | number                 | Yes  | Intent scene, which indicates the purpose of the current request. Set it to **2** for navigation scenarios.|
     | destinationName      | string                 | No  | Name of the destination.         |
     | destinationLatitude  | number                 | Yes  | Latitude of the destination.         |
     | destinationLongitude | number                 | Yes  | Longitude of the destination.         |
@@ -40,58 +40,77 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
 
     | Name         | Type  | Mandatory| Description                 |
     | --------------- | ------ | ---- | --------------------- |
-    | sceneType       | number | Yes  | Intent. Set it to **3** for place search scenarios.|
+    | sceneType       | number | Yes  | Intent scene, which indicates the purpose of the current request. Set it to **3** for place search scenarios.|
     | destinationName | string | Yes  | Name of the destination.             |
 
 
 ## Developing a Caller Application
 
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
 2. Construct parameters and call the **startAbilityByType** API.
 
    You need to obtain the POI IDs of the destination and origin from each map system and pass the parameters **destinationPoiIds** and **originPoiIds** based on the mappings.
-   
-   
+
+
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'destinationLatitude': 32.060844,
-      'destinationLongitude': 118.78315,
-      'destinationName': 'No.xx, xx Road, xx City',
-      'destinationPoiIds': {
-          1: '1111',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>,
-       'originName': 'xx Park in xx City',
-      'originLatitude': 31.060844,
-      'originLongitude': 120.78315,
-      'originPoiIds': {
-          1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
-          2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
-      } as Record<number, string>,
-      'vehicleType': 0
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("navigation", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
-            }
-    });
+	@Entry
+	@Component
+	struct Index {
+	@State hideAbility: string = 'hideAbility'
+
+		build() {
+			Row() {
+				Column() {
+					Text(this.hideAbility)
+						.fontSize(30)
+						.fontWeight(FontWeight.Bold)
+						.onClick(() => {
+							let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+							let wantParam: Record<string, Object> = {
+								'sceneType': 1,
+								'destinationLatitude': 32.060844,
+								'destinationLongitude': 118.78315,
+								'destinationName': 'No.xx, xx Road, xx City',
+								'destinationPoiIds': {
+									1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+								} as Record<number, string>,
+								'originName': 'xx Park in xx City',
+								'originLatitude': 31.060844,
+								'originLongitude': 120.78315,
+								'originPoiIds': {
+									1: '3333',  // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
+									2: '4444'   // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
+								} as Record<number, string>,
+								'vehicleType': 0
+							};
+							let abilityStartCallback: common.AbilityStartCallback = {
+								onError: (code: number, name: string, message: string) => {
+									console.log(`onError code ${code} name: ${name} message: ${message}`);
+								},
+								onResult: (result) => {
+									console.log(`onResult result: ${JSON.stringify(result)}`);
+								}
+							}
+
+							context.startAbilityByType("navigation", wantParam, abilityStartCallback,
+								(err) => {
+									if (err) {
+										console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+									} else {
+										console.log(`success`);
+									}
+								});
+						});
+				}
+				.width('100%')
+			}
+			.height('100%')
+		}
+	}
     ```
 
 **Effect**
@@ -108,44 +127,43 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
         | RoutePlan      | The application supports route planning.	|
         | PlaceSearch    | The application supports place search.    |
     2. Set **scheme**, **host**, **port**, and **path** or **pathStartWith** to match the URIs in Want to distinguish different features.
-    
-        ```json
-        {
-          "abilities": [
+    ```json
+    {
+      "abilities": [
+          {
+          "skills": [
               {
-              "skills": [
+              "uris": [
                   {
-                  "uris": [
-                      {
-                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                      "host": "navigation",
-                      "path": "",
-                      "linkFeature": "Navigation" // Declare that the application supports navigation.
-                      },
-                      {
-                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                      "host": "routePlan",
-                      "path": "",
-                      "linkFeature": "RoutePlan" // Declare that the application supports route planning.
-                      },
-                      {
-                      "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                      "host": "search",
-                      "path": "",
-                      "linkFeature": "PlaceSearch" // Declare that the application supports place search.
-                      }
-                  ]
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "navigation",
+                  "path": "",
+                  "linkFeature": "Navigation" // Declare that the application supports navigation.
+                  },
+                  {
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "routePlan",
+                  "path": "",
+                  "linkFeature": "RoutePlan" // Declare that the application supports route planning.
+                  },
+                  {
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "search",
+                  "path": "",
+                  "linkFeature": "PlaceSearch" // Declare that the application supports place search.
                   }
               ]
               }
           ]
-        }
-        ```
-    
+          }
+      ]
+    }
+    ```
+
 2. Parse parameters and perform corresponding processing.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.
@@ -181,7 +199,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
         | --------------- | ------ | ---- | -------- |
         | destinationName | string | Yes  | Name of the destination.|
 
-    The application can develop different style pages based on the features defined in [linkFeature](../quick-start/module-configuration-file.md#skills), such as route planning, navigation, and place search, as well as the received URI and parameters.
+The application can develop different style pages based on the features defined in [linkFeature](../quick-start/module-configuration-file.md#skills), such as route planning, navigation, and place search, as well as the received URI and parameters.
 
 **Sample Code**
 

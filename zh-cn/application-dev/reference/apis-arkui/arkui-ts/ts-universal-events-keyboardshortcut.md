@@ -8,7 +8,7 @@
 
 >  **说明：**
 >
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## keyboardShortcut
 
@@ -24,8 +24,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 | 参数名   | 参数类型                                  | 必填   | 参数描述                                     |
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
-| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey) | 是 | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-appendix-enums.md#functionkey)。<br />空字符串意为取消快捷键绑定。<br/> |
-| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey)> | 是 | 热键组合。<br />仅当value为[FunctionKey](ts-appendix-enums.md#functionkey)的情况下可以为空。<br/> |
+| value | string \| [FunctionKey](ts-appendix-enums.md#functionkey10) | 是 | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-appendix-enums.md#functionkey10)。<br />空字符串意为取消快捷键绑定。<br/> |
+| keys  | Array\<[ModifierKey](ts-appendix-enums.md#modifierkey10)> | 是 | 热键组合。<br />仅当value为[FunctionKey](ts-appendix-enums.md#functionkey10)的情况下可以为空。<br/> |
 | action  | () => void    | 否    | 组合快捷键触发成功后的自定义事件回调。<br/>                               |
 
 **返回值：**
@@ -52,7 +52,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | 快捷键的响应                                   | `keys`键处于按下状态且`value`键触发down事件（长按会连续响应）              | 无                                        |
 | 隐藏组件<br />                               | 响应快捷键                              | 无                                        |
 | disable状态组件                              | 不响应快捷键                             | 无                                        |
-| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效          | Button('button1').keyboardShortcut(FunctionKey.F4,[ModifierKey.ALT])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
+| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键，先前绑定的组合键仍然有效。          | Button('button1').keyboardShortcut(FunctionKey.F4,[ModifierKey.ALT])<br />Button('button2').keyboardShortcut('ab',[ModifierKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[ModifierKey.CTRL,ModifierKey.CTRL]) |
 
 ### 禁止绑定的系统快捷键
 

@@ -5,6 +5,8 @@ The module provides the basic type definition of ArkTS. Currently, the **ISendab
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 

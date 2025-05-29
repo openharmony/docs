@@ -194,14 +194,14 @@ off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 ```js
 import { nfcController } from '@kit.ConnectivityKit';
 
-// register callback to receive the nfc state changed notification
+// 注册回调以接收nfc状态更改通知
 nfcController.on("nfcStateChange", (nfcState : number)=> {
   console.log("nfcController on callback nfcState: " + nfcState);
 });
 
-// open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
+// 打开nfc需要权限: ohos.permission.MANAGE_SECURE_SETTINGS（此权限仅系统应用可申请）
 if (!nfcController.isNfcOpen()) {
-  // from api9, use 'enableNfc' to open nfc.
+  // 从api9开始,使用'enableNfc'打开nfc
   try {
     nfcController.enableNfc();
     console.log("nfcController enableNfc success");
@@ -212,9 +212,9 @@ if (!nfcController.isNfcOpen()) {
   console.log("nfcController NFC has been opened");
 }
 
-// close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
+// 关闭nfc需要权限: ohos.permission.MANAGE_SECURE_SETTINGS（此权限仅系统应用可申请）
 if (nfcController.isNfcOpen()) {
-  // from api9, use 'disableNfc' to close nfc.
+  // 从api9开始,使用'disableNfc'关闭nfc
   try {
     nfcController.disableNfc();
     console.log("nfcController disableNfc success");
@@ -225,6 +225,6 @@ if (nfcController.isNfcOpen()) {
   console.log("nfcController NFC has been closed");
 }
 
-// unregister callback
+// 取消注册回调
 nfcController.off("nfcStateChange");
 ```

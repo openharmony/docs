@@ -1,6 +1,6 @@
 # SVG标签说明
 
-SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(可扩展标记语言)的图形格式，用于描述二维图形和图像。Image组件支持的SVG范围，为SVG1.1规范的部分功能。支持的标签以及属性如下：
+SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XML（可扩展标记语言）的图形格式，用于描述二维图形和图像。Image组件支持的SVG范围，为SVG1.1规范的部分功能。支持的标签以及属性如下：
 
 ## 基础形状
 
@@ -60,12 +60,12 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 
 ### 渐变色
 
-渐变色相关的标签包括：\<linearGradient\>、\<racialGradient\>、\<stop\>
+渐变色相关的标签包括：\<linearGradient\>、\<radialGradient\>、\<stop\>
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<linearGradient\> | 线性渐变 | x1，y1，x2，y2 |
-| \<racialGradient\> | 放射渐变 | fx，fy，cx，cy，r |
+| \<linearGradient\> | 线性渐变 | x1、y1、x2、y2 |
+| \<radialGradient\> | 放射渐变 | fx、fy、cx、cy、r |
 | \<stop\> | 色阶 | offset、stop-color |
 
 ## 静态图片
@@ -96,4 +96,6 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 | \<use\> | 复用已有元素 | x：x轴偏移分量；<br> y：y轴偏移分量；href：目标元素 | fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、transform |
 | \<defs\> | 定义可复用对象 | | |
 
-**说明：** 当前支持的颜色值格式包括：#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如：red、black、blue等）。
+>**说明：**  
+> 
+> 当前支持的颜色值格式包括#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如red、black、blue等）。

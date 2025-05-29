@@ -527,6 +527,8 @@ Call **OH_JSVM_DefineProperties** to customize one or more properties for an obj
 CPP code:
 
 ```cpp
+#include <fstream>
+#include <string>
 // Callback for defineMethodPropertiesExample in the property descriptor list.
 static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo info)
 {

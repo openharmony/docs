@@ -1,12 +1,12 @@
-# Ability Kit
+# Ability Kit<!--ability-kit-->
 
 - [Introduction to Ability Kit](abilitykit-overview.md)
 - [Application Models](application-models.md)
-- Stage Model Development
+- Stage Model Development<!--stage-model-development-->
   - [Stage Model Development Overview](stage-model-development-overview.md)
-  - Stage Model Application Components
+  - Stage Model Application Components<!--stage-model-application-components-->
     - [Application- or Component-Level Configuration](application-component-configuration-stage.md)
-    - UIAbility Component
+    - UIAbility Component<!--uiability-->
       - [UIAbility Overview](uiability-overview.md)
       - [UIAbility Lifecycle](uiability-lifecycle.md)
       - [UIAbility Launch Type](uiability-launch-type.md)
@@ -25,21 +25,22 @@
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
-    - Want
+    - Want<!--want-->
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Common action and entities Values (Not Recommended)](actions-entities.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - [AppStartup](app-startup.md)
+    - [Obtaining Reasons for Abnormal Application Exits](ability-exit-info-record.md)
     <!--Del-->
-    - Inter-Device Application Component Interaction (Hopping)
+    - Inter-Device Application Component Interaction (Hopping)<!--hop-->
       - [Hopping Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration](hop-multi-device-collaboration.md)
     <!--DelEnd-->
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
-  - Inter-Application Redirection
+  - Inter-Application Redirection<!--inter-app-redirection-->
     - [Overview of Application Redirection](link-between-apps-overview.md)
     - Starting a Specified Application<!--directional-redirection-->
       - [Overview of Starting a Specified Application](app-startup-overview.md)
@@ -64,18 +65,18 @@
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)
   <!--Del-->
-  - Mission Management (for System Applications Only)
+  - Mission Management (for System Applications Only)<!--mission-management-->
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission Management and Launch Type](mission-management-launch-type.md)
     - [Page Stack and Mission List](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
   - [Application Configuration File](config-file-stage.md)
-- FA Model Development
+- FA Model Development<!--fa-model-development-->
   - [FA Model Development Overview](fa-model-development-overview.md)
-  - FA Model Application Components
+  - FA Model Application Components<!--fa-model-application-components-->
     - [Application- or Component-Level Configuration](application-component-configuration-fa.md)
-    - PageAbility Component Development
+    - PageAbility Component Development<!--pageability-->
       - [PageAbility Overview](pageability-overview.md)
       - [PageAbility Configuration](pageability-configuration.md)
       - [PageAbility Lifecycle](pageability-lifecycle.md)
@@ -83,19 +84,21 @@
       - [Creating a PageAbility](create-pageability.md)
       - [Starting a Local PageAbility](start-local-pageability.md)
       - [Stopping a PageAbility](stop-pageability.md)
+      <!--Del-->
       - [Starting a Remote PageAbility (for System Applications Only)](start-remote-pageability.md)
+      <!--DelEnd-->
       - [Starting a Specified Page](start-page.md)
       - [Window Properties](window-properties.md)
       - [Requesting Permissions](request-permissions.md)
       - [Redirection Rules](redirection-rules.md)
-    - ServiceAbility Component Development
+    - ServiceAbility Component Development<!--serviceability-->
       - [ServiceAbility Overview](serviceability-overview.md)
       - [ServiceAbility Configuration](serviceability-configuration.md)
       - [ServiceAbility Lifecycle](serviceability-lifecycle.md)
       - [Creating a ServiceAbility](create-serviceability.md)
       - [Starting a ServiceAbility](start-serviceability.md)
       - [Connecting to a ServiceAbility](connect-serviceability.md)
-    - DataAbility Component Development
+    - DataAbility Component Development<!--dataability-->
       - [DataAbility Overview](dataability-overview.md)
       - [DataAbility Configuration](dataability-configuration.md)
       - [DataAbility Lifecycle](dataability-lifecycle.md)
@@ -113,25 +116,25 @@
   <!--DelEnd-->
   - [Application Configuration File](config-file-fa.md)
 <!--Del-->
-- Development of Component Interaction Between the FA Model and Stage Model
+- Development of Component Interaction Between the FA Model and Stage Model<!--fa-stage-interaction-->
   - [Component Interaction Between the FA Model and Stage Model](fa-stage-interaction-overview.md)
   - [Starting a UIAbility from the FA Model](start-uiability-from-fa.md)
   - [Connecting to a ServiceExtensionAbility from the FA Model](bind-serviceextensionability-from-fa.md)
   - [Accessing a DataShareExtensionAbility from the FA Model](access-datashareextensionability-from-fa.md)
   - [Starting a PageAbility from the Stage Model](start-pageability-from-stage.md)
   - [Connecting to a ServiceAbility from the Stage Model](bind-serviceability-from-stage.md)
-- Switching from the FA Model to the Stage Model
+- Switching from the FA Model to the Stage Model<!--fa-to-stage-switc-->
   - [Model Switching Overview](model-switch-overview.md)
-  - Configuration File Switching
+  - Configuration File Switching<!--configuration-file-switch-->
     - [Differences in Configuration Files](configuration-file-diff.md)
     - [Switching of app and deviceConfig](app-deviceconfig-switch.md)
     - [Switching of module](module-switch.md)
-  - Component Switching
+  - Component Switching<!--component-switch-->
     - [PageAbility Switching](pageability-switch.md)
     - [ServiceAbility Switching](serviceability-switch.md)
     - [DataAbility Switching](dataability-switch.md)
   - [Widget Switching](widget-switch.md)
-  - API Switching
+  - API Switching<!--api-switch-->
     - [API Switching Overview](api-switch-overview.md)
     - [Context Switching](context-switch.md)
     - [featureAbility Switching](featureability-switch.md)
@@ -146,4 +149,6 @@
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
 <!--DelEnd-->
-- [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)
+- Native Child Process Development<!--native-childprocess-development-->
+    - [Creating Native Child Processes](capi_nativechildprocess_development_guideline.md)
+    - [Obtaining Exit Information of Native Child Processes](capi-nativechildprocess-exit-info.md)

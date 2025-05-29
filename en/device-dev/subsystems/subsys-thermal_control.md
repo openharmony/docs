@@ -128,6 +128,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/ma
 
 ### Debugging and Verification
 
+Temperature simulation debugging is supported since OpenHarmony 5.0.0 Release. The following procedure implements temperature level transition through simulating temperature changes to verify the custom thermal control policy. Write the custom `thermal_service_config.xml` file by referring to the [thermal_service_config.xml](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml) file in the default thermal control configuration folder. 
+
 1. After startup, run the following command to launch the shell command line:
     ```shell
     hdc shell
@@ -162,6 +164,72 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/ma
     name: thermallevel	strict: 0	enableEvent: 1
     name: popup	strict: 0	enableEvent: 0
     name: test	strict: 0	enableEvent: 0
+    ```
+
+3. Stop automatic temperature reporting.
+    
+    Run `hidumper -s 3303 -a '-st [f] [...]'` to specify whether to enable automatic temperature reporting. Where, **...** indicates any character. If **f** is **0**, automatic temperature reporting is disabled. Otherwise, automatic temperature reporting is enabled.
+
+    ```shell
+    $ hidumper -s 3303 -a '-st 0'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Temperature reporting has been stopped.
+    ```
+
+4. Simulate temperature changes.
+    
+    To trigger the thermal control policy, simulate a low temperature and then a high temperature. Run `hidumper -s 3303 -a '-te [name] [num]'` to report the simulated temperatures. In the command, **name** indicates the name of the temperature sensor, and **num** indicates its temperature. If there are multiple groups of **name** and **num**, multiple simulated temperatures are uploaded at the same time.
+
+    ```shell
+    $ hidumper -s 3303 -a '-te battery 32000 charger 32000'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Report temperature [ battery ]: 32000
+    Report temperature [ charger ]: 32000
+    $ hidumper -s 3303 -a '-te battery 39000 charger 39000'
+
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    Report temperature [ battery ]: 39000
+    Report temperature [ charger ]: 39000
+    ```
+
+5. Obtain the current temperature level.
+    ```shell
+    hidumper -s 3303 -a -l
+    ```
+
+    The following shows the temperature level after the simulated temperatures are uploaded:
+    ```shell
+    -------------------------------[ability]-------------------------------
+
+
+    ----------------------------------ThermalService----------------------------------
+    name: base_safe level: 1
+    name: cold_safe level: 0
+    name: high_safe level: 0
+    name: screenoff_charge  level: 0
+    name: warm_5G   level: 0
+    name: warm_safe level: 0
+    ```
+
+6. View the thermal control node information.
+    ```shell
+    cat /data/service/el0/thermal/config/process_ctrl
+    ```
+
+    If the thermal control node information is as follows, the **process_ctrl** thermal control policy is effective:
+    ```shell
+    3
     ```
 
 ## Reference

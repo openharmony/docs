@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除，如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行持久化授权。
+应用通过Picker获取临时授权，临时授权在应用退出后或者设备重启后会清除。如果应用重启或者设备重启后需要直接访问之前已访问过的文件，则对文件进行持久化授权。
 
 ## 通过Picker获取临时授权并进行授权持久化
 
@@ -55,19 +55,19 @@ async function persistPermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('persistPermission failed with err: ' + JSON.stringify(err));
+        console.error(`persistPermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
 
-**注意**
-> **1**、持久化授权文件信息建议应用在本地存储数据，供后续按需激活持久化文件。
-> <br>**2**、持久化授权的数据存储在系统的数据库中，应用或者设备重启后需要激活已持久化的授权才可以正常使用[激活持久化授权](#激活已经持久化的权限访问文件或目录)。
-> <br>**3**、持久化权限接口(仅在2in1上生效可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
-> <br>**4**、应用在卸载时会将之前的授权数据全部清除，重新安装后需要重新授权。
+> **注意**
+>
+> 1. 持久化授权文件信息建议应用在本地存储数据，供后续按需激活持久化文件。
+> 2. 持久化授权的数据存储在系统的数据库中，应用或者设备重启后需要激活已持久化的授权才可以正常使用[激活持久化授权](#激活已经持久化的权限访问文件或目录)。
+> 3. 持久化权限接口(仅在2in1上生效，可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
+> 4. 应用在卸载时会将之前的授权数据全部清除，重新安装后需要重新授权。
 
-**备注**
-> C/C++持久化授权接口说明及开发指南具体参考：[OH_FileShare_PersistPermission持久化授权接口](native-fileshare-guidelines.md)。
+**备注**：C/C++持久化授权接口说明及开发指南具体参考：[OH_FileShare_PersistPermission持久化授权接口](native-fileshare-guidelines.md)。
 
 3.可以通过revokePermission接口（[ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11)）对已持久化的文件取消授权，同时更新应用存储的数据以删除最近访问数据。
 
@@ -103,18 +103,18 @@ async function revokePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('revokePermission failed with err: ' + JSON.stringify(err));
+        console.error(`revokePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
 
-**注意**
-> **1**、示例中的uri来源自应用存储的持久化数据中。
-> <br>**2**、建议按照使用需求去激活对应的持久化权限，不要盲目的全量激活。
-> <br>**3**、持久化权限接口(仅在2in1上生效可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
+> **注意**
+>
+> 1. 示例中的URI来源自应用存储的持久化数据中。
+> 2. 建议按照使用需求去激活对应的持久化权限，不要盲目的全量激活。
+> 3. 持久化权限接口(仅在2in1上生效，可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
 
-**备注**
-> C/C++去持久化授权接口说明及开发指南具体参考：[OH_FileShare_RevokePermission去持久化授权接口](native-fileshare-guidelines.md)。
+**备注**：C/C++去持久化授权接口说明及开发指南具体参考：[OH_FileShare_RevokePermission去持久化授权接口](native-fileshare-guidelines.md)。
 
 ## 激活已经持久化的权限访问文件或目录
 
@@ -155,15 +155,16 @@ async function activatePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('activatePermission failed with err: ' + JSON.stringify(err));
+        console.error(`activatePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
 
 > **注意**
-> 1、示例中的uri来源自应用存储的持久化数据中。
-> 2、建议按照使用需求去激活对应的持久化权限，不要盲目的全量激活。
-> 3、如果激活失败显示未持久化的权限可以按照示例进行持久化。
-> 4、持久化权限接口(仅在2in1上生效可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
+>
+> 1. 示例中的URI来源自应用存储的持久化数据中。
+> 2. 建议按照使用需求去激活对应的持久化权限，不要盲目的全量激活。
+> 3. 如果激活失败显示未持久化的权限可以按照示例进行持久化。
+> 4. 持久化权限接口(仅在2in1上生效可以使用canIUse接口进行校验能力是否可用)，且需要申请对应的权限。
 
-C/C++持久化授权激活接口说明及开发指南具体参考：[OH_FileShare_ActivatePermission持久化授权激活接口](native-fileshare-guidelines.md)。
+**备注**：C/C++持久化授权激活接口说明及开发指南具体参考：[OH_FileShare_ActivatePermission持久化授权激活接口](native-fileshare-guidelines.md)。

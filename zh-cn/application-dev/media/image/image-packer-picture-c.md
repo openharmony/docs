@@ -1,12 +1,12 @@
 # 使用Image_NativeModule完成多图对象编码
 
-图像打包类，用于创建以及释放ImagePacker实例，并编码多图对象。
+图像编码类，用于创建以及释放ImagePacker实例，并编码多图对象。
 
 ## 开发步骤
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
@@ -16,14 +16,14 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
-在hello.cpp中实现C API接口调用逻辑，示例代码如下：
+在DevEco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
 **编码接口使用示例**
 
-在创建ImagePacker实例，指定打包参数后将Picture多图对象打包至文件或者缓冲区。
+在创建ImagePacker实例，指定编码参数后将Picture多图对象编码至文件或者缓冲区。
 
 > **说明：**
-> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，打包参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
+> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，编码参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
    ```c++
 
@@ -67,7 +67,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
             source = nullptr;
             return thisPicture->errorCode;
         }
-    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null !");
+    OH_LOG_DEBUG(LOG_APP, "ReleaseImageSource source is null!");
         return IMAGE_SUCCESS;
     }
 
@@ -85,7 +85,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+            OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;
@@ -137,7 +137,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
         size_t argc = 2;
         napi_value args[2] = {nullptr};
         if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
-        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed !");
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed!");
             return getJsResult(env, thisPicture->errorCode);
         }
         uint32_t fd = 0;

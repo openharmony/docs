@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## Usage
 
-Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
+Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **Context** instance.
 
 ## ApplicationContext.on('abilityLifecycle')
 
@@ -427,7 +427,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
 }
 ```
@@ -466,8 +466,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 Assume that [ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10) is used to register a callback named **applicationStateChangeCallback**. The following example shows how to unregister the corresponding listener.
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
   onDestroy() {
@@ -976,7 +985,7 @@ Sets the font for this application. This API can be called only by the main thre
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | Yes  | Font, which can be registered by calling [font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont). |
+| font | string | Yes  | Font, which can be registered by calling [UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont). |
 
 **Error codes**
 
@@ -993,19 +1002,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { font } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
-    font.registerFont({
+    this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
       familySrc: $rawfile('font/medium.ttf')
     })
 
-    getContext().getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont("fontName");
   }
 
   build() {

@@ -27,7 +27,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| No| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Latest Want received through [onCreate](#uiabilityoncreate) or [onNewWant](#uiabilityonnewwant) when the UIAbility is started for multiple times.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | callee | [Callee](#callee) | No| No| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -214,11 +214,80 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onWillForeground<sup>20+</sup>
+
+onWillForeground(): void
+
+Triggered just before the application transitions to the foreground. It is called before [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application starts to transition to the foreground. When paired with [onDidForeground](#uiabilityondidforeground20), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
+
+This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWillForeground(): void {
+    // Start to log the event that the application starts moving to the foreground.
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // Define the event domain.
+      domain: "lifecycle",
+      // Define the event name.
+      name: "onwillforeground",
+      // Define the event type.
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // Define the event parameters.
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+    });
+  }
+  // ...
+
+  onDidForeground(): void {
+    // Start to log the event that the application fully transitions to the foreground.
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // Define the event domain.
+      domain: "lifecycle",
+      // Define the event name.
+      name: "ondidforeground",
+      // Define the event type.
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // Define the event parameters.
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+    });
+  }
+}
+```
+
+
 ## UIAbility.onForeground
 
 onForeground(): void
 
-Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the background to the foreground. It is called between [onWillForeground](#uiabilityonwillbackground20) and [onDidForeground](#uiabilityondidforeground20). It can be used to request system resources required, for example, requesting location services when the application transitions to the foreground.
+
+This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -237,11 +306,73 @@ class MyUIAbility extends UIAbility {
 ```
 
 
+## UIAbility.onDidForeground<sup>20+</sup>
+
+onDidForeground(): void
+
+Triggered after the application has transitioned to the foreground. It is called after [onForeground](#uiabilityonforeground). It can be used to capture the moment when the application fully transitions to the foreground. When paired with [onWillForeground](#uiabilityonwillforeground20), it can also measure the duration from the application's initial foreground entry to its full transition into the foreground state.
+
+This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+For details, see [onWillForeground](#uiabilityonwillforeground20).
+
+
+## UIAbility.onWillBackground<sup>20+</sup>
+
+onWillBackground(): void
+
+Triggered just when the application transitions to the background. It is called before [onBackground](#uiabilityonbackground). It can be used to log various types of data, such as faults, statistics, security information, and user behavior that occur during application running.
+
+This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyUIAbility extends UIAbility {
+  onWillBackground(): void {
+    let eventParams: Record<string, number | string> = {
+      "int_data": 100,
+      "str_data": "strValue",
+    };
+    // Record the application fault information.
+    hiAppEvent.write({
+      domain: "test_domain",
+      name: "test_event",
+      eventType: hiAppEvent.EventType.FAULT,
+      params: eventParams,
+    }, (err: BusinessError) => {
+      if (err) {
+        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
+    });
+  }
+}
+```
+
+
 ## UIAbility.onBackground
 
 onBackground(): void
 
-Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the foreground to the background. It is called between [onWillBackground](#uiabilityonwillbackground20) and [onDidBackground](#uiabilityondidbackground20). It can be used to release resources when the UI is no longer visible, for example, stopping location services.
+
+This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -259,6 +390,68 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onDidBackground<sup>20+</sup>
+
+onDidBackground(): void
+
+Triggered after the application has transitioned to the background. It is called after [onBackground](#uiabilityonbackground). It can be used to release resources after the application has entered the background, for example, stopping audio playback.
+
+This API returns the result synchronously and does not support asynchronous callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
+
+class MyUIAbility extends UIAbility {
+  static audioRenderer: audio.AudioRenderer;
+  // ...
+  onForeground(): void {
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+      channels: audio.AudioChannel.CHANNEL_2, // Channel.
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
+    };
+
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+      rendererFlags: 0 // AudioRenderer flag.
+    };
+
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
+
+    // Request an AudioRenderer in the foreground to play Pulse Code Modulation (PCM) audio data.
+    audio.createAudioRenderer(audioRendererOptions).then((data) => {
+      MyUIAbility.audioRenderer = data;
+      console.info(`AudioRenderer Created : Success : Stream Type: SUCCESS.`);
+    }).catch((err: BusinessError) => {
+      console.error(`AudioRenderer Created : F : ${JSON.stringify(err)}.`);
+    });
+  }
+
+  onDidBackground() {
+    // Release the AudioRenderer after transitioning to the background.
+    MyUIAbility.audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
+      } else {
+        console.info(`AudioRenderer released.`);
+      }
+    });
+  }
+}
+```
 
 ## UIAbility.onContinue
 
@@ -394,7 +587,7 @@ class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). When an application is faulty, the framework calls **onSaveState** to save the status of the UIAbility if auto-save is enabled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -585,7 +778,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>16+</sup>
+## UIAbility.onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -609,7 +802,7 @@ Callback invoked to return the collaboration result in multi-device collaboratio
 
 | Name    | Value  | Description      |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | Collaborator result, that is, whether the target application accepts the collaboration request.|
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | Collaborator result, that is, whether the target application accepts the collaboration request.|
 
 **Example**
 
@@ -1019,7 +1212,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1075,7 +1268,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
+Unregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1206,7 +1399,7 @@ export default class MainUIAbility extends UIAbility {
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
+Unregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1260,7 +1453,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1469,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

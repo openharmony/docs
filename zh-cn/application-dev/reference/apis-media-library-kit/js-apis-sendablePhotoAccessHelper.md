@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)
 
-该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块基于[Sendable](../../arkts-utils/arkts-sendable.md)对象，提供相册管理功能，包括创建相册和访问、修改相册中的媒体数据。
 
 > **说明：**
 >
@@ -47,8 +47,10 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 **示例：**
 
 ```ts
-//此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
-let context = getContext(this);
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -56,7 +58,7 @@ let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取图片和视频资源，使用Promise方式返回结果。
 
@@ -70,7 +72,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明                 |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 图片和视频检索选项。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 图片和视频检索选项。 |
 
 **返回值：**
 
@@ -86,13 +88,13 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
-
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -121,7 +123,7 @@ async function example() {
 
 ### getBurstAssets
 
-getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 获取连拍照片资源，使用Promise方式返回结果。
 
@@ -133,8 +135,8 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY) |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
+| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY)。字符串长度为36。|
+| options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
 
 **返回值：**
 
@@ -154,6 +156,9 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -170,30 +175,30 @@ async function example() {
   let photoAsset: sendablePhotoAccessHelper.PhotoAsset;
   // burstKey为36位的uuid，可以根据photoAccessHelper.PhotoKeys获取。
   for(photoAsset of photoAssetList){
-      let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
-      let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
-      try {
-         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await 
+    let burstKey: string = photoAccessHelper.PhotoKeys.BURST_KEY.toString();
+    let photoAccessBurstKey: photoAccessHelper.MemberType = photoAsset.get(burstKey).toString();
+    try {
+      let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await
       phAccessHelper.getBurstAssets(photoAccessBurstKey, fetchOption);
-         if (fetchResult !== undefined) {
-           console.info('fetchResult success');
-           let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-           if (photoAsset !== undefined) {
-              console.info('photoAsset.displayName :' + photoAsset.displayName);
+      if (fetchResult !== undefined) {
+        console.info('fetchResult success');
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+        if (photoAsset !== undefined) {
+          console.info('photoAsset.displayName :' + photoAsset.displayName);
+        }
       }
+    } catch (err) {
+      console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
     }
-  } catch (err) {
-    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
   }
-}
 }
 ```
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
+createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper.CreateOptions): Promise&lt;string&gt;
 
-指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+指定文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
 此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
@@ -208,8 +213,8 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | 参数名    | 类型                                                        | 必填 | 说明                                 |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | 是   | 创建的文件类型，IMAGE或者VIDEO类型。 |
-| extension | string                                                      | 是   | 文件名后缀参数，例如：'jpg'。        |
-| options   | [CreateOptions](js-apis-photoAccessHelper.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
+| extension | string                                                      | 是   | 文件名后缀参数，例如：'jpg'。字符串长度为1~255。        |
+| options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
 
 **返回值：**
 
@@ -225,11 +230,13 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
 | 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
@@ -252,7 +259,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项和相册类型获取相册，使用Promise方式返回结果。
 
@@ -268,7 +275,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 | ------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | type    | [AlbumType](#albumtype)                                   | 是   | 相册类型。                             |
 | subtype | [AlbumSubtype](#albumsubtype)                             | 是   | 相册子类型。                           |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
 
 **返回值：**
 
@@ -284,11 +291,13 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -319,7 +328,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
+getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 根据检索选项获取相册，使用Promise方式返回结果。
 
@@ -333,7 +342,7 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明     |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
+| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 
@@ -349,11 +358,13 @@ getAlbums(options: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -403,12 +414,13 @@ release(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -433,13 +445,15 @@ async function example() {
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
 | uri         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
 | photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。                                     |
+| displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                     |
 
 ### convertToPhotoAsset
 
@@ -461,12 +475,14 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
+| 201      | Permission denied.                                           |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -491,7 +507,7 @@ async function example() {
 
 ### get
 
-get(member: string): MemberType
+get(member: string): photoAccessHelper.MemberType
 
 获取PhotoAsset成员参数。
 
@@ -507,7 +523,7 @@ get(member: string): MemberType
 
 | 类型                                                  | 说明                         |
 | ----------------------------------------------------- | ---------------------------- |
-| [MemberType](js-apis-photoAccessHelper.md#membertype) | 获取PhotoAsset成员参数的值。 |
+| [photoAccessHelper.MemberType](js-apis-photoAccessHelper.md#membertype) | 获取PhotoAsset成员参数的值。 |
 
 **错误码：**
 
@@ -516,11 +532,12 @@ get(member: string): MemberType
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -556,8 +573,8 @@ set(member: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | 是   | 成员参数名称例如：[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE。 |
-| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE的值。 |
+| member | string | 是   | 成员参数名称例如：[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE。字符串长度为1~255。 |
+| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
@@ -566,11 +583,12 @@ set(member: string, value: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000014 | Member is not a valid PhotoKey.                              |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -617,14 +635,15 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000001 | Invalid display name.                                        |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -682,11 +701,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -736,12 +757,13 @@ getCount(): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -779,12 +801,13 @@ isAfterLast(): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -817,16 +840,17 @@ close(): void
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+详细错误码请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -868,12 +892,13 @@ getFirstObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -912,12 +937,13 @@ getNextObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -931,8 +957,8 @@ async function example() {
   };
   let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-    let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
-    console.info('photoAsset displayName: ', photoAsset.displayName);
+  let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
+  console.info('photoAsset displayName: ', photoAsset.displayName);
 }
 ```
 
@@ -956,12 +982,13 @@ getLastObject(): Promise&lt;T&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1006,11 +1033,13 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1048,12 +1077,13 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -1096,13 +1126,11 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 将Sendable类型Album转换为非Sendable类型Album。
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 类型                    | 说明                                                      |
 | ----------------------- | --------------------------------------------------------- |
-| photoAccessHelper.Album | 非Sendable类型[Album](js-apis-photoAccessHelper.md#album) |
+| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | 非Sendable类型Album。 |
 
 **错误码：**
 
@@ -1110,13 +1138,14 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1175,10 +1204,13 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 201      | Permission denied.                                           |
 | 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1227,13 +1259,14 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201      | Permission denied.                                           |
-| 13900020 | Invalid argument.                                            |
-| 14000011 | Internal system error                                        |
+| 14000011 | Internal system error.                                        |
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
+<!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1269,6 +1302,31 @@ async function example() {
 | ----- | ---- | ------ |
 | IMAGE | 1    | 图片。 |
 | VIDEO | 2    | 视频。 |
+
+## PhotoSubtype<sup>14+</sup>
+
+枚举，不同[PhotoAsset](#photoasset)的类型。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| DEFAULT |  0 |  默认照片类型。 |
+| MOVING_PHOTO |  3 |  动态照片文件类型。 |
+| BURST |  4 |  连拍照片文件类型。 |
+
+## DynamicRangeType<sup>14+</sup>
+
+枚举，媒体文件的动态范围类型。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SDR |  0 |  标准动态范围类型。|
+| HDR |  1 |  高动态范围类型。  |
 
 ## AlbumType
 

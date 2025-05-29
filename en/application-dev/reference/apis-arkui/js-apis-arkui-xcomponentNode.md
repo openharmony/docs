@@ -1,4 +1,5 @@
 # XComponentNode
+<!--deprecated_code_no_check-->
 
 The **XComponentNode** module provides APIs for the XComponentNode, which represent an [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) in the component tree. You can write [EGL](../native-lib/egl.md)/[OpenGL ES](../native-lib/opengles.md) and media data and display it on the **XComponent**, whose rendering type can be dynamically modified.
 
@@ -30,7 +31,7 @@ A constructor used to create an XComponentNode.
 
 | Name     | Type                                                        | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [[Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
+| uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | Yes  | UI context. For details about how to obtain it, see [Obtaining UI Context](./js-apis-arkui-node.md#obtaining-ui-context).|
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | Yes  | Parameters for creating an XComponentNode.                              |
 | id          | string                                                       | Yes  | Unique ID of the **XComponent**. The value can contain a maximum of 128 characters. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|
 | type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | Yes  | Type of the **XComponent**. For details, see [XComponent](arkui-ts/ts-basic-components-xcomponent.md#xcomponent).|

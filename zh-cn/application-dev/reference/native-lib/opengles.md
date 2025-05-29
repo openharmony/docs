@@ -37,7 +37,7 @@ libEGL.so
 
 ## 相关参考
 
-针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用，具体可参考:
+针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用。具体可参考:
 
 - [NDK开发参考](../../napi/ndk-development-overview.md)
 
@@ -50,7 +50,7 @@ libEGL.so
 ## OpenGL ES扩展接口
 
 - OpenGL ES扩展接口的官方参考文档：[OpenGL ES扩展接口](https://registry.khronos.org/OpenGL/index_es.php)
-- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文,具体示例如下：
+- 开发者可以调用`glGetString`查询芯片厂商支持的扩展接口，调用之前务必初始化上下文。具体示例如下：
 
 ```c++
 EGLDisplay display;
@@ -232,7 +232,7 @@ EGLDisplay eglGetDisplay(EGLNativeDisplayType display_id);
 
 eglGetDisplay是EGL库中的一个函数，函数返回EGLDisplay对象，它代表了与渲染目标设备的连接，如果显示连接不可用，eglGetDisplay将返回 EGL_NO_DISPLAY，这个错误表示显示连接不可用。
 
-display_id 参数通常是一个表示显示设备的本地显示类型，EGLNativeDisplayType是为了匹配原生窗口显示类型，在各个平台有不同的定义。如果您只是希望使用默认的显示设备，那么您可以直接使用 EGL_DEFAULT_DISPLAY，而不需要显式地指定 display_id。
+display_id 参数通常是一个表示显示设备的本地显示类型，EGLNativeDisplayType是为了匹配窗口显示类型，在各个平台有不同的定义。如果您只是希望使用默认的显示设备，那么您可以直接使用 EGL_DEFAULT_DISPLAY，而不需要显式地指定 display_id。
 
 ### 使用eglInitialize初始化EGL
 当成功打开连接之后则需要调用eglInitialize初始化EGL。
@@ -263,7 +263,7 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
 
     ```cpp
     // 如以上代码所示这里指定所需配置的属性为
-    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  -// 指定了渲染类型为 OpenGL ES 3
+    EGLint attribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,  // 指定了渲染类型为 OpenGL ES 3
                         EGL_BLUE_SIZE, 6,   // 指定蓝色缓冲区的位数是6位
                         EGL_GREEN_SIZE, 8,  // 指定绿色缓冲区的位数是8位
                         EGL_RED_SIZE, 8,    // 指定红色缓冲区的位数是8位
@@ -355,7 +355,7 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
 ```cpp
 EGLSurface eglCreateWindowSurface(EGLDisplay dpy, // EGLDisplay对象，表示与窗口表面关联的显示连接。
                                   EGLConfig config, // EGLConfig对象，表示要创建窗口表面的EGL配置。
-                                  EGLNativeWindowType win, // EGLNativeWindowType类型的参数，表示原生窗口的句柄或标识符，用于与EGL表面关联。
+                                  EGLNativeWindowType win, // EGLNativeWindowType类型的参数，表示窗口的句柄或标识符，用于与EGL表面关联。
                                   const EGLint *attrib_list); // 指向EGL属性列表的指针，用于指定窗口表面的属性。是一个以EGL_NONE结尾的整数数组。
 ```
 eglCreateWindowSurface接受的属性attrib_list的值如下所示：
@@ -368,13 +368,13 @@ EGL_BACK_BUFFER   // 表示渲染表面将具有双缓冲区，即前缓冲区�
 ```
 eglCreateWindowSurface创建窗口表面失败的可能如下：
 
-- EGL_BAD_MATCH：表示原生窗口属性与提供的 EGLConfig 不匹配。这可能是因为EGLConfig不支持渲染到窗口（即EGL_SURFACE_TYPE 属性没有设置为 EGL_WINDOW_BIT）。
+- EGL_BAD_MATCH：表示窗口属性与提供的 EGLConfig 不匹配。这可能是因为EGLConfig不支持渲染到窗口（即EGL_SURFACE_TYPE 属性没有设置为 EGL_WINDOW_BIT）。
 
 - EGL_BAD_CONFIG：如果提供的EGLConfig没有得到系统的支持，则会发生这种错误。
 
-- EGL_BAD_NATIVE_WINDOW：如果提供的原生窗口句柄无效，则会发生这种错误。
+- EGL_BAD_NATIVE_WINDOW：如果提供的窗口句柄无效，则会发生这种错误。
 
-- EGL_BAD_ALLOC：如果eglCreateWindowSurface无法为新的EGL窗口分配资源，或者已经有与提供的原生窗口关联的EGLConfig，则会发生这种错误。
+- EGL_BAD_ALLOC：如果eglCreateWindowSurface无法为新的EGL窗口分配资源，或者已经有与提供的窗口关联的EGLConfig，则会发生这种错误。
 
 
 
@@ -402,7 +402,7 @@ if (surface == EGL_NO_SURFACE) {
 }
 ```
 在使用XComponent获取nativeWindow的过程中，通常涉及以下步骤：
-1. 首先需要在ArkTS 中定义XComponent并设置 XComponentController。XComponent组件用于在UI中嵌入原生的渲染内容如OpenGL或Vulkan。
+1. 首先需要在ArkTS 中定义XComponent并设置 XComponentController。XComponent组件用于在UI中嵌入渲染内容如OpenGL或Vulkan。
 ```typescript
 Column() {
     XComponent({
@@ -811,6 +811,8 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL显示连接
 ```
 
 eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显示在屏幕上。
+
+<!--RP1--><!--RP1End-->
 
 ## 相关实例
 

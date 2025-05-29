@@ -539,8 +539,8 @@ startAVPlayback(bundleName: string, assetId: string): Promise\<void>
 
 | 参数名        | 类型           | 必填 | 说明 |
 | ------------ | -------------- |------|------|
-| bundleName   | string         | 是   | 指定应用包名 |
-| assetId      |string           | 是   | 指定媒体ID  |
+| bundleName   | string         | 是   | 指定应用包名。 |
+| assetId      |string           | 是   | 指定媒体ID。  |
 
 **返回值：**
 
@@ -571,7 +571,8 @@ avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
-## avSession.getDistributedSessionController<sup>16+</sup>
+
+## avSession.getDistributedSessionController<sup>18+</sup>
 
 getDistributedSessionController(distributedSessionType: DistributedSessionType): Promise<Array\<AVSessionController>>
 
@@ -587,7 +588,7 @@ getDistributedSessionController(distributedSessionType: DistributedSessionType):
 
 | 参数名    | 类型                                                                      | 必填 | 说明      |
 | --------- |-------------------------------------------------------------------------| ---- |---------|
-| distributedSessionType | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16) | 是   | 远端会话类型。 |
+| distributedSessionType | [DistributedSessionType](#distributedsessiontype18) | 是   | 远端会话类型。 |
 
 **返回值：**
 
@@ -603,7 +604,6 @@ getDistributedSessionController(distributedSessionType: DistributedSessionType):
 |---------|-------------------------------------------------------------------------------------------------------|
 | 201     | permission denied.                                                                                    |
 | 202     | Not System App. Interface caller is not a system app.                                                                                       |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101 | Session service exception.                                                                            |
 | 6600109 | The remote connection is not established.                                                             |
 
@@ -632,9 +632,9 @@ avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_
 
 | 名称      | 类型   | 必填 | 说明         |
 | :-------- | :----- | :--- | :----------- |
-| sessionId | string | 是   | 会话ID       |
-| pid       | number | 否   | 会话的进程ID |
-| uid       | number | 否   | 用户ID       |
+| sessionId | string | 是   | 会话ID。       |
+| pid       | number | 否   | 会话的进程ID。 |
+| uid       | number | 否   | 用户ID。       |
 
 ## avSession.on('sessionCreate')
 
@@ -652,7 +652,7 @@ on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): voi
 
 | 参数名    | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'`：会话创建事件，检测到会话创建时触发。|
+| type     | string                 | 是   | 事件回调类型，支持的事件是'sessionCreate'：会话创建事件，检测到会话创建时触发。|
 | callback | (session: [AVSessionDescriptor](#avsessiondescriptor)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
 **错误码：**
@@ -928,7 +928,7 @@ avSession.off('sessionServiceDie');
 ```
 
 
-## avSession.on('distributedSessionChange')
+## avSession.on('distributedSessionChange')<sup>18+</sup>
 
 on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback: Callback<Array\<AVSessionController>>): void
 
@@ -945,7 +945,7 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                                       |
 | -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
 | type     | string                                                                              | 是   | 事件回调类型，支持的事件为 `'distributedSessionChange'`：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
-| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16)             | 是   | 远端会话类型。                                                                  |
+| distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是   | 远端会话类型。                                                                  |
 | callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
 
 **错误码：**
@@ -955,7 +955,6 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 | 错误码ID   | 错误信息                                                                                              |
 |---------|---------------------------------------------------------------------------------------------------|
 | 202     | Not System App. Interface caller is not a system app.                                                                                   |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101 | Session service exception.                                                                        |
 
 **示例：**
@@ -967,7 +966,7 @@ avSession.on('distributedSessionChange', avSession.DistributedSessionType.TYPE_S
 ```
 
 
-## avSession.off('distributedSessionChange')
+## avSession.off('distributedSessionChange')<sup>18+</sup>
 
 off(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback?: Callback<Array\<AVSessionController>>): void
 
@@ -984,7 +983,7 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                            |
 | -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
 | type     | string                                                                              | 是  | 事件回调类型，支持的事件为`'distributedSessionChange'`。                    |
-| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16)             | 是  | 远端会话类型。                                                       |
+| distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是  | 远端会话类型。                                                       |
 | callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 否  | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
 
 **错误码：**
@@ -994,7 +993,6 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 | 错误码ID   | 错误信息                                                                                              |
 |---------|---------------------------------------------------------------------------------------------------|
 | 202     | Not System App. Interface caller is not a system app.                                                                                   |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101 | Session service exception.                                                                        |
 
 **示例：**
@@ -1233,7 +1231,7 @@ avSession.sendSystemControlCommand(avcommand).then(() => {
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 <br> **系统接口：** 该接口为系统接口。 |
+| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式。 <br> **系统接口：** 该接口为系统接口。 |
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
@@ -1266,6 +1264,20 @@ avSession.startCastDeviceDiscovery((err: BusinessError) => {
 });
 ```
 
+## DistributedSessionType<sup>18+</sup>
+
+远端分布式设备支持的会话类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                                     | 值 | 说明                        |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | 远端设备会话。       |
+| TYPE_SESSION_MIGRATE_IN  | 1 | 迁移至本端的设备会话。 |
+| TYPE_SESSION_MIGRATE_OUT | 2 | 迁移至远端的设备会话。 |
+
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
 startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
@@ -1280,7 +1292,7 @@ startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| filter | number | 是 | 进行设备发现的过滤条件，由ProtocolType的组合而成 |
+| filter | number | 是 | 进行设备发现的过滤条件，由ProtocolType的组合而成。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并开始搜索，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1320,7 +1332,7 @@ startCastDeviceDiscovery(filter?: number, drmSchemes?: Array\<string>): Promise\
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| filter | number | 否 | 进行设备发现的过滤条件，由ProtocolType的组合而成 |
+| filter | number | 否 | 进行设备发现的过滤条件，由ProtocolType的组合而成。 |
 | drmSchemes | Array\<string> | 否 | 进行支持DRM资源播放的设备发现的过滤条件，由DRM uuid组合而成。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
@@ -1425,7 +1437,7 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现. true: 允许被发现， false：不允许被发现 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1464,7 +1476,7 @@ setDiscoverable(enable: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| enable | boolean | 是 | 是否允许本设备被发现. true: 允许被发现， false：不允许被发现 |
+| enable | boolean | 是 | 是否允许本设备被发现。true：允许被发现，false：不允许被发现。 |
 
 **错误码：**
 
@@ -1649,7 +1661,7 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 | 参数名    | 类型                                                        | 必填 | 说明                                                         |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| sessionId | string                    | 是   |用于指定要获取的投播控制器的sessionId |
+| sessionId | string                    | 是   |用于指定要获取的投播控制器的sessionId。 |
 | callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | 是   | 回调函数，返回投播控制器实例。 |
 
 **错误码：**
@@ -1667,21 +1679,36 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // 供后续函数入参使用
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let currentAVSession: avSession.AVSession | undefined = undefined;
+            let tag = "createNewSession";
+            let context = this.getUIContext().getHostContext() as Context;
+            let sessionId: string = "";  // 供后续函数入参使用。
 
-let aVCastController: avSession.AVCastController;
-avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
-  if (err) {
-    console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    aVCastController = avcontroller;
-    console.info('getAVCastController : SUCCESS ');
+            let aVCastController: avSession.AVCastController;
+            avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avSession.AVCastController) => {
+            if (err) {
+                console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+            } else {
+                aVCastController = avcontroller;
+                console.info('getAVCastController : SUCCESS ');
+            }
+            });
+          })
+      }
+    .width('100%')
+    .height('100%')
   }
-});
+}
 ```
 
 ## avSession.getAVCastController<sup>10+</sup>
@@ -1702,7 +1729,7 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 
 | 参数名    | 类型                       | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| sessionId | string                    | 是   |用于指定要获取的投播控制器的sessionId |
+| sessionId | string                    | 是   |用于指定要获取的投播控制器的sessionId。 |
 
 **返回值：**
 
@@ -1725,19 +1752,34 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";  // 供后续函数入参使用
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            let currentAVSession: avSession.AVSession | undefined = undefined;
+            let tag = "createNewSession";
+            let context = this.getUIContext().getHostContext() as Context;
+            let sessionId: string = "";  // 供后续函数入参使用。
 
-let aVCastController: avSession.AVCastController;
-avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
-  aVCastController = avcontroller;
-  console.info('getAVCastController : SUCCESS');
-}).catch((err: BusinessError) => {
-  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+            let aVCastController: avSession.AVCastController;
+            avSession.getAVCastController(sessionId).then((avcontroller: avSession.AVCastController) => {
+            aVCastController = avcontroller;
+            console.info('getAVCastController : SUCCESS');
+            }).catch((err: BusinessError) => {
+            console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## avSession.startCasting<sup>10+</sup>
@@ -1757,7 +1799,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 |
-| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息 |
+| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并启动投播，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -1813,7 +1855,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | session      | [SessionToken](#sessiontoken) | 是   | 会话令牌。SessionToken表示单个token。 |
-| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息 |
+| device | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)                        | 是   | 设备相关信息。 |
 
 **返回值：**
 
@@ -2081,7 +2123,7 @@ off(type: 'deviceLogEvent', callback?: Callback\<DeviceLogEventCode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'deviceLogEvent'`。 |
-| callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 否  | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听            |
+| callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 否  | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。            |
 
 **错误码：**
 
@@ -2113,6 +2155,12 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                         |
+| -------- | --------------------------------------------------- | ---- | ---------------------------- |
+| surfaceId | string | 是   | 设置播放的surfaceId。 |
 
 **返回值：**
 
@@ -2201,7 +2249,7 @@ aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
 });
 ```
 
-### on('videoSizeChange')<sup>10+</sup>
+### on('videoSizeChange')<sup>12+</sup>
 
 on(type: 'videoSizeChange', callback: (width:number, height:number) => void): void
 
@@ -2216,7 +2264,7 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 | 参数名   | 类型         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string      | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当video尺寸更改时，触发该事件。 |
-| callback | (width:number, height:number) => void    | 是   | 回调函数，返回video的宽度和高度     |
+| callback | (width:number, height:number) => void    | 是   | 回调函数，返回video的宽度和高度。     |
 
 **错误码：**
 
@@ -2236,7 +2284,7 @@ aVCastController.on('videoSizeChange', (width: number, height: number) => {
 });
 ```
 
-### off('videoSizeChange')<sup>10+</sup>
+### off('videoSizeChange')<sup>12+</sup>
 
 off(type: 'videoSizeChange'): void
 
@@ -2275,7 +2323,7 @@ aVCastController.off('videoSizeChange');
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| avQueueName<sup>11+</sup>     | string                  | 否   | 歌单（歌曲列表）名称。<br/>此接口为系统接口。 |
+| avQueueName<sup>12+</sup>     | string                  | 否   | 歌单（歌曲列表）名称。<br/>此接口为系统接口。 |
 
 ## AVQueueInfo<sup>11+</sup>
 
@@ -2315,12 +2363,12 @@ aVCastController.off('videoSizeChange');
 | 名称          | 类型              | 可读 | 可写 | 说明  |
 | --------------| ---------------- | ---------------- | ---------------- |------|
 | sessionId    | string    | 是 | 是  | 会话ID      |
-| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型    |
-| sessionTag   | string             | 是 | 是 | 会话的自定义名称    |
-| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等） |
+| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型。    |
+| sessionTag   | string             | 是 | 是 | 会话的自定义名称。    |
+| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等）。 |
 | isActive     | boolean             | 是 | 是 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
 | isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
-| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |
+| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息。   |
 
 ## DeviceLogEventCode<sup>13+</sup>
 

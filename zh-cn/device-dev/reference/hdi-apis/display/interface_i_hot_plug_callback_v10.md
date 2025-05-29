@@ -39,7 +39,7 @@ IHotPlugCallback::OnHotPlug ([in] unsigned int outputId, [in] boolean connected 
 | 名称 | 描述 | 
 | -------- | -------- |
 | outputId | 指示显示设备的 ID。  | 
-| connected | 设备是否连接。 | 
+| connected | connected为true表示设备已连接，反之为false表示断开链接。 | 
 
 **返回：**
 

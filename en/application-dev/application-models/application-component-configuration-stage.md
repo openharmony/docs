@@ -7,7 +7,7 @@ During application development, you must configure tags to identify an applicati
 The bundle name is specified by the **bundleName** field in the [app.json5 file](../quick-start/app-configuration-file.md) in the **AppScope** directory of the project. This field identifies an application and must be globally unique. You are advised to use the reverse domain name notation, for example, *com.example.demo*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.
 
 ## Configuring Icons and Labels
-Icons and labels are usually configured together. They correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md). Since 5.0.3.800, DevEco Studio does not forcibly verify the **icons** and **labels** in the **module.json5** file. Therefore, you can configure them in either **module.json5** or **app.json5**.
+Icons and labels are usually configured together. They correspond to the **icon** and **label** fields in the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md). In DevEco Studio 5.0.3.800 and later versions, the **icon** and **label** fields are optional in the **module.json5** file, but mandatory in the **app.json5** file. This means that you can skip **icons** and **labels** in the **module.json5** file.
 
 ### Generation Mechanism
 * If the HAP file contains UIAbility configuration, the following scenarios are possible:

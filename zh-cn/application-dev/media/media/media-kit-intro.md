@@ -158,7 +158,7 @@ SoundPool提供短音频的播放能力，应用只需要提供音频资源来�
 
 ### 支持的格式与协议
 
-推荐使用以下主流的播放格式，音视容器、音频编码属于内容创作者所掌握的专业领域，不建议应用开发者自制码流进行测试，以免产生无法播放、卡顿等兼容性问题。若发生此类问题不会影响系统，退出播放即可。
+推荐使用以下主流的播放格式，音视频容器、音频编码属于内容创作者所掌握的专业领域，不建议应用开发者自制码流进行测试，以免产生无法播放、卡顿等兼容性问题。若发生此类问题不会影响系统，退出播放即可。
 
 支持的协议如下：
 
@@ -312,23 +312,31 @@ AVTranscoder主要用于将已压缩编码的视频文件按照指定参数转�
 
 支持修改源视频文件的编码参数（格式、码率）和封装格式。源视频的音视频编码和封装格式为系统AVCodec支持的解码和解封装格式，目标视频的音视频编码和封装格式为系统AVCodec支持的编码和封装格式。
 
+<!--RP1--><!--RP1End-->
 - 支持的源视频格式：
-  - [解封装格式](../avcodec/audio-video-demuxer.md)
-  - [音频解码格式](../avcodec/audio-decoding.md)
-  - [视频解码格式](../avcodec/video-decoding.md)
+  - [解封装格式](../avcodec/avcodec-support-formats.md#媒体数据解析)
+  - [音频解码格式](../avcodec/avcodec-support-formats.md#音频解码)
+  - [视频解码格式](../avcodec/avcodec-support-formats.md#视频解码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
 
     <!--DelEnd-->
 - 支持的目标视频格式：
-  - [封装格式](../avcodec/audio-video-muxer.md)
-  - [音频编码格式](../avcodec/audio-encoding.md)
-  - [视频编码格式](../avcodec/video-encoding.md)
+  - [封装格式](../avcodec/avcodec-support-formats.md#媒体数据封装)
+  - [音频编码格式](../avcodec/avcodec-support-formats.md#音频编码)
+  - [视频编码格式](../avcodec/avcodec-support-formats.md#视频编码)
     <!--Del-->
     > **说明：**
     > 当前不支持H.265。
    
     <!--DelEnd-->
+- 支持的轨道数：
+  - 不支持字幕轨。若原视频存在字幕轨，转码后字幕轨将被丢弃。
+  - 仅支持输出一条视频轨。若原视频存在多条视频轨，默认选择第一条视频轨进行转码。
+  - 仅支持输出一条音频轨。若原视频存在多条音频轨，默认选择第一条音频轨进行转码。
 
-<!--RP1--><!--RP1End-->
+> **说明：**
+>
+> - 转码输出视频当前仅支持mp4封装。
+> - 转码输出音频轨当前仅支持AAC编码，视频轨当前仅支持AVC或HEVC编码。

@@ -1,28 +1,28 @@
 # JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)
 
-- Framework Overview
+- Framework Overview<!--js-lite-framework-overview-->
   - [File Organization](js-lite-framework-file.md)
   - ["js" Tag](js-lite-framework-js-tag.md)
   - [app.js](js-lite-framework-js-file.md)
   - [Lifecycle](js-lite-framework-lifecycle.md)
   - [Multi-Language Capability](js-lite-framework-localization.md)
-  - Syntax
+  - Syntax<!--js-lite-syntax-->
     - [HML](js-lite-framework-syntax-hml.md)
     - [CSS](js-lite-framework-syntax-css.md)
     - [JavaScript](js-lite-framework-syntax-js.md)
-- Universal Component Information
+- Universal Component Information<!--js-lite-universal-comp-infor-->
   - [Universal Events](js-lite-common-events.md)
   - [Universal Attributes](js-lite-common-attributes.md)
   - [Universal Styles](js-lite-common-styles.md)
   - [Animation Styles](js-lite-components-common-animation.md)
   - [Media Query](js-lite-components-common-mediaquery.md)
-- Container Components
+- Container Components<!--js-lite-container-comp-->
   - [div](js-lite-components-container-div.md)
   - [list](js-lite-components-container-list.md)
   - [list-item](js-lite-components-container-list-item.md)
   - [stack](js-lite-components-container-stack.md)
   - [swiper](js-lite-components-container-swiper.md)
-- Basic Components
+- Basic Components<!--js-lite-basic-comp-->
   - [chart](js-lite-components-basic-chart.md)
   - [image](js-lite-components-basic-image.md)
   - [image-animator](js-lite-components-basic-image-animator.md)
@@ -34,6 +34,6 @@
   - [slider](js-lite-components-basic-slider.md)
   - [switch](js-lite-components-basic-switch.md)
   - [text](js-lite-components-basic-text.md)
-- Canvas Components
+- Canvas Components<!--js-lite-canvas-comp-->
   - [canvas](js-lite-components-canvas-canvas.md)
   - [CanvasRenderingContext2D](js-lite-components-canvas-canvasrenderingcontext2d.md)

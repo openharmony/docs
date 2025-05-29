@@ -1,12 +1,12 @@
 # @ohos.util.HashSet (非线性容器HashSet)
 
-HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，只对value对象进行处理。
+HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，仅处理value对象。
 
-HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
+HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，HashSet允许插入null值，TreeSet不建议插入null值，可能会影响排序。
 
 **推荐使用场景：** 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -73,7 +73,7 @@ let hashSet: HashSet<number> = new HashSet();
 
 isEmpty(): boolean
 
-判断该HashSet是否为空。
+判断HashSet是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -105,7 +105,7 @@ let result = hashSet.isEmpty();
 
 has(value: T): boolean
 
-判断此HashSet中是否含有该指定元素。
+判断HashSet是否包含指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-向HashSet中添加数据。
+向HashSet添加数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -161,7 +161,7 @@ add(value: T): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 成功增加元素返回true，否则返回false。 |
+| boolean | 成功添加元素返回true，否则返回false。 |
 
 **错误码：**
 
@@ -184,7 +184,7 @@ let result = hashSet.add("squirrel");
 
 remove(value: T): boolean
 
-删除指定的元素。
+从HashSet中删除指定的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -225,7 +225,7 @@ let result = hashSet.remove("sparrow");
 
 clear(): void
 
-清除HashSet中的所有元素，并把length置为0。
+清除HashSet中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -253,7 +253,7 @@ hashSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中包含的键值的新迭代器对象。
+返回包含此映射中所有键值的新迭代器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -292,7 +292,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历实例对象的元素及其对应的下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -303,9 +303,9 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
@@ -345,7 +345,7 @@ for(let i = 0;i < 10; i++) {
 ### entries
 entries(): IterableIterator<[T, T]>
 
-返回包含此映射中包含的键值对的新迭代器对象。
+返回包含此映射中所有键值对的新迭代器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -394,7 +394,7 @@ for(let i = 0;i < 10; i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -404,7 +404,7 @@ for(let i = 0;i < 10; i++) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器 |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
 **错误码：**
 
@@ -422,7 +422,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // 使用方法一：
-let val: Array<string> = Array.from(hashSet.values())
+let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
   console.log("value: " + item);
 }

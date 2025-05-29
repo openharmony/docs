@@ -1,4 +1,4 @@
-# Motion Sensing Error Codes
+# Motion Awareness Error Codes
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Service exception.
+Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status.
 
 **Symptom**
 
@@ -29,7 +29,7 @@ The service status is abnormal.
 
 **Error Message**
 
-Subscribe Failed.
+Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception.
 
 **Symptom**
 
@@ -50,7 +50,7 @@ Subscription to change events has failed.
 
 **Error Message**
 
-UnSubscribe Failed.
+Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
 
 **Symptom**
 

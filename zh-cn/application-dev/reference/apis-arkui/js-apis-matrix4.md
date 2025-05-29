@@ -1,10 +1,10 @@
 # @ohos.matrix4 (矩阵变换)
 
-本模块提供矩阵变换功能，可对图形进行平移、旋转和缩放等。
+本模块提供矩阵变换功能，支持对图形进行平移、旋转和缩放等。
 
 > **说明：**
 >
-> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -28,7 +28,7 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
+| options | [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 是   | 参数为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明。<br/>各number取值范围：(-∞, +∞)<br/>默认值：<br/>[1,&nbsp;0,&nbsp;0,&nbsp;0,<br/>0,&nbsp;1,&nbsp;0,&nbsp;0,<br/>0,&nbsp;0,&nbsp;1,&nbsp;0,<br/>0,&nbsp;0,&nbsp;0,&nbsp;1] |
 
 **返回值：**
 
@@ -67,7 +67,7 @@ let matrix = matrix4.init(
   [1.0, 0.0, 0.0, 0.0,
     0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0])
+    0.0, 0.0, 0.0, 1.0]);
 
 @Entry
 @Component
@@ -110,8 +110,8 @@ let matrix1 = matrix4.init(
   [1.0, 0.0, 0.0, 0.0,
     0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.0, 1.0])
-let matrix2 = matrix4.identity()
+    0.0, 0.0, 0.0, 1.0]);
+let matrix2 = matrix4.identity();
 
 @Entry
 @Component
@@ -166,9 +166,9 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({ x: 1.5 })
-  private matrix2 = this.matrix1.copy().translate({ x: 200 })
-  imageSize: Length = '300px'
+  private matrix1 = matrix4.identity().scale({ x: 1.5 });
+  private matrix2 = this.matrix1.copy().translate({ x: 200 });
+  imageSize: Length = '300px';
 
   build() {
     Column({ space: "50px" }) {
@@ -222,8 +222,8 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 })
-  private matrix2 = matrix4.identity().scale({ x: 2 })
+  private matrix1 = matrix4.identity().translate({ x: 200 });
+  private matrix2 = matrix4.identity().scale({ x: 2 });
 
   build() {
     Column() {
@@ -268,8 +268,8 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 import { matrix4 } from '@kit.ArkUI';
 
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-let matrix1 = matrix4.identity().scale({ x: 2 })
-let matrix2 = matrix1.copy().invert()
+let matrix1 = matrix4.identity().scale({ x: 2 });
+let matrix2 = matrix1.copy().invert();
 
 @Entry
 @Component
@@ -323,7 +323,7 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 });
 
   build() {
     Column() {
@@ -376,7 +376,7 @@ struct Test {
       z: 4,
       centerX: 50,
       centerY: 50
-    })
+    });
 
   build() {
     Column() {
@@ -423,7 +423,7 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().skew(2, 3)
+  private matrix1 = matrix4.identity().skew(2, 3);
 
   build() {
     Column() {
@@ -479,7 +479,7 @@ struct Test {
       y: 1,
       z: 2,
       angle: 30
-    })
+    });
 
   build() {
     Column() {
@@ -525,10 +525,10 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private originPoint: number[] = [50, 50]
-  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
-  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]])
-  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
+  private originPoint: number[] = [50, 50];
+  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 });
+  private transformPoint = this.matrix_1.transformPoint([this.originPoint[0], this.originPoint[1]]);
+  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] });
 
   build() {
     Column() {
@@ -581,7 +581,7 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 **示例：**
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -589,7 +589,7 @@ struct Index {
   private matrix1 = matrix4.identity().setPolyToPoly({
     src: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 500, y: 500 }],
     dst: [{ x: 0, y: 0 }, { x: 500, y: 0 }, { x: 0, y: 500 }, { x: 750, y: 1000 }], pointCount: 4
-  })
+  });
 
   build() {
     Stack() {
@@ -656,10 +656,10 @@ struct Index {
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
 | src    |  Array<[Point](#point12)> | 是   | 源点坐标。 |
-| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0。|
+| srcIndex    | number | 否   | 源点坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞)|
 | dst    |  Array<[Point](#point12)>  | 是   | 目标点坐标。 |
-| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0。 |
-| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2。|
+| dstIndex    | number | 否   |  目标坐标起始索引。<br>默认值:0 <br/> 取值范围：[0, +∞) |
+| pointCount    | number | 否   | 使用到的点数量。<br>默认值: src.length/2 <br/> 取值范围：[0, +∞)|
 
 ## Point<sup>12+</sup>
 
@@ -669,8 +669,8 @@ struct Index {
 
 | 名称 | 类型   | 必填 | 说明                                                        |
 | ---- | ------ | ---- | ----------------------------------------------------------- |
-| x    |  number | 是   | x轴坐标。 |
-| y    | number | 是   | y轴坐标。 |
+| x    |  number | 是   | x轴坐标。<br/>取值范围：(-∞, +∞) |
+| y    | number | 是   | y轴坐标。<br/>取值范围：(-∞, +∞) |
 
 ## matrix4.copy<sup>(deprecated)</sup>
 
@@ -701,9 +701,9 @@ import { matrix4 } from '@kit.ArkUI';
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix1 = matrix4.identity().translate({ x: 100 });
   // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
-  private matrix2 = this.matrix1.copy().scale({ x: 2 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 });
 
   build() {
     Column() {

@@ -5,10 +5,11 @@
 
 Defines the input parameters of the **OH_HiCollie_SetTimer** function.
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [HiCollie](_hi_collie.md)
 
+**Header file**: [hicollie.h](hicollie_8h.md)
 
 ## Summary
 

@@ -4,9 +4,9 @@
 
 **权限说明**
 
-- 通过Picker获取的URI默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 通过Picker获取的uri默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
 - 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
-- 使用picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
+- 使用Picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
 **系统隔离说明**
 
@@ -45,8 +45,8 @@
 
    ```ts
    let uris: Array<string> = [];
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context;
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
@@ -58,14 +58,14 @@
 
    > **注意**：
    >
-   > 1、URI存储建议：<br>
-   > - 避免在Picker回调中直接操作URI。<br>
-   > - 建议使用全局变量保存URI以供后续使用。<br>
+   > 1. URI存储建议：
+   > - 避免在Picker回调中直接操作URI。
+   > - 建议使用全局变量保存URI以供后续使用。
    >
-   > 2、快捷保存:<br>
-   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
+   > 2. 快捷保存：
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
 
-4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
    const uri = '';
@@ -74,7 +74,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过(fd)使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭(fd)。
+5. 通过（fd）使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭（fd）。
 
    ```ts
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
@@ -105,8 +105,8 @@
 
    ```ts
    let uri: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;  
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
@@ -118,14 +118,14 @@
 
    > **注意**：
    >
-   > 1、URI存储建议：<br>
-   > - 避免在Picker回调中直接操作URI。<br>
-   > - 建议使用全局变量保存URI以供后续使用。<br>
+   > 1. URI存储建议：
+   > - 避免在Picker回调中直接操作URI。
+   > - 建议使用全局变量保存URI以供后续使用。
    >
-   > 2、快捷保存：<br>
-   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。<br>
+   > 2. 快捷保存：
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
 
-4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
+4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
    //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
@@ -133,7 +133,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过(fd)使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭(fd)。
+5. 通过（fd）使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭（fd）。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
@@ -171,17 +171,17 @@
 
    ```ts
    let uri: string = '';
-   // 请确保 getContext(this) 返回结果为 UIAbilityContext
-   let context = getContext(this) as common.Context; 
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    const documentSaveOptions = new picker.DocumentSaveOptions();
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
-   documentViewPicker.save(documentSaveOptions ).then((documentSaveResult: Array<string>) => {
+   documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uri = documentSaveResult[0];
      console.info('documentViewPicker.save succeed and uri is:' + uri);
      const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
      const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-     fs.writeSync(file.fd, 'Hello HarmonyOS');
+     fs.writeSync(file.fd, 'Hello World!');
      fs.closeSync(file.fd);
    }).catch((err: BusinessError) => {
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);

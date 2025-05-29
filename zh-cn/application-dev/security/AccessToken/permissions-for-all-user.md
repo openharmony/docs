@@ -15,7 +15,9 @@
 
 ## ohos.permission.ACCESS_BLUETOOTH
 
-允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。
+允许应用接入蓝牙并使用蓝牙功能。
+
+包括扫描和发现外围蓝牙设备、与外围蓝牙设备配对和连接等操作，同时支持低功耗蓝牙的广播和扫描功能。
 
 **权限级别**：normal
 
@@ -37,6 +39,8 @@
 
 允许应用读取开放匿名设备标识符。
 
+<!--RP3--><!--RP3End-->
+
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
@@ -46,6 +50,8 @@
 ## ohos.permission.ACTIVITY_MOTION
 
 允许应用读取用户的运动状态。
+
+例如，判断用户是否处于运动中、记录用户行走步数。
 
 **权限级别**：normal
 
@@ -178,13 +184,13 @@
 
 允许应用访问公共目录下Download目录及子目录。
 
-当前仅2in1设备应用可申请此权限。
-
 <!--RP2--><!--RP2End-->
 
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
+
+**支持设备**：PC/2in1 | Tablet
 
 **起始版本**：11
 
@@ -194,17 +200,31 @@
 
 允许应用访问公共目录下的Documents目录及子目录。
 
-当前仅2in1设备应用可申请此权限。
-
 <!--RP2--><!--RP2End-->
 
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
 
+**支持设备**：PC/2in1 | Tablet
+
 **起始版本**：11
 
 **变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
+
+## ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+允许应用获取屏幕图像。
+
+应用获取此权限后，可进行截屏等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**支持设备**：PC/2in1 | Tablet
+
+**起始版本**：14
 
 ## ohos.permission.READ_MEDIA
 
@@ -237,3 +257,4 @@
 **替代方案**：
 
 请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+

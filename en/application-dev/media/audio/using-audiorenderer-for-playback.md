@@ -41,8 +41,8 @@ During application development, you are advised to use [on('stateChange')](../..
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-      rendererFlags: 0
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+      rendererFlags: 0 // AudioRenderer flag.
     };
 
     let audioRendererOptions: audio.AudioRendererOptions = {
@@ -77,6 +77,7 @@ During application development, you are advised to use [on('stateChange')](../..
      import { audio } from '@kit.AudioKit';
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -84,7 +85,9 @@ During application development, you are advised to use [on('stateChange')](../..
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // Ensure that the resource exists in the path.
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -125,6 +128,7 @@ During application development, you are advised to use [on('stateChange')](../..
      ```ts
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -132,7 +136,9 @@ During application development, you are advised to use [on('stateChange')](../..
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
+     // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
      // Ensure that the resource exists in the path.
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
@@ -202,6 +208,18 @@ An incorrect configuration of **StreamUsage** may cause unexpected behavior. Exa
 - When **STREAM_USAGE_MUSIC** is incorrectly used in a game scenario, the game cannot be played simultaneously with music applications. However, games usually can coexist with music playback.
 - When **STREAM_USAGE_MUSIC** is incorrectly used in a navigation scenario, any playing music is interrupted when the navigation application provides audio guidance. However, it is generally expected that the music keeps playing at a lower volume while the navigation is active.
 
+### Configuring the Appropriate Audio Sampling Rate
+
+The sampling rate refers to the number of samples captured per second for a single audio channel, measured in Hz.
+
+Resampling involves upsampling (adding samples through interpolation) or downsampling (removing samples through decimation) when there is a mismatch between the input and output audio sampling rates.
+
+The AudioRenderer supports all sampling rates defined in the enum **AudioSamplingRate**.
+
+If the input audio sampling rate configured by **AudioRenderer** is different from the output sampling rate of the device, the system resamples the input audio to match the output sampling rate.
+
+To minimize power consumption from resampling, it is best to use input audio with a sampling rate that matches the output sampling rate of the device. A sampling rate of 48 kHz is highly recommended.
+
 ### Sample Code
 
 Refer to the sample code below to render an audio file using AudioRenderer.
@@ -210,6 +228,7 @@ Refer to the sample code below to render an audio file using AudioRenderer.
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -227,14 +246,16 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 };
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
   rendererFlags: 0 // AudioRenderer flag.
 };
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
-let path = getContext().cacheDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 // Ensure that the resource exists in the path.
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);

@@ -20,6 +20,7 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 | fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | [swipeDirection](#swipedirection)| No| Swipe direction.<br>Default value: **SwipeDirection.All**|
 | speed | number | No| Minimum speed of the swipe gesture.<br>Default value: 100 vp/s<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
+| isFingerCountLimited<sup>15+</sup> | boolean | No| Whether to enforce the exact number of fingers touching the screen. With the value **true**, the gesture recognition fails if the number of fingers touching the screen does not match the configured value of **fingers**.<br>Default value: **false**|
 
 ## SwipeDirection
 

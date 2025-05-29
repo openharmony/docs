@@ -3,15 +3,17 @@
 
 ## Overview
 
-Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).
+Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices).
 
 **Since**
 
-16
+18
 
 **Related Modules**
 
 [USB DDK](_usb_ddk.md)
+
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
 
 
 ## Summary

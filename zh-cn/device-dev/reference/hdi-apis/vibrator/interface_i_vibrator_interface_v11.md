@@ -101,7 +101,6 @@ IVibratorInterface::GetEffectInfo ([in] String effectType, [out] struct HdfEffec
 
 获取指定效果类型的振动效果信息。
 
-link HdfEffectInfo｝。
 
 **起始版本：** 3.2
 

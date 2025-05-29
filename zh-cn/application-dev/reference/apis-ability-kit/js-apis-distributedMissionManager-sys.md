@@ -698,7 +698,7 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
   }
   ```
 
-## distributedMissionManager.on('continueStateChange')<sup>10+</sup>
+## distributedMissionManager.on('continueStateChange')<sup>11+</sup>
 
 on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;): void
 
@@ -738,7 +738,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;)
   }
   ```
 
-## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
+## distributedMissionManager.off('continueStateChange')<sup>11+</sup>
 
 off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt;): void
 

@@ -19,7 +19,6 @@
    - 证书管理支持的算法为其子集，当前仅支持RSA、ECC及SM2算法类型的私有凭据安装及使用。
    - 签名、验签支持的参数组合，详见HUKS声明的[签名/验签介绍及算法规格](../UniversalKeystoreKit/huks-signing-signature-verification-overview.md)中RSA、ECC及SM2的描述。
 
-
 ## 接口说明
 
 详细接口说明可参考[API参考](../../reference/apis-device-certificate-kit/js-apis-certManager.md)。

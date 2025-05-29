@@ -6,17 +6,23 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
-> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
+> 该组件不支持在Wearable设备上使用。
 
 ## DatePickerDialog
 
-### show
+### show<sup>(deprecated)</sup>
 
 static show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)替代。
+>
+> 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -43,9 +49,9 @@ static show(options?: DatePickerDialogOptions)
 | lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14类型说明) | 否 | 设置农历开关的颜色样式。<br/>默认值：{ selectedColor: `$r('sys.color.ohos_id_color_text_primary_actived')`, unselectedColor: `$r('sys.color.ohos_id_color_switch_outline_off')`, strokeColor: Color.White }<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| acceptButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](#pickerdialogbuttonstyle12类型说明) | 否 | 设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br />**说明：**<br />acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，二者primary字段均配置为true时均不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| cancelButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](#pickerdialogbuttonstyle12类型说明) | 否 | 设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br />**说明：**<br />acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，二者primary字段均配置为true时均不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| acceptButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](#pickerdialogbuttonstyle12类型说明) | 否 | 设置确认按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br />**说明：**<br/>1.acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，如果同时设置为true，则primary字段不生效，保持默认值false。<br/>2.按钮高度默认40vp，在关怀模式-大字体场景下高度不变，即使按钮样式设置为圆角矩形[ROUNDED_RECTANGLE](ts-basic-components-button.md#buttontype枚举说明)，呈现效果依然是胶囊型按钮[Capsule](ts-basic-components-button.md#buttontype枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| cancelButtonStyle<sup>12+</sup> | [PickerDialogButtonStyle](#pickerdialogbuttonstyle12类型说明) | 否 | 设置取消按钮显示样式、样式和重要程度、角色、背景色、圆角、文本颜色、字号、字体粗细、字体样式、字体列表、按钮是否默认响应Enter键。<br />**说明：**<br/>1.acceptButtonStyle与cancelButtonStyle中最多只能有一个primary字段配置为true，如果同时设置为true，则primary字段不生效，保持默认值false。<br/>2.按钮高度默认40vp，在关怀模式-大字体场景下高度不变，即使按钮样式设置为圆角矩形[ROUNDED_RECTANGLE](ts-basic-components-button.md#buttontype枚举说明)，呈现效果依然是胶囊型按钮[Capsule](ts-basic-components-button.md#buttontype枚举说明)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | alignment<sup>10+</sup>  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' }<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -56,8 +62,8 @@ static show(options?: DatePickerDialogOptions)
 | onDateChange<sup>10+</sup> | [Callback](ts-types.md#callback12)\<Date> | 否 | 滑动弹窗中的滑动选择器使当前选中项改变时触发该回调。<br />**说明：**<br />当showTime设置为true时，回调接口返回值value中时和分为选择器选择的时和分。否则，返回值value中时和分为系统时间的时和分。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>19+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>19+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onDidAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onDidDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillAppear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -66,7 +72,8 @@ static show(options?: DatePickerDialogOptions)
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | 否 | 设置时分是否显示前置0，目前只支持设置hour和minute参数。<br/>默认值：<br/>hour: 24小时制默认为"2-digit"，即有前置0；12小时制默认为"numeric"，即没有前置0。<br/>minute: 默认为"2-digit"，即有前置0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| enableHapticFeedback<sup>16+</sup> | boolean | 否   | 设置是否开启触控反馈。<br />默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br />**原子化服务API**： 从API version 16开始，该接口支持在原子化服务中使用。<br />**说明**：<br />开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：<br />"requestPermissions": [{"name": "ohos.permission.VIBRATE"}]|
+| enableHapticFeedback<sup>18+</sup> | boolean | 否   | 设置是否开启触控反馈。<br />默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br />**原子化服务API**： 从API version 18开始，该接口支持在原子化服务中使用。<br />**说明**：<br />开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：<br />"requestPermissions": [{"name": "ohos.permission.VIBRATE"}]|
+| canLoop<sup>20+</sup> | boolean | 否 | 设置是否可循环滚动。true：可循环；false：不可循环。默认值：true <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## LunarSwitchStyle<sup>14+</sup>类型说明
 
@@ -95,7 +102,7 @@ static show(options?: DatePickerDialogOptions)
 | role | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否    | Button组件的角色。                     |
 | fontSize  | [Length](ts-types.md#length)                 | 否    | 文本显示字号。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本显示颜色。                     |
-| fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string| 否    | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。 |
+| fontWeight  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string| 否    | 文本的字体粗细。number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"200"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 文本的字体样式。                     |
 | fontFamily  |  [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string  | 否    | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否    | 按钮背景色。                     |
@@ -137,15 +144,14 @@ static show(options?: DatePickerDialogOptions)
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
-            // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -193,14 +199,14 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -233,28 +239,28 @@ struct DatePickerDialogExample {
             },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             },
             onCancel: () => {
-              console.info("DatePickerDialog:onCancel()")
+              console.info("DatePickerDialog:onCancel()");
             },
             onDateChange: (value: Date) => {
-              console.info("DatePickerDialog:onDateChange()" + value.toString())
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
             },
             onDidAppear: () => {
-              console.info("DatePickerDialog:onDidAppear()")
+              console.info("DatePickerDialog:onDidAppear()");
             },
             onDidDisappear: () => {
-              console.info("DatePickerDialog:onDidDisappear()")
+              console.info("DatePickerDialog:onDidDisappear()");
             },
             onWillAppear: () => {
-              console.info("DatePickerDialog:onWillAppear()")
+              console.info("DatePickerDialog:onWillAppear()");
             },
             onWillDisappear: () => {
-              console.info("DatePickerDialog:onWillDisappear()")
+              console.info("DatePickerDialog:onWillDisappear()");
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -282,7 +288,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({ // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -316,7 +322,7 @@ struct DatePickerDialogExample {
             },
             enableHoverMode: true,
             hoverModeArea: HoverModeAreaType.TOP_SCREEN
-          })
+          });
         })
     }.width('100%')
   }
@@ -334,15 +340,14 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
-            // 建议使用 this.getUIContext().showDatePickerDialog()接口
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -350,10 +355,10 @@ struct DatePickerDialogExample {
             offset: { dx: 20, dy: 0 },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -371,14 +376,14 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -390,10 +395,10 @@ struct DatePickerDialogExample {
             },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -411,14 +416,14 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
@@ -427,10 +432,10 @@ struct DatePickerDialogExample {
             shadow: ShadowStyle.OUTER_FLOATING_SM,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -448,40 +453,40 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: false,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
 
       Button("Lunar DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: true,
             lunarSwitch: true,
             onDateAccept: (value: Date) => {
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -499,24 +504,24 @@ struct DatePickerDialogExample {
 @Entry
 @Component
 struct DatePickerDialogExample {
-  selectedDate: Date = new Date("2010-1-1")
+  selectedDate: Date = new Date("2010-1-1");
 
   build() {
     Column() {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          this.getUIContext().showDatePickerDialog({
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             mode: DatePickerMode.MONTH_AND_DAY,
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             }
-          })
+          });
         })
     }.width('100%')
   }
@@ -524,3 +529,47 @@ struct DatePickerDialogExample {
 ```
 
 ![DataPickerDialog](figures/DatePickerDialogDemo8.gif)
+
+### 示例9（设置循环滚动）
+
+该示例使用canLoop设置是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  @State isLoop: boolean = true;
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          this.getUIContext().showDatePickerDialog({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            canLoop: this.isLoop,
+            onDateAccept: (value: Date) => {
+              // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
+            }
+          });
+        })
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn;
+          })
+      }.position({ x: '60%', y: '40%' })
+    }.width('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/DatePickerDialogDemo9.gif)

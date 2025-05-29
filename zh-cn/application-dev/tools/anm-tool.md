@@ -61,6 +61,9 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
   | ------------------------ | ------------------------------------ |
   | -c/--recent-count        | 设置保存在内存中的最近通知的最大个数。 |
   | -e/--enable-notification | 设置通知使能开关。                     |
+  | -k/--collaboration-switch        | 设置通知是否支持跨设备协同至指定类型设备。<br/>```anm setting -k <deviceType>:<status>```<br/>**说明：** 从API version 18开始，新增支持该命令参数。<br/>deviceType表示需要指定的设备类型。取值范围包括：wearable（智能穿戴设备）、litewearable（轻量级智能穿戴设备）、headset（可穿戴式音频设备）。<br/>status表示需要指定的跨设备协同开关状态。取值为0表示开关为关闭状态，取值为1表示开关为打开状态。
+  | -b/--collaboration-switch-bundle | 设置指定应用的通知是否支持跨设备协同至指定类型设备。<br/>```anm setting -b <deviceType>:<bundleName>:<uid>:<status>```<br/>**说明：** 从API version 18开始，新增支持该命令参数。<br/>deviceType表示需要指定的设备类型。取值范围包括：wearable（智能穿戴设备）、litewearable（轻量级智能穿戴设备）、headset（可穿戴式音频设备）。<br/>status表示需要指定的跨设备协同开关状态。取值为0表示开关为关闭状态，取值为1表示开关为打开状态。|
+  | -o/--collaboration-switch-slot   | 设置指定渠道的通知是否支持通知跨设备协同至指定类型设备。<br/>```anm setting -o <deviceType>:<slotType>:<status>```<br/>**说明：** 从API version 18开始，新增支持该命令参数。<br/>deviceType表示需要指定的设备类型。取值范围包括：wearable（智能穿戴设备）、litewearable（轻量级智能穿戴设备）、headset（可穿戴式音频设备）。<br/>slotType表示需要指定的通知渠道类型。 取值范围参考[SlotType](../reference/apis-notification-kit/js-apis-notificationManager.md#slottype)。<br/>status表示需要指定的跨设备协同开关状态。取值为0表示开关为关闭状态，取值为1表示开关为打开状态。|
   | -h/--help                | 帮助信息。                             |
 
   **示例**：
@@ -68,4 +71,13 @@ Advanced Notification Manager（通知管理工具，简称anm）是实现通知
   ```bash
   # 设置保存在内存中的最近通知的最大数为100个
   anm setting -c 100
+
+  # 设置通知跨设备协同至wearable类型设备的开关为打开状态
+  anm setting -k wearable:1
+
+  # 设置包名为example，uid为10100的应用通知跨设备协同至litewearable类型设备的开关为关闭状态
+  anm setting -b litewearable:example:10100:0
+
+  # 设置渠道类型为0的通知跨设备协同至headset类型设备的开关为打开状态
+  anm setting -o headset:0:1
   ```

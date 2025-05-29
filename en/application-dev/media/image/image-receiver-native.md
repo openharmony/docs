@@ -1,6 +1,6 @@
-# Using Image to Receive Images
+# Image Receiving
 
-You can use the **ImageReceiver** APIs to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
 
 ## How to Develop
 
@@ -77,7 +77,7 @@ To obtain input data of an image from a camera, you must request the **ohos.perm
             // Create an output object for the preview stream.
             let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(profileObj,receiverSurfaceId);
             let cameraInput : camera.CameraInput = cameraManager.createCameraInput(cameraDevices[0]);
-            // Open a camera.
+            // Open the camera.
             await cameraInput.open();
             // Create a session.
             let session : camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;

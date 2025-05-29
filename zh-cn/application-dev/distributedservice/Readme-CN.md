@@ -4,6 +4,8 @@
 - [分布式设备管理](devicemanager-guidelines.md)
 - 应用跨设备连接管理<!--abilityconnect-distributed-->
   - [UIAbility与UIAbility连接开发指南](abilityconnectmanager-guidelines.md)
-  - [UIAbility与Extension连接开发指南](distributedextension-duidelines.md)
+  <!--Del-->
+  - [UIAbility与Extension连接开发指南](distributedextension-guidelines.md)
+  <!--DelEnd-->
 - 硬件跨设备连接管理<!--devconnect-distributed-->
   - [分布式相机开发指南](camera-distributed.md)

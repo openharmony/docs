@@ -94,7 +94,7 @@ The following figure shows the cross-device migration process when a migration r
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -107,8 +107,9 @@ The following figure shows the cross-device migration process when a migration r
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
         // The application can set the minimum compatible version based on the source version, which can be obtained from the versionCode field in the app.json5 file. This is to prevent incompatibility caused because the target version is too earlier.
-    	let versionThreshold: number = -1; // Use the minimum version supported by the application.
+        let versionThreshold: number = -1; // Use the minimum version supported by the application.
         // Compatibility verification
+        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // It is recommended that users be notified of the reason why the migration is rejected if the version compatibility check fails.
           promptAction.showToast({
@@ -228,7 +229,7 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
       build() {
         // ...
       }
@@ -248,7 +249,7 @@ To implement special scenarios, for example, where migration is required only fo
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -256,7 +257,8 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -290,6 +292,7 @@ To implement special scenarios, for example, where migration is required only fo
 > **NOTE**
 >
 > Currently, only the page stack implemented based on the router module can be automatically restored. The page stack implemented using the **Navigation** component cannot be automatically restored.
+>
 > If an application uses the **Navigation** component for routing, you can disable default page stack migration by setting [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) to **false**. In addition, save the page (or page stack) to be migrated in **want**, and manually load the specified page on the target device.
 
 By default, the page stack is restored during the migration of a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Before [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) finishes the execution, call [restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#restore) to pass in the current window context, which will be used for page stack loading and restoration. The **restoreWindowStage()** API must be executed in a synchronous API. If it is executed during an asynchronous callback, there is a possibility that the page fails to be loaded during application startup.
@@ -366,13 +369,14 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-### Supporting Cross-Device Migration Between Different Abilities in the Same Application
+### Migrating Between Abilities in the Same Application Across Devices
 Generally, the same ability is involved during a cross-device migration. However, different ability names may be configured for the same service on different device types, resulting in different abilities. To support migration in this scenario, you can configure the **continueType** flag under **abilities** in the [module.json5](../quick-start/module-configuration-file.md) file for association.
 
 The values of the **continueType** tag of the two abilities must be the same. The following is an example:
    > **NOTE**
    >
    > The value of **continueType** must be unique in an application. The value is a string of a maximum of 127 bytes consisting of letters, digits, and underscores (_).
+   >
    > The **continueType** tag is a string array. If multiple fields are configured, only the first field takes effect.
 
 ```json
@@ -405,6 +409,62 @@ The values of the **continueType** tag of the two abilities must be the same. Th
    }
 ```
 
+### Migrating Abilities with Different Bundle Names in the Same Application Across Devices
+An application may use different bundle names on different devices. To support migration in this scenario, configure **abilities** in the **module.json5** file of the application as follows:
+
+- **continueBundleName**: bundle name of the application on the peer device.
+- **continueType**: The same value must be used.
+
+   > **NOTE**
+   >
+   > The value of **continueType** must be unique in an application. The value is a string of a maximum of 127 bytes consisting of letters, digits, and underscores (_).
+   >
+   > The **continueType** tag is a string array. If multiple fields are configured, only the first field takes effect.
+   
+
+An example is as follows:
+
+An application with different bundle names is migrated between device A and device B. The bundle name of the application on device A is com.demo.example1, and that on device B is com.demo.example2.
+
+```JSON
+// In the configuration file for device A, set continueBundleName to the bundle name of the application on device B.
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"], // continueBundleName is set to com.demo.example2, which is the bundle name of the application on device B.
+       
+      }
+    ]
+    
+  }
+}
+```
+
+```JSON
+// In the configuration file for device B, set continueBundleName to the bundle name of the application on device A.
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"], // continueBundleName is set to com.demo.example1, which is the bundle name of the application on device A.
+       
+      }
+    ]
+    
+  }
+}
+
+```
+
 ### Quickly Starting a Target Application
 By default, the target application on the peer device is not started immediately when the migration is initiated. It waits until the data to migrate is synchronized from the source device to the peer device. To start the target application immediately upon the initiation of a migration, you can add the **_ContinueQuickStart** suffix to the value of **continueType**. In this way, only the migrated data is restored after the data synchronization, delivering an even better migration experience.
 
@@ -422,7 +482,11 @@ By default, the target application on the peer device is not started immediately
      }
    }
    ```
-With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduce of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup, delivering a better experience. The following figure shows the quick start process.
+With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduction of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup.
+
+Since API version 18, an application that displays a loading page during quick launch can [obtain the quick startup result during cross-device migration](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron). Depending on this result, the application can take appropriate actions. For example, if the quick startup is successful, the application can dismiss the loading page and proceed to the continuation page.
+
+The following figure shows the quick start process.
 
 ![hop-cross-device-migration](figures/continue_quick_start.png)
 
@@ -487,7 +551,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-When the target application is quickly started, the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) and [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) callbacks are triggered in sequence. Generally, in **onWindowStageCreate()**, you call [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to load the page. This API throws an asynchronous task to load the home page. This asynchronous task is not synchronous with **onWindowStageRestore()**. If UI-related APIs (such as route APIs) are used in **onWindowStageRestore()**, the invoking time may be earlier than the home page loading time. To ensure the normal loading sequence, you can use [setTimeout()](../reference/common/js-apis-timer.md#settimeout) to throw an asynchronous task for related operations. For details, see the sample code.
+When the target application is quickly started, the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) and [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) callbacks are triggered in sequence. Generally, in **onWindowStageCreate()**, you call [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to load the page. This API throws an asynchronous task to load the home page. This asynchronous task is not synchronous with **onWindowStageRestore()**. If UI-related APIs (such as route APIs) are used in **onWindowStageRestore()**, the invoking time may be earlier than the home page loading time. To ensure the normal loading sequence, you can use [setTimeout()](../reference/common/js-apis-timer.md#settimeout) to throw an asynchronous task for related operations.
 
 The sample code is as follows:
 
@@ -611,8 +675,10 @@ On the source device, save the data to migrate to a distributed [data object](..
 
 > **NOTE**
 >
-> Distributed data objects must be activated before being made persistent. Therefore, the **save()** API must be called after setSessionId().
+> Distributed data objects must be activated before being made persistent. Therefore, the **save()** API must be called after **setSessionId()**.
+>
 > For applications that need to exit from the source device after migration, use **await** to wait until the **save()** API finishes execution. This prevents the application from exiting before data is saved. Since API version 12, an asynchronous **onContinue()** API is provided for this scenario.
+>
 > Currently, the **sessionId** field in **wantParams** is occupied by the system in the migration process. You are advised to define another key in **wantParams** to store the ID to avoid data exceptions.
 
 The sample code is as follows:
@@ -695,9 +761,11 @@ In [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#u
 
 > **NOTE**
 >
-> 1. The distributed data object of the peer device to be added to the network cannot be a temporary variable. This is because the callback of the **on()** API may be executed after **onCreate()** or **onNewWant()** finishes execution. If the temporary variable is released, a null pointer exception may occur. You can use a class member variable to avoid this problem.
-> 2. The attributes of the object used to create the distributed data object on the peer device must be undefined before the distributed data object is activated. Otherwise, the source data will be overwritten after new data is added to the network, and data restoration will fail.
-> 3. Before activating the distributed data object, call **on()** to listen for the restore event. This helps prevent data restoration failure caused by event missing.
+> The distributed data object of the peer device to be added to the network cannot be a temporary variable. This is because the callback of the **on()** API may be executed after **onCreate()** or **onNewWant()** finishes execution. If the temporary variable is released, a null pointer exception may occur. You can use a class member variable to avoid this problem.
+>
+> The attributes of the object used to create the distributed data object on the peer device must be undefined before the distributed data object is activated. Otherwise, the source data will be overwritten after new data is added to the network, and data restoration will fail.
+>
+> Before activating the distributed data object, call **on()** to listen for the restore event. This helps prevent data restoration failure caused by event missing.
 
 The sample code is as follows:
 

@@ -23,10 +23,10 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchReasonMessage<sup>16+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| launchReasonMessage<sup>18+</sup> | string | 否 | 是 | 表示启动的详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| lastExitDetailInfo<sup>16+</sup> | [LastExitDetailInfo](#lastexitdetailinfo16) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| lastExitDetailInfo<sup>18+</sup> | [LastExitDetailInfo](#lastexitdetailinfo18) | 否 | 是 | 表示最后退出时的进程状态和详细原因。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
 
@@ -70,15 +70,15 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
-| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：如果调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、kill命令等非Ability Kit提供的能力退出应用进程，也会返回NORMAL。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
 | RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| USER_REQUEST<sup>16+</sup>  | 9    | 应用程序因多任务中心请求而退出，例如用户在多任务管理界面执行上划、一键清理等操作。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
-| SIGNAL<sup>16+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。 |
+| USER_REQUEST<sup>18+</sup>  | 9    | 应用程序因多任务中心请求而退出，例如用户在多任务管理界面执行上划、一键清理等操作。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
+| SIGNAL<sup>18+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -97,9 +97,11 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## LastExitDetailInfo<sup>16+</sup>
+## LastExitDetailInfo<sup>18+</sup>
 
-记录Ability所在进程上次退出的详细信息。<br>**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+记录Ability所在进程上次退出的详细信息。
+
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -113,6 +115,7 @@ class MyAbility extends UIAbility {
 | rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
 | pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
 | timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。 |
 
 **示例**:
 
@@ -129,7 +132,8 @@ class MyAbility extends UIAbility {
         '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
         '\n rss: ' + launchParam.lastExitDetailInfo.rss +
         '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp
+        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
+        '\n processState: ' + launchParam.lastExitDetailInfo.processState
       );
     }
   }
@@ -175,6 +179,13 @@ class MyAbility extends UIAbility {
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。 |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+
+> **说明：**
+> 
+> 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
+> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 
@@ -267,8 +278,8 @@ class MyAbility extends UIAbility {
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| CONTINUATION           | 0    | 迁移保存状态。 |
-| APP_RECOVERY           | 1    | 应用恢复保存状态。 |
+| CONTINUATION           | 0    | 应用迁移场景。 |
+| APP_RECOVERY           | 1    | 应用故障恢复场景。 |
 
 **示例：**
 
@@ -313,9 +324,9 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## CollaborateResult<sup>16+</sup>
+## CollaborateResult<sup>18+</sup>
 
-协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16)方法进行设置。
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate18)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

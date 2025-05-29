@@ -39,6 +39,9 @@ Defines the Optional type. The value can be **undefined**.
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 ## Example
+
+This example demonstrates how to set custom properties on a **Column** component and obtain these properties from its corresponding FrameNode.
+
 ```ts
 // xxx.ets
 import { FrameNode, UIContext } from '@kit.ArkUI';

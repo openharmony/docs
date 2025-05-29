@@ -12,6 +12,9 @@ Typical development scenarios are as follows:
 - Within applications:
     - In a mobile application, touching a **Feedback** button may cause the application to activate the system's default email client, with the feedback email address and issue details preset.
     - In a mobile application, when users touch a **Share via email** button, the application can use the mailto protocol to initiate the email client, pre-populating the subject and body of the email.
+> **NOTE**
+> - To start an email application through mailto, the initiating application must first format the string according to the mailto protocol and then use this method to launch the email application. The email application parses the mailto string to populate fields like the sender, recipient, and email body.
+> - If the initiating application already has details such as the sender, recipient, and email body, you are advised to [use startAbilityByType to start an email application](start-email-apps.md).
 
 ## Format of mailto
 
@@ -47,23 +50,23 @@ Replace the email address with the actual one, and configure the email content a
 
 ### Within Applications
 
-Pass the mailto string to the **uri** parameter. In the application, the context can be obtained through **getContext (this)** for a page and through **this.context** for an ability.
+Pass the mailto string to the **uri** parameter. In the application, the context can be obtained through **getHostContext()** for a page and through **this.context** for an ability.
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       Button('Feedback')
         .onClick(() => {
-          let ctx = getContext(this) as common.UIAbilityContext;
+          let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext;
           ctx.startAbility({
             action: 'ohos.want.action.sendToData',
             uri: 'mailto:feedback@example.com?subject=App Feedback&body=Please describe your feedback here...'
           })
-        
         })
     }
   }

@@ -1,4 +1,4 @@
-# Network Kit
+# Network Kit<!--network-kit-->
 
 - [Introduction to Network Kit](net-mgmt-overview.md)
 

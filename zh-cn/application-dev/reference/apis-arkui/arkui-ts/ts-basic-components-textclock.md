@@ -27,20 +27,20 @@ TextClock(options?: TextClockOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options |  [TextClockOptions](#textclockoptions14对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
+| options |  [TextClockOptions](#textclockoptions18对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
 
-## TextClockOptions<sup>14+</sup>对象说明
+## TextClockOptions<sup>18+</sup>对象说明
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名            | 类型      | 必填     | 说明                                                     |
+| 名称            | 类型      | 必填     | 说明                                                     |
 | -------------- | -------- | ------ | --------------------------------------------------------------------------- |
-| timeZoneOffset | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。设置值为该取值范围内的浮点数时会进行取整，舍弃小数部分。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 <br/>设置值为{ 9.5, 3.5, -3.5, -4.5, -5.5, -5.75, -6.5, -9.5, -10.5, -12.75 }集合中的浮点数时不进行取整。|
-| controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。|
+| timeZoneOffset<sup>8+</sup> | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。设置值为该取值范围内的浮点数时会进行取整，舍弃小数部分。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 <br/>设置值为{ 9.5, 3.5, -3.5, -4.5, -5.5, -5.75, -6.5, -9.5, -10.5, -12.75 }集合中的浮点数时不进行取整。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| controller<sup>8+</sup>     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 
@@ -48,7 +48,7 @@ TextClock(options?: TextClockOptions)
 
 ### format
 
-format(value: string)
+format(value: ResourceStr)
 
 设置显示时间格式，如“yyyy/MM/dd”、“yyyy-MM-dd”。
 
@@ -74,7 +74,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| value  | string | 是   | 显示时间格式。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示时间格式。  <br>从API version 20开始，支持Resource类型。|
 
 以下是format输入的格式样式及对应的显示效果：
 
@@ -258,7 +258,7 @@ contentModifier(modifier: ContentModifier\<TextClockConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier： 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### dateTimeOptions<sup>12+</sup>
 
@@ -369,7 +369,7 @@ stop()
 | 名称 | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
 | timeZoneOffset | number | 是 | 当前文本时钟时区偏移量。 |
-| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true。 |
+| started | boolean | 是 | 指示文本时钟是否启动。<br>默认值：true，true表示启动文本时钟，false表示关闭文本时钟。 |
 | timeValue | number | 是 | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例
@@ -385,9 +385,9 @@ stop()
 @Entry
 @Component
 struct Second {
-  @State accumulateTime: number = 0
+  @State accumulateTime: number = 0;
   // 导入对象
-  controller: TextClockController = new TextClockController()
+  controller: TextClockController = new TextClockController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -397,7 +397,7 @@ struct Second {
       TextClock({ timeZoneOffset: -8, controller: this.controller })
         .format('aa hh:mm:ss')
         .onDateChange((value: number) => {
-          this.accumulateTime = value
+          this.accumulateTime = value;
         })
         .margin(20)
         .fontSize(30)
@@ -405,12 +405,12 @@ struct Second {
         .margin({ bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller.start()
+          this.controller.start();
         })
       Button("stop TextClock")
         .onClick(() => {
           // 停止文本时钟
-          this.controller.stop()
+          this.controller.stop();
         })
     }
     .width('100%')
@@ -453,7 +453,7 @@ struct TextClockExample {
     color: Color.Yellow,
     offsetX: 100,
     offsetY: 0
-  }]
+  }];
 
   build() {
     Column({ space: 8 }) {
@@ -469,15 +469,15 @@ struct TextClockExample {
 
 ``` ts
 class MyTextClockStyle implements ContentModifier<TextClockConfiguration> {
-  currentTimeZoneOffset: number = new Date().getTimezoneOffset() / 60
-  title: string = ''
+  currentTimeZoneOffset: number = new Date().getTimezoneOffset() / 60;
+  title: string = '';
 
   constructor(title: string) {
-    this.title = title
+    this.title = title;
   }
 
   applyContent(): WrappedBuilder<[TextClockConfiguration]> {
-    return wrapBuilder(buildTextClock)
+    return wrapBuilder(buildTextClock);
   }
 }
 
@@ -502,10 +502,10 @@ function buildTextClock(config: TextClockConfiguration) {
 @Entry
 @Component
 struct TextClockExample {
-  @State accumulateTime1: number = 0
-  @State timeZoneOffset: number = -8
-  controller1: TextClockController = new TextClockController()
-  controller2: TextClockController = new TextClockController()
+  @State accumulateTime1: number = 0;
+  @State timeZoneOffset: number = -8;
+  controller1: TextClockController = new TextClockController();
+  controller2: TextClockController = new TextClockController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -515,7 +515,7 @@ struct TextClockExample {
       TextClock({ timeZoneOffset: this.timeZoneOffset, controller: this.controller1 })
         .format('aa hh:mm:ss')
         .onDateChange((value: number) => {
-          this.accumulateTime1 = value
+          this.accumulateTime1 = value;
         })
         .margin(20)
         .fontSize(30)
@@ -527,15 +527,15 @@ struct TextClockExample {
         .margin({ top: 20, bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller1.start()
-          this.controller2.start()
+          this.controller1.start();
+          this.controller2.start();
         })
       Button("stop TextClock")
         .margin({ bottom: 30 })
         .onClick(() => {
           // 停止文本时钟
-          this.controller1.stop()
-          this.controller2.stop()
+          this.controller1.stop();
+          this.controller2.stop();
         })
 
     }

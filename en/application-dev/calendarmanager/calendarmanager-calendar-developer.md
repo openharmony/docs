@@ -11,15 +11,15 @@ You can create an application-specific calendar, and add, delete, update, and qu
 The table below lists the main APIs used for calendar management. For details about more APIs and their usage, see [@ohos.calendarManager](../reference/apis-calendar-kit/js-apis-calendarManager.md).
 
 | API                                                    | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getCalendarManager(context : Context): CalendarManager       | Obtains the **CalendarManager** object based on the context to manage calendars. |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| getCalendarManager(context: Context): CalendarManager       | Obtains the **CalendarManager** object based on the context to manage calendars. |
 | createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar> | Creates a **Calendar** object based on the calendar account information. This API uses a promise to return the result.|
 | getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar> | Obtains the default or specified **Calendar** object. This API uses a promise to return the result.<br>The default **Calendar** object is created when the data storage runs for the first time. You can call this API instead of **createCalendar()** to use the default calendar for a new event.|
-| getAllCalendars(): Promise\<Calendar[]>                      | Obtains the created and default **Calendar** objects of the current application. This API uses a promise to return the result.|
-| deleteCalendar(calendar: Calendar): Promise\<void>           | Deletes a specified **Calendar** object. This API uses a promise to return the result.                 |
-| getConfig(): CalendarConfig                                  | Obtains the calendar configuration information.                                          |
-| setConfig(config: CalendarConfig): Promise\<void>            | Sets the calendar configuration information. This API uses a promise to return the result.                     |
-| getAccount(): CalendarAccount                                | Obtains the calendar account information.                                          |
+| getAllCalendars(): Promise\<Calendar[]>                     | Obtains the created and default **Calendar** objects of the current application. This API uses a promise to return the result.|
+| deleteCalendar(calendar: Calendar): Promise\<void>          | Deletes a specified **Calendar** object. This API uses a promise to return the result.                 |
+| getConfig(): CalendarConfig                                 | Obtains the calendar configuration information.                                          |
+| setConfig(config: CalendarConfig): Promise\<void>           | Sets the calendar configuration information. This API uses a promise to return the result.                     |
+| getAccount(): CalendarAccount                               | Obtains the calendar account information.                                          |
 
 
 ## How to Develop
@@ -28,7 +28,7 @@ The table below lists the main APIs used for calendar management. For details ab
 
    ```ts
    // EntryAbility.ets
-   import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+   import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { calendarManager } from '@kit.CalendarKit';
    import { window } from '@kit.ArkUI';
@@ -67,7 +67,7 @@ The table below lists the main APIs used for calendar management. For details ab
        const permissions: Permissions[] = ['ohos.permission.READ_CALENDAR', 'ohos.permission.WRITE_CALENDAR'];
        let atManager = abilityAccessCtrl.createAtManager();
        atManager.requestPermissionsFromUser(mContext, permissions).then((result: PermissionRequestResult) => {
-         console.log(`get Permission success, result: ${JSON.stringify(result)}`);
+         console.info(`get Permission success, result: ${JSON.stringify(result)}`);
          calendarMgr = calendarManager.getCalendarManager(mContext);
        }).catch((error: BusinessError) => {
          console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
@@ -122,7 +122,7 @@ The table below lists the main APIs used for calendar management. For details ab
    });
    ```
 
-5. After a calendar is created, it is displayed in black. You need to call the **setConfig()** API to set calendar configuration information, including event reminder and calendar color.
+5. After a calendar is created, it is displayed in black. You need to call **setConfig()** to set calendar configuration information, including event reminder and calendar color.
 
    ```ts
    // Index.ets
@@ -150,7 +150,7 @@ The table below lists the main APIs used for calendar management. For details ab
    }).catch((err: BusinessError) => {
      console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
    });
-   ```
+    ```
 
 7. Query a default calendar. The default **Calendar** object is created when the data storage runs for the first time. You can use the default calendar for a new event.
 
@@ -161,7 +161,7 @@ The table below lists the main APIs used for calendar management. For details ab
    }).catch((err: BusinessError) => {
      console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
    });
-   ```
+    ```
 
 8. Obtain the created and default **Calendar** objects of the current application.
 
@@ -189,4 +189,4 @@ The table below lists the main APIs used for calendar management. For details ab
    }).catch((err: BusinessError) => {
      console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
    });
-   ```
+    ```

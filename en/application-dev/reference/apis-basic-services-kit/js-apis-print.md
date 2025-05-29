@@ -11,7 +11,7 @@ The **print** module provides APIs for basic print operations.
 import { print } from '@kit.BasicServicesKit';
 ```
 
-## PrintTask
+## print.PrintTask
 
 Implements event listeners for print tasks.
 
@@ -351,7 +351,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-## PrintDocumentAdapter<sup>11+</sup>
+## print.PrintDocumentAdapter<sup>11+</sup>
 
 Provides information about the document to print. This API must be implemented by a third-party application.
 
@@ -369,10 +369,10 @@ Sends an empty PDF file descriptor to a third-party application. The third-party
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| oldAttrs | PrintAttributes | Yes| Old print attributes.|
-| newAttrs | PrintAttributes | Yes| New print attributes.|
+| oldAttrs | [PrintAttributes](#printprintattributes11) | Yes| Old print attributes.|
+| newAttrs | [PrintAttributes](#printprintattributes11) | Yes| New print attributes.|
 | fd | number | Yes| PDF file descriptor sent to the API caller.|
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to print the updated file.|
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printprintfilecreationstate11)) | Yes| Callback used to print the updated file.|
 
 **Error codes**
 
@@ -424,7 +424,7 @@ Registers a listener for print job state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | PrintDocumentAdapterState | Yes| New state of the print job.|
+| state | [PrintDocumentAdapterState](#printprintdocumentadapterstate11) | Yes| New state of the print job.|
 
 **Error codes**
 
@@ -462,7 +462,7 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 }
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -475,8 +475,8 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
-| callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -509,7 +509,7 @@ print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
 })
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
@@ -522,12 +522,12 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
 
 **Error codes**
 
@@ -558,7 +558,7 @@ print.print(files).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -571,9 +571,9 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
-| callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -607,7 +607,7 @@ print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => 
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 
@@ -620,13 +620,13 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application. |
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
 
 **Error codes**
 
@@ -658,7 +658,7 @@ print.print(files, context).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: PrintAttributes, context: Context): Promise&lt;PrintTask&gt;
 
@@ -672,14 +672,14 @@ Prints a file. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
-| printAdapter | PrintDocumentAdapter | Yes| [PrintDocumentAdapter](#printdocumentadapter11) API instance implemented by a third-party application.|
-| printAttributes | PrintAttributes | Yes| Print attributes.|
+| printAdapter | [PrintDocumentAdapter](#printprintdocumentadapter11) | Yes| [PrintDocumentAdapter](#printprintdocumentadapter11) API instance implemented by a third-party application.|
+| printAttributes | [PrintAttributes](#printprintattributes11) | Yes| Print attributes.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
 
 **Error codes**
 
@@ -722,7 +722,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 })
 ```
 
-## PrintAttributes<sup>11+</sup>
+## print.PrintAttributes<sup>11+</sup>
 
 Defines the print attributes.
 
@@ -732,13 +732,13 @@ Defines the print attributes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | copyNumber | number | No| Number of printed file copies.|
-| pageRange | PrintPageRange | No| Page range of the file to print.|
-| pageSize | PrintPageSize \| PrintPageType | No| Page size of the file to print.|
-| directionMode | PrintDirectionMode | No| Print direction mode.|
-| colorMode | PrintColorMode | No| Color mode of the files to print.|
-| duplexMode | PrintDuplexMode | No| Duplex mode of the files to print.|
+| pageRange | [PrintPageRange](#printprintpagerange11) | No| Page range of the file to print.|
+| pageSize | [PrintPageSize](#printprintpagesize11) \| [PrintPageType](#printprintpagetype11) | No| Page size of the file to print.|
+| directionMode | [PrintDirectionMode](#printprintdirectionmode11) | No| Print direction mode.|
+| colorMode | [PrintColorMode](#printprintcolormode11) | No| Color mode of the files to print.|
+| duplexMode | [PrintDuplexMode](#printprintduplexmode11) | No| Duplex mode of the files to print.|
 
-## PrintPageRange<sup>11+</sup>
+## print.PrintPageRange<sup>11+</sup>
 
 Defines the print range.
 
@@ -752,7 +752,7 @@ Defines the print range.
 | pages | Array&lt;number&gt; | No| Page range set of the file to print.|
 
 
-## PrintPageSize<sup>11+</sup>
+## print.PrintPageSize<sup>11+</sup>
 
 Defines the size of the printed page.
 
@@ -768,7 +768,7 @@ Defines the size of the printed page.
 
 
 
-## PrintDirectionMode<sup>11+</sup>
+## print.PrintDirectionMode<sup>11+</sup>
 
 Enumerates the print direction modes.
 
@@ -780,7 +780,7 @@ Enumerates the print direction modes.
 | DIRECTION_MODE_PORTRAIT | 1 | Portrait mode.|
 | DIRECTION_MODE_LANDSCAPE | 2 | Landscape mode.|
 
-## PrintColorMode<sup>11+</sup>
+## print.PrintColorMode<sup>11+</sup>
 
 Enumerates the color modes.
 
@@ -791,7 +791,7 @@ Enumerates the color modes.
 | COLOR_MODE_MONOCHROME | 0 | Black and white.|
 | COLOR_MODE_COLOR | 1 | Color.|
 
-## PrintDuplexMode<sup>11+</sup>
+## print.PrintDuplexMode<sup>11+</sup>
 
 Enumerates the duplex modes.
 
@@ -803,7 +803,7 @@ Enumerates the duplex modes.
 | DUPLEX_MODE_LONG_EDGE | 1 | Duplex (double-sided) with flipping on long edge.|
 | DUPLEX_MODE_SHORT_EDGE | 2 | Duplex (double-sided) with flipping on short edge.|
 
-## PrintPageType<sup>11+</sup>
+## print.PrintPageType<sup>11+</sup>
 
 Enumerates the print page types.
 
@@ -824,7 +824,7 @@ Enumerates the print page types.
 | PAGE_INT_DL_ENVELOPE | 10 | International envelope DL.|
 | PAGE_B_TABLOID | 11 | B Tabloid.|
 
-## PrintDocumentAdapterState<sup>11+</sup>
+## print.PrintDocumentAdapterState<sup>11+</sup>
 
 Enumerates the print job states.
 
@@ -838,7 +838,7 @@ Enumerates the print job states.
 | PRINT_TASK_CANCEL | 3 | The print job is canceled.|
 | PRINT_TASK_BLOCK | 4 | The print job is blocked.|
 
-## PrintFileCreationState<sup>11+</sup>
+## print.PrintFileCreationState<sup>11+</sup>
 
 Enumerates the print file creation status.
 
@@ -850,7 +850,7 @@ Enumerates the print file creation status.
 | PRINT_FILE_CREATION_FAILED | 1 | The print file fails to be created.|
 | PRINT_FILE_CREATED_UNRENDERED | 2 | The print file is successfully created but not rendered.|
 
-## PrinterState<sup>14+</sup>
+## print.PrinterState<sup>14+</sup>
 
 Enumerates the printer states.
 
@@ -865,7 +865,7 @@ Enumerates the printer states.
 | PRINTER_DISCONNECTED | 4 | The printer is disconnected.|
 | PRINTER_RUNNING | 5 | The printer is running.|
 
-## PrintJobState<sup>14+</sup>
+## print.PrintJobState<sup>14+</sup>
 
 Enumerates the print job states.
 
@@ -879,7 +879,7 @@ Enumerates the print job states.
 | PRINT_JOB_BLOCKED | 3 | The print job is blocked.|
 | PRINT_JOB_COMPLETED | 4 | The print job is complete.|
 
-## PrintJobSubState<sup>14+</sup>
+## print.PrintJobSubState<sup>14+</sup>
 
 Enumerates the print job substates.
 
@@ -916,7 +916,7 @@ Enumerates the print job substates.
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | The file is converting.|
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | There is an unknown error with the printer.|
 
-## PrintErrorCode<sup>14+</sup>
+## print.PrintErrorCode<sup>14+</sup>
 
 Enumerates the print error codes.
 
@@ -935,7 +935,7 @@ Enumerates the print error codes.
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | Invalid print job.|
 | E_PRINT_FILE_IO | 13100007 | Incorrect file input/output.|
 
-## ApplicationEvent<sup>14+</sup>
+## print.ApplicationEvent<sup>14+</sup>
 
 Enumerates print application events.
 
@@ -947,7 +947,7 @@ Enumerates print application events.
 | APPLICATION_CLOSED_FOR_STARTED | 1 | Closes the print application by clicking **Start**.|
 | APPLICATION_CLOSED_FOR_CANCELED | 2 | Closes the print application by clicking **Cancel**.|
 
-## addPrinterToDiscovery<sup>14+</sup>
+## print.addPrinterToDiscovery<sup>14+</sup>
 
 addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
 
@@ -960,7 +960,7 @@ Adds a printer to the printer discovery list. This API uses a promise to return 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printerInformation | PrinterInformation | Yes| The added printer.|
+| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| The added printer.|
 
 **Return value**
 | **Type**| **Description**|
@@ -998,7 +998,7 @@ print.addPrinterToDiscovery(printerInformation).then((data : void) => {
 })
 ```
 
-## updatePrinterInDiscovery<sup>14+</sup>
+## print.updatePrinterInDiscovery<sup>14+</sup>
 
 updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
 
@@ -1011,7 +1011,7 @@ Updates the printer capabilities to the printer discovery list. This API uses a 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printerInformation | PrinterInformation | Yes| Printer whose capability is to be updated.|
+| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| Printer whose capability is to be updated.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1067,7 +1067,7 @@ print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
 })
 ```
 
-## removePrinterFromDiscovery<sup>14+</sup>
+## print.removePrinterFromDiscovery<sup>14+</sup>
 
 removePrinterFromDiscovery(printerId: string): Promise&lt;void&gt;
 
@@ -1110,7 +1110,7 @@ print.removePrinterFromDiscovery(printerId).then((data : void) => {
 })
 ```
 
-## getPrinterInformationById<sup>14+</sup>
+## print.getPrinterInformationById<sup>14+</sup>
 
 getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
 
@@ -1128,7 +1128,7 @@ Obtains printer information based on the printer ID. This API uses a promise to 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrinterInformation&gt; | Printer information obtained based on the printer ID.|
+| Promise&lt;[PrinterInformation](#printprinterinformation14)&gt; | Printer information obtained based on the printer ID.|
 
 **Error codes**
 
@@ -1153,7 +1153,7 @@ print.getPrinterInformationById(printerId).then((printerInformation : print.Prin
 })
 ```
 
-## PrinterInformation<sup>14+</sup>
+## print.PrinterInformation<sup>14+</sup>
 
 Defines the printer information.
 
@@ -1164,14 +1164,14 @@ Defines the printer information.
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
 | printerName | string | Yes| Printer name.|
-| printerStatus | PrinterStatus | Yes| Printer state.|
+| printerStatus | [PrinterStatus](#printprinterstatus14) | Yes| Printer state.|
 | description | string | No| Printer description.|
-| capability | PrinterCapabilities | No| Printer capabilities.|
+| capability | [PrinterCapabilities](#printprintercapabilities14) | No| Printer capabilities.|
 | uri | string | No| Printer URI.|
 | printerMake | string | No| Printer model.|
 | options | string | No| Printer details.|
 
-## PrinterCapabilities<sup>14+</sup>
+## print.PrinterCapabilities<sup>14+</sup>
 
 Defines the printer capabilities.
 
@@ -1180,15 +1180,15 @@ Defines the printer capabilities.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| supportedPageSizes | Array&lt;PrintPageSize&gt; | Yes| List of paper sizes supported by the printer.|
-| supportedColorModes | Array&lt;PrintColorMode&gt; | Yes| List of color modes supported by the printer.|
-| supportedDuplexModes | Array&lt;PrintDuplexMode&gt; | Yes| List of single- and double-sided modes supported by the printer.|
+| supportedPageSizes | Array&lt;[PrintPageSize](#printprintpagesize11)&gt; | Yes| List of paper sizes supported by the printer.|
+| supportedColorModes | Array&lt;[PrintColorMode](#printprintcolormode11)&gt; | Yes| List of color modes supported by the printer.|
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printprintduplexmode11)&gt; | Yes| List of single- and double-sided modes supported by the printer.|
 | supportedMediaTypes | Array&lt;string&gt; | No| List of paper types supported by the printer.|
-| supportedQualities | Array&lt;PrintQuality&gt; | No| List of print quality supported by the printer.|
-| supportedOrientations | Array&lt;PrintOrientationMode&gt; | No| List of print directions supported by the printer.|
+| supportedQualities | Array&lt;[PrintQuality](#printprintquality14)&gt; | No| List of print quality supported by the printer.|
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printprintorientationmode14)&gt; | No| List of print directions supported by the printer.|
 | options | string | No| Printer capability details.|
 
-## PrintQuality<sup>14+</sup>
+## print.PrintQuality<sup>14+</sup>
 
 Enumerates the print qualities.
 
@@ -1200,7 +1200,7 @@ Enumerates the print qualities.
 | QUALITY_NORMAL | 4 | Standard|
 | QUALITY_HIGH | 5 | High|
 
-## PrintOrientationMode<sup>14+</sup>
+## print.PrintOrientationMode<sup>14+</sup>
 
 Enumerates the print directions.
 
@@ -1208,13 +1208,13 @@ Enumerates the print directions.
 
 | **Name**| **Value**| **Description**|
 | -------- | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | 0 | Portrait mode. |
-| ORIENTATION_MODE_LANDSCAPE | 1 | Landscape mode. |
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse landscape mode. |
-| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode. |
+| ORIENTATION_MODE_PORTRAIT | 0 | Portrait mode.|
+| ORIENTATION_MODE_LANDSCAPE | 1 | Landscape mode.|
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse landscape mode.|
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode.|
 | ORIENTATION_MODE_NONE | 4 | Adaptive mode.|
 
-## PrinterStatus<sup>14+</sup>
+## print.PrinterStatus<sup>14+</sup>
 
 Enumerates the printer states.
 
@@ -1222,6 +1222,6 @@ Enumerates the printer states.
 
 | **Name**| **Value**| **Description**|
 | -------- | -------- | -------- |
-| PRINTER_IDLE | 0 | Idle|
-| PRINTER_BUSY | 1 | Busy|
-| PRINTER_UNAVAILABLE | 2 | Unavailable|
+| PRINTER_IDLE | 0 | The printer is idle.|
+| PRINTER_BUSY | 1 | The printer is busy.|
+| PRINTER_UNAVAILABLE | 2 | The printer is unavailable.|

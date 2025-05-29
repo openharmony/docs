@@ -42,7 +42,7 @@ Provides C APIs for the network protocol stack module.
 | Name| Description| 
 | -------- | -------- |
 | (\* [WebSocket_OnOpenCallback](#websocket_onopencallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_OpenResult](_web_socket___open_result.md) openResult) | Callback invoked when the WebSocket client receives an **open** message. | 
-| (\* [WebSocket_OnMessageCallback](#websocket_onmessagecallback)) (struct [WebSocket](_web_socket.md) \*client, char \*data, uint32_t length) | Callback invoked when the WebSocket client receives data. | 
+| (\* [WebSocket_OnMessageCallback](#websocket_onmessagecallback)) (struct [WebSocket](_web_socket.md) \*client, char \*data, uint32_t length) | Callback invoked when the WebSocket client receives data. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented. | 
 | (\* [WebSocket_OnErrorCallback](#websocket_onerrorcallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_ErrorResult](_web_socket___error_result.md) errorResult) | Callback invoked when the WebSocket client receives an error message. | 
 | (\* [WebSocket_OnCloseCallback](#websocket_onclosecallback)) (struct [WebSocket](_web_socket.md) \*client, [WebSocket_CloseResult](_web_socket___close_result.md) closeResult) | Callback invoked when the WebSocket client receives a **close** message. | 
 
@@ -510,6 +510,7 @@ Constructor used to create a **WebSocketClient** instance.
 Returns the pointer to the WebSocket client if the operation is successful; returns NULL otherwise.
 
 
+
 ### OH_WebSocketClient_Destroy()
 
 ```
@@ -558,6 +559,8 @@ Sends data from the WebSocket client to the server.
 | length | Length of the data sent by the WebSocket client. | 
 
 **Returns**
+
+ 
 
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 

@@ -12,7 +12,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
     | Name       | Type  | Mandatory| Description                                                        |
     | ------------- | ------ | ---- | ------------------------------------------------------------ |
-    | sceneType     | number | No  | Intent. The default value is **1**. In scenarios of flight query by flight number, set it to **1** or leave it empty.                    |
+    | sceneType     | number | No  | Intent scene, which indicates the purpose of the current request. The default value is **1**. In scenarios of flight query by flight number, set it to **1** or leave it empty.                    |
     | flightNo      | string | Yes  | Flight number, which is a two-digit code of the airline company plus a dight.|
     | departureDate | string | No  | Flight departure date, in the format of YYYY-MM-DD.                                    |
 
@@ -20,7 +20,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
     | Name              | Type                  | Mandatory| Description                                                    |
     | -------------------- | ---------------------- | ---- | -------------------------------------------------------- |
-    | sceneType            | number                 | Yes  | Intent. In scenarios of flight query by origin and destination, set it to **2**.                                       |
+    | sceneType            | number                 | Yes  | Intent scene, which indicates the purpose of the current request. In scenarios of flight query by origin and destination, set it to **2**.                                       |
     | originLocation      | string                 | Yes  | Departure place.                                                |
     | destinationLocation  | string                  | Yes  | Destination.                                                |
     | departureDate | string                  | No  | Flight departure date, in the format of YYYY-MM-DD.                                                |
@@ -28,7 +28,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 
 ## Developing a Caller Application
 
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -36,29 +36,48 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 2. Construct parameters and call the **startAbilityByType** API.
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'flightNo': 'ZH1509',
-      'departureDate': '2024-10-01'
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("flight", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                'flightNo': 'ZH1509',
+                                'departureDate': '2024-10-01'
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("flight", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                    	console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                    	console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     Effect
     
@@ -103,7 +122,7 @@ If the **type** field in **startAbilityByType** is set to **flight**, two intent
 2. Parse parameters and perform corresponding processing.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.uri** parameter carries the URI corresponding to **linkFeature** configured by the target application.

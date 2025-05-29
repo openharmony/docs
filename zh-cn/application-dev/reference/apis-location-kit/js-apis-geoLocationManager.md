@@ -127,6 +127,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -141,6 +143,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locatingPriority | [LocatingPriority](#locatingpriority12) | 否 | 否 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
 | locatingTimeoutMs | number | 否 | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。|
 
 
 ## SatelliteStatusInfo
@@ -236,6 +239,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | directionAccuracy<sup>12+</sup> | number| 否 | 是 | 表示航向信息的精度。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| 否 | 是 | 表示位置时间戳的不确定度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | 否 | 是 | 表示定位结果的来源。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| poi<sup>19+</PoiInfo> | [PoiInfo](#poiinfo19) | 否 | 是 | 表示当前位置附近的POI信息。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -468,6 +472,67 @@ GNSS地理围栏请求参数。
 | RTK     | 4 | 表示定位结果来自于室外高精度定位技术。 |
 
 
+## BluetoothScanResult<sup>16+</sup>
+
+蓝牙扫描结果。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| deviceId | string | 是 | 否 | 表示扫描到的设备地址。例如："XX:XX:XX:XX:XX:XX"。 |
+| rssi | number | 是 | 否 | 表示扫描到的设备的rssi值。 |
+| data | ArrayBuffer | 是 | 是 | 表示扫描到的设备发送的广播包。 |
+| deviceName | string | 是 | 否 | 表示扫描到的设备名称。 |
+| connectable | boolean | 是 | 否 | 表示扫描到的设备是否可连接。true表示可连接，false表示不可连接。 |
+
+
+## Poi<sup>19+</sup>
+
+POI(Point of Interest, 兴趣点)信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | 否 | 否 | 表示POI的ID。 |
+| confidence | number | 否 | 否 | 表示POI信息的置信度。置信度越高，用户离该POI信息点越近。取值范围为0到1。 |
+| name | string | 否 | 否 | 表示POI的名称。 |
+| latitude | number | 否 | 否 | 表示POI所在的纬度。取值范围为-90到90。 |
+| lontitude | number | 否 | 否 | 表示POI所在的经度。取值范围为-180到180。 |
+| administrativeArea | string | 否 | 否 | 表示POI所在的国家以下的一级行政区，一般是省/州。 |
+| subAdministrativeArea | string | 否 | 否 | 表示POI所在的国家以下的二级行政区，一般是市。 |
+| locatity | string | 否 | 否 | 表示POI所在的城市信息，一般是市。 |
+| subLocality | string | 否 | 否 | 表示POI所在的子城市信息，一般是区/县。 |
+| address | string | 否 | 否 | 表示POI的详细地址。 |
+
+## PoiInfo<sup>19+</sup>
+
+POI信息结构体。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| poiArray | Array&lt;[Poi](#poi19)&gt; | 否 | 否 | 表示POI信息列表。 |
+| timestamp | number | 否 | 否 | 表示获取到POI信息时的时间戳，UTC时间，单位毫秒。 |
+
+
+## SportsType<sup>18+</sup>
+
+运动类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  表示跑步。 |
+| WALKING    | 2 | 表示步行。 |
+| CYCLING     | 3 | 表示骑行。 |
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
@@ -558,7 +623,6 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
-|3301100 | The location switch is off.                                                 |
 
 **示例**
 
@@ -780,7 +844,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsChange”，表示GNSS缓存定位结果上报。 |
-  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数 |
+  | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequest) | 是 | GNSS缓存功能配置参数。 |
   | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 **错误码**：
@@ -1540,7 +1604,7 @@ isLocationEnabled(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+  | boolean | true：位置信息开关已开启。<br/>false：位置信息开关已关闭。 |
 
 **错误码**：
 
@@ -1766,7 +1830,7 @@ isGeocoderAvailable(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:地理编码与逆地理编码服务可用<br/>false：地理编码与逆地理编码服务不可用。 |
+  | boolean | true:地理编码与逆地理编码服务可用。<br/>false：地理编码与逆地理编码服务不可用。 |
 
 **错误码**：
 
@@ -2392,5 +2456,209 @@ getCurrentWifiBssidForLocating(): string
     console.info("get wifi bssid:" + bssid);
   } catch(error) {
     console.error("getCurrentWifiBssidForLocating: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```
+
+
+## geoLocationManager.on('bluetoothScanResultChange')<sup>16+</sup>
+
+on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&gt;): void
+
+订阅蓝牙扫描信息上报事件，使用callback异步回调。
+
+本API会启动蓝牙扫描，为了避免产生较多功耗，需要开发者在适当的时机调用 [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothscanresultchange16)接口停止蓝牙扫描。
+
+当前仅支持扫描BLE设备。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示订阅蓝牙扫描信息上报事件。 |
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | 是 | 回调函数，返回蓝牙扫描信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+
+  ```
+
+
+## geoLocationManager.off('bluetoothScanResultChange')<sup>16+</sup>
+
+off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResult&gt;): void
+
+取消订阅蓝牙扫描信息上报事件并停止蓝牙扫描。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“bluetoothScanResultChange”，表示停止订阅蓝牙扫描信息上报事件。 |
+  | callback | Callback&lt;[BluetoothScanResult](#bluetoothscanresult16)&gt; | 否 | 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。若无此参数，则取消当前类型的所有订阅。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('bluetoothScanResultChange')} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let callback = (result: geoLocationManager.BluetoothScanResult):void => {
+      console.info('bluetoothScanResultChange: ' + JSON.stringify(result));
+  };
+  try {
+      geoLocationManager.on('bluetoothScanResultChange', callback);
+      geoLocationManager.off('bluetoothScanResultChange', callback);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.isPoiServiceSupported<sup>20+</sup>
+
+isPoiServiceSupported(): boolean
+
+查询系统（即软件）是否支持POI服务。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true:POI服务可用。 <br/>false:POI服务不可用。 |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  let poiServiceState = geoLocationManager.isPoiServiceSupported();
+  console.info("poiServiceState:" + poiServiceState);
+  ```
+  
+
+## geoLocationManager.getPoiInfo<sup>20+</sup>
+
+getPoiInfo(): Promise&lt;PoiInfo&gt;
+
+获取当前位置附近的POI信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[PoiInfo](#poiinfo19)&gt;| 当前位置附近的POI信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getPoiInfo()} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    if (geoLocationManager.isPoiServiceSupported()) {
+      let poiInfo = await geoLocationManager.getPoiInfo();
+      if (poiInfo !== undefined) {
+        console.info("get PoiInfo:" + json.stringify(poiInfo));
+      }
+    }
+  } catch(error) {
+    console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+  
+
+## geoLocationManager.getDistanceBetweenLocations<sup>20+</sup>
+
+getDistanceBetweenLocations(location1: Location, location2: Location): number
+
+获取两个位置之间的直线距离。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | location1 | [Location](#location) | 是 | 位置1。 |
+  | location2 | [Location](#location) | 是 | 位置2。 |
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 两个位置之间的直线距离，单位为米。 |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    let location1: geoLocationManager.Location = {"latitude": 30.12, "longitude": 120.11, "altitude": 0, "accuracy": 0,
+      "speed": 0, "timeStamp": 0, "direction": 0, "timeSinceBoot": 0, "additionSize": 0}
+    let location2: geoLocationManager.Location = {"latitude": 30.12, "longitude": 120.11, "altitude": 0, "accuracy": 0,
+      "speed": 0, "timeStamp": 0, "direction": 0, "timeSinceBoot": 0, "additionSize": 0}
+    let distance = geoLocationManager.getDistanceBetweenLocations(location1, location2);
+    console.info("distance:" + distance);
+  } catch(error) {
+    console.error("getDistanceBetweenLocations: errCode" + error.code + ", errMessage" + error.message);
   }
   ```

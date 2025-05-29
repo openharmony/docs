@@ -53,7 +53,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 
 | 名称                    | 类型                                                                                      | 必填  | 说明   |
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
-| period                  | number                                                                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>未配置最长时间段时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
+| period                  | number                                                                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>当值小于等于0、大于86400或者未配置时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
 | photoSource             | [PhotoSource](#photosource)                                                             | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
 
@@ -84,7 +84,7 @@ type RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| recentPhotoExists | boolean | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 
 ## RecentPhotoClickCallback
 
@@ -106,7 +106,7 @@ type RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo) => boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 应用回调中处理最近图片的结果返回。 |
+| boolean | 应用回调中处理最近图片的结果返回。true表示处理完成。 |
 
 ## RecentPhotoCheckInfoCallback<sup>13+</sup>
 
@@ -122,7 +122,7 @@ type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPho
 
 | 参数名               | 类型                                    | 必填 | 说明          |
 |-------------------|---------------------------------------| -------- |-------------|
-| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在。 |
+| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在，true为存在，false为不存在，默认为true。 |
 | info              | [RecentPhotoInfo](#recentphotoinfo13) | 是 | 最近图片相关信息。   |
 
 ## PhotoSource
@@ -183,7 +183,7 @@ struct PickerDemo {
     return true;
   }
 
-  private onRecentPhotoCheckResult(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
+  private onRecentPhotoCheckInfo(recentPhotoExists: boolean, info: RecentPhotoInfo): void {
     // 是否存在符合条件的照片或视频，若存在则可以拿到该照片或视频的相关信息。
   }
 

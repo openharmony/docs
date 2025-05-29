@@ -90,7 +90,7 @@ ProgressType.Capsule | [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions1
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 > **NOTE**
 >
@@ -178,7 +178,7 @@ Sets whether to enable privacy mode.
 
 | Name| Type                                                     | Mandatory| Description                                                 |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | Yes  | Whether to enable privacy mode, in which the progress is cleared and the text is obscured.<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<br>[Enabling privacy mode requires widget framework support.](./ts-universal-attributes-obscured.md) |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | Yes  | Whether to enable privacy mode, in which the progress is cleared and the text is obscured. The value **true** means to enable privacy mode, and **false** means the opposite.<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<br>[Enabling privacy mode requires widget framework support.](./ts-universal-attributes-obscured.md) |
 
 ## ProgressConfiguration<sup>12+</sup>
 
@@ -188,8 +188,8 @@ Sets whether to enable privacy mode.
 
 | Name| Type | Mandatory|Description        |
 | ------ | ------ | ------- |------------|
-| value  | number | Yes| Current progress.|
-| total  | number | Yes| Indicates the total progress.  |
+| value  | number | Yes| Current progress. Values less than 0 are adjusted to **0**. Values greater than the value of **total** are capped at the value of **total**.<br>Default value: **0**<br>Value range: [0, total]|
+| total  | number | Yes| Indicates the total progress.<br>Value range: [0, +∞)  |
 
 ## CommonProgressStyleOptions<sup>10+</sup>
 
@@ -199,7 +199,7 @@ Sets whether to enable privacy mode.
 
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress changes smoothly from the current value to the target value. When this effect is disabled, the progress changes abruptly to the target value.<br>Default value: **true**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress changes smoothly from the current value to the target value. When this effect is disabled, the progress changes abruptly to the target value.<br>Default value: **true**<br>**true**: Enable the smooth effect.<br>**false**: Disable the smooth effect.|
 
 ## ScanEffectOptions<sup>10+</sup>
 
@@ -209,7 +209,7 @@ Sets whether to enable privacy mode.
 
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**|
+| enableScanEffect | boolean | No| Whether to enable the scan effect.<br>Default value: **false**<br>**true**: Enable the scan effect.<br>**false**: Disable the scan effect.|
 
 ## ProgressStyleOptions<sup>8+</sup>
 
@@ -224,7 +224,7 @@ Inherits [CommonProgressStyleOptions](#commonprogressstyleoptions10).
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
-| scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
+| scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**<br>Value range: [2, min(width, height)/scaleWidth/2/π]. If the value is outside this range, the progress indicator is displayed in the indeterminate ring style.                    |
 | scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
 
 ## CapsuleStyleOptions<sup>10+</sup>
@@ -242,12 +242,12 @@ Inherits [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptio
 | content | string | No| Text content, which can be customized .|
 | font | [Font](ts-types.md#font) | No| Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **Text** component.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br>Default value: **'\#ff182431'**|
-| showDefaultPercentage | boolean | No| Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false**|
-| borderRadius<sup>16+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Corner radius. The value cannot be set in percentage.<br>Value range: [0, height/2]<br> Default value: height/2<br>If an invalid value is set, the default value is used.|
+| showDefaultPercentage | boolean | No| Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false**.<br>**true**: Show the percentage of the current progress.<br>**false**: Do not show the percentage of the current progress.|
+| borderRadius<sup>18+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Corner radius. The value cannot be set in percentage.<br>Value range: [0, height/2]<br> Default value: height/2<br>If an invalid value is set, the default value is used.|
 
 ## RingStyleOptions<sup>10+</sup>
 
-Inherits [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptions](#commonprogressstyleoptions10).
+Inherits from [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptions](#commonprogressstyleoptions10).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -256,7 +256,7 @@ Inherits [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptio
 | Name          | Type                     | Mandatory| Description                                                                                       |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage. A value greater than or equal to the radius evaluates to half of the radius.<br>Default value: **4.0vp**|
-| shadow        | boolean                      | No  | Whether to enable the shadow effect.<br>Default value: **false**                                                            |
+| shadow        | boolean                      | No  | Whether to enable the shadow effect.<br>Default value: **false**.<br>**true**: Enable the shadow effect.<br>**false**: Disable the shadow effect.                                                            |
 | status        | [ProgressStatus<sup>10+</sup>](#progressstatus10) | No| Status of the progress indicator. When this parameter is set to **LOADING**, the check update animation is played, and the **value** settings do not take effect. When the value changes from **LOADING** to **PROGRESSING**, the check update animation stops when it has reached the end state.<br>Default value: **ProgressStatus.PROGRESSING**|
 
 ## LinearStyleOptions<sup>10+</sup>
@@ -283,7 +283,7 @@ Inherits [CommonProgressStyleOptions](#commonprogressstyleoptions10).
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**                                           |
-| scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**                                                       |
+| scaleCount   | number                       | No  | Number of divisions on the ring-style process indicator.<br>Default value: **120**<br>Value range: [2, min(width, height)/scaleWidth/2/π]. If the value is outside this range, the progress indicator is displayed in the indeterminate ring style.                                         |
 | scaleWidth   | [Length](ts-types.md#length) | No  | Scale width of the ring-style progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0vp**|
 
 ## EclipseStyleOptions<sup>10+</sup>
@@ -307,7 +307,7 @@ Inherits [CommonProgressStyleOptions](#commonprogressstyleoptions10).
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 

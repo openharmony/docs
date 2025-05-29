@@ -29,7 +29,7 @@ URLParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象<br/>- 默认值：null。 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLParams：对象。<br/>- 默认值：null。 |
 
 **错误码：**
 
@@ -168,7 +168,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -430,7 +430,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -507,19 +507,19 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 ```ts
 let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
-console.log("hash " + that.hash) // hash #fragment
-console.log("host " + that.host) // host host:8080
-console.log("hostname " + that.hostname) // hostname host
-console.log("href " + that.href) // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
-console.log("origin " + that.origin) // origin http://host:8080
-console.log("password " + that.password) // password password
-console.log("pathname " + that.pathname) // pathname /directory/file
-console.log("port " + that.port) // port 8080
-console.log("protocol " + that.protocol) // protocol http:
-console.log("search " + that.search) // search ?foo=1&bar=2
-console.log("username " + that.username) // username username
+console.log("hash " + that.hash); // hash #fragment
+console.log("host " + that.host); // host host:8080
+console.log("hostname " + that.hostname); // hostname host
+console.log("href " + that.href); // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.log("origin " + that.origin); // origin http://host:8080
+console.log("password " + that.password); // password password
+console.log("pathname " + that.pathname); // pathname /directory/file
+console.log("port " + that.port); // port 8080
+console.log("protocol " + that.protocol); // protocol http:
+console.log("search " + that.search); // search ?foo=1&bar=2
+console.log("username " + that.username); // username username
 // that.params 返回值为URLParams对象
-console.log("params: foo " + that.params.get("foo")) // params: foo 1
+console.log("params: foo " + that.params.get("foo")); // params: foo 1
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -539,7 +539,7 @@ URL的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
-| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串<br/>- URL：URL对象<br/>- 在url是相对URL时使用。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。<br/>- URL：URL对象。|
 
 **示例：**
 
@@ -583,7 +583,7 @@ URL静态成员函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
-| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串<br/>- URL：URL对象<br/>- 在url是相对URL时使用。 |
+| base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。当第一个参数是相对URL时，该参数需符合URL标准。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
 
 > **说明：**
 >
@@ -629,7 +629,7 @@ toString(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的字符串。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ toJSON(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 用于返回网址的字符串序列化。 |
+| string | 转化后的JSON字符串。 |
 
 **示例：**
 ```ts
@@ -680,7 +680,7 @@ URLSearchParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组。<br/>- Record&lt;string, string&gt;：对象列表。<br/>- string：字符串。<br/>- URLSearchParams：对象。<br/>- 默认值：undefined。 |
 
 **示例：**
 
@@ -782,7 +782,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -903,7 +903,7 @@ has(name: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 是否存在相对应的key值，存在返回true，否则返回false。 |
+| boolean | 是否存在相对应的key值。存在返回true，否则返回false。 |
 
 **示例：**
 
@@ -1025,7 +1025,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >

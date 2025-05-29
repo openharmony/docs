@@ -21,7 +21,7 @@ Specifies whether to combine the drawing of special effects, such as background 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | boolean | Yes| Whether the component inherits the special effect settings of the **EffectComponent** component.<br>The value **true** means that the component inherits the special effect settings of the **EffectComponent** component, and **false** means the opposite.<br>Default value: **false**|
+| value | boolean | Yes| Whether the component inherits the special effect settings of the **EffectComponent** component.<br>The value **true** means the component inherits the special effect settings of the **EffectComponent** component, and **false** means the opposite.<br>Default value: **false**|
 
 ## useEffect<sup>14+</sup>
 
@@ -40,13 +40,13 @@ Specifies whether to apply the effect defined by <!--Del-->the parent [EffectCom
 | useEffect  | boolean                                                      | Yes  | Whether to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>The value **true** means to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **false**|
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | Yes  | Type of effect to apply to the component, which is defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **EffectType.DEFAULT**|
 
-## useEffect<sup>16+</sup>
+## useEffect<sup>18+</sup>
 
 useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 
-Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), the **useEffect** parameter supports the **undefined** type.
+Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), this API supports the **undefined** type for the **useEffect** parameter.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,6 +83,8 @@ Effect Template
 ## Example
 
 This example shows how to combine the drawing of special effects, including background blur.
+
+<!--code_no_check-->
 
 ```ts
 //Index.ets

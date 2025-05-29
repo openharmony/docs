@@ -120,11 +120,11 @@ onError(callback: ErrorCallback)
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.embeddeddemo",
       abilityName: "ExampleEmbeddedAbility",
-    }
+    };
 
     build() {
       Row() {
@@ -154,7 +154,7 @@ onError(callback: ErrorCallback)
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleEmbeddedAbility]'
+  const TAG: string = '[ExampleEmbeddedAbility]';
 
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     onCreate() {
@@ -194,7 +194,7 @@ onError(callback: ErrorCallback)
   ```ts
   import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage();
 
   @Entry(storage)
   @Component

@@ -36,6 +36,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -146,6 +147,98 @@ try {
 } catch (error: BusinessError) {
   console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
+```
+
+## media.getScreenCaptureMonitor<sup>18+</sup>
+
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
+
+获取录屏监控模块实例。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。可用于查询和监听系统录屏状态。<br>异步返回ScreenCaptureMonitor实例，失败时返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 202  | Not System App. |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```ts
+let screenCaptureMonitor: media.ScreenCaptureMonitor;
+try {
+  screenCaptureMonitor = await media.getScreenCaptureMonitor();
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
+}
+```
+
+## media.createParallelSoundPool<sup>20+</sup>
+
+createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+创建音频池实例，通过Promise获取返回值。
+
+使用[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | 是   | soundPool实例的最大播放的流数，设置范围为1-32的正整数。 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+| 202| System API error. Return by promise. |
+
+**示例：**
+
+```js
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('Succceeded in creating SoundPool');
+  } else {
+    console.error('Failed to create SoundPool');
+  }
+}, (error: BusinessError) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
 ```
 
 ## PixelMapParams<sup>11+</sup>
@@ -274,7 +367,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
 
-### isWatermarkSupported<sup>12+</sup>
+### isWatermarkSupported<sup>13+</sup>
 
 isWatermarkSupported(): Promise\<boolean>
 
@@ -290,7 +383,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | 获取是否支持水印的Promise返回值。 |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
 
 **示例：**
 
@@ -304,7 +397,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 });
 ```
 
-### setWatermark<sup>12+</sup>
+### setWatermark<sup>13+</sup>
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
@@ -321,7 +414,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
 | watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
-| config    | [WatermarkConfig](#watermarkconfig12)   | 是   | 水印的相关配置参数。 |
+| config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
 
@@ -353,6 +446,60 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+给AVRecorder的录制文件中设置自定义meta数据。
+
+只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                                |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
+
+**返回值：**
+
+| 类型            | 说明        |
+| --------------- |-----------|
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息            |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
+## AVRecorderProfile<sup>9+</sup>
+
+音视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1186,7 +1333,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## WatermarkConfig<sup>12+</sup>
+## WatermarkConfig<sup>13+</sup>
 
 设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
 
@@ -1198,3 +1345,111 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | --------- | ------ | ---- | ---------------- |
 | top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
 | left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |
+
+## ScreenCaptureMonitor<sup>18+</sup>
+
+录屏状态监控类，用于查询和监听系统录屏的录屏状态。在调用ScreenCaptureMonitor方法前，需要先通过[getScreenCaptureMonitor()](#mediagetscreencapturemonitor18)构建一个[ScreenCaptureMonitor](#screencapturemonitor18)实例。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+
+### on('systemScreenRecorder')<sup>18+</sup>
+
+on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
+
+开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 是   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+
+// 当系统录屏应用的录屏状态发生变化时通过此订阅事件上报。
+screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent) => { 
+  // 设置'systemScreenRecorder'事件回调。
+  console.info(`system ScreenRecorder event: ${event}`);
+})
+```
+
+### off('systemScreenRecorder')<sup>18+</sup>
+
+off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
+
+取消订阅系统录屏的录屏状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 否   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+screenCaptureMonitor.off('systemScreenRecorder');   
+```
+
+## ScreenCaptureEvent<sup>18+</sup>
+
+系统录屏应用录屏状态的枚举值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SCREENCAPTURE_STARTED       | 0   | 表示系统录屏应用开始录屏。                       |
+| SCREENCAPTURE_STOPPED        | 1    | 表示系统录屏应用停止录屏。 |
+
+## enableDeviceLevelCapture<sup>20+</sup>
+
+用于指定折叠屏PC在折叠状态下录制半块屏幕还是整块屏幕。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+enableDeviceLevelCapture是AVScreenCaptureStrategy接口中的一个可选参数，默认值为false。
+
+| 名称                      | 类型    | 必填 | 说明 |
+| ------------------------ | ------- | ---- | ---- |
+| enableDeviceLevelCapture | boolean | 否   | true表示折叠屏PC在折叠状态下录制整块屏幕，false表示折叠屏PC在折叠状态下录制半块屏幕。 |

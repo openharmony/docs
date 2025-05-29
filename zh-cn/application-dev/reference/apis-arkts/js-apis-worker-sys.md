@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**
 >
@@ -81,7 +81,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerPort = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) : void => {
-  console.info("worker:: This is worker thread.")
+  console.info("worker:: This is worker thread.");
   //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，宿主线程会有对应的TypeError报出。
 }
 ```

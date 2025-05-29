@@ -4,13 +4,17 @@
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
+<!--RP1-->
+
+<!--RP1End-->
+
 ## 接口说明
 
 HTTP数据请求功能主要由http模块提供。
 
 使用该功能需要申请ohos.permission.INTERNET权限。
 
-权限申请请参考[声明权限](../security/AccessToken/declare-permissions.md)。
+权限申请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
 涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis-network-kit/js-apis-http.md)。
 
@@ -32,21 +36,27 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
 | off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
-## request接口开发步骤
+## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
-2. 调用createHttp()方法，创建一个HttpRequest对象。
+2. 调用createHttp()方法，创建HttpRequest对象。
 3. 调用该对象的on()方法，订阅http响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 4. 调用该对象的request()方法，传入http请求的url地址和可选参数，发起网络请求。
 5. 按照实际业务需要，解析返回结果。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
-7. 当该请求使用完毕时，调用destroy()方法主动销毁。
+7. 当该请求使用完毕时，调用destroy()方法销毁。
+
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
@@ -89,7 +99,7 @@ httpRequest.request(
         name: "Part2", // 数据名，自API 11开始支持该属性
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
       }
     ]
@@ -114,15 +124,15 @@ httpRequest.request(
 );
 ```
 
-## requestInStream接口开发步骤
+## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
-2. 调用createHttp()方法，创建一个HttpRequest对象。
+2. 调用createHttp()方法，创建HttpRequest对象。
 3. 调用该对象的on()方法，可以根据业务需要订阅HTTP响应头事件、HTTP流式响应数据接收事件、HTTP流式响应数据接收进度事件和HTTP流式响应数据接收完毕事件。
 4. 调用该对象的requestInStream()方法，传入http请求的url地址和可选参数，发起网络请求。
 5. 按照实际业务需要，可以解析返回的响应码。
 6. 调用该对象的off()方法，取消订阅响应事件。
-7. 当该请求使用完毕时，调用destroy()方法主动销毁。
+7. 当该请求使用完毕时，调用destroy()方法销毁。
 
 ```ts
 // 引入包名
@@ -222,9 +232,9 @@ openssl s_client -servername www.example.com -connect www.example.com:443 \
 
 ### 预置证书公钥哈希值
 
-通过在配置中指定域名证书公钥的哈希值来只允许使用公钥哈希值匹配的域名证书访问此域名。
+通过在配置中指定域名证书公钥的哈希值，只允许使用公钥哈希值匹配的域名证书访问此域名。
 
-域名证书的公钥哈希值可以用如下的命令计算，这里假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
+域名证书的公钥哈希值可以用如下的命令计算。假设域名证书是通过上面的OpenSSL命令获得的，并保存在`www.example.com.pem`文件。#开头的行是注释，可以不用输入：
 
 ```
 # 从证书中提取出公钥
@@ -237,7 +247,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### JSON配置文件示例
 
-预置应用级证书的配置例子如下：
+预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
 ```json
 {
@@ -268,7 +278,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 }
 ```
 
-预置证书公钥哈希值的配置例子如下:
+预置证书公钥哈希值的配置例子如下：
 ```
 {
   "network-security-config": {
@@ -295,6 +305,57 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 }
 ```
 
+整体或者按域名的明文HTTP是否允许的配置示例如下：
+```
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "cleartextTrafficPermitted": false
+      }
+    ]
+  }
+}
+```
+
+证书锁定的配置例子如下:
+```
+{
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "server.com"
+          }
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
+}
+```
+
 **各个字段含义:**
 
 | 字段                      | 类型            | 说明                                   |   
@@ -304,15 +365,27 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |domain-config              | array           |指示每个域的安全配置。可以包含任意个item。item必须包含1个domains，可以包含0或者1个trust-anchors，可以包含0个或者1个pin-set。|
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
-|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string:指示域名)，可以包含0或者1个include-subdomains。|
-|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
+|include-subdomains         | boolean         |指示规则是否适用于子域。true：指示规则适用于子域；false：指示规则不适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|
 |digest-algorithm           | string          |指示用于生成哈希的摘要算法。目前只支持`sha256`。                                    |
 |digest                     | string          |指示公钥哈希。 |
+|cleartextTrafficPermitted  | boolean          |明文HTTP是否允许。true表示允许，false表示不允许，默认为true。 |
 
 
+## 配置不信任用户安装的CA证书
+系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
+```
+{
+  "network-security-config": {
+    ... ...
+  },
+  "trust-global-user-ca": false, // 配置是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认为true
+  "trust-current-user-ca" : false // 配置是否信任当前用户安装的CA证书，默认为true
+}
+```
 ## 相关实例
 
 针对HTTP数据请求，有以下相关实例可供参考：

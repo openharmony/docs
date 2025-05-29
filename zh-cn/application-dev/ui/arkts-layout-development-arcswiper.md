@@ -12,7 +12,7 @@ import {
   ArcDotIndicator,
   ArcDirection,
   ArcSwiperController
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 设置导航点样式
@@ -90,7 +90,7 @@ ArcSwiper支持滑动手指、点击导航点、旋转表冠和控制控制器�
   @Entry
   @Component
   struct SwiperCustomAnimationExample {
-    private wearableSwiperController: ArcSwiperController = new ArcSwiperController()
+    private wearableSwiperController: ArcSwiperController = new ArcSwiperController();
 
     build() {
       Column() {
@@ -191,20 +191,27 @@ ArcSwiper支持水平和垂直方向上进行轮播，主要通过[vertical](../
 ArcSwiper支持通过[customContentTransition](../reference/apis-arkui/arkui-ts/ts-container-arcswiper.md#customcontenttransition)设置自定义切换动画，可以在回调中对视窗内所有页面逐帧设置透明度、缩放比例、位移、渲染层级等属性，从而实现自定义切换动画效果。
 
 ```ts
-import { Decimal } from '@kit.ArkTS'
+import { Decimal } from '@kit.ArkTS';
+import {
+  ArcSwiper,
+  ArcSwiperAttribute,
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
+} from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private MIN_SCALE: number = 0.1
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
+  private MIN_SCALE: number = 0.1;
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
     }
   }
 
@@ -227,13 +234,13 @@ struct SwiperCustomAnimationExample {
         transition: (proxy: SwiperContentTransitionProxy) => {
           if (proxy.position <= -1 || proxy.position >= 1) {
             // 页面完全滑出视窗外时，重置属性值
-            this.opacityList[proxy.index] = 1.0
-            this.scaleList[proxy.index] = 1.0
+            this.opacityList[proxy.index] = 1.0;
+            this.scaleList[proxy.index] = 1.0;
           } else {
-            let position: number = Decimal.abs(proxy.position).toNumber()
-            this.opacityList[proxy.index] = 1 - position
+            let position: number = Decimal.abs(proxy.position).toNumber();
+            this.opacityList[proxy.index] = 1 - position;
             this.scaleList[proxy.index] =
-              this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - position)
+              this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - position);
           }
         }
       })
@@ -249,11 +256,19 @@ struct SwiperCustomAnimationExample {
 ArcSwiper的滑动事件会与侧滑返回冲突，可以通过[手势拦截](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin)去判断ArcSwiper是否滑动到开头去拦截ArcSwiper的滑动手势，实现再次左滑返回上一页的功能。
 
 ```ts
+import {
+  ArcSwiper,
+  ArcSwiperAttribute,
+  ArcDotIndicator,
+  ArcDirection,
+  ArcSwiperController
+} from '@kit.ArkUI';
+
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  innerSelectedIndex: number = 0
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  innerSelectedIndex: number = 0;
 
   build() {
     Column() {
@@ -268,18 +283,18 @@ struct SwiperCustomAnimationExample {
         })
       }
       .onAnimationStart((index: number, targetIndex: number) => {
-        this.innerSelectedIndex = targetIndex
+        this.innerSelectedIndex = targetIndex;
       })
       .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
         others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
         if (current) {
           let target = current.getEventTargetInfo();
           if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-            let swiperTaget = target as ScrollableTargetInfo
-            if (swiperTaget instanceof ScrollableTargetInfo &&
-              (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTaget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
+            let swiperTarget = target as ScrollableTargetInfo;
+            if (swiperTarget instanceof ScrollableTargetInfo &&
+              (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) { // 此处判断swiperTarget.isBegin()或innerSelectedIndex === 0，表明ArcSwiper滑动到开头
               let panEvent = event as PanGestureEvent;
-              if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
+              if (panEvent && panEvent.offsetX > 0 && (swiperTarget.isBegin() || this.innerSelectedIndex === 0)) {
                 return GestureJudgeResult.REJECT;
               }
             }

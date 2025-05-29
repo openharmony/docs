@@ -1,6 +1,6 @@
 # @ohos.ai.mindSporeLite (端侧AI框架)
 
-MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，原生支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
+MindSpore Lite是一个轻量化、高性能的端侧AI引擎，提供了标准的模型推理和训练接口，内置通用硬件高性能算子库，支持Neural Network Runtime Kit使能AI专用芯片加速推理，助力打造全场景智能应用。
 
 本模块主要介绍MindSpore Lite AI引擎支持模型端侧推理/训练的相关能力。
 
@@ -117,13 +117,15 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 ```ts
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
-let modelFile = '/path/to/xxx.ms';
-getContext(this).resourceManager.getRawFileContent(modelFile).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer, (mindSporeLiteModel : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer, (mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -146,26 +148,19 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-let modelFile = '/path/to/xxx.ms';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
-globalContext.resourceManager.getRawFileContent(modelFile).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
   context.target = ['cpu'];
-  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (mindSporeLiteModel : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer, context, (mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -193,24 +188,17 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-let modelFile = '/path/to/xxx.ms';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
-globalContext.resourceManager.getRawFileContent(modelFile).then((buffer : Uint8Array) => {
+let modelFile = 'xxx.ms';
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
   let modelBuffer = buffer.buffer;
-  mindSporeLite.loadModelFromBuffer(modelBuffer).then((mindSporeLiteModel : mindSporeLite.Model) => {
-    let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-    console.info(modelInputs[0].name);
+  mindSporeLite.loadModelFromBuffer(modelBuffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
+    let modelInputs: mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
+    console.info('MS_LITE_LOG: ' + modelInputs[0].name);
   })
 })
 ```
@@ -359,11 +347,15 @@ loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Cont
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit'
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
+
 let modelFile = 'xxx.ms';
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
-resMgr.getRawFileContent(modelFile).then(modelBuffer => {
-  mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((buffer: Uint8Array) => {
+  let modelBuffer = buffer.buffer;
+  mindSporeLite.loadTrainModelFromBuffer(modelBuffer).then((mindSporeLiteModel: mindSporeLite.Model) => {
     console.info("MSLITE trainMode: ", mindSporeLiteModel.trainMode);
   })
 })
@@ -752,30 +744,23 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
 
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let modelBuffer = buffer.buffer;
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let modelFile : string = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
 
-  modelInputs[0].setData(modelBuffer);
+  modelInputs[0].setData(inputBuffer);
   mindSporeLiteModel.predict(modelInputs, (mindSporeLiteTensor : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(mindSporeLiteTensor[0].getData());
     for (let i = 0; i < output.length; i++) {
-      console.info(output[i].toString());
+      console.info('MS_LITE_LOG: ' + output[i].toString());
     }
   })
 })
@@ -803,24 +788,18 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-    value:number = 0;
-    foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-}
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let modelBuffer = buffer.buffer;
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+  let inputBuffer = buffer.buffer;
   let modelFile = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
-  modelInputs[0].setData(modelBuffer);
+  modelInputs[0].setData(inputBuffer);
   mindSporeLiteModel.predict(modelInputs).then((mindSporeLiteTensor : mindSporeLite.MSTensor[]) => {
     let output = new Float32Array(mindSporeLiteTensor[0].getData());
     for (let i = 0; i < output.length; i++) {
@@ -913,11 +892,13 @@ getWeights(): MSTensor[]
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 let modelFile = 'xxx.ms';
-resMgr.getRawFileContent(modelFile).then((modelBuffer) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
   mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
     mindSporeLiteModel.trainMode = true;
     const weights = mindSporeLiteModel.getWeights();
@@ -956,11 +937,13 @@ updateWeights(weights: MSTensor[]): boolean
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 let modelFile = 'xxx.ms';
-resMgr.getRawFileContent(modelFile).then((modelBuffer) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
   mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
     mindSporeLiteModel.trainMode = true;
     const weights = mindSporeLiteModel.getWeights();
@@ -997,11 +980,13 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
-let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 let modelFile = 'xxx.ms';
-resMgr.getRawFileContent(modelFile).then((modelBuffer) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(modelFile).then((modelBuffer : Uint8Array) => {
   mindSporeLite.loadTrainModelFromBuffer(modelBuffer.buffer.slice(0)).then((mindSporeLiteModel: mindSporeLite.Model) => {
     mindSporeLiteModel.trainMode = true;
     let ret = mindSporeLiteModel.setupVirtualBatch(2,-1,-1);
@@ -1052,7 +1037,7 @@ mindSporeLite.loadTrainModelFromFile(modelFile).then((mindSporeLiteModel: mindSp
 
 ### exportWeightsCollaborateWithMicro<sup>12+</sup>
 
-exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 
@@ -1139,19 +1124,13 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
   let inputBuffer = buffer.buffer;
   let modelFile = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);
@@ -1183,19 +1162,13 @@ setData(inputArray: ArrayBuffer): void
 **示例：** 
 
 ```ts
-import { resourceManager } from '@kit.LocalizationKit';
-import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.AbilityKit';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
+import { UIContext } from '@kit.ArkUI';
+
 let inputName = 'input_data.bin';
-globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
+let globalContext = new UIContext().getHostContext() as common.UIAbilityContext;
+globalContext.getApplicationContext().resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
   let inputBuffer = buffer.buffer;
   let modelFile = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(modelFile);

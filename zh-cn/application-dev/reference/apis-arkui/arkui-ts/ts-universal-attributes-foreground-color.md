@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## foregroundColor
 
@@ -22,13 +22,13 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-appendix-enums.md#coloringstrategy10) | 是   | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。不支持属性动画。 |
 
-## foregroundColor<sup>16+</sup>
+## foregroundColor<sup>18+</sup>
 
 foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>)
 
 设置组件的前景色。当组件未设置前景色，默认继承父组件。与[foregroundColor](#foregroundcolor)相比，color参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

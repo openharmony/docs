@@ -49,11 +49,11 @@ Implements a rounded rectangle.
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+The [universal attributes](ts-component-general-attributes.md) are supported.
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 The **RemoteWindow** component needs to receive the **WindowAnimationTarget** object from the **WindowAnimationController** object set by [windowAnimationManager](../js-apis-windowAnimationManager-sys.md). You can create a **RemoteWindowExample.ets** file as an example to encapsulate the **RemoteWindow** component and the passed **WindowAnimationTarget** object.

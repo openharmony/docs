@@ -30,13 +30,13 @@ The created child process does not support the UI or the calling of context-rela
 | typedef struct [NativeChildProcess_Fd](#nativechildprocess_fdlist) | Defines a struct for the file descriptor of a child process.|
 | typedef struct [NativeChildProcess_FdList](#nativechildprocess_fdlist) | Defines a struct for the linked list of file descriptors of a child process.|
 | typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | Defines a struct for the arguments used for starting a child process.|
-
+| typedef void(\* [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)) (int32_t pid, int32_t signal) | Defines the callback function for detecting abnormal exit of a native child process.|
 
 ### Enums
 
 | Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Description               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008<br>} | Enumerates the error codes used by the native child process module.|
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008,<br>    NCP_ERR_CALLBACK_NOT_EXIST = 16010009<br>} | Enumerates the error codes used by the native child process module.|
 
 
 ### Functions
@@ -48,7 +48,6 @@ The created child process does not support the UI or the calling of context-rela
 > **NOTE**
 >
 > This function is valid only for 2-in-1 devices.
->
 > Since API version 15, a single process supports a maximum of 50 native child processes. In API version 14 and earlier versions, a single process supports only one native child process.
 
 ## Type Description
@@ -76,6 +75,31 @@ Defines a callback function for notifying the child process startup result.
 [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess)
 
 [OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
+
+### OH_Ability_OnNativeChildProcessExit
+
+```
+typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
+```
+
+**Description**
+
+Defines the callback function for detecting abnormal exit of a native child process.
+
+**Since**: 20
+
+**Parameters**
+
+| Name         | Description                                                                                                                                                                                                                                 |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pid     | PID of the child process.|
+| signal | Signal for abnormal exit of the child process.                                                                                      |
+
+**See**
+
+[OH_Ability_RegisterNativeChildProcessExitCallback](#oh_ability_registernativechildprocessexitcallback)
+
+[OH_Ability_UnregisterNativeChildProcessExitCallback](#oh_ability_unregisternativechildprocessexitcallback)
 
 ### NativeChildProcess_Fd
 
@@ -193,6 +217,7 @@ Enumerates the error codes used by the native child process module.
 | NCP_ERR_MAX_CHILD_PROCESSES_REACHED | The number of native child processes reaches the maximum.                    |
 | NCP_ERR_LIB_LOADING_FAILED          | The child process fails to load the dynamic library because the file does not exist or the corresponding method is not implemented or exported.                 |
 | NCP_ERR_CONNECTION_FAILED           | The child process fails to call the OnConnect method of the dynamic library. An invalid IPC object pointer may be returned.        |
+| NCP_ERR_CALLBACK_NOT_EXIST          | The child process calls the **OH_Ability_UnregisterNativeChildProcessExitCallback** function to unregister a callback function, but the callback function is not found.        |
 
 ### NativeChildProcess_IsolationMode
 
@@ -216,7 +241,7 @@ Enumerates the isolation modes of a child process.
 ### OH_Ability_CreateNativeChildProcess
 
 ```
-int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted )
+int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted)
 ```
 
 **Description**
@@ -294,6 +319,78 @@ The specified dynamic library must implement and export the entry parameters of 
 | args | Arguments passed to the child process. For details, see [NativeChildProcess_Args](#nativechildprocess_args).|
 | options |  Startup configuration options of the child process. For details, see [NativeChildProcess_Options](#nativechildprocess_options).|
 | pid | ID of the child process to start.|
+
+
+**Returns**
+
+Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+
+### OH_Ability_GetCurrentChildProcessArgs
+
+```
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+```
+
+**Description**
+
+Used by a child process, after being started by calling [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess), to obtain the startup parameter [NativeChildProcess_Args](#nativechildprocess_args) from any .so file or child thread.
+
+> **NOTE**
+>
+> This function is valid only for 2-in-1 devices and tablets.
+
+**Since**: 17
+
+**Returns**
+
+Returns the pointer to a [NativeChildProcess_Args](#nativechildprocess_args) object if the operation is successful; returns a null pointer otherwise.
+
+### OH_Ability_RegisterNativeChildProcessExitCallback
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCallback(
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
+```
+
+**Description**
+
+Registers a callback function for detecting abnormal exit of a native child process. When a child process started by calling [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess) or [startNativeChildProcess in @ohos.app.ability.childProcessManager](js-apis-app-ability-childProcessManager.md#childprocessmanagerstartnativechildprocess13) exits abnormally, the callback function is invoked. If the same callback function is registered multiple times, the callback function is executed only once when the child process exits.
+
+The parameter must implement the entry function [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit). For details, see [Registering the Native Child Process Exit Callback Function](../../application-models/capi-nativechildprocess-exit-info.md).
+
+**Since**: 20
+
+**Parameters**
+
+| Name                      | Description|
+| ---------------------- | ---------------- |
+| onProcessExit                  | Address of the callback function to be called when the child process exits. The value cannot be a null pointer.|
+
+
+**Returns**
+
+Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+
+### OH_Ability_UnregisterNativeChildProcessExitCallback
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCallback(
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
+```
+
+**Description**
+
+Unregisters the callback function used for detecting abnormal exit of a native child process.
+
+The parameter must implement the entry function [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit). For details, see [Registering the Native Child Process Exit Callback Function](../../application-models/capi-nativechildprocess-exit-info.md).
+
+**Since**: 20
+
+**Parameters**
+
+| Name                      | Description|
+| ---------------------- | ---------------- |
+| onProcessExit                  | Address of the callback function to be called when the child process exits. The value cannot be a null pointer.|
 
 
 **Returns**

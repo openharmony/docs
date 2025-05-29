@@ -11,6 +11,7 @@ RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](rawfile.md#oh_reso
 
 **相关模块：**[Rawfile](rawfile.md)
 
+**所在头文件：**[raw_file.h](raw__file_8h.md)
 
 ## 汇总
 

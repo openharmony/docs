@@ -130,7 +130,7 @@ The notification does not exist.
 
 **处理步骤**
 
-无
+无。
 
 ## 1600008 用户不存在
 
@@ -367,6 +367,24 @@ The application is not allowed to publish notifications due to permission contro
 
 该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
 
+## 1600021 跨设备通信超时
+
+**错误信息**
+
+Distributed operation timed out.
+
+**错误描述**
+
+调用通知的跨设备协同接口（例如通知跨设备点击跳转、通知跨设备快捷回复等），跨设备通信超时，将返回该错误码。
+
+**可能原因**
+
+设备连接配对异常。
+
+**处理步骤**
+
+检查设备间连接是否正常（例如手机与手表是否配对成功）。
+
 ## 2300007 网络无法访问
 
 **错误信息**
@@ -402,4 +420,4 @@ The specified bundle name was not found.
 
 **处理步骤**
 
-1. 检查应用是否存在。
+检查应用是否存在。

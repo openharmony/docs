@@ -29,7 +29,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。                     |
+| [OH_AVCODEC_MIMETYPE_VIDEO_H263](#oh_avcodec_mimetype_video_h263) | H.263视频编解码器的MIME类型。                     |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。（API11废弃） |
+| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | 视频MPEG4 Part2编解码器的MIME类型。 |
+| [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | 视频MPEG2编解码器的MIME类型。 |
 | [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | JPG图片编码的MIME类型，仅用于封装JPG封面时使用。       |
 | [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | PNG图片编码的MIME类型，仅用于封装PNG封面时使用。       |
 | [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | BMP图片编码的MIME类型，仅用于封装BMP封面时使用。       |
@@ -100,7 +103,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)         | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。该键仅在OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER可用时生效，在Configure阶段使用。|
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。该键是可选的。 |
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。（API14废弃）|
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。（API14废弃）|
 | [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
@@ -194,6 +197,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | AVC档次。 | 
 | typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | HEVC档次。 | 
 | typedef enum [OH_VVCProfile](#oh_vvcprofile-1) [OH_VVCProfile](#oh_vvcprofile) | VVC档次。 | 
+| typedef enum [OH_H263Profile](#oh_h263profile-1) [OH_H263Profile](#oh_h263profile) | H.263档次。 | 
+| typedef enum [OH_MPEG2Profile](#oh_mpeg2profile-1) [OH_MPEG2Profile](#oh_mpeg2profile) | MPEG2档次。 | 
+| typedef enum [OH_MPEG4Profile](#oh_mpeg4profile-1) [OH_MPEG4Profile](#oh_mpeg4profile) | MPEG4档次。 | 
 | typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | 封装器支持的输出文件格式。 | 
 | typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | 跳转模式。 | 
 | typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | 缩放模式，只在Surface模式下使用。（API14废弃） | 
@@ -204,6 +210,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | AVC级别。  | 
 | typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | HEVC级别。  | 
 | typedef enum [OH_VVCLevel](#oh_vvclevel-1) [OH_VVCLevel](#oh_vvclevel) | VVC级别。  | 
+| typedef enum [OH_H263Level ](#oh_h263level-1) [OH_H263Level ](#oh_h263level) | H.263级别。  |
+| typedef enum [OH_MPEG2Level](#oh_mpeg2level-1) [OH_MPEG2Level](#oh_mpeg2level) | MPEG2级别。 | 
+| typedef enum [OH_MPEG4Level](#oh_mpeg4level-1) [OH_MPEG4Level](#oh_mpeg4level) | MPEG4级别。 | 
 | typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | 时域图片组参考模式。  |
 | typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | 编码器的比特率模式。  |
 
@@ -217,9 +226,12 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MediaType](#oh_mediatype-1) {<br/>MEDIA_TYPE_AUD = 0,<br/>MEDIA_TYPE_VID = 1，<br/>MEDIA_TYPE_SUBTITILE = 2<br/>} | 媒体类型。 |
 | [OH_AACProfile](#oh_aacprofile-1) {<br/>AAC_PROFILE_LC = 0,<br/>AAC_PROFILE_HE = 3,<br/>AAC_PROFILE_HE_V2 = 4<br/>} | AAC档次。<!--Del--><br/>（AAC_PROFILE_HE, AAC_PROFILE_HE_V2暂未开放）<!--DelEnd--> | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br/>AVC_PROFILE_BASELINE = 0,<br/>AVC_PROFILE_HIGH = 4,<br/>AVC_PROFILE_MAIN = 8<br/>} | AVC档次。 | 
-| [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃。| 
+| [OH_HEVCProfile](#oh_hevcprofile-1) {<br/>HEVC_PROFILE_MAIN = 0,<br/>HEVC_PROFILE_MAIN_10 = 1,<br/>HEVC_PROFILE_MAIN_STILL = 2,<br/>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br/>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br/>} | HEVC档次。<br>（HEVC_PROFILE_MAIN_10_HDR10、HEVC_PROFILE_MAIN_10_HDR10_PLUS在API 14废弃）。| 
 | [OH_VVCProfile](#oh_vvcprofile-1) {<br/>VVC_PROFILE_MAIN_10 = 1, <br/>VVC_PROFILE_MAIN_12 = 2, <br/>VVC_PROFILE_MAIN_12_INTRA = 10, <br/>VVC_PROFILE_MULTI_MAIN_10 = 17, <br/>VVC_PROFILE_MAIN_10_444 = 33, <br/>VVC_PROFILE_MAIN_12_444 = 34, <br/>VVC_PROFILE_MAIN_16_444 = 36, <br/>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br/>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br/>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br/>VVC_PROFILE_MAIN_10_STILL = 65, <br/>VVC_PROFILE_MAIN_12_STILL = 66, <br/>VVC_PROFILE_MAIN_10_444_STILL = 97, <br/>VVC_PROFILE_MAIN_12_444_STILL = 98, <br/>VVC_PROFILE_MAIN_16_444_STILL = 100 <br/>} | VVC档次。 | 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10<br/>} | 封装器支持的输出文件格式。 |
+| [OH_H263Profile](#oh_h263profile-1) {<br/>H263_PROFILE_BASELINE = 0,<br/>H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY = 2<br/>} | H.263档次。 | 
+| [OH_MPEG2Profile](#oh_mpeg2profile-1) {<br/>MPEG2_PROFILE_SIMPLE = 0,<br/>MPEG2_PROFILE_MAIN = 1,<br/>MPEG2_PROFILE_SNR = 2,<br/>MPEG2_PROFILE_SPATIAL = 3,<br/>MPEG2_PROFILE_HIGH = 4,<br/>MPEG2_PROFILE_422 = 5<br/>} | MPEG2档次。 | 
+| [OH_MPEG4Profile](#oh_mpeg4profile-1) {<br/>MPEG4_PROFILE_SIMPLE = 0,<br/>MPEG4_PROFILE_SIMPLE_SCALABLE = 1,<br/>MPEG4_PROFILE_CORE = 2,<br/>MPEG4_PROFILE_MAIN = 3,<br/>MPEG4_PROFILE_NBIT = 4,<br/>MPEG4_PROFILE_HYBRID = 5,<br/>MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE = 6,<br/>MPEG4_PROFILE_SCALABLE_TEXTURE = 7,<br/>MPEG4_PROFILE_SIMPLE_FA = 8,<br/>MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE = 9,<br/>MPEG4_PROFILE_CORE_SCALABLE = 10,<br/>MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY = 11,<br/>MPEG4_PROFILE_ADVANCED_CORE = 12,<br/>MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE = 13,<br/>MPEG4_PROFILE_ADVANCED_SIMPLE = 17<br/>} | MPEG4档次。 | 
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br/>AV_OUTPUT_FORMAT_DEFAULT = 0,<br/>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br/>AV_OUTPUT_FORMAT_M4A = 6,<br/>AV_OUTPUT_FORMAT_AMR = 8,<br/>AV_OUTPUT_FORMAT_MP3 = 9,<br/>AV_OUTPUT_FORMAT_WAV = 10, <br/>AV_OUTPUT_FORMAT_AAC = 11<br/>} | 封装器支持的输出文件格式。 |
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br/>SEEK_MODE_NEXT_SYNC = 0,<br/>SEEK_MODE_PREVIOUS_SYNC,<br/>SEEK_MODE_CLOSEST_SYNC<br/>} | 跳转模式。 | 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br/>SCALING_MODE_SCALE_TO_WINDOW = 1,<br/>SCALING_MODE_SCALE_CROP = 2<br/>} | 缩放模式。（API14废弃） | 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br/>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br/>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br/>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br/>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br/>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br/>INVALID_WIDTH = -1<br/>} | 每个编码样本的音频位数。 | 
@@ -229,6 +241,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCLevel](#oh_avclevel-1) {<br/>AVC_LEVEL_1 = 0, <br/>AVC_LEVEL_1b = 1, <br/>AVC_LEVEL_11 = 2, <br/>AVC_LEVEL_12 = 3,<br/>AVC_LEVEL_13 = 4, <br/>AVC_LEVEL_2 = 5, <br/>AVC_LEVEL_21 = 6, <br/>AVC_LEVEL_22 = 7,<br/>AVC_LEVEL_3 = 8, <br/>AVC_LEVEL_31 = 9, <br/>AVC_LEVEL_32 = 10, <br/>AVC_LEVEL_4 = 11,<br/>AVC_LEVEL_41 = 12, <br/>AVC_LEVEL_42 = 13, <br/>AVC_LEVEL_5 = 14, <br/>AVC_LEVEL_51 = 15, <br/>AVC_LEVEL_52 = 16, <br/>AVC_LEVEL_6 = 17, <br/>AVC_LEVEL_61 = 18, <br/>AVC_LEVEL_62 = 19<br/>} | AVC级别。  | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br/>HEVC_LEVEL_1 = 0, <br/>HEVC_LEVEL_2 = 1, <br/>HEVC_LEVEL_21 = 2, <br/>HEVC_LEVEL_3 = 3,<br/>HEVC_LEVEL_31 = 4, <br/>HEVC_LEVEL_4 = 5, <br/>HEVC_LEVEL_41 = 6, <br/>HEVC_LEVEL_5 = 7,<br/>HEVC_LEVEL_51 = 8, <br/>HEVC_LEVEL_52 = 9, <br/>HEVC_LEVEL_6 = 10, <br/>HEVC_LEVEL_61 = 11,<br/>HEVC_LEVEL_62 = 12<br/>} | HEVC级别。  | 
 | [OH_VVCLevel](#oh_vvclevel-1) {<br/>VVC_LEVEL_1 = 16, <br/>VVC_LEVEL_2 = 32, <br/>VVC_LEVEL_21 = 35, <br/>VVC_LEVEL_3 = 48, <br/>VVC_LEVEL_31 = 51, <br/>VVC_LEVEL_4 = 64, <br/>VVC_LEVEL_41 = 67, <br/>VVC_LEVEL_5 = 80, <br/>VVC_LEVEL_51 = 83, <br/>VVC_LEVEL_52 = 86, <br/>VVC_LEVEL_6 = 96, <br/>VVC_LEVEL_61 = 99, <br/>VVC_LEVEL_62 = 102, <br/>VVC_LEVEL_63 = 105, <br/>VVC_LEVEL_155 = 255<br/>} | VVC级别。  | 
+| [OH_H263Level ](#oh_h263level-1) {<br/>H263_LEVEL_10 = 0, <br/>H263_LEVEL_20 = 1, <br/>H263_LEVEL_30 = 2, <br/>H263_LEVEL_40 = 3, <br/>H263_LEVEL_45 = 4, <br/>H263_LEVEL_50 = 5, <br/>H263_LEVEL_60 = 6, <br/>H263_LEVEL_70 = 7<br/>} | H.263级别。  | 
+| [OH_MPEG2Level](#oh_mpeg2level-1) {<br/>MPEG2_LEVEL_LL = 0,<br/>MPEG2_LEVEL_ML = 1,<br/>MPEG2_LEVEL_H14 = 2,<br/>MPEG2_LEVEL_HL = 3<br/> } | MPEG2级别。 | 
+| [OH_MPEG4Level](#oh_mpeg4level-1) {<br/>MPEG4_LEVEL_0 = 0,<br/>MPEG4_LEVEL_0B = 1,<br/>MPEG4_LEVEL_1 = 2,<br/>MPEG4_LEVEL_2 = 3,<br/>MPEG4_LEVEL_3 = 4,<br/>MPEG4_LEVEL_3B = 5,<br/>MPEG4_LEVEL_4 = 6,<br/>MPEG4_LEVEL_4A = 7,<br/>MPEG4_LEVEL_5 = 8,<br/>MPEG4_LEVEL_6 = 9<br/>} | MPEG4级别。 | 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br/>ADJACENT_REFERENCE = 0, <br/>JUMP_REFERENCE = 1, <br/>UNIFORMLY_SCALED_REFERENCE = 2 <br/>} | 时域图片组参考模式。  | 
 | [OH_BitrateMode](#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | 编码器的比特率模式。  |
 
@@ -249,7 +264,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | HEVC(H.265)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_H263](#oh_avcodec_mimetype_video_h263) | H.263视频编解码器的MIME类型。                     |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。（API11废弃） |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG2](#oh_avcodec_mimetype_video_mpeg2) | 视频MPEG2编解码器的MIME类型。                        |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2](#oh_avcodec_mimetype_video_mpeg4_part2) | 视频MPEG4 Part2编解码器的MIME类型。         |
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | JPG图片编码的MIME类型，仅用于封装JPG封面时使用。 |
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | PNG图片编码的MIME类型，仅用于封装PNG封面时使用。 |
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | BMP图片编码的MIME类型，仅用于封装BMP封面时使用。 |
@@ -273,13 +291,13 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。 |
 | const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t，请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。 |
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t，请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。 |
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。（API14废弃）|
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。（API14废弃）|
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。本。  | 
+| const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
@@ -386,7 +404,7 @@ typedef struct OH_AVCodec OH_AVCodec
 typedef struct OH_AVCodecAsyncCallback OH_AVCodecAsyncCallback
 ```
 **描述**
-OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中， 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
+OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，并处理回调上报的信息，以保证OH_AVCodec的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -412,7 +430,7 @@ OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例�
 typedef struct OH_AVCodecCallback OH_AVCodecCallback
 ```
 **描述**
-OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中， 并处理回调上报的信息，以保证OH_AVCodec的正常运行。
+OH_AVCodec中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVCodec实例中，并处理回调上报的信息，以保证OH_AVCodec的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -729,6 +747,66 @@ typedef enum OH_MediaType OH_MediaType
 **起始版本：** 9
 
 
+### OH_MPEG2Level
+
+```
+typedef enum OH_MPEG2Level OH_MPEG2Level
+```
+
+**描述**
+
+MPEG2级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
+### OH_MPEG2Profile
+
+```
+typedef enum OH_MPEG2Profile OH_MPEG2Profile
+```
+
+**描述**
+
+MPEG2档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
+### OH_MPEG4Level
+
+```
+typedef enum OH_MPEG4Level OH_MPEG4Level
+```
+
+**描述**
+
+MPEG4级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
+### OH_MPEG4Profile
+
+```
+typedef enum OH_MPEG4Profile OH_MPEG4Profile
+```
+
+**描述**
+
+MPEG4档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
 ### OH_ScalingMode
 
 ```
@@ -743,7 +821,7 @@ typedef enum OH_ScalingMode OH_ScalingMode
 
 **废弃版本：** 14 
 
-**替代接口：**[OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1)
+**替代接口：**[OHScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#ohscalingmodev2)
 
 
 ### OH_TemporalGopReferenceMode
@@ -768,7 +846,7 @@ VVC级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 
 ### OH_VVCProfile
@@ -781,7 +859,33 @@ VVC档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
+
+
+### OH_H263Level
+
+```
+typedef enum OH_H263Level OH_H263Level
+```
+**描述**
+H.263级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
+### OH_H263Profile
+
+```
+typedef enum OH_H263Profile OH_H263Profile
+```
+**描述**
+H.263档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
 
 
 ### OH_TransferCharacteristic
@@ -1051,6 +1155,7 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
 | AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
 | AV_OUTPUT_FORMAT_WAV  | 输出文件格式为WAV格式。<br>**起始版本：** 12   | 
+| AV_OUTPUT_FORMAT_AAC  | 输出文件格式为AAC格式。<br>**起始版本：** 18   | 
 
 ### OH_AVSeekMode
 
@@ -1223,6 +1328,113 @@ enum OH_MediaType
 | MEDIA_TYPE_VID  | 视频轨。   | 
 | MEDIA_TYPE_SUBTITILE  | 字幕轨。 <br>**起始版本：** 12   |
 
+### OH_MPEG2Level
+
+```
+enum OH_MPEG2Level
+```
+
+**描述**
+
+MPEG2级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG2_LEVEL_LL | 低级别。 | 
+| MPEG2_LEVEL_ML | 主级别。 | 
+| MPEG2_LEVEL_H14 | 高1440级别。 | 
+| MPEG2_LEVEL_HL | 高级别。 | 
+
+
+### OH_MPEG2Profile
+
+```
+enum OH_MPEG2Profile
+```
+
+**描述**
+
+MPEG2档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG2_PROFILE_SIMPLE | 简单档次。 | 
+| MPEG2_PROFILE_MAIN | 主档次。 | 
+| MPEG2_PROFILE_SNR | 信噪比可分级档次。 | 
+| MPEG2_PROFILE_SPATIAL | 空间可分级档次。 | 
+| MPEG2_PROFILE_HIGH | 高级档次。 | 
+| MPEG2_PROFILE_422 | 4:2:2档次。 | 
+
+
+### OH_MPEG4Level
+
+```
+enum OH_MPEG4Level
+```
+
+**描述**
+
+MPEG4级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG4_LEVEL_0 | 级别0 | 
+| MPEG4_LEVEL_0B | 级别0B。 | 
+| MPEG4_LEVEL_1 | 级别1。 | 
+| MPEG4_LEVEL_2 | 级别2。 | 
+| MPEG4_LEVEL_3 | 级别3。 | 
+| MPEG4_LEVEL_3B | 级别3B。 | 
+| MPEG4_LEVEL_4 | 级别4。 | 
+| MPEG4_LEVEL_4A | 级别4A。 | 
+| MPEG4_LEVEL_5 | 级别5。 | 
+| MPEG4_LEVEL_6 | 级别6。 | 
+
+
+### OH_MPEG4Profile
+
+```
+enum OH_MPEG4Profile
+```
+
+**描述**
+
+MPEG4档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MPEG4_PROFILE_SIMPLE | 简单档次。 | 
+| MPEG4_PROFILE_SIMPLE_SCALABLE | 简单可分级档次。 | 
+| MPEG4_PROFILE_CORE | 核心档次。 | 
+| MPEG4_PROFILE_MAIN | 主档次。 | 
+| MPEG4_PROFILE_NBIT | N位档次。 | 
+| MPEG4_PROFILE_HYBRID | 混合档次。 | 
+| MPEG4_PROFILE_BASIC_ANIMATED_TEXTURE | 基本动画纹理档次。 | 
+| MPEG4_PROFILE_SCALABLE_TEXTURE | 可分级纹理档次。 | 
+| MPEG4_PROFILE_SIMPLE_FA | 简单FA档次。 | 
+| MPEG4_PROFILE_ADVANCED_REAL_TIME_SIMPLE | 高级实时简单档次。 | 
+| MPEG4_PROFILE_CORE_SCALABLE | 核心可分级档次。 | 
+| MPEG4_PROFILE_ADVANCED_CODING_EFFICIENCY | 高级编码效率档次。 | 
+| MPEG4_PROFILE_ADVANCED_CORE | 高级核心档次。 | 
+| MPEG4_PROFILE_ADVANCED_SCALABLE_TEXTURE | 高级可分级纹理档次。 | 
+| MPEG4_PROFILE_ADVANCED_SIMPLE | 高级简单档次。 | 
+
+
 ### OH_ScalingMode
 
 ```
@@ -1237,8 +1449,8 @@ enum OH_ScalingMode
 
 **废弃版本：** 14 
 
-**替代接口：** [OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_TO_WINDOW_V2、
-[OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_CROP_V2
+**替代接口：** [OHScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#ohscalingmodev2).OH_SCALING_MODE_SCALE_TO_WINDOW_V2、
+[OHScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#ohscalingmodev2).OH_SCALING_MODE_SCALE_CROP_V2
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1276,7 +1488,7 @@ VVC级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -1307,12 +1519,12 @@ VVC档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 14
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | VVC_PROFILE_MAIN_10 | VVC编码档次为10bit主档次。  |
-| VVC_PROFILE_MAIN_12 VVC | 编码档次为12bit主档次。  |
+| VVC_PROFILE_MAIN_12 | VVC编码档次为12bit主档次。  |
 | VVC_PROFILE_MAIN_12_INTRA | VVC编码档次为12bit帧内主档次。  |
 | VVC_PROFILE_MULTI_MAIN_10 | VVC编码档次为多层编码10bit主档次。  |
 | VVC_PROFILE_MAIN_10_444 | VVC编码档次为10bit全采样主档次。  |
@@ -1326,6 +1538,48 @@ VVC档次。
 | VVC_PROFILE_MAIN_10_444_STILL | VVC编码档次为10bit全采样静止图像主档次。  |
 | VVC_PROFILE_MAIN_12_444_STILL | VVC编码档次为12bit全采样静止图像主档次。  |
 | VVC_PROFILE_MAIN_16_444_STILL | VVC编码档次为16bit全采样静止图像主档次。  |
+
+
+### OH_H263Level
+
+```
+enum OH_H263Level
+```
+**描述**
+H.263级别。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| H263_LEVEL_10 | 级别10。  |
+| H263_LEVEL_20 | 级别20。  |
+| H263_LEVEL_30 | 级别30。  |
+| H263_LEVEL_40 | 级别40。  |
+| H263_LEVEL_45 | 级别45。  |
+| H263_LEVEL_50 | 级别50。  |
+| H263_LEVEL_60 | 级别60。  |
+| H263_LEVEL_70 | 级别70。  |
+
+
+### OH_H263Profile
+
+```
+enum OH_H263Profile
+```
+**描述**
+H.263档次。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| H263_PROFILE_BASELINE | 基线档次。  |
+| H263_PROFILE_VERSION_1_BACKWARD_COMPATIBILITY | 版本1向后兼容档次。  |
 
 
 ### OH_TransferCharacteristic
@@ -1496,7 +1750,7 @@ RAW音频码流的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_AVCODEC_MIMETYPE_AUDIO_MPEG
@@ -1629,6 +1883,34 @@ VVC(H.266)视频编解码器的MIME类型。
 **起始版本：** 12
 
 
+### OH_AVCODEC_MIMETYPE_VIDEO_H263
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_H263
+```
+**描述**
+H.263视频编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG2
+```
+
+**描述**
+
+视频MPEG2编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
+
+
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
 ```
@@ -1642,6 +1924,21 @@ MPEG4视频编码的MIME类型，仅用于封装MPEG4视频码流使用。
 **起始版本：** 10
 
 **废弃版本：** 11
+
+
+### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2
+```
+
+**描述**
+
+视频MPEG4 Part2编解码器的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 17
 
 
 ### OH_ED_KEY_EOS
@@ -2011,7 +2308,9 @@ const char* OH_MD_KEY_HEIGHT
 **描述**
 视频高度键，值类型为int32_t。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的“Surface模式的步骤-5或Buffer模式步骤-4”。
+在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示高。
+
+使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2196,7 +2495,7 @@ aac sbr模式的键，值类型为int32_t，aac编码器支持。
 const char* OH_MD_KEY_SCALING_MODE
 ```
 **描述**
-视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。该键是可选的且只用于视频解码Surface模式。
+视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowsetscalingmodev2)接口进行设置。该键是可选的且只用于视频解码Surface模式。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2204,7 +2503,7 @@ const char* OH_MD_KEY_SCALING_MODE
 
 **废弃版本：** 14 
 
-**替代接口：**[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2)
+**替代接口：**[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowsetscalingmodev2)
 
 
 ### OH_MD_KEY_SETUP_HEADER
@@ -2330,11 +2629,12 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 ```
 **描述**
-使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。
+使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选的，在Configure阶段使用。
 
 如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
 
-该键是可选的，在Configure阶段使用。
+若平台支持，当使能此接口时，视频解码器将按照解码序输出帧。
+
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2591,11 +2891,13 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
 **描述**
 设置视频解码器输出色彩空间的键，值类型为int32_t。
 
-支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。
+支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。
 
-在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用。
+在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用此接口。
 
-如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为色彩空间BT709的SDR视频。
+在启动OH_VideoDecoder_Start接口前，必须要先调用OH_VideoDecoder_Prepare接口。
+
+如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为指定的色彩空间。
 
 如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
@@ -2652,6 +2954,10 @@ const char* OH_MD_KEY_VIDEO_PIC_HEIGHT
 
 当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出高度值。
 
+从OH_AVForamt实例中解析出来的是对齐后的宽、高与调用Configure接口设置的OH_MD_KEY_WIDTH、OH_MD_KEY_HEIGHT不一样。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-11”。
+
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
@@ -2668,6 +2974,10 @@ const char* OH_MD_KEY_VIDEO_PIC_WIDTH
 视频解码时调用[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)接口，可以从其返回的OH_AVFormat中解析出宽度值。
 
 当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出宽度值。
+
+从OH_AVForamt实例中解析出来的是对齐后的宽、高与调用Configure接口设置的OH_MD_KEY_WIDTH、OH_MD_KEY_HEIGHT不一样。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-11”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2686,7 +2996,9 @@ const char* OH_MD_KEY_VIDEO_SLICE_HEIGHT
 
 U/V平面的高度可以根据颜色格式计算，尽管它通常是未定义的，并且取决于设备和版本。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md#)中的“Buffer模式步骤-3”。
+使用指导请参见：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-3”。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-11”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2705,7 +3017,9 @@ const char* OH_MD_KEY_VIDEO_STRIDE
 
 对于YUV420格式，宽跨距对应于Y平面，U和V平面的跨距可以根据颜色格式计算，但通常未定义，并且取决于设备和版本。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md#)中的“Buffer模式步骤-3”。
+使用指导请参见：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-3”。
+
+width、height、wStride、hStride图像排布与使用示例请参考：[视频编码Buffer模式](../../media/avcodec/video-encoding.md#buffer模式)的“步骤-8”或[视频解码Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)“步骤-11”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2720,7 +3034,9 @@ const char* OH_MD_KEY_WIDTH
 **描述**
 视频宽度的键，值类型为int32_t。
 
-使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的“Surface模式的步骤-5或Buffer模式步骤-4”。
+在视频编解码流程中调用Configure接口时，使用此接口来设置视频帧的显示宽度。
+
+使用指导请参见：[视频编码](../../media/avcodec/video-encoding.md)中的Surface模式的“步骤-5”或Buffer模式“步骤-4”。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2807,7 +3123,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18
 
 
 ### OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
@@ -2828,4 +3144,4 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
-**起始版本：** 16
+**起始版本：** 18

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ## PluginComponentTemplate
@@ -20,12 +20,12 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数    | 类型   | 必填 | 描述                        |
+| 名称    | 类型   | 必填 | 说明                        |
 | ------- | ------ | ---- | --------------------------- |
 | source  | string | 是   | 组件模板名。                |
 | ability | string | 是   | 提供方Ability的bundleName。 |
 
-## PluginComponentManager
+## pluginComponentManager
 
 插件组件管理器。
 
@@ -39,22 +39,14 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-| 取值范围              | 说明                                     |
-| --------------------- | ---------------------------------------- |
-| [key: string]         | 关键字，数据类型为字符串，可取空字符串。 |
-| number                | 键值，表示值类型为数字。                 |
-| string                | 键值，表示值类型为字符串，可取空字符串。 |
-| boolean               | 键值，表示值类型为布尔值。               |
-| []                    | 键值，可取值为[]。                       |
-| [KVObject](#kvobject) | 键值，表示值类型为KVObject。             |
+| 名称    | 类型   | 必填 | 说明                        |
+| ------- | ------ | ---- | --------------------------- |
+|  [key: string]  | number \| string \| boolean \| [] \| [KVObject](#kvobject)  | 是   | 键值对形式存储。<br/>number：键值，表示值类型为数字。<br/> string：键值，表示值类型为字符串，可取空字符串。<br/> boolean：键值，表示值类型为布尔值。<br/> []：键值，可取值为[]。<br/>[KVObject](#kvobject)：键值，表示值类型为KVObject。            |
 
 
 ### PushParameters
 
-用于设置FA模型下使用PluginManager.Push方法时候的需要传递的参数。
-
-**模型约束：** 此接口仅适用于FA模型。
+使用PluginManager.Push方法时候的需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -70,9 +62,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 ### RequestParameters
 
-用于设置FA模型下使用PluginManager.Request方法时候的需要传递的参数。
-
-**模型约束：** 此接口仅适用于FA模型。
+使用PluginManager.Request方法时候的需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -122,9 +112,11 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                       | 必填   | 说明                     |
+| 参数名        | 类型                                       | 必填   | 说明                     |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
 | template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | Push请求发送方相关信息请求组件模板名称。 |
@@ -134,15 +126,15 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 **示例：**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -155,18 +147,26 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                  | 必填   | 说明                |
+| 参数名        | 类型                                  | 必填   | 说明                |
 | --------- | ----------------------------------- | ---- | ----------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
 | name      | string                              | 是    | 模板名称。             |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据。             |
+| data | [KVObject](#kvobject)               | 是    | 附加数据。             |
+
+**返回值：**
+
+| 类型                                       | 说明                                                       |
+| ---------------------------------------- | --------------------------------------------------------- |
+| [RequestEventResult](#requesteventresult) | 注册Request监听方法后，接受到的请求事件时候回应请求的数据类型。 |
 
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
@@ -176,19 +176,17 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
   console.log("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
-    'data': data
+    'data': data,
   }
   return RtnData;
 }
 ```
 
-### push
+### pluginComponentManager.push
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 组件提供方向组件使用方主动发送组件与数据。
-
-**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -203,7 +201,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     want: {
@@ -213,10 +211,10 @@ pluginComponentManager.push(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 34234
+      "key_2": 34234,
     },
     extraData: {
-      "extra_str": "this is push event"
+      "extra_str": "this is push event",
     },
     jsonPath: "",
   },
@@ -226,13 +224,11 @@ pluginComponentManager.push(
 )
 ```
 
-### request
+### pluginComponentManager.request
 
 request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackParameters&gt;): void
 
 组件使用方向组件提供方主动请求组件。
-
-**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -249,7 +245,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 **示例：**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     want: {
@@ -259,20 +255,20 @@ pluginComponentManager.request(
     name: "plugintemplate",
     data: {
       "key_1": "plugin component test",
-      "key_2": 1111111
+      "key_2": 1111111,
     },
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    console.log("request_callback: data=" + JSON.stringify(data.data))
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.log("request_callback: data=" + JSON.stringify(data.data));
+    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
 
-### on
+### pluginComponentManager.on
 
 on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): void
 
@@ -292,25 +288,25 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 **示例：**
 
 ```ts
-import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI'
+import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source)
-  console.log("onPushListener source=" + JSON.stringify(source))
-  console.log("onPushListener template=" + JSON.stringify(template))
-  console.log("onPushListener data=" + JSON.stringify(data))
-  console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source);
+  console.log("onPushListener source=" + JSON.stringify(source));
+  console.log("onPushListener template=" + JSON.stringify(template));
+  console.log("onPushListener data=" + JSON.stringify(data));
+  console.log("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
   console.log("onRequestListener source=" + JSON.stringify(source));
   console.log("onRequestListener name=" + name);
   console.log("onRequestListener data=" + JSON.stringify(data));
-  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data }
+  let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }
-pluginComponentManager.on("push", onPushListener)
-pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener);
+pluginComponentManager.on("request", onRequestListener);
 ```
 
 ## external.json文件说明

@@ -17,8 +17,8 @@
 | const.product.software.version | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | Obtains the software version visible to users.|
 | const.product.bootloader.version | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | Obtains the bootloader version of the device.|
 | const.product.udid | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | Obtains the UDID of the device through **DeviceInfo** or through calculation if the attempt to obtain the UDID through **DeviceInfo** fails.|
-| | const char *AclGetSerial(void); | Obtains the SN of the device (with ACL check).|
-| | int AclGetDevUdid(char *udid, int size); | Obtains the UDID of the device (with ACL check).|
+| | const char *AclGetSerial(void) | Obtains the SN of the device (with ACL check).|
+| | int AclGetDevUdid(char *udid, int size) | Obtains the UDID of the device (with ACL check).|
 
 ## DeviceInfo Source
 

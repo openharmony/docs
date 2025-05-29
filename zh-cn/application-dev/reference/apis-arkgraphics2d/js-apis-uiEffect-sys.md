@@ -186,6 +186,42 @@ distort(distortionK: number): Filter
 filter.distort(-0.5)
 ```
 
+
+### radiusGradientBlur<sup>19+</sup>
+radiusGradientBlur(value: number, options: LinearGradientBlurOptions): Filter
+
+为组件内容添加半径线性渐变模糊效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| value  | number         | 是   | 模糊半径，模糊半径越大越模糊。取值范围为[0, 128]。模糊半径设置为0时不模糊；模糊半径设置小于0的值时，按值为0处理；设置大于128的值时，按值为128处理。|
+| options  | [LinearGradientBlurOptions](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#lineargradientbluroptions12对象说明)         | 是   | 线性渐变参数，包含两个部分fractionStops和direction。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了半径线性渐变模糊效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+filter.radiusGradientBlur(20, {fractionStops: [[0, 0], [0.5, 0.2], [1.0, 1.0]], direction: GradientDirection.Bottom})
+```
+
 ## TileMode
 像素填充模式枚举。
 
@@ -212,6 +248,7 @@ filter.distort(-0.5)
 | SMALL2MEDIUM_RECV  | 0 | 手机碰2in1设备（接收端）。 |
 | SMALL2MEDIUM_SEND  | 1 | 手机碰2in1设备（发送端）。 |
 | SMALL2SMALL | 2 | 手机碰手机。 |
+| MINI_RECV<sup>17+</sup> | 3 | 2in1设备与其它设备共享（键鼠共享场景）。 |
 
 ## FlyMode
 飞入飞出形变场景模式枚举。

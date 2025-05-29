@@ -43,10 +43,11 @@ Video(value: VideoOptions)
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md#resource)                            | No  | Video source, which can be either a local or a network video.<br>The Resource type allows cross-package and cross-module access to resource files and is commonly used for accessing local videos.<br>- Resources in the rawfile folder are supported, which means that you can reference video files with **$rawfile**.<br>The string type is used for loading local videos and, more frequently, network videos.<br>- Network video URLs are supported.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, are supported. They are used to access resources in the application sandbox path. Ensure that the application has the read permission to the files in the specified path.<br>**NOTE**<br>The supported video formats are MP4, MKV, and TS.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| currentProgressRate | number \| string \| [PlaybackSpeed<sup>8+</sup>](#playbackspeed8) | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| previewUri          | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
+| currentProgressRate | number \| string \| [PlaybackSpeed<sup>8+</sup>](#playbackspeed8) | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>For the string type, numeric string values, for example **0.75**, **1.0**, **1.25**, **1.75**, and **2.0**, are supported.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| previewUri          | string \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource)  | No  | Path of the preview image displayed before the video playback starts. By default, no preview image is displayed.<br>The string type can be used to load online images and local images.<br>- URLs are supported for loading online images.<br>- Relative paths are supported for loading local images, for example, **previewUri: "common/test.jpg"**. When using an image referenced using a relative path, the component cannot be called across bundles or modules.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, are supported. They are used to access resources in the application sandbox path. Ensure that the application has the read permission to the files in the specified path.<br>The Resource type allows cross-package and cross-module access to resource files.<br>- Resources in the **rawfile** folder are supported, which means that you can reference video files with **\\$rawfile**.<br>- You can use **\\$r** to reference images in system or application resources.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
 | controller          | [VideoController](#videocontroller)                          | No  | Video controller to control the video playback status.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                    |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | No  | AI image analysis options. You can configure the analysis type or bind an analyzer controller through this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18) | No  | Display options for the first frame of the video.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -64,7 +65,7 @@ Video(value: VideoOptions)
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### muted
 
@@ -80,7 +81,7 @@ Specifies whether to mute the video.
 
 | Name| Type   | Mandatory| Description                        |
 | ------ | ------- | ---- | ---------------------------- |
-| value  | boolean | Yes  | Whether to mute the video.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to mute the video.<br>**true**: Mute the video.<br>**false**: Unmute the video.<br>Default value: **false**|
 
 ### autoPlay
 
@@ -96,7 +97,7 @@ Specifies whether to enable autoplay.
 
 | Name| Type   | Mandatory| Description                            |
 | ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | Yes  | Whether to enable autoplay.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to enable autoplay.<br>**true**: Enable autoplay.<br>**false**: Disable autoplay.<br>Default value: **false**|
 
 ### controls
 
@@ -112,7 +113,7 @@ Specifies whether to display the video playback control bar.
 
 | Name| Type   | Mandatory| Description                                           |
 | ------ | ------- | ---- | ----------------------------------------------- |
-| value  | boolean | Yes  | Whether to display the video playback control bar.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether to display the video playback control bar.<br>**true**: Display the video playback control bar.<br>**false**: Do not display the video playback control bar.<br>Default value: **true**|
 
 ### objectFit
 
@@ -144,16 +145,14 @@ Specifies whether to repeat the video.
 
 | Name| Type   | Mandatory| Description                                    |
 | ------ | ------- | ---- | ---------------------------------------- |
-| value  | boolean | Yes  | Whether to repeat the video.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to repeat the video.<br>**true**: Repeat the video.<br>**false**: Do not repeat the video.<br>Default value: **false**|
 
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
 
 Sets whether to enable the AI analyzer, which supports subject recognition, text recognition, and object lookup.
-
 After this feature is enabled, the video automatically enters an analysis state to process the current frame when playback is paused, and exits the analysis state when playback is resumed.
-
 Note that if this attribute and the [overlay](ts-universal-attributes-overlay.md) attribute are both set, [CustomBuilder](ts-types.md#custombuilder8) specified in [overlay](ts-universal-attributes-overlay.md) has no effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -164,7 +163,7 @@ Note that if this attribute and the [overlay](ts-universal-attributes-overlay.md
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| enable | boolean | Yes| Whether to enable the AI analyzer.|
+| enable | boolean | Yes| Whether to enable the AI analyzer.<br>**true**: Enable the AI analyzer.<br>**false**: Disable the AI analyzer.<br>Default value: **false**|
 
 > **NOTE**
 >
@@ -186,9 +185,25 @@ Provides AI analyzer configuration.
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | Yes| AI analysis type.|
 
+### enableShortcutKey<sup>15+</sup>
+
+enableShortcutKey(enabled: boolean)
+
+Sets whether the component responds to keyboard shortcuts when it has focus.
+
+Currently, the component can respond to the following keys when it is in focus: spacebar for playing or pausing the video, up or down arrow key for adjusting the video volume, and left or right arrow key for fast forwarding or rewinding the video.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   | Mandatory| Description                                  |
+| ------- | ------- | ---- | -------------------------------------- |
+| enabled | boolean | Yes  | Whether to enable the shortcut key response.<br>**true**: Enable the shortcut key response.<br>**false**: Disable the shortcut key response.<br>Default value: **false**|
+
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onStart
 
@@ -240,7 +255,7 @@ Triggered when the video playback is finished.
 
 ### onError
 
-onError(event:() =&gt; void)
+onError(event: () => void)
 
 Triggered when the video playback fails.
 
@@ -272,7 +287,7 @@ Triggered when video preparation is complete.
 
 | Name  | Type  | Mandatory| Description                      |
 | -------- | ------ | ---- | -------------------------- |
-| callback | Callback\<[PreparedInfo](#preparedinfo14)> | Yes  | Duration of the video.|
+| callback | Callback\<[PreparedInfo](#preparedinfo18)> | Yes  | Duration of the video.|
 
 ### onSeeking
 
@@ -288,7 +303,7 @@ Triggered to report the current time when the progress bar is being dragged.
 
 | Name| Type  | Mandatory| Description                          |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14)> | Yes  | Callback that provides the current playback progress.|
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18)> | Yes  | Callback that provides the current playback progress.|
 
 ### onSeeked
 
@@ -304,7 +319,7 @@ Triggered to report the playback time when the user finishes dragging the progre
 
 | Name| Type  | Mandatory| Description                          |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14)> | Yes  | Callback that provides the current playback progress.|
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18)> | Yes  | Callback that provides the current playback progress.|
 
 ### onUpdate
 
@@ -320,7 +335,7 @@ Triggered when the playback progress changes.
 
 | Name| Type  | Mandatory| Description                          |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14)> | Yes  | Callback that provides the current playback progress.|
+| callback   | Callback\<[PlaybackInfo](#playbackinfo18)> | Yes  | Callback that provides the current playback progress.|
 
 ### onFullscreenChange
 
@@ -336,43 +351,55 @@ Triggered when the video playback is switched between full-screen mode and non-f
 
 | Name    | Type   | Mandatory| Description                                                 |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | Callback\<[FullscreenInfo](#fullscreeninfo14)> | Yes  | Callback that indicates whether the video playback is in full-screen mode.|
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo18)> | Yes  | Callback that indicates whether the video playback is in full-screen mode.|
 
-### FullscreenInfo<sup>14+</sup>
+### FullscreenInfo<sup>18+</sup>
 
 Describes whether the video playback is in full-screen mode.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type   | Mandatory| Description                        |
-| ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | Yes  | Whether the video playback is in full-screen mode.<br>Default value: **false** |
+| Name      | Type   | Read Only| Optional| Description                        |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| fullscreen<sup>10+</sup>  | boolean | No| No | Callback that indicates whether the video playback is in full-screen mode.<br>**true**: The video playback is in full-screen mode.<br>**false**: The video playback is not in full-screen mode.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 
-### PreparedInfo<sup>14+</sup>
+### PreparedInfo<sup>18+</sup>
 
 Describes the duration of the video.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type   | Mandatory| Description                        |
-| ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | Yes  | Duration of the video in seconds.<br>Value range: [0, +∞)       |
+| Name      | Type   | Read Only| Optional| Description                        |
+| ----------- | ------- | ---- | ----  | ---------------------------- |
+| duration<sup>10+</sup> | number  | No| No | Duration of the video.<br>Unit: second<br>Value range: [0, +∞)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
-### PlaybackInfo<sup>14+</sup>
+### PlaybackInfo<sup>18+</sup>
 
 Describes the current progress of video playback.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type   | Mandatory| Description                        |
-| ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | Yes  | Current progress of video playback, in seconds.<br> Value range: [0, +∞)     |
+| Name      | Type   | Read Only| Optional| Description                        |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| time<sup>10+</sup> | number  | No| No | Callback that provides the current playback progress.<br>Unit: second<br>Value range: [0, +∞)<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+
+### PosterOptions<sup>18+</sup>
+
+Defines display options for the first frame of the video.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name      | Type   | Read Only| Optional| Description                        |
+| ----------- | ------- | ---- | ---- | ---------------------------- |
+| showFirstFrame   | boolean | No| Yes| Whether the first frame of the video is displayed as a preview.<br>**true**: The first frame of the video is displayed as a preview.<br>**false**: The first frame of the video is not displayed as a preview.<br>Default value: **false**     |
 
 ## VideoController
 
@@ -452,7 +479,7 @@ Sets the video playback position.
 
 | Name  | Type  | Mandatory  | Description          |
 | ----- | ------ | ---- | -------------- |
-| value | number | Yes   | Video playback position, in seconds.|
+| value | number | Yes   | Video playback position.<br>Value range: [0, [duration](ts-media-components-video.md#preparedinfo18)], in seconds|
 
 ### requestFullscreen
 
@@ -468,7 +495,7 @@ Requests full-screen mode.
 
 | Name| Type| Mandatory| Description                        |
 | ------ | -------- | ---- | -------------------------------- |
-| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.|
+| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.<br>**true**: Play the video in full screen mode within the application window.<br>**false**: Do not play the video in full screen mode within the application window.<br>Default value: **false**|
 
 ### exitFullscreen
 
@@ -526,6 +553,8 @@ struct VideoCreateComponent {
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
+  @State isShortcutKeyEnabled: boolean = false
+  @State showFirstFrame: boolean = false
   controller: VideoController = new VideoController()
 
   build() {
@@ -534,12 +563,14 @@ struct VideoCreateComponent {
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
-        controller: this.controller
+        controller: this.controller,
+        posterOptions: { showFirstFrame: this.showFirstFrame }
       })
         .width('100%')
         .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
+        .enableShortcutKey(this.isShortcutKeyEnabled)
         .onStart(() => {
           console.info('onStart')
         })
@@ -573,6 +604,11 @@ struct VideoCreateComponent {
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
             console.info('onUpdate is ' + e.time)
+          }
+        })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
           }
         })
 
@@ -627,6 +663,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -683,6 +723,46 @@ struct ImageAnalyzerExample {
             this.aiController.getImageAnalyzerSupportTypes()
         }).margin(5)
       }
+    }
+  }
+}
+```
+
+### Example 3: Playing a Dragged-in Video
+
+This example demonstrates how to enable the **Video** component to play a video that is dragged into it.
+
+```ts
+// xxx.ets
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+
+@Entry
+@Component
+struct Index {
+  @State videoSrc: Resource | string = $rawfile('video1.mp4');
+  private controller: VideoController = new VideoController();
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        controller: this.controller
+      })
+        .width('100%')
+        .height(600)
+        .onPrepared(() => {
+          // Start playing the video when it is prepared.
+          this.controller.start();
+        })
+        .onDrop((e: DragEvent) => {
+          // Handle the drop event when a video is dragged into the component.
+          // The DragEvent contains the information about the dragged-in video source. After the information is obtained, assign a value to the state variable videoSrc to change the video source of the video.
+          let record = e.getData().getRecords()[0];
+          if (record.getType() == uniformTypeDescriptor.UniformDataType.VIDEO) {
+            let videoInfo = record as unifiedDataChannel.Video;
+            this.videoSrc = videoInfo.videoUri;
+          }
+        })
     }
   }
 }

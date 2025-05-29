@@ -1,6 +1,6 @@
 # @ohos.multimedia.camera (Camera Management)
 
-The camera module provides a set of camera service APIs for you to easily develop a camera application. The application can access and operate the camera hardware to implement basic operations, such as preview, taking photos, and recording videos. It can also perform more operations, for example, controlling the flash and exposure time, and focusing or adjusting the focus.
+The Camera module provides a set of easy-to-use camera service APIs. With these APIs, you can create camera applications that access and control camera hardware to achieve basic functions like previewing, taking photos, and recording videos. In addition, you can combine these APIs to perform advanced operations, such as controlling the flash, exposure time, and focus.
 
 > **NOTE**
 >
@@ -71,9 +71,9 @@ Defines the camera device information.
 | cameraPosition                  | [CameraPosition](#cameraposition)   | Yes  | No | Camera position.   |
 | cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
 | connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
-| hostDeviceName<sup>16+</sup>    | string                              | Yes  | No | Remote device name.|
-| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | Yes  | No | Remote device type.|
+| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Camera installation angle, which does not change as the screen rotates. The value ranges from 0° to 360°, measured in degrees.|
+| hostDeviceName<sup>15+</sup>    | string                              | Yes  | No | Remote device name.|
+| hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | Yes  | No | Remote device type.|
 
 ## CameraPosition
 
@@ -116,7 +116,7 @@ Enumerates the camera connection types.
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
 
-## HostDeviceType<sup>16+</sup>
+## HostDeviceType<sup>15+</sup>
 
 Enumerates the remote camera types.
 
@@ -143,7 +143,7 @@ Enumerates the camera statuses.
 
 ## FoldStatus<sup>12+</sup>
 
-Enumerates the folding statuses available for a fordable device.
+Enumerates the fold states available for a fordable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -155,7 +155,7 @@ Enumerates the folding statuses available for a fordable device.
 
 ## CameraStatusInfo
 
-Defines the camera status information.
+Describes the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -166,14 +166,14 @@ Defines the camera status information.
 
 ## FoldStatusInfo<sup>12+</sup>
 
-Describes the folding status information about a foldable device.
+Describes the fold state information about a foldable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name  | Type                          |    Read-only  |     Optional    | Description      |
 | ------ | ----------------------------- | --------- |------------ | ---------- |
-| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current folding status.|
-| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Folding status.|
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current fold state.|
+| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Fold state.|
 
 ## Profile
 
@@ -184,7 +184,7 @@ Defines the camera profile.
 | Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
-| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The width and height of the camera resolution is set, not the actual width and height of an output image. |
+| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The size setting corresponds to the camera's resolution width and height, rather than the actual dimensions of the output image. |
 
 ## FrameRateRange
 
@@ -393,7 +393,7 @@ function getSupportedOutputCapability(camera: camera.CameraDevice, cameraManager
 
 isCameraMuted(): boolean
 
-Checks whether the camera device is muted.
+Checks whether this camera is muted.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -401,7 +401,7 @@ Checks whether the camera device is muted.
 
 | Type       | Description                                        |
 | ---------- | -------------------------------------------- |
-| boolean    | **true**: The camera device is muted.<br>**false**: The camera device is not muted.|
+| boolean    | Check result. The value **true** means that the camera device is muted, and **false** means the opposite.|
 
 **Example**
 
@@ -476,8 +476,8 @@ Creates a **CameraInput** instance with the specified camera position and type. 
 
 | Name    | Type                                       | Mandatory| Description                               |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| position | [CameraPosition](#cameraposition)           | Yes  | Camera position. You can call [getSupportedCameras](#getsupportedcameras) to obtain a **CameraDevice** instance, which contains the camera position information. |
-| type     | [CameraType](#cameratype)                   | Yes  | Camera type. You can call [getSupportedCameras](#getsupportedcameras) to obtain a **CameraDevice** instance, which contains the camera type information.|
+| position | [CameraPosition](#cameraposition)           | Yes  | Camera position. You need to obtain the supported camera object by calling [getSupportedCameras](#getsupportedcameras) and then obtain the device position information based on the returned camera object. |
+| type     | [CameraType](#cameratype)                   | Yes  | Camera type. You need to obtain the supported camera object by calling [getSupportedCameras](#getsupportedcameras) and then obtain the camera type based on the returned camera object.|
 
 **Return value**
 
@@ -1008,7 +1008,7 @@ function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
 
 on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
 
-Subscribes to folding status change events of the foldable device. This API uses an asynchronous callback to return the result.
+Subscribes to fold status change events of the foldable device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1020,8 +1020,8 @@ Subscribes to folding status change events of the foldable device. This API uses
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the folding status information about the foldable device.|
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the fold state of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the fold state information about the foldable device.|
 
 **Example**
 
@@ -1046,7 +1046,7 @@ function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
 
 off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
 
-Unsubscribes from folding status change events of the foldable device.
+Unsubscribes from fold state change events of the foldable device.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -1054,8 +1054,8 @@ Unsubscribes from folding status change events of the foldable device.
 
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
-| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the folding status information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the fold state of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the fold state information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1077,7 +1077,7 @@ Checks whether the camera device supports the flashlight.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device supports the flashlight.<br>**false**: The camera device does not support the flashlight.|
+| boolean    | Check result. The value **true** means that the camera device supports the flashlight, and **false** means the opposite.|
 
 **Example**
 
@@ -1106,7 +1106,7 @@ Checks whether a flashlight mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flashlight mode is supported.<br>**false**: The flashlight mode is not supported.|
+| boolean    | Check result. The value **true** means that the flashlight mode is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -1161,7 +1161,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 7400101 | Parameter missing or parameter type incorrect. |
 | 7400102 | Operation not allowed. |
 | 7400201 | Camera service fatal error. |
 
@@ -1241,6 +1240,97 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 }
 ```
 
+### getCameraDevice<sup>18+</sup>
+
+getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
+
+Obtains the specified camera based on the camera position and type.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| position | [CameraPosition](#cameraposition)   | Yes  | Camera position.|
+| type     | [CameraType](#cameratype)   | Yes  | Camera type.|
+
+**Return value**
+
+| Type            | Description                    |
+| -----------------| ------------------------ |
+|  [CameraDevice](#cameradevice)     | Camera obtained.     |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getCameraDevice(cameraManager: camera.CameraManager, position: camera.CameraPosition, type: camera.CameraType): void {
+  try {
+    let curCameraDev: camera.CameraDevice | undefined = undefined;
+    curCameraDev = cameraManager.getCameraDevice(position, type);
+  } catch (error) {
+    // If the operation fails, an error code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getCameraDevice call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getCameraConcurrentInfos<sup>18+</sup>
+
+getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurrentInfo\>
+
+Obtains the concurrency information of the specified cameras. If the return value is an empty array, concurrency is not supported.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description      |
+| -------- | --------------- | ---- | --------- |
+| cameras | Array\<[CameraDevice](#cameradevice)\>  | Yes  | Array of **CameraDevice** objects.|
+
+**Return value**
+
+| Type            | Description                    |
+| -----------------| ------------------------ |
+|  Array\<[CameraConcurrentInfo](#cameraconcurrentinfo18)\>    |  Array of concurrency information obtained, where each **CameraDevice** object has its own corresponding concurrency information.     |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+import { camera } from '@kit.CameraKit';
+
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+  try {
+    let cameraconcurrentinfos: Array<camera.CameraConcurrentInfo> = [];
+    cameraconcurrentinfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
+  } catch (error) {
+    // If the operation fails, an error code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## TorchMode<sup>11+</sup>
 
 Enumerates the flashlight modes.
@@ -1251,7 +1341,7 @@ Enumerates the flashlight modes.
 | ---------------------------- | ---- | ------------- |
 | OFF    | 0    | The flashlight is off.     |
 | ON  | 1    | The flashlight is on.|
-| AUTO      | 2    | The flashlight mode is auto.|
+| AUTO      | 2    | The system automatically adjusts the flashlight brightness according to the environment.|
 
 ## TorchStatusInfo<sup>11+</sup>
 
@@ -1261,9 +1351,9 @@ Defines the flashlight status information.
 
 | Name             | Type      | Read-only| Optional| Description       |
 | ---------------- | ---------- | ---- | ---- | ----------- |
-| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available.|
-| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated.   |
-| torchLevel       | number     | Yes  | No  | Flashlight level. The value range is [0, 1]. A larger value indicates a greater luminance.   |
+| isTorchAvailable | boolean    | Yes  | No  | Whether the flashlight is available. The value **true** means that the flashlight is available, and **false** means the opposite.|
+| isTorchActive    | boolean    | Yes  | No  | Whether the flashlight is activated. The value **true** means that the flashlight is activated, and **false** means the opposite.|
+| torchLevel       | number     | Yes  | No  | Flashlight brightness level. The value range is [0, 1]. A larger value indicates a greater luminance. |
 
 ## Size
 
@@ -1295,7 +1385,7 @@ Enumerates the camera output formats.
 
 | Name                    | Value       | Description        |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_888 image.       |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGBA_8888 image.       |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV_420_SP image.     |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG image.           |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010 image.     |
@@ -1312,6 +1402,30 @@ Enumerates the video codec types.
 |------|------|-------------|
 | AVC  | 0    | AVC. |
 | HEVC | 1 | HEVC.|
+
+## CameraConcurrentType<sup>18+</sup>
+
+Enumerates the camera concurrency types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name  | Value   | Description         |
+|------|------|-------------|
+| CAMERA_LIMITED_CAPABILITY  | 0 | Limited camera concurrency. |
+| CAMERA_FULL_CAPABILITY     | 1 | Full camera concurrency.|
+
+## CameraConcurrentInfo<sup>18+</sup>
+
+Describes the camera's concurrency information.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name  | Type   | Read-only| Optional | Description        |
+| ------ | ------ | ---- |-----| ------------ |
+| device              | [CameraDevice](#cameradevice)   | No  | No  | Concurrent camera device.|
+| type                | [CameraConcurrentType](#cameraconcurrenttype18)  | No  | No  | Concurrency type.|
+| modes               | Array\<[SceneMode](#scenemode11) \>              | No  | No  | Scene mode.|
+| outputCapabilities  | Array\<[CameraOutputCapability](#cameraoutputcapability) \> | No  | No  | Output capabilities of the camera.|
 
 ## CameraInput
 
@@ -1410,7 +1524,7 @@ Opens this camera device and obtains the handle to the camera in secure mode.
 
 | Name    | Type                 | Mandatory| Description                                                                     |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | Yes  | Whether the camera can be enabled in secure mode. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| isSecureEnabled | boolean | Yes  | Whether to open the camera device in secure mode. The value **true** means to open the camera device in secure mode, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Return value**
 
@@ -1435,6 +1549,51 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open(true).then(() => {
+    console.info('Promise returned with camera opened.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to open the camera, error code: ${error.code}.`);
+  });
+}
+```
+
+### open<sup>18+</sup>
+
+open(type: CameraConcurrentType): Promise\<void\>
+
+Opens the camera with the specified concurrency type.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                 | Mandatory| Description                                                                     |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------------|
+| type | [CameraConcurrentType](#cameraconcurrenttype18) | Yes  | Concurrency type. If the API fails to be called, an error code is returned.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ----------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                                     |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function openCameraInput(cameraInput: camera.CameraInput): void {
+  cameraInput.open(0).then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to open the camera, error code: ${error.code}.`);
@@ -2036,8 +2195,8 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | Yes  | Minimum frame rate.|
-| maxFps   | number        | Yes  | Maximum frame rate. When the minimum value is greater than the maximum value, the API does not take effect.|
+| minFps   | number        | Yes  | Minimum frame rate, in fps.|
+| maxFps   | number        | Yes  | Maximum frame rate, in fps. When the minimum value is greater than the maximum value, the API does not take effect.|
 
 **Error codes**
 
@@ -2169,6 +2328,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
+
 setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 Sets the preview rotation degree.
@@ -2623,7 +2783,7 @@ Checks whether taking moving photos is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: Taking moving photos is supported.<br>**false**: Taking moving photos is not supported.|
+| boolean | Check result. The value **true** means that taking moving photos is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2767,7 +2927,7 @@ Checks whether mirror photography is supported.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| boolean | **true**: Mirror photography is supported.<br>**false**: Mirror photography is not supported.|
+| boolean | Check result. The value **true** means that mirror photography is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -2782,7 +2942,9 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 
 enableMirror(enabled: boolean): void
 
-Enables mirror photography.
+Enables dynamic photo capture.
+
+Before calling this API, check whether dynamic photo capture is supported by calling [isMovingPhotoSupported](#ismovingphotosupported12) and whether mirroring is supported by calling [isMirrorSupported](#ismirrorsupported).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2790,7 +2952,7 @@ Enables mirror photography.
 
 | Name     | Type                   | Mandatory| Description                       |
 |----------| ---------------------- | ---- |---------------------------|
-| enabled | boolean                | Yes  | Whether to enable mirror photography. The value **true** means to enable it, and **false** means to diable it.|
+| enabled | boolean                | Yes  | Whether to enable or disable dynamic photo capture. The value **true** means to enable dynamic photo capture, and **false** means to disable it.|
 
 **Error codes**
 
@@ -2959,7 +3121,7 @@ Subscribes to frame shutter events. This API uses an asynchronous callback to re
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photographing request can be delivered as long as this event is returned.            |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photo capture request can be delivered as long as this event is returned.            |
 
 **Example**
 
@@ -3019,7 +3181,7 @@ Subscribes to capture end events. This API uses an asynchronous callback to retu
 
 | Name    | Type          | Mandatory| Description                                      |
 | -------- | --------------- | ---- | ---------------------------------------- |
-| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
+| type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
 | callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
@@ -3200,7 +3362,7 @@ Subscribes to estimated capture duration events. This API uses an asynchronous c
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photo capture is complete.|
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **–1** is reported, there is no estimated duration.                                |
 
 **Example**
@@ -3438,8 +3600,8 @@ Describes the information about the automatic camera switch status.
 
 | Name      | Type     | Read-only| Optional| Description                     |
 | ---------- |---------| ---- | ---- |-------------------------|
-| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched.            |
-| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched.|
+| isDeviceSwitched  | boolean | No  | No  | Whether the camera is automatically switched. The value **true** means that the camera is automatically switched, and **false** means the opposite.      |
+| isDeviceCapabilityChanged | boolean  | No  | No  | Whether the camera capability is changed after the camera is automatically switched. The value **true** means that the camera capability is changed, and **false** means the opposite.|
 
 ## VideoOutput
 
@@ -3877,6 +4039,72 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
+### isMirrorSupported<sup>15+</sup>
+
+isMirrorSupported(): boolean
+
+Checks whether mirror recording is supported.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                             |
+| -------------- |---------------------------------|
+| boolean | Check result. The value **true** means that mirror recording is supported, and **false** means the opposite.|
+
+**Example**
+
+```ts
+function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
+  let isSupported: boolean = videoOutput.isMirrorSupported();
+  return isSupported;
+}
+```
+### enableMirror<sup>15+</sup>
+
+enableMirror(enabled: boolean): void
+
+Enables or disables mirror recording.
+
+- Before calling this API, check whether mirror recording is supported by using [isMirrorSupported](#ismirrorsupported15).
+
+- After enabling or disabling mirror recording, call [getVideoRotation](#getvideorotation12) and [updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12) to update the rotation angle.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                   | Mandatory| Description                       |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | Yes  | Whether to enable mirror recording. The value **true** means to enable it, and **false** means to diable it.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID   | Error Message                                          |
+| -------- |------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+
+
+**Example**
+
+```ts
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean, aVRecorder: media.AVRecorder, deviceDegree : number): void {
+    try {
+        videoOutput.enableMirror(mirrorMode);
+        aVRecorder.updateRotation(videoOutput.getVideoRotation(deviceDegree));
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+}
+```
 
 ### getVideoRotation<sup>12+</sup>
 
@@ -3894,7 +4122,7 @@ Obtains the video rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | Yes  | Rotation angle.|
+| deviceDegree | number | Yes  | Rotation angle, in degrees.|
 
 **Return value**
 
@@ -3914,17 +4142,45 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-  try {
-    videoRotation = videoOutput.getVideoRotation(deviceDegree);
-    console.log(`Video rotation is: ${videoRotation}`);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
-  }
-  return videoRotation;
+import { camera } from '@kit.CameraKit';
+import { Decimal } from '@kit.ArkTS';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+    try {
+        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+    return videoRotation;
+}
+
+// Obtain deviceDegree.
+function getDeviceDegree(): number {
+    let deviceDegree: number = -1;
+    try {
+        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+            let x = data.x;
+            let y = data.y;
+            let z = data.z;
+            if ((x * x + y * y) * 3 < z * z) {
+                deviceDegree = -1;
+            } else {
+                let sd: Decimal = Decimal.atan2(y, -x);
+                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+                deviceDegree = 90 - Number(sc);
+                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+            }
+        });
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+    }
+    return deviceDegree;
 }
 ```
 
@@ -4279,7 +4535,7 @@ Enumerates the video stabilization modes.
 | LOW       | 1    | The basic video stabilization algorithm is used.  |
 | MIDDLE    | 2    | A video stabilization algorithm with a stabilization effect better than that of the **LOW** type is used.  |
 | HIGH      | 3    | A video stabilization algorithm with a stabilization effect better than that of the **MIDDLE** type is used.  |
-| AUTO      | 4    | Automatic video stabilization is used.  |
+| AUTO      | 4    | The system automatically selects a video stabilization algorithm.  |
 
 ## Session<sup>11+</sup>
 
@@ -4330,7 +4586,7 @@ Commits the configuration for this session. This API uses an asynchronous callba
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. For example, if the aspect ratio of the preview stream is different from that of the video output stream, error code 7400201 is returned.|
 
 **Error codes**
 
@@ -4413,7 +4669,7 @@ Determines whether a **CameraInput** instance can be added to this session. This
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | **true**: The **CameraInput** instance can be added.<br>**false**: The **CameraInput** instance cannot be added.|
+| boolean | Check result. The value **true** means that the **CameraInput** instance can be added, and **false** means the opposite.|
 
 **Example**
 
@@ -4448,7 +4704,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **Example**
@@ -4489,7 +4744,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **Example**
@@ -4526,7 +4780,7 @@ Determines whether a **CameraOutput** instance can be added to this session. Thi
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| boolean | **true**: The **CameraOutput** instance can be added.<br>**false**: The **CameraOutput** instance cannot be added.|
+| boolean | Check result. The value **true** means that the **CameraOutput** instance can be added, and **false** means the opposite.|
 
 **Example**
 
@@ -4561,7 +4815,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **Example**
@@ -4602,7 +4855,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                                   |
 
 **Example**
@@ -4952,7 +5204,7 @@ Checks whether the camera device has flash. This API uses an asynchronous callba
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device has flash.<br>**false**: The camera device does not have flash. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -4998,7 +5250,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flash mode is supported.<br>**false**: The flash mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5092,6 +5344,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID        | Error Message       |
 | --------------- | --------------- |
+| 7400102                | Operation not allowed.                                 |
 | 7400103                |  Session not config.                                   |
 
 **Example**
@@ -5190,6 +5443,46 @@ function setMeteringPoint(photoSession: camera.PhotoSession): void {
     let err = error as BusinessError;
     console.error(`The setMeteringPoint call failed. error code: ${err.code}`);
   }
+}
+```
+
+### getExposureBiasRange<sup>11+</sup>
+
+getExposureBiasRange(): Array\<number\>
+
+Obtains the exposure compensation values of the camera device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| Array\<number\>   | Array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
+  let biasRangeArray: Array<number> = [];
+  try {
+    biasRangeArray = photoSession.getExposureBiasRange();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The getExposureBiasRange call failed. error code: ${err.code}`);
+  }
+  return biasRangeArray;
 }
 ```
 
@@ -5300,7 +5593,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure mode is supported.<br>**false**: The exposure mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5499,7 +5792,7 @@ function setFocusPoint(photoSession: camera.PhotoSession): void {
 
 getFocusPoint(): Point
 
-Obtains the focal point of the camera device.
+Obtains the focal point in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5539,7 +5832,7 @@ function getFocusPoint(photoSession: camera.PhotoSession): camera.Point | undefi
 
 getFocalLength(): number
 
-Obtains the focal length of the camera device.
+Obtains the focal length in use.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -5598,7 +5891,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus mode is supported.<br>**false**: The focus mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -5751,27 +6044,13 @@ Sets smooth zoom.
 | targetRatio  | number         | Yes  | Target zoom ratio.     |
 | mode         | [SmoothZoomMode](#smoothzoommode11) | No  | Smooth zoom mode.     |
 
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
-
 **Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function setSmoothZoom(sessionExtendsZoom: camera.Zoom, targetZoomRatio: number, mode: camera.SmoothZoomMode): void {
-  try {
-    sessionExtendsZoom.setSmoothZoom(targetZoomRatio, mode);
-  } catch (error) {
-    // If the operation fails, error.code is returned and processed.
-    let err = error as BusinessError;
-    console.error(`The setSmoothZoom call failed. error code: ${err.code}`);
-  }
+  sessionExtendsZoom.setSmoothZoom(targetZoomRatio, mode);
 }
 ```
 
@@ -5930,7 +6209,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The video stabilization mode is supported.<br>**false**: The video stabilization mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6523,7 +6802,7 @@ Checks whether the camera device has flash.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The camera device has flash.<br>**false**: The camera device does not have flash. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the camera device has flash, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6573,7 +6852,7 @@ Checks whether a flash mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The flash mode is supported.<br>**false**: The flash mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the flash mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6714,7 +6993,7 @@ Checks whether an exposure mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The exposure mode is supported.<br>**false**: The exposure mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the exposure mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -6794,7 +7073,7 @@ Sets an exposure mode. Before the setting, call [isExposureModeSupported](#isexp
 
 > **NOTE**
 >
->This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureMode](#setexposuremode11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [AutoExposure.setExposureMode](#setexposuremode11) instead.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7077,7 +7356,7 @@ Checks whether a focus mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The focus mode is supported.<br>**false**: The focus mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the focus mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7484,7 +7763,7 @@ Checks whether a video stabilization mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | **true**: The video stabilization mode is supported.<br>**false**: The video stabilization mode is not supported. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| boolean    | Check result. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -7605,6 +7884,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
+>
 > This API is supported since API version 10 and deprecated since API version 11. You are advised to use [VideoSession.on('focusStateChange')](#onfocusstatechange11-1) instead.
 >
 > Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
@@ -7740,14 +8020,6 @@ Obtains the supported color spaces.
 | ----------------------------------------------- | ---------------------------- |
 | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| Array of color spaces supported.    |
 
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400103         |  Session not config, only throw in session usage.                       |
-
 **Example**
 
 ```ts
@@ -7756,12 +8028,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
-  try {
-    colorSpaces = session.getSupportedColorSpaces();
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
-  }
+  colorSpaces = session.getSupportedColorSpaces();
   return colorSpaces;
 }
 ```
@@ -7781,7 +8048,7 @@ P3 and HDR Imaging
 
 An application can deliver different color space parameters to declare its support for P3 and HDR.
 
-If an application does not proactively set the color space, HDR is used by default in photographing and video recording scenarios. 
+If an application does not proactively set the color space, SDR is used by default in photo capture scenarios.
 
 In photo mode, P3 can be directly supported by setting the HDR effect.
 
@@ -7789,17 +8056,17 @@ For details about how to enable the HDR effect and set the color space in differ
 
 **Recording Mode**
 
-| SDR/HRD Photographing        | CameraFormat             | ColorSpace       |
+| SDR/HRD Photo Capture        | CameraFormat             | ColorSpace       |
 |--------------------|--------------------------|------------------|
 | SDR                | CAMERA_FORMAT_YUV_420_SP | BT709_LIMIT      |
-| HDR_VIVID(Default) | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
+| HDR_VIVID          | CAMERA_FORMAT_YCRCB_P010 | BT2020_HLG_LIMIT |
 
 **Photo Mode**
 
-| SDR/HRD Photographing   | ColorSpace |
-|--------------|------------|
-| SDR          | SRGB       |
-| HDR(Default) | DISPLAY_P3 |
+| SDR/HRD Photo Capture       | ColorSpace |
+|--------------------|------------|
+| SDR (Default)       | SRGB       |
+| HDR                | DISPLAY_P3 |
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7895,15 +8162,7 @@ Checks whether the device supports automatic camera switch.
 
 | Type                                            | Description         |
 | ----------------------------------------------- |-------------|
-| boolean               | Whether the device supports automatic camera switch.|
-
-**Error codes**
-
-For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
-
-| ID        | Error Message                                             |
-| --------------- |---------------------------------------------------|
-| 7400103         | Session not config, only throw in session usage.  |
+| boolean               | Check result. The value **true** means that the device supports automatic camera switch, and **false** means the opposite.|
 
 **Example**
 
@@ -7912,12 +8171,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
   let isSupported = false;
-  try {
-    isSupported = session.isAutoDeviceSwitchSupported();
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The isAutoDeviceSwitchSupported call failed, error code: ${err.code}`);
-  }
+  isSupported = session.isAutoDeviceSwitchSupported();
   return isSupported;
 }
 ```
@@ -7938,7 +8192,7 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 
 > **NOTE**
 >
-> This API is used only for foldable devices with multiple front cameras. In different folding states, the system can automatically switch to an available front camera. It does not enable automatic switching between front and rear cameras.
+> This API is used only for foldable devices with multiple front cameras. In different fold states, the system can automatically switch to an available front camera. It does not enable automatic switching between front and rear cameras.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -7946,7 +8200,7 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 
 | Name        | Type | Mandatory| Description |
 | ----------- |---------------------- |---| -------------------------- |
-| enabled | boolean  | Yes| Whether to enable automatic camera switch.  |
+| enabled | boolean  | Yes| Whether to enable automatic camera switch. The value **true** means to enable automatic camera switch, and **false** means the opposite.  |
 
 **Error codes**
 
@@ -8007,7 +8261,7 @@ Implements a photo session, which provides operations on the flash, exposure, fo
 
 > **NOTE**
 >
-> This class is provided for the default photo mode. It is used to take standard photos. It supports multiple photo formats and resolutions, which are suitable for most daily photographing scenarios.
+> This class is provided for the default photo mode. It is used to take standard photos. It supports multiple photo formats and resolutions, which are suitable for most daily photo capture scenarios.
 
 ### canPreconfig<sup>12+</sup>
 
@@ -8691,7 +8945,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | ID| Error Message                                                                                                                                       |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 7400103  | Session not config.                                                                                                                             |
+| 7400103  | Session not config. The session has not been committed or configured.                                                                           |
 
 **Example**
 
@@ -8743,7 +8997,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
-| 7400103                |  Session not config.                                   |
 
 **Example**
 

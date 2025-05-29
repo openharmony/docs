@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## 使用说明
 
-在使用ApplicationContext的功能前，需要通过context的实例获取。
+在使用ApplicationContext的功能前，需要通过Context的实例获取。
 
 ## ApplicationContext.on('abilityLifecycle')
 
@@ -427,7 +427,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
 }
 ```
@@ -466,8 +466,17 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 假定已使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)方法注册名为applicationStateChangeCallback回调，下面示例展示如何取消对应的事件监听。
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
   onDestroy() {
@@ -939,7 +948,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
+| 16000071 | App clone is not supported. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -976,7 +985,7 @@ setFont(font: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | 是   | 设置字体类型，字体可以通过[font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont)方法进行注册使用。  |
+| font | string | 是   | 设置字体类型，字体可以通过[UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont)方法进行注册使用。  |
 
 **错误码**：
 
@@ -993,19 +1002,21 @@ setFont(font: string): void
 
 ```ts
 import { font } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
-    font.registerFont({
+    this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
       familySrc: $rawfile('font/medium.ttf')
     })
 
-    getContext().getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont("fontName");
   }
 
   build() {

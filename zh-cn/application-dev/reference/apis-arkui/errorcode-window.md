@@ -12,10 +12,11 @@ Repeated operation.
 当进行某些重复操作时，系统会报此错误码。
 
 **可能原因**<br>
-创建的窗口已经存在时，再次创建该窗口会报错。
+1.窗口已经被创建。<br>
+2.窗口已经处于当前状态。
 
 **处理步骤**<br>
-在创建窗口前，检查该窗口是否已经存在，确保为首次创建该窗口。
+在创建窗口前，检查该窗口是否已经被创建或者是否已经处于当前状态。
 
 ## 1300002 窗口状态异常
 **错误信息**<br>
@@ -64,7 +65,7 @@ This window stage is abnormal.
 当WindowStage异常，如已被销毁时，操作该WindowStage，会报此错误码。
 
 **可能原因**<br>
-操作WindowStage时，该WindowStage已被销毁。
+该WindowStage没有被创建或者已经被销毁。
 
 **处理步骤**<br>
 在对WindowStage进行操作前，检查该WindowStage是否存在，若已被销毁，请释放该WindowStage下的窗口。
@@ -98,16 +99,19 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300008 显示设备异常
 
-**错误信息**<br>The display device is abnormal.
+**错误信息**<br>
+The display device is abnormal.
 
-**错误描述**<br>显示设备异常。
+**错误描述**<br>
+显示设备异常。
 
 **可能原因**<br>
 1. 显示设备没有准备好。<br>
 2. 显示设备被移除。<br>
 3. 显示设备被损坏。
 
-**处理步骤**<br>确保显示设备正常，再进行相关开发。
+**处理步骤**<br>
+确保显示设备正常，再进行相关开发。
 
 ## 1300009 父窗口无效
 
@@ -139,9 +143,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300011 销毁画中画窗口失败
 
-**错误信息**<br>Failed to destroy the PiP window.
+**错误信息**<br>
+Failed to destroy the PiP window.
 
-**错误描述**<br>销毁画中画窗口失败。
+**错误描述**<br>
+销毁画中画窗口失败。
 
 **可能原因**<br>
 画中画窗口空指针。<br>
@@ -151,9 +157,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300012 画中画窗口状态异常
 
-**错误信息**<br>The PiP window state is abnormal.
+**错误信息**<br>
+The PiP window state is abnormal.
 
-**错误描述**<br>画中画窗口状态异常。
+**错误描述**<br>
+画中画窗口状态异常。
 
 **可能原因**<br>
 画中画窗口状态异常。
@@ -163,9 +171,11 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300013 创建画中画窗口失败
 
-**错误信息**<br>Failed to create the PiP window.
+**错误信息**<br>
+Failed to create the PiP window.
 
-**错误描述**<br>创建画中画窗口失败。
+**错误描述**<br>
+创建画中画窗口失败。
 
 **可能原因**<br>
 1. 启动画中画时传入参数有误。<br>
@@ -177,27 +187,96 @@ WindowExtension拉起应用的参数异常。
 
 ## 1300014 画中画内部错误
 
-**错误信息**<br>PiP internal error.
+**错误信息**<br>
+PiP internal error.
 
-**错误描述**<br>画中画内部错误。
+**错误描述**<br>
+画中画内部错误。
 
 **可能原因**<br>
-内部错误。
+1.画中画依赖的窗口异常，可能窗口为空。
+2.画中画控制器异常。
 
 **处理步骤**<br>
 无需处理。
 
 ## 1300015 重复操作画中画
 
-**错误信息**<br>Repeated PiP operation.
+**错误信息**<br>
+Repeated PiP operation.
 
-**错误描述**<br>重复操作画中画。
+**错误描述**<br>
+重复操作画中画。
 
 **可能原因**<br>
-重复启动/停止画中画。<br>
+这个画中画已经被拉起或者已经被关闭。
 
 **处理步骤**<br>
 不要重复启动/停止画中画。<br>
+
+## 1300016 参数校验错误
+
+**错误信息**
+
+Parameter validation error.
+
+**错误描述**
+
+参数错误，如值超出允许的范围、字符串/数组的长度不符合要求、参数格式不正确等。
+
+**可能原因**
+
+1.参数的值超出允许的范围。
+
+2.参数的长度超出允许的长度。
+
+3.参数的格式不正确。
+
+**处理步骤**
+
+检查参数是否符合规范。
+
+## 1300017 filter控制器调用错误
+
+**错误信息**
+
+Incorrect filter calling.
+
+**错误描述**
+
+filter控制器无效调用，比如调用时序不对。
+
+**可能原因**
+
+setBackgroundFilter在animateBackgroungFilter之后使用。
+
+**处理步骤**
+
+检查使用时的步骤时序，保证在animateBackgroungFilter之前使用setBackgroundFilter。
+
+## 1300018 API调用超时
+
+**错误信息**
+
+API call timed out.
+
+**错误描述**
+
+接口调用超时。
+
+**可能原因**
+
+同步接口调用等待时间超出了限制范围。
+
+**处理步骤**
+
+需根据具体业务场景而定，常见的几种处理方式：
+
+1.API接口在有限次数内进行重新调用。
+
+2.降级处理，使用缓存或执行其他业务逻辑。
+
+3.中断本次逻辑处理。
 
 ## 1001 窗口空指针异常<sup>(deprecated)</sup>
 **错误信息**<br>

@@ -22,7 +22,7 @@ Sets the alignment mode of the component content in the drawing area.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#textalign).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#textalign).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>This parameter does not support the mirroring functionality.<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
 
 ## direction
 
@@ -198,7 +198,7 @@ Defines the offset of the component under the anchor constraints.
 
 chainMode(direction: Axis, style: ChainStyle)
 
-Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md). The chain head is the first component in the chain that satisfies the [chain formation rules](ts-container-relativecontainer.md#rules) (starting from the left in the horizontal direction, or from the right in a mirrored language layout; starting from the top in the vertical direction).
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md). The chain head is the first component in the chain that satisfies the chain formation rules. In a horizontal layout, it starts from the left (or from the right in a mirrored language layout). In a vertical layout, it starts from the top.
 For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -385,7 +385,7 @@ struct PositionExample2 {
 
 ### Example 3: Setting the Absolute Positioning and Relative Offset
 
-This example demonstrates how to use **position** to set absolute positioning, which determines the position of child components relative to the parent component. It also shows how to use **offset** to set relative offsets, which moves components from their original layout positions.
+This example demonstrates how to use **position** to set absolute positioning, which determines the position of child components relative to the parent component. It also shows how to use **offset** to set relative offsets for moving components from their original layout positions.
 
 ```ts
 // xxx.ets

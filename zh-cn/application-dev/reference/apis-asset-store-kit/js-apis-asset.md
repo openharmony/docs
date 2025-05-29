@@ -18,7 +18,7 @@ add(attributes: AssetMap): Promise\<void>
 
 新增一条关键资产，使用Promise方式异步返回结果。
 
-如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+设置[IS_PERSISTENT](#tag)属性时，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -426,7 +426,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 
 | 类型                | 说明                                                  |
 | ------------------- | ----------------------------------------------------- |
-| Promise\<Uint8Array> | Promise对象，返回挑战值。<br>**说明：** 挑战值用于后续用户认证。 |
+| Promise\<Uint8Array> | Promise对象，返回挑战值。<br>**说明：** 挑战值用于后续的用户认证。 |
 
 **错误码：**
 
@@ -699,7 +699,7 @@ postQuery(handle: AssetMap): Promise\<void>
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuery](#assetprequery)执行成功返回的挑战值。 |
+| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，包含[asset.preQuery](#assetprequery)执行成功返回的挑战值。 |
 
 **返回值：**
 
@@ -756,7 +756,7 @@ postQuerySync(handle: AssetMap): void
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
+| handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
 
 **错误码：**
 
@@ -787,6 +787,55 @@ try {
   let err = error as BusinessError;
   console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
+```
+
+## asset.querySyncResult<sup>20+</sup>
+
+querySyncResult(query: AssetMap): Promise\<SyncResult>
+
+执行同步操作后，查询同步执行结果。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Security.Asset
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| query | [AssetMap](#assetmap) | 是   | 同步结果查询条件，如关键资产所属群组、业务自定义属性信息是否加密。|
+
+**返回值：**
+
+| 类型          | 说明                    |
+| ------------- | ----------------------- |
+| Promise\<[SyncResult](#syncresult20)> | Promise对象，返回同步执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关键资产存储服务错误码](errorcode-asset.md)。
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000006 | Insufficient memory.                                       |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.   |
+| 24000018 | Parameter verification failed.   |
+
+**示例：**
+
+```typescript
+import { asset } from '@kit.AssetStoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let query: asset.AssetMap = new Map();
+asset.querySyncResult(query).then((res: asset.SyncResult) => {
+  console.info(`sync result: ${JSON.stringify(res)}`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to query sync result of Asset. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 ## TagType
@@ -824,7 +873,7 @@ try {
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                         |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                           |
 | SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产。 |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否保留关键资产。 |
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。             |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
@@ -850,7 +899,7 @@ try {
 
 ## Value
 
-type Value = boolean | number | Uint8Array;
+type Value = boolean | number | Uint8Array
 
 关键资产属性的内容，用作[AssetMap](#assetmap)的值。
 
@@ -911,7 +960,7 @@ type AssetMap = Map\<Tag, Value>
 
 > **说明：**
 >
-> 本字段属于能力预埋，当前不支持同步。
+> 本字段是能力预埋，当前不支持同步。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -972,6 +1021,18 @@ type AssetMap = Map\<Tag, Value>
 | NEVER   | 0    | 不允许加密导入导出关键资产。|
 | TRUSTED_ACCOUNT | 1    | 只在登录可信账号的设备进行加密导入导出关键资产。 |
 
+## SyncResult<sup>20+</sup>
+
+关键资产同步的结果。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 参数名        | 类型   | 只读 | 可选 |说明               |
+| ----------- | ---- | ---- | ---- | ------------------ |
+| resultCode   | number    | 是 | 否 | 关键资产同步的结果码。同步成功时结果码为0，同步失败时结果码参考[ErrorCode](#errorcode)。 |
+| totalCount | number    | 是 | 是 |  触发同步的关键资产总数。 |
+| failedCount | number    | 是 | 是 |  关键资产同步失败的数量。 |
+
 ## ErrorCode
 
 表示错误码的枚举。
@@ -1000,3 +1061,4 @@ type AssetMap = Map\<Tag, Value>
 | GET_SYSTEM_TIME_ERROR | 24000015   |获取系统时间失败。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | LIMIT_EXCEEDED | 24000016   |缓存数量超限。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | UNSUPPORTED | 24000017   |该子功能不支持。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| PARAM_VERIFICATION_FAILED<sup>20+</sup> | 24000018   |参数校验失败。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|

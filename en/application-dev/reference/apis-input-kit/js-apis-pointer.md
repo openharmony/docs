@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.pointer (Mouse Pointer)
 
-The **pointer** module provides APIs related to pointer attribute management.
+The **pointer** module provides APIs related to pointer attribute management, such as querying and setting pointer attributes.
 
 > **NOTE**
 >
@@ -34,6 +34,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -41,13 +42,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
-      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -67,9 +68,9 @@ Sets the visible status of the mouse pointer. This API uses a promise to return 
 
 **Return value**
 
-| Name                 | Description                 |
+| Type                 | Description                 |
 | ------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -78,6 +79,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -87,7 +89,7 @@ try {
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -120,7 +122,7 @@ try {
   pointer.setPointerVisibleSync(false);
   console.log(`Set pointer visible success`);
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -128,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks the visible status of the mouse pointer. This API uses an asynchronous callback to return the result. 
+Checks the visible status of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -136,7 +138,7 @@ Checks the visible status of the mouse pointer. This API uses an asynchronous ca
 
 | Name      | Type                          | Mandatory  | Description            |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the mouse pointer is displayed, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -152,13 +154,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 try {
   pointer.isPointerVisible((error: Error, visible: boolean) => {
     if (error) {
-      console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -166,15 +168,15 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-Checks the visible status of the mouse pointer. This API uses a promise to return the result. 
+Checks the visible status of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
 **Return value**
 
-| Name                    | Description                 |
+| Type                    | Description                 |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+| Promise&lt;boolean&gt; | Promise used to return the visible status of the mouse pointer. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -184,7 +186,7 @@ try {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -198,7 +200,7 @@ Obtains the visible status of the mouse pointer. This API returns the result syn
 
 **Return value**
 
-| Name                    | Description                 |
+| Type                    | Description                 |
 | ---------------------- | ------------------- |
 | boolean | Visible status of the mouse pointer. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
@@ -209,7 +211,7 @@ try {
   let visible: boolean = pointer.isPointerVisibleSync();
   console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -226,7 +228,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | Yes   | Window ID.   |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the mouse pointer style.|
 
 **Error codes**
 
@@ -242,8 +244,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let context = getContext(this);
-window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -258,7 +259,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -279,9 +280,9 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                                      | Description                 |
+| Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the result.|
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the mouse pointer style.|
 
 **Error codes**
 
@@ -297,8 +298,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let context = getContext(this);
-window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -313,7 +313,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -322,7 +322,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 
 getPointerStyleSync(windowId: number): PointerStyle
 
-Obtains the mouse pointer style. This API returns the result synchronously.
+Obtains the mouse pointer style, such as the east arrow, west arrow, south arrow, and north arrow. This API returns the result synchronously.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -334,7 +334,7 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 
 **Return value**
 
-| Name                                      | Description                 |
+| Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | [PointerStyle](#pointerstyle) | Mouse pointer style.|
 
@@ -356,7 +356,7 @@ try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
-  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -390,7 +390,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -405,7 +405,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -426,9 +426,9 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                 | Description                 |
+| Type                 | Description                 |
 | ------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -444,7 +444,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -459,7 +459,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -492,7 +492,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -506,7 +506,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
     pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
     console.log(`Set pointer style success`);
   } catch (error) {
-    console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -519,8 +519,8 @@ Type of the primary mouse button.
 
 | Name                              | Value   | Description    |
 | -------------------------------- | ---- | ------ |
-| LEFT                          | 0    | Left mouse button.    |
-| RIGHT                             | 1    | Right mouse button.  |
+| LEFT                          | 0    | Left button.    |
+| RIGHT                             | 1    | Right button.  |
 
 ## RightClickType<sup>10+</sup>
 
@@ -533,6 +533,8 @@ Enumerates shortcut menu triggering modes.
 | TOUCHPAD_RIGHT_BUTTON            | 1    |Tapping the right-button area of the touchpad.|
 | TOUCHPAD_LEFT_BUTTON            | 2    |Tapping the left-button area of the touchpad.|
 | TOUCHPAD_TWO_FINGER_TAP         | 3    |Tapping or pressing the touchpad with two fingers.|
+| TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>       | 4    |Tapping or pressing the touchpad with two fingers, or tapping the right-button area of the touchpad.|
+| TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>         | 5    |Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.|
 
 ## PointerStyle
 
@@ -586,13 +588,13 @@ Enumerates mouse pointer styles.
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| MIDDLE_BTN_EAST_WEST<sup>16+</sup>           | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
 setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): Promise&lt;void&gt;
 
-Sets a custom cursor. This API uses a promise to return the result.
+Sets the custom cursor style. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -607,7 +609,7 @@ Sets a custom cursor. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
@@ -625,19 +627,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+
+// app_icon is an example resource. Configure the resource file based on the actual requirements.
+this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursor(windowId, pixelMap).then(() => {
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -650,9 +654,9 @@ Pixel map resource.
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 | Name    | Type    | Readable    | Writable    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The maximum resolution is 256 x 256 pixels.|
-| focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
-| focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The default value is **0**.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
+| focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum width of the image. The default value is **0** if the parameter is left empty.|
+| focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum height of the image. The default value is **0** if the parameter is left empty.|
 
 ## CursorConfig<sup>15+</sup>
 
@@ -662,7 +666,7 @@ Defines the custom cursor configuration.
 
 | Name    | Type    | Readable    | Writable    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **false** indicates that the size of the custom cursor is used, and the value **true** indicates that the cursor size is adjusted based on the system settings.|
+| followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **true** means to adjust the cursor size based on system settings, and the value **false** means to use the custom cursor size. The adjustment range is [size of the cursor image, 256 x 256].|
 
 ## pointer.setCustomCursor<sup>15+</sup>
 
@@ -679,21 +683,22 @@ The cursor may be switched back to the system style in the following cases: appl
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | Yes   | Window ID.                         |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | Yes   | Pixel map resource.|
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | Yes   | Defines the custom cursor configuration.|
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | Yes   | Custom cursor configuration, which specifies whether to adjust the cursor size based on system settings. If **followSystem** in **CursorConfig** is set to **true**, the supported adjustment range is [size of the cursor image, 256 x 256].|
 
 **Return value**
 
-| Name                 | Description              |
+| Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | This API uses a promise to return the result. The value **0** indicates that the operation is successful, and any other value indicates that the operation fails.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](./errorcode-inputdevice.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
 
 **Example**
 
@@ -701,19 +706,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+
+// app_icon is an example resource. Configure the resource file based on the actual requirements.
+this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -732,7 +739,7 @@ Sets a custom cursor. This API returns the result synchronously.
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| windowId  | number  | Yes   | Window ID.                         |
+| windowId  | number  | Yes   | Window ID. The value must be an integer greater than 0.                         |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
 | focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 | focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
@@ -751,18 +758,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+
+// app_icon is an example resource. Configure the resource file based on the actual requirements.
+const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
           console.log(`setCustomCursorSync success`);
         } catch (error) {
-          console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
     });
   });

@@ -54,7 +54,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   private async omaTest () {
-    // get the service
+    // 获取 service
     await omapi.createService().then((data) => {
       if (data == undefined || !data.isConnected()) {
         hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
@@ -67,7 +67,7 @@ export default class EntryAbility extends UIAbility {
       return;
     });
 
-    // get readers
+    // 获取 readers
     try {
       seReaders = seService.getReaders();
     } catch (error) {
@@ -92,7 +92,7 @@ export default class EntryAbility extends UIAbility {
     }
     hilog.info(0x0000, 'testTag', 'reader is %{public}s', reader?.getName());
 
-    // get session
+    // 获取 session
     try {
       seSession = reader?.openSession() as omapi.Session;
     } catch (error) {
@@ -104,9 +104,10 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // get channel
+    // 获取 channel
     try {
-      // change the aid value for open logical channel.
+      // change the aid value for open logical channel
+      // 修改为打开逻辑通道的应用的aid值
       seChannel = await seSession.openLogicalChannel(aidArray, p2);
     } catch (exception) {
       hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
@@ -117,8 +118,8 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // transmit data
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // 发送数据
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // 请更改为正确的data
     try {
       let response: number[] = await seChannel.transmit(cmdData)
       hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));
@@ -126,7 +127,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(0x0000, 'testTag', 'seChannel.transmit() exception = %{public}s.', JSON.stringify(exception));
     }
 
-    // close channel. must make sure the channel is closed at last.
+    // 关闭通道，必须确保通道最终关闭
     try {
       seChannel.close();
     } catch (exception) {

@@ -7,24 +7,54 @@ Audio Kit provides scenario-specific audio playback and recording APIs to help y
 - Low-latency playback
   
    Unified low-latency and non-low-latency audio playback APIs are provided to achieve the lowest audio output latency on various hardware devices. For example, low-latency APIs can be used to implement fast and smooth audio playback in scenarios such as gaming, prompt/alarm tones, and Karaoke.
-
+<!--Del-->
 - Low-power playback
 
    In long-duration audio playback scenarios such as music playing and audiobook listening, a differentiated audio buffer processing mechanism is used for the screen-off scene. This helps audio playback consume less power by reducing the CPU wake-up frequency.
-
+<!--DelEnd-->
 - Audio effect mode
 
    Applications can enable or disable the system audio effects as required to deliver the optimal audio effect output.
 
    The system provides scenario-specific audio effects, for example, audio effects for music playing, audiobook listening, and movie watching. If your application requires custom audio effects, you can disable the system audio effects.
-
+<!--Del-->
 - Spatial audio
 
    Spatial audio APIs are provided. Applications can play audio sources in different formats (stereo, multi-channel, and AudioVivid), and users can get a sense of space and direction while wearing TWS earbuds for listening.
-
+<!--DelEnd-->
 - Audio-haptic
 
    Provides AudioHaptic APIs to implement low-delay synchronous control of audio and haptic streams. When the audio-haptic effect is enabled, users can get rhythmic auditory and haptic feedback while typing or having incoming calls.
+
+## Audio Architecture
+
+You can use the APIs provided by Audio Kit to access the playback, recording, and audio policy management capabilities of the audio system, thereby interacting with the corresponding audio hardware. The audio architecture defines how the system encapsulates and manages audio hardware capabilities, as illustrated in the figure below:
+
+![Audio Architecture](figures/audio-architecture.png)
+
+**Application**
+
+You can use the public APIs provided by Audio Kit and the software and hardware capabilities provided by the audio system to implement playback and recording required by applications.
+
+**NAPI**
+
+NAPI, an interface introduced by Node.js for developing C++ modules, encapsulates the underlying operating system capabilities and provides ArkTS interfaces. NAPI enables mutual access between ArkTS and C/C++ code.
+
+**Native framework**
+
+At the native framework layer, the audio system implements interfaces for playing, recording, volume control, device routing, and audio effect processing, and connects to the audio service through inter-process interfaces.
+
+**Native SystemAility**
+
+The audio_server process hosts the software-implemented audio system functional components, providing rich audio policy management and data processing capabilities. The components connect to the HAL layer through HDIs to utilize audio hardware capabilities.
+
+**HAL**
+
+The HAL provides services through a set of HDIs. Different audio hardware developers implement the HDIs, enabling the audio service to play and record through various types of audio devices.
+
+**Kernel**
+
+The kernel driver interacts with the audio hardware. Depending on the scale of the operating system, multiple kernels can be chosen, such as Linux, LiteOS, and OpenHarmony kernels.
 
 ## Development Description
 

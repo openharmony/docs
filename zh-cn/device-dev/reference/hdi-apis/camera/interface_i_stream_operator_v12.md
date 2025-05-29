@@ -1,6 +1,5 @@
 # IStreamOperator
 
-
 ## 概述
 
 定义Camera设备流操作。
@@ -13,9 +12,7 @@
 
 **相关模块：**[Camera](_camera_v12.md)
 
-
 ## 汇总
-
 
 ### Public 成员函数
 
@@ -24,9 +21,7 @@
 | [UpdateStreams](#updatestreams) ([in] struct StreamInfo_V1_1[] streamInfos) | 更新流。 | 
 | [ConfirmCapture](#confirmcapture) ([in] int captureId) | 确认捕获。 | 
 
-
 ## 成员函数说明
-
 
 ### ConfirmCapture()
 
@@ -54,7 +49,6 @@ NO_ERROR 表示执行成功。
 
 其他值表示执行失败，具体错误码查看[CamRetCode](_camera_v12.md#camretcode)。
 
-
 ### UpdateStreams()
 
 ```
@@ -65,7 +59,7 @@ IStreamOperator::UpdateStreams ([in] struct StreamInfo_V1_1[] streamInfos)
 
 更新流。
 
-该函数必须在 Loop CancelCaptures **CancelCaptures** 之后调用。
+该函数必须在 Loop CancelCaptures [CancelCaptures](interface_i_offline_stream_operator_v10.md#cancelcapture)之后调用。
 
 **起始版本：** 4.1
 

@@ -125,6 +125,8 @@ static int32_t TEST_FUNC() {
     return 0;
 }
 ```
+<!-- @[jsvm_function_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
+
 预期的输出
 ```
 jsvm: jsvm api call function; Hello World!

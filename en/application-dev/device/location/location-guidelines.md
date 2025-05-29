@@ -1,4 +1,4 @@
-# Obtaining Device Location Information
+# Obtaining Device Location Information (ArkTS)
 
 ## When to Use
 
@@ -79,7 +79,7 @@ This module supports only the WGS-84 coordinate system.
       }
       try {
          geoLocationManager.getCurrentLocation(request).then((result) => { // Call getCurrentLocation to obtain the current device location by using a promise.
-            console.log('current location: ' + JSON.stringify(result));
+            console.info('current location: ' + JSON.stringify(result));
          })
          .catch((error:BusinessError) => { // Receive the reported error code.
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -108,7 +108,7 @@ This module supports only the WGS-84 coordinate system.
       'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION
    }
    let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
    };
    try {
       geoLocationManager.on('locationChange', request, locationCallback);
@@ -118,5 +118,6 @@ This module supports only the WGS-84 coordinate system.
    ```
    If your application no longer needs the device location, stop obtaining the device location to avoid high power consumption.
    ```ts
+   // The callback must be the same as that passed by the **on** API.
    geoLocationManager.off('locationChange', locationCallback);
    ```

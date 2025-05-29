@@ -16,7 +16,7 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-Obtains the sandbox path of the pre-authorized **Download** directory.
+Obtains the sandbox path of the pre-authorized **Download** directory. Currently, only 2-in-1 devices are supported.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -33,7 +33,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ID   | Error Message      |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -53,7 +53,7 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-Obtains the sandbox path of the pre-authorized **Desktop** directory.
+Obtains the sandbox path of the pre-authorized **Desktop** directory. Currently, only 2-in-1 devices are supported.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -70,7 +70,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ID   | Error Message      |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -90,7 +90,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-Obtains the sandbox path of the pre-authorized **Document** directory.
+Obtains the sandbox path of the pre-authorized **Document** directory. Currently, only 2-in-1 devices are supported.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -107,7 +107,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | ID   | Error Message      |
 |----------| --------- |
 | 801      | Capability not supported. |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error. |
 
 **Example**
 

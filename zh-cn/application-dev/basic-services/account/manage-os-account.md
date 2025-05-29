@@ -1,7 +1,6 @@
 # 管理系统账号（仅对系统应用开放）
 
-系统提供了用于管理系统账号的接口。
-系统应用开发者在申请对应的权限后，可以创建、激活、修改和删除系统账号，实现对系统账号的生命周期管理；三方应用开发者可以查询系统账号的基本信息，以完成与系统账号相关的业务逻辑开发。
+系统提供了用于管理系统账号的接口。系统应用开发者在申请对应的权限后，可以创建、激活、修改和删除系统账号，实现对系统账号的生命周期管理；三方应用开发者可以查询系统账号的基本信息，以完成与系统账号相关的业务逻辑开发。
 
 ## 基本概念
 
@@ -111,7 +110,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osA
    let newName: string = 'Tom';
    accountManager.setOsAccountName(localId, newName, (err: BusinessError) => {
      if (err) {
-       console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+       console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
      } else {
        console.log('setOsAccountName successfully');
      }
@@ -149,7 +148,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 let localId: number = 101;
 accountManager.removeOsAccount(localId, (err: BusinessError)=>{
   if (err) {
-      console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+      console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
   } else {
       console.log('removeOsAccount successfully');
   }

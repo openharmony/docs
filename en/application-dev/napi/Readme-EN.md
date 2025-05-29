@@ -2,22 +2,22 @@
 
 - [Getting Started with the NDK](ndk-development-overview.md)
 - [Creating an NDK Project](create-with-ndk.md)
-- Building an NDK Project
+- Building an NDK Project<!--build-with-ndk-->
   - [NDK Project Building Overview](build-with-ndk-overview.md)
   - [Building an NDK Project with the DevEco Studio Template](build-with-ndk-ide.md)
   - [Building an NDK Project with the Command Line CMake](build-with-ndk-cmake.md)
   - [Building an NDK Project with Prebuilt Libraries](build-with-ndk-prebuilts.md)
-- Code Development
+- Code Development<!--coding-->
   - [Code Development Overview](develop-code-overview.md)
-  - C/C++ Standard Library
+  - C/C++ Standard Library<!--c-cpp-->
     - [C/C++ Library Mechanisms](c-cpp-overview.md)
     - [Using fdsan](fdsan.md)
-  - Using Node-API
+  - Using Node-API<!--using-napi-interaction-with-cpp-->
     - [Node-API Overview](napi-introduction.md)
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
     - [Node-API Development Specifications](napi-guidelines.md)
     - [Node-API Development Process](use-napi-process.md)
-    - Node-API Guides
+    - Node-API Guides<!--napi-use-->
       - [Using Node-API Extension APIs](use-napi-about-extension.md)
       - [Working with Arrays Using Node-API](use-napi-about-array.md)
       - [Working with ArrayBuffer Using Node-API](use-napi-about-arraybuffer.md)
@@ -28,7 +28,7 @@
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
       - [Working with Date Using Node-API](use-napi-about-date.md)
       - [Error Handling Using Node-API](use-napi-about-error.md)
-      - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
       - [Working with Functions Using Node-API](use-napi-about-function.md)
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
       - [Working with Objects Using Node-API](use-napi-about-object.md)
@@ -38,7 +38,7 @@
       - [Working with Properties Using Node-API](use-napi-about-property.md)
       - [Working with Strings Using Node-API](use-napi-about-string.md)
       - [Customizing Asynchronous Operations Using Node-API](use-napi-about-custom-asynchronous-operations.md)
-    - Typical Node-API Use Cases
+    - Typical Node-API Use Cases<!--napi-scenarios-->
       - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
       - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
       - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
@@ -49,15 +49,16 @@
       - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
+      - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
     - [Node-API FAQs](use-napi-faqs.md)
-  - Using JSVM-API
+  - Using JSVM-API<!--jsvm-->
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
     - [JSVM-API Development Process](use-jsvm-process.md)
-    - JSVM-API Development Specifications
+    - JSVM-API Development Specifications<!--jsvm-development-standards-->
       - [JSVM-API Development Specifications](jsvm-guidelines.md)
       - [JSVM-API FAQs](jsvm-frequently-questions.md)
-    - JSVM-API Guides
+    - JSVM-API Guides<!--jsvm-use-->
       - [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md)
       - [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
       - [Working with Wasm Using JSVM-API](use-jsvm-about-wasm.md)
@@ -87,37 +88,35 @@
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
       - [Working with Wrapper Objects Using JSVM-API](use-jsvm-about-wrapper-object.md)
       - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
-    - Typical JSVM-API Use Cases
+    - JSVM-API Use Cases<!--jsvm-scenarios-->
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
-      - JSVM-API Tuning and Performant Coding Cases
+      - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
         - [JSVM Tuning Practices](jsvm-optimizations.md)
-  - OpenMP Support
+    - JSVM Performance Debugging Guides<!--jsvm-performance-->
+      - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
+  - OpenMP Support<!--openmp-->
     - [OpenMP Overview](openmp-overview.md)
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
   - Resource Management<!--resource-management-->
     - [Raw File Development](rawfile-guidelines.md)
-  - Network Management
-    - [NetConnection Development](native-netmanager-guidelines.md) 
-  - Thread Scheduling
+  - Thread Scheduling<!--thread-scheduling-->
     - [QoS Development](qos-guidelines.md)
-  - Memory Management
+  - Memory Management<!--memory-management-->
     - [Purgeable Memory Development](purgeable-memory-guidelines.md)
-  - Device Management
-    - [USB DDK Development](usb-ddk-guidelines.md)
-    - [HID DDK Development](hid-ddk-guidelines.md)
-  - Bundle Management
+  - Bundle Management<!--bundle-management-->
     - [Native Bundle Development](native-bundle-guidelines.md)
-- Debugging and Profiling
+- Debugging and Profiling<!--debugging-profiling-->
   - [Debugging and Profiling Overview](debug-performance-profiling-overview.md)
   - [Debugging in DevEco Studio](debug-ide.md)
   - [C/C++ Memory Error Detection](debug-asan.md)
-- Hardware Compatibility
+- Hardware Compatibility<!--hardware-compatibility-->
   - [Introduction to Hardware Compatibility](hw-guide.md)
   - [OpenHarmony ABIs](ohos-abi.md)
   - [CPU Features](cpu-features.md)
   - [Using Neon Instructions](neon-guide.md)
 
+<!--no_check-->

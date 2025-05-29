@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 > 
 
 ## 导入模块
@@ -50,7 +50,6 @@ setLocationPolicy(admin: Want, policy: LocationPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -102,7 +101,7 @@ getLocationPolicy(admin: Want): LocationPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { locationManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,7 +122,7 @@ try {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称                        | 值  | 说明    |
 | ----------------------------| ----| ------------------------------- |

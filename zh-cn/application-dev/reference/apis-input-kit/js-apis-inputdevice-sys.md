@@ -1,7 +1,7 @@
 # @ohos.multimodalInput.inputDevice (输入设备)(系统接口)
 
 
-输入设备管理模块，用于监听输入设备连接和断开状态，查询输入设备相关信息。
+本模块提供输入设备管理能力，包括查询输入设备信息等。
 
 
 > **说明**：
@@ -21,7 +21,7 @@ import { inputDevice } from '@kit.InputKit';
 
 setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+设置键盘按键的重复时延，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -40,6 +40,7 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -48,13 +49,13 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 try {
   inputDevice.setKeyboardRepeatDelay(350, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -62,7 +63,7 @@ try {
 
 setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
-设置键盘按键的重复时延，使用Promise异步方式返回结果。
+设置键盘按键的重复时延，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -76,9 +77,9 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -86,6 +87,7 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 202 | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -96,7 +98,7 @@ try {
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -104,7 +106,7 @@ try {
 
 getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
-获取键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+获取键盘按键的重复时延，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -114,7 +116,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| callback   | AsyncCallback&lt;number&gt;                    | 是    | 回调函数，异步返回键盘按键重复延迟时间。 |
+| callback   | AsyncCallback&lt;number&gt;                    | 是    | 回调函数，返回键盘按键重复延迟时间。 |
 
 **错误码**：
 
@@ -122,7 +124,7 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -131,13 +133,13 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 try {
   inputDevice.getKeyboardRepeatDelay((error: Error, delay: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -145,7 +147,7 @@ try {
 
 getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
-获取键盘按键的重复时延，使用Promise异步方式返回结果。
+获取键盘按键的重复时延，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -153,9 +155,9 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复时延。 |
+| Promise&lt;number&gt; | Promise对象，返回键盘按键的重复时延。 |
 
 **错误码**：
 
@@ -163,7 +165,7 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -174,7 +176,7 @@ try {
     console.log(`Get keyboard repeat delay success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -182,7 +184,7 @@ try {
 
 setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+设置键盘按键的重复速率，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -201,7 +203,7 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -210,13 +212,13 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 try {
   inputDevice.setKeyboardRepeatRate(60, (error: Error) => {
     if (error) {
-      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -224,7 +226,7 @@ try {
 
 setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
-设置键盘按键的重复速率，使用Promise异步方式返回结果。
+设置键盘按键的重复速率，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -238,9 +240,9 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -248,7 +250,7 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -259,7 +261,7 @@ try {
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -267,7 +269,7 @@ try {
 
 getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
-获取键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+获取键盘按键的重复速率，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -277,7 +279,7 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回键盘按键的重复速率。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回键盘按键的重复速率。 |
 
 **错误码**：
 
@@ -285,7 +287,7 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -294,13 +296,13 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 try {
   inputDevice.getKeyboardRepeatRate((error: Error, rate: Number) => {
     if (error) {
-      console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -308,7 +310,7 @@ try {
 
 getKeyboardRepeatRate(): Promise&lt;number&gt;
 
-获取键盘按键的重复速率，使用Promise异步方式返回结果。
+获取键盘按键的重复速率，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -316,9 +318,9 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 
 **返回值**：
 
-| 参数                    | 说明                  |
+| 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复速率。 |
+| Promise&lt;number&gt; | Promise对象，返回键盘按键的重复速率。 |
 
 **错误码**：
 
@@ -326,7 +328,7 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error |
+| 202  | SystemAPI permission error. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -337,11 +339,11 @@ try {
     console.log(`Get keyboard repeat rate success`);
   });
 } catch (error) {
-  console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputDevice.setInputDeviceEnabled<sup>16+</sup>
+## inputDevice.setInputDeviceEnabled<sup>18+</sup>
 
 setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 
@@ -358,7 +360,7 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | ------------------------- |
 | deviceId | number  | 是   | 目标设备Id。              |
-| enabled  | boolean | 是   | true：开启输入设备输入；false：关闭输入设备输入。 |
+| enabled  | boolean | 是   | 输入设备的开关状态，取值为true表示开启输入设备，取值为false表示关闭输入设备。 |
 
 **错误码**：
 
@@ -378,11 +380,8 @@ setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
 try {
   inputDevice.setInputDeviceEnabled(0, true).then(() => {
     console.info(`Set input device enable success`);
-  }).catch((error) => {
-    console.info(`Set input device enable failed, error=${JSON.stringify(error)}`);
   });
 } catch (error) {
-    console.info(`Set input device enable error`);
+    console.error(`Set input device enable error`);
 }
 ```
-## 

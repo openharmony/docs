@@ -14,7 +14,7 @@ import {runningLock} from '@kit.BasicServicesKit';
 
 ## runningLock.isSupported<sup>9+</sup>
 
-isSupported(type: RunningLockType): boolean;
+isSupported(type: RunningLockType): boolean
 
 查询系统是否支持该类型的锁。
 
@@ -294,7 +294,7 @@ hold(timeout: number): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 201     | If the permission is denied.|
 
 **示例：**

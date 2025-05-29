@@ -27,7 +27,7 @@ Loads content from a page associated with a local storage to the window correspo
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. This parameter is left blank by default.|
 
 **Error codes**
 
@@ -56,11 +56,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.loadContentByName<sup>16+</sup>
+## UIExtensionContentSession.loadContentByName<sup>18+</sup>
 
 loadContentByName(name: string, storage?: LocalStorage): void
 
-Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../quick-start/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
+Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md), with state properties passed to the page through [LocalStorage](../../ui/state-management/arkts-localstorage.md). This API is used to load a named route page in the [onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate) lifecycle of the UIExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -69,7 +69,7 @@ Loads a [named route](../../ui/arkts-routing.md#named-route) page for a [UIExten
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
 | name | string | Yes| Name of the named route page.|
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
+| storage | [LocalStorage](../../ui/state-management/arkts-localstorage.md) | No| A page-level UI state storage unit, which is used to pass state properties to the page. The default value is null.|
 
 **Error codes**
 
@@ -118,7 +118,7 @@ import { UIExtensionContentSession } from '@kit.AbilityKit';
 @Component
 struct UIExtensionPage {
   @State message: string = 'Hello world';
-  storage: LocalStorage | undefined = LocalStorage.getShared();
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
@@ -163,13 +163,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -180,10 +179,10 @@ struct Index {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self.`);
+            console.info(`Succeeded in terminating self.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -212,13 +211,12 @@ Stops the window object corresponding to this **UIExtensionContentSession** inst
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -226,13 +224,13 @@ struct Index {
         .onClick(() => {
           this.session?.terminateSelf()
             .then(() => {
-              console.info(`Successed in terminating self.`);
+              console.info(`Succeeded in terminating self.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -270,13 +268,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -297,10 +294,10 @@ struct Index {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
               return;
             }
-            console.info(`Successed in terminating self with result.`);
+            console.info(`Succeeded in terminating self with result.`);
           });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -343,13 +340,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { UIExtensionContentSession, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Index {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   private session: UIExtensionContentSession | undefined =
-    storage.get<UIExtensionContentSession>('session');
+    this.storage?.get<UIExtensionContentSession>('session');
 
   build() {
     RelativeContainer() {
@@ -367,13 +363,13 @@ struct Index {
 
           this.session?.terminateSelfWithResult(abilityResult)
             .then(() => {
-              console.info(`Successed in terminating self with result.`);
+              console.info(`Succeeded in terminating self with result.`);
             })
             .catch((err: BusinessError) => {
               console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
             });
 
-          storage.clear();
+          this.storage?.clear();
         })
     }
     .height('100%')
@@ -427,7 +423,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     try {
       session.setWindowPrivacyMode(isPrivacyMode)
         .then(() => {
-          console.info(`Successed in setting window to privacy mode.`);
+          console.info(`Succeeded in setting window to privacy mode.`);
         })
         .catch((err: BusinessError) => {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
@@ -486,7 +482,7 @@ export default class UIExtAbility extends UIExtensionAbility {
           console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
           return;
         }
-        console.info(`Successed in setting window to privacy mode.`);
+        console.info(`Succeeded in setting window to privacy mode.`);
       });
     } catch (e) {
       let code = (e as BusinessError).code;
@@ -553,7 +549,7 @@ export default class UIExtAbility extends UIExtensionAbility {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
         return;
       }
-      console.info(`Successed in startAbilityByType`);
+      console.info(`Succeeded in startAbilityByType`);
     });
   }
 
@@ -617,7 +613,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 
     session.startAbilityByType('test', wantParams, abilityStartCallback)
       .then(() => {
-        console.info(`Successed in startAbilityByType`);
+        console.info(`Succeeded in startAbilityByType`);
       })
       .catch((err: BusinessError) => {
         console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
@@ -657,13 +653,12 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 import uiExtension from '@ohos.arkui.uiExtension';
 
-let storage = LocalStorage.getShared();
-
-@Entry(storage)
+@Entry()
 @Component
 struct Extension {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
   private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
 
   aboutToAppear(): void {

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,6 +16,8 @@
 
 AlphabetIndexer(options: AlphabetIndexerOptions)
 
+创建索引条组件。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -24,16 +26,20 @@ AlphabetIndexer(options: AlphabetIndexerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [AlphabetIndexerOptions](#alphabetindexeroptions16对象说明) | 是 | 设置索引条组件参数。 |
+| options | [AlphabetIndexerOptions](#alphabetindexeroptions18对象说明) | 是 | 设置索引条组件参数。 |
 
-## AlphabetIndexerOptions<sup>16+</sup>对象说明
+## AlphabetIndexerOptions<sup>18+</sup>对象说明
 
 用于设置索引条参数。
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| arrayValue | Array&lt;string&gt; | 是 | 字符串数组，每个字符串代表一个索引项。 |
-| selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| arrayValue<sup>7+</sup> | Array&lt;string&gt; | 是 | 字符串数组，每个字符串代表一个索引项。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selected<sup>7+</sup>   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -139,7 +145,7 @@ usingPopup(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | 是   | 是否显示提示弹窗。<br/>默认值：false。 |
+| value  | boolean | 是   | 是否显示提示弹窗。<br/>默认值：false，不显示提示弹窗。 |
 
 ### selectedFont
 
@@ -203,7 +209,7 @@ itemSize(value: string&nbsp;|&nbsp;number)
 
 | 参数名 | 类型                       | 必填 | 说明                                                         |
 | ------ | -------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;number | 是   | 索引项区域大小，索引项区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：16.0<br/>单位：vp |
+| value  | string&nbsp;\|&nbsp;number | 是   | 索引项区域大小，索引项区域为正方形，即正方形边长。不支持设置为百分比。<br/>实际取值会受到组件尺寸的约束，索引项宽度最大为组件宽度-左右[padding](ts-universal-attributes-size.md#padding)，索引项高度最大为（组件高度-上下[padding](ts-universal-attributes-size.md#padding)）/索引项个数。传入值小于等于0时，按照默认值处理。<br/>默认值：16.0<br/>单位：vp |
 
 ### alignStyle
 
@@ -228,7 +234,7 @@ selected(index: number)
 
 设置选中项索引值。
 
-从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -326,9 +332,9 @@ autoCollapse(value: boolean)
 
 设置是否使用自适应折叠模式。
 
-如果索引项第一项为“#”，当除去第一项后剩余索引项数量 $\leq$ 9时，选择全显示模式；9 < 剩余索引项数量 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式；剩余索引项数量 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+如果索引项第一项为“#”，当除去第一项后剩余索引项数量 <= 9时，选择全显示模式；9 < 剩余索引项数量 <= 13时，根据索引条高度自适应选择全显示模式或者短折叠模式；剩余索引项数量 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
 
-如果索引项第一项不为“#”。当所有索引项数量 $\leq$ 9时，选择全显示模式；9 < 所有索引项数量 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式；所有索引项数量 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+如果索引项第一项不为“#”。当所有索引项数量 <= 9时，选择全显示模式；9 < 所有索引项数量 <= 13时，根据索引条高度自适应选择全显示模式或者短折叠模式；所有索引项数量 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -338,7 +344,7 @@ autoCollapse(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false。<br />API version 12及之后：true。 |
+| value  | boolean | 是   | 是否使用自适应折叠模式。<br/>默认值：<br />API version 12之前：false，不使用自适应折叠模式。<br />API version 12及之后：true，使用自适应折叠模式。 |
 
 ### popupItemBorderRadius<sup>12+</sup>   
 
@@ -414,9 +420,11 @@ enableHapticFeedback(value: boolean)
 
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | 是  | 支持触控反馈。<br/>默认值：true。<br/> |
+| value | boolean | 是  | 是否支持触控反馈。<br/>默认值：true，支持触控反馈。 |
 
 ## IndexerAlign枚举说明
+
+索引条提示弹窗的对齐样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -437,7 +445,7 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 索引项选中事件，回调参数为当前选中项索引。 
 
-从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
+从API version 8开始废弃，建议使用[onSelect](#onselect8)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -461,7 +469,7 @@ onSelect(callback: OnAlphabetIndexerSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback16) | 是   | 索引项选中事件。 |
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback18) | 是   | 索引项选中事件。 |
 
 ### onRequestPopupData<sup>8+</sup>
 
@@ -477,7 +485,7 @@ onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback16) | 是   | 设置提示弹窗二级索引项内容事件。 |
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback18) | 是   | 设置提示弹窗二级索引项内容事件。 |
 
 ### onPopupSelect<sup>8+</sup>
 
@@ -493,14 +501,14 @@ onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback16) | 是   | 提示弹窗二级索引选中事件。 |
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback18) | 是   | 提示弹窗二级索引选中事件。 |
 
-## OnAlphabetIndexerSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerSelectCallback = (index: number) => void
 
 索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,12 +517,12 @@ type OnAlphabetIndexerSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index    | number  | 是   | 当前选中索引项的索引。 |
 
-## OnAlphabetIndexerPopupSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerPopupSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 
 提示弹窗二级索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,12 +531,12 @@ type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index   | number  | 是   | 当前选中的提示弹窗二级索引项的索引。 |
 
-## OnAlphabetIndexerRequestPopupDataCallback<sup>16+</sup>
+## OnAlphabetIndexerRequestPopupDataCallback<sup>18+</sup>
 type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
 
 [usingPopup](#usingpopup)设置值为true，索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -553,14 +561,14 @@ type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<strin
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
 
   build() {
     Stack({ alignContent: Alignment.Start }) {
@@ -630,25 +638,25 @@ struct AlphabetIndexerSample {
           .popupItemFont({ size: 30, style: FontStyle.Normal }) // 提示弹窗二级索引项文本样式
           .popupItemBackgroundColor(0xCCCCCC) // 提示弹窗二级索引项背景颜色
           .onSelect((index: number) => {
-            console.info(this.value[index] + ' Selected!')
+            console.info(this.value[index] + ' Selected!');
           })
           .onRequestPopupData((index: number) => {
             // 当选中A时，提示弹窗里面的二级索引文本列表显示A对应的列表arrayA，选中B、C、L时也同样
             // 选中其余索引项时，提示弹窗二级索引文本列表为空，提示弹窗会只显示一级索引项
             if (this.value[index] == 'A') {
-              return this.arrayA
+              return this.arrayA;
             } else if (this.value[index] == 'B') {
-              return this.arrayB
+              return this.arrayB;
             } else if (this.value[index] == 'C') {
-              return this.arrayC
+              return this.arrayC;
             } else if (this.value[index] == 'L') {
-              return this.arrayL
+              return this.arrayL;
             } else {
-              return []
+              return [];
             }
           })
           .onPopupSelect((index: number) => {
-            console.info('onPopupSelected:' + index)
+            console.info('onPopupSelected:' + index);
           })
       }
       .width('100%')
@@ -669,14 +677,14 @@ struct AlphabetIndexerSample {
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayJ: string[] = ['嘉', '贾']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayJ: string[] = ['嘉', '贾'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
   @State isNeedAutoCollapse: boolean = false;
   @State indexerHeight: string = '75%';
 
@@ -811,14 +819,14 @@ struct AlphabetIndexerSample {
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
   @State customBlurStyle: BlurStyle = BlurStyle.NONE;
 
   build() {
@@ -897,25 +905,25 @@ struct AlphabetIndexerSample {
               .popupBackgroundBlurStyle(this.customBlurStyle) // 设置提示弹窗的背景模糊材质
               .popupTitleBackground(0xCCCCCC) // 设置提示弹窗一级索引项背景颜色
               .onSelect((index: number) => {
-                console.info(this.value[index] + ' Selected!')
+                console.info(this.value[index] + ' Selected!');
               })
               .onRequestPopupData((index: number) => {
                 // 当选中A时，提示弹窗里面的二级索引文本列表显示A对应的列表arrayA，选中B、C、L时也同样
                 // 选中其余索引项时，提示弹窗二级索引文本列表为空，提示弹窗会只显示一级索引项
                 if (this.value[index] == 'A') {
-                  return this.arrayA
+                  return this.arrayA;
                 } else if (this.value[index] == 'B') {
-                  return this.arrayB
+                  return this.arrayB;
                 } else if (this.value[index] == 'C') {
-                  return this.arrayC
+                  return this.arrayC;
                 } else if (this.value[index] == 'L') {
-                  return this.arrayL
+                  return this.arrayL;
                 } else {
-                  return []
+                  return [];
                 }
               })
               .onPopupSelect((index: number) => {
-                console.info('onPopupSelected:' + index)
+                console.info('onPopupSelected:' + index);
               })
           }
           .height('80%')

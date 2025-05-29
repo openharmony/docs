@@ -7,8 +7,10 @@
 
 UIAbility的生命周期包括Create、Foreground、Background、Destroy四个状态，如下图所示。
 
-**图1** UIAbility生命周期状态  
-![Ability-Life-Cycle](figures/Ability-Life-Cycle.png)  
+
+**图1** UIAbility生命周期状态
+
+![Ability-Life-Cycle](figures/Ability-Life-Cycle.png)
 
 
 ## 生命周期状态说明
@@ -38,14 +40,16 @@ export default class EntryAbility extends UIAbility {
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例创建完成之后，在进入Foreground之前，系统会创建一个WindowStage。WindowStage创建完成后会进入[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)回调，可以在该回调中设置UI加载、设置WindowStage的事件订阅。
 
-**图2** WindowStageCreate和WindowStageDestroy状态  
-![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
+**图2** WindowStageCreate和WindowStageDestroy状态
+
+![Ability-Life-Cycle-WindowStage](figures/UIAbility-Life-Cycle-WindowStage.png)
 
 在onWindowStageCreate()回调中通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅[WindowStage的事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）。
 
 > **说明：**
 > 
-> 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 对于不同类型的产品，当应用主窗口从前台进入后台时，UIAbility生命周期的变化也会存在差异。详见[Stage模型下主窗口的生命周期](../windowmanager/window-overview.md#stage模型下主窗口的生命周期)。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -198,6 +202,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+
 当应用的UIAbility实例已创建，且UIAbility配置为[singleton](uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例时，只会进入该UIAbility的[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
 
 ```ts
@@ -211,6 +216,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
 
 ### Destroy状态
 

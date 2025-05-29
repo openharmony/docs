@@ -6,10 +6,12 @@
 
 ## 创建并应用StyledString和MutableStyledString
 
-  可以通过TextController提供的[setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12)方法，将属性字符串附加到文本组件，并推荐在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)中触发绑定。
+  可以通过TextController提供的[setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12)方法，将属性字符串附加到文本组件，并推荐在[onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或者文本组件的[onAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)回调中触发绑定。
   > **说明：**
   >
   > 在aboutToAppear中调用setStyledString方法时，由于该方法运行阶段组件尚未完成创建并成功挂载节点树，因此无法在页面初始化时显示属性字符串。
+  >
+  > 从API version 15开始，在aboutToAppear中调用setStyledString方法，页面初始化时可以显示属性字符串。
 
   ```ts
   @Entry
@@ -21,8 +23,8 @@
     controller2: TextController = new TextController();
 
     async onPageShow() {
+      // 在生命周期onPageShow回调中绑定属性字符串
       this.controller1.setStyledString(this.styledString1);
-      this.controller2.setStyledString(this.mutableStyledString1);
     }
 
     build() {
@@ -30,6 +32,10 @@
         // 显示属性字符串
         Text(undefined, { controller: this.controller1 })
         Text(undefined, { controller: this.controller2 })
+          .onAppear(() => {
+            // 在组件onAppear回调中绑定属性字符串
+            this.controller2.setStyledString(this.mutableStyledString1);
+          })
       }
       .width('100%')
     }
@@ -39,7 +45,7 @@
 
 ## 设置文本样式
 
-属性字符串目前提供了[TextStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle)、[TextShadowStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textshadowstyle)、[DecorationStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#decorationstyle)、[BaselineOffsetStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#baselineoffsetstyle)、[LineHeightStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#lineheightstyle)、[LetterSpacingStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#letterspacingstyle)各种Style对象来实现设置文本的各类样式。
+属性字符串目前提供了多种Style对象，包括[TextStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle)、[TextShadowStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textshadowstyle)、[DecorationStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#decorationstyle)、[BaselineOffsetStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#baselineoffsetstyle)、[LineHeightStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#lineheightstyle)、[LetterSpacingStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#letterspacingstyle)，用于设置文本的各类样式。
 
 - 创建及应用文本字体样式对象（TextStyle）
 
@@ -262,7 +268,7 @@
 
 ![paragraphs](figures/styledstringParagraphs.png)
 
-以下代码示例展示了如何创建ParagraphStyle并应用。如果将ParagraphStyle附加到段落开头末尾或之间的任何位置，均会应用样式，非段落区间内则不会应用样式。
+以下代码示例展示了如何创建ParagraphStyle并应用。如果将ParagraphStyle附加到段落开头、末尾或之间的任何位置，均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI';
@@ -305,7 +311,7 @@
   ]);
   ```
 
-  除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式, 同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
+  除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import { LengthMetrics } from '@kit.ArkUI';
@@ -490,6 +496,8 @@
   ```ts
   import { drawing } from '@kit.ArkGraphics2D';
 
+  let gUIContext: UIContext;
+
   class MyCustomSpan extends CustomSpan {
     constructor(word: string, width: number, height: number, fontSize: number) {
       super();
@@ -501,7 +509,7 @@
 
     onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
       return { width: this.width, height: this.height };
-    } 
+    }
 
     onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
       let canvas = context.canvas;
@@ -514,12 +522,13 @@
         blue: 0
       });
       const font = new drawing.Font();
-      font.setSize(vp2px(this.fontSize));
+      font.setSize(gUIContext.vp2px(this.fontSize));
       const textBlob =
         drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
       canvas.attachBrush(brush);
 
-      this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20);
+      this.onDrawRectByRadius(context, options.x, options.x + gUIContext.vp2px(this.width), options.lineTop,
+        options.lineBottom, 20);
       brush.setColor({
         alpha: 255,
         red: 255,
@@ -537,7 +546,7 @@
       canvas.attachBrush(brush);
       const textBlob1 =
         drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
-      canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30);
+      canvas.drawTextBlob(textBlob1, options.x + gUIContext.vp2px(100), options.lineBottom - 30);
 
       canvas.detachBrush();
     }
@@ -579,6 +588,10 @@
     textController: TextController = new TextController();
     isPageShow: boolean = true;
 
+    aboutToAppear() {
+      gUIContext = this.getUIContext();
+    }
+
     async onPageShow() {
       if (!this.isPageShow) {
         return;
@@ -601,6 +614,83 @@
   }
   ```
 ![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
+
+## 格式转换
+
+可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。
+
+以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
+```ts
+// xxx.ets
+import { image } from '@kit.ImageKit';
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct styled_string_demo8 {
+  imagePixelMap: image.PixelMap | undefined = undefined
+  @State html : string | undefined = undefined
+  @State styledString : StyledString | undefined = undefined
+  controller1 : TextController = new TextController
+  controller2 : TextController = new TextController
+
+  async aboutToAppear() {
+    console.info("aboutToAppear initial imagePixelMap")
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'))
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  build() {
+    Column() {
+      Text(undefined, { controller: this.controller1 }).height(100)
+      Row() {
+        Button("添加属性字符串").onClick(() => {
+          let mutableStyledString1: MutableStyledString = new MutableStyledString("属性字符串", [{
+            start: 0,
+            length: 6,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
+          }]);
+          if (this.imagePixelMap !== undefined) {
+            let mutableStyledString2 = new MutableStyledString(new ImageAttachment({
+              value: this.imagePixelMap,
+              size: { width: 50, height: 50 },
+            }))
+            mutableStyledString1.appendStyledString(mutableStyledString2)
+          }
+          this.styledString = mutableStyledString1
+          this.controller1.setStyledString(mutableStyledString1)
+        }).margin(5)
+        Button("toHtml").onClick(() => {
+          this.html = StyledString.toHtml(this.styledString)
+        }).margin(5)
+        Button("fromHtml").onClick(async () => {
+          let styledString = await StyledString.fromHtml(this.html)
+          this.controller2.setStyledString(styledString)
+        }).margin(5)
+      }
+      Text(undefined, { controller: this.controller2 }).height(100)
+      Text(this.html)
+    }.width("100%")
+  }
+}
+```
+
+![](figures/styled_string_html.gif)
+
 
 ## 场景示例
 

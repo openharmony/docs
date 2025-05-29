@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  
 >  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false，或者设置[visibility](ts-universal-attributes-visibility.md#visibility)属性为Hidden、None时，也不影响其子组件的获焦。
 >  
@@ -26,7 +26,7 @@ focusable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否可以获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如[Button](ts-basic-components-button.md)、[TextInput](ts-basic-components-textinput.md)等，默认即为可获焦，[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
+| value  | boolean | 是   | 设置当前组件是否可以获焦，true表示组件可以获焦，false表示组件不可获焦。<br/>**说明：**<br/>存在默认交互逻辑的组件例如[Button](ts-basic-components-button.md)、[TextInput](ts-basic-components-textinput.md)等，默认即为可获焦，[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)等组件则默认状态为不可获焦。不可获焦状态下，无法触发[焦点事件](ts-universal-focus-event.md)。 |
 
 ## tabIndex<sup>9+</sup>
 
@@ -75,7 +75,7 @@ groupDefaultFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否为当前组件所在容器获焦时的默认焦点，仅在初次创建容器节点第一次获焦时生效。<br/>默认值：false<br/>**说明：** <br/>必须与[tabIndex](#tabindex9)联合使用，当某个容器设置了tabIndex，且容器内某子组件或容器自身设置了groupDefaultFocus(true)，当该容器首次TAB键获焦时，会自动将焦点转移至该指定的组件上。若容器内（包含容器本身）有多个组件设置了groupDefaultFocus(true)，则以组件树深度遍历找到的第一个组件为最终结果。 |
+| value  | boolean | 是   | 设置当前组件是否为当前组件所在容器获焦时的默认焦点，仅在初次创建容器节点第一次获焦时生效。true表示当前组件为所在容器获焦时的默认焦点，false表示当前组件不是所在容器获焦时的默认焦点。<br/>默认值：false<br/>**说明：** <br/>必须与[tabIndex](#tabindex9)联合使用，当某个容器设置了tabIndex，且容器内某子组件或容器自身设置了groupDefaultFocus(true)，当该容器首次TAB键获焦时，会自动将焦点转移至该指定的组件上。若容器内（包含容器本身）有多个组件设置了groupDefaultFocus(true)，则以组件树深度遍历找到的第一个组件为最终结果。 |
 
 ## focusOnTouch<sup>9+</sup>
 
@@ -91,7 +91,7 @@ focusOnTouch(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置当前组件是否支持点击获焦能力。<br/>默认值：false<br/>**说明：** <br/>仅在组件可点击时才能正常获取焦点。 |
+| value  | boolean | 是   | 设置当前组件是否支持点击获焦能力。true表示组件支持点击获焦，false表示不支持点击获焦。<br/>默认值：false<br/>**说明：** <br/>仅在组件可点击时才能正常获取焦点。 |
 
 ## focusBox<sup>12+</sup>
 
@@ -107,12 +107,12 @@ focusBox(style: FocusBoxStyle): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| style  | [FocusBoxStyle](#focusboxstyle12对象说明) | 是   | 设置当前组件系统焦点框样式。<br/>**说明：** <br/>该样式仅影响走焦状态下展示了系统焦点框的组件。 |
+| style  | [FocusBoxStyle](#focusboxstyle12对象说明) | 是   | 设置当前组件系统焦点框样式。<br/>**说明：** <br/>仅影响走焦状态下展示了系统焦点框的组件。 |
 
 
 ## focusControl<sup>9+</sup>
 
-焦点控制模块
+焦点控制模块。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -134,7 +134,7 @@ requestFocus(value: string): boolean
 
 | 类型 | 说明 |
 | ------- | ---- |
-| boolean | 返回是否成功给目标组件申请到焦点。若参数指向的目标组件存在，且目标组件可获焦，则返回true，否则返回false。 |
+| boolean | 返回值表示是否成功给目标组件申请到焦点。若参数指向的目标组件存在且可获焦，则返回true，否则返回false。 |
 
 >  **说明：**
 >
@@ -164,8 +164,8 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内或者当前组件所属容器在scopeId所标识的容器内。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
-| priority  | [FocusPriority](#focuspriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>priority不设置则组件为默认AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（层级页面切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦；<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
+| scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内，或其所属容器在scopeId所标识的容器内。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
+| priority  | [FocusPriority](#focuspriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>未设置priority时，默认为AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（层级页面切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦。<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
 
 ### FocusPriority<sup>12+</sup>
 
@@ -196,7 +196,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 focusScopeId(id: string, isGroup?: boolean)
 
-设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+设置当前容器组件的id标识，以及是否为焦点组。
 
 **原子化服务API：**  从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -207,13 +207,13 @@ focusScopeId(id: string, isGroup?: boolean)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
-| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
+| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。true表示容器组件为焦点组，false表示容器组件不是焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
 
 ## focusScopeId<sup>14+</sup>
 
 focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean)
 
-设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+设置当前容器组件的id标识，以及是否为焦点组。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -222,14 +222,14 @@ focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| arrowStepOut<sup>14+</sup>  | boolean | 否   | 设置能否使用方向键走焦出当前焦点组。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。true表示容器组件为焦点组，false表示容器组件不是焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的是使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| arrowStepOut<sup>14+</sup>  | boolean | 否   | 设置能否使用方向键走焦出当前焦点组。true表示可以使用方向键走焦出当前焦点组，false表示不能使用方向键走焦出当前焦点组。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## tabStop<sup>14+</sup>
 
 tabStop(isTabStop: boolean) :T
 
-设置当前容器组件的tabStop，可决定在走焦时焦点是否会停留在当前容器。
+设置当前容器组件的tabStop，可决定焦点在走焦时是否会停留在当前容器。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -239,19 +239,19 @@ tabStop(isTabStop: boolean) :T
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要保障是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
+| isTabStop  | boolean | 是   | 设置当前容器组件是否为走焦可停留容器。true表示当前容器组件为走焦可停留容器，false表示当前容器组件不是走焦可停留容器。<br/>**说明：** <br/>1.配置tabStop需要确保是容器组件且有可获焦的孩子组件，默认容器组件不能直接获焦。<br/> 2.通过[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)请求焦点，如果是容器组件且配置tabStop，焦点能够停留在容器组件，如果未配置tabStop，即使整条焦点链上有配置了tabStop的组件，该组件依然能获取到焦点。<br/>3.配置tabStop的容器不允许嵌套超过2层。<br/>tabStop走焦规则：<br/>1.通过tab键和方向键走焦，焦点会停留在配置了tabStop的组件上，如果焦点停留在配置了tabStop的容器内部时，可以走焦到容器内部的下一个可获焦组件，如果焦点停留在配置了tabStop的容器外部时，可以走焦到容器外的下一个可获焦组件。<br/>2.当焦点停留在tabStop上时，按Enter键可以走焦到内部第一个可获焦组件，按ESC能够将焦点退回到不超过当前层级页面根容器的上一个配置了tabStop的组件，按空格键可以响应该容器的onClick事件。<br/>3.不建议根容器配置tabStop。如果根容器配置了tabStop，通过[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)将焦点清理到根容器，再按Enter键会重新走回内部上一次获焦组件，通过ESC键将焦点清理到根容器，再按Enter键会走焦到内部第一个可获焦组件。|
 
 **描述走焦的时候的按键以及获焦组件**
 
 ![tabStop](figures/tabStop.png)
 
-当前焦点如果停留在button2时，按下tab键将会走焦到Column3上，再按下tab键会循环走焦到button1上。
+如果当前焦点停留在button2上，按下tab键将会走焦到Column3，再按下tab键会循环走焦到button1。
 
 ## nextFocus<sup>18+</sup>
 
 nextFocus(nextStep: Optional\<FocusMovement>): T
 
-设置组件的自定义焦点走焦的逻辑。
+设置组件的自定义焦点走焦逻辑。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -291,7 +291,7 @@ nextFocus(nextStep: Optional\<FocusMovement>): T
 @Entry
 @Component
 struct FocusableExample {
-  @State inputValue: string = ''
+  @State inputValue: string = '';
 
   build() {
     Scroll() {
@@ -413,7 +413,7 @@ struct FocusableExample {
 ```
 示意图：
 
-首次进入，焦点默认在defaultFocus绑定的TextInput组件上：
+首次进入时，焦点默认在defaultFocus绑定的TextInput组件上：
 
 ![defaultFocus](figures/defaultFocus.png)
 
@@ -429,7 +429,7 @@ struct FocusableExample {
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 
-点击绑定了focusOnTouch的组件，组件自身获焦，焦点框被清除，再按下Tab键显示焦点框：
+点击绑定了focusOnTouch的组件，组件自身获焦，焦点框被清除，再按下TAB键后，显示焦点框：
 
 ![focusOnTouch](figures/focusOnTouch.png)
 
@@ -439,15 +439,15 @@ struct FocusableExample {
 
 > **说明：**
 > 
-> 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
+> 直接使用focusControl可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
 
 ```ts
 // requestFocus.ets
 @Entry
 @Component
 struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'LastPageId']
-  @State selectId: string = 'LastPageId'
+  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'LastPageId'];
+  @State selectId: string = 'LastPageId';
 
   build() {
     Column({ space:20 }){
@@ -525,7 +525,7 @@ struct RequestFocusExample {
 该示例通过配置focusBox修改组件的焦点框样式。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -555,14 +555,14 @@ struct RequestFocusExample {
 
 ### 示例4（设置焦点组走焦）
 
-该示例通过配置focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点，配置focusScopeId可以使绑定的容器组件组件成为焦点组。
+该示例通过配置focusScopePriority，可以使绑定的组件在所属容器首次获焦时成为焦点，配置focusScopeId，可以使绑定的容器组件成为焦点组。
 
 ```ts
 // focusTest.ets
 @Entry
 @Component
 struct FocusableExample {
-  @State inputValue: string = ''
+  @State inputValue: string = '';
 
   build() {
     Scroll() {
@@ -685,7 +685,7 @@ struct FocusableExample {
 该示例通过配置tabstop实现使用tab走焦停留在组件上。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -770,7 +770,7 @@ struct TabStop {
 ### 示例6（设置自定义走焦）
 
 该示例通过配置nextFocus实现自定义走焦规则。
-如果不配置nextFocus，默认点击tab的走焦顺序：M->A->B->C；配置了nextFocus以后,走焦顺序变更为：M->D->F->B。
+如果不配置nextFocus，默认的点击tab的走焦顺序为：M->A->B->C；配置了nextFocus以后，走焦顺序变更为：M->D->F->B。
 
 ```ts
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -783,8 +783,8 @@ class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 @Entry
 @Component
 struct Index {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F']
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F'];
 
   build() {
     Column({space: 10}) {

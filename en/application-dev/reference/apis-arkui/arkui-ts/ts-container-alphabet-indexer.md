@@ -24,16 +24,20 @@ AlphabetIndexer(options: AlphabetIndexerOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [AlphabetIndexerOptions](#alphabetindexeroptions16) | Yes| Options of the **AlphabetIndexer** component.|
+| options | [AlphabetIndexerOptions](#alphabetindexeroptions18) | Yes| Options of the **AlphabetIndexer** component.|
 
-## AlphabetIndexerOptions<sup>16+</sup>
+## AlphabetIndexerOptions<sup>18+</sup>
 
 Defines the options of the **AlphabetIndexer** component.
 
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| arrayValue | Array&lt;string&gt; | Yes| Array of index items.|
-| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| arrayValue<sup>7+</sup> | Array&lt;string&gt; | Yes| Array of index items.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| selected<sup>7+</sup>   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 
@@ -43,7 +47,7 @@ The default value of the [padding](ts-universal-attributes-size.md#padding) attr
 
 The [maxFontScale](ts-basic-components-text.md#maxfontscale12) and [minFontScale](ts-basic-components-text.md#minfontscale12) attributes are both set to a constant value of 1, which means that they do not change with the system font size.
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### color
 
@@ -139,7 +143,7 @@ Sets whether to display the pop-up window.
 
 | Name| Type   | Mandatory| Description                                  |
 | ------ | ------- | ---- | -------------------------------------- |
-| value  | boolean | Yes  | Whether to display the pop-up window.<br>Default value: **false**|
+| value  | boolean | Yes  | Whether to display the pop-up window.<br>Default value: **false** (no the pop-up window is displayed).|
 
 ### selectedFont
 
@@ -155,7 +159,7 @@ Sets the text style for the selected item.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of the selected item.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of the selected item.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Regular,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### popupFont
 
@@ -171,7 +175,7 @@ Sets the text style for the primary index item in the pop-up window.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of the primary index item in the pop-up window.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of the primary index item in the pop-up window.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### font
 
@@ -187,7 +191,7 @@ Sets the text style for unselected items.
 
 | Name| Type                    | Mandatory| Description                                                        |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | Yes  | Text style of unselected items.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
+| value  | [Font](ts-types.md#font) | Yes  | Text style of unselected items.<br>Default value:<br>API version 11 and earlier:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Regular,<br> family:'HarmonyOS Sans'<br>}<br>API version 12 and later:<br>{<br>size:'10.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Medium,<br> family:'HarmonyOS Sans'<br>} |
 
 ### itemSize
 
@@ -286,7 +290,7 @@ Sets the text color for the unselected secondary index items in the pop-up windo
 
 | Name| Type                                      | Mandatory| Description                                                   |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Text color of the unselected secondary index items in the pop-up window.<br>Default value: **#FF182431**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Text color of the selected secondary index item in the pop-up window.<br>Default value: **#FF182431**|
 
 ### popupItemFont<sup>10+</sup>
 
@@ -422,7 +426,7 @@ enableHapticFeedback(value: boolean)
 
 | Name        | Type                                                 | Mandatory| Description                        |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | Yes | Whether haptic feedback is enabled.<br>Default value: **true**<br>|
+| value | boolean | Yes | Whether to enable haptic feedback.<br>Default value: **true** (haptic feedback is enabled).|
 
 ## IndexerAlign
 
@@ -437,7 +441,7 @@ enableHapticFeedback(value: boolean)
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onSelected<sup>(deprecated)</sup>
 
@@ -469,7 +473,7 @@ Triggered when an index item is selected, with the callback parameter being the 
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback16) | Yes  | Event triggered when an index item is selected.|
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback18) | Yes  | Event triggered when an index item is selected.|
 
 ### onRequestPopupData<sup>8+</sup>
 
@@ -485,7 +489,7 @@ Triggered to set the content of the secondary index items in the pop-up window. 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback16) | Yes  | Event triggered to set the content of the secondary index items in the pop-up window.|
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback18) | Yes  | Event triggered to set the content of the secondary index items in the pop-up window.|
 
 ### onPopupSelect<sup>8+</sup>
 
@@ -501,14 +505,14 @@ Triggered when a secondary index item in the pop-up window is selected. The call
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback16) | Yes  | Event triggered when a secondary index item in the pop-up window is selected.|
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback18) | Yes  | Event triggered when a secondary index item in the pop-up window is selected.|
 
-## OnAlphabetIndexerSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerSelectCallback = (index: number) => void
 
 Represents the callback invoked when an index item is selected.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -517,12 +521,12 @@ Represents the callback invoked when an index item is selected.
 | ------- | ----- | ---- | ------ |
 | index    | number  | Yes  | Index of the currently selected index item.|
 
-## OnAlphabetIndexerPopupSelectCallback<sup>16+</sup>
+## OnAlphabetIndexerPopupSelectCallback<sup>18+</sup>
 type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 
 Represents the callback invoked when a secondary index item in the pop-up window is selected.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -531,12 +535,12 @@ Represents the callback invoked when a secondary index item in the pop-up window
 | ------- | ----- | ---- | ------ |
 | index   | number  | Yes  | Index of the currently selected secondary index item in the pop-up window.|
 
-## OnAlphabetIndexerRequestPopupDataCallback<sup>16+</sup>
+## OnAlphabetIndexerRequestPopupDataCallback<sup>18+</sup>
 type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
 
 Represents the callback invoked when an index item is selected and [usingPopup](#usingpopup) is set to **true**.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -620,7 +624,7 @@ struct AlphabetIndexerSample {
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
           .autoCollapse (false) // Disable the auto-collapse mode.
           .enableHapticFeedback(false) // Disable haptic feedback.
-          .selectedColor(0xFFFFFF) // Font color of the selected text.
+          .selectedColor(0xFFFFFF) // Text color of the selected item.
           .popupColor(0xFFFAF0) // Text color of the primary index item in the pop-up window.
           .selectedBackgroundColor(0xCCCCCC) // Background color of the selected item.
           .popupBackground (0xD2B48C) // Background color of the pop-up window.
@@ -677,7 +681,7 @@ This example demonstrates how to enable adaptive collapse mode using the [autoCo
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA:string[] = ['Ann']
+  private arrayA: string[] = ['Ann']
   private arrayB: string[] = ['Ben', 'Bob']
   private arrayC: string[] = ['Calvin', 'Cameron', 'Charlie', 'Charlotte']
   private arrayJ: string[] = ['Jack', 'James']
@@ -741,7 +745,7 @@ struct AlphabetIndexerSample {
               .autoCollapse (this.isNeedAutoCollapse) // Enable or disable adaptive collapse mode.
               .height (this.indexerHeight) // Indexer height.
               .enableHapticFeedback(false) // Disable haptic feedback.
-              .selectedColor(0xFFFFFF) // Font color of the selected text.
+              .selectedColor(0xFFFFFF) // Text color of the selected item.
               .popupColor(0xFFFAF0) // Text color of the primary index item in the pop-up window.
               .selectedBackgroundColor(0xCCCCCC) // Background color of the selected item.
               .popupBackground (0xD2B48C) // Background color of the pop-up window.
@@ -819,7 +823,7 @@ This example demonstrates how to apply a background blur effect to the pop-up wi
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA:string[] = ['Ann']
+  private arrayA: string[] = ['Ann']
   private arrayB: string[] = ['Ben', 'Bob']
   private arrayC: string[] = ['Calvin', 'Cameron', 'Charlie', 'Charlotte']
   private arrayL: string[] = ['Daisy', 'Daniel', 'Darla', 'David', 'Derek', 'Dorothy', 'Duke']

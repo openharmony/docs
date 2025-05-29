@@ -59,6 +59,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_TextInputType](#inputmethod_textinputtype) | 文本输入类型。 | 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) | 私有数据类型。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) | 输入法错误码。 | 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | 请求键盘输入原因。 | 
 
 
 ### 枚举
@@ -69,9 +70,10 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_EnterKeyType](#inputmethod_enterkeytype) {<br/>IME_ENTER_KEY_UNSPECIFIED = 0,<br/>IME_ENTER_KEY_NONE = 1,<br/>IME_ENTER_KEY_GO = 2,<br/>IME_ENTER_KEY_SEARCH = 3,<br/>IME_ENTER_KEY_SEND = 4,<br/>IME_ENTER_KEY_NEXT = 5,<br/>IME_ENTER_KEY_DONE = 6,<br/>IME_ENTER_KEY_PREVIOUS = 7,<br/>IME_ENTER_KEY_NEWLINE = 8<br/>} | 回车键功能类型。 | 
 | [InputMethod_Direction](#inputmethod_direction) {<br/>IME_DIRECTION_NONE = 0,<br/>IME_DIRECTION_UP = 1,<br/>IME_DIRECTION_DOWN = 2,<br/>IME_DIRECTION_LEFT = 3,<br/>IME_DIRECTION_RIGHT = 4<br/>} | 移动方向。 | 
 | [InputMethod_ExtendAction](#inputmethod_extendaction) {<br/>IME_EXTEND_ACTION_SELECT_ALL = 0,<br/>IME_EXTEND_ACTION_CUT = 3,<br/>IME_EXTEND_ACTION_COPY = 4,<br/>IME_EXTEND_ACTION_PASTE = 5<br/>} | 编辑框中文本的扩展编辑操作类型。 | 
-| [InputMethod_TextInputType](#inputmethod_textinputtype) {<br/>IME_TEXT_INPUT_TYPE_NONE = -1,<br/>IME_TEXT_INPUT_TYPE_TEXT = 0,<br/>IME_TEXT_INPUT_TYPE_MULTILINE = 1,<br/>IME_TEXT_INPUT_TYPE_NUMBER = 2,<br/>IME_TEXT_INPUT_TYPE_PHONE = 3,<br/>IME_TEXT_INPUT_TYPE_DATETIME = 4,<br/>IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS = 5,<br/>IME_TEXT_INPUT_TYPE_URL = 6,<br/>IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD = 7,<br/>IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD = 8,<br/>IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,<br/>IME_TEXT_INPUT_TYPE_USER_NAME = 10,<br/>IME_TEXT_INPUT_TYPE_NEW_PASSWORD = 11,<br/>IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12<br/>} | 文本输入类型。 | 
+| [InputMethod_TextInputType](#inputmethod_textinputtype) {<br/>IME_TEXT_INPUT_TYPE_NONE = -1,<br/>IME_TEXT_INPUT_TYPE_TEXT = 0,<br/>IME_TEXT_INPUT_TYPE_MULTILINE = 1,<br/>IME_TEXT_INPUT_TYPE_NUMBER = 2,<br/>IME_TEXT_INPUT_TYPE_PHONE = 3,<br/>IME_TEXT_INPUT_TYPE_DATETIME = 4,<br/>IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS = 5,<br/>IME_TEXT_INPUT_TYPE_URL = 6,<br/>IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD = 7,<br/>IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD = 8,<br/>IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,<br/>IME_TEXT_INPUT_TYPE_USER_NAME = 10,<br/>IME_TEXT_INPUT_TYPE_NEW_PASSWORD = 11,<br/>IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12,<br/>IME_TEXT_INPUT_TYPE_ONE_TIME_CODE = 13<br/>} | 文本输入类型。 | 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) {<br/>IME_COMMAND_VALUE_TYPE_NONE = 0,<br/>IME_COMMAND_VALUE_TYPE_STRING = 1,<br/>IME_COMMAND_VALUE_TYPE_BOOL = 2,<br/>IME_COMMAND_VALUE_TYPE_INT32 = 3<br/>} | 私有数据类型。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) {<br/>IME_ERR_OK = 0, IME_ERR_UNDEFINED = 1,<br/>IME_ERR_PARAMCHECK = 401,<br/>IME_ERR_PACKAGEMANAGER = 12800001,<br/>IME_ERR_IMENGINE = 12800002,<br/>IME_ERR_IMCLIENT = 12800003,<br/>IME_ERR_CONFIG_PERSIST = 12800005,<br/>IME_ERR_CONTROLLER = 12800006,<br/>IME_ERR_SETTINGS = 12800007,<br/>IME_ERR_IMMS = 12800008,<br/>IME_ERR_DETACHED = 12800009,<br/>IME_ERR_NULL_POINTER = 12802000,<br/>IME_ERR_QUERY_FAILED = 12802001<br/>} | 输入法错误码。 | 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) {<br/>IME_REQUEST_REASON_NONE = 0,<br/>IME_REQUEST_REASON_MOUSE = 1,<br/>IME_REQUEST_REASON_TOUCH = 2,<br/>IME_REQUEST_REASON_OTHER = 20<br/>} | 请求键盘输入原因。 | 
 
 
 ### 函数
@@ -79,8 +81,10 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | 名称 | 描述 | 
 | -------- | -------- |
 | [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_Create](#oh_attachoptions_create) (bool showKeyboard) | 创建一个新的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
+| [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_CreateWithRequestKeyboardReason](#oh_attachoptions_createwithrequestkeyboardreason) (bool showKeyboard, [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) requestKeyboardReason) | 创建一个新的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
 | void [OH_AttachOptions_Destroy](#oh_attachoptions_destroy) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | 销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_IsShowKeyboard](#oh_attachoptions_isshowkeyboard) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, bool \*showKeyboard) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取是否显示键盘的值。 | 
+| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_GetRequestKeyboardReason](#oh_attachoptions_getrequestkeyboardreason) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, int \*requestKeyboardReason) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取是否显示键盘的值。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*textEditorProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*\*inputMethodProxy) | 将应用绑定到输入法服务。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Detach](#oh_inputmethodcontroller_detach) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | 将应用从输入法服务解绑。 | 
 | [InputMethod_CursorInfo](#inputmethod_cursorinfo) \* [OH_CursorInfo_Create](#oh_cursorinfo_create) (double left, double top, double width, double height) | 创建一个新的[InputMethod_CursorInfo](#inputmethod_cursorinfo)实例。 | 
@@ -88,6 +92,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_CursorInfo_SetRect](#oh_cursorinfo_setrect) ([InputMethod_CursorInfo](#inputmethod_cursorinfo) \*cursorInfo, double left, double top, double width, double height) | 设置光标信息内容。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_CursorInfo_GetRect](#oh_cursorinfo_getrect) ([InputMethod_CursorInfo](#inputmethod_cursorinfo) \*cursorInfo, double \*left, double \*top, double \*width, double \*height) | 获取光标信息内容。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_ShowKeyboard](#oh_inputmethodproxy_showkeyboard) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | 显示键盘。 | 
+| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_ShowTextInput](#oh_inputmethodproxy_showtextinput) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | 显示文本输入。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_HideKeyboard](#oh_inputmethodproxy_hidekeyboard) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | 隐藏键盘。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_NotifySelectionChange](#oh_inputmethodproxy_notifyselectionchange) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, char16_t text[], size_t length, int start, int end) | 通知文本框选区变化。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodProxy_NotifyConfigurationChange](#oh_inputmethodproxy_notifyconfigurationchange) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy, [InputMethod_EnterKeyType](#inputmethod_enterkeytype) enterKey, [InputMethod_TextInputType](#inputmethod_textinputtype) textType) | 通知输入框配置变化。 | 
@@ -124,6 +129,10 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetTextAvoidInfo](#oh_textconfig_gettextavoidinfo) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, [InputMethod_TextAvoidInfo](#inputmethod_textavoidinfo) \*\*avoidInfo) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的避让信息。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetSelection](#oh_textconfig_getselection) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, int32_t \*start, int32_t \*end) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的选区范围信息。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextConfig_GetWindowId](#oh_textconfig_getwindowid) ([InputMethod_TextConfig](#inputmethod_textconfig) \*config, int32_t \*windowId) | 获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_SetPlaceholder](_input_method.md#oh_textconfig_setplaceholder) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, const char16_t \*placeholder, size_t length) | 设置[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例的占位符文本信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_SetAbilityName](_input_method.md#oh_textconfig_setabilityname) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, const char16_t \*abilityName, size_t length) | 设置[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例的ability名称信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_GetPlaceholder](_input_method.md#oh_textconfig_getplaceholder) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, char16_t \*placeholder,size_t \*length) | 获取[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例占位文本信息。 | 
+| [InputMethod_ErrorCode](_input_method.md#inputmethod_errorcode) [OH_TextConfig_GetAbilityName](_input_method.md#oh_textconfig_getabilityname) ([InputMethod_TextConfig](_input_method.md#inputmethod_textconfig) \*config, char16_t \*abilityName,size_t \*length) | 获取[InputMethod_TextConfig](_input_method.md#inputmethod_textconfig)实例ability名称信息。 | 
 | [InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \* [OH_TextEditorProxy_Create](#oh_texteditorproxy_create) () | 创建一个新的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。 | 
 | void [OH_TextEditorProxy_Destroy](#oh_texteditorproxy_destroy) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*proxy) | 销毁一个[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_TextEditorProxy_SetGetTextConfigFunc](#oh_texteditorproxy_setgettextconfigfunc) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*proxy, [OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc) getTextConfigFunc) | 将函数[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。 | 
@@ -237,6 +246,19 @@ typedef enum InputMethod_ErrorCode InputMethod_ErrorCode
 输入法错误码。
 
 **起始版本：** 12
+
+
+### InputMethod_RequestKeyboardReason
+
+```
+typedef enum InputMethod_RequestKeyboardReason InputMethod_RequestKeyboardReason
+```
+
+**描述**
+
+请求键盘输入原因。
+
+**起始版本：** 15
 
 
 ### InputMethod_ExtendAction
@@ -643,7 +665,7 @@ typedef void(* OH_TextEditorProxy_SendEnterKeyFunc) (InputMethod_TextEditorProxy
 | 名称 | 描述 | 
 | -------- | -------- |
 | textEditorProxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
-| enterKeyType | 回车键类型，具体定义详见[InputMethod_EnterKeyType](#inputmethod_enterkeytype)。 | 
+| enterKeyType | 回车键类型，具体定义详见[InputMethod_EnterKeyType](#inputmethod_enterkeytype-1)。 | 
 
 
 ### OH_TextEditorProxy_SendKeyboardStatusFunc
@@ -834,6 +856,26 @@ enum InputMethod_KeyboardStatus
 | IME_KEYBOARD_STATUS_SHOW | 键盘状态为显示。 | 
 
 
+### InputMethod_RequestKeyboardReason
+
+```
+enum InputMethod_RequestKeyboardReason
+```
+
+**描述**
+
+请求键盘输入原因。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| IME_REQUEST_REASON_NONE | 表示没有特定原因触发键盘请求。 | 
+| IME_REQUEST_REASON_MOUSE | 表示键盘请求是由鼠标操作触发。 |
+| IME_REQUEST_REASON_TOUCH | 表示键盘请求是由触摸操作触发。 | 
+| IME_REQUEST_REASON_OTHER | 表示键盘请求是由其他原因触发。 | 
+
+
 ### InputMethod_TextInputType
 
 ```
@@ -861,7 +903,8 @@ enum InputMethod_TextInputType
 | IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD | 锁屏密码类型。 | 
 | IME_TEXT_INPUT_TYPE_USER_NAME | 用户名类型。 | 
 | IME_TEXT_INPUT_TYPE_NEW_PASSWORD | 新密码类型。 | 
-| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | NUMBER DECIMAL. | 
+| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | 带小数点的数字类型。| 
+| IME_TEXT_INPUT_TYPE_ONE_TIME_CODE | 验证码类型。 | 
 
 
 ## 函数说明
@@ -890,6 +933,30 @@ InputMethod_AttachOptions* OH_AttachOptions_Create (bool showKeyboard)
 如果创建成功，返回一个指向新创建的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例的指针。 如果创建失败，对象返回NULL，可能的失败原因有应用地址空间满。
 
 
+### OH_AttachOptions_CreateWithRequestKeyboardReason()
+
+```
+InputMethod_AttachOptions* OH_AttachOptions_CreateWithRequestKeyboardReason (bool showKeyboard, InputMethod_RequestKeyboardReason requestKeyboardReason)
+```
+
+**描述**
+
+创建一个新的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| showKeyboard | 表示是否显示键盘。 | 
+| requestKeyboardReason | 表示请求键盘输入原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 | 
+
+**返回：**
+
+如果创建成功，返回一个指向新创建的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例的指针。 如果创建失败，对象返回NULL，失败原因可能是应用地址空间已满。
+
+
 ### OH_AttachOptions_Destroy()
 
 ```
@@ -898,7 +965,7 @@ void OH_AttachOptions_Destroy (InputMethod_AttachOptions * options)
 
 **描述**
 
-销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例.
+销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。
 
 **起始版本：** 12
 
@@ -926,7 +993,37 @@ InputMethod_ErrorCode OH_AttachOptions_IsShowKeyboard (InputMethod_AttachOptions
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 表示被读取值的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
-| showKeyboard | 表示绑定时是否显示键盘。 true - 表示绑定完成时需要显示键盘。 false - 表示绑定完成时不需要显示键盘. | 
+| showKeyboard | 表示绑定时是否显示键盘。 true表示绑定完成时需要显示键盘； false表示绑定完成时不需要显示键盘。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_AttachOptions_GetRequestKeyboardReason()
+
+```
+InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason (InputMethod_AttachOptions * options, int * requestKeyboardReason )
+```
+
+**描述**
+
+从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取输入法键盘拉起原因。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示被读取值的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
+| requestKeyboardReason |  表示请求键盘输入原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 |  
 
 **返回：**
 
@@ -1172,8 +1269,8 @@ InputMethod_ErrorCode OH_InputMethodProxy_NotifyConfigurationChange (InputMethod
 | 名称 | 描述 | 
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
-| enterKey | 回车键类型。 | 
-| textType | 输入框类型。 | 
+| enterKey | 回车键类型，具体定义详见[InputMethod_EnterKeyType](#inputmethod_enterkeytype-1)。 | 
+| textType | 输入框类型，具体定义详见[InputMethod_TextInputType](#inputmethod_textinputtype-1)。 | 
 
 **返回：**
 
@@ -1293,7 +1390,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand (InputMethod_InputM
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
 | privateCommand | 私有命令, 定义在[InputMethod_PrivateCommand](#inputmethod_privatecommand)，最大大小为32KB。 | 
-| size | 私有命令的大小. 最大大小为5。 | 
+| size | 私有命令的大小。最大大小为5。 | 
 
 **返回：**
 
@@ -1331,6 +1428,44 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowKeyboard (InputMethod_InputMethodP
 | 名称 | 描述 | 
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 表示参数错误。
+
+IME_ERR_IMCLIENT - 输入法客户端错误。
+
+IME_ERR_IMMS - 表示输入法服务错误。
+
+IME_ERR_DETACHED - 未绑定输入法。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考[InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_InputMethodProxy_ShowTextInput()
+
+```
+InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput (InputMethod_InputMethodProxy * inputMethodProxy, InputMethod_AttachOptions *options)
+```
+
+**描述**
+
+显示文本输入。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
+| options |  表示指向[InputMethod_AttachOptions](#inputmethod_attachoptions)实例的指针，是绑定时的选项。 | 
 
 **返回：**
 
@@ -1913,7 +2048,7 @@ InputMethod_ErrorCode OH_TextConfig_GetEnterKeyType (InputMethod_TextConfig * co
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| enterKeyType | 输入框的回车键功能类型。 | 
+| enterKeyType | 输入框的回车键功能类型，具体定义详见[InputMethod_EnterKeyType](#inputmethod_enterkeytype-1)。 | 
 
 **返回：**
 
@@ -1943,7 +2078,7 @@ InputMethod_ErrorCode OH_TextConfig_GetInputType (InputMethod_TextConfig * confi
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| inputType | 输入框的输入类型。 | 
+| inputType | 输入框的输入类型，具体定义详见[InputMethod_TextInputType](#inputmethod_textinputtype-1)。 | 
 
 **返回：**
 
@@ -2093,7 +2228,7 @@ InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType (InputMethod_TextConfig * co
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| enterKeyType | 回车键功能类型。 | 
+| enterKeyType | 回车键功能类型，具体定义详见[InputMethod_EnterKeyType](#inputmethod_enterkeytype-1)。 | 
 
 **返回：**
 
@@ -2123,7 +2258,7 @@ InputMethod_ErrorCode OH_TextConfig_SetInputType (InputMethod_TextConfig * confi
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| inputType | 输入框的输入类型。 | 
+| inputType | 输入框的输入类型，具体定义详见[InputMethod_TextInputType](#inputmethod_textinputtype-1)。| 
 
 **返回：**
 
@@ -3157,6 +3292,131 @@ InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc (InputMethod_Text
 返回一个特定的错误码。
 
 IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_SetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetPlaceholder (InputMethod_TextConfig * config, const char16_t *placeholder,
+    size_t length )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的占位符文本信息。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。| 
+| placeholder | 指向UTF-16编码的双字节指针；若传空指针，则会将占位文本信息设置为空字符串。| 
+| length | placeholder指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。 <br>1. 如果长度为0，占位文本信息会被设置为空字符串。<br>2. UTF-16编码的最大长度为255个字符（如果最后一位是字符串结尾符，不包含在计数中），超过255个字符数将会被截断。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_SetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig * config, const char16_t *abilityName, size_t length )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的ability名称。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| abilityName | 指向UTF-16编码的双字节指针；若传空指针，则会将ability名称设置为空字符串。| 
+| length |  abilityName指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。<br>1. 如果长度为0，ability名称会被设置为空字符串。<br>2. UTF-16编码的最大长度为127个字符（如果最后一位是字符串结尾符，不包含在计数中），超过127个字符数将会被截断。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetPlaceholder()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetPlaceholder (InputMethod_TextConfig * config, char16_t *placeholder, size_t *length )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例占位文本信息。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| placeholder | 用于存放占位文本信息，该指针内存由调用者维护。| 
+| length | 占位文本信息长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表placeholder指向的内存可用长度。作为出参，代表实际的占位文本长度。<br>2. 如果placeholder为空指针，且length指向有效内存，则length会被填充实际的占位文本长度。接口会返错。<br>3. 如果placeholder和length都指向有效内存，但length传入的长度小于实际的占位文本长度，则length会被填充实际的占位文本长度。接口会返错。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetAbilityName()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * config, char16_t *abilityName, size_t *length )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例ability名称。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| abilityName | 用于存放ability名称信息，该指针内存由调用者维护。| 
+| length | ability名称长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的ability名称长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的ability名称长度。接口会返错。<br>3. 如果abilityName和length都指向有效内存，但length传入的长度小于实际的ability名称长度，则length会被填充实际的占位文本长度。接口会返错。| 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_PARAMCHECK - 参数检查失败。
 
 IME_ERR_NULL_POINTER - 非预期的空指针。
 

@@ -13,7 +13,7 @@ The **inputMethod** module is oriented to common foreground applications (third-
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## Constants
+## Constant
 
 Provides the constants.
 
@@ -792,26 +792,32 @@ Indicates whether the input method is enabled.
 | BASIC_MODE  | 1 |Basic mode.|
 | FULL_EXPERIENCE_MODE  | 2 |Full experience mode.|
 
-## MessageHandler<sup>16+</sup>
+## RequestKeyboardReason<sup>15+</sup>
+
+Describes the reason for keyboard request.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name| Value|Description|
+| -------- | -------- |-------- |
+| NONE   | 0 |The keyboard request is triggered for no reason.|
+| MOUSE  | 1 |The keyboard request is triggered by a mouse operation.|
+| TOUCH  | 2 |The keyboard request is triggered by a touch operation.|
+| OTHER  | 20 |The keyboard request is triggered by other reasons.|
+
+## MessageHandler<sup>15+</sup>
 
 Represents a custom communication object.
 
 > **NOTE**
 >
-> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#messagehandleronmessage16) callback in this object is triggered.
+> You can register this object to receive custom communication data sent by the input method application. When the custom communication data is received, the [onMessage](#onmessage15) callback in this object is triggered.
 >
-> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> This object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
 >
-> If this object is unregistered, its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If this object is unregistered, its [onTerminated](#onterminated15) callback will be triggered.
 
-**System capability**: SystemCapability.MiscServices.InputMethodFramework
-
-| Name        | Type    | Optional| Description                              |
-| ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | No  | Callback triggered when an object terminates receiving custom communication data.          |
-| onMessage    | function | No  | Callback triggered when an object starts to receive custom communication data.|
-
-## MessageHandler.onMessage<sup>16+</sup>
+### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -837,8 +843,9 @@ Receives custom data sent by the input method application.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -852,7 +859,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+### onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -871,8 +878,9 @@ Listens for MessageHandler termination.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
             console.log('OnTerminated.');
         },
@@ -883,6 +891,46 @@ try {
     inputMethodController.recvMessage(messageHandler);
 } catch(err) {
   console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## SetPreviewTextCallback<sup>18+</sup>
+
+type SetPreviewTextCallback = (text: string, range: Range) => void
+
+Callback triggered when the input method framework needs to display the text preview.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name      | Type         | Mandatory| Description                         |
+| ------- | ----------------- | ---- | ----------------------------- |
+| text    | string            | Yes  | Text preview.                |
+| range   | [Range](#range10) | Yes  | Describes the range of the selected text.|
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -906,7 +954,7 @@ Attaches a self-drawing component to the input method. This API uses an asynchro
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- The value **true** means to start the input method keyboard, and **false** means the opposite.|
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
 | textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -960,7 +1008,7 @@ Attaches a self-drawing component to the input method. This API uses a promise t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- The value **true** means to start the input method keyboard, and **false** means the opposite.|
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
 | textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
 
 **Return value**
@@ -992,6 +1040,67 @@ try {
     }
   };
   inputMethodController.attach(true, textConfig).then(() => {
+    console.log('Succeeded in attaching inputMethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to attach: ${JSON.stringify(err)}`);
+}
+```
+
+### attach<sup>15+</sup>
+
+attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+Attaches a self-drawing component to the input method. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> An input method can use the following features only when it has a self-drawing component attached to it: showing or hiding the keyboard, updating the cursor information, changing the selection range of the edit box, saving the configuration information, and listening for and processing the information or commands sent by the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| showKeyboard | boolean | Yes| Whether to start the input method keyboard after the self-drawing component is attached to the input method.<br>- **true** means to start the input method keyboard.<br>- **false** means not to start the input method keyboard.|
+| textConfig | [TextConfig](#textconfig10) | Yes| Configuration of the edit box.|
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | Yes| Reason for keyboard request.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+
+  let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+  inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
     console.log('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -1077,6 +1186,54 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
+  console.log('Succeeded in showing text input.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+});
+```
+
+### showTextInput<sup>15+</sup>
+
+showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+Enters the text editing mode. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> After the edit box is attached to an input method, this API can be called to start the soft keyboard and enter the text editing state.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | Yes| Reason for keyboard request.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client detached. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+inputMethodController.showTextInput(requestKeyboardReason).then(() => {
   console.log('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
@@ -1891,7 +2048,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -1945,7 +2102,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void
 
@@ -1953,9 +2110,9 @@ Registers or unregisters MessageHandler.
 
 > **NOTE**
 >
-> The [MessageHandler](#messagehandler16) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#messagehandleronterminated16) callback of the penultimate registered object is triggered.
+> The [MessageHandler](#messagehandler15) object is globally unique. After multiple registrations, only the last registered object is valid and retained, and the [onTerminated](#onterminated15) callback of the penultimate registered object is triggered.
 >
-> If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.
+> If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +2120,7 @@ Registers or unregisters MessageHandler.
 
 | Name    | Type                               | Mandatory| Description                                                        |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | No  | This object receives custom communication data from the input method application through [onMessage](#messagehandleronmessage16) and receives a message for terminating the subscription to this object through [onTerminated](#messagehandleronterminated16). If no parameter is set, unregister [MessageHandler](#messagehandler16). Its [onTerminated](#messagehandleronterminated16) callback will be triggered.|
+| msgHandler | [MessageHandler](#messagehandler15) | No  | This object receives custom communication data from the input method application through [onMessage](#onmessage15) and receives a message for terminating the subscription to this object through [onTerminated](#onterminated15).<br>If no parameter is set, unregister [MessageHandler](#messagehandler15). Its [onTerminated](#onterminated15) callback will be triggered.|
 
 **Return value**
 
@@ -2846,6 +3003,188 @@ try {
 }
 ```
 
+### on('setPreviewText')<sup>18+</sup>
+
+on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
+
+Subscribes to the event for text preview operations in an input method application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Event type, which is **'setPreviewText'**.|
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | Yes  | Callback used to return the result. It is used to receive and return the text preview.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### off('setPreviewText')<sup>18+</sup>
+
+off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
+
+Unsubscribes from the event for text preview operations in an input method application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'setPreviewText'**.|
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback18) | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // Cancel only the callback1 of setPreviewText.
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // Cancel all callbacks of setPreviewText.
+  inputMethodController.off('setPreviewText');
+  console.log(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### on('finishTextPreview')<sup>18+</sup>
+
+on(type: 'finishTextPreview', callback: Callback&gt;void&gt;): void
+
+Subscribes to the event of finishing text preview. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description    |
+| -------- | ----- | ---- | ------ |
+| type     | string  | Yes  | Event type, which is **'finishTextPreview'**.|
+| callback | Callback&lt;void&gt; | Yes  | Callback used to return the result. It is used to process the logic of finishing text preview. Return type: void|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                            |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**Example**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // Cancel only the callback1 of finishTextPreview.
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // Cancel all callbacks of finishTextPreview.
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
+### off('finishTextPreview')<sup>18+</sup>
+
+off(type: 'finishTextPreview', callback?: Callback&gt;void&gt;): void
+
+Unsubscribes from the event of finishing text preview. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'finishTextPreview'**.|
+| callback | Callback&lt;void&gt; | No | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Example**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // Cancel only the callback1 of finishTextPreview.
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // Cancel all callbacks of finishTextPreview.
+  inputMethodController.off('finishTextPreview');
+  console.log(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 In the following API examples, you must first use [getSetting](#inputmethodgetsetting9) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
@@ -3542,7 +3881,7 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
 })
 ```
 
-### getInputMethodState<sup>16+</sup>
+### getInputMethodState<sup>15+</sup>
 
 getInputMethodState(): Promise&lt;EnabledState&gt;
 

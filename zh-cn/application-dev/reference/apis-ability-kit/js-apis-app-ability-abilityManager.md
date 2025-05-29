@@ -4,7 +4,7 @@ AbilityManager模块提供获取Ability相关信息和运行状态信息的能�
 
 > **说明：**
 >
-> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 
-## getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
@@ -47,7 +47,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |

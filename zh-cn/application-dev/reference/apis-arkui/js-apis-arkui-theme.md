@@ -1,4 +1,4 @@
-# @ohos.arkui.Theme(主题换肤)
+# @ohos.arkui.theme(主题换肤)
 
 支持自定义主题风格，实现App组件风格跟随Theme切换。
 
@@ -132,7 +132,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
 | 参数名       | 类型                           | 必填 | 说明             |
 |--------------|------------------------------|------|----------------|
-| theme | [CustomTheme](#customtheme)  | 是    | 表示设置的自定义主题风格 |
+| theme | [CustomTheme](#customtheme)  | 是    | 表示设置的自定义主题风格。 |
 
 **示例**
 

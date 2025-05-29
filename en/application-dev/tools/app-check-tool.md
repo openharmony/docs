@@ -13,7 +13,8 @@ The **app_check_tool.jar** package of the tool is stored in the **toolchains** d
 ![App check tool architecture](figures/app-check-tool-construct.png)
 
 ## Constraints
-The app check tool must run in Java 8 or later.
+- The app check tool must run in Java 8 or later.
+- The directory where the app check tool is running must have the read and write permissions.
 
 ## Scanning for Duplicate Files
 
@@ -135,7 +136,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | ------------- | ---------- | ------------------------------------------------------------------------- |
 | --input       | Yes        | Path of the HAP, HSP, or APP file.                                      |
 | --out-path    | Yes        | Path of the detection reports.                                                 |
-| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>**true**: Statistics collection is enabled.<br>**false**: Statistics collection is disabled.|
+| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>**true**: Scanning is enabled.<br>**false**: Scanning is disabled.|
 
 **Detection report in JSON format**
 

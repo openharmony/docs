@@ -1,4 +1,4 @@
-# Managing Global Audio Output Devices
+# Global Audio Output Device Management
 
 If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -9,9 +9,9 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import { audio } from '@kit.AudioKit';  // Import the audio module.
 
-let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
 
-let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
 ```
 
 ## Supported Audio Output Device Types
@@ -43,6 +43,10 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 ## Listening for Device Connection State Changes
 
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
+
+> **NOTE**
+>
+> The listener captures all changes in device connections. It is not recommended that the changes be used as a basis for handling automatic pausing in applications. If an application needs to manage services related to automatic pause, it should consider the [reasons behind changes in the audio stream output device](audio-output-device-change.md).
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -110,8 +114,8 @@ import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    rendererFlags: 0 // AudioRenderer flag.
 };
 
 async function getPreferOutputDeviceForRendererInfo() {
@@ -129,8 +133,8 @@ async function getPreferOutputDeviceForRendererInfo() {
 import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+    rendererFlags: 0 // AudioRenderer flag.
 };
 
 // Listen for changes of the output device with the highest priority.

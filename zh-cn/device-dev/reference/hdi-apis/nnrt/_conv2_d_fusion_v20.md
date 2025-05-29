@@ -15,7 +15,7 @@
 
 - weight，卷积的权重，要求weight排布为[outChannel，kernelHeight，kernelWidth，inChannel/group]， inChannel必须要能整除group。
 
-- bias，卷积的偏置，是长度为[outChannel]的数组。在量化场景下，bias 参数不需要量化参数，其量化 版本要求输入 int32 类型数据，实际量化参数由 x 和 weight 共同决定。
+- bias，卷积的偏置，是长度为[outChannel]的数组。在量化场景下，bias参数不需要量化参数，其量化版本要求输入int32类型数据，实际量化参数由x和weight共同决定。
 
 输出：
 

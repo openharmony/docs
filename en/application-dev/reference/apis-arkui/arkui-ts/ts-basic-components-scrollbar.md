@@ -1,6 +1,6 @@
 # ScrollBar
 
-The **ScrollBar** is used together with scrollable components, such as **List**, **Grid**, and **Scroll**.
+The **ScrollBar** component is designed to be used together with scrollable components such as [ArcList](ts-container-arclist.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [Scroll](ts-container-scroll.md), and [WaterFlow](ts-container-waterflow.md).
 
 >  **NOTE**
 >
@@ -28,11 +28,11 @@ ScrollBar(value: ScrollBarOptions)
 
 ## Properties
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
-## enableNestedScroll<sup>14+</sup>
+### enableNestedScroll<sup>14+</sup>
 
-enableNestedScroll(value: boolean)
+enableNestedScroll(enabled: Optional\<boolean>)
 
 Sets whether nested scrolling is enabled.
 
@@ -44,7 +44,7 @@ Sets whether nested scrolling is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether nested scrolling is enabled. The value **true** means that nested scrolling is enabled, and **false** means the opposite.<br>Default value: **false**|
+| enabled  | Optional\<boolean> | Yes  | Whether nested scrolling is enabled. The value **true** means that nested scrolling is enabled, and **false** means the opposite.<br>Default value: **false**|
 
 >  **NOTE**
 >

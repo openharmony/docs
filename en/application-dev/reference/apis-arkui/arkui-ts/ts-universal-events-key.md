@@ -29,12 +29,12 @@ Triggered when a key event occurs.
 | -------- | -------- |
 | T | Current component.|
 
-## onKeyEvent<sup>16+</sup>
+## onKeyEvent<sup>15+</sup>
 onKeyEvent(event: Callback\<KeyEvent, boolean>): T
 
 Triggered when a key operation is performed on the bound component after it obtains focus. If the callback returns **true**, the key event is considered handled.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ If the return value of this callback is **true**, the key event is considered co
 | -------- | -------- |
 | T | Current component.|
 
-## onKeyEventDispatch<sup>16+</sup>
+## onKeyEventDispatch<sup>15+</sup>
 
 onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
@@ -82,7 +82,7 @@ Triggered when the bound component receives a key event. The key event will not 
 
 If the callback returns **true**, the key event is considered consumed and will not bubble up to the parent component for further handling.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -112,7 +112,7 @@ If the callback returns **true**, the key event is considered consumed and will 
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |
-| metaKey                               | number                                   | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state.|
+| metaKey                               | number                                   | State of the Meta key (the key located next to the **Ctrl** key at the lower left corner of the keyboard, or the key marked with a window logo) when the key event occurs. The value **1** indicates that the Meta key is pressed, and **0** indicates that it is not pressed.|
 | timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
 | intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | Intention corresponding to the key.      |
@@ -127,7 +127,9 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## Example 1: Triggering the onKeyEvent Callback
+## Example
+
+### Example 1: Triggering the onKeyEvent Callback
 
 This example demonstrates how to set a key event on a button. When the button gains focus, the **onKeyEvent** callback is triggered.
 
@@ -161,7 +163,7 @@ struct KeyEventExample {
 
  ![keyEvent](figures/keyEvent.gif) 
 
-## Example 2: Obtaining Unicode Values
+### Example 2: Obtaining Unicode Values
 
 This example demonstrates how to obtain the Unicode value of the pressed key using the key event.
 
@@ -202,3 +204,38 @@ struct KeyEventExample {
 ```
 
 ![keyEvent](figures/keyEvent_unicode.gif) 
+
+### Example 3: Triggering the onKeyPreIme Callback
+
+This example demonstrates how to use the **onKeyPreIme** callback to intercept and disable the left arrow key in a text field.
+
+```ts
+import { KeyCode } from '@kit.InputKit';
+
+@Entry
+@Component
+struct PreImeEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
+  build() {
+    Column() {
+      Search({
+        placeholder: "Search..."
+      })
+        .width("80%")
+        .height("40vp")
+        .border({ radius:"20vp" })
+        .onKeyPreIme((event:KeyEvent) => {
+          // Prevent the left arrow key from working.
+          if (event.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
+            return true;
+          }
+          return false;
+        })
+    }
+  }
+}
+```

@@ -19,7 +19,7 @@
 | -------- | -------- |
 | int [capacity](#capacity) | 表示电池的电量百分比。  | 
 | int [voltage](#voltage) | 表示电池的电压。  | 
-| int [temperature](#temperature) | 表示电池的温度  | 
+| int [temperature](#temperature) | 表示电池的温度。  | 
 | int [healthState](#healthstate) | 表示电池的健康状态，详情可参考[BatteryHealthState](battery_v20.md#batteryhealthstate)。  | 
 | int [pluggedType](#pluggedtype) | 表示电池的充电设备类型，详情可参考[BatteryPluggedType](battery_v20.md#batterypluggedtype)。  | 
 | int [pluggedMaxCurrent](#pluggedmaxcurrent) | 表示电池的最大充电电流。  | 
@@ -32,7 +32,7 @@
 | int [remainEnergy](#remainenergy) | 表示电池的剩余容量。  | 
 | byte [present](#present) | 表示是否支持电池或者电池是否在位。  | 
 | String [technology](#technology) | 表示电池的技术型号。  | 
-| String [uevent](#uevent) | 事件名  | 
+| String [uevent](#uevent) | 事件名。  | 
 
 
 ## 类成员变量说明
@@ -165,7 +165,7 @@ int BatteryInfo::temperature
 ```
 **描述**
 
-表示电池的温度
+表示电池的温度。
 
 
 ### totalEnergy
@@ -185,7 +185,7 @@ String BatteryInfo::uevent
 ```
 **描述**
 
-事件名
+事件名。
 
 
 ### voltage

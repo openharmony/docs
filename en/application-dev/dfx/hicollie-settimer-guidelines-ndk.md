@@ -3,6 +3,7 @@
 HiCollie provides APIs for detecting the function execution timeout events.
 
 ## Available APIs
+
 | API                         | Description                             |
 | ------------------------------  | --------------------------------- |
 | OH_HiCollie_SetTimer | Enables a timer for checking the function execution duration. Use this function before calling a time-consuming function or code block.         |
@@ -10,12 +11,14 @@ HiCollie provides APIs for detecting the function execution timeout events.
 
 > **NOTE**
 >
-> You can obtain the function execution timeout logs in the following paths: 1. The **APP_HICOLLIE-*process ID*-*time*.log** file in **device/data/log/eventlog/**. 2. The **syswarning-*bundle name*-*application UID*-*second-level time*** file in **device/data/log/faultlog/faultlogger/**.
+> You can obtain the function execution timeout log in the following paths:
+> 1. The **APP_HICOLLIE-*process ID*-*time*.log** file in **device/data/log/eventlog/**.
+> 2. 2. The **syswarning-*bundle name*-*application UID*-*second-level time*** file in **device/data/log/faultlog/faultlogger/**.
 
-
-For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md).
+For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
 
 ## How to Develop
+
 The following describes how to add a button in the application and click the button to call the HiCollie APIs.
 
 1. Create a native C++ project. The directory structure is as follows:
@@ -128,5 +131,8 @@ The following describes how to add a button in the application and click the but
 
 6. Click the **Run** button in DevEco Studio to run the project.
 
-7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**. Click the **testHiCollieTimerNdk** button to execute the program. In the log window, the task ID is displayed. After 2 seconds, the callback content is displayed.
+7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
+   
+   Click the **testHiCollieTimerNdk** button to execute the program. In the log window, the task ID is displayed. After 2 seconds, the callback content is displayed.
+   
    The timeout logs are stored in: **data/log/eventlog/APP_HICOLLIE-*process ID*-*time*.log** and **syswarning-*bundle name*-*application UID*-*second-level time***.

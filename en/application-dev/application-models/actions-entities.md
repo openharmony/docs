@@ -4,9 +4,9 @@
 >
 > Due to the generalized use of the fields **action** and **entities**, the system lacks control over the behavior of applications declaring **action** and **entities**. This loophole allows malicious applications to make false declarations, hijacking traffic and rendering post-redirection features inoperative. As such, the system intends to deprecate unnecessary **action** and **entities**. You are advised to [start an application of the specified type](./start-intent-panel.md).
 
-The **action** field specifies the common operation (such as viewing, sharing, and application details) to be performed by the caller. In implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md), you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data, for example, viewing URI data. For example, if the URI is a website and the action is **ACTION_VIEW_DATA**, the application component that supports access to the website is matched. Declaring the **action** field in Want indicates that the invoked application should support the declared operation. The **actions** field under **skills** in the configuration file indicates the operations supported by the application.
+The **action** field specifies the common operation (such as viewing, sharing, and application details) to be performed by the caller. In implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md), you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data, for example, viewing URI data. For example, if the URI is a website and the action is **ACTION_VIEW_DATA**, the application component that supports access to the website is matched. Declaring the **action** field in Want indicates that the invoked application should support the declared operation. The **actions** field under [skills](../quick-start/module-configuration-file.md#skills) in the configuration file indicates the operations supported by the application. Common **actions** values are as follows. For details, see [action](../reference/apis-ability-kit/js-apis-ability-wantConstant.md#action).
 
-The following **action** values are available:
+**Common action values**
 
 
 - **ACTION_HOME**: action of starting the application entry component. It must be used together with **ENTITY_HOME**. The application icon on the home screen is an explicit entry component. Users can touch the icon to start the entry component. Multiple entry components can be configured for an application.
@@ -17,9 +17,9 @@ The following **action** values are available:
 
 - **ACTION_VIEW_MULTIPLE_DATA**: action of launching the UI for sending multiple data records.
 
-The **entities** field specifies the additional category information (such as browser and video player) of the target component. It is a supplement to action in implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md). You can define this field to filter application categories, for example, browser. Declaring the **entities** field in Want indicates that the invoked application should belong to the declared category. The **entities** field under **skills** in the configuration file indicates the categories supported by the application.
+The **entities** field specifies the additional category information (such as browser and video player) of the target component. It is a supplement to action in implicit [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md). You can define this field to filter application categories, for example, browser. Declaring the **entities** field in Want indicates that the invoked application should belong to the declared category. The **entities** field under [skills](../quick-start/module-configuration-file.md#skills) in the configuration file indicates the categories supported by the application. Common **entities** values are as follows. For details, see [entity](../reference/apis-ability-kit/js-apis-ability-wantConstant.md#entity).
 
-The following **entities** values are available:
+**Common entities values**
 
 
 - **ENTITY_DEFAULT**: default category, which is meaningless.

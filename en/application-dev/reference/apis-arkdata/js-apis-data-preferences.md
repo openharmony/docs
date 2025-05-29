@@ -4,7 +4,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
-The persistent files of user preferences are stored in the [preferencesDir](../../../application-dev/application-models/application-context-stage.md#obtaining-application-file-path) directory. Before creating a preferences object, ensure that the **preferencesDir** path can be read and written. The [encryption level](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) of the persistent file path affects the read and write permissions on the file. For details, see [Application File Directory and Application File Path](../../../application-dev/file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path).
+The user preference persistent files are stored in the [preferencesDir](../../application-models/application-context-stage.md#obtaining-application-file-path) directory. Before creating a preferences object, ensure that the **preferencesDir** directory is readable and writeable. The [encryption level](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) of the persistent file directory determines the access to the files. For details, see [Application File Directory and Application File Path](../../file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path).
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ import { preferences } from '@kit.ArkData';
 
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum key length, which is 1024 bytes.    |
 | MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 MB.|
 
 
@@ -54,7 +54,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -131,7 +131,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -202,7 +202,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                  |
 | 15501001 | The operations is supported in stage mode only. |
@@ -286,7 +286,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only. |
@@ -367,7 +367,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only.   |
@@ -433,7 +433,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete the user preferences persistence file. |
 
@@ -511,7 +511,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete the user preferences persistence file. |
 
@@ -582,7 +582,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete the user preferences persistence file. |
@@ -666,7 +666,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15500010 | Failed to delete the user preferences persistence file. |
@@ -721,7 +721,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -743,7 +743,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -792,7 +792,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -819,7 +819,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -866,7 +866,7 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -887,7 +887,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -921,7 +921,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -943,7 +943,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only. |
@@ -997,7 +997,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -1024,7 +1024,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only. |
@@ -1076,7 +1076,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
-After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
@@ -1097,7 +1097,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
 | 15501001 | The operations is supported in stage mode only.   |
@@ -1130,17 +1130,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## StorageType<sup>16+</sup>
+## StorageType<sup>18+</sup>
 Enumerates the storage types of preferences.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 | Name| Value  | Description|
 | ---- | ---- | ---- |
 | XML |  0    | XML, which is the default storage mode of preferences.<br> In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
-| CLKV |  1    |CLKV.<br> Data is stored in CLKV database mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
+| GSKV |  1    |GSKV.<br> Data is stored in GSKV mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
 
 
 > **NOTE**
@@ -1149,14 +1149,12 @@ Enumerates the storage types of preferences.
 >   - Data cannot be directly migrated between the **Preferences** instances that use different storage types. To migrate data between them, you need to read the data to be migrated and then write the data.
 >   - If you need to change the storage directory of preferences, you cannot move or overwrite files. Instead, you need to read the data and then write the data.
 
-## preferences.isStorageTypeSupported<sup>16+</sup>
+## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
-Checks whether the specified storage type is supported. This API returns the result synchronously.
+Checks whether the specified storage type is supported. This API returns the result synchronously. If the storage type is supported, **true** is returned. Otherwise, **false** is returned.
 
-If the storage type is supported, **true** is returned. Otherwise, **false** is returned.
-
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1164,7 +1162,7 @@ If the storage type is supported, **true** is returned. Otherwise, **false** is 
 
 | Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type | [StorageType](#storagetype16)               | Yes  | Storage type to check.|
+| type | [StorageType](#storagetype18)               | Yes  | Storage type to check.|
 
 **Return value**
 
@@ -1178,21 +1176,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error: Incorrect parameter types.  |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
 
 
 **Example**
 
 ```ts
 let xmlType = preferences.StorageType.XML;
-let clkvType = preferences.StorageType.CLKV;
+let gskvType = preferences.StorageType.GSKV;
 let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
-let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
 console.info("Is xml supported in current platform: " + isXmlSupported);
-console.info("Is clkv supported in current platform: " + isClkvSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
-## Options<sup>10+</sup> 
+## Options<sup>10+</sup>
 
 Represents the configuration of a **Preferences** instance.
 
@@ -1200,9 +1198,9 @@ Represents the configuration of a **Preferences** instance.
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| name        | string | Yes  | Name of the **Preferences** instance.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
+| name        | string | Yes  | Name of the **Preferences** instance. It must be longer than 0 bytes and less than or equal to 255 bytes, and cannot contain or end with slashes (/).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
 | dataGroupId | string\|null\|undefined | No  | Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>|
-| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>|
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.<br>|
 
 
 ## Preferences
@@ -1236,7 +1234,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1282,7 +1280,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1327,7 +1325,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1338,7 +1336,7 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
 Obtains all KV pairs from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
@@ -1501,7 +1499,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1554,7 +1552,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1600,7 +1598,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1633,7 +1631,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1683,7 +1681,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1732,7 +1730,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1770,7 +1768,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1816,7 +1814,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1855,7 +1853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -1873,7 +1871,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
   > **NOTE**
   >
-  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
+  > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1917,7 +1915,7 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
   > **NOTE**
   >
-  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
+  > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1958,7 +1956,7 @@ Flushes the data in the cached **Preferences** instance to the persistent file.
 
   > **NOTE**
   >
-  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
+  > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -2100,7 +2098,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2153,7 +2151,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | -------------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
 | 15500019 | Failed to obtain the subscription service. |
 
@@ -2204,7 +2202,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2214,11 +2212,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2254,7 +2252,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2302,7 +2300,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2348,7 +2346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **Example**
@@ -2358,11 +2356,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);

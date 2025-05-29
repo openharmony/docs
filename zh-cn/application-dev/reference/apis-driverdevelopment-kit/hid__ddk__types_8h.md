@@ -5,7 +5,11 @@
 
 提供HID DDK中的枚举变量与结构体定义。
 
-引用文件：&lt;hid/hid_ddk_types.h&gt;
+**引用文件：**&lt;hid/hid_ddk_types.h&gt;
+
+**库：** libhid.z.so
+
+**系统能力：** SystemCapability.Driver.HID.Extension
 
 **起始版本：** 11
 

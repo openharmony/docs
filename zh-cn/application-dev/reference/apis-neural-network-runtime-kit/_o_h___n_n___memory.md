@@ -11,8 +11,9 @@
 
 **替代：** 推荐使用[NN_Tensor](_neural_network_runtime.md#nn_tensor)。
 
-**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
+**相关模块：**[NeuralNetworkRuntime](_neural_network_runtime.md)
 
+**所在头文件：**[neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## 汇总
 
@@ -21,8 +22,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| void \*const [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请 | 
-| const size_t [length](#length) | 记录共享内存的字节长度 | 
+| void \*const [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 | 
+| const size_t [length](#length) | 记录共享内存的字节长度。 | 
 
 
 ## 结构体成员变量说明
@@ -36,7 +37,7 @@ void* const OH_NN_Memory::data
 
 **描述**
 
-指向共享内存的指针，该共享内存通常由底层硬件驱动申请
+指向共享内存的指针，该共享内存通常由底层硬件驱动申请。
 
 
 ### length
@@ -47,4 +48,4 @@ const size_t OH_NN_Memory::length
 
 **描述**
 
-记录共享内存的字节长度
+记录共享内存的字节长度。

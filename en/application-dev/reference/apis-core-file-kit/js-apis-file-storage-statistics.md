@@ -16,7 +16,7 @@ import  { storageStatistics } from '@kit.CoreFileKit';
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-Obtains the storage space of this application, in bytes. This API uses a promise to return the result.
+Obtains the storage space (in bytes) of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -51,7 +51,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
-Obtains the storage space of this application, in bytes. This API uses an asynchronous callback to return the result.
+Obtains the storage space (in bytes) of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -85,12 +85,228 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   });
   ```
 
+## storageStatistics.getTotalSize<sup>15+</sup>
+
+getTotalSize(): Promise&lt;number&gt;
+
+Obtains the total space of the built-in storage, in bytes. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Return value**
+
+| Type                 | Description                                               |
+| --------------------- | --------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the total built-in storage space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getTotalSize().then((number: number) => {
+  console.info("getTotalSize successfully:" + JSON.stringify(number));
+}).catch((err: BusinessError) => {
+  console.error("getTotalSize failed with error:"+ JSON.stringify(err));
+});
+  ```
+
+## storageStatistics.getTotalSize<sup>15+</sup>
+
+getTotalSize(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the total space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                              |
+| -------- | --------------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the built-in storage space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+  if (error) {
+    console.error("getTotalSize failed with error:" + JSON.stringify(error));
+  } else {
+    // Do something.
+    console.info("getTotalSize successfully:" + number);
+  }
+});
+  ```
+
+## storageStatistics.getTotalSizeSync<sup>15+</sup>
+
+getTotalSizeSync(): number
+
+Obtains the total space of the built-in storage, in bytes. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Return value**
+
+| Type  | Description                                  |
+| ------ | -------------------------------------- |
+| number | Built-in storage space obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getTotalSizeSync();
+  console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
+## storageStatistics.getFreeSize<sup>15+</sup>
+
+getFreeSize(): Promise&lt;number&gt;
+
+Obtains the available space of the built-in storage, in bytes. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Return value**
+
+| Type                 | Description                                                 |
+| --------------------- | ----------------------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getFreeSize().then((number: number) => {
+  console.info("getFreeSize successfully:" + JSON.stringify(number));
+}).catch((err: BusinessError) => {
+  console.error("getFreeSize failed with error:" + JSON.stringify(err));
+});
+  ```
+
+## storageStatistics.getFreeSize<sup>15+</sup>
+
+getFreeSize(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the available space of the built-in storage, in bytes. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the available space of the built-in storage obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+  if (error) {
+    console.error("getFreeSize failed with error:" + JSON.stringify(error));
+  } else {
+    // Do something.
+    console.info("getFreeSize successfully:" + number);
+  }
+});
+  ```
+
+## storageStatistics.getFreeSizeSync<sup>15+</sup>
+
+getFreeSizeSync(): number
+
+Obtains the available space of the built-in storage, in bytes. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**Return value**
+
+| Type  | Description                                    |
+| ------ | ---------------------------------------- |
+| number | Available space of the built-in storage obtained.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID| Error Message      |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**Example**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getFreeSizeSync();
+  console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
 ## BundleStats<sup>9+</sup>
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 | Name     | Type  | Mandatory| Description          |
 | --------- | ------ | --- | -------------- |
-| appSize   | number | Yes| Size of the application (excluding empty folders), in bytes.   |
-| cacheSize | number | Yes| Size of the cache data, in bytes.  |
-| dataSize  | number | Yes| Total size of the application, in bytes.|
+| appSize   | number | Yes| Size of the application installation files, in bytes.   |
+| cacheSize | number | Yes| Size of the application cache files, in bytes.  |
+| dataSize  | number | Yes| Size of other files of the application, in bytes.|

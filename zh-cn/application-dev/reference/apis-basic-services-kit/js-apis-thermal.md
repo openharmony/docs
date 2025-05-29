@@ -32,7 +32,8 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 4800101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -67,7 +68,7 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 

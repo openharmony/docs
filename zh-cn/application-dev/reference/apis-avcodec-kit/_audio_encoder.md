@@ -234,7 +234,7 @@ OH_AVFormat* OH_AudioEncoder_GetOutputDescription (OH_AVCodec *codec)
 
 **描述**
 
-获取编码器输出数据的描述信息。 需要注意的是，返回值所指向的OH_AVFormat实例的生命周期需要调用者手动释放。
+获取编码器输出数据的描述信息。需要注意的是，返回值所指向的OH_AVFormat实例的生命周期需要调用者手动释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioEncoder
 
@@ -324,7 +324,7 @@ OH_AVErrCode OH_AudioEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 通知音频编码器已完成对index所对应缓冲区进行输入数据的填充。
 
-[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调 将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频编码器，则无法再次访问此缓冲区， 直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
+[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频编码器，则无法再次访问此缓冲区，直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
 
 此外，对于某些编码器，需要在开始时向编码器输入特定配置参数，以初始化编码器的编码过程。
 

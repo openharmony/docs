@@ -3,19 +3,21 @@
 
 子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
-该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
+该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
 
 
 
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -27,7 +29,7 @@ import { SubHeader } from '@kit.ArkUI'
 
 不支持[通用属性](ts-component-general-attributes.md)。
 
-## SubHeader
+## SubHeaderV2
 
 SubHeaderV2({
 icon?: SubHeaderV2IconType,
@@ -52,7 +54,7 @@ operationItems?: SubHeaderV2OperationItem
 | select| [SubHeaderV2Select](#subheaderv2select)                 | 否 | @Param | select内容以及事件。<br />默认值：undefined       |
 | operationType | [SubHeaderV2OperationType](#subheaderv2operationtype)   | 否 | @Param| 操作区元素样式。<br />默认值：OperationType.BUTTON |
 | operationItems | [SubHeaderV2OperationItem](#subheaderv2operationitem)[] | 否 | @Param| 操作区的设置项。<br />默认值：undefined            |
-| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | 否 | @BuildParam| 自定义标题区内容。<br />默认值：() => void          |
+| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | 否 | @BuilderParam | 自定义标题区内容。<br />默认值：() => void          |
 
 ## SubHeaderV2IconType
 
@@ -95,9 +97,11 @@ constructor(options: SubHeaderV2TitleOptions)
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 名称    | 类型                                                  | 必填 | 说明             |
+| 参数名    | 类型                                                  | 必填 | 说明             |
 | --------- |-----------------------------------------------------| ------ | ------------------ |
 | options | [SubHeaderV2TitleOptions](#subheaderv2titleoptions) | 是   | 标题内容信息。 |
 
@@ -109,7 +113,7 @@ constructor(options: SubHeaderV2TitleOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性 | 类型 | 必填  | 说明                          |
+| 名称 | 类型 | 必填  | 说明                          |
 | -------- | -------- | -------- |-----------------------------|
 | primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
 | secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
@@ -128,12 +132,13 @@ select内容以及事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
+| 名称 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
 | -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string                                                           | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                         | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值'' 。从API version 20开始，支持Resource类型。                             |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
+| defaultFocus | boolean | 否 | @Trace |下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ### constructor
 
@@ -143,9 +148,11 @@ select内容以及事件构造函数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 名称    | 类型                            | 必填 | 说明             |
+| 参数名    | 类型                            | 必填 | 说明             |
 | --------- |-------------------------------| ------ | ------------------ |
 | options | [SubHeaderV2SelectOptions](#subheaderv2selectoptions) | 是   | 下拉选项信息。 |
 
@@ -161,12 +168,13 @@ select内容以及事件构造函数。
 | -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。                                                      |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。从API version 20开始，支持Resource类型。                                                      |
 | onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
+| defaultFocus | boolean | 否 | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ## SubHeaderV2SelectOnSelect
 
-type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) => void
+type SubHeaderV2SelectOnSelect = (selectedIndex: number, selectedContent?: string) => void
 
 下拉菜单选中某一项的回调类型。
 
@@ -176,10 +184,10 @@ type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) =
 
 **参数：**
 
-|参数名 | 类型      |必填                                             | 说明                  |
-| ------------------------------- |---------|-------------|---------------------|
-| selectIndex | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的索引。<br />默认值：undefined           |
-| selectContent | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的值。<br />默认值：undefined |
+| 类型            | 说明                                          |
+|:--------------|:--------------------------------------------|
+| selectIndex   | 下拉菜单选中某一项的回调类型。表示选中项的索引。 |
+| selectContent | 下拉菜单选中某一项的回调类型。表示选中项的值。|
 
 ## SubHeaderV2OperationType
 
@@ -215,9 +223,9 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 操作区的设置项。
 
-### 属性
-
 **装饰器类型：** @ObservedV2
+
+### 属性
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -230,6 +238,7 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| defaultFocus | boolean | 否 | @Trace |子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
 ### constructor
 
@@ -239,9 +248,11 @@ constructor(options: SubHeaderV2OperationItemOptions)
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 名称    | 类型             | 必填 | 说明             |
+| 参数名    | 类型             | 必填 | 说明             |
 | --------- | -------------------- | ------ | ------------------ |
 | options | SubHeaderV2OperationItemOptions| 是   | 下拉选项信息。 |
 
@@ -265,11 +276,12 @@ type SubHeaderV2OperationItemAction = () => void
 
 | 名称                       | 类型                                          | 必填  | 说明                                                  |
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
-| value                    | [SubHeaderV2IconType](#subheaderv2icontype) | 是 | 文本内容。                                               |
+| content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | 是 | 文本内容。                                               |
 | action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值() => void。                               |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                      |
 | accessibilityLevel       | [string](ts-types.md#resourcestr)           | 否 | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
+| defaultFocus | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
 
 ## SubHeaderV2TitleBuilder
 
@@ -282,7 +294,7 @@ type SubHeaderV2TitleBuilder= () => void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 事件
-支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 ### 示例1（效率型子标题）
@@ -294,9 +306,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -322,7 +334,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -353,9 +365,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -374,7 +386,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '更多',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -405,8 +417,8 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -431,7 +443,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'selectdemo' })
+        Prompt.showToast({ message: 'selectdemo' })
       }
     })
 
@@ -439,19 +451,19 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
         content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo' })
+          Prompt.showToast({ message: 'demo' })
         }
       })]
   }
@@ -481,9 +493,9 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -504,7 +516,7 @@ struct SubHeaderExample {
         operationItems: [new SubHeaderV2OperationItem({
           content: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         })]
       })
@@ -525,9 +537,9 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
   SubHeaderV2Select,
-  promptAction,
+  Prompt,
   SymbolGlyphModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -555,7 +567,7 @@ struct SubHeaderExample {
       selectedContent: this.selectedValue,
       selectedIndex: this.selectedIndex,
       onSelect: (index: number, value?: string) => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })
 
@@ -563,7 +575,7 @@ struct SubHeaderExample {
       new SubHeaderV2OperationItem({
         content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')).fontWeight(FontWeight.Lighter),
         action: () => {
-          promptAction.showToast({ message: 'demo1' })
+          Prompt.showToast({ message: 'demo1' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -572,7 +584,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          Prompt.showToast({ message: 'demo2' })
         }
       }),
       new SubHeaderV2OperationItem({
@@ -581,7 +593,7 @@ struct SubHeaderExample {
           .fontColor([Color.Blue, Color.Grey, Color.Green])
       ,
         action: () => {
-          promptAction.showToast({ message: 'demo3' })
+          Prompt.showToast({ message: 'demo3' })
         }
       })]
   }
@@ -609,8 +621,8 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -626,7 +638,7 @@ struct SubHeaderExample {
     this.operationItem = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -666,9 +678,9 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -688,7 +700,7 @@ struct SubHeaderExample {
     this.operationItems4 = [new SubHeaderV2OperationItem({
       content: '更多信息',
       action: () => {
-        promptAction.showToast({ message: 'demo' })
+        Prompt.showToast({ message: 'demo' })
       }
     })]
   }
@@ -718,8 +730,8 @@ import {
   SubHeaderV2OperationItem,
   SubHeaderV2IconType,
   SubHeaderV2Select,
-  promptAction
-} from '@kit.ArkUI'
+  Prompt
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -748,7 +760,7 @@ struct SubHeaderExample {
     this.operationItems = [new SubHeaderV2OperationItem({
       content: '操作',
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }
@@ -779,7 +791,7 @@ struct SubHeaderExample {
             onSelect: (index: number, value?: string) => {
               this.selectedIndex = index;
               this.selectedValue = value;
-              promptAction.showToast({ message: this.selectedValue })
+              Prompt.showToast({ message: this.selectedValue })
             }
           }),
           operationType: this.subHeaderOperationType3,
@@ -813,9 +825,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction,
+  Prompt,
   TextModifier
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -841,7 +853,7 @@ struct SubHeaderExample {
       content: '操作',
       defaultFocus: true,
       action: () => {
-        promptAction.showToast({ message: 'demo2' })
+        Prompt.showToast({ message: 'demo2' })
       }
     })]
   }

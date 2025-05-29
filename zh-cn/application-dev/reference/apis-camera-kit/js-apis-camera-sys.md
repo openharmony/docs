@@ -26,9 +26,15 @@ import { camera } from '@kit.CameraKit';
 | PROFESSIONAL_PHOTO<sup>12+</sup>        | 5      | 专业拍照模式。**系统接口：** 此接口为系统接口。             |
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | 专业录像模式。**系统接口：** 此接口为系统接口。             |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_PHOTO<sup>12+</sup>        | 8   | 微距拍照模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_VIDEO<sup>12+</sup>        | 9   | 微距录像模式。**系统接口：** 此接口为系统接口。  |
+| LIGHT_PAINTING_PHOTO<sup>12+</sup>        | 10   | 光绘摄影模式。**系统接口：** 此接口为系统接口。  |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
+| QUICK_SHOT_PHOTO<sup>12+</sup>        | 13   | 闪拍模式。**系统接口：** 此接口为系统接口。  |
+| APERTURE_VIDEO<sup>12+</sup>        | 14   | 大光圈录像模式。**系统接口：** 此接口为系统接口。  |
 | PANORAMA_PHOTO<sup>12+</sup>        | 15     | 全景拍照模式。 **系统接口：** 此接口为系统接口。          |
 | TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | 延时摄影模式。 **系统接口：** 此接口为系统接口。          |
+| FLUORESCENCE_PHOTO<sup>13+</sup>        | 17   | 荧光图片模式。**系统接口：** 此接口为系统接口。  |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -54,7 +60,7 @@ lcd闪光灯信息项。
 
 | 名称      | 类型                          | 只读 | 可选  | 说明         |
 | -------- | ----------------------------- |---- |-----| ------------- |
-| isLcdFlashNeeded   | boolean | 是  | 否   | 是否需要lcd闪光灯。      |
+| isLcdFlashNeeded   | boolean | 是  | 否   | 是否需要lcd闪光灯，true为需要，false为不需要。      |
 | lcdCompensation     | number                 | 是  | 否   | lcd闪光灯补偿值。       |
 
 ## Photo<sup>11+</sup>
@@ -112,9 +118,9 @@ lcd闪光灯信息项。
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
 
-### createDepthDataOutput<sup>12+</sup>
+### createDepthDataOutput<sup>13+</sup>
 
-createDepthDataOutput(profile: Profile): DepthDataOutput
+createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 创建深度输出对象，同步返回结果。
 
@@ -126,13 +132,13 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](js-apis-camera.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
+| profile  | [DepthProfile](#depthprofile13)           | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -149,7 +155,7 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
-  let profile: camera.Profile = cameraOutputCapability.depthProfiles[0];
+  let profile: camera.DepthProfile = cameraOutputCapability.depthProfiles[0];
   let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
@@ -255,8 +261,8 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true是开启状态，返回false是禁用状态。               |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。系统设置打开或禁用相机会触发该事件并返回状态。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，用于获取禁用状态变化信息，返回true为开启状态，返回false为禁用状态。               |
 
 **示例：**
 
@@ -291,8 +297,8 @@ off(type: 'cameraMute', callback?: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型             | 必填 | 说明                                                      |
 | -------- | --------------- | ---- |---------------------------------------------------------|
-| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机摄像头开关，cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
+| type     | string          | 是   | 监听事件，固定为'cameraMute'，系统相机开关，cameraManager对象获取成功后可监听。 |
+| callback | AsyncCallback\<boolean> | 否   | 回调函数，可选参数，返回true为开启状态，返回false为禁用状态，有就是匹配on('cameraMute') callback（callback对象不可是匿名函数）。                  |
 
 **示例：**
 
@@ -328,7 +334,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 | 类型 | 说明 |
 | -------- | --------------- |
-| boolean | 返回指定cameraDevice是否支持预热启动。|
+| boolean | 返回指定cameraDevice是否支持预热启动，返回true为支持，返回false为不支持。|
 
 **错误码：**
 
@@ -440,7 +446,7 @@ function preLaunch(context: common.BaseContext): void {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): PreviewOutput
+createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 创建延迟预览输出对象，在配流时替代普通的预览输出对象加入数据流。
 
@@ -452,7 +458,7 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | 是 | 相机预览流的配置文件。 |
+| profile | [Profile](js-apis-camera.md#profile) | 否 | 相机预览流的配置文件。 |
 
 **返回值：**
 
@@ -485,7 +491,7 @@ function getDeferredPreviewOutput(context: common.BaseContext, previewProfile: c
 
 preSwitchCamera(cameraId: string): void
 
-预切换摄像头，提升摄像头启动速度。
+预切换相机，提升相机启动速度。
 
 **系统接口：** 此接口为系统接口。
 
@@ -525,7 +531,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 ```
 
 ## CameraOcclusionDetectionResult<sup>12+</sup>
-摄像头模组被遮挡状态。
+相机模组被遮挡状态。
 
 **系统接口：** 此接口为系统接口。
 
@@ -533,9 +539,9 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
+| isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态，true为遮挡状态，false为不遮挡状态。        |
 
-## CameraOutputCapability<sup>12+</sup>
+## CameraOutputCapability<sup>13+</sup>
 
 相机输出能力项。
 
@@ -545,7 +551,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
-| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile13)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
 
 ## CameraFormat
 
@@ -557,8 +563,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
-| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
 ## CameraInput
 
@@ -632,7 +638,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 }
 ```
 
-## DepthDataAccuracy<sup>12+</sup>
+## DepthDataAccuracy<sup>13+</sup>
 
 深度数据的精度。
 
@@ -645,7 +651,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  是  | 否 | 相对精度，基于视差计算得到的深度图。      |
 | DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  是  | 否 | 绝对精度，基于测距计算得到的深度图。      |
 
-## DepthProfile<sup>12+</sup>
+## DepthProfile<sup>13+</sup>
 
 深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
 
@@ -655,9 +661,9 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy13)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
-## DepthDataQualityLevel<sup>12+</sup>
+## DepthDataQualityLevel<sup>13+</sup>
 
 深度数据的质量。
 
@@ -671,7 +677,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
 | DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
 
-## DepthData<sup>12+</sup>
+## DepthData<sup>13+</sup>
 
 深度数据对象。
 
@@ -685,10 +691,10 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
 | depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
-| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | 是 |  否  | 深度图的质量。 |
-| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | 是 |  否  | 深度图的精度。 |
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
-### release<sup>12+</sup>
+### release<sup>13+</sup>
 
 release(): void
 
@@ -706,11 +712,11 @@ function releaseDepthData(depthData: camera.DepthData): void {
 }
 ```
 
-## DepthDataOutput<sup>12+</sup>
+## DepthDataOutput<sup>13+</sup>
 
 深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
-### start<sup>12+</sup>
+### start<sup>13+</sup>
 
 start(): Promise\<void\>
 
@@ -749,7 +755,7 @@ function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### stop<sup>12+</sup>
+### stop<sup>13+</sup>
 
 stop(): Promise\<void\>
 
@@ -779,7 +785,7 @@ function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
 }
 ```
 
-### on('depthDataAvailable')<sup>12+</sup>
+### on('depthDataAvailable')<sup>13+</sup>
 
 on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 
@@ -798,7 +804,7 @@ on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 是   | 回调函数，用于监听深度信息上报。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 是   | 回调函数，用于监听深度信息上报。 |
 
 **示例：**
 
@@ -817,7 +823,7 @@ function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): vo
 }
 ```
 
-### off('depthDataAvailable')<sup>12+</sup>
+### off('depthDataAvailable')<sup>13+</sup>
 
 off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 
@@ -832,7 +838,7 @@ off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[DepthData](#depthdata13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -851,7 +857,7 @@ function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): 
 }
 ```
 
-### on('error')<sup>12+</sup>
+### on('error')<sup>13+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -882,11 +888,11 @@ function callback(depthDataOutputError: BusinessError): void {
 }
 
 function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
-  depthDataOutput.on('error', callback)
+  depthDataOutput.on('error', callback);
 }
 ```
 
-### off('error')<sup>12+</sup>
+### off('error')<sup>13+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -908,6 +914,176 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
   depthDataOutput.off('error');
+}
+```
+
+## DepthFusionQuery<sup>14+</sup>
+
+深度融合查询类。
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean
+
+查询是否支持深度融合，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否支持深度融合。true表示支持深度融合，false表示不支持深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.     |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
+  }
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array\<number\>
+
+获取深度融合阈值，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Array\<number\> | 深度融合的阈值范围。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
+  }
+}
+```
+## DepthFusion<sup>14+</sup>
+
+深度融合类。继承[DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14)。
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean
+
+检测深度融合功能是否已启用，通过返回值获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 表示是否开启深度融合。true表示开启深度融合，false表示未开启深度融合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config.      |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
+  };
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void
+
+启用深度融合功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | 是   | 使能深度融合。true表示使能，false表示不使能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
+  };
 }
 ```
 
@@ -952,9 +1128,9 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 | 名称             | 类型   |   只读    | 可选  | 说明                                                                                                |
 | --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的光滑范围，例如1表示1级光滑。        |
-| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
-| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
+| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的光滑范围，例如1表示1级光滑。        |
+| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
+| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
 
 ## PreviewOutput
 
@@ -1019,7 +1195,7 @@ isSketchSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回是否支持画中画。 |
+| boolean | 返回是否支持画中画，返回true为支持，返回false为不支持。 |
 
 **错误码：**
 
@@ -1093,7 +1269,7 @@ enableSketch(enabled: boolean): void
 
 | 参数名     | 类型      | 必填 | 说明                       |
 |---------|---------| ---- | ------------------------ |
-| enabled | boolean | 是 | true表明开启画中画流进行预览。|
+| enabled | boolean | 是 | true表明开启画中画流进行预览，false表明不开启。|
 
 **错误码：**
 
@@ -1556,7 +1732,7 @@ function deferImageDelivery(photoOutput: camera.PhotoOutput, type: camera.Deferr
 }
 ```
 
-### isAutoHighQualityPhotoSupported<sup>12+</sup>
+### isAutoHighQualityPhotoSupported<sup>13+</sup>
 
 isAutoHighQualityPhotoSupported(): boolean
 
@@ -1570,7 +1746,7 @@ isAutoHighQualityPhotoSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 是否支持自动高画质。|
+| boolean | 是否支持自动高画质，返回true是支持，返回false是不支持。|
 
 **错误码：**
 
@@ -1592,11 +1768,11 @@ function isAutoHighQualityPhotoSupported(photoOutput: camera.PhotoOutput): boole
 }
 ```
 
-### enableAutoHighQualityPhoto<sup>12+</sup>
+### enableAutoHighQualityPhoto<sup>13+</sup>
 
 enableAutoHighQualityPhoto(enabled: boolean): void
 
-使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported12)判断当前是否支持。
+使能拍照自动高画质。设置拍照自动高画质之前，需要调用[isAutoHighQualityPhotoSupported](#isautohighqualityphotosupported13)判断当前是否支持。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1606,7 +1782,7 @@ enableAutoHighQualityPhoto(enabled: boolean): void
 
 | 参数名      | 类型               | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-|   enabled   |  boolean  |   是   |   是否使能拍照自动高画质。    |
+|   enabled   |  boolean  |   是   |   是否使能拍照自动高画质，true为使能，false为不使能。    |
 
 **错误码：**
 
@@ -2134,7 +2310,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 提供了获取和设置美颜效果的方法。
 
-### getSupportedBeautyTypes<sup>12+</sup>
+### getSupportedBeautyTypes<sup>11+</sup>
 
 getSupportedBeautyTypes(): Array\<BeautyType\>
 
@@ -2168,7 +2344,7 @@ function getSupportedBeautyTypes(portraitPhotoSession: camera.PortraitPhotoSessi
 }
 ```
 
-### getSupportedBeautyRange<sup>12+</sup>
+### getSupportedBeautyRange<sup>11+</sup>
 
 getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
@@ -2238,7 +2414,7 @@ function getSupportedBeautyRange(portraitPhotoSession: camera.PortraitPhotoSessi
 
 此接口提供了查询设备对手动曝光范围支持的功能。
 
-### getSupportedExposureRange<sup>12+</sup>
+### getSupportedExposureRange<sup>11+</sup>
 
 getSupportedExposureRange(): Array\<number\>
 
@@ -2321,7 +2497,7 @@ function getExposure(nightPhotoSession: camera.NightPhotoSession): number | unde
 
 setExposure(exposure: number): void
 
-设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange12)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
+设置手动曝光时长。[getSupportedExposureRange](#getsupportedexposurerange11)获取得到支持的手动曝光时长列表选取用户所需的时长下发，单位ms。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2331,7 +2507,7 @@ setExposure(exposure: number): void
 
 | 参数名      | 类型                    | 必填 | 说明                                                                      |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------------|
-| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange12)接口获取。 |
+| value    | number                    | 是   | 手动曝光时长，通过[getSupportedExposureRange](#getsupportedexposurerange11)接口获取。 |
 
  **错误码：**
 
@@ -2348,86 +2524,6 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
     return;
   }
   nightPhotoSession.setExposure(exposureRange[0]);
-}
-```
-
-## MacroQuery<sup>12+</sup>
-
-提供用于查询设备是否支持相机微距拍摄的方法。
-
-### isMacroSupported<sup>12+</sup>
-
-isMacroSupported(): boolean
-
-检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-|   boolean  | 返回是否支持微距能力。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID   | 错误信息                     |
-|---------|--------------------------|
-| 202     | Not System Application.  |
-
-**示例：**
-
-```ts
-function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  return isSupported;
-}
-```
-
-## Macro<sup>11+</sup>
-
-Macro extends [MacroQuery](#macroquery12)
-
-提供了使能微距能力的接口。
-
-### enableMacro<sup>11+</sup>
-
-enableMacro(enabled: boolean): void
-
-使能当前的微距能力，需要在支持微距能力的情况下进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                   | 必填 | 说明                  |
-| -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | 是   | true：开启微距能力，false：关闭微距能力。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID    | 错误信息                     |
-|----------|--------------------------|
-| 202      | Not System Application.  |
-| 7400102  | Operation not allowed.   |
-| 7400103  | Session not config.      |
-
-**示例：**
-
-```ts
-function enableMacro(photoSession: camera.PhotoSessionForSys): void {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  if (isSupported) {
-    photoSession.enableMacro(true);
-  }
 }
 ```
 
@@ -2455,7 +2551,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 |-------------------------------|-----|---------------------------|
 | MOON_CAPTURE_BOOST            | 0   | 月亮场景。**系统接口：** 此接口为系统接口。  |
 | TRIPOD_DETECTION<sup>13+</sup> | 1   | 使用脚架拍摄的场景。**系统接口：** 此接口为系统接口。  |
-| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 2   | 长曝光场景。**系统接口：** 此接口为系统接口。 |
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
@@ -2466,7 +2562,7 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 | 名称     | 类型        |   只读   |   必填   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
-| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景，false为未检测到指定特性场景。 |
 
 ## TripodDetectionResult<sup>13+</sup>
 
@@ -2504,7 +2600,7 @@ isSceneFeatureSupported(type: SceneFeatureType): boolean
 
 | 类型        | 说明           |
 |-----------|--------------|
-| boolean   | 返回是否支持指定特性。  |
+| boolean   | 返回是否支持指定特性，返回true为支持，返回false为不支持。  |
 
 **错误码：**
 
@@ -2518,8 +2614,8 @@ isSceneFeatureSupported(type: SceneFeatureType): boolean
 **示例：**
 
 ```ts
-function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
-  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+function isSceneFeatureSupported(photoSessionForSys: camera.PhotoSessionForSys, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSessionForSys.isSceneFeatureSupported(featureType);
   return isSupported;
 }
 ```
@@ -2628,9 +2724,9 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(): Array<ZoomPointInfo> {
+function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
     // 失败返回错误码error.code并处理。
@@ -2739,7 +2835,7 @@ Beauty extends [BeautyQuery](#beautyquery12)
 
 setBeauty(type: BeautyType, value: number): void
 
-设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes12)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
+设置美颜类型以及对应的美颜强度。将通过[getSupportedBeautyTypes](#getsupportedbeautytypes11)获取得到的[BeautyType](#beautytype)都关闭，表明当前美颜关闭；若有一种美颜类型未关闭，表明当前美颜打开。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2750,7 +2846,7 @@ setBeauty(type: BeautyType, value: number): void
 | 参数名      | 类型                    | 必填 | 说明                                                                |
 | -------- | --------------------------| ---- |-------------------------------------------------------------------|
 | type     | [BeautyType](#beautytype) | 是   | 美颜类型。                                                             |
-| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange12)接口获取。 |
+| value    | number                    | 是   | 美颜强度，通过[getSupportedBeautyRange](#getsupportedbeautyrange11)接口获取。 |
 
 **错误码：**
 
@@ -2830,7 +2926,7 @@ function getBeauty(portraitPhotoSession: camera.PortraitPhotoSession): number {
 
 提供了一个查询设备支持的颜色效果类型的方法。
 
-### getSupportedColorEffects<sup>12+</sup>
+### getSupportedColorEffects<sup>11+</sup>
 
 getSupportedColorEffects(): Array\<ColorEffectType\>
 
@@ -2874,7 +2970,7 @@ ColorEffect extends [ColorEffectQuery](#coloreffectquery12)
 
 setColorEffect(type: ColorEffectType): void
 
-设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects12)获取当前设备所支持的ColorEffects。
+设置色彩效果类型。可以先通过[getSupportedColorEffects](#getsupportedcoloreffects11)获取当前设备所支持的ColorEffects。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2884,7 +2980,7 @@ setColorEffect(type: ColorEffectType): void
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects12)接口获取。   |
+| type | [ColorEffectType](#coloreffecttype11)                              | 是 | 色彩效果类型，通过[getSupportedColorEffects](#getsupportedcoloreffects11)接口获取。   |
 
 **错误码：**
 
@@ -3300,7 +3396,7 @@ getSupportedBeautyTypes(): Array\<BeautyType>
 获取当前支持的美颜效果列表。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3343,7 +3439,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 | SKIN_TONE      | [-1, 16242611]      | 美颜类型为美肤时支持的美颜强度，-1表明关闭美肤，其余非负值为使用RGB表示的美肤美颜强度，<br> 16242611转化为16进制为0xF7D7B3，F7为R通道值，D7为G通道值，B3位B通道值。    |
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3479,7 +3575,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, SceneDetection
 
 提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -3508,7 +3604,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
+| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true为开启状态，返回false为禁用状态。  |
 
 **错误码：**
 
@@ -3551,7 +3647,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true为开启状态，返回false为禁用状态。 |
 
 **错误码：**
 
@@ -3692,7 +3788,7 @@ function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3746,9 +3842,22 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
 | trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
 
+## LightStatus<sup>18+</sup>
+
+枚举，相机光线状态（通过VideoSessionForSys.[on('lightStatusChange')](#onlightstatuschange18)接口获取）。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称           | 值   | 说明    |
+|--------------| ---- |-------|
+| NORMAL       | 0    | 光线正常。 |
+| INSUFFICIENT | 1    | 光线偏暗。 |
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Aperture, ColorReservation
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -3777,7 +3886,7 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
-| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
+| callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态，返回true是开启状态，返回false是禁用状态。  |
 
 **错误码：**
 
@@ -3820,7 +3929,7 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
-| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数），返回true是开启状态，返回false是禁用状态。 |
 
 **错误码：**
 
@@ -3882,7 +3991,7 @@ function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -3987,6 +4096,98 @@ off(type: 'focusTrackingInfoAvailable', callback?: Callback\<FocusTrackingInfo\>
 function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
   session.off('focusTrackingInfoAvailable');
 }
+```
+
+### on('lightStatusChange')<sup>18+</sup>
+
+on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
+
+监听相机获取光线状态。使用Callback方式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                              |
+| -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
+| type     | string                                         | 是   | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：VideoSessionForSys创建成功时可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 是   | 回调函数，用于获取当前光线状态信息。                                                              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOn(): void {
+        Logger.info(TAG, 'handleLightStatusOn');
+        try {
+          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOn err:${e}`);
+        }
+    }
+```
+
+### off('lightStatusChange')<sup>18+</sup>
+
+off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
+
+注销监听相机获取光线状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数**：
+
+| 参数名   | 类型                                             | 必填 | 说明                                                                               |
+| -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
+| type     | string                                         | 是  | 监听事件，固定为'lightStatusChange'。<br>'lightStatusChange'：当VideoSessionForSys创建成功时，可监听。 |
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | 否  | 回调函数，可选，有就是匹配on('lightStatusChange') callback（callback对象不可是匿名函数）。                |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**示例**：
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOff(): void {
+        Logger.info(TAG, 'handleLightStatusOff');
+        try {
+          this.mSession?.off('lightStatusChange');
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOff err:${e}`);
+        }
+  }
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
@@ -4215,7 +4416,7 @@ function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSessio
 }
 ```
 
-### off('lcdFlashStatus')<sup>12+</sup>
+### off('lcdFlashStatus')<sup>13+</sup>
 
 off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
 
@@ -5005,7 +5206,6 @@ isSlowMotionDetectionSupported(): boolean
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **示例：**
 
@@ -5052,8 +5252,6 @@ setSlowMotionDetectionArea(area: Rect): void
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **示例：**
 
@@ -5108,7 +5306,7 @@ function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession)
 }
 ```
 
-### off('error')<sup>11+</sup>
+### off('error')<sup>12+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -5133,7 +5331,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 }
 ```
 
-### on('focusStateChange')<sup>11+</sup>
+### on('focusStateChange')<sup>12+</sup>
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
@@ -5168,7 +5366,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 }
 ```
 
-### off('focusStateChange')<sup>11+</sup>
+### off('focusStateChange')<sup>12+</sup>
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
@@ -5256,7 +5454,7 @@ ISO参数信息。
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DNG<sup>12+</sup>  | 4         | DNG格式的RAW图片。**系统接口：** 此接口为系统接口。         |
-
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup>  | 5         | DNG格式的增强RAW图片，JPG和RAW图片封装在同一个文件中，最高支持16bit的RAW数据。**系统接口：** 此接口为系统接口。         |
 ## ExposureMeteringMode<sup>12+</sup>
 
 枚举，测光模式。
@@ -5295,7 +5493,7 @@ isExposureMeteringModeSupported(aeMeteringMode: ExposureMeteringMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持传入的测光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 获取是否支持传入的测光模式，返回true为支持，返回false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5316,7 +5514,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
   try {
-    isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
+    isSupported = professionalPhotoSession.isExposureMeteringModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
     // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
@@ -7927,7 +8125,7 @@ isLcdFlashSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 查询是否支持lcd闪光灯。|
+| boolean | 查询是否支持lcd闪光灯，返回true为支持，返回false为不支持。|
 
 **错误码：**
 
@@ -7966,7 +8164,7 @@ enableLcdFlash(enabled: boolean): void
 
 | 参数名       | 类型                     | 必填 | 说明                                               |
 | --------- | ----------------------- | ---- |--------------------------------------------------|
-| enabled | boolean | 是   | 使能或去使能LCD闪光灯。传参为null或者undefined，作为0处理，去使能LCD闪光灯。 |
+| enabled | boolean | 是   | 使能或去使能LCD闪光灯，true为使能，false为去使能。传参为null或者undefined，作为0处理，去使能LCD闪光灯。 |
 
 **错误码：**
 
@@ -8489,7 +8687,7 @@ isTryAENeeded(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean   | 是否需要执行TryAE，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean   | 是否需要执行TryAE，返回true为是，返回false为否，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 

@@ -30,7 +30,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 onCreate(): void
 
-Called when the application is created.
+Called when the application is created. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -53,7 +53,7 @@ class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-Called when a specified ability is started.
+Called when a specified ability is started. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -88,7 +88,7 @@ class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-Called when the UIAbility is started in the specified process.
+Called when the UIAbility is started in the specified process. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -122,7 +122,7 @@ class MyAbilityStage extends AbilityStage {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-Called when the global configuration is updated.
+Called when the global configuration is updated. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -150,7 +150,9 @@ class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
+Listens for changes in the system memory level status. When the system detects low memory resources, it will proactively invoke this callback. You can implement this callback to promptly release non-essential resources (such as cached data or temporary objects) upon receiving a memory shortage event, thereby preventing the application process from being forcibly terminated by the system.
+
+This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -160,7 +162,7 @@ Called when the system has decided to adjust the memory level. For example, this
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.<br>**NOTE**<br>The trigger conditions may differ across various devices. For example, on a standard device with 12 GB of memory:<br>- A callback with value 0 is triggered when available memory drops between 1700 MB and 1800 MB.<br>- A callback with value 1 is triggered when available memory drops between 1600 MB and 1700 MB.<br>- A callback with value 2 is triggered when available memory falls below 1600 MB.| 
 
 **Example**
     
@@ -204,7 +206,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 onDestroy(): void
 
-Called when the application is destroyed. This API is called during the normal lifecycle. If the application exits abnormally or is terminated, this API is not called.
+Called when the application is destroyed. This API is called during the normal lifecycle. If the application exits abnormally or is terminated, this API is not called. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -226,7 +228,9 @@ class MyAbilityStage extends AbilityStage {
 
 onPrepareTermination(): AbilityConstant.PrepareTermination
 
-Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. Currently, this API takes effect only on 2-in-1 devices.
+Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. This API returns the result synchronously and does not support asynchronous callbacks.
+
+Currently, this API takes effect only on 2-in-1 devices.
 
 > **NOTE**
 >

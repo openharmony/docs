@@ -1,6 +1,6 @@
 # @ohos.data.distributedDataObject (分布式数据对象)
 
-本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。
+本模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。分布式数据对象处理数据时，不会解析用户数据的内容，存储路径安全性较低，不建议传输个人敏感数据和隐私数据。
 
 > **说明：**
 > 
@@ -25,7 +25,7 @@ create(context: Context, source: object): DataObject
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
+  | context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。 <br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。 |
   | source | object | 是 | 设置分布式数据对象的属性。 |
 
 **返回值：**
@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -126,7 +126,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
-| version | number | 是 | 已保存对象的版本。 |
+| version | number | 是 | 已保存对象的版本，取值为非负整数。 |
 | deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。"local"表示本地设备，否则表示其他设备的设备号。 |
 
 ## RevokeSaveSuccessResponse<sup>9+</sup>
@@ -141,7 +141,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 ## BindInfo<sup>11+</sup>
 
-数据库的绑定信息。当前版本只支持关系型数据库。
+数据库的绑定信息。当前版本只支持关系型数据库的绑定。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -171,7 +171,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名    | 类型                      | 必填 | 说明                                                                                                           |
   | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
-  | sessionId | string                    | 是   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。设置为""时表示退出分布式组网。 |
+  | sessionId | string                    | 是   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。当传入""、null时表示退出分布式组网。 |
   | callback  | AsyncCallback&lt;void&gt; | 是   | 加入session的异步回调。                                                                                        |
 
 **错误码：**
@@ -203,8 +203,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 退出所有已加入的session，使用callback方式异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **参数：**
@@ -219,7 +217,6 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201      | Permission verification failed. |
   | 401      | Parameter error. Incorrect parameter types. |
   | 15400001 | Failed to create the in-memory database. |
 
@@ -240,7 +237,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
+设置sessionId或退出分布式组网，使用Promise异步回调。当传入""、null或不传入参数时，表示退出分布式组网。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -250,7 +247,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
   | 参数名    | 类型   | 必填 | 说明                                                                                                                         |
   | --------- | ------ | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-  | sessionId | string | 否   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。如果要退出分布式组网，设置为""或不设置均可。 |
+  | sessionId | string | 否   | 分布式数据对象在可信组网中的标识ID，长度不大于128，且只能包含字母数字或下划线_。当传入""、null或不传入参数时表示退出分布式组网。 |
 
 **返回值：**
 
@@ -275,13 +272,13 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // 退出分布式组网
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 
@@ -515,11 +512,11 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
+g_object.save("local").then((callbackInfo: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId " + callbackInfo.sessionId);
+    console.info("save version " + callbackInfo.version);
+    console.info("save deviceId " + callbackInfo.deviceId);
 }).catch((err: BusinessError) => {
     console.info("save failed, error code = " + err.code);
     console.info("save failed, error message: " + err.message);
@@ -743,7 +740,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
   | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 801      | Capability not supported. |
 
-**示例:**
+**示例：**
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

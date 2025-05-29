@@ -6,7 +6,7 @@
 
 ## 画线段
 
-使用moveTo和lineTo画出一条线段，当使用closePath方法时会结束当前路径形成一个封闭图形 。设置quadraticCurveTo（二次贝赛尔曲线）或bezierCurveTo（三次贝赛尔曲线）的值组成图形。
+使用moveTo和lineTo画出一条线段，当使用closePath方法时会结束当前路径形成一个封闭图形。设置quadraticCurveTo（二次贝赛尔曲线）或bezierCurveTo（三次贝赛尔曲线）的值组成图形。
 
 
 ```html

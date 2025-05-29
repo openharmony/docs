@@ -17,19 +17,22 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
-     let depthProfilesArray: Array<camera.Profile> = cameraOutputCapability.depthProfiles;
+     let depthProfilesArray: Array<camera.DepthProfile> = cameraOutputCapability.depthProfiles;
+     if (!depthProfilesArray) {
+       console.error("createOutput depthProfilesArray is null");
+     }
      let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
      try {
        depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the DepthDataOutput instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the DepthDataOutput instance. error: ${err}`);
      }
      return depthDataOutput;
    }
    ```
 
-3. Call [start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start12) in the **depthDataOutput** class to start outputting the depth data stream. If the call fails, an error code is returned. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+3. Call [start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13) in the **depthDataOutput** class to start outputting the depth data stream. If the call fails, an error code is returned. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {
@@ -41,7 +44,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        await depthDataOutput.start();
      } catch (err) {
        const error = err as BusinessError;
-       console.error(`Failed to start depth data output. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to start depth data output. error: ${err}`);
      }
    }
    ```

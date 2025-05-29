@@ -1,5 +1,5 @@
 # @ohos.arkui.Prefetcher (Prefetching)
-配合LazyForEach，为List、Grid、Waterfall和Swiper等容器组件滑动浏览时提供内容预加载能力，提升用户浏览体验。
+配合LazyForEach，为List、Grid、WaterFlow和Swiper等容器组件滑动浏览时提供内容预加载能力，提升用户浏览体验。
 
 >  **说明：**
 >
@@ -22,7 +22,7 @@ import { BasicPrefetcher, IDataSourcePrefetching, IPrefetcher } from '@kit.ArkUI
 ### setDataSource
 setDataSource(dataSource: IDataSourcePrefetching): void;
 
-设置支持预取的DataSource以绑定到Prefetcher
+设置支持预取的DataSource以绑定到Prefetcher。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -51,7 +51,7 @@ class MyPrefetcher implements IPrefetcher {
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
-当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`Waterfall`和`Swiper`组件配合使用
+当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`WaterFlow`和`Swiper`组件配合使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -88,7 +88,7 @@ BasicPrefetcher是IPrefetcher的基础实现。它提供了一种智能数据预
 ### constructor
 constructor(dataSource?: IDataSourcePrefetching);
 
-传入支持预取的DataSource以绑定到Prefetcher
+传入支持预取的DataSource以绑定到Prefetcher。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -103,7 +103,7 @@ constructor(dataSource?: IDataSourcePrefetching);
 ### setDataSource
 setDataSource(dataSource: IDataSourcePrefetching): void;
 
-设置支持预取的DataSource以绑定到Prefetcher
+设置支持预取的DataSource以绑定到Prefetcher。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -118,7 +118,7 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
-当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`Waterfall`和`Swiper`组件配合使用
+当可见区域边界发生改变时调用此方法。支持与`List`、`Grid`、`WaterFlow`和`Swiper`组件配合使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

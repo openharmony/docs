@@ -33,17 +33,14 @@ If **-compact** is not configured for the current module, but the code in the ob
     * Search for **-compact** in the **consumer-rules.txt** file in the local libraries.
     * Search for **-compact** in all **obfuscation.txt** files in the project-level **oh_modules** directory.
 
-**NOTE**
-
-You are not advised to configure the following options in the **obfuscation.txt** file of third-party libraries, as they can cause unexpected behavior or crashes when the main module is obfuscated. Contact the library providers to remove these options and repackage the libraries.
-
-```
--enable-property-obfuscation
--enable-string-property-obfuscation
--enable-toplevel-obfuscation
--remove-log
--compact
-```
+> **NOTE**
+> 
+> You are not advised to configure the following options in the **obfuscation.txt** file of third-party libraries, as they can cause unexpected behavior or crashes when the main module is obfuscated. Contact the library providers to remove these options and repackage the libraries. 
+> -enable-property-obfuscation  
+> -enable-string-property-obfuscation  
+> -enable-toplevel-obfuscation  
+> -remove-log  
+> -compact
 
 ## Property Obfuscation Issues
 
@@ -197,7 +194,7 @@ A dependent module may have enabled string property name obfuscation, affecting 
 
 **Solution**
 
-Solution 1: Check whether any dependent modules have enabled string property name obfuscation. If yes, disable it. 
+Solution 1: Check whether any dependent modules have enabled string property name obfuscation. If yes, disable it.
 
 Solution 2: If the problematic module cannot be identified, add the string literal property names to the trustlist directly.
 
@@ -325,6 +322,6 @@ The HAP and HSP modules execute independent build and obfuscation processes, res
 
 **Solution**
 
-Solution 1: Change the shared local source code HAR to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613). This prevents the HAR from being re-obfuscated when being depended upon. 
+Solution 1: Change the shared local source code HAR to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613). This prevents the HAR from being re-obfuscated when being depended upon.
 
 Solution 2: Build the shared local source code HAR in [release mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410). This ensures that file names and exported interfaces are not obfuscated when the HAR is depended upon.

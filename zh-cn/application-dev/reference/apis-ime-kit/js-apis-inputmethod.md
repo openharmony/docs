@@ -37,9 +37,23 @@ import { inputMethod } from '@kit.IMEKit';
 | labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
 | iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。输入法图标资源号。 |
+| enabledState<sup>20+</sup>    | [EnabledState](js-apis-inputmethod.md#enabledstate15) | 是 | 是 | 非必填。输入法启用状态。|
 | extra<sup>9+</sup>    | object | 否 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
+
+## CapitalizeMode<sup>20+</sup>
+
+枚举，定义了文本首字母大写的不同模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 | 描述 |
+| -------- | -- | -------- |
+| NONE | 0 | 不进行任何首字母大写处理。|
+| SENTENCES | 1 | 每个句子的首字母大写。|
+| WORDS | 2 | 每个单词首字母大写。|
+| CHARACTERS | 3 | 每个字母都大写。|
 
 ## inputMethod.getController<sup>9+</sup>
 
@@ -203,7 +217,7 @@ try{
       return;
     }
     if (result) {
-      console.log('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching inputmethod.');
     } else {
       console.error('Failed to switchInputMethod.');
     }
@@ -259,7 +273,7 @@ let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching inputmethod.');
     } else {
       console.error('Failed to switchInputMethod.');
     }
@@ -349,7 +363,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in switching currentInputMethodSubtype.');
+      console.info('Succeeded in switching currentInputMethodSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodSubtype');
     }
@@ -418,7 +432,7 @@ try {
     extra: extra
   }).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching currentInputMethodSubtype.');
+      console.info('Succeeded in switching currentInputMethodSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodSubtype.');
     }
@@ -499,7 +513,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in switching currentInputMethodAndSubtype.');
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
@@ -559,7 +573,7 @@ let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching currentInputMethodAndSubtype.');
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
@@ -641,6 +655,11 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | URL  | 6 |链接类型。 |
 | VISIBLE_PASSWORD  | 7 |密码类型。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 8 |数字密码类型。 |
+| SCREEN_LOCK_PASSWORD<sup>20+</sup> | 9 |锁屏密码类型。 |
+| USER_NAME<sup>20+</sup> | 10 |用户名类型。 |
+| NEW_PASSWORD<sup>20+</sup> | 11 |新密码类型。 |
+| NUMBER_DECIMAL<sup>20+</sup> | 12 |带小数点的数字类型。 |
+| ONE_TIME_CODE<sup>20+</sup> | 13 |验证码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -718,6 +737,9 @@ Enter键的功能类型。
 | -------- | -------- | -------- | -------- | -------- |
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
+| placeholder<sup>20+</sup> | string | 否 | 是 | 编辑框设置的占位符信息。 <br/>- 编辑框设置占位符信息时，长度不超过255个字符（如果超出将会自动截断为255个字符），用于提示或引导用户输入临时性文本或符号。（例如：提示输入项为"必填"或"非必填"的输入结果反馈。）<br/>- 编辑框没有设置占位符信息时，默认为空字符串。<br/>- 该字段在调用[attach](#attach10)时提供给输入法应用。|
+| abilityName<sup>20+</sup> | string | 否 | 是 | 编辑框设置的ability名称。<br/>- 编辑框设置ability名称时，长度不超过127个字符（如果超出将会自动截断为127个字符）。<br/>- 编辑框未设置ability名称时，默认为空字符串。<br/>- 该字段在调用绑定[attach](#attach10)时提供给输入法应用。|
+| capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## TextConfig<sup>10+</sup>
 
@@ -731,6 +753,7 @@ Enter键的功能类型。
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
 | windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
+| newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 
 ## CursorInfo<sup>10+</sup>
 
@@ -792,32 +815,38 @@ Enter键的功能类型。
 | BASIC_MODE  | 1 |基础模式。 |
 | FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
+## RequestKeyboardReason<sup>15+</sup>
+
+请求键盘输入原因。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| NONE   | 0 |表示没有特定的原因触发键盘请求。 |
+| MOUSE  | 1 |表示键盘请求是由鼠标操作触发的。 |
+| TOUCH  | 2 |表示键盘请求是由触摸操作触发的。 |
+| OTHER  | 20 |表示键盘请求是由其他原因触发的。 |
+
 ## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
-> **说明**
+> **说明：**
 >
-> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
+> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#onmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#onterminated15)回调函数。
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称         | 类型     | 可选 | 说明                               |
-| ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | 否   | 对象终止接收的回调函数。           |
-| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
-
-## MessageHandler.onMessage<sup>15+</sup>
+### onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 接收输入法应用发送的自定义数据回调函数。
 
-> **说明**
+> **说明：**
 >
 > 当已注册的MeesageHandler接收到来自输入法应用发送的自定义通信数据时，会触发该回调函数。
 >
@@ -827,23 +856,24 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                             |
+| 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+| msgId    | string      | 是   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 接收到的自定义通信数据的消息体。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
-            console.log('OnTerminated.');
+            console.info('OnTerminated.');
         },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-            console.log('recv message.');
+            console.info('recv message.');
         }
     }
     inputMethodController.recvMessage(messageHandler);
@@ -852,13 +882,13 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>15+</sup>
+### onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
 监听对象终止回调函数。
 
-> **说明**
+> **说明：**
 >
 > 当应用注册新的MessageHandler对象时，会触发上一个已注册MessageHandler对象的OnTerminated回调函数。
 >
@@ -871,13 +901,14 @@ onTerminated(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let inputMethodController = inputMethod.getController();
 try {
-    let messageHandler: inputmethod.MessageHandler = {
+    let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
-            console.log('OnTerminated.');
+            console.info('OnTerminated.');
         },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-            console.log('recv message.');
+            console.info('recv message.');
         }
     }
     inputMethodController.recvMessage(messageHandler);
@@ -885,6 +916,19 @@ try {
   console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
 }
 ```
+
+## SetPreviewTextCallback<sup>17+</sup>
+
+type SetPreviewTextCallback = (text: string, range: Range) => void
+
+当输入法框架需要显示预览文本时触发的回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 参数名       | 类型          | 必填 | 说明                          |
+| ------- | ----------------- | ---- | ----------------------------- |
+| text    | string            | 是   | 预览文本内容。                 |
+| range   | [Range](#range10) | 是   | 文本的选中范围。 |
 
 ## InputMethodController
 
@@ -906,7 +950,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
@@ -937,7 +981,7 @@ try {
       console.error(`Failed to attach: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in attaching the inputMethod.');
+    console.info('Succeeded in attaching the inputMethod.');
   });
 } catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -960,7 +1004,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。|
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 
 **返回值：**
@@ -992,13 +1036,115 @@ try {
     }
   };
   inputMethodController.attach(true, textConfig).then(() => {
-    console.log('Succeeded in attaching inputMethod.');
+    console.info('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
 } catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
+```
+
+### attach<sup>15+</sup>
+
+attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+自绘控件绑定输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起。<br>- false表示不拉起。|
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+
+  let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+  inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
+    console.info('Succeeded in attaching inputMethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to attach: ${JSON.stringify(err)}`);
+}
+```
+
+### discardTypingText<sup>20+</sup>
+
+discardTypingText(): Promise&lt;void&gt;
+
+编辑框应用发送“清空正在输入的文字”命令到输入法。使用promise异步回调。
+
+> **说明：**
+>
+> 当编辑框应用与输入法绑定成功后，才可调用该接口实现此功能。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error. |
+| 12800009 | input method client detached. |
+| 12800015 | the other side does not accept the request. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethod } from '@kit.IMEKit';
+
+inputMethod.getController().discardTypingText().then(() => {
+  console.info('Succeeded discardTypingText.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to discardTypingText errCode:${err.code}, errMsg:${err.message}`);
+});
 ```
 
 ### showTextInput<sup>10+</sup>
@@ -1039,7 +1185,7 @@ inputMethodController.showTextInput((err: BusinessError) => {
     console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in showing the inputMethod.');
+  console.info('Succeeded in showing the inputMethod.');
 });
 ```
 
@@ -1077,7 +1223,55 @@ showTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
-  console.log('Succeeded in showing text input.');
+  console.info('Succeeded in showing text input.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+});
+```
+
+### showTextInput<sup>15+</sup>
+
+showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
+
+进入文本编辑状态。使用promise异步回调。
+
+> **说明：**
+>
+> 编辑框与输入法绑定成功后，可调用该接口拉起软键盘，进入文本编辑状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestKeyboardReason | [RequestKeyboardReason](#requestkeyboardreason15) | 是 | 请求键盘输入原因。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client detached. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
+
+inputMethodController.showTextInput(requestKeyboardReason).then(() => {
+  console.info('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
@@ -1123,7 +1317,7 @@ inputMethodController.hideTextInput((err: BusinessError) => {
     console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in hiding text input.');
+  console.info('Succeeded in hiding text input.');
 });
 ```
 
@@ -1163,7 +1357,7 @@ hideTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideTextInput().then(() => {
-  console.log('Succeeded in hiding inputMethod.');
+  console.info('Succeeded in hiding inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
 })
@@ -1202,7 +1396,7 @@ inputMethodController.detach((err: BusinessError) => {
     console.error(`Failed to detach: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in detaching inputMethod.');
+  console.info('Succeeded in detaching inputMethod.');
 });
 ```
 
@@ -1235,7 +1429,7 @@ detach(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.detach().then(() => {
-  console.log('Succeeded in detaching inputMethod.');
+  console.info('Succeeded in detaching inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to detach: ${JSON.stringify(err)}`);
 });
@@ -1283,7 +1477,7 @@ try {
       console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in setting callingWindow.');
+    console.info('Succeeded in setting callingWindow.');
   });
 } catch(err) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
@@ -1333,7 +1527,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let windowId: number = 2000;
   inputMethodController.setCallingWindow(windowId).then(() => {
-    console.log('Succeeded in setting callingWindow.');
+    console.info('Succeeded in setting callingWindow.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
@@ -1380,7 +1574,7 @@ try {
       console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in updating cursorInfo.');
+    console.info('Succeeded in updating cursorInfo.');
   });
 } catch(err) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
@@ -1426,7 +1620,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
   inputMethodController.updateCursor(cursorInfo).then(() => {
-    console.log('Succeeded in updating cursorInfo.');
+    console.info('Succeeded in updating cursorInfo.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
@@ -1474,7 +1668,7 @@ try {
       console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in changing selection.');
+    console.info('Succeeded in changing selection.');
   });
 } catch(err) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
@@ -1521,7 +1715,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.changeSelection('test', 0, 5).then(() => {
-    console.log('Succeeded in changing selection.');
+    console.info('Succeeded in changing selection.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
@@ -1568,7 +1762,7 @@ try {
       console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in updating attribute.');
+    console.info('Succeeded in updating attribute.');
   });
 } catch(err) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
@@ -1614,7 +1808,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
   inputMethodController.updateAttribute(inputAttribute).then(() => {
-    console.log('Succeeded in updating attribute.');
+    console.info('Succeeded in updating attribute.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
@@ -1662,7 +1856,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in stopping inputSession.');
+      console.info('Succeeded in stopping inputSession.');
     } else {
       console.error('Failed to stopInputSession.');
     }
@@ -1707,7 +1901,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   inputMethodController.stopInputSession().then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in stopping inputSession.');
+      console.info('Succeeded in stopping inputSession.');
     } else {
       console.error('Failed to stopInputSession.');
     }
@@ -1756,7 +1950,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard((err: BusinessError) => {
   if (!err) {
-    console.log('Succeeded in showing softKeyboard.');
+    console.info('Succeeded in showing softKeyboard.');
   } else {
     console.error(`Failed to show softKeyboard: ${JSON.stringify(err)}`);
   }
@@ -1799,7 +1993,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard().then(() => {
-  console.log('Succeeded in showing softKeyboard.');
+  console.info('Succeeded in showing softKeyboard.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to show softKeyboard: ${JSON.stringify(err)}`);
 });
@@ -1842,7 +2036,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard((err: BusinessError) => {
   if (!err) {
-    console.log('Succeeded in hiding softKeyboard.');
+    console.info('Succeeded in hiding softKeyboard.');
   } else {
     console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
   }
@@ -1885,7 +2079,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard().then(() => {
-  console.log('Succeeded in hiding softKeyboard.');
+  console.info('Succeeded in hiding softKeyboard.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
@@ -1907,10 +2101,10 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                                       |
+| 参数名   | 类型        | 必填 | 说明                                       |
 | -------- | ----------- | ---- | ------------------------------------------ |
-| msgId    | string      | 否   | 需要发送至输入法应用的自定义数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 需要发送至输入法应用的自定义数据的消息体。 |
+| msgId    | string      | 是   | 需要发送至输入法应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至输入法应用的自定义数据的消息体。 |
 
 **返回值：**
 
@@ -1924,7 +2118,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | parameter error.                            |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
 | 12800003 | input method client error.                  |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
@@ -1939,7 +2133,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let msgId: string = "testMsgId";
 let msgParam: ArrayBuffer = new ArrayBuffer(128);
 inputMethodController.sendMessage(msgId, msgParam).then(() => {
-  console.log('Succeeded send message.');
+  console.info('Succeeded send message.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to send message: ${JSON.stringify(err)}`);
 });
@@ -1953,9 +2147,9 @@ recvMessage(msgHandler?: MessageHandler): void
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#onterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并触发被取消注册对象中[onTerminated](#onterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +2157,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象通过[onMessage](#onmessage15)接收来自输入法应用所发送的自定义通信数据，并通过[onTerminated](#onterminated15)接收终止此对象订阅的消息。<br>若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，同时触发其[onTerminated](#onterminated15)回调函数。 |
 
 **返回值：**
 
@@ -1977,7 +2171,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | parameter error. |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -1985,10 +2179,10 @@ recvMessage(msgHandler?: MessageHandler): void
 import { BusinessError } from '@kit.BasicServicesKit';
 let messageHandler: inputmethod.MessageHandler = {
     onTerminated(): void {
-        console.log('OnTerminated.');
+        console.info('OnTerminated.');
     },
     onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
+        console.info('recv message.');
     }
 }
 inputMethodController.recvMessage(messageHandler);
@@ -2026,7 +2220,7 @@ inputMethodController.stopInput((err: BusinessError, result: boolean) => {
     return;
   }
   if (result) {
-    console.log('Succeeded in stopping input.');
+    console.info('Succeeded in stopping input.');
   } else {
     console.error('Failed to stopInput.');
   }
@@ -2060,7 +2254,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.stopInput().then((result: boolean) => {
   if (result) {
-    console.log('Succeeded in stopping input.');
+    console.info('Succeeded in stopping input.');
   } else {
     console.error('Failed to stopInput.');
   }
@@ -2135,7 +2329,7 @@ off(type: 'insertText', callback?: (text: string) => void): void
 
 ```ts
 let onInsertTextCallback = (text: string) => {
-    console.log(`Succeeded in subscribing insertText: ${text}`);
+    console.info(`Succeeded in subscribing insertText: ${text}`);
 };
 inputMethodController.off('insertText', onInsertTextCallback);
 inputMethodController.off('insertText');
@@ -2170,7 +2364,7 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 ```ts
 try {
   inputMethodController.on('deleteLeft', (length: number) => {
-    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
@@ -2196,7 +2390,7 @@ off(type: 'deleteLeft', callback?: (length: number) => void): void
 
 ```ts
 let onDeleteLeftCallback = (length: number) => {
-    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
 };
 inputMethodController.off('deleteLeft', onDeleteLeftCallback);
 inputMethodController.off('deleteLeft');
@@ -2231,7 +2425,7 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 ```ts
 try {
   inputMethodController.on('deleteRight', (length: number) => {
-    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
@@ -2257,7 +2451,7 @@ off(type: 'deleteRight', callback?: (length: number) => void): void
 
 ```ts
 let onDeleteRightCallback = (length: number) => {
-    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
 };
 inputMethodController.off('deleteRight', onDeleteRightCallback);
 inputMethodController.off('deleteRight');
@@ -2292,7 +2486,7 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 ```ts
 try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+    console.info(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
@@ -2318,7 +2512,7 @@ off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => v
 
 ```ts
 let onSendKeyboardStatus = (keyboardStatus: inputMethod.KeyboardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+    console.info(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
 };
 inputMethodController.off('sendKeyboardStatus', onSendKeyboardStatus);
 inputMethodController.off('sendKeyboardStatus');
@@ -2353,7 +2547,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 ```ts
 try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
-    console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
+    console.info(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(err)}`);
@@ -2379,7 +2573,7 @@ off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): voi
 
 ```ts
 let onSendFunctionKey = (functionKey: inputMethod.FunctionKey) => {
-    console.log(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
+    console.info(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
 };
 inputMethodController.off('sendFunctionKey', onSendFunctionKey);
 inputMethodController.off('sendFunctionKey');
@@ -2414,7 +2608,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 ```ts
 try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
-    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+    console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe moveCursor: ${JSON.stringify(err)}`);
@@ -2440,7 +2634,7 @@ off(type: 'moveCursor', callback?: (direction: Direction) => void): void
 
 ```ts
 let onMoveCursorCallback = (direction: inputMethod.Direction) => {
-    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+    console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
 };
 inputMethodController.off('moveCursor', onMoveCursorCallback);
 inputMethodController.off('moveCursor');
@@ -2475,7 +2669,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 ```ts
 try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
-    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+    console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
@@ -2502,7 +2696,7 @@ off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 ```ts
 try {
   let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
-    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+    console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   };
   inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
   inputMethodController.off('handleExtendAction');
@@ -2539,7 +2733,7 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 ```ts
 try {
   inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
+    console.info(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
@@ -2566,7 +2760,7 @@ off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
+    console.info(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
@@ -2603,7 +2797,7 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 ```ts
 try {
   inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
-    console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
   });
 } catch(err) {
   console.error(`Failed to subscribe selectByMovement: ${JSON.stringify(err)}`);
@@ -2630,7 +2824,7 @@ off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 ```ts
 try {
   let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
-    console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
+    console.info(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
   };
   inputMethodController.off('selectByMovement', onSelectByMovementCallback);
   inputMethodController.off('selectByMovement');
@@ -2846,6 +3040,196 @@ try {
 }
 ```
 
+### on('setPreviewText')<sup>17+</sup>
+
+on(type: 'setPreviewText', callback: SetPreviewTextCallback): void
+
+订阅输入法应用操作文本预览内容的事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('finishTextPreview')](#onfinishtextpreview17)一起订阅。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 是   | 回调函数。用于接收文本预览的内容并返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**示例：**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.info(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.info(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // 仅取消setPreviewText的callback1的回调。
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.info(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // 取消setPreviewText的所有回调。
+  inputMethodController.off('setPreviewText');
+  console.info(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### off('setPreviewText')<sup>17+</sup>
+
+off(type: 'setPreviewText', callback?: SetPreviewTextCallback): void
+
+取消订阅输入法应用操作文本预览内容的事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型，固定取值为'setPreviewText'。 |
+| callback | [SetPreviewTextCallback](#setpreviewtextcallback17) | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
+
+**示例：**
+
+```ts
+let setPreviewTextCallback1: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`SetPreviewTextCallback1: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string, range: inputMethod.Range) => {
+  console.info(`setPreviewTextCallback2: Received text - ${text}, Received range - start: ${range.start}, end: ${range.end}`);
+};
+
+try {
+  inputMethodController.on('setPreviewText', setPreviewTextCallback1);
+  console.info(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  inputMethodController.on('setPreviewText', setPreviewTextCallback2);
+  console.info(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  // 仅取消setPreviewText的callback1的回调。
+  inputMethodController.off('setPreviewText', setPreviewTextCallback1);
+  console.info(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  // 取消setPreviewText的所有回调。
+  inputMethodController.off('setPreviewText');
+  console.info(`All callbacks unsubscribed from setPreviewText`);
+} catch(err) {
+  console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### on('finishTextPreview')<sup>17+</sup>
+
+on(type: 'finishTextPreview', callback: Callback&lt;void&gt;): void
+
+订阅结束文本预览事件。使用callback异步回调。
+
+> **说明：**
+> 
+> 使用预览文本功能，需在调用[attach](#attach10)前订阅此事件，并和[on('setPreviewText')](#onsetpreviewtext17)一起订阅。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明     |
+| -------- | ----- | ---- | ------ |
+| type     | string  | 是   | 设置监听类型，固定取值为'finishTextPreview'。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。用于处理预览文本结束的逻辑，类型为void。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+
+**示例：**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.info(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.info(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // 仅取消finishTextPreview的callback1的回调。
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.info(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // 取消finishTextPreview的所有回调。
+  inputMethodController.off('finishTextPreview');
+  console.info(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
+### off('finishTextPreview')<sup>17+</sup>
+
+off(type: 'finishTextPreview', callback?: Callback&lt;void&gt;): void
+
+取消订阅结束文本预览事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 设置监听类型，固定取值为'finishTextPreview'。 |
+| callback | Callback&lt;void&gt; | 否  | 取消订阅的回调函数，需要与on接口传入的保持一致。<br>参数不填写时，取消订阅type对应的所有回调事件。|
+
+**示例：**
+
+```ts
+let finishTextPreviewCallback1 = () => {
+  console.info(`FinishTextPreviewCallback1: finishTextPreview event triggered`);
+};
+let finishTextPreviewCallback2 = () => {
+  console.info(`FinishTextPreviewCallback2: finishTextPreview event triggered`);
+};
+
+try {
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
+  console.info(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
+  console.info(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  // 仅取消finishTextPreview的callback1的回调。
+  inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
+  console.info(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  // 取消finishTextPreview的所有回调。
+  inputMethodController.off('finishTextPreview');
+  console.info(`All callbacks unsubscribed from finishTextPreview`);
+} catch(err) {
+  console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API均需使用[getSetting](#inputmethodgetsetting9)获取到InputMethodSetting实例后，通过实例调用。
@@ -2871,7 +3255,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 import { InputMethodSubtype } from '@kit.IMEKit';
 try {
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-    console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
 } catch(err) {
   console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
@@ -2943,7 +3327,7 @@ try {
       console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in listing inputMethodSubtype.');
+    console.info('Succeeded in listing inputMethodSubtype.');
   });
 } catch (err) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
@@ -2995,7 +3379,7 @@ let inputMethodProperty: inputMethod.InputMethodProperty = {
 let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
-    console.log('Succeeded in listing inputMethodSubtype.');
+    console.info('Succeeded in listing inputMethodSubtype.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
@@ -3040,7 +3424,7 @@ try {
       console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in listing currentInputMethodSubtype.');
+    console.info('Succeeded in listing currentInputMethodSubtype.');
   });
 } catch(err) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
@@ -3079,7 +3463,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
-    console.log('Succeeded in listing currentInputMethodSubtype.');
+    console.info('Succeeded in listing currentInputMethodSubtype.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
@@ -3130,7 +3514,7 @@ try {
       console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in getting inputMethods.');
+    console.info('Succeeded in getting inputMethods.');
   });
 } catch (err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
@@ -3180,7 +3564,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
-    console.log('Succeeded in getting inputMethods.');
+    console.info('Succeeded in getting inputMethods.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
@@ -3269,7 +3653,7 @@ try {
       console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in getting all inputMethods.');
+    console.info('Succeeded in getting all inputMethods.');
   });
 } catch (err) {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
@@ -3305,7 +3689,7 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
-  console.log('Succeeded in getting all inputMethods.');
+  console.info('Succeeded in getting all inputMethods.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 })
@@ -3344,11 +3728,14 @@ try {
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3377,18 +3764,22 @@ try {
       console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in showing optionalInputMethods.');
+    console.info('Succeeded in showing optionalInputMethods.');
   });
 } catch (err) {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 }
 ```
 
-### showOptionalInputMethods<sup>9+</sup>
+### showOptionalInputMethods<sup>(deprecated)</sup>
 
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 18开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3412,7 +3803,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
-  console.log('Succeeded in showing optionalInputMethods.');
+  console.info('Succeeded in showing optionalInputMethods.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 })
@@ -3446,7 +3837,7 @@ inputMethodSetting.listInputMethod((err: BusinessError, data: Array<inputMethod.
     console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in listing inputMethod.');
+  console.info('Succeeded in listing inputMethod.');
  });
 ```
 
@@ -3474,7 +3865,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
-  console.log('Succeeded in listing inputMethod.');
+  console.info('Succeeded in listing inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
 })
@@ -3488,7 +3879,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3508,7 +3899,7 @@ inputMethodSetting.displayOptionalInputMethod((err: BusinessError) => {
     console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in displaying optionalInputMethod.');
+  console.info('Succeeded in displaying optionalInputMethod.');
 });
 ```
 
@@ -3520,7 +3911,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3536,7 +3927,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.displayOptionalInputMethod().then(() => {
-  console.log('Succeeded in displaying optionalInputMethod.');
+  console.info('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
 })
@@ -3562,7 +3953,7 @@ getInputMethodState(): Promise&lt;EnabledState&gt;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800004 | not an input method.              |
+| 12800004 | not an input method application.    |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3571,7 +3962,7 @@ getInputMethodState(): Promise&lt;EnabledState&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
-  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+  console.info(`Succeeded in getInputMethodState, status: ${status}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })

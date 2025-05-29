@@ -9,6 +9,7 @@
 
 **相关模块：**[OH_Print](_o_h___print.md)
 
+**所在头文件：**[ohprint.h](ohprint_8h.md)
 
 ## 汇总
 
@@ -32,6 +33,7 @@
 uint32_t Print_Range::endPage
 ```
 **描述**
+
 打印终止页。
 
 
@@ -41,6 +43,7 @@ uint32_t Print_Range::endPage
 uint32_t* Print_Range::pagesArray
 ```
 **描述**
+
 打印队列指针。
 
 

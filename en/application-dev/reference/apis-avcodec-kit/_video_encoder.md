@@ -155,7 +155,7 @@ Parameter verification rules are as follows:
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat-1).| AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
 | OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
 | OH_MD_KEY_PROFILE<br>For details, see [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile).   | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
 | OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |
@@ -166,13 +166,13 @@ Parameter verification rules are as follows:
 | Out of range                 | Out of range                 | Unsupported mode                                  | AV_ERR_INVALID_VAL   | An error is reported for all abnormal values.                |
 | Normal value                  | Normal value                  | \\                                       | AV_ERR_INVALID_VAL   | The bit rate conflicts with the quality.  |
 | Normal value                  | \\                    | \\                                       | AV_ERR_OK     | The default bit rate control mode is enabled.              |
-| Normal value                  | \\                    | VBR and CBR                                 | AV_ERR_OK     |                        |
-| Normal value                  | \\                    | CQ                                       | AV_ERR_INVALID_VAL   | The bit rate conflicts with the CQ mode.     |
+| Normal value                  | \\                    | BITRATE_MODE_VBR and BITRATE_MODE_CBR                                 | AV_ERR_OK     |                        |
+| Normal value                  | \\                    | BITRATE_MODE_CQ                                       | AV_ERR_INVALID_VAL   | The bit rate conflicts with the CQ mode.     |
 | \\                    | Normal value                  | \\                                       | AV_ERR_OK     | The CQ mode is enabled.              |
-| \\                    | Normal value                  | CQ                                       | AV_ERR_OK     |                        |
-| \\                    | Normal value                  | VBR and CBR                                 | AV_ERR_INVALID_VAL   | The quality conflicts with the VBR or CBR mode.|
-| \\                    | \\                    | VBR and CBR                                 | AV_ERR_OK     | The default bit rate of the encoder is used.             |
-| \\                    | \\                    | CQ                                       | AV_ERR_OK    | The default quality is used. |
+| \\                    | Normal value                  | BITRATE_MODE_CQ                                       | AV_ERR_OK     |                        |
+| \\                    | Normal value                  | BITRATE_MODE_VBR and BITRATE_MODE_CBR                                 | AV_ERR_INVALID_VAL   | The quality conflicts with the VBR or CBR mode.|
+| \\                    | \\                    | BITRATE_MODE_VBR and BITRATE_MODE_CBR                                 | AV_ERR_OK     | The default bit rate of the encoder is used.             |
+| \\                    | \\                    | BITRATE_MODE_CQ                                       | AV_ERR_OK    | The default quality is used. |
 
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
@@ -205,6 +205,7 @@ Returns one of the following result codes:
 
 **AV_ERR_INVALID_STATE**: The function is not called prior to **OH_VideoEncoder_Prepare**.
 
+**AV_ERR_UNSUPPORT**: The feature is not supported.
 
 ### OH_VideoEncoder_CreateByMime()
 
@@ -342,7 +343,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 
 Returns the processed OH_AVBuffer corresponding to the index to a video encoder. You need to call this function to release the output buffer in a timely manner. Otherwise, the encoding process is blocked.
 
-For details, see step 14 in surface mode or step 10 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
+For details, see step 13 in surface mode or step 11 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -386,7 +387,7 @@ OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec *codec)
 
 Obtains the description of the image received by a video encoder. This function must be called after [OH_VideoEncoder_Configure](#oh_videoencoder_configure) is called.
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to manually release the **OH_AVFormat** instance in the return value.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to manually release the **OH_AVFormat** instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -413,7 +414,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 
 Obtains the OH_AVFormat information about the output data of a video encoder.
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance in the return value.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -470,7 +471,7 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 
 **Description**
 
-Checks whether a video encoder instance is valid.
+Checks whether the encoder service is valid when an encoder instance exists.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -481,7 +482,7 @@ Checks whether a video encoder instance is valid.
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to a video encoder instance. | 
-| isValid | Pointer of the Boolean type. The value **true** means that the encoder instance is valid and **false** means the opposite. It is recommended that the caller initialize **isValid** to **false**. |
+| isValid | Pointer of the Boolean type. The value indicates the validity of the encoder service only when the function returns **AV_ERR_OK**. The value **true** means that the encoder service is valid, and **false** means the opposite. It is recommended that you initialize **isValid** to **false**. |
 
 **Returns**
 

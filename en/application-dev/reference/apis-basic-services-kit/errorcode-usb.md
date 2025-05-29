@@ -21,7 +21,7 @@ The permission to access the USB device is not granted.
 **Procedure**
 
 Call **requestRight** to request for the permission to access the USB device.
-
+<!--Del-->
 ## 14400002 HDC Disabled
 
 **Error Message**
@@ -57,7 +57,7 @@ The port role is incorrect.
 **Procedure**
 
 Use the correct port role.
-
+<!--DelEnd-->
 ## 14400004 Service Exception
 
 **Error Message**
@@ -89,7 +89,7 @@ This error code is reported if the database operation is abnormal.
 **Procedure**
 
 Call the API again.
-
+<!--Del-->
 ## 14400006 USB Device Function Unsupported
 
 **Error Message**
@@ -107,7 +107,7 @@ The USB device function is not supported.
 **Procedure**
 
 Use the correct USB device function.
-
+<!--DelEnd-->
 ## 14401001 Target USB Accessory Unmatched
 
 **Error Message**
@@ -172,7 +172,7 @@ No such device (it may have been disconnected).
 
 **Description**
 
-This error code is reported if libusb fails to identify the correct device information.
+This error code is reported if the device cannot be identified.
 
 **Procedure**
 
@@ -186,7 +186,7 @@ Insufficient memory.
 
 **Description**
 
-This error code is reported if no memory is available when libusb applies for memory. The maximum size of data transferred by libusb at a time is 1 KB.
+This error code is reported if no memory is available when being requested. The maximum data size is 1 KB for a single transfer.
 
 **Procedure**
 
@@ -200,7 +200,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **Description**
 
-This error code is reported if an error unrecognized by libusb has occurred.
+This error code is reported if an unknown error occurs.
 
 **Procedure**
 
@@ -220,7 +220,7 @@ This error code is reported if the current data transfer has been canceled or co
 
 Initiate a new data transfer request.
 
-## 144000012 I/O Error
+## 14400012 I/O Error
 
 **Error Message**
 
@@ -228,8 +228,134 @@ Transmission I/O error.
 
 **Description**
 
-This error code is reported if libusb fails to perform a read/write operation.
+This error code is reported if the read/write operation fails because the I/O channel is abnormal.
 
 **Procedure**
 
 Try again.
+
+## 31400001 Serial Port Service Error
+
+**Error Message**
+
+serial service exception.
+
+**Description**
+
+This error code is reported if the serial port service is abnormal.
+
+**Possible Causes**
+
+The process exits due to a program exception.
+
+**Procedure**
+
+Check whether the device is connected, and obtain the correct serial port number from the serial port list.
+
+## 31400002 No Serial Port Device Access Permission
+
+**Error Message**
+
+no access right to serial device, call requestSerialRight first.
+
+**Description**
+
+This error code is reported if you do not have the permission to access the serial port device.
+
+**Possible Causes**
+
+You have not applied for the permission to access the serial port device.
+
+**Procedure**
+
+Call **requestSerialRight** to apply for the access permission.
+
+## 31400003 Port Number Not Exist
+
+**Error Message**
+
+portId not exist.
+
+**Description**
+
+This error code is reported if the port number does not exist.
+
+**Possible Causes**
+
+The original port number becomes invalid because the device connection is abnormal.
+
+**Procedure**
+
+Remove and insert the device, and try again.
+
+## 31400004 Port in Use
+
+**Error Message**
+
+device is using by other application.
+
+**Description**
+
+This error code is reported if the device is being used by another application.
+
+**Possible Causes**
+
+The serial port device is enabled repeatedly.
+
+**Procedure**
+
+Remove and insert the device, and try again.
+
+## 31400005 Device Not Opened
+
+**Error Message**
+
+device is not open, call open first.
+
+**Description**
+
+This error code is reported if the device is not opened. 
+
+**Possible Causes**
+
+A device has not been opened.
+
+**Procedure**
+
+Call the **Open** API to open the device before performing subsequent operations.
+
+## 31400006 Transmission Timeout
+
+**Error Message**
+
+transfer timeout.
+
+**Description**
+
+This error code is reported if the data transfer times out.
+
+**Possible Causes**
+
+The peer end does not send data.
+
+**Procedure**
+
+Check whether the peer device initiates data transfer.
+
+## 31400007 I/O Exception
+
+**Error Message**
+
+I/O exception.
+
+**Description**
+
+This error code is reported if an I/O exception occurs.
+
+**Possible Causes**
+
+The amount of received data in a single transfer exceeds the configured buffer size.
+
+**Procedure**
+
+Adjust the buffer size properly, and perform data transfer again.

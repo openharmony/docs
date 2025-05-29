@@ -33,7 +33,7 @@ OpenSL ES:
 
 Obtain an **Engine** object through the global interface, and construct an audio playback object based on the **Engine** object and the input and output parameters.
 
-```c++
+```cpp
 // Generate an Engine object.
 SLEngineItf engine;
 // ...
@@ -64,7 +64,7 @@ OHAudio:
 
 Use the builder mode to generate an audio playback object based on custom parameters.
 
-```c++
+```cpp
 // Create a builder.
 OH_AudioStreamBuilder *builder;
 OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
@@ -89,7 +89,7 @@ OpenSL ES:
 
 Obtain the state switching interface based on the audio playback object and use the interface to switch the state. There are three states: **SL_PLAYSTATE_STOPPED**, **SL_PLAYSTATE_PAUSED**, and **SL_PLAYSTATE_PLAYING**.
 
-```c++
+```cpp
 // Obtain the playback operation interface based on the audio playback object.
 SLPlayItf playItf = nullptr;
 (*playerObject)->GetInterface(playerObject, SL_IID_PLAY, &playItf);
@@ -103,7 +103,7 @@ OHAudio:
 
 There are independent state switching interfaces. The state is switched based on the state machine. There are six states, which are mainly switched between **AUDIOSTREAM_STATE_PREPARED**, **AUDIOSTREAM_STATE_RUNNING**, **AUDIOSTREAM_STATE_STOPPED**, **AUDIOSTREAM_STATE_PAUSED**, and **AUDIOSTREAM_STATE_RELEASED**.
 
-```c++
+```cpp
 // Switch the state.
 OH_AudioRenderer_Start(audioRenderer);
 OH_AudioRenderer_Pause(audioRenderer);
@@ -116,7 +116,7 @@ OpenSL ES:
 
 Based on the extended **OHBufferQueue** APIs, you can register a custom callback function to write audio data to be played to the system buffer.
 
-```c++
+```cpp
 static void MyBufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
 {
     SLuint8 *buffer = nullptr;
@@ -141,7 +141,7 @@ OHAudio:
 
 The callback mode is used. When the audio playback object is constructed, a data input callback is registered to implement custom data filling. During playback, a data request callback is automatically triggered at a proper time based on the system scheduling and delay configuration.
 
-```c++
+```cpp
 static int32_t MyOnWriteData(
     OH_AudioRenderer *renderer,
     void *userData,
@@ -166,7 +166,7 @@ OpenSL ES:
 
 Call **SLObjectItf** to release object resources.
 
-```c++
+```cpp
 // Release the playback object resources.
 (*playerObject)->Destroy(playerObject);
 ```
@@ -175,7 +175,7 @@ OHAudio:
 
 Call the release interface of the module to release object resources.
 
-```c++
+```cpp
 // Release the builder resources.
 OH_AudioStreamBuilder_Destroy(builder);
 

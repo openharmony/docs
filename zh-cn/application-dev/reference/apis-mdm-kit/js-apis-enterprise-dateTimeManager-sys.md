@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
 > 本模块接口均为系统接口。
 
@@ -22,7 +22,7 @@ import { dateTimeManager } from '@kit.MDMKit';
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-指定设备管理应用设置系统时间。使用callback异步回调。 
+设置系统时间。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -33,7 +33,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | time  | number | 是 | 时间戳(ms)。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -53,9 +53,10 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
@@ -71,7 +72,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (err) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-指定设备管理应用设置系统时间。使用Promise异步回调。
+设置系统时间。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -82,7 +83,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | time  | number | 是 | 时间戳(ms)。 |
 
 **返回值：**
@@ -108,9 +109,10 @@ setDateTime(admin: Want, time: number): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
@@ -124,7 +126,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
-指定设备管理应用禁止设备修改系统时间。使用callback异步回调。
+禁止设备修改系统时间。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -135,7 +137,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disallow  | boolean | 是 | true 表示禁止修改系统时间，false表示允许修改系统时间。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -155,9 +157,10 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
@@ -173,7 +176,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (err) => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
-指定设备管理应用禁止设备修改系统时间。使用Promise异步回调。
+禁止设备修改系统时间。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -184,14 +187,14 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | disallow  | boolean | 是 | true 表示禁止修改系统时间，false表示允许修改系统时间。 |
 
 **返回值：**
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。当指定设备管理应用禁止设备修改系统时间失败时，抛出错误对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当禁止设备修改系统时间失败时，抛出错误对象。 |
 
 **错误码**：
 
@@ -210,9 +213,10 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
@@ -226,7 +230,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
-指定设备管理应用查询设备是否允许修改系统时间。使用callback异步回调。
+查询设备是否允许修改系统时间。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -237,8 +241,8 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数，callbac方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，callback方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
 
 **错误码**：
 
@@ -256,9 +260,10 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
@@ -274,7 +279,7 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (err, result) => {
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
-指定设备管理应用查询设备是否允许修改系统时间。使用Promise异步回调。
+查询设备是否允许修改系统时间。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -283,9 +288,9 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -310,9 +315,10 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 dateTimeManager.isModifyDateTimeDisallowed(wantTemp).then((result) => {

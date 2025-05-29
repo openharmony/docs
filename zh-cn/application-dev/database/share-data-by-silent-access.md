@@ -39,7 +39,7 @@
 
 ![silent_dataShare](figures/silent_dataShare.jpg)
 
-- 和跨应用数据共享方式不同的是，静默数据访问借助数据管理服务通过目录映射方式直接读取数据提供方的配置，按规则进行预处理后，并访问数据库。
+- 与DataShareExtensionAbility跨应用数据共享方式不同，静默数据访问借助数据管理服务，通过目录映射方式直接读取数据提供方的配置，按规则预处理后访问数据库。
 
 - 数据访问方的URI需严格按照如下格式：`datashareproxy://{bundleName}/{dataPath}`
 
@@ -49,22 +49,20 @@
 
 - URI还支持添加其他参数来设置具体的访问方式或访问对象，URI添加参数需严格遵循格式：`datashareproxy://{bundleName}/{dataPath}?{arg1}&{arg2}`，不符合规范的URI参数不生效。
 
-  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持“Proxy”、“appIndex”以及“user”参数。当使用多个"?"符开始参数时，"?"后的参数需是"Proxy"参数，否则该参数不生效。
-
-  - "Proxy"仅支持设置为true或false，true表示数据访问方采用静默数据访问方式，false则表示数据访问方采用非静默数据访问方式。
+  其中以"?"符号开始参数，以"&"符号连接参数，连续的多个符号会被视为一个。当前仅支持"appIndex"以及"user"参数。
 
   - "appIndex"仅支持设置为整型，表示应用包的分身索引，从1开始支持，仅在分身应用中生效。appIndex的定义及获取参照[BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)。appIndex为0，或不填写时，访问数据提供者的应用本体。
 
-    目前访问应用分身仅支持静默访问方式下，不支持非静默访问方式。故需要设置访问应用分身URI和参数时，请注意同步设置"Proxy"参数和"appIndex"参数。例如“datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1”，表示将在数据访问方会在静默访问方式下访问应用的第一个分身。
+    目前访问分身应用仅支持静默访问方式，不支持非静默访问方式。
 
-  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。
+  - "user"仅支持设置为整型，表示要访问的数据提供方的用户ID。user的定义及获取参照[user](../reference/apis-basic-services-kit/js-apis-osAccount.md#getactivatedosaccountlocalids9)。user不填写时，默认为数据访问方所在的用户ID。目前跨用户访问功能仅支持增删改查功能，订阅通知功能不支持跨用户。
 
     目前跨用户访问仅支持主空间和隐私空间之间的访问，且需要数据访问方配有跨用户访问权限ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS才可成功访问。
 
 ## 约束与限制
 
 - 目前持久化数据中仅关系型数据库支持静默数据访问方式。
-- 整个系统最多同时并发16路查询，有多出来的查询请求需要排队处理。
+- 整个系统最多同时并发32路查询，有多出来的查询请求需要排队处理。
 - 持久化数据不支持代理创建数据库，如果需要创建数据库，需要拉起数据提供方。
 - 数据提供方如果是normal级别签名的应用，配置的数据读写权限必须为system_basic及以上权限。
 
@@ -112,7 +110,7 @@
 
 ### 数据提供方应用的开发
 
-1. 数据提供方需要在module.json5中的proxyData节点定义要共享的表的标识，读写权限和基本信息， 配置方法可考参考[配置文件](../quick-start/module-configuration-file.md)。
+1. 数据提供方需要在module.json5中的proxyData节点定义要共享的表的标识，读写权限和基本信息， 配置方法可参考[配置文件](../quick-start/module-configuration-file.md)。
 
    **表1** module.json5中proxyData节点对应的属性字段
 
@@ -283,21 +281,20 @@
 
 ### 数据提供方应用的开发（可选）
 
-数据提供方需要在module.json5中的proxyData节点定义过程数据的标识，读写权限和基本信息， 配置方法可考参考[配置文件](../quick-start/module-configuration-file.md)。
+数据提供方需要在module.json5中的proxyData节点定义过程数据的标识，读写权限和基本信息， 配置方法可参考[配置文件](../quick-start/module-configuration-file.md)。
 
 > 注意：
 >
-> - 该步骤为可选，可以不对module.json5中的proxyData进行配置。
+> - 该步骤可选。
 > - 不配置proxyData时，托管数据不允许其他应用访问。
-> - 不配置proxyData时，数据标识可以为简写，发布、订阅、查询数据可以使用简写的数据标识，如weather，可以不用全写为datashareproxy://com.acts.ohos.data.datasharetest/weather
 
 **表3** module.json5中proxyData节点对应的属性字段
 
 | 属性名称                    | 备注说明                          | 必填   |
 | ----------------------- | ----------------------------- | ---- |
 | uri                     | 数据使用的URI，是跨应用数据访问的唯一标识。       | 是    |
-| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
-| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与DataShareExtensionAbility的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
+| requiredReadPermission  | 标识从该数据代理读取数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与[DataShareExtensionAbility](share-data-by-datashareextensionability.md)的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
+| requiredWritePermission | 标识从该数据代理修改数据时所需要的权限，不配置默认不允许其他APP访问数据。支持权限可参考[权限列表](../security/AccessToken/app-permissions.md)。<br>注意：当前静默访问的权限约束方式与[DataShareExtensionAbility](share-data-by-datashareextensionability.md)的权限约束方式不同，请注意区分，切勿混淆，具体可参考[DataShareExtensionAbility章节](share-data-by-datashareextensionability.md)。 | 否    |
 
 **module.json5配置样例：**
 
@@ -377,11 +374,11 @@
 
 ### 数据提供方应用的开发
 
-数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)。
+数据提供方调用接口以动态开启静默访问功能。此接口与data_share_config.json文件中isSilentProxyEnable字段配合使用。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)。
 
 > 注意：
 >
-> - 该步骤为可选，可以不对data_share_config.json文件中isSilentProxyEnable字段进行配置，默认为true，默认为开启静默访问功能。
+> - 该步骤为可选，可以不配置data_share_config.json文件中isSilentProxyEnable字段，默认值为true，表示开启静默访问功能。
 > - 校验静默访问是否开启，会优先校验enableSilentProxy/disableSilentProxy接口设置的开关状态，其次会校验data_share_config.json文件中isSilentProxyEnable字段。
 > - 不调用enableSilentProxy/disableSilentProxy接口时，优先会校验data_share_config.json文件中isSilentProxyEnable字段。
 > - 不调用enableSilentProxy/disableSilentProxy接口，也不配置data_share_config.json文件中isSilentProxyEnable字段时，默认静默访问是开启的。
@@ -397,7 +394,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashare:///com.ohos.settingsdata/entry/DB00/TBL00');
+   let dseUri = ('datashareproxy:///com.ohos.settingsdata/entry/DB00/TBL00');
    ```
 
 3. 创建工具接口类对象。

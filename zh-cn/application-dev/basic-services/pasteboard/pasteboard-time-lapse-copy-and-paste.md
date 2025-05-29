@@ -10,7 +10,11 @@
 
 ## 约束限制
 
-- 剪贴板内容大小&lt;128MB时支持使用。
+- 剪贴板内容包含剪贴板系统服务元数据和应用设置的数据，总大小上限默认为128MB，PC/2in1设备可通过系统配置修改上限，有效范围为128MB~2GB。
+
+- NDK接口仅支持Record级别的延迟复制粘贴。
+
+- ArkTS接口仅支持PasteData级别的延迟复制粘贴。
 
 ## 使用基于Record级别的延迟复制粘贴（推荐）
 
@@ -18,7 +22,7 @@
 
 ### 接口说明
 
-详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/_u_d_m_f.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/capi-udmf.md)。
 
 | 名称 | 说明                                                                   |
 | -------- |----------------------------------------------------------------------|
@@ -162,10 +166,10 @@
 
 | 名称 | 说明                                                                   |
 | -------- |----------------------------------------------------------------------|
-| setUnifiedData(data: udc.UnifiedData): Promise\<void> | 将统一数据类型的数据写入系统剪贴板，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
-| setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
-| getUnifiedData(): Promise\<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。|
-| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口，在使用延迟复制粘贴功能时，不可与setUnifiedData和setUnifiedDataSync同线程调用。|
+| setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise\<void> | 将统一数据类型的数据写入系统剪贴板，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
+| setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口，在使用延迟复制粘贴功能时，不可与getUnifiedDataSync同线程调用。|
+| getUnifiedData(): Promise\<unifiedDataChannel.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。|
+| getUnifiedDataSync(): unifiedDataChannel.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口，在使用延迟复制粘贴功能时，不可与setUnifiedData和setUnifiedDataSync同线程调用。|
 | setAppShareOptions(shareOptions: ShareOption): void | 应用设置本应用剪贴板数据的可粘贴范围。|
 | removeAppShareOptions(): void | 应用删除本应用设置的剪贴板数据可粘贴范围配置。|
 

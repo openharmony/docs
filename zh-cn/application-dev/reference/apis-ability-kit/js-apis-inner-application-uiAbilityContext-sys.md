@@ -52,12 +52,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -72,8 +72,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -147,12 +146,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -167,8 +166,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -250,12 +248,12 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -270,8 +268,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -315,7 +312,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -337,7 +334,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -386,7 +383,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -407,7 +404,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -456,7 +453,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-启动一个新的ServiceExtensionAbility（callback形式）。
+启动一个新的ServiceExtensionAbility。使用callback异步回调。
 
 > **说明：**
 > 
@@ -486,7 +483,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -536,7 +533,7 @@ export default class EntryAbility extends UIAbility {
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-启动一个新的ServiceExtensionAbility（Promise形式）。
+启动一个新的ServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -565,7 +562,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -614,7 +611,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内的服务（callback形式）。
+停止同一应用程序内的服务。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -636,7 +633,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -683,7 +680,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序内的服务（Promise形式）。
+停止同一应用程序内的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -704,7 +701,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -749,7 +746,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void
 
-停止同一应用程序内指定账户的服务（callback形式）。
+停止同一应用程序内指定账户的服务。使用callback异步回调。
 
 > **说明：**
 > 
@@ -778,7 +775,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -824,7 +821,7 @@ export default class EntryAbility extends UIAbility {
 
 stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
-停止同一应用程序内指定账户的服务（Promise形式）。
+停止同一应用程序内指定账户的服务。使用Promise异步回调。
 
 > **说明：**
 > 
@@ -852,7 +849,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000011 | The context does not exist. |
@@ -936,7 +933,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1021,12 +1018,12 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1041,8 +1038,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1116,12 +1112,12 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1136,8 +1132,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1213,12 +1208,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1233,8 +1228,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1279,7 +1273,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
+设置当前Ability在任务中显示的图标，图标大小最大为600M。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1289,8 +1283,8 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
-| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的Ability图标。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当设置当前Ability在任务中显示的图标成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -1335,7 +1329,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>
 
-设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
+设置当前Ability在任务中显示的图标, 图标大小最大为600M。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1345,13 +1339,13 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的Ability图标。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1425,19 +1419,18 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1479,8 +1472,6 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 启动一个指定的Ability。如果这个Ability有多个实例，将拉起最近启动的那个实例。当开发者需要携带启动参数时可以选择此API。使用callback异步回调。仅支持在主线程调用。
 
-
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
@@ -1506,19 +1497,18 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1588,19 +1578,18 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -1681,8 +1670,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000004 | Cannot start an invisible component. |
+| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
@@ -1696,8 +1685,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16200001 | The caller has been released.        |
+| 16000080 | Creating a new instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1770,12 +1759,12 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1789,8 +1778,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1848,7 +1836,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | ------- | -------------------------------- |
 | 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1866,8 +1854,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1934,12 +1921,12 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1953,8 +1940,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**

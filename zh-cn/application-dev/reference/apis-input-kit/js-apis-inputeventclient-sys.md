@@ -70,9 +70,10 @@ try {
   let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
 ## inputEventClient.injectKeyEvent<sup>11+</sup>
 
 injectKeyEvent(keyEvent: KeyEventData): void
@@ -110,10 +111,10 @@ try {
   }
 
   class EventDown {
-    KeyEvent: inputEventClient.KeyEvent | null = null
+    keyEvent: inputEventClient.KeyEvent | null = null
   }
 
-  let eventDown: EventDown = { KeyEvent: backKeyDown }
+  let eventDown: EventDown = { keyEvent: backKeyDown }
   inputEventClient.injectKeyEvent(eventDown);
 
   let backKeyUp: inputEventClient.KeyEvent = {
@@ -124,18 +125,18 @@ try {
   };
 
   class EventUp {
-    KeyEvent: inputEventClient.KeyEvent | null = null
+    keyEvent: inputEventClient.KeyEvent | null = null
   }
 
-  let eventUp: EventUp = { KeyEvent: backKeyUp }
+  let eventUp: EventUp = { keyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
 
-injectMouseEvent(mouseEvent: MouseEventData): void;
+injectMouseEvent(mouseEvent: MouseEventData): void
 
 鼠标/触摸板事件注入。
 
@@ -164,7 +165,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 import { MouseEvent } from '@kit.InputKit';
 
 try {
-  let mouseButtonUpData: mouseEvent.MouseEvent = {
+  let mouseButtonUpData: MouseEvent = {
     id: 0,
     deviceId: 1,
     actionTime: 2,
@@ -196,7 +197,7 @@ try {
   }
   inputEventClient.injectMouseEvent(mouseButtonUp);
 
-  let mouseButtonDownData: mouseEvent.MouseEvent = {
+  let mouseButtonDownData: MouseEvent = {
     id: 0,
     deviceId: 1,
     actionTime: 2,
@@ -230,9 +231,8 @@ try {
 }
 
 catch (error) {
-  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
@@ -263,10 +263,10 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import { TouchEvent } from '@kit.InputKit';
+import { Touch, TouchEvent } from '@kit.InputKit';
 
 try {
-  let touchEvent: touchEvent.Touch = {
+  let touchEvent: Touch = {
     id: 1,
     pressedTime: 1,
     screenX: 0,
@@ -287,7 +287,7 @@ try {
     toolType: 0,
   }
 
-  let touchEventUpData: touchEvent.TouchEvent = {
+  let touchEventUpData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -304,7 +304,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventUp);
 
-  let touchEventDownData: touchEvent.TouchEvent = {
+  let touchEventDownData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -321,7 +321,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
-  console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

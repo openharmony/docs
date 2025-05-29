@@ -3,11 +3,11 @@
 
 ## 概述
 
-UIAbility组件是一种包含UI的应用组件，主要用于和用户交互。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件是一种包含UI的应用组件，主要用于和用户交互。例如，图库类应用可以在UIAbility组件中展示图片瀑布流。
 
 UIAbility的设计理念：
 
-1. 原生支持应用组件级的跨端迁移和多端协同。
+1. 支持应用组件级的跨端迁移和多端协同。
 
 2. 支持多设备和多窗口形态。
 

@@ -57,7 +57,7 @@ The following procedure implements the following: After **Paste** is tapped, the
                      console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
                      return;
                    }
-                   // The content to paste is '123456'.
+                   // The content is '123456'.
                    this.message = pasteData.getPrimaryText();
                  });
                }

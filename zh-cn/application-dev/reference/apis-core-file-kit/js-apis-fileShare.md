@@ -85,7 +85,7 @@ import fileShare from '@ohos.fileshare';
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -105,7 +105,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。  
 如果存在URI授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -155,7 +155,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -175,7 +175,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。  
 如果存在URI取消授权失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID | 错误信息 |
@@ -225,7 +225,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -245,7 +245,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。  
 如果存在URI使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -296,7 +296,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放(此接口不支持媒体类URI及远端URI的持久化)。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果。该接口仅对具有该系统能力的设备开放（此接口不支持媒体类URI及远端URI的持久化）。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -316,7 +316,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。\n
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。  
 如果存在URI取消使能权限失败，则抛出13900001错误码，且失败URI信息将抛出异常data属性中以Array<[PolicyErrorResult](#policyerrorresult11)>形式提供错误信息。
 
 | 错误码ID    | 错误信息       |
@@ -366,8 +366,6 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 异步方法校验所选择的多个文件或目录URI持久化授权，以promise形式返回结果。
 
-**需要权限**：ohos.permission.FILE_ACCESS_PERSIST
-
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
@@ -388,7 +386,6 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 | 错误码ID    | 错误信息       |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error.|

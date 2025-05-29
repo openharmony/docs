@@ -9,7 +9,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 1. Import the NDK, which provides camera-related attributes and methods.
 
    ```c++
-    // Include the NDK header files.
+   // Include the NDK header files.
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
@@ -45,36 +45,14 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    Call [OH_CameraManager_CreatePhotoOutputWithoutSurface()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createphotooutputwithoutsurface) to create a photo output stream.
 
    ```c++
-   void CreatePhotoOutput() {
-       Camera_Manager *cameraManager = nullptr;
-       Camera_Device *cameras = nullptr;
-       Camera_OutputCapability *cameraOutputCapability = nullptr;
-       Camera_PhotoOutput *photoOutput = nullptr;
-       const Camera_Profile *photoProfile = nullptr;
-       uint32_t size = 0;
-       uint32_t cameraDeviceIndex = 0;
-       Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
-       if (cameraManager == nullptr || ret != CAMERA_OK) {
-           OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
-       }
-       ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-       if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
-           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
-       }
-       ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
-                                                                 &cameraOutputCapability);
-       if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-           OH_LOG_ERROR(LOG_APP, "GetSupportedCameraOutputCapability failed.");
-       }
-       photoProfile = cameraOutputCapability->photoProfiles[0];
-       if (photoProfile == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "Get photoProfiles failed.");
-       }
+   Camera_PhotoOutput* CreatePhotoOutput(Camera_Manager* cameraManager, const Camera_Profile* photoProfile) {
+       Camera_PhotoOutput* photoOutput = nullptr;
        // Create a photo output stream without passing a surface ID.
-       ret = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager, photoProfile, &photoOutput);
+       Camera_ErrorCode ret = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager, photoProfile, &photoOutput);
        if (photoOutput == nullptr || ret != CAMERA_OK) {
            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutputWithoutSurface failed.");
        }
+       return photoOutput;
    }
    ```
 
@@ -95,8 +73,8 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
    ```c++
    // Save the buffer processing callback registered on the NAPI side.
-   static void *bufferCb = nullptr;
-   Camera_ErrorCode NDKCamera::RegisterBufferCb(void *cb) {
+   static void* bufferCb = nullptr;
+   Camera_ErrorCode RegisterBufferCb(void* cb) {
        OH_LOG_INFO(LOG_APP, " RegisterBufferCb start");
        if (cb == nullptr) {
            OH_LOG_INFO(LOG_APP, " RegisterBufferCb invalid error");
@@ -107,9 +85,9 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
 
    // One-time photo capture callback.
-   void OnPhotoAvailable(Camera_PhotoOutput *photoOutput, OH_PhotoNative *photo) {
+   void OnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo) {
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable start!");
-       OH_ImageNative *imageNative;
+       OH_ImageNative* imageNative;
        Camera_ErrorCode errCode = OH_PhotoNative_GetMainImage(photo, &imageNative);
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable errCode:%{public}d imageNative:%{public}p", errCode, imageNative);
        // Read the size attribute of OH_ImageNative.
@@ -123,11 +101,11 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d componentTypeSize:%{public}zu", imageErr,
                     componentTypeSize);
        // Read the component list of OH_ImageNative.
-       uint32_t *components = new uint32_t[componentTypeSize];
+       uint32_t* components = new uint32_t[componentTypeSize];
        imageErr = OH_ImageNative_GetComponentTypes(imageNative, &components, &componentTypeSize);
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetComponentTypes imageErr:%{public}d", imageErr);
        // Read the buffer object corresponding to the first component of OH_ImageNative.
-       OH_NativeBuffer *nativeBuffer = nullptr;
+       OH_NativeBuffer* nativeBuffer = nullptr;
        imageErr = OH_ImageNative_GetByteBuffer(imageNative, components[0], &nativeBuffer);
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetByteBuffer imageErr:%{public}d", imageErr);
        // Read the size of the buffer corresponding to the first component of OH_ImageNative.
@@ -144,7 +122,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        imageErr = OH_ImageNative_GetPixelStride(imageNative, components[0], &pixelStride);
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d pixelStride:%{public}d", imageErr, pixelStride);
        // Map the ION memory to the process address space.
-       void *virAddr = nullptr; // Point to the virtual address of the mapped memory. After unmapping, the pointer is invalid.
+       void* virAddr = nullptr; // Point to the virtual address of the mapped memory. After unmapping, the pointer is invalid.
        int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr); // After mapping, the start address of the memory is returned through the parameter virAddr.
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
        // Call the buffer callback at the NAPI layer.
@@ -161,25 +139,25 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
 
    // Register the PhotoAvailableCallback callback.
-   Camera_ErrorCode NDKCamera::PhotoOutputRegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput) {
+   Camera_ErrorCode PhotoOutputRegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput) {
        OH_LOG_INFO(LOG_APP, "PhotoOutputRegisterPhotoAvailableCallback start!");
-       Camera_ErrorCode errCode = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
-       if (errCode != CAMERA_OK) {
+       Camera_ErrorCode ret = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
+       if (ret != CAMERA_OK) {
            OH_LOG_ERROR(LOG_APP, "PhotoOutputRegisterPhotoAvailableCallback failed.");
        }
-       OH_LOG_INFO(LOG_APP, "PhotoOutputRegisterPhotoAvailableCallback return with ret code: %{public}d!", errCode);
-       return errCode;
+       OH_LOG_INFO(LOG_APP, "PhotoOutputRegisterPhotoAvailableCallback return with ret code: %{public}d!", ret);
+       return ret;
    }
 
    // Unregister the PhotoAvailableCallback callback.
-   Camera_ErrorCode NDKCamera::PhotoOutputUnRegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput) {
+   Camera_ErrorCode PhotoOutputUnRegisterPhotoAvailableCallback(Camera_PhotoOutput* photoOutput) {
        OH_LOG_INFO(LOG_APP, "PhotoOutputUnRegisterPhotoAvailableCallback start!");
-       ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
-       if (ret_ != CAMERA_OK) {
+       Camera_ErrorCode ret = OH_PhotoOutput_UnregisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
+       if (ret != CAMERA_OK) {
            OH_LOG_ERROR(LOG_APP, "PhotoOutputUnRegisterPhotoAvailableCallback failed.");
        }
-       OH_LOG_INFO(LOG_APP, "PhotoOutputUnRegisterPhotoAvailableCallback return with ret code: %{public}d!", ret_);
-       return ret_;
+       OH_LOG_INFO(LOG_APP, "PhotoOutputUnRegisterPhotoAvailableCallback return with ret code: %{public}d!", ret);
+       return ret;
    }
    ```
 
@@ -191,14 +169,14 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    size_t g_size = 0;
    
    // Buffer callback at the NAPI layer.
-   static void BufferCb(void *buffer, size_t size) {
+   static void BufferCb(void* buffer, size_t size) {
        OH_LOG_INFO(LOG_APP, "BufferCb size:%{public}zu", size);
        g_size = size;
        napi_value asyncResource = nullptr;
        napi_value asyncResourceName = nullptr;
        napi_async_work work;
 
-       void *copyBuffer = malloc(size);
+       void* copyBuffer = malloc(size);
        if (copyBuffer == nullptr) {
            return;
        }
@@ -207,11 +185,11 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        std::memcpy(copyBuffer, buffer, size);
        napi_create_string_utf8(env_, "BufferCb", NAPI_AUTO_LENGTH, &asyncResourceName);
        napi_status status = napi_create_async_work(
-           env_, asyncResource, asyncResourceName, [](napi_env env, void *copyBuffer) {},
-           [](napi_env env, napi_status status, void *copyBuffer) {
+           env_, asyncResource, asyncResourceName, [](napi_env env, void* copyBuffer) {},
+           [](napi_env env, napi_status status, void* copyBuffer) {
                napi_value retVal;
                napi_value callback = nullptr;
-               void *data = nullptr;
+               void* data = nullptr;
                napi_value arrayBuffer = nullptr;
                size_t bufferSize = g_size;
                napi_create_arraybuffer(env, bufferSize, &data, &arrayBuffer);
@@ -257,324 +235,168 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
            OH_LOG_ERROR(LOG_APP, "SetBufferCb callbackRef is null");
        }
        // Register the buffer callback to be passed to the NAPI layer on the ArkTS side.
-       ndkCamera_->RegisterBufferCb((void *)BufferCb);
+       RegisterBufferCb((void *)BufferCb);
        return result;
-   }
-   ```
-
-   Sample code for buffer processing on the ArkTS side:
-
-   ```ts
-   /*
-    * Copyright (c) 2024 Huawei Device Co., Ltd.
-    * Licensed under the Apache License, Version 2.0 (the 'License');
-    * you may not use this file except in compliance with the License.
-    * You may obtain a copy of the License at
-    *
-    *     http://www.apache.org/licenses/LICENSE-2.0
-    *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an 'AS IS' BASIS,
-    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
-    */
-
-   import { image } from '@kit.ImageKit';
-   import { photoAccessHelper } from '@kit.MediaLibraryKit';
-   import { fileIo } from '@kit.CoreFileKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import cameraDemo from 'libentry.so';
-
-   interface PhotoSettings {
-     quality: number, // Photo quality
-     rotation: number, // Photo direction
-     mirror: boolean, // Mirror Enable
-     latitude: number, // geographic location
-     longitude: number, // geographic location
-     altitude: number // geographic location
-   };
-
-   @Entry
-   @Component
-   struct Index {
-     private mXComponentController: XComponentController = new XComponentController();
-     private surfaceId = '';
-     private file: fileIo.File | undefined;
-     @State imageWidth: number = 1920;
-     @State imageHeight: number = 1080;
-     @State showImage: boolean = false;
-     @State curPixelMap: image.PixelMap | undefined = undefined;
-     photoSettings: PhotoSettings = {
-       quality: 0,
-       rotation: 0,
-       mirror: false,
-       latitude: 12.9698,
-       longitude: 77.7500,
-       altitude: 1000
-     };
-     // Process the ArrayBuffer in the callback.
-     photoBufferCallback: (arrayBuffer: ArrayBuffer) => void = (arrayBuffer: ArrayBuffer) => {
-       console.info('photoBufferCallback')
-       // Method 1: Create a PixelMap for image display.
-       let imageSource = image.createImageSource(arrayBuffer);
-       imageSource.createPixelMap((err: BusinessError, data: image.PixelMap) => {
-         this.curPixelMap = data;
-         this.showImage = true;
-       })
-       // Method 2: Use the security component to write a file and save the image.
-       fileIo.write(this.file?.fd, arrayBuffer)
-         .then(() => {
-           console.info('file write OK');
-           // Close the file.
-           fileIo.close(this.file);
-         }).catch(() => {
-         console.error('file write failed');
-       })
-     }
-
-     onPageShow(): void {
-     }
-
-     onPageHide(): void {
-       cameraDemo.releaseCamera();
-     }
-
-     build() {
-       Column() {
-         Column() {
-           if (!this.showImage) {
-             XComponent({
-               id: 'componentId',
-               type: 'surface',
-               controller: this.mXComponentController
-             })
-               .onLoad(async () => {
-                 console.info('onLoad is called');
-                 this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
-                 let surfaceRect: SurfaceRect = {
-                   surfaceWidth: this.imageHeight,
-                   surfaceHeight: this.imageWidth
-                 };
-                 this.mXComponentController.setXComponentSurfaceRect(surfaceRect);
-                 console.info(`onLoad surfaceId: ${this.surfaceId}`);
-                 // Call the NDK API to initialize the camera.
-                 await cameraDemo.initCamera(this.surfaceId);
-                 // Register the buffer processing callback on the ArkTS side.
-                 cameraDemo.setBufferCb(this.photoBufferCallback);
-               })// The width and height of the surface are opposite to those of the XComponent.
-               .width(px2vp(this.imageHeight))
-               .height(px2vp(this.imageWidth))
-           }
-
-           if (this.showImage) {
-             // Display the captured image.
-             Image(this.curPixelMap)
-               .width(px2vp(this.imageHeight))
-               .height(px2vp(this.imageWidth))
-           }
-
-         }
-         .justifyContent(FlexAlign.Center)
-         .height('80%')
-   
-           // Security component, which is used to store media resources.
-           SaveButton({text:SaveDescription.SAVE_IMAGE}).onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
-             if (result == SaveButtonOnClickResult.SUCCESS) {
-               try {
-                 const context = getContext(this);
-                 let helper = photoAccessHelper.getPhotoAccessHelper(context);
-                 // After onClick is triggered, the createAsset API can be called within 10 seconds to create an image file. After 10 seconds have elapsed, the permission to call createAsset is revoked.
-                 let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
-                 console.error('uri:' + uri);
-                 // Open the file based on its URI. The write process is not time bound.
-                 this.file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-                 // Call the NDK API to take a photo and trigger the PhotoAvailable callback.
-                 cameraDemo.takePictureWithSettings(this.photoSettings);
-               } catch (error) {
-                 console.error("error is " + JSON.stringify(error));
-               }
-             }
-           })
-
-           Text('NdkPhotoAvailableDemo')
-             .fontSize(30)
-       }
-       .justifyContent(FlexAlign.End)
-       .height('100%')
-       .width('100%')
-     }
    }
    ```
 
 6. Create a photo session. For details, see [Camera Session Management (C/C++)](./native-camera-session-management.md).
 
-   ```c++
-   // Create a camera session.
-   Camera_CaptureSession* captureSession = nullptr;
-   Camera_ErrorCode ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
-   if (captureSession == nullptr || ret != CAMERA_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
-   }
-   // Set the session mode to the photo mode.
-   Camera_SceneMode sceneMode = NORMAL_PHOTO;
-   ret = OH_CaptureSession_SetSessionMode(captureSession, sceneMode); 
-   // Start session configuration.
-   ret = OH_CaptureSession_BeginConfig(captureSession);
-   ```
-
 7. (Optional) Set photo capture parameters.
-
    You can set camera parameters to adjust photo capture functions, including the flash, zoom ratio, and focal length.
 
    ```c++
    // Check whether the camera has flash.
-    Camera_FlashMode flashMode = FLASH_MODE_AUTO;
-    bool hasFlash = false;
-    ret = OH_CaptureSession_HasFlash(captureSession, &hasFlash);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_HasFlash failed.");
-    }
-    if (hasFlash) {
-        OH_LOG_INFO(LOG_APP, "hasFlash success");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "hasFlash fail");
-    }
-    // Check whether a flash mode is supported.
-    bool isSupported = false;
-    ret = OH_CaptureSession_IsFlashModeSupported(captureSession, flashMode, &isSupported);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_IsFlashModeSupported failed.");
-    }
-    if (isSupported) {
-        OH_LOG_INFO(LOG_APP, "isFlashModeSupported success");
-        // Set the flash mode.
-        ret = OH_CaptureSession_SetFlashMode(captureSession, flashMode);
-        if (ret == CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetFlashMode success.");
-        } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. %{public}d ", ret);
-        }
-        // Obtain the flash mode in use.
-        ret = OH_CaptureSession_GetFlashMode(captureSession, &flashMode);
-        if (ret == CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode: %{public}d ", flashMode);
-        } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. %d ", ret);
-        }
-    } else {
-        OH_LOG_ERROR(LOG_APP, "isFlashModeSupported fail");
-    }
+   bool HasFlash(Camera_CaptureSession* captureSession)
+   {
+       bool hasFlash = false;
+       Camera_ErrorCode ret = OH_CaptureSession_HasFlash(captureSession, &hasFlash);
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_HasFlash failed.");
+       }
+       if (hasFlash) {
+           OH_LOG_INFO(LOG_APP, "hasFlash success");
+       } else {
+           OH_LOG_ERROR(LOG_APP, "hasFlash fail");
+       }
+       return hasFlash;
+   }
 
-    // Check whether the continuous auto focus is supported.
-    Camera_FocusMode focusMode = FOCUS_MODE_CONTINUOUS_AUTO;
-    bool isFocusModeSupported = false;
-    ret = OH_CaptureSession_IsFocusModeSupported(captureSession, focusMode, &isFocusModeSupported);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_IsFocusModeSupported failed.");
-    }
-    if (isFocusModeSupported) {
-        OH_LOG_INFO(LOG_APP, "isFocusModeSupported success");
-        ret = OH_CaptureSession_SetFocusMode(captureSession, focusMode);
-        if (ret != CAMERA_OK) {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. %{public}d ", ret);
-        }
-        ret = OH_CaptureSession_GetFocusMode(captureSession, &focusMode);
-        if (ret == CAMERA_OK) {
-            OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFocusMode success. focusMode%{public}d ", focusMode);
-        } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFocusMode failed. %d ", ret);
-        }
-    } else {
-        OH_LOG_ERROR(LOG_APP, "isFocusModeSupported fail");
-    }
+   // Check whether a flash mode is supported.
+   bool IsFlashModeSupported(Camera_CaptureSession* captureSession, Camera_FlashMode flashMode)
+   {
+       bool isSupported = false;
+       Camera_ErrorCode ret = OH_CaptureSession_IsFlashModeSupported(captureSession, flashMode, &isSupported);
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_IsFlashModeSupported failed.");
+       }
+       return isSupported;
+   }
+   // Call OH_CaptureSession_SetFlashMode when the specified mode is supported.
+   Camera_ErrorCode SetFocusMode(Camera_CaptureSession* captureSession, Camera_FlashMode flashMode)
+   {
+       Camera_ErrorCode ret = OH_CaptureSession_SetFlashMode(captureSession, flashMode);
+       if (ret == CAMERA_OK) {
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetFlashMode success.");
+       } else {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. %{public}d ", ret);
+       }
+       return ret;
+   }
 
-    // Obtain the zoom ratio range supported by the camera.
-    float minZoom;
-    float maxZoom;
-    ret = OH_CaptureSession_GetZoomRatioRange(captureSession, &minZoom, &maxZoom);
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatioRange failed.");
-    } else {
-        OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatioRange success. minZoom: %{public}f, maxZoom:%{public}f",
-            minZoom, maxZoom);
-    }
-    // Set a zoom ratio.
-    ret = OH_CaptureSession_SetZoomRatio(captureSession, maxZoom);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetZoomRatio success.");
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. %{public}d ", ret);
-    }
-    // Obtain the zoom ratio of the camera.
-    ret = OH_CaptureSession_GetZoomRatio(captureSession, &maxZoom);
-    if (ret == CAMERA_OK) {
-        OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatio success. zoom: %{public}f ", maxZoom);
-    } else {
-        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. %{public}d ", ret);
-    }
+   // Check whether the continuous auto focus is supported.
+   bool IsFocusModeSupported(Camera_CaptureSession* captureSession, Camera_FocusMode focusMode)
+   {
+       bool isFocusModeSupported = false;
+       Camera_ErrorCode ret = OH_CaptureSession_IsFocusModeSupported(captureSession, focusMode, &isFocusModeSupported);
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_IsFocusModeSupported failed.");
+       }
+       return isFocusModeSupported;
+   }
+   // Call OH_CaptureSession_SetFlashMode when the specified mode is supported.
+   Camera_ErrorCode SetFocusMode(Camera_CaptureSession* captureSession, Camera_FocusMode focusMode)
+   {
+       Camera_ErrorCode ret = OH_CaptureSession_SetFocusMode(captureSession, focusMode);
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. %{public}d ", ret);
+       }
+       return ret;
+   }
+
+   // Obtain the zoom ratio range supported by the camera.
+   Camera_ErrorCode GetZoomRatioRange(Camera_CaptureSession* captureSession, float* minZoom, float* maxZoom)
+   {
+       Camera_ErrorCode ret = OH_CaptureSession_GetZoomRatioRange(captureSession, minZoom, maxZoom);
+       if (ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatioRange failed.");
+       } else {
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatioRange success. minZoom: %{public}f, maxZoom:%{public}f",
+               *minZoom, *maxZoom);
+       }
+       return ret;
+   }
+   
+   // Set the zoom ratio, which must be within the allowed range.
+   Camera_ErrorCode SetZoomRatio(Camera_CaptureSession* captureSession, float zoom)
+   {
+       Camera_ErrorCode ret = OH_CaptureSession_SetZoomRatio(captureSession, zoom);
+       if (ret == CAMERA_OK) {
+           OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetZoomRatio success.");
+       } else {
+           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. %{public}d ", ret);
+       }
+       return ret;
+   }
    ```
 
 8. Trigger photo capture.
 
-    Call **OH_PhotoOutput_Capture()**.
+   Call [OH_PhotoOutput_Capture()](../../reference/apis-camera-kit/_o_h___camera.md#oh_photooutput_capture) to trigger photo capture.
 
-     ```c++
-      ret = OH_PhotoOutput_Capture(photoOutput);
-      if (ret == CAMERA_OK) {
-          OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
-      } else {
-          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
-      }
-     ```
+   ```c++
+   Camera_ErrorCode Capture(Camera_PhotoOutput* photoOutput)
+   {
+       Camera_ErrorCode ret = OH_PhotoOutput_Capture(photoOutput);
+       if (ret == CAMERA_OK) {
+           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
+       } else {
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
+       }
+       return ret;
+   }
+   ```
 
 ## Status Listening
 
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and the errors of the photo output stream.
 
 - Register the **'onFrameStart'** event to listen for photo capture start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the bottom layer starts exposure for photo capture for the first time. The capture ID is returned.
-  
   ```c++
-    ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
-    if (ret != CAMERA_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
-    }
-  ```
-  ```c++
-    void PhotoOutputOnFrameStart(Camera_PhotoOutput* photoOutput)
-    {
-        OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameStart");
-    }
-    void PhotoOutputOnFrameShutter(Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* info)
-    {
-        OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameShutter");
-    }
-    PhotoOutput_Callbacks* GetPhotoOutputListener()
-    {
-        static PhotoOutput_Callbacks photoOutputListener = {
-            .onFrameStart = PhotoOutputOnFrameStart,
-            .onFrameShutter = PhotoOutputOnFrameShutter,
-            .onFrameEnd = PhotoOutputOnFrameEnd,
-            .onError = PhotoOutputOnError
-        };
-        return &photoOutputListener;
-    }
+  void PhotoOutputOnFrameStart(Camera_PhotoOutput* photoOutput)
+  {
+      OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameStart");
+  }
+  void PhotoOutputOnFrameShutter(Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* info)
+  {
+      OH_LOG_INFO(LOG_APP, "PhotoOutputOnFrameShutter");
+  }
   ```
 
 - Register the **'onFrameEnd'** event to listen for photo capture end events. This event can be registered when a **PhotoOutput** instance is created.
   
   ```c++
-    void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)
-    {
-        OH_LOG_INFO(LOG_APP, "PhotoOutput frameCount = %{public}d", frameCount);
-    }
+  void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)
+  {
+      OH_LOG_INFO(LOG_APP, "PhotoOutput frameCount = %{public}d", frameCount);
+  }
   ```
 
 - Register the **'onError'** event to listen for photo output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera_ErrorCode](../../reference/apis-camera-kit/_o_h___camera.md#camera_errorcode-1).
   
   ```c++
-    void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)
-    {
-        OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
-    }
+  void PhotoOutputOnError(Camera_PhotoOutput* photoOutput, Camera_ErrorCode errorCode)
+  {
+      OH_LOG_INFO(LOG_APP, "PhotoOutput errorCode = %{public}d", errorCode);
+  }
+  ```
+  ```c++
+  PhotoOutput_Callbacks* GetPhotoOutputListener()
+  {
+      static PhotoOutput_Callbacks photoOutputListener = {
+          .onFrameStart = PhotoOutputOnFrameStart,
+          .onFrameShutter = PhotoOutputOnFrameShutter,
+          .onFrameEnd = PhotoOutputOnFrameEnd,
+          .onError = PhotoOutputOnError
+      };
+      return &photoOutputListener;
+  }
+  Camera_ErrorCode RegisterPhotoOutputCallback(Camera_PhotoOutput* photoOutput)
+  {
+      Camera_ErrorCode ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
+      if (ret != CAMERA_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_RegisterCallback failed.");
+      }
+      return ret;
+  }
   ```

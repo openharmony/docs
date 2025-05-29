@@ -8,7 +8,7 @@ The **RenderNode** module provides APIs for creating a RenderNode in custom draw
 > 
 > **RenderNode** is not available in DevEco Studio Previewer.
 >
-> You are not advised to modify RenderNodes in BuilderNodes.
+> Avoid modifying RenderNodes in BuilderNodes.
 
 ## Modules to Import
 
@@ -261,13 +261,14 @@ Clears all child nodes of this RenderNode.
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -291,6 +292,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -298,7 +300,7 @@ struct Index {
         .width(200)
         .height(300)
       Button("clearChildren")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.clearChildren();
         })
     }.width("100%")
@@ -331,13 +333,14 @@ Obtains the child node in the specified position of this RenderNode.
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -361,6 +364,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -368,10 +372,10 @@ struct Index {
         .width(200)
         .height(300)
       Button("getChild")
-        .onClick(()=>{
+        .onClick(() => {
           for (let i = 0; i < 11; i++) {
-            let childNode : RenderNode | null = renderNode.getChild(i);
-            if(childNode == null){
+            let childNode: RenderNode | null = renderNode.getChild(i);
+            if (childNode == null) {
               console.log(`the ${i} of renderNode's childNode is null`);
             } else {
               console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
@@ -444,9 +448,9 @@ struct Index {
         .onClick(() => {
           const firstChild = renderNode.getFirstChild();
           if (firstChild === null) {
-            console.log('the fist child is null');
+            console.log('the first child is null');
           } else {
-            console.log(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
+            console.log(`the position of first child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
           }
         })
     }
@@ -610,7 +614,7 @@ Sets the background color for this RenderNode.
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| color  | number | Yes  | Background color value, in ARGB format.|
+| color  | number | Yes  | Background color value, in ARGB format, for example, **0xE5E5E5**.|
 
 get backgroundColor(): number
 
@@ -676,7 +680,7 @@ Sets whether to clip this RenderNode. The value **true** means to clip the Rende
 
 | Name | Type   | Mandatory| Description              |
 | ------- | ------- | ---- | ------------------ |
-| useClip | boolean | Yes  | Whether to clip the RenderNode.|
+| useClip | boolean | Yes  | Whether to clip the RenderNode.<br>The value **true** means to clip the RenderNode, and **false** means the opposite.|
 
 get clipToFrame(): boolean
 
@@ -690,7 +694,7 @@ Obtains whether this RenderNode needs to be clipped.
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | Whether the current RenderNode needs to be clipped. The default value is **true**.|
+| boolean | Whether the current RenderNode needs to be clipped. The default value is **true**.<br>The value **true** means the current RenderNode needs to be clipped, and **false** means the opposite.|
 
 **Example**
 ```ts
@@ -749,7 +753,7 @@ Sets the opacity for this RenderNode. If the value passed in is less than **0**,
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]. A larger value indicates lower transparency.|
 
 get opacity(): number
 
@@ -763,7 +767,7 @@ Obtains the opacity of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Opacity of the current RenderNode. The default value is **1**.|
+| number | Opacity of the current RenderNode. The default value is **1** (fully opaque).|
 
 **Example**
 ```ts
@@ -1374,7 +1378,7 @@ Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#sha
 
 | Name| Type  | Mandatory| Description                                      |
 | ------ | ------ | ---- | ------------------------------------------ |
-| color  | number | Yes  | Shadow color to set, in ARGB format.|
+| color  | number | Yes  | Shadow color to set, in ARGB format.<br>The value must be a valid ARGB color.|
 
 get shadowColor(): number
 
@@ -1583,7 +1587,7 @@ Sets the alpha value of the shadow color for this RenderNode.
 
 | Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
-| alpha  | number | Yes  | Alpha value of the shadow color to set.|
+| alpha  | number | Yes  | Alpha value of the shadow color to set.<br> The value must be a valid alpha value.|
 
 get shadowAlpha(): number
 
@@ -1655,7 +1659,7 @@ Sets the shadow elevation for this RenderNode.
 
 | Name   | Type  | Mandatory| Description                            |
 | --------- | ------ | ---- | -------------------------------- |
-| elevation | number | Yes  | Shadow elevation to set.|
+| elevation | number | Yes  | Shadow elevation to set.<br> Value range: [0, +∞).|
 
 get shadowElevation(): number
 
@@ -1669,7 +1673,7 @@ Obtains the shadow elevation of this RenderNode.
 
 | Type  | Description                                 |
 | ------ | ------------------------------------- |
-| number | Shadow elevation of the current RenderNode. The default value is **0**.|
+| number | Shadow elevation of the current RenderNode. The default value is **0**.<br> Value range: [0, +∞).|
 
 **Example**
 
@@ -1728,7 +1732,7 @@ Sets the shadow blur radius for this RenderNode.
 
 | Name| Type  | Mandatory| Description                                |
 | ------ | ------ | ---- | ------------------------------------ |
-| radius | number | Yes  | Shadow blur radius to set.|
+| radius | number | Yes  | Shadow blur radius to set.<br> Value range: [0, +∞).|
 
 get shadowRadius(): number
 
@@ -1742,20 +1746,26 @@ Obtains the shadow blur radius of this RenderNode.
 
 | Type  | Description                                     |
 | ------ | ----------------------------------------- |
-| number | Shadow blur radius of the current RenderNode. The default value is **0**.|
+| number | Shadow blur radius of the current RenderNode. The default value is **0**.<br> Value range: [0, +∞).|
 
 **Example**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
-renderNode.backgroundColor = 0xff00ff00;
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.frame = {
+  x: 100,
+  y: 100,
+  width: 100,
+  height: 100
+};
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7
 renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
+console.log(`FrameNode ${shadowRadius}`);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -1813,9 +1823,16 @@ import bridge from "libentry.so" // This .so file is compiled and generated by y
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // The width and height in the context need to be converted from vp to px.
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
@@ -1827,7 +1844,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      const renderNode = new MyRenderNode();
+      const renderNode = new MyRenderNode(uiContext);
       renderNode.size = { width: 100, height: 100 }
       rootRenderNode.appendChild(renderNode);
     }
@@ -1973,17 +1990,22 @@ import bridge from "libentry.so" // This .so file is compiled and generated by y
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // The width and height in the context need to be converted from vp to px.
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
-const newNode = new MyRenderNode();
-newNode.size = { width: 100, height: 100 };
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
+  newNode: MyRenderNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -1991,7 +2013,9 @@ class MyNodeController extends NodeController {
     if (renderNode === null) {
       return this.rootNode;
     }
-    renderNode.appendChild(newNode);
+    this.newNode = new MyRenderNode(uiContext);
+    this.newNode.size = { width: 100, height: 100 };
+    renderNode.appendChild(this.newNode);
     return this.rootNode;
   }
 }
@@ -1999,14 +2023,16 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       Column() {
-        NodeContainer(new MyNodeController())
+        NodeContainer(this.myNodeController)
           .width('100%')
         Button('Invalidate')
           .onClick(() => {
-            newNode.invalidate()
+            this.myNodeController.newNode?.invalidate()
           })
       }
       .width('100%')
@@ -2469,8 +2495,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -2491,9 +2517,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })
@@ -2585,7 +2611,7 @@ Sets whether to prioritize the drawing of this RenderNode and its childe nodes. 
 
 | Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.|
+| isNodeGroup | boolean | Yes  | Whether to prioritize the drawing of the current RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.|
 
 get markNodeGroup(): boolean
 
@@ -2597,7 +2623,7 @@ Obtains whether to prioritize the drawing of this RenderNode and its childe node
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Whether to prioritize the drawing of the current RenderNode and its childe nodes. The default value is **false**.|
+| boolean | Whether to prioritize the drawing of this RenderNode and its childe nodes.<br>The value **true** means to prioritize the drawing of the current RenderNode and its childe nodes, and **false** means the opposite.<br>Default value: **false**|
 
 **Example**
 

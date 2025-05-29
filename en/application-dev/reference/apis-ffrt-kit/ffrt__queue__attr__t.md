@@ -5,6 +5,8 @@
 
 The **ffrt_queue_attr_t** struct describes a queue attribute.
 
+**Since**: 10
+
 **Related module**: [FFRT](_f_f_r_t.md)
 
 
@@ -15,4 +17,16 @@ The **ffrt_queue_attr_t** struct describes a queue attribute.
 
 | Name| Description| 
 | -------- | -------- |
-| uint32_t [storage](_f_f_r_t.md#storage-36)[([ffrt_queue_attr_storage_size](_f_f_r_t.md#enums) + sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a queue attribute.| 
+| uint32_t [storage](#storage) [(ffrt_queue_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)] | Storage size of a queue attribute. | 
+
+
+## Member Variable Description
+
+
+### storage
+
+```
+uint32_t ffrt_queue_attr_t::storage[(ffrt_queue_attr_storage_size+sizeof(uint32_t) - 1)/sizeof(uint32_t)]
+```
+**Description**
+Storage size of a queue attribute.

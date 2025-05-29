@@ -1,4 +1,4 @@
-# Cross-Device Connection Management
+# UIAbility Connection Development
 
 
 ## Introduction
@@ -14,24 +14,33 @@ Cross-device connection management allows for mutual capability assistance betwe
 
 ### Typical Use Cases
 
-The transport stream feature allows users to start the peer camera from the local camera to access capabilities such as <!--Del-->camera preview, <!--DelEnd-->text-based interaction<!--Del-->, photo reception, and remote camera shutter<!--DelEnd-->.
+The transport stream feature allows users to start the peer camera from the local camera to access capabilities such as text-based interaction<!--Del-->, camera preview, photo reception, and remote camera shutter<!--DelEnd-->.
 
 
 ### Basic Concepts
 
 Before you get started, familiarize yourself with the following concepts:
 
-- **DMS**
+- **Distributed Management Service (DMS)**
   
-  Distributed Management Service (DMS) is a framework that provides distributed component management capabilities.
+  A framework that provides distributed component management capabilities.
+
+- **UIAbility**
+
+  A component that implements tasks specific to application UIs, such as lifecycle management, user interaction, and UI rendering.
+
+- **Extension**
+
+  A component that extends application functions or implements cross-device collaboration. It allows applications to run some tasks in the background or migrates some functions to other devices for execution, implementing distributed capabilities.
+
 <!--Del-->
 - **Byte stream**
   
-  Byte streams are data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type. They can be used to store binary data, for example, image or audio data.
+  Data of the [ArrayBuffer](../arkts-utils/arraybuffer-object.md) type, which can be used to store binary data, for example, image or audio data.
 
 - **Transport stream**
 
-  Transport streams are media streams that can be used to transmit images and video streams.
+  Media streams that can be used to transmit images and video streams.
 <!--DelEnd-->
 ### Implementation Principles
 
@@ -65,7 +74,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 ### Setting Up the Environment
 
 1. Download and install DevEco Studio on the PC. For details, see [Downloading Software](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-download-V5) and [Installing DevEco Studio](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5). The DevEco Studio version must be 4.1 or later.
-2. Update public-SDK to API 16 or later. <!--Del-->For details, see [Switching to Full SDK](../faqs/full-sdk-switch-guide.md).<!--DelEnd-->.
+2. Update the public-SDK to API 18 or later.
 3. Connect device A and device B to the PC using USB cables.
 4. Enable Bluetooth on device A and device B to implement networking.
 
@@ -125,9 +134,9 @@ The application on device A starts and connects to the application on device B t
 The application on device A needs to discover device B and use its **netWorkId** as the input parameter of the collaboration API. You can call APIs of the distributed device management module to discover and select the peer device. For details, see [Distributed Device Management Development](devicemanager-guidelines.md).
 
 
-#### Create a session between applications and set up a connection between them.
+#### Initiating a Session Between Applications
 
-During the session and connection establishment, the applications on device A and device B perform different operations. In the subsequent development procedure, the application on device A serves as the connection initiator, while the application on device B serves as the connection receiver.
+During session establishment, the applications on device A and device B perform different operations. In the subsequent development procedure, the application on device A serves as the connection initiator, while the application on device B serves as the connection receiver.
 
 ##### Device A
 

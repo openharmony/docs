@@ -66,7 +66,7 @@ Field **maxFlowDepth** in **arkOptions/tscConfig**
 
 | Name| Description| Data Type| Optional|
 | -------- | -------- | -------- | -------- |
-| maxFlowDepth | Specifies the custom maximum stack depth for TSC flow analysis during TSC compilation. It helps avoid compilation errors caused by a fixed maximum stack. The minimum value is 2000, and the maximum value is 65535.| Number| Optional, defaults to 2000|
+| maxFlowDepth | Specifies the custom maximum stack depth for TSC flow analysis during TSC compilation. It helps avoid stack overflow errors caused by a fixed maximum stack depth. The minimum value is 2000, and the maximum value is 65535.| Number| Optional, defaults to 2000.|
 
 ### Example
 
@@ -110,7 +110,7 @@ Field **transformLib** in **arkOptions**
 
 | Name| Description| Configuration Scope| Data Type| Optional|
 | -------- | -------- | -------- | -------- | -------- |
-| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path pointing to the dynamic library implementing the instrumentation functionality. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
+| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path to the dynamic library that does the instrumentation. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
 
 ### Example
 

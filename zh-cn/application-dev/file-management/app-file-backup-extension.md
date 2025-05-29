@@ -41,7 +41,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和
                // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
    }
@@ -86,7 +86,6 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
       }
       //onRestore
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
@@ -105,7 +104,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     class BackupExt extends BackupExtensionAbility {
       //onBackupEx
       async onBackupEx(backupInfo: string): Promise<string> {
-        console.log(`onBackupEx ok`);
+        console.info(`onBackupEx ok`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -116,7 +115,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
       // onRestoreEx
       async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
-        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        console.info(`onRestoreEx begin`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -148,7 +147,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 > 开发者可根据自身的业务场景，选择对应的恢复数据方式。
 >
 > 示例：
-> 假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，如果配置了fullBackupOnly为false，数据会被直接解压到：**/data/storage/el2/base/files/A/**目录下，如果配置了fullBackupOnly为true，数据则会被解压到：**临时路径[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) + /restore/data/storage/el2/base/files/A/** 目录下。
+> 假设应用的数据备份路径为：**data/storage/el2/base/files/A/** 。那么在恢复时，如果配置了fullBackupOnly为false，数据会被直接解压到：**/data/storage/el2/base/files/A/** 目录下；如果配置了fullBackupOnly为true，数据则会被解压到：**临时路径[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) + /restore/data/storage/el2/base/files/A/** 目录下。
 
 **includes支持的路径清单列表如下：**
 

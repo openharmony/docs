@@ -32,7 +32,7 @@
    ```
 
 2. 构造NotificationRequest对象，并发布通知。
-   - 普通文本类型通知由标题、文本内容和附加信息三个字段组成，其中标题和文本内容是必填字段，大小均需要小于200字节，超出部分会被截断。
+   - 普通文本类型通知由标题、文本内容和附加信息三个字段组成。详情请参考[NotificationBasicContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationbasiccontent)。
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -56,7 +56,7 @@
       ```
 
 
-   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题，其字段均小于200字节，超出部分会被截断。通知默认显示与普通文本相同，展开后，标题显示为展开后标题内容，多行文本内容多行显示。
+   - 多行文本类型通知继承了普通文本类型的字段，同时新增了多行文本内容、内容概要和通知展开时的标题。详情请参考[NotificationMultiLineContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationmultilinecontent)。
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
@@ -68,7 +68,7 @@
             text: 'test_text',
             briefText: 'test_briefText',
             longTitle: 'test_longTitle',
-            lines: ['line_01', 'line_02', 'line_03', 'line_04'],
+            lines: ['line_01', 'line_02', 'line_03'],
           }
         }
       };

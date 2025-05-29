@@ -3,12 +3,13 @@
 
 ## 概述
 
-定义了ArkWeb原生JavaScriptValue接口。 在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
+定义了ArkWeb的JavaScriptValue接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。
 
 **起始版本：** 14
 
 **相关模块：**[Web](_web.md)
 
+**所在头文件：** [arkweb_type.h](arkweb__type_8h.md)
 
 ## 汇总
 

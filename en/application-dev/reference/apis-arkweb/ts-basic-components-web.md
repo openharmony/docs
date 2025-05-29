@@ -2515,7 +2515,7 @@ Sets whether the **viewport** property of the **meta** tag is enabled.
 > - If set to an invalid value, this parameter does not take effect.
 > - If the device is 2-in-1, the **viewport** property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
 > - If the device is a tablet, the **viewport-fit** property of the **meta** tag is parsed regardless of whether this parameter is set to **true** or **false**. When **viewport-fit** is set to **cover**, the size of the safe area can be obtained through the CSS attribute.
-> - Currently, the **viewport** attribute of the **meta** tag on the frontend HTML page is enabled based on whether **UserAgent** contains the **Mobile** field. If a **UserAgent** does not contain the **Mobile** field, the **viewport** property in the **meta** tag is disabled by default. In this case, you can explicitly set the **metaViewport** property to **true** to overwrite the disabled state.
+> - The **viewport** parameter of the **meta** tag on the frontend HTML page is enabled or disabled based on whether **User-Agent** contains the **Mobile** field. If a **User-Agent** does not contain the **Mobile** field, the **viewport** property in the **meta** tag is disabled by default. In this case, you can explicitly set the **metaViewport** property to **true** to overwrite the disabled state.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3100,48 +3100,7 @@ Sets the blur mode of the **Web** component when the soft keyboard is hidden. Th
 </html>
 ```
 
-### enableSmoothDragResize<sup>16+</sup>
-
-enableSmoothDragResize(mode: boolean)
-
-
-Sets whether to enable the smooth drag resizing function for a **Web** component. This function is disabled by default. After this function is enabled, the white block area is reduced when the **Web** component is dragged and zoomed in on the 2-in-1 page.
-
-> **NOTE**
->
-> **WebLayoutMode.FIT_CONTENT** and **RenderMode.SYNC_RENDER** are not supported.
-> 
-
-**System capability**: SystemCapability.Web.Webview.Core
-
-**Parameters**
-
-| Name | Type| Mandatory| Description          |
-| ------- | -------- | ---- | ------------------ |
-| mode | boolean  | Yes  | Whether to enable the smooth drag resizing function for a **Web** component. The default value is **false**.|
-
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableSmoothDragResize(true)
-      }
-    }
-  }
-  ```
-
-### enableFollowSystemFontWeight<sup>16+</sup>
+### enableFollowSystemFontWeight<sup>18+</sup>
 
 enableFollowSystemFontWeight(follow: boolean)
 
@@ -3194,9 +3153,9 @@ When the FCP of a page is triggered, the default segment parsing logic is restor
 
 **Parameters**
 
-| Name       | Type   | Mandatory  | Default Value | Description                  |
-| ---------- | ------- | ---- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | Yes   | false | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
+| Name       | Type   | Mandatory  | Description                  |
+| ---------- | ------- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | Yes   | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
 
 
 **Example**
@@ -3218,11 +3177,11 @@ When the FCP of a page is triggered, the default segment parsing logic is restor
   }
   ```
 
-### enableWebAVSession<sup>16+</sup>
+### enableWebAVSession<sup>18+</sup>
 
 enableWebAVSession(enabled: boolean)
 
-Sets whether to support the application to connect to media controller. By default, the application can be connected to media controller.
+Sets whether to support an application to connect to media controller. By default, the application can be connected to media controller.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3230,7 +3189,7 @@ Sets whether to support the application to connect to media controller. By defau
 
 | Name | Type| Mandatory| Description          |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | Yes  | Whether to support the application to connect to media controller. Default value: **true**|
+| enabled | boolean  | Yes  | Whether to support an application to connect to media controller. Default value: **true**|
 
 **Example**
 
@@ -3265,6 +3224,57 @@ Sets whether to support the application to connect to media controller. By defau
           // Save an MP4 media file in the rawfile directory of resources and name it example.mp4.
           <source src="example.mp4" type="video/mp4">
       </video>
+  </body>
+  </html>
+  ```
+
+### nativeEmbedOptions<sup>16+</sup>
+
+nativeEmbedOptions(options?: EmbedOptions)
+
+Sets the same-layer rendering configuration. This attribute takes effect only when [enableNativeEmbedMode](#enablenativeembedmode11) is enabled and cannot be dynamically modified.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name      | Type                            | Mandatory| Description                               |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| options | [EmbedOptions](#embedoptions16) | No   | Same-layer rendering configuration. The default value is **{supportDefaultIntrinsicSize: false}**.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    options: EmbedOptions = {supportDefaultIntrinsicSize: true};
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .nativeEmbedOptions(this.options)
+      }
+    }
+  }
+  ```
+HTML file to be loaded:
+  ```
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>HTML for Fixed-Size Same-Layer Rendering Test</title>
+  </head>
+  <body>
+  <div>
+      <embed id="input" type = "native/view" style = "background-color:red"/>
+  </div>
   </body>
   </html>
   ```
@@ -7871,7 +7881,7 @@ Checks whether multimedia capabilities are invoked.
 | ------- | ------------ |
 | boolean | Whether multimedia capabilities are invoked.|
 
-### getMimeTypes<sup>16+</sup>
+### getMimeTypes<sup>18+</sup>
 
 getMimeTypes(): Array\<string\>
 
@@ -8157,9 +8167,9 @@ Constructs the EventResult object.
 
 ### setGestureEventResult<sup>12+</sup>
 
-Sets the gesture event consumption result.
-
 setGestureEventResult(result: boolean): void
+
+Sets the gesture event consumption result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8175,9 +8185,9 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ### setGestureEventResult<sup>14+</sup>
 
-Sets the gesture event consumption result.
+setGestureEventResult(result: boolean, stopPropagation: boolean): void
 
-setGestureEventResult(result: boolean, stopPropagation?: boolean): void
+Sets the gesture event consumption result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8186,7 +8196,7 @@ setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 | Name         | Type| Mandatory | Description            |
 | --------------- | -------- | ----  |------- |
 | result          | boolean  | Yes   | Whether to consume the gesture event. Default value: **true**|
-| stopPropagation<sup>14+</sup>| boolean  | No  | Whether to stop propagation. This parameter is valid only when **result** is set to **true**. Default value: **true**|
+| stopPropagation | boolean  | Yes  | Whether to stop propagation. This parameter is valid only when **result** is set to **true**. Default value: **true**|
 
 **Example**
 
@@ -8233,10 +8243,10 @@ Supports using with a bitwise OR operator. For example, to support CAN_CUT, CAN_
 | Name           | Value| Description    |
 | -------------- | -- | -------- |
 | NONE           | 0 | Editing is not allowed.|
-| CAN_CUT        | 1 | The cut operation is allowed.|
-| CAN_COPY       | 2 | The copy operation is allowed.|
-| CAN_PASTE      | 4 | The paste operation is allowed.|
-| CAN_SELECT_ALL | 8 | The select all operation is allowed.|
+| CAN_CUT        | 1 << 0 | The cut operation is allowed.|
+| CAN_COPY       | 1 << 1 | The copy operation is allowed.|
+| CAN_PASTE      | 1 << 2 | The paste operation is allowed.|
+| CAN_SELECT_ALL | 1 << 3 | The select all operation is allowed.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -10294,7 +10304,7 @@ Represents the callback invoked when the web page receives an SSL error.
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
 | error   | [SslError](#sslerror9)          | Yes| Error code.          |
-| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -10520,3 +10530,13 @@ Enumerates whether the **Web** component loses focus when the soft keyboard is m
 | ------ | -- | ----------- |
 | SILENT  | 0 | The **Web** component does not lose focus when the soft keyboard is manually collapsed.|
 | BLUR | 1 | The **Web** component loses focus when the soft keyboard is manually collapsed.|
+
+## EmbedOptions<sup>16+</sup>
+
+Same-layer rendering configuration of the **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| supportDefaultIntrinsicSize | boolean | No   | Whether a same-layer rendering element supports the fixed size of 300 × 150.<br>If the value is **true**, the fixed size is 300 × 150.<br>If the value is **false**, the fixed size is 0 × 0.<br>Default value: **false**<br>Unit: px |

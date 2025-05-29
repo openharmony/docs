@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **avcodec_audio_channel_layout.h** file declares the enums used for audio codec.
+The **avcodec_audio_channel_layout.h** file declares the enums used for audio encoding and decoding.
 
 **Library**: libnative_media_codecbase.so
 

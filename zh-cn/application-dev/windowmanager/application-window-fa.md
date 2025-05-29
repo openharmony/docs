@@ -67,7 +67,7 @@
    window.createWindow(config, (err: BusinessError, data) => {
      let errCode: number = err.code;
      if (errCode) {
-       console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+       console.error(`Failed to create the subWindow. Code:${err.code}, message:${err.message}`);
        return;
      }
      console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));

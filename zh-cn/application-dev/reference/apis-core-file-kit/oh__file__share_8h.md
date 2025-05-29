@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。
+提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。
 
 **库：** libohfileshare.so
 
@@ -39,8 +39,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md#枚举类型说明) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md#枚举类型说明) = 1 &lt;&lt; 1 } | URI操作模式枚举值。  | 
-| [FileShare_PolicyErrorCode](file_share.md#枚举类型说明) { [PERSISTENCE_FORBIDDEN](file_share.md#枚举类型说明) = 1, [INVALID_MODE](file_share.md#枚举类型说明) = 2, [INVALID_PATH](file_share.md#枚举类型说明) = 3, [PERMISSION_NOT_PERSISTED](file_share.md#枚举类型说明) = 4 } | 授予或使能权限策略失败的URI对应的错误码枚举值。  | 
+| [FileShare_OperationMode](file_share.md#fileshare_operationmode) {<br/>READ_MODE = 1 &lt;&lt; 0,<br/>WRITE_MODE = 1 &lt;&lt; 1<br/>} | URI操作模式枚举值。 | 
+| [FileShare_PolicyErrorCode](file_share.md#枚举类型说明) {<br/>PERSISTENCE_FORBIDDEN = 1,<br/>INVALID_MODE = 2,<br/>INVALID_PATH = 3,<br/>PERMISSION_NOT_PERSISTED = 4<br/>} | 授予或使能权限策略失败的URI对应的错误码枚举值。 | 
 
 
 ### 函数

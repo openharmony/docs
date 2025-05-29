@@ -85,7 +85,7 @@
 - 将天气主页划分为9个基础区域，如：
   ![home_full](figures/home_full.png)
 
-- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../quick-start/arkts-create-custom-components.md)的形式分别实现这9个基础区域。
+- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../ui/state-management/arkts-create-custom-components.md)的形式分别实现这9个基础区域。
     |  | 小设备 | 中设备 | 大设备 | 
   | -------- | -------- | -------- | -------- |
   | 主页 | ![Home_sm](figures/Home_sm.png) | ![Home_md_mark](figures/Home_md_mark.png) | ![Home_lg_mark](figures/Home_lg_mark.png) | 
@@ -230,7 +230,7 @@ export default struct HomeContent {
 
 - 大设备默认展示侧边栏，同时提供控制侧边栏显示和隐藏的按钮。
 
-另外主页右侧的城市天气详情，支持左右滑动切换城市，可以使用Swiper组件实现目标效果。
+另外主页右侧的城市天气详情，支持左右滑动切换城市，可以使用Swiper组件实现目标效果：
 
 - 小设备和中设备开启Swiper组件的导航点，引导用户通过左右滑动切换不同城市。
 

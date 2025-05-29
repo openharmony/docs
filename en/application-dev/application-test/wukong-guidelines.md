@@ -114,7 +114,12 @@ The following figure shows the wukong component architecture and the responsibil
     -r, --rotate               rotate event percent
     -e, --allow ability        the ability name of allowlist
     -E, --block ability        the ability name of blocklist
+    -Y, --blockCompId          the id list of block component
+    -y, --blockCompType        the type list of block component
     -I, --screenshot           get screenshot(only in random input)
+    -B, --checkBWScreen        black and white screen detection
+    -U, --Uri                  set Uri pages
+    -x, --Uri-type             set Uri-type
   # wukong special -help    // Help menu for wukong special testing.
   usage: wukong special [<arguments>]
   These are wukong special arguments list:
@@ -143,12 +148,12 @@ The following figure shows the wukong component architecture and the responsibil
 | Command           | Description                                | Mandatory| Description                                    |
 | --------------- | ------------------------------------ | ---- | ---------------------------------------- |
 | -h,--help       | Obtains the help information about the test.              | No  |  -                        |
-| -c,--count      | Sets the number of execution times. This command conflicts with the **-T** command. Select either of them.  | No  | The default value is 10, in times.                      |
+| -c,--count      | Sets the number of execution times. This command conflicts with the **-T** command. Set either of them.  | No  | The default value is 10, in times.                      |
 | -i,--interval   | Sets the test interval.                        | No  | The default value is 1500, in millisecond.                      |
 | -s,--seed       | Sets the random seed.                        | No  | If the same random seed is set, the same random event sequence is generated.|
-| -b,--bundle[bundlename, ......, bundlename]    | Sets the allowed bundles for the test. This command conflicts with the **-p** command.| No  | By default, all bundles on the device are allowed. Use commas (,) to separate bundle names.                |
-| -p,--prohibit[bundlename, ......, bundlename]  | Sets the blocked bundles for the test. This command conflicts with the **-b** command.| No  | By default, no bundle is blocked. Use commas (,) to separate bundle names.                      |
-| -d,--page[page, ......, page]                  | Sets the blocked pages for the test.| No | By default, the **pages/system** pages are blocked. Use commas (,) to separate page names.|
+| -b,--bundle[bundlename, ......, bundlename]    | Sets allowed bundles for the test. This command conflicts with the **-p** command.| No  | By default, all bundles on the device are allowed. Use commas (,) to separate bundle names.                |
+| -p,--prohibit[bundlename, ......, bundlename]  | Sets blocked bundles for the test. This command conflicts with the **-b** command.| No  | By default, no bundle is blocked. Use commas (,) to separate bundle names.                      |
+| -d,--page[page, ......, page]                  | Sets blocked pages for the test.| No | By default, the **pages/system** pages are blocked. Use commas (,) to separate page names.|
 | -a,--appswitch  | Sets the proportion of the random application startup event test.            | No  | The default value is 10%.                                 |
 | -t,--touch      | Sets the proportion of the random touch event test.           | No  | The default value is 10%.                                 |
 | -S,--swap       | Sets the proportion of the random swipe event test.            | No  | The default value is 3%.                                  |
@@ -244,10 +249,10 @@ The following figure shows the wukong component architecture and the responsibil
 | -c,--count      | Sets the number of test times. This command conflicts with the **-T** command. Set either of them.  | No  | The default value is 10, in times.                      |
 | -i,--interval   | Sets the test interval.                        | No  | The default value is 1500, in millisecond.                      |
 | -s,--seed       | Sets the random seed.                        | No  | If the same random seed is set, the same random event sequence is generated.|
-| -b,--bundle[bundlename, ......, bundlename]    | Sets the bundle name of allowlist for the test. This command conflicts with the **-p** command.| No  | By default, all applications on the device are allowed. (Use commas (,) to separate application names.)                |
-| -p,--prohibit[bundlename, ......, bundlename]  | Sets the bundle name of blocklist for the test. This command conflicts with the **-b** command.| No  | By default, no application is blocked. (Use commas (,) to separate application names.)                      |
-| -d,--page[page, ......, page]                  | Sets the list of blocked pages for the test.| No | By default, the pages/system pages are blocked. (Use commas (,) to separate page names.)|
-| -a,--appswitch  | Sets the proportion of random application startup test.            | No  | The default value is 10%.                                 |
+| -b,--bundle[bundlename, ......, bundlename]    | Sets allowed bundles for the test. This command conflicts with the **-p** command.| No  | By default, all bundles on the device are allowed. Use commas (,) to separate bundle names.                |
+| -p,--prohibit[bundlename, ......, bundlename]  | Sets blocked bundles for the test. This command conflicts with the **-b** command.| No  | By default, no bundle is blocked. Use commas (,) to separate bundle names.                      |
+| -d,--page[page, ......, page]                  | Sets blocked pages for the test.| No | By default, the **pages/system** pages are blocked. Use commas (,) to separate page names.|
+| -a,--appswitch  | Sets the proportion of the random application startup event test.            | No  | The default value is 10%.                                 |
 | -t,--touch      | Sets the proportion of the random touch event test.           | No  | The default value is 10%.                                 |
 | -S,--swap       | Sets the proportion of the random swipe event test.            | No  | The default value is 3%.                                  |
 | -m,--mouse      | Sets the proportion of the random mouse event test.           | No  | The default value is 1%.                                  |
@@ -272,7 +277,7 @@ The following figure shows the wukong component architecture and the responsibil
 The parameters in the command are described as follows.
 | Command          | Value     |Description       |
 | -------------- | -------------- | -------------- |
-| wukong exec | -           | Works as the main command.               |
+| wukong focus | -           | Works as the main command.               |
 | -s     | 10           | Sets the random seed. The seed value is **10**. |
 | -i  | 1000           | Sets the application startup interval to **1000** ms.|
 | -a  | 0.28          | Sets the proportion of the random application startup test to **28%**.   |
@@ -298,7 +303,7 @@ After the test commands are executed, the test result is automatically generated
 | wukong_report.csv                    | Stores the test report summary.      |
 | wukong.log                | Indicates the test operation history.      |
 
-### Viewing Operation Logs
+### View operation logs
 
 You can run the hdc command to obtain logs to the local host and view the operation history.
 
@@ -316,3 +321,41 @@ C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s
 ```
+
+## FAQs
+### failed to connect to AAMS
+ **Symptom**
+
+failed to connect to AAMS.
+
+ **Possible Cause**
+
+AAMS is occupied by Hypium or the UIViewer of DevEco Testing. AAMS can be connected to only one program at a time.
+
+ **Solution**
+
+Stop the process that occupies AAMS or restart the device.
+### Errorcode:(4005)
+ **Symptom**
+
+Errorcode:(4005).
+
+ **Possible Cause**
+
+The size of the screen display area changes. As a result, the page information fails to be obtained.
+
+ **Solution**
+
+This error does not affect the test process and does not need to be handled.
+### Errorcode:(4007)
+ **Symptom**
+
+Errorcode:(4007).
+
+ **Possible Cause**
+
+The size of the screen display area changes. As a result, the page information fails to be obtained.
+
+ **Solution**
+
+This error does not affect the test process and does not need to be handled.

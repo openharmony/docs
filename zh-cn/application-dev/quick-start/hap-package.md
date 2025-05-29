@@ -11,7 +11,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 单HAP场景：如果只包含UIAbility组件，无需使用ExtensionAbility组件，优先采用单HAP（即一个entry包）来实现应用开发。虽然一个HAP中可以包含一个或多个UIAbility组件，为了避免不必要的资源加载，推荐采用“一个UIAbility+多个页面”的方式。
 
-- 多HAP场景：如果应用的功能比较复杂，需要使用ExtensionAbility组件，可以采用多HAP（即一个entry包+多个feature包）来实现应用开发，每个HAP中包含一个UIAbility组件或者一个ExtensionAbility组件。在这种场景下，可能会存在多个HAP引用相同的库文件，导致重复打包的问题。
+- 多HAP场景：如果应用的功能比较复杂，需要使用ExtensionAbility组件，可以采用多HAP（即一个entry包+多个feature包）来实现应用开发，每个HAP中包含一个UIAbility组件或者一个ExtensionAbility组件。在这种场景下，多个HAP引用相同的库文件，可能导致重复打包的问题。
 
 
 ## 约束限制
@@ -22,7 +22,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 多HAP场景下，同一应用中的所有HAP的配置文件中的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，同一设备类型的所有HAP对应的moduleName标签必须唯一。HAP打包生成App Pack包时，会对上述参数配置进行校验。
 
-- 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对其中的所有HAP进行重签名，这样保证了所有HAP签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题。
+- 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对所有HAP进行重签名，以保证签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题，签名操作请参考[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
 ## 创建
 
@@ -38,19 +38,19 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- HAP中支持添加UIAbility组件或ExtensionAbility组件，添加pages页面。具体操作可参考[应用/服务开发](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-add-new-ability-V13)。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，以及pages页面。具体操作可参考[在模块中添加Ability](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability)和[添加Page](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-page)。
 
 - HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
 ## 调试
 
-通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-customized-multi-targets-and-products-guides-V13)。
+通过DevEco Studio编译打包，生成单个或者多个HAP，即可基于HAP进行调试。如需根据不同的部署环境、目标人群、运行环境等，将同一个HAP定制编译为不同版本，请参见[定制编译指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-customized-multi-targets-and-products-guides#section1011341611469)。
 
-开发者可以采用DevEco Studio或者hdc工具进行调试：
+开发者可以使用DevEco Studio或者hdc工具进行调试：
 
-- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-run-debug-configurations-V13)。
+- **方法一：** 使用DevEco Studio进行调试，详见[应用程序包调试方法](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations)。
 
-- **方法二：** 使用<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->(可通过OpenHarmony SDK获取，在SDK的toolchains目录下)进行调试。
+- **方法二：** 使用[hdc工具](../dfx/hdc.md#环境准备)进行调试。
 
    在调试前，需要先安装或更新HAP，此处有两种方式：
 

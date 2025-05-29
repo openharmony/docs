@@ -154,6 +154,14 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Example**
 
@@ -169,6 +177,40 @@ let netAddress: socket.NetAddress = {
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress
+}
+udp.send(sendOptions, (err: BusinessError) => {
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
+});
+```
+
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: netAddress,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -203,6 +245,14 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Return value**
 
@@ -224,6 +274,38 @@ let netAddress: socket.NetAddress = {
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
   address: netAddress
+}
+udp.send(sendOptions).then(() => {
+  console.log('send success');
+}).catch((err: BusinessError) => {
+  console.log('send fail');
+});
+```
+
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let sendOptions: socket.UDPSendOptions = {
+  data: 'Hello, server!',
+  address: netAddress,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -454,8 +536,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 6000000,
+    sendBufferSize: 2000000,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -521,8 +603,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 6000000,
+    sendBufferSize: 2000000,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -795,7 +877,32 @@ Defines the destination address.
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | Yes  | Bound IP address.                                          |
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
-| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**. For an IPv6 address, this field must be explicitly set to **2**.|
+| family  | number | No  | Network protocol type.<br>- **1**: IPv4 The default value is **1**.<br>- **2**: IPv6 For an IPv6 address, this field must be explicitly set to **2**.<br>- **3**: domain address<sup>18+</sup> For a domain address, this field must be explicitly set to **3**.|
+
+## ProxyOptions<sup>18+</sup>
+
+Defines the socket proxy information.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| type    | [ProxyTypes](#proxytypes18) | Yes  | Proxy type.                                |
+| address | [NetAddress](#netaddress) | Yes  | Proxy address.                            |
+| username  | string | No  | User name. This field must be specified if the user password authentication mode is used. |
+| password  | string | No  | Password. This field must be specified if the user password authentication mode is used.|
+
+## ProxyTypes<sup>18+</sup>
+
+Enumerates socket proxy types.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+| Name     |    Value   | Description               |
+| --------- | --------- |------------------ |
+| NONE    | 0 | No proxy.|
+| SOCKS5  | 1 | SOCKS5 proxy.|
+
 ## UDPSendOptions
 
 Defines the parameters for sending data over a UDP socket connection.
@@ -806,6 +913,7 @@ Defines the parameters for sending data over a UDP socket connection.
 | ------- | ---------------------------------- | ---- | -------------- |
 | data    | string \| ArrayBuffer                          | Yes  | Data to send.  |
 | address | [NetAddress](#netaddress) | Yes  | Destination address.|
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | No  | Proxy option. By default, no proxy is used.|
 
 ## UDPExtraOptions
 
@@ -1355,7 +1463,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 
 > **NOTE**
 > Use this API to check whether the loopback mode is enabled.
-> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host is does not receive the multicast packets sent by itself.
+> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host does not receive the multicast packets sent by itself.
 > This API is effective only after [addMembership](#addmembership11) is called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1396,7 +1504,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 
 > **NOTE**
 > Use this API to check whether the loopback mode is enabled.
-> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host is does not receive the multicast packets sent by itself.
+> The value **true** indicates that the loopback mode is enabled, and the value **false** indicates the opposite. When the loopback mode is disabled, the host does not receive the multicast packets sent by itself.
 > This API is effective only after [addMembership](#addmembership11) is called.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -1579,6 +1687,14 @@ Sets up a connection to the specified IP address and port number. This API uses 
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Example**
 
@@ -1594,6 +1710,40 @@ let netAddress: socket.NetAddress = {
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
+}
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+})
+```
+
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: netAddress,
+  timeout: 6000,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
@@ -1635,6 +1785,14 @@ Sets up a connection to the specified IP address and port number. This API uses 
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Example**
 
@@ -1650,6 +1808,38 @@ let netAddress: socket.NetAddress = {
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
+}
+tcp.connect(tcpconnectoptions).then(() => {
+  console.log('connect success')
+}).catch((err: BusinessError) => {
+  console.log('connect fail');
+});
+```
+
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: netAddress,
+  timeout: 6000,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
 }
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
@@ -2543,6 +2733,7 @@ Defines TCP socket connection parameters.
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | Yes  | Bound IP address and port number.      |
 | timeout | number                             | No  | Timeout duration of the TCP socket connection, in ms.|
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | No  | Proxy option. By default, no proxy is used.|
 
 ## TCPSendOptions
 
@@ -6045,7 +6236,7 @@ tls.off('error', callback);
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory in API version 11 or earlier. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----". This field is optional since API version 12.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6075,6 +6266,14 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303505 | An error occurred in the TLS system call.    |
 | 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Example**
 
@@ -6142,11 +6341,93 @@ tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
 });
 ```
 
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // Two-way authentication
+let bindAddr: socket.NetAddress = {
+  address: '0.0.0.0',
+}
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
+}
+
+tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
+  console.error("connect callback error" + err);
+});
+
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One-way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
+}
+tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
+  console.error("connect callback error" + err);
+});
+```
+
 ### connect<sup>9+</sup>
 
 connect(options: TLSConnectOptions): Promise\<void\>
 
-Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----".
+Sets up a TLS socket connection, and creates and initializes a TLS session after **bind** is successfully called. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result. Note that **ca** in **secureOptions** of the **options** parameter is mandatory in API version 11 or earlier. You need to enter the CA certificate of the server for certificate authentication. The certificate content starts with "-----BEGIN CERTIFICATE-----" and ends with "-----END CERTIFICATE-----". This field is optional since API version 12.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6181,6 +6462,14 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 2303505 | An error occurred in the TLS system call.    |
 | 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
+| 2301206 | Socks5 failed to connect to the proxy server.  |
+| 2301207 | Socks5 username or password is invalid.        |
+| 2301208 | Socks5 failed to connect to the remote server. |
+| 2301209 | Socks5 failed to negotiate the authentication method. |
+| 2301210 | Socks5 failed to send the message.             |
+| 2301211 | Socks5 failed to receive the message.          |
+| 2301212 | Socks5 serialization error.                    |
+| 2301213 | Socks5 deserialization error.                  |
 
 **Example**
 
@@ -6244,6 +6533,92 @@ let oneWaySecureOptions: socket.TLSSecureOptions = {
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: oneWayNetAddr,
   secureOptions: oneWaySecureOptions
+}
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
+});
+```
+
+**Example (with socket proxy):**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // Two-way authentication
+let bindAddr: socket.NetAddress = {
+  address: '0.0.0.0',
+}
+tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let socks5Server: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
+}
+
+tlsTwoWay.connect(tlsConnectOptions).then(() => {
+  console.log("connect successfully");
+}).catch((err: BusinessError) => {
+  console.log("connect failed " + JSON.stringify(err));
+});
+
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One-way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions,
+  proxy: socket.ProxyOptions = {
+    type : 1,
+    address: socks5Server,
+    username: "xxx",
+    password: "xxx"
+  }
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
@@ -6917,6 +7292,7 @@ Defines TLS connection options.
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
 | ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
 | skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to skip certificate authentication on the server. The default value is **false**.     |
+| proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | No  | Proxy option. By default, no proxy is used.|
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -8836,6 +9212,46 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
     console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));
   })
 });
+```
+
+### getSocketFd<sup>16+</sup>
+
+getSocketFd(): Promise\<number\>
+
+Obtains the file descriptor of the **TLSSocket** object. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be called only after **bind** is successfully called.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Return value**
+
+| Type                                            | Description                                      |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise\<number\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getSocketFd().then((data: number) => {
+  console.info("tls socket fd: " + data);
+})
 ```
 
 ### on('message')<sup>10+</sup>

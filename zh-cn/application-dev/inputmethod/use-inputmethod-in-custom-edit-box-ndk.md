@@ -14,7 +14,7 @@ IME Kit支持开发者在自绘编辑框中使用输入法，与输入法应用�
 CMakeLists.txt中添加以下lib。
 
 ```txt
-libohinputmethod.z.so
+libohinputmethod.so
 ```
 
 ## 引用头文件

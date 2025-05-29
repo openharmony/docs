@@ -24,9 +24,10 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp部分代码
 
 ```cpp
-
+#include <cstring>
+#include <string>
 static char stringLatin1[] = "hello";
-static char16_t stringUTF16[] = "world";
+static char16_t stringUTF16[] = u"world";
 
 static JSVM_Value testExternalString(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
@@ -38,16 +39,16 @@ static JSVM_Value testExternalString(JSVM_Env env, JSVM_CallbackInfo info) {
     bool copied = true;
     char buf[10];
     OH_JSVM_CreateExternalStringLatin1(env, stringLatin1, strlen(stringLatin1), nullptr, nullptr,
-                                       &jsStrLatin1, &copied)
-    OH_JSVM_GetValueStringUTF8(env, jsStrLatin1, buf, 10, nullptr);
+                                       &jsStrLatin1, &copied);
+    OH_JSVM_GetValueStringUtf8(env, jsStrLatin1, buf, 10, nullptr);
     OH_LOG_INFO(LOG_APP, "created latin1 string is : %{public}s\n", buf);
     // 这里 copied 为 true 表示创建 external string 失败，否则表示创建成功
     OH_LOG_INFO(LOG_APP, "create external string failed : %{public}d\n", copied);
     copied = true;
     JSVM_Value jsStrUTF16 = nullptr;
-    OH_JSVM_CreateExternalStringUtf16(env, stringLatin1, std::char_traits<char16_t>::length(stringUTF16),
-                                      nullptr, nullptr, &jsStrUTF16, &copied)
-    OH_JSVM_GetValueStringUTF8(env, jsStrUTF16, buf, 10, nullptr);
+    OH_JSVM_CreateExternalStringUtf16(env, stringUTF16, std::char_traits<char16_t>::length(stringUTF16),
+                                      nullptr, nullptr, &jsStrUTF16, &copied);
+    OH_JSVM_GetValueStringUtf8(env, jsStrUTF16, buf, 10, nullptr);
     OH_LOG_INFO(LOG_APP, "created utf16 string is : %{public}s\n", buf);
     // 这里 copied 为 true 表示创建 external string 失败，否则表示创建成功
     OH_LOG_INFO(LOG_APP, "create external string failed : %{public}d\n", copied);

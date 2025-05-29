@@ -62,3 +62,4 @@ Defines the values of **mode** used in **FileInfo**.
   | REPRESENTS_DIR   | number | Yes  | No  | Directory.|
   | SUPPORTS_READ   | number | Yes  | No  | This file is readable.|
   | SUPPORTS_WRITE   | number | Yes  | No  | This file is writable.|
+  

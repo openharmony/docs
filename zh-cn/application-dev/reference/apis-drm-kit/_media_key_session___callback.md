@@ -9,6 +9,8 @@ MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等�
 
 **相关模块：**[Drm](_drm.md)
 
+**所在头文件：**[native_mediakeysession.h](native__mediakeysession_8h.md)
+
 
 ## 汇总
 
@@ -17,5 +19,5 @@ MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback) | 正常事件回调，如密钥过期等。 | 
-| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback) | 密钥更改事件的密钥更改回调。 | 
+| [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback) [eventCallback](_drm.md#eventcallback-12) | 正常事件回调，如密钥过期等。 |
+| [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback) [keyChangeCallback](_drm.md#keychangecallback-12) | 密钥更改事件的密钥更改回调。 |

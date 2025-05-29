@@ -1,8 +1,10 @@
 # Sendable使用规则与约束
 
-## Sendable class只能继承自Sendable class
+## 继承规则
 
-Sendable对象布局及原型链不可变，非Sendable对象可以通过特殊方式修改布局，不允许互相继承。这里的class不包括变量。Sendable class不能继承自变量。
+### Sendable类必须继承自Sendable类
+
+Sendable对象的布局和原型链不可变，而非Sendable对象可以通过特殊方式修改布局。因此，不允许互相继承。这里的类不包括变量。Sendable类不能继承自变量。
 
 **正例：**
 
@@ -30,7 +32,7 @@ class A {
 }
 
 @Sendable
-class B extends A {
+class B extends A { // A不是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
@@ -38,9 +40,9 @@ class B extends A {
 ```
 
 
-## 非Sendable class只能继承自非Sendable class
+### 非Sendable类必须继承自非Sendable类
 
-Sendable对象布局及原型链不可变，由于非Sendable对象可以通过特殊方式修改布局，因此不允许互相继承。
+Sendable对象的布局及原型链不可变，而非Sendable对象可以通过特殊方式修改布局，因此不允许互相继承。
 
 **正例：**
 
@@ -66,17 +68,18 @@ class A {
   }
 }
 
-class B extends A {
+class B extends A { // A是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
 }
 ```
 
+## 接口实现规则
 
-## 非Sendable class只能实现非Sendable interface
+### 非Sendable类禁止实现Sendable接口
 
-如果非Sendable class实现了Sendable interface，可能会被认为是Sendable的，实际是非Sendable的，导致错误使用。
+如果非Sendable类实现Sendable接口，可能会被误认为是Sendable类，从而导致错误使用。
 
 **正例：**
 
@@ -95,13 +98,14 @@ type ISendable = lang.ISendable;
 
 interface I extends ISendable {};
 
-class B implements I {};
+class B implements I {};  // I是sendable interface，B不能实现，编译报错
 ```
 
+## Sendable类/接口成员变量规则
 
-## Sendable class/interface成员变量必须是Sendable支持的数据类型
+### 必须是Sendable支持的数据类型
 
-Sendable数据不能持有非Sendable数据，因此Sendable数据的成员属性必须为Sendable数据。
+Sendable数据不能持有非Sendable数据，因此Sendable类或接口的成员变量必须是Sendable支持的数据类型。
 
 **正例：**
 
@@ -121,12 +125,12 @@ class A {
 class A {
   constructor() {
   }
-  b: Array<number> = [1, 2, 3] // 需使用collections.Array
+  b: Array<number> = [1, 2, 3] // 编译报错，需使用collections.Array
 }
 ```
 
 
-## Sendable class/interface的成员变量不支持使用!断言
+### 不支持使用!断言
 
 Sendable对象的成员属性必须赋初值，“!”修饰的变量可以不赋初值，因此不支持使用“!” 。
 
@@ -148,14 +152,14 @@ class A {
 class A {
   constructor() {
   }
-  a!: number;
+  a!: number; // 编译报错，不支持使用“!”
 }
 ```
 
 
-## Sendable class/interface的成员变量不支持使用计算属性名
+### 不支持使用计算属性名
 
-Sendable对象的布局不可变，计算属性不能静态确定对象布局，因此不支持。
+Sendable对象的布局不可变，计算属性无法静态确定对象布局，因此不支持。
 
 **正例：**
 
@@ -178,13 +182,14 @@ enum B {
 }
 @Sendable
 class A {
-    ["aaa"]: number = 1; // ["aaa"] is allowed in other classes in ets files
-    [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
+    ["aaa"]: number = 1; // 编译报错，不支持["aaa"]
+    [B.b1]: number = 2; // 编译报错，不支持[B.b1]
 }
 ```
 
+## 泛型规则
 
-## 泛型类中的Sendable class，collections.Array，collections.Map，collections.Set的模板类型必须是Sendable类型
+### 泛型类中的Sendable类、SendableLruCache、collections.Array、collections.Map和collections.Set的模板类型必须是Sendable类型
 
 Sendable数据不能持有非Sendable数据，因此泛型类中的Sendable数据的模版类型必须是Sendable类型。
 
@@ -208,7 +213,7 @@ try {
 import { collections } from '@kit.ArkTS';
 
 try {
-  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
+  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>(); // 编译报错，模板类型必须是Sendable类型
   let arr2: Array<number> = new Array<number>();
   arr2.push(1);
   arr1.push(arr2);
@@ -218,13 +223,15 @@ try {
 ```
 
 
-## Sendable class的内部不允许使用当前模块内上下文环境中定义的变量
+## 上下文访问规则
 
-由于Sendable对象在不同并发实例间的上下文环境不同，属于单个虚拟机实例，如果直接访问会有非预期行为。不支持Sendable对象使用当前模块内上下文环境中定义的变量，如果违反，编译阶段会报错。
+### Sendable类的内部不允许使用当前模块内上下文环境中定义的变量
+
+由于Sendable对象在不同并发实例间的上下文环境不同，属于单个虚拟机实例，如果直接访问会有非预期行为。不支持Sendable对象使用当前模块内上下文环境中定义的变量，违反此规则会在编译阶段报错。
 
 > **说明：**
 >
-> 从API version 12开始，sendable class的内部支持使用top level的sendable class对象。
+> 从API version 12开始，Sendable class的内部支持使用top level的Sendable class对象。
 
 **正例：**
 
@@ -288,10 +295,40 @@ let b = new B();
 }
 ```
 
+## \@Sendable装饰器使用规则
 
-## Sendable class和Sendable function不能使用除了\@Sendable的其它装饰器
+### \@Sendable装饰器仅支持修饰类和函数
 
-如果类装饰器定义在ts文件中，产生修改类的布局的行为，那么会造成运行时的错误。
+当前仅支持修饰类和函数。
+
+**正例：**
+
+```ts
+@Sendable
+type SendableFuncType = () => void;
+
+@Sendable
+class C {}
+
+@Sendable
+function SendableFunc() {
+  console.info("Sendable func");
+}
+```
+
+**反例：**
+
+```ts
+@Sendable
+type A = number; // 编译报错
+
+@Sendable
+type D = C; // 编译报错
+```
+
+### Sendable类和Sendable函数禁止使用除\@Sendable外的装饰器
+
+如果在ts文件中定义类装饰器，可能会修改类的布局，从而导致运行时错误。
 
 **正例：**
 
@@ -306,16 +343,17 @@ class A {
 
 ```ts
 @Sendable
-@Observed
+@Observed // 编译报错
 class C {
   num: number = 1;
 }
 ```
 
+## 初始化规则
 
-## 不能使用对象字面量/数组字面量初始化Sendable类型
+### 禁止使用对象字面量/数组字面量初始化Sendable对象
 
-对象字面量/数组字面量是非Sendable类型，Sendable数据类型只能通过Sendable类型的new表达式创建。
+对象字面量和数组字面量不是Sendable类型，Sendable数据类型必须通过Sendable类型的new表达式创建。
 
 **正例：**
 
@@ -335,10 +373,11 @@ let arr3: number[] = [1, 2, 3]; // 不是Sendable类型，正例，不报错
 let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 ```
 
+## 类型转换规则
 
-## 非Sendable类型不可以as成Sendable类型
+### 禁止非Sendable类型强制转换为Sendable
 
-除了Object类型，非Sendable类型不可以as成Sendable类型。非Sendable类型通过as强转成Sendable类型后实际是非Sendable的类型数据，会导致错误使用。Sendable类型在不违反Sendable规则的前提下需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
+除了Object类型，非Sendable类型不能强转成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下，需要和非Sendable类型行为兼容，因此Sendable类型可以as强转成非Sendable类型。
 
 **正例：**
 
@@ -367,13 +406,14 @@ class SendableA {
   state: number = 0;
 }
 
-let a2: SendableA = new A() as SendableA;
+let a2: SendableA = new A() as SendableA; // 编译报错
 ```
 
+## 函数规则
 
-## 箭头函数不支持共享
+### 箭头函数不可标记为Sendable
 
-箭头函数不支持使用Sendable装饰器，是非Sendable函数，因此不支持共享。
+箭头函数不支持\@Sendable装饰器，因此它是非Sendable函数，不支持共享。
 
 **正例：**
 
@@ -410,40 +450,7 @@ class SendableClass {
 }
 ```
 
-
-## Sendable装饰器修饰类型时仅支持修饰函数类型
-
-当前仅支持声明Sendable函数类型，因此只能修饰函数类型。
-
-**正例：**
-
-```ts
-@Sendable
-type SendableFuncType = () => void;
-```
-
-**反例：**
-
-```ts
-@Sendable
-type A = number; // 编译报错
-
-@Sendable
-class C {}
-
-@Sendable
-type D = C; // 编译报错
-```
-
-
-## 注意事项
-
-
-在HAR中使用Sendable时，需开启编译生成TS文件的配置。详情可查[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。
-
-
 ## 与TS/JS交互的规则
-
 
 ### ArkTS通用规则（目前只针对Sendable对象）
 
@@ -455,7 +462,7 @@ type D = C; // 编译报错
 
 > **说明：**
 >
-> 此处改变属性类型不包括Sendable对象类型的改变，比如从Sendable class A变为Sendable class B。
+> 改变属性类型不包括Sendable对象类型的改变，例如从Sendable class A变为Sendable class B。
 
 
 ### NAPI规则（目前只针对Sendable对象）
@@ -470,4 +477,9 @@ type D = C; // 编译报错
 
 ## 与UI交互的规则
 
-Sendable数据需要与[makeObserved](../quick-start/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../quick-start/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
+Sendable数据需要与[makeObserved](../ui/state-management/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../ui/state-management/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
+
+
+## 在HAR包中的使用规则
+
+HAR中使用Sendable时，需开启编译生成TS文件的配置。具体使用请参考[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。

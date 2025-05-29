@@ -15,8 +15,8 @@
 | -------- | -------- | -------- |
 | [开放权限（系统授权）](permissions-for-all.md) | system_grant | [声明权限](declare-permissions.md) &gt; 访问接口 | 
 | [开放权限（用户授权）](permissions-for-all-user.md) | user_grant  | [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
-| <!--Del-->[允许通过ACL申请的系统权限（系统授权）](permissions-for-system-apps.md)<br><!--DelEnd-->[受限开放权限](restricted-permissions.md) | system_grant | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; 访问接口 | 
-| <!--Del-->[允许通过ACL申请的系统权限（用户授权）](permissions-for-system-apps-user.md)<br><!--DelEnd-->[受限开放权限](restricted-permissions.md) | user_grant | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 |
+| <!--Del-->[允许通过ACL申请的系统权限（系统授权）](permissions-for-system-apps.md)<br><!--DelEnd-->[受限开放权限](restricted-permissions.md) | system_grant | <!--RP1-->[申请使用受限权限](declare-permissions-in-acl.md)<!--RP1End--> &gt; [声明权限](declare-permissions.md) &gt; 访问接口 | 
+| <!--Del-->[允许通过ACL申请的系统权限（用户授权）](permissions-for-system-apps-user.md)<br><!--DelEnd-->[受限开放权限](restricted-permissions.md) | user_grant | <!--RP1-->[申请使用受限权限](declare-permissions-in-acl.md)<!--RP1End--> &gt; [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 |
 
 <!--Del-->
 > **说明：**

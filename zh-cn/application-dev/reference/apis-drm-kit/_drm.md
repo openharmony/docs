@@ -1020,7 +1020,7 @@ DRM错误码。
 | DRM_ERR_NO_MEMORY | 内存不足。 | 
 | DRM_ERR_OPERATION_NOT_PERMITTED | 不允许的操作。 | 
 | DRM_ERR_INVALID_VAL | 无效参数。 | 
-| DRM_ERR_IO | IO 错误。 | 
+| DRM_ERR_IO | IO错误。 |
 | DRM_ERR_TIMEOUT | 网络超时。 | 
 | DRM_ERR_UNKNOWN | 未知错误。 | 
 | DRM_ERR_SERVICE_DIED | drm服务死亡。 | 

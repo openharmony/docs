@@ -1303,3 +1303,15 @@ Defines the WantAgentInfo object.
 | Type| Description|
 | --- | --- |
 | [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo object.|
+
+## WantAgent
+
+type WantAgent = object
+
+Target WantAgent object.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| object | Target WantAgent object.|

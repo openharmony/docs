@@ -11,7 +11,6 @@
 
 可以包含子组件。
 
-
 ## 接口
 
 Stack(options?: StackOptions)
@@ -38,7 +37,7 @@ Stack(options?: StackOptions)
 
 | 名称          | 类型            | 必填 | 说明                        |
 | ------------ | --------------- | ---- | --------------------------- |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | 否   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center |
+| alignContent<sup>7+</sup> | [Alignment](ts-appendix-enums.md#alignment) | 否   | 设置子组件在容器内的对齐方式。<br/>默认值：Alignment.Center<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -48,7 +47,7 @@ Stack(options?: StackOptions)
 
 alignContent(value: Alignment)
 
-设置所有子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。
+设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md#align)同时设置时，后设置的属性生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

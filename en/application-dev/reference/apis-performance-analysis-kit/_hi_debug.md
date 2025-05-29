@@ -17,7 +17,7 @@ The functions of this module can be used to obtain information such as the CPU u
 
 ### Files
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
 | [hidebug.h](hidebug_8h.md) | Defines the APIs for debugging.|
 | [hidebug_type.h](hidebug__type_8h.md) | Defines the structs of the HiDebug module.|
@@ -25,87 +25,87 @@ The functions of this module can be used to obtain information such as the CPU u
 
 ### Structs
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | Defines the CPU usage of all threads of an application. |
-| struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | Defines the system memory information. |
-| struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | Defines the local memory information of an application process. |
-| struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | Defines the memory limit of an application process. |
+| struct&nbsp;&nbsp;[HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) | Defines the CPU usage of all threads of an application. | 
+| struct&nbsp;&nbsp;[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) | Defines the system memory information. | 
+| struct&nbsp;&nbsp;[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) | Defines the local memory information of an application process. | 
+| struct&nbsp;&nbsp;[HiDebug_MemoryLimit](_hi_debug___memory_limit.md) | Defines the memory limit of an application process. | 
 
 
 ### Macros
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [HIDEBUG_TRACE_TAG_FFRT](#hidebug_trace_tag_ffrt)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 13) | Indicates the FFRT task. |
-| [HIDEBUG_TRACE_TAG_COMMON_LIBRARY](#hidebug_trace_tag_common_library)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 16) | Indicates the common library subsystem. |
-| [HIDEBUG_TRACE_TAG_HDF](#hidebug_trace_tag_hdf)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 18) | Indicates the HDF subsystem. |
-| [HIDEBUG_TRACE_TAG_NET](#hidebug_trace_tag_net)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 23) | Indicates the network. |
-| [HIDEBUG_TRACE_TAG_NWEB](#hidebug_trace_tag_nweb)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 24) | Indicates the NWeb. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_AUDIO](#hidebug_trace_tag_distributed_audio)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 27) | Indicates the distributed audio. |
-| [HIDEBUG_TRACE_TAG_FILE_MANAGEMENT](#hidebug_trace_tag_file_management)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 29) | Indicates the file management. |
-| [HIDEBUG_TRACE_TAG_OHOS](#hidebug_trace_tag_ohos)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 30) | Indicates the OpenHarmony OS. |
-| [HIDEBUG_TRACE_TAG_ABILITY_MANAGER](#hidebug_trace_tag_ability_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 31) | Indicates the ability manager. |
-| [HIDEBUG_TRACE_TAG_CAMERA](#hidebug_trace_tag_camera)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 32) | Indicates the camera module. |
-| [HIDEBUG_TRACE_TAG_MEDIA](#hidebug_trace_tag_media)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 33) | Indicates the media module. |
-| [HIDEBUG_TRACE_TAG_IMAGE](#hidebug_trace_tag_image)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 34) | Indicates the image module. |
-| [HIDEBUG_TRACE_TAG_AUDIO](#hidebug_trace_tag_audio)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 35) | Indicates the audio module. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_DATA](#hidebug_trace_tag_distributed_data)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 36) | Indicates the distributed data management. |
-| [HIDEBUG_TRACE_TAG_GRAPHICS](#hidebug_trace_tag_graphics)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 38) | Indicates the graphics module. |
-| [HIDEBUG_TRACE_TAG_ARKUI](#hidebug_trace_tag_arkui)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 39) | Indicates the ArkUI development framework. |
-| [HIDEBUG_TRACE_TAG_NOTIFICATION](#hidebug_trace_tag_notification)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 40) | Indicates the notification module. |
-| [HIDEBUG_TRACE_TAG_MISC](#hidebug_trace_tag_misc)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 41) | Indicates the MISC module. |
-| [HIDEBUG_TRACE_TAG_MULTIMODAL_INPUT](#hidebug_trace_tag_multimodal_input)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 42) | Indicates the multimodal input module. |
-| [HIDEBUG_TRACE_TAG_RPC](#hidebug_trace_tag_rpc)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 46) | Indicates the RPC. |
-| [HIDEBUG_TRACE_TAG_ARK](#hidebug_trace_tag_ark)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 47) | Indicates the JSVM. |
-| [HIDEBUG_TRACE_TAG_WINDOW_MANAGER](#hidebug_trace_tag_window_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 48) | Indicates the window manager. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_SCREEN](#hidebug_trace_tag_distributed_screen)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 50) | Indicates the distributed screen. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_CAMERA](#hidebug_trace_tag_distributed_camera)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 51) | Indicates the distributed camera. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_FRAMEWORK](#hidebug_trace_tag_distributed_hardware_framework)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 52) | Indicates the distributed hardware framework. |
-| [HIDEBUG_TRACE_TAG_GLOBAL_RESOURCE_MANAGER](#hidebug_trace_tag_global_resource_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 53) | Indicates the global resource manager. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_DEVICE_MANAGER](#hidebug_trace_tag_distributed_hardware_device_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 54) | Indicates the distributed hardware device manager. |
-| [HIDEBUG_TRACE_TAG_SAMGR](#hidebug_trace_tag_samgr)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 55) | Indicates the service ability manager (SAMGR). |
-| [HIDEBUG_TRACE_TAG_POWER_MANAGER](#hidebug_trace_tag_power_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 56) | Indicates the power manager. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_SCHEDULER](#hidebug_trace_tag_distributed_scheduler)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 57) | Indicates the distributed scheduler. |
-| [HIDEBUG_TRACE_TAG_DISTRIBUTED_INPUT](#hidebug_trace_tag_distributed_input)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 59) | Indicates the distributed input. |
-| [HIDEBUG_TRACE_TAG_BLUETOOTH](#hidebug_trace_tag_bluetooth)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 60) | Indicates the Bluetooth. |
+| [HIDEBUG_TRACE_TAG_FFRT](#hidebug_trace_tag_ffrt)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 13) | Indicates the FFRT task. | 
+| [HIDEBUG_TRACE_TAG_COMMON_LIBRARY](#hidebug_trace_tag_common_library)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 16) | Indicates the common library subsystem. | 
+| [HIDEBUG_TRACE_TAG_HDF](#hidebug_trace_tag_hdf)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 18) | Indicates the HDF subsystem. | 
+| [HIDEBUG_TRACE_TAG_NET](#hidebug_trace_tag_net)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 23) | Indicates the network. | 
+| [HIDEBUG_TRACE_TAG_NWEB](#hidebug_trace_tag_nweb)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 24) | Indicates the NWeb. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_AUDIO](#hidebug_trace_tag_distributed_audio)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 27) | Indicates the distributed audio. | 
+| [HIDEBUG_TRACE_TAG_FILE_MANAGEMENT](#hidebug_trace_tag_file_management)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 29) | Indicates the file management. | 
+| [HIDEBUG_TRACE_TAG_OHOS](#hidebug_trace_tag_ohos)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 30) | Indicates the OpenHarmony OS. | 
+| [HIDEBUG_TRACE_TAG_ABILITY_MANAGER](#hidebug_trace_tag_ability_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 31) | Indicates the ability manager. | 
+| [HIDEBUG_TRACE_TAG_CAMERA](#hidebug_trace_tag_camera)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 32) | Indicates the camera module. | 
+| [HIDEBUG_TRACE_TAG_MEDIA](#hidebug_trace_tag_media)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 33) | Indicates the media module. | 
+| [HIDEBUG_TRACE_TAG_IMAGE](#hidebug_trace_tag_image)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 34) | Indicates the image module. | 
+| [HIDEBUG_TRACE_TAG_AUDIO](#hidebug_trace_tag_audio)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 35) | Indicates the audio module. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_DATA](#hidebug_trace_tag_distributed_data)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 36) | Indicates the distributed data management. | 
+| [HIDEBUG_TRACE_TAG_GRAPHICS](#hidebug_trace_tag_graphics)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 38) | Indicates the graphics module. | 
+| [HIDEBUG_TRACE_TAG_ARKUI](#hidebug_trace_tag_arkui)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 39) | Indicates the ArkUI development framework. | 
+| [HIDEBUG_TRACE_TAG_NOTIFICATION](#hidebug_trace_tag_notification)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 40) | Indicates the notification module. | 
+| [HIDEBUG_TRACE_TAG_MISC](#hidebug_trace_tag_misc)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 41) | Indicates the MISC module. | 
+| [HIDEBUG_TRACE_TAG_MULTIMODAL_INPUT](#hidebug_trace_tag_multimodal_input)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 42) | Indicates the multimodal input module. | 
+| [HIDEBUG_TRACE_TAG_RPC](#hidebug_trace_tag_rpc)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 46) | Indicates the RPC. | 
+| [HIDEBUG_TRACE_TAG_ARK](#hidebug_trace_tag_ark)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 47) | Indicates the JSVM. | 
+| [HIDEBUG_TRACE_TAG_WINDOW_MANAGER](#hidebug_trace_tag_window_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 48) | Indicates the window manager. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_SCREEN](#hidebug_trace_tag_distributed_screen)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 50) | Indicates the distributed screen. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_CAMERA](#hidebug_trace_tag_distributed_camera)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 51) | Indicates the distributed camera. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_FRAMEWORK](#hidebug_trace_tag_distributed_hardware_framework)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 52) | Indicates the distributed hardware framework. | 
+| [HIDEBUG_TRACE_TAG_GLOBAL_RESOURCE_MANAGER](#hidebug_trace_tag_global_resource_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 53) | Indicates the global resource manager. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_HARDWARE_DEVICE_MANAGER](#hidebug_trace_tag_distributed_hardware_device_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 54) | Indicates the distributed hardware device manager. | 
+| [HIDEBUG_TRACE_TAG_SAMGR](#hidebug_trace_tag_samgr)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 55) | Indicates the service ability manager (SAMGR). | 
+| [HIDEBUG_TRACE_TAG_POWER_MANAGER](#hidebug_trace_tag_power_manager)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 56) | Indicates the power manager. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_SCHEDULER](#hidebug_trace_tag_distributed_scheduler)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 57) | Indicates the distributed scheduler. | 
+| [HIDEBUG_TRACE_TAG_DISTRIBUTED_INPUT](#hidebug_trace_tag_distributed_input)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 59) | Indicates the distributed input. | 
+| [HIDEBUG_TRACE_TAG_BLUETOOTH](#hidebug_trace_tag_bluetooth)&nbsp;&nbsp;&nbsp;(1ULL &lt;&lt; 60) | Indicates the Bluetooth. | 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef enum [HiDebug_ErrorCode](#hidebug_errorcode) [HiDebug_ErrorCode](#hidebug_errorcode) | Defines an enum for the error codes used in the HiDebug module. |
-| typedef struct [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) [HiDebug_ThreadCpuUsage](#hidebug_threadcpuusage) | Defines a struct for the CPU usage of all threads of an application. |
-| typedef [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) \* [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) | Defines the pointer to **HiDebug_ThreadCpuUsage**. |
-| typedef struct [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) [HiDebug_SystemMemInfo](#hidebug_systemmeminfo) | Defines a struct for the system memory information. |
-| typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](#hidebug_nativememinfo) | Defines a struct for the local memory information of the application process. |
-| typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](#hidebug_memorylimit) | Defines a struct for the memory limit of an application process. |
-| typedef enum [HiDebug_TraceFlag](#hidebug_traceflag) [HiDebug_TraceFlag](#hidebug_traceflag) | Defines an enum for the thread types for trace collection. |
+| typedef enum [HiDebug_ErrorCode](#hidebug_errorcode) [HiDebug_ErrorCode](#hidebug_errorcode) | Defines an enum for the error codes used in the HiDebug module. | 
+| typedef struct [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) [HiDebug_ThreadCpuUsage](#hidebug_threadcpuusage) | Defines a struct for the CPU usage of all threads of an application. | 
+| typedef [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md) \* [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) | Defines the pointer to **HiDebug_ThreadCpuUsage**. | 
+| typedef struct [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) [HiDebug_SystemMemInfo](#hidebug_systemmeminfo) | Defines a struct for the system memory information. | 
+| typedef struct [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) [HiDebug_NativeMemInfo](#hidebug_nativememinfo) | Defines a struct for the local memory information of the application process. | 
+| typedef struct [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) [HiDebug_MemoryLimit](#hidebug_memorylimit) | Defines a struct for the memory limit of an application process. | 
+| typedef enum [HiDebug_TraceFlag](#hidebug_traceflag) [HiDebug_TraceFlag](#hidebug_traceflag) | Defines an enum for the thread types for trace collection. | 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [HiDebug_ErrorCode](#hidebug_errorcode) {<br>HIDEBUG_SUCCESS = 0, HIDEBUG_INVALID_ARGUMENT = 401, HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102, HIDEBUG_NO_PERMISSION = 11400103,<br>HIDEBUG_TRACE_ABNORMAL = 11400104, HIDEBUG_NO_TRACE_RUNNING = 11400105<br>} | Enumerates the error codes used in the HiDebug module. |
-| [HiDebug_TraceFlag](#hidebug_traceflag) { HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, HIDEBUG_TRACE_FLAG_ALL_THREADS = 2 } | Enumerates the thread types for trace collection. |
+| [HiDebug_ErrorCode](#hidebug_errorcode) {<br>HIDEBUG_SUCCESS = 0, HIDEBUG_INVALID_ARGUMENT = 401, HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102, HIDEBUG_NO_PERMISSION = 11400103,<br>HIDEBUG_TRACE_ABNORMAL = 11400104, HIDEBUG_NO_TRACE_RUNNING = 11400105<br>} | Enumerates the error codes used in the HiDebug module. | 
+| [HiDebug_TraceFlag](#hidebug_traceflag) { HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1, HIDEBUG_TRACE_FLAG_ALL_THREADS = 2 } | Enumerates the thread types for trace collection. | 
 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| double [OH_HiDebug_GetSystemCpuUsage](#oh_hidebug_getsystemcpuusage) () | Obtains the CPU usage of the system. |
-| double [OH_HiDebug_GetAppCpuUsage](#oh_hidebug_getappcpuusage) () | Obtains the CPU usage of an application. |
-| [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) [OH_HiDebug_GetAppThreadCpuUsage](#oh_hidebug_getappthreadcpuusage) () | Obtains the CPU usage of all threads of an application. |
-| void [OH_HiDebug_FreeThreadCpuUsage](#oh_hidebug_freethreadcpuusage) ([HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) \*threadCpuUsage) | Releases the **HiDebug_ThreadCpuUsagePtr**. |
-| void [OH_HiDebug_GetSystemMemInfo](#oh_hidebug_getsystemmeminfo) ([HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) \*systemMemInfo) | Obtains system memory information. |
-| void [OH_HiDebug_GetAppNativeMemInfo](#oh_hidebug_getappnativememinfo) ([HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) \*nativeMemInfo) | Obtains the memory information of an application process. |
-| void [OH_HiDebug_GetAppMemoryLimit](#oh_hidebug_getappmemorylimit) ([HiDebug_MemoryLimit](_hi_debug___memory_limit.md) \*memoryLimit) | Obtains the memory limit of an application process. |
-| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | Starts application trace collection. |
-| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](#oh_hidebug_stopapptracecapture) () | Stops application trace collection. |
-| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | Obtains the size of the GPU memory. |
+| double [OH_HiDebug_GetSystemCpuUsage](#oh_hidebug_getsystemcpuusage) () | Obtains the CPU usage of the system. | 
+| double [OH_HiDebug_GetAppCpuUsage](#oh_hidebug_getappcpuusage) () | Obtains the CPU usage of an application. | 
+| [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) [OH_HiDebug_GetAppThreadCpuUsage](#oh_hidebug_getappthreadcpuusage) () | Obtains the CPU usage of all threads of an application. | 
+| void [OH_HiDebug_FreeThreadCpuUsage](#oh_hidebug_freethreadcpuusage) ([HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr) \*threadCpuUsage) | Releases the **HiDebug_ThreadCpuUsagePtr**. | 
+| void [OH_HiDebug_GetSystemMemInfo](#oh_hidebug_getsystemmeminfo) ([HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) \*systemMemInfo) | Obtains system memory information. | 
+| void [OH_HiDebug_GetAppNativeMemInfo](#oh_hidebug_getappnativememinfo) ([HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) \*nativeMemInfo) | Obtains the memory information of an application process. | 
+| void [OH_HiDebug_GetAppMemoryLimit](#oh_hidebug_getappmemorylimit) ([HiDebug_MemoryLimit](_hi_debug___memory_limit.md) \*memoryLimit) | Obtains the memory limit of an application process. | 
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StartAppTraceCapture](#oh_hidebug_startapptracecapture) ([HiDebug_TraceFlag](#hidebug_traceflag) flag, uint64_t tags, uint32_t limitSize, char \*fileName, uint32_t length) | Starts application trace collection. | 
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_StopAppTraceCapture](#oh_hidebug_stopapptracecapture) () | Stops application trace collection. | 
+| [HiDebug_ErrorCode](#hidebug_errorcode) [OH_HiDebug_GetGraphicsMemory](#oh_hidebug_getgraphicsmemory) (uint32_t \*value) | Obtains the size of the GPU memory. | 
 
 
 ## Macro Description
@@ -556,14 +556,14 @@ Enumerates the error codes used in the HiDebug module.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| HIDEBUG_SUCCESS  | The operation is successful.&nbsp;&nbsp; |
-| HIDEBUG_INVALID_ARGUMENT  | The parameter is invalid. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.&nbsp;&nbsp; |
-| HIDEBUG_TRACE_CAPTURED_ALREADY  | Repeated collection.&nbsp;&nbsp; |
-| HIDEBUG_NO_PERMISSION  | No file write permission.&nbsp;&nbsp; |
-| HIDEBUG_TRACE_ABNORMAL  | Abnormal trace status.&nbsp;&nbsp; |
-| HIDEBUG_NO_TRACE_RUNNING  | No trace collection is running.&nbsp;&nbsp; |
+| HIDEBUG_SUCCESS  | The operation is successful.&nbsp;&nbsp; | 
+| HIDEBUG_INVALID_ARGUMENT  | The parameter is invalid. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.&nbsp;&nbsp; | 
+| HIDEBUG_TRACE_CAPTURED_ALREADY  | Repeated collection.&nbsp;&nbsp; | 
+| HIDEBUG_NO_PERMISSION  | No file write permission.&nbsp;&nbsp; | 
+| HIDEBUG_TRACE_ABNORMAL  | Abnormal trace status&nbsp;&nbsp; | 
+| HIDEBUG_NO_TRACE_RUNNING  | No trace collection is running.&nbsp;&nbsp; | 
 
 
 ### HiDebug_TraceFlag
@@ -576,10 +576,10 @@ Enumerates the thread types for trace collection.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| HIDEBUG_TRACE_FLAG_MAIN_THREAD  | Only the main thread of the current application.&nbsp;&nbsp; |
-| HIDEBUG_TRACE_FLAG_ALL_THREADS  | All threads of the application.&nbsp;&nbsp; |
+| HIDEBUG_TRACE_FLAG_MAIN_THREAD  | Only the main thread of the current application.&nbsp;&nbsp; | 
+| HIDEBUG_TRACE_FLAG_ALL_THREADS  | All threads of the application.&nbsp;&nbsp; | 
 
 
 ## Function Description
@@ -597,9 +597,9 @@ Releases the **HiDebug_ThreadCpuUsagePtr**.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| threadCpuUsage | Pointer to the buffer that stores the available CPU for all threads of the application. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). The input parameter is obtained by **OH_HiDebug_GetAppThreadCpuUsage()**. |
+| threadCpuUsage | Pointer to the buffer that stores the available CPU for all threads of the application. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). The input parameter is obtained by **OH_HiDebug_GetAppThreadCpuUsage()**. | 
 
 
 ### OH_HiDebug_GetAppCpuUsage()
@@ -614,7 +614,7 @@ Obtains the CPU usage of an application.
 
 **Returns**
 
-Returns the application CPU usage obtained if the operation is successful. Returns **0** if the operation fails.
+Returns the application CPU usage obtained if the operation is successful. Returns **0** if the CPU usage of the application is too low.
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -629,9 +629,9 @@ Obtains the memory limit of an application process.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| memoryLimit | Pointer to the [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) to obtain. If the struct is empty, the function call fails. |
+| memoryLimit | Pointer to the [HiDebug_MemoryLimit](_hi_debug___memory_limit.md) to obtain. If the struct is empty, the function call fails. | 
 
 
 ### OH_HiDebug_GetAppNativeMemInfo()
@@ -646,9 +646,9 @@ Obtains the memory information of an application process.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| nativeMemInfo | Pointer to the [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) to obtain. If the struct is empty, the function call fails. |
+| nativeMemInfo | Pointer to the [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md) to obtain. If the struct is empty, the function call fails. | 
 
 
 ### OH_HiDebug_GetAppThreadCpuUsage()
@@ -663,7 +663,7 @@ Obtains the CPU usage of all threads of an application.
 
 **Returns**
 
-Returns the CPU usage of all threads. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). Returns **null** if the function fails to be called.
+Returns the CPU usage of all threads. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). Returns **null** if the thread data is not obtained.
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -678,9 +678,9 @@ Obtains the size of the GPU memory.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| value | Pointer to the variable that stores the size (in KB) of the obtained GPU memory. |
+| value | Pointer to the variable that stores the size (in KB) of the obtained GPU memory. | 
 
 **Returns**
 
@@ -718,9 +718,9 @@ Obtains system memory information.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| systemMemInfo | Pointer to the [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) to obtain. If the struct is empty, the function call fails. |
+| systemMemInfo | Pointer to the [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md) to obtain. If the struct is empty, the function call fails. | 
 
 
 ### OH_HiDebug_StartAppTraceCapture()
@@ -735,17 +735,17 @@ Starts application trace collection.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| flag | Type of the thread (the main thread or all threads of the application) to trace. |
-| tags | Modules or subsystems to trace. |
-| limitSize | Maximum size of the trace file (in bytes), which is 500 MB. |
-| fileName | Buffer for the output trace file. |
-| length | Length of the buffer for the output trace file. |
+| flag | Type of the thread (the main thread or all threads of the application) to trace. | 
+| tags | Modules or subsystems to trace. | 
+| limitSize | Maximum size of the trace file (in bytes), which is 500 MB. | 
+| fileName | Buffer for the output trace file. | 
+| length | Length of the buffer for the output trace file. | 
 
 **Returns**
 
-0 - The operation is successful.
+**0** - The operation is successful.
 
 **HIDEBUG_INVALID_ARGUMENT 401** - The **fileName** parameter is a null pointer, the input **length** parameter is too small, or the value of **limitSize** is less than or equal to **0**.
 

@@ -1,6 +1,6 @@
 # Dual-Channel Preview (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 Dual-channel preview means that an application can use two preview streams at the same time. One preview stream is used for display on the screen, and the other is used for other operations such as image processing, so as to improve the processing efficiency.
 
@@ -28,17 +28,22 @@ The figure below shows the recommended API calling process of the dual-channel p
 - To enable both preview streams to obtain data, configure a camera session for both preview streams, and start the session.
 
 ### First Preview Stream Used for Image Processing
-
-1. Obtain the surface ID for the first preview stream. Specifically, create an ImageReceiver object, and obtain the surface ID through the object.
-
+1. Import dependencies, including dependencies related to image and camera framework.
     ```ts
     import { image } from '@kit.ImageKit';
-    imageWidth: number = 1920; // Use the width in the profile size supported by the device.
-    imageHeight: number = 1080; // Use the height in the profile size supported by the device.
+    import { camera } from '@kit.CameraKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
+2. Obtain the surface ID for the first preview stream. Specifically, create an ImageReceiver object, and obtain the surface ID through the object.
+
+    ```ts
+    let imageWidth: number = 1920; // Use the width in the profile size supported by the device.
+    let imageHeight: number = 1080; // Use the height in the profile size supported by the device.
 
     async function initImageReceiver():Promise<void>{
       // Create an ImageReceiver object.
-      let size: image.Size = { width: this.imageWidth, height: this.imageHeight };
+      let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
       // Obtain the surface ID for the first preview stream.
       let imageReceiverSurfaceId = await imageReceiver.getReceivingSurfaceId();
@@ -46,12 +51,9 @@ The figure below shows the recommended API calling process of the dual-channel p
     }
     ```
 
-2. Register a listener to process each frame of image data in the preview stream. Specifically, use the **imageArrival** event in the ImageReceiver object to obtain the image data returned by the bottom layer. For details, see [Image API Reference](../../reference/apis-image-kit/js-apis-image.md).
+3. Register a listener to process each frame of image data in the preview stream. Specifically, use the **imageArrival** event in the ImageReceiver object to obtain the image data returned by the bottom layer. For details, see [Image API Reference](../../reference/apis-image-kit/js-apis-image.md).
 
     ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { image } from '@kit.ImageKit';
-
     function onImageArrival(receiver: image.ImageReceiver): void {
       // Subscribe to the imageArrival event.
       receiver.on('imageArrival', () => {
@@ -150,11 +152,12 @@ struct example {
   surfaceId:string = '';
   imageWidth: number = 1920;
   imageHeight: number = 1080;
+  private uiContext: UIContext = this.getUIContext();
 
   build() {
     XComponent({
       id: 'componentId',
-      type: 'surface',
+      type: XComponentType.SURFACE,
       controller: this.xComponentCtl
     })
       .onLoad(async () => {
@@ -162,8 +165,9 @@ struct example {
         this.surfaceId = this.xComponentCtl.getXComponentSurfaceId(); // Obtain the surface ID of the component.
         // Use the surface ID to create a preview stream and start the camera. The component renders the preview stream data of each frame in real time.
       })
-      .width(px2vp(this.imageHeight))
-      .height(px2vp(this.imageWidth))
+      // The width and height of the surface are opposite to those of the XComponent. Alternatively, you can use .renderFit(RenderFit.RESIZE_CONTAIN) to automatically adjust the display without manually setting the width and height.
+      .width(this.uiContext.px2vp(this.imageHeight))
+      .height(this.uiContext.px2vp(this.imageWidth))
   }
 }
 ```
@@ -176,22 +180,21 @@ Create two preview outputs with two surface IDs, add the outputs to a camera ses
 
 ```ts
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
-session: camera.Session,
-imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-    // Create the first preview output by using imageReceiverSurfaceId.
-    let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
-    if (!previewOutput1) {
-    console.error('createPreviewOutput1 error');
-    }
-    // Create the second preview output by using xComponentSurfaceId.
-    let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
-    if (!previewOutput2) {
-    console.error('createPreviewOutput2 error');
-    }
-    // Add the output of the first preview stream.
-    session.addOutput(previewOutput1);
-    // Add the output of the second preview stream.
-    session.addOutput(previewOutput2);
+  session: camera.Session, imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
+  // Create the first preview output by using imageReceiverSurfaceId.
+  let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
+  if (!previewOutput1) {
+  console.error('createPreviewOutput1 error');
+  }
+  // Create the second preview output by using xComponentSurfaceId.
+  let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
+  if (!previewOutput2) {
+  console.error('createPreviewOutput2 error');
+  }
+  // Add the output of the first preview stream.
+  session.addOutput(previewOutput1);
+  // Add the output of the second preview stream.
+  session.addOutput(previewOutput2);
 }
 ```
 
@@ -203,6 +206,7 @@ imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -219,6 +223,26 @@ struct Index {
   private previewOutput1: camera.PreviewOutput | undefined = undefined;
   private previewOutput2: camera.PreviewOutput | undefined = undefined;
   private session: camera.VideoSession | undefined = undefined;
+  private uiContext: UIContext = this.getUIContext();
+  private context: Context | undefined = this.uiContext.getHostContext();
+  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // For details about how to request permissions, see the instructions provided at the beginning of this topic.
+  @State isShow: boolean = false;
+
+  async requestPermissionsFn(): Promise<void> {
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (this.context) {
+      let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
+      for (let i =0; i < res.permissions.length; i++) {
+        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+          this.isShow = true;
+        }
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    this.requestPermissionsFn();
+  }
 
   onPageShow(): void {
     console.info('onPageShow');
@@ -309,30 +333,33 @@ struct Index {
 
   build() {
     Column() {
-      XComponent({
-        id: 'componentId',
-        type: 'surface',
-        controller: this.xComponentCtl
-      })
-        .onLoad(async () => {
-          console.info('onLoad is called');
-          this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // Obtain the surface ID of the component.
-          // Initialize the camera. The component renders the preview stream data of each frame in real time.
-          this.initCamera()
+      if (this.isShow) {
+        XComponent({
+          id: 'componentId',
+          type: XComponentType.SURFACE,
+          controller: this.xComponentCtl
         })
-        .width(px2vp(this.imageHeight))
-        .height(px2vp(this.imageWidth))
-    }.justifyContent(FlexAlign.Center)
+          .onLoad(async () => {
+            console.info('onLoad is called');
+            this.xComponentSurfaceId = this.xComponentCtl.getXComponentSurfaceId(); // Obtain the surface ID of the component.
+            // Initialize the camera. The component renders the preview stream data of each frame in real time.
+            this.initCamera()
+          })
+          .width(this.uiContext.px2vp(this.imageHeight))
+          .height(this.uiContext.px2vp(this.imageWidth))
+      }
+    }
+    .justifyContent(FlexAlign.Center)
     .height('100%')
     .width('100%')
   }
 
-  // Initialize the camera.
+  // Initialize a camera.
   async initCamera(): Promise<void> {
     console.info(`initCamera imageReceiverSurfaceId:${this.imageReceiverSurfaceId} xComponentSurfaceId:${this.xComponentSurfaceId}`);
     try {
-      // Obtain the camera manager instance.
-      this.cameraManager = camera.getCameraManager(getContext(this));
+      // Obtain a camera manager instance.
+      this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
       }
@@ -348,7 +375,7 @@ struct Index {
       }
       // Open the camera.
       await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${JSON.stringify(err)}`);
+        console.error(`initCamera open fail: ${err}`);
       })
       // Obtain the profile supported by the camera device.
       let capability: camera.CameraOutputCapability =
@@ -389,7 +416,7 @@ struct Index {
       // Start the configured input and output streams.
       await this.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 
@@ -408,7 +435,7 @@ struct Index {
       // Release the session.
       await this.session?.release();
     } catch (error) {
-      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      console.error(`initCamera fail: ${error}`);
     }
   }
 }

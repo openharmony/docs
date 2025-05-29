@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager)
 
-The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-applicationInfo.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
+The bundleManager module provides APIs for obtaining application information, including [bundle information](js-apis-bundleManager-bundleInfo.md), [application information](js-apis-bundleManager-applicationInfo.md), [ability information](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility information](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -17,16 +17,15 @@ import { bundleManager } from '@kit.AbilityKit';
 | Permission                                      | APL    | Description           |
 | ------------------------------------------ | ------------ | ------------------|
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
+| ohos.permission.GET_SIGNATURE_INFO | system_basic | Allows an application to obtain the application package signature information.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
-## Enums
-
-### BundleFlag
+## BundleFlag
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                                         | Value        | Description                                                        |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -43,60 +42,62 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-### ExtensionAbilityType
+## ExtensionAbilityType
 
 Enumerates the types of ExtensionAbilities.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
+|<!--DelRow--> SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->: provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
-| FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
-| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
-| WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md): enables applications to read and write data.|
+|<!--DelRow--> FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md): provides APIs for processing static events, such as the startup event.|
+|<!--DelRow--> WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
-| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications.|
+|<!--DelRow--> WINDOW     |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
-| THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
-| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
-| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
+|<!--DelRow--> THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
-| PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This ability is supported only by system applications.|
+|<!--DelRow--> PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
+|<!--DelRow--> DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This ability is supported only by system applications.|
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
-| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
+|<!--DelRow--> ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides ExtensionAbilities for the embeddable UI across process.|
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | **InsightIntentUIExtensionAbility**: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows.|
-| ASSET_ACCELERATION<sup>16+</sup> | 26 | **AssetAccelerationExtensionAbility**: provides the capability of pre-downloading background resources when the device is idle.|
-| UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
+| FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md): provides geofence-related capabilities. It inherits from **ExtensionAbility**.|
+| ASSET_ACCELERATION<sup>18+</sup> | 26 | **AssetAccelerationExtensionAbility**: provides the capability of pre-downloading background resources when the device is idle.|
+| DISTRIBUTED<sup>18+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md): provides DistributedExtensionAbility capabilities and lifecycle callbacks for creation, destruction, and connection of DistributedExtensionAbilities.|
+| UNSPECIFIED      | 255 | The ability type is not specified. <!--Del-->It can be used in [queryExtensionAbilityInfo](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo) to obtain ExtensionAbilities of all types.<!--DelEnd-->|
 
 
-### PermissionGrantState
+## PermissionGrantState
 
 Enumerates the permission grant states.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
 | PERMISSION_DENIED|  -1 | Permission denied.|
 | PERMISSION_GRANTED |  0  |  Permission granted. |
 
-### SupportWindowMode
+## SupportWindowMode
 
 Enumerates the window modes supported by the ability.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
@@ -104,13 +105,13 @@ Enumerates the window modes supported by the ability.
 | SPLIT            | 1   | A window in split-screen mode is supported.|
 | FLOATING         | 2   | A floating window is supported.  |
 
-### LaunchType
+## LaunchType
 
 Enumerates the launch types of the ability.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
@@ -118,13 +119,13 @@ Enumerates the launch types of the ability.
 | MULTITON         | 1   | The ability can have multiple instances.|
 | SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability.|
 
-### AbilityType
+## AbilityType
 
 Enumerates the types of abilities.
 
- **Model restriction**: This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 |  Name  | Value  |                            Description                           |
 | :-----: | ---- | :--------------------------------------------------------: |
@@ -132,11 +133,11 @@ Enumerates the types of abilities.
 | SERVICE | 2    | Ability of the background service type, without the UI. PA developed using the Service template to provide the capability of running tasks in the background. |
 |  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems.|
 
-### DisplayOrientation
+## DisplayOrientation
 
-Enumerates the display orientations of the ability. This property applies only to the ability using the Page template.
+Enumerates the display orientations of the ability. This enum applies only to the ability using the Page template.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                              |Value|Description|
 |:----------------------------------|---|---|
@@ -146,9 +147,9 @@ Enumerates the display orientations of the ability. This property applies only t
 | FOLLOW_RECENT                      |3 |The last display orientation is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | LANDSCAPE_INVERTED                 |4 |Reverse landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PORTRAIT_INVERTED                  |5 |Reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AUTO_ROTATION                      |6 |Auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AUTO_ROTATION_LANDSCAPE            |7 |Auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AUTO_ROTATION_PORTRAIT             |8 |Auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION                      |6 |Automatically rotates when the sensor changes to landscape or portrait mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_LANDSCAPE            |7 |Automatically rotates when the sensor changes to landscape mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_PORTRAIT             |8 |Automatically rotates when the sensor changes to portrait mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_ROTATION_RESTRICTED           |9 |Switched-determined auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -156,59 +157,57 @@ Enumerates the display orientations of the ability. This property applies only t
 | AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|Auto rotation controlled by the switch and determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | FOLLOW_DESKTOP<sup>12+</sup> |14|Following the orientation of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-### CompatiblePolicy<sup>10+</sup>
+## CompatiblePolicy<sup>10+</sup>
 
 Defines the version compatibility type of the shared library.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                  | Value  | Description                            |
 | ---------------------- | ---- | -------------------------------- |
 | BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
 
-### ModuleType
+## ModuleType
 
 Enumerates the module types.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name   | Value  | Description                |
 | ------- | ---- | -------------------- |
-| ENTRY   | 1    | Main module of the application.  |
-| FEATURE | 2    | Dynamic feature module of the application.|
-| SHARED  | 3    | Dynamic shared library module of the application. |
+| ENTRY   | 1    | Main module of and entry to the application, providing the basic application functionality.  |
+| FEATURE | 2    | Dynamic feature module of the application, extending the application functionality. This type of HAP can be installed based on user needs and device types.|
+| SHARED  | 3    | [Dynamic shared library](../../quick-start/in-app-hsp.md) of the application. |
 
-### BundleType
+## BundleType
 
 Enumerates the bundle types.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
 | APP            | 0    | The bundle is an application.   |
 | ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
-### MultiAppModeType<sup>12+</sup>
+## MultiAppModeType<sup>12+</sup>
 Enumerates the types of the multi-app mode.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
-| UNSPECIFIED|  0 | Unspecified type.|
-| MULTI_INSTANCE |  1  | Multiton mode. A resident process does not support this value. |
-| APP_CLONE |  2  |  App clone mode. |
+| UNSPECIFIED|  0 | Unspecified. It is the default value of [multiAppMode](../../quick-start/app-configuration-file.md#multiappmode).|
+| MULTI_INSTANCE |  1  | [Multi-instance mode](../../quick-start/multiInstance.md). A resident process does not support this value. |
+| APP_CLONE |  2  |  [App clone mode](../../quick-start/app-clone.md) |
 
-## APIs
-
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
@@ -241,7 +240,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Obtain application info with metadataArray.
+// Obtain the bundle information, which contains the application information including a metadata array.
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -260,7 +259,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelf
+## bundleManager.getBundleInfoForSelf
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -275,7 +274,7 @@ Obtains the bundle information based on the given bundle flags. This API uses an
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the bundle information of the current application. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -288,7 +287,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Obtain ability info with permissions.
+// Obtain the bundle information, which contains the application information including permissions.
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -309,15 +308,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -329,8 +328,8 @@ Obtains the JSON string array of the configuration file based on the given modul
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | Yes  | Module name.                                    |
 | abilityName  | string                        | Yes  | Name of the UIAbility component.                                   |
-| metadataName | string                        | Yes  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file.                                 |
-| callback     | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
+| metadataName | string                        | Yes  | [Metadata name](../../quick-start/module-configuration-file.md#metadata) of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file.                                 |
+| callback     | AsyncCallback<Array\<string>> | Yes  | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is **Array\<string>**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -370,15 +369,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbility
+## bundleManager.getProfileByAbility
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON string array of the configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses a promise to return the result.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -444,7 +443,7 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
-  // Obtain the JSON string array of the configuration file based on the module name, ability name, and metadata name.
+  // Obtain the JSON string array of the current application's configuration file based on the module name, ability name, and metadata name.
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -456,15 +455,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByAbilitySync<sup>10+</sup>
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ability name, and metadata name. This API returns the result synchronously. The result value is a string array.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ability name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API returns the result synchronously. The result value is a string array.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -536,15 +535,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-Obtains the JSON string array of the configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata)). This API uses an asynchronous callback to return the result.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -556,8 +555,8 @@ Obtains the JSON string array of the configuration file based on the given modul
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | Yes  | Module name.                                  |
 | extensionAbilityName | string                        | Yes  | Name of the ExtensionAbility component.                        |
-| metadataName         | string                        | Yes  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file.                                |
-| callback             | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
+| metadataName         | string                        | Yes  | Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file.                                |
+| callback             | AsyncCallback<Array\<string>> | Yes  | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is **Array\<string>**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -596,15 +595,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbility
+## bundleManager.getProfileByExtensionAbility
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -616,7 +615,7 @@ Obtains the JSON string array of the current application's configuration file in
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
 | extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
-| metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
+| metadataName         | string | No  | Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null.        |
 
 **Return value**
 
@@ -670,15 +669,15 @@ try {
 }
 ```
 
-### bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
+## bundleManager.getProfileByExtensionAbilitySync<sup>10+</sup>
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>
 
-Obtains the JSON string array of the current application's configuration file in the [metadata](../../quick-start/module-configuration-file.md#metadata) based on a given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously. The result value is a string array.
+Obtains the JSON string array of the current application's configuration file based on the given module name, ExtensionAbility name, and metadata name (name configured in [metadata](../../quick-start/module-configuration-file.md#metadata) of the **module.json5** file). This API returns the result synchronously. The result value is a string array.
 
 > **NOTE**
 > 
-> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the [resource manager module](../apis-localization-kit/js-apis-resource-manager.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -690,7 +689,7 @@ Obtains the JSON string array of the current application's configuration file in
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
 | extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
-| metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
+| metadataName         | string | No  | Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.|
 
 **Return value**
 
@@ -738,7 +737,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
+## bundleManager.getBundleInfoForSelfSync<sup>10+</sup>
 
 getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
@@ -786,11 +785,11 @@ try {
 }
 ```
 
-### bundleManager.canOpenLink<sup>12+</sup>
+## bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
-Checks whether a link can be opened. The scheme of the specified link must be configured in the **querySchemes** field of the **module.json** file.
+Checks whether a link can be opened. The scheme of the specified link must be configured in the **querySchemes** field of the [module.json5 file](../../quick-start/module-configuration-file.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -835,11 +834,11 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWant<sup>13+</sup>
+## bundleManager.getLaunchWant<sup>13+</sup>
 
 getLaunchWant(): Want
 
-Obtains the **Want** parameter used to start the application.
+Obtains the **Want** parameter used to start this application.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -849,7 +848,7 @@ Obtains the **Want** parameter used to start the application.
 
 | Type                               | Description                                       |
 | ----------------------------------- | ------------------------------------------- |
-| [Want](js-apis-app-ability-want.md) | Want object that contains the bundle name and ability name.|
+| [Want](js-apis-app-ability-want.md) | **Want** object that contains the bundle name and ability name.|
 
 **Error codes**
 
@@ -876,7 +875,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -894,8 +893,8 @@ No permission is required for obtaining the caller's own information.
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
-| userId      | number | Yes  | User ID. |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
+| userId      | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the bundle information. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -912,10 +911,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// Obtain the bundle information with the ability information.
+// Obtain the bundle information, which contains the ability information.
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
 let userId = 100;
@@ -935,10 +935,11 @@ try {
 ```
 
 ```ts
-// Obtain the bundle information with the metadata in the application information.
+// Obtain the bundle information, which contains the application information including metadata.
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 let userId = 100;
@@ -957,7 +958,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -975,7 +976,7 @@ No permission is required for obtaining the caller's own information.
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the bundle information. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -995,6 +996,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
 
@@ -1012,7 +1014,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo<sup>14+</sup>
+## bundleManager.getBundleInfo<sup>14+</sup>
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
@@ -1030,7 +1032,7 @@ No permission is required for obtaining the caller's own information.
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | Yes  | Bundle name.|
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.      |
-| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
+| userId      | number | No  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -1057,6 +1059,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let userId = 100;
@@ -1077,6 +1080,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
 
@@ -1093,7 +1097,7 @@ try {
 
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
@@ -1111,7 +1115,7 @@ No permission is required for obtaining the caller's own information.
 | ----------- | ------ | ---- | -------------------------------------------------------- |
 | bundleName  | string | Yes  | Bundle name.                                |
 | [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
-| userId      | number | Yes  | User ID.                                            |
+| userId      | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).             |
 
 **Return value**
 
@@ -1137,6 +1141,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 let userId = 100;
@@ -1150,7 +1155,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync<sup>14+</sup>
+## bundleManager.getBundleInfoSync<sup>14+</sup>
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
@@ -1192,6 +1197,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let bundleName = 'com.example.myapplication';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
@@ -1203,7 +1209,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
@@ -1218,7 +1224,7 @@ Obtains the bundle name based on the given UID. This API uses an asynchronous ca
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uid      | number                 | Yes  | UID of the application.                                           |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle name obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<string> | Yes  | [Callback](../apis-basic-services-kit/js-apis-base.md#asynccallback) used to return the result. If the information is successfully obtained, **err** is **null** and **data** is the bundle name. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1236,6 +1242,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid, (err, data) => {
@@ -1251,7 +1258,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid<sup>14+</sup>
+## bundleManager.getBundleNameByUid<sup>14+</sup>
 
 getBundleNameByUid(uid: number): Promise\<string>
 
@@ -1289,6 +1296,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let uid = 20010005;
 try {
     bundleManager.getBundleNameByUid(uid).then((data) => {
@@ -1302,7 +1310,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>14+</sup>
+## bundleManager.getBundleNameByUidSync<sup>14+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
@@ -1340,6 +1348,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let uid = 20010005;
 try {
     let data = bundleManager.getBundleNameByUidSync(uid);
@@ -1350,11 +1359,11 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>14+</sup>
+## bundleManager.getAppCloneIdentity<sup>14+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
-Obtains the bundle name and app index of an application clone based on the given UID. This API uses a promise to return the result.
+Obtains the bundle name and clone index of a cloned application based on the given UID. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -1370,7 +1379,7 @@ Obtains the bundle name and app index of an application clone based on the given
 
 | Type                                                       | Description                       |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<AppCloneIdentity> | Promise used to return \<AppCloneIdentity>.|
+| Promise\<[AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14)> | Promise used to return \<AppCloneIdentity>.|
 
 **Error codes**
 
@@ -1388,6 +1397,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let uid = 20010005;
 
 try {
@@ -1402,11 +1412,11 @@ try {
 }
 ```
 
-### bundleManager.getSignatureInfo<sup>16+</sup>
+## bundleManager.getSignatureInfo<sup>18+</sup>
 
 getSignatureInfo(uid: number): SignatureInfo
 
-Obtains the [SignatureInfo](./js-apis-bundleManager-bundleInfo.md#signatureinfo) based on the given UID.
+Obtains the [signature information](./js-apis-bundleManager-bundleInfo.md#signatureinfo) of an application based on the given UID.
 
 **Required permissions**: ohos.permission.GET_SIGNATURE_INFO
 
@@ -1431,7 +1441,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message           |
 | -------- | ---------------------|
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700021 | The uid is not found. |
 
 **Example**
@@ -1440,6 +1449,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 let uid = 20010005; // Replace uid with the UID of the corresponding application.
 try {
     let data = bundleManager.getSignatureInfo(uid);
@@ -1450,7 +1460,7 @@ try {
 }
 ```
 
-### ApplicationInfo
+## ApplicationInfo
 
 type ApplicationInfo = _ApplicationInfo
 
@@ -1464,7 +1474,7 @@ Defines the application information.
 | ------------------------------------------------------------ | -------------- |
 | [_ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1) | Application information.|
 
-### ModuleMetadata<sup>10+</sup>
+## ModuleMetadata<sup>10+</sup>
 
 type ModuleMetadata = _ModuleMetadata
 
@@ -1478,7 +1488,7 @@ Defines the metadata of a module.
 | ------------------------------------------------------------ | -------------- |
 | [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | Metadata of the module.|
 
-### Metadata
+## Metadata
 
 type Metadata = _Metadata
 
@@ -1492,7 +1502,7 @@ Defines the metadata.
 | ------------------------------------------------------------ | -------------- |
 | [_Metadata](js-apis-bundleManager-metadata.md#metadata) | Metadata.|
 
-### BundleInfo
+## BundleInfo
 
 type BundleInfo = _BundleInfo.BundleInfo
 
@@ -1507,7 +1517,7 @@ Defines the bundle information.
 | [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo) | Bundle information.|
 
 
-### UsedScene
+## UsedScene
 
 type UsedScene = _BundleInfo.UsedScene
 
@@ -1521,7 +1531,7 @@ Defines the use scenario and timing for using the permission.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene) | Use scenario and timing for using the permission.|
 
-### ReqPermissionDetail
+## ReqPermissionDetail
 
 type ReqPermissionDetail = _BundleInfo.ReqPermissionDetail
 
@@ -1535,7 +1545,7 @@ Defines the detailed information of the permissions to request from the system.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md#reqpermissiondetail) | Detailed information of the permissions to request from the system.|
 
-### SignatureInfo
+## SignatureInfo
 
 type SignatureInfo = _BundleInfo.SignatureInfo
 
@@ -1549,11 +1559,11 @@ Defines the signature information of the bundle.
 | ------------------------------------------------------------ | -------------- |
 | [_BundleInfo.SignatureInfo](js-apis-bundleManager-bundleInfo.md#signatureinfo) | Signature information of the bundle.|
 
-### HapModuleInfo
+## HapModuleInfo
 
 type HapModuleInfo = _HapModuleInfo.HapModuleInfo
 
-Defines the HAP module information.
+Defines the module information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1561,9 +1571,9 @@ Defines the HAP module information.
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [_HapModuleInfo.HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1) | HAP module information.|
+| [_HapModuleInfo.HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1) | Module information.|
 
-### PreloadItem
+## PreloadItem
 
 type PreloadItem = _HapModuleInfo.PreloadItem
 
@@ -1577,7 +1587,7 @@ Defines the preloaded module information in the atomic service.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.PreloadItem](js-apis-bundleManager-hapModuleInfo.md#preloaditem) | Preloaded module information in the atomic service.|
 
-### Dependency
+## Dependency
 
 type Dependency = _HapModuleInfo.Dependency
 
@@ -1591,7 +1601,7 @@ Defines the information about the dynamic shared libraries on which the module d
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.Dependency](js-apis-bundleManager-hapModuleInfo.md#dependency) | Information about the dynamic shared libraries on which the module depends.|
 
-### RouterItem<sup>12+</sup>
+## RouterItem<sup>12+</sup>
 
 type RouterItem = _HapModuleInfo.RouterItem
 
@@ -1605,7 +1615,7 @@ Defines the router table configuration of the module.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12) | Router table configuration of the module.|
 
-### DataItem<sup>12+</sup>
+## DataItem<sup>12+</sup>
 
 type DataItem = _HapModuleInfo.DataItem
 
@@ -1619,7 +1629,7 @@ Defines the user-defined data in the routing table configuration of the module.
 | ------------------------------------------------------------ | -------------- |
 | [_HapModuleInfo.DataItem](js-apis-bundleManager-hapModuleInfo.md#dataitem12) | User-defined data in the routing table configuration of the module.|
 
-### AbilityInfo
+## AbilityInfo
 
 type AbilityInfo = _AbilityInfo.AbilityInfo
 
@@ -1633,7 +1643,7 @@ Defines the ability information.
 | ------------------------------------------------------------ | -------------- |
 | [_AbilityInfo.AbilityInfo](js-apis-bundleManager-abilityInfo.md#abilityinfo-1) |Ability information.|
 
-### WindowSize
+## WindowSize
 
 type WindowSize = _AbilityInfo.WindowSize
 
@@ -1648,7 +1658,7 @@ Defines the window size.
 | [_AbilityInfo.WindowSize](js-apis-bundleManager-abilityInfo.md#windowsize) |Window size.|
 
 
-### ExtensionAbilityInfo
+## ExtensionAbilityInfo
 
 type ExtensionAbilityInfo = _ExtensionAbilityInfo.ExtensionAbilityInfo
 
@@ -1662,7 +1672,7 @@ Defines the ExtensionAbility information.
 | ------------------------------------------------------------ | -------------- |
 | [_ExtensionAbilityInfo.ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md#extensionabilityinfo-1) |ExtensionAbility information.|
 
-### ElementName
+## ElementName
 
 type ElementName = _ElementName
 
@@ -1676,7 +1686,7 @@ Defines the element name.
 | ------------------------------------------------------------ | -------------- |
 | [_ElementName](js-apis-bundleManager-elementName.md#elementname-1) |Element name.|
 
-### Skill<sup>12+</sup>
+## Skill<sup>12+</sup>
 
 type Skill = _Skill.Skill
 
@@ -1690,7 +1700,7 @@ Defines the skill information.
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |Skill information.|
 
-### SkillUrl<sup>12+</sup>
+## SkillUrl<sup>12+</sup>
 
 type SkillUrl = _Skill.SkillUri
 
@@ -1703,3 +1713,15 @@ Defines the SkillUri information.
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.SkillUri](js-apis-bundleManager-skill.md#skilluri) |SkillUri information.|
+
+## AppCloneIdentity<sup>15+</sup>
+
+type AppCloneIdentity = _BundleInfo.AppCloneIdentity
+
+Describes the identity information of an application clone.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14) |Identity information of an application clone.|

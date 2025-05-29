@@ -28,11 +28,9 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    #include <cstdint>
    #include <cstdio>
    #include <cwchar>
-   #include <vector>
    #include <string.h>
    #include "hilog/log.h"
    #include "BasicServicesKit/oh_commonevent.h"
-   #include "BasicServicesKit/oh_commonevent_support.h"
    ```
 
 2. Add dynamic link libraries to the CMake script.
@@ -57,11 +55,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
        // Set the subscriber permission.
        ret = OH_CommonEvent_SetPublisherPermission(info, permission);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublisherPermission ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherPermission ret <%{public}d>.", ret);
        
        // Set a bundle name of the subscriber.
        ret = OH_CommonEvent_SetPublisherBundleName(info, bundleName);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_SetPublisherBundleName ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetPublisherBundleName ret <%{public}d>.", ret);
        return info;
    }
    
@@ -93,7 +91,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        
        // Obtain the additional information of a common event.
        const CommonEvent_Parameters *parameters = OH_CommonEvent_GetParametersFromRcvData(data);
-       OH_LOG_INFO(LOG_APP, "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "event: %{public}s, code: %{public}d, data: %{public}s, bundle: %{public}s", event, code, retData, bundle);
    }
    ```
 
@@ -109,38 +107,38 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "intKey");
        // Obtain the int data from the additional information of a common event.
        int intValue = OH_CommonEvent_GetIntFromParameters(parameters, "intKey", 10);
-       OH_LOG_INFO(LOG_APP, "exists = %{public}d, intValue = %{public}d", exists, intValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, intValue = %{public}d", exists, intValue);
        
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "boolKey");
        // Obtain the Boolean data from the additional information of a common event.
        bool boolValue = OH_CommonEvent_GetBoolFromParameters(parameters, "boolKey", false);
-       OH_LOG_INFO(LOG_APP, "exists = %{public}d, boolValue = %{public}d", exists, boolValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, boolValue = %{public}d", exists, boolValue);
    
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "longKey");
        // Obtain the long data from the additional information of a common event.
        long longValue = OH_CommonEvent_GetLongFromParameters(parameters, "longKey", 1111111111);
-       OH_LOG_INFO(LOG_APP, "exists = %{public}d, longValue = %{public}ld", exists, longValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, longValue = %{public}ld", exists, longValue);
    
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "doubleKey");
        // Obtain the double data from the additional information of a common event.
        double doubleValue = OH_CommonEvent_GetDoubleFromParameters(parameters, "doubleKey", 11.11);
-       OH_LOG_INFO(LOG_APP, "exists = %{public}d, doubleValue = %{public}f", exists, doubleValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, doubleValue = %{public}f", exists, doubleValue);
    
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "charKey");
        // Obtain the char data from the additional information of a common event.
        char charValue = OH_CommonEvent_GetCharFromParameters(parameters, "charKey", 'A');
-       OH_LOG_INFO(LOG_APP, "exists = %{public}d, charValue = %{public}c", exists, charValue);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, charValue = %{public}c", exists, charValue);
        
        int** arr = new int*;
        exists = OH_CommonEvent_HasKeyInParameters(parameters, "intArrayKey");
        // Obtain the int array from the additional information of a common event.
        int32_t intArraySize = OH_CommonEvent_GetIntArrayFromParameters(parameters, "intArrayKey", arr);
        if (intArraySize <= 0 || *arr == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "exists = %{public}d, Failed to get int array or invalid size: %{public}d", exists, intArraySize);
+           OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "exists = %{public}d, Failed to get int array or invalid size: %{public}d", exists, intArraySize);
        } else {
-           OH_LOG_INFO(LOG_APP, "exists = %{public}d, intArraySize = %{public}d", exists, intArraySize);
+           OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, intArraySize = %{public}d", exists, intArraySize);
            for (int i = 0; i < intArraySize; i++) {
-               OH_LOG_INFO(LOG_APP, "<%{public}d>", *((*arr) + i));
+               OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}d>", *((*arr) + i));
            }
        }
        
@@ -149,11 +147,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        // Obtain the long array from the additional information of a common event.
        int32_t longArraySize = OH_CommonEvent_GetLongArrayFromParameters(parameters, "longArrayKey", longArray);
        if (longArraySize <= 0 || *longArray == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "exists = %{public}d, Failed to get long array or invalid size: %{public}d", exists, longArraySize);
+           OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "exists = %{public}d, Failed to get long array or invalid size: %{public}d", exists, longArraySize);
        } else {
-           OH_LOG_INFO(LOG_APP, "exists = %{public}d, longArraySize = %{public}d", exists, longArraySize);
+           OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, longArraySize = %{public}d", exists, longArraySize);
            for (int i = 0; i < longArraySize; i++) {
-               OH_LOG_INFO(LOG_APP, "<%{public}ld>", *((*longArray) + i));
+               OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}ld>", *((*longArray) + i));
            }
        }
    
@@ -162,11 +160,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        // Obtain the double array from the additional information of a common event.
        int32_t doubleArraySize = OH_CommonEvent_GetDoubleArrayFromParameters(parameters, "doubleArrayKey", doubleArray);
        if (doubleArraySize <= 0 || *doubleArray == nullptr) {
-          OH_LOG_ERROR(LOG_APP, "exists = %{public}d, Failed to get double array or invalid size: %{public}d", exists, doubleArraySize);
+          OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "exists = %{public}d, Failed to get double array or invalid size: %{public}d", exists, doubleArraySize);
        } else {
-           OH_LOG_INFO(LOG_APP, "exists = %{public}d, doubleArraySize = %{public}d", exists, doubleArraySize);
+           OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, doubleArraySize = %{public}d", exists, doubleArraySize);
            for (int i = 0; i < doubleArraySize; i++) {
-               OH_LOG_INFO(LOG_APP, "<%{public}f>", *((*doubleArray) + i));
+               OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}f>", *((*doubleArray) + i));
            }
        }
    
@@ -175,9 +173,9 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        // Obtain the char array from the additional information of a common event.
        int32_t charArraySize = OH_CommonEvent_GetCharArrayFromParameters(parameters, "charArrayKey", charArray);
        if (charArraySize <= 0 || *charArray == nullptr) {
-           OH_LOG_ERROR(LOG_APP, "exists = %{public}d, Failed to get charArray or invalid size: %{public}d", exists, charArraySize);
+           OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "exists = %{public}d, Failed to get charArray or invalid size: %{public}d", exists, charArraySize);
        } else {
-           OH_LOG_INFO(LOG_APP, "charArray as string: %{public}s", *charArray);
+           OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "charArray as string: %{public}s", *charArray);
        }
    
        bool** boolArray = new bool*;
@@ -185,11 +183,11 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        // Obtain the Boolean array from the additional information of a common event.
        int32_t boolArraySize = OH_CommonEvent_GetBoolArrayFromParameters(parameters, "boolArrayKey", boolArray);
        if (boolArraySize <= 0 || *boolArray == nullptr) {
-          OH_LOG_ERROR(LOG_APP, "exists = %{public}d, Failed to get boolArray or invalid size: %{public}d", exists, boolArraySize);
+          OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "exists = %{public}d, Failed to get boolArray or invalid size: %{public}d", exists, boolArraySize);
        } else {
-           OH_LOG_INFO(LOG_APP, "exists = %{public}d, boolArraySize = %{public}d", exists, boolArraySize);
+           OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "exists = %{public}d, boolArraySize = %{public}d", exists, boolArraySize);
            for (int i = 0; i < boolArraySize; i++) {
-               OH_LOG_INFO(LOG_APP, "<%{public}d>", *((*boolArray) + i));
+               OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "<%{public}d>", *((*boolArray) + i));
            }
        }
    }
@@ -218,7 +216,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
    void Subscribe(CommonEvent_Subscriber* subscriber) {
        // Subscribe to an event by passing a subscriber.
        int32_t ret = OH_CommonEvent_Subscribe(subscriber);
-       OH_LOG_INFO(LOG_APP, "OH_CommonEvent_Subscribe ret <%{public}d>.", ret);
+       OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_Subscribe ret <%{public}d>.", ret);
    }
    ```
 
@@ -238,17 +236,18 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      void AbortCommonEvent(CommonEvent_Subscriber* subscriber) {
          // Check whether the event is an ordered common event.
          if(!OH_CommonEvent_IsOrderedCommonEvent(subscriber)) {
-             OH_LOG_INFO(LOG_APP, "Not ordered common event.");
+             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Not ordered common event.");
              return;
          }
          // Abort an ordered common event.
          if(OH_CommonEvent_AbortCommonEvent(subscriber)) {
              if(OH_CommonEvent_FinishCommonEvent(subscriber)) {
                  // Obtain the result of the abort state of an ordered common event.
-                 OH_LOG_INFO(LOG_APP, "Abort common event success, Get abort <%{public}d>.",   OH_CommonEvent_GetAbortCommonEvent(subscriber));
+                 OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Abort common event success, Get abort <%{public}d>.",   OH_CommonEvent_GetAbortCommonEvent(subscriber));
              }
+         } else {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "Abort common event failed.");
          }
-         OH_LOG_ERROR(LOG_APP, "Abort common event failed.");
      }
      ```
 
@@ -260,22 +259,23 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      void ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber) {
          // Check whether the event is an ordered common event.
          if(!OH_CommonEvent_IsOrderedCommonEvent(subscriber)) {
-             OH_LOG_INFO(LOG_APP, "Not ordered common event.");
+             OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Not ordered common event.");
              return;
          }
          // Abort an ordered common event.
          if(!OH_CommonEvent_AbortCommonEvent(subscriber)) {
-             OH_LOG_ERROR(LOG_APP, "Abort common event failed.");
+             OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "Abort common event failed.");
              return;
          }
          // Clear the aborted state of an ordered event.
          if(OH_CommonEvent_ClearAbortCommonEvent(subscriber)) {
              if(OH_CommonEvent_FinishCommonEvent(subscriber)) {
                  // Obtain the result of the abort state of an ordered common event.
-                 OH_LOG_INFO(LOG_APP, "Clear abort common event success, Get abort <%{public}d>.",   OH_CommonEvent_GetAbortCommonEvent(subscriber));
+                 OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Clear abort common event success, Get abort <%{public}d>.",   OH_CommonEvent_GetAbortCommonEvent(subscriber));
              }
+         } else {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "Clear abort common event failed.");
          }
-         OH_LOG_ERROR(LOG_APP, "Clear abort common event failed.");
      }
      ```
 
@@ -287,13 +287,13 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      void SetToSubscriber(CommonEvent_Subscriber* subscriber, const int32_t code, const char* data) {
          // Set the result code of an ordered common event.
          if(!OH_CommonEvent_SetCodeToSubscriber(subscriber, code)) {
-             OH_LOG_ERROR(LOG_APP, "OH_CommonEvent_SetCodeToSubscriber failed.");
+             OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "OH_CommonEvent_SetCodeToSubscriber failed.");
              return;
          }
          // Set the result data for an ordered common event.
          size_t dataLength = strlen(data);
          if(!OH_CommonEvent_SetDataToSubscriber(subscriber, data, dataLength)) {
-             OH_LOG_ERROR(LOG_APP, "OH_CommonEvent_SetDataToSubscriber failed.");
+             OH_LOG_Print(LOG_APP, LOG_ERROR, 1, "CES_TEST", "OH_CommonEvent_SetDataToSubscriber failed.");
              return;
          }
      }
@@ -302,7 +302,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
          // Obtain the result data and code of an ordered common event.
          const char* data = OH_CommonEvent_GetDataFromSubscriber(subscriber);
          int32_t code = OH_CommonEvent_GetCodeFromSubscriber(subscriber);
-         OH_LOG_INFO(LOG_APP, "Subscriber data <%{public}s>, code <%{public}d>.", data, code);
+         OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "Subscriber data <%{public}s>, code <%{public}d>.", data, code);
      }
      ```
    

@@ -34,15 +34,15 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     import { audio } from '@kit.AudioKit';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-      channels: audio.AudioChannel.CHANNEL_2, // 通道
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+      channels: audio.AudioChannel.CHANNEL_2, // 通道。
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-      rendererFlags: 0
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+      rendererFlags: 0 // 音频渲染器标志。
     };
 
     let audioRendererOptions: audio.AudioRendererOptions = {
@@ -77,6 +77,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      import { audio } from '@kit.AudioKit';
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -84,8 +85,10 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
-     // 确保该沙箱路径下存在该资源
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
+     // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 
@@ -125,6 +128,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      ```ts
      import { BusinessError } from '@kit.BasicServicesKit';
      import { fileIo as fs } from '@kit.CoreFileKit';
+     import { common } from '@kit.AbilityKit';
 
      class Options {
        offset?: number;
@@ -132,8 +136,10 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
      }
 
      let bufferSize: number = 0;
-     let path = getContext().cacheDir;
-     // 确保该沙箱路径下存在该资源
+     // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+     let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+     let path = context.cacheDir;
+     // 确保该沙箱路径下存在该资源。
      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
      let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -202,6 +208,16 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 - 游戏场景错误使用`STREAM_USAGE_MUSIC`类型，游戏应用将无法和其他音乐应用并发播放，而游戏场景通常可以与其他音乐应用并发播放。
 - 导航场景错误使用`STREAM_USAGE_MUSIC`类型，导航应用播报时候会导致正在播放的音乐停止播放，而导航场景我们通常期望正在播放的音乐仅仅降低音量播放。
 
+### 配置合适的音频采样率
+
+采样率：指音频每秒单个声道样点数，单位为Hz。
+重采样：根据输入输出音频采样率的差异，进行上采样(通过插值增加样点数)或下采样(通过抽取减少样点数)。
+
+AudioRenderer支持枚举类型AudioSamplingRate中定义的所有采样率。
+若通过AudioRenderer设置的输入音频采样率与设备输出采样率不一致，系统会将输入音频重采样为设备输出采样率。
+
+若为减少重采样功耗，可使用采样率与输出设备采样率一致的输入音频。推荐使用48k采样率。
+
 ### 完整示例
 
 下面展示了使用AudioRenderer渲染音频文件的示例代码。
@@ -210,6 +226,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -221,21 +238,23 @@ class Options {
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-  channels: audio.AudioChannel.CHANNEL_2, // 通道
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
 };
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
-  rendererFlags: 0 // 音频渲染器标志
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
 };
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 };
-let path = getContext().cacheDir;
-// 确保该沙箱路径下存在该资源
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
+// 确保该沙箱路径下存在该资源。
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -247,18 +266,18 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
   try {
     fs.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
     return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
     return audio.AudioDataCallbackResult.INVALID;
   }
 };
 
-// 初始化，创建实例，设置监听事件
+// 初始化，创建实例，设置监听事件。
 function init() {
-  audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
+  audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例。
     if (!err) {
       console.info(`${TAG}: creating AudioRenderer success`);
       renderModel = renderer;
@@ -271,15 +290,15 @@ function init() {
   });
 }
 
-// 开始一次音频渲染
+// 开始一次音频渲染。
 function start() {
   if (renderModel !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
+    if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染。
       console.error(TAG + 'start failed');
       return;
     }
-    // 启动渲染
+    // 启动渲染。
     (renderModel as audio.AudioRenderer).start((err: BusinessError) => {
       if (err) {
         console.error('Renderer start failed.');
@@ -290,15 +309,15 @@ function start() {
   }
 }
 
-// 暂停渲染
+// 暂停渲染。
 function pause() {
   if (renderModel !== undefined) {
-    // 只有渲染器状态为running的时候才能暂停
+    // 只有渲染器状态为running的时候才能暂停。
     if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    // 暂停渲染
+    // 暂停渲染。
     (renderModel as audio.AudioRenderer).pause((err: BusinessError) => {
       if (err) {
         console.error('Renderer pause failed.');
@@ -309,15 +328,15 @@ function pause() {
   }
 }
 
-// 停止渲染
+// 停止渲染。
 async function stop() {
   if (renderModel !== undefined) {
-    // 只有渲染器状态为running或paused的时候才可以停止
+    // 只有渲染器状态为running或paused的时候才可以停止。
     if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
     }
-    // 停止渲染
+    // 停止渲染。
     (renderModel as audio.AudioRenderer).stop((err: BusinessError) => {
       if (err) {
         console.error('Renderer stop failed.');
@@ -329,15 +348,15 @@ async function stop() {
   }
 }
 
-// 销毁实例，释放资源
+// 销毁实例，释放资源。
 async function release() {
   if (renderModel !== undefined) {
-    // 渲染器状态不是released状态，才能release
+    // 渲染器状态不是released状态，才能release。
     if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
     }
-    // 释放资源
+    // 释放资源。
     (renderModel as audio.AudioRenderer).release((err: BusinessError) => {
       if (err) {
         console.error('Renderer release failed.');

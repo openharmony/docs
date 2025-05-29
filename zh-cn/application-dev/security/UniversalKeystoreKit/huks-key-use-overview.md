@@ -1,8 +1,6 @@
 # 密钥使用介绍及通用流程
 
-
 为了实现对数据机密性、完整性等保护，可使用生成/导入的密钥，对数据进行密钥操作，比如：
-
 
 - [加密解密](huks-encryption-decryption-overview.md)。
 
@@ -12,9 +10,7 @@
 
 - [密钥派生](huks-key-derivation-overview.md)。
 
-
 本章节提供了以上常用密钥操作的示例，这部分示例均没有设置二次身份访问控制，如设置了密钥访问控制请参考[密钥访问控制](huks-identity-authentication-overview.md)用法。
-
 
 ## 通用开发流程
 
@@ -30,3 +26,6 @@ HUKS基于密钥会话来操作数据，使用密钥时基于以下流程：
    操作最后一段数据并结束密钥会话。
 
 以上任一阶段中发生错误或不需要此次密钥操作数据，均需要取消会话[huks.abortSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksabortsession9)，终止密钥的使用。
+
+> **注意：**
+> 对于内存较小设备，建议业务根据设备存储能力，进行数据切分，循环调用[huks.initSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)和[huks.finishSession()](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksfinishsession9)处理。

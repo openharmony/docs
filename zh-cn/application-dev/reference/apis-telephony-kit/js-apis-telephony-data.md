@@ -230,7 +230,7 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -272,7 +272,7 @@ isCellularDataEnabled(): Promise\<boolean\>
 | 201      | Permission denied.                           |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -312,7 +312,7 @@ isCellularDataEnabledSync(): boolean
 | 201      | Permission denied.                           |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Internal error.                          |
 
 **示例：**
 
@@ -357,7 +357,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -407,7 +407,7 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -451,11 +451,11 @@ isCellularDataRoamingEnabledSync(slotId: number): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 8300001  | Invalid parameter value.                                     |
 | 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
-| 8300999  | Unknown error code.                                          |
+| 8300999  | Internal error.                                          |
 
 **示例：**
 
@@ -494,6 +494,127 @@ import { data } from '@kit.TelephonyKit';
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
 
+## data.queryAllApns<sup>16+</sup>
+
+queryAllApns(): Promise\<Array\<ApnInfo\>\>
+
+获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                         |
+| ------ |--------------------------------------------|
+| Promise\<Array\<ApnInfo\>\> | 获取默认移动数据的SIM卡的APN信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+data.queryAllApns().then((data: Array<data.ApnInfo>) => {
+    console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.queryApnIds<sup>16+</sup>
+
+queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
+
+获取传入的ApnInfo对应的ApnId信息。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                          |
+| ------ |-----------------------------|
+| Promise\<Array\<number\>\> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnInfo: data.ApnInfo;
+apnInfo = {
+  apnName: "CMNET",
+  apn: "cmnet",
+  mcc: "460",
+  mnc: "07",
+};
+
+data.queryApnIds(apnInfo).then((data: Array<number>) => {
+    console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.setPreferredApn<sup>16+</sup>
+
+setPreferredApn(apnId: number): Promise\<boolean\>
+
+设置apnId对应的APN为首选APN。
+
+> 注意:
+>
+> 如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
+
+**需要权限**：ohos.permission.MANAGE_APN_SETTING
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                     |
+| ------ |------------------------|
+| Promise\<boolean\> | 设置的返回结果，在未插卡时会返回fasle。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
+data.setPreferredApn(apnId).then((data: boolean) => {
+    console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## DataFlowType
 
 描述蜂窝数据流类型。 
@@ -521,3 +642,20 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 | DATA_STATE_CONNECTING   | 1    | 表示正在连接蜂窝数据链路。 |
 | DATA_STATE_CONNECTED    | 2    | 表示蜂窝数据链路已连接。   |
 | DATA_STATE_SUSPENDED    | 3    | 表示蜂窝数据链路被挂起。   |
+
+## ApnInfo<sup>16+</sup>
+
+APN信息。
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+| 名称       | 类型      | 只读    |  可选      | 说明         |
+|------------|----------|---------|------------|-------------|
+| apnName   | string     | 否      | 否         | APN名称。    |
+| apn       | string     | 否      | 否         | APN。        |
+| mcc       | string     | 否      | 否         | Sim卡的mcc。 |
+| mnc       | string     | 否      | 否         | Sim卡的mnc。 |
+| user      | string     | 否      | 是         | 用户名。     |
+| type      | string     | 否      | 是         | APN类型。    |
+| proxy     | string     | 否      | 是         | 代理地址。   |
+| mmsproxy  | string     | 否      | 是         | 彩信代理。   |

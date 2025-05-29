@@ -2,13 +2,13 @@
 
 支持通过样式builder自定义特定组件的内容区。
 
->  **说明：**
+> **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## contentModifier
 
-contentModifier(modifier:ContentModifier\<T>)
+contentModifier(modifier: ContentModifier\<T>)
 
 定制内容区的方法。
 
@@ -26,7 +26,7 @@ contentModifier(modifier:ContentModifier\<T>)
 
 ### applyContent
 
-applyContent() : WrappedBuilder<[T]>
+applyContent(): WrappedBuilder<[T]>
 
 定制内容区的Builder。
 
@@ -68,21 +68,21 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
-  selectedColor: Color = Color.White
+  selectedColor: Color = Color.White;
 
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
 
   applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
-    return wrapBuilder(buildCheckbox)
+    return wrapBuilder(buildCheckbox);
   }
 }
 
 @Builder
 function buildCheckbox(config: CheckBoxConfiguration) {
   Column({ space: 10 }) {
-    Text(config.name + (config.selected ? "（ 选中 ）" : "（ 非选中 ）"))
+    Text(config.name + (config.selected ? "（选中）" : "（非选中）"))
     Shape() {
       // 五边形复选框样式
       Path()
@@ -114,9 +114,9 @@ function buildCheckbox(config: CheckBoxConfiguration) {
     .onClick(() => {
       // 点击后，触发复选框点击状态变化
       if (config.selected) {
-        config.triggerChange(false)
+        config.triggerChange(false);
       } else {
-        config.triggerChange(true)
+        config.triggerChange(true);
       }
     })
     .margin({ left: 150 })
@@ -133,7 +133,7 @@ struct Index {
           .select(true)
           .contentModifier(new MyCheckboxStyle(Color.Red))
           .onChange((value: boolean) => {
-            console.info('Checkbox change is' + value)
+            console.info('Checkbox change is' + value);
           })
       }
       .width('100%')

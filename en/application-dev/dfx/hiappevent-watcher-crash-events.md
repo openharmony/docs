@@ -47,9 +47,9 @@ The **params** parameter in the event information is described as follows.
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| signo | number | Signal value (**si_signo** in **siginfo_t**)|
-| code | number | Level-2 classification of signal values (**si_code** in **siginfo_t**)|
-| address | string | Signal error address (**si_address** attribute in **siginfo_t**)|
+| signo | number | Signal value (**si_signo** in **siginfo_t**).|
+| code | number | Level-2 classification of signal values (**si_code** in **siginfo_t**).|
+| address | string | Signal error address (**si_address** attribute in **siginfo_t**).|
 
 [Signal Value & Level-2 Classification of Signal Values](cppcrash-guidelines.md)
 

@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager) (System API)
 
-The bundle.launcherBundleManager module providers APIs for the **Home Screen** application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo-sys.md) and [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md).
+The bundle.launcherBundleManager module providers APIs for the **Home Screen** application to obtain the [LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) and [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md).
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
+getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>) : void
 
 Obtains the launcher ability information based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
 
@@ -32,8 +32,8 @@ Obtains the launcher ability information based on the given bundle name and user
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID.|
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Yes| Callback used to return the **LauncherAbilityInfo** object obtained.|
+| userId     | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Yes| Callback used to return the **LauncherAbilityInfo** object obtained.|
 
 **Error codes**
 
@@ -41,7 +41,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -72,7 +72,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
+getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>
 
 Obtains the launcher ability information based on the given bundle name and user ID. This API uses a promise to return the result.
 
@@ -87,13 +87,13 @@ Obtains the launcher ability information based on the given bundle name and user
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID.|
+| userId     | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
 
 **Return value**
 
 | Type                         | Description                                              |
 | ----------------------------- | -------------------------------------------------- |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise used to return the **LauncherAbilityInfo** object obtained.|
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise used to return the **LauncherAbilityInfo** object obtained.|
 
 **Error codes**
 
@@ -101,7 +101,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -128,63 +128,9 @@ try {
 }
 ```
 
-## launcherBundleManager.getLauncherAbilityInfoSync<sup>10+</sup>
-
-getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>
-
-Obtains the launcher ability information based on the given bundle name and user ID. This API returns the result synchronously.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description        |
-| ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID.|
-
-**Return value**
-
-| Type                         | Description                                              |
-| ----------------------------- | -------------------------------------------------- |
-| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\> | Array of the **LauncherAbilityInfo** objects obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
-| 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified user ID is not found.       |
-
-**Example**
-
-```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
-import { BusinessError } from '@ohos.base';
-
-try {
-    let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
-} catch (errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
-}
-```
-
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
+getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>) : void
 
 Obtains the launcher ability information of all applications based on the given user ID. This API uses an asynchronous callback to return the result.
 
@@ -198,8 +144,8 @@ Obtains the launcher ability information of all applications based on the given 
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | -------------- |
-| userId | number | Yes  | User ID.|
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Yes| Callback used to return the array of **LauncherAbilityInfo** objects obtained.|
+| userId | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Yes| Callback used to return the array of **LauncherAbilityInfo** objects obtained.|
 
 **Error codes**
 
@@ -207,7 +153,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -236,7 +182,7 @@ try {
 ```
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
+getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>
 
 Obtains the launcher ability information of all applications based on the given user ID. This API uses a promise to return the result.
 
@@ -250,13 +196,13 @@ Obtains the launcher ability information of all applications based on the given 
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | -------------- |
-| userId | number | Yes  | User ID.|
+| userId | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
 
 **Return value**
 
 | Type                         | Description                                                  |
 | ----------------------------- | ------------------------------------------------------ |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise used to return the array of **LauncherAbilityInfo** objects obtained.|
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise used to return the array of **LauncherAbilityInfo** objects obtained.|
 
 **Error codes**
 
@@ -264,7 +210,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -315,7 +261,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -373,7 +319,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -429,7 +375,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -468,7 +414,7 @@ Obtains the shortcut information of the specified user based on the given bundle
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID. |
+| userId     | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). |
 
 **Return value**
 
@@ -482,7 +428,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -524,13 +470,19 @@ Starts the ability in the specified [ShortcutInfo](js-apis-bundleManager-shortcu
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information of the application.|
 | options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | No  | Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
 
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |

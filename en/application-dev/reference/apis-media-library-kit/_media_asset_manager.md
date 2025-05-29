@@ -42,17 +42,17 @@ For details about the development guide and sample, see [Requesting Media Assets
 | typedef struct [OH_MovingPhoto](#oh_movingphoto) [OH_MovingPhoto](#oh_movingphoto) | Defines a struct for a moving photo. | 
 | typedef struct [OH_MediaAsset](#oh_mediaasset) [OH_MediaAsset](#oh_mediaasset) | Defines a struct for a media asset. | 
 | typedef struct [MediaLibrary_RequestId](_media_library___request_id.md) [MediaLibrary_RequestId](#medialibrary_requestid) | Defines a struct for a request ID. | 
-| typedef enum [MediaLibrary_ErrorCode](#medialibrary_errorcode-1) [MediaLibrary_ErrorCode](#medialibrary_errorcode) | Defines an enum for error codes. | 
-| typedef enum [MediaLibrary_DeliveryMode](#medialibrary_deliverymode-1) [MediaLibrary_DeliveryMode](#medialibrary_deliverymode) | Defines an enum for delivery modes of the requested media asset. | 
-| typedef struct [MediaLibrary_RequestOptions](_media_library___request_options.md) [MediaLibrary_RequestOptions](#medialibrary_requestoptions) | Defines an enum for options related to the media asset quality and delivery mode to set. | 
-| typedef enum [MediaLibrary_MediaType](#medialibrary_mediatype-1) [MediaLibrary_MediaType](#medialibrary_mediatype) | Defines an enum for media asset types. | 
-| typedef enum [MediaLibrary_MediaSubType](#medialibrary_mediasubtype-1) [MediaLibrary_MediaSubType](#medialibrary_mediasubtype) | Defines an enum for media asset subtypes. | 
-| typedef enum [MediaLibrary_ResourceType](#medialibrary_resourcetype-1) [MediaLibrary_ResourceType](#medialibrary_resourcetype) | Defines an enum for media library resource types. | 
-| typedef enum [MediaLibrary_ImageFileType](#medialibrary_imagefiletype-1) [MediaLibrary_ImageFileType](#medialibrary_imagefiletype) | Defines an enum for image file types. | 
-| typedef enum [MediaLibrary_MediaQuality](#medialibrary_mediaquality-1) [MediaLibrary_MediaQuality](#medialibrary_mediaquality) | Defines an enum for media resource quality. | 
-| typedef enum [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype-1) [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype) | Defines an enum for media content types. | 
+| typedef enum [MediaLibrary_ErrorCode](#medialibrary_errorcode-1) [MediaLibrary_ErrorCode](#medialibrary_errorcode) | Defines an enum for the error codes. | 
+| typedef enum [MediaLibrary_DeliveryMode](#medialibrary_deliverymode-1) [MediaLibrary_DeliveryMode](#medialibrary_deliverymode) | Defines an enum for the delivery modes of the requested media asset. | 
+| typedef struct [MediaLibrary_RequestOptions](_media_library___request_options.md) [MediaLibrary_RequestOptions](#medialibrary_requestoptions) | Defines an enum for the options related to the media asset quality and delivery mode to set. | 
+| typedef enum [MediaLibrary_MediaType](#medialibrary_mediatype-1) [MediaLibrary_MediaType](#medialibrary_mediatype) | Defines an enum for the media asset types. | 
+| typedef enum [MediaLibrary_MediaSubType](#medialibrary_mediasubtype-1) [MediaLibrary_MediaSubType](#medialibrary_mediasubtype) | Defines an enum for the media asset subtypes. | 
+| typedef enum [MediaLibrary_ResourceType](#medialibrary_resourcetype-1) [MediaLibrary_ResourceType](#medialibrary_resourcetype) | Defines an enum for the media library resource types. | 
+| typedef enum [MediaLibrary_ImageFileType](#medialibrary_imagefiletype-1) [MediaLibrary_ImageFileType](#medialibrary_imagefiletype) | Defines an enum for the image file types. | 
+| typedef enum [MediaLibrary_MediaQuality](#medialibrary_mediaquality-1) [MediaLibrary_MediaQuality](#medialibrary_mediaquality) | Defines an enum for the media resource quality. | 
+| typedef enum [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype-1) [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype) | Defines an enum for the media content types. | 
 | typedef void(\* [OH_MediaLibrary_OnDataPrepared](#oh_medialibrary_ondataprepared)) (int32_t result, [MediaLibrary_RequestId](_media_library___request_id.md) requestId) | Defines a function pointer to the callback to be invoked when the requested media asset is ready. | 
-| typedef void(\* [OH_MediaLibrary_OnImageDataPrepared](#oh_medialibrary_onimagedataprepared)) ([MediaLibrary_ErrorCode](#medialibrary_errorcode) result, [MediaLibrary_RequestId](_media_library___request_id.md) requestId, [MediaLibrary_MediaQuality](#medialibrary_mediaquality) mediaQuality, [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype) type, OH_ImageSourceNative \*imageSourceNative) | Defines a function pointer to the callback to be invoked when the requested image is ready. | 
+| typedef void(\* [OH_MediaLibrary_OnImageDataPrepared](#oh_medialibrary_onimagedataprepared)) ([MediaLibrary_ErrorCode](#medialibrary_errorcode) result, [MediaLibrary_RequestId](_media_library___request_id.md) requestId, [MediaLibrary_MediaQuality](#medialibrary_mediaquality) mediaQuality, [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype) type, [OH_ImageSourceNative](../apis-image-kit/_image___native_module.md#oh_imagesourcenative) \*imageSourceNative) | Defines a function pointer to the callback to be invoked when the requested image is ready. | 
 | typedef void(\* [OH_MediaLibrary_OnMovingPhotoDataPrepared](#oh_medialibrary_onmovingphotodataprepared)) ([MediaLibrary_ErrorCode](#medialibrary_errorcode) result, [MediaLibrary_RequestId](_media_library___request_id.md) requestId, [MediaLibrary_MediaQuality](#medialibrary_mediaquality) mediaQuality, [MediaLibrary_MediaContentType](#medialibrary_mediacontenttype) type, [OH_MovingPhoto](#oh_movingphoto) \*movingPhoto) | Defines a function pointer to the callback to be invoked when the requested moving photo is ready. | 
 
 
@@ -122,7 +122,7 @@ For details about the development guide and sample, see [Requesting Media Assets
 typedef enum MediaLibrary_DeliveryMode MediaLibrary_DeliveryMode
 ```
 **Description**<br>
-Defines an enum for delivery modes of the requested media asset.
+Defines an enum for the delivery modes of the requested media asset.
 
 The delivery modes include the following:
 
@@ -141,7 +141,7 @@ The delivery modes include the following:
 typedef enum MediaLibrary_ErrorCode MediaLibrary_ErrorCode
 ```
 **Description**<br>
-Defines an enum for error codes.
+Defines an enum for the error codes.
 
 **Since**: 12
 
@@ -152,7 +152,7 @@ Defines an enum for error codes.
 typedef enum MediaLibrary_ImageFileType MediaLibrary_ImageFileType
 ```
 **Description**<br>
-Defines an enum for image file types.
+Defines an enum for the image file types.
 
 **Since**: 12
 
@@ -163,7 +163,7 @@ Defines an enum for image file types.
 typedef enum MediaLibrary_MediaContentType MediaLibrary_MediaContentType
 ```
 **Description**<br>
-Defines an enum for media content types.
+Defines an enum for the media content types.
 
 **Since**: 12
 
@@ -174,7 +174,7 @@ Defines an enum for media content types.
 typedef enum MediaLibrary_MediaQuality MediaLibrary_MediaQuality
 ```
 **Description**<br>
-Defines an enum for media resource quality, which varies with the specified delivery mode for the requested media asset.
+Defines an enum for the media resource quality, which varies with the specified delivery mode for the requested media asset.
 
 - **MEDIA_LIBRARY_FAST_MODE**: deliver the media asset available without considering its quality.
 
@@ -191,7 +191,7 @@ Defines an enum for media resource quality, which varies with the specified deli
 typedef enum MediaLibrary_MediaSubType MediaLibrary_MediaSubType
 ```
 **Description**<br>
-Defines an enum for media asset subtypes.
+Defines an enum for the media asset subtypes.
 
 **Since**: 12
 
@@ -202,7 +202,7 @@ Defines an enum for media asset subtypes.
 typedef enum MediaLibrary_MediaType MediaLibrary_MediaType
 ```
 **Description**<br>
-Defines an enum for media asset types.
+Defines an enum for the media asset types.
 
 **Since**: 12
 
@@ -239,7 +239,7 @@ You can use this struct to set options related to the media asset quality, deliv
 typedef enum MediaLibrary_ResourceType MediaLibrary_ResourceType
 ```
 **Description**<br>
-Define an enum for media library resource types.
+Define an enum for the media library resource types.
 
 **Since**: 12
 

@@ -5,8 +5,11 @@
 
 FFRT锁属性结构。
 
-**相关模块：**[FFRT](_f_f_r_t.md)
+**起始版本：** 10
 
+**相关模块：** [FFRT](_f_f_r_t.md)
+
+**所在头文件：** [type_def.h](type__def_8h.md)
 
 ## 汇总
 
@@ -15,4 +18,16 @@ FFRT锁属性结构。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| long [storage](_f_f_r_t.md#storage-66) | FFRT锁属性所占空间 | 
+| long [storage](#storage) | FFRT锁属性所占空间  | 
+
+
+## 结构体成员变量说明
+
+
+### storage
+
+```
+long ffrt_mutexattr_t::storage
+```
+**描述**
+FFRT锁属性所占空间

@@ -112,13 +112,13 @@ Describes the icon, text, and other specific elements for the **LocationButton**
 | SUCCESS | 0 | The **LocationButton** component is touched successfully.|
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | Temporary authorization fails after the **LocationButton** component is touched.|
 
-## LocationButtonCallback
+## LocationButtonCallback<sup>18+</sup>
 
-LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+type LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
 
 Triggered when the **LocationButton** component is clicked.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,7 +150,7 @@ Called when a click event occurs.
 
 | Name| Type                  | Mandatory| Description                  |
 |------------|------|-------|---------|
-| event | [LocationButtonCallback](#locationbuttoncallback) |Yes|See **LocationButtonCallback**.|
+| event | [LocationButtonCallback](#locationbuttoncallback18) |Yes|See **LocationButtonCallback**.<br>In API versions 10 to 17, the parameter type is event: [ClickEvent](ts-universal-events-click.md#clickevent), result: [LocationButtonOnClickResult](#locationbuttononclickresult)) => void.<br>Since API version 18, the parameter type changes into LocationButtonCallback.|
 
 ## Example
 
@@ -161,19 +161,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  handleLocationButtonClick: LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
-    if (result == LocationButtonOnClickResult.SUCCESS) {
-      console.info("success");
-    } else {
-      console.info("errCode: " + error.code);
-      console.info("errMessage: " + error.message);
-    }
-  };
+  handleLocationButtonClick: LocationButtonCallback =
+    (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
+      if (result == LocationButtonOnClickResult.SUCCESS) {
+        console.info("success");
+      } else {
+        console.info("errCode: " + error.code);
+        console.info("errMessage: " + error.message);
+      }
+    };
 
   build() {
     Row() {
       Column({ space: 10 }) {
-        // Create a default Location button with an icon, text, and background.
+        // Create a default button with an icon, text, and background.
         LocationButton().onClick(this.handleLocationButtonClick)
         // Whether an element is contained depends on whether the parameter corresponding to the element is specified. If buttonType is not passed in, the button uses the ButtonType.Capsule settings.
         LocationButton({ icon: LocationIconStyle.LINES })
@@ -181,19 +182,40 @@ struct Index {
         LocationButton({ icon: LocationIconStyle.LINES, buttonType: ButtonType.Capsule })
           .backgroundColor(0x10007dff)
         // Create a button with an icon, text, and background. If the alpha value of the most significant eight bits of the background color is less than 0x1A, the system forcibly adjusts the alpha value to 0xFF.
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .width(30)
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
           .size({ width: 30, height: 30 })
         // Create a button with an icon, text, and background. If the set width is less than the minimum allowed, the button's text will wrap to guarantee full text display.
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.CURRENT_LOCATION, buttonType: ButtonType.Capsule })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: ButtonType.Capsule
+        })
           .fontSize(16)
-          .constraintSize({ minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30 })
+          .constraintSize({
+            minWidth: 0,
+            maxWidth: 30,
+            minHeight: 0,
+            maxHeight: 30
+          })
       }.width('100%')
     }.height('100%')
   }

@@ -2,7 +2,7 @@
 
 **BackupExtensionContext** is the context of **BackupExtension** and inherits from **ExtensionContext**.
 
-The **BackupExtensionContext** module provides the capability for accessing a specific **BackupExtension**. For a **BackupExtension**, you can directly use **BackupExtensionContext** as its context or define a context that inherits from **BackupExtensionContext**.
+The **BackupExtensionContext** module provides the capability for accessing a specific **BackupExtension**. For a **BackupExtension**, you can directly use **BackupExtensionContext** as the context or define a context that inherits from **BackupExtensionContext**.
 
 > **NOTE**
 >

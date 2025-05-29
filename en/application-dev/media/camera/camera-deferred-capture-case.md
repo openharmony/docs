@@ -1,5 +1,6 @@
-# Deferred Photo Delivery Sample (ArkTS)
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+# Deferred Photo Delivery Practices (ArkTS)
+
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete deferred photo delivery process to help you understand the complete API calling sequence.
 
@@ -18,17 +19,19 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-let context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 let photoSession: camera.PhotoSession | undefined = undefined;
 let cameraInput: camera.CameraInput | undefined = undefined;
 let previewOutput: camera.PreviewOutput | undefined = undefined;
 let photoOutput: camera.PhotoOutput | undefined = undefined;
 
+function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  return phAccessHelper;
+}
+   
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -41,7 +44,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset, context: Context) {
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
@@ -50,7 +53,8 @@ async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
   console.info('requestImageData successfully');
 }
 
-async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
+  phAccessHelper: photoAccessHelper.PhotoAccessHelper): Promise<void> {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
       new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
@@ -62,7 +66,7 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Prom
   }
 }
 
-function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
+function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
   // After the callback is set, call capture() of photoOutput to trigger the callback upon the receiving of a low-quality image.
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
@@ -72,15 +76,15 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
       return;
     }
     // Call the mediaLibrary flush API to save the low-quality image in the first phase. After the real image in the second phase is ready, the mediaLibrary proactively replaces the image flushed.
-    mediaLibSavePhoto(photoAsset);
+    mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // Call the mediaLibrary API to register the buffer callback to receive low-quality or high-quality images for custom processing.
-    mediaLibRequestBuffer(photoAsset);
+    mediaLibRequestBuffer(photoAsset, context);
   });
 }
 
-async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function deferredCaptureCase(context: Context, surfaceId: string): Promise<void> {
   // Create a CameraManager object.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error('camera.getCameraManager error');
     return;
@@ -126,7 +130,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     console.error(`Camera input error code: ${error.code}`);
   })
 
-  // Open a camera.
+  // Open the camera.
   await cameraInput.open();
 
   // Obtain the supported modes.
@@ -136,7 +140,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     console.error('photo mode not support');
     return;
   }
-  // Obtain the output streams supported by the camera.
+  // Obtain the output stream capability supported by the camera.
   let cameraOutputCap: camera.CameraOutputCapability =
     cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
@@ -183,7 +187,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   }
 
   // Register the photoAssetAvailable callback.
-  setPhotoOutputCb(photoOutput);
+  setPhotoOutputCb(photoOutput, context);
 
   // Create a session.
   try {
@@ -348,25 +352,50 @@ async function releaseCamSession() {
 @Component
 struct Index {
   @State message: string = 'PhotoAssetDemo';
+  @State isShow: boolean = false;
   private mXComponentController: XComponentController = new XComponentController();
   private surfaceId = '';
+  private uiContext: UIContext = this.getUIContext();
+  private context: Context | undefined = this.uiContext.getHostContext();
+  private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // For details about how to request permissions, see the instructions provided at the beginning of this topic.
+
+  async requestPermissionsFn(): Promise<void> {
+    let atManager = abilityAccessCtrl.createAtManager();
+    if (this.context) {
+      let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
+      for (let i =0; i < res.permissions.length; i++) {
+        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+          this.isShow = true;
+        }
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    this.requestPermissionsFn();
+  }
 
   build() {
     Column() {
       Column() {
-        XComponent({
-          id: 'componentId',
-          type: XComponentType.SURFACE,
-          controller: this.mXComponentController
-        })
+        if (this.isShow) {
+          XComponent({
+            id: 'componentId',
+            type: XComponentType.SURFACE,
+            controller: this.mXComponentController
+          })
           .onLoad(async () => {
             console.info('onLoad is called');
-            this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
-            console.info(`onLoad surfaceId: ${this.surfaceId}`);
-            deferredCaptureCase(context, this.surfaceId);
+            if (this.context) {
+              this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
+              console.info(`onLoad surfaceId: ${this.surfaceId}`);
+              deferredCaptureCase(this.context, this.surfaceId);
+            }
           })// The width and height of the surface are opposite to those of the XComponent.
           .renderFit(RenderFit.RESIZE_CONTAIN)
-      }.height('95%')
+        }
+      }
+      .height('95%')
       .justifyContent(FlexAlign.Center)
 
       Text(this.message)

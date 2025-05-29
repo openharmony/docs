@@ -32,7 +32,7 @@
 
    支持两种获取音视频编解码能力实例的方式：
    
-   方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
+   方式一：通过`OH_AVCodec_GetCapability`获取系统推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口系统推荐策略一致。
    ```c++
    // 获取系统推荐的音频AAC解码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
@@ -43,7 +43,7 @@
    // 获取指定硬件的视频AVC编码器能力实例。
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，框架会自行回收。
+   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，系统会自行回收。
 
 4. 按需调用相应查询接口，详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 
@@ -74,9 +74,9 @@ if (capability != nullptr) {
 
 软件编解码器和硬件编解码器定义如下：
 
-* **软件编解码器:** 指在CPU上进行编解码工作的编解码器，能力可灵活迭代，相比硬件编解码器具有更好的兼容性，更好的协议和规格扩展能力。
+* **软件编解码器：** 指在CPU上进行编解码工作的编解码器，能力可灵活迭代，相比硬件编解码器具有更好的兼容性，更好的协议和规格扩展能力。
 
-* **硬件编解码器:** 指在专有硬件上进行编解码工作的编解码器，其特点是已在硬件平台硬化，能力随硬件平台迭代。相比软件编解码器具有更好的功耗、耗时和吞吐表现，同时能降低CPU负载。
+* **硬件编解码器：** 指在专有硬件上进行编解码工作的编解码器，其特点是已在硬件平台硬化，能力随硬件平台迭代。相比软件编解码器具有更好的功耗、耗时和吞吐表现，同时能降低CPU负载。
 
 基于上述软件编解码器和硬件编解码器的特点，在硬件编解码器满足要求的时候，优先使用硬件编解码器，否则使用软件编解码器。开发者可基于软件还是硬件类别差异化配置编解码参数。
 
@@ -390,7 +390,7 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
 
-给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerFrameLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, *MaxMBsPerFrameSubmit*是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下，其中*MaxMBsPerFrameLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每帧宏块数，*MaxMBsPerFrameSubmit*是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
 
 ![](figures/formula-maxmbsperframe.png)
 
@@ -487,7 +487,7 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 视频编解码的帧率不仅会受编解码器秒级编解码能力限制，同时也会受协议中级别对秒级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每秒宏块数目为983040。
 
-给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerSecondLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, *MaxMBsPerSecondSubmit*是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下，其中*MaxMBsPerSecondLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每秒宏块数，*MaxMBsPerSecondSubmit*是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
 
 ![](figures/formula-maxmbspersecond.png)
 
@@ -517,7 +517,7 @@ bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateR
 ```c++
 constexpr int32_t width = 1920;
 constexpr int32_t height = 1080;
-int32_t frameRate = 120;
+double frameRate = 120;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 // 1. 确认待配置尺寸是否能达到理想帧率。
 bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
@@ -534,7 +534,7 @@ if (!isSupported) {
 // 3. 配置尺寸和帧率参数。
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
-if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
+if (!OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate)) {
    // 异常处理。
 }
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {

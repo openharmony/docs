@@ -52,7 +52,7 @@ getContext(type: '2d', options?:  ContextAttrOptions): CanvasRenderingContext2D
 
 | 参数名       | 类型      | 说明                  |
 | --------- | ------- | ------------------- |
-| antialias | boolean | 是否开启抗锯齿功能，默认为false。 |
+| antialias | boolean | 是否开启抗锯齿功能，默认为false，表示不开启抗锯齿功能。 |
 
 **返回值：** 
 

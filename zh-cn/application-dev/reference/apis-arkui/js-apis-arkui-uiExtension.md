@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import { uiExtension } from '@kit.ArkUI'
+import { uiExtension } from '@kit.ArkUI';
 ```
 
 ## WindowProxy
@@ -51,7 +51,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -91,7 +91,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -132,7 +132,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -170,7 +170,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -211,7 +211,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -241,7 +241,7 @@ on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
-| reasons  | number                         | 是   | 触发组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的原因。
+| reasons  | number                         | 是   | 触发组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的原因，具体取值可参考[RectChangeReason](#rectchangereason14)枚举值。
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[RectChangeOptions](#rectchangeoptions14)> | 是 | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
 
 **错误码：**
@@ -395,7 +395,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-### occupyEvents<sup>16+</sup>
+### occupyEvents<sup>18+</sup>
 
 occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
@@ -403,13 +403,13 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| eventFlags | [EventFlag](js-apis-arkui-uiExtension.md#EventFlag) | 是 | 占用的事件类型。 |
+| eventFlags | number | 是 | 占用的事件类型，具体取值可见[EventFlag](#eventflag18)枚举值。 |
 
 **返回值：**
 
@@ -423,7 +423,7 @@ occupyEvents(eventFlags: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.   |
 | 1300002  | This window state is abnormal. |
 | 1300003  | This window manager service works abnormally. |
 
@@ -440,7 +440,12 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     // 占用事件
     setTimeout(() => {
       try {
-        extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        promise.then(() => {
+          console.info(`Successed in occupy events`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to occupy events. Cause code: ${err.code}, message: ${err.message}`);
+        });
       } catch (e) {
         console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
       }
@@ -449,21 +454,23 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
-## EventFlag<sup>16+</sup>
+## EventFlag<sup>18+</sup>
 
 事件类型枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 | 名称                        | 值              | 说明            |
 |-----------------------------| --------------- |----------------|
-| EVENT_NONE                  | 0x00000000      | 无事件      |
-| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件    |
-| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件    |
-| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件    |
-| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件    |
-| EVENT_CLICK                 | 0x00000100      | 点击事件    |
-| EVENT_LONG_PRESS            | 0x00000200      | 长按事件    |
+| EVENT_NONE                  | 0x00000000      | 无事件。      |
+| EVENT_PAN_GESTURE_LEFT      | 0x00000001      | 左滑事件。    |
+| EVENT_PAN_GESTURE_RIGHT     | 0x00000002      | 右滑事件。    |
+| EVENT_PAN_GESTURE_UP        | 0x00000004      | 上滑事件。    |
+| EVENT_PAN_GESTURE_DOWN      | 0x00000008      | 下滑事件。    |
+| EVENT_CLICK                 | 0x00000100      | 点击事件。    |
+| EVENT_LONG_PRESS            | 0x00000200      | 长按事件。    |
 
 ## AvoidAreaInfo
 
@@ -498,9 +505,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称                    | 值   | 说明                                                         |
-| ----------------------- | ---- | ------------------------------------------------------------ |
-| HOST_WINDOW_RECT_CHANGE | 1    | 组件所在的宿主窗口矩形变化。 |
+| 名称                    | 值     | 说明                                                         |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| HOST_WINDOW_RECT_CHANGE | 0x0001 | 组件所在的宿主窗口矩形变化。 |
 
 ## RectChangeOptions<sup>14+</sup>
 
@@ -510,10 +517,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [window.Rect](js-apis-window.md#rect7) | 是   | 是   | 组件矩形变化后的值。 |
-| reason    | [RectChangeReason](#rectchangereason14) | 是   | 是   | 组件矩形变化的原因。 |
+| rect   | [window.Rect](js-apis-window.md#rect7) | 否   | 否   | 组件矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason14) | 否   | 否   | 组件矩形变化的原因。 |
 
 ## 完整示例
 
@@ -528,7 +535,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.embeddeddemo",
       abilityName: "ExampleEmbeddedAbility",
@@ -560,7 +567,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleEmbeddedAbility]'
+  const TAG: string = '[ExampleEmbeddedAbility]';
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     
     onCreate() {
@@ -596,13 +603,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   import { UIExtensionContentSession } from '@kit.AbilityKit';
   import { uiExtension, window } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let storage = LocalStorage.getShared()
 
-  @Entry(storage)
+  @Entry()
   @Component
   struct Extension {
     @State message: string = 'EmbeddedUIExtensionAbility Index';
-    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
     private subWindow: window.Window | undefined = undefined;
 
@@ -645,7 +652,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
           this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
               .then((subWindow: window.Window) => {
                   this.subWindow = subWindow;
-                  this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+                  this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
                       if (err && err.code != 0) {
                           return;
                       }

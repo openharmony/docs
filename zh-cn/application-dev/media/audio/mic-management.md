@@ -15,7 +15,7 @@
 
    let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
 
-   // 创建audioVolumeGroupManager对象
+   // 创建audioVolumeGroupManager对象。
    async function loadVolumeGroupManager() {
      const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
      audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
@@ -28,7 +28,7 @@
    目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
    ```ts
-   // 监听麦克风状态变化
+   // 监听麦克风状态变化。
    async function on() {
      audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
        console.info(`Current microphone status is: ${micStateChange.mute} `);
@@ -40,7 +40,7 @@
 3. 调用isMicrophoneMute查询麦克风当前静音状态，返回true为静音，false为非静音。
      
    ```ts
-   // 查询麦克风是否静音
+   // 查询麦克风是否静音。
    async function isMicrophoneMute() {
      await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
        console.info(`isMicrophoneMute is: ${value}.`);
@@ -51,14 +51,14 @@
 4. **(仅对系统应用开放)** 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
      
    ```ts
-   // 设置麦克风静音，入参为true
+   // 设置麦克风静音，入参为true。
    async function setMicrophoneMuteTrue() {
      await audioVolumeGroupManager.setMicMute(true).then(() => {
        console.info('setMicrophoneMute to mute.');
      });
    }
 
-   // 取消麦克风静音，入参为false
+   // 取消麦克风静音，入参为false。
    async function setMicrophoneMuteFalse() {
      await audioVolumeGroupManager.setMicMute(false).then(() => {
        console.info('setMicrophoneMute to not mute.');
@@ -81,7 +81,7 @@
      console.info('audioVolumeGroupManager------create-------success.');
    }
 
-   // 监听麦克风状态变化
+   // 监听麦克风状态变化。
    async function on() {
      await loadVolumeGroupManager();
      audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
@@ -89,14 +89,14 @@
      });
    }
 
-   // 查询麦克风是否静音
+   // 查询麦克风是否静音。
    async function isMicrophoneMute() {
      await audioVolumeGroupManager.isMicrophoneMute().then((value) => {
        console.info(`isMicrophoneMute is: ${value}.`);
      });
    }
 
-   // 设置麦克风静音
+   // 设置麦克风静音。
    async function setMicrophoneMuteTrue() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.setMicMute(true).then(() => {
@@ -104,7 +104,7 @@
      });
    }
 
-   // 取消麦克风静音
+   // 取消麦克风静音。
    async function setMicrophoneMuteFalse() {
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.setMicMute(false).then(() => {

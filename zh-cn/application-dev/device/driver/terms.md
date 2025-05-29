@@ -2,53 +2,53 @@
 
 ## A
 
-- AMS
+### AMS
 
   AMS（Ability Manager Service）用于协调各Ability运行关系、及对生命周期进行调度的系统服务。在驱动开发过程中用于拉起和关闭扩展驱动能力DriverExtensionAbility。
 
 ## B
 
-- BMS
+### BMS
 
   BMS（Bundle Manager Service）在OpenHarmony上主要负责应用的安装、卸载和数据管理。
 
 ## C
 
-- CDB
+### CDB
 
   CDB（Command Descriptor Block）即命令描述块，是 SCSI协议中用于发送命令的标准数据结构。CDB是一个固定长度的字节数组，包含了SCSI命令的操作码（Opcode）以及相关的参数，用于告诉设备执行什么操作（如读取、写入、查询等）。
 
 ## D
 
-- DDK
+### DDK
 
   DDK（Driver Develop Kit）是OpenHarmony基于扩展外设框架，为开发者提供的驱动应用开发的工具包，可针对非标USB串口设备，开发对应的驱动。
 
 ## H
 
-- HID设备
+### HID设备
 
   HID设备是“Human Interface Device”的缩写，中文意思是“人机接口设备”。它是一类用于人与计算机或其他电子设备交互的设备，主要用于输入和输出操作。
 
-- HID协议
+### HID协议
 
   HID协议是一种专门为人机交互设备设计的标准化通信协议，通过报告描述符和数据报告实现设备与主机之间的高效通信。它具有即插即用、低延迟、低带宽和高度兼容的特点，广泛应用于各种输入和控制设备中。
 
 ## L
 
-- Logical Block
+### Logical Block
 
   逻辑块（Logical Block）是一个基本的数据存储单位。它代表设备上的一块固定大小的数据区域，通常用于数据读写操作。逻辑块的大小可以是512字节、1024字节、2048字节等，具体大小取决于设备的配置和文件系统的设计。
 
 ## S
 
-- SCSI
+### SCSI
 
   SCSI是一种用于计算机和外围设备如硬盘驱动器、磁带驱动器、光盘驱动器、扫描仪等之间通信的标准化协议集。
 
 ## U
 
-- USB 串口
+### USB 串口
 
   USB 串口（USB-to-Serial）是指一种接口转换技术，它允许通过 USB（通用串行总线）接口实现与传统串行端口（如 RS-232、RS-485 等）之间的数据通信。这种技术通常通过专门的硬件适配器或特定的内置芯片来实现。
 

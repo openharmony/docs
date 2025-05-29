@@ -36,7 +36,7 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 getTitle(): Promise&lt;string&gt;
 
-获取提示音标题，使用Promise方式异步返回结果。
+获取提示音标题。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -46,11 +46,11 @@ getTitle(): Promise&lt;string&gt;
 
 | 类型    | 说明                                  |
 | ------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise回调返回获取的系统提示音标题。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的系统提示音标题。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -73,7 +73,7 @@ systemTonePlayer.getTitle().then((value: string) => {
 
 prepare(): Promise&lt;void&gt;
 
-准备播放提示音，使用Promise方式异步返回结果。
+准备播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -83,11 +83,11 @@ prepare(): Promise&lt;void&gt;
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回准备成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -111,7 +111,7 @@ systemTonePlayer.prepare().then(() => {
 
 start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
-开始播放提示音，使用Promise方式异步返回结果。
+开始播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -129,11 +129,11 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 | 类型    | 说明                      |
 | ------- | ------------------------- |
-| Promise&lt;number&gt; | Promise回调返回streamID。 |
+| Promise&lt;number&gt; | Promise对象，返回streamID。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -164,7 +164,7 @@ systemTonePlayer.start(systemToneOptions).then((value: number) => {
 
 stop(id: number): Promise&lt;void&gt;
 
-停止播放提示音，使用Promise方式异步返回结果。
+停止播放提示音。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -174,7 +174,7 @@ stop(id: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | ------------------------- |
-| id     | number | 是   | start方法返回的streamID。 |
+| id     | number | 是   | Promise对象，返回streamID。 |
 
 **返回值：**
 
@@ -184,7 +184,7 @@ stop(id: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -209,7 +209,7 @@ systemTonePlayer.stop(streamID).then(() => {
 
 release(): Promise&lt;void&gt;
 
-释放提示音播放器，使用Promise方式异步返回结果。
+释放提示音播放器。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -219,11 +219,11 @@ release(): Promise&lt;void&gt;
 
 | 类型    | 说明                            |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回释放成功或失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -259,14 +259,14 @@ setAudioVolumeScale(scale: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
 | 202      | Caller is not a system application.                                                                         |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102  | Operation not allowed.                                                                                      |
-| 20700002 | Parameter check error, For example, value is out side [0, 1]                                                |
+| 20700002 | Parameter check error, For example, value is out side [0, 1].                                                |
 
 **示例：**
 
@@ -281,7 +281,7 @@ try {
 
 ### getAudioVolumeScale<sup>13+</sup>
 
-getAudioVolumeScale(): number;
+getAudioVolumeScale(): number
 
 获取当前音频音量大小，同步返回当前音量。
 
@@ -298,8 +298,7 @@ getAudioVolumeScale(): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -320,7 +319,7 @@ try {
 
 getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
 
-获取当前支持的振动风格，使用Promise方式异步返回支持的振动风格列表。
+获取当前支持的振动风格。使用Promise异步回调。
 
 **系统接口：** 该接口为系统接口
 
@@ -328,15 +327,13 @@ getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHaptic
 
 **返回值：**
 
-
 | 类型                                                                                                                          | 说明                                                                                                                  |
 |-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
-| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise回调返回当前支持的振动风格。 |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise对象，返回当前支持的振动风格。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -365,8 +362,8 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
-**参数：**
 
+**参数：**
 
 | 参数名         | 类型                                                                                              | 必填 | 说明             |
 | -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
@@ -374,8 +371,7 @@ setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
-
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息                                                                                                    |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -412,14 +408,13 @@ getHapticsFeature(): systemSoundManager.ToneHapticsFeature
 
 **返回值：**
 
-
 | 类型                                                                                              | 说明     |
 |-------------------------------------------------------------------------------------------------| -------- |
-| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格 |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | 振动风格。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 
 | 错误码ID | 错误信息                            |
@@ -442,7 +437,9 @@ try {
 
 on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 
-铃音播放完成监听，监听对象为传入的streamId对应音频流。当streamId传入0时，监听本播放器对应的所有音频流。
+监听铃音播放完成事件（当铃音播放完成时触发）。使用callback异步回调。
+
+监听对象为传入的streamId对应音频流。当streamId传入0时，监听本播放器对应的所有音频流。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -450,7 +447,7 @@ on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | --------------------------------------------------------------- |
-| type     | string                  | 是   | 支持事件：'playFinished'。音频流播放完成会触发此回调，需要传入监听的音频流的streamId。 |
+| type     | string                  | 是   | 事件回调类型，支持的事件为'playFinished'，当铃音播放完成时，触发该事件。 |
 | streamId | number                  | 是   | 监听对象为指定streamId对应的音频流，streamId通过[start](#start)获取。当streamId传入0时，可监听当前播放器对应的所有音频流。 |
 | callback | Callback\<number>  | 是   | 'playFinished'的回调方法。返回播放完成的音频流的streamId。 |
 
@@ -461,7 +458,6 @@ on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -488,7 +484,7 @@ systemTonePlayer.start().then((value: number) => {
 
 off(type: 'playFinished', callback?: Callback\<number>): void
 
-取消铃音播放完成监听。
+取消监听铃音播放完成事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -496,7 +492,7 @@ off(type: 'playFinished', callback?: Callback\<number>): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ----- | ----- | ---- | ------------------------------------------------ |
-| type   | string | 是   | 要取消监听事件的类型。支持事件为：'playFinished'。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'playFinished'，当取消监听铃音播放完成事件时，触发该事件。 |
 | callback | Callback\<number>    | 否   | 回调函数，返回结束事件的音频流的streamId。不填入此参数时，会取消该事件的所有监听。 |
 
 **错误码：**
@@ -506,7 +502,6 @@ off(type: 'playFinished', callback?: Callback\<number>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -529,7 +524,7 @@ systemTonePlayer.off('playFinished', playFinishedCallback);
 
 on(type: 'error', callback: ErrorCallback): void
 
-铃音播放播放过程中的错误事件监听。
+监听铃音播放过程中的错误事件（当铃音播放过程中发生错误时触发）。使用callback异步回调。
 
 **系统能力**：SystemCapability.Multimedia.SystemSound.Core
 
@@ -537,7 +532,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 监听的事件类型。支持事件为：error事件。 |
+| type     | string        | 是   | 事件回调类型，支持的事件为'error'，当铃音播放过程中发生错误时，触发该事件。 |
 | callback | ErrorCallback | 是   | 回调函数，返回错误码和错误信息。错误码请参考AVPlayer的[on('error')](../apis-media-kit/js-apis-media.md#onerror9)。 |
 
 **错误码：**
@@ -547,7 +542,6 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**
@@ -564,7 +558,7 @@ systemTonePlayer.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-取消铃音播放播放过程中的错误事件监听。
+取消监听铃音播放过程中的错误事件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Multimedia.SystemSound.Core
 
@@ -572,7 +566,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 要取消监听事件的类型。支持的事件为：error事件。 |
+| type     | string        | 是   | 事件回调类型，支持的事件为'error'，当取消监听铃音播放过程中的错误事件时，触发该事件。 |
 | callback | ErrorCallback | 否   | 回调函数，返回错误码和错误信息。不填入此参数时，会取消该事件的所有监听。 |
 
 **错误码：**
@@ -582,7 +576,6 @@ off(type: 'error', callback?: ErrorCallback): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202      | Not system App.  |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 20700002 | Parameter check error. |
 
 **示例：**

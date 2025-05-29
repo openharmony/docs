@@ -35,8 +35,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct OH_AVMetadataBuilderStruct [OH_AVMetadataBuilder](#oh_avmetadatabuilder) | 会话元数据构造器。 构造器用于构造会话元数据。 | 
-| typedef struct OH_AVMetadataStruct [OH_AVMetadata](#oh_avmetadata) | 会话元数据。 资源设置的avmetadata的实例。 | 
+| typedef struct OH_AVMetadataBuilderStruct [OH_AVMetadataBuilder](#oh_avmetadatabuilder) | 会话元数据构造器。构造器用于构造会话元数据。 | 
+| typedef struct OH_AVMetadataStruct [OH_AVMetadata](#oh_avmetadata) | 会话元数据。资源设置的avmetadata的实例。 | 
 | typedef struct [AVSession_PlaybackPosition](_a_v_session___playback_position.md) [AVSession_PlaybackPosition](#avsession_playbackposition) | 媒体播放位置的相关属性。 | 
 | typedef enum [AVSession_ControlCommand](#avsession_controlcommand) [AVSession_ControlCommand](#avsession_controlcommand) | 播控命令。 | 
 | typedef [AVSessionCallback_Result](#avsessioncallback_result)(\* [OH_AVSessionCallback_OnCommand](#oh_avsessioncallback_oncommand)) ([OH_AVSession](#oh_avsession) \*session, [AVSession_ControlCommand](#avsession_controlcommand) command, void \*userData) | 通用的执行播控命令的回调。 | 
@@ -147,7 +147,7 @@ typedef struct OH_AVMetadataStruct OH_AVMetadata
 
 **描述**
 
-会话元数据。 资源设置的avmetadata的实例。
+会话元数据。资源设置的avmetadata的实例。
 
 **起始版本：** 13
 
@@ -160,7 +160,7 @@ typedef struct OH_AVMetadataBuilderStruct OH_AVMetadataBuilder
 
 **描述**
 
-会话元数据构造器。 构造器用于构造会话元数据。
+会话元数据构造器。构造器用于构造会话元数据。
 
 **起始版本：** 13
 

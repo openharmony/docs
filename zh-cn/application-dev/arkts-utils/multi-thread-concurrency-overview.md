@@ -1,10 +1,19 @@
 # 多线程并发概述
 
-并发模型是用来实现不同应用场景中并发任务的编程模型，常见的并发模型分为基于内存共享的并发模型和基于消息通信的并发模型。
+多线程并发是指​​在单个程序中同时运行多个线程，通过并行或交替执行任务来提升性能和资源利用率​​的编程模型。在ArkTS应用开发过程中，需要用到多线程并发的业务场景有很多，针对常见的业务场景，主要可以分为以下三类，更详细的使用请参考[多线程开发实践案例](batch-database-operations-guide.md)。
 
-Actor并发模型作为基于消息通信并发模型的典型代表，不需要开发者去面对锁带来的一系列复杂偶发的问题，同时并发度也相对较高，因此得到了广泛的支持和使用。
+- 业务逻辑包含较大计算量或多次I/O读写等需要长时间执行的任务，例如图片/视频编解码，压缩/解压缩，数据库操作等场景。
 
-当前ArkTS提供了TaskPool和Worker两种并发能力，TaskPool和Worker都基于Actor并发模型实现。
+- 业务逻辑包含监听或定期采集数据等需要长时间保持运行的任务，例如定期采集传感器数据场景。
+
+- 业务逻辑跟随主线程生命周期或与主线程绑定的任务，例如游戏中台场景。
+
+
+并发模型用于实现不同应用场景中的并发任务。常见的并发模型有基于内存共享的模型和基于消息通信的模型。
+
+Actor并发模型是基于消息通信的并发模型的典型代表。它使开发者无需处理锁带来的复杂问题，并且具有较高的并发度，因此得到了广泛的应用。
+
+当前ArkTS提供了TaskPool和Worker两种并发能力，两者均基于Actor并发模型实现。
 
 Actor并发模型和内存共享并发模型的具体对比请见[多线程并发模型](#多线程并发模型)。
 
@@ -14,9 +23,9 @@ Actor并发模型和内存共享并发模型的具体对比请见[多线程并�
 
 Actor并发模型每一个线程都是一个独立Actor，每个Actor有自己独立的内存，Actor之间通过消息传递机制触发对方Actor的行为，不同Actor之间不能直接访问对方的内存空间。
 
-Actor并发模型对比内存共享并发模型的优势在于不同线程间内存隔离，不会产生不同线程竞争同一内存资源的问题。开发者不需要考虑对内存上锁导致的一系列功能、性能问题，提升了开发效率。
+Actor并发模型相较于内存共享并发模型，不同线程间的内存是隔离的，因此不会出现线程竞争同一内存资源的情况。开发者无需处理内存上锁相关的问题，从而提高开发效率。
 
-由于Actor并发模型线程之间不共享内存，需要通过线程间通信机制传输并发任务和任务结果。
+Actor并发模型中，线程不共享内存，需通过线程间通信机制传递任务和结果。
 
 本文以经典的生产者消费者问题为例，对比呈现这两种模型在解决具体问题时的差异。
 
@@ -32,41 +41,43 @@ Actor并发模型对比内存共享并发模型的优势在于不同线程间内
 // 此段示例为伪代码仅作为逻辑示意，便于开发者理解使用内存共享模型和Actor模型的区别
 class Queue {
   // ...
-  push(value: number) {}
- 
+  push(value: number) {
+  }
+
   empty(): boolean {
     // ...
-    return true
+    return true;
   }
- 
-  pop(value: number) :number {
+
+  pop(value: number): number {
     // ...
     return value;
   }
 }
- 
+
 class Mutex {
   // ...
   lock(): boolean {
     // ...
     return true;
   }
- 
+
   unlock() {
- 
   }
 }
+
 class BufferQueue {
-  queue: Queue = new Queue()
-  mutex: Mutex = new Mutex()
+  queue: Queue = new Queue();
+  mutex: Mutex = new Mutex();
+
   add(value: number) {
     // 尝试获取锁
     if (this.mutex.lock()) {
-      this.queue.push(value)
-      this.mutex.unlock()
+      this.queue.push(value);
+      this.mutex.unlock();
     }
   }
- 
+
   take(value: number): number {
     let res: number = 0;
     // 尝试获取锁
@@ -74,48 +85,50 @@ class BufferQueue {
       if (this.queue.empty()) {
         res = 1;
       }
-      let num: number = this.queue.pop(value)
-      this.mutex.unlock()
+      let num: number = this.queue.pop(value);
+      this.mutex.unlock();
       res = num;
     }
     return res;
   }
 }
- 
+
 // 构造一段全局共享的内存
-let g_bufferQueue = new BufferQueue()
- 
+let g_bufferQueue = new BufferQueue();
+
 class Producer {
   constructor() {
   }
+
   run() {
-    let value = Math.random()
+    let value = Math.random();
     // 跨线程访问bufferQueue对象
-    g_bufferQueue.add(value)
+    g_bufferQueue.add(value);
   }
 }
- 
+
 class ConsumerTest {
   constructor() {
   }
+
   run() {
     // 跨线程访问bufferQueue对象
     let num = 123;
-    let res = g_bufferQueue.take(num)
+    let res = g_bufferQueue.take(num);
     if (res != null) {
       // 添加消费逻辑
     }
   }
 }
- 
+
 function Main(): void {
-  let consumer: ConsumerTest = new ConsumerTest()
-  let producer1: Producer = new Producer()
-  for (let i = 0;i < 0;i++) {
+  let consumer: ConsumerTest = new ConsumerTest();
+  let producer1: Producer = new Producer();
+  for (let i = 0; i < 0; i++) {
     // 模拟启动多线程执行生产任务
-    // let thread = new Thread()
-    // thread.run(producer.run())
-    // consumer.run()
+    // let thread = new Thread();
+    // thread.run(producer.run());
+    // consumer.run();
   }
 }
 ```
@@ -127,7 +140,7 @@ function Main(): void {
 
 ![zh-cn_image_0000001964697544](figures/zh-cn_image_0000001964697544.png)
 
-Actor模型不同角色之间并不共享内存，生产者线程和UI线程都有自己的虚拟机实例，两个虚拟机实例之间拥有独占的内存，相互隔离。生产者生产出结果后通过序列化通信将结果发送给UI线程，UI线程消费结果后再发送新的生产任务给生产者线程。
+Actor模型中，不同角色之间并不共享内存，生产者线程和UI线程都有自己的虚拟机实例，两个虚拟机实例之间拥有独占的内存，相互隔离。生产者生产出结果后，通过序列化通信将结果发送给UI线程，UI线程消费结果后再发送新的生产任务给生产者线程。
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -136,21 +149,21 @@ import { taskpool } from '@kit.ArkTS';
 @Concurrent
 async function produce(): Promise<number> {
   // 添加生产相关逻辑
-  console.info("producing...");
+  console.info('producing...');
   return Math.random();
 }
 
 class Consumer {
   public consume(value: Object) {
     // 添加消费相关逻辑
-    console.info("consuming value: " + value);
+    console.info('consuming value: ' + value);
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -159,7 +172,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("start")
+          Text('start')
         }.onClick(() => {
           let produceTask: taskpool.Task = new taskpool.Task(produce);
           let consumer: Consumer = new Consumer();
@@ -181,8 +194,9 @@ struct Index {
   }
 }
 ```
+<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
-同时，也可等待生产者的生产任务全部执行完成，通过序列化通信将结果发送给UI线程，UI线程接收完毕后再由消费者统一消费结果。
+也可以等待生产者完成所有生产任务，通过序列化通信将结果发送给UI线程。UI线程接收完毕后，由消费者统一消费结果。
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -191,14 +205,14 @@ import { taskpool } from '@kit.ArkTS';
 @Concurrent
 async function produce(): Promise<number> {
   // 添加生产相关逻辑
-  console.info("producing...");
+  console.info('producing...');
   return Math.random();
 }
 
 class Consumer {
   public consume(value: Object) {
     // 添加消费相关逻辑
-    console.info("consuming value: " + value);
+    console.info('consuming value: ' + value);
   }
 }
 
@@ -214,7 +228,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("start")
+          Text('start')
         }.onClick(async () => {
           let dataArray = new Array<number>();
           let produceTask: taskpool.Task = new taskpool.Task(produce);

@@ -8,9 +8,9 @@
 
 | 视频硬解类型       | 视频软解类型   |
 | --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、AVC(H.264)<!--RP12--><!--RP12End--> |
+| AVC(H.264)、HEVC(H.265)<!--RP14--><!--RP14End--> | MPEG2、MPEG4、H.263、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、 H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，<!--RP15-->则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)、H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End-->硬件解码能力。
+视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、H.263(OH_AVCODEC_MIMETYPE_VIDEO_H263)、H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，<!--RP15-->则可以使用H.264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)、H.265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)<!--RP15End-->硬件解码能力。
 
 每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
@@ -33,36 +33,18 @@
 
 ### 音频解码
 
-当前支持的解码能力如下:
+当前支持的解码能力：
 
-| 容器规格 | 音频解码类型                 |
-| -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | Flac                         |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG(MP3)                    |
-| amr      | AMR(amrnb、amrwb)            |
-| raw      | G711mu                       |
-| ape      | APE                          |
+AAC、MPEG(MP3)、Flac、Vorbis、AMR(amrnb、amrwb)、G711mu、APE<!--RP1--><!--RP1End-->。
 
 具体开发指导请参考[音频解码](audio-decoding.md)。
 
 
 ### 音频编码
 
-当前支持的编码能力如下：
+当前支持的编码能力：
 
-| 容器规格 | 音频编码类型       |
-| -------- | :--------------- |
-| mp4      | AAC、Flac        |
-| m4a      | AAC              |
-| flac     | Flac             |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP3--><!--RP3End-->
+AAC、Flac、MP3、G711mu<!--RP3--><!--RP3End-->。
 
 具体开发指导请参考[音频编码](audio-encoding.md)。
 

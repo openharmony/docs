@@ -85,7 +85,7 @@
       - [Component Area Change Event](arkui-ts/ts-universal-component-area-change-event.md)
       - [Component Size Change Event](arkui-ts/ts-universal-component-size-change-event.md)
       - [Visible Area Change Event](arkui-ts/ts-universal-component-visible-area-change-event.md)
-      - [Custom Keyboard Shortcuts](arkui-ts/ts-universal-events-keyboardshortcut.md)
+      - [Component Keyboard Shortcut Event](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [Custom Event Dispatch](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [Custom Event Interception](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [Focus Axis Event](arkui-ts/ts-universal-events-focus_axis.md)
@@ -104,7 +104,7 @@
       - [Overlay](arkui-ts/ts-universal-attributes-overlay.md)
       - [Z-order Control](arkui-ts/ts-universal-attributes-z-order.md)
       - [Transformation](arkui-ts/ts-universal-attributes-transformation.md)
-      - [Image Effects](arkui-ts/ts-universal-attributes-image-effect.md)
+      - [Image Effect](arkui-ts/ts-universal-attributes-image-effect.md)
       - [Shape Clipping](arkui-ts/ts-universal-attributes-sharp-clipping.md)
       - [Gradient Color](arkui-ts/ts-universal-attributes-gradient-color.md)
       - [Popup Control](arkui-ts/ts-universal-attributes-popup.md)
@@ -116,7 +116,7 @@
       - [Polymorphic Style](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [restoreId](arkui-ts/ts-universal-attributes-restoreId.md)
       - [Foreground Color](arkui-ts/ts-universal-attributes-foreground-color.md)
-      - Foreground Effect](arkui-ts/ts-universal-attributes-foreground-effect.md)
+      - [Foreground Effect](arkui-ts/ts-universal-attributes-foreground-effect.md)
       - [Foreground Blur](arkui-ts/ts-universal-attributes-foreground-blur-style.md)
       - [Motion Blur](arkui-ts/ts-universal-attributes-motionBlur.md)
       - [Click Effect](arkui-ts/ts-universal-attributes-click-effect.md)
@@ -145,7 +145,7 @@
       - [Special Effect Drawing Combination](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [Point Light Style (System API)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
-      - [Image Effects (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
+      - [Image Effect (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - Gesture Handling
       - [Gesture Binding Methods](arkui-ts/ts-gesture-settings.md)

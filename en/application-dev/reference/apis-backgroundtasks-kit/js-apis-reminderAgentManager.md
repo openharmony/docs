@@ -245,8 +245,6 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
       }
       console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
       console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
       console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
       console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
       console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -301,8 +299,6 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -599,8 +595,6 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
     }
     console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
     console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
-    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
-    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
     console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
     console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
     console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
@@ -828,13 +822,13 @@ Defines the request for publishing a reminder.
 | snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**. (It is not applicable to countdown reminders.)|
 | timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes. (It is not applicable to countdown reminders.)|
 | title | string | No| Reminder title.|
-| titleResourceId<sup>16+</sup> | number | No| Resource ID of the reminder title.|
+| titleResourceId<sup>18+</sup> | number | No| Resource ID of the reminder title.|
 | content | string | No| Reminder content.|
-| contentResourceId<sup>16+</sup> | number | No| Resource ID of the reminder content.|
+| contentResourceId<sup>18+</sup> | number | No| Resource ID of the reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
-| expiredContentResourceId<sup>16+</sup> | number | No| Resource ID of the content to be displayed after the reminder expires.|
+| expiredContentResourceId<sup>18+</sup> | number | No| Resource ID of the content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
-| snoozeContentResourceId<sup>16+</sup> | number | No| Resource ID of the content to be displayed when the reminder is snoozing.|
+| snoozeContentResourceId<sup>18+</sup> | number | No| Resource ID of the content to be displayed when the reminder is snoozing.|
 | notificationId | number | No| Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|

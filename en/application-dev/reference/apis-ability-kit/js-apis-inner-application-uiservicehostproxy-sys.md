@@ -5,7 +5,7 @@ UIServiceHostProxy functions as a proxy to send data from the [UIServiceExtensio
 
 > **NOTE**
 >
->  - The initial APIs of this module are supported since API version 13. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 >  - The APIs provided by this module are system APIs.
@@ -22,7 +22,6 @@ import { common } from '@kit.AbilityKit';
 sendData(data: Record\<string, Object>): void
 
 Sends data from the [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md) server to the client.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

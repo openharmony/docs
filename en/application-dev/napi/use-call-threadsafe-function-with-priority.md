@@ -4,10 +4,8 @@ You can use **napi_call_threadsafe_function_with_priority** to pass a task to an
 ## Function Description
 
 ```cpp
-napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
-                                                        void *data,
-                                                        napi_task_priority priority,
-                                                        bool isTail);
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func, void *data,
+                                                        napi_task_priority priority, bool isTail);
 ```
 
 | Name           | Description         |
@@ -32,6 +30,10 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
     #include <string.h>
     #include <stdlib.h>
 
+    static constexpr int INT_NUM_2 = 2;     // Integer 2
+    static constexpr int INT_NUM_12 = 12;   // Integer 12
+    static constexpr int INT_NUM_15 = 15;   // Integer 15
+
     struct CallbackData {
         napi_threadsafe_function tsfn;
         napi_async_work work;
@@ -45,11 +47,11 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
         napi_value undefined = nullptr;
         napi_get_undefined(env, &undefined);
         napi_value number1 = nullptr;
-        napi_create_int32(env, 12, &number1);
+        napi_create_int32(env, INT_NUM_12, &number1);
         napi_value number2 = nullptr;
-        napi_create_int32(env, 15, &number2);
+        napi_create_int32(env, INT_NUM_15, &number2);
         napi_value argv[2] = {number1, number2};
-        napi_call_function(env, undefined, jsCb, 2, argv, &resultNumber);
+        napi_call_function(env, undefined, jsCb, INT_NUM_2, argv, &resultNumber);
         int32_t res = 0;
         napi_get_value_int32(env, resultNumber, &res);
     }
@@ -150,10 +152,10 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
 
     ```ts
     // index.ets
-    import testNapi from 'libentry.so'
-
+    import testNapi from 'libentry.so';
+    
     let callback = (a: number, b: number) : number => {
-        console.info('result is ' + (a + b))
+        console.info('result is ' + (a + b));
         return a + b;
     }
     testNapi.callThreadSafeWithPriority(callback);

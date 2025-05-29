@@ -60,7 +60,7 @@ For example, to save the image in the dialog box shown above, the application on
            // Write data to the file in the media library.
            await fileIo.write(file.fd, media);
            await fileIo.close(file.fd);
-           promptAction.showToast({message: 'Saved to album.'});
+           promptAction.openToast({ message: 'Saved to album.'});
          });
      }
      catch (error) {
@@ -82,13 +82,13 @@ For example, to save the image in the dialog box shown above, the application on
    
            SaveButton()
              .padding({top: 12, bottom: 12, left: 24, right: 24})
-             .onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
+             .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
                if (result === SaveButtonOnClickResult.SUCCESS) {
-                 const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-                 // Obtain temporary authorization to save the image without requesting the related permission for the application.
+                 const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                 // Obtain temporary permission to save the image without requesting the related permission for the application.
                  savePhotoToGallery(context);
                } else {
-                 promptAction.showToast ({ message: 'Failed to set the permission.' })
+                 promptAction.openToast({ message: 'Failed to set the permission.' })
                }
              })
          }

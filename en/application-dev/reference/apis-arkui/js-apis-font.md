@@ -6,9 +6,7 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
->
-> Since API version 10, you can use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 
 ## Modules to Import
 
@@ -16,11 +14,17 @@ The **font** module provides APIs for registering custom fonts.
 import { font } from '@kit.ArkUI'
 ```
 
-## font.registerFont
+## font.registerFont<sup>(deprecated)</sup>
 
 registerFont(options: FontOptions): void
 
 Registers a custom font with the font manager.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [registerFont](js-apis-arkui-UIContext.md#registerfont) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -40,8 +44,8 @@ Registers a custom font with the font manager.
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
+| familyName | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string \| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 
@@ -51,8 +55,6 @@ Registers a custom font with the font manager.
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct FontExample {
@@ -60,29 +62,30 @@ struct FontExample {
   // iconFont example, where 0000 is the Unicode character of the specified icon. You need to obtain the Unicode character from the TTF file of the registered iconFont.
   @State unicode: string = '\u0000';
   @State codePoint: string = String.fromCharCode(0x0000);
+  private uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // Both familyName and familySrc support the Resource type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       // You are advised to use this.getUIContext().getFont().registerFont().
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
 
     // familySrc supports the $rawfile type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
     })
 
     // Register iconFont.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
 
     // Both familyName and familySrc support the string type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
     })
@@ -114,11 +117,17 @@ struct FontExample {
 >
 > In HSP projects, avoid using relative paths to register custom fonts. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md).
 
-## font.getSystemFontList<sup>10+</sup>
+## font.getSystemFontList<sup>(deprecated)</sup>
 
 getSystemFontList(): Array\<string>
 
 Obtains the system font list.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSystemFontList](js-apis-arkui-UIContext.md#getsystemfontlist) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -132,13 +141,15 @@ Obtains the system font list.
 
 >  **NOTE**
 >
->  This API takes effect only on 2-in-1 devices.
+>  This API takes effect only on 2-in-1 devices.<br>To obtain the latest list of fonts supported by the system, use the [getSystemFontFullNamesByType](../apis-arkgraphics2d/js-apis-graphics-text.md#textgetsystemfontfullnamesbytype14) API.
 
 **Example**
 
 > **NOTE**
 >
 > You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -162,11 +173,17 @@ struct FontExample {
 }
 ```
 
-## font.getFontByName<sup>10+</sup>
+## font.getFontByName<sup>(deprecated)</sup>
 
 getFontByName(fontName: string): FontInfo
 
 Obtains information about a system font based on the font name.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getFontByName](js-apis-arkui-UIContext.md#getfontbyname) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -197,17 +214,19 @@ Obtains information about a system font based on the font name.
 | fullName       | string  | Yes| Name of the system font.          |
 | family         | string  | Yes| Family of the system font.      |
 | subfamily      | string  | Yes| Subfamily of the system font.     |
-| weight         | number  | Yes| Weight of the system font, in px.       |
-| width          | number  | Yes| Width of the system font, in px.   |
-| italic         | boolean | Yes| Whether the system font is italic.         |
-| monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
-| symbolic       | boolean | Yes| Whether the system font supports symbols. |
+| weight         | number  | Yes| Weight of the system font.<br>Value range: [0, 8], with intervals of 1, corresponding to the values in the [FontWeight](../apis-arkgraphics2d/js-apis-graphics-text.md#fontweight) enum<br>Default value: **0**       |
+| width          | number  | Yes| Width of the system font.<br>Value range: [1, 9], with intervals of 1, corresponding to the values in the [FontWidth](../apis-arkgraphics2d/js-apis-graphics-text.md#fontwidth) enum   |
+| italic         | boolean | Yes| Whether the system font is italic.<br>Default value: **false**<br>**true**: The system font is italic.<br>**false**: The system font is not italic.         |
+| monoSpace      | boolean | Yes| Whether the system font is monospaced.<br>Default value: **false**<br>**true**: The system font is monospaced.<br>**false**: The system font is not monospaced.        |
+| symbolic       | boolean | Yes| Whether the system font supports symbols.<br>Default value: **false**<br>**true**: The system font supports symbols.<br>**false**: The system font does not support symbols. |
 
 **Example**
 
 > **NOTE**
 >
 > You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -295,7 +314,7 @@ Obtains the UI font configuration of the system.
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
 | name          | string  | Yes| Alias name.     |
-| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.|
+| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.<br>Valid values are **0**, **100**, **400**, **700**, and **900**.|
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
@@ -304,8 +323,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| weight        | number  | Yes| Original weight of the font.     |
-| to            | number  | Yes| Weight of the font displayed in the application.|
+| weight        | number  | Yes| Original weight of the font.<br>Valid values are **50**, **80**, **100**, and **200**.     |
+| to            | number  | Yes| Weight of the font displayed in the application.<br>Valid values are **100**, **400**, **700**, and **900**.|
 
 ## UIFontFallbackInfo<sup>11+</sup>
 

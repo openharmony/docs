@@ -5,7 +5,7 @@ UIServiceExtensionAbility提供浮窗组件相关扩展能力，继承自[Extens
 
 > **说明：**
 >
-> 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
@@ -95,7 +95,7 @@ class UIServiceExt extends UIServiceExtensionAbility {
 
 onConnect(want: Want, proxy: UIServiceHostProxy): void
 
-[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13)拉起的服务，会在[onCreate()](#uiserviceextensionabilityoncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
+[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14)拉起的服务，会在[onCreate()](#uiserviceextensionabilityoncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

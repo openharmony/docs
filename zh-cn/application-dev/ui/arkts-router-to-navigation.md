@@ -39,7 +39,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/pageOne' // 目标url
             }, router.RouterMode.Standard, (err) => {
               if (err) {
@@ -59,8 +59,6 @@ struct Index {
 
 ```ts
 // pageOne.ets
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct pageOne {
@@ -77,7 +75,7 @@ struct pageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')
@@ -96,7 +94,7 @@ struct pageOne {
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -106,7 +104,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.pushPathByName('pageOne', null)
+            this.pathStack.pushPathByName('pageOne', null);
           })
       }.width('100%').height('100%')
     }
@@ -122,12 +120,12 @@ struct Index {
 
 @Builder
 export function PageOneBuilder() {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
@@ -137,12 +135,12 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.clear()
+            this.pathStack.clear();
           })
       }.width('100%').height('100%')
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -169,28 +167,26 @@ export struct PageOne {
 
 ## 路由操作
 
-Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`。
+Router通过`@ohos.router`模块提供的方法来操作页面，建议使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getRouter](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter)获取[Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router)实例。
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 // push page
-router.pushUrl({ url:"pages/pageOne", params: null })
+router.pushUrl({ url:"pages/pageOne", params: null });
 
 // pop page
-router.back({ url: "pages/pageOne" })
+this.getUIContext().getRouter().back({ url: "pages/pageOne" });
 
 // replace page
-router.replaceUrl({ url: "pages/pageOne" })
+router.replaceUrl({ url: "pages/pageOne" });
 
 // clear all page
-router.clear()
+this.getUIContext().getRouter().clear();
 
 // 获取页面栈大小
-let size = router.getLength()
+let size = this.getUIContext().getRouter().getLength();
 
 // 获取页面状态
-let pageState = router.getState()
+let pageState = this.getUIContext().getRouter().getState();
 ```
 
 Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法来操作页面，需要创建一个栈对象并传入Navigation中。
@@ -199,7 +195,7 @@ Navigation通过页面栈对象[NavPathStack](../reference/apis-arkui/arkui-ts/t
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     // 设置NavPathStack并传入Navigation
@@ -213,39 +209,39 @@ struct Index {
 
 
 // push page
-this.pathStack.pushPath({ name: 'pageOne' })
+this.pathStack.pushPath({ name: 'pageOne' });
 
 // pop page
-this.pathStack.pop()
-this.pathStack.popToIndex(1)
-this.pathStack.popToName('pageOne')
+this.pathStack.pop();
+this.pathStack.popToIndex(1);
+this.pathStack.popToName('pageOne');
 
 // replace page
-this.pathStack.replacePath({ name: 'pageOne' })
+this.pathStack.replacePath({ name: 'pageOne' });
 
 // clear all page
-this.pathStack.clear()
+this.pathStack.clear();
 
 // 获取页面栈大小
-let size: number = this.pathStack.size()
+let size: number = this.pathStack.size();
 
 // 删除栈中name为PageOne的所有页面
-this.pathStack.removeByName("pageOne")
+this.pathStack.removeByName("pageOne");
 
 // 删除指定索引的页面
-this.pathStack.removeByIndexes([1, 3, 5])
+this.pathStack.removeByIndexes([1, 3, 5]);
 
 // 获取栈中所有页面name集合
-this.pathStack.getAllPathName()
+this.pathStack.getAllPathName();
 
 // 获取索引为1的页面参数
-this.pathStack.getParamByIndex(1)
+this.pathStack.getParamByIndex(1);
 
 // 获取PageOne页面的参数
-this.pathStack.getParamByName("pageOne")
+this.pathStack.getParamByName("pageOne");
 
 // 获取PageOne页面的索引集合
-this.pathStack.getIndexByName("pageOne")
+this.pathStack.getIndexByName("pageOne");
 // ...
 ```
 
@@ -259,7 +255,7 @@ Router作为全局通用模块，可以在任意页面中调用，Navigation作�
 @Component
 struct Index {
   // Navigation创建一个Provide修饰的NavPathStack
- @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -290,14 +286,14 @@ export struct PageOne {
 ```ts
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
       // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -309,11 +305,11 @@ export struct PageOne {
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   // 全局设置一个NavPathStack
   aboutToAppear(): void {
-     AppStorage.setOrCreate("PathStack", this.pathStack)
+     AppStorage.setOrCreate("PathStack", this.pathStack);
    }
 
   build() {
@@ -328,7 +324,7 @@ struct Index {
 @Component
 export struct PageOne {
   // 子页面中获取全局的NavPathStack
-  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack
+  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack;
 
   build() {
     NavDestination() {
@@ -345,11 +341,11 @@ export struct PageOne {
 // 子页面中的自定义组件
 @Component
 struct CustomNode {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // query navigation info
-    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo;
     this.pathStack = navigationInfo.pathStack;
   }
 
@@ -357,7 +353,7 @@ struct CustomNode {
     Row() {
       Button('跳转到PageTwo')
         .onClick(() => {
-          this.pathStack.pushPath({ name: 'pageTwo' })
+          this.pathStack.pushPath({ name: 'pageTwo' });
         })
     }
   }
@@ -432,7 +428,7 @@ Router和Navigation都提供了系统的转场动画也提供了自定义转场�
 
 其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考Router[页面转场动画](arkts-page-transition-animation.md)。
 
-Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考Navigation[自定义转场](arkts-navigation-navigation.md#自定义转场)。（注意：Dialog类型的页面当前没有转场动画）
+Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考Navigation[自定义转场](arkts-navigation-navigation.md#自定义转场)。（注意：API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。）
 
 ## 共享元素转场
 
@@ -445,7 +441,7 @@ Navigation也提供了共享元素一镜到底的转场能力，需要配合`geo
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10)命名。
+1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名。
 
    ```ts
    // library/src/main/ets/pages/Index.ets
@@ -486,7 +482,7 @@ Router可以通过命名路由的方式实现跨包跳转。
            .backgroundColor('#ccc')
            .onClick(() => { // 点击跳转到其他共享包中的页面
              try {
-               router.pushNamedRoute({
+               this.getUIContext().getRouter().pushNamedRoute({
                  name: 'myPage',
                  params: {
                    data1: 'message',
@@ -538,12 +534,12 @@ Navigation作为路由组件，默认支持跨包跳转。
    @Entry
    @Component
    struct mainPage {
-    pageStack: NavPathStack = new NavPathStack()
+    pageStack: NavPathStack = new NavPathStack();
    
     @Builder pageMap(name: string) {
       if (name === 'PageInHSP') {
    	    // 2.定义路由映射表
-   	    PageInHSP()
+   	    PageInHSP();
       }
     }
 
@@ -589,7 +585,7 @@ Navigation作为路由组件，默认支持跨包跳转。
 1. 开发者自定义路由管理模块，各个提供路由页面的模块均依赖此模块；
 2. 构建Navigation组件时，将NavPathStack注入路由管理模块，路由管理模块对NavPathStack进行封装，对外提供路由能力；
 3. 各个路由页面不再提供组件，转为提供@build封装的构建函数，并再通过WrappedBuilder封装后，实现全局封装；
-4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块。
+4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块；
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
 具体的构建过程，可以参考Navigation[自动生成动态路由](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)示例。
@@ -608,7 +604,7 @@ Router可以通过observer实现注册监听，接口定义请参考Router无感
 import { uiObserver } from '@kit.ArkUI';
 
 function callBackFunc(info: uiObserver.RouterPageInfo) {
-    console.info("RouterPageInfo is : " + JSON.stringify(info))
+    console.info("RouterPageInfo is : " + JSON.stringify(info));
 }
 
 // used in ability context.
@@ -659,12 +655,12 @@ Router可以通过[queryRouterPageInfo](../reference/apis-arkui/arkui-ts/ts-cust
 
 | 名称                 | 类型                        | 必填 | 说明                           |
 | -------------------- | --------------------------- | ---- | ------------------------------ |
-| context              | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息 |
+| context              | UIAbilityContext/ UIContext | 是   | routerPage页面对应的上下文信息。 |
 | index                | number                      | 是   | routerPage在栈中的位置。       |
 | name                 | string                      | 是   | routerPage页面的名称。         |
 | path                 | string                      | 是   | routerPage页面的路径。         |
-| state                | RouterPageState             | 是   | routerPage页面的状态           |
-| pageId<sup>12+</sup> | string                      | 是   | routerPage页面的唯一标识       |
+| state                | RouterPageState             | 是   | routerPage页面的状态。           |
+| pageId<sup>12+</sup> | string                      | 是   | routerPage页面的唯一标识。       |
 
 ```ts
 import { uiObserver } from '@kit.ArkUI';
@@ -700,7 +696,7 @@ import { uiObserver } from '@kit.ArkUI';
 export struct NavDestinationExample {
   build() {
     NavDestination() {
-      MyComponent()
+      MyComponent();
     }
   }
 }

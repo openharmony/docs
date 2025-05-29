@@ -6,7 +6,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
-- 正常连接设备。
+- 确保设备已正常连接，并执行hdc shell。
 
 ## 命令行说明
 
@@ -56,7 +56,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -e                          |faultlogs of crash history
     --net [pid]                 |dump network information; if pid is specified, dump traffic usage of specified pid
     --storage [pid]             |dump storage information; if pid is specified, dump /proc/pid/io
-    -p                          |processes information, include list and infromation of processes and threads
+    -p                          |processes information, include list and information of processes and threads
     -p [pid]                    |dump threads under pid, includes smap, block channel, execute time, mountinfo
     --cpufreq                   |dump real CPU frequency of each core
     --mem [pid]                 |dump memory usage of total; dump memory usage of specified pid if pid was specified
@@ -118,7 +118,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -------------------------------[base]-------------------------------
 
     BuildId: OpenHarmony 5.0.0.37
-    RleaseType: Canary1
+    ReleaseType: Canary1
     ...
     ```
 
@@ -137,7 +137,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -------------------------------[base]-------------------------------
 
     BuildId: OpenHarmony 5.0.0.37
-    RleaseType: Canary1
+    ReleaseType: Canary1
     ...
 
     $ hidumper -c system
@@ -175,7 +175,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 
     ----------------------------------RenderService----------------------------------
-    ------Graphic2D--RenderSerice ------
+    ------Graphic2D--RenderService ------
     Usage:
     h                             |help text for the tool
     ...
@@ -220,10 +220,10 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 
     ----------------------------------RenderService----------------------------------
-    ------Graphic2D--RenderSerice ------
+    ------Graphic2D--RenderService ------
     Usage:
     h                             |help text for the tool
-    screen                         |dump all screen infomation in the system
+    screen                         |dump all screen information in the system
     surface                        |dump all surface information
     composer fps                   |dump the fps info of composer
     ...
@@ -246,10 +246,10 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 
     ----------------------------------RenderService----------------------------------
-    ------Graphic2D--RenderSerice ------
+    ------Graphic2D--RenderService ------
     Usage:
     h                             |help text for the tool
-    screen                         |dump all screen infomation in the system
+    screen                         |dump all screen information in the system
     surface                        |dump all surface information
     composer fps                   |dump the fps info of composer
     [surface name] fps             |dump the fps info of surface
@@ -292,7 +292,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -- The recently fps records info of screens:
     ```
 
-    为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
+    为开发者提供使设备不自动息屏的能力：-t参数使设备不自动息屏；-f参数使设备恢复自动息屏，或设备重启后恢复自动息屏。
 
     ```
     hidumper -s 3301 -a -t
@@ -419,9 +419,9 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 命令2：执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
     >
-    > release版本:命令1执行结果为0且命令2不包含"log"字符串
+    > release版本:命令1执行结果为0且命令2不包含"log"字符串。
     >
-    > debug版本:非release版本即为debug版本
+    > debug版本:非release版本即为debug版本。
 
     **使用样例：**
 
@@ -676,7 +676,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -e                          |faultlogs of crash history
     --net [pid]                 |dump network information; if pid is specified, dump traffic usage of specified pid
     --storage [pid]             |dump storage information; if pid is specified, dump /proc/pid/io
-    -p                          |processes information, include list and infromation of processes and threads
+    -p                          |processes information, include list and information of processes and threads
     -p [pid]                    |dump threads under pid, includes smap, block channel, execute time, mountinfo
     --cpufreq                   |dump real CPU frequency of each core
     --mem [pid]                 |dump memory usage of total; dump memory usage of specified pid if pid was specified
@@ -699,7 +699,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -e                          |faultlogs of crash history
     --net [pid]                 |dump network information; if pid is specified, dump traffic usage of specified pid
     --storage [pid]             |dump storage information; if pid is specified, dump /proc/pid/io
-    -p                          |processes information, include list and infromation of processes and threads
+    -p                          |processes information, include list and information of processes and threads
     -p [pid]                    |dump threads under pid, includes smap, block channel, execute time, mountinfo
     --cpufreq                   |dump real CPU frequency of each core
     --mem [pid]                 |dump memory usage of total; dump memory usage of specified pid if pid was specified
@@ -722,7 +722,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 如何区分debug和release版本：请查看`hidumper -p`中说明。
     >
-    > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下
+    > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下。
 
     **使用样例：**
 
@@ -739,3 +739,4 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     hidumper-jsheap-64949-64949-1730873174145
     hidumper-leaklist-64949-1730873210483
     ```
+    

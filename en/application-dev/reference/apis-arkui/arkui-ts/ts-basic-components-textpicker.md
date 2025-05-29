@@ -37,8 +37,9 @@ Creates a text picker based on the selection range specified by **range**.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | string[] \| string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource) \|<br>[TextPickerRangeContent](#textpickerrangecontent10)[]<sup>10+</sup> \| [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[]<sup>10+</sup> | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.<br>**NOTE**<br>For a single-column picker, use a value of the string[], Resource, or TextPickerRangeContent[] type.<br>For a multi-column picker, use a value of the string[] type.<br>For a multi-column linked picker, use a value of the TextCascadePickerRangeContent[] type.<br>The Resource type supports only [strarray.json](../../../quick-start/resource-categories-and-access.md#resource-group-directories).<br>The type and number of columns in the range cannot be dynamically modified.|
-| selected | number \| number[]<sup>10+</sup> | No| Index of the default item in the range.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected | number \| number[]<sup>10+</sup> | No| Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>**NOTE**<br>For a single-column picker, use a value of the number type.<br>For a multi-column (linked) picker, use a value of the number[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
+| value | string \| string[]<sup>10+</sup> | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item<br>**NOTE**<br>This parameter works only when the picker contains text only.  <br>For a single-column picker, use a value of the string type.<br>For a multi-column (linked) picker, use a value of the string[] type.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
+| columnWidths<sup>18+</sup> | LengthMetrics[] | No| Width of each column in the picker.<br>Default value: All columns have equal widths.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ## TextPickerRangeContent<sup>10+</sup>
 
@@ -48,8 +49,8 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type                                                | Mandatory| Description      |
 | ---- | ---------------------------------------------------- | ---- | ---------- |
-| icon | string \| [Resource](ts-types.md#resource) | Yes  | Image resource.|
-| text | string \| [Resource](ts-types.md#resource) | No  | Text information.|
+| icon | string \| [Resource](ts-types.md#resource) | Yes  | Image resource. If the value is a string, such as **"/common/hello.png"**, it represents the path to the image.|
+| text | string \| [Resource](ts-types.md#resource) | No  | Text information.<br>An empty character string is used by default.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 
 ## TextCascadePickerRangeContent<sup>10+</sup>
 
@@ -59,7 +60,7 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type                                                | Mandatory| Description  |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
-| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.|
+| text   | string \| [Resource](ts-types.md#resource) | Yes  | Text information.<br>**NOTE**<br>If the text is longer than the column width, it will be truncated.|
 | children   | [TextCascadePickerRangeContent](#textcascadepickerrangecontent10)[] | No  | Linkage data.|
 ## DividerOptions<sup>12+</sup>
 
@@ -69,18 +70,18 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name       | Type                                | Mandatory| Description                                                        |
 | ----------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| strokeWidth | [Dimension](ts-types.md#dimension10) | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| startMargin | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| endMargin   | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.|
-| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.
+| strokeWidth | [Dimension](ts-types.md#dimension10) | No  | Stroke width of the divider. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>If the value is less than 0, the default value is used. The maximum value allowed is half the height of the column.<br>Default value: **2.0px**|
+| startMargin | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the start edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| endMargin   | [Dimension](ts-types.md#dimension10) | No  | Distance between the divider and the end edge of the picker. The unit is vp by default. You can also specify it as px. The percentage type is not supported.<br>Values less than 0 are invalid. The maximum value allowed is the width of the column.<br>Default value: **0**|
+| color       | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the divider.<br>Default value: **'#33000000'**
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### defaultPickerItemHeight
 
-defaultPickerItemHeight(value: Optional\<number | string>)
+defaultPickerItemHeight(value: number | string)
 
 Sets the height of each item in the picker.
 
@@ -92,13 +93,29 @@ Sets the height of each item in the picker.
 
 | Name| Type                      | Mandatory| Description                  |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker.|
+| value  | number \| string | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.|
+
+### defaultPickerItemHeight<sup>18+</sup>
+
+defaultPickerItemHeight(height: Optional\<number | string>)
+
+Sets the height of each item in the picker. Compared to [defaultPickerItemHeight](#defaultpickeritemheight), this API supports the **undefined** type for the **height** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory| Description                  |
+| ------ | -------------------------- | ---- | ---------------------- |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| string> | Yes  | Height of each item in the picker. For the number type, the value range is [0, +∞). For the string type, only numeric string values, for example, **"56"**, are supported.<br>Default value: 56 vp (selected) and 36 vp (unselected).<br>**NOTE**<br>The set value applies to both selected and unselected items.<br>If **height** is set to **undefined**, the previous value is retained.|
 
 ### disappearTextStyle<sup>10+</sup>
 
-disappearTextStyle(value: Optional\<PickerTextStyle>)
+disappearTextStyle(value: PickerTextStyle)
 
-Sets the font color, font size, and font width for the top and bottom items.
+Sets the font color, font size, and font weight for the top and bottom items.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -108,13 +125,29 @@ Sets the font color, font size, and font width for the top and bottom items.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font width of the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight of the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+
+### disappearTextStyle<sup>18+</sup>
+
+disappearTextStyle(style: Optional\<PickerTextStyle>)
+
+Sets the font color, font size, and font weight for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### textStyle<sup>10+</sup>
 
-textStyle(value: Optional\<PickerTextStyle>)
+textStyle(value: PickerTextStyle)
 
-Sets the font color, font size, and font width for all items except the top, bottom, and selected items.
+Sets the font color, font size, and font weight for all items except the top, bottom, and selected items.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -124,13 +157,29 @@ Sets the font color, font size, and font width for all items except the top, bot
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+
+### textStyle<sup>18+</sup>
+
+textStyle(style: Optional\<PickerTextStyle>)
+
+Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
-selectedTextStyle(value: Optional\<PickerTextStyle>)
+selectedTextStyle(value: PickerTextStyle)
 
-Sets the font color, font size, and font width for the selected item.
+Sets the font color, font size, and font weight for the selected item.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -140,11 +189,27 @@ Sets the font color, font size, and font width for the selected item.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
+
+### selectedTextStyle<sup>18+</sup>
+
+selectedTextStyle(style: Optional\<PickerTextStyle>)
+
+Sets the font color, font size, and font weight for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### selectedIndex<sup>10+</sup>
 
-selectedIndex(value: Optional\<number | number[]>)
+selectedIndex(value: number | number[])
 
 Sets the index of the default selected item in the array. Its priority is higher than that of the selected value in **options**. For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type.
 
@@ -156,11 +221,27 @@ Sets the index of the default selected item in the array. Its priority is higher
 
 | Name| Type                        | Mandatory| Description                        |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| number[]> | Yes  | Index of the default selected item in the array.<br>Default value: **0**<br>|
+| value  | number \| number[] | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **value** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
+
+### selectedIndex<sup>18+</sup>
+
+selectedIndex(index: Optional\<number | number[]>)
+
+Sets the index of the default selected item in the array. Its priority is higher than that of the selected value in **options**. For a single-column picker, use a value of the number type. For a multi-column (linked) picker, use a value of the number[] type. Compared to [selectedIndex](#selectedindex10), this API supports the **undefined** type for the **index** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| number[]> | Yes  | Index of the default selected item in the array. The index is zero-based.<br>Default value: **0**<br>If the value of **index** is **undefined**, the default value is the same as the value of **selected** in [options](#textpickeroptions). If the value of **selected** in [options](#textpickeroptions) is also **undefined**, the default value is **0**.<br>|
 
 ### canLoop<sup>10+</sup>
 
-canLoop(value: Optional\<boolean>)
+canLoop(value: boolean)
 
 Sets whether scrolling is loopable.
 
@@ -172,11 +253,27 @@ Sets whether scrolling is loopable.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether scrolling is loopable.<br>**true**: loopable<br>**false**: not loopable<br>Default value: **true**|
+| value  | boolean | Yes  | Whether scrolling is loopable.<br>**true**: loopable<br>**false**: not loopable<br>Default value: **true**|
+
+### canLoop<sup>18+</sup>
+
+canLoop(isLoop: Optional\<boolean>)
+
+Sets whether scrolling is loopable. Compared to [canLoop](#canloop10)<sup>10+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether scrolling is loopable.<br>**true**: loopable<br>**false**: not loopable<br>If **isLoop** is set to **undefined**, the default value **true** is used.|
 
 ### divider<sup>12+</sup>
 
-divider(value: Optional\<DividerOptions | null>)
+divider(value: DividerOptions | null)
 
 Sets the divider style. If this attribute is not set, the divider is displayed based on the default value.
 
@@ -189,11 +286,29 @@ If the sum of **startMargin** and **endMargin** exceeds the component width, bot
 **Parameters**
 | Name| Type   | Mandatory| Description                                                                 |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| value | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12) \| null> | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>Default value:<br>{<br>strokeWidth: '2px', <br>startMargin: 0, <br>endMargin: 0, <br>color: '#33000000'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.|
+| value | [DividerOptions](#divideroptions12) \| null | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>Default value:<br>{<br>strokeWidth: '2px', <br>startMargin: 0, <br>endMargin: 0, <br>color: '#33000000'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.|
+
+### divider<sup>18+</sup>
+
+divider(textDivider: Optional\<DividerOptions | null>)
+
+Sets the divider style. If this attribute is not set, the divider is displayed based on the default value. Compared to [divider](#divider12)<sup>12+</sup>, this API supports the **undefined** type for the **textDivider** parameter.
+
+If the sum of **startMargin** and **endMargin** exceeds the component width, both **startMargin** and **endMargin** will be set to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                                 |
+| ------ | ------- | ---- | --------------------------------------------------------------------- |
+| textDivider | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12) \| null> | Yes  | Divider options.<br>1. If **DividerOptions** is set, the divider is displayed in the configured style.<br>If **textDivider** is set to **undefined**, the default value is used:<br>{<br>strokeWidth: '2px', <br>startMargin: 0, <br>endMargin: 0, <br>color: '#33000000'<br>}<br>2. If this parameter is set to **null**, the divider is not displayed.|
 
 ### gradientHeight<sup>12+</sup>
 
-gradientHeight(value: Optional\<Dimension>)
+gradientHeight(value: Dimension)
 
 Sets the height for the fade effect. If this attribute is not set, the default fade effect is displayed.
 
@@ -205,7 +320,27 @@ Sets the height for the fade effect. If this attribute is not set, the default f
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**|
+| value  | [Dimension](ts-types.md#dimension10) | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**|
+
+### gradientHeight<sup>18+</sup>
+
+gradientHeight(height: Optional\<Dimension>)
+
+Sets the height for the fade effect. If this attribute is not set, the default fade effect is displayed. Compared to [gradientHeight](#gradientheight12)<sup>12+</sup>, this API supports the **undefined** type for the **height** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | Yes  | Height of the fade effect at the top and bottom edges of the content area. It can be set in percentage, with 100% (the maximum value) being half the height of the picker. Setting it to **0** results in no fade effect, while negative numbers or other invalid values display the default fade effect. Default value: **36vp**<br>If **height** is set to **undefined**, the default value **36vp** is used.|
+
+> **NOTE**
+>
+> Avoid changing the attribute data during the animation process of this component.
 
 ### disableTextStyleAnimation<sup>15+</sup>
 
@@ -243,15 +378,57 @@ Sets the style of the text items when the text style change animation during the
 >
 > Avoid changing the attribute data during the animation process of this component.
 
+### enableHapticFeedback<sup>18+</sup>
+
+enableHapticFeedback(enable: Optional\<boolean>)
+
+Specifies whether to enable haptic feedback.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type                                         | Mandatory | Description                                                                                 |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
+
+>  **NOTE**
+>
+>  To enable haptic feedback, you must declare the ohos.permission.VIBRATE permission under **requestPermissions** in the **module.json5** file of the project.
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ```
+
+### digitalCrownSensitivity<sup>18+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+Sets the sensitivity to the digital crown rotation.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type                                    | Mandatory  | Description                     |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                    |
+
+>  **NOTE**
+>
+>  This API is only available to circular screens on wearable devices. The component needs to obtain focus before responding to the [crown event](ts-universal-events-crown.md).
+
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onChange
 
-onChange(callback: Optional\<OnTextPickerChangeCallback>)
+onChange(callback: (value: string \| string[], index: number \| number[]) =&gt; void)
 
-Triggered when the text picker snaps to the selected item. When the picker contains text only or both text and imagery, **value** indicates the text of the selected item. When the picker contains imagery only, **value** is empty.
+Triggered when an item in the picker is selected. When the picker contains text only or both text and imagery, **value** indicates the text of the selected item. When the picker contains imagery only, **value** is empty.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -259,19 +436,34 @@ Triggered when the text picker snaps to the selected item. When the picker conta
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                      |
-| -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | Yes  | Callback invoked when an item in the picker is selected.|
+| Name| Type                                      | Mandatory| Description                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string \| string[]<sup>10+</sup> | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
+| index  | number \| number[]<sup>10+</sup> | Yes  | Index of the selected item. The index is zero-based. For a multi-column picker, **index** is of the array type.|
+
+### onChange<sup>18+</sup>
+
+onChange(callback: Optional\<OnTextPickerChangeCallback>)
+
+Triggered when the text picker snaps to the selected item. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback18)> | Yes  | Callback invoked when an item in the picker is selected.<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ### onScrollStop<sup>14+</sup>
 
-onScrollStop(callback: (value: string \| string[], index: number \| number[]) =&gt; void)
+onScrollStop(callback: TextPickerScrollStopCallback)
 
 Triggered when the scrolling in the text picker stops.
 
 If the scrolling is initiated by a gesture, this event is triggered when the finger is lifted from the screen and the scrolling stops.
-
-When the picker contains text only or a combination of images and text, **value** indicates the text of the selected item. When the picker contains images only, **value** is empty.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -281,10 +473,27 @@ When the picker contains text only or a combination of images and text, **value*
 
 | Name| Type                                      | Mandatory| Description                                             |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string \| string[] | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
-| index  | number \| number[] | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | Yes  | Triggered when the scrolling in the text picker stops.|
 
-### onEnterSelectedArea<sup>16+</sup>
+### onScrollStop<sup>18+</sup>
+
+onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
+
+Triggered when the scrolling in the text picker stops. Compared to [onScrollStop](#onscrollstop14)<sup>14+</sup>, this API supports the **undefined** type for the **callback** parameter.
+
+If the scrolling is initiated by a gesture, this event is triggered when the finger is lifted from the screen and the scrolling stops.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | Yes  | Triggered when the scrolling in the text picker stops.<br>If **callback** is set to **undefined**, the callback function is not used.|
+
+### onEnterSelectedArea<sup>18+</sup>
 
 onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
 
@@ -294,7 +503,7 @@ Compared to the **onChange** event, this event is triggered earlier, specificall
 
 When the picker contains text only or a combination of images and text, **value** indicates the text of the selected item. When the picker contains images only, **value** is empty.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -302,7 +511,7 @@ When the picker contains text only or a combination of images and text, **value*
 
 | Name  | Type                      | Mandatory| Description                                      |
 | -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback16) | Yes  | Triggered during the scrolling of the text picker when an item enters the divider area.|
+| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback18) | Yes  | Triggered during the scrolling of the text picker when an item enters the divider area.|
 
 ### onAccept<sup>(deprecated) </sup>
 
@@ -319,7 +528,7 @@ This API is deprecated since API version 10.
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
 | value  | string | Yes  | Text of the selected item.  |
-| index  | number | Yes  | Index of the selected item.|
+| index  | number | Yes  | Index of the selected item. The index is zero-based.|
 
 ### onCancel<sup>(deprecated) </sup>
 
@@ -345,15 +554,15 @@ Defines the text style options. Inherits [PickerTextStyle](ts-basic-components-d
 | maxFontSize  | number \| string \| [Resource](ts-types.md#resource) | No   | Maximum font size.                    |
 |  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | No   | Display mode when the text is too long. Ineffective when set to **MARQUEE**.                    |
 
-## OnTextPickerChangeCallback<sup>16+</sup>
+## OnTextPickerChangeCallback<sup>18+</sup>
 
 type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
 
-Triggered when an item in the picker is selected.
+Triggered when an item in the picker is selected. When the picker contains text only or both text and imagery, **value** indicates the text of the selected item. When the picker contains imagery only, **value** is empty.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -362,19 +571,19 @@ Triggered when an item in the picker is selected.
 | Name| Type                                      | Mandatory| Description                                             |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
 | value  | string \| string[]<sup>10+</sup> | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
-| index  | number \| number[]<sup>10+</sup> | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
+| index  | number \| number[]<sup>10+</sup> | Yes  | Index of the selected item. The index is zero-based. For a multi-column picker, **index** is of the array type.|
 
-## TextPickerEnterSelectedAreaCallback<sup>16+</sup>
+## TextPickerScrollStopCallback<sup>14+</sup>
 
-type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
+type TextPickerScrollStopCallback = (value: string | string[], index: number | number[]) => void
 
-Represents the callback triggered during the scrolling of the text picker when an item enters the divider area.
+Triggered when the scrolling in the text picker stops.
 
-In scenarios where the picker contains linked columns, the use of this callback is not recommended. The reason is that it identifies nodes where items enter the divider area during scrolling. However, items that change in response to the scrolling do not themselves scroll. As a result, the callback's return values will only reflect changes for the currently scrolling column, while other non-scrolling columns will remain unchanged.
+When the picker contains text only or both text and imagery, **value** indicates the text of the selected item. When the picker contains imagery only, **value** is empty.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -383,16 +592,38 @@ In scenarios where the picker contains linked columns, the use of this callback 
 | Name| Type                                      | Mandatory| Description                                             |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
 | value  | string \| string[] | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
-| index  | number \| number[] | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
+| index  | number \| number[] | Yes  | Index of the selected item. The index is zero-based. For a multi-column picker, **index** is of the array type.|
+
+## TextPickerEnterSelectedAreaCallback<sup>18+</sup>
+
+type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
+
+Represents the callback triggered during the scrolling of the text picker when an item enters the divider area.
+
+In scenarios where the picker contains linked columns, the use of this callback is not recommended. The reason is that it identifies nodes where items enter the divider area during scrolling. However, items that change in response to the scrolling do not themselves scroll. As a result, the callback's return values will only reflect changes for the currently scrolling column, while other non-scrolling columns will remain unchanged.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string \| string[] | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
+| index  | number \| number[] | Yes  | Index of the selected item. The index is zero-based. For a multi-column picker, **index** is of the array type.|
 
 ## Example
 
 ### Example 1: Setting the Number of Columns in the Picker
 
-This example demonstrates how to set **range** to implement single-column or multi-column text pickers.
+This example demonstrates how to configure a single-column or multi-column text picker by setting **range** and customizing the width of each column using **columnWidths**.
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
 class bottom {
   bottom:number = 50
 }
@@ -407,26 +638,40 @@ struct TextPickerExample {
   private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
   private cascade: TextCascadePickerRangeContent[] = [
     {
-      text: 'Asia',
-      children: [{ text: 'China', children: [{ text: 'Beijing' }, { text: 'Shanghai' }, { text: 'Chongqing' }] },
-        { text: 'Japan', children: [{ text: 'Tokyo' }, { text: 'Hokkaido' }, { text: 'Osaka' }] }]
+      text: 'Liaoning Province',
+      children: [{ text: 'Shenyang', children: [{ text: 'Shenhe District' }, { text: 'Heping District' }, { text: 'Hunnan District' }] },
+        { text: 'Dalian', children: [{ text: 'Zhongshan District' }, { text: 'Jinzhou District' }, { text: 'Changhai County' }] }]
     },
     {
-      text: 'Europe',
-      children: [{ text: 'Germany', children: [{ text: 'Berlin' }, { text: 'Munich' }, { text: 'Nuremberg' }] },
-        { text: 'France', children: [{ text: 'Paris' }, { text: 'Lille' }, { text: 'Orleans' }] }]
+      text: 'Jilin Province',
+      children: [{ text: 'Changchun', children: [{ text: 'Nanguan District' }, { text: 'Kuancheng District' }, { text: 'Chaoyang District' }] },
+        { text: 'Siping', children: [{ text: 'Tiexi District' }, { text: 'Tiedong District' }, { text: 'Lishu County' }] }]
     },
     {
-      text: 'Africa',
-      children: [{ text: 'Egypt', children: [{ text: 'Cairo' }, { text: 'Damietta' }, { text: 'Girga' }] },
-        { text: 'Algeria', children: [{ text: 'Alger' }, { text: 'Oran' }, { text: 'Adrar' }] }]
+      text: 'Heilongjiang Province',
+      children: [{ text: 'Harbin', children: [{ text: 'Daoli District' }, { text: 'Daowai District' }, { text: 'Nangang District' }] },
+        { text: 'Mudanjiang', children: [{ text: 'Dong'an District' }, { text: 'Xi'an District' }, { text: 'Aimin District' }] }]
     }
   ]
+  private singleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(50)
+  ]
 
+  private multipleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.vp(100),
+    LengthMetrics.vp(200),
+    LengthMetrics.vp(100)
+  ]
+
+  private cascadeColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(20),
+    LengthMetrics.percent(30),
+    LengthMetrics.percent(50)
+  ]
   build() {
     Column() {
 
-      TextPicker({ range: this.apfruits, selected: this.select })
+      TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
@@ -437,7 +682,7 @@ struct TextPickerExample {
           console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
         })
 
-      TextPicker({ range: this.multi })
+      TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
         })
@@ -448,7 +693,7 @@ struct TextPickerExample {
           console.info('TextPicker multi-column: onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
 
-      TextPicker({ range: this.cascade })
+      TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker multi-column linkage: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
         })
@@ -463,7 +708,7 @@ struct TextPickerExample {
 }
 ```
 
-![textpicker](figures/textpicker.gif)
+
 
 ### Example 2: Setting the Text Style
 
@@ -534,7 +779,7 @@ struct TextPickerExample {
 ```
 ![textpicker](figures/textpicker2.gif)
 
-### Example 3: Using the Divider Style
+### Example 4: Using the Divider Style
 
 This example demonstrates how to configure a text picker with a custom divider style by setting **divider** with **DividerOptions**.
 

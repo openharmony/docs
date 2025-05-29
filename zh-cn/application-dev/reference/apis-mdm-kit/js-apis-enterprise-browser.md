@@ -2,13 +2,15 @@
 
 本模块提供浏览器管理能力，包括设置/取消浏览器策略、获取浏览器策略等。
 
+浏览器策略指通过配置或管理浏览器行为的一系列规则和设置，以确保安全性、合规性、性能优化或用户体验的一致性。
+
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -50,6 +52,7 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -72,7 +75,7 @@ try {
 
 getPoliciesSync(admin: Want, appId: string): string
 
-指定管理员应用获取指定浏览器的策略。
+获取指定浏览器设置的策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -103,6 +106,7 @@ getPoliciesSync(admin: Want, appId: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,7 +127,7 @@ try {
 
 setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, policyValue: string): void
 
-为指定的浏览器设置浏览器托管策略，成功后会发布系统公共事件[BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
+为指定的浏览器设置浏览器策略，成功后会发布系统公共事件[BROWSER_POLICY_CHANGED_EVENT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_managed_browser_policy_changed)。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -133,7 +137,7 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleName  | string                                                  | 是   | 应用包名，用于指定浏览器。                                     |
 | policyName  | string                                                  | 是   | 浏览器策略名。 |
 | policyValue | string                                                  | 是   | 浏览器策略值。当此值为空字符串时，表示取消浏览器策略名对应浏览器子策略。 |
@@ -153,6 +157,7 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -173,7 +178,7 @@ try {
 
 getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
-获取指定浏览器的浏览器托管策略。
+获取指定浏览器的浏览器策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -182,14 +187,14 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 
 | 参数名      | 类型                                                    | 必填 | 说明                     |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------ |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。           |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。           |
 | bundleName  | string                                                  | 是   | 应用包名，用于指定浏览器。 |
 
 **返回值：**
 
 | 类型        | 说明         |
 | ----------- | ------------ |
-| ArrayBuffer | 浏览器托管策略。 |
+| ArrayBuffer | 浏览器策略。 |
 
 **错误码**：
 
@@ -205,6 +210,7 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -215,7 +221,7 @@ try {
   let buffer: ArrayBuffer = browser.getManagedBrowserPolicy(wantTemp, bundleName);
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get managed browser policy. Code is ${err.code}, message is ${err.message}`);
@@ -226,7 +232,7 @@ try {
 
 getSelfManagedBrowserPolicyVersion(): string
 
-获取指定浏览器的浏览器托管策略版本。
+获取指定浏览器的浏览器策略版本。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -235,7 +241,7 @@ getSelfManagedBrowserPolicyVersion(): string
 
 | 类型    | 说明         |
 | ------ | ------------ |
-| string | 浏览器托管策略版本。 |
+| string | 浏览器策略版本。 |
 
 **示例：**
 
@@ -253,7 +259,7 @@ try {
 
 getSelfManagedBrowserPolicy(): ArrayBuffer
 
-获取指定浏览器的浏览器托管策略。
+获取指定浏览器的浏览器策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -262,19 +268,18 @@ getSelfManagedBrowserPolicy(): ArrayBuffer
 
 | 类型        | 说明         |
 | ----------- | ------------ |
-| ArrayBuffer | 浏览器托管策略。 |
+| ArrayBuffer | 浏览器策略。 |
 
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 
 try {
   let buffer: ArrayBuffer = browser.getSelfManagedBrowserPolicy();
   let intBuffer: Uint8Array = new Uint8Array(buffer);
   let decoder: util.TextDecoder = util.TextDecoder.create('utf-8');
-  let stringData: string = decoder.decodeWithStream(intBuffer);
+  let stringData: string = decoder.decodeToString(intBuffer);
   console.info(`Succeeded in getting self managed browser policy, result : ${stringData}`);
 } catch(err) {
   console.error(`Failed to get self managed browser policy. Code is ${err.code}, message is ${err.message}`);

@@ -8,7 +8,7 @@ The AVPlayer module provides APIs related to media playback.
 You can refer to the corresponding development guide and samples based on your development requirements.
 
 - [Using AVPlayer to Play Audio](../../media/media/using-ndk-avplayer-for-playback.md)
-- [Using AVPlayer to Play Video](../../media/media/using-ndk-avplayer-for-video-playback.md)
+- [Using AVPlayer to Play Videos](../../media/media/using-ndk-avplayer-for-video-playback.md)
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -20,114 +20,115 @@ You can refer to the corresponding development guide and samples based on your d
 
 ### Files
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [avplayer.h](avplayer_8h.md) | Declares the AVPlayer APIs. You can use the native AVPlayer APIs to play a media asset. | 
-| [avplayer_base.h](avplayer__base_8h.md) | Declares the structs and enums of the AVPlayer. | 
+| [avplayer.h](avplayer_8h.md) | Declares the AVPlayer APIs. You can use the native AVPlayer APIs to play a media asset. |
+| [avplayer_base.h](avplayer__base_8h.md) | Declares the structs and enums of the AVPlayer. |
 
 
 ### Structs
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| struct  [AVPlayerCallback](_a_v_player_callback.md) | (Deprecated) Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. | 
+| struct  [AVPlayerCallback](_a_v_player_callback.md) | (Deprecated) Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. |
 
 
 ### Types
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a struct for the media key session. | 
-| typedef struct [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines a struct for the media key system information. | 
-| typedef void(\* [Player_MediaKeySystemInfoCallback](#player_mediakeysysteminfocallback)) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) \*mediaKeySystemInfo) | Defines the callback invoked when media key system information of the AVPlayer is updated. | 
-| typedef enum [AVPlayerState](#avplayerstate-1) [AVPlayerState](#avplayerstate) | Defines an enum for the AVPlayer states. | 
-| typedef enum [AVPlayerSeekMode](#avplayerseekmode-1) [AVPlayerSeekMode](#avplayerseekmode) | Defines an enum for the seek modes of the AVPlayer. | 
-| typedef enum [AVPlaybackSpeed](#avplaybackspeed-1) [AVPlaybackSpeed](#avplaybackspeed) | Defines an enum for the playback speeds of the AVPlayer. | 
-| typedef enum [AVPlayerOnInfoType](#avplayeroninfotype-1) [AVPlayerOnInfoType](#avplayeroninfotype) | Defines an enum for the types of messages received by the AVPlayer. | 
-| typedef enum [AVPlayerBufferingType](#avplayerbufferingtype-1) [AVPlayerBufferingType](#avplayerbufferingtype) | Defines an enum for the types of buffer messages of the AVPlayer. | 
-| typedef void(\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | (Deprecated) Defines the callback invoked when the AVPlayer receives a message. | 
-| typedef void(\*[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, OH_AVFormat \*infoBody, void \*userData) | Defines the callback invoked when the AVPlayer receives a message. If this callback is successfully set, the **OH_AVPlayerOnInfo** function will not be invoked. | 
-| typedef void(\* [OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | (Deprecated) Defines the callback invoked when an error occurs in the AVPlayer. This type is available in API version 9 or later. | 
-| typedef void(\* [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg, void \*userData) | Defines the callback invoked when an error occurs in the AVPlayer. If this callback is successfully set, the **OH_AVPlayerOnError** function will not be invoked. | 
-| typedef struct [AVPlayerCallback](_a_v_player_callback.md) [AVPlayerCallback](#avplayercallback) | (Deprecated) Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. | 
+| typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a struct for the media key session. |
+| typedef struct [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines a struct for the media key system information. |
+| typedef void(\* [Player_MediaKeySystemInfoCallback](#player_mediakeysysteminfocallback)) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) \*mediaKeySystemInfo) | Defines the callback invoked when media key system information of the AVPlayer is updated. |
+| typedef enum [AVPlayerState](#avplayerstate-1) [AVPlayerState](#avplayerstate) | Defines an enum for the AVPlayer states. |
+| typedef enum [AVPlayerSeekMode](#avplayerseekmode-1) [AVPlayerSeekMode](#avplayerseekmode) | Defines an enum for the seek modes of the AVPlayer. |
+| typedef enum [AVPlaybackSpeed](#avplaybackspeed-1) [AVPlaybackSpeed](#avplaybackspeed) | Defines an enum for the playback speeds of the AVPlayer. |
+| typedef enum [AVPlayerOnInfoType](#avplayeroninfotype-1) [AVPlayerOnInfoType](#avplayeroninfotype) | Defines an enum for the types of messages received by the AVPlayer. |
+| typedef enum [AVPlayerBufferingType](#avplayerbufferingtype-1) [AVPlayerBufferingType](#avplayerbufferingtype) | Defines an enum for the types of buffer messages of the AVPlayer. |
+| typedef void(\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | (Deprecated) Defines the callback invoked when the AVPlayer receives a message. |
+| typedef void(\*[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, OH_AVFormat \*infoBody, void \*userData) | Defines the callback invoked when the AVPlayer receives a message. If this callback is successfully set, the **OH_AVPlayerOnInfo** function will not be invoked. |
+| typedef void(\* [OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | (Deprecated) Defines the callback invoked when an error occurs in the AVPlayer. This type is available in API version 9 or later. |
+| typedef void(\* [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg, void \*userData) | Defines the callback invoked when an error occurs in the AVPlayer. If this callback is successfully set, the **OH_AVPlayerOnError** function will not be invoked. |
+| typedef struct [AVPlayerCallback](_a_v_player_callback.md) [AVPlayerCallback](#avplayercallback) | (Deprecated) Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. |
 
 
 ### Enums
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [AVPlayerState](#avplayerstate-1) {<br>AV_IDLE = 0, <br>AV_INITIALIZED = 1, <br>AV_PREPARED = 2, <br>AV_PLAYING = 3,<br>AV_PAUSED = 4, <br>AV_STOPPED = 5, <br>AV_COMPLETED = 6, <br>AV_RELEASED = 7,<br>AV_ERROR = 8<br>} | Enumerates the AVPlayer states.| 
-| [AVPlayerSeekMode](#avplayerseekmode) { <br>AV_SEEK_NEXT_SYNC = 0, <br>AV_SEEK_PREVIOUS_SYNC, <br>AV_SEEK_CLOSEST = 2<br>} | Enumerates the seek modes of the AVPlayer.| 
-| [AVPlaybackSpeed](#avplaybackspeed-1) {<br>AV_SPEED_FORWARD_0_75_X, <br>AV_SPEED_FORWARD_1_00_X, <br>AV_SPEED_FORWARD_1_25_X, <br> AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X, <br>AV_SPEED_FORWARD_0_50_X, <br>AV_SPEED_FORWARD_1_50_X<br>, <br>AV_SPEED_FORWARD_3_00_X, <br>AV_SPEED_FORWARD_0_25_X, <br>AV_SPEED_FORWARD_0_125_X} | Enumerates the playback speeds of the AVPlayer. | 
-| [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br>AV_INFO_TYPE_SEEKDONE = 0, <br>AV_INFO_TYPE_SPEEDDONE = 1, <br>AV_INFO_TYPE_BITRATEDONE = 2, <br>AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, <br>AV_INFO_TYPE_POSITION_UPDATE = 5, <br>AV_INFO_TYPE_MESSAGE = 6, <br>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, <br>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br>AV_INFO_TYPE_TRACKCHANGE = 14, <br>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.| 
-| [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br>AVPLAYER_BUFFERING_START = 1, <br>AVPLAYER_BUFFERING_END, <br>AVPLAYER_BUFFERING_PERCENT, <br>AVPLAYER_BUFFERING_CACHED_DURATION <br>} | Enumerates the types of buffer messages of the AVPlayer. | 
+| [AVPlayerState](#avplayerstate-1) {<br>AV_IDLE = 0, <br>AV_INITIALIZED = 1, <br>AV_PREPARED = 2, <br>AV_PLAYING = 3,<br>AV_PAUSED = 4, <br>AV_STOPPED = 5, <br>AV_COMPLETED = 6, <br>AV_RELEASED = 7,<br>AV_ERROR = 8<br>} | Enumerates the AVPlayer states.|
+| [AVPlayerSeekMode](#avplayerseekmode) { <br>AV_SEEK_NEXT_SYNC = 0, <br>AV_SEEK_PREVIOUS_SYNC, <br>AV_SEEK_CLOSEST = 2<br>} | Enumerates the seek modes of the AVPlayer.|
+| [AVPlaybackSpeed](#avplaybackspeed-1) {<br>AV_SPEED_FORWARD_0_75_X, <br>AV_SPEED_FORWARD_1_00_X, <br>AV_SPEED_FORWARD_1_25_X, <br> AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X, <br>AV_SPEED_FORWARD_0_50_X, <br>AV_SPEED_FORWARD_1_50_X<br>, <br>AV_SPEED_FORWARD_3_00_X, <br>AV_SPEED_FORWARD_0_25_X, <br>AV_SPEED_FORWARD_0_125_X} | Enumerates the playback speeds of the AVPlayer. |
+| [AVPlayerOnInfoType](#avplayeroninfotype-1) {<br>AV_INFO_TYPE_SEEKDONE = 0, <br>AV_INFO_TYPE_SPEEDDONE = 1, <br>AV_INFO_TYPE_BITRATEDONE = 2, <br>AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, <br>AV_INFO_TYPE_POSITION_UPDATE = 5, <br>AV_INFO_TYPE_MESSAGE = 6, <br>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, <br>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br>AV_INFO_TYPE_TRACKCHANGE = 14, <br>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.|
+| [AVPlayerBufferingType](#avplayerbufferingtype-1) { <br>AVPLAYER_BUFFERING_START = 1, <br>AVPLAYER_BUFFERING_END, <br>AVPLAYER_BUFFERING_PERCENT, <br>AVPLAYER_BUFFERING_CACHED_DURATION <br>} | Enumerates the types of buffer messages of the AVPlayer. |
 
 
 ### Functions
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| OH_AVPlayer \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | Creates an **OH_AVPlayer** instance.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | Sets the HTTP URL of a media source to be played by an AVPlayer.  | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | Sets the file descriptor of a media source to be played by an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | Prepares the playback environment and buffers media data.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | Starts playback.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | Pauses playback.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | Stops playback.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | Restores the AVPlayer to the initial state.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | Asynchronously releases an **OH_AVPlayer** instance.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | Synchronously releases an **OH_AVPlayer** instance.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | Sets the volume for an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | Seeks to a playback position.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | Obtains the playback position, in milliseconds.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | Obtains the video width.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | Obtains the video height.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | Sets the playback speed for an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | Obtains the playback speed of an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, OH_AudioStream_Usage streamUsage) | Sets the audio stream type for an AVPlayer. | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, OH_AudioInterrupt_Mode interruptMode) | Sets the audio interruption mode for an AVPlayer. | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, OH_AudioStream_AudioEffectMode effectMode) | Sets the audio effect mode for an AVPlayer. | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | Sets the bit rate used by an HLS player.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | Sets a playback window.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | Obtains the total duration of a media file, in milliseconds.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | Obtains the AVPlayer state.| 
-| bool [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | Checks whether an AVPlayer is playing.| 
-| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | Checks whether an AVPlayer is looping.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | Enables loop playback.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | Sets a callback for an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | Selects an audio track. This function is not supported yet.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | Deselects an audio track. This function is not supported yet.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | Obtains the currently valid track. This function is not supported yet.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | Sets a callback to return the media key system information for an AVPlayer.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Obtains the media key system information to create a media key session.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](../apis-drm-kit/_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | Sets the decryption information.| 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnInfoCallback](#oh_avplayer_setoninfocallback) (OH_AVPlayer \*player, [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) callback, void \*userData) | Sets a callback for the event indicating that the AVPlayer receives a message. | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnErrorCallback](#oh_avplayer_setonerrorcallback) (OH_AVPlayer \*player, [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback) callback, void \*userData) | Sets a callback for the event indicating that an error occurs in the AVPlayer. | 
+| OH_AVPlayer \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | Creates an **OH_AVPlayer** instance.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | Sets the HTTP URL of a media source to be played by an AVPlayer.  |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | Sets the file descriptor of a media source to be played by an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | Prepares the playback environment and buffers media data.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | Starts playback.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | Pauses playback.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | Stops playback.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | Restores the AVPlayer to the initial state.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | Asynchronously releases an **OH_AVPlayer** instance.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | Synchronously releases an **OH_AVPlayer** instance.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | Sets the volume for an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | Seeks to a playback position.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | Obtains the playback position, in milliseconds.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | Obtains the video width.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | Obtains the video height.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | Sets the playback speed for an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | Obtains the playback speed of an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, OH_AudioStream_Usage streamUsage) | Sets the audio stream type for an AVPlayer. |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolumeMode](#oh_avplayer_setvolumemode) (OH_AVPlayer \*player, [OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode) volumeMode) | Sets the audio volume mode for an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, OH_AudioInterrupt_Mode interruptMode) | Sets the audio interruption mode for an AVPlayer. |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, OH_AudioStream_AudioEffectMode effectMode) | Sets the audio effect mode for an AVPlayer. |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | Sets the bit rate used by an HLS player.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | Sets a playback window.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | Obtains the total duration of a media file, in milliseconds.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | Obtains the AVPlayer state.|
+| bool [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | Checks whether an AVPlayer is playing.|
+| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | Checks whether an AVPlayer is looping.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | Enables loop playback.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | Sets a callback for an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | Selects an audio track. This function is not supported yet.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | Deselects an audio track. This function is not supported yet.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | Obtains the currently valid track. This function is not supported yet.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | Sets a callback to return the media key system information for an AVPlayer.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Obtains the media key system information to create a media key session.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](../apis-drm-kit/_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | Sets the decryption information.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnInfoCallback](#oh_avplayer_setoninfocallback) (OH_AVPlayer \*player, [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) callback, void \*userData) | Sets a callback for the event indicating that the AVPlayer receives a message. |
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetOnErrorCallback](#oh_avplayer_setonerrorcallback) (OH_AVPlayer \*player, [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback) callback, void \*userData) | Sets a callback for the event indicating that an error occurs in the AVPlayer. |
 
 
 ### Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| const char \* [OH_PLAYER_STATE](#oh_player_state) | Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_STATE_CHANGE_REASON](#oh_player_state_change_reason) | Pointer to the key for obtaining the AVPlayer state change reason. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_VOLUME](#oh_player_volume) | Pointer to the key for obtaining the volume. The value type is float. | 
-| const char \* [OH_PLAYER_BITRATE_ARRAY](#oh_player_bitrate_array) | Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type, which is expressed by [AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1). | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_TYPE](#oh_player_audio_interrupt_type) | Pointer to the key for obtaining the audio interruption type. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_FORCE](#oh_player_audio_interrupt_force) | Pointer to the key for obtaining the FORCE type of audio interruption. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_HINT](#oh_player_audio_interrupt_hint) | Pointer to the key for obtaining the HINT type of audio interruption. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON](#oh_player_audio_device_change_reason) | Pointer to the key for obtaining the audio device change reason. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_BUFFERING_TYPE](#oh_player_buffering_type) | Pointer to the key for obtaining the type of the buffer update message. The value type is [AVPlayerBufferingType](#avplayerbufferingtype-1). | 
-| const char \* [OH_PLAYER_BUFFERING_VALUE](#oh_player_buffering_value) | Pointer to the key for obtaining the value of the buffer update message. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_SEEK_POSITION](#oh_player_seek_position) | Pointer to the key for obtaining the playback progress after the seek operation. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_PLAYBACK_SPEED](#oh_player_playback_speed) | Pointer to the key for obtaining the playback speed. The value type is [AVPlaybackSpeed](#avplaybackspeed-1). | 
-| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | Pointer to the key for obtaining the bit rate. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_CURRENT_POSITION](#oh_player_current_position) | Pointer to the key for obtaining the playback progress information. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_DURATION](#oh_player_duration) | Pointer to the key for obtaining the media asset duration. The value type is int64_t. | 
-| const char \* [OH_PLAYER_VIDEO_WIDTH](#oh_player_video_width) | Pointer to the key for obtaining the video width. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_VIDEO_HEIGHT](#oh_player_video_height) | Pointer to the key for obtaining the video height. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_MESSAGE_TYPE](#oh_player_message_type) | Pointer to the key for obtaining the type of message received by the AVPlayer. The value is of the int32_t type. | 
-| const char \* [OH_PLAYER_IS_LIVE_STREAM](#oh_player_is_live_stream) | Pointer to the key for checking whether a media asset is live streaming. The value is of the int32_t type. | 
+| const char \* [OH_PLAYER_STATE](#oh_player_state) | Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_STATE_CHANGE_REASON](#oh_player_state_change_reason) | Pointer to the key for obtaining the AVPlayer state change reason. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_VOLUME](#oh_player_volume) | Pointer to the key for obtaining the volume. The value type is float. |
+| const char \* [OH_PLAYER_BITRATE_ARRAY](#oh_player_bitrate_array) | Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type, which is expressed by [AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1). |
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_TYPE](#oh_player_audio_interrupt_type) | Pointer to the key for obtaining the audio interruption type. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_FORCE](#oh_player_audio_interrupt_force) | Pointer to the key for obtaining the FORCE type of audio interruption. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_HINT](#oh_player_audio_interrupt_hint) | Pointer to the key for obtaining the HINT type of audio interruption. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON](#oh_player_audio_device_change_reason) | Pointer to the key for obtaining the audio device change reason. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_BUFFERING_TYPE](#oh_player_buffering_type) | Pointer to the key for obtaining the type of the buffer update message. The value type is [AVPlayerBufferingType](#avplayerbufferingtype-1). |
+| const char \* [OH_PLAYER_BUFFERING_VALUE](#oh_player_buffering_value) | Pointer to the key for obtaining the value of the buffer update message. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_SEEK_POSITION](#oh_player_seek_position) | Pointer to the key for obtaining the playback progress after the seek operation. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_PLAYBACK_SPEED](#oh_player_playback_speed) | Pointer to the key for obtaining the playback speed. The value type is [AVPlaybackSpeed](#avplaybackspeed-1). |
+| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | Pointer to the key for obtaining the bit rate. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_CURRENT_POSITION](#oh_player_current_position) | Pointer to the key for obtaining the playback progress information. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_DURATION](#oh_player_duration) | Pointer to the key for obtaining the media asset duration. The value type is int64_t. |
+| const char \* [OH_PLAYER_VIDEO_WIDTH](#oh_player_video_width) | Pointer to the key for obtaining the video width. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_VIDEO_HEIGHT](#oh_player_video_height) | Pointer to the key for obtaining the video height. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_MESSAGE_TYPE](#oh_player_message_type) | Pointer to the key for obtaining the type of message received by the AVPlayer. The value is of the int32_t type. |
+| const char \* [OH_PLAYER_IS_LIVE_STREAM](#oh_player_is_live_stream) | Pointer to the key for checking whether a media asset is live streaming. The value is of the int32_t type. |
 
 
 ## Type Description
@@ -318,6 +319,7 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 ```
 
 **Description**
+
 Defines the callback invoked when the AVPlayer receives a message.
 
 The following table lists the mappings between **type** and **extra** values.
@@ -540,15 +542,15 @@ Enumerates the AVPlayer states.
 
 | Value| Description| 
 | -------- | -------- |
-| AV_IDLE | The AVPlayer is idle.| 
-| AV_INITIALIZED | The AVPlayer is initialized.| 
-| AV_PREPARED | The AVPlayer is ready for playback.| 
-| AV_PLAYING | The AVPlayer is playing.| 
-| AV_PAUSED | The AVPlayer is paused.| 
-| AV_STOPPED | The AVPlayer is stopped.| 
-| AV_COMPLETED | The AVPlayer finishes playing.| 
-| AV_RELEASED | The AVPlayer is released.| 
-| AV_ERROR | An error occurs.| 
+| AV_IDLE | Idle.|
+| AV_INITIALIZED | Initialized.|
+| AV_PREPARED | Ready.|
+| AV_PLAYING | Playing.|
+| AV_PAUSED | Paused.|
+| AV_STOPPED | Stopped.|
+| AV_COMPLETED | Completed.|
+| AV_RELEASED | Released.|
+| AV_ERROR | Error.|
 
 
 ## Function Description
@@ -1613,6 +1615,40 @@ Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_
 AV_ERR_OK: The volume is set.
 
 **AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SetVolume** fails.
+
+
+### OH_AVPlayer_SetVolumeMode()
+
+```
+OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_VolumeMode volumeMode)
+```
+
+**Description**
+
+Sets the audio volume mode for an AVPlayer.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| player | Pointer to an **OH_AVPlayer** instance.|
+| volumeMode | Audio volume mode. For details about the available options, see [OH_AudioStream_VolumeMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_volumemode).|
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer or **volumeMode** is invalid.
+
+**AV_ERR_INVALID_STATE**: The function is called in an invalid state. It must be in the prepared state.
+
+**AV_ERR_SERVICE_DIED**: A system error occurs.
 
 
 ### OH_AVPlayer_Stop()

@@ -18,7 +18,7 @@ OpenSL ES（Open Sound Library for Embedded System）即嵌入式音频加速标
 #include <SLES/OpenSLES_Platform.h>
 ```
 
-其次在CMakeLists.txt中添加以下链接动态库
+其次在CMakeLists.txt中添加以下链接动态库：
 
 ```
 libOpenSLES.so

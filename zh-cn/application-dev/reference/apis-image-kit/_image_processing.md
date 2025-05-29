@@ -269,7 +269,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imagePr
 - 如果图片处理成功，则返回IMAGE_PROCESSING_SUCCESS。
 - 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。 
 - 当图片为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 
-- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。 
+- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。
 - 当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
 - 当该图片处理中返回错误时，返回IMAGE_PROCESSING_ERROR_PROCESS_FAILED。 
 - 当内存分配失败时，返回IMAGE_PROCESSING_ERROR_NO_MEMORY。
@@ -302,7 +302,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessin
 - 如果图片处理成功，则返回IMAGE_PROCESSING_SUCCESS。 
 - 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。 
 - 当图片为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 
-- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。 
+- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。
 - 当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
 - 当该图片处理中返回错误时，返回IMAGE_PROCESSING_ERROR_PROCESS_FAILED。 
 - 当内存分配失败时，返回IMAGE_PROCESSING_ERROR_NO_MEMORY。
@@ -324,7 +324,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imagePr
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| imageProcessor | 输出参数。指针\*imageProcessor指向一个新的图片处理对象。 指针\*imageProcessor在传递前必须是一个空指针。 | 
+| imageProcessor | 输出参数。指针\*imageProcessor指向一个新的图片处理对象。指针\*imageProcessor在传递前必须是一个空指针。 | 
 | type | 使用IMAGE_PROCESSING_TYPE_XXX来指定图片处理类型。此实例的类型在创建后不能更改。 | 
 
 **返回：**
@@ -364,7 +364,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* image
 - 如果图片处理成功，则返回IMAGE_PROCESSING_SUCCESS。 
 - 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。 
 - 当图片为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 
-- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。 当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
+- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
 - 当该图片处理中返回错误时，返回IMAGE_PROCESSING_ERROR_PROCESS_FAILED。 
 - 当内存分配失败时，返回IMAGE_PROCESSING_ERROR_NO_MEMORY。
 
@@ -379,7 +379,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_DeinitializeEnvironment(void)
 
 反初始化图片处理模块的全局环境。
 
-如果[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)被调用，则此函数为必需函数。 通常此函数在主进程准备退出时被调用，用于反初始化图片处理模块的全局环境（由[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)接口 初始化）。 如果此时存在图片处理实例，则不应调用此函数。 如果[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)未被调用，则不应调用此函数。
+如果[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)被调用，则此函数为必需函数。通常此函数在主进程准备退出时被调用，用于反初始化图片处理模块的全局环境（由[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)接口 初始化）。如果此时存在图片处理实例，则不应调用此函数。如果[OH_ImageProcessing_InitializeEnvironment](#oh_imageprocessing_initializeenvironment)未被调用，则不应调用此函数。
 
 **起始版本：** 13
 
@@ -440,7 +440,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_EnhanceDetail(OH_ImageProcessing* i
 - 如果图片处理成功，则返回IMAGE_PROCESSING_SUCCESS。 
 - 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。 
 - 当图片为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 
-- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。 
+- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。
 - 当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
 - 当该图片处理中返回错误时，返回IMAGE_PROCESSING_ERROR_PROCESS_FAILED。 
 - 当内存分配失败时，返回IMAGE_PROCESSING_ERROR_NO_MEMORY。
@@ -472,7 +472,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing
 - 如果图片处理成功，则返回IMAGE_PROCESSING_SUCCESS。 
 - 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。 
 - 当图片为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 
-- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。 当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
+- 当图片的某些属性无效时，返回IMAGE_PROCESSING_ERROR_INVALID_VALUE，例如图片的色彩空间时不支持的。当该图片处理不支持时，返回IMAGE_PROCESSING_ERROR_UNSUPPORTED_PROCESSING。 
 - 当该图片处理中返回错误时，返回IMAGE_PROCESSING_ERROR_PROCESS_FAILED。 
 - 当内存分配失败时，返回IMAGE_PROCESSING_ERROR_NO_MEMORY。
 
@@ -515,7 +515,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_InitializeEnvironment(void)
 
 初始化图片处理模块的全局环境。
 
-此函数为非必需函数。 通常此函数在主进程启动时被调用，用于图片处理模块的全局环境初始化并可以减少[OH_ImageProcessing_Create](#oh_imageprocessing_create)的耗时。 调用[OH_ImageProcessing_DeinitializeEnvironment](#oh_imageprocessing_deinitializeenvironment)进行全局环境反初始化。 可用于检查设备GPU是否正常工作。
+此函数为非必需函数。通常此函数在主进程启动时被调用，用于图片处理模块的全局环境初始化并可以减少[OH_ImageProcessing_Create](#oh_imageprocessing_create)的耗时。调用[OH_ImageProcessing_DeinitializeEnvironment](#oh_imageprocessing_deinitializeenvironment)进行全局环境反初始化。可用于检查设备GPU是否正常工作。
 
 **起始版本：** 13
 
@@ -541,7 +541,7 @@ bool OH_ImageProcessing_IsColorSpaceConversionSupported(const ImageProcessing_Co
 | 名称 | 描述 | 
 | -------- | -------- |
 | sourceImageInfo | 指向输入图片色彩空间信息的指针。 | 
-| destinationImageInfo | 指向输出图片色彩空间信息的指针， | 
+| destinationImageInfo | 指向输出图片色彩空间信息的指针。 | 
 
 **返回：**
 
@@ -664,7 +664,7 @@ const char* IMAGE_DETAIL_ENHANCER_PARAMETER_KEY_QUALITY_LEVEL
 
 用于设定图像细节增强的质量级别。
 
-使用[ImageDetailEnhancer_QualityLevel](#imagedetailenhancer_qualitylevel)获取其值。 使用[OH_ImageProcessing_SetParameter](#oh_imageprocessing_setparameter)设置质量级别。 使用[OH_ImageProcessing_GetParameter](#oh_imageprocessing_getparameter)获取当前质量级别。
+使用[ImageDetailEnhancer_QualityLevel](#imagedetailenhancer_qualitylevel)获取其值。使用[OH_ImageProcessing_SetParameter](#oh_imageprocessing_setparameter)设置质量级别。使用[OH_ImageProcessing_GetParameter](#oh_imageprocessing_getparameter)获取当前质量级别。
 
 **起始版本：** 13
 
@@ -685,7 +685,7 @@ const int32_t IMAGE_PROCESSING_TYPE_COLOR_SPACE_CONVERSION
 
 用于创建色彩空间转换的图片处理实例。
 
-色彩空间转换包括单层HDR图片转换SDR图片，SDR图片之间的转换，以及SDR图片转换单层HDR图片，部分能力由厂商支持。 使用**OH_ImageProcessing_IsColorSpaceConversionSuported**查询某种转换是否支持在单层图片之间进行。
+色彩空间转换包括单层HDR图片转换SDR图片，SDR图片之间的转换，以及SDR图片转换单层HDR图片，部分能力由厂商支持。使用**OH_ImageProcessing_IsColorSpaceConversionSuported**查询某种转换是否支持在单层图片之间进行。
 
 **起始版本：** 13
 
@@ -704,7 +704,7 @@ const int32_t IMAGE_PROCESSING_TYPE_COMPOSITION
 
 用于创建双层HDR图片转换单层HDR图片的图片处理实例。
 
-包括从双层HDR图片转换为单层HDR图片的能力。部分能力由厂商支持。 使用[OH_ImageProcessing_IsCompositionSupported](#oh_imageprocessing_iscompositionsupported)查询是否支持从双层HDR图片到单层HDR图片的转换。
+包括从双层HDR图片转换为单层HDR图片的能力。部分能力由厂商支持。使用[OH_ImageProcessing_IsCompositionSupported](#oh_imageprocessing_iscompositionsupported)查询是否支持从双层HDR图片到单层HDR图片的转换。
 
 **起始版本：** 13
 
@@ -723,7 +723,7 @@ const int32_t IMAGE_PROCESSING_TYPE_DECOMPOSITION
 
 用于创建单层HDR图片转换双层HDR图片的图片处理实例。
 
-包括从单层HDR图片转换为双层HDR图片的能力。部分能力由厂商支持。 使用[OH_ImageProcessing_IsDecompositionSupported](#oh_imageprocessing_isdecompositionsupported)查询是否支持从单层HDR图片到双层HDR图片的转换。
+包括从单层HDR图片转换为双层HDR图片的能力。部分能力由厂商支持。使用[OH_ImageProcessing_IsDecompositionSupported](#oh_imageprocessing_isdecompositionsupported)查询是否支持从单层HDR图片到双层HDR图片的转换。
 
 **起始版本：** 13
 

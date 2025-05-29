@@ -47,12 +47,12 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -106,12 +106,12 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -159,12 +159,12 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag, begin, or end in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -215,12 +215,12 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag, begin, or end in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -280,8 +280,8 @@ status为true时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrec
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_RECORD_TOGGLE". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100007 | The service is abnormal. |
 | 12100009 | Common inner error. |
@@ -321,8 +321,8 @@ getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 12100007 | The service is abnormal. |
 
 **示例：**
@@ -374,12 +374,12 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -419,7 +419,7 @@ startUsingPermission(tokenID: number, permissionName: Permissions, pid?: number,
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
+| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
 | pid            | number | 否   | 调用方的进程pid，默认-1，-1表示不根据进程生命周期响应。|
 | usedType       | [PermissionUsedType](#permissionusedtype12) | 否 | 敏感权限访问方式，默认NORMAL_TYPE。 |
 
@@ -435,12 +435,12 @@ startUsingPermission(tokenID: number, permissionName: Permissions, pid?: number,
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the type of the specified tokenID is not of the application type, or usedType is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -508,12 +508,12 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -563,12 +563,12 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -604,7 +604,7 @@ pid需要与startUsingPermission传入的pid相同。
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
-| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
+| permissionName | Permissions | 是   | 需要使用的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。|
 | pid            | number | 否   | 与startUsingPermission传入的pid相同，默认-1。|
 
 **返回值：**
@@ -619,12 +619,12 @@ pid需要与startUsingPermission传入的pid相同。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -678,12 +678,12 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the type of the specified tokenID is not of the application type. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
-| 12100003 | The specified permission does not exist or is not an user_grant permission. |
+| 12100003 | The specified permission does not exist or is not a user_grant permission. |
 | 12100004 | The API is not used in pair with 'startUsingPermission'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -732,12 +732,12 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100001 | Invalid parameter. The permissionList exceeds the size limit, or the permissionNames in the list are all invalid. |
 | 12100004 | The API is used repeatedly with the same input. |
-| 12100005 | The registration time has exceeded the limitation. |
+| 12100005 | The registration time has exceeded the limit. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -783,10 +783,10 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100001 | Invalid parameter. The permissionList is not in the listening list. |
 | 12100004 | The API is not used in pair with 'on'. |
 | 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
@@ -833,8 +833,8 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permission denied. Interface caller does not have permission. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | Permission denied. Interface caller does not have permission "ohos.permission.PERMISSION_USED_STATS". |
+| 202 | Not system app. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
@@ -894,7 +894,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
-| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值：false，默认查询本端设备。 |
+| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值false，默认查询本端设备。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
 | bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
 | permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
@@ -923,7 +923,7 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 | 名称       | 类型             | 可读 | 可写 | 说明                                       |
 | -------- | -------------- | ---- | ---- | ---------------------------------------- |
 | tokenId  | number         | 是    | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 是    | 否    | 默认值false。 |
+| isRemote | boolean         | 是    | 否    | 是否是分布式设备。默认值为false，表示不是分布式设备。 |
 | deviceId  | string         | 是    | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 是    | 否    | 目标应用的包名。 |
 | permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 否    | 每个应用的权限使用记录集合。                                 |

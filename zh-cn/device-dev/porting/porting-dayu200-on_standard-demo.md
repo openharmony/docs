@@ -16,12 +16,12 @@
     "target_cpu": "arm",
     "kernel_version": "",
     "device_build_path": "device/board/hihope/rk3568",
-    "enable_ramdisk": true,   //是否支持ramdisk二级启动
-    "build_selinux": true    // 是否支持selinux权限管理
+    "enable_ramdisk": true,   //是否支持ramdisk二级启动。
+    "build_selinux": true    // 是否支持selinux权限管理。
 }
 ```
 
-在`//productdefine/common/products`目录下创建以产品名命名的rk3568.json文件。该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下
+在`//productdefine/common/products`目录下创建以产品名命名的rk3568.json文件。该文件用于描述产品所使用的SOC 以及所需的子系统。配置如下：
 
 ```
 {
@@ -42,7 +42,7 @@
 主要的配置内容包括：
 
 1. product_device：配置所使用的SOC。
-2. type：配置系统的级别， 这里直接standard即可。
+2. type：配置系统的级别，这里直接standard即可。
 3. parts：系统需要启用的子系统。子系统可以简单理解为一块独立构建的功能块。
 
 已定义的子系统可以在`//build/subsystem_config.json`中找到。当然你也可以定制子系统。
@@ -55,12 +55,12 @@
 
 ```
 device
-├── board                                --- 单板厂商目录
-│   └── hihope                           --- 单板厂商名字：
-│       └── rk3568                       --- 单板名：rk3568,主要放置开发板相关的驱动业务代码
-└── soc									 --- SoC厂商目录
-    └── rockchip                       --- SoC厂商名字：rockchip
-        └── rk3568						 --- SoC Series名：rk3568,主要为芯片原厂提供的一些方案，以及闭源库等
+├── board                                --- 单板厂商目录。
+│   └── hihope                           --- 单板厂商名字。
+│       └── rk3568                       --- 单板名：rk3568,主要放置开发板相关的驱动业务代码。
+└── soc									 --- SoC厂商目录。
+    └── rockchip                       --- SoC厂商名字：rockchip。
+        └── rk3568						 --- SoC Series名：rk3568,主要为芯片原厂提供的一些方案，以及闭源库等。
         
         
 ```
@@ -68,18 +68,18 @@ device
 ```
 vendor
 └── hihope					
-    └── rk3568         			 --- 产品名字：产品、hcs以及demo相关
+    └── rk3568         			 --- 产品名字：产品、hcs以及demo相关。
 ```
 
 ## **内核启动**
 
 ### 二级启动
 
-二级启动简单来说就是将之前直接挂载sytem,从system下的init启动，改成先挂载ramdsik,从ramdsik中的init 启动，做些必要的初始化动作，如挂载system,vendor等分区，然后切到system下的init 。
+二级启动简单来说就是将之前直接挂载sytem,从system下的init启动，改成先挂载ramdsik,从ramdsik中的init 启动，做些必要的初始化动作，如挂载system,vendor等分区，然后切到system下的init。
 
 Rk3568适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中，主要有以下工作：
 
-1.使能二级启动
+1.使能二级启动。
 
   在productdefine/common/device/rk3568.json 中使能enable_ramdisk。
 
@@ -96,11 +96,11 @@ Rk3568适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中�
   }
   ```
 
-2.把主线编译出来的ramdsik.img 打包到boot_linux.img
+2.把主线编译出来的ramdsik.img 打包到boot_linux.img。
 
 配置：
 
-由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ,因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加:
+由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ,因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加：
 
 ```
 function make_extlinux_conf()
@@ -122,19 +122,19 @@ function make_extlinux_conf()
 
 ### 打包 
 
-增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk,打包boot 镜像时调用, 主要内容:
+增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk,打包boot 镜像时调用, 主要内容：
 
 ```
 genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
 ```
 
-调用make-boot.sh 的修改可以参考如下pr:
+调用make-boot.sh 的修改可以参考如下pr：
 
 https://gitee.com/openharmony/build/pulls/569/files
 
 ### INIT配置
 
-init相关配置请参考[启动子系统的规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md)即可
+init相关配置请参考[启动子系统的规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md)即可。
 
 ## **音频**
 
@@ -148,15 +148,15 @@ init相关配置请参考[启动子系统的规范要求](https://gitee.com/open
 
 ![](figures/dayu200/dayu200-audio-02.png)
 
-1. ADM Drivers adapter
+1. ADM Drivers adapter.
 
-   主要完成Codec/DMA/I2S驱动注册，使得ADM可以加载驱动节点；并注册ADM与Drivers交互的接口函数
+   主要完成Codec/DMA/I2S驱动注册，使得ADM可以加载驱动节点；并注册ADM与Drivers交互的接口函数。
 
-2. ADM Drivers impl
+2. ADM Drivers impl.
 
-   主要完成ADM Drivers adapter接口函数的实现，以及Codec_config.hcs/dai_config.hcs等配置信息的获取，并注册到对应的设备
+   主要完成ADM Drivers adapter接口函数的实现，以及Codec_config.hcs/dai_config.hcs等配置信息的获取，并注册到对应的设备。
 
-3. Linux Drivers
+3. Linux Drivers.
 
    ADM Drivers impl可以直接阅读硬件手册，完成驱动端到端的配置；也可以借用Linux原生驱动实现与接口，减少开发者工作量。
 
@@ -226,7 +226,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ##### 配置HCS文件
 
-在device_info.hcs文件中Audio下注册驱动节点
+在device_info.hcs文件中Audio下注册驱动节点。
 
 ```c
         audio :: host {
@@ -292,13 +292,13 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ```
 
-根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关control寄存器地址）涉及Codec_config.hcs和DAI_config.hcs
+根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关control寄存器地址）涉及Codec_config.hcs和DAI_config.hcs。
 
 配置相关介绍见[Audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-peripherals-audio-des.md) hcs配置章节以及ADM框架的audio_parse模块代码。
 
 ##### codec/accessory模块
 
-1. 将驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致
+1. 将驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致。
 
    ```
    struct HdfDriverEntry g_codecDriverEntry = {
@@ -319,9 +319,9 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
    g_codecDaiData：codec的数字音频接口的操作函数集和私有数据集。
 
-3. 完成 bind、init和release函数的实现
+3. 完成 bind、init和release函数的实现。
 
-4.  验证 
+4.  验证。
 
    在bind和init函数加调试日志，编译版本并获取系统系统日志:
 
@@ -341,7 +341,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ##### DAI模块
 
-1. 将I2S驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致
+1. 将I2S驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致。
 
    ```c
    struct HdfDriverEntry g_daiDriverEntry = {
@@ -371,11 +371,11 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    };
    ```
 
-3. 完成 bind、init和release函数的实现
+3. 完成 bind、init和release函数的实现。
 
-4. 验证 
+4. 验证。 
 
-   在bind/init函数加调试日志，编译版本并获取系统系统日志
+   在bind/init函数加调试日志，编译版本并获取系统系统日志。
 
    ```
    [    1.549193] [I/device_node] launch devnode dai_service
@@ -387,7 +387,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ##### Platform模块
 
-1. 将DMA驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致
+1. 将DMA驱动注册到HDF框架中，代码片段如下，启动moduleName与HCS文件的中moduleName一致。
 
    ```
    struct HdfDriverEntry g_platformDriverEntry = {
@@ -422,11 +422,11 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    };
    ```
 
-3. 完成 bind、init和release函数的实现
+3. 完成 bind、init和release函数的实现。
 
-4. 验证 
+4. 验证。
 
-   在bind和init函数加调试日志,编译版本并获取系统系统日志
+   在bind和init函数加调试日志,编译版本并获取系统系统日志。
 
    ```
    [    1.548469] [E/rk3568_platform_adapter]  [PlatformDriverBind][line:42]: entry!
@@ -453,7 +453,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    
    static struct platform_driver rk817_codec_driver = {
    	.driver = {
-   		   .name = "rk817-codec",                     // codec node in dts file
+   		   .name = "rk817-codec",                     // codec node in dts file.
    		   .of_match_table = rk817_codec_dt_ids,
    		   },
    	.probe = rk817_platform_probe,
@@ -461,9 +461,9 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    };
    ```
 
-2. 读写寄存器函数封装
-   根据上述获取到的device, 使用Linux的regmap函数，开发者不需要获取模块的基地址
-   获取rk817的regmap代码段
+2. 读写寄存器函数封装。
+   根据上述获取到的device, 使用Linux的regmap函数，开发者不需要获取模块的基地址，
+   获取rk817的regmap代码段。
    
    ```
    g_chip = devm_kzalloc(&rk817_pdev->dev, sizeof(struct Rk809ChipData), GFP_KERNEL);
@@ -489,7 +489,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
        }
    ```
    
-   寄存器读写函数代码段
+   寄存器读写函数代码段。
    
    ```
    int32_t Rk809DeviceRegRead(uint32_t reg, uint32_t *val) 
@@ -521,11 +521,11 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
      }
    ```
 
-3. 寄存器初始化函数
+3. 寄存器初始化函数。
 
-   因为使用Linux的regmap函数，所以需要自行定义RegDefaultInit函数，读取hcs中initSeqConfig的寄存器以及数值来进行配置
+   因为使用Linux的regmap函数，所以需要自行定义RegDefaultInit函数，读取hcs中initSeqConfig的寄存器以及数值来进行配置。
 
-   RK809RegDefaultInit代码段
+   RK809RegDefaultInit代码段。
 
    ```c
    int32_t RK809RegDefaultInit(struct AudioRegCfgGroupNode **regCfgGroup)
@@ -550,9 +550,9 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    }
    ```
 
-4. 封装控制接口的读写函数
+4. 封装控制接口的读写函数。
 
-   设置控制读写函数为RK809CodecReadReg和RK809CodecWriteReg
+   设置控制读写函数为RK809CodecReadReg和RK809CodecWriteReg。
 
    ```c
    struct CodecData g_rk809Data = {
@@ -573,9 +573,9 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    };
    ```
 
-   封装控制接口的读写函数
+   封装控制接口的读写函数。
 
-   因为原来的读写原型，涉及三个参数(unsigned long virtualAddress,uint32_t reg, uint32_t *val)，其中virtualAddress我们并不需要用到，所以封装个接口即可，封装如下
+   因为原来的读写原型，涉及三个参数(unsigned long virtualAddress,uint32_t reg, uint32_t *val)，其中virtualAddress我们并不需要用到，所以封装个接口即可，封装如下：
 
    ```c
    int32_t RK809CodecReadReg(unsigned long virtualAddress,uint32_t reg, uint32_t *val)
@@ -603,17 +603,17 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
    }
    ```
 
-5. 其他ops函数
+5. 其他ops函数。
 
-  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontrol，便于dispatch contro进行控制
-  - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器
-  - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
-  - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等
+  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontrol，便于dispatch contro进行控制。
+  - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器。
+  - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器。
+  - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等。
 
 ##### DAI(i2s)模块
 
-1. 读写寄存器函数
-   思路与Codec模块的一致,读取Linux DTS文件，使用Linux的regmap函数完成寄存器的读写操作
+1. 读写寄存器函数。
+   思路与Codec模块的一致,读取Linux DTS文件，使用Linux的regmap函数完成寄存器的读写操作。
 
    ```c
    int32_t Rk3568DeviceReadReg(unsigned long regBase, uint32_t reg, uint32_t *val)
@@ -653,7 +653,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
     }
    ```
 
-2. 其他ops函数
+2. 其他ops函数。
 
   - Rk3568DaiDeviceInit
     原始框架，主要完成DAI_config.hcs参数列表的读取，与HwParams结合，完成参数的设置。
@@ -661,7 +661,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
   - Rk3568DaiHwParams
     主要完成I2S MCLK/BCLK/LRCLK时钟配置。
 
-    1. 根据不同采样率计算MCLK
+    1. 根据不同采样率计算MCLK。
 
     ```c
         int32_t RK3568I2sTdmSetSysClk(struct rk3568_i2s_tdm_dev *i2s_tdm, const struct AudioPcmHwParams *param)
@@ -696,18 +696,18 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
         }
     ```
 
-    2. 根据获取的mclk,计算BCLK/LRclk分频系数
+    2. 根据获取的mclk,计算BCLK/LRclk分频系数。
 
   - Rk3568NormalTrigger
     根据输入输出类型，以及cmd(启动/停止/暂停/恢复)，完成一系列配置：
 
-    1. mclk的启停
-    2. DMA搬运的启停
-    3. 传输的启停
-       详细实现见代码，参考Linux原生I2s驱动对应接口函数
+    1. mclk的启停。
+    2. DMA搬运的启停。
+    3. 传输的启停。
+       详细实现见代码，参考Linux原生I2s驱动对应接口函数。
 
     ```c
-        // 启动/恢复流程
+        // 启动/恢复流程。
         if (streamType == AUDIO_RENDER_STREAM) {
             clk_prepare_enable(i2s_tdm->mclk_tx);
             regmap_update_bits(i2s_tdm->regmap, I2S_DMACR,
@@ -741,36 +741,36 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
    ##### Platform(DMA)模块 
 
-ops函数相关函数
+ops函数相关函数。
 
-1. Rk3568DmaBufAlloc/Rk3568DmaBufFree
+1. Rk3568DmaBufAlloc/Rk3568DmaBufFree.
 
-    获取DMA设备节点，参考I2s设备获取方式，使用系统函数dma_alloc_wc/dma_free_wc，完成DMA虚拟内存与物理内存的申请/释放
+    获取DMA设备节点，参考I2s设备获取方式，使用系统函数dma_alloc_wc/dma_free_wc，完成DMA虚拟内存与物理内存的申请/释放。
 
-2.  Rk3568DmaRequestChannel
+2.  Rk3568DmaRequestChannel.
 
-    使用Linux DMA原生接口函数获取DMA传输通道，dma_request_slave_channel
+    使用Linux DMA原生接口函数获取DMA传输通道，dma_request_slave_channel。
 
    ```
    dmaRtd->dmaChn[streamType] = dma_request_slave_channel(dmaDevice, dmaChannelNames[streamType]);
    ```
 
-3.  Rk3568DmaConfigChannel
+3.  Rk3568DmaConfigChannel.
 
    ```
-      //设置通道配置参数
-      // 放音通道参数配置
+      //设置通道配置参数。
+      // 放音通道参数配置。
       slave_config.direction = DMA_MEM_TO_DEV;
       slave_config.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
       slave_config.dst_addr = I2S1_ADDR + I2S_TXDR;
       slave_config.dst_maxburst = 8;
-      // 录音通道参数配置
+      // 录音通道参数配置。
       slave_config.direction = DMA_DEV_TO_MEM;
       slave_config.src_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
       slave_config.src_addr = I2S1_ADDR + I2S_RXDR;
       slave_config.src_maxburst = 8;
    
-      //使用Linux DMA原生接口函数完成DMA通道配置
+      //使用Linux DMA原生接口函数完成DMA通道配置。
       ret = dmaengine_slave_config(dmaChan, &slave_config);
       if (ret != 0) {
           AUDIO_DEVICE_LOG_ERR("dmaengine_slave_config failed");
@@ -778,13 +778,13 @@ ops函数相关函数
       }
    ```
 
-4. Rk3568DmaSubmit/Rk3568DmaPending
+4. Rk3568DmaSubmit/Rk3568DmaPending.
 
       使用Linux DMA原生接口函数dmaengine_prep_dma_cyclic，初始化一个具体的周期性的DMA传输描述符dmaengine_submit接口将该描述符放到传输队列上，然后调用dma_async_issue_pending接口，启动传输。
 
-5. Rk3568PcmPointer
+5. Rk3568PcmPointer.
 
-第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
+第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer。
 
    ```
      
@@ -799,35 +799,35 @@ ops函数相关函数
       }
    ```
 
-6. Rk3568DmaPause
+6. Rk3568DmaPause.
 
-      使用Linux DMA原生接口函数dmaengine_terminate_async，停止DMA传输
+      使用Linux DMA原生接口函数dmaengine_terminate_async，停止DMA传输。
 
    ```
     dmaengine_terminate_async(dmaChan);
    ```
 
-7. Rk3568DmaResume
+7. Rk3568DmaResume.
 
-   暂停使用的DMA停止函数，对应恢复，相当于重启DMA传输，执行Rk3568DmaSubmit/Rk3568DmaPending相关操作即可完成
+   暂停使用的DMA停止函数，对应恢复，相当于重启DMA传输，执行Rk3568DmaSubmit/Rk3568DmaPending相关操作即可完成。
 
 ##### 适配中遇到问题与解决方案
 
-1. 播放一段时间后，停止播放，持续有尖锐的很小的声音
-        问题原因：播放停止后，Codec相关器件没有下电
-        解决方案：注册Codec的trigger函数，当接收到Cmd为Stop时，对Codec进行下电
+1. 播放一段时间后，停止播放，持续有尖锐的很小的声音。
+        问题原因：播放停止后，Codec相关器件没有下电。
+        解决方案：注册Codec的trigger函数，当接收到Cmd为Stop时，对Codec进行下电。
 
-2. 播放一段时间后，停止播放，然后重新播放没有声音
-         问题原因：DMA驱动的PAUSE接口函数,并未停止DMA传输
-         解决方案：暂停状态不再使用DMA的PAUSE函数，而是使用DAM传输停止接口; 相对应的，恢复函数的业务逻辑相当于重启DMA传输，执行             Rk3568DmaSubmit/Rk3568DmaPending相关操作即可完成
+2. 播放一段时间后，停止播放，然后重新播放没有声音。
+         问题原因：DMA驱动的PAUSE接口函数,并未停止DMA传输。
+         解决方案：暂停状态不再使用DMA的PAUSE函数，而是使用DAM传输停止接口; 相对应的，恢复函数的业务逻辑相当于重启DMA传输，执行             Rk3568DmaSubmit/Rk3568DmaPending相关操作即可完成。
 
-3. 播放存在杂音
-          问题原因：DMA数据搬运pointer位置不正确
-          解决方案：Rk3568PcmPointer函数返回值为DMA搬运的内存位置，用缓存区buf与dma_state.residue的差值计算
+3. 播放存在杂音。
+          问题原因：DMA数据搬运pointer位置不正确。
+          解决方案：Rk3568PcmPointer函数返回值为DMA搬运的内存位置，用缓存区buf与dma_state.residue的差值计算。
 
-4. 可以放音，但Mclk引脚没有时钟信号
-           问题原因：DTS文件pin-ctrl没有配置mclk的引脚
-           解决方案：修改DTS文件
+4. 可以放音，但Mclk引脚没有时钟信号。
+           问题原因：DTS文件pin-ctrl没有配置mclk的引脚。
+           解决方案：修改DTS文件。
 
 ### Camera
 
@@ -852,23 +852,23 @@ Camera 驱动框架所在的仓为：drivers_peripheral，源码目录为：“d
 |-- figures
 |  -- logic-view-of-modules-related-to-this-repository_zh.png
 |-- hal
-|  |-- BUILD.gn               #Camera驱动框架构建入口
-|  |-- adapter                 #平台适配层，适配平台
+|  |-- BUILD.gn               #Camera驱动框架构建入口。
+|  |-- adapter                 #平台适配层，适配平台。
 |  |-- buffer_manager
-|  |-- camera.gni               #定义组件所使用的全局变量
+|  |-- camera.gni               #定义组件所使用的全局变量。
 |  |-- device_manager
 |  |-- hdi_impl
 |  |-- include
-|  |-- init                   #demo sample
+|  |-- init                   #demo sample.
 |  |-- pipeline_core
-|  |-- test                   #测试代码
+|  |-- test                   #测试代码。
 |  |-- utils
-|-- hal_c                    #为海思平台提供专用C接口
+|-- hal_c                    #为海思平台提供专用C接口。
 |  |-- BUILD.gn
 |  |-- camera.gni
 |  |-- hdi_cif
 |  |-- include
-|-- interfaces                  #HDI接口
+|-- interfaces                  #HDI接口。
   |-- hdi_ipc
 |-- hdi_passthrough
    |-- include
@@ -946,11 +946,11 @@ Camera chipset 相关代码路径以3568为例仓名为：device_hihope。路径
        moduleName： 驱动实现库名。
        serviceName：服务名称，请保持全局唯一性。   
 
-Camera_host驱动实现入口 
+Camera_host驱动实现入口。 
 
 文件路径：drivers/peripheral/camera/interfaces/hdi_ipc/server/src/camera_host_driver.cpp
 
-分发设备服务消息
+分发设备服务消息。
       cmd Id：请求消息命令字。
       Data：其他服务或者IO请求数据。
       Reply：存储返回消息内容数据。
@@ -976,7 +976,7 @@ int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
 }
 ```
 
-驱动初始化函数： 探测并初始化驱动程序
+驱动初始化函数： 探测并初始化驱动程序。
 
 ```
 int HdfCameraHostDriverInit(struct HdfDeviceObject *deviceObject)
@@ -985,7 +985,7 @@ int HdfCameraHostDriverInit(struct HdfDeviceObject *deviceObject)
 }
 ```
 
-驱动资源释放函数 ： 如已经绑定的设备服务对象
+驱动资源释放函数 ： 如已经绑定的设备服务对象。
 
 ```
   void HdfCameraHostDriverRelease(HdfDeviceObject *deviceObject)
@@ -1081,7 +1081,7 @@ drivers/peripheral/camera/hal/camera.gni 文件中可根据编译时传入的pro
                   "$camera_device_name_path/camera/src/pipeline_core:camera_pipeline_core"
       }
 
-product.gni中指定了chipset_build_deps camera_device_manager_deps 和 camera_pipeline_core_deps 三个代码编译路径。该路径在drivers/peripheral/camera/hal/BUILD.gn中会被使用
+product.gni中指定了chipset_build_deps camera_device_manager_deps 和 camera_pipeline_core_deps 三个代码编译路径。该路径在drivers/peripheral/camera/hal/BUILD.gn中会被使用。
 
 ####  框架适配介绍
 
@@ -1217,7 +1217,7 @@ platform为平台性公共代码，如linux标准v4l2适配接口定义，为v4l
               ├── driver_adapter
               └── pipeline_core
 
-“platform”目录下的“v4l2”包含了“src”， “src”中“driver_adapter”为linux v4l2标准适配接口，如有定制化功能需求，可继承driver_adapter，将定制化的具体功能接口放在chipset中实现。如无芯片定制化功能，可直接使用已有的driver_adapter。
+“platform”目录下的“v4l2”包含了“src”，“src”中“driver_adapter”为linux v4l2标准适配接口，如有定制化功能需求，可继承driver_adapter，将定制化的具体功能接口放在chipset中实现。如无芯片定制化功能，可直接使用已有的driver_adapter。
 
 platform目录下的Nodes为依据linux v4l2标准实现的硬件模块v4l2_source_node和uvc_node（usb热插拔设备，此模块也为linux标准接口，可直接使用)，如下图为v4l2_source_node的接口声明头文件。
 
@@ -1233,13 +1233,13 @@ platform目录下的Nodes为依据linux v4l2标准实现的硬件模块v4l2_sour
                 RetCode Stop(const int32_t streamId) override;
           RetCode GetDeviceController();
                 void SetBufferCallback() override;
-          RetCode ProvideBuffers(std::shared_ptr<FrameSpec> frameSpec) override;
+          RetCode ProvideBuffers(std::shared_ptr\<FrameSpec\> frameSpec) override;
             
       private:
                 std::mutex                              requestLock_;
           std::map<int32_t, std::list<int32_t>>   captureRequests_ = {};
-                std::shared_ptr<SensorController>       sensorController_ = nullptr;
-          std::shared_ptr<IDeviceManager>     deviceManager_ = nullptr;
+                std::shared_ptr\<SensorController\>       sensorController_ = nullptr;
+          std::shared_ptr\<IDeviceManager\>     deviceManager_ = nullptr;
             };
       } // namespace OHOS::Camera
 
@@ -1269,7 +1269,7 @@ chipset为具体某芯片平台相关代码，例如，如和“rk3568”开发�
 
 device/board/hihope/rk3568/camera/目录包含了“include”和“src”，“camera_demo”“src”中“device­­_manager”中包含了chipset 适配的sensor的文件,配合platform下device_manager的设备管理目录，主要对接pipeline，实现平台特有的硬件处理接口及数据buffer的下发和上报、metadata的交互。
 
-下图为device_manager的实现框图，pipeline控制管理各个硬件模块，首先要获取对应设备的manager，通过manager获取其对应的controller，controller和对应的驱动进行交互 。
+下图为device_manager的实现框图，pipeline控制管理各个硬件模块，首先要获取对应设备的manager，通过manager获取其对应的controller，controller和对应的驱动进行交互。
 
  ![img](figures/dayu200/dayu200-camera-02.png)
 
@@ -1287,10 +1287,10 @@ deviceManager中需要实现关键接口介绍。
           RetCode Configure(std::shared_ptr<CameraStandard::CameraMetadata> meta);
           RetCode Start(int buffCont, DeviceFormat& format);
           RetCode Stop();
-          RetCode SendFrameBuffer(std::shared_ptr<FrameSpec> buffer);
+          RetCode SendFrameBuffer(std::shared_ptr\<FrameSpec\> buffer);
           void SetNodeCallBack(const NodeBufferCb cb);
           void SetMetaDataCallBack(const MetaDataCb cb);
-          void BufferCallback(std::shared_ptr<FrameSpec> buffer);
+          void BufferCallback(std::shared_ptr\<FrameSpec\> buffer);
           void SetAbilityMetaDataTag(std::vector<int32_t> abilityMetaDataTag);
     } 
 ```
@@ -1328,10 +1328,10 @@ vendor/${product_company}/${product_name}/hdf_config/uhdf/camera/pipeline_core/i
 
 ```
 
-  name:算法插件名称
-  description:描述算法插件的功能
-  path:算法插件所在路径
-  mode:算法插件所运行的模式   
+  name:算法插件名称。
+  description:描述算法插件的功能。
+  path:算法插件所在路径。
+  mode:算法插件所运行的模式。  
 
 算法插件可运行的模式由 drivers/peripheral/camera/hal/pipeline_core/ipp/include/ipp_algo.h中的IppAlgoMode提供，可以根据需要进行扩展。
 
@@ -1356,10 +1356,10 @@ vendor/${product_company}/${product_name}/hdf_config/uhdf/camera/pipeline_core/i
       } IppAlgoFunc;
 
   1） Init : 算法插件初始化接口，在起流前被ippnode 调用，其中IppAlgoMeta 定义在ipp_algo.h 中，为ippnode和算法插件提供非图像数据的传递通道，如当前运行的场景，算法处理后输出的人脸坐标等等，可根据实际需求进行扩展。
-  2） Start：开始接口，起流时被ippnode 调用
+  2） Start：开始接口，起流时被ippnode 调用。
   3） Flush：刷新数据的接口，停流之前被ippnode 调用。此接口被调用时，算法插件需尽可能快地停止处理。
-  4） Process: 数据处理接口，每帧数据都通过此接口输入至算法插件进行处理。inBuffer是一组输入buffer，inBufferCount是输入buffer 的个数，outBuffer是输出buffer，meta是算法处理时产生的非图像数据，IppAlgoBuffer在ipp_algo.h中定义
-  5） Stop：停止处理接口，停流时被ippnode调用
+  4） Process: 数据处理接口，每帧数据都通过此接口输入至算法插件进行处理。inBuffer是一组输入buffer，inBufferCount是输入buffer 的个数，outBuffer是输出buffer，meta是算法处理时产生的非图像数据，IppAlgoBuffer在ipp_algo.h中定义。
+  5） Stop：停止处理接口，停流时被ippnode调用。
 
 
 ```
@@ -1384,7 +1384,7 @@ ippnode的port口配置请查看3.3小节的config.hcs的说明。
 
 本章节目的是在v4l2框架下适配RK3568开发板。
 
- 区分V4L2 platform相关代码并将其放置“drivers/peripheral/camera/hal/adapter/platform/v4l2”目录下，该目录中包含了“device_manager”“driver_adapter”和“pipeline_core”三个目录。其中“driver_adapter”目录中存放着v4l2协议相关代码。可通过它们实现与v4l2底层驱动交互。该目录下“Pipeline_core”目录与“drivers/peripheral/camera/hal/pipeline_core”中代码组合为pipeline框架。v4l2_source_node 和 uvc_node为v4l2专用Node。device_manager目录存放着向北与pipeline向南与v4l2 adapter交互的代码
+ 区分V4L2 platform相关代码并将其放置“drivers/peripheral/camera/hal/adapter/platform/v4l2”目录下，该目录中包含了“device_manager”“driver_adapter”和“pipeline_core”三个目录。其中“driver_adapter”目录中存放着v4l2协议相关代码。可通过它们实现与v4l2底层驱动交互。该目录下“Pipeline_core”目录与“drivers/peripheral/camera/hal/pipeline_core”中代码组合为pipeline框架。v4l2_source_node 和 uvc_node为v4l2专用Node。device_manager目录存放着向北与pipeline向南与v4l2 adapter交互的代码。
 
 ```
   drivers/peripheral/camera/hal/adapter/platform/v4l2/src/
@@ -1438,7 +1438,7 @@ ippnode的port口配置请查看3.3小节的config.hcs的说明。
   } // namespace OHOS::Camera
 ```
 
-修改编译选项来达到根据不同的编译chipset来区分v4l2和其他框架代码编译。增加device/${product_company}/${device_name}/camera/product.gni
+修改编译选项来达到根据不同的编译chipset来区分v4l2和其他框架代码编译。增加device/${product_company}/${device_name}/camera/product.gni。
 
 ```
   camera_product_name_path = "//vendor/${product_company}/${product_name}"
@@ -1467,7 +1467,7 @@ ippnode的port口配置请查看3.3小节的config.hcs的说明。
           "//device/soc/hisilicon/common/hal/media/camera/hi3516dv300/linux_standard/camera/product.gni")
   ```
 
- “drivers/peripheral/camera/hal/BUILD.gn”中会根据 chipset_build_deps camera_device_manager_deps 和 camera_pipeline_core_deps来编译不同的chipset
+ “drivers/peripheral/camera/hal/BUILD.gn”中会根据 chipset_build_deps camera_device_manager_deps 和 camera_pipeline_core_deps来编译不同的chipset。
 
          print("product_name : , ${product_name}")
           group("camera_hal") {
@@ -1503,7 +1503,7 @@ Camera hal层向下屏蔽了平台及芯片差异，对外（Camera service或�
 
 修改RGBA888送显，模式由video 改为 SUBWINDOW_TYPE为normal模式：
 
-由于openharmony 较早实现的是3516平台camera, 该平台采用PIXEL_FMT_YCRCB_420_SP格式送显，而RK3568需将预览流由yuv420转换为PIXEL_FMT_RGBA_8888送上屏幕才可被正确的显示。具体需修改foundation/ace/ace_engine/frameworks/core/components/camera/standard_system/camera.cpp 文件中如下内容，该文件被编译在libace.z.so中
+由于openharmony 较早实现的是3516平台camera, 该平台采用PIXEL_FMT_YCRCB_420_SP格式送显，而RK3568需将预览流由yuv420转换为PIXEL_FMT_RGBA_8888送上屏幕才可被正确的显示。具体需修改foundation/ace/ace_engine/frameworks/core/components/camera/standard_system/camera.cpp 文件中如下内容，该文件被编译在libace.z.so中。
 
 
       #ifdef PRODUCT_RK
@@ -1516,7 +1516,7 @@ Camera hal层向下屏蔽了平台及芯片差异，对外（Camera service或�
                                        std::to_string(OHOS_CAMERA_FORMAT_YCRCB_420_SP));
       #endif
 
-foundation/multimedia/camera_standard/services/camera_service/src/hstream_repeat.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中    
+foundation/multimedia/camera_standard/services/camera_service/src/hstream_repeat.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中。  
 
 ```
 void HStreamRepeat::SetStreamInfo(std::shared_ptr<Camera::StreamInfo> streamInfo)
@@ -1533,7 +1533,7 @@ void HStreamRepeat::SetStreamInfo(std::shared_ptr<Camera::StreamInfo> streamInfo
     #endif
 ```
 
-如上3516平台是使用VO通过VO模块驱动直接送显，所以在ace中配置的subwindows模式为SUBWINDOW_TYPE_VIDEO. 需在foundation/ace/ace_engine/frameworks/core/components/camera/standard_system/camera.cpp文件中做如下修改，该文件被编译在libace.z.so中
+如上3516平台是使用VO通过VO模块驱动直接送显，所以在ace中配置的subwindows模式为SUBWINDOW_TYPE_VIDEO. 需在foundation/ace/ace_engine/frameworks/core/components/camera/standard_system/camera.cpp文件中做如下修改，该文件被编译在libace.z.so中。
 
       #ifdef PRODUCT_RK
           option->SetWindowType(SUBWINDOW_TYPE_NORMAL);
@@ -1545,7 +1545,7 @@ void HStreamRepeat::SetStreamInfo(std::shared_ptr<Camera::StreamInfo> streamInfo
 
 在该node中完成rgb转换，jpeg和h264压缩编解码前文讲过camera hal的pipeline模型的每一个node都是camera数据轮转过程中的一个节点，由于当前camera hal v4l2 adapter只支持一路流进行数据轮转，那么拍照和录像流就必须从单一的预览流中拷贝。现阶段openharmony也没有专门的服务端去做codec和rgb转换jpeg压缩的工作。那么只能在camera hal中开辟一个专有node去做这些事情，也就是rk_codec_node。
 Hcs中增加rk_codec_node连接模型：
-修改vendor/hihope/rk3568/hdf_config/uhdf/camera/pipeline_core/config.hcs文件
+修改vendor/hihope/rk3568/hdf_config/uhdf/camera/pipeline_core/config.hcs文件。
 
 
               normal_preview_snapshot :: pipeline_spec {
@@ -1624,7 +1624,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
  openharmony/device/board/hihope/rk3568/camera/src/pipeline_core/node/rk_codec_node.cpp主要接口：
 
 
-       void RKCodecNode::DeliverBuffer(std::shared_ptr<IBuffer>& buffer)
+       void RKCodecNode::DeliverBuffer(std::shared_ptr\<IBuffer\>& buffer)
         {
             if (buffer == nullptr) {
                 CAMERA_LOGE("RKCodecNode::DeliverBuffer frameSpec is null");
@@ -1699,7 +1699,7 @@ V4L2AllocBuffer error:ioctl VIDIOC_QUERYBUF failed: Not a tty
 
 ```
 
-    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr<FrameSpec>& frameSpec)
+    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr\<FrameSpec\>& frameSpec)
     {
         struct v4l2_buffer buf = {};
         struct v4l2_plane planes[1] = {};
@@ -1770,7 +1770,7 @@ V4L2AllocBuffer error:ioctl VIDIOC_QUERYBUF failed: Not a tty
             struct v4l2_timecode    timecode;
             __u32           sequence;
 ```
-6，临时解决方案是修改videodev2.h中的struct timeval为自己临时定义的结构体， 保证上下层size一致。如下：
+6，临时解决方案是修改videodev2.h中的struct timeval为自己临时定义的结构体，保证上下层size一致。如下：
 
 ```
             struct timeval1 {
@@ -1827,7 +1827,7 @@ struct v4l2_buffer {
 
         static constexpr uint32_t nalBit = 0x1F;
         #define NAL_TYPE(value)             ((value) & nalBit)
-        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
+        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr\<IBuffer\>& buffer)
         {
             size_t nalType = 0;
             size_t idx = 0;
@@ -1848,7 +1848,7 @@ struct v4l2_buffer {
                     nalType = NAL_TYPE(buf[idx + ret]);
                     CAMERA_LOGI("ForkNode::ForkBuffers nalu == 0x%{public}x buf == 0x%{public}x \n", nalType, buf[idx + ret]);
 
-每经过一个h264转换过的buffer都会被传入SearchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来
+每经过一个h264转换过的buffer都会被传入SearchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来。
 
   ```
      int RKCodecNode::findStartCode(unsigned char *data, size_t dataSz)
@@ -1886,17 +1886,17 @@ struct v4l2_buffer {
 
 ![dayu200-tp-01.png](figures/dayu200/dayu200-tp-01.png)
 
-相关目录下源代码目录结构如下所示
+相关目录下源代码目录结构如下所示：
 
 ```
 /drivers/peripheral/input
-├── hal                # input模块的hal层代码
-│   └── include       # input模块hal层内部的头文件
-│   └── src           # input模块hal层代码的具体实现
-├── interfaces         # input模块对上层服务提供的驱动能力接口
-│   └── include       # input模块对外提供的接口定义
-├── test               # input模块的测试代码
-│   └── unittest      # input模块的单元测试代码
+├── hal                # input模块的hal层代码。
+│   └── include       # input模块hal层内部的头文件。
+│   └── src           # input模块hal层代码的具体实现。
+├── interfaces         # input模块对上层服务提供的驱动能力接口。
+│   └── include       # input模块对外提供的接口定义。
+├── test               # input模块的测试代码。
+│   └── unittest      # input模块的单元测试代码。
 ```
 
 详细请参考input子系统[README](https://gitee.com/openharmony/drivers_peripheral/blob/master/input/README_zh.md)
@@ -1917,7 +1917,7 @@ dayu200平台默认支持GT5688这颗TP IC。
 
 4、 drivers\framework\model\input\driver\touchscreen
 
-TP驱动的适配涉及TP驱动和hcs配置
+TP驱动的适配涉及TP驱动和hcs配置。
 
 tp驱动的适配依赖hdf的input模型，hdf的input模型提供了TP，KEY，HID等场景的设备注册，管理，数据转发层，hcs解析等场景的支持能力。hdf的input模型可大致抽象为驱动管理层、公共驱动层以及器件驱动三层。 
 
@@ -1931,25 +1931,25 @@ tp驱动的适配依赖hdf的input模型，hdf的input模型提供了TP，KEY，
 
 对于硬件资源，tp模组需要主机上的如下资源：
 
-1.中断引脚
+1.中断引脚。
 
-2.Reset引脚
+2.Reset引脚。
 
-3.使用的哪一组i2c，从设备的地址是什么
+3.使用的哪一组i2c，从设备的地址是什么。
 
-4.TP的初始化固件（这个通常由IC厂商提供）
+4.TP的初始化固件（这个通常由IC厂商提供）。
 
-5.触摸屏的分辨率
+5.触摸屏的分辨率。
 
 对于软件资源，在hdf上适配tp，需要依赖如下几个hdf基础模组：
 
-1.Hdf gpio子系统 用于设置gpio pin脚以及一些中断资源
+1.Hdf gpio子系统 用于设置gpio pin脚以及一些中断资源。
 
-2.Hdf i2c 子系统 用于进行i2c通信
+2.Hdf i2c 子系统 用于进行i2c通信。
 
-3.Input模型
+3.Input模型。
 
-器件驱动主要围绕如下结构体展开
+器件驱动主要围绕如下结构体展开。
 
 ```
 static struct TouchChipOps g_gt911ChipOps = {
@@ -1963,41 +1963,41 @@ static struct TouchChipOps g_gt911ChipOps = {
 };
 ```
 
-ChipInit负责器件驱动的初始化动作
+ChipInit负责器件驱动的初始化动作。
 
-ChipDetect负责初始化后的器件有效性检测
+ChipDetect负责初始化后的器件有效性检测。
 
-SetAbility设置按键属性
+SetAbility设置按键属性。
 
-ChipDataHandle负责解析键值
+ChipDataHandle负责解析键值。
 
-UpdateFirmware负责升级固件
+UpdateFirmware负责升级固件。
 
-ChipSuspend负责器件的休眠
+ChipSuspend负责器件的休眠。
 
-ChipResume负责器件的唤醒
+ChipResume负责器件的唤醒。
 
-按照器件的特性实现如上接口回调，并将该结构体注册进input模型即可
+按照器件的特性实现如上接口回调，并将该结构体注册进input模型即可。
 
 #### HCS 配置
 
-device_info.hcs中加入新的器件节点
+device_info.hcs中加入新的器件节点。
 
 ```
 device_touch_chip :: device {
                 device0 :: deviceNode {
                     policy = 0;
                     priority = 180;
-                    preload = 0;//0表示默认加载
+                    preload = 0;//0表示默认加载。
                     permission = 0660;
-                    moduleName = "HDF_TOUCH_GT911";//需要和器件driver中保持一致
+                    moduleName = "HDF_TOUCH_GT911";//需要和器件driver中保持一致。
                     serviceName = "hdf_touch_gt911_service";
                     deviceMatchAttr = "zsj_gt911_5p5";
                 }
             }
 ```
 
-input_config.hcs中加入器件的特性
+input_config.hcs中加入器件的特性。
 
 ```
 chipConfig {
@@ -2012,7 +2012,7 @@ chipConfig {
                         /* 0:None 1:Rising 2:Failing 4:High-level 8:Low-level */
                         irqFlag = 2;
                         maxSpeed = 400;
-                        chipVersion = 0; //parse Coord TypeA
+                        chipVersion = 0; //parse Coord TypeA.
                         powerSequence {
                             /* [type, status, dir , delay]
                                 <type> 0:none 1:vcc-1.8v 2:vci-3.3v 3:reset 4:int
@@ -2034,7 +2034,7 @@ chipConfig {
 
 ## 显示适配
 
-显示适配需要完成的工作：图形服务HDI接口适配、GPU适配、LCD驱动适配
+显示适配需要完成的工作：图形服务HDI接口适配、GPU适配、LCD驱动适配。
 
 ### 显示HDI
 
@@ -2044,13 +2044,13 @@ chipConfig {
 
 gralloc模块提供显示内存管理功能，OpenHarmony提供了使用与Hi3516DV300参考实现，厂商可根据实际情况参考适配，该实现基于drm开发，[源码链接](https://gitee.com/openharmony/drivers_peripheral/tree/master/display/hal/default_standard)。
 
-drm设备节点定义在//drivers_peripheral/display/hal/default_standard/srd/display_gralloc/display_gralloc_gbm.c文件中，可根据实际情况修改
+drm设备节点定义在//drivers_peripheral/display/hal/default_standard/srd/display_gralloc/display_gralloc_gbm.c文件中，可根据实际情况修改。
 
 ```
 const char *g_drmFileNode = "/dev/dri/card0";
 ```
 
-该实现中存在一个海思的私有ioctl命令码 DRM_IOCTL_HISILICON_GEM_FD_TO_PHYADDR 定义在//drivers_peripheral/display/hal/default_standard/src/display_gralloc/hisilicon_drm.h 文件中， 在//drivers_peripheral/display/hal/default_standard/src/display_gralloc/display_gralloc_gbm.c文件中调用，属于海思的私有功能，适配时根据实际情况修改
+该实现中存在一个海思的私有ioctl命令码 DRM_IOCTL_HISILICON_GEM_FD_TO_PHYADDR 定义在//drivers_peripheral/display/hal/default_standard/src/display_gralloc/hisilicon_drm.h 文件中，在//drivers_peripheral/display/hal/default_standard/src/display_gralloc/display_gralloc_gbm.c文件中调用，属于海思的私有功能，适配时根据实际情况修改。
 
 ```
 ...
@@ -2079,14 +2079,14 @@ int32_t DrmDisplay::Init()
     auto preComp = std::make_unique<HdiGfxComposition>();
     DISPLAY_CHK_RETURN((preComp == nullptr), DISPLAY_FAILURE,
         DISPLAY_LOGE("can not new HdiGfxComposition errno %{public}d", errno));
-    ret = preComp->Init();                                                                                          // gfx初始化，这里需要跳过
-    DISPLAY_CHK_RETURN((ret != DISPLAY_SUCCESS), DISPLAY_FAILURE, DISPLAY_LOGE("can not init HdiGfxComposition"));  // 或者不判断返回值
+    ret = preComp->Init();                                                                                          // gfx初始化，这里需要跳过。
+    DISPLAY_CHK_RETURN((ret != DISPLAY_SUCCESS), DISPLAY_FAILURE, DISPLAY_LOGE("can not init HdiGfxComposition"));  // 或者不判断返回值。
 
     ...
 }
 ```
 
-同时在//drivers_peripheral/display/hal/default_standard/src/display_device/hdi_gfx_composition.cpp文件中修改set_layers方法，全部使用CPU合成显示
+同时在//drivers_peripheral/display/hal/default_standard/src/display_device/hdi_gfx_composition.cpp文件中修改set_layers方法，全部使用CPU合成显示。
 
 ```
 int32_t HdiGfxComposition::SetLayers(std::vector<HdiLayer *> &layers, HdiLayer &clientLayer)
@@ -2096,7 +2096,7 @@ int32_t HdiGfxComposition::SetLayers(std::vector<HdiLayer *> &layers, HdiLayer &
     mCompLayers.clear();
     for (auto &layer : layers) {
         if (CanHandle(*layer)) {
-#if 0                                      // CPU合成
+#if 0                                      // CPU合成。
             layer->SetDeviceSelect(COMPOSITION_CLIENT);
 #else
             if ((layer->GetCompositionType() != COMPOSITION_VIDEO) &&
@@ -2132,19 +2132,19 @@ foundation/graphic/graphic/rosen/samples/composer/
 
 具体验证如下：
 
-1. 关闭render service
+1. 关闭render service。
 
   ```
   service_control stop render_service
   ```
 
-2. 关闭 foundation进程
+2. 关闭 foundation进程。
 
   ```
   service_control stop foundation
   ```
 
-3. 运行hello_composer 测试相关接口
+3. 运行hello_composer 测试相关接口。
 
    ```
    ./hello_composer
@@ -2181,13 +2181,13 @@ devicetest测试：HDI显示模块提供的测试模块，主要测试HDI接口�
 
 ### GPU
 
-编译器clang
+编译器clang。
 
 ```
 prebuilts/clang/ohos/linux-x86_64/llvm
 ```
 
-musl库
+musl库。
 
 ```
 ./build.sh --product-name rk3568 --build-target musl_all 
@@ -2207,7 +2207,7 @@ musl库
 third_party/musl
 ```
 
-GPU 编译参数参考
+GPU 编译参数参考。
 
 ```
 TARGET_CFLAGS=" -march=armv7-a -mfloat-abi=softfp -mtune=generic-armv7-a -mfpu=neon -mthumb --target=arm-linux-ohosmusl -fPIC -ftls-model=global-dynamic -mtls-direct-seg-refs -DUSE_MUSL"
@@ -2215,19 +2215,19 @@ TARGET_CFLAGS=" -march=armv7-a -mfloat-abi=softfp -mtune=generic-armv7-a -mfpu=n
 
 ## LCD
 
-dayu200平台默认支持一个mipi接口的lcd屏幕
+dayu200平台默认支持一个mipi接口的lcd屏幕。
 
 LCD的适配主要依赖于HDF显示模型，显示驱动模型基于 HDF 驱动框架、Platform 接口及 OSAL 接口开发，可以屏蔽不同内核形态(LiteOS、Linux)差异，适用于不同芯片平台，为显示屏器件提供统一的驱动平台。
 
-如图为 HDF Display驱动模型层次关系 
+如图为 HDF Display驱动模型层次关系。
 
 ![640](figures/dayu200/dayu200-lcd-01.png)
 
 当前驱动模型主要部署在内核态中，向上对接到 Display 公共 hal 层，辅助 HDI 的实现。显示驱动通过 Display-HDI 层对图形服务暴露显示屏驱动能力；向下对接显示屏 panel 器件，驱动屏幕正常工作，自上而下打通显示全流程通路。
 
-所以LCD的适配主要在于LCD panel器件驱动的适配
+所以LCD的适配主要在于LCD panel器件驱动的适配。
 
-器件驱动的适配分为2部分：panel驱动和hcs配置
+器件驱动的适配分为2部分：panel驱动和hcs配置。
 
 涉及的文件有：
 
@@ -2266,19 +2266,19 @@ struct PanelData {
     panelSimpleDev->panel.off = PanelSimpleOff;
     panelSimpleDev->panel.prepare = PanelSimplePrepare;
     panelSimpleDev->panel.unprepare = PanelSimpleUnprepare;
-PanelSimpleInit负责panel的软件初始化
+PanelSimpleInit负责panel的软件初始化。
 
-PanelSimpleOn负责亮屏
+PanelSimpleOn负责亮屏。
 
-PanelSimpleOff负责灭屏
+PanelSimpleOff负责灭屏。
 
-PanelSimplePrepare负责亮屏的硬件时序初始化
+PanelSimplePrepare负责亮屏的硬件时序初始化。
 
-PanelSimpleUnprepare负责灭屏的硬件时序初始化
+PanelSimpleUnprepare负责灭屏的硬件时序初始化。
 
-实例化后使用RegisterPanel接口向display模型注册该panel驱动即可
+实例化后使用RegisterPanel接口向display模型注册该panel驱动即可。
 
-需要说明的是，dayu200上的这款lcd 使用的是DRM显示框架
+需要说明的是，dayu200上的这款lcd 使用的是DRM显示框架。
 
 ### hcs配置
 
@@ -2293,13 +2293,13 @@ device4 :: deviceNode {
 
 ## 背光
 
-基于HDF框架开发的 背光驱动模型
+基于HDF框架开发的 背光驱动模型。
 
 ![dayu200-backlight-01.png](figures/dayu200/dayu200-backlight-01.png)
 
-rk3568背光是通过pwm控制占空比实现的，具体使用的是pwm4
+rk3568背光是通过pwm控制占空比实现的，具体使用的是pwm4。
 
-原生背光驱动代码路径
+原生背光驱动代码路径。
 
 ```c
 linux-5.10/drivers/video/backlight/pwm_bl.c
@@ -2307,7 +2307,7 @@ linux-5.10/drivers/video/backlight/backlight.c
 linux-5.10/drivers/pwm/pwm-rockchip.c
 ```
 
-使用HDF框架下的背光驱动，需要关闭原生驱动
+使用HDF框架下的背光驱动，需要关闭原生驱动。
 
 ```c
 # CONFIG_BACKLIGHT_PWM is not set
@@ -2315,13 +2315,13 @@ linux-5.10/drivers/pwm/pwm-rockchip.c
 
 ### HDF实现
 
-代码路径
+代码路径。
 
 ```c
 drivers/framework/model/display/driver/backlight/hdf_bl.c
 ```
 
-HDF BL 入口函数
+HDF BL 入口函数。
 
 ```c
 static int32_t BacklightInit(struct HdfDeviceObject *object)
@@ -2350,7 +2350,7 @@ HDF_INIT(g_blDevEntry);
 drivers/framework/model/display/driver/backlight/pwm_bl.c
 ```
 
-HDF PWM 入口函数
+HDF PWM 入口函数。
 
 ```c
 struct HdfDriverEntry g_pwmBlDevEntry = {
@@ -2397,13 +2397,13 @@ static struct BacklightOps g_blDevOps = {
 };
 ```
 
-其实使用的就是HDF PWM 实现的对接内核pwm的接口
+其实使用的就是HDF PWM 实现的对接内核pwm的接口。
 
 ![dayu200-backlight-02.png](figures/dayu200/dayu200-backlight-02.png)
 
-在LCD HDF器件驱动注册背光
+在LCD HDF器件驱动注册背光。
 
-代码路径
+代码路径。
 
 ```c
 drivers/framework/model/display/driver/panel/ili9881c_boe.c
@@ -2419,7 +2419,7 @@ if (ili9881cBoeDev->panel.blDev == NULL) {
 
 ### HCS配置
 
-驱动hcs配置
+驱动hcs配置。
 
 ```c
 device_pwm_bl :: device {
@@ -2443,7 +2443,7 @@ device_backlight :: device {
 }
 ```
 
-pwm背光的hcs配置
+pwm背光的hcs配置。
 
 ```c
 root {
@@ -2463,13 +2463,13 @@ root {
 
 ### 测试
 
-cat /sys/kernel/debug/pwm 来查看hdf pwm 是否申请到pwm4
+cat /sys/kernel/debug/pwm 来查看hdf pwm 是否申请到pwm4。
 
 申请成功有如下结果：
 
-requested 代表申请成功
+requested 代表申请成功。
 
-enabled 代表pwm4使能成功
+enabled 代表pwm4使能成功。
 
 ```c
 # cat /sys/kernel/debug/pwm
@@ -2486,7 +2486,7 @@ platform/fe6e0000.pwm, 1 PWM device
 
 接下来熟悉HCS文件的格式以及"HDF WIFI”核心驱动框架的代码启动初始化过程，参考hi3881的代码进行改造。
 
-HDF WiFi框架总体框架图
+HDF WiFi框架总体框架图。
 
 ​                       ![image-20220320160720306](figures/dayu200/dayu200-wifi-01.png)        
 
@@ -2498,11 +2498,11 @@ HDF WiFi框架总体框架图
 
 Ap6275s 是一款SDIO设备WiFi模组驱动，使用标准Linux的SDIO设备驱动。内核模块初始化入口module_init()调用dhd_wifi_platform_load_sdio()函数进行初始化工作，这里调用wifi_platform_set_power()进行GPIO上电，调用dhd_wlan_set_carddetect()进行探测SDIO设备卡，最后调用sdio_register_driver(&bcmsdh_sdmmc_driver);进行SDIO设备驱动的注册，SDIO总线已经检测到WiFi模块设备 根据设备号和厂商号与该设备驱动匹配, 所以立即回调该驱动的bcmsdh_sdmmc_probe()函数，这里进行WiFi模组芯片的初始化工作，最后创建net_device网络接口wlan0，然后注册到Linux内核协议栈中。
 
-l 创建net_device网络接口wlan0对象
+l 创建net_device网络接口wlan0对象。
 
 dhd_allocate_if()会调用alloc_etherdev()创建net_device对象，即wlan0网络接口。
 
-l 将wlan0注册到内核协议栈
+l 将wlan0注册到内核协议栈。
 
 调用dhd_register_if()函数，这里调用register_netdev(net);将wlan0网络接口注册到协议栈。
 
@@ -2514,13 +2514,13 @@ Ap6275s WiFi6内核驱动依赖platform能力，主要包括SDIO总线的通讯�
 
 适配移植ap6275s WiFi6驱动涉及到的文件和目录如下：
 
-1). 编译配置文件
+1). 编译配置文件。
 
 drivers/adapter/khdf/linux/model/network/wifi/Kconfig
 
 drivers/adapter/khdf/linux/model/network/wifi/vendor/Makefile
 
-2). WiFi驱动源码目录
+2). WiFi驱动源码目录。
 
 原生驱动代码存放于：
 
@@ -2548,13 +2548,13 @@ device/hihope/rk3568/wifi/bcmdhd_wifi6/
 ├── net_bdh_adpater.h 
 ```
 
-其中hdf_bdh_mac80211.c主要对g_bdh6_baseOps所需函数的填充， hdf_mac80211_ap.c主要对g_bdh6_staOps所需函数进行填充，hdf_mac80211_sta.c主要对g_bdh6_staOps所需函数进行填充，hdf_mac80211_p2p.c主要对g_bdh6_p2pOps所需函数进行填充，在openharmony/drivers/framework/include/wifi/wifi_mac80211_ops.h里有对wifi基本功能所需api的说明。
+其中hdf_bdh_mac80211.c主要对g_bdh6_baseOps所需函数的填充，hdf_mac80211_ap.c主要对g_bdh6_staOps所需函数进行填充，hdf_mac80211_sta.c主要对g_bdh6_staOps所需函数进行填充，hdf_mac80211_p2p.c主要对g_bdh6_p2pOps所需函数进行填充，在openharmony/drivers/framework/include/wifi/wifi_mac80211_ops.h里有对wifi基本功能所需api的说明。
 
 ####  驱动文件编写
 
 HDF WLAN驱动框架由Module、NetDevice、NetBuf、BUS、HAL、Client 和 Message 这七个部分组成。开发者在WiFi驱动HDF适配过程中主要实现以下几部分功能：
 
-1)  适配HDF WLAN框架的驱动模块初始化
+1)  适配HDF WLAN框架的驱动模块初始化。
 
 代码流程框图如下：
 
@@ -2575,7 +2575,7 @@ HDF_INIT(g_hdfBdh6ChipEntry);
 
 在驱动初始化时会实现SDIO主控扫描探卡、WiFi芯片初始化、主接口的创建和初始化等工作。
 
-2)  HDF WLAN Base控制侧接口的实现
+2)  HDF WLAN Base控制侧接口的实现。
 
 代码位于hdf_bdh_mac80211.c
 
@@ -2597,7 +2597,7 @@ static struct HdfMac80211BaseOps g_bdh6_baseOps = {
 
 上述实现的接口供STA、AP、P2P三种模式中所调用。
 
-3)  HDF WLAN STA模式接口的实现
+3)  HDF WLAN STA模式接口的实现。
 
 STA模式调用流程图如下：
 
@@ -2615,7 +2615,7 @@ struct HdfMac80211STAOps g_bdh6_staOps = {
 };
 ```
 
-4)  HDF WLAN AP模式接口的实现
+4)  HDF WLAN AP模式接口的实现。
 
 AP模式调用流程图如下：
 
@@ -2636,7 +2636,7 @@ struct HdfMac80211APOps g_bdh6_apOps = {
 };
 ```
 
-5） HDF WLAN P2P模式接口的实现
+5） HDF WLAN P2P模式接口的实现。
 
 P2P模式调用流程图如下：
 
@@ -2654,7 +2654,7 @@ struct HdfMac80211P2POps g_bdh6_p2pOps = {
 }; 
 ```
 
-6） HDF WLAN框架事件上报接口的实现
+6） HDF WLAN框架事件上报接口的实现。
 
 WiFi驱动需要通过上报事件给wpa_supplicant和hostapd应用程序，比如扫描热点结果上报，新STA终端关联完成事件上报等等，HDF WLAN事件上报的所有接口请参考drivers/framework/include/wifi/hdf_wifi_event.h：
 
@@ -2662,26 +2662,26 @@ WiFi驱动需要通过上报事件给wpa_supplicant和hostapd应用程序，比�
 
 | 头文件  hdf_wifi_event.h接口名称    | 功能描述                 |
 | ----------------------------------- | ------------------------ |
-| HdfWifiEventNewSta()                | 上报一个新的sta事件      |
-| HdfWifiEventDelSta（）              | 上报一个删除sta事件      |
-| HdfWifiEventInformBssFrame（）      | 上报扫描Bss事件          |
-| HdfWifiEventScanDone（）            | 上报扫描完成事件         |
-| HdfWifiEventConnectResult（）       | 上报连接结果事件         |
-| HdfWifiEventDisconnected（）        | 上报断开连接事件         |
-| HdfWifiEventMgmtTxStatus（）        | 上报发送状态事件         |
-| HdfWifiEventRxMgmt（）              | 上报接受状态事件         |
-| HdfWifiEventCsaChannelSwitch（）    | 上报Csa频段切换事件      |
-| HdfWifiEventTimeoutDisconnected（） | 上报连接超时事件         |
-| HdfWifiEventEapolRecv（）           | 上报Eapol接收事件        |
-| HdfWifiEventResetResult（）         | 上报wlan驱动复位结果事件 |
-| HdfWifiEventRemainOnChannel（）     | 上报保持信道事件         |
-| HdfWifiEventCancelRemainOnChannel   | 上报取消保持信道事件     |
+| HdfWifiEventNewSta()                | 上报一个新的sta事件。      |
+| HdfWifiEventDelSta（）              | 上报一个删除sta事件。      |
+| HdfWifiEventInformBssFrame（）      | 上报扫描Bss事件。          |
+| HdfWifiEventScanDone（）            | 上报扫描完成事件。         |
+| HdfWifiEventConnectResult（）       | 上报连接结果事件。         |
+| HdfWifiEventDisconnected（）        | 上报断开连接事件。         |
+| HdfWifiEventMgmtTxStatus（）        | 上报发送状态事件。        |
+| HdfWifiEventRxMgmt（）              | 上报接受状态事件。         |
+| HdfWifiEventCsaChannelSwitch（）    | 上报Csa频段切换事件。     |
+| HdfWifiEventTimeoutDisconnected（） | 上报连接超时事件。         |
+| HdfWifiEventEapolRecv（）           | 上报Eapol接收事件。        |
+| HdfWifiEventResetResult（）         | 上报wlan驱动复位结果事件。 |
+| HdfWifiEventRemainOnChannel（）     | 上报保持信道事件。         |
+| HdfWifiEventCancelRemainOnChannel   | 上报取消保持信道事件。     |
 
 ### 所有关键问题总结
 
 #### 调试AP模块时，启动AP模式的方法
 
-调试AP模块时，无法正常开启AP功能的解决方法
+调试AP模块时，无法正常开启AP功能的解决方法。
 
 需要使用到busybox和hostapd配置ap功能，操作步骤如下：
 
@@ -2820,9 +2820,9 @@ HCI定义了如何交换命令，事件，异步和同步数据包。异步数�
 
 vendorlib部署在主机侧，可以认为是主机侧对蓝牙芯片驱动层，屏蔽不同蓝牙芯片的技术细节。从代码层面解读，其主要功能有两个：
 
-1、为协议栈提供蓝牙芯片之间的通道（串口的文件描述符）
+1、为协议栈提供蓝牙芯片之间的通道（串口的文件描述符）。
 
-2、提供特定芯片的具体控制方法
+2、提供特定芯片的具体控制方法。
 
 #### 代码层面解读vendorlib
 
@@ -2834,7 +2834,7 @@ foundation/communication/bluetooth/services/bluetooth_standard/hardware/include
 
 该文件定义了协议栈和vendor_lib交互接口，分为两组：
 
-1、 vendorlib实现，协议栈调用
+1、 vendorlib实现，协议栈调用。
 
 ```c
 typedef struct {
@@ -2862,11 +2862,11 @@ typedef struct {
 
 协议栈启动时的基本流程如下：
 
-1.1、协议栈动态打开libbt_vendor.z.so，并调用init函数，初始化vendorlib
+1.1、协议栈动态打开libbt_vendor.z.so，并调用init函数，初始化vendorlib。
 
 1.2、协议栈调用op函数，分别调用BT_OP_POWER_ON、BT_OP_HCI_CHANNEL_OPEN、BT_OP_INIT三个opcode；原则上BT_OP_INIT成功后说明芯片初始化完成。
 
-2、协议栈实现，vendorlib调用（回调函数）
+2、协议栈实现，vendorlib调用（回调函数）。
 
 ```c
 typedef struct {
@@ -2889,15 +2889,15 @@ typedef struct {
 } bt_vendor_callbacks_t;
 ```
 
-init_cb在BT_OP_INIT完成后调用
+init_cb在BT_OP_INIT完成后调用。
 
-alloc/dealloc用于发送HCI消息时申请/释放消息控件
+alloc/dealloc用于发送HCI消息时申请/释放消息控件。
 
-xmit_cb发送HCI Commands
+xmit_cb发送HCI Commands。
 
-vendor_lib实现的几个重要函数
+vendor_lib实现的几个重要函数。
 
-1、 init函数
+1、 init函数。
 
 ```c
 static int init(const bt_vendor_callbacks_t *p_cb, unsigned char *local_bdaddr)
@@ -2917,9 +2917,9 @@ static int init(const bt_vendor_callbacks_t *p_cb, unsigned char *local_bdaddr)
 
 vendorlib被调用的第一个函数，vendorlib保存好协议栈的callback和mac地址即可。
 
-2、 BT_OP_POWER_ON对应处理
+2、 BT_OP_POWER_ON对应处理。
 
-观名知意，这个操作理论上需要拉高电源管脚电平；该函数中使用rfill设备来处理，并没有直接调用驱动拉高电平
+观名知意，这个操作理论上需要拉高电源管脚电平；该函数中使用rfill设备来处理，并没有直接调用驱动拉高电平。
 
 ```c
 int upio_set_bluetooth_power(int on)
@@ -2963,10 +2963,10 @@ int upio_set_bluetooth_power(int on)
 }
 ```
 
-3、BT_OP_HCI_CHANNEL_OPEN对应处理
+3、BT_OP_HCI_CHANNEL_OPEN对应处理。
 
 ```c
-case BT_OP_HCI_CHANNEL_OPEN: { // BT_VND_OP_USERIAL_OPEN
+case BT_OP_HCI_CHANNEL_OPEN: { // BT_VND_OP_USERIAL_OPEN.
             int(*fd_array)[] = (int(*)[])param;
             int fd, idx;
             fd = userial_vendor_open((tUSERIAL_CFG *)&userial_init_cfg);
@@ -2979,17 +2979,17 @@ case BT_OP_HCI_CHANNEL_OPEN: { // BT_VND_OP_USERIAL_OPEN
         break;
 ```
 
-userial_vendor_open函数打开串口设备（UART）得到文件描述符(fd)，通过op的参数param返回该fd
+userial_vendor_open函数打开串口设备（UART）得到文件描述符(fd)，通过op的参数param返回该fd。
 
-该串口设备在系统中的名字应该在开发板中预定义了，本次开发板上设备为/dev/ttyS8
+该串口设备在系统中的名字应该在开发板中预定义了，本次开发板上设备为/dev/ttyS8。
 
-4、BT_OP_INIT对应处理
+4、BT_OP_INIT对应处理。
 
 该操作码要求对蓝牙芯片进行初始化，具体要进行的处理和蓝牙芯片强相关。以本次调测的AP6257S芯片为例，初始化过程中主要是下发蓝牙固件。
 
 初始化结束后，必须调用init_cb回调函数（参见bt_vendor_callbacks_t）通知协议栈初始化结果，否则会阻塞协议栈线程导致蓝牙相关功能无法正常使用。协议栈的具体处理如下：
 
-协议栈调用BT_OP_INIT后会等待信号量，该信号量由init_cb函数置位
+协议栈调用BT_OP_INIT后会等待信号量，该信号量由init_cb函数置位。
 
 ```c
 static int HciInitHal()
@@ -3006,17 +3006,17 @@ static int HciInitHal()
 
 ### vendorlib移植问题
 
-1、 vendorlib的so命名
+1、 vendorlib的so命名。
 
 vendorlib必须是libbt_vendor.z.so；因为协议栈打开动态链接库就是这个名字
 
-2、 固件问题
+2、 固件问题。
 
 开发时一定要关注芯片固件，有些蓝牙芯片可能无需升级固件，有些则必须升级固件；本次AP6257S适配过程中最开始没有下发固件，导致蓝牙接收信号很差。固件下发时需要注意如下两点：
 
-2.1、对于AP6257S芯片，因为蓝牙芯片内并没有类似flash存储，要求芯片上下电后必须重新下发
+2.1、对于AP6257S芯片，因为蓝牙芯片内并没有类似flash存储，要求芯片上下电后必须重新下发。
 
-2.2、按照芯片本身的要求处理，最好能找到厂商的参考代码；以Broadcom系列芯片为例，其固件下发过程比较复杂，通过一个状态机驱动；共如下9个状态
+2.2、按照芯片本身的要求处理，最好能找到厂商的参考代码；以Broadcom系列芯片为例，其固件下发过程比较复杂，通过一个状态机驱动；共如下9个状态。
 
 ```c
 / Hardware Configuration State */
@@ -3074,9 +3074,9 @@ void hw_config_start(void)
 
 详细实现请参见hw_config_cback函数。
 
-3、 关注系统间接口差异
+3、 关注系统间接口差异。
 
-不同系统的接口可能有一些细微差异，需要重点关注；对比其他系统和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异
+不同系统的接口可能有一些细微差异，需要重点关注；对比其他系统和OHOS的接口，vendorlib调用xmit_cb发送HCI命令的函数定义略有差异。
 
 其他系统：
 
@@ -3139,15 +3139,15 @@ void hw_process_event(HC_BT_HDR *p_buf)
             break;
 ```
 
-另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和其他系统接口的返回值也不同
+另外，OHOS返回的是发送消息的字节数，<=0为发送失败，和其他系统接口的返回值也不同。
 
-4、 snoop日志
+4、 snoop日志。
 
-其他系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析
+其他系统中记录了HCI交互消息，OHOS同样有记录；OHOS系统生成文件为/data/log/bluetooth/snoop.log，通过wireshark或其它报文分析工具可以看到Host和Controller之间的交互流程，有助于问题分析。
 
 ##    Sensor
 
-  基于HDF（Hardware Driver Foundation）驱动框架开发的Sensor驱动模型
+  基于HDF（Hardware Driver Foundation）驱动框架开发的Sensor驱动模型。
 
 ![dayu200-sensor-01.png](figures/dayu200/dayu200-sensor-01.png)
 
@@ -3157,7 +3157,7 @@ rk3568 支持accel sensor，整体的驱动框架openharmony 主线已经具备�
 
 RK3568平台支持加速度传感器，型号是MXC6655XA,具体配置可以查看该器件的datasheet。 移植HDF前，需要确认内核该sensor的编译使能是关闭的。
 
-配置文件路径kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
+配置文件路径kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig。
 
 ```c
 # CONFIG_GS_MXC6655XA is not set
@@ -3190,7 +3190,7 @@ struct HdfDriverEntry g_accelMxc6655xaDevEntry = {
 HDF_INIT(g_accelMxc6655xaDevEntry);
 ```
 
-接下来就是差异化适配函数
+接下来就是差异化适配函数。
 
 ```c
 struct AccelOpsCall {
@@ -3199,7 +3199,7 @@ int32_t (*ReadData)(struct SensorCfgData *data);
 };
 ```
 
-获取x, y, z三轴数据接口
+获取x, y, z三轴数据接口。
 
 ```c
 int32_t ReadMxc6655xaData(struct SensorCfgData *cfg, struct SensorReportEvent *event)
@@ -3242,7 +3242,7 @@ int32_t ReadMxc6655xaData(struct SensorCfgData *cfg, struct SensorReportEvent *e
 }
 ```
 
-初始化
+初始化。
 
 ```c
 static int32_t InitMxc6655xa(struct SensorCfgData *data)
@@ -3261,7 +3261,7 @@ static int32_t InitMxc6655xa(struct SensorCfgData *data)
 
 ### hcs配置
 
-Mxc6655xa accel sensor 驱动HCS配置
+Mxc6655xa accel sensor 驱动HCS配置。
 
 ```c
 device_sensor_mxc6655xa :: device {
@@ -3277,7 +3277,7 @@ device_sensor_mxc6655xa :: device {
 }
 ```
 
-Mxc6655xa accel sensor 寄存器组配置信息
+Mxc6655xa accel sensor 寄存器组配置信息。
 
 ```c
 #include "../sensor_common.hcs"
@@ -3286,16 +3286,16 @@ root {
         match_attr = "hdf_sensor_accel_mxc6655xa_driver";
         sensorInfo :: sensorDeviceInfo {
             sensorName = "accelerometer";
-            vendorName = "memsi_mxc6655xa"; // max string length is 16 bytes
-            sensorTypeId = 1; // enum SensorTypeTag
-            sensorId = 1; // user define sensor id
+            vendorName = "memsi_mxc6655xa"; // max string length is 16 bytes.
+            sensorTypeId = 1; // enum SensorTypeTag.
+            sensorId = 1; // user define sensor id.
             power = 230;
         }
         sensorBusConfig :: sensorBusInfo {
-            busType = 0; // 0:i2c 1:spi
+            busType = 0; // 0:i2c 1:spi.
             busNum = 5;
             busAddr = 0x15;
-            regWidth = 1; // 1byte
+            regWidth = 1; // 1byte.
         }
         sensorIdAttr :: sensorIdInfo {
             chipName = "mxc6655xa";
@@ -3303,7 +3303,7 @@ root {
             chipIdValue = 0x05;
         }
         sensorDirection {
-            direction = 5; // chip direction range of value:0-7
+            direction = 5; // chip direction range of value:0-7.
             /* <sign> 1:negative  0:positive
                <map> 0:AXIS_X  1:AXIS_Y  2:AXIS_Z
             */
@@ -3351,9 +3351,9 @@ root {
 
 ### 测试
 
-UT测试可以获取到sensor的三轴数据
+UT测试可以获取到sensor的三轴数据。
 
-测试代码路径
+测试代码路径。
 
 ```c
 drivers/peripheral/sensor/test/unittest/common/hdf_sensor_test.cpp
@@ -3367,7 +3367,7 @@ drivers/peripheral/sensor/test/unittest/common/hdf_sensor_test.cpp
 
 将hdf_test_sensor.bin  push到system/bin目录，添加执行权限，执行
 
-有如下结果代表sensor 测试成功
+有如下结果代表sensor 测试成功。
 
 ```c
 SensorTestDataCallback enter
@@ -3412,7 +3412,7 @@ HDF_INIT(g_linearVibratorDriverEntry);
 
 ### hcs配置
 
-驱动hcs配置
+驱动hcs配置。
 
 ```c
         vibrator :: host {
@@ -3442,7 +3442,7 @@ HDF_INIT(g_linearVibratorDriverEntry);
         }
 ```
 
-线性马达器件hcs配置
+线性马达器件hcs配置。
 
 ```c
 root {
@@ -3450,7 +3450,7 @@ root {
         boardConfig {
             match_attr = "hdf_linear_vibrator_driver";
             vibratorChipConfig {
-                busType = 1; // 0:i2c 1:gpio
+                busType = 1; // 0:i2c 1:gpio.
                 gpioNum = 154;
                 startReg = 0;
                 stopReg = 0;
@@ -3463,13 +3463,13 @@ root {
 
 ### UT测试
 
-测试代码路径
+测试代码路径。
 
 ```c
 drivers/peripheral/misc/vibrator/test/unittest/common/hdf_vibrator_test.cpp
 ```
 
-编译UT代码命令
+编译UT代码命令。
 
 ```c
 ./build.sh --product-name rk3568 --build-target hdf_test_vibrator

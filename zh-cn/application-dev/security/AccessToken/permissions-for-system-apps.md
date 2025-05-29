@@ -68,7 +68,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SUBSCRIBE_SWING_ABILITY
 
@@ -120,18 +120,6 @@
 
 ## ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
 
-允许系统应用读取“安全建议”的数据库。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：16
-
-## ohos.permission.READ_PROTECTION_ADVICE_POLICY
-
 允许系统应用修改“安全建议”的数据库。
 
 **权限级别**：system_basic
@@ -140,7 +128,19 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：17
+
+## ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+允许系统应用读取“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
 
 ## ohos.permission.PROXY_MESSAGE_AUTH
 
@@ -286,6 +286,18 @@
 
 **起始版本**：11
 
+## ohos.permission.QUERY_ACCESSIBILITY_ELEMENT
+
+允许批量查询无障碍节点。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ## ohos.permission.SET_UNREMOVABLE_NOTIFICATION
 
 允许应用发布不可被移除通知。
@@ -368,7 +380,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -728,7 +740,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.CAPTURE_SCREEN
 
@@ -924,6 +936,18 @@
 
 **起始版本**：10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频。
@@ -1066,7 +1090,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.MICROPHONE_BACKGROUND
 
@@ -1078,7 +1102,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.START_DLP_CRED
 
@@ -1176,18 +1200,6 @@
 
 **起始版本**：10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -1219,6 +1231,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1437,6 +1451,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1680,7 +1696,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -1689,6 +1705,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -2644,6 +2662,18 @@
 
 **起始版本**：11
 
+## ohos.permission.MANAGE_APP_UNINSTALL
+
+允许系统应用卸载其它应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
 允许系统应用打开坚盾守护模式配置界面。
@@ -2673,18 +2703,6 @@
 允许系统应用拉起智能检测能力。
 
 **权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 
@@ -3558,7 +3576,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACTIVATE_DEVICE_PSI
 
@@ -3595,6 +3613,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
@@ -4016,7 +4046,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
 
@@ -4028,7 +4058,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
@@ -4138,7 +4168,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
 
@@ -4174,7 +4204,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_WRITE_EMERGENCY_INFO
 
@@ -4186,7 +4216,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.WATCH_START_SOS_SERVICE
 
@@ -4198,7 +4228,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 **变更信息**：API 12-14，该权限仅向系统服务开放；从API 15开始，开放范围变更为系统应用。
 
@@ -4212,7 +4242,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.DLP_GET_HIDE_STATUS
 
@@ -4224,7 +4254,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_ANIM_POLICY
 
@@ -4236,7 +4266,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.VIRTUAL_KEYBOARD_WINDOW
 
@@ -4262,7 +4292,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_AWARENESS_DATA
 
@@ -4274,7 +4304,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
@@ -4286,19 +4316,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
-
-## ohos.permission.ACCESS_VIRTUAL_SCREEN
-
-允许应用管控虚拟屏。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.GET_PAGE_INFO
 
@@ -4310,7 +4328,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_DRIVERS
 
@@ -4327,7 +4345,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
@@ -4345,7 +4363,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_USB_SERIAL
 
@@ -4363,7 +4381,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_CUSTOM_RINGTONE
 
@@ -4375,7 +4393,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_STARTUPGUIDE
 
@@ -4389,7 +4407,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_MGR
 
@@ -4401,7 +4419,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_PRIVILEGE
 
@@ -4413,7 +4431,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ACCESS_DEVAUTH_CRED_AUTH
 
@@ -4425,7 +4443,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：18
 
 ## ohos.permission.ANTIFRAUD_DETECT
 
@@ -4475,6 +4493,18 @@
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_MEDIALIB_RESTORE
+
+允许应用挂载媒体恢复路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
 ## ohos.permission.ACCESS_TRUST_LIST_OOBE_MANAGER
 
 允许应用管理在开机向导中可被拉起的应用名单。
@@ -4501,5 +4531,290 @@
 
 **变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
-## system_grant，不允许ACL跨级申请
+## ohos.permission.READ_DLP_HIDE_SWITCH
 
+允许系统应用从窥屏提示数据库读取数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DLP_HIDE_SWITCH
+
+允许系统应用向窥屏提示数据库写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+允许应用调用安装插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+允许应用调用企业空间访问DLP文件的接口。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+允许应用调用卸载插件的接口。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.GET_EDM_CONFIG
+
+允许系统应用查看行业定制配置文件。
+
+用于保护行业定制配置文件的可见性，例如开机动画、开机logo、桌面布局、壁纸等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.READ_DHA
+
+允许应用读取设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DHA
+
+允许应用写入设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.NOTIFY_DHA
+
+允许应用通知设备健康证明事件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.CHANGE_DEFAULT_APPLICATION
+
+允许应用监听“默认应用”变化事件。
+
+用户可以为系统设置“默认应用”，如设置默认使用某一应用打开指定类型文件。当“默认应用”变化时，将触发“默认应用”变化事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.SEND_NOTIFICATION_CROSS_USER
+
+允许应用发送通知给系统中指定用户。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+允许系统应用拉起Tips提供的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+### ohos.permission.UPDATE_FONT
+
+允许应用安装和卸载字体。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+允许应用通过无障碍服务接口查询和操作界面上的组件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：General
+
+**ACL使能**：true
+
+**起始版本**：20
+
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用从文件管理目录读取录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用向文件管理目录写入录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.SANDBOX_ACCESS_MANAGER
+
+允许应用访问其它应用的沙箱目录。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+允许应用运行的后台上传下载任务不在通知栏显示。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.RESTORE_APP
+
+允许系统应用拉起恢复弹窗以恢复应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ALLOW_IOURING
+
+允许系统应用调用io_uring相关系统调用实现异步IO操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+允许应用发布NFC通知相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone
+
+**起始版本**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+允许系统应用或系统服务调用内核接口进行代码解密。
+
+应用或服务拥有此权限后，可跨进程访问内核接口，针对已加密的代码内容请求解密，可避免非法访问，进一步保护应用代码资产。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20

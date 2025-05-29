@@ -36,6 +36,11 @@ Configure the [module.json5 file](../quick-start/module-configuration-file.md) o
 * The **uris** field must contain an element whose **scheme** is **https** and **host** is a domain name address.
 * **domainVerify** must be set to **true**.
 
+> **NOTE**
+>
+> By default, the **skills** field contains a **skill** object, which is used to identify the application entry. Application redirection links should not be configured in this object. Instead, separate **skill** objects should be used. If there are multiple redirection scenarios, create different **skill** objects under **skills**. Otherwise, the configuration does not take effect.
+
+
 For example, the configuration below declares that the application is associated with the domain name www.example.com.
 
 ```json
@@ -46,6 +51,14 @@ For example, the configuration below declares that the application is associated
       {
         // ...
         "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
           {
             "entities": [
               // entities must contain "entity.system.browsable".
@@ -67,7 +80,7 @@ For example, the configuration below declares that the application is associated
             ],
             // domainVerify must be set to true.
            "domainVerify": true
-          }
+          } // Add a skill object for redirection. If there are multiple redirection scenarios, create multiple skill objects.
         ]
       }
     ]
@@ -162,7 +175,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "https://www.example.com/programs?action=showall";
         // Open the application only in App Linking mode.
         context.openLink(link, { appLinkingOnly: true })

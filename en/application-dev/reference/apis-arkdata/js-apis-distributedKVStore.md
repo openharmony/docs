@@ -1,14 +1,14 @@
 # @ohos.data.distributedKVStore (Distributed KV Store)
 
-The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
+The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, and querying data, and synchronizing data across devices.
 
 The **distributedKVStore** module provides the following functionalities:
 
 - [KVManager](#kvmanager): provides a **KVManager** instance to obtain KV store information.
 - [KVStoreResultSet](#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
 - [Query](#query): provides APIs for setting predicates for data query.
-- [SingleKVStore](#singlekvstore): provides APIs for querying and synchronizing data in single KV stores. The single KV stores manage data without distinguishing devices.
-- [DeviceKVStore](#devicekvstore): provides APIs for querying and synchronizing data in device KV stores. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
+- [SingleKVStore](#singlekvstore): provides APIs for querying data in single KV stores and synchronizing data across devices. The single KV stores manage data without distinguishing devices.
+- [DeviceKVStore](#devicekvstore): provides APIs for querying data in device KV stores and synchronizing data across devices. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
 
 > **NOTE**
 >
@@ -52,14 +52,14 @@ Enumerates the types of the value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name      | Description                  |
-| ---------- | ---------------------- |
-| STRING     | String.  |
-| INTEGER    | Integer.    |
-| FLOAT      | Float (single-precision floating point).  |
-| BYTE_ARRAY | Byte array.|
-| BOOLEAN    | Boolean.  |
-| DOUBLE     | Double (double-precision floating point).|
+| Name      | Value| Description                |
+| ---------- | - | -------------------- |
+| STRING     | 0 | String.  |
+| INTEGER    | 1 | Integer.    |
+| FLOAT      | 2 | Float (single-precision floating point).  |
+| BYTE_ARRAY | 3 | Byte array.|
+| BOOLEAN    | 4 | Boolean.  |
+| DOUBLE     | 5 | Double (double-precision floating point).|
 
 ## Value
 
@@ -102,11 +102,11 @@ Enumerates the sync modes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name     | Description                                                |
-| --------- | ---------------------------------------------------- |
-| PULL_ONLY | Pull data from the peer end to the local end only.                      |
-| PUSH_ONLY | Push data from the local end to the peer end only.                      |
-| PUSH_PULL | Push data from the local end to the peer end and then pull data from the peer end to the local end.|
+| Name     | Value| Description                                          |
+| --------- | - | ---------------------------------------------- |
+| PULL_ONLY | 0 | Pull data from the peer end to the local end only.                   |
+| PUSH_ONLY | 1 | Push data from the local end to the peer end only.                   |
+| PUSH_PULL | 2 | Push data from the local end to the peer end and then pull data from the peer end to the local end.|
 
 ## SubscribeType
 
@@ -114,20 +114,20 @@ Enumerates the subscription types.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name                 | Description                        |
-| --------------------- | ---------------------------- |
-| SUBSCRIBE_TYPE_LOCAL  | Local data changes.      |
-| SUBSCRIBE_TYPE_REMOTE | Remote data changes.      |
-| SUBSCRIBE_TYPE_ALL    | Local and remote data changes.|
+| Name                 | Value| Description                        |
+| --------------------- | - | ---------------------------- |
+| SUBSCRIBE_TYPE_LOCAL  | 0 | Local data changes.        |
+| SUBSCRIBE_TYPE_REMOTE | 1 | Remote data changes.        |
+| SUBSCRIBE_TYPE_ALL    | 2 | Local and remote data changes.  |
 
 ## KVStoreType
 
 Enumerates the distributed KV store types.
 
-| Name                | Description                                                        |
-| -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | Single KV store.<br> The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| Name                | Value| Description                                                        |
+| -------------------- | - | ------------------------------------------------------------ |
+| DEVICE_COLLABORATION | 0 | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| SINGLE_VERSION       | 1 | Single KV store.<br> The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 
 ## SecurityLevel
 
@@ -135,18 +135,18 @@ Enumerates the KV store security levels.
 > **NOTE**
 >
 > For the scenarios involving a single device, you can upgrade the security level of a KV store by modifying the **securityLevel** parameter. When upgrading the database security level, observe the following:
-> * This operation does not apply to the databases that require cross-device sync. Data cannot be synced between databases of different security levels. If you want to upgrade the security level of a database that requires cross-device sync, you are advised to create a database of a higher security level.
+> * This operation does not apply to the databases that require cross-device sync. Data cannot be synced between databases of different security levels. If you want to upgrade the security level of a database, you are advised to create a database of a higher security level.
 > * You need to close the database before modifying the **securityLevel** parameter, and open it after the security level is upgraded.
 > * You cannot downgrade the database security level. For example, you can change the database security level from S2 to S3, but cannot change it from S3 to S2.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name       | Description                                                        |
-| -------:   | ------------------------------------------------------------ |
-| S1         | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records|
-| S2         | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: individual mailing addresses and nicknames|
-| S3         | High security level. Disclosure, tampering, corruption, or loss of the data may cause critical impact on an individual or group.<br>Examples: real-time precise positioning information and movement trajectory |
-| S4         | Critical security level. Disclosure, tampering, corruption, or loss of the data may cause significant adverse impact on an individual or group.<br>Examples: political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
+| Name       | Value| Description                                                        |
+| -------:   | - | ------------------------------------------------------------ |
+| S1         | 2 | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records|
+| S2         | 3 | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: individual mailing addresses and nicknames|
+| S3         | 5 | High security level. Disclosure, tampering, corruption, or loss of the data may cause critical impact on an individual or group.<br>Examples: real-time precise positioning information and movement trajectory |
+| S4         | 6 | Critical security level. Disclosure, tampering, corruption, or loss of the data may cause significant adverse impact on an individual or group.<br><br>Examples: political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
 
 ## Options
 
@@ -175,7 +175,7 @@ Defines the schema of a KV store. You can create a **Schema** object and pass it
 | mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (compatible mode) or **1** (strict mode).|
 | skip    | number                  | Yes  | Yes  | Number of bytes to be skipped during the value check. The value range is [0, 4 x 1024 x 1024 - 2].|
 
-Strict mode: In this mode, the format of the value to be inserted must strictly match the schema defined, and the number of fields cannot be more or less than that defined in the schema. Otherwise, an error will be returned.
+Strict mode: In this mode, the value to be inserted must strictly match the schema defined, and the number and format of fields must be consistent with that defined in the schema. Otherwise, an error will be returned.
 
 Compatible mode: In this mode, the value check is successful as long as the value has the characteristics defined in the schema. Extra fields are allowed. For example, if **id** and **name** are defined, more fields such as **id**, **name**, and **age** can be inserted.
 
@@ -332,11 +332,11 @@ let kvManager: distributedKVStore.KVManager;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.info("MyAbilityStage onCreate")
-    let context = this.context
+    console.info("MyAbilityStage onCreate");
+    let context = this.context;
     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
-      bundleName: 'com.example.datamanagertest',
+      bundleName: 'com.example.datamanagertest'
     }
     try {
       kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -362,10 +362,10 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
-  bundleName: 'com.example.datamanagertest',
+  bundleName: 'com.example.datamanagertest'
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -412,9 +412,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **Example**
 
@@ -429,7 +428,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -458,7 +457,7 @@ Creates and obtains a distributed KV store based on the specified **options** an
 
 > **NOTE**
 >
-> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restoration](../../database/data-backup-and-restore.md).
+> If the database file cannot be opened (for example, the file header is damaged) when an existing distributed KV store is obtained, the automatic rebuild logic will be triggered to return a newly created distributed KV store instance. For important data that cannot be regenerated, you are advised to use the backup and restore feature to prevent data loss. For details, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -482,9 +481,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
-| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
+| 15100002     | Open existed database with changed options. |
 | 15100003     | Database corrupted.                         |
-| 15100006     | Unable to open the database file.           |
 
 **Example**
 
@@ -499,7 +497,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -550,7 +548,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -619,7 +617,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -664,7 +662,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**|
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **Example**
 
@@ -680,7 +678,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -734,7 +732,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**|
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Data not found.   |
+| 15100004     | Not found.   |
 
 **Example**
 
@@ -750,7 +748,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -866,7 +864,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to the termination (death) of the distributed data service. If the service is terminated, you need to register the callbacks for data change notifications and sync complete notifications again. In addition, an error will be returned for a sync operation.
+Subscribes to the termination (death) of the distributed data service. If the service is terminated, you need to register the callbacks for data change notifications and cross-device sync completion notifications again. In addition, an error will be returned for a sync operation.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -947,6 +945,10 @@ try {
 Provides APIs for obtaining the distributed KV store result sets. A maximum of eight result sets can be opened at a time.
 
 Before calling any API in **KVStoreResultSet**, you must use **[getKVStore](#getkvstore)** to construct a **SingleKVStore** or **DeviceKVStore** instance.
+
+> **NOTE**
+>
+> The cursor start position of **KVStoreResultSet** is **-1**.
 
 ### getCount
 
@@ -1173,7 +1175,7 @@ Moves the data read position with the specified offset from the current position
 
 | Name| Type| Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| offset | number   | Yes  | Offset to move the data read position. A negative value means to move backward, and a positive value means to move forward.|
+| offset | number   | Yes  | Offset to move the data read position. A positive value means to move forward; a negative value means to move backward. If the cursor is beyond the start or end position of the result set, **false** is returned.|
 
 **Return value**
 
@@ -1223,7 +1225,7 @@ Moves the data read position from 0 to an absolute position.
 
 | Name  | Type| Mandatory| Description          |
 | -------- | -------- | ---- | -------------- |
-| position | number   | Yes  | Absolute position to move to.|
+| position | number   | Yes  | Absolute position to move to. If the absolute position exceeds the start or end position of the result set, **false** is returned.|
 
 **Return value**
 
@@ -2228,8 +2230,8 @@ Creates a **Query** object to specify the number of records of the query result 
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| total  | number   | Yes  | Number of results to query.|
-| offset | number   | Yes  | Start position for query.    |
+| total  | number   | Yes  | Maximum number of results to query. The value must be a non-negative integer. If the input value is less than 0, the number of results is not limited.|
+| offset | number   | Yes  | Start position of the query result. By default, the start position is the beginning of the result set. If **offset** is a negative number, the start position is the beginning of the result set. If **offset** exceeds the end of the result set, the query result is empty.|
 
 **Return value**
 
@@ -2427,7 +2429,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | Yes  | Index preferentially used for query. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| index  | string   | Yes  | Index to set, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2537,7 +2539,7 @@ try {
 
 ## SingleKVStore
 
-Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data sync completion.
+Provides APIs for data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or across-device data sync completion events.
 
 Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** instance.
 
@@ -3217,7 +3219,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -3279,7 +3281,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -3606,7 +3608,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3689,7 +3691,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3758,7 +3760,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3832,7 +3834,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4134,7 +4136,6 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -4184,7 +4185,6 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -4227,7 +4227,6 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -4277,7 +4276,6 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.  |
-| 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -4679,7 +4677,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data sync, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
+Sets cross-device data sync, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4687,7 +4685,7 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 
 | Name  | Type                 | Mandatory| Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
-| enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
+| enabled  | boolean                   | Yes  | Whether to enable data sync across devices. The value **true** means to enable data sync across devices, and the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
 
 **Error codes**
@@ -4721,7 +4719,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Sets data sync, which can be enabled or disabled. This API uses a promise to return the result.
+Sets cross-device data sync, which can be enabled or disabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4729,7 +4727,7 @@ Sets data sync, which can be enabled or disabled. This API uses a promise to ret
 
 | Name | Type| Mandatory| Description                                                     |
 | ------- | -------- | ---- | --------------------------------------------------------- |
-| enabled | boolean  | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
+| enabled | boolean  | Yes  | Whether to enable data sync across devices. The value **true** means to enable data sync across devices, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -4859,7 +4857,11 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay allowed for KV store sync. This API uses an asynchronous callback to return the result.
+Sets the default delay for cross-device data sync. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> After the default delay is set, calling [sync](#sync) will not trigger the cross-device data sync immediately. Instead, the data sync will be executed only after the specified delay duration.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4867,7 +4869,7 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 
 | Name               | Type                 | Mandatory| Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
+| defaultAllowedDelayMs | number                    | Yes  | Delay time to set, in ms.|
 | callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -4902,7 +4904,11 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay allowed for KV store sync. This API uses a promise to return the result.
+Sets the default delay for cross-device data sync. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> After the default delay is set, calling [sync](#sync) will not trigger the cross-device data sync immediately. Instead, the data sync will be executed only after the specified delay duration.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4910,7 +4916,7 @@ Sets the default delay allowed for KV store sync. This API uses a promise to ret
 
 | Name               | Type| Mandatory| Description                                        |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database sync, in ms.|
+| defaultAllowedDelayMs | number   | Yes  | Delay time to set, in ms.|
 
 **Return value**
 
@@ -4948,7 +4954,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Starts cross-device data sync manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4963,7 +4969,7 @@ Synchronizes the KV store manually. For details about the sync modes of KV store
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
-| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
+| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**. If **delayMs** is set, data sync will be executed **delayMs** after **sync()** is called. If **delayMs** is not set, the delay set in [setSyncParam](#setsyncparam) is used.|
 
 **Error codes**
 
@@ -4973,7 +4979,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **Example**
 
@@ -5034,7 +5040,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Starts cross-device data sync manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -5049,8 +5055,8 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
-| query     | [Query](#query)        | Yes  | **Query** object to match.                      |
-| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
+| query     | [Query](#query)        | Yes  | **Query** object to match.                     |
+| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**. If **delayMs** is set, data sync will be executed **delayMs** after **sync()** is called. If **delayMs** is not set, the delay set in [setSyncParam](#setsyncparam) is used.|
 
 **Error codes**
 
@@ -5060,7 +5066,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Data not found.     |
+| 15100004     | Not found.          |
 
 **Example**
 
@@ -5132,9 +5138,9 @@ Subscribes to data changes of the specified type.
 
 | Name  | Type                                                 | Mandatory| Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the object to be notified when the data changes.|
 
 **Error codes**
 
@@ -5143,7 +5149,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5165,7 +5171,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to sync complete events.
+Subscribes to the cross-device data sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5173,8 +5179,8 @@ Subscribes to sync complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates the sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync completion event.            |
 
 **Error codes**
 
@@ -5269,7 +5275,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from sync complete events.
+Unsubscribes from the cross-device data sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5277,8 +5283,8 @@ Unsubscribes from sync complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all the callbacks for the sync complete event. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for for the sync completion event. |
 
 **Error codes**
 
@@ -5404,7 +5410,7 @@ try {
 
 ## DeviceKVStore
 
-Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**. The **SingleKVStore** APIs such as **put** and **putBatch** can be used.
+Provides APIs for querying data in a device KV store and performing cross-device data sync. This class inherits from **SingleKVStore**. The **SingleKVStore** APIs such as **put** and **putBatch** can be used.
 
 Data is distinguished by device in a device KV store. Each device can only write and modify its own data. Data of other devices is read-only and cannot be modified.
 
@@ -5435,7 +5441,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5496,7 +5502,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5542,7 +5548,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
-| key       |string  | Yes   |Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
+| key       |string  | Yes   |Key of the value to obtain. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
 | callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Error codes**
@@ -5553,7 +5559,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -5603,7 +5609,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | Name  | Type| Mandatory| Description                    |
 | -------- | -------- | ---- | ------------------------ |
 | deviceId | string   | Yes  | ID of the target device.|
-| key      | string   | Yes  | Key to match. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
+| key      | string   | Yes  | Key of the value to obtain. It cannot be empty or exceed [MAX_KEY_LENGTH](#constants).   |
 
 **Return value**
 
@@ -5619,7 +5625,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Data not found.                        |
+| 15100004     | Not found.                             |
 | 15100005     | Database or result set already closed. |
 
 **Example**
@@ -6250,7 +6256,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6332,7 +6338,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6406,7 +6412,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6472,7 +6478,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6530,7 +6536,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6619,7 +6625,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6701,7 +6707,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6770,7 +6776,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Upper limit exceeded.                  |
+| 15100001     | Over max limits.                       |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -7051,7 +7057,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 | Type                 | Description                                                  |
 | --------------------- | ------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the number of results obtained. |
+| Promise&lt;number&gt; | Promise used to return the number of results obtained.|
 
 **Error codes**
 

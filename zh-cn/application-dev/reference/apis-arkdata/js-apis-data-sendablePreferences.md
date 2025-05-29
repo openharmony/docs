@@ -85,7 +85,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to get preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -145,9 +145,9 @@ class EntryAbility extends UIAbility {
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -194,7 +194,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -203,9 +203,9 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#sendablepreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#sendablepreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#sendablepreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#sendablepreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -251,7 +251,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -260,9 +260,9 @@ class EntryAbility extends UIAbility {
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#sendablepreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#sendablepreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#sendablepreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#sendablepreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -365,7 +365,7 @@ promise.then((data: lang.ISendable) => {
   console.info(`Succeeded in getting value of 'startup'. Data: ${dataStr}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getSync
@@ -411,7 +411,7 @@ let value: lang.ISendable = preferences.getSync('startup', 'default');
 
 getAll(): Promise&lt;lang.ISendable&gt;
 
-从缓存的Preferences实例中获取所有键值数据。
+获取缓存的Preferences实例中的所有键值数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -421,7 +421,7 @@ getAll(): Promise&lt;lang.ISendable&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回含有所有键值数据。 <br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。  |
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回所有包含的键值数据。 <br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。  |
 
 **错误码：**
 
@@ -444,14 +444,14 @@ promise.then((keyValues: lang.ISendable) => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to get all key-values. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getAllSync
 
 getAllSync(): lang.ISendable
 
-从缓存的Preferences实例中获取所有键值数据，此为同步接口。
+获取缓存的Preferences实例中的所有键值数据，此为同步接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -461,7 +461,7 @@ getAllSync(): lang.ISendable
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回含有所有键值数据。<br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回所有包含的键值数据。<br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -530,7 +530,7 @@ promise.then(() => {
   console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to put value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### putSync
@@ -616,7 +616,7 @@ promise.then((val: boolean) => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to check the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### hasSync
@@ -702,7 +702,7 @@ promise.then(() => {
   console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to delete the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### deleteSync
@@ -774,7 +774,7 @@ promise.then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### flushSync<sup>14+</sup>
@@ -839,7 +839,7 @@ promise.then(() => {
   console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to clear. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### clearSync
@@ -903,14 +903,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('multiProcessChange')
@@ -955,14 +955,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('dataChange')
@@ -1003,8 +1003,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');
@@ -1049,7 +1049,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1095,7 +1095,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1139,8 +1139,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');

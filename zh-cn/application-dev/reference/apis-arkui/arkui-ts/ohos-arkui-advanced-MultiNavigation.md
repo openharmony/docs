@@ -4,7 +4,7 @@ MultiNavigation用于在大尺寸设备上分栏显示、进行路由跳转。
 
 > **说明：**
 >
-> 该组件从API Version 14开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 14开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 由于MultiNavigation存在多重栈嵌套，调用本文档明确说明的不支持接口或不在本文档支持接口列表中的接口(例如getParent、setInterception、pushDestination等)，可能会发生无法预期的问题。
 >
@@ -18,23 +18,21 @@ import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@kit.ArkUI';
 
 ## 子组件
 
-不可以包含子组件
+不可以包含子组件。
 
 ## MultiNavigation
 
-MultiNavigation(navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback)
+MultiNavigation({navDestination: navDestination, multiStack: MultiNavPathStack, onNavigationModeChange?: OnNavigationModeChangeCallback, onHomeShowOnTop?: OnHomeShowOnTopCallback})
 
 创建并初始化MultiNavigation组件。
 
-MultiNavigation组件遵循默认的左起右清栈规则，这意味着从左侧主页点击时，会触发详情页的加载并同时清除右侧所有其他详情页，确保右侧仅展示最新加载的详情页。然而，若在右侧的详情页上再次执行详情页加载操作，系统将不会执行清栈动作。
+MultiNavigation组件遵循默认的左起右清栈规则，这意味着从左侧主页点击时，会触发详情页的加载并同时清除右侧所有其他详情页，确保右侧仅展示最新加载的详情页。然而，若在右侧的详情页上再次执行详情页加载操作，系统将不会执行清栈动作。效果可参见[主页跳转详情页效果演示](#示例)。
 
 **装饰器类型：**@Component
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 |   名称   |          类型          | 必填  | 装饰器类型 | 说明 |
 |:---------:|:----------------------:|-----| ------ |-----------|
@@ -70,8 +68,8 @@ pushPath(info: NavPathInfo, animated?: boolean, policy?: SplitPolicy): void
 |  参数名   |                             类型                             | 必填 | 说明                                       |
 | :------: | :----------------------------------------------------------: | :--: | ----------------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。                |
-| animated |                           boolean                            |  否  | 是否支持转场动画，默认值：true。          |
-|  policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略，默认值：DETAIL_PAGE。 |
+| animated |                           boolean                            |  否  | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。          |
+|  policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略。默认值：DETAIL_PAGE |
 
 ### pushPath
 
@@ -89,7 +87,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions, policy?: SplitPolicy): 
 | :-----: | :----------------------------------------------------------: | :--: | ------------------------------------------ |
 |  info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。                 |
 | options | [NavigationOptions](./ts-basic-components-navigation.md#navigationoptions12) |  否  | 页面栈操作选项。仅支持其中的animated字段。 |
-| policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略，默认值：DETAIL_PAGE    |
+| policy  |               [SplitPolicy](#splitpolicy枚举说明)                |  否  | 当前入栈页面的策略。默认值：DETAIL_PAGE    |
 
 ### pushPathByName
 
@@ -107,8 +105,8 @@ pushPathByName(name: string, param: Object, animated?: boolean, policy?: SplitPo
 |:---------------------:|:------------:|:------:| --------------------- |
 |         name          |    string    |   是    | NavDestination页面名称。   |
 |         param         |   Object    |   是    | NavDestination页面详细参数。 |
-|       animated        |   boolean    |   否    | 是否支持转场动画，默认值：true。 |
-|        policy         | [SplitPolicy](#splitpolicy枚举说明)  |   否    | 当前入栈页面的策略，默认值：DETAIL_PAGE       |
+|       animated        |   boolean    |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+|        policy         | [SplitPolicy](#splitpolicy枚举说明)  |   否    | 当前入栈页面的策略。默认值：DETAIL_PAGE       |
 
 ### pushPathByName
 
@@ -127,8 +125,8 @@ pushPathByName(name: string, param: Object, onPop?: base.Callback\<PopInfo>, ani
 |   name    |                            string                             |   是    | NavDestination页面名称。   |
 |   param   |                            Object                             |   是    | NavDestination页面详细参数。 |
 |   onPop   | base.[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[PopInfo](ts-basic-components-navigation.md#popinfo11)>  |   否    | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
-| animated  |                            boolean                            |   否    | 是否支持转场动画，默认值：true。 |
-|  policy   |                          [SplitPolicy](#splitpolicy枚举说明)                          |   否    | 当前入栈页面的策略，默认值：DETAIL_PAGE       |
+| animated  |                            boolean                            |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
+|  policy   |                          [SplitPolicy](#splitpolicy枚举说明)                          |   否    | 当前入栈页面的策略。默认值：DETAIL_PAGE       |
 
 ### replacePath
 
@@ -145,7 +143,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 |  参数名   |             类型                | 必填 | 说明           |
 | :------: | :----------------------------------------------------------: | :--: | -------------------------------- |
 |   info   | [NavPathInfo](./ts-basic-components-navigation.md#navpathinfo10) |  是  | NavDestination页面的信息。       |
-| animated |                           boolean                            |  否  | 是否支持转场动画，默认值：true。 |
+| animated |                           boolean                            |  否  | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### replacePath
 
@@ -180,7 +178,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 |:--------:|:---------:|:------:|----------------------|
 |   name   |  string   |   是    | NavDestination页面名称。  |
 |  param   |  Object   |   是    | NavDestination页面详细参数。 |
-| animated |  boolean  |   否    | 是否支持转场动画，默认值：true。   |
+| animated |  boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。   |
 
 ### removeByIndexes
 
@@ -196,7 +194,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:--------:|:---------------:|:------:| --------------------- |
-| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。   |
+| indexes  | Array<number\>  |   是    | 待删除NavDestination页面的索引值数组。<br/>number类型的取值范围：[0, +∞) |
 
 **返回值：**
 
@@ -244,7 +242,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-----------:|:--------:|:------:| -------------------- |
-|  animated   | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|  animated   | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -271,7 +269,7 @@ pop(result?: Object, animated?: boolean): NavPathInfo | undefined
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:-------------------------------:|:------:| -------------------- |
 |  result   |             Object              |   否    | 页面自定义处理结果。 |
-| animated  |             boolean             |   否    | 是否支持转场动画，默认值：true。 |
+| animated  |             boolean             |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -294,13 +292,13 @@ popToName(name: string, animated?: boolean): number
 |  参数名   |             类型                | 必填 | 说明           |
 |:----------:|:--------:|:------:| ------------------- |
 |    name    |  string  |   是    | NavDestination页面名称。 |
-|  animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|  animated  | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。 |
+| number | 如果栈中存在名为name的NavDestination页面，则返回由栈底开始第一个名为name的NavDestination页面的索引，否则返回-1。<br/>取值范围：[-1, +∞) |
 
 ### popToName
 
@@ -318,7 +316,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   是    | NavDestination页面名称。 |
 |  result   |  Object  |   是    | 页面自定义处理结果。 |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -340,8 +338,8 @@ popToIndex(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:------------:|:--------:|:------:| ---------------------- |
-|    index     |  number  |   是    | NavDestination页面的位置索引。 |
-|   animated   | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+|    index     |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞) |
+|   animated   | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### popToIndex
 
@@ -359,7 +357,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | result | Object | 是 | 页面自定义处理结果。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### moveToTop
 
@@ -390,7 +388,7 @@ moveToTop(name: string, animated?: boolean): number
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:--------:|:------:| ------------------- |
 |   name    |  string  |   是    | NavDestination页面名称。 |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -426,8 +424,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:-------:|:------:| ------------------- |
-|   index    | number  |   是    | NavDestination页面的位置索引。 |
-| animated  | boolean |   否    | 是否支持转场动画，默认值：true。 |
+|   index    | number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞) |
+| animated  | boolean |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### clear
 
@@ -447,7 +445,7 @@ clear(animated?: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:---------:|:--------:|:------:| ---------------------- |
-| animated  | boolean  |   否    | 是否支持转场动画，默认值：true。 |
+| animated  | boolean  |   否    | 是否支持转场动画。<br/>默认值：true<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### getAllPathName
 
@@ -479,7 +477,7 @@ getParamByIndex(index: number): Object | undefined
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------:|:--------:|:------:| ---------------------- |
-|  index  |  number  |   是    | NavDestination页面的位置索引。 |
+|  index  |  number  |   是    | NavDestination页面的位置索引。<br/>取值范围：[0, +∞) |
 
 **返回值：**
 
@@ -530,7 +528,7 @@ getIndexByName(name: string): Array<number\>
 
 | 类型             | 说明                                |
 | -------------- | --------------------------------- |
-| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。 |
+| Array<number\> | 返回全部名为name的NavDestination页面的位置索引。<br/>number类型的取值范围：[0, +∞) |
 
 ### size
 
@@ -546,7 +544,7 @@ size(): number
 
 | 类型     | 说明     |
 | ------ | ------ |
-| number | 返回栈大小。 |
+| number | 返回栈大小。<br/>取值范围：[0, +∞) |
 
 ### disableAnimation
 
@@ -562,7 +560,7 @@ disableAnimation(disable: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 | ----- | ------ | ---- | ---------------------- |
-| disable | boolean | 是    | 是否关闭转场动画，默认值：false。 |
+| disable | boolean | 是    | 是否关闭转场动画。<br/>默认值：false<br/>true：关闭转场动画。<br/>false：不关闭转场动画。|
 
 ### switchFullScreenState
 
@@ -584,7 +582,7 @@ switchFullScreenState(isFullScreen?: boolean): boolean
 
 |    类型    |     说明     |
 |:--------:|:----------:|
-| boolean  |  切换成功或失败。  |
+| boolean  |  切换成功或失败。<br/>true：切换成功。<br/>false：切换失败。  |
 
 ### setHomeWidthRange
 
@@ -622,7 +620,7 @@ keepBottomPage(keepBottom: boolean): void
 
 |  参数名   |             类型                | 必填 | 说明           |
 |:-------------:|:--------:|:-----:|--------------------|
-| keepBottom  | boolean  |   是   | 是否保留栈底页面，默认为FALSE。 |
+| keepBottom  | boolean  |   是   | 是否保留栈底页面。<br/>默认值：false<br/>true：保留栈底页面。<br/>false：不保留栈底页面。 |
 
 ### setPlaceholderPage
 
@@ -657,9 +655,9 @@ setPlaceholderPage(info: NavPathInfo): void
 
 |       名称        |  值 |  说明           |
 | :---------------: | :-: | :-------------: |
-|     HOME_PAGE     |  0  | 主页页面类型。全屏模式显示  |
-|    DETAIL_PAGE    |  1  | 详情页页面类型。分栏模式显示 |
-|     FULL_PAGE     |  2  | 全屏页页面类型。全屏模式显示 |
+|     HOME_PAGE     |  0  | 主页页面类型。全屏模式显示。  |
+|    DETAIL_PAGE    |  1  | 详情页页面类型。分栏模式显示。 |
+|     FULL_PAGE     |  2  | 全屏页页面类型。全屏模式显示。 |
 
 ## NavDestinationBuildFunction
 
@@ -706,16 +704,17 @@ type OnHomeShowOnTopCallback = (name: string) => void
 
 ## 属性
 
-不支持[通用属性](ts-component-general-attributes.md)
+不支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-不支持[通用事件](ts-component-general-events.md)
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
-本示例演示MultiNavigation的基本功能
+本示例演示MultiNavigation的基本功能。
 
+<!--code_no_check-->
 ```typescript
 // pages/Index.ets
 import { MultiNavigation, MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -733,7 +732,7 @@ struct Index {
   @Builder
   PageMap(name: string, param?: object) {
     if (name === 'PageHome1') {
-      PageHome1({ param: param })
+      PageHome1({ param: param });
     } else if (name === 'PageDetail1') {
       PageDetail1({ param: param });
     } else if (name === 'PageDetail2') {
@@ -769,7 +768,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageHome1 {
   @State message: string = 'PageHome1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   index: number = 0;
   param: Object = new Object();
@@ -794,6 +793,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageHome1页面
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                     this.index++;
                   }
@@ -804,6 +804,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageDetail1页面
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                     this.index++;
                   }
@@ -814,6 +815,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageFull1页面
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -828,7 +830,7 @@ export struct PageHome1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -836,8 +838,9 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 返回至指定index页面，删除大于该index的所有页面
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('OpenDetailWithName', { stateEffect: true, type: ButtonType.Capsule})
@@ -846,6 +849,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageDetail1页面
                     this.pageStack.pushPathByName('PageDetail1', 'testParam', undefined, true);
                   }
                 })
@@ -864,6 +868,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 将PageDetail1页面移动至栈顶
                     let indexFound = this.pageStack.moveToTop('PageDetail1');
                     hilog.info(0x0000, 'demoTest', 'moveToTopByName,indexFound:' + indexFound);
                   }
@@ -874,6 +879,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除名称为PageHome1的页面
                     this.pageStack.removeByName('PageHome1');
                   }
                 })
@@ -883,6 +889,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除栈中index为0，1，3，5的页面
                     this.pageStack.removeByIndexes([0,1,3,5]);
                   }
                 })
@@ -902,6 +909,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 获取index为0的页面的参数
                     let result = this.pageStack.getParamByIndex(0);
                     hilog.info(0x0000, 'demotest', 'getParamByIndex: ' + result);
                   }
@@ -912,6 +920,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 获取名称为PageHome1的页面的参数
                     let result = this.pageStack.getParamByName('PageHome1');
                     hilog.info(0x0000, 'demotest', 'getParamByName: ' + result.toString());
                   }
@@ -922,6 +931,7 @@ export struct PageHome1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 获取名称为PageHome1的页面的Index
                     let result = this.pageStack.getIndexByName('PageHome1');
                     hilog.info(0x0000, 'demotest', 'getIndexByName: ' + result);
                   }
@@ -932,6 +942,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 设置栈底页面无法被移除
                     this.pageStack.keepBottomPage(true);
                   }
                 })
@@ -941,6 +952,7 @@ export struct PageHome1 {
                 .margin(10)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 设置栈底页面可以被移除
                     this.pageStack.keepBottomPage(false);
                   }
                 })
@@ -979,7 +991,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageDetail1 {
   @State message: string = 'PageDetail1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   param: Object = new Object();
 
@@ -1002,6 +1014,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageHome1页面
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1011,6 +1024,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageDetail1页面
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1020,6 +1034,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageFull1页面
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1029,6 +1044,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 使用PageDetail2替换当前页面
                     this.pageStack.replacePathByName('PageDetail2', 'testParam');
                   }
                 })
@@ -1038,6 +1054,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除栈中name为PageDetail1的页面
                     this.pageStack.removeByName('PageDetail1');
                   }
                 })
@@ -1047,6 +1064,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除栈中index为0，1，3，5的页面
                     this.pageStack.removeByIndexes([0,1,3,5]);
                   }
                 })
@@ -1056,6 +1074,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 将页面设置为全屏
                     this.pageStack.switchFullScreenState(true);
                   }
                 })
@@ -1065,6 +1084,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 将页面设置为非全屏
                     this.pageStack.switchFullScreenState(false);
                   }
                 })
@@ -1083,6 +1103,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 返回至指定name的页面，删除大于该页面index的所有其他页面
                     this.pageStack.popToName('PageHome1');
                   }
                 })
@@ -1097,7 +1118,7 @@ export struct PageDetail1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1105,8 +1126,9 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 返回至指定index页面，删除大于该index的所有页面
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule})
@@ -1115,8 +1137,9 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 将指定Index页面移动至栈顶
                     this.pageStack.moveIndexToTop(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('clear', { stateEffect: true, type: ButtonType.Capsule})
@@ -1125,6 +1148,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 清空当前路由栈
                     this.pageStack.clear();
                   }
                 })
@@ -1134,6 +1158,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 关闭当前栈对应栈操作的动画
                     this.pageStack.disableAnimation(true);
                   }
                 })
@@ -1143,6 +1168,7 @@ export struct PageDetail1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 开启当前栈对应栈操作的动画
                     this.pageStack.disableAnimation(false);
                   }
                 })
@@ -1199,7 +1225,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageDetail2 {
   @State message: string = 'PageDetail2';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   param: Object = new Object();
 
@@ -1222,6 +1248,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageHome1页面
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1231,6 +1258,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageDetail1页面
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1240,6 +1268,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageFull1页面
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1249,6 +1278,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 使用PageDetail2替换当前页面
                     this.pageStack.replacePathByName('PageDetail2', 'testParam');
                   }
                 })
@@ -1263,7 +1293,7 @@ export struct PageDetail2 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1271,8 +1301,9 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 将指定index的页面移动至栈顶
                     this.pageStack.moveIndexToTop(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('pop', { stateEffect: true, type: ButtonType.Capsule})
@@ -1295,7 +1326,7 @@ export struct PageDetail2 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule})
                 .width('50%')
@@ -1303,8 +1334,9 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 返回至指定index页面，删除大于该index的所有页面
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
               Button('clear', { stateEffect: true, type: ButtonType.Capsule})
@@ -1313,6 +1345,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 清空当前路由栈
                     this.pageStack.clear();
                   }
                 })
@@ -1322,6 +1355,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 关闭当前栈对应栈操作的动画
                     this.pageStack.disableAnimation(true);
                   }
                 })
@@ -1331,6 +1365,7 @@ export struct PageDetail2 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 开启当前栈对应栈操作的动画
                     this.pageStack.disableAnimation(false);
                   }
                 })
@@ -1361,7 +1396,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PageFull1 {
   @State message: string = 'PageFull1';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
 
   build() {
@@ -1384,6 +1419,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageHome1页面
                     this.pageStack.pushPathByName('PageHome1', 'testParam', true, SplitPolicy.HOME_PAGE);
                   }
                 })
@@ -1393,6 +1429,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageDetail1页面
                     this.pageStack.pushPathByName('PageDetail1', 'testParam');
                   }
                 })
@@ -1402,6 +1439,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 跳转至PageFull1页面
                     this.pageStack.pushPathByName('PageFull1', 'testParam', true, SplitPolicy.FULL_PAGE);
                   }
                 })
@@ -1411,6 +1449,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 使用PageFull1页面替换当前页面
                     this.pageStack.replacePathByName('PageFull1', 'testParam', true);
                   }
                 })
@@ -1420,6 +1459,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除栈中name为PageFull1的页面
                     this.pageStack.removeByName('PageFull1');
                   }
                 })
@@ -1429,6 +1469,7 @@ export struct PageFull1 {
                 .margin(20)
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
+                    // 删除栈中index为0，1，3，5的页面
                     this.pageStack.removeByIndexes([0, 1, 3, 5]);
                   }
                 })
@@ -1452,7 +1493,7 @@ export struct PageFull1 {
                 .fontSize(14)
                 .fontColor(Color.Black)
                 .onChange((value: String) => {
-                  this.text = value
+                  this.text = value;
                 })
               Button('poptoindex', { stateEffect: true, type: ButtonType.Capsule })
                 .width('50%')
@@ -1461,7 +1502,7 @@ export struct PageFull1 {
                 .onClick(() => {
                   if (this.pageStack !== undefined && this.pageStack !== null) {
                     this.pageStack.popToIndex(Number(this.text));
-                    this.controller.caretPosition(1)
+                    this.controller.caretPosition(1);
                   }
                 })
             }
@@ -1495,7 +1536,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export struct PagePlaceholder {
   @State message: string = 'PagePlaceholder';
   @Consume('pageStack') pageStack: MultiNavPathStack;
-  controller: TextInputController = new TextInputController()
+  controller: TextInputController = new TextInputController();
   text: String = '';
   lastBackTime: number = 0;
 
@@ -1530,3 +1571,15 @@ export struct PagePlaceholder {
   }
 }
 ```
+
+分栏效果演示：
+
+![](figures/multi_navigation_1.gif)
+
+主页跳转详情页效果演示：
+
+![](figures/multi_navigation_2.gif)
+
+全屏类型页面效果演示：
+
+![](figures/multi_navigation_3.gif)

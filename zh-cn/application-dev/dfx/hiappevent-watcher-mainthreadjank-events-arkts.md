@@ -146,7 +146,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                     // 采样次数
                     "sample_count": "21",
                     // 事件上报次数定义
-                    "report_times_per_app": "3",
+                    "report_times_per_app": "3"
                   };
                   hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
                     hilog.info(0x0000, 'testTag', `HiAppEvent success to set event params.`)

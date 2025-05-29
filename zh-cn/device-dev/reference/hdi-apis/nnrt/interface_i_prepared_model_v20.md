@@ -21,7 +21,7 @@ NNRt模块的包路径。
 | -------- | -------- |
 | [ExportModelCache](#exportmodelcache) ([out] struct [SharedBuffer](_shared_buffer_v20.md)[] modelCache) | 导出模型缓存。 | 
 | [GetInputDimRanges](#getinputdimranges) ([out] unsigned int[][] minInputDims, [out] unsigned int[][] maxInputDims) | 获取模型输入支持的维度范围。如果模型输入为固定维度，则维度最大值与最小值相同。 | 
-| [Run](#run) ([in] struct [IOTensor](_i_o_tensor_v20.md)[] inputs, [in] struct [IOTensor](_i_o_tensor_v20.md)[] outputs, [out] int[][] outputsDims) | 推理模型 | 
+| [Run](#run) ([in] struct [IOTensor](_i_o_tensor_v20.md)[] inputs, [in] struct [IOTensor](_i_o_tensor_v20.md)[] outputs, [out] int[][] outputsDims) | 推理模型。 | 
 
 
 ## 成员函数说明
@@ -48,9 +48,9 @@ IPreparedModel::ExportModelCache ([out] struct SharedBuffer[] modelCache)
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### GetInputDimRanges()
@@ -75,9 +75,9 @@ IPreparedModel::GetInputDimRanges ([out] unsigned int minInputDims[][], [out] un
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。
 
 
 ### Run()
@@ -89,7 +89,7 @@ IPreparedModel::Run ([in] struct IOTensor[] inputs, [in] struct IOTensor[] outpu
 **描述**
 
 
-推理模型
+推理模型。
 
 **起始版本：** 3.2
 
@@ -104,6 +104,6 @@ IPreparedModel::Run ([in] struct IOTensor[] inputs, [in] struct IOTensor[] outpu
 
 **返回：**
 
-返回0表示成功
+返回0表示成功。
 
-返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）
+返回非0表示失败，负数为HDF标准错误码，正数为NNRt定义的专用错误码（请查看[NNRT_ReturnCode](_n_n_rt_v20.md#nnrt_returncode)）。

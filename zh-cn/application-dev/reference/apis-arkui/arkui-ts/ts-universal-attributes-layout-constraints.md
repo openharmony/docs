@@ -27,7 +27,7 @@ aspectRatio(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 指定当前组件的宽高比。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
+| value  | number | 是   | 指定当前组件的宽高比。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值(小于等于0)时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
 
 ## displayPriority
 
@@ -114,7 +114,7 @@ struct AspectRatioExample {
 
 ### 示例2（设置组件显示优先级）
 
-使用displayPriority给子组件绑定显示优先级。
+使用displayPriority为子组件设置显示优先级。
 
 ```ts
 class ContainerInfo {

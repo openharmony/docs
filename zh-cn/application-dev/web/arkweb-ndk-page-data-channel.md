@@ -27,25 +27,25 @@
   // 自定义webTag，在WebviewController创建时作为入参传入，建立controller与webTag的映射关系
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController(this.webTag);
-  ...
+  // ...
   // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
     // 初始化web ndk
     testNapi.nativeWebInit(this.webTag);
   }
-  ...
+  // ...
   ```
 
 ### 使用Native接口获取API结构体
 
-ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)。
+ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_WebMessagePortAPI *webMessagePort = nullptr;
   static ArkWeb_WebMessageAPI *webMessage = nullptr;
-  ...
+  // ...
   controller = reinterpret_cast<ArkWeb_ControllerAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_CONTROLLER));
   webMessagePort =
       reinterpret_cast<ArkWeb_WebMessagePortAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE_PORT));

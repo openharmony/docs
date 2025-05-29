@@ -276,8 +276,8 @@ struct formHostSample {
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
-            console.info("TextPickerDialog: show()")
-            TextPickerDialog.show({
+            console.info("showTextPickerDiaglog")
+            this.getUIContext().showTextPickerDiaglog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,

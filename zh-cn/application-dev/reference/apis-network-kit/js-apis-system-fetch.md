@@ -1,4 +1,4 @@
-# @system.fetch (数据请求)
+# @system.fetch (数据请求)（已废弃）
 
 > **说明：**
 > - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.net.http`](js-apis-http.md)。
@@ -39,7 +39,7 @@ fetch(options:{ <br>
 | header | Object | 否 | 设置请求的header。 |
 | method | string | 否 | 请求方法默认为GET，可选值为：OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE。 |
 | responseType | string | 否 | 默认会根据服务器返回header中的Content-Type确定返回类型，支持文本和json格式。详见success返回值。 |
-| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse3) |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse3)。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 

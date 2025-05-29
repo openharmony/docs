@@ -19,7 +19,15 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
-## 属性
+## FormExtensionAbility
+
+卡片扩展类。包含卡片提供方接收创建卡片、修改可见性等的通知接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+### 属性
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -29,7 +37,7 @@ import { FormExtensionAbility } from '@kit.FormKit';
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
-## onAddForm
+### FormExtensionAbility.onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
@@ -73,7 +81,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 }
 ```
 
-## onCastToNormalForm
+### FormExtensionAbility.onCastToNormalForm
 
 onCastToNormalForm(formId: string): void
 
@@ -103,7 +111,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onUpdateForm
+### FormExtensionAbility.onUpdateForm
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
@@ -146,7 +154,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onChangeFormVisibility
+### FormExtensionAbility.onChangeFormVisibility
 
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
@@ -199,7 +207,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onFormEvent
+### FormExtensionAbility.onFormEvent
 
 onFormEvent(formId: string, message: string): void
 
@@ -230,7 +238,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onRemoveForm
+### FormExtensionAbility.onRemoveForm
 
 onRemoveForm(formId: string): void
 
@@ -260,7 +268,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onConfigurationUpdate
+### FormExtensionAbility.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
 
@@ -294,7 +302,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onAcquireFormState
+### FormExtensionAbility.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState
 
@@ -326,7 +334,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 };
 ```
 
-## onStop<sup>12+</sup>
+### FormExtensionAbility.onStop<sup>12+</sup>
 
 onStop?(): void
 

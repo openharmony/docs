@@ -12,14 +12,14 @@
       - [Responsive Grid Layout (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
       - [Media Query (@ohos.mediaquery)](arkts-layout-development-media-query.md)
       - [Creating a List (List)](arkts-layout-development-create-list.md)
-      - [Creating an Arc List (ArcList) (Recommended for Circular Screens)](arkts-layout-development-create-arclist.md)
+      - [Creating an Arc List (ArcList)](arkts-layout-development-create-arclist.md) (Recommended for Circular Screens)
       - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
-      - [Creating an Arc Carousel Component (ArcSwiper) (Recommended for Circular Screens)](arkts-layout-development-arcswiper.md)
+      - [Creating an Arc Carousel Component (ArcSwiper)](arkts-layout-development-arcswiper.md) (Recommended for Circular Screens)
       - [Using Tabs (Tabs)](arkts-navigation-tabs.md)
   - Adding a Component<!--arkts-add-component-->
     - [Button](arkts-common-components-button.md)
-    - [Arc Button (ArcButton) (Recommended for Circular Screens)](arkts-advanced-components-arcbutton.md)
+    - [Arc Button (ArcButton)](arkts-advanced-components-arcbutton.md) (Recommended for Circular Screens)
     - [Radio Button (Radio)](arkts-common-components-radio-button.md)
     - [Toggle](arkts-common-components-switch.md)
     - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
@@ -46,8 +46,16 @@
        - [Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)](arkts-uicontext-custom-dialog.md)
        - [Basic Custom Dialog Box (CustomDialog) (Not Recommended)](arkts-common-components-custom-dialog.md)
        - [Fixed Style Dialog Box](arkts-fixes-style-dialog.md)
-     - [Menu Control (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [Popup](arkts-popup-and-menu-components-popup.md)
+       - [Page-Level Dialog Box](arkts-embedded-dialog.md)
+       - [Dialog Box Layer Management](arkts-dialog-levelorder.md)
+     - Using a Menu<!--arkts-use-menu-->
+       - [Menu Overview](arkts-menu-overview.md)
+       - [Menu Control (Menu)](arkts-popup-and-menu-components-menu.md)
+       - [Global Menus Independent of UI Components (openMenu)](arkts-popup-and-menu-components-uicontext-menu.md)
+     - Using a Popup<!--arkts-use-popup-->
+       - [Popup Overview](arkts-popup-overview.md)
+       - [Popup](arkts-popup-and-menu-components-popup.md)
+       - [Global Popups Independent of UI Components (openPopup)](arkts-popup-and-menu-components-uicontext-popup.md)
      - Binding a Modal Page<!--arkts-bind-modal-->
         - [Modal Page Overview](arkts-modal-overview.md)
         - [Binding a Semi-Modal Page (bindSheet)](arkts-sheet-page.md)
@@ -90,6 +98,7 @@
       - [Keyboard and Mouse Event](arkts-common-events-device-input-event.md)
       - [Focus Event](arkts-common-events-focus-event.md)
       - [Drag Event](arkts-common-events-drag-event.md)
+      - [Crown Event](arkts-common-events-crown-event.md) (Recommended for Circular Screens)
     - Gesture Events<!--arkts-gesture-events-->
       - [Gesture Binding](arkts-gesture-events-binding.md)
       - [Single Gesture](arkts-gesture-events-single-gesture.md)
@@ -111,6 +120,7 @@
   - [Using the Mirroring Capability](arkts-mirroring-display.md)
   - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
   - Setting the Theme<!--arkts-theme-->
+    - [Dark and Light Mode Adaptation](ui-dark-light-color-adaptation.md)
     - [Configuring In-Application Theme Skinning](theme_skinning.md)
   - [Using the UI Context API for UI Operations (UIContext)](arkts-global-interface.md)
   - Launching Pages Across Processes<!--arkts-ui-cross-process-->
@@ -124,6 +134,7 @@
     - Adding Interaction Events<!--arkts-add-event-->
       - [Listening for Component Events](ndk-listen-to-component-events.md)
       - [Binding Gesture Events](ndk-bind-gesture-events.md)
+      - [Drag Event](ndk-drag-event.md)
     - [Using Animations](ndk-use-animation.md)
     - [Developing a Long List with Lazy Loading](ndk-loading-long-list.md)
     - [Building Dialog Boxes](ndk-build-pop-up-window.md)

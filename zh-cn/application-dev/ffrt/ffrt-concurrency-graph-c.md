@@ -28,7 +28,7 @@ FFRT图依赖并发范式支持任务依赖和数据依赖两种方式构建任�
 > 当数据对象的签名出现在一个任务的`in_deps`中时，该任务称为数据对象的消费者任务，消费者任务执行不改变其输入数据对象的内容；
 > 当数据对象的签名出现在任务的`out_deps`中时，该任务称为数据对象的生产者任务，生产者任务执行改变其输出数据对象的内容，从而生成该数据对象的一个新的版本。
 
-数据依赖适用于任务之间通过数据生产和消费关系来出发执行的场景。
+数据依赖适用于任务之间通过数据生产和消费关系来触发执行的场景。
 
 一个数据对象可能存在多个版本，每个版本对应一个生产者任务和零个，一个或多个消费者任务，根据生产者任务和消费者任务的下发顺序定义数据对象的多个版本的顺序，以及每个版本所对应的生产者和消费者任务。
 
@@ -70,24 +70,15 @@ task5(OUT A);
 
 ## 示例：流媒体视频处理
 
-用户上传视频到流媒体平台，处理步骤包含：视频解析A、视频转码B、视频缩略图生成C、视频水印添加D和视频发布D，其中步骤B和步骤C可以并行执行。任务流程如下图所示：
+用户上传视频到流媒体平台，处理步骤包含：视频解析A、视频转码B、视频缩略图生成C、视频水印添加D和视频发布E，其中步骤B和步骤C可以并行执行。任务流程如下图所示：
 
 ![image](figures/ffrt_figure1.png)
 
 借助FFRT提供了图依赖并发范式，可以描述任务依赖关系，同时并行化上述视频处理流程，代码如下所示：
 
 ```c
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-static inline ffrt_task_handle_t ffrt_submit_h_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    return ffrt_submit_h_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
+#include <stdio.h>
+#include "ffrt/ffrt.h"
 
 void func_TaskA(void* arg)
 {
@@ -116,68 +107,33 @@ void func_TaskE(void* arg)
 
 int main()
 {
-    ffrt_task_handle_t hTaskA = ffrt_submit_h_c(func_TaskA, NULL, NULL, NULL, NULL, NULL);
-    const std::vector<ffrt_dependence_t> taskA_deps = {{ffrt_dependence_task, hTaskA}};
-    ffrt_deps_t dTaskA{static_cast<uint32_t>(taskA_deps.size()), taskA_deps.data()};
+    // 提交任务A
+    ffrt_task_handle_t hTaskA = ffrt_submit_h_f(func_TaskA, NULL, NULL, NULL, NULL);
 
-    ffrt_task_handle_t hTaskB = ffrt_submit_h_c(func_TaskB, NULL, NULL, &dTaskA, NULL, NULL);
-    ffrt_task_handle_t hTaskC = ffrt_submit_h_c(func_TaskC, NULL, NULL, &dTaskA, NULL, NULL);
+    // 提交任务B和C
+    ffrt_dependence_t taskA_deps[] = {{ffrt_dependence_task, hTaskA}};
+    ffrt_deps_t dTaskA = {1, taskA_deps};
+    ffrt_task_handle_t hTaskB = ffrt_submit_h_f(func_TaskB, NULL, &dTaskA, NULL, NULL);
+    ffrt_task_handle_t hTaskC = ffrt_submit_h_f(func_TaskC, NULL, &dTaskA, NULL, NULL);
 
-    const std::vector<ffrt_dependence_t> taskBC_deps = {{ffrt_dependence_task, hTaskB}, {ffrt_dependence_task, hTaskC}};
-    ffrt_deps_t dTaskBC{static_cast<uint32_t>(taskBC_deps.size()), taskBC_deps.data()};
+    // 提交任务D
+    ffrt_dependence_t taskBC_deps[] = {{ffrt_dependence_task, hTaskB}, {ffrt_dependence_task, hTaskC}};
+    ffrt_deps_t dTaskBC = {2, taskBC_deps};
+    ffrt_task_handle_t hTaskD = ffrt_submit_h_f(func_TaskD, NULL, &dTaskBC, NULL, NULL);
 
-    ffrt_task_handle_t hTaskD = ffrt_submit_h_c(func_TaskD, NULL, NULL, &dTaskBC, NULL, NULL);
+    // 提交任务E
+    ffrt_dependence_t taskD_deps[] = {{ffrt_dependence_task, hTaskD}};
+    ffrt_deps_t dTaskD = {1, taskD_deps};
+    ffrt_submit_f(func_TaskE, NULL, &dTaskD, NULL, NULL);
 
-    const std::vector<ffrt_dependence_t> taskD_deps = {{ffrt_dependence_task, hTaskD}};
-    ffrt_deps_t dTaskD{static_cast<uint32_t>(taskD_deps.size()), taskD_deps.data()};
-
-    ffrt_submit_c(func_TaskE, NULL, NULL, &dTaskD, NULL, NULL);
-
+    // 等待所有任务完成
     ffrt_wait();
+
+    ffrt_task_handle_destroy(hTaskA);
+    ffrt_task_handle_destroy(hTaskB);
+    ffrt_task_handle_destroy(hTaskC);
+    ffrt_task_handle_destroy(hTaskD);
     return 0;
-}
-```
-
-C风格构建FFRT任务需要一些额外的封装，封装方式为公共代码，与具体业务场景无关，使用方可以考虑用公共机制封装管理。
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
 }
 ```
 
@@ -197,18 +153,12 @@ static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_fu
 
 ```c
 #include <stdio.h>
-#include "ffrt.h"
+#include "ffrt/ffrt.h"
 
 typedef struct {
     int x;
     int* y;
 } fib_ffrt_s;
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
 
 void fib_ffrt(void* arg)
 {
@@ -222,28 +172,36 @@ void fib_ffrt(void* arg)
         int y1, y2;
         fib_ffrt_s s1 = {x - 1, &y1};
         fib_ffrt_s s2 = {x - 2, &y2};
-        const std::vector<ffrt_dependence_t> dx_deps = {{ffrt_dependence_data, &x}};
-        ffrt_deps_t dx{static_cast<uint32_t>(dx_deps.size()), dx_deps.data()};
-        const std::vector<ffrt_dependence_t> dy1_deps = {{ffrt_dependence_data, &y1}};
-        ffrt_deps_t dy1{static_cast<uint32_t>(dy1_deps.size()), dy1_deps.data()};
-        const std::vector<ffrt_dependence_t> dy2_deps = {{ffrt_dependence_data, &y2}};
-        ffrt_deps_t dy2{static_cast<uint32_t>(dy2_deps.size()), dy2_deps.data()};
-        const std::vector<ffrt_dependence_t> dy12_deps = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
-        ffrt_deps_t dy12{static_cast<uint32_t>(dy12_deps.size()), dy12_deps.data()};
-        ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
-        ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
+
+        // 构建数据依赖
+        ffrt_dependence_t dx_deps[] = {{ffrt_dependence_data, &x}};
+        ffrt_deps_t dx = {1, dx_deps};
+        ffrt_dependence_t dy1_deps[] = {{ffrt_dependence_data, &y1}};
+        ffrt_deps_t dy1 = {1, dy1_deps};
+        ffrt_dependence_t dy2_deps[] = {{ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy2 = {1, dy2_deps};
+        ffrt_dependence_t dy12_deps[] = {{ffrt_dependence_data, &y1}, {ffrt_dependence_data, &y2}};
+        ffrt_deps_t dy12 = {2, dy12_deps};
+
+        // 分别提交任务
+        ffrt_submit_f(fib_ffrt, &s1, &dx, &dy1, NULL);
+        ffrt_submit_f(fib_ffrt, &s2, &dx, &dy2, NULL);
+
+        // 等待任务完成
         ffrt_wait_deps(&dy12);
         *y = y1 + y2;
     }
 }
 
-int main(int narg, char** argv)
+int main()
 {
     int r;
     fib_ffrt_s s = {5, &r};
-    const std::vector<ffrt_dependence_t> dr_deps = {{ffrt_dependence_data, &r}};
-    ffrt_deps_t dr{static_cast<uint32_t>(dr_deps.size()), dr_deps.data()};
-    ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
+    ffrt_dependence_t dr_deps[] = {{ffrt_dependence_data, &r}};
+    ffrt_deps_t dr = {1, dr_deps};
+    ffrt_submit_f(fib_ffrt, &s, NULL, &dr, NULL);
+
+    // 等待任务完成
     ffrt_wait_deps(&dr);
     printf("Fibonacci(5) is %d\n", r);
     return 0;
@@ -266,11 +224,16 @@ Fibonacci(5) is 5
 
 上述样例中涉及到主要的FFRT的接口包括：
 
-| 名称                                                             | 描述                                   |
-| ---------------------------------------------------------------- | -------------------------------------- |
-| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | 提交任务调度执行。                     |
-| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | 提交任务调度执行并返回任务句柄。       |
-| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | 等待依赖的任务完成，当前任务开始执行。 |
+| 名称                                                       | 描述                             |
+| ---------------------------------------------------------- | -------------------------------- |
+| [ffrt_submit_f](ffrt-api-guideline-c.md#ffrt_submit_f)     | 提交任务调度执行。               |
+| [ffrt_submit_h_f](ffrt-api-guideline-c.md#ffrt_submit_h_f) | 提交任务调度执行并返回任务句柄。 |
+| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)   | 等待依赖的任务完成。             |
+
+> **说明：**
+>
+> - 如何使用FFRT C++ API详见：[FFRT C++接口三方库使用指导](ffrt-development-guideline.md#using-ffrt-c-api-1)。
+> - 使用FFRT C接口或C++接口时，都可以通过FFRT C++接口三方库简化头文件包含，即使用`#include "ffrt/ffrt.h"`头文件包含语句。
 
 ## 约束限制
 

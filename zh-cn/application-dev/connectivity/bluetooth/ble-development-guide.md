@@ -1,4 +1,4 @@
-# 广播与扫描开发指导
+# 查找设备
 
 ## 简介
 广播与扫描，主要提供了蓝牙设备的开启广播、关闭广播、开启扫描、关闭扫描方法，通过广播和扫描发现对端蓝牙设备，实现低功耗的通信。
@@ -33,10 +33,11 @@
 ### 开启、关闭广播
 1. import需要的ble模块。
 2. 开启设备的蓝牙。
-3. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-4. 开启广播，对端设备扫描该广播。
-5. 关闭广播。
-6. 示例代码：
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
+5. 开启广播，对端设备扫描该广播。
+6. 关闭广播。
+7. 示例代码：
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';
@@ -165,11 +166,12 @@
 ### 开启、关闭扫描
 1. import需要的ble模块。
 2. 开启设备的蓝牙。
-3. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
-4. 对端设备开启广播。
-5. 本端设备开启扫描，获取扫描结果。
-6. 关闭扫描。
-7. 示例代码:
+3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
+4. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
+5. 对端设备开启广播。
+6. 本端设备开启扫描，获取扫描结果。
+7. 关闭扫描。
+8. 示例代码:
 
     ```ts
     import { ble } from '@kit.ConnectivityKit';

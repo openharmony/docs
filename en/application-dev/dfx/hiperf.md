@@ -125,7 +125,7 @@ Specifies the target program for sampling and saves the sampled data to a file (
 | --dumpoptions | Dumps the command options.|
 
 ```
-Usage: hiperf record [options] [command [command-args]] 
+Usage: hiperf record [options] [command [command-args]]
 ```
 
 Sample the process 267 for 10 seconds and use **dwarf** to collect and unwind stack memory of the process.
@@ -252,7 +252,7 @@ You can use a script to sample data and generate flame graphs. You can obtain th
    Run **command_script.py** to sample data. This script packages the **report** command.
 
    ```
-   usage: command_script.py [-h]                         
+   usage: command_script.py [-h]
                             (-app PACKAGE_NAME | -lp LOCAL_PROGRAM | -cmd CMD | -p [PID [PID ...]] | -t [TID [TID ...]] | -sw)
                             [-a ABILITY] [-r RECORD_OPTIONS] [-lib LOCAL_LIB_DIR]
                             [-o OUTPUT_PERF_DATA] [--not_hdc_root]

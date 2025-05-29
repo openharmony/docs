@@ -139,7 +139,7 @@ enum EncodeType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ENCODE_TYPE_NULL | 未设置编码类型 | 
+| ENCODE_TYPE_NULL | 未设置编码类型。 | 
 | ENCODE_TYPE_H264 | 编码类型为H264。 | 
 | ENCODE_TYPE_H265 | 编码类型为H265。 | 
 | ENCODE_TYPE_JPEG | 编码类型为JPEG。 | 

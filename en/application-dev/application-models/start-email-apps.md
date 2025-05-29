@@ -1,6 +1,9 @@
 # Using startAbilityByType to Start an Email Application
 
 This topic describes how to open the vertical domain panel of email applications.
+> **NOTE**
+> 
+> If the parameter from the initiating application is a mailto string, you are advised to [use mailto to start an email application](start-email-apps-by-mailto.md). Upon receiving the mailto string, the email application parses the string to fill in details like the sender, recipient, and email body.
 
 ## Parameters on the Email Application Panel
 
@@ -15,7 +18,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 | body                                  | string                                                       | No  | Email body.                                                    |
 | ability.params.stream                 | string[ ]                                                    | No  | Email attachments (URI list of the attachments).                               |
 | ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | No  | At least the read permission must be granted on the email attachments. This parameter is mandatory when **ability.params.stream** is specified.|
-| sceneType                             | number                                                       | No  | 1: Send an email. The default value is **1**.                             |
+| sceneType                             | number                                                       | No  | Intent scene, which indicates the purpose of the current request. 1: Send an email. The default value is **1**.                             |
 
 > **NOTE**
 >
@@ -24,41 +27,60 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 > * For parameters of the string[] type displayed in the vertical domain panel of email applications, all elements in the array must be encoded using **encodeURI**.
 
 ## Developing a Caller Application
-1. Import the **ohos.app.ability.common** module.
+1. Import the module.
     ```ts
     import { common, wantConstant } from '@kit.AbilityKit';
     ```
 2. Construct parameters and call the **startAbilityByType** API.
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'email': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'cc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'bcc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'subject': encodeURI('Email subject'), // Email subject. The content is URL encoded using encodeURI().
-      'body': encodeURI('Email body'), // Email body. The content is URL encoded using encodeURI().
-      'ability.params.stream':[encodeURI('attachment uri1'),encodeURI('attachment uri2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'ability.want.params.uriPermissionFlag': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("mail", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
+
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                        .fontSize(30)
+                        .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+                                'cc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+                                'bcc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+                                'subject': encodeURI('Email subject'), // Email subject. The content is URL encoded using encodeURI().
+                                'body': encodeURI('Email body'), // Email body. The content is URL encoded using encodeURI().
+                                'ability.params.stream':[encodeURI('attachment uri1'), encodeURI('attachment uri2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+                                'ability.want.params.uriPermissionFlag': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("mail", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                        console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
             }
-    });
+            .height('100%')
+        }
+    }
     ```
     Effect
     
@@ -96,7 +118,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 2. Parse and process the parameters transferred from the panel.
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     The **want.parameters** parameter contains the following parameters, which may be slightly different from the ones passed in by the caller.

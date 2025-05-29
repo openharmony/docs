@@ -27,7 +27,7 @@ import { UIAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | 上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility启动时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility最后请求时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | 当前UIAbility被多次拉起时，通过[onCreate](#uiabilityoncreate)或[onNewWant](#uiabilityonnewwant)接收到的最近一次Want请求参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
@@ -147,7 +147,7 @@ class MyUIAbility extends UIAbility {
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
-当迁移多实例ability时，恢复WindowStage后调用。
+当迁移多实例Ability时，恢复WindowStage后调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -214,11 +214,80 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onWillForeground<sup>20+</sup>
+
+onWillForeground(): void
+
+UIAbility生命周期回调，应用转到前台前触发，在[onForeground](#uiabilityonforeground)前被调用。可在该回调中实现采集应用开始进入前台的时间。如果与[onDidForeground](#uiabilityondidforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWillForeground(): void {
+    // 应用开始进入前台事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "onwillforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+    });
+  }
+  // ...
+
+  onDidForeground(): void {
+    // 应用进入前台后事件打点
+    let eventParams: Record<string, number> = { 'xxxx': 100 };
+    let eventInfo: hiAppEvent.AppEventInfo = {
+      // 事件领域定义
+      domain: "lifecycle",
+      // 事件名称定义
+      name: "ondidforeground",
+      // 事件类型定义
+      eventType: hiAppEvent.EventType.BEHAVIOR,
+      // 事件参数定义
+      params: eventParams,
+    };
+    hiAppEvent.write(eventInfo).then(() => {
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
+    });
+  }
+}
+```
+
+
 ## UIAbility.onForeground
 
 onForeground(): void
 
-UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
+UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillForeground](#uiabilityonwillbackground20)与[onDidForeground](#uiabilityondidforeground20)之间被调用。可在该回调中实现系统所需资源的申请，如应用转到前台时申请定位服务等。
+
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -237,11 +306,73 @@ class MyUIAbility extends UIAbility {
 ```
 
 
+## UIAbility.onDidForeground<sup>20+</sup>
+
+onDidForeground(): void
+
+UIAbility生命周期回调，应用转到前台后触发，在[onForeground](#uiabilityonforeground)后被调用，可在该回调中实现应用切换到前台后的时间打点。如果与[onWillForeground](#uiabilityonwillforeground20)配合使用，还可以统计出从应用开始进入前台到切换至前台状态的耗时。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+参考[onWillForeground](#uiabilityonwillforeground20)。
+
+
+## UIAbility.onWillBackground<sup>20+</sup>
+
+onWillBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台前触发，在[onBackground](#uiabilityonbackground)前被调用。可在该回调中实现数据打点，例如，打点应用运行过程中发生的故障信息、统计信息、安全信息、用户行为信息等。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyUIAbility extends UIAbility {
+  onWillBackground(): void {
+    let eventParams: Record<string, number | string> = {
+      "int_data": 100,
+      "str_data": "strValue",
+    };
+    // 打点应用故障信息
+    hiAppEvent.write({
+      domain: "test_domain",
+      name: "test_event",
+      eventType: hiAppEvent.EventType.FAULT,
+      params: eventParams,
+    }, (err: BusinessError) => {
+      if (err) {
+        hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      hilog.info(0x0000, 'hiAppEvent', `success to write event`);
+    });
+  }
+}
+```
+
+
 ## UIAbility.onBackground
 
 onBackground(): void
 
-UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWillBackground](#uiabilityonwillbackground20)与[onDidBackground](#uiabilityondidbackground20)之间被调用。可在该回调中实现UI不可见时的资源释放操作，如停止定位功能等。
+
+同步接口，不支持异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -259,6 +390,68 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
+
+## UIAbility.onDidBackground<sup>20+</sup>
+
+onDidBackground(): void
+
+UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBackground](#uiabilityonbackground)之后被调用。可在该回调中实现应用进入后台之后的资源释放操作，如进入后台后停止音频播放等。
+
+同步接口，不支持异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
+
+class MyUIAbility extends UIAbility {
+  static audioRenderer: audio.AudioRenderer;
+  // ...
+  onForeground(): void {
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+      channels: audio.AudioChannel.CHANNEL_2, // 通道。
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+    };
+
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+      rendererFlags: 0 // 音频渲染器标志。
+    };
+
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
+
+    // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
+    audio.createAudioRenderer(audioRendererOptions).then((data) => {
+      MyUIAbility.audioRenderer = data;
+      console.info(`AudioRenderer Created : Success : Stream Type: SUCCESS.`);
+    }).catch((err: BusinessError) => {
+      console.error(`AudioRenderer Created : F : ${JSON.stringify(err)}.`);
+    });
+  }
+
+  onDidBackground() {
+    // 转到后台后，释放audioRenderer资源
+    MyUIAbility.audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
+      } else {
+        console.info(`AudioRenderer released.`);
+      }
+    });
+  }
+}
+```
 
 ## UIAbility.onContinue
 
@@ -338,7 +531,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如Ability名称，包名等。 |
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
@@ -394,7 +587,11 @@ class MyUIAbility extends UIAbility {
 
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
-该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
+
+> **说明：**
+>
+> 从API version 20开始，当[UIAbility.onSaveStateAsync](#uiabilityonsavestateasync20)实现时，本回调函数将不执行。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -422,6 +619,44 @@ class MyUIAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     console.log('onSaveState');
     wantParam['myData'] = 'my1234567';
+    return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+  }
+}
+```
+
+## UIAbility.onSaveStateAsync<sup>20+</sup>
+
+onSaveStateAsync(stateType: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): Promise\<AbilityConstant.OnSaveResult>
+
+如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。使用Promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stateType | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持`APP_RECOVERY`（即应用故障恢复场景）。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在Want.parameters中。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult)> | Promise对象。返回一个数据保存策略的对象（如全部拒绝、全部允许、只允许故障恢复场景等）。 |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  async onSaveStateAsync(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) : Promise<AbilityConstant.OnSaveResult> {
+    await new Promise<string>((res, rej) => {
+      setTimeout(res, 1000); // 延时1秒后执行
+    });
     return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
   }
 }
@@ -585,7 +820,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>16+</sup>
+## UIAbility.onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -609,7 +844,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult18) | 协同方应用是否接受协同。 |
 
 **示例：**
 
@@ -655,7 +890,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -743,7 +978,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -819,7 +1054,7 @@ release(): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 
 **示例：**
@@ -872,7 +1107,7 @@ export default class MainUIAbility extends UIAbility {
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -926,7 +1161,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -982,7 +1217,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1260,7 +1495,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1511,7 @@ export default class MainUIAbility extends UIAbility {
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
- 
+
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)
