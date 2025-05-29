@@ -3,11 +3,16 @@
 ## 变更梗概
 - [__GLOBAL](#__global)
 - [AggregateError](#aggregateerror)
+- [Error](#error)
+- [ArrayBuffer](#arraybuffer)
 - [ArrayBufferTypes](#arraybuffertypes)
 - [IArguments](#iarguments)
 - [Intl](#intl)
 - [Iterable](#iterable)
 - [Iterator](#iterator)
+- [IteratorResult](#iteratorresult)
+- [IteratorReturnResult](#iteratorreturnresult)
+- [IteratorYieldResult](#iteratoryieldresult)
 - [IterableIterator](#iterableiterator)
 
 ## __GLOBAL
@@ -307,6 +312,88 @@
 
 **适配建议：** 
   直接创建对应类型的对象，不直接使用constructor类。
+
+## Error
+- ArkTS1.2构造函数新增参数options。
+
+## Error构造函数入参变更
+**ArkTS1.1版本签名：**  
+  `constructor(message?: string): Error`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | message | string | 否 | 错误的简要描述。默认值为无。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Error | 新的Error对象。 |
+
+**ArkTS1.2版本签名：**  
+  `constructor(message?: String, options?: ErrorOptions): Error`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | message | String | 否 | 错误的简要描述。默认值为无。 |
+  | options | ErrorOptions | 否 | Error的属性，指示导致该错误的具体原始原因。其中ErrorOptions为ArkTS1.2版本新增类，只包含一个可选属性cause，表示导致该错误的具体原始原因。默认值为无。 |
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
+
+## ArrayBuffer
+- any类型变更为Object，返回值类型为布尔类型。
+
+## ArrayBuffer-isView方法签名变更
+**ArkTS1.1版本签名：**  
+  `static isView(arg: any): arg is ArrayBufferView`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | arg | any | 是 | 要判断是否是ArrayBufferView类型的值，可以是任意类型。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | U[] | 类型守卫，通知编译器在某个条件为true时，arg是一个ArrayBufferView类型。 |
+
+**示例：**  
+  ```typescript
+  const buffer = new ArrayBuffer(16);
+  const int32View = new Int32Array(buffer);
+  
+  console.info("boolean: "+ ArrayBuffer.isView(int32View)); // true
+  console.info("boolean: "+ ArrayBuffer.isView(null));      // false
+  console.info("boolean: "+ ArrayBuffer.isView(undefined)); // false
+  ```
+
+**ArkTS1.2版本签名：**  
+  `static isView(obj: Object): boolean`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | obj | Object | 是 | 要判断是否是ArrayBufferView类型的值，对象类型，不包含null和undefined。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 表示arg是否是一个ArrayBufferView类型。true表示是，false表示不是。 |
+
+**示例：**  
+  ```typescript
+  const buffer = new ArrayBuffer(16);
+  const int32View = new Int32Array(buffer);
+
+  console.info("boolean: "+ ArrayBuffer.isView(int32View)); // true
+  console.error("boolean: "+ ArrayBuffer.isView(null));      // TypeError: Type 'null' is not compatible with type 'Object' at index
+  console.error("boolean: "+ ArrayBuffer.isView(undefined)); // TypeError: Type 'undefined' is not compatible with type 'Object' at index
+  ```
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名入参范围缩小，null和undefined不能入参，返回值无行为变更。
 
 ## ArrayBufferTypes
 
@@ -638,6 +725,129 @@
 
 **适配建议：** 
   不使用return方法。
+
+## IteratorResult
+
+### 变更详情
+
+#### IteratorResult定义变更
+**ArkTS1.1版本签名：**  
+  `type IteratorResult<T, TReturn = any> = IteratorYieldResult<T> | IteratorReturnResult<TReturn>`
+
+**类型：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | IteratorResult\<T, TReturn = any> | 表示迭代器返回结果的类型。 |
+  | IteratorYieldResult\<T> | 表示迭代器产生了一个值（yield）。 |
+  | IteratorReturnResult\<TReturn> | 表示迭代器已经完成（return）。 |
+
+**示例：**  
+  ```typescript
+  let arr = new Array(1,2,3); 
+  let iterator = arr.entries(); 
+  let res = iterator.next(); 
+  console.info(res.value[0])
+  ```
+
+**ArkTS1.2版本签名：**   
+  ```
+  export class IteratorResult<T> {
+    done: boolean 
+    value: T | undefined
+
+    constructor() {
+        this.done = true
+        this.value = undefined
+    }
+
+    constructor(done: boolean, value: T | undefined) {
+        this.done = done
+        this.value = value
+    }
+
+    constructor(value: T) {
+        this.done = false
+        this.value = value
+    }
+  }
+  ```
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | done | boolean | 是 | 表示是否迭代结束。true表示迭代结束，false表示迭代仍在进行中。 |
+  | value | T \| undefined | 是 | 表示迭代器中间产生的值。 |
+
+**示例：**  
+  ```typescript
+  let arr = new Array<number>(1,2,3); 
+  let iterator = arr.entries(); 
+  let res = iterator.next(); 
+  console.info(res!.value![0]);
+  ```
+
+**适配建议：** 
+  正常使用，但当从迭代器里面获取value值的时候要注意判断是否为undefined。
+
+## IteratorReturnResult
+
+### 变更详情
+
+#### IteratorReturnResult定义变更
+**ArkTS1.1版本签名：**  
+  ```
+  interface IteratorReturnResult<TReturn> {
+    done: true;
+    value: TReturn;
+  }
+  ```
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | done | true | 是 | 表示迭代结束。 |
+  | value | TReturn | 是 | 表示迭代器最终返回的值，TReturn表示最终返回值的类型。 |
+
+**示例：**  
+  ```typescript
+  let b:IteratorYieldReslut<string>;
+  ```
+
+**ArkTS1.2版本签名：**   
+  NA
+
+**适配建议：** 
+  使用IteratorResult。
+
+## IteratorYieldResult
+
+### 变更详情
+
+#### IteratorYieldResult定义变更
+**ArkTS1.1版本签名：**  
+  ```
+  interface IteratorYieldResult<TYield> {
+    done?: false;
+    value: TYield;
+  }
+  ```
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | done | false | 否 | 表示迭代仍在进行中。默认值为无。 |
+  | value | TYield | 是 | 表示迭代器中间产生的值，TYield表示产生值的类型。 |
+
+**示例：**  
+  ```typescript
+  let b:IteratorReturnReslut<string>;
+  ```
+
+**ArkTS1.2版本签名：**   
+  NA
+
+**适配建议：** 
+  没有generate function，不使用IteratorYieldResult。
 
 #### Iterator-throw方法变更
 **ArkTS1.1版本签名：**  

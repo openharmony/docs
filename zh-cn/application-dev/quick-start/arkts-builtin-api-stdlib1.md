@@ -2,11 +2,15 @@
 
 ## 变更梗概
 - [Map](#map)
+- [WeakMap](#weakmap)
 - [Set](#set)
 - [String](#string)
 - [Symbol](#symbol)
 - [Object](#object)
 - [Number](#number)
+- [JSON](#json)
+- [ALL](#all)
+- [Date](#date)
 
 ## Map
 ### 变更梗概
@@ -106,6 +110,42 @@ callbackfn函数参数说明：
 **适配建议：** 
   使用闭包替代thisArg参数。
 
+## WeakMap
+- 参数类型any变更为Object | null | undefined。
+#### WeakMap构造签名变更
+**ArkTS1.1版本签名：**  
+  `constructor<K extends object = object, V = any>(entries?: readonly [K, V][] | null): WeakMap<K, V>`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | K | K extends object = object | 否 | 类型K必须继承自object类型，如果没有默认为object类型。|
+  | V | any | 否 | 自定义泛型，默认为any类型。|
+  | entries | readonly [K, V][] \| null | 否 | 由[K, V]元组组成的只读数组或者null，默认值为undefined。|
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | WeakMap\<K, V> | 一个键类型是K、值类型是V的WeakMap实例。 |
+
+**ArkTS1.2版本签名：**  
+  `constructor<K extends object = object, V = Object | null | undefined>(entries?: readonly [K, V][] | null): WeakMap<K, V>`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | K | K extends object = object | 否 | 类型K必须继承自object类型，如果没有默认为object类型。|
+  | V | Object \| null \| undefined | 否 | 自定义泛型，默认为联合类型。|
+  | entries | readonly [K, V][] \| null | 否 | 由[K, V]元组组成的只读数组或者null，默认值为undefined。|
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | WeakMap\<K, V> | 一个键类型是K、值类型是V的WeakMap实例。 |
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
+
 ## Set
 
 ### 变更梗概
@@ -203,6 +243,8 @@ callbackfn函数参数说明：
 ### 变更梗概
 - [String-Symbol.iterator变更](#string-symboliterator变更)
 - [raw方法变更](#raw方法变更)
+- [replace方法变更](#replace方法变更)
+- [replaceAll方法变更](#replaceall方法变更)
 - [string-构造函数变更为invoke方法](#string-构造函数变更为invoke方法)
 
 ### 变更详情
@@ -264,6 +306,118 @@ callbackfn函数参数说明：
 
 **适配建议：** 
   使用普通字符串替代。
+
+#### replace方法变更
+- 参数类型any变更为Object。
+
+**ArkTS1.1版本签名：**  
+  `replace(searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | searchValue | string \| RegExp | 是 | 可以是字符串或者一个带有Symbol.replace方法的对象，如正则表达式。 |
+  | replacer | (substring: string, ...args: any[]) => string | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | substring | string | 是 | 匹配到的子字符串。 |
+  | ...args | any[] | 是 | 如果searchValue是字符串，参数是第一个匹配项；如果searchValue是正则表达式且有捕获组，参数会是捕获组的内容。 |
+
+replacer返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 用于替换的字符串。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 一个新的字符串。 |
+
+**ArkTS1.2版本签名：**  
+  `replace(searchValue: StringOrRegExp, replacer: (substr: String, args: Object[]) => String): String`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | searchValue | StringOrRegExp | 是 | 联合类型(string \| RegExp)，可以是字符串或者一个带有Symbol.replace方法的对象，如正则表达式。 |
+  | replacer | (substr: String, args: Object[]) => String | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | substr | String | 是 | 匹配到的子字符串。 |
+  | args | Object[] | 是 | 如果searchValue是字符串，参数是第一个匹配项；如果searchValue是正则表达式且有捕获组，参数会是捕获组的内容。 |
+
+replacer返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | String | 用于替换的字符串。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | String | 一个新的字符串。 |
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
+
+#### replaceAll方法变更
+- 参数类型any变更为Object。
+
+**ArkTS1.1版本签名：**  
+  `replaceAll(searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | searchValue | string \| RegExp | 是 | 可以是字符串或者一个带有Symbol.replace方法的对象，如正则表达式。 |
+  | replacer | (substring: string, ...args: any[]) => string | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | substring | string | 是 | 匹配到的子字符串。 |
+  | ...args | any[] | 是 | 如果searchValue是字符串，参数是第一个匹配项；如果searchValue是正则表达式且有捕获组，参数会是捕获组的内容。 |
+
+replacer返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 用于替换的字符串。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | 一个新的字符串。 |
+
+**ArkTS1.2版本签名：**  
+  `replaceAll(searchValue: StringOrRegExp, replacer: (substr: String, args: Object[]) => String): String`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | searchValue | StringOrRegExp | 是 | 联合类型(String \| RegExp)，可以是字符串或者一个带有Symbol.replace方法的对象，如正则表达式。 |
+  | replacer | (substr: String, args: Object[]) => String | 是 | 一个函数，将为每个匹配调用该函数，并将其返回值用作替换文本。其中substring为匹配到的字符串，args为参数数组，取决于searchValue是否是正则表达式，以及正则是否包含捕获组。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  |--------|------|------|------|
+  | substr | String | 是 | 匹配到的子字符串。 |
+  | args | Object[] | 是 | 如果searchValue是字符串，参数是第一个匹配项；如果searchValue是正则表达式且有捕获组，参数会是捕获组的内容。 |
+
+replacer返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | String | 用于替换的字符串。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | String | 一个新的字符串。 |
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
 
 #### string-构造函数变更为invoke方法
 **ArkTS1.1版本签名：**  
@@ -334,6 +488,8 @@ callbackfn函数参数说明：
 ### 变更梗概
 - [getOwnPropertyNames方法变更](#getownpropertynames方法变更)
 - [Object-构造函数变更](#object-构造函数变更)
+- [Object-entries变更](#object-entries变更)
+- [Object-values变更](#object-values变更)
 - [Object-valueOf变更](#object-valueof变更)
 - [ObjectConstructor无参调用变更](#objectconstructor无参调用变更)
 - [ObjectConstructor带参调用变更](#objectconstructor带参调用变更)
@@ -405,6 +561,120 @@ callbackfn函数参数说明：
 **适配建议：** 
   使用具体类型替代泛型Object。
 
+#### Object-entries变更
+- 返回值any类型改为Object | null | undefined联合类型。
+
+**ArkTS1.1版本签名：**  
+  `static entries(o: {}): [string, any][]`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | o | {} | 是 | 对象。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | [string, any][] | 一个由给定对象可枚举字符串键的键值对组成的数组，其中每个键值对都是一个包含两个元素的数组。 |
+
+**示例：**  
+  ```typescript
+  interface obj {
+    a: string,
+    b: number,
+  };
+  const object1: obj = {
+    a: "somestring",
+    b: 42,
+  };
+  console.info(Object.entries(object1)[0][1]);
+  ```
+
+**ArkTS1.2版本签名：**  
+  `static entries(o: Object): NullishEntryType[]`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | o | Obejct | 是 | 对象。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | NullishEntryType | 联合类型([string, Object \| null \| undefined] \| null \| undefined)。 |
+
+**示例：**  
+  ```typescript
+  interface obj {
+    a: string,
+    b: number,
+  };
+  const object1 : obj= {
+    a: "somestring",
+    b : 42,
+  };
+  console.info(Object.entries(object1)[0]?.[1]);
+  ```
+
+**适配建议：** 
+  返回值类型由any改为联合类型NullishEntryType，使用时需判断。
+
+#### Object-values变更
+- 返回值any类型改为Object | null | undefined。
+
+**ArkTS1.1版本签名：**  
+  `static values(o: {}): any[]`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | o | {} | 是 | 对象。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | any[] | 新数组。 |
+
+**示例：**  
+  ```typescript
+  interface obj {
+    a: string,
+  };
+  const object1: obj = {
+    a: "somestring",
+  };
+  console.info(Object.entries(object1)[0].toUpperCase());
+  ```
+
+**ArkTS1.2版本签名：**  
+  `static values(o: Object): (Object | null | undefined)[]`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | o | Object | 是 | 对象。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | (Object \| null \| undefined)[] | 新数组。 |
+
+**示例：**  
+  ```typescript
+  interface obj {
+    a: string,
+  }
+  const object1: obj = {
+    a: "somestring",
+  }
+  let value1 = Object.values(object1);
+  let value2 = value1[0] as string;
+  console.info("values :" + value2.toUpperCase());
+  ```
+
+**适配建议：** 
+  ArkTS1.2版本any类型变为(Object | null | undefined)，使用需指定类型。
+
 #### Object-valueOf变更
 **ArkTS1.1版本签名：**  
   `valueOf(): Object`
@@ -425,7 +695,6 @@ callbackfn函数参数说明：
 
 **适配建议：** 
   直接使用对象本身，不需要调用valueOf。
-
 
 #### ObjectConstructor无参调用变更
 **ArkTS1.1版本签名：**  
@@ -724,3 +993,431 @@ callbackfn函数参数说明：
 
 **适配建议：** 
   仅使用String/Number/BigInt类型作为参数。
+
+## JSON
+### 变更梗概
+- [JSON-parse签名变更](#json-parse签名变更)
+- [JSON-stringify签名变更](#json-stringify签名变更)
+
+## JSON-parse签名变更
+### 变更梗概
+- [JSON-parse未传入可选参数reviver](#json-parse未传入可选参数reviver)
+- [JSON-parse传入可选参数reviver](#json-parse传入可选参数reviver)
+
+### 变更详情
+
+#### JSON-parse未传入可选参数reviver
+**ArkTS1.1版本签名：**  
+  `parse(text: string, reviver?: (this: any, key: string, value: any) => any, options?: ParseOptions): Object|null`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | JSON字符串。 |
+  | reviver | (this: any, key: string, value: any) => any | 否 | reviver函数用以在返回之前对所得到的对象执行变换。 |
+  | options | ParseOptions | 否 | 解析的配置，传入该参数，可以用来控制解析生成的类型。默认是undefined。 |
+
+reviver函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | this | any | 是 | reviver函数执行时的上下文对象。 |
+  | key | string | 是 | 正在处理的this对象属性的键名。 |
+  | value | any | 是 | 当前键对应的值。 |
+
+reviver函数返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | any | 如果返回undefined，该对象属性会从结果中删除；如果返回非undefined，该返回值会替换原始解析值。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Object \| null | 反序列化后的对象。 |
+
+**示例：**  
+  ```typescript
+  class C {
+    a:number = 1;
+    b:number = 2;
+  }
+  const c = new C();
+  let json: C = JSON.parse("{\"a\":1, \"b\":2}") as C;
+  ```
+
+**ArkTS1.2版本签名：**  
+  `parse<T>(text: String, type: Type): T | null | undefined`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | String | 是 | JSON字符串。 |
+  | type | Type | 是 | 要转换JSON字符串的类型。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T \| null \| undefined | 反序列化后的对象。 |
+
+**示例：**  
+  ```typescript
+  class C {
+    a:number = 1;
+    b:number = 2;
+  }
+  const c = new C();
+  let json = JSON.parse<C>("{\"a\":1, \"b\":2}", Type.of(c));
+  console.info(json);
+  ```
+
+**适配建议：** 
+  需要提供泛型T和入参type。
+
+#### JSON-parse传入可选参数reviver
+**ArkTS1.1版本签名：**  
+  `parse(text: string, reviver?: (this: any, key: string, value: any) => any, options?: ParseOptions): Object|null`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | JSON字符串。 |
+  | reviver | (this: any, key: string, value: any) => any | 否 | reviver函数用以在返回之前对所得到的对象执行变换。默认值为无。 |
+  | options | ParseOptions | 否 | 解析的配置，传入该参数，可以用来控制解析生成的类型。默认是undefined。 |
+
+reviver函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | this | any | 是 | reviver函数执行时的上下文对象。 |
+  | key | string | 是 | 正在处理的this对象属性的键名。 |
+  | value | any | 是 | 当前键对应的值。 |
+
+reviver函数返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | any | 如果返回undefined，该对象属性会从结果中删除；如果返回非undefined，该返回值会替换原始解析值。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Object \| null | 反序列化后的对象。 |
+
+**示例：**  
+  ```typescript
+  class C {
+    a: number = 2;
+  }
+  
+  const c = new C();
+  let json: C = JSON.parse('{"a": 2}', (k: string, v: number) => {
+    if (k === "") {
+      return v;
+    }
+    return v * 2;
+  })
+  console.info(JSON.stringify(json));
+  ```
+
+**ArkTS1.2版本签名：**  
+  `parse<T>(text: string, reviver: ((key: string, value: (Object | null | undefined)) => (Object | null | undefined)) | undefined, type: Type, bigIntMode?: int): T | null | undefined`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | text | string | 是 | JSON字符串。 |
+  | reviver | ((key: string, value: (Object \| null \| undefined)) => (Object \| null \| undefined)) \| undefined | 否 | reviver函数用以在返回之前对所得到的对象执行变换。默认值为无。 |
+  | type | Type | 是 | 要转换JSON字符串的类型。 |
+  | bigIntMode | int | 否 | 是否包含bigint（任意精度的大整数），选择开启。默认值为无。 |
+
+reviver函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | key | string | 是 | 正在处理的this对象属性的键名。 |
+  | value | Object \| null \| undefined | 是 | 当前键对应的值。 |
+
+reviver函数返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Object \| null \| undefined | 如果返回undefined，该对象属性会从结果中删除；如果返回非undefined，该返回值会替换原始解析值。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | T \| null \| undefined | 反序列化后的对象。 |
+
+**示例：**  
+  ```typescript
+  class C {
+  a: number = 2;
+  }
+  
+  const c = new C();
+  let json: C|undefined|null = JSON.parse<C>('{"a": 2}', (k: string, v: Object|null|undefined ) => {
+    if (k === "") {
+      return v;
+    }
+    return (v as number) * 2;
+  }, Type.of(c))
+  
+  console.info(JSON.stringify(json));
+  ```
+
+**适配建议：** 
+  ArkTS1.1的JSON.parse返回一个any对象，该any对象可以为任何值，但ArkTS1.2无法生成一个any对象，并向里面动态添加属性。
+
+## JSON-stringify签名变更
+### 变更梗概
+- [JSON-stringify入参为replacer数组any类型变更](#json-stringify入参为replacer数组any类型变更)
+- [JSON-stringify入参为replacer函数any类型变更](#json-stringify入参为replacer函数any类型变更)
+
+### 变更详情
+
+#### JSON-stringify入参为replacer数组any类型变更
+- 参数类型any变更为Object | null | undefined。
+
+**ArkTS1.1版本签名：**  
+  `stringify(value: any, replacer?: (number | string)[] | null, space?: string | number): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | any | 是 | 任意类型。 |
+  | replacer | (number \| string)[] \| null | 否 | 只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中。默认值为无。 |
+  | space | string \| number | 否 | 指定缩进用的空白字符串。默认值为无。 |
+
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | JSON字符串。 |
+
+**ArkTS1.2版本签名：**  
+  `stringify(obj: Object | null | undefined, replacer: Array<string | number>, space?: string | number): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | obj | Object \| null \| undefined | 是 | 联合类型。 |
+  | replacer | Array\<string \| number\> | 是 | 只有包含在此数组中的属性名才会被序列化到最终的JSON字符串中。 |
+  | space | string \| number | 否 | 指定缩进用的空白字符串。默认值为无。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | JSON字符串。 |
+
+**适配建议：** 
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
+
+#### JSON-stringify入参为replacer函数any类型变更
+**ArkTS1.1版本签名：**  
+  `stringify(value: any, replacer?: (this: any, key: string, value: any) => any, space?: string | number): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | any | 是 | 任意类型。 |
+  | replacer | (this: any, key: string, value: any) => any | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值为无。 |
+  | space | string \| number | 否 | 指定缩进用的空白字符串。默认值为无。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | this | any | 是 | replacer函数执行时的上下文对象。 |
+  | key | string | 是 | 正在处理的this对象属性的键名。 |
+  | value | any | 是 | 当前键对应的值。 |
+
+replacer函数返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | any | 如果返回undefined，该对象属性会从结果中删除；如果返回非undefined，按返回值序列化。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | JSON字符串。 |
+
+**示例：**  
+  ```typescript
+  class A {
+  username: string = "zzz"
+
+  aaa(): void {
+    this.username = "www"
+  }
+  }
+  
+  interface useritf {
+    name: string,
+    password: string,
+    lastLogin: A
+  }
+  
+  const user: useritf = {
+    name: "李四",
+    password: "secret123", // 无需序列化密码
+    lastLogin: new A()
+  };
+  
+  const filteredJson = JSON.stringify(user, (key: string, value: Object) => {
+    if (key === "password") {
+      return undefined;
+    } // 移除密码字段
+    if (key === "lastLogin") {
+      (value as A).aaa()
+      return value;
+    } // 修改username
+    return value;
+  });
+
+  console.info(filteredJson);
+  ```
+
+**ArkTS1.2版本签名：**  
+  `stringify(obj: Object | null | undefined, replacer: ((key: string, value: Object | null | undefined) => Object | null | undefined) | undefined | null, space?: string | number): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | obj | Object \| null \| undefined | 是 | 要序列化的值。 |
+  | replacer | ((key: string, value: Object \| null \|undefined) => Object \| null \| undefined) \| undefined \| null | 是 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。 |
+  | space | string \| number | 否 | 指定缩进用的空白字符串。默认值为无。 |
+
+replacer函数参数说明：
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | key | string | 是 | 正在处理的当前上下午对象属性的键名。 |
+  | value | Object \| null \| undefined | 是 | 当前键对应的值。 |
+
+replacer函数返回值说明：
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Object \| null \| undefined | 如果返回undefined，该对象属性会从结果中删除；如果返回非undefined，按返回值序列化。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | JSON字符串。 |
+
+**示例：**  
+  ```typescript
+  class A {
+  username: string = "zzz"
+
+  aaa():void {
+    this.username = "www"
+  }
+  }
+  
+  interface useritf {
+    name: string,
+    password: string,
+    lastLogin: A
+  }
+  
+  const user: useritf = {
+    name: "李四",
+    password: "secret123", // 无需序列化密码
+    lastLogin: new A()
+  };
+  
+  const filteredJson = JSON.stringify(user, (key: string, value: Object|null|undefined) => {
+    if (key === "password") {
+      return undefined;
+    } // 移除密码字段
+    if (key === "lastLogin") {
+      (value as A).aaa()
+      return value;
+    } // 修改username
+    return value;
+  });
+  
+  console.info(filteredJson);
+  ```
+
+**适配建议：** 
+  ArkTS1.2相比较于ArkTS1.1，类型any转为Object|null|undefined，在使用时需要先判断。
+
+## ALL
+### 变更详情
+
+#### ArkTS1.2部分builtin class标注final，无法被继承使用。
+**ArkTS1.1版本签名：**  
+  `class xxx`
+
+**示例：**  
+  ```typescript
+  class MyIntArray extends Int8Array {
+  constructor(length: number) {
+    super(length);
+  }
+  }
+  
+  try {
+    const myArray = new MyIntArray(3);
+  
+    console.info('length = ' + myArray.length);
+  } catch (error) {
+    console.error('错误:', error);
+  }
+  ```
+
+**ArkTS1.2版本签名：**  
+  `final class xxx`
+
+**示例：**  
+  ```typescript
+  class MyIntArray extends Int8Array { // 报错：TypeError: Cannot inherit with 'final' modifier. 
+  constructor(length: number) {
+    super(length);
+  }
+  }
+  
+  try {
+    const myArray = new MyIntArray(3);
+  
+    console.info('length = ' + myArray.length);
+  } catch (error) {
+    console.error('错误:', error);
+  }
+  ```
+
+## Date
+### 变更详情
+
+#### Date-toJSON方法变更
+**ArkTS1.1版本签名：**  
+  `toJSON(key?: any): string`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | key | any | 否 | 表示当前序列化对象属性名。默认值为无。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string | Date对象的字符串形式。 |
+
+**示例：**  
+  ```typescript
+  const event = new Date("August 19, 1975 23:15:30 UTC");
+  const jsonDate = event.toJSON();
+  console.info("length :" + jsonDate.length);
+  ```
+
+**ArkTS1.2版本签名：**  
+  `toJSON(): string|null`
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | string \| null | Date对象的字符串形式，可以为null。 |
+
+**示例：**  
+  ```typescript
+  const event = new Date("August 19, 1975 23:15:30 UTC");
+  const jsonDate = event.toJSON();
+  console.info(jsonDate?.length);
+  ```
+
+**适配建议：** 
+  toJSON接口变更，当date构造入参为空字符串时，toJSON返回null，返回值后续调用方法或属性时需要使用判空或使用?.访问。

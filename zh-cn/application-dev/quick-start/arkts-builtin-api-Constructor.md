@@ -74,9 +74,42 @@
 ## BooleanConstructor
 
 ### 变更梗概
+- [BooleanConstructor-构造函数签名变更](#booleanconstructor-构造函数签名变更)
 - [BooleanConstructor-构造函数调用变更](#booleanconstructor-构造函数调用变更)
 
 ### 变更详情
+
+#### BooleanConstructor-构造函数签名变更
+- 参数类型any改为具体类型。
+
+**ArkTS1.1版本签名：**  
+  `constructor(value?: any): Boolean`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | any | 否 | 要转换的值，默认值为undefined。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Boolean | 转换后的布尔值。 |
+
+**ArkTS1.2版本签名：**  
+  `constructor(value: Object | null | undefined = undefined): Boolean`
+
+**参数：**
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | value | Object \| null \| undefined | 否 | 要转换的值，默认值为undefined。 |
+
+**返回值：**
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Boolean | 转换后的布尔值。 |
+
+- 适配建议：
+  ArkTS1.2相比ArkTS1.1接口签名有变更，但对开发者接口行为无变更。
 
 #### BooleanConstructor-构造函数调用变更
 **ArkTS1.1版本签名：**  
