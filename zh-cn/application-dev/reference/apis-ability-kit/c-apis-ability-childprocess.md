@@ -39,7 +39,7 @@
 | 名称                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 描述                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008,<br>    NCP_ERR_CALLBACK_NOT_EXIST = 16010009<br>} | 定义Native子进程模块错误码。 |
-| [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode) {<br> NCP_ISOLATION_MODE_NORMAL = 0,<br>    NCP_ISOLATION_MODE_ISOLATED = 1 <br>} | 定义Native子进程隔离模式。 |
+
 
 ### 函数
 
@@ -54,6 +54,10 @@
 | Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char \*libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
 | Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs) (const char \*entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, int32_t *pid) | 根据传入的子进程配置信息启动一个进程，并加载指定的库文件。 |
 
+> **说明：**
+>
+> 当前仅支持2in1设备。
+> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
 ## 类型定义说明
 ### OH_Ability_OnNativeChildProcessStarted
@@ -196,25 +200,11 @@ typedef struct NativeChildProcess_Options {
 
 ### Ability_ChildProcessConfigs
 
-```
-struct Ability_ChildProcessConfigs {
-    std::string processName;
-    NativeChildProcess_IsolationMode isolationMode = NCP_ISOLATION_MODE_NORMAL;
-};
-```
-
 **描述**
 
 启动子进程的配置信息。
 
-**参数:**
-
-| 名称          | 描述 |
-| ----------- | ------------- |
-| processName     | 子进程名称 |
-| isolationMode     | 进程独立模式，详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。 |
-
-**起始版本**：15
+**起始版本**：20
 
 ## 枚举类型说明
 
@@ -432,11 +422,7 @@ Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
 
 创建一个子进程配置信息对象。
 
-> **说明：**
->
-> 当前支持2in1设备。
-
-**起始版本**：15
+**起始版本**：20
 
 **返回**：
 执行成功返回指向[Ability_ChildProcessConfigs](#ability_childprocessconfigs)对象的指针，失败返回nullptr。
@@ -450,11 +436,8 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 
 销毁一个子进程配置信息对象，并释放其内存。
 
-> **说明：**
->
-> 当前支持2in1设备。
 
-**起始版本**：15
+**起始版本**：20
 
 **返回**：  
 NCP_NO_ERROR - 对象销毁成功。  
@@ -472,11 +455,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
 
 设置子进程配置信息对象中的独立模式。
 
-> **说明：**
->
-> 当前支持2in1设备。
-
-**起始版本**：15
+**起始版本**：20
 
 **参数**：
 
@@ -499,11 +478,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 设置子进程配置信息对象中的进程名称。
 
-**说明**
-
-当前支持2in1设备。
-
-**起始版本**：15
+**起始版本**：20
 
 **参数**：
 
