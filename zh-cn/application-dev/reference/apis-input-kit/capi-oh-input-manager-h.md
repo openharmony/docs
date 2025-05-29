@@ -810,8 +810,8 @@ void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t a
 
 | 参数项 | 描述 |
 | -- | -- |
-| struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。使用前需先创建对象[创建鼠标事件对象](#OH_Input_CreateMouseEvent)。使用完需自行销毁[销毁鼠标事件对象](#OH_Input_DestroyMouseEvent)。 |
-| int32_t action | 鼠标的动作。相关取值可参考[Input_MouseEventAction](#Input_MouseEventAction)。 |
+| struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。使用前需先创建对象[创建鼠标事件对象](#oh_input_createmouseevent)。使用完需自行销毁[销毁鼠标事件对象](#oh_input_destroymouseevent)。 |
+| int32_t action | 鼠标的动作。相关取值可参考[Input_MouseEventAction](#input_mouseeventaction)。 |
 
 ### OH_Input_SetMouseEventDisplayX()
 
