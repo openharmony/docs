@@ -12,7 +12,7 @@
 import { Configuration } from '@kit.AbilityKit';
 ```
 
-## 属性
+## Configuration
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

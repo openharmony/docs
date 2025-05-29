@@ -14,11 +14,11 @@
 import { StartupConfig } from '@kit.AbilityKit';
 ```
 
-## 属性
+## StartupConfig
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
-  | 名称 | 类型 | 只读 | 可选 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | timeoutMs | number | 是 | 是 | 执行所有启动任务的超时时间（单位：毫秒），默认值为10000毫秒。 |
 | startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | 是 | 是 | 表示启动框架的监听器，该监听器将在所有启动任务完成时调用。 |
