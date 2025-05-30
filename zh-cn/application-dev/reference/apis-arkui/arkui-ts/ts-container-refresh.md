@@ -101,6 +101,22 @@ pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optio
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | ratio  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> |  是 | 下拉跟手系数。数值越大，跟随手势下拉的反应越灵敏。0表示不跟随手势下拉，1表示等比例跟随手势下拉。<br/>没有设置或设置为undefined时，默认使用动态下拉跟手系数，下拉距离越大，跟手系数越小。<br/>有效值为0-1之间的值，小于0的值会被视为0，大于1的值会被视为1。
 
+### maxPullDownDistance<sup>20+</sup>
+
+maxPullDownDistance(distance: Optional\<number>)
+
+设置最大下拉距离。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| distance  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> |  是 | 最大下拉距离。最大下拉距离的最小值为0，小于0按0处理。当该值小于刷新的下拉偏移量refreshOffset时，Refresh下拉离手不会触发刷新。<br/>undefined和null按没有设置此属性处理。<br/>默认值：undefined
+
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
@@ -636,3 +652,64 @@ struct ListRefreshLoad {
 ```
 
 ![refresh_boundary_resilience](figures/refresh_boundary_resilience.gif)
+
+### 示例7（设置最大下拉距离）
+
+通过[maxPullDownDistance](#maxpulldowndistance20)属性设置最大下拉距离。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .maxPullDownDistance(150)
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+      .backgroundColor(0x89CFF0)
+      .refreshOffset(64)
+      .pullToRefresh(true)
+    }
+  }
+}
+
+```
+
+![refresh_boundary_resilience](figures/refresh_maxpulldowndistance_demo_7.gif)
