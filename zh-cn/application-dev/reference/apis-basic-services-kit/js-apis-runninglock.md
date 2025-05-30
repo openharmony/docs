@@ -408,12 +408,8 @@ class RunningLockTest {
                 if (typeof err === 'undefined') {
                     console.info('create running lock: ' + lock);
                     RunningLockTest.recordLock = lock;
-                    try {
-                        let isHolding = lock.isHolding();
-                        console.info('check running lock holding status: ' + isHolding);
-                    } catch(err) {
-                        console.error('check running lock holding status failed, err: ' + err);
-                    }
+                    let isHolding = lock.isHolding();
+                    console.info('check running lock holding status: ' + isHolding);
                 } else {
                     console.error('create running lock failed, err: ' + err);
                 }
