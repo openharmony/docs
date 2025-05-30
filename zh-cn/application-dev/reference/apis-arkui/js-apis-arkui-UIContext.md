@@ -3181,9 +3181,9 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
-### on('navDestinationUpdate')<sup>20+</sup>
+### on('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
 
 通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
 
@@ -3195,7 +3195,7 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
 
@@ -3205,8 +3205,8 @@ on(type: 'navDestinationUpdate', navigationUniqueId: number, callback: Callback\
 
 ```ts
 // Index.ets
-// 演示 on('navDestinationUpdate', navigationUniqueId, callback)
-// off('navDestinationUpdate', navigationUniqueId, callback)
+// 演示 on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+// off('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
 @Component
 struct PageOne {
   private text = '';
@@ -3217,12 +3217,12 @@ struct PageOne {
       this.uniqueid = navigationuniqueid.valueOf();
     }
     this.text = JSON.stringify(this.uniqueid);
-    this.getUIContext().getUIObserver().on('navDestinationUpdate', this.uniqueid, (info) => {
+    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
       console.info('NavDestination state update navigationId', JSON.stringify(info));
     });
   }
   aboutToDisappear() {
-    this.getUIContext().getUIObserver().off('navDestinationUpdate', this.uniqueid);
+    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
   }
   build() {
     NavDestination() {
@@ -3263,9 +3263,9 @@ struct Index {
 }
 ```
 
-### off('navDestinationUpdate')<sup>20+</sup>
+### off('navDestinationUpdateByUniqueId')<sup>20+</sup>
 
-off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消通过navigationUniqueId监听NavDestination组件的变化。
 
@@ -3277,13 +3277,13 @@ off(type: 'navDestinationUpdate', navigationUniqueId: number, callback?: Callbac
 
 | 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
 | navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
 | callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
 
 **示例：**
 
-参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate20)示例。
+参考[uiObserver.on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)示例。
 
 ### on('scrollEvent')<sup>12+</sup>
 
