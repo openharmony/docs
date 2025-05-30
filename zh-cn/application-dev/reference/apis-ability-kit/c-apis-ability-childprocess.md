@@ -449,7 +449,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 **返回**：
 
 NCP_NO_ERROR - 对象销毁成功。  
-NCP_ERR_INVALID_PARAM - 传入参数为nullptr  
+NCP_ERR_INVALID_PARAM - 传入参数为nullptr。  
 错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 
