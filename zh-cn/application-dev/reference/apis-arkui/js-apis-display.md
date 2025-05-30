@@ -45,6 +45,22 @@ import { display } from '@kit.ArkUI';
 | PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
 | LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
 
+## DisplaySourceMode<sup>19+</sup>
+
+屏幕显示内容的显示模式枚举。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NONE | 0 | 表示设备当前未使用。|
+| MAIN | 1 | 表示设备当前为主屏。 |
+| MIRROR | 2 | 表示设备当前为镜像显示模式。|
+| EXTEND | 3 | 表示设备当前为扩展显示模式。|
+| ALONE | 4 | 表示设备当前为异源显示模式。|
+
 ## FoldStatus<sup>10+</sup>
 
 当前可折叠设备的折叠状态枚举。如果是双折轴设备，则在充电口朝下的状态下，从右到左分别是折轴一和折轴二。
@@ -1354,6 +1370,9 @@ display.makeUnique(screenId).then(() => {
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 
+| sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| y<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
