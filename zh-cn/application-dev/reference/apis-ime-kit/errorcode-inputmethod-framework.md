@@ -340,18 +340,18 @@ The input method is not found.
 
 **错误信息**
 
-The preconfigured default input method cannot be disabled.
+Current operation cannot be applied to the preconfigured default input method.
 
 **错误描述**
 
-系统配置的默认输入法不支持停用。
+系统配置的默认输入法不支持此操作。
 
 **可能原因**
 
-开发者调用接口[enableInputMethod](js-apis-inputmethod-sys.md#enableinputmethod20)设置系统配置的默认输入法的启用状态[EnabledState](js-apis-inputmethod.md#enabledstate15)为DISABLED。
+开发者调用接口[enableInputMethod](js-apis-inputmethod-sys.md#enableinputmethod20)设置系统配置的默认输入法的启用状态或访问模式[EnabledState](js-apis-inputmethod.md#enabledstate15)。
 
 **处理步骤**
 
-开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置的默认输入法，判断当前停用的输入法是否为系统配置的默认输入法，若是，则不做停用处理。
+开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置的默认输入法，判断当前操作的输入法是否为系统配置的默认输入法，若是，则不做处理。
 
 <!--DelEnd-->
