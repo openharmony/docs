@@ -343,8 +343,8 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，获取到的是UUID能力集合；否则为错误对象。 |
+| deviceId | string | 是    | 表示对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，获取到的是Profile协议能力集合；否则为错误对象。 |
 
 **错误码**：
 
@@ -389,13 +389,13 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 表示对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Promise对象，返回支持的Profile协议列表。 |
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Promise对象，返回支持的Profile协议能力集合。 |
 
 **错误码**：
 
@@ -469,7 +469,7 @@ try {
 
 getPairedDevices(): Array&lt;string&gt;
 
-获取已配对蓝牙设备列表。
+获取已配对蓝牙设备的地址集合。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -481,7 +481,7 @@ getPairedDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。<br/>- 基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br/>- 配对成功后，该地址不会变更。<br/>- 取消配对该设备后，重新扫描或蓝牙服务下电（蓝牙电源供应被切断）后，该虚拟地址会变更。 | 
+| Array&lt;string&gt; | 已配对蓝牙设备的地址集合。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 已配对的地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新获取，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 | 
 
 **错误码**：
 
@@ -885,7 +885,10 @@ try {
 
 startBluetoothDiscovery(): void
 
-开启蓝牙扫描，发现对端蓝牙设备（传统蓝牙设备和BLE设备）。
+开启蓝牙扫描，发现对端蓝牙设备。<br>
+- 该接口支持发现传统蓝牙设备和低功耗蓝牙设备。<br>
+- 扫描结果可通过API version 10开始支持的[connection.on('bluetoothDeviceFind')](#connectiononbluetoothdevicefind)或者API version 18开始支持的[connection.on('discoveryResult')](#connectionondiscoveryresult18)的回调函数获取到。推荐使用[connection.on('discoveryResult')](#connectionondiscoveryresult18)，该方式可以获取到更多设备信息。<br>
+- 调用[stopBluetoothDiscovery](#connectionstopbluetoothdiscovery)可以停止该方法开启的扫描流程。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -925,7 +928,9 @@ try {
 
 stopBluetoothDiscovery(): void
 
-关闭蓝牙扫描。
+关闭蓝牙扫描。<br>
+- 关闭的扫描是由[connection.startBluetoothDiscovery](#connectionstartbluetoothdiscovery)触发的。<br>
+- 当应用不再需要扫描设备时，需主动调用该方法关闭扫描。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1105,7 +1110,7 @@ try {
 
 on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 
-订阅蓝牙远程设备的电量信息变更事件。使用Callback异步回调。
+订阅对端设备的电量信息变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1115,8 +1120,8 @@ on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | 是    | 填写"batteryChange"字符串，表示蓝牙远端设备的电池信息变更事件。 |
-| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 是    | 表示回调函数的入参，返回电量信息。    |
+| type     | string                              | 是    | 事件回调类型，支持的事件为'batteryChange'，表示对端设备的电量信息变化事件。当该设备通知电量变化时，会触发该事件。 |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 是    | 指定订阅的回调函数，返回电量信息。    |
 
 **错误码**：
 
@@ -1146,7 +1151,7 @@ try {
 
 off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
 
-取消订阅蓝牙远程设备的电量信息变更事件。
+取消订阅对端设备的电量信息变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1156,8 +1161,8 @@ off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | 是    | 填写"batteryChange"字符串，表示取消蓝牙远端设备的电池信息变更事件。   |
-| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 否    | 表示回调函数的入参，返回电量信息。 |
+| type     | string                              | 是    | 事件回调类型，支持的事件为'batteryChange'，表示对端设备的电量信息变化事件。   |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[connection.on('batteryChange')](#connectiononbatterychange12)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1188,7 +1193,10 @@ try {
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
-订阅蓝牙设备发现上报事件。使用Callback异步回调。
+订阅蓝牙设备扫描结果上报事件。使用Callback异步回调。<br>
+- 可扫描到的设备类型包括传统蓝牙设备和低功耗蓝牙设备。<br>
+- 该上报方式只支持获取设备地址信息。<br>
+- 推荐使用API version 18开始支持的[connection.on('discoveryResult')](#connectionondiscoveryresult18)扫描上报方式，可获取到更多设备信息，包括设备地址、设备信号强度、设备名称和设备类型。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1200,8 +1208,8 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | 是    | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。    |
+| type     | string                              | 是    | 事件回调类型，支持的事件为'bluetoothDeviceFind'，表示蓝牙设备扫描结果上报事件。当调用[connection.startBluetoothDiscovery](#connectionstartbluetoothdiscovery)后，开始设备扫描，若扫描到设备，触发该事件。 |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 是    | 指定订阅的回调函数，会携带扫描到的设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。    |
 
 **错误码**：
 
@@ -1233,7 +1241,7 @@ try {
 
 off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
-取消订阅蓝牙设备发现上报事件。
+取消订阅蓝牙设备扫描结果上报事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1245,8 +1253,8 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | 是    | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。   |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                              | 是    | 事件回调类型，支持的事件为'bluetoothDeviceFind'，表示蓝牙设备扫描结果上报事件。   |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[connection.on('bluetoothDeviceFind')](#connectiononbluetoothdevicefind)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1278,7 +1286,7 @@ try {
 
 on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
-订阅蓝牙配对状态改变事件。使用Callback异步回调。
+订阅蓝牙配对状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1288,8 +1296,8 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'bondStateChange'，表示蓝牙配对状态变化事件。<br>当调用[connection.pairDevice](#connectionpairdevice)发起主动配对，或者本机设备收到其他设备的配对请求时，触发该事件。 |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | 是    | 指定订阅的回调函数，会携带配对状态结果。    |
 
 **错误码**：
 
@@ -1321,7 +1329,7 @@ try {
 
 off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
-取消订阅蓝牙配对状态改变事件。
+取消订阅蓝牙配对状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1331,8 +1339,8 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'bondStateChange'，表示蓝牙配对状态变化事件。     |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[connection.on('bondStateChange')](#connectiononbondstatechange)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1365,7 +1373,7 @@ try {
 
 on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
-订阅远端蓝牙设备的配对请求事件。使用Callback异步回调。
+订阅配对请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1375,8 +1383,8 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。     |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 是    | 表示回调函数的入参，配对请求。回调函数由用户创建通过该接口注册。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'pinRequired'，表示配对请求事件。<br>当调用[connection.pairDevice](#connectionpairdevice)发起主动配对，或者本机设备收到其他设备的配对请求时，触发该事件。     |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 是    | 指定订阅的回调函数，会携带配对请求。 |
 
 **错误码**：
 
@@ -1408,7 +1416,7 @@ try {
 
 off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
-取消订阅远端蓝牙设备的配对请求事件。
+取消订阅配对请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1418,8 +1426,8 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"pinRequired"字符串，表示配对请求事件。             |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 否    | 表示取消订阅蓝牙配对请求事件上报，入参为配对请求参数。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'pinRequired'，表示配对请求事件。             |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[connection.on('pinRequired')](#connectiononpinrequired)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1452,7 +1460,9 @@ try {
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
-订阅蓝牙设备发现上报事件。使用Callback异步回调。
+订阅蓝牙设备扫描结果上报事件。使用Callback异步回调。<br>
+- 可扫描到的设备类型包括传统蓝牙设备和低功耗蓝牙设备。<br>
+- 该上报方式支持获取设备地址、设备信号强度、设备名称和设备类型。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1462,8 +1472,8 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+| type     | string                              | 是    | 事件回调类型，支持的事件为'discoveryResult'，表示蓝牙设备扫描结果上报事件。当调用[connection.startBluetoothDiscovery](#connectionstartbluetoothdiscovery)后，开始设备扫描，若扫描到设备，触发该事件。 |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 是    | 指定订阅的回调函数，会携带扫描结果的集合。    |
 
 **错误码**：
 
@@ -1505,8 +1515,8 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
-| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+| type     | string                              | 是    | 事件回调类型，支持的事件为'discoveryResult'，表示蓝牙设备扫描结果上报事件。   |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult18)&gt;&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[connection.on('discoveryResult')](#connectionondiscoveryresult18)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1584,7 +1594,9 @@ try {
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-连接远端设备所有允许连接的profiles。使用Callback异步回调。<br/>需先调用pairDevice发起配对，且仅允许在每次发起配对后30s内调用此接口一次。<br/>建议用法：订阅UUID_VALUE公共事件回调，配对成功后会收到公共事件回调。建议在此回调中调用connectAllowedProfiles接口。
+连接对端设备支持的profile（只包括A2DP、HFP和HID）。使用Callback异步回调。
+- 需先调用[connection.pairDevice](#connectionpairdevice)发起配对，且仅允许在每次发起配对后30s内调用此接口一次。
+- 当配对成功后，建议先调用[getRemoteProfileUuids](#connectiongetremoteprofileuuids12)主动查询目标设备支持的profile能力。若存在应用需要的能力，才调用此接口。
 
 **需要权限：**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1594,7 +1606,7 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名     | 类型    | 必填  | 说明                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是   | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
+| deviceId | string | 是   | 表示需要连接的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当发起连接成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
@@ -1613,57 +1625,17 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-import { connection } from '@kit.ConnectivityKit';
-// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber: commonEventManager.CommonEventSubscriber;
-// 订阅者信息
-let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
-};
-// 订阅公共事件回调
-function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
-  if (err) {
-    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
-    // 调用connectAllowedProfiles前，需确保已收到UUID_VALUE的系统公共事件
-    try {
-        connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
-            if (err) {
-                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-                return;
-            }
-            console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
-        });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
-  }
-}
-// 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if(!err) {
-    console.info(`Succeeded in creating subscriber.`);
-    subscriber = commonEventSubscriber;
-    // 订阅公共事件
-    try {
-      commonEventManager.subscribe(subscriber, SubscribeCB);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-    }
-  } else {
-    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-  }
-}
-
-// 创建订阅者，并订阅公共事件回调
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-  commonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
+    if (err) {
+      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      return;
+    }
+    console.info('connectAllowedProfiles');
+  });
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -1672,7 +1644,9 @@ try {
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
-连接远端设备所有允许连接的profiles。使用Promise异步回调。<br/>需先调用pairDevice发起配对，且仅允许在每次发起配对后30s内调用此接口一次。<br/>建议用法：订阅UUID_VALUE公共事件回调，配对成功后会收到公共事件回调.建议在此回调中调用connectAllowedProfiles接口。
+连接对端设备支持的profile（只包括A2DP、HFP和HID）。使用Promise异步回调。
+- 需先调用[connection.pairDevice](#connectionpairdevice)发起配对，且仅允许在每次发起配对后30s内调用此接口一次。
+- 当配对成功后，建议先调用[getRemoteProfileUuids](#connectiongetremoteprofileuuids12)主动查询目标设备支持的profile能力。若存在应用需要的能力，才调用此接口。
 
 **需要权限：**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1682,7 +1656,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
 | 参数名     | 类型    | 必填  | 说明                                 |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是   | 表示连接的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
+| deviceId | string | 是   | 表示需要连接的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。|
 
 **返回值：**
 
@@ -1706,140 +1680,100 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { commonEventManager, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-import { connection } from '@kit.ConnectivityKit';
-// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber: commonEventManager.CommonEventSubscriber;
-// 订阅者信息
-let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-  events: ["usual.event.bluetooth.remotedevice.UUID_VALUE"]
-};
-// 订阅公共事件回调
-function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
-  if (err) {
-    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
-    // 调用connectAllowedProfiles前，需确保已收到UUID_VALUE的系统公共事件
-    try {
-        connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
-            console.info('connectAllowedProfiles');
-        }, (err: BusinessError) => {
-            console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
-        });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
-  }
-}
-// 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
-  if(!err) {
-    console.info(`Succeeded in creating subscriber.`);
-    subscriber = commonEventSubscriber;
-    // 订阅公共事件
-    try {
-      commonEventManager.subscribe(subscriber, SubscribeCB);
-    } catch (error) {
-      let err: BusinessError = error as BusinessError;
-      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
-    }
-  } else {
-    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
-  }
-}
-
-// 创建订阅者，并订阅公共事件回调
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-  commonEventManager.createSubscriber(subscribeInfo, createCB);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+  connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
+      console.info('connectAllowedProfiles');
+    }, (err: BusinessError) => {
+      console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
+  });
+} catch (err) {
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
 ## BondStateParam
 
-描述配对状态参数。
+描述配对状态结果的参数结构。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读 | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
-| state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
-| cause<sup>12+</sup>| [UnbondCause](#unbondcause12) | 是 | 否 | 表示配对失败的原因。|
+| deviceId | string      | 否    | 否    | 配对中的对端设备地址。 |
+| state    | [BondState](#bondstate)   | 否    | 否    | 配对状态。 |
+| cause<sup>12+</sup>| [UnbondCause](#unbondcause12) | 否 | 否 | 配对失败的原因。|
 
 
 ## PinRequiredParam
 
-描述配对请求参数。
+描述配对请求的参数结构。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
-| pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
+| deviceId | string | 否    | 否    | 要配对的对端设备地址。 |
+| pinCode  | string | 否    | 否    | 配对过程中的密钥。   |
 
 
 
 ## DeviceClass
 
-描述蓝牙设备的类别。
+描述蓝牙设备的类型。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称              | 类型                                | 可读   | 可写   | 说明               |
+| 名称              | 类型                                | 只读   | 可选   | 说明               |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
-| majorClass      | [MajorClass](js-apis-bluetooth-constant.md#majorclass)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
-| majorMinorClass | [MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
-| classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
+| majorClass      | [MajorClass](js-apis-bluetooth-constant.md#majorclass)           | 否    | 否    | 主要类型。是蓝牙标准协议中定义的类型字段。   |
+| majorMinorClass | [MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 否    | 否    | 子类型，是在主要类型上基础上进一步细分的类型。是蓝牙标准协议中定义的类型字段。 |
+| classOfDevice   | number                              | 否    | 否    | 设备类型。是蓝牙标准协议中定义的类型字段，包含了[MajorClass](js-apis-bluetooth-constant.md#majorclass)、[MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass)和支持的主要服务这三种设备信息。          |
 
 
 ## BatteryInfo<sup>12+</sup>
 
-描述电量信息的内容。
+描述设备的电量信息。<br>只有支持蓝牙标准协议定义的电量信息AT（Attention）命令（包括：+XEVENT和IPHONEACCEV）的设备才支持上报有效的电量信息。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| batteryLevel  | number | 是    | 否    | 表示远端设备的电量值，如果值为-1，表示没有电量信息。   |
-| leftEarBatteryLevel  | number | 是    | 否    | 表示左侧耳机的电量值，如果值为-1，表示没有电量信息。   |
-| leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示左侧耳机的充电状态。   |
-| rightEarBatteryLevel  | number | 是    | 否    | 表示右侧耳机的电量值，如果值为-1，表示没有电量信息。   |
-| rightEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示右侧耳机的充电状态。   |
-| boxBatteryLevel  | number | 是    | 否    | 表示耳机仓的电量值，如果值为-1，表示没有电量信息。   |
-| boxChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示耳机仓的充电状态。   |
+| batteryLevel  | number | 否    | 否    | 表示设备的电量值。<br>如果该值为-1，表示没有电量信息。   |
+| leftEarBatteryLevel  | number | 否    | 否    | 若是蓝牙耳机设备类型，表示左侧耳机的电量值。<br>如果该值为-1，表示没有电量信息。   |
+| leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | 否    | 否    | 若是蓝牙耳机设备类型，表示左侧耳机的充电状态。   |
+| rightEarBatteryLevel  | number | 否    | 否    | 若是蓝牙耳机设备类型，表示右侧耳机的电量值。<br>如果该值为-1，表示没有电量信息。   |
+| rightEarChargeState  | [DeviceChargeState](#devicechargestate12) | 否    | 否    | 若是蓝牙耳机设备类型，表示右侧耳机的充电状态。   |
+| boxBatteryLevel  | number | 否    | 否    | 若是蓝牙耳机设备类型，表示耳机仓的电量值。<br>如果值该为-1，表示没有电量信息。   |
+| boxChargeState  | [DeviceChargeState](#devicechargestate12) | 否    | 否    | 若是蓝牙耳机设备类型，表示耳机仓的充电状态。   |
 
 
 ## BluetoothTransport
 
-枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
+枚举，表示设备传输类型。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| TRANSPORT_BR_EDR   | 0 | 表示传统蓝牙(BR/EDR)设备。 |
-| TRANSPORT_LE  | 1 | 表示低功耗蓝牙(BLE)设备。  |
+| TRANSPORT_BR_EDR   | 0 | 传统蓝牙（Basic Rate/Enhanced Data Rate，BR/EDR）设备传输方式。若设备支持双模，默认使用该传输方式。 |
+| TRANSPORT_LE  | 1 | 低功耗蓝牙（Bluetooth Low Energy, BLE）设备传输方式。  |
 
 
 ## ScanMode
 
-枚举，扫描模式。
+枚举，表示扫描模式。该模式决定设备是否可被发现或可被连接。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                       | 值  | 说明              |
 | ---------------------------------------- | ---- | --------------- |
-| SCAN_MODE_NONE                           | 0    | 没有扫描模式。         |
-| SCAN_MODE_CONNECTABLE                    | 1    | 可连接扫描模式。        |
-| SCAN_MODE_GENERAL_DISCOVERABLE           | 2    | general发现模式。    |
-| SCAN_MODE_LIMITED_DISCOVERABLE           | 3    | limited发现模式。    |
-| SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接general发现模式。 |
-| SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
+| SCAN_MODE_NONE                           | 0    | 不可发现、不可连接模式。         |
+| SCAN_MODE_CONNECTABLE                    | 1    | 可连接模式。        |
+| SCAN_MODE_GENERAL_DISCOVERABLE           | 2    | 通用可发现模式，可被长时间发现。    |
+| SCAN_MODE_LIMITED_DISCOVERABLE           | 3    | 有限可发现模式，持续一定时间。    |
+| SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | 可连接及通用可发现模式。 |
+| SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接及有限可发现模式。 |
 
 
 ## BondState
@@ -1852,9 +1786,9 @@ try {
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
-| BOND_STATE_INVALID | 0    | 无效的配对。 |
-| BOND_STATE_BONDING | 1    | 正在配对。  |
-| BOND_STATE_BONDED  | 2    | 已配对。   |
+| BOND_STATE_INVALID | 0    | 未配对状态。 |
+| BOND_STATE_BONDING | 1    | 配对中的状态。  |
+| BOND_STATE_BONDED  | 2    | 已配对状态。   |
 
 
 ## UnbondCause<sup>12+</sup>
@@ -1865,35 +1799,35 @@ try {
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
-| USER_REMOVED        | 0    | 用户主动移除设备。|
-| REMOTE_DEVICE_DOWN  | 1    | 远端设备关闭。|
-| AUTH_FAILURE        | 2    | PIN码错误。|
-| AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。 |
-| INTERNAL_ERROR      | 4    | 内部错误。 |
+| USER_REMOVED        | 0    | 用户主动移除设备。若配对状态[BondState](#bondstate)是已配对，也表示配对成功。|
+| REMOTE_DEVICE_DOWN  | 1    | 对端设备不在线。例如：对端设备蓝牙是关闭的。|
+| AUTH_FAILURE        | 2    | 鉴权失败。例如：两端设备密钥不匹配。|
+| AUTH_REJECTED       | 3    | 鉴权被拒绝。例如：对端设备拒绝了配对请求。 |
+| INTERNAL_ERROR      | 4    | 内部错误。例如：设备不支持配对、配对过程超时等异常。 |
 
 
 ## DeviceChargeState<sup>12+</sup>
 
-枚举，表示充电状态。
+枚举，表示设备当前的充电状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
-| DEVICE_NORMAL_CHARGE_NOT_CHARGED        | 0    | 未充电，不支持超级充电。|
-| DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 正在充电，不支持超级充电。|
-| DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
-| DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
+| DEVICE_NORMAL_CHARGE_NOT_CHARGED        | 0    | 不支持超级快充能力的设备当前处于未充电状态。|
+| DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 不支持超级快充能力的设备当前处于充电状态。|
+| DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 支持超级快充能力的设备当前处于未充电状态。|
+| DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 支持超级快充能力的设备当前处于充电状态。|
 
 ## DiscoveryResult<sup>18+</sup>
 
-描述扫描设备状态参数。
+扫描到设备后，上报的扫描结果。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId    | string      | 是    | 否    | 表示扫描到的设备ID。|
-| rssi     | number      | 是    | 否    | 表示扫描到的设备的信号强度。|
-| deviceName     | string      | 是    | 否    | 表示扫描到的设备的设备名称。|
-| deviceClass     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。|
+| deviceId    | string      | 否    | 否    | 扫描到的设备地址。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。|
+| rssi     | number      | 否    | 否    | 扫描到的设备信号强度，单位dBm。|
+| deviceName     | string      | 否    | 否    | 扫描到的设备名称。|
+| deviceClass     | DeviceClass      | 否    | 否    | 扫描到的设备的设备类型。|
