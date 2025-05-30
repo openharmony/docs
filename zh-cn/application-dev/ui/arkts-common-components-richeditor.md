@@ -420,25 +420,76 @@ RichEditor(this.options1)
 由于组件默认的粘贴行为仅限于纯文本，无法处理图片粘贴，开发者可利用此方法实现图文并茂的粘贴功能，从而替代组件原有的粘贴行为。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct on_cut_copy_paste {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  controller1: RichEditorController = new RichEditorController();
+  options1: RichEditorOptions = { controller: this.controller1 }
+
+  PopDataFromPasteboard() {
+    let selection = this.controller.getSelection();
+    let start = selection.selection[0];
+    let end = selection.selection[1];
+    if (start == end) {
+      start = this.controller.getCaretOffset();
+      end = this.controller.getCaretOffset();
+    }
+    let moveOffset = 0;
+    let sysBoard = pasteboard.getSystemPasteboard();
+    sysBoard.getData((err, data) => {
+      if (err) {
+        return;
       }
-    })
-  })
-  .onPaste(() => {
-    this.controller1.addTextSpan('触发onPaste回调\n', {
-      style: {
-        fontColor: Color.Gray,
-        fontSize: 10
+      if (start != end) {
+        this.controller.deleteSpans({ start: start, end: end })
       }
+      let count = data.getRecordCount();
+      for (let i = 0; i < count; i++) {
+        const element = data.getRecord(i);
+        if (element && element.plainText && element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN) {
+          this.controller.addTextSpan(element.plainText,
+            {
+              style: { fontSize: 26, fontColor: Color.Red },
+              offset: start + moveOffset
+            }
+          )
+          moveOffset += element.plainText.length;
+        }
+      }
+      this.controller.setCaretOffset(start + moveOffset)
     })
-  })
-  .width(300)
-  .height(70)
+  }
+
+  build() {
+    Column() {
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。',
+              { style: { fontColor: Color.Black, fontSize: 15 } })
+          })
+          .onPaste((event) => {
+            this.controller1.addTextSpan('触发onPaste回调\n', { style: { fontColor: Color.Gray, fontSize: 10 } })
+            if (event != undefined && event.preventDefault) {
+              event.preventDefault();
+            }
+            console.info('RichEditor onPaste')
+            this.PopDataFromPasteboard()
+          })
+          .width(300)
+          .height(70)
+        Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
+          .width(300)
+          .height(300)
+
+      }.width('100%').alignItems(HorizontalAlign.Start)
+    }.height('100%')
+  }
+}
 ```
 
 ### 添加完成剪切前可触发的回调
@@ -590,6 +641,10 @@ RichEditor(this.options)
       }
     })
   })
+  .constraintSize({
+    maxHeight: 100
+  })
+  .layoutWeight(1)
   .width(300)
   .height(100)
 Button('addTextSpan', {
