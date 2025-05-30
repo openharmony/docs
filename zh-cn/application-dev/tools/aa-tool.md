@@ -75,7 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
-  | -W | 可选参数，调优命令。打印启动耗时。<br>**说明：** 从API version 20开始，支持该参数。        |
+  | -W | 可选参数，调优命令。打印如下信息。<br>StartMode：启动模式（[Cold](../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)/[Hot](../application-models/uiability-intra-device-interaction.md#目标uiability热启动)）。<br> BundleName：目标应用bundleName。<br> AbilityName：目标应用abilityName。<br> ModuleName：目标应用moduleName，<br>**说明：** aa 命令中带有-m 参数时打印，没有带 -m 参数则不打印。<br>TotalTime: <br>冷启动场景下，系统侧首次接收到aa启动ability的命令信息到应用启动时完成首帧绘制的时长，单位毫秒（ms）。<br> 热启动场景下，系统侧接收到aa启动ability命令信息到应用启动完成的时长，单位毫秒（ms）。<br>  WaitTime:  aa命令启动ability到应用启动完成的时长，单位毫秒（ms）。<br>**说明：** 从API version 20开始，支持该参数。        |
 
   **返回值**：
 
