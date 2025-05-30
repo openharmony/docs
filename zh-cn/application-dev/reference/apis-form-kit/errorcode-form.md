@@ -187,6 +187,24 @@ Waiting for the form addition to the desktop timed out.
 服务繁忙，请稍后重试。
 <!--DelEnd-->
 
+## 16501011 当前卡片不支持互动卡片能力
+
+**错误信息**
+
+The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+
+**错误描述**
+
+当前卡片不支持互动卡片能力时，系统会报此错误码。
+
+**可能原因**
+
+普通卡片发起互动卡片动效请求，或者当前互动卡片配置错误。
+
+**处理步骤**
+
+检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
+
 ## 2293761 内部服务错误
 
 **错误信息**
