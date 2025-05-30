@@ -180,7 +180,7 @@ struct Index {
 
 ### 使用Web组件实现应用跳转
 
-Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
+Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
 
 示例代码如下：
 
