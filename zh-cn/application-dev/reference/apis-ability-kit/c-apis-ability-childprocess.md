@@ -51,7 +51,7 @@
 | Ability_NativeChildProcess_ErrCode [OH_Ability_DestroyChildProcessConfigs](#oh_ability_destroychildprocessconfigs) () | 销毁一个子进程配置信息对象，并释放其内存。 |
 | Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetIsolationMode](#oh_ability_childprocessconfigs_setisolationmode) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode) isolationMode) | 设置子进程配置信息对象中的独立模式。 |
 | Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetProcessName](#oh_ability_childprocessconfigs_setprocessname) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, const char \*processName) | 设置子进程配置信息对象中的进程名称。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char \*libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，子进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char \*libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，子进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞， 进程独立模式的设置在本接口不生效。 |
 | Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs) (const char \*entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, int32_t *pid) | 根据传入的子进程配置信息启动一个进程，并加载指定的库文件。 |
 
 > **说明：**
@@ -502,7 +502,7 @@ NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规�
 
 **描述**
 
-根据参数中子进程配置信息创建子进程并加载参数中指定的动态链接库文件，子进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
+根据参数中子进程配置信息创建子进程并加载参数中指定的动态链接库文件，子进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞， 进程独立模式的设置在本接口不生效。
 
 参数所指定的动态库必须实现并导出下列函数：
 
@@ -538,7 +538,7 @@ NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规�
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
 | libName                  | 子进程中加载的动态库文件名称，不能为nullptr。|
-| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义, 该参数中的进程独立模式设置在本接口不生效。 |
+| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
 | onProcessStarted |  通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
 
 **返回**：
