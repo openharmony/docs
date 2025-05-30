@@ -86,46 +86,9 @@
    | designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
    | autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
 
-   配置示例如下：
-
-<!--RP1-->
-   ```json
-   {
-     "forms": [
-       {
-         "name": "widget",
-         "displayName": "$string:widget_display_name",
-         "description": "$string:widget_desc",
-         "src": "./ets/widget/pages/WidgetCard.ets",
-         "uiSyntax": "arkts",
-         "window": {
-           "designWidth": 720,
-           "autoDesignWidth": true
-         },
-         "colorMode": "auto",
-         "renderingMode": "fullColor",
-         "isDefault": true,
-         "updateEnabled": true,
-         "scheduledUpdateTime": "10:30",
-         "updateDuration": 1,
-         "defaultDimension": "2*2",
-         "supportDimensions": [
-           "2*2"
-         ],
-         "formConfigAbility": "ability://EntryAbility",
-         "dataProxyEnabled": false,
-         "isDynamic": true,
-         "transparencyEnabled": false,
-         "metadata": []
-       }
-     ]
-   }
-   ```
-<!--RP1End-->
-
 ## funInteractionParams标签
 
-此标签标识趣味交互类型互动卡片配置。
+此标签标识趣味交互类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
 
 | 名称    | 类型  | 必填 | 说明                                                   |
 |--------|-----|----|------------------------------------------------------|
@@ -133,6 +96,69 @@
 | targetBundleName  | 字符串 | 是  | 趣味交互场景资源 bundle 名称。|
 | subBundleName  | 字符串 | 否  | 趣味交互场景资源子 bundle 名称。 |
 | keepStateDuration  | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
+
+配置示例如下：
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+          // ...
+         "funInteractionParams": {
+            "targetBundleName": "com.example.funInteraction"
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+## sceneAnimationParams标签
+
+此标签标识场景动效类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
+
+| 名称                                     | 类型     | 必填 | 说明 |
+|----------------------------------------|--------|----|----------------------------|
+| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
+| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+          // ...
+         "sceneAnimationParams": {
+            "abilityName": "MyLiveFormExtensionAbility"
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+<!--Del--> 
+
+系统应用配置样例
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+          // ...
+         "sceneAnimationParams": {
+            "abilityName": "MyLiveFormExtensionAbility",
+            "disabledDesktopBehaviors": "LONG_CLICK|DRAG|SWIPE_DESKTOP|PULL_DOWN_SEARCH"
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+<!--DelEnd-->
 
 配置示例如下：
 
@@ -165,103 +191,11 @@
          "isDynamic": true,
          "transparencyEnabled": false,
          "metadata": [],
-         "funInteractionParams": {
-            "targetBundleName": "com.example.funInteraction"
-         }          
-       }
-     ]
-   }
-   ```
-<!--RP1End-->
-
-## sceneAnimationParams标签
-
-此标签标识场景动效类型互动卡片配置。
-
-| 名称                                     | 类型     | 必填 | 说明 |
-|----------------------------------------|--------|----|----------------------------|
-| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
-| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
-
-<!--RP1-->
-   ```json
-   {
-     "forms": [
-       {
-         "name": "widget",
-         "displayName": "$string:widget_display_name",
-         "description": "$string:widget_desc",
-         "src": "./ets/widget/pages/WidgetCard.ets",
-         "uiSyntax": "arkts",
-         "window": {
-           "designWidth": 720,
-           "autoDesignWidth": true
-         },
-         "colorMode": "auto",
-         "renderingMode": "fullColor",
-         "isDefault": true,
-         "updateEnabled": true,
-         "scheduledUpdateTime": "10:30",
-         "updateDuration": 1,
-         "defaultDimension": "2*2",
-         "supportDimensions": [
-           "2*2"
-         ],
-         "formConfigAbility": "ability://EntryAbility",
-         "dataProxyEnabled": false,
-         "isDynamic": true,
-         "transparencyEnabled": false,
-         "metadata": [],
          "sceneAnimationParams": {
             "abilityName": "MyLiveFormExtensionAbility"
-         }          
+         }
        }
      ]
    }
    ```
 <!--RP1End-->
-
-<!--Del--> 
-
-系统应用配置样例
-
-<!--RP1-->
-   ```json
-   {
-     "forms": [
-       {
-         "name": "widget",
-         "displayName": "$string:widget_display_name",
-         "description": "$string:widget_desc",
-         "src": "./ets/widget/pages/WidgetCard.ets",
-         "uiSyntax": "arkts",
-         "window": {
-           "designWidth": 720,
-           "autoDesignWidth": true
-         },
-         "colorMode": "auto",
-         "renderingMode": "fullColor",
-         "isDefault": true,
-         "updateEnabled": true,
-         "scheduledUpdateTime": "10:30",
-         "updateDuration": 1,
-         "defaultDimension": "2*2",
-         "supportDimensions": [
-           "2*2"
-         ],
-         "formConfigAbility": "ability://EntryAbility",
-         "dataProxyEnabled": false,
-         "isDynamic": true,
-         "transparencyEnabled": false,
-         "metadata": [],
-         "sceneAnimationParams": {
-            "abilityName": "MyLiveFormExtensionAbility",
-            "disabledDesktopBehaviors": "LONG_CLICK|DRAG|SWIPE_DESKTOP|PULL_DOWN_SEARCH"
-         }          
-       }
-     ]
-   }
-   ```
-<!--RP1End-->
-
-<!--DelEnd-->
