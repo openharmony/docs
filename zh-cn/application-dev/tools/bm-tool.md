@@ -453,7 +453,7 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
-> 
+>
 > 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
@@ -962,7 +962,7 @@ error: signature verification failed due to not trusted app source.
       //UDID获取命令
       hdc shell bm get -u
     ```
-    
+
     2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
     ```
@@ -1012,12 +1012,13 @@ error: install failed due to insufficient disk memory.
 **处理步骤**
 
 查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
-
+<!--RP4-->
 ```bash
 # 查看磁盘空间使用情况
 hdc shell df -h /system
 hdc shell df -h /data
 ```
+<!--RP4End-->
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -1209,16 +1210,18 @@ error: install parse unexpected.
 
 **可能原因**
 
-* 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
+* 场景一：设备存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
 
 * 场景二：推送HAP包到设备过程HAP包损坏。
 
 **处理步骤**
 
-* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备存储空间，若已满，清理存储满足安装所需空间。
+<!--RP4-->
   ```bash
   hdc shell df -h /system
   ```
+<!--RP4End-->
 
 * 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
@@ -2492,7 +2495,7 @@ error: Install failed due to hap moduleName is empty.
 
 检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
 
-### 9568331 签名信息不一致 
+### 9568331 签名信息不一致
 **错误信息**
 
 error: Install incompatible signature info.
@@ -2639,23 +2642,29 @@ error: install parse native so failed.
 
 1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
 
-2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
 3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+
+    <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
+    <!--RP4-->
       ```
       cd /system/
       ls
       ```
+    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
-      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
-    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
 
+
+
+    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
 
 ### 9568348 解析 ark native SO文件失败
 
