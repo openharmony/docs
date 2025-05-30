@@ -8732,6 +8732,203 @@ struct WebComponent {
 }
 ```
 
+### getAttachState<sup>20+</sup>
+
+getAttachState(): ControllerAttachState
+
+查询当前WebViewController是否绑定一个Web组件。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型         | 说明                 |
+| ------------ | -------------------- |
+| [ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20) | WebViewController与Web组件的绑定状态。 |
+
+**示例：**
+点击Button可以获取当前WebViewController的绑定状态并输出日志。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getAttachState')
+        .onClick(() => {
+          try {
+            if (this.controller.getAttachState() == webview.ControllerAttachState.ATTACHED) {
+              console.log('Controller is attached.');
+              this.controller.refresh();
+            } else {
+              console.log('Controller is unattached.');
+              this.controller.refresh();
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### on('controllerAttachStateChange')<sup>20+</sup>
+
+on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachState&gt;): void
+
+注册WebViewController绑定状态事件，通过Callback方式获取WebViewController绑定状态的变化通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 表示注册WebViewController绑定状态事件，固定为"controllerAttachStateChange"。 |
+| callback | Callback<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | 是 | WebViewController绑定状态改变时的回调函数。 |
+
+**示例：**
+
+请参考[off](#offcontrollerattachstatechange20)。
+
+### off('controllerAttachStateChange')<sup>20+</sup>
+
+off(type: 'controllerAttachStateChange', callback?: Callback&lt;ControllerAttachState&gt;): void
+
+取消WebViewController绑定状态事件的注册，取消后将不再接收Callback通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 表示注册WebViewController绑定状态事件，固定为"controllerAttachStateChange"。 |
+| callback | Callback<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | 否 | WebViewController绑定状态发生改变时的回调函数，默认情况下不填写回调函数。如果填写了Callback，将仅取消注册该特定的回调。如果不填写Callback，将取消注册所有回调。 |
+
+**示例：**
+
+on可以注册多个回调，当绑定状态改变后会获取当前的绑定状态并触发这些回调。off可以取消注册某个回调，也可以取消注册所有回调。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    // 构建回调函数
+    const handleControllerAttachStateChange = (state: webview.ControllerAttachState) => {
+      if (state == webview.ControllerAttachState.UNATTACHED) {
+        console.log('handleControllerAttachStateChange: Controller is unattached.');
+      } else {
+        console.log('handleControllerAttachStateChange: Controller is attached.');
+      }
+    };
+    try {
+      // 注册回调以接收controller绑定状态更改通知
+      this.controller.on('controllerAttachStateChange', handleControllerAttachStateChange);
+      // 取消指定注册回调
+      this.controller.off('controllerAttachStateChange', handleControllerAttachStateChange);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+    try {
+      // 注册回调以接收controller绑定状态更改通知
+      this.controller.on('controllerAttachStateChange', (state: webview.ControllerAttachState)=>{
+        if (state == webview.ControllerAttachState.UNATTACHED) {
+          console.log('Controller is unattached.');
+        } else {
+          console.log('Controller is attached.');
+          // 取消所有注册回调
+          this.controller.off('controllerAttachStateChange');
+        }
+      })
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### waitForAttached<sup>20+</sup>
+
+waitForAttached(timeout: number):Promise&lt;ControllerAttachState&gt;
+
+异步等待WebViewController与Web组件绑定完成，绑定完成或超时触发回调，通过Promise方式返回当前[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明              |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| timeout | number | 是   | 异步等待时长（单位ms，取值范围0-300000）。 |
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| Promise<[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)> | Promise实例，返回当前[ControllerAttachState](./js-apis-webview-i.md#controllerattachstate20)状态。 |
+
+
+**示例：**
+
+在初始化阶段设置WebViewController等待绑定完成，超时时间为1000ms。若绑定完成或者超时则会触发回调。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  async aboutToAppear() {
+    this.controller.waitForAttached(1000).then((state: webview.ControllerAttachState)=>{
+      if (state == webview.ControllerAttachState.ATTACHED) {
+        console.log('Controller is attached.');
+        this.controller.refresh();
+      }
+    })
+    try {
+      const state = await this.controller.waitForAttached(1000);
+      if (state == webview.ControllerAttachState.ATTACHED) {
+        console.log('Controller is attached.');
+        this.controller.refresh();
+      }
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
