@@ -76,7 +76,7 @@ LiveFormExtensionAbility生命周期回调，在销毁时回调，执行资源�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| liveFormInfo | [LiveFormInfo](#LiveFormInfo) | 是 | 互动卡片信息，互动卡片信息，包括卡片id等信息。|
+| liveFormInfo | [LiveFormInfo](#LiveFormInfo) | 是 | 互动卡片信息，包括卡片id等信息。|
 
 **示例：**
 
