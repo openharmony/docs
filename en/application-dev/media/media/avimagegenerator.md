@@ -24,7 +24,7 @@ Read [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avimageg
 
 4. Call **release()** to release the AVImageGenerator instance.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the thumbnail of a video at the specified time.
 
