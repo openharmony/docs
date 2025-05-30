@@ -2442,22 +2442,25 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
+>
+> 图形中各个点变换后的坐标可通过下方坐标计算公式计算。
+>
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+> - x' = a \* x + c \* y + e
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+> - y' = b \* x + d \* y + f
 
 **参数：**
 
-| 参数名   | 类型     | 必填   | 说明                   |
+| 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是  | scaleX: 指定水平缩放值。  |
-| b    | number | 是  | skewY: 指定垂直倾斜值。   |
-| c    | number | 是  | skewX: 指定水平倾斜值。   |
-| d    | number | 是  | scaleY: 指定垂直缩放值。  |
-| e    | number | 是  | translateX: 指定水平移动值。<br>默认单位：vp |
-| f    | number | 是  | translateY: 指定垂直移动值。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
 
 **示例：**
 
@@ -2507,16 +2510,26 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+> **说明：**
+>
+> 图形中各个点变换后的坐标可通过下方坐标计算公式计算。
+>
+> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
+>
+> - x' = a \* x + c \* y + e
+>
+> - y' = b \* x + d \* y + f
+
 **参数：**
 
-| 参数名   | 类型     | 必填   | 说明    |
+| 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是 | scaleX: 指定水平缩放值。 |
-| b    | number | 是 | skewY: 指定垂直倾斜值。  |
-| c    | number | 是 | skewX: 指定水平倾斜值。  |
-| d    | number | 是 | scaleY: 指定垂直缩放值。 |
-| e    | number | 是 | translateX: 指定水平移动值。<br>默认单位：vp |
-| f    | number | 是 | translateY: 指定垂直移动值。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
 
 **示例：**
 
