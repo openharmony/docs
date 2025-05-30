@@ -458,9 +458,9 @@ struct AnimateToDemo {
           });
         }).fontSize(16).width(230).margin({ top: 10 })
 
-        Button('add index 2 with value 1.5').onClick(() => {
+        Button('add item to index 2').onClick(() => {
           this.getUIContext()?.animateTo({ duration: 3000 }, () => {
-            this.simpleList.splice(2, 0, new DemoData('1.5', '1.5'));
+            this.simpleList.splice(2, 0, new DemoData(this.simpleList.length.toString(), this.simpleList.length.toString()));
           });
         }).fontSize(16).width(230).margin({ top: 10 })
 
@@ -476,7 +476,7 @@ struct AnimateToDemo {
                 // 设置平移转场效果，组件出现或消失的位置在x=300处
                 .transition(TransitionEffect.translate({ x: 300 }))
               })
-              .key((item: DemoData) => item.key)
+              .key((item: DemoData) => item.key) // 不同的数组项生成的key要具有唯一性
               .virtualScroll({ totalCount: this.simpleList.length })
               .templateId(() => 'a')
               .template('a', (ri) => {
@@ -516,8 +516,8 @@ show参数设置为false、插入数组项时的动画效果：
 通过设置Repeat父容器组件的cachedCount属性来控制动画效果。
 | 操作     | 设置   | 动画效果 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| 组件插入 | cachedCount(0, true) | 组件“6”移除动画 | 插入“1.5”后，组件“6”出可视区，下树做移除动画。|
-| 组件插入 | cachedCount(1, true) | 组件“6”下移动画 | 插入“1.5”后，组件“6”进入预加载区，没有下树，做下移动画。|
+| 组件插入 | cachedCount(0, true) | 组件“6”移除动画 | 插入“10”后，组件“6”出可视区，下树做移除动画。|
+| 组件插入 | cachedCount(1, true) | 组件“6”下移动画 | 插入“10”后，组件“6”进入预加载区，没有下树，做下移动画。|
 | 组件删除 | cachedCount(0, true) | 组件“7”插入动画 | 删除“2”后，组件“7”进可视区，上树做插入动画。|
 | 组件删除 | cachedCount(1, true) | 组件“7”上移动画 | 删除“2”后，组件“7”从预加载区进入显示区，做上移动画。|
 | 组件交换 | cachedCount(0, true) | 组件“2”移除动画，组件“7”插入动画 | 组件“2”出可视区，下树做移除动画；组件“7”进可视区，上树做插入动画。|
