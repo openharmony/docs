@@ -37,7 +37,7 @@
   <!--DelEnd-->
   - 多对多跨应用数据共享<!--many-to-many-data-share-->
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
-- [应用数据向量化](database/aip-data-intelligence-embedding.md)
+- [应用数据向量化](aip-data-intelligence-embedding.md)
 - [RelationalStore开发指导 (C/C++)](native-relational-store-guidelines.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
 - [ArkData术语](data-terminology.md)
