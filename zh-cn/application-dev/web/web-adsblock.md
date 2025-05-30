@@ -20,11 +20,11 @@ ArkWeb为应用提供广告过滤功能，支持通过云端推送默认的easyl
 
 ## 约束与限制
 
-- 在[WebviewController](../reference/apis-arkweb/js-apis-webview.md#webviewcontroller)类中，增加开启/关闭广告过滤特性的接口[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12)，支持Web实例级的特性开关。
+- 在[WebviewController](../reference/apis-arkweb/js-apis-webview-WebviewController.md#class-webviewcontroller)类中，增加开启/关闭广告过滤特性的接口[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12)，支持Web实例级的特性开关。
 
 - 新增[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)全局单例类，提供自定义广告过滤配置、控制网站级特性开关的能力。
 
-- Web实例上提供了[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12)回调通知方法，支持将拦截信息通知到上层应用。
+- Web实例上提供了[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#onadsblocked12)回调通知方法，支持将拦截信息通知到上层应用。
 
 - [AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口仅能设置一份自定义配置，此配置会持久化，应用冷启动无需重新配置，可避免每次冷启动配置规则都触发广告过滤配置的编译解析。
 
@@ -41,7 +41,7 @@ ArkWeb为应用提供广告过滤功能，支持通过云端推送默认的easyl
 ## 使用场景
 
 ### 开启广告过滤
-应用可以通过AdsBlockManager提供的[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口设置自定义的easylist过滤规则，并通过Web组件的[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12)接口使能广告过滤特性。
+应用可以通过AdsBlockManager提供的[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口设置自定义的easylist过滤规则，并通过Web组件的[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12)接口使能广告过滤特性。
 
 在下面的示例中，演示了一个应用通过文件选择器选择easylist规则文件，并开启广告过滤功能。
 
@@ -210,10 +210,10 @@ struct WebComponent {
 ```
 
 需要注意的是，AdsBlockManager的DisallowedList和AllowedList列表不会持久化，因此重启应用后会重置为空。
-如果Web组件未通过[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12)接口开启广告过滤功能，上述接口设置在此Web组件中将不起作用。
+如果Web组件未通过[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12)接口开启广告过滤功能，上述接口设置在此Web组件中将不起作用。
 
 ### 收集广告过滤的信息
-在Web组件的广告过滤开关开启后，访问的网页如果发生了广告过滤，会通过Web组件的[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12)回调接口通知到应用，应用可根据需要进行过滤信息的收集和统计。
+在Web组件的广告过滤开关开启后，访问的网页如果发生了广告过滤，会通过Web组件的[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#onadsblocked12)回调接口通知到应用，应用可根据需要进行过滤信息的收集和统计。
 
 ```ts
 // xxx.ets

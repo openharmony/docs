@@ -347,6 +347,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **示例：**
@@ -408,7 +409,6 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **示例：**
