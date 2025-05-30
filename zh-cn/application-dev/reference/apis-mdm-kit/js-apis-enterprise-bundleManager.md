@@ -531,7 +531,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
 安装指定路径下的应用包。使用promise异步回调。
-注意：此接口只能安装分发类型为enterprise_mdm和enterprise_normal类型的应用。
+注意：此接口仅支持安装[企业MDM应用](https://developer.huawei.com/consumer/cn/doc/app/agc-help-harmonyos-mdm-0000001872217329#section154181517295)。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -570,6 +570,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 为当前用户安装应用
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -583,13 +584,39 @@ bundleManager.install(wantTemp, hapFilePaths).then(() => {
 });
 ```
 
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 为所有用户安装应用
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let hapFilePaths: Array<string> = ['/data/storage/el2/base/haps/entry/testinstall/ExtensionTest.hap'];
+const params: Record<string, string> = {
+  'ohos.bms.param.enterpriseForAllUser': 'true'
+};
+let installParam: bundleManager.InstallParam = {
+  userId: 100,
+  installFlag: 0,
+  parameters: params
+};
+bundleManager.install(wantTemp, hapFilePaths, installParam).then(() => {
+  console.info('Succeeded in installing bundles.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to install bundles. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## InstallParam
 
 应用包安装需指定的参数信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称        | 类型   | 必填 | 说明                                                         |
-| ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
-| installFlag | number | 否   | 安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
+| 名称                     | 类型                   | 必填 | 说明                                                         |
+| ------------------------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| userId                   | number                 | 否   | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0。    |
+| installFlag              | number                 | 否   | 安装标志。枚举值：0：应用初次安装，1：应用覆盖安装，2：应用免安装，默认值为应用初次安装。 |
+| parameters<sup>19+</sup> | Record&lt;string, string&gt; | 否   | 扩展参数，默认值为空。key取值支持"ohos.bms.param.enterpriseForAllUser"，若对应的value值为"true"，表示为所有用户安装应用。 |
