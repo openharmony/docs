@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-用户首选项(Preferences)为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户有轻量级的键值型数据需要存储时，可以采用Preferences来进行存储。Preferences会将该数据缓存在内存中，当用户读取时，能够快速从内存中获取数据，当需要持久化时可以使用flush接口将内存中的数据写入持久化文件中。Preferences不适合存储大量数据，一般适用于保存用户的个性化设置，例如字体大小、是否开启夜间模式等。
+用户首选项(Preferences)为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。当用户有轻量级的键值型数据需要存储时，可以采用Preferences来进行存储。一般适用于保存用户的个性化设置，例如字体大小、是否开启夜间模式等。
 
 
 ## 运作机制
@@ -27,7 +27,7 @@
 
 - 当存储的数据中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
 
-- 当调用removePreferencesFromCache或者deletePreferences后，订阅的数据变更会主动取消订阅，重新getPreferences后需要重新订阅数据变更。
+- 当调用[removePreferencesFromCache](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesremovepreferencesfromcache)或者[deletePreferences](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，重新[getPreferences](../reference/apis-arkdata/js-apis-data-preferences.md#preferencesgetpreferences)后需要重新订阅数据变更。
 
 - 不允许deletePreferences与其他接口多线程、多进程并发调用，否则可能会发生不可预期行为。
 

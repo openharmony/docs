@@ -29,7 +29,7 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 
 ## backgroundColor
 
-backgroundColor(value: ResourceColor)
+backgroundColor(value: ResourceColor): T
 
 设置组件背景色。
 
@@ -128,7 +128,7 @@ backgroundImagePosition(value: Position | Alignment)
 
 ## backgroundBlurStyle<sup>9+</sup>
 
-backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
+backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions): T
 
 为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
@@ -151,9 +151,9 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 ## backdropBlur
 
-backdropBlur(value: number, options?: BlurOptions)
+backdropBlur(value: number, options?: BlurOptions): T
 
-为组件添加背景模糊效果，可以自定义设置模糊半径和灰阶参数。
+为组件添加背景模糊效果，支持自定义设置模糊半径和灰阶参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -174,9 +174,9 @@ backdropBlur(value: number, options?: BlurOptions)
 
 ## backgroundEffect<sup>11+</sup> 
 
-backgroundEffect(options: BackgroundEffectOptions)
+backgroundEffect(options: BackgroundEffectOptions): T
 
-设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
+设置组件背景属性，包括背景模糊半径、亮度、饱和度和颜色等参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -189,6 +189,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 | options | [BackgroundEffectOptions](#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
 ## BackgroundEffectOptions<sup>11+</sup>
+
 背景效果参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -253,7 +254,7 @@ backgroundImageResizable(value: ResizableOptions)
 
 ## backgroundBrightness<sup>12+</sup> 
 
-backgroundBrightness(params: BackgroundBrightnessOptions)
+backgroundBrightness(params: BackgroundBrightnessOptions): T
 
 设置组件背景提亮效果。
 

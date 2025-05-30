@@ -5110,6 +5110,10 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 > **说明：**
 >
 > 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+>
+> prefetchPage对302重定向页面同样正常预取。
+>
+> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9479,7 +9483,7 @@ static setCookie(url: string, value: string): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -9543,7 +9547,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -9599,7 +9603,7 @@ static configCookieSync(url: string, value: string, incognito: boolean, includeH
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -9655,7 +9659,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 
 **示例：**
 
@@ -9718,7 +9722,7 @@ static configCookie(url: string, value: string): Promise\<void>
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 
 **示例：**
 
@@ -9785,7 +9789,7 @@ static configCookie(url: string, value: string, incognito: boolean, includeHttpO
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | URL error. No valid cookie found for the specified URL. |
-| 17100005 | Invalid cookie value.                                  |
+| 17100005 | The provided cookie value is invalid. It must follow the format specified in RFC 6265. |
 
 **示例：**
 

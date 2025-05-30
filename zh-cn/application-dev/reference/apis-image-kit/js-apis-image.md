@@ -889,8 +889,8 @@ getHdrComposedPixelmap(): Promise\<PixelMap>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 7600901  | Unknown error.         |
-| 7600201  | Unsupported operation. |
+| 7600901  | Inner unknown error. Please check the logs for detailed information. |
+| 7600201  | Unsupported operation. e.g.,1. The picture does not has a gainmap. 2. MainPixelMap's allocator type is not DMA. |
 
 **示例：**
 
@@ -1083,7 +1083,7 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **示例：**
 
@@ -1148,7 +1148,7 @@ getMetadata(metadataType: MetadataType): Promise\<Metadata>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600202  | Unsupported metadata. Possible causes: Unsupported metadata type. |
+| 7600202  | Unsupported metadata. Possible causes: 1. Unsupported metadata type. 2. The metadata type does not match the auxiliary picture type. |
 
 **示例：**
 
@@ -4342,12 +4342,12 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116| Failed to decode the image.            |
 | 62980118 | Failed to create the image plugin.   |
 | 62980122 | Failed to decode the image header.   |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding. |
 | 62980135| The EXIF value is invalid.             |
 
 **示例：**
@@ -4499,7 +4499,7 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
 | 62980096| The operation failed.             |
 | 62980110| The image source data is incorrect.            |
-| 62980113| Unknown image format.            |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980116| Failed to decode the image.            |
 
 **示例：**
@@ -4804,7 +4804,7 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
-| 7700301  | Decode failed.                                               |
+| 7700301  | Failed to decode image.                                      |
 
 **示例：**
 
@@ -5021,12 +5021,12 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
 | 62980103| The image data is not supported.             |
-| 62980106 | The image is too large. |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image. |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.           |
 | 62980112 | The image format does not match. |
-| 62980113 | Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
@@ -5082,12 +5082,12 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
 | 62980103 | The image data is not supported.         |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.            |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
@@ -5138,12 +5138,12 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
 | 62980103 | The image data is not supported.        |
-| 62980106 | The image is too large.              |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
 | 62980109 | Failed to crop the image.           |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
@@ -5201,13 +5201,13 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **示例：**
 
@@ -5262,13 +5262,13 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types;3.Parameter verification failed. |
-| 7700101  | Bad source.                                                  |
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed. |
 | 7700102  | Unsupported mimetype.                                        |
-| 7700103  | Image too large.                                             |
+| 7700103  | Image too large.  This status code is thrown when an error occurs during the process of checking size. |
 | 7700201  | Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata. |
 | 7700203  | Unsupported options, e.g., cannot convert image into desired pixel format. |
-| 7700301  | Decode failed.                                               |
-| 7700302  | Memory allocation failed.                                    |
+| 7700301  | Failed to decode image.                                      |
+| 7700302  | Failed to allocate memory.                                   |
 
 **示例：**
 
@@ -5319,7 +5319,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
 | 62980112 | The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5365,7 +5365,7 @@ getDelayTimeList(): Promise<Array\<number>>
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
@@ -5409,7 +5409,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
 | 62980112| The image format does not match. |
-| 62980113| Unknown image format. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115| Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
@@ -5454,7 +5454,7 @@ getFrameCount(): Promise\<number>
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
 | 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.   |
@@ -5627,9 +5627,9 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 | 401 | If the parameter is invalid. |
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -5694,9 +5694,9 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 | 401 | If the parameter is invalid. |
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6057,10 +6057,10 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 | ------- | --------------------------------------------|
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6118,10 +6118,10 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 | ------- | --------------------------------------------|
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6175,10 +6175,10 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 | ------- | --------------------------------------------|
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |
@@ -6211,7 +6211,7 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
-指定编码参数，将PixelM直接编码进文件。使用Promise形式返回结果。
+指定编码参数，将PixelMap直接编码进文件。使用Promise形式返回结果。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -6240,10 +6240,10 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 | ------- | --------------------------------------------|
 | 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
-| 62980106 | The image is too large. |
-| 62980113 | Unknown image format. |
-| 62980115 | If the parameter is invalid. |
-| 62980119 | If encoder occur error during encoding.             |
+| 62980106 | The image data is too large. This status code is thrown when an error occurs during the process of checking size. |
+| 62980113| Unknown image format.The image data provided is not in a recognized or supported format, or it may be occorrupted.            |
+| 62980115 | Invalid input parameter. |
+| 62980119 | Failed to encode the image. |
 | 62980120 | Add pixelmap out of range. |
 | 62980172 | Failed to encode icc. |
 | 62980252 | Failed to create surface. |

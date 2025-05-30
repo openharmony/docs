@@ -26,7 +26,7 @@ Be familiar with the following basic concepts before development:
 
 - DRM solution (DRM plugin)
 
-  Below the DRM framework layer, there are drivers that implement the DRM Hardware Device Interface (HDI) layer. Content decryption is implemented in the drivers.<!--RP1--><!--RP1End-->
+  Below the DRM framework layer, there are drivers that implement the DRM Hardware Device Interface (HDI) layer. Content decryption is implemented in the drivers. <!--RP1--><!--RP1End-->
 
 - DRM session (MediaKeySession)
 

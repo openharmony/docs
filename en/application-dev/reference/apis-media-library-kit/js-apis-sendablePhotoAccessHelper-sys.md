@@ -24,7 +24,7 @@ Creates an asset with the specified file name. This API uses a promise to return
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -59,6 +59,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -82,7 +84,7 @@ Creates an asset with the specified file name and options. This API uses a promi
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -117,6 +119,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 async function example() {
@@ -169,9 +173,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | Internal system error.                                        |
+| 14000011 | Internal system error                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -260,6 +266,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -318,6 +326,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -359,7 +369,7 @@ Obtains the face identifier on the cover of a portrait album or group photo albu
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+| Promise&lt;string&gt; | Promise used to return **tag_id** of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
 
 **Error codes**
 
@@ -372,6 +382,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

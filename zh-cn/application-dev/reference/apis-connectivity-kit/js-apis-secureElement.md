@@ -1,6 +1,6 @@
 # @ohos.secureElement (安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[createService]((#omapicreateservice12)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE（Embedded SE）和SIM卡。文档中出现的SE服务为SEService实例，参见[createService](#omapicreateservice12)。
 
 对于文档中出现以下类型说明：
 

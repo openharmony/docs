@@ -296,6 +296,12 @@ Creates an **AVMetadataExtractor** instance. This API uses a promise to return t
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise used to return the **AVMetadataExtractor** instance.|
+
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
@@ -1759,7 +1765,7 @@ Subscribes to the event to check whether the seek operation takes effect.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'seekDone'** in this case. This event is triggered each time **seek()** is called.|
+| type     | string   | Yes  | Event type, which is **'seekDone'** in this case. |
 | callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** attribute. The time in this callback only means that the requested seek operation is complete.|
 
 **Example**
@@ -2821,8 +2827,8 @@ Describes the callback invoked for the track change event.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | Yes| Index of a track.    |
-| isSelected | boolean | Yes| Status of the track, that is, whether the track is selected.|
+| index  | number | Yes| Index of the track that has changed.    |
+| isSelected | boolean | Yes| Whether the track at the current index is selected. The value **true** means that the track at the current index is selected, and **false** means the opposite.|
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -4480,7 +4486,7 @@ Describes the audio and video recording profile.
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.|
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [176 - 4096].        |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [144 - 4096].        |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 60].            |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The recommended value range is [1 - 60].            |
 | isHdr<sup>11+</sup>            | boolean                        | No  | HDR encoding. This parameter is optional for video recording. The default value is **false**, and there is no requirement on the encoding format. When **isHdr** is set to **true**, the encoding format must be **video/hevc**.|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether temporal layered encoding is supported. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, some frames in the video output streams can be skipped without being encoded.|
 

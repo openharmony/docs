@@ -37,14 +37,14 @@
       .nm_filename = nullptr,
       .nm_register_func = Init,
       .nm_modname = "entry",
-      .nm_priv = nullptr,
+      .nm_priv = ((void*)0),
       .reserved = {0},
   };
   
   // 加载so时，该函数会自动被调用，将上述demoModule模块注册到系统中。
   extern "C" __attribute__((constructor)) void RegisterDemoModule() { 
       napi_module_register(&demoModule);
-   }
+  }
   ```
 注：以上代码无须复制，创建Native C++工程以后在napi_init.cpp代码中已配置好。
 
