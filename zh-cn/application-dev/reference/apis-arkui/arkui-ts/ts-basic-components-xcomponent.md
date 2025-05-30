@@ -676,35 +676,60 @@ struct XComponentExample {
 
 通过setXComponentSurfaceRotation设置surface在屏幕旋转过程中锁定方向，不跟随屏幕进行旋转。
 
+> **说明：**
+>
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考<!--RP2-->[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->
+
 ```ts
 // xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
 @Entry
 @Component
 struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
