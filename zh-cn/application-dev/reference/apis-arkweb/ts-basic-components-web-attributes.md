@@ -1541,9 +1541,12 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+>
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
+>
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
-> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1618,9 +1621,12 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+>
 > - 该脚本按照字典序执行，非数组本身顺序。
+>
 > - 不建议与[runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15)同时使用。
-> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1682,9 +1688,12 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+>
 > - 该脚本按照数组本身顺序执行。
+>
 > - 不建议与[javaScriptOnDocumentStart](#javascriptondocumentstart11)同时使用。
-> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1759,9 +1768,12 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+>
 > - 该脚本按照数组本身顺序执行。
+>
 > - 不建议与[javaScriptOnDocumentEnd](#javascriptondocumentend11)同时使用。
-> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
+>
+> - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1824,7 +1836,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 >
 > - 该脚本按照数组本身顺序执行。
 >
-> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
+> - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
