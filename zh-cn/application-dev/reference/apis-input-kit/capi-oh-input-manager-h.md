@@ -2921,4 +2921,77 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 | -- | -- |
 | [Input_Result](#input_result) | OH_Input_GetFunctionKeyState的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示获取状态成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         {@link INPUT_DEVICE_NOT_EXIST } 表示键盘设备不存在。 |
 
+### OH_Input_InjectTouchEvent()
 
+```
+int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
+```
+
+**描述**
+
+注入触摸事件。
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | 要注入的触摸事件。 | 
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_InjectTouchEvent的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示注入成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         [INPUT_PERMISSION_DENIED](#input_result) 表示缺少权限。 |
+
+### OH_Input_InjectMouseEvent()
+
+```
+int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
+```
+
+**描述**
+
+注入鼠标事件。
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent |  要注入的鼠标事件。 | 
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_InjectTouchEvent的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示注入成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         [INPUT_PERMISSION_DENIED](#input_result) 表示缺少权限。 |
+
+### OH_Input_InjectKeyEvent()
+
+```
+int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
+```
+**描述**
+
+注入按键事件。
+
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | 要注入的按键事件。 | 
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_InjectTouchEvent的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示注入成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         [INPUT_PERMISSION_DENIED](#input_result) 表示缺少权限。 |
