@@ -32,7 +32,6 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
@@ -100,12 +99,8 @@ getLevel(): ThermalLevel
 **示例：**
 
 ```js
-try {
-    let level = thermal.getLevel();
-    console.info('thermal level is: ' + level);
-} catch(err) {
-    console.error('get thermal level failed, err: ' + err);
-}
+let level = thermal.getLevel();
+console.info('thermal level is: ' + level);
 ```
 
 ## thermal.subscribeThermalLevel<sup>(deprecated)</sup>
