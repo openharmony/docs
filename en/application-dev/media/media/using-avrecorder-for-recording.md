@@ -148,7 +148,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    avRecorder.release();
    ```
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
