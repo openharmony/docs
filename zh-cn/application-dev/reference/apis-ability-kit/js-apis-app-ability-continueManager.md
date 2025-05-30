@@ -34,7 +34,7 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -99,7 +99,7 @@ off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;Conti
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID    | 错误信息 |
 |----------| -------------------------------- |
