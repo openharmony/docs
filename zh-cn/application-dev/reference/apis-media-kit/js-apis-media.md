@@ -8025,8 +8025,8 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 ```ts
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
-streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
