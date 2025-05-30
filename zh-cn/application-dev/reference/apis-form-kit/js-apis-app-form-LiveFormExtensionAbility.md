@@ -16,12 +16,6 @@ import { LiveFormExtensionAbility } from '@kit.FormKit';
 ## LiveFormExtensionAbility
 互动卡片扩展类。包含互动卡片提供方接收创建和销毁互动卡片的通知接口。
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**系统能力：** SystemCapability.Ability.Form
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 ### 属性
 
 **模型约束：** 此接口仅可在Stage模型下使用。
