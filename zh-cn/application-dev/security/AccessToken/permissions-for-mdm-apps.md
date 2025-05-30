@@ -307,7 +307,7 @@
 
 ## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
-允许设备管理系统的设置参数。
+允许设备管理系统设置参数策略。
 
 **权限级别**：system_basic
 
