@@ -24,6 +24,7 @@ Keycode value.
 | KEYCODE_UNKNOWN                  |  -1 | Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
+| KEYCODE_HEADSETHOOK<sup>20+</sup>              |  6 | Play/Pause key for wired headset                        |
 | KEYCODE_SEARCH<sup>13+</sup> | 9 | Search key|
 | KEYCODE_MEDIA_PLAY_PAUSE        |  10 | Play/Pause key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | KEYCODE_MEDIA_STOP               |  11 | Stop key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
@@ -109,7 +110,7 @@ Keycode value.
 | KEYCODE_MENU                     |  2067 | Menu key                        |
 | KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
-| KEYCODE_ESCAPE                   |  2070 | ESC key                       |
+| KEYCODE_ESCAPE                   |  2070 | Esc key                       |
 | KEYCODE_FORWARD_DEL              |  2071 | Forward Delete key                        |
 | KEYCODE_CTRL_LEFT                |  2072 | Left Ctrl key               |
 | KEYCODE_CTRL_RIGHT               |  2073 | Right Ctrl key              |

@@ -231,16 +231,17 @@ The following uses the acceleration sensor as an example to describe the develop
 9. Add related APIs to the **Init** function.
 
    ```c
+   EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
-      {
-          napi_property_descriptor desc[] = {
-              { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
-              { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
-          };
-          napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-          return exports;
-      }
-      EXTERN_C_END
+   {
+       napi_property_descriptor desc[] = {
+           { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
+           { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
    ```
 
 10. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.

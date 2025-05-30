@@ -1674,7 +1674,7 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                  |
+| type     | string                                                              | 是   | 订阅的事件类型。'netUidPolicyChange'：注册policy发生改变事件。                  |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 是   | 回调函数。注册 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1723,7 +1723,7 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型。                 |
+| type     | string                                                              | 是   | 注销的事件类型。'netUidPolicyChange'：注销policy发生改变事件。               |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 否   | 回调函数。注销 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1780,7 +1780,7 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 订阅的事件类型。'netUidRuleChange'：注册rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1829,7 +1829,7 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型。                    |
+| type     | string                                                        | 是   | 注销的事件类型。'netUidRuleChange'：注销rule发生改变事件。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 否   | 回调函数。注销 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1886,7 +1886,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 订阅的事件类型。'netMeteredIfacesChange'：注册计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 是   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1930,7 +1930,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
+| type     | string                    | 是   | 注销的事件类型。'netMeteredIfacesChange'：注销计量iface发生改变事件。                 |
 | callback | Callback\<Array\<string>> | 否   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1982,7 +1982,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 订阅的事件类型。'netQuotaPolicyChange'：注册计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2031,7 +2031,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
+| type     | string                                                 | 是   | 注销的事件类型。'netQuotaPolicyChange'：注销计量网络策略发生改变事件。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2083,7 +2083,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 订阅的事件类型。'netBackgroundPolicyChange'：注册后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 是   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -2127,7 +2127,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
+| type     | string             | 是   | 注销的事件类型。'netBackgroundPolicyChange'：注销后台网络策略发生改变事件。                 |
 | callback | Callback\<boolean> | 否   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**

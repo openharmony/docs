@@ -18,6 +18,8 @@ getCameraManager(context: Context): CameraManager
 
 获取相机管理器实例，同步返回结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -63,6 +65,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 相机设备信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                              | 类型                                  | 只读 | 可选 | 说明        |
@@ -94,6 +98,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 枚举，相机类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                     | 值   | 说明            |
@@ -108,6 +114,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 枚举，相机连接类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                          | 值   | 说明           |
@@ -120,6 +128,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 枚举，远端相机设备类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                          | 值       | 说明      |
@@ -131,6 +141,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 ## CameraStatus
 
 枚举，相机状态。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -145,6 +157,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 枚举，折叠机折叠状态。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                       | 值   | 说明            |
@@ -157,6 +171,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 相机管理器回调返回的接口实例，该实例表示相机状态信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型                           |    只读   |     可选     | 说明       |
@@ -167,6 +183,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 ## FoldStatusInfo<sup>12+</sup>
 
 相机管理器回调返回的接口实例，表示折叠机折叠状态信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -179,6 +197,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 相机配置信息项。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称      | 类型                          | 只读 | 可选 | 说明         |
@@ -189,6 +209,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 ## FrameRateRange
 
 帧率范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -201,6 +223,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 视频配置信息项，继承[Profile](#profile)。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
@@ -210,6 +234,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 ## CameraOutputCapability
 
 相机输出能力项。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -224,6 +250,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 枚举，相机模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                         | 值       | 说明                                          |
@@ -237,6 +265,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 相机错误码。
 
 接口使用不正确以及on接口监听error状态返回。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -263,6 +293,8 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 getSupportedCameras(): Array\<CameraDevice\>
 
 获取支持的相机设备对象，同步返回结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -294,6 +326,8 @@ function getSupportedCameras(cameraManager: camera.CameraManager): Array<camera.
 getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 
 获取指定的相机设备对象支持的模式，同步返回结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -364,6 +398,8 @@ getSupportedOutputCapability(camera: CameraDevice, mode: SceneMode): CameraOutpu
 
 查询相机设备在指定模式下支持的输出能力，同步返回结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -394,6 +430,8 @@ isCameraMuted(): boolean
 
 查询当前相机是否禁用。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -420,6 +458,8 @@ createCameraInput(camera: CameraDevice): CameraInput
 该接口使用前首先通过[getSupportedCameras](#getsupportedcameras)接口查询当前设备支持的相机设备信息列表，开发者需要根据具体使用场景选择符合需求的相机设备，然后使用该接口创建CameraInput实例。
 
 **需要权限：** ohos.permission.CAMERA
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -473,6 +513,8 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 **需要权限：** ohos.permission.CAMERA
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -524,6 +566,8 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 
 创建预览输出对象，同步返回结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -572,6 +616,8 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 createPreviewOutput(surfaceId: string): PreviewOutput
 
 创建无配置信息的预览输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12)一起使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -669,6 +715,8 @@ createPhotoOutput(profile?: Profile): PhotoOutput
 
 创建拍照输出对象，同步返回结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -716,6 +764,8 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 
 创建录像输出对象，同步返回结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -766,6 +816,8 @@ createVideoOutput(surfaceId: string): VideoOutput
 
 创建无配置信息的录像输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12-1)功能一起使用。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -812,6 +864,8 @@ function createVideoOutput(cameraManager: camera.CameraManager, surfaceId: strin
 createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): MetadataOutput
 
 创建metadata流输出对象，同步返回结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -903,6 +957,8 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 创建指定SceneMode的Session实例，同步返回结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -921,10 +977,10 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息                                                                                                                                           |
-| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
-| 7400201                | Camera service fatal error.                                                                                                                    |
+| 错误码ID   | 错误信息                                                                                                                                           |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201 | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -953,6 +1009,8 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -988,6 +1046,8 @@ off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态注销回调，通过注销回调函数取消获取相机的状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1014,6 +1074,8 @@ on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1049,6 +1111,8 @@ off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
 
 关闭折叠设备折叠状态变化的监听。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1072,6 +1136,8 @@ isTorchSupported(): boolean
 
 检测设备是否支持手电筒。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -1094,6 +1160,8 @@ function isTorchSupported(cameraManager: camera.CameraManager): boolean {
 isTorchModeSupported(mode: TorchMode): boolean
 
 检测是否支持设置的手电筒模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1124,6 +1192,8 @@ getTorchMode(): TorchMode
 
 获取当前设备手电筒模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -1147,6 +1217,8 @@ function getTorchMode(cameraManager: camera.CameraManager): camera.TorchMode | u
 setTorchMode(mode: TorchMode): void
 
 设置设备手电筒模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1191,6 +1263,8 @@ on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1224,6 +1298,8 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 
 手电筒状态变化注销回调，通过注销回调函数取消获取手电筒状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1246,6 +1322,8 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 根据相机位置和相机类型查询对应相机。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1293,6 +1371,8 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 获取指定相机设备的并发信息。返回空数组表示不支持并发。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1336,6 +1416,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 枚举，手电筒模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                          | 值   | 说明           |
@@ -1347,6 +1429,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 ## TorchStatusInfo<sup>11+</sup>
 
 手电筒回调返回的接口实例，表示手电筒状态信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1360,6 +1444,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 输出能力查询。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型    | 只读 | 可选  | 说明         |
@@ -1371,6 +1457,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 点坐标用于对焦和曝光配置。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称    | 类型   | 只读   | 可选   | 说明         |
@@ -1381,6 +1469,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 ## CameraFormat
 
 枚举，输出格式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1397,6 +1487,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 枚举，视频编码类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 值    | 说明          |
@@ -1408,6 +1500,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 
 枚举，镜头并发类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 值    | 说明          |
@@ -1418,6 +1512,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 ## CameraConcurrentInfo<sup>18+</sup>
 
 相机的输出并发能力信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1439,6 +1535,8 @@ function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDev
 open(callback: AsyncCallback\<void\>): void
 
 打开相机，通过注册回调函数获取状态。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1480,6 +1578,8 @@ open(): Promise\<void\>
 
 打开相机，通过Promise获取相机的状态。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -1518,6 +1618,8 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 open(isSecureEnabled: boolean): Promise\<bigint\>
 
 打开相机，获取安全相机的句柄。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1562,6 +1664,8 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 open(type: CameraConcurrentType): Promise\<void\>
 
 以指定的并发类型打开相机。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1608,6 +1712,8 @@ close(callback: AsyncCallback\<void\>\): void
 
 关闭相机，通过注册回调函数获取状态。使用callback异步回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1645,6 +1751,8 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
 close(): Promise\<void\>
 
 关闭相机，通过Promise获取状态。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1686,6 +1794,8 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1716,6 +1826,8 @@ off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 
 注销监听CameraInput的错误事件。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1743,6 +1855,8 @@ function unregisterCameraInputError(cameraInput: camera.CameraInput, camera: cam
 release(callback: AsyncCallback\<void\>): void
 
 释放输出资源，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1791,6 +1905,8 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
 release(): Promise\<void\>
 
 释放输出资源，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1988,6 +2104,8 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2021,6 +2139,8 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 注销预览帧启动的监听。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2047,6 +2167,8 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2081,6 +2203,8 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 注销监听预览帧结束。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2107,6 +2231,8 @@ on(type: 'error', callback: ErrorCallback): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2137,6 +2263,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听预览输出的错误事件。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2159,6 +2287,8 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
  getSupportedFrameRates(): Array\<FrameRateRange\>
 
 查询支持的帧率范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2185,6 +2315,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 > **说明：**
 > 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2220,6 +2352,8 @@ getActiveFrameRate(): FrameRateRange
 
 使用[setFrameRate](#setframerate12)接口对预览流设置过帧率后可查询。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -2242,6 +2376,8 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 getActiveProfile(): Profile
 
 获取当前生效的配置信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2284,6 +2420,8 @@ getPreviewRotation(displayRotation: number): ImageRotation
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
 - 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2330,6 +2468,8 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 
 设置预览旋转角度。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2366,6 +2506,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 
 枚举，图片旋转角度。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称          | 值   | 说明           |
@@ -2379,6 +2521,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 
 图片地理位置信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称          | 类型   | 只读 | 可选  |说明         |
@@ -2390,6 +2534,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 ## QualityLevel
 
 枚举，图片质量。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2403,6 +2549,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 ## PhotoCaptureSetting
 
 拍摄照片的设置。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2419,6 +2567,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 
 ### 属性
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
@@ -2430,6 +2580,8 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
 release(): Promise\<void\>
 
 释放输出资源，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2456,6 +2608,8 @@ async function releasePhoto(photo: camera.Photo): Promise<void> {
 capture(callback: AsyncCallback\<void\>): void
 
 以默认设置触发一次拍照，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2496,6 +2650,8 @@ capture(): Promise\<void\>
 
 以默认设置触发一次拍照，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -2532,6 +2688,8 @@ function capture(photoOutput: camera.PhotoOutput): void {
 capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
 以指定参数触发一次拍照，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2584,6 +2742,8 @@ function capture(photoOutput: camera.PhotoOutput): void {
 capture(setting: PhotoCaptureSetting): Promise\<void\>
 
 以指定参数触发一次拍照，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2644,6 +2804,8 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2677,6 +2839,8 @@ function registerPhotoOutputPhotoAvailable(photoOutput: camera.PhotoOutput): voi
 off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 
 注销监听全质量图上报。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2716,6 +2880,8 @@ on(type: 'captureStartWithInfo', callback: AsyncCallback\<CaptureStartInfo\>): v
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2749,6 +2915,8 @@ off(type: 'captureStartWithInfo', callback?: AsyncCallback\<CaptureStartInfo\>):
 
 注销监听拍照。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2773,6 +2941,8 @@ function unRegisterCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
 isMovingPhotoSupported(): boolean
 
 查询是否支持动态照片拍摄。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2815,6 +2985,8 @@ enableMovingPhoto(enabled: boolean): void
 使能动态照片拍照。
 
 **需要权限：** ohos.permission.MICROPHONE
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2860,6 +3032,8 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.Photo
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2895,6 +3069,8 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.Pho
 
 注销photoAsset上报。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2917,6 +3093,8 @@ function offPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): voi
 isMirrorSupported(): boolean
 
 查询是否支持镜像拍照。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2942,6 +3120,8 @@ enableMirror(enabled: boolean): void
 是否启用动态照片镜像拍照。
 
 调用该接口前，需要通过[isMovingPhotoSupported](#ismovingphotosupported12)查询是否支持动态照片拍摄功能以及通过[isMirrorSupported](#ismirrorsupported)查询是否支持镜像拍照功能。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2984,6 +3164,8 @@ getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
 
 查询支持的动态照片短视频编码类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -3014,6 +3196,8 @@ function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput):
 setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 设置动态照片短视频编码类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3111,6 +3295,8 @@ on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 
 监听拍照帧输出捕获，通过注册回调函数获取结果。使用callback异步回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3145,6 +3331,8 @@ off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 
 注销监听拍照帧输出捕获。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3171,6 +3359,8 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3206,6 +3396,8 @@ off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 
 注销监听拍照结束。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3232,6 +3424,8 @@ on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): voi
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3266,6 +3460,8 @@ off(type: 'frameShutterEnd', callback?: AsyncCallback\<FrameShutterEndInfo\>): v
 
 注销监听拍照帧输出捕获。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3292,6 +3488,8 @@ on(type: 'captureReady', callback: AsyncCallback\<void\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3326,6 +3524,8 @@ off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 
 注销监听可拍下一张。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3352,6 +3552,8 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3386,6 +3588,8 @@ off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void
 
 注销监听预估的拍照时间。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3412,6 +3616,8 @@ on(type: 'error', callback: ErrorCallback): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3442,6 +3648,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听拍照输出发生错误。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3464,6 +3672,8 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 getActiveProfile(): Profile
 
 获取当前生效的配置信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3505,6 +3715,8 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
 - 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3550,6 +3762,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 
 拍照帧输出信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称       | 类型   | 只读 | 可选 | 说明        |
@@ -3561,6 +3775,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 
 拍照曝光结束信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称      | 类型   | 只读 | 可选 | 说明       |
@@ -3570,6 +3786,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 ## CaptureStartInfo<sup>11+</sup>
 
 拍照开始信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3582,6 +3800,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 
 拍照停止信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称       | 类型    | 只读 | 可选 | 说明       |
@@ -3592,6 +3812,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 ## AutoDeviceSwitchStatus<sup>13+</sup>
 
 自动切换镜头状态信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3609,6 +3831,8 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
 start(callback: AsyncCallback\<void\>): void
 
 启动录制，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3649,6 +3873,8 @@ start(): Promise\<void\>
 
 启动录制，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -3686,6 +3912,8 @@ stop(callback: AsyncCallback\<void\>): void
 
 结束录制，通过注册回调函数获取结果。使用callback异步回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3715,6 +3943,8 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
 stop(): Promise\<void\>
 
 结束录制，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3747,6 +3977,8 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3785,6 +4017,8 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3808,6 +4042,8 @@ function unregisterVideoOutputFrameStart(videoOutput: camera.VideoOutput): void 
 on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 监听录像结束，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3842,6 +4078,8 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 
 注销监听录像结束。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3868,6 +4106,8 @@ on(type: 'error', callback: ErrorCallback): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3898,6 +4138,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听录像输出发生错误。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3920,6 +4162,8 @@ function unregisterVideoOutputError(videoOutput: camera.VideoOutput): void {
 getSupportedFrameRates(): Array\<FrameRateRange\>
 
 查询支持的帧率范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3948,6 +4192,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 > **说明：**
 > 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3983,6 +4229,8 @@ getActiveFrameRate(): FrameRateRange
 
 使用[setFrameRate](#setframerate12-1)对录像流设置过帧率后可查询。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -4005,6 +4253,8 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 getActiveProfile(): VideoProfile
 
 获取当前生效的配置信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4043,6 +4293,8 @@ isMirrorSupported(): boolean
 
 查询是否支持镜像录像。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -4067,6 +4319,8 @@ enableMirror(enabled: boolean): void
 - 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported15)查询是否支录像镜像功能。
 
 - 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4112,6 +4366,8 @@ getVideoRotation(deviceDegree: number): ImageRotation
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
 - 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4191,6 +4447,8 @@ start(callback: AsyncCallback\<void\>): void
 
 开始输出metadata，通过注册回调函数获取结果。使用callback异步回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4230,6 +4488,8 @@ start(): Promise\<void\>
 
 开始输出metadata，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -4267,6 +4527,8 @@ stop(callback: AsyncCallback\<void\>): void
 
 停止输出metadata，通过注册回调函数获取结果。使用callback异步回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4296,6 +4558,8 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
 stop(): Promise\<void\>
 
 停止输出metadata，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4328,6 +4592,8 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4362,6 +4628,8 @@ off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataO
 
 注销监听检测到的metadata对象。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4388,6 +4656,8 @@ on(type: 'error', callback: ErrorCallback): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4418,6 +4688,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听metadata流的错误。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4439,6 +4711,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 枚举，metadata流。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                       | 值   | 说明              |
@@ -4448,6 +4722,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 ## Rect
 
 矩形定义。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4462,6 +4738,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
@@ -4473,6 +4751,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 ## FlashMode
 
 枚举，闪光灯模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4487,6 +4767,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 枚举，曝光模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                           | 值   | 说明         |
@@ -4498,6 +4780,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 ## FocusMode
 
 枚举，焦距模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4512,6 +4796,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 枚举，焦距状态。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                   | 值   | 说明       |
@@ -4523,6 +4809,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 ## VideoStabilizationMode
 
 枚举，视频防抖模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4543,6 +4831,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 beginConfig(): void
 
 开始配置会话。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4576,6 +4866,8 @@ function beginConfig(session: camera.Session): void {
 commitConfig(callback: AsyncCallback\<void\>): void
 
 提交配置信息，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4616,6 +4908,8 @@ commitConfig(): Promise\<void\>
 
 提交配置信息，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -4654,6 +4948,8 @@ canAddInput(cameraInput: CameraInput): boolean
 
 判断当前cameraInput是否可以添加到session中。当前函数需要在[beginConfig](#beginconfig11)和[commitConfig](#commitconfig11-1)之间生效。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4684,6 +4980,8 @@ function canAddInput(session: camera.Session, cameraInput: camera.CameraInput): 
 addInput(cameraInput: CameraInput): void
 
 把[CameraInput](#camerainput)加入到会话。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4725,6 +5023,8 @@ removeInput(cameraInput: CameraInput): void
 
 移除[CameraInput](#camerainput)。当前函数需要在[beginConfig](#beginconfig11)和[commitConfig](#commitconfig11-1)之间生效。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4765,6 +5065,8 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 判断当前cameraOutput是否可以添加到session中。当前函数需要在[addInput](#addinput11)和[commitConfig](#commitconfig11-1)之间生效。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4795,6 +5097,8 @@ function canAddOutput(session: camera.Session, cameraOutput: camera.CameraOutput
 addOutput(cameraOutput: CameraOutput): void
 
 把[CameraOutput](#cameraoutput)加入到会话。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4836,6 +5140,8 @@ removeOutput(cameraOutput: CameraOutput): void
 
 从会话中移除[CameraOutput](#cameraoutput)。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -4875,6 +5181,8 @@ function removeOutput(session: camera.Session, previewOutput: camera.PreviewOutp
 start(callback: AsyncCallback\<void\>): void
 
 开始会话工作，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4916,6 +5224,8 @@ start(): Promise\<void\>
 
 开始会话工作，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -4953,6 +5263,8 @@ function startCaptureSession(session: camera.Session): void {
 stop(callback: AsyncCallback\<void\>): void
 
 停止会话工作，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4992,6 +5304,8 @@ stop(): Promise\<void\>
 
 停止会话工作，通过Promise获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -5027,6 +5341,8 @@ function stopCaptureSession(session: camera.Session): void {
 release(callback: AsyncCallback\<void\>): void
 
 释放会话资源，通过注册回调函数获取结果。使用callback异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5065,6 +5381,8 @@ function releaseCaptureSession(session: camera.Session): void {
 release(): Promise\<void\>
 
 释放会话资源，通过Promise获取结果。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5113,6 +5431,8 @@ setFlashMode(flashMode: FlashMode): void
 1. 设备是否支持闪光灯，可使用方法[hasFlash](#hasflash11)。
 2. 设备是否支持指定的闪光灯模式，可使用方法[isFlashModeSupported](#isflashmodesupported11)。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -5150,6 +5470,8 @@ function setFlashMode(photoSession: camera.PhotoSession): void {
 getFlashMode(): FlashMode
 
 获取当前设备的闪光灯模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5195,6 +5517,8 @@ hasFlash(): boolean
 
 检测是否有闪光灯，通过注册回调函数获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -5234,6 +5558,8 @@ function hasFlash(photoSession: camera.PhotoSession): boolean {
 isFlashModeSupported(flashMode: FlashMode): boolean
 
 检测闪光灯模式是否支持。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5287,6 +5613,8 @@ getExposureMode(): ExposureMode
 
 获取当前曝光模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -5327,6 +5655,8 @@ setExposureMode(aeMode: ExposureMode): void
 
 设置曝光模式。进行设置之前，需要先检查设备是否支持指定的曝光模式，可使用方法[isExposureModeSupported](#isexposuremodesupported11)。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -5366,6 +5696,8 @@ getMeteringPoint(): Point
 
 查询曝光区域中心点。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -5378,9 +5710,9 @@ getMeteringPoint(): Point
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 7400103 |  Session not config.                                   |
 
 **示例：**
 
@@ -5405,6 +5737,8 @@ function getMeteringPoint(photoSession: camera.PhotoSession): camera.Point | und
 setMeteringPoint(point: Point): void
 
 设置曝光区域中心点，曝光点应在0-1坐标系内，该坐标系左上角为{0，0}，右下角为{1，1}。<br>此坐标系是以设备充电口在右侧时的横向设备方向为基准的，例如应用的预览界面布局以<br>设备充电口在下侧时的竖向方向为基准，布局宽高为{w，h}，且触碰点为{x，y}，<br>则转换后的坐标点为{y/h，1-x/w}。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5439,46 +5773,6 @@ function setMeteringPoint(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### getExposureBiasRange<sup>11+</sup>
-
-getExposureBiasRange(): Array\<number\>
-
-查询曝光补偿范围。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| Array\<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103                |  Session not config.   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getExposureBiasRange(photoSession: camera.PhotoSession): Array<number> {
-  let biasRangeArray: Array<number> = [];
-  try {
-    biasRangeArray = photoSession.getExposureBiasRange();
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The getExposureBiasRange call failed. error code: ${err.code}`);
-  }
-  return biasRangeArray;
-}
-```
-
 ### setExposureBias<sup>11+</sup>
 
 setExposureBias(exposureBias: number): void
@@ -5486,6 +5780,8 @@ setExposureBias(exposureBias: number): void
 设置曝光补偿，曝光补偿值（EV）。
 
 进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5528,6 +5824,8 @@ function setExposureBias(photoSession: camera.PhotoSession, biasRangeArray: Arra
 getExposureValue(): number
 
 查询当前曝光值。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5574,6 +5872,8 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 检测曝光模式是否支持。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -5619,6 +5919,8 @@ function isExposureModeSupported(photoSession: camera.PhotoSession): boolean {
 getExposureBiasRange(): Array\<number\>
 
 查询曝光补偿范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5668,6 +5970,8 @@ setFocusMode(afMode: FocusMode): void
 
 进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported11)。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -5705,6 +6009,8 @@ function setFocusMode(photoSession: camera.PhotoSession): void {
 getFocusMode(): FocusMode
 
 获取当前的对焦模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5746,6 +6052,8 @@ setFocusPoint(point: Point): void
 
 设置焦点，焦点应在0-1坐标系内，该坐标系左上角为{0，0}，右下角为{1，1}。<br>此坐标系是以设备充电口在右侧时的横向设备方向为基准的，例如应用的预览界面布局以<br>设备充电口在下侧时的竖向方向为基准，布局宽高为{w，h}，且触碰点为{x，y}，<br>则转换后的坐标点为{y/h，1-x/w}。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -5784,6 +6092,8 @@ function setFocusPoint(photoSession: camera.PhotoSession): void {
 getFocusPoint(): Point
 
 查询当前的焦点。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5824,6 +6134,8 @@ function getFocusPoint(photoSession: camera.PhotoSession): camera.Point | undefi
 getFocalLength(): number
 
 查询当前的焦距值。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5869,6 +6181,8 @@ function getFocalLength(photoSession: camera.PhotoSession): number {
 isFocusModeSupported(afMode: FocusMode): boolean
 
 检测对焦模式是否支持。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5920,6 +6234,8 @@ isMacroSupported(): boolean
 
 检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -5948,6 +6264,8 @@ Macro extends [MacroQuery](#macroquery19)
 enableMacro(enabled: boolean): void
 
 使能当前的微距能力，需要在支持微距能力的情况下进行调用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5981,6 +6299,8 @@ function enableMacro(photoSession: camera.PhotoSession): void {
 
 平滑变焦模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称         | 值   | 说明            |
@@ -5990,6 +6310,8 @@ function enableMacro(photoSession: camera.PhotoSession): void {
 ## SmoothZoomInfo<sup>11+</sup>
 
 平滑变焦参数信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6008,6 +6330,8 @@ Zoom extends [ZoomQuery](#zoomquery12)
 setZoomRatio(zoomRatio: number): void
 
 设置变焦比，变焦精度最高为小数点后两位，如果设置超过支持的精度范围，则只保留精度范围内数值。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6051,6 +6375,8 @@ getZoomRatio(): number
 
 获取当前的变焦比。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -6093,6 +6419,8 @@ setSmoothZoom(targetRatio: number, mode?: SmoothZoomMode): void
 
 触发平滑变焦。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -6121,6 +6449,8 @@ function setSmoothZoom(sessionExtendsZoom: camera.Zoom, targetZoomRatio: number,
 getZoomRatioRange(): Array\<number\>
 
 获取支持的变焦范围。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6173,6 +6503,8 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 查询当前正在使用的视频防抖模式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -6212,6 +6544,8 @@ function getActiveVideoStabilizationMode(videoSession: camera.VideoSession): cam
 setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 设置视频防抖模式。需要先检查设备是否支持对应的防抖模式，可以通过[isVideoStabilizationModeSupported](#isvideostabilizationmodesupported11)方法判断所设置的模式是否支持。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6254,6 +6588,8 @@ function setVideoStabilizationMode(videoSession: camera.VideoSession): void {
 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 查询是否支持指定的视频防抖模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8028,6 +8364,8 @@ getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
 获取支持的色彩空间列表。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -8081,6 +8419,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 | SDR(Default)       | SRGB       |
 | HDR                | DISPLAY_P3 |
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8124,6 +8464,8 @@ function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpa
 getActiveColorSpace(): colorSpaceManager.ColorSpace
 
 获取当前设置的色彩空间。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8169,6 +8511,8 @@ isAutoDeviceSwitchSupported(): boolean
 
 查询设备是否支持自动切换镜头能力。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **返回值：**
@@ -8209,6 +8553,8 @@ enableAutoDeviceSwitch(enabled: boolean): void
 > **说明：**
 > 该接口仅用于有多个前置镜头的折叠设备，在不同的折叠状态下可自动切换到当前可使用的前置镜头。无法实现前后置镜头的切换。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8222,11 +8568,11 @@ enableAutoDeviceSwitch(enabled: boolean): void
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID   | 错误信息                                                                                                                                       |
-|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
-| 7400102  | Operation not allowed.                                                                                                                         |
-| 7400103  | Session not config.                                                                                                                            |
-| 7400201  | Camera service fatal error.                                                                                                                    |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 7400101 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
+| 7400102 | Operation not allowed.                                                                                                                         |
+| 7400103 | Session not config.                                                                                                                            |
+| 7400201 | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -8247,6 +8593,8 @@ function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean)
 
 枚举，提供预配置的类型。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                      | 值 | 说明         |
@@ -8259,6 +8607,8 @@ function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean)
 ## PreconfigRatio<sup>12+</sup>
 
 枚举，提供预配置的分辨率比例。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8283,6 +8633,8 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的预配置类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8328,6 +8680,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 对当前Session进行预配置。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8370,6 +8724,8 @@ on(type: 'error', callback: ErrorCallback): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8399,6 +8755,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听普通拍照会话的错误事件，通过注册回调函数获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8425,6 +8783,8 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8459,6 +8819,8 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 注销监听相机聚焦的状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8485,6 +8847,8 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8519,6 +8883,8 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 
 注销监听相机平滑变焦的状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8545,6 +8911,8 @@ on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwit
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8579,6 +8947,8 @@ off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSw
 
 注销监听相机自动切换镜头状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8599,6 +8969,8 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 ## QualityPrioritization<sup>14+</sup>
 
 枚举，录像质量优先级。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8622,6 +8994,8 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8667,6 +9041,8 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 对当前Session进行预配置。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8709,6 +9085,8 @@ on(type: 'error', callback: ErrorCallback): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8738,6 +9116,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听普通录像会话的错误事件，通过注册回调函数获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8764,6 +9144,8 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8798,6 +9180,8 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 注销监听相机聚焦的状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8824,6 +9208,8 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8858,6 +9244,8 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 
 注销监听相机平滑变焦的状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8884,6 +9272,8 @@ on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwit
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8918,6 +9308,8 @@ off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSw
 
 注销监听相机自动切换镜头状态变化。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -8943,6 +9335,8 @@ setQualityPrioritization(quality : QualityPrioritization) : void;
 
 > **说明：**
 > 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -8994,6 +9388,8 @@ addSecureOutput(previewOutput: PreviewOutput): void
 
 将其中一条[PreviewOutput](#previewoutput)标记成安全输出。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -9036,6 +9432,8 @@ on(type: 'error', callback: ErrorCallback): void
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -9065,6 +9463,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 注销监听安全相机会话的错误事件，通过注册回调函数获取结果。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -9091,6 +9491,8 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 > **说明：**
 >
 > 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -9124,6 +9526,8 @@ function registerFocusStateChange(secureSession: camera.SecureSession): void {
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
 注销监听相机聚焦的状态变化。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

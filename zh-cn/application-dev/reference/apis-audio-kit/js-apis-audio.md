@@ -2484,7 +2484,7 @@ try {
 }
 ```
 
-### getAppVolumePercentage<sup>18+</sup>
+### getAppVolumePercentage<sup>19+</sup>
 
 getAppVolumePercentage(): Promise<number\>
 
@@ -2508,7 +2508,7 @@ audioVolumeManager.getAppVolumePercentage().then((value: number) => {
 });
 ```
 
-### setAppVolumePercentage<sup>18+</sup>
+### setAppVolumePercentage<sup>19+</sup>
 
 setAppVolumePercentage(volume: number\): Promise<void\>
 
@@ -2623,7 +2623,7 @@ audioVolumeManager.on('volumeChange', volumeChangeCallback);
 audioVolumeManager.off('volumeChange', volumeChangeCallback);
 ```
 
-### on('appVolumeChange')<sup>18+</sup>
+### on('appVolumeChange')<sup>19+</sup>
 
 on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
@@ -2656,7 +2656,7 @@ audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
-### off('appVolumeChange')<sup>18+</sup>
+### off('appVolumeChange')<sup>19+</sup>
 
 off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
@@ -5984,6 +5984,17 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 |--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID：表示数据有效，将播放音频数据；如果返回 AudioDataCallbackResult.INVALID：表示数据无效，且音频数据不播放。 |
 
+## AudioTimestampInfo<sup>19+</sup>
+
+音频流时间戳和当前数据帧位置信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                |
+| ---------| ------ | ---- | ---- |-----------------------------------|
+| framePos | number | 是   | 否   | 当前播放或者录制的数据帧位置。                   |
+| timestamp | number | 是   | 否   | 播放或者录制到当前数据帧位置时对应的时间戳。 |
+
 ## AudioRenderer<sup>8+</sup>
 
 提供音频渲染的相关接口。
@@ -6404,7 +6415,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -6432,7 +6443,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise\<void> | Promise对象，成功表示启动音频渲染器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -6898,6 +6909,76 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
   console.info(`Current timestamp: ${timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                                    | 描述                    |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioRenderer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+获取音频流时间戳和当前数据帧位置信息。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioRenderer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -8126,7 +8207,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioRenderer.on('markReach', markReachCallback);
+audioRenderer.on('markReach', 1000, markReachCallback);
 
 audioRenderer.off('markReach', markReachCallback);
 ```
@@ -8856,7 +8937,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功。异常将返回error对象：<br>错误码6800301：表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -9153,6 +9234,76 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`AudioFrameworkRecLog: AudioCapturer getAudioTimeSync : ERROR : ${error}`);
+}
+```
+
+### getAudioTimestampInfo<sup>19+</sup>
+
+getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
+
+获取音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                                    | 描述                    |
+|-------------------------------------------------------| ----------------------- |
+| Promise\<[AudioTimestampInfo](#audiotimestampinfo19)> | Promise对象，返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioCapturer.getAudioTimestampInfo().then((audioTimestampInfo: audio.AudioTimestampInfo) => {
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioTimestampInfoSync<sup>19+</sup>
+
+getAudioTimestampInfoSync(): AudioTimestampInfo
+
+获取音频流时间戳和当前数据帧位置信息。同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型             | 描述                    |
+| ---------------- | ----------------------- |
+| [AudioTimestampInfo](#audiotimestampinfo19) | 返回音频流时间戳和当前数据帧位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let audioTimestampInfo: audio.AudioTimestampInfo = audioCapturer.getAudioTimestampInfoSync();
+  console.info(`Current timestamp: ${audioTimestampInfo.timestamp}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
 }
 ```
 
@@ -9624,7 +9775,7 @@ let markReachCallback = (position: number) => {
   }
 };
 
-audioCapturer.on('markReach', markReachCallback);
+audioCapturer.on('markReach', 1000, markReachCallback);
 
 audioCapturer.off('markReach', markReachCallback);
 ```

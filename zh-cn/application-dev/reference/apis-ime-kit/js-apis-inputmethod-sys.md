@@ -294,7 +294,7 @@ enableInputMethod(bundleName: string, extensionName: string, enabledState: Enabl
 | 202      | not system application. |
 | 12800008 | input method manager service error. |
 | 12800018 | the input method is not found. |
-| 12800019 | the preconfigured default input method cannot be disabled. |
+| 12800019 | current operation cannot be applied to the preconfigured default input method. |
 
 **示例：**
 

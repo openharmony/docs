@@ -4,6 +4,10 @@
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
+<!--RP1-->
+
+<!--RP1End-->
+
 ## Available APIs
 
 The HTTP request function is mainly implemented by the HTTP module.
@@ -32,7 +36,7 @@ The following table provides only a simple description of the related APIs. For 
 | on\('dataSendProgress'\)<sup>11+</sup>        | Registers an observer for events indicating progress of sending HTTP requests. |
 | off\('dataSendProgress'\)<sup>11+</sup>       | Unregisters the observer for events indicating progress of sending HTTP requests.|
 
-## How to Develop request APIs
+## Initiating an HTTP Data Request
 
 1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
@@ -42,11 +46,17 @@ The following table provides only a simple description of the related APIs. For 
 6. Call **off()** to unsubscribe from HTTP response header events.
 7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 // Import the http namespace.
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
@@ -72,7 +82,7 @@ httpRequest.request(
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
-    caPath: '/path/to/cacert.pem', // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
+    caPath: '/path/to/cacert.pem', // Optional. The prebuilt CA certificate is used by default. This field is supported since API version 10.
     clientCert: { // Optional. The client certificate is not used by default. This field is supported since API version 11.
       certPath: '/path/to/client.pem', // The client certificate is not used by default. This field is supported since API version 11.
       keyPath: '/path/to/client.key', // If the certificate contains key information, an empty string is passed. This field is supported since API version 11.
@@ -89,7 +99,7 @@ httpRequest.request(
         name: "Part2", // Data name. This field is supported since API version 11.
         contentType: 'text/plain', // Data type. This field is supported since API version 11.
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
+        filePath: `${context.filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
     ]
@@ -114,7 +124,7 @@ httpRequest.request(
 );
 ```
 
-## How to Develop requestInStream APIs
+## Initiating an HTTP Streaming Request
 
 1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
@@ -195,9 +205,9 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
 
 ## Certificate Pinning
 
-You can preset application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the preset certificate is used.
+You can prebuild application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the prebuilt certificate is used.
 
-Both modes are configured in the configuration file, which is available at `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between preset certificates and network servers.
+Both modes are configured through `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between prebuilt certificates and network servers.
 
 If you do not know the certificate mapping a server domain name, you can use the following command to obtain the certificate. When running the command, change `www.example.com` to the server domain name and `www.example.com.pem` to the name of the obtained certificate file.
 
@@ -212,17 +222,17 @@ If you are using a Windows environment, you need to:
 * Press **Enter** to exit. This is different from OpenSSL of Linux, which may exit until the user enters a value.
 * If the **sed** command is not present, copy the content between `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` (with these two lines included) in the command output and save it.
 
-### Presetting Application-level Certificates
+### Prebuilding Application-level Certificates
 
-Presetting application-level certificates means to embed the original certificate files in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
+Prebuilding application-level certificates means to embed the original certificate files in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
 
 > **NOTE**
 >
 > Currently, certificate pinning has been enabled for the ohos.net.http and Image components, and the hash values of all certificates in the certificate chain are matched. If any certificate is updated on the server, the verification fails. Therefore, if any certificate on the server has been updated, upgrade the application to the latest version as soon as possible. Otherwise, network connection may fail.
 
-### Presetting Certificate Public Key Hash Values
+### Prebuilding Certificate Public Key Hash Values
 
-You can create mapping between public key hash values and domain name certificates in the configuration file. This way, access to the domain name is allowed only if the used domain name certificate matches the preset public key hash value.
+You can create mapping between public key hash values and domain name certificates in the configuration file. This way, access to the domain name is allowed only if the used domain name certificate matches the prebuilt public key hash value.
 
 The public key hash value of the domain name certificate can be calculated using the following command. Assume that the domain name certificate is obtained using the preceding OpenSSL command and saved in the `www.example.com.pem` file. The line that starts with # is treated as a comment.
 
@@ -237,7 +247,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### Example of the JSON Configuration File
 
-The following is an example of presetting application-level certificates:
+The following is an example of prebuilt application-level certificates. For details about the configuration path, see [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
 
 ```json
 {
@@ -268,7 +278,7 @@ The following is an example of presetting application-level certificates:
 }
 ```
 
-The following is an example of presetting certificate public key hash values:
+The following is an example of prebuilt certificate public key hash values:
 ```
 {
   "network-security-config": {
@@ -295,6 +305,57 @@ The following is an example of presetting certificate public key hash values:
 }
 ```
 
+The following is an example configuration for overall and host name–based HTTP access:
+```
+{
+  "network-security-config": {
+    "base-config": {
+      "cleartextTrafficPermitted": true
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "cleartextTrafficPermitted": false
+      }
+    ]
+  }
+}
+```
+
+The following is an example configuration of the certificate pin:
+```
+{
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "server.com"
+          }
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
+}
+```
+
 **Description of fields**
 
 | Field                     | Type           | Description                                  |   
@@ -305,10 +366,23 @@ The following is an example of presetting certificate public key hash values:
 |trust-anchors              | array           |Trusted CA. The value can contain any number of items. An item must contain one **certificates**.|
 |certificates               | string          |CA certificate path.|
 |domains                    | array           |Domain. The value can contain any number of items. An item must contain one **name** (string: domain name) and can contain zero or one **include-subdomains**.|
-|include-subdomains         | boolean         |Whether a rule applies to subdomains.|
+|include-subdomains         | boolean         |Whether a rule applies to subdomains. Whether a rule applies to subdomains. The value **true** indicates that the rule applies to subdomains, and the value **false** indicates the opposite.|
 |pin-set                    | object          |Certificate public key hash setting. The value must contain one **pin** and can contain zero or one **expiration**.|
 |expiration                 | string          |Expiration time of the certificate public key hash.|
 |pin                        | array           |Certificate public key hash. The value can contain any number of items. An item must contain one **digest-algorithm** and **digest**.|
 |digest-algorithm           | string          |Digest algorithm used to generate hashes. Currently, only `sha256` is supported.                                   |
 |digest                     | string          |Public key hash.|
+|cleartextTrafficPermitted  | boolean          |Whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite.|
 
+
+## Configuring Untrusted User-Installed CA Certificates
+By default, the system trusts the prebuilt CA certificates and user-installed CA certificates. To further improve security, you can configure untrusted user-installed CA certificates in **src/main/resources/base/profile/network_config.json**. For more network connection security configurations, see [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
+```
+{
+  "network-security-config": {
+    ... ...
+  },
+  "trust-global-user-ca": false, // Set whether to trust the CA certificate manually installed by the enterprise MDM system or device administrator. The default value is true.
+  "trust-current-user-ca" : false // Set whether to trust the certificate installed by the current user. The default value is true.
+}
+```

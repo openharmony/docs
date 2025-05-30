@@ -1,6 +1,6 @@
 # TaskPool指定任务并发度场景
 
-此处提供使用TaskPool进行[异步队列](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner18)的开发指导，以相机预览流采集数据处理的功能为例。
+此处提供使用TaskPool创建[异步队列](../reference/apis-arkts/js-apis-taskpool.md#asyncrunner18)的开发指导，以相机预览流采集数据处理的功能为例。
 由于处理过程是个频繁耗时任务，如果相机采集过快，就丢弃之前的采集数据，缓存最新的一帧数据处理。
 
 1. 导入需要用到的模块。

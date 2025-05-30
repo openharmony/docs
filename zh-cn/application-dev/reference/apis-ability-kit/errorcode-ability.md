@@ -849,6 +849,42 @@ An error occurred during the interaction between the ability and window.
 
 系统错误，尝试重新调用。
 
+## 16000086 传入的context不是UIAbilityContext
+
+**错误信息**
+
+The context is not UIAbilityContext.
+
+**错误描述**
+
+传入的context不是UIAbilityContext。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext、也没有继承自UIAbilityContext。
+
+**处理步骤**
+
+使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
+
+## 16000090 调用方不是原子化服务
+
+**错误信息**
+
+Caller is not atomic service.
+
+**错误描述**
+
+调用方不是原子化服务。
+
+**可能原因**
+
+接口调用方不是原子化服务。
+
+**处理步骤**
+
+当前应用不支持调用该接口。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**

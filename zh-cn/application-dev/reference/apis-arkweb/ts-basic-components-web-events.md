@@ -1911,6 +1911,33 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
       Menu() {
         // 展示菜单Menu中具体的item菜单项。
         MenuItem({
+          content: '撤销',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.undo();
+            this.showMenu = false;
+          })
+        MenuItem({
+          content: '重做',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.redo();
+            this.showMenu = false;
+          })
+        MenuItem({
+          content: '粘贴为纯文本',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.pasteAndMatchStyle();
+            this.showMenu = false;
+          })
+        MenuItem({
           content: '复制图片',
         })
           .width(100)
@@ -1971,7 +1998,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           })
       }
       .width(150)
-      .height(300)
+      .height(450)
     }
 
     build() {
@@ -2369,6 +2396,108 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
       }
     }
   }
+  ```
+
+### onActivateContent<sup>20+</sup>
+
+onActivateContent(callback: Callback\<void>)
+
+当Web页面触发window.open(url, name)时，会根据name查找是否存在已绑定的Web实例。若存在，该实例将收到此回调以通知应用需将其展示至前端；若不存在，则通过[onWindowNew](#onwindownew9)通知应用创建新Web实例。
+
+> **说明：**
+>
+> - 通过name绑定Web实例‌：需在[onWindowNew](#onwindownew9)回调中调用event.handler.setWebController方法，并传入新Web实例的controller，以完成绑定。
+> - name‌命名需符合正则表达式[a-zA-Z0-9_]+。当该name被用作\<a>或\<form>标签的target属性值时，已绑定的Web实例同样会触发此回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数**
+
+| 参数名        | 类型             | 必填 | 说明                              |
+| ------------- | ---------------- | ---- | --------------------------------- |
+| callback | Callback\<void> | 是   | 再次在原页面触发window.open后，在已打开的新页面触发该回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: "https://www.example.com", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(() => {
+            if (this.controller) {
+              this.controller.close();
+            }
+          })
+          .onActivateContent(() => {
+            //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
+            console.log("NewWebViewComp onActivateContent")
+          })
+      }.height("50%")
+    }
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("window.html"), controller: this.controller })
+          .javaScriptAccess(true)
+          .allowWindowOpenMethod(true)
+          // 需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController: webview.WebviewController = new webview.WebviewController();
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({ webviewController1: popController }),
+              isModal: false
+            })
+            this.dialogController.open();
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController);
+          })
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!-- window.html页面代码 -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ActivateContentEvent</title>
+  </head>
+  <body>
+  <a href="#" onclick="openNewWindow('https://www.example.com')">打开新页面</a>
+  <script type="text/javascript">
+      function openNewWindow(url) {
+        window.open(url, 'example');
+        return false;
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ## onWindowExit<sup>9+</sup>
