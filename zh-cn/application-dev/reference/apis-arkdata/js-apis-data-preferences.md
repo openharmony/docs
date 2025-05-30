@@ -1811,8 +1811,6 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
-  >
-  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
@@ -1859,8 +1857,6 @@ flush(): Promise&lt;void&gt;
   > **说明：**
   >
   > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
-  >
-  > 只在XML存储模式下使用，在GSKV存储模式下无需调用，因为当选择该模式时首选项对数据的操作会实时落盘。Preferences存储模式可见[存储模式说明](../../database/data-persistence-by-preferences.md#存储模式说明)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
