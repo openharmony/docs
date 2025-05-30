@@ -9863,7 +9863,7 @@ getBounds(): common2D.Rect
 import { drawing } from '@kit.ArkGraphics2D';
 
 let region = new drawing.Region();
-let rect: common2D = region.getBounds();
+let rect = region.getBounds();
 ```
 
 ### getBoundaryPath<sup>20+</sup>
