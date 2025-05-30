@@ -14,7 +14,7 @@
 - 标准库类型映射为标准库类型（比如`Array <-> Array`）。
 - 组合类型映射为组合类型（比如`class <-> class`）。
 - 无法直接映射到ArkTS1.2的ArkTS1.1或TS类型，会被映射为`Any`（比如 TS `symbol -> 1.2 Any`）。
-- 无法直接映射到ArkTS1.1的ArkTS1.2类型，会被映射为空，即交互场景不可用（比如ArkTS1.2的`final class`）。
+- 无法直接映射到ArkTS1.1的ArkTS1.2类型，会被映射为空，即交互场景不可用（比如ArkTS1.2的`final class`），如果在代码中对这些类型进行交互，则会出现编译报错；如果通过动态加载能力交互，则会出现运行时报错。
 
 ## 类型映射详细规则
 
@@ -107,8 +107,8 @@ ArkTS1.2采用递归的方式定义类型映射，例如以下的类型映射。
 | 普通lambda             | `(arg1: K1, arg2: K2) => R`                    | `(arg1: f(K1), arg2: f(K2)) => f(R)`                           |
 | function with receiver | `function foo(​this​: K1, arg2: K): R`         | `function foo(this: f(K1), arg2: f(K2)): f(R)`                 |
 | lambda with receiver   | `(​this​: K1, arg2: K2) => R`                  | `(this: f(K1), arg2: f(K2)) => f(R)`                           |
-| getter with receiver   | `get fullName(​this​: K1, arg2: K): R`         | map to nothing                                                 |
-| setter with receiver   | `set fullName(​this: K1, arg2: K): R`          | map to nothing                                                 |
+| getter with receiver   | `get fullName(​this​: K1, arg2: K): R`         | 无对应函数                                                 |
+| setter with receiver   | `set fullName(​this: K1, arg2: K): R`          | 无对应函数                                                 |
 
 #### 类
 
@@ -116,12 +116,12 @@ TODO: 美化表格
 
 | **类别**                                 | **1.2 type (T)**                                                                                          | **1.1 type (f(T))**                                                                                                                                       |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 普通类                                   | class A { field: F1m(arg: U1): M1static sf: F2static sm(arg: U2): M2get a(): Vset a(v: V): void}          | class A { get field(): f(F1)set field(arg: f(F1)): voidm(arg: f(U1)): f(M1)static sf: f(F2)static sm(arg: f(U2)): f(M2)get a(): f(V)set a(v: f(V)): void} |
-| public/private/protected/native/readonly | class A {public field: F1readonly r: F2private m(arg: U1): M1protect p(arg: U2): M2native n(arg: U3): M3} | class A {public field: f(F1)get r(): f(F2)private m(arg: f(U1)): f(M1)protect p(arg: f(U2)): f(M2)n(arg: U3): M3 // native will be ignored}               |
-| 抽象类                                   | abstract class A { ... }                                                                                  | abstract class A { ... } // 保留 abstract关键字，内部遵循相同的规则                                                                                       |
-| 继承类和override                         | class C extends A {override foo(arg: U1): M1}                                                             | class C extends A {override foo(arg: f(U1)): f(M1)}                                                                                                       |
-| 实现类                                   | class A implements Inface { ... }                                                                         | class A implements Inface { ... }                                                                                                                         |
-| final类                                  | final class A { ... }                                                                                     | map to**nothing ​**as it cannot be used in interop                                                                                                        |
+| 普通类                                   | class A { field: F1; m(arg: U1): M1; static sf: F2; static sm(arg: U2): M2; get a(): V; set a(v: V): void; } | class A { get field(): f(F1); set field(arg: f(F1)): void; m(arg: f(U1)): f(M1); static sf: f(F2); static sm(arg: f(U2)): f(M2); get a(): f(V); set a(v: f(V)): void; } |
+| public/private/protected/native/readonly | class A { public field: F1; readonly r: F2; private m(arg: U1): M1; protect p(arg: U2): M2; native n(arg: U3): M3; } | class A { public field: f(F1); get r(): f(F2); private m(arg: f(U1)): f(M1); protect p(arg: f(U2)): f(M2); n(arg: U3): M3; // native will be ignored } |
+| 抽象类                                   | abstract class A { ... };                                                                                  | abstract class A { ... };                                                                                       |
+| 继承类和override                         | class C extends A { override foo(arg: U1): M1; };                                                           | class C extends A { override foo(arg: f(U1)): f(M1); };                                                                                                       |
+| 实现类                                   | class A implements Inface { ... };                                                                         | class A implements Inface { ... };                                                                                                                         |
+| final类                                  | final class A { ... }                                                                                     | 无对应类型                                                                                        |
 
 #### 接口
 
@@ -263,9 +263,8 @@ TODO: 美化表格
 
 | **类别**         | **1.1 type (T)**                                  | **1.2 type (f(T))**                  |
 | ---------------- | ------------------------------------------------- | ------------------------------------ |
-| 枚举值都为整数   | `enum Color {Blue = 0,- Red = 1}`                 | `enum Color {Blue = 0, Red = 1}`     |
+| 枚举值都为整数   | `enum Color {Blue = 0, Red = 1}`                 | `enum Color {Blue = 0, Red = 1}`     |
 | 枚举值都为字符串 | `enum Some {A = 'Alice', B = 'Bob'}`              | `enum Some {A = 'Alice', B = 'Bob'}` |
-| 其它枚举         | `enum Mix {One = 1, Msg = 'hello', Double = 1.2}` | `Any`                           |
 
 #### 注解
 
@@ -385,7 +384,6 @@ TODO: 美化表格
 | ---------- | ---------------------------------------------- | ------------------------------------------------------- |
 | 普通函数   | `function foo(arg1: K1, arg2: K2): R`          | `function foo(arg1: f(K1), arg2: f(K2)): f(R)`          |
 | 可选参数   | `function foo(arg1: K1, arg2​?​: K2): R`       | `function foo(arg1: f(K1), arg2​?​: f(K2)): f(R)`       |
-| 只读参数   | `function foo(arg1: K1, readonly arg2: K2): R` | `function foo(arg1: f(K1), readonly arg2: f(K2)): f(R)` |
 | 剩余参数   | `function foo(arg1: K1, ​...​arg2: K2): R`     | `function foo(arg1: f(K1), ...​arg2: f(K2)): f(R)`      |
 | 普通lambda | `(arg1: K1, arg2: K2) => R`                    | `(arg1: f(K1), arg2: f(K2)) => f(R)`                    |
 

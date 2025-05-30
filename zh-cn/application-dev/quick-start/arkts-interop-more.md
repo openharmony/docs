@@ -48,7 +48,7 @@ export class C implements Inface {
   x: number = 0;
   y: number = 0;
   normSquare(): number {
-    return x * x + y * y;
+    return this.x * this.x + this.y * this.y;
   }
 }
 ```
@@ -123,7 +123,7 @@ myAdd(3, 4); // Output: 7
 ```typescript
 // file1.ets ArkTS1.1
 export class A {
-  function log() {
+  log() {
     console.log(123)
   }
 }
@@ -133,7 +133,7 @@ class B {
 export class C extends B {
   override foo() : void { console.log('D.foo') }
 }
-interface interA {
+interface InterA {
   foo: () => void;
 }
 export let itA: InterA = {
@@ -146,7 +146,7 @@ export let arr = new Array<number>(1, 2, 3);
 // file2.ets ArkTS.12
 import { A, C, itA, arr } from "file1";
 let a = new A();
-a.foo();
+a.log();
 let c = new C();
 c.foo(); // Output: D.foo
 itA.foo();
@@ -232,35 +232,35 @@ import {
 } from "1.1";
 err instanceof Error; // true
 try {
-  foo();
+  foo1();
 } catch (e) {
   (e as Error).message; // OK, '123'
 }
 
 ranErr instanceof RangeError; // true
 try {
-  foo();
+  foo2();
 } catch (e) {
   (e as RangeError).message; // OK, '456'
 }
 
 refErr instanceof ReferenceError; // true
 try {
-  foo();
+  foo3();
 } catch (e) {
   (e as ReferenceError).message; // OK, '789'
 }
 
 synErr instanceof SyntaxError; // true
 try {
-  foo();
+  foo4();
 } catch (e) {
   (e as SyntaxError).message; // OK, '111'
 }
 
 uriErr instanceof URIError; // true
 try {
-  foo();
+  foo5();
 } catch (e) {
   (e as URIError).message; // OK, '222'
 }
