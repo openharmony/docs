@@ -22,11 +22,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
 
 在创建ImageSource实例后，进行指定属性值的获取和修改、通过解码参数创建PixelMap对象、获取图像帧数等操作。
 
-   ```c++
-
+      ```c++
       #include <linux/kd.h>
       #include <string>
-
       #include <hilog/log.h>
       #include <multimedia/image_framework/image/image_source_native.h>
       #include <multimedia/image_framework/image/pixelmap_native.h>
@@ -166,4 +164,4 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libpixel
           OH_LOG_INFO(LOG_APP, "ImageSourceNativeCTest sourceTest success.");
           return getJsResult(env, IMAGE_SUCCESS);
       }
-   ```
+      ```
