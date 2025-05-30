@@ -14,7 +14,7 @@
 import { ChildProcessOptions } from '@kit.AbilityKit';
 ```
 
-## 属性
+## ChildProcessOptions
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
