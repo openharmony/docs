@@ -166,7 +166,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 >  **说明：**
 >
 > 弹框触发全局滚动的规格是高度不足时，contentBuilder先被压缩，压缩至小于100vp时触发全局滚动；
-> customContentDialog内容区的滚动需开发者自定义，内容区自定义滚动需要配合属性nestedScroll：
+> CustomContentDialog内容区的滚动需开发者自定义，内容区自定义滚动需要配合属性nestedScroll：
 > nestedScroll({ scrollForward: NestedScrollMode.PARALLEL, scrollBackward: NestedScrollMode.PARALLEL })
 
 
