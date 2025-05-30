@@ -962,8 +962,9 @@ createAlphaPixelmapSync(): PixelMap
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
     return resPixelMap;
 }
