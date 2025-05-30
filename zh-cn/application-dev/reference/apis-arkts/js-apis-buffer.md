@@ -71,11 +71,16 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
+console.info(JSON.stringify(buf1)); // {"type":"Buffer","data":[0,0,0,0,0]}
+
 let buf2 = buffer.alloc(5, 'a');
+console.info(JSON.stringify(buf2)); // {"type":"Buffer","data":[97,97,97,97,97]}
+
 let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
+console.info(JSON.stringify(buf3)); // {"type":"Buffer","data":[104,101,108,108,111,32,119,111,114,108,100]}
 ```
 
 ## buffer.allocUninitializedFromPool
@@ -112,10 +117,11 @@ allocUninitializedFromPool(size: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.allocUninitialized
@@ -152,10 +158,11 @@ allocUninitialized(size: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0,0,0,0,0,0,0,0,0]}
 ```
 
 ## buffer.byteLength
@@ -363,10 +370,11 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[0,0]}
 ```
 
 ## buffer.from
@@ -452,9 +460,10 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 **示例：**
 
 ```ts
-import { buffer } from '@kit.ArkTS';
+import { buffer, JSON } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
+console.info(JSON.stringify(buf)); // {"type":"Buffer","data":[116,104,105,115,32,105,115,32,97,32,116,101,115,116]}
 ```
 
 ## buffer.from
@@ -3500,6 +3509,7 @@ import { buffer } from '@kit.ArkTS';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
 let blob3 = blob.slice(0, 2, "MIME");
+console.info("type:", blob3.type); // type: MIME
 ```
 
 ### text
