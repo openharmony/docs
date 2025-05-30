@@ -152,9 +152,10 @@
 | [Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)](#oh_input_getdevicevendor) | - | 获取输入设备的厂商信息。 |
 | [Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)](#oh_input_getdeviceaddress) | - | 获取输入设备的物理地址。 |
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | 获取功能键状态。 |
-| [int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)](#oh_input_injecttouchevent) | - | 注入触摸事件。 |
-| [int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
-| [int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)](#oh_input_injectkeyevent) | - | 注入按键事件。 |
+| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent * touchEvent)](#oh_input_injecttouchevent) | - | 注入触摸事件。 |
+| [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent * mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
+| [int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent * keyEvent)](#oh_input_injecttouchevent) | - | 注入按键事件。 |
+| [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent * mouseEvent)](#oh_input_getmouseeventdisplayid) | - | 注入按键事件。 |
 
 ## 枚举类型说明
 
@@ -2927,7 +2928,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 ### OH_Input_InjectTouchEvent()
 
 ```
-int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
+int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent * touchEvent)
 ```
 
 **描述**
@@ -2952,7 +2953,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 ### OH_Input_InjectMouseEvent()
 
 ```
-int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
+int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent * mouseEvent)
 ```
 
 **描述**
@@ -2977,12 +2978,12 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 ### OH_Input_InjectKeyEvent()
 
 ```
-int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
+int32_t OH_Input_InjectKeyEvent(const struct Input_KeyEvent * keyEvent)
 ```
+
 **描述**
 
 注入按键事件。
-
 
 **起始版本：** 12
 
@@ -2998,3 +2999,22 @@ int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 | 类型 | 说明 |
 | -- | -- |
 | [Input_Result](#input_result) | OH_Input_InjectTouchEvent的执行结果。<br>         [INPUT_SUCCESS](#input_result) 表示注入成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>         [INPUT_PERMISSION_DENIED](#input_result) 表示缺少权限。 |
+
+### OH_Input_GetMouseEventDisplayId()
+
+```
+int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent * mouseEvent)
+```
+
+**描述**
+
+获取鼠标事件的屏幕Id。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 | 
