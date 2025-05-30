@@ -94,7 +94,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
 3. 获取Preferences实例。
 
-   针对默认的XML存储模式使用getPreferencesSync()方法获取Preferences实例。
+   针对默认的XML存储模式，使用getPreferencesSync()方法获取Preferences实例。
 
    <!--Del-->Stage模型示例：<!--DelEnd-->
 
@@ -126,7 +126,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
    ```
    <!--DelEnd-->
 
-   针对GSKV存储模式使用getPreferencesSync()方法获取Preferences实例。
+   针对GSKV存储模式，使用getPreferencesSync()方法获取Preferences实例。
 
     若希望使用GSKV存储模式且当前平台支持该模式，可以通过以下方式获取GSKV存储模式的Preferences实例。需要注意的是，当选择某一存储模式后，不允许再对存储模式进行切换。
    <!--Del-->Stage模型示例：<!--DelEnd-->
