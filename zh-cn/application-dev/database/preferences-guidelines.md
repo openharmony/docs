@@ -26,12 +26,10 @@
 | int OH_Preferences_Delete (OH_Preferences \*preference, const char \*key) | 在Preferences实例对象中删除Key对应的KV数据。 |
 | int OH_Preferences_RegisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | 对选取的Key注册数据变更订阅。订阅的Key的值发生变更后，在调用OH_Preferences_Close()后触发回调。 |
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | 取消注册选取Key的数据变更订阅。 |
-| int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool \*isSupported) | 检查当前平台是否支持对应的存储模式。 |
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | 创建一个Preferences配置选项的OH_PreferencesOption实例对象以及指向它的指针。 当不再需要使用指针时，请使用OH_PreferencesOption_Destroy销毁实例对象，否则会导致内存泄漏。 |
 | int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | 设置Preferences配置选项OH_PreferencesOption实例对象的文件名称。名称长度为0到255字节，其中不能包含'/'。 |
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | 设置Preferences配置选项OH_PreferencesOption实例对象的包名称。 |
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | 设置Preferences配置选项OH_PreferencesOption实例对象的应用组ID。 |
-| int OH_PreferencesOption_SetStorageType (OH_PreferencesOption \*option, Preferences_StorageType type) | 设置Preferences配置选项 OH_PreferencesOption实例对象的存储模式。 |
 | int OH_PreferencesOption_Destroy (OH_PreferencesOption \*option) | 销毁Preferences配置选项OH_PreferencesOption实例。 |
 | const char \* OH_PreferencesPair_GetKey (const OH_PreferencesPair \*pairs, uint32_t index) | 获取KV数据中索引对应数据的键。 |
 | const OH_PreferencesValue \* OH_PreferencesPair_GetPreferencesValue (const OH_PreferencesPair \*pairs, uint32_t index) | 获取KV数据数组中索引对应的值。 |
@@ -127,34 +125,13 @@ if (ret != PREFERENCES_OK) {
     // 错误处理
 }
 
-// 设置Preferences配置选项的存储模式，需要注意的是，设置之前需要调用OH_Preferences_IsStorageTypeSupported接口判断当前平台是否支持需要选择的模式。
-bool isGskvSupported = false;
-ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_GSKV, &isGskvSupported);
-if (ret != PREFERENCES_OK) {
-    (void)OH_PreferencesOption_Destroy(option);
-    // 错误处理
-}
-if (isGskvSupported) {
-    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_GSKV);
-    if (ret != PREFERENCES_OK) {
-        (void)OH_PreferencesOption_Destroy(option);
-        // 错误处理
-    }
-} else {
-    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_XML);
-    if (ret != PREFERENCES_OK) {
-        (void)OH_PreferencesOption_Destroy(option);
-        // 错误处理
-    }
-}
-
 // 2. 打开一个Preferences实例。
 int errCode = PREFERENCES_OK;
 OH_Preferences *preference = OH_Preferences_Open(option, &errCode);
 // option使用完毕后可直接释放，释放后需要将指针置空。
 (void)OH_PreferencesOption_Destroy(option);
 option = nullptr;
-if (preference == nullptr || errCode != PREFERENCES_OK) {
+if (preference == nullptr) {
     // 错误处理
 }
 
