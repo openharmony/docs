@@ -128,8 +128,8 @@ onDrop(eventCallback: OnDragEventCallback, dropOptions?: DropOptions)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| eventCallback  | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
-| dropOptions  | bool   | 否   | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+| eventCallback  | [OnDragEventCallback](#ondrageventcallback15)   | 是   | 回调函数。|
+| dropOptions  | [DropOptions](#dropoptions15)   | 否   | 落入过程的参数。 |
 
 ## onDragEnd<sup>10+</sup>
 
@@ -149,7 +149,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 ## onPreDrag<sup>12+</sup>
 
-onPreDrag(event: (preDragStatus: PreDragStatus) => void)
+onPreDrag(callback: Callback\<PreDragStatus>)
 
 绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
@@ -161,7 +161,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
+| callback    | Callback<[PreDragStatus](#predragstatus12枚举说明)>     | 是   | 回调函数。|
 
 ## DragItemInfo说明
 
@@ -321,6 +321,33 @@ type DataSyncOptions = GetDataParams
 | 类型 | 说明 |
 | ----- | ----------------- |
 | [GetDataParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#getdataparams15) | 表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。|
+
+## OnDragEventCallback<sup>15+</sup>
+
+type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
+
+拖拽事件的回调函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 |必填 |说明 |
+| ----- | ----------------- | ----- | ----- |
+| event | [DragEvent](#dragevent7)| 是 |  event为拖拽事件信息，包括拖拽点坐标。|
+| extraParams| string |否 | extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+
+## DropOptions<sup>15+</sup>
+
+设置落入过程的参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名     | 类型  | 只读 | 可选 | 描述             |
+| ------ | ------ | ---------------- | ------ | ------ |
+| disableDataPrefetch | bool  | 否  | 否  | 设置拖拽是否提前获取数据。<br/>**说明：**<br/> 当使用startDataLoading获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
 
 ## 示例
 
@@ -817,9 +844,9 @@ struct Index {
 
           .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+              this.getUIContext().getPromptAction().showToast({ duration: 100, message: 'Drag failed' });
             }
           })
 
