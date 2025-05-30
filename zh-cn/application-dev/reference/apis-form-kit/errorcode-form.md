@@ -304,21 +304,3 @@ Get system manager service failed.
 
 1. 重启系统后重试。
 2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
-
-## 16501010 设置互动卡片背景图失败
-
-**错误信息**
-
-Failed to set the live form background image.
-
-**错误描述**
-
-设置互动卡片背景图时，传入背景图资源无效，系统会报此错误码。
-
-**可能原因**
-
-背景图资源无效。
-
-**处理步骤**
-
-检查传入的背景图资源是否有效。

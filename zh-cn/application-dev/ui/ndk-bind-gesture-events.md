@@ -548,3 +548,60 @@ ArkUI_NodeHandle testGestureExample() {
 
 
 经过上述修改，将原本可以生效的长按手势做了拦截，即，此时再对Column节点长按将不会触发长按的手势回调。
+
+## 获取事件信息
+
+[绑定手势事件](#绑定手势事件)已详细说明如何将手势绑定到节点上。在回调执行时，ArkUI框架提供了[OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent)接口，可从手势事件中获取基础事件对象。之后，可通过调用[OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx)、[OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex)、[OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction)和[OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime)等接口，从基础事件中获取更多信息。应用依据获取的信息，在手势事件执行过程中实现差异化交互逻辑。
+
+   ```cpp
+   // 设置回调，在触发手势事件时执行回调处理手势事件
+   auto onActionCallback = [](ArkUI_GestureEvent *event, void *extraParams) {
+       // 从手势事件获取基础事件对象
+       auto *inputEvent = OH_ArkUI_GestureEvent_GetRawInputEvent(event);
+       // 从基础事件获取事件信息
+       auto x = OH_ArkUI_PointerEvent_GetX(inputEvent);
+       auto y = OH_ArkUI_PointerEvent_GetY(inputEvent);
+       auto displayX = OH_ArkUI_PointerEvent_GetDisplayX(inputEvent);
+       auto displayY = OH_ArkUI_PointerEvent_GetDisplayY(inputEvent);
+       auto windowX = OH_ArkUI_PointerEvent_GetWindowX(inputEvent);
+       auto windowY = OH_ArkUI_PointerEvent_GetWindowY(inputEvent);
+       auto pointerCount = OH_ArkUI_PointerEvent_GetPointerCount(inputEvent);
+       auto xByIndex = OH_ArkUI_PointerEvent_GetXByIndex(inputEvent, 0);
+       auto yByIndex = OH_ArkUI_PointerEvent_GetYByIndex(inputEvent, 0);
+       auto displayXByIndex = OH_ArkUI_PointerEvent_GetDisplayXByIndex(inputEvent, 0);
+       auto displayYByIndex = OH_ArkUI_PointerEvent_GetDisplayYByIndex(inputEvent, 0);
+       auto windowXByIndex = OH_ArkUI_PointerEvent_GetWindowXByIndex(inputEvent, 0);
+       auto windowYByIndex = OH_ArkUI_PointerEvent_GetWindowYByIndex(inputEvent, 0);
+       auto pointerId = OH_ArkUI_PointerEvent_GetPointerId(inputEvent, 0);
+       auto pressure = OH_ArkUI_PointerEvent_GetPressure(inputEvent, 0);
+       auto action = OH_ArkUI_UIInputEvent_GetAction(inputEvent);
+       auto eventTime = OH_ArkUI_UIInputEvent_GetEventTime(inputEvent);
+       auto sourceType = OH_ArkUI_UIInputEvent_GetSourceType(inputEvent);
+       auto type = OH_ArkUI_UIInputEvent_GetType(inputEvent);
+       std::string eventInfo =
+           "x: " + std::to_string(x) + ", y: " + std::to_string(y) +
+           ", displayX: " + std::to_string(displayX) + ", displayY: " + std::to_string(displayY) +
+           ", windowX: " + std::to_string(windowX) + ", windowY: " + std::to_string(windowY) + "\n" +
+           ", pointerCount: " + std::to_string(pointerCount) + ", xByIndex: " + std::to_string(xByIndex) +
+           ", yByIndex: " + std::to_string(yByIndex) +
+           ", displayXByIndex: " + std::to_string(displayXByIndex) +
+           ", displayYByIndex: " + std::to_string(displayYByIndex) +
+           ", windowXByIndex: " + std::to_string(windowXByIndex) +
+           ", windowYByIndex: " + std::to_string(windowYByIndex) + "\n" +
+           ", pointerId: " + std::to_string(pointerId) + ", pressure: " + std::to_string(pressure) +
+           ", action: " + std::to_string(action) + ", eventTime: " + std::to_string(eventTime) +
+           ", sourceType: " + std::to_string(sourceType) + ", type: " + std::to_string(type);
+       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "eventInfoOfCommonEvent", "eventInfo = %{public}s",
+                       eventInfo.c_str());
+   };
+   // 创建一个单指点击手势
+   auto TapGesture = gestureApi->createTapGesture(1, 1);
+   // 将事件回调绑定到TapGesture上，触发手势后，通过回调函数处理手势事件
+   gestureApi->setGestureEventTarget(TapGesture,
+                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
+                                           GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
+                                       column, onActionCallback);
+   // 将手势添加到colunm组件上，使column组件可以触发单指点击手势
+   gestureApi->addGestureToNode(column, TapGesture, ArkUI_GesturePriority::PARALLEL,
+                                           ArkUI_GestureMask::NORMAL_GESTURE_MASK);
+   ```

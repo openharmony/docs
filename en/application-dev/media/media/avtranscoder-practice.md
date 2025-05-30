@@ -136,8 +136,13 @@ This example uses a Worker thread to perform asynchronous transcoding. For detai
             transcoder.on('progressUpdate', (progress: number) => {
             })
 
-            let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-            transcoder.fdSrc = fileDescriptor;
+            try {
+                // Obtain the file descriptor of the input file. 3.mkv is a preset resource in the rawfile directory. Replace it with the actual one.
+                let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
+                transcoder.fdSrc = fileDescriptor;
+            } catch (error) {
+                console.error('Failed to get the file descriptor, please check the resource and path.');
+            }
             let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
             let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
             let fd = file.fd;
@@ -154,7 +159,7 @@ This example uses a Worker thread to perform asynchronous transcoding. For detai
             await transcoder?.prepare(config);
             await transcoder?.start();
         } catch (e) {
-            console.info(`error :  ${e}`);
+            console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
         }
     }
     ```
@@ -336,9 +341,13 @@ async function doSome(context: common.Context) {
         // Callback function for transcoding progress updates.
         transcoder.on('progressUpdate', (progress: number) => {
         })
-        // Read raw files in the rawfile directory.
-        let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
-        transcoder.fdSrc = fileDescriptor;
+        try {
+            // Obtain the file descriptor of the input file. 3.mkv is a preset resource in the rawfile directory. Replace it with the actual one.
+            let fileDescriptor = await context.resourceManager.getRawFd('3.mkv');
+            transcoder.fdSrc = fileDescriptor;
+        } catch (error) {
+            console.error('Failed to get the file descriptor, please check the resource and path.');
+        }
         let fdPath = context.filesDir + "/" + "VID_" + Date.parse(new Date().toString()) + ".mp4";
         let file = fs.openSync(fdPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let fd = file.fd;
@@ -354,7 +363,7 @@ async function doSome(context: common.Context) {
         await transcoder?.prepare(config);
         await transcoder?.start();
     } catch (e) {
-        console.info(`error :  ${e}`);
+        console.error(`transcode error: code = ` + e.code.toString() + `, message = ${JSON.stringify(e.message)}`);
     }
 }
 ```

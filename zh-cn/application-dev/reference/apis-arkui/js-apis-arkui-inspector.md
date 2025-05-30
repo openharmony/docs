@@ -4,13 +4,13 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
 <!--deprecated_code_no_check-->
 ```ts
-import { inspector } from '@kit.ArkUI'
+import { inspector } from '@kit.ArkUI';
 ```
 
 ## inspector.createComponentObserver<sup>(deprecated)</sup>
@@ -65,8 +65,8 @@ on(type: 'layout', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。|
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | () => void   | 是   | 监听layout、draw或drawChildren的回调。|
 
 ### off
 
@@ -82,8 +82,8 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on)方法中的callback为相同对象时才能取消回调成功。|
 
 ### on
 
@@ -99,8 +99,8 @@ on(type: 'draw', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。                                     |
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | () => void   | 是   | 监听layout、draw或drawChildren的回调。                                     |
 
 ### off
 
@@ -116,8 +116,42 @@ off(type: 'draw', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on-1)方法中的callback为相同对象时才能取消回调成功。 |
+
+### on<sup>20<sup>
+
+on(type: 'drawChildren',  callback: Callback): void
+
+通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | [Callback](js-apis-arkui-inspector.md#)   | 是   | 监听layout、draw或drawChildren的回调。                                     |
+
+### off<sup>20<sup>
+
+off(type: 'drawChildren', callback: Callback): void
+
+通过句柄向对应的查询条件取消注册回调，当组件绘制送显完成时不再触发指定的回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 必须填写字符串'layout'、'draw'或'drawChildren'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。<br>drawChildren: 子组件绘制送显完成。|
+| callback | Callback   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on](#on20)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 
@@ -154,17 +188,24 @@ off(type: 'draw', callback?: () => void): void
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
+      let onDrawChildrenComplete:()=>void=():void=>{
+          // do something here
+      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
+      let FuncDrawChildren = onDrawChildrenComplete // bind current js instance
       let OffFuncLayout = onLayoutComplete // bind current js instance
       let OffFuncDraw = onDrawComplete // bind current js instance
+      let OffFuncDrawChildren = onDrawChildrenComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)
-
+      this.listener.on('drawChildren', FuncDrawChildren)
+      
       // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
       // this.listener.off('layout', OffFuncLayout)
       // this.listener.off('draw', OffFuncDraw)
+      // this.listener.off('drawChildren', OffFuncDrawChildren)
     }
   }
   ```

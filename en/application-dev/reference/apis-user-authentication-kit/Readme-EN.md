@@ -8,6 +8,6 @@
   - [@ohos.userIAM.userAuth (User Authentication) (System API)](js-apis-useriam-userauth-sys.md)
   <!--DelEnd-->
 - ArkTS Components<!--user-authentication-comp-->
-  - [@ohos.userIAM.userAuthIcon (Embedded User Authentication Icons)](ohos-useriam-userauthicon.md)
+  - [@ohos.userIAM.userAuthIcon (Embedded User Authentication Widget)](ohos-useriam-userauthicon.md)
 - Error Codes<!--user-authentication-arkts-errcode-->
   - [User Authentication Error Codes](errorcode-useriam.md)

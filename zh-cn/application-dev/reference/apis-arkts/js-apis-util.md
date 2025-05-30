@@ -180,7 +180,7 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
 > **说明：**
 >
@@ -524,6 +524,29 @@ console.info('result2 is ' + result2);
 // 输出结果：result1 与 result2 的值相等，且为随机的Hash值。
 ```
 
+## util.getMainThreadStackTrace<sup>20+</sup>
+
+getMainThreadStackTrace(): string
+
+获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 主线程的栈追踪信息。若主线程未处于执行JS代码状态，则返回空字符串。|
+
+**示例：**
+
+```ts
+let stack = util.getMainThreadStackTrace();
+console.info(stack);
+// 输出当前主线程的栈追踪信息。
+```
 
 ## TextDecoderOptions<sup>11+</sup>
 
@@ -621,7 +644,7 @@ console.info('asp.msg is ' + asp.msg);
 util.Aspect.addBefore(MyClass, 'foo', false, (instance: MyClass, arg: string) => {
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
-  console.info('msg is changed to ' + instance.msg)
+  console.info('msg is changed to ' + instance.msg);
 });
 
 result = asp.foo('123');
@@ -788,7 +811,7 @@ console.info('asp.msg is ' + asp.msg);
 // 输出结果：asp.msg is msg000
 
 util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): string => {
-  console.info('execute instead')
+  console.info('execute instead');
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
   console.info('msg is changed to ' + instance.msg);
@@ -855,6 +878,12 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextDecoder](#textdecoder) | 返回一个TextDecoder对象。 |
 
 **错误码：**
 
@@ -1155,6 +1184,12 @@ static create(encoding?: string): TextEncoder
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextEncoder](#textencoder) | 返回一个TextEncoder对象。|
 
 **错误码：**
 

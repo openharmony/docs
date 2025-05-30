@@ -1,6 +1,6 @@
 # 使用Node-API接口产生的异常日志/崩溃分析
 
-以下维测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
+以下维测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
 
 若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
 

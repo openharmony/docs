@@ -433,7 +433,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | **类型**                                                  | **说明**                                                                |
 | --------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9) | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9) | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
 
 **错误码：**
 
@@ -1118,7 +1118,7 @@ let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // 必须符合NDEF格
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-    let rawData2 = tag.ndef.messageToBytes(ndefMessage);
+    let rawData2 : number[] = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
 } catch (businessError) {
     console.error("ndef createNdefMessage businessError: " + businessError);
@@ -1248,15 +1248,15 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 
 | **名称**                     |**类型**| **值** | **说明**                    |
 | ---------------------------- | ------ | ------ | --------------------------- |
-| NFC_A<sup>12+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| NFC_B<sup>12+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| ISO_DEP<sup>12+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NFC_F<sup>12+</sup>                        |  number | 4      | NFC-F (JIS 6319-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| NFC_V<sup>12+</sup>                        |  number | 5      | NFC-V (ISO 15693)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
-| NDEF<sup>12+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| NFC_A<sup>7+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| NFC_B<sup>7+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ISO_DEP<sup>7+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NFC_F<sup>7+</sup>                        |  number | 4      | NFC-F (JIS 6319-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| NFC_V<sup>7+</sup>                        |  number | 5      | NFC-V (ISO 15693)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| NDEF<sup>7+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| MIFARE_CLASSIC<sup>12+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| MIFARE_ULTRALIGHT<sup>12+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| MIFARE_CLASSIC<sup>7+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| MIFARE_ULTRALIGHT<sup>7+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE技术。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。               |
 
 ## TnfType<sup>9+</sup>
@@ -1351,6 +1351,7 @@ type NfcATag = _NfcATag
 获取NfcATag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1364,6 +1365,7 @@ type NfcBTag = _NfcBTag
 获取NfcBTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1377,6 +1379,7 @@ type NfcFTag = _NfcFTag
 获取NfcFTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1390,6 +1393,7 @@ type NfcVTag = _NfcVTag
 获取NfcVTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1403,6 +1407,7 @@ type IsoDepTag = _IsoDepTag
 获取IsoDepTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1416,6 +1421,7 @@ type NdefTag = _NdefTag
 获取NdefTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1429,6 +1435,7 @@ type MifareClassicTag = _MifareClassicTag
 获取MifareClassicTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1442,6 +1449,7 @@ type MifareUltralightTag = _MifareUltralightTag;
 获取MifareUltralightTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1455,6 +1463,7 @@ type NdefFormatableTag = _NdefFormatableTag
 获取NdefFormatableTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1468,6 +1477,7 @@ type BarcodeTag = _BarcodeTag
 获取BarcodeTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1481,6 +1491,7 @@ type NdefMessage = _NdefMessage
 获取NdefMessage。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
@@ -1494,6 +1505,7 @@ type TagSession = _TagSession
 获取TagSession。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |

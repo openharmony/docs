@@ -257,6 +257,22 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 >
 >  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
+### canLoop<sup>20+</sup>
+
+canLoop(isLoop: Optional\<boolean>)
+
+设置是否可循环滚动。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>当isLoop的值为undefined时，默认值：true |
+
 ## PickerTextStyle<sup>10+</sup>类型说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -452,3 +468,40 @@ struct DatePickerExample {
 }
 ```
 ![datePicker](figures/DatePickerDemo3.gif)
+
+### 示例4（设置循环滚动）
+
+该示例使用canLoop设置DatePicker是否循环滚动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  @State isLoop: boolean = true;
+  selectedDate: Date = new Date("2010-1-1");
+
+  build() {
+    Column() {
+      DatePicker({
+        start: new Date("2000-1-1"),
+        end: new Date("2100-12-31"),
+        selected: this.selectedDate,
+      })
+        .canLoop(this.isLoop)
+        .onDateChange((value: Date) => {
+            console.info("DatePicker:onDateChange()" + value.toString());
+        })
+
+      Row() {
+        Text('循环滚动').fontSize(20)
+        Toggle({ type: ToggleType.Switch, isOn: true })
+          .onChange((isOn: boolean) => {
+            this.isLoop = isOn;
+          })
+      }.position({ x: '60%', y: '40%' })
+    }.width('100%')
+  }
+}
+```
+![datePicker](figures/DatePickerDemo4.gif)

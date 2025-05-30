@@ -115,6 +115,7 @@ class MyAbility extends UIAbility {
 | rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
 | pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
 | timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。 |
 
 **示例**:
 
@@ -131,7 +132,8 @@ class MyAbility extends UIAbility {
         '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
         '\n rss: ' + launchParam.lastExitDetailInfo.rss +
         '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp
+        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
+        '\n processState: ' + launchParam.lastExitDetailInfo.processState
       );
     }
   }
@@ -177,6 +179,13 @@ class MyAbility extends UIAbility {
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。 |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+
+> **说明：**
+> 
+> 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
+> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 
@@ -269,8 +278,8 @@ class MyAbility extends UIAbility {
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| CONTINUATION           | 0    | 迁移保存状态。 |
-| APP_RECOVERY           | 1    | 应用恢复保存状态。 |
+| CONTINUATION           | 0    | 应用迁移场景。 |
+| APP_RECOVERY           | 1    | 应用故障恢复场景。 |
 
 **示例：**
 

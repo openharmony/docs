@@ -1,5 +1,4 @@
-# 数据库备份与恢复
-
+# 数据库备份与恢复（ArkTS）
 
 ## 场景介绍
 
@@ -442,3 +441,5 @@ export default class EntryAbility extends UIAbility {
    ```
 
 <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

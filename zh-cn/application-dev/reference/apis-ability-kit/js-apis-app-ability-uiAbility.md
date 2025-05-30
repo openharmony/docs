@@ -49,12 +49,15 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 **示例：**
 
+
 ```ts
 import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
   }
 }
 ```
@@ -80,11 +83,19 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+export default class MyUIAbility extends UIAbility {
+  // 主窗口已创建，为该UIAbility设置主页面
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
+      }
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+    });
   }
 }
 ```
@@ -110,11 +121,12 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
-    console.log('onWindowStageWillDestroy');
+    hilog.info(0x0000, 'testTag', `onWindowStageWillDestroy`);
   }
 }
 ```
@@ -134,10 +146,12 @@ onWindowStageDestroy(): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageDestroy() {
-    console.log('onWindowStageDestroy');
+    // 主窗口已销毁，释放UI相关资源
+    hilog.info(0x0000, 'testTag', `onWindowStageDestroy`);
   }
 }
 ```
@@ -163,11 +177,12 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageRestore(windowStage: window.WindowStage) {
-    console.log('onWindowStageRestore');
+    hilog.info(0x0000, 'testTag', `onWindowStageRestore`);
   }
 }
 ```
@@ -193,10 +208,11 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onDestroy() {
-    console.log('onDestroy');
+    hilog.info(0x0000, 'testTag', `onDestroy`);
   }
 }
 ```
@@ -251,9 +267,9 @@ export default class EntryAbility extends UIAbility {
       params: eventParams,
     };
     hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
     });
   }
   // ...
@@ -272,9 +288,9 @@ export default class EntryAbility extends UIAbility {
       params: eventParams,
     };
     hiAppEvent.write(eventInfo).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`);
     }).catch((err: BusinessError) => {
-      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+      hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
     });
   }
 }
@@ -295,12 +311,15 @@ UIAbility生命周期回调，应用从后台转到前台时触发，在[onWillF
 
 **示例：**
 
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onForeground() {
-    console.log('onForeground');
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onForeground`);
   }
 }
 ```
@@ -382,10 +401,12 @@ UIAbility生命周期回调，当应用从前台转到后台时触发，在[onWi
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onBackground() {
-    console.log('onBackground');
+    // UIAbility回到后台
+    hilog.info(0x0000, 'testTag', `onBackground`);
   }
 }
 ```
@@ -407,29 +428,46 @@ UIAbility生命周期回调，当应用从前台转到后台后触发，在[onBa
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
 
 class MyUIAbility extends UIAbility {
   static audioRenderer: audio.AudioRenderer;
   // ...
   onForeground(): void {
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+      channels: audio.AudioChannel.CHANNEL_2, // 通道。
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+    };
+
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+      rendererFlags: 0 // 音频渲染器标志。
+    };
+
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
+
     // 在前台时申请audioRenderer，用于播放PCM（Pulse Code Modulation）音频数据
     audio.createAudioRenderer(audioRendererOptions).then((data) => {
-      EntryAbility.audioRenderer = data;
-      console.info('AudioRenderer Created : Success : Stream Type: SUCCESS');
+      MyUIAbility.audioRenderer = data;
+      console.info(`AudioRenderer Created : Success : Stream Type: SUCCESS.`);
     }).catch((err: BusinessError) => {
-      console.error(`AudioRenderer Created : ERROR : ${err}`);
+      console.error(`AudioRenderer Created : F : ${JSON.stringify(err)}.`);
     });
   }
 
   onDidBackground() {
     // 转到后台后，释放audioRenderer资源
-    audioRenderer.release((err: BusinessError) => {
+    MyUIAbility.audioRenderer.release((err: BusinessError) => {
       if (err) {
-        console.error('AudioRenderer release failed');
+        console.error(`AudioRenderer release failed, error: ${JSON.stringify(err)}.`);
       } else {
-        console.info('AudioRenderer released.');
+        console.info(`AudioRenderer released.`);
       }
     });
   }
@@ -572,6 +610,10 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。当应用出现故障时，如果已启用自动保存状态，框架将调用onSaveState来保存UIAbility的状态。
 
+> **说明：**
+>
+> 从API version 20开始，当[UIAbility.onSaveStateAsync](#uiabilityonsavestateasync20)实现时，本回调函数将不执行。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -598,6 +640,44 @@ class MyUIAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     console.log('onSaveState');
     wantParam['myData'] = 'my1234567';
+    return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+  }
+}
+```
+
+## UIAbility.onSaveStateAsync<sup>20+</sup>
+
+onSaveStateAsync(stateType: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): Promise\<AbilityConstant.OnSaveResult>
+
+如果应用已使能故障恢复功能（即[enableAppRecovery](js-apis-app-ability-appRecovery.md#apprecoveryenableapprecovery)接口中的saveOccasion参数设置为SAVE_WHEN_ERROR），当应用出现故障时，将触发该回调来保存UIAbility的数据。使用Promise异步回调。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stateType | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 触发应用保存状态的原因，当前仅支持`APP_RECOVERY`（即应用故障恢复场景）。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 用户自定义的应用状态数据，应用再启动时被保存在Want.parameters中。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult)> | Promise对象。返回一个数据保存策略的对象（如全部拒绝、全部允许、只允许故障恢复场景等）。 |
+
+**示例：**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyUIAbility extends UIAbility {
+  async onSaveStateAsync(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) : Promise<AbilityConstant.OnSaveResult> {
+    await new Promise<string>((res, rej) => {
+      setTimeout(res, 1000); // 延时1秒后执行
+    });
     return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
   }
 }
@@ -831,7 +911,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -919,7 +999,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -995,7 +1075,7 @@ release(): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 
 **示例：**
@@ -1048,7 +1128,7 @@ export default class MainUIAbility extends UIAbility {
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1102,7 +1182,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1158,7 +1238,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 

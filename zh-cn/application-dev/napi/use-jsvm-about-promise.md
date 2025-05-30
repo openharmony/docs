@@ -72,6 +72,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
+<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 预期结果
 ```
@@ -155,9 +156,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // 样例测试js
 const char *srcCallNative = R"JS(createPromise();
-                                 resolveRejectDeferred('success','fail', true);
-                                 resolveRejectDeferred('success','fail', false);)JS";
+                                 resolveRejectDeferred('success', 'fail', true);
+                                 resolveRejectDeferred('success', 'fail', false);)JS";
 ```
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 预期结果
 ```
@@ -170,7 +172,7 @@ OH_JSVM_RejectDeferred reject
 
 用于设置 Promise 解析或拒绝后的回调，效果等价于调用原生的 `Promise.then()` 或 `Promise.catch()`
 
-cpp 部分代码
+以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
 
 ```cpp
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
@@ -251,28 +253,11 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     return 0;
 }
 
-static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
-    JSVM_VM vm;
-    OH_JSVM_GetVM(env, &vm);
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
     if (PromiseRegisterHandler(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
-
-    return nullptr;
 }
-
-// RunDemo注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = RunDemo},
-};
-static JSVM_CallbackStruct *method = param;
-// RunDemo方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-
-// 样例测试js
-const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 预期结果

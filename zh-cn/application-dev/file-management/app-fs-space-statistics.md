@@ -10,27 +10,28 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
 
 | 模块 | 接口名 | 功能 |
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getFreeSize | 异步获取内置存储的可用空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getFreeSizeSync | 同步获取内置存储的可用空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getTotalSize | 异步获取内置存储的总空间大小（单位为Byte）。 |
-| \@ohos.file.storageStatistics | getTotalSizeSync | 同步获取内置存储的总空间大小（单位为Byte）。 |
-| \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 |
-| \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。 |
+| \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。|
+| \@ohos.file.storageStatistics | getFreeSize | 异步获取内置存储的可用空间大小（单位为Byte）。<br>**说明**：从API version 15开始，支持该接口。 |
+| \@ohos.file.storageStatistics | getFreeSizeSync | 同步获取内置存储的可用空间大小（单位为Byte）。<br>**说明**：从API version 15开始，支持该接口。 |
+| \@ohos.file.storageStatistics | getTotalSize | 异步获取内置存储的总空间大小（单位为Byte）。<br>**说明**：从API version 15开始，支持该接口。 |
+| \@ohos.file.storageStatistics | getTotalSizeSync | 同步获取内置存储的总空间大小（单位为Byte）。<br>**说明**：从API version 15开始，支持该接口。 |
+| \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。|
+| \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。|
 
 **表2** 应用空间统计
 
 > **注意：**
 >
-> 表格中统计路径列涉及的目录均指应用的沙箱路径，查看路径前需要先进入对应的应用沙箱空间。进入沙箱空间需要执行以下命令：  
+> 表格中统计路径列涉及的目录均指应用的沙箱路径，查看路径前需要先进入对应的应用沙箱空间。进入沙箱空间需要执行以下命令：
+>
 > 1. hdc shell。
 > 2. nsenter -t {pid} -m sh。
 
-| BundleStats属性 | 含义 | 统计路径 | 
+| BundleStats属性 | 含义 | 统计路径 |
 | -------- | -------- | -------- |
-| appSize | 应用安装文件大小（单位为Byte） | 应用安装文件保存在以下目录：<br/>/data/storage/el1/bundle | 
-| cacheSize | 应用缓存文件大小（单位为Byte） | 应用的缓存文件保存在以下目录：<br/>/data/storage/el1/base/cache<br/>/data/storage/el1/base/haps/entry/cache<br/>/data/storage/el2/base/cache<br/>/data/storage/el2/base/haps/entry/cache | 
-| dataSize | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） | 应用文件由本地文件、分布式文件以及数据库文件组成。<br/>本地文件保存在以下目录（注意缓存文件目录为以下目录的子目录）：<br/>/data/storage/el1/base<br/>/data/storage/el2/base<br/>分布式文件保存在以下目录：<br/>/data/storage/el2/distributedfiles<br/>数据库文件保存在以下目录：<br/>/data/storage/el1/database<br/>/data/storage/el2/database | 
+| appSize | 应用安装文件大小（单位为Byte） | 应用安装文件保存在以下目录：<br/>/data/storage/el1/bundle |
+| cacheSize | 应用缓存文件大小（单位为Byte） | 应用的缓存文件保存在以下目录：<br/>/data/storage/el1/base/cache<br/>/data/storage/el1/base/haps/entry/cache<br/>/data/storage/el2/base/cache<br/>/data/storage/el2/base/haps/entry/cache |
+| dataSize | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） | 应用文件由本地文件、分布式文件以及数据库文件组成。<br/>本地文件保存在以下目录（注意缓存文件目录为以下目录的子目录）：<br/>/data/storage/el1/base<br/>/data/storage/el2/base<br/>分布式文件保存在以下目录：<br/>/data/storage/el2/distributedfiles<br/>数据库文件保存在以下目录：<br/>/data/storage/el1/database<br/>/data/storage/el2/database |
 
 ## 开发示例
 
@@ -75,9 +76,9 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   import { BusinessError } from '@kit.BasicServicesKit';
   
   storageStatistics.getTotalSize().then((number: number) => {
-    console.info("getTotalSize successfully:" + JSON.stringify(number));
+    console.info(`getTotalSize successfully, number is ${number}`);
   }).catch((err: BusinessError) => {
-    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
+    console.error(`getTotalSize failed with error, code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -89,10 +90,10 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   
   try {
     let number = storageStatistics.getTotalSizeSync();
-    console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+    console.info(`getTotalSizeSync successfully, number is ${number}`);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
+    console.error(`getTotalSizeSync failed with error, code is ${error.code}, message is ${error.message}`);
   }
   ```
 
@@ -103,9 +104,9 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   import { BusinessError } from '@kit.BasicServicesKit';
   
   storageStatistics.getFreeSize().then((number: number) => {
-    console.info("getFreeSize successfully:" + JSON.stringify(number));
+    console.info(`getFreeSize successfully, number is ${number}`);
   }).catch((err: BusinessError) => {
-    console.error("getFreeSize failed with error:" + JSON.stringify(err));
+    console.error(`getFreeSize failed with error, code is ${err.code}, message is ${err.message}`);
   });
   ```
 
@@ -117,10 +118,9 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis-core-file-kit/j
   
   try {
     let number = storageStatistics.getFreeSizeSync();
-    console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+    console.info(`getFreeSizeSync successfully, number is ${number}`);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
+    console.error(`getFreeSizeSync failed with error, code is ${error.code}, message is ${error.message}`);
   }
   ```
-

@@ -1491,13 +1491,13 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 ### queryEventInstances<sup>18+</sup>
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyof Event)[]): Promise\<Event[]>
 
 获取Calendar下符合查询条件的日程实例，使用Promise异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数**：
 

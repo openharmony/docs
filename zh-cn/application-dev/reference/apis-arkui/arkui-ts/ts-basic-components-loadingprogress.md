@@ -101,9 +101,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
-## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
+## LoadingProgressStyle枚举说明
 
-从API version 8开始废弃。
+表示LoadingProgress的样式类型，不推荐使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

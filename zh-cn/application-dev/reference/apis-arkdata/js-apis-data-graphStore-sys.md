@@ -2,7 +2,7 @@
 
 图数据库（Graph Database，GDB）是以顶点（[Vertex](#vertex)）、边（[Edge](#edge)）为基础存储单元，以高效存储、查询图数据为设计原理的数据管理系统。图数据库提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的读（查询）、写（增删改）、事务管理等接口，可以直接运行用户输入的GQL（Graph Query Language，图查询语言）语句来满足存储、查询、分析高度互联数据的场景需要。
 
-- [Vertex](#vertex)：顶点，代表实体或实例，例如人员、企业、帐户或要跟踪的任何其他项目。它们大致相当于关系数据库中的记录、关系或行，或者文档存储数据库中的文档。
+- [Vertex](#vertex)：顶点，代表实体或实例，例如人员、企业、账户或要跟踪的任何其他项目。它们大致相当于关系数据库中的记录、关系或行，或者文档存储数据库中的文档。
 - [Edge](#edge)：边，也称作关系，将节点连接到其他节点的线；代表节点之间的关系。边是图数据库中的关键概念，图数据库独有的数据抽象概念，而关系型数据库和文件型数据库并没有“边”这一概念，它们的关系查询必须在运行时进行具体化。
 - [Path](#path)：路径，由顶点和边按照一定顺序组成的序列。
 - [PathSegment](#pathsegment)：路径段，路径中的某一条边及其起点、终点。
@@ -28,7 +28,7 @@ import { graphStore } from '@kit.ArkData';
 
 getStore(context: Context, config: StoreConfig): Promise&lt;GraphStore&gt;
 
-获得一个相关的GraphStore实例，操作图数据库，用户可以根据自己的需求配置GraphStore实例的参数，然后通过GraphStore实例调用相关接口可以执行相关的数据操作，使用promise异步回调。
+获得GraphStore实例以操作图数据库，根据需求配置GraphStore实例的参数，通过该实例调用接口执行相关的数据操作，使用promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -55,7 +55,7 @@ getStore(context: Context, config: StoreConfig): Promise&lt;GraphStore&gt;
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
 | 31300001  | Database corrupted. |
-| 31300014  | Failed to open or delete database with an invalid database path. |
+| 31300014  | Failed to open or delete the database with an invalid database path. |
 | 31300015  | StoreConfig, for example, securityLevel or encrypt, is changed. |
 
 **示例：**
@@ -88,9 +88,9 @@ class EntryAbility extends UIAbility {
 
 deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 
-使用指定的数据库文件配置删除数据库，使用Promise异步回调。
+使用指定的数据库文件配置删除数据库，使用promise异步回调。
 
-删除前，如果数据库未关闭，建议使用[close](#close)接口关闭数据库后再进行删除。删除成功后，打开的数据库句柄已无效，建议将数据库对象置为null，不再使用。
+删除前，请确保数据库已关闭，建议使用[close](#close)接口关闭数据库后再进行删除。删除成功后，请将数据库对象置为null，不再使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -116,7 +116,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 | 202  | Permission verification failed, application which is not a system application uses system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
-| 31300014  | Failed to open or delete database with an invalid database path. |
+| 31300014  | Failed to open or delete the database with an invalid database path. |
 
 **示例：**
 
@@ -146,7 +146,7 @@ class EntryAbility extends UIAbility {
 
 ## StoreConfig
 
-管理图数据库配置。
+用于管理图数据库的配置。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -158,7 +158,7 @@ class EntryAbility extends UIAbility {
 
 ## SecurityLevel
 
-数据库的安全级别枚举。请使用枚举名称而非枚举值。
+用于表示数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -173,7 +173,7 @@ class EntryAbility extends UIAbility {
 
 type ValueType = null | number | string
 
-用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
+用于表示允许的数据字段类型，接口参数的具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -185,7 +185,7 @@ type ValueType = null | number | string
 
 ## Vertex
 
-记录顶点的相关信息。Vertex仅作为返回值（[Result](#result)）中的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
+用于记录顶点的相关信息。Vertex仅作为返回值（[Result](#result)）中的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -211,7 +211,7 @@ type ValueType = null | number | string
 
 ## PathSegment
 
-记录路径段（路径中的每条边及其起点、终点）的相关信息。PathSegment仅作为（[Path.segments](#path)）的类型出现，不支持自定义填写。
+记录路径段（路径中的每条边及其起点、终点）的相关信息。PathSegment仅作为返回值（[Path.segments](#path)）的类型出现，不支持自定义填写，可通过使用[read](#read)接口查询获得。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -236,7 +236,7 @@ type ValueType = null | number | string
 
 ## Result
 
-GQL语句执行结果。
+GQL语句的执行结果。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -271,7 +271,7 @@ read(gql: string): Promise&lt;Result&gt;
 
 | 类型                  | 说明                                              |
 | --------------------- | ------------------------------------------------- |
-| Promise&lt;[Result](#result)&gt; | Promise对象。如果操作成功，返回GQL语句执行结果。 |
+| Promise&lt;[Result](#result)&gt; | Promise对象。如果操作成功，返回GQL语句的执行结果。 |
 
 **错误码：**
 
@@ -320,7 +320,7 @@ if(transaction != undefined) {
 
 write(gql: string): Promise&lt;Result&gt;
 
-执行数据写入语句。用于增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）、创建/删除图以及创建/删除索引。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
+执行数据写入语句。用于添加、删除和更新数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）、创建/删除图以及创建/删除索引。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -334,7 +334,7 @@ write(gql: string): Promise&lt;Result&gt;
 
 | 类型                  | 说明                                              |
 | --------------------- | ------------------------------------------------- |
-| Promise&lt;[Result](#result)&gt; | Promise对象。如果操作成功，返回GQL语句执行结果。 |
+| Promise&lt;[Result](#result)&gt; | Promise对象。如果操作成功，返回GQL语句的执行结果。 |
 
 **错误码：**
 
@@ -377,7 +377,7 @@ if(transaction != undefined) {
 
 commit(): Promise&lt;void&gt;
 
-提交当前事务中已经执行的GQL语句，事务提交后，当前事务不再可用。
+提交当前事务中已执行的GQL语句，事务提交后，当前事务失效。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -419,7 +419,7 @@ if(transaction != undefined) {
 
 rollback(): Promise&lt;void&gt;
 
-回滚当前事务中已经执行的GQL语句，事务回滚后，当前事务不再可用。
+回滚当前事务中已执行的GQL语句，事务回滚后，当前事务失效。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -588,7 +588,7 @@ if(store != null) {
 
 createTransaction(): Promise&lt;Transaction&gt;
 
-创建事务实例。当前图数据库同一时刻至多只能创建4个事务实例。
+创建事务实例。当前图数据库同一时刻最多只能创建4个事务实例。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -596,7 +596,7 @@ createTransaction(): Promise&lt;Transaction&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Transaction](#transaction)&gt; | 如果操作成功，返回创建的事务实例。 |
+| Promise&lt;[Transaction](#transaction)&gt; | Promise对象。如果操作成功，返回创建的事务实例。 |
 
 **错误码：**
 

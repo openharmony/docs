@@ -1,4 +1,4 @@
-#  @ohos.multimodalInput.shortKey(快捷键)(系统接口)
+#  @ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)
 
 通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后再截屏等。
 
@@ -7,6 +7,7 @@
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块接口为系统接口。
+
 
 ##  导入模块
 
@@ -45,13 +46,13 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 try {
   shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -93,7 +94,7 @@ try {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

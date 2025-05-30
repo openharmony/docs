@@ -135,13 +135,29 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称        | 类型                    | 可读   | 可写   | 说明                                     |
+| 名称        | 类型                    | 只读   | 可选   | 说明                                     |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType           | [CodecType](#codectype11)      | 是    | 是    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
-| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | 是    | 是    | 表示每个采样点的位数，默认值为SCAN_MODE_LOW_POWER。 |
-| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | 是    | 是    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
-| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecType           | [CodecType](#codectype11)      | 否    | 否    | 表示编码器类型，默认值为CODEC_TYPE_SBC。 |
+| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | 否    | 否    | 表示每个采样点的位数，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | 否    | 否    | 表示编码器的声道模式，默认值为CODEC_CHANNEL_MODE_NONE。 |
+| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | 否    | 否    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
+| codecBitRate<sup>19+<sup/>     | [CodecBitRate](#codecbitrate19) | 否    | 是    | 表示编码器的比特率，默认值为CODEC_BIT_RATE_ABR。 |
+| codecFrameLength<sup>19+<sup/>     | [CodecFrameLength](#codecframelength19) | 否    | 是    | 表示编码器的帧长，默认值为CODEC_FRAME_LENGTH_10MS。 |
 
+## CodecInfoList<sup>19+</sup>
+
+编码器支持的参数信息。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称        | 类型                    | 只读   | 可选   | 说明                                     |
+| ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
+| codecType           | [CodecType](#codectype11)      | 否    | 否    | 表示编码器类型。 |
+| codecBitsPerSampleArray  | [CodecBitsPerSample[]](#codecbitspersample11) | 否    | 否    | 表示当前编码器支持的采样点位数列表。 |
+| codecChannelModeArray    | [CodecChannelMode[]](#codecchannelmode11) | 否    | 否    | 表示当前编码器支持的声道模式列表。 |
+| codecSampleRateArray     | [CodecSampleRate[]](#codecsamplerate11) | 否    | 否    | 表示当前编码器支持的采样率列表。 |
+| codecBitRateArray     | [CodecBitRate[]](#codecbitrate19) | 否    | 否    | 表示当前编码器支持的比特率列表。 |
+| codecFrameLengthArray     | [CodecFrameLength[]](#codecframelength19) | 否    | 否    | 表示当前编码器支持的帧长列表。 |
 
 ## CodecType<sup>11+</sup>
 
@@ -201,3 +217,32 @@ try {
 | CODEC_SAMPLE_RATE_96000   | 4 | 96k位采样率。|
 | CODEC_SAMPLE_RATE_176400  | 5 | 176.4k位采样率。|
 | CODEC_SAMPLE_RATE_192000  | 6 | 192k位采样率。|
+
+## CodecBitRate<sup>19+</sup>
+
+枚举，蓝牙编码器的比特率。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_BIT_RATE_96000    | 0 | 96k比特率。|
+| CODEC_BIT_RATE_128000   | 1 | 128k比特率。|
+| CODEC_BIT_RATE_192000   | 2 | 192k比特率。|
+| CODEC_BIT_RATE_256000   | 3 | 256k比特率。|
+| CODEC_BIT_RATE_320000   | 4 | 320k比特率。|
+| CODEC_BIT_RATE_480000  | 5 | 480k比特率。|
+| CODEC_BIT_RATE_640000  | 6 | 640k比特率。|
+| CODEC_BIT_RATE_960000  | 7 | 960k比特率。|
+| CODEC_BIT_RATE_ABR  | 8 | 自适应比特率。|
+
+## CodecFrameLength<sup>19+</sup>
+
+枚举，蓝牙编码器的帧长。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称                | 值    | 说明      |
+| ----------------- | ------ | ------- |
+| CODEC_FRAME_LENGTH_5MS    | 0 | 5ms帧长。|
+| CODEC_FRAME_LENGTH_10MS   | 1 | 10ms帧长。|

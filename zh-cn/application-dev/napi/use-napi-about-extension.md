@@ -98,8 +98,8 @@ export const add: (a: number, b: number) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
 ```
@@ -154,8 +154,8 @@ export const createObjectWithProperties: (data: string) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s', JSON.stringify(value));
@@ -204,8 +204,8 @@ export const createObjectWithNameProperties: (data: string) => string | { name: 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
@@ -258,8 +258,8 @@ export const runScriptPath: () => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 try {
   // 在此处执行错误返回false，成功就返回true
@@ -716,8 +716,8 @@ export const aboutSerialize: (obj: Object) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   numKey:number = 0;
 }
@@ -755,7 +755,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
-| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 
 ### 使用示例
 
@@ -790,8 +790,8 @@ export const isSendable: <T>(a: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.isSendable('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
@@ -889,8 +889,8 @@ export class SendableClass {
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
@@ -927,8 +927,8 @@ export const getSendableObject: () => { x: true };
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableObject();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
@@ -960,8 +960,8 @@ export const getSendableArray: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArray();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
@@ -991,8 +991,8 @@ export const getSendableArrayWithLength: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArrayWithLength();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
@@ -1030,8 +1030,8 @@ export const getSendableArrayBuffer: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
 ```
@@ -1072,8 +1072,8 @@ export const getSendableTypedArray: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
 ```
@@ -1113,8 +1113,8 @@ export const wrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
 ```
@@ -1154,8 +1154,8 @@ export const wrapSendableWithSize: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
 ```
@@ -1199,15 +1199,15 @@ export const unwrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
 ```
 
 #### napi_remove_wrap_sendable
 
-移除并获取ArkTS对象包裹的native实例。
+移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。
 
 cpp部分代码
 
@@ -1244,8 +1244,8 @@ export const removeWrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
 ```
@@ -1310,8 +1310,22 @@ export const testNapiWrapEnhance: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.testNapiWrapEnhance();
 ```
+
+## napi提供多上下文环境能力
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_create_ark_context | 创建基础运行时上下文环境。 |
+| napi_destroy_ark_context | 销毁基础运行时上下文环境。 |
+### 使用示例
+
+#### napi_create_ark_context、napi_destroy_ark_context
+
+[使用扩展的Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)

@@ -36,11 +36,12 @@ import { StartOptions } from '@kit.AbilityKit';
 | minWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最小的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/js-apis-window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowWidth<sup>17+</sup> | number | 否 | 是 | 窗口最大的宽度，单位为px，可以通过[getWindowLimits](../apis-arkui/js-apis-window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最大的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/js-apis-window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
+| completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。 |
 
 **示例：**
 
   ```ts
-  import { UIAbility, Want, StartOptions, bundleManager } from '@kit.AbilityKit';
+  import { UIAbility, Want, StartOptions, bundleManager, CompletionHandler } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { image } from '@kit.ImageKit';
 
@@ -50,6 +51,15 @@ import { StartOptions } from '@kit.AbilityKit';
         deviceId: '',
         bundleName: 'com.example.myapplication',
         abilityName: 'EntryAbility'
+      };
+
+      let completionHandler: CompletionHandler = {
+        onRequestSuccess: (elementName: bundleManager.ElementName, message: string): void => {
+          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start succeeded: ${message}`);
+        },
+        onRequestFailure: (elementName: bundleManager.ElementName, message: string): void => {
+          console.log(`${elementName.bundleName}-${elementName.moduleName}-${elementName.abilityName} start failed: ${message}`);
+        }
       };
 
       let color = new ArrayBuffer(0);
@@ -73,7 +83,8 @@ import { StartOptions } from '@kit.AbilityKit';
           minWindowWidth: 320,
           minWindowHeight: 240,
           maxWindowWidth: 2560,
-          maxWindowHeight: 2560
+          maxWindowHeight: 2560,
+          completionHandler: completionHandler
         };
 
         try {

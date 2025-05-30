@@ -2,6 +2,10 @@
 
 Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能增删改属性，因此在多个并发实例间访问均不需要加锁，可以通过调用[Object.freeze](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)接口冻结对象。
 
+> **说明：**
+> 
+> 不支持在.ets文件中使用Object.freeze接口。
+
 ## 使用示例
 
 1. 提供ts文件封装Object.freeze方法。

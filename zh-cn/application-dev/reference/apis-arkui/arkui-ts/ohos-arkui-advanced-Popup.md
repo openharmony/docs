@@ -169,7 +169,7 @@ struct PopupExample {
 ![](figures/popup_7.png)
 
 ### 示例 2（设置镜像效果）
-该示例通过配置direction实现Popup的镜像效果。
+该示例通过配置direction参数实现Popup的镜像布局效果。
 
 ```ts
 // xxx.ets

@@ -156,8 +156,22 @@
         
         // ...
     ```
-- 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出。
-    
+- 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出，可以通过打开工程级build-profile.json5文件中的reExportCheckMode开关进行扫描排查。
+    ```typescript
+        // build-profile.json5
+        "arkOptions":{
+            "reExportCheckMode":"compatible"
+        }
+    ```
+
+    > **说明：**
+    >
+    > - 针对以下场景，编译时是否进行拦截报错：使用lazy import导入的变量，在同文件中被再次导出。
+    > - noCheck（缺省默认值）：不检查，不报错。
+    > - compatible：兼容模式，报Warning。
+    > - strict：严格模式，报Error。
+    > - 该字段从DevEco Studio 5.0.13.200版本开始支持。
+
     这种方式导出的变量c未在B.ets中使用，因此B.ets不触发执行。在A.ets中使用变量c时，该变量未初始化，会抛出JavaScript异常。
     ```typescript
         // A.ets
@@ -197,8 +211,9 @@
         at func_main_0 (A_ns.js:2:13)
     ```
 
-- 开发者需要评估使用延迟加载存在的影响。
-    * 不依赖该模块的执行的副作用（如初始化全局变量，挂载globalThis等）。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
-    * 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
-    * 使用lazy特性导致模块未执行，从而引发bug。
+### 开发者需要评估使用延迟加载存在的影响
+
+- 不依赖该模块的执行的副作用（如初始化全局变量，挂载globalThis等）。可参考：[模块加载副作用及优化](./arkts-module-side-effects.md)。
+- 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
+- 使用lazy特性导致模块未执行，从而引发bug。
 

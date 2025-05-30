@@ -128,7 +128,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
 | sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -143,7 +143,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locatingPriority | [LocatingPriority](#locatingpriority12) | 否 | 否 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
 | locatingTimeoutMs | number | 否 | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SatelliteStatusInfo
@@ -491,6 +491,8 @@ GNSS地理围栏请求参数。
 
 POI(Point of Interest, 兴趣点)信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -499,10 +501,10 @@ POI(Point of Interest, 兴趣点)信息。
 | confidence | number | 否 | 否 | 表示POI信息的置信度。置信度越高，用户离该POI信息点越近。取值范围为0到1。 |
 | name | string | 否 | 否 | 表示POI的名称。 |
 | latitude | number | 否 | 否 | 表示POI所在的纬度。取值范围为-90到90。 |
-| lontitude | number | 否 | 否 | 表示POI所在的经度。取值范围为-180到180。 |
+| longitude | number | 否 | 否 | 表示POI所在的经度。取值范围为-180到180。 |
 | administrativeArea | string | 否 | 否 | 表示POI所在的国家以下的一级行政区，一般是省/州。 |
 | subAdministrativeArea | string | 否 | 否 | 表示POI所在的国家以下的二级行政区，一般是市。 |
-| locatity | string | 否 | 否 | 表示POI所在的城市信息，一般是市。 |
+| locality | string | 否 | 否 | 表示POI所在的城市信息，一般是市。 |
 | subLocality | string | 否 | 否 | 表示POI所在的子城市信息，一般是区/县。 |
 | address | string | 否 | 否 | 表示POI的详细地址。 |
 
@@ -1186,7 +1188,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
               action: "action1"
           }
       ],
-      operationType: wantAgent.OperationType.START_ABILITY,
+      actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
   };
@@ -1248,7 +1250,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
               action: "action1",
           }
       ],
-      operationType: wantAgent.OperationType.START_ABILITY,
+      actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
   };
@@ -2552,5 +2554,113 @@ off(type: 'bluetoothScanResultChange', callback?: Callback&lt;BluetoothScanResul
       geoLocationManager.off('bluetoothScanResultChange', callback);
   } catch (err) {
       console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.isPoiServiceSupported<sup>20+</sup>
+
+isPoiServiceSupported(): boolean
+
+查询系统（即软件）是否支持POI服务。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true:POI服务可用。 <br/>false:POI服务不可用。 |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  let poiServiceState = geoLocationManager.isPoiServiceSupported();
+  console.info("poiServiceState:" + poiServiceState);
+  ```
+  
+
+## geoLocationManager.getPoiInfo<sup>20+</sup>
+
+getPoiInfo(): Promise&lt;PoiInfo&gt;
+
+获取当前位置附近的POI信息。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[PoiInfo](#poiinfo19)&gt;| 当前位置附近的POI信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getPoiInfo()} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                           |
+|3301100 | The location switch is off.                                                 |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    if (geoLocationManager.isPoiServiceSupported()) {
+      let poiInfo = await geoLocationManager.getPoiInfo();
+      if (poiInfo !== undefined) {
+        console.info("get PoiInfo:" + json.stringify(poiInfo));
+      }
+    }
+  } catch(error) {
+    console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+  
+
+## geoLocationManager.getDistanceBetweenLocations<sup>20+</sup>
+
+getDistanceBetweenLocations(location1: Location, location2: Location): number
+
+获取两个位置之间的直线距离。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | location1 | [Location](#location) | 是 | 位置1。 |
+  | location2 | [Location](#location) | 是 | 位置2。 |
+
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | number | 两个位置之间的直线距离，单位为米。 |
+
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    let location1: geoLocationManager.Location = {"latitude": 30.12, "longitude": 120.11, "altitude": 0, "accuracy": 0,
+      "speed": 0, "timeStamp": 0, "direction": 0, "timeSinceBoot": 0, "additionSize": 0}
+    let location2: geoLocationManager.Location = {"latitude": 30.12, "longitude": 120.11, "altitude": 0, "accuracy": 0,
+      "speed": 0, "timeStamp": 0, "direction": 0, "timeSinceBoot": 0, "additionSize": 0}
+    let distance = geoLocationManager.getDistanceBetweenLocations(location1, location2);
+    console.info("distance:" + distance);
+  } catch(error) {
+    console.error("getDistanceBetweenLocations: errCode" + error.code + ", errMessage" + error.message);
   }
   ```

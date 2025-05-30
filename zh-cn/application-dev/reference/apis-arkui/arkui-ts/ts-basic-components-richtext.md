@@ -16,14 +16,15 @@
 
 - 不适用场景：
 
-  RichText组件不适用于对HTML字符串的显示效果进行较多自定义的应用场景。例如RichText组件不支持通过设置属性与事件，来修改背景颜色、字体颜色、字体大小、动态改变内容等。在这种情况下，推荐使用[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。
+  RichText组件不适用于对HTML字符串的显示效果进行较多自定义的应用场景。例如RichText组件不支持通过设置属性与事件，来修改**背景颜色、字体颜色、字体大小、动态改变内容**等。在这种情况下，推荐使用[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。
 
-  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)。
+  RichText组件比较消耗内存资源，而且有一些重复使用RichText组件的场景下，比如在**List下循环重复使用RichText**时，会出现卡顿、滑动响应慢等现象。在这种情况下，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)。
 
 >  **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件无法根据内容自适应设置宽高属性，需要开发者设置显示布局。
+> - **该组件不再更新和维护，推荐使用[RichEditor组件](../arkui-ts/ts-basic-components-richeditor.md#richeditor)或[Web组件](../../apis-arkweb/ts-basic-components-web.md#web)。**
 
 
 ## 子组件
@@ -32,7 +33,7 @@
 
 ## 接口
 
-RichText(content:string)
+RichText(content:string &nbsp;|&nbsp; Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +41,8 @@ RichText(content:string)
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
-| content | string | 是   | 表示HTML格式的字符串。 |
+| content | string \| [Resource](ts-types.md##resource) <sup>20+</sup>   | 是   | 表示HTML格式的字符串或者本地资源文件。 |
+
 
 
 ## 事件
@@ -142,3 +144,54 @@ struct RichTextExample {
 
  ![richText](figures/richText.png)
 
+加载本地资源文件。
+
+通过$rawfile方式加载。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct RichtextComponent {
+
+    build() {
+      Column() {
+        // 通过$rawfile加载本地资源文件。
+        Richtext($rawfile("index.html"))
+      }
+    }
+  }
+  ```
+
+通过resources协议加载，适用Webview加载带有"#"路由的链接。
+
+使用 `resource://rawfile/` 协议前缀可以避免常规 `$rawfile` 方式在处理带有"#"路由链接时的局限性。当URL中包含"#"号时，"#"后面的内容会被视为锚点（fragment）。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct RichtextComponent {
+
+    build() {
+      Column() {
+        // 通过resource协议加载本地资源文件。
+        Richtext("resource://rawfile/index.html#home")
+      }
+    }
+  }
+  ```
+
+在“src\main\resources\rawfile”文件夹下创建index.html：
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```

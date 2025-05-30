@@ -1,6 +1,6 @@
 # ExtensionAbilityInfo
 
-The ExtensionAbilityInfo module defines the ExtensionAbility information. A third-party application can obtain its own ExtensionAbility information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The ExtensionAbilityInfo module defines the ExtensionAbility information. An application can obtain its own ExtensionAbility information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
@@ -28,6 +28,6 @@ The ExtensionAbilityInfo module defines the ExtensionAbility information. A thir
 | enabled              | boolean                                                      | Yes  | No  | Whether the ExtensionAbility is enabled. The value **true** means that the ExtensionAbility is enabled, and **false** means the opposite.                          |
 | readPermission       | string                                                       | Yes  | No  | Permission required for reading data from the ExtensionAbility.                |
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
-| extensionAbilityTypeName<sup>11+</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility.                |
+| extensionAbilityTypeName<sup>11+</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility. For details about available values, see [the type field under the extensionabilities tag](../../quick-start/module-configuration-file.md#extensionabilities).                |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ExtensionAbility.       |
 | appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|

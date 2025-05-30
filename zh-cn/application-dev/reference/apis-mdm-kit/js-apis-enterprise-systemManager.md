@@ -47,8 +47,8 @@ setNTPServer(admin: Want, server: string): void
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -98,9 +98,9 @@ getNTPServer(admin: Want): string
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -144,8 +144,8 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -209,7 +209,18 @@ try {
 } catch (err) {
   console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
 }
-
+// 禁用公网升级
+let otaUpdatePolicy6: systemManager.OtaUpdatePolicy = {
+  "policyType": systemManager.PolicyType.DEFAULT,
+  "version": "version_1.0.0.5",
+  "disableSystemOtaUpdate": true,
+};
+try {
+  systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy6);
+  console.info('Succeeded in setting ota update policy.');
+} catch (err) {
+  console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## systemManager.getOtaUpdatePolicy
@@ -248,8 +259,8 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -300,9 +311,9 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -368,9 +379,9 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -416,7 +427,6 @@ getUpdateAuthData(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { systemManager } from '@kit.MDMKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 
@@ -456,6 +466,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 | delayUpdateTime | number   | 否   | 表示延迟升级时间（单位：小时）。 |
 | installStartTime        | number   | 否   | 表示指定安装窗口起始时间（时间戳）。 |
 | installEndTime | number   | 否   | 表示指定安装窗口结束时间（时间戳）。 |
+| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
 
 ## PolicyType
 

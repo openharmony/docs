@@ -14,3 +14,4 @@
 - WLAN<!--wlan-->
   - [WLAN Service Development Overview](wlan/wlan-overview.md)
   - [P2P Development Guide](wlan/p2p-development-guide.md)
+- [Terminology](terminology.md)

@@ -19,7 +19,7 @@ import { pbap } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-基础Profile接口定义
+基础Profile接口定义。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -40,7 +40,7 @@ createPbapServerProfile(): PbapServerProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| PbapServerProfile | 返回该profile的实例。 |
+|PbapServerProfile | 返回该profile的实例。 |
 
 **错误码**：
 

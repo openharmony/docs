@@ -36,6 +36,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -130,9 +131,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
@@ -184,7 +185,7 @@ try {
 }
 ```
 
-## media.createParallelSoundPool<sup>18+</sup>
+## media.createParallelSoundPool<sup>20+</sup>
 
 createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
@@ -1357,7 +1358,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | 是   | 否   | 系统录屏是否处于录屏状态。 |
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 
@@ -1439,3 +1440,16 @@ screenCaptureMonitor.off('systemScreenRecorder');
 | SCREENCAPTURE_STARTED       | 0   | 表示系统录屏应用开始录屏。                       |
 | SCREENCAPTURE_STOPPED        | 1    | 表示系统录屏应用停止录屏。 |
 
+## enableDeviceLevelCapture<sup>20+</sup>
+
+用于指定折叠屏PC在折叠状态下录制半块屏幕还是整块屏幕。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+enableDeviceLevelCapture是AVScreenCaptureStrategy接口中的一个可选参数，默认值为false。
+
+| 名称                      | 类型    | 必填 | 说明 |
+| ------------------------ | ------- | ---- | ---- |
+| enableDeviceLevelCapture | boolean | 否   | true表示折叠屏PC在折叠状态下录制整块屏幕，false表示折叠屏PC在折叠状态下录制半块屏幕。 |

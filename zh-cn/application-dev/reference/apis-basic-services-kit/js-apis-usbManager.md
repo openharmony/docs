@@ -810,7 +810,7 @@ usbSubmitTransfer(transfer: UsbDataTransferParams): void
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400007 | Resource busy. Possible causes: 1. The transfer has already been submitted. 2. The interface is claimed by another program or driver.|
 | 14400008 | No such device (it may have been disconnected). |
-| 14400009 | Insufficient memory. Possible causes: 1. Malloc allocation failed. |
+| 14400009 | Insufficient memory. Possible causes: 1. Memory allocation failed. |
 | 14400012 | Transmission I/O error. |
 
 **示例：**
@@ -1199,7 +1199,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
@@ -1300,20 +1300,24 @@ resetUsbDevice(pipe: USBDevicePipe): boolean
 | 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14400008 | No such device (it may have been disconnected). |
 | 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
-| 14400013 | The USBDevicePipe validity check failed. Possible causes:<br>1. The input parameters fails the validation check.<br>2. The call chain used to obtain the input parameters is not reasonable. |
+| 14400013 | The USBDevicePipe validity check failed. Possible causes:<br>1. The input parameters fail the validation check.<br>2. The call chain used to obtain the input parameters is not reasonable. |
 
 **示例：**
 
 ```ts
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
 if (devicesList.length == 0) {
-  console.log(`device list is empty`);
+  console.error(`device list is empty`);
 }
 
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
-let ret: number = usbManager.resetUsbDevice(devicepipe);
-console.log(`resetUsbDevice = ${ret}`);
+try {
+  let ret: boolean = usbManager.resetUsbDevice(devicepipe);
+  console.info(`resetUsbDevice  = ${ret}`);
+} catch (err) {
+  console.error(`resetUsbDevice failed: ` + err);
+}
 ```
 
 ## USBEndpoint
