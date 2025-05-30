@@ -3103,9 +3103,24 @@
     - ArkWeb（方舟Web）<!--arkweb-api-->
       - ArkTS API<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
+          - [Class (WebviewController)](reference/apis-arkweb/js-apis-webview-WebviewController.md)
+          - [Class (GeolocationPermissions)](reference/apis-arkweb/js-apis-webview-GeolocationPermissions.md)
+          - [Class (WebCookieManager)](reference/apis-arkweb/js-apis-webview-WebCookieManager.md)
+          - [Class (WebDataBase)](reference/apis-arkweb/js-apis-webview-WebDataBase.md)
+          - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
+          - [Interfaces (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
+          - [Class (WebStorage)](reference/apis-arkweb/js-apis-webview-WebStorage.md)
+          - [Interfaces（其他）](reference/apis-arkweb/js-apis-webview-i.md)
+          - [Enums](reference/apis-arkweb/js-apis-webview-e.md)
+          - [Types](reference/apis-arkweb/js-apis-webview-t.md)
         - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
       - ArkTS 组件<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/ts-basic-components-web.md)
+          - [属性](reference/apis-arkweb/ts-basic-components-web-attributes.md)
+          - [事件](reference/apis-arkweb/ts-basic-components-web-events.md)
+          - [Interfaces（其他）](reference/apis-arkweb/ts-basic-components-web-i.md)
+          - [Enums](reference/apis-arkweb/ts-basic-components-web-e.md)
+          - [Types](reference/apis-arkweb/ts-basic-components-web-t.md)
       - C API<!--arkweb-c-->
         - 模块<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
