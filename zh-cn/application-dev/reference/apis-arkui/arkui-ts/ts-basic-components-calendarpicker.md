@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -181,7 +181,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2024-03-05')
+  private selectedDate: Date = new Date('2024-03-05');
 
   build() {
     Column() {
@@ -191,7 +191,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
 
@@ -212,9 +212,9 @@ struct CalendarPickerExample {
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2025-01-15')
-  private startDate: Date = new Date('2025-01-05')
-  private endDate: Date = new Date('2025-01-25')
+  private selectedDate: Date = new Date('2025-01-15');
+  private startDate: Date = new Date('2025-01-05');
+  private endDate: Date = new Date('2025-01-25');
 
   build() {
     Column() {
@@ -224,7 +224,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })

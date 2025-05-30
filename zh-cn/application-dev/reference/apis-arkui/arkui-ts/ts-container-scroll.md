@@ -262,7 +262,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 触发该事件的条件：
 
-1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用除fling接口外的其他滚动控制接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -288,7 +288,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 3、越界回弹。
 
-从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+从API version 12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -533,7 +533,7 @@ Scroll每帧滚动前触发的回调。
 ### 导入对象
 
 ```
-scroller: Scroller = new Scroller()
+scroller: Scroller = new Scroller();
 ```
 
 ### constructor
@@ -910,13 +910,13 @@ getItemIndex(x: number, y: number): number
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -941,58 +941,58 @@ struct ScrollExample {
       .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
+        console.info(xOffset + ' ' + yOffset);
       })
       .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
+        console.info('To the edge');
       })
       .onScrollStop(() => {
-        console.info('Scroll Stop')
+        console.info('Scroll Stop');
       })
 
       Button('scroll 150')
         .height('5%')
         .onClick(() => { // 点击后下滑指定距离150.0vp
-          this.scroller.scrollBy(0, 150)
+          this.scroller.scrollBy(0, 150);
         })
         .margin({ top: 10, left: 20 })
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100 })
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100 });
         })
         .margin({ top: 60, left: 20 })
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30); //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
-          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
+          this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } });
         })
         .margin({ top: 110, left: 20 })
       Button('back top')
         .height('5%')
         .onClick(() => { // 点击后回到顶部
-          this.scroller.scrollEdge(Edge.Top)
+          this.scroller.scrollEdge(Edge.Top);
         })
         .margin({ top: 160, left: 20 })
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true ,animation: true });
         })
         .margin({ top: 210, left: 20 })
       Button('fling -3000')
         .height('5%')
         .onClick(() => { // 点击后触发初始速度为-3000vp/s的惯性滚动
-          this.scroller.fling(-3000)
+          this.scroller.fling(-3000);
         })
         .margin({ top: 260, left: 20 })
       Button('scroll to bottom 700')
         .height('5%')
         .onClick(() => { // 点击后滑到下边缘，速度值是700vp/s
-          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 });
         })
         .margin({ top: 310, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
@@ -1005,15 +1005,15 @@ struct ScrollExample {
 ### 示例2（嵌套滚动实现方式一）
 该示例使用onScrollFrameBegin事件实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct NestedScroll {
   @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
-  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  private scrollerForScroll: Scroller = new Scroller()
-  private scrollerForList: Scroller = new Scroller()
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  private scrollerForScroll: Scroller = new Scroller();
+  private scrollerForList: Scroller = new Scroller();
 
   build() {
     Flex() {
@@ -1026,7 +1026,7 @@ struct NestedScroll {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) })
+              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) });
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {
@@ -1047,17 +1047,17 @@ struct NestedScroll {
           .edgeEffect(EdgeEffect.None)
           .friction(0.6)
           .onReachStart(() => {
-            this.listPosition = 0
+            this.listPosition = 0;
           })
           .onReachEnd(() => {
-            this.listPosition = 2
+            this.listPosition = 2;
           })
           .onScrollFrameBegin((offset: number) => {
             if ((this.listPosition == 0 && offset <= 0) || (this.listPosition == 2 && offset >= 0)) {
-              this.scrollerForScroll.scrollBy(0, offset)
-              return { offsetRemain: 0 }
+              this.scrollerForScroll.scrollBy(0, offset);
+              return { offsetRemain: 0 };
             }
-            this.listPosition = 1
+            this.listPosition = 1;
             return { offsetRemain: offset };
           })
 
@@ -1083,7 +1083,7 @@ struct NestedScroll {
 @Entry
 @Component
 struct StickyNestedScroll {
-  @State arr: number[] = []
+  @State arr: number[] = [];
 
   @Styles
   listCard() {
@@ -1135,7 +1135,7 @@ struct StickyNestedScroll {
 
   aboutToAppear() {
     for (let i = 0; i < 30; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
   }
 }
@@ -1148,13 +1148,13 @@ struct StickyNestedScroll {
 @Component
 struct NestedScroll {
   private headerHeight: number = 0;
-  private arr: number[] = []
-  private scrollerForParent: Scroller = new Scroller()
-  private scrollerForChild: Scroller = new Scroller()
+  private arr: number[] = [];
+  private scrollerForParent: Scroller = new Scroller();
+  private scrollerForChild: Scroller = new Scroller();
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
   }
 
@@ -1168,10 +1168,10 @@ struct NestedScroll {
           .fontSize(16)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.scrollerForChild.scrollToIndex(5)
+            this.scrollerForChild.scrollToIndex(5);
           })
           .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
-            this.headerHeight = newValue.height! as number
+            this.headerHeight = newValue.height! as number;
           })
         List({ space: 20, scroller: this.scrollerForChild }) {
           ForEach(this.arr, (item: number) => {
@@ -1208,22 +1208,22 @@ struct NestedScroll {
       let newOffset = currOffset + offset;
       if (offset > 0) {
         if (this.scrollerForChild.isAtEnd()) {
-          return { offsetRemain: offset }
+          return { offsetRemain: offset };
         }
         if (newOffset > this.headerHeight) {
-          retOffset = this.headerHeight - currOffset
+          retOffset = this.headerHeight - currOffset;
         }
-        this.scrollerForChild.scrollBy(0, offset - retOffset)
+        this.scrollerForChild.scrollBy(0, offset - retOffset);
       } else {
         if (this.scrollerForChild.currentOffset().yOffset <= 0) {
-          return { offsetRemain: offset }
+          return { offsetRemain: offset };
         }
         if (newOffset < this.headerHeight) {
-          retOffset = this.headerHeight - currOffset
+          retOffset = this.headerHeight - currOffset;
         }
-        this.scrollerForChild.scrollBy(0, offset - retOffset)
+        this.scrollerForChild.scrollBy(0, offset - retOffset);
       }
-      return { offsetRemain: retOffset }
+      return { offsetRemain: retOffset };
     })
     .width("100%")
     .height("100%")
@@ -1239,7 +1239,7 @@ struct NestedScroll {
 @Component
 struct Index {
   scroller: Scroller = new Scroller;
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   build() {
     Scroll(this.scroller) {
       Column() {
@@ -1273,19 +1273,19 @@ struct Index {
 @Entry
 @Component
 struct ListExample {
-  private arr: number[] = []
-  private scroller: ListScroller = new ListScroller()
-  @State listSpace: number = 10
-  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
-  @State listIndex: number = -1
-  @State mess:string = "null"
-  @State itemBackgroundColorArr: boolean[] = [false]
+  private arr: number[] = [];
+  private scroller: ListScroller = new ListScroller();
+  @State listSpace: number = 10;
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100);
+  @State listIndex: number = -1;
+  @State mess:string = "null";
+  @State itemBackgroundColorArr: boolean[] = [false];
   aboutToAppear(){
     // 初始化数据源。
     for (let i = 0; i < 10; i++) {
-      this.arr.push(i)
+      this.arr.push(i);
     }
-    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100])
+    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100]);
   }
   build() {
     Column() {
@@ -1311,7 +1311,7 @@ struct ListExample {
         PanGesture()
           .onActionUpdate((event: GestureEvent) => {
             if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
-              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY);
               this.itemBackgroundColorArr[this.listIndex] = true;
             }
           })
@@ -1340,12 +1340,12 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -1383,8 +1383,8 @@ struct ScrollExample {
 @Entry
 @Component
 struct ScrollExample {
-  scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {

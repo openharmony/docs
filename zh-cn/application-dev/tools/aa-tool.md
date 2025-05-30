@@ -88,7 +88,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | 10104001 | The specified ability does not exist. |
   | 10105001 | Failed to connect to the ability service. |
   | 10105002 | Failed to obtain ability information. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10100101 | Failed to obtain application information. |
   | 10100102 | The aa start command cannot be used to launch a UIExtensionAbility. |
   | 10103101 | Failed to find a matching application for implicit launch. |
@@ -128,7 +128,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
                 "scheme": "myscheme",
                 "host": "www.test.com",
                 "port": "8080",
-                "path": "path",
+                "path": "path"
               }
             ]
           }
@@ -137,7 +137,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       ```
 
 
-  - **拉起方应用**: 隐式启动Ability。
+  - **拉起方应用**：隐式启动Ability。
 
     - 如果需要拉起应用的页面，可以使用-U命令，示例如下：
 
@@ -154,17 +154,16 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       UIAbility获取传入参数示例如下：
   
         ```ts
-        import UIAbility from '@ohos.app.ability.UIAbility';
-        import hilog from '@ohos.hilog';
-        import Want from '@ohos.app.ability.Want';
+        import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
 
         export default class TargetAbility extends UIAbility {
-          onCreate(want:Want, launchParam) {
+          onCreate(want:Want, launchParam: AbilityConstant.LaunchParam) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-            let paramNumber = want.parameters.paramNumber
-            let paramBoolean = want.parameters.paramBoolean
-            let paramString = want.parameters.paramString
-            let paramNullString = want.parameters.paramNullString
+            let paramNumber = want.parameters?.paramNumber;
+            let paramBoolean = want.parameters?.paramBoolean;
+            let paramString = want.parameters?.paramString;
+            let paramNullString = want.parameters?.paramNullString;
           }
         }
         ```
@@ -268,7 +267,7 @@ aa dump -a
   
   ```bash
   # 打印指定应用组件详细信息
-  aa dump -i 12
+  aa dump -i 105
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)
@@ -340,7 +339,7 @@ aa test -b <bundleName> [-m <module-name>] [-p <package-name>] [-s class <test-c
   | ------- | -------- |
   | 10104002 | Failed to retrieve specified package information. |
   | 10105001 | Failed to connect to the ability service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10108501 | An internal error occurs during the execution of the aa test command. |
 
   **示例**：
@@ -378,7 +377,7 @@ aa attach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service. |
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -413,7 +412,7 @@ aa detach -b <bundleName>
   | ------- | -------- |
   | 10105001 | Failed to connect to the ability service.|
   | 10106001 | The current device is not in developer mode. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
   | 10103601 | The specified bundleName does not exist. |
   | 10108601 | An internal error occurs while attempting to enter/exit debug mode. |
 
@@ -501,7 +500,7 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   | ------- | -------- |
   | 10105002 | Failed to obtain ability information. |
   | 10105003 | Failed to connect to the app service. |
-  | 10106002 | The target application does not support debug mode. |
+  | 10106002 | The aa start command's window option or the aa test command does not support app with release signature. |
 
   **示例**：
 
@@ -634,19 +633,19 @@ The current device is not in developer mode.
 
 在设置中打开开发者模式。
 
-### 10106002 目标应用不支持Debug模式
+### 10106002 不支持release签名的应用程序
 
 **错误信息**
 
-The target application does not support debug mode.
+The aa start command's window option or the aa test command does not support app with release signature.
 
 **错误描述**
 
-目标应用不支持Debug模式。
+aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名的应用程序。
 
 **可能原因**
 
-目标应用当前使用签名工具中“type”参数不为“debug”。
+目标应用为release签名。
 
 **处理步骤**
 

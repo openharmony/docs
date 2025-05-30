@@ -20,7 +20,7 @@
 >
 >  - 当Swiper子组件设置了[offset](ts-universal-attributes-location.md#offset)属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的[zIndex](ts-universal-attributes-z-order.md)属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 >
->  - 在走焦到用户定义的子节点时，导航点、箭头会由于[焦点样式](../../../ui/arkts-common-events-focus-event.md#焦点样式)修改zindex的行为被遮挡。
+>  - 在走焦到用户定义的子节点时，导航点、箭头会由于[焦点样式](../../../ui/arkts-common-events-focus-event.md#焦点样式)修改zIndex的行为被遮挡。
 
 ## 接口
 
@@ -357,6 +357,8 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 使用字符串类型时，仅支持设置为'auto'，此时，设置[customContentTransition](#customcontenttransition12)和[onContentDidScroll](#oncontentdidscroll12)事件不生效。使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局，设置为小于等于0的值时，按默认值1显示。使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
 
 当按组进行翻页时，判定翻页的拖拽距离阈值将调整为Swiper宽度的50%（若按子元素翻页，该阈值为子元素宽度的50%）。若最后一组的子元素数量少于displayCount，将利用占位子元素进行填充，占位子元素仅用于布局定位，不显示任何内容，其位置将直接显示Swiper的背景样式。
+
+displayCount设置为'auto'，并且设置非循环时，选中导航点的位置与视窗内首个页面的位置保持一致。如果翻页完成后，视窗内首个页面仅部分显示在视窗内，选中导航点亦与页面的位置保持一致，位于两个未选中的导航点之间。在此情况下，建议开发者隐藏导航点。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -741,6 +743,12 @@ left(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### top
 
 top(value: Length): T
@@ -759,6 +767,12 @@ top(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于bottom属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### right
 
 right(value: Length): T
@@ -776,6 +790,12 @@ right(value: Length): T
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于left属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围 时，取最近的边界值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### bottom
 
@@ -813,6 +833,12 @@ start(value: LengthMetrics): T
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### end<sup>12+</sup>
 
 end(value: LengthMetrics): T
@@ -830,6 +856,12 @@ end(value: LengthMetrics): T
 | 参数名 | 类型                         | 必填  | 说明                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
 | value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp  |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### dot
 
@@ -897,7 +929,7 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### itemHeight
 
@@ -921,7 +953,7 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemWidth
 
@@ -945,7 +977,7 @@ selectedItemWidth(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemHeight
 
@@ -969,7 +1001,7 @@ selectedItemHeight(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### mask
 
@@ -987,13 +1019,13 @@ mask(value: boolean): DotIndicator
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
+| value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。true为显示Swiper组件圆点导航指示器的蒙版样式，false为不显示。<br/>默认值：false |
 
 **返回值：** 
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### color
 
@@ -1017,7 +1049,7 @@ Swiper组件圆点导航指示器的颜色。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedColor
 
@@ -1041,15 +1073,13 @@ selectedColor(value: ResourceColor): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### maxDisplayCount<sup>12+</sup>
 
 maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 圆点导航点指示器样式下，导航点显示个数最大值。
-
-单独导航点组件在没有和Swiper绑定使用时，该属性不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1059,13 +1089,13 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
-| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
+| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：[6, 9]<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
 
 **返回值：** 
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### constructor
 
@@ -1120,7 +1150,7 @@ Swiper组件数字导航点的字体颜色。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedFontColor
 
@@ -1144,7 +1174,7 @@ selectedFontColor(value: ResourceColor): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### digitFont
 
@@ -1168,7 +1198,7 @@ Swiper组件数字导航点的字体样式。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedDigitFont
 
@@ -1196,7 +1226,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### constructor
 
@@ -1631,18 +1661,18 @@ finishTransition(): void
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1655,15 +1685,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1706,46 +1736,46 @@ struct SwiperExample {
       }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
-        console.info(index.toString())
+        console.info(index.toString());
       })
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("targetIndex: " + targetIndex)
-        console.info("current offset: " + extraInfo.currentOffset)
-        console.info("target offset: " + extraInfo.targetOffset)
-        console.info("velocity: " + extraInfo.velocity)
+        console.info("index: " + index);
+        console.info("targetIndex: " + targetIndex);
+        console.info("current offset: " + extraInfo.currentOffset);
+        console.info("target offset: " + extraInfo.targetOffset);
+        console.info("velocity: " + extraInfo.velocity);
       })
       .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-        console.info("index: " + index)
-        console.info("current offset: " + extraInfo.currentOffset)
+        console.info("index: " + index);
+        console.info("current offset: " + extraInfo.currentOffset);
       })
 
       Row({ space: 12 }) {
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
       }.margin(5)
       Row({ space: 5 }) {
         Button('FAST 0')
           .onClick(() => {
-            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST 3')
           .onClick(() => {
-            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION);
           })
         Button('FAST ' + 9)
           .onClick(() => {
-            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION)
+            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION);
           })
       }.margin(5)
     }.width('100%')
@@ -1763,18 +1793,18 @@ struct SwiperExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1787,15 +1817,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1828,11 +1858,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1849,18 +1879,18 @@ struct SwiperExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -1873,15 +1903,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -1914,11 +1944,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -1944,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
   onConfigurationUpdate(newConfig: Configuration): void {
     // 监听系统配置变化
     if (newConfig.language) {
-      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language))
+      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language));
     }
   }
 }
@@ -1957,14 +1987,14 @@ export default class EntryAbility extends UIAbility {
 import { i18n, intl } from '@kit.LocalizationKit';
 
 export class CommonUtil {
-  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language);
 
   public static setIsRTL(isRTL: boolean): void {
-    CommonUtil.isRTL = isRTL
+    CommonUtil.isRTL = isRTL;
   }
 
   public static getIsRTL(): boolean {
-    return CommonUtil.isRTL
+    return CommonUtil.isRTL;
   }
 }
 ```
@@ -1978,21 +2008,21 @@ import { CommonUtil } from '../common/CommonUtil';
 @Entry
 @Component
 struct SwiperCustomAnimationExample {
-  private DISPLAY_COUNT: number = 2
-  private MIN_SCALE: number = 0.75
+  private DISPLAY_COUNT: number = 2;
+  private MIN_SCALE: number = 0.75;
 
-  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange]
-  @State opacityList: number[] = []
-  @State scaleList: number[] = []
-  @State translateList: number[] = []
-  @State zIndexList: number[] = []
+  @State backgroundColors: Color[] = [Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.Gray, Color.Orange];
+  @State opacityList: number[] = [];
+  @State scaleList: number[] = [];
+  @State translateList: number[] = [];
+  @State zIndexList: number[] = [];
 
   aboutToAppear(): void {
     for (let i = 0; i < this.backgroundColors.length; i++) {
-      this.opacityList.push(1.0)
-      this.scaleList.push(1.0)
-      this.translateList.push(0.0)
-      this.zIndexList.push(0)
+      this.opacityList.push(1.0);
+      this.scaleList.push(1.0);
+      this.translateList.push(0.0);
+      this.zIndexList.push(0);
     }
   }
 
@@ -2020,50 +2050,50 @@ struct SwiperCustomAnimationExample {
           if (!CommonUtil.getIsRTL()) {
             if (proxy.position <= proxy.index % this.DISPLAY_COUNT || proxy.position >= this.DISPLAY_COUNT + proxy.index % this.DISPLAY_COUNT) {
               // 同组页面往左滑或往右完全滑出视窗外时，重置属性值
-              this.opacityList[proxy.index] = 1.0
-              this.scaleList[proxy.index] = 1.0
-              this.translateList[proxy.index] = 0.0
-              this.zIndexList[proxy.index] = 0
+              this.opacityList[proxy.index] = 1.0;
+              this.scaleList[proxy.index] = 1.0;
+              this.translateList[proxy.index] = 0.0;
+              this.zIndexList[proxy.index] = 0;
             } else {
               // 同组页面往右滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
               if (proxy.index % this.DISPLAY_COUNT === 0) {
-                this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
-                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
-                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+                this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
               } else {
-                this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT
-                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT)
-                this.translateList[proxy.index] = -(proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+                this.opacityList[proxy.index] = 1 - (proxy.position - 1) / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - (proxy.position - 1) / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -(proxy.position - 1) * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
               }
-              this.zIndexList[proxy.index] = -1
+              this.zIndexList[proxy.index] = -1;
             }
           } else {
             // 适配镜像
             if (proxy.position >= -proxy.index % this.DISPLAY_COUNT || proxy.position <= -this.DISPLAY_COUNT - proxy.index % this.DISPLAY_COUNT) {
               // 同组页面往右滑或往左完全滑出视窗外时，重置属性值
-              this.opacityList[proxy.index] = 1.0
-              this.scaleList[proxy.index] = 1.0
-              this.translateList[proxy.index] = 0.0
-              this.zIndexList[proxy.index] = 0
+              this.opacityList[proxy.index] = 1.0;
+              this.scaleList[proxy.index] = 1.0;
+              this.translateList[proxy.index] = 0.0;
+              this.zIndexList[proxy.index] = 0;
             } else {
               // 同组页面往左滑且未滑出视窗外时，对同组中左右两个页面，逐帧根据position修改属性值，实现两个页面往Swiper中间靠拢并透明缩放的自定义切换动画
               if (proxy.index % this.DISPLAY_COUNT === 0) {
-                this.opacityList[proxy.index] = 1 + proxy.position / this.DISPLAY_COUNT
-                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + proxy.position / this.DISPLAY_COUNT)
-                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+                this.opacityList[proxy.index] = 1 + proxy.position / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + proxy.position / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -proxy.position * proxy.mainAxisLength - (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
               } else {
-                this.opacityList[proxy.index] = 1 + (proxy.position + 1) / this.DISPLAY_COUNT
-                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + (proxy.position + 1) / this.DISPLAY_COUNT)
-                this.translateList[proxy.index] = -(proxy.position + 1) * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0
+                this.opacityList[proxy.index] = 1 + (proxy.position + 1) / this.DISPLAY_COUNT;
+                this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 + (proxy.position + 1) / this.DISPLAY_COUNT);
+                this.translateList[proxy.index] = -(proxy.position + 1) * proxy.mainAxisLength + (1 - this.scaleList[proxy.index]) * proxy.mainAxisLength / 2.0;
               }
-              this.zIndexList[proxy.index] = -1
+              this.zIndexList[proxy.index] = -1;
             }
           }
         }
       })
       .onContentDidScroll((selectedIndex: number, index: number, position: number, mainAxisLength: number) => {
         // 监听Swiper页面滑动事件，在该回调中可以实现自定义导航点切换动画等
-        console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength)
+        console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength);
       })
     }.width('100%')
   }
@@ -2077,18 +2107,18 @@ struct SwiperCustomAnimationExample {
 
 ```ts
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -2101,15 +2131,15 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct Index {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 15; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -2152,11 +2182,11 @@ struct Index {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')
@@ -2173,14 +2203,14 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct SwiperPreloadItems {
-  @State currentIndex: number = 1
-  private swiperController: SwiperController = new SwiperController()
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5"]
+  @State currentIndex: number = 1;
+  private swiperController: SwiperController = new SwiperController();
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5"];
 
   build() {
     Column() {
@@ -2201,13 +2231,13 @@ struct SwiperPreloadItems {
           try {
             this.swiperController.preloadItems([2, 3])
               .then(() => {
-                console.info('preloadItems [2, 3] success.')
+                console.info('preloadItems [2, 3] success.');
               })
               .catch((error: BusinessError) => {
-                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+                console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message);
               })
           } catch (error) {
-            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message)
+            console.error('preloadItems [2, 3] failed, error code: ' + error.code + ', error message: ' + error.message);
           }
 
         })
@@ -2219,14 +2249,14 @@ struct SwiperPreloadItems {
 
 @Component
 struct MyComponent {
-  private txt: string = ""
+  private txt: string = "";
 
   aboutToAppear(): void {
-    console.info('aboutToAppear txt:' + this.txt)
+    console.info('aboutToAppear txt:' + this.txt);
   }
 
   aboutToDisappear(): void {
-    console.info('aboutToDisappear txt:' + this.txt)
+    console.info('aboutToDisappear txt:' + this.txt);
   }
 
   build() {
@@ -2246,18 +2276,18 @@ struct MyComponent {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -2270,19 +2300,19 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct TabsSwiperExample {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  private list: number[] = []
-  private tabsController: TabsController = new TabsController()
-  private swiperController: SwiperController = new SwiperController()
-  private swiperData: MyDataSource = new MyDataSource([])
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  private list: number[] = [];
+  private tabsController: TabsController = new TabsController();
+  private swiperController: SwiperController = new SwiperController();
+  private swiperData: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
     for (let i = 0; i <= 9; i++) {
       this.list.push(i);
     }
-    this.swiperData = new MyDataSource(this.list)
+    this.swiperData = new MyDataSource(this.list);
   }
 
   @Builder tabBuilder(index: number, name: string) {
@@ -2308,8 +2338,8 @@ struct TabsSwiperExample {
         })
       }
       .onTabBarClick((index: number) => {
-        this.currentIndex = index
-        this.swiperController.changeIndex(index, true)
+        this.currentIndex = index;
+        this.swiperController.changeIndex(index, true);
       })
       .barMode(BarMode.Scrollable)
       .backgroundColor('#F1F3F5')
@@ -2320,10 +2350,10 @@ struct TabsSwiperExample {
         LazyForEach(this.swiperData, (item: string) => {
           Text(item.toString())
             .onAppear(()=>{
-              console.info('onAppear ' + item.toString())
+              console.info('onAppear ' + item.toString());
             })
             .onDisAppear(()=>{
-              console.info('onDisAppear ' + item.toString())
+              console.info('onDisAppear ' + item.toString());
             })
             .width('100%')
             .height('40%')
@@ -2334,9 +2364,9 @@ struct TabsSwiperExample {
       }
       .loop(false)
       .onSelected((index: number) => {
-        console.info("onSelected:" + index)
+        console.info("onSelected:" + index);
         this.currentIndex = index;
-        this.tabsController.changeIndex(index)
+        this.tabsController.changeIndex(index);
       })
     }
   }
@@ -2351,18 +2381,18 @@ struct TabsSwiperExample {
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -2375,16 +2405,16 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-  private currentIndex: number = 4
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource = new MyDataSource([]);
+  private currentIndex: number = 4;
 
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -2402,7 +2432,7 @@ struct SwiperExample {
       .index(this.currentIndex)
       .loop(false)
       .onChange((index: number) => {
-        this.currentIndex = index
+        this.currentIndex = index;
       })
       .onContentWillScroll((result: SwiperContentWillScrollResult) => {
         if (result.comingIndex > this.currentIndex) {
@@ -2414,11 +2444,11 @@ struct SwiperExample {
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext()
+            this.swiperController.showNext();
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious()
+            this.swiperController.showPrevious();
           })
       }.margin(5)
     }.width('100%')

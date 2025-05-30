@@ -401,14 +401,14 @@ type ArcScrollIndexHandler = (start: number, end: number, center: number) => voi
 
 ```ts
 // xxx.ets
-import { ComponentContent, LengthMetrics } from "@kit.ArkUI";
+import { ComponentContent, LengthMetrics } from '@kit.ArkUI';
 import { UIContext, CircleShape } from '@kit.ArkUI';
 import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute } from '@kit.ArkUI';
 
 @Builder
 function buildText() {
   Column() {
-    Text("header")
+    Text('header')
       .fontSize('60px')
       .fontWeight(FontWeight.Bold)
   }.margin(0)

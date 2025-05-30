@@ -556,7 +556,7 @@ on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): v
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -639,7 +639,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for watermark flag changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -797,7 +797,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean, callback: AsyncCall
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8)接口获取。|
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
 
@@ -857,7 +857,7 @@ setWaterMarkImage(pixelMap: image.PixelMap, enable: boolean): Promise&lt;void&gt
 
 | 参数名 | 类型                        | 必填  | 说明                 |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。 |
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 水印图片。可通过[createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8)接口获取。|
 | enable   | boolean                  | 是   | 设置是否显示水印图片。true显示水印图片；false表示不显示水印图片。 |
 
 **返回值：**
@@ -2712,7 +2712,7 @@ enableDrag(enable: boolean): Promise&lt;void&gt;
 
 使能/禁止拖拽窗口。使用Promise异步回调。
 
-使能后，将允许通过鼠标对窗口进行拉伸操作。
+使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
 
 仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
 
@@ -2821,14 +2821,18 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // 调用带callback参数的hideNonSystemFloatingWindows接口
-      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
-        if (err.code) {
-          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in hiding the non-system floating windows.');
-      });
+      try {
+        // 调用带callback参数的hideNonSystemFloatingWindows接口
+        mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+          if (err.code) {
+            console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in hiding the non-system floating windows.');
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -2900,13 +2904,17 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // 调用hideNonSystemFloatingWindows接口，获取promise对象
-      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-      promise.then(()=> {
-        console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err: BusinessError)=>{
-        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-      });
+      try {
+        // 调用hideNonSystemFloatingWindows接口，获取promise对象
+        let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+        promise.then(()=> {
+          console.info('Succeeded in hiding the non-system floating windows.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -3014,12 +3022,16 @@ setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
-let promise = windowClass.setSingleFrameComposerEnabled(enable);
-promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
-}).catch((err: BusinessError)=>{
-    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-});
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setTitleButtonVisible<sup>12+</sup>

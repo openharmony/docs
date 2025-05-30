@@ -5,6 +5,7 @@
 
 
 弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），这些接口围绕弹窗控制器实现各种弹窗控制。
+[OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
 
 
 ## 创建和销毁弹窗控制器

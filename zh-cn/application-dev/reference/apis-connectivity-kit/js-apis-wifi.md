@@ -517,7 +517,7 @@ wifi.getLinkedInfo().then(data => {
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ，2表示5GHZ。|
-| linkSpeed | number | 是 | 否 | WLAN接入点的速度，单位Mbps/s。 |
+| linkSpeed | number | 是 | 否 | WLAN接入点的速度，单位Mbps。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 true:是隐藏网络，false:不是隐藏网络。 |
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。true: 限制，false:不限制。 |

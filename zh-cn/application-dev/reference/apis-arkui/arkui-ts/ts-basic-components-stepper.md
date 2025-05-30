@@ -23,7 +23,7 @@ Stepper(value?: { index?: number })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数:**
+**参数：**
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ------| -------- | --------------- | -------- |
@@ -133,10 +133,10 @@ onPrevious(callback:&nbsp;(index:&nbsp;number,&nbsp;pendingIndex:&nbsp;number)&n
 @Entry
 @Component
 struct StepperExample {
-  @State currentIndex: number = 0
-  @State firstState: ItemState = ItemState.Normal
-  @State secondState: ItemState = ItemState.Normal
-  @State thirdState: ItemState = ItemState.Normal
+  @State currentIndex: number = 0;
+  @State firstState: ItemState = ItemState.Normal;
+  @State secondState: ItemState = ItemState.Normal;
+  @State thirdState: ItemState = ItemState.Normal;
 
   build() {
     Stepper({
@@ -150,7 +150,7 @@ struct StepperExample {
           Button('change status:' + this.firstState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
+              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip;
             })
         }.itemStyle()
       }
@@ -164,7 +164,7 @@ struct StepperExample {
           Button('change status:' + this.secondState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
+              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled;
             })
         }.itemStyle()
       }
@@ -179,7 +179,7 @@ struct StepperExample {
           Button('change status:' + this.thirdState)
             .backgroundColor('#007dFF')
             .onClick(() => {
-              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
+              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting;
             })
         }.itemStyle()
       }
@@ -195,15 +195,15 @@ struct StepperExample {
     .backgroundColor('#F1F3F5')
     .onFinish(() => {
       // 此处可处理点击最后一页的Finish时的逻辑，例如路由跳转等
-      console.info('onFinish')
+      console.info('onFinish');
     })
     .onSkip(() => {
       // 此处可处理点击跳过时的逻辑，例如动态修改Stepper的index值使其跳转到某一步骤页等
-      console.info('onSkip')
+      console.info('onSkip');
     })
     .onChange((prevIndex?: number, index?: number) => {
       if(index){
-        this.currentIndex = index
+        this.currentIndex = index;
       }
     })
   }

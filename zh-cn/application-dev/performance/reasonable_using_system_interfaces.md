@@ -96,6 +96,8 @@ struct Index {
 @CustomDialog
 export struct DiskFormatDialog {
   private diskName: string = '';
+  private customDialogController: CustomDialogController;
+  
   build() {
     Column() {
       Text(this.diskName.split("").join("\u200B"))
@@ -115,6 +117,8 @@ export struct DiskFormatDialog {
 @CustomDialog
 export struct DiskFormatDialog {
   private diskName: string = '';
+  private customDialogController: CustomDialogController;
+    
   build() {
     Column() {
       Text(this.diskName)

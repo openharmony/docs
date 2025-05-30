@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import { FullScreenLaunchComponent } from '@kit.ArkUI'
+import { FullScreenLaunchComponent } from '@kit.ArkUI';
 ```
 
 

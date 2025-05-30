@@ -850,7 +850,7 @@ try {
 
 ## Value
 
-type Value = boolean | number | Uint8Array;
+type Value = boolean | number | Uint8Array
 
 关键资产属性的内容，用作[AssetMap](#assetmap)的值。
 

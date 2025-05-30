@@ -182,36 +182,36 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ```ts
 // xxx.ets
-import { IntentionCode } from '@kit.InputKit'
+import { IntentionCode } from '@kit.InputKit';
 
 class Utils {
-  static rect_left: number
-  static rect_top: number
-  static rect_right: number
-  static rect_bottom: number
-  static rect_value: Record<string, number>
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: Record<string, number>;
 
   //获取组件所占矩形区域坐标
   static getComponentRect(key:string):Record<string, number> {
-    let strJson = getInspectorByKey(key)
-    let obj:Record<string, string> = JSON.parse(strJson)
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
-    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]     // 相对于组件左上角的水平方向坐标
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]      // 相对于组件左上角的垂直方向坐标
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]    // 相对于组件右下角的水平方向坐标
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]   // 相对于组件右下角的垂直方向坐标
+    let strJson = getInspectorByKey(key);
+    let obj:Record<string, string> = JSON.parse(strJson);
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']');
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];     // 相对于组件左上角的水平方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];      // 相对于组件左上角的垂直方向坐标
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];    // 相对于组件右下角的水平方向坐标
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
-    }
-  }
+    };
+  };
 }
 
 @Entry
 @Component
 struct IdExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -220,18 +220,18 @@ struct IdExample {
         Text('onKeyTab').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .onKeyEvent(() => {
-        this.text = "onKeyTab"
+        this.text = "onKeyTab";
       })
 
       Button() {
         Text('click to start').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 })
       .onClick(() => {
-        console.info(getInspectorByKey("click"))
-        console.info(JSON.stringify(getInspectorTree()))
-        this.text = "Button 'click to start' is clicked"
+        console.info(getInspectorByKey("click"));
+        console.info(JSON.stringify(getInspectorTree()));
+        this.text = "Button 'click to start' is clicked";
         setTimeout(() => {
-          sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件
+          sendEventByKey("longClick", 11, ""); // 向id为"longClick"的组件发送长按事件
         }, 2000)
       }).id('click')
 
@@ -240,10 +240,10 @@ struct IdExample {
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .gesture(
       LongPressGesture().onActionEnd(() => {
-        console.info('long clicked')
-        this.text = "Button 'longClick' is longclicked"
+        console.info('long clicked');
+        this.text = "Button 'longClick' is longclicked";
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch') // 获取id为"onTouch"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onTouch'); // 获取id为"onTouch"组件的矩形区域坐标
           let touchPoint: TouchObject = {
             id: 1,
             type: TouchType.Down,
@@ -255,10 +255,10 @@ struct IdExample {
             windowY: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的垂直方向坐标
             displayX: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的水平方向坐标
             displayY: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的垂直方向坐标
-          }
-          sendTouchEvent(touchPoint) // 发送触摸事件
-          touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint) // 发送触摸事件
+          };
+          sendTouchEvent(touchPoint); // 发送触摸事件
+          touchPoint.type = TouchType.Up;
+          sendTouchEvent(touchPoint); // 发送触摸事件
         }, 2000)
       })).id('longClick')
 
@@ -266,10 +266,10 @@ struct IdExample {
         Text('onTouch').fontSize(25).fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule).margin({ top: 20 })
       .onClick(() => {
-        console.info('onTouch is clicked')
-        this.text = "Button 'onTouch' is clicked"
+        console.info('onTouch is clicked');
+        this.text = "Button 'onTouch' is clicked";
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse') // 获取id为"onMouse"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onMouse'); // 获取id为"onMouse"组件的矩形区域坐标
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
@@ -303,8 +303,8 @@ struct IdExample {
             tiltX: 1,
             tiltY: 1,
             sourceTool: SourceTool.Unknown
-          }
-          sendMouseEvent(mouseEvent) // 发送鼠标事件
+          };
+          sendMouseEvent(mouseEvent); // 发送鼠标事件
         }, 2000)
       }).id('onTouch')
 
@@ -312,8 +312,8 @@ struct IdExample {
         Text('onMouse').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .onMouse(() => {
-        console.info('onMouse')
-        this.text = "Button 'onMouse' in onMouse"
+        console.info('onMouse');
+        this.text = "Button 'onMouse' in onMouse";
         setTimeout(() => {
           let keyEvent: KeyEvent = {
             type: KeyType.Down,
@@ -326,8 +326,8 @@ struct IdExample {
             stopPropagation: () => {
             },
             intentionCode: IntentionCode.INTENTION_DOWN
-          }
-          sendKeyEvent(keyEvent) // 发送按键事件
+          };
+          sendKeyEvent(keyEvent); // 发送按键事件
         }, 2000)
       }).id('onMouse')
 

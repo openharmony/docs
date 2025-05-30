@@ -229,8 +229,6 @@ import { geoLocationManager } from '@kit.LocationKit'; // 位置服务模块。�
 const MYLOCATION = 'myLocation';
 // 定义获取模糊位置的权限
 const PERMISSIONS: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
-// 获取上下文信息
-const context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 初始化PersistentStorage。PersistentStorage用于持久化存储选定的AppStorage属性
 PersistentStorage.persistProp(MYLOCATION, '');
 
@@ -239,6 +237,8 @@ PersistentStorage.persistProp(MYLOCATION, '');
 struct Index {
   // 创建状态变量@StorageLink(MYLOCATION) myLocation，和AppStorage中MYLOCATION双向绑定
   @StorageLink(MYLOCATION) myLocation: string = '';
+  // 获取上下文信息
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
     // ApiDataTime表示从getCurrentLocation接口获取位置信息的性能打点起始位置。
@@ -251,13 +251,13 @@ struct Index {
     if (cacheData !== '') {
       // 缓存中有位置信息，则从缓存中直接获取位置信息，并结束性能打点
       hiTraceMeter.finishTrace("CacheDataTime", 1);
-      AlertDialog.show({
+      this.getUIContext().showAlertDialog({
         message: 'AppStorage:' + cacheData,
         alignment: DialogAlignment.Center
       });
     } else {
       // 缓存中没有位置信息，则从接口获取位置信息
-      this.apiGetLocation(PERMISSIONS, context);
+      this.apiGetLocation(PERMISSIONS, this.context);
     }
   }
 
@@ -288,7 +288,7 @@ struct Index {
               let locationData = JSON.stringify(result);
               // 保存到本地缓存
               AppStorage.setOrCreate(MYLOCATION, JSON.stringify(locationData));
-              AlertDialog.show({
+              this.getUIContext().showAlertDialog({
                 message: 'getCurrentLocation:' + locationData,
                 alignment: DialogAlignment.Center
               });
@@ -301,7 +301,7 @@ struct Index {
           }
         } else {
           // 如果用户未授权，提示用户授权。
-          AlertDialog.show({
+          this.getUIContext().showAlertDialog({
             message: '用户未授权，请到系统设置中打开应用的位置权限后再试。',
             alignment: DialogAlignment.Center
           });
@@ -318,7 +318,7 @@ struct Index {
       Button('clear cache').onClick(() => {
         // 清除AppStorage缓存中的位置信息
         this.myLocation = '';
-        AlertDialog.show({
+        this.getUIContext().showAlertDialog({
           message: 'cache cleared',
           alignment: DialogAlignment.Center
         });

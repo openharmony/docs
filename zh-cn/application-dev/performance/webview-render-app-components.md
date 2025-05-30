@@ -83,7 +83,7 @@ export struct SearchComponent {
       .borderRadius(18)
       .onClick(() => {
         // 点击搜索框提示
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
           message: "仅演示"
         });
       })
@@ -154,7 +154,7 @@ export struct SearchComponent {
               case webview.WebMessageType.STRING: {
                 if (result.getString() === 'shop_search_click') {
                   // 点击搜索框提示
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: $r("app.string.nativeembed_prompt_text")
                   });
                 }

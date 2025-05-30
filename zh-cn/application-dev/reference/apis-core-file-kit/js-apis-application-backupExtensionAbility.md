@@ -59,7 +59,7 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
-备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用。<br>
+备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用。支持异步操作，使用Promise异步回调。<br>
 onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。<br>
 onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串，则会尝试调用onBackup。
 
@@ -69,7 +69,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 | 参数名           | 类型                            | 必填 | 说明                          |
 |---------------| ------------------------------- | ---- |-----------------------------|
-| backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+| backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。<br>backupInfo可能为空字符串，需要开发者针对空字符串场景做判断处理。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+|string \| Promise&lt;string&gt; |返回应用执行自定义备份操作的信息，包含备份结果和报错信息，返回值为Json格式。<br>异步返回Promise对象。<br>同步返回string。 |
 
 > **说明：**
 >
@@ -77,17 +83,21 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    onBackupEx(backupInfo: string): string {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  onBackupEx(backupInfo: string): string {
+    try {
+      if (backupInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -95,9 +105,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 > **说明：**
 >
@@ -105,18 +119,22 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    //异步实现
-    async onBackupEx(backupInfo: string): Promise<string> {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  //异步实现
+  async onBackupEx(backupInfo: string): Promise<string> {
+    try {
+      if (backupInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -124,9 +142,13 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 ### onRestore
 
@@ -158,7 +180,7 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
-Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。<br>
+Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作，使用Promise异步回调。<br>
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。<br>
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。<br>
 onRestoreEx的返回值为Json格式，使用方法见示例代码。
@@ -170,7 +192,13 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。 |
+| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。<br>restoreInfo可能为空字符串，需要开发者针对空字符串场景做判断处理。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| string \| Promise&lt;string&gt; |返回应用执行自定义恢复操作的信息，包含恢复结果和报错信息，返回值为Json格式。<br>异步返回Promise对象。<br>同步返回string。 |
 
 > **说明：**
 >
@@ -178,17 +206,21 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **示例：**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    // 异步实现
-    async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  // 异步实现
+  async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+    try {
+      if (restoreInfo == "") {
+        //当restoreInfo为空时，应用根据业务自行做处理。
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -196,9 +228,13 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+```
 
 > **说明：**
 >
@@ -207,16 +243,21 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 **示例：**
 
 ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
 
-  class BackupExt extends BackupExtensionAbility {
-    // 同步实现
-    onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+class BackupExt extends BackupExtensionAbility {
+  // 同步实现
+  onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+    try {
+      if (restoreInfo == "") {
+        //当backupInfo为空时，应用根据业务自行做处理。
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -224,19 +265,31 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+
+```
 
 ### onProcess<sup>12+</sup>
 
-onProcess(): string;
+onProcess(): string
 
 备份恢复框架增加进度返回接口。该接口为同步接口，由应用在执行onBackup(onBackupEx)/onRestore(onRestoreEx)期间进行实现。返回应用自身处理业务的进度，返回值为json结构，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
+**返回值：**
+
+| 类型                   | 说明    |
+| --------------------- | :---- |
+| string |返回应用onBackup或者onRestore执行过程中处理数据的进度信息（返回值为Json格式）。|
+
 > **说明：**
+>
 > - onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回。
 > - 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单独开辟子线程，否则onProcess相关功能无法正常运行。具体使用方式见示例代码。
 > - onProcess()推荐使用示例如下。

@@ -1,6 +1,6 @@
 # @ohos.curves (插值计算)
 
-本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
+本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、三阶贝塞尔曲线对象和弹簧曲线对象。
 
 > **说明：**
 > 
@@ -38,7 +38,7 @@ initCurve(curve?: Curve): ICurve
 
 ## Curve
 
-插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
+插值曲线和动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -68,7 +68,7 @@ curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 ```
 
 
-##  curves.stepsCurve<sup>9+</sup>
+## curves.stepsCurve<sup>9+</sup>
 
 stepsCurve(count: number, end: boolean): ICurve
 
@@ -83,7 +83,7 @@ stepsCurve(count: number, end: boolean): ICurve
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置小于1的值时，按值为1处理。 |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 **返回值：**
 
@@ -103,7 +103,7 @@ curves.stepsCurve(9, true)  //创建一个阶梯曲线
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
+构造三阶贝塞尔曲线对象，确保曲线的值在0到1之间。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 ```
 
 
-##  curves.springCurve<sup>9+</sup>
+## curves.springCurve<sup>9+</sup>
 
 springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -167,7 +167,7 @@ curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
 ```
 
 
-##  curves.springMotion<sup>9+</sup>
+## curves.springMotion<sup>9+</sup>
 
 springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -203,7 +203,7 @@ curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动�
 ```
 
 
-##  curves.responsiveSpringMotion<sup>9+</sup>
+## curves.responsiveSpringMotion<sup>9+</sup>
 
 responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
@@ -407,13 +407,13 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 ```ts
 // xxx.ets
-import { curves } from '@kit.ArkUI'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {

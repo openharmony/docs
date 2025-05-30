@@ -87,7 +87,7 @@ gridColOffset(value: number | GridColColumnOption)
 
 order(value: number | GridColColumnOption)
 
-设置元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。
+设置栅格子组件的序号，根据序号从小到大对栅格子组件进行排序。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -119,6 +119,9 @@ order(value: number | GridColColumnOption)
 | lg  | number | 否    | 在栅格大小为lg的设备上，栅格容器组件的栅格列数。      |
 | xl  | number | 否    | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
 | xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
+
+## 事件
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 请参考栅格容器示例代码([GridRow](ts-container-gridrow.md#示例))。

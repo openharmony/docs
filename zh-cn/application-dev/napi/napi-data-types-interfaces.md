@@ -60,7 +60,7 @@ napi_value是一个C的结构体指针，表示一个JavaScript对象的引用�
 
 - napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
 
-- 禁止缓存napi_env，禁止在不同Worker中传递napi_env。
+- 禁止缓存napi_env，禁止在不同线程中传递napi_env。
 
 ### napi_threadsafe_function
 
@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 **napi_handle_scope**
 
-napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#类型三生命周期类问题)。
+napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
 
 **napi_escapable_handle_scope**
 
@@ -167,7 +167,7 @@ typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 
 **napi_finalize**
 
-函数指针，用于传入napi_create_threadsafe_function和napi_set_instance_data接口。napi_finalize在对象被回收时会被调用。
+函数指针，用于传入napi_create_threadsafe_function和napi_set_instance_data等接口。napi_finalize在对象被回收时会被调用。
 
 **napi_async_execute_callback**
 
@@ -201,10 +201,10 @@ QoS决定了线程调度的优先级，等级定义如下：
 
 ```c
 typedef enum {
-  napi_qos_background = 0,
-  napi_qos_utility = 1,
-  napi_qos_default = 2,
-  napi_qos_user_initiated = 3,
+    napi_qos_background = 0,
+    napi_qos_utility = 1,
+    napi_qos_default = 2,
+    napi_qos_user_initiated = 3,
 } napi_qos_t;
 ```
 
@@ -504,13 +504,6 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 |
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。|
 
-### ArkTS基础运行时环境
-
-| 接口 | 功能说明 |
-| -------- | -------- |
-| napi_create_ark_runtime | 创建基础运行时环境。|
-| napi_destroy_ark_runtime | 销毁基础运行时环境。|
-
 ### 扩展能力
 
 [Node-API组件扩展的符号列表](../reference/native-lib/napi.md#node-api组件扩展的符号列表)
@@ -542,7 +535,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
-| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 | napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
 
 #### napi_queue_async_work_with_qos
@@ -553,7 +546,7 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
                                            napi_qos_t qos);
 ```
 
-用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考指定异步任务调度优先级。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)
+用法同napi_queue_async_work，但可以指定QoS等级。napi_queue_async_work_with_qos使用方法可参考指定异步任务调度优先级。QoS详细介绍可参考[QoS 开发指导](qos-guidelines.md)。
 
 #### napi_run_script_path
 
@@ -601,13 +594,26 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  void* hint);
 ```
 
+#### napi_create_ark_runtime
+
+```c
+napi_status napi_create_ark_runtime(napi_env *env);
+```
+[使用napi_create_ark_runtime、napi_destroy_ark_runtime接口创建ArkTS运行时环境](use-napi-ark-runtime.md)。
+
+#### napi_destroy_ark_runtime
+
+```c
+napi_status napi_destroy_ark_runtime(napi_env *env);
+```
+
 #### napi_run_event_loop
 
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
 
-[napi_run_event_loop与napi_stop_event_loop的使用指导](use-napi-event-loop.md)
+开发者只能在自己通过napi_create_ark_runtime创建的ArkTS运行环境中调用napi_run_event_loop与napi_stop_event_loop接口，使用方法可参考[使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)。
 
 #### napi_stop_event_loop
 

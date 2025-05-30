@@ -1,6 +1,6 @@
 # @ohos.application.Configuration (Configuration)
 
-The **Configuration** module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
+The Configuration module defines environment change information. **Configuration** is an interface definition and is used only for field declaration.
 
 > **NOTE**
 >

@@ -36,6 +36,7 @@ cpp部分代码
 ```cpp
 // hello.cpp
 #include <string.h>
+#include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;
@@ -344,7 +345,8 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
-    double num1, num2;
+    double num1 = 0;
+    double num2 = 0;
     OH_JSVM_GetValueDouble(env, args[0], &num1);
     OH_JSVM_GetValueDouble(env, args[1], &num2);
     JSVM_Value sum = nullptr;
@@ -465,10 +467,10 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
     // 6. Verify the validity of 'options'.
     Run(env, "obj()");
     Run(env, "obj.x = 123;");
-    if (g_call_as_function_flag == true &&
-    g_set_named_property_flag == true &&
-    g_call_as_constructor_flag == true &&
-    g_properties_flag == true) {
+    if (g_call_as_function_flag &&
+    g_set_named_property_flag &&
+    g_call_as_constructor_flag &&
+    g_properties_flag) {
         OH_LOG_INFO(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Success");
     } else {
         OH_LOG_ERROR(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Failed");

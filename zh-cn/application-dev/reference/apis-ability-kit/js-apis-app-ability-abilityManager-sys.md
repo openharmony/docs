@@ -990,8 +990,8 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | ---------| ---- | ---- | --------- |
-| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
-| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
 
 ## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
 

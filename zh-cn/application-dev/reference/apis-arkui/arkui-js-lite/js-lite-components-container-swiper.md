@@ -17,9 +17,9 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | index | number | 0 | 否 | 当前在容器中显示的子组件的索引值。 |
-| loop | boolean | true | 否 | 是否开启循环轮播。 |
+| loop | boolean | true | 否 | 是否开启循环轮播。true为开启循环，false为不开启循环。 |
 | duration | number | - | 否 | 子组件切换的动画时长。 |
-| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。<br/>不支持动态修改。 |
+| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。true为纵向滑动，false为水平滑动。<br/>不支持动态修改。 |
 | id | string | - | 否 | 组件的唯一标识。 |
 | style | string | - | 否 | 组件的样式声明。 |
 | class | string | - | 否 | 组件的样式类，用于引用样式表。 |

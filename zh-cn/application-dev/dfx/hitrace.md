@@ -5,7 +5,8 @@ HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速�
 ## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
-- 确保设备已正常连接。
+
+- 确保设备已正常连接，并执行hdc shell。
 
 ## 命令行说明
 
@@ -50,7 +51,7 @@ $ hitrace -l
        animation - Animation
              app - APP Module
              ark - ARK Module
-       bluetooth - communicatio bluetooth
+       bluetooth - communication bluetooth
            cloud - Cloud subsystem tag
        cloudfile - Cloud file system
       commercial - Commercial version tag
@@ -63,7 +64,7 @@ $ hitrace -l
            dhfwk - Distributed Hardware FWK
           dinput - Distributed Input
             disk - Disk I/O
-istributeddatamgr - Distributed Data Manager
+distributeddatamgr - Distributed Data Manager
           dlpcre - Dlp Credential Service
              drm - Digital Rights Management
           dsched - Distributed Schedule
@@ -205,7 +206,7 @@ $ hitrace --trace_dump
 #              | |           |       |   ||||      |         |
            <...>-21829   (  19280) [003] .... 3011033.731844: tracing_mark_write: trace_event_clock_sync: realtime_ts=1732002022239
            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
-#
+$
 ```
 添加输出路径，trace信息将导出至对应的文件中。
 

@@ -37,6 +37,8 @@
 
 **Index.ets示例代码如下：**
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -67,15 +69,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -92,15 +103,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -129,6 +149,8 @@ process name [{bundleName}：{UIExtensionAbility的类型}]
 
 **Index.ets示例代码如下：**
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -159,15 +181,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -184,15 +215,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -222,6 +262,8 @@ process name [{bundleName}：{UIExtensionAbility名}]
 
 **Index.ets示例代码如下：**
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -252,15 +294,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 10 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         UIExtensionComponent(
           {
@@ -277,15 +328,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 50 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
       }
       .width('100%')
     }
@@ -443,6 +503,8 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 如在首页文件：pages/Index.ets中添加如下内容。
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -473,15 +535,24 @@ struct Index {
           .onReceive((data) => {
             this.message = JSON.stringify(data);
           })
-          .onResult((data) => {
-            this.message = JSON.stringify(data);
+          .onTerminated((terminateInfo: TerminationInfo) => {
+            // 被拉起的UIExtensionAbility通过调用terminateSelfWithResult或者terminateSelf正常退出时，触发本回调函数。
+            // 回调返回UIExtensionAbility正常退出时的返回结果，包含结果码code和Want数据。
+            this.message = `terminate code: ${terminateInfo.code}, want: ${terminateInfo.want}`;
           })
-          .onRelease((code) => {
-            this.message = "release code:" + code;
+          .onError((error: BusinessError) => {
+            // 被拉起的UIExtensionAbility在运行过程中发生异常时，触发本回调函数。
+            // 回调返回UIExtensionAbility发生异常时返回的错误码和错误信息。
+            this.message = `error code: ${error.code}, error msg: ${error.message}`;
           })
           .offset({ x: 0, y: 30 })
           .size({ width: 300, height: 300 })
-          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .border({
+            width: 5,
+            color: 0x317AF7,
+            radius: 10,
+            style: BorderStyle.Dotted
+          })
 
         Button("sendData")
           .type(ButtonType.Capsule)

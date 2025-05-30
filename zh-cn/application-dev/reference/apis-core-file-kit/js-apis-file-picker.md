@@ -4,8 +4,8 @@
 >
 > 该模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等API模块，具有选择与保存的能力。应用可以自行选择使用哪种API实现文件选择和文件保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起photoPicker应用或FilePicker应用。
-调用本模块接口返回的URI数组，路径中如果存在中文及非数字字母的特殊字符，将会被编译成对应的ASCII码，拼接在URI中。
+选择器(Picker)是一个封装DocumentViewPicker、AudioViewPicker、PhotoViewPicker的API模块，具有选择与保存的能力。应用可以选择使用以下API来实现文件的选择和保存的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起FilePicker应用、AudioPicker应用或PhotoPicker应用。
+调用本模块接口返回的URI数组，路径中的中文及非数字字母的特殊字符会被编码为对应的ASCII码，然后拼接到URI中。
 
 ## 导入模块
 
@@ -86,6 +86,7 @@ constructor(context: Context, window: window.Window)
 应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。
 
 **参数：**
+
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
@@ -132,9 +133,9 @@ struct Index {
 
 select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的uri数组。
+通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSelectOptions对象，返回选择文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -165,11 +166,11 @@ async function example07(context: common.UIAbilityContext) { // 需确保 contex
     documentPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
       console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     }).catch((err: BusinessError) => {
-      console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`DocumentViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -178,9 +179,9 @@ async function example07(context: common.UIAbilityContext) { // 需确保 contex
 
 select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSelectOptions对象，返回选择文件的uri数组。
+通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSelectOptions对象，返回选择文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -205,14 +206,14 @@ async function example08(context: common.UIAbilityContext) { // 需确保 contex
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select(documentSelectOptions, (err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`DocumentViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -221,9 +222,9 @@ async function example08(context: common.UIAbilityContext) { // 需确保 contex
 
 select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，返回选择文件的uri数组。
+通过选择模式拉起documentPicker界面，用户可以选择一个或多个文件。接口采用callback异步返回形式，返回选择文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -246,14 +247,14 @@ async function example09(context: common.UIAbilityContext) { // 需确保 contex
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select((err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`DocumentViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -262,9 +263,9 @@ async function example09(context: common.UIAbilityContext) { // 需确保 contex
 
 save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用Promise异步返回形式，传入可选参数DocumentSaveOptions对象，返回保存文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -296,11 +297,11 @@ async function example10(context: common.UIAbilityContext) { // 需确保 contex
     documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
       console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     }).catch((err: BusinessError) => {
-      console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
+      console.error(`DocumentViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -309,9 +310,9 @@ async function example10(context: common.UIAbilityContext) { // 需确保 contex
 
 save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSaveOptions对象，返回保存文件的uri数组。
+通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，传入参数DocumentSaveOptions对象，返回保存文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -337,14 +338,14 @@ async function example11(context: common.UIAbilityContext) { // 需确保 contex
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save(documentSaveOptions, (err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
+        console.error(`DocumentViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -353,9 +354,9 @@ async function example11(context: common.UIAbilityContext) { // 需确保 contex
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，返回保存文件的uri数组。
+通过保存模式拉起documentPicker界面，用户可以保存一个或多个文件。接口采用callback异步返回形式，返回保存文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -378,19 +379,19 @@ async function example12(context: common.UIAbilityContext) { // 需确保 contex
     let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save((err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
-        console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
+        console.error(`DocumentViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
 
-### getSelectedIndex<sup>14+</sup>;
+### getSelectedIndex<sup>14+</sup>
 
 getSelectedIndex(): number
 
@@ -398,9 +399,9 @@ getSelectedIndex(): number
 
 仅支持2in1设备。
 
-该方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
+该方法只在调用 [save()](#save)时使用生效，其他场景下不适用。
 
-该方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
+该方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)。
 
 该方法返回的是所选后缀类型的下标(number)。所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型。如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
 
@@ -430,14 +431,15 @@ async function exampleIndex(context: common.UIAbilityContext) { // 需确保 con
       }
       console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     }).catch((err: BusinessError) => {
-      console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
+      console.error(`DocumentViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`DocumentViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
+
 ## AudioViewPicker
 
 音频选择器对象，用来支撑选择和保存音频类文件等用户场景。在使用前，需要先创建AudioViewPicker实例。
@@ -455,6 +457,7 @@ constructor(context: Context)
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
@@ -486,6 +489,7 @@ struct Index {
   }
 }
 ```
+
 ### constructor<sup>12+</sup>
 
 constructor()
@@ -506,9 +510,9 @@ let audioPicker = new picker.AudioViewPicker(); // 不推荐使用无参构造�
 
 select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
+通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -539,11 +543,11 @@ async function example13(context: common.UIAbilityContext) { // 需确保 contex
     audioPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
       console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     }).catch((err: BusinessError) => {
-      console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`AudioViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -552,9 +556,9 @@ async function example13(context: common.UIAbilityContext) { // 需确保 contex
 
 select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSelectOptions对象，返回选择音频文件的uri数组。
+通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSelectOptions对象，返回选择音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -577,14 +581,14 @@ async function example14(context: common.UIAbilityContext) { // 需确保 contex
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select(audioSelectOptions, (err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`AudioViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -593,9 +597,9 @@ async function example14(context: common.UIAbilityContext) { // 需确保 contex
 
 select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，返回选择音频文件的uri数组。
+通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，返回选择音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -616,14 +620,14 @@ async function example15(context: common.UIAbilityContext) { // 需确保 contex
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select((err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
+        console.error(`AudioViewPicker.select failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -632,9 +636,9 @@ async function example15(context: common.UIAbilityContext) { // 需确保 contex
 
 save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
-通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的uri数组。
+通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSaveOptions对象，返回保存音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -666,11 +670,11 @@ async function example16(context: common.UIAbilityContext) { // 需确保 contex
     audioPicker.save(audioSaveOptions).then((audioSaveResult: Array<string>) => {
       console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult))
     }).catch((err: BusinessError) => {
-      console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
+      console.error(`AudioViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -679,9 +683,9 @@ async function example16(context: common.UIAbilityContext) { // 需确保 contex
 
 save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSaveOptions对象，返回保存音频文件的uri数组。
+通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSaveOptions对象，返回保存音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -705,14 +709,14 @@ async function example17(context: common.UIAbilityContext) { // 需确保 contex
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save(audioSaveOptions, (err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
+        console.error(`AudioViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -721,9 +725,9 @@ async function example17(context: common.UIAbilityContext) { // 需确保 contex
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，返回保存音频文件的uri数组。
+通过保存模式拉起audioPicker界面（目前拉起的是documentPicker，audioPicker在规划中），用户可以保存一个或多个音频文件。接口采用callback异步返回形式，返回保存音频文件的URI数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的URI数组的具体使用方式参见用户文件URI介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -744,14 +748,14 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
     let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save((err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
-        console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
+        console.error(`AudioViewPicker.save failed with err, code is: ${err.code}, message is: ${err.message}`);
         return;
       }
       console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult));
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('AudioViewPicker failed with err: ' + JSON.stringify(err));
+        console.error(`AudioViewPicker failed with err, code is: ${err.code}, message is: ${err.message}`);
   }
 }
 ```
@@ -768,7 +772,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| FILE  | 0  | 文件类型。  |
+| FILE  | 0  | 文件类型（默认类型）。 |
 | FOLDER | 1  | 文件夹类型。  |
 | MIXED | 2  | 文件和文件夹混合类型。  |
 
@@ -782,14 +786,15 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 | 名称                    | 类型                                          | 只读 | 可选 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- | ---- | ------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 是 | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。           |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 是 | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认不过滤，即显示所有文件。<br>**系统能力**：SystemCapability.FileManagement.UserFileService   |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 是 | 仅支持2in1设备。默认值是文件类型。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 是 | 拉起授权Picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权URI。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  | 
-|multiAuthMode<sup>15+</sup>  | boolean                             |否    | 是 | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
-|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    | 是 | 传入需要批量授权的URI数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。默认为空（效果为拉起批量授权页面后展示的文件为空）。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
-|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 是 | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|    
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 是 | 选择文件最大个数，上限为500个，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。<br>**系统能力**：SystemCapability.FileManagement.UserFileService  |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   |  是 | 指定选择的文件或者目录路径。默认为空（效果为拉起最近打开页）。           |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   |  是 | 选择文件的后缀类型。传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认不过滤，即显示所有文件。<br>**系统能力**：SystemCapability.FileManagement.UserFileService   |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   |  是 | 仅支持2in1设备。默认值是FILE(文件类型)。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
+| authMode<sup>12+</sup>    | boolean                              | 否   |  是 | 拉起授权Picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权URI。仅支持2in1设备。<br>**系统能力**：SystemCapability.FileManagement.UserFileService.FolderSelection  |
+|multiAuthMode<sup>15+</sup>  | boolean                             |否    |  是 | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    |  是 | 传入需要批量授权的URI数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。默认为空（效果为拉起批量授权页面后展示的文件为空）。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    |  是 | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+
 ## DocumentPickerMode<sup>12+</sup>
 
 枚举，picker保存的模式。
@@ -841,13 +846,14 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
+
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
+| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限为500个，有效值范围1-500。 |
 
 ## AudioSaveOptions
 
-音频的保存选项。
+音频保存选项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

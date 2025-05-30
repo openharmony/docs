@@ -37,9 +37,7 @@ IPC/RPC的订阅机制适用于以下场景：</br>
     import { Want, common } from '@kit.AbilityKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-    let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
 
     let want: Want = {
@@ -115,6 +113,7 @@ IPC/RPC的订阅机制适用于以下场景：</br>
   ```
 
   Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)接口连接Ability。
+  在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
   ```ts

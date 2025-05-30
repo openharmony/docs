@@ -13,6 +13,8 @@ To avoid unexpected behavior, ensure that every member variable of the struct is
 
 **Related module**: [OHAudio](_o_h_audio.md)
 
+**Header file**: [native_audiostream_base.h](native__audiostream__base_8h.md)
+
 
 ## Summary
 

@@ -10,6 +10,16 @@
 >
 > 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
+## 导入模块
+
+```ts
+import {
+  AtomicServiceBar, ComponentUtils, ContextMenuController, CursorController, DragController, Font, KeyboardAvoidMode, MediaQuery, OverlayManager,
+  PromptAction, Router, UIContext, UIInspector, UIObserver, PageInfo, SwiperDynamicSyncScene, SwiperDynamicSyncSceneType, MeasureUtils, FrameCallback,
+  OverlayManagerOptions, TargetInfo, MarqueeDynamicSyncScene, MarqueeDynamicSyncSceneType
+} from "@kit.ArkUI";
+```
+
 ## UIContext
 
 以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
@@ -273,10 +283,10 @@ animateTo(value: AnimateParam, event: () => void): void
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  private flag: boolean = true;
   uiContext: UIContext | undefined = undefined;
 
   aboutToAppear() {
@@ -301,19 +311,19 @@ struct AnimateToExample {
               iterations: 3,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
-            })
+              this.widthSize = 150;
+              this.heightSize = 60;
+            });
           } else {
             this.uiContext?.animateTo({}, () => {
-              this.widthSize = 250
-              this.heightSize = 100
-            })
+              this.widthSize = 250;
+              this.heightSize = 100;
+            });
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('stop rotating')
         .margin(50)
@@ -333,13 +343,13 @@ struct AnimateToExample {
             }
           }, () => {
             this.rotateAngle = 90
-          })
+          });
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
-            this.rotateAngle = 0
-          })
+            this.rotateAngle = 0;
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -476,7 +486,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 <!--code_no_check-->
 ```ts
-uiContext.getFrameNodeById("TestNode")
+uiContext.getFrameNodeById("TestNode");
 ```
 
 ### getAttachedFrameNodeById<sup>12+</sup>
@@ -509,7 +519,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 <!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode")
+uiContext.getAttachedFrameNodeById("TestNode");
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -699,7 +709,7 @@ uiContext.showAlertDialog(
       console.info('Closed callbacks')
     }
   }
-)
+);
 ```
 
 ### showActionSheet
@@ -729,11 +739,11 @@ uiContext.showActionSheet({
   confirm: {
     value: 'Confirm button',
     action: () => {
-      console.info('Get Alert Dialog handled')
+      console.info('Get Alert Dialog handled');
     }
   },
   cancel: () => {
-    console.info('actionSheet canceled')
+    console.info('actionSheet canceled');
   },
   alignment: DialogAlignment.Bottom,
   offset: { dx: 0, dy: -10 },
@@ -741,23 +751,23 @@ uiContext.showActionSheet({
     {
       title: 'apples',
       action: () => {
-        console.info('apples')
+        console.info('apples');
       }
     },
     {
       title: 'bananas',
       action: () => {
-        console.info('bananas')
+        console.info('bananas');
       }
     },
     {
       title: 'pears',
       action: () => {
-        console.info('pears')
+        console.info('pears');
       }
     }
   ]
-})
+});
 ```
 
 ### showDatePickerDialog
@@ -780,23 +790,23 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 <!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1")
+let selectedDate: Date = new Date("2010-1-1");
 uiContext.showDatePickerDialog({
   start: new Date("2000-1-1"),
   end: new Date("2100-12-31"),
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
+    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
   },
   onCancel: () => {
-    console.info("DatePickerDialog:onCancel()")
+    console.info("DatePickerDialog:onCancel()");
   },
   onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value))
+    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
   }
-})
+});
 ```
 
 ### showTimePickerDialog
@@ -821,9 +831,9 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 // xxx.ets
 
 class SelectTime{
-  selectTime: Date = new Date('2020-12-25T08:30:00')
+  selectTime: Date = new Date('2020-12-25T08:30:00');
   hours(h:number,m:number){
-    this.selectTime.setHours(h,m)
+    this.selectTime.setHours(h, m);
   }
 }
 
@@ -841,19 +851,19 @@ struct TimePickerDialogExample {
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-              let time = new SelectTime()
-              if(value.hour&&value.minute){
-                time.hours(value.hour, value.minute)
+              let time = new SelectTime();
+              if(value.hour && value.minute){
+                time.hours(value.hour, value.minute);
               }
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
+              console.info("TimePickerDialog:onCancel()");
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -882,23 +892,23 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 // xxx.ets
 
 class SelectedValue{
-  select: number = 2
-  set(val:number){
-    this.select = val
+  select: number = 2;
+  set(val: number){
+    this.select = val;
   }
 }
 class SelectedArray{
-  select: number[] = []
-  set(val:number[]){
-    this.select = val
+  select: number[] = [];
+  set(val: number[]){
+    this.select = val;
   }
 }
 @Entry
 @Component
 struct TextPickerDialogExample {
   @State selectTime: Date = new Date('2023-12-25T08:30:00');
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  private select : number  = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
+  private select: number  = 0;
   build() {
     Column() {
       Button('showTextPickerDialog')
@@ -909,20 +919,20 @@ struct TextPickerDialogExample {
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
               // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-              let selectedVal = new SelectedValue()
-              let selectedArr = new SelectedArray()
-              if(value.index){
-                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              let selectedVal = new SelectedValue();
+              let selectedArr = new SelectedArray();
+              if (value.index){
+                value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index);
               }
-              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TextPickerDialog:onCancel()")
+              console.info("TextPickerDialog:onCancel()");
             },
             onChange: (value: TextPickerResult) => {
-              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -1101,7 +1111,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -1140,7 +1150,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
       hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
@@ -1402,7 +1412,7 @@ uiContext.getMeasureUtils();
 
 getComponentSnapshot(): ComponentSnapshot
 
-获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。典型使用场景及最佳实践可参考[组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1426,6 +1436,10 @@ uiContext.getComponentSnapshot();
 vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
+
+转换公式为：px值 = vp值 × 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1456,6 +1470,10 @@ px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
 
+转换公式为：vp值 = px值 ÷ 像素密度
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1484,6 +1502,12 @@ uiContext.px2vp(200);
 fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
+
+转换公式为：px值 = fp值 × 像素密度 × 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，即屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1514,6 +1538,12 @@ px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
 
+转换公式为：fp值 = px值 ÷ 像素密度 ÷ 字体缩放比例
+
+像素密度：当前窗口生效的像素密度值，通常就是屏幕物理像素密度[VirtualScreenConfig.density](js-apis-display.md#virtualscreenconfig16)。
+
+字体缩放比例：系统设置的字体缩放系数，对应 [Configuration.fontScale](arkui-ts/ts-types.md#configuration)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1543,6 +1573,8 @@ lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
 
+转换公式为：px值 = lpx值 × 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1571,6 +1603,8 @@ uiContext.lpx2px(200);
 px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
+
+转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1619,7 +1653,7 @@ import { window } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   aboutToAppear() {
     const windowName = this.getUIContext().getWindowName();
@@ -1683,7 +1717,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1733,7 +1767,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1768,7 +1802,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1817,7 +1851,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1866,7 +1900,7 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 <!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene")
+uiContext.DynamicSyncScene("dynamicSyncScene");
 ```
 
 ### openBindSheet<sup>12+</sup>
@@ -1922,7 +1956,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2050,7 +2084,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2176,7 +2210,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2278,7 +2312,7 @@ isFollowingSystemFontScale(): boolean
 
 <!--code_no_check-->
 ```ts
-uiContext.isFollowingSystemFontScale()
+uiContext.isFollowingSystemFontScale();
 ```
 
 ### getMaxFontScale<sup>13+</sup>
@@ -2301,12 +2335,12 @@ getMaxFontScale(): number
 
 <!--code_no_check-->
 ```ts
-uiContext.getMaxFontScale()
+uiContext.getMaxFontScale();
 ```
 
 ### bindTabsToScrollable<sup>13+</sup>
 
-bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
+bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void
 
 绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
@@ -2331,28 +2365,28 @@ bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 @Entry
 @Component
 struct TabsExample {
-  private arr: string[] = []
-  private parentTabsController: TabsController = new TabsController()
-  private childTabsController: TabsController = new TabsController()
-  private listScroller: Scroller = new Scroller()
-  private parentScroller: Scroller = new Scroller()
-  private childScroller: Scroller = new Scroller()
+  private arr: string[] = [];
+  private parentTabsController: TabsController = new TabsController();
+  private childTabsController: TabsController = new TabsController();
+  private listScroller: Scroller = new Scroller();
+  private parentScroller: Scroller = new Scroller();
+  private childScroller: Scroller = new Scroller();
 
   aboutToAppear(): void {
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i.toString())
+      this.arr.push(i.toString());
     }
-    let context = this.getUIContext()
-    context.bindTabsToScrollable(this.parentTabsController, this.listScroller)
-    context.bindTabsToScrollable(this.childTabsController, this.listScroller)
-    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.bindTabsToScrollable(this.parentTabsController, this.listScroller);
+    context.bindTabsToScrollable(this.childTabsController, this.listScroller);
+    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   aboutToDisappear(): void {
-    let context = this.getUIContext()
-    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller)
-    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller)
-    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller);
+    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller);
+    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   build() {
@@ -2426,7 +2460,7 @@ struct TabsExample {
 
 ### unbindTabsFromScrollable<sup>13+</sup>
 
-unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
+unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void
 
 解除Tabs组件和可滚动容器组件的绑定。
 
@@ -2447,7 +2481,7 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 ### bindTabsToNestedScrollable<sup>13+</sup>
 
-bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
@@ -2469,7 +2503,7 @@ bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scrol
 
 ### unbindTabsFromNestedScrollable<sup>13+</sup>
 
-unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 解除Tabs组件和嵌套的可滚动容器组件的绑定。
 
@@ -2495,7 +2529,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2503,7 +2537,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。|
+| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。<br>当值为true时，支持应用内横向滑动返回。<br>当值为false时，不支持应用内横向滑动返回。|
 
 **示例：**
 
@@ -2532,7 +2566,7 @@ getTextMenuController(): TextMenuController
 
 获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 16 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2637,11 +2671,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -2725,9 +2759,9 @@ getSystemFontList(): Array\<string>
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getSystemFontList()
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getSystemFontList();
 }
 ```
 
@@ -2759,9 +2793,9 @@ getFontByName(fontName: string): font.FontInfo
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getFontByName('Sans Italic')
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getFontByName('Sans Italic');
 }
 ```
 
@@ -2789,7 +2823,7 @@ type Context = common.Context
 
 getRectangleById(id: string): componentUtils.ComponentInfo
 
-获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2809,7 +2843,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -2821,7 +2855,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils:ComponentUtils = uiContext.getComponentUtils();
+let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
@@ -3148,14 +3182,14 @@ off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\
 **示例：**
 
 ```ts
-import { UIObserver } from '@kit.ArkUI'
+import { UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller()
-  observer: UIObserver = new UIObserver()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+  scroller: Scroller = new Scroller();
+  observer: UIObserver = new UIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
   build() {
     Row() {
@@ -3290,7 +3324,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3304,7 +3338,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
         .onClick(() => {
-          this.message = '已注册监听'
+          this.message = '已注册监听';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3336,7 +3370,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3351,12 +3385,12 @@ struct Index {
       Button('注册屏幕像素密度变化监听')
         .margin({ bottom: 10 })
         .onClick(() => {
-          this.message = '已注册监听'
+          this.message = '已注册监听';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
       Button('解除注册屏幕像素密度变化监听')
         .onClick(() => {
-          this.message = '未注册监听'
+          this.message = '未注册监听';
           this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3505,7 +3539,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.info("layout布局完成")
+    console.info("layout布局完成");
   }
 
   build() {
@@ -3559,7 +3593,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3653,7 +3687,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3668,12 +3702,12 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   build() {
@@ -4233,7 +4267,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4249,7 +4283,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4266,7 +4300,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4306,7 +4340,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4341,7 +4375,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4388,13 +4422,13 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4410,7 +4444,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4427,7 +4461,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4469,13 +4503,13 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4510,7 +4544,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4554,7 +4588,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4567,7 +4601,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4584,7 +4618,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4623,7 +4657,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4655,7 +4689,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4701,13 +4735,13 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4720,7 +4754,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4737,7 +4771,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4781,10 +4815,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4816,7 +4850,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4861,7 +4895,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4877,7 +4911,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4894,7 +4928,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4969,7 +5003,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5018,9 +5052,9 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+  Standard:router.RouterMode = router.RouterMode.Standard;
 }
-let rtm:RouterTmp = new RouterTmp()
+let rtm:RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5036,7 +5070,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5053,7 +5087,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5098,10 +5132,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5136,7 +5170,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5193,7 +5227,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5210,7 +5244,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5281,7 +5315,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5331,10 +5365,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5347,7 +5381,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5364,7 +5398,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5408,10 +5442,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5443,7 +5477,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5478,7 +5512,7 @@ router.back({url:'pages/detail'});
 
 ### back<sup>12+</sup>
 
-back(index: number, params?: Object): void;
+back(index: number, params?: Object): void
 
 返回指定的页面。
 
@@ -5867,7 +5901,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct toastExample {
   @State toastId: number = 0;
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Column() {
@@ -5881,10 +5915,10 @@ struct toastExample {
             this.toastId = toastId;
           })
             .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
             })
         })
-      Blank().height(50);
+      Blank().height(50)
       Button('Close Toast')
         .height(100)
         .onClick(() => {
@@ -6053,7 +6087,7 @@ promptAction.showDialog({
 
 ### showActionMenu<sup>11+</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;): void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -6114,7 +6148,7 @@ try {
 
 ### showActionMenu<sup>(deprecated)</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)): void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -6266,7 +6300,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6286,7 +6320,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6298,7 +6332,7 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6358,7 +6392,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   constructor(text: string, dialogController: promptAction.DialogController) {
@@ -6377,7 +6411,7 @@ function buildText(params: Params) {
     Button('点我关闭弹窗：通过外部传递的DialogController')
       .onClick(() => {
         if (params.dialogController != undefined) {
-          params.dialogController.close()
+          params.dialogController.close();
         }
       })
   }.backgroundColor('#FFF0F0F0')
@@ -6386,8 +6420,8 @@ function buildText(params: Params) {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   build() {
     Row() {
@@ -6400,7 +6434,7 @@ struct Index {
               new Params(this.message, this.dialogController));
             promptAction.openCustomDialogWithController(contentNode, this.dialogController)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialogWithController args error code is ${error.code}, message is ${error.message}`);
@@ -6454,7 +6488,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6474,7 +6508,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6486,7 +6520,7 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6494,7 +6528,7 @@ struct Index {
             setTimeout(() => {
               promptAction.closeCustomDialog(contentNode)
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
                   console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6550,7 +6584,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6570,7 +6604,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6579,22 +6613,22 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
-                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
               })
 
             setTimeout(() => {
               promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
-                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
                 })
             }, 2000); //2秒后自动更新弹窗位置
           })
@@ -6684,21 +6718,21 @@ import { PromptAction, promptAction } from '@kit.ArkUI';
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
-  private customDialogComponentId: number = 0
+  private customDialogComponentId: number = 0;
   @Builder customDialogComponent() {
     Column() {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("通过DialogId关闭").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("通过DialogController关闭").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6709,10 +6743,10 @@ struct Index {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("通过DialogId关闭").onClick(() => {
-          this.promptAction.closeCustomDialog(dialogId)
+          this.promptAction.closeCustomDialog(dialogId);
         })
         Button("通过DialogController关闭").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6728,10 +6762,10 @@ struct Index {
               this.customDialogComponent()
             }, this.dialogController)
               .then((dialogId: number) => {
-                this.customDialogComponentId = dialogId
+                this.customDialogComponentId = dialogId;
               })
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog error: " + err.code + " " + err.message);
               })
           })
         Button('presentCustomDialog with id')
@@ -6741,7 +6775,7 @@ struct Index {
               this.customDialogComponentWithId(dialogId)
             }, this.dialogController)
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog with id error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog with id error: " + err.code + " " + err.message);
               })
           })
       }
@@ -6786,8 +6820,8 @@ import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
-  private customDialogComponentId: number = 0
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+  private customDialogComponentId: number = 0;
 
   @Builder
   customDialogComponent() {
@@ -6795,10 +6829,10 @@ struct Index {
       Text('弹窗').fontSize(30)
       Row({ space: 50 }) {
         Button("确认").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("取消").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -6814,17 +6848,17 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
               }
             }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
+              this.customDialogComponentId = dialogId;
             })
           })
       }
@@ -6863,7 +6897,7 @@ import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } f
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -6882,16 +6916,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -6901,7 +6935,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let topOrder: LevelOrder = this.promptAction.getTopOrder();
@@ -6943,7 +6977,7 @@ import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } f
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -6962,16 +6996,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -6981,7 +7015,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
@@ -7047,8 +7081,8 @@ import { ComponentContent, FrameNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 interface PopupParam {
-  updateFunc?: () => void
-  closeFunc?: () => void
+  updateFunc?: () => void;
+  closeFunc?: () => void;
 }
 
 export function showPopup(context: UIContext, uniqueId: number, contentNode: ComponentContent<PopupParam>,
@@ -7114,10 +7148,10 @@ struct Index {
       Button('Open Popup')
         .fontSize(20)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const popupParam: PopupParam = {};
           const contentNode = new ComponentContent(context, wrapBuilder(buildText), popupParam);
-          showPopup(context, this.getUniqueId(), contentNode, popupParam)
+          showPopup(context, this.getUniqueId(), contentNode, popupParam);
         })
     }
   }
@@ -7289,9 +7323,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7371,7 +7405,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
     promptAction.updateMenu(contentNode, {
       enableArrow: false,
     });
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
@@ -7384,9 +7418,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7457,7 +7491,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
   });
   setTimeout(() => {
     promptAction.closeMenu(contentNode);
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
@@ -7470,9 +7504,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7480,7 +7514,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
 ### executeDrag<sup>11+</sup>
 
@@ -7511,7 +7545,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -7529,28 +7563,28 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
+              };
+              class tmp {
+                event: DragEvent | undefined = undefined;
+                extraParams: string = '';
               }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
-                if(eve.event){
+              let eve: tmp = new tmp();
+              this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
+                if (eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
@@ -7596,14 +7630,14 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap | null = null;
 
   @Builder DraggingBuilder() {
     Column() {
@@ -7626,31 +7660,31 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
+              };
+              let pb: CustomBuilder = (): void => { this.PixmapBuilder() };
               this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
+                  builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
-                }
+                };
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
+                class tmp {
+                  event: DragResult | undefined = undefined;
+                  extraParams: string = '';
                 }
-                let eve:tmp = new tmp()
+                let eve: tmp = new tmp();
                 this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -7659,7 +7693,7 @@ struct DragControllerPage {
                       // ...
                     }
                   })
-                  .catch((err:Error) => {
+                  .catch((err: Error) => {
                   })
               })
             }
@@ -7745,7 +7779,7 @@ export default class EntryAbility extends UIAbility {
         uiContext = windowClass.getUIContext();
         this.storage.setOrCreate<UIContext>('uiContext', uiContext);
         // 获取UIContext实例
-      })
+      });
     });
   }
 
@@ -7767,17 +7801,17 @@ export default class EntryAbility extends UIAbility {
 ```
 2.通过this.getUIContext().getSharedLocalStorage()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
-import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry()
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
-  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-  storages = this.getUIContext().getSharedLocalStorage()
+  @State pixmap: image.PixelMap | null = null;
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders: Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  storages = this.getUIContext().getSharedLocalStorage();
 
   @Builder DraggingBuilder() {
     Column() {
@@ -7798,40 +7832,40 @@ struct DragControllerPage {
       .height(100)
       .backgroundColor(Color.Red)
 
-      Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
-        if(event){
+      Button('多对象dragAction customBuilder拖拽').onTouch((event?: TouchEvent) => {
+        if (event) {
           if (event.type == TouchType.Down) {
             console.info("muti drag Down by listener");
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new unifiedDataChannel.Text()
-            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            let text = new unifiedDataChannel.Text();
+            let unifiedData = new unifiedDataChannel.UnifiedData(text);
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
+            };
             try{
               let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
-              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
-              if(!this.dragAction){
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo);
+              if (!this.dragAction) {
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+              this.dragAction.on('statusChange', (dragAndDropInfo) => {
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                   console.info("drag has start");
-                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED) {
                   console.info("drag has end");
                   if (!this.dragAction) {
-                    return
+                    return;
                   }
-                  this.customBuilders.splice(0, this.customBuilders.length)
-                  this.dragAction.off('statusChange')
+                  this.customBuilders.splice(0, this.customBuilders.length);
+                  this.dragAction.off('statusChange');
                 }
               })
-              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              this.dragAction.startDrag().then(() => {}).catch((err: Error) => {
                 console.error("start drag Error:" + err.message);
               })
             } catch(err) {
@@ -7839,7 +7873,7 @@ struct DragControllerPage {
             }
           }
         }
-      }).margin({top:20})
+      }).margin({ top: 20 })
     }
   }
 }
@@ -7960,29 +7994,29 @@ import { dragController } from "@kit.ArkUI";
 @Entry
 @Component
 struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
+  @State finished: boolean = false;
+  @State timeout1: number = 1;
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined;
+  @State previewData: DragItemInfo | undefined = undefined;
 
   loadData() {
     let timeout = setTimeout(() => {
       this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
+        this.pixmap = pixmap;
         this.previewData = {
           pixelMap: this.pixmap
-        }
-      })
+        };
+      });
 
       let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
       data.imageUri = "app.media.startIcon";
       let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
+      this.unifiedData1 = unifiedData;
 
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
     }, 4000);
-    this.timeout1 = timeout
+    this.timeout1 = timeout;
   }
 
 
@@ -7996,20 +8030,20 @@ struct NormalEts {
           .dragPreview(this.previewData)
           .onPreDrag((status: PreDragStatus) => {
             if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
+              this.loadData();
             } else {
               clearTimeout(this.timeout1);
             }
           })
           .onDragStart((event: DragEvent) => {
             if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
             } else {
               event.setData(this.unifiedData1);
             }
           })
-          .onDragEnd(()=>{
-            this.finished = false
+          .onDragEnd(() => {
+            this.finished = false;
           })
       }
       .height(400)
@@ -8137,7 +8171,7 @@ struct OverlayExample {
       Button("跳转页面").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
-        })
+        });
       })
     }
     .width('100%')
@@ -8173,11 +8207,11 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
 @Builder
@@ -8192,14 +8226,14 @@ function builderText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private overlayNode: OverlayManager = this.ctx.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private overlayNode: OverlayManager = this.ctx.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Row() {
@@ -8210,9 +8244,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8228,9 +8262,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8417,7 +8451,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -8457,7 +8491,7 @@ setTitleContent(content:string): void
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8498,7 +8532,7 @@ setTitleFontStyle(font:FontStyle):void
 **示例：**
 
 ```ts
-import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8540,7 +8574,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import {UIContext, Font, window } from '@kit.ArkUI';
+import { UIContext, Font, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8619,7 +8653,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -8637,8 +8671,8 @@ clearFocus(): void
 @Entry
 @Component
 struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
+  @State inputValue: string = '';
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -8657,10 +8691,10 @@ struct ClearFocusExample {
           .backgroundColor(this.btColor)
           .defaultFocus(true)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
         Button('clearFocus')
           .width(200)
@@ -8668,7 +8702,7 @@ struct ClearFocusExample {
           .fontColor(Color.White)
           .backgroundColor(Color.Blue)
           .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
+            this.getUIContext().getFocusController().clearFocus();
           })
       }
     }
@@ -8682,7 +8716,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
+通过组件的id将焦点转移到组件树对应的实体节点，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8710,7 +8744,7 @@ requestFocus(key: string): void
 @Entry
 @Component
 struct RequestExample {
-  @State btColor: Color = Color.Blue
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -8722,10 +8756,10 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
           .id("testButton")
 
@@ -8739,7 +8773,7 @@ struct RequestExample {
           .width(200)
           .height(70)
           .onClick(() => {
-            this.getUIContext().getFocusController().requestFocus("testButton")
+            this.getUIContext().getFocusController().requestFocus("testButton");
           })
 
         Button('requestFocus fail')
@@ -8747,9 +8781,9 @@ struct RequestExample {
           .height(70)
           .onClick(() => {
             try {
-              this.getUIContext().getFocusController().requestFocus("eee")
+              this.getUIContext().getFocusController().requestFocus("eee");
             } catch (error) {
-              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message);
             }
           })
       }
@@ -8783,11 +8817,11 @@ activate(isActive: boolean, autoInactive?: boolean): void
 @Component
 struct ActivateExample {
   aboutToAppear() {
-    this.getUIContext().getFocusController().activate(true, false)
+    this.getUIContext().getFocusController().activate(true, false);
   }
 
   aboutToDisappear() {
-    this.getUIContext().getFocusController().activate(false)
+    this.getUIContext().getFocusController().activate(false);
   }
 
   build() {
@@ -8814,7 +8848,7 @@ struct ActivateExample {
 
 ### setAutoFocusTransfer<sup>14+</sup>
 
-setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void
 
 设置页面切换时，新的页面是否需要主动获取焦点。
 
@@ -8831,7 +8865,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 ```ts
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   build() {
     Column() {
       Text('这是自定义弹窗')
@@ -8843,8 +8877,8 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
-            this.controller.close()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true);
+            this.controller.close();
           }
         })
         .margin(20)
@@ -8857,9 +8891,9 @@ struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
     }),
-  })
+  });
   aboutToDisappear() {
-    this.dialogController = null
+    this.dialogController = null;
   }
 
   build() {
@@ -8867,8 +8901,8 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
-            this.dialogController.open()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false);
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -8900,7 +8934,7 @@ setKeyProcessingMode(mode: KeyProcessingMode): void
 struct Index {
 
   aboutToAppear() {
-    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT);
   }
 
   build() {
@@ -8908,11 +8942,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -8975,7 +9009,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -8983,7 +9017,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST);
           } else {
             console.info("restoreDefault");
             this.cursorCustom.restoreDefault();
@@ -9021,7 +9055,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -9029,7 +9063,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST);
           } else {
             this.cursorCustom.restoreDefault();
           }
@@ -9144,7 +9178,7 @@ struct Index {
   @State textWidth: number = this.uiContextMeasure.measureText({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -9192,10 +9226,10 @@ import { MeasureUtils } from '@kit.ArkUI';
 struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
-  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+  textSize: SizeOptions = this.uiContextMeasure.measureTextSize({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
   build() {
     Row() {
       Column() {
@@ -9233,13 +9267,13 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9255,7 +9289,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   build() {
     Column() {
@@ -9267,11 +9301,11 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.error("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error));
               return;
             }
-            this.pixmap = pixmap
-          }, {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixmap;
+          }, { scale: 2, waitUntilRenderFinished: true });
         }).margin(10)
     }
     .width('100%')
@@ -9299,7 +9333,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -9310,7 +9344,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9326,7 +9360,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -9338,12 +9372,12 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot()
-            .get("root", {scale : 2, waitUntilRenderFinished : true})
+            .get("root", { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         }).margin(10)
     }
@@ -9358,10 +9392,10 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -9381,7 +9415,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9398,7 +9432,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9428,11 +9462,11 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.error("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error));
                 return;
               }
-              this.pixmap = pixmap
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+              this.pixmap = pixmap;
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true });
         })
       Image(this.pixmap)
         .margin(10)
@@ -9448,11 +9482,11 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -9477,7 +9511,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9494,7 +9528,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9521,12 +9555,12 @@ struct ComponentSnapshotExample {
           this.uiContext.getComponentSnapshot()
             .createFromBuilder(() => {
               this.RandomBuilder()
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         })
       Image(this.pixmap)
@@ -9557,7 +9591,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -9568,7 +9602,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -9585,7 +9619,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9596,10 +9630,10 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           try {
-            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
-            this.pixmap = pixelmap
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", { scale: 2, waitUntilRenderFinished: true });
+            this.pixmap = pixelmap;
           } catch (error) {
-            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+            console.error("getSync errorCode: " + error.code + " message: " + error.message);
           }
         }).margin(10)
     }
@@ -9628,7 +9662,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -9639,7 +9673,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9660,10 +9694,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -9676,7 +9710,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9689,15 +9723,15 @@ struct SnapshotExample {
           try {
             this.getUIContext()
               .getComponentSnapshot()
-              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.log("error: " + err)
+                console.log("error: " + err);
               })
           } catch (error) {
-            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -9726,7 +9760,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。 |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -9737,7 +9771,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -9759,10 +9793,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -9775,7 +9809,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9788,9 +9822,9 @@ struct SnapshotExample {
           try {
             this.pixmap = this.getUIContext()
               .getComponentSnapshot()
-              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true });
           } catch (error) {
-            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -9846,7 +9880,7 @@ class Params {
 
 @Builder
 function buildText(params: Params) {
-  ReusableChildComponent({ text: params.text });
+  ReusableChildComponent({ text: params.text })
 }
 
 @Component
@@ -9876,8 +9910,8 @@ struct ReusableChildComponent {
 @Entry
 @Component
 struct Index {
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State message: string | undefined | null = "hello"
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State message: string | undefined | null = "hello";
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -9889,12 +9923,12 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             this.uiContext.getComponentSnapshot()
               .createFromComponent(contentNode
-                , 320, true, {scale : 2, waitUntilRenderFinished : true})
+                , 320, true, { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.error("error: " + err)
+                console.error("error: " + err);
               })
           })
         Image(this.pixmap)
@@ -9933,13 +9967,13 @@ onFrame(frameTimeInNano: number): void
 **示例：**
 
 ```ts
-import {FrameCallback } from '@kit.ArkUI';
+import { FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -9995,7 +10029,7 @@ class MyIdleCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -10051,14 +10085,14 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10076,20 +10110,20 @@ struct Frame {
         .backgroundColor(Color.Blue)
         .autoPlay(true)
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
+              scenes.setFrameRateRange(this.GESTURE);
             }
           });
         })
@@ -10117,14 +10151,14 @@ getFrameRateRange(): ExpectedFrameRateRange
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10141,23 +10175,23 @@ struct Frame {
         .id("dynamicSwiper")
         .backgroundColor(Color.Blue)
         .autoPlay(true)
-        .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        .onAppear(() => {
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.ANIMATION);
+              scenes.getFrameRateRange();
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.GESTURE);
+              scenes.getFrameRateRange();
             }
           });
         })
@@ -10222,22 +10256,22 @@ import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+  convert2time(value: number): string {
     let date = new Date(Number(value+'000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
     return hours+ ":" + minutes + ":" + seconds;
   }
-  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
-  private scenes: MarqueeDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: MarqueeDynamicSyncScene[] = [];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -10258,15 +10292,15 @@ struct MarqueeExample {
         .margin({ bottom: 40 })
         .id('dynamicMarquee')
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[];
         })
       Button('Start')
         .onClick(() => {
-          this.start = true
-          this.controller.start()
+          this.start = true;
+          this.controller.start();
           this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
             if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
           });
         })
@@ -10322,7 +10356,7 @@ struct Index {
         {
           showMode: TextMenuShowMode.PREFER_WINDOW
         }
-      )
+      );
   }
 
   build() {
@@ -10414,7 +10448,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

@@ -422,7 +422,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // 使用方法一：
-let val: Array<string> = Array.from(hashSet.values())
+let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
   console.log("value: " + item);
 }

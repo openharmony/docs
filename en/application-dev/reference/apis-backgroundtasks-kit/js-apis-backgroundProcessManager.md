@@ -27,16 +27,19 @@ Sets the child process priority. After a child process is suppressed, the CPU re
 | pid      | number                              | Yes   | ID of the child process to be suppressed, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
 | priority | [ProcessPriority](#processpriority) | Yes   | Suppression priority.                                                                                                                        |
 
+**Return value**
 
+| Value             | Description               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID   | Error Message            |
 |----------|------------------|
 | 401      | Parameter error. Possible causes: priority is out of range. |
-| 31800001 | remote error. Possible causes: remote is not work.    |
 
 **Example**
 
@@ -67,13 +70,11 @@ Unsuppresses the child process. In this case, the child process follows the sche
 |----------|--------------------| ---- |---------------------------------------------------------------------------------------------------------------------------|
 | pid      | number             | Yes   | Child process ID, which is returned when the child process is created through [OH_Ability_StartNativeChildProcess](../apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_startnativechildprocess).|
 
-**Error codes**
+**Return value**
 
-For details about the following error codes, see [BackgroundProcessManager Error Codes](errorcode-backgroundProcessManager.md).
-
-| ID   | Error Message                                                                                                          |
-|----------|----------------------------------------------------------------------------------------------------------------|
-| 31800001 | remote error. Possible causes: remote is not work.                                                             |
+| Value             | Description               |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 

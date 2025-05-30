@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -445,7 +445,7 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 索引项选中事件，回调参数为当前选中项索引。 
 
-从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
+从API version 8开始废弃，建议使用[onSelect](#onselect8)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -561,14 +561,14 @@ type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<strin
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
 
   build() {
     Stack({ alignContent: Alignment.Start }) {
@@ -638,25 +638,25 @@ struct AlphabetIndexerSample {
           .popupItemFont({ size: 30, style: FontStyle.Normal }) // 提示弹窗二级索引项文本样式
           .popupItemBackgroundColor(0xCCCCCC) // 提示弹窗二级索引项背景颜色
           .onSelect((index: number) => {
-            console.info(this.value[index] + ' Selected!')
+            console.info(this.value[index] + ' Selected!');
           })
           .onRequestPopupData((index: number) => {
             // 当选中A时，提示弹窗里面的二级索引文本列表显示A对应的列表arrayA，选中B、C、L时也同样
             // 选中其余索引项时，提示弹窗二级索引文本列表为空，提示弹窗会只显示一级索引项
             if (this.value[index] == 'A') {
-              return this.arrayA
+              return this.arrayA;
             } else if (this.value[index] == 'B') {
-              return this.arrayB
+              return this.arrayB;
             } else if (this.value[index] == 'C') {
-              return this.arrayC
+              return this.arrayC;
             } else if (this.value[index] == 'L') {
-              return this.arrayL
+              return this.arrayL;
             } else {
-              return []
+              return [];
             }
           })
           .onPopupSelect((index: number) => {
-            console.info('onPopupSelected:' + index)
+            console.info('onPopupSelected:' + index);
           })
       }
       .width('100%')
@@ -677,14 +677,14 @@ struct AlphabetIndexerSample {
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayJ: string[] = ['嘉', '贾']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayJ: string[] = ['嘉', '贾'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
   @State isNeedAutoCollapse: boolean = false;
   @State indexerHeight: string = '75%';
 
@@ -819,14 +819,14 @@ struct AlphabetIndexerSample {
 @Entry
 @Component
 struct AlphabetIndexerSample {
-  private arrayA: string[] = ['安']
-  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
-  private arrayC: string[] = ['曹', '成', '陈', '催']
-  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private arrayA: string[] = ['安'];
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙'];
+  private arrayC: string[] = ['曹', '成', '陈', '催'];
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢'];
   private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
     'H', 'I', 'J', 'K', 'L', 'M', 'N',
     'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z']
+    'V', 'W', 'X', 'Y', 'Z'];
   @State customBlurStyle: BlurStyle = BlurStyle.NONE;
 
   build() {
@@ -905,25 +905,25 @@ struct AlphabetIndexerSample {
               .popupBackgroundBlurStyle(this.customBlurStyle) // 设置提示弹窗的背景模糊材质
               .popupTitleBackground(0xCCCCCC) // 设置提示弹窗一级索引项背景颜色
               .onSelect((index: number) => {
-                console.info(this.value[index] + ' Selected!')
+                console.info(this.value[index] + ' Selected!');
               })
               .onRequestPopupData((index: number) => {
                 // 当选中A时，提示弹窗里面的二级索引文本列表显示A对应的列表arrayA，选中B、C、L时也同样
                 // 选中其余索引项时，提示弹窗二级索引文本列表为空，提示弹窗会只显示一级索引项
                 if (this.value[index] == 'A') {
-                  return this.arrayA
+                  return this.arrayA;
                 } else if (this.value[index] == 'B') {
-                  return this.arrayB
+                  return this.arrayB;
                 } else if (this.value[index] == 'C') {
-                  return this.arrayC
+                  return this.arrayC;
                 } else if (this.value[index] == 'L') {
-                  return this.arrayL
+                  return this.arrayL;
                 } else {
-                  return []
+                  return [];
                 }
               })
               .onPopupSelect((index: number) => {
-                console.info('onPopupSelected:' + index)
+                console.info('onPopupSelected:' + index);
               })
           }
           .height('80%')

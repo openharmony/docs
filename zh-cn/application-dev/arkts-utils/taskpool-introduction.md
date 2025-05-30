@@ -16,7 +16,7 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 从API version 11开始，跨并发实例传递带方法的实例对象时，该类必须使用装饰器[@Sendable装饰器](arkts-sendable.md#sendable装饰器)标注，且仅支持在.ets文件中使用。
 
-- 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。否则，任务将被强制终止。
+- 任务函数（[LongTask](../reference/apis-arkts/js-apis-taskpool.md#longtask12)除外）在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时）。否则，任务将被强制终止。
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[线程间通信对象](interthread-communication-overview.md)。目前不支持使用[@State装饰器](../ui/state-management/arkts-state.md)、[@Prop装饰器](../ui/state-management/arkts-prop.md)、[@Link装饰器](../ui/state-management/arkts-link.md)等装饰器修饰的复杂类型。
 
@@ -27,21 +27,21 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
   import { BusinessError } from '@kit.BasicServicesKit';
   
   @Concurrent
-  function printArrayBuffer(buffer:ArrayBuffer) {
-    return buffer
+  function printArrayBuffer(buffer: ArrayBuffer) {
+    return buffer;
   }
   
   function testArrayBuffer() {
-    let buffer = new ArrayBuffer(1);
-    let group = new taskpool.TaskGroup();
-    let task = new taskpool.Task(printArrayBuffer, buffer);
+    const buffer = new ArrayBuffer(1);
+    const group = new taskpool.TaskGroup();
+    const task = new taskpool.Task(printArrayBuffer, buffer);
     group.addTask(task);
     task.setCloneList([buffer]);
     for (let i = 0; i < 5; i++) {
       taskpool.execute(group).then(() => {
-        console.info("execute group success");
+        console.info('execute group success');
       }).catch((e: BusinessError) => {
-        console.error("execute group error: " + e.message);
+        console.error(`execute group error: ${e.message}`);
       })
     }
   }
@@ -51,9 +51,9 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 
 - 序列化传输的数据量限制为16MB。
 
-- [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority)的IDLE优先级是用来标记需要在后台运行的耗时任务（例如数据同步、备份），它的优先级别是最低的。这种优先级的任务只在所有线程都空闲时触发执行，并且只会占用一个线程。
+- [Priority](../reference/apis-arkts/js-apis-taskpool.md#priority)的IDLE优先级是用来标记需要在后台运行的耗时任务（例如数据同步、备份），它的优先级别是最低的。这种优先级的任务只在所有线程都空闲时触发执行，并且同一时间只会有一个IDLE优先级的任务执行。
 
-- Promise不支持跨线程传递。TaskPool返回pending或rejected状态的Promise时失败，返回fulfilled状态的Promise时TaskPool会解析返回的结果，如果结果可以跨线程传递，则返回成功。
+- Promise不支持跨线程传递。TaskPool返回pending或rejected状态的Promise时会失败，返回fulfilled状态的Promise时TaskPool会解析返回的结果，如果结果可以跨线程传递，则返回成功。
 
 - 不支持在TaskPool工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 
@@ -89,7 +89,7 @@ TaskPool支持开发者在宿主线程提交任务到任务队列，系统选择
 > 
 > @Concurrent
 > function foo() {
-> bar(); // 违反闭包原则，报错
+>   bar(); // 违反闭包原则，报错
 > }
 > ```
 
@@ -109,19 +109,19 @@ function add(num1: number, num2: number): number {
   return num1 + num2;
 }
 
-async function ConcurrentFunc(): Promise<void> {
+async function concurrentFunc(): Promise<void> {
   try {
-    let task: taskpool.Task = new taskpool.Task(add, 1, 2);
-    console.info("taskpool res is: " + await taskpool.execute(task));
+    const task: taskpool.Task = new taskpool.Task(add, 1, 2);
+    console.info(`taskpool res is: ${await taskpool.execute(task)}`);
   } catch (e) {
-    console.error("taskpool execute error is: " + e);
+    console.error(`taskpool execute error is: ${e}}`);
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -130,7 +130,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            ConcurrentFunc();
+            concurrentFunc();
           })
       }
       .width('100%')
@@ -142,7 +142,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等并发同步函数会处理该Promise并返回结果。
+并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等需处理Promise并返回结果。
 
 示例：
 
@@ -151,21 +151,21 @@ import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function testPromise(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((resolve, reject)=>{
+  return new Promise<number>((resolve, reject) => {
     resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise1(args1: number, args2: number): Promise<number> {
-  return new Promise<number>((resolve, reject)=>{
+  return new Promise<number>((resolve, reject) => {
     resolve(args1 + args2);
   });
 }
 
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
-  return await new Promise<number>((resolve, reject)=>{
+  return await new Promise<number>((resolve, reject) => {
     resolve(args1 + args2);
   });
 }
@@ -183,49 +183,49 @@ async function testPromise4(): Promise<number> {
 @Concurrent
 async function testPromise5(): Promise<string> {
   return await new Promise((resolve) => {
-    setTimeout(()=>{
-      resolve("Promise setTimeout after resolve");
+    setTimeout(() => {
+      resolve('Promise setTimeout after resolve');
     }, 1000)
   });
 }
 
 async function testConcurrentFunc() {
-  let task1: taskpool.Task = new taskpool.Task(testPromise, 1, 2);
-  let task2: taskpool.Task = new taskpool.Task(testPromise1, 1, 2);
-  let task3: taskpool.Task = new taskpool.Task(testPromise2, 1, 2);
-  let task4: taskpool.Task = new taskpool.Task(testPromise3);
-  let task5: taskpool.Task = new taskpool.Task(testPromise4);
-  let task6: taskpool.Task = new taskpool.Task(testPromise5);
+  const task1: taskpool.Task = new taskpool.Task(testPromise, 1, 2);
+  const task2: taskpool.Task = new taskpool.Task(testPromise1, 1, 2);
+  const task3: taskpool.Task = new taskpool.Task(testPromise2, 1, 2);
+  const task4: taskpool.Task = new taskpool.Task(testPromise3);
+  const task5: taskpool.Task = new taskpool.Task(testPromise4);
+  const task6: taskpool.Task = new taskpool.Task(testPromise5);
 
-  taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task1 catch e: " + e);
+  taskpool.execute(task1).then((d: object) => {
+    console.info(`task1 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task1 catch e: ${e}`);
   })
-  taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task2 catch e: " + e);
+  taskpool.execute(task2).then((d: object) => {
+    console.info(`task2 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task2 catch e: ${e}`);
   })
-  taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task3 catch e: " + e);
+  taskpool.execute(task3).then((d: object) => {
+    console.info(`task3 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task3 catch e: ${e}`);
   })
-  taskpool.execute(task4).then((d:object)=>{
-    console.info("task4 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task4 catch e: " + e);
+  taskpool.execute(task4).then((d: object) => {
+    console.info(`task4 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task4 catch e: ${e}`);
   })
-  taskpool.execute(task5).then((d:object)=>{
-    console.info("task5 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task5 catch e: " + e);
+  taskpool.execute(task5).then((d: object) => {
+    console.info(`task5 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task5 catch e: ${e}`);
   })
-  taskpool.execute(task6).then((d:object)=>{
-    console.info("task6 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task6 catch e: " + e);
+  taskpool.execute(task6).then((d: object) => {
+    console.info(`task6 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task6 catch e: ${e}`);
   })
 }
 
@@ -271,6 +271,7 @@ class TestA {
   constructor(name: string) {
     this.name = name;
   }
+
   name: string = 'ClassA';
 }
 
@@ -285,19 +286,19 @@ function TestFunc() {
   // 直接调用同文件定义的函数add()，add飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
   // add(1);
   // 直接使用同文件定义的TestA构造，TestA飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
-  // let a = new TestA("aaa");
+  // const a = new TestA('aaa');
   // 直接访问同文件定义的TestB的成员nameStr，TestB飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
-  // console.info("TestB name is: " + TestB.nameStr);
+  // console.info(`TestB name is: ${TestB.nameStr}`);
 
   // case2：在并发函数中调用定义在Test.ets文件并导入当前文件的类或函数
 
   // 输出结果：res1 is: 2
-  console.info("res1 is: " + testAdd(1));
-  let tmpStr = new MyTestA("TEST A");
+  console.info(`res1 is: ${testAdd(1)}`);
+  const tmpStr = new MyTestA('TEST A');
   // 输出结果：res2 is: TEST A
-  console.info("res2 is: " + tmpStr.name);
+  console.info(`res2 is: ${tmpStr.name}`);
   // 输出结果：res3 is: MyTestB
-  console.info("res3 is: " + MyTestB.nameStr);
+  console.info(`res3 is: ${MyTestB.nameStr}`);
 }
 
 
@@ -317,10 +318,10 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let task = new taskpool.Task(TestFunc);
+          const task = new taskpool.Task(TestFunc);
           taskpool.execute(task).then(() => {
-            console.info("taskpool: execute task success!");
-          }).catch((e:BusinessError) => {
+            console.info('taskpool: execute task success!');
+          }).catch((e: BusinessError) => {
             console.error(`taskpool: execute: Code: ${e.code}, message: ${e.message}`);
           })
         })
@@ -357,50 +358,50 @@ export class MyTestB {
 示例：
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 async function testPromiseError() {
   await new Promise<number>((resolve, reject) => {
     resolve(1);
-  }).then(()=>{
-    throw new Error("testPromise Error");
+  }).then(() => {
+    throw new Error('testPromise Error');
   })
 }
 
 @Concurrent
 async function testPromiseError1() {
   await new Promise<string>((resolve, reject) => {
-    reject("testPromiseError1 Error msg");
+    reject('testPromiseError1 Error msg');
   })
 }
 
 @Concurrent
 function testPromiseError2() {
   return new Promise<string>((resolve, reject) => {
-    reject("testPromiseError2 Error msg");
+    reject('testPromiseError2 Error msg');
   })
 }
 
 async function testConcurrentFunc() {
-  let task1: taskpool.Task = new taskpool.Task(testPromiseError);
-  let task2: taskpool.Task = new taskpool.Task(testPromiseError1);
-  let task3: taskpool.Task = new taskpool.Task(testPromiseError2);
+  const task1: taskpool.Task = new taskpool.Task(testPromiseError);
+  const task2: taskpool.Task = new taskpool.Task(testPromiseError1);
+  const task3: taskpool.Task = new taskpool.Task(testPromiseError2);
 
-  taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task1 catch e: " + e);
+  taskpool.execute(task1).then((d: object) => {
+    console.info(`task1 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
   })
-  taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task2 catch e: " + e);
+  taskpool.execute(task2).then((d: object) => {
+    console.info(`task2 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
   })
-  taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d);
-  }).catch((e:object)=>{
-    console.info("task3 catch e: " + e);
+  taskpool.execute(task3).then((d: object) => {
+    console.info(`task3 res is: ${d}`);
+  }).catch((e: object) => {
+    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
   })
 }
 

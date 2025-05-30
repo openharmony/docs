@@ -13,6 +13,10 @@ UIAbility的生命周期包括Create、Foreground、Background、Destroy四个�
 
 ## 生命周期状态说明
 
+> **说明：**
+>
+> 在应用启动和前后台切换过程中，系统会调用UIAbility的生命周期回调。为了确保应用性能，建议在[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)、[onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground)等关键生命周期回调中，仅执行必要的轻量级操作。对于耗时任务，推荐采用异步处理或交由子线程执行，避免阻塞主线程。
+
 
 ### Create状态
 
@@ -45,7 +49,8 @@ export default class EntryAbility extends UIAbility {
 
 > **说明：**
 > 
-> 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 对于不同类型的产品，当应用主窗口从前台进入后台时，UIAbility生命周期的变化也会存在差异。详见[Stage模型下主窗口的生命周期](../windowmanager/window-overview.md#stage模型下主窗口的生命周期)。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

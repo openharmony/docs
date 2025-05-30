@@ -16,7 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
+> - 本模块接口适用于手机、平板、PC/2in1、智能穿戴设备、智慧屏、车机。
 
 
 ## 导入模块
@@ -66,10 +66,10 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称 | 类型   | 可读 | 可写 | 说明             |
-| ---- | ------ | ---- | ---- | ---------------- |
-| x    | number | 是   | 否   | 坐标点的横坐标。 |
-| y    | number | 是   | 否   | 坐标点的纵坐标。 |
+| 名称 | 类型   | 只读 |  可选 | 说明        |
+| ---- | ------ | ---- | ---- |-----------|
+| x    | number | 是   | 否   | 坐标点的横坐标，取值大于0的整数。 |
+| y    | number | 是   | 否   | 坐标点的纵坐标，取值大于0的整数。  |
 
 ## Rect<sup>9+</sup>
 
@@ -79,12 +79,12 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称   | 类型   | 可读 | 可写 | 说明                      |
+| 名称   | 类型   | 只读 | 可选 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number | 是   | 否   | 控件边框的左上角的X坐标，取值大于0。 |
-| top    | number | 是   | 否   | 控件边框的左上角的Y坐标，取值大于0。 |
-| right  | number | 是   | 否   | 控件边框的右下角的X坐标，取值大于0。 |
-| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标，取值大于0。 |
+| left   | number | 是   | 否   | 控件边框的左上角的X坐标，取值大于0的整数。 |
+| top    | number | 是   | 否   | 控件边框的左上角的Y坐标，取值大于0的整数。 |
+| right  | number | 是   | 否   | 控件边框的右下角的X坐标，取值大于0的整数。 |
+| bottom | number | 是   | 否   | 控件边框的右下角的Y坐标，取值大于0的整数。 |
 
 ## WindowMode<sup>9+</sup>
 
@@ -122,13 +122,13 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称                 | 类型    | 可读 | 可写 | 说明                                                                                     |
+| 名称                 | 类型    | 只读 | 可选 | 说明                                                                                     |
 | -------------------- | ------- | ---- | ---- |----------------------------------------------------------------------------------------|
-| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始，名称变更为active。                                                 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| bundleName           | string  | 否  | 是  | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| title                | string  | 否  | 是  | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| focused              | boolean | 否  | 是   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
+| active<sup>11+</sup> | boolean | 否  | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 
 ## UiDirection<sup>10+</sup>
 
@@ -167,7 +167,7 @@ UI事件的相关信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型   | 可读 | 可写 | 说明                  |
+| 名称       | 类型   | 只读 | 可选 | 说明                  |
 | ---------- | ------ | ---- | ---- | --------------------- |
 | bundleName | string | 是   | 否   | 归属应用的包名。      |
 | type       | string | 是   | 否   | 控件/窗口类型。       |
@@ -182,10 +182,10 @@ UI事件的相关信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型   | 可读 | 可写 | 说明                                                     |
+| 名称       | 类型   | 只读 | 可选 | 说明                                                     |
 | ---------- | ------ |----|----|--------------------------------------------------------|
 | stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s），true：停留，false：不停留。 |
-| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：px/s。  |
+| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000的整数，默认值为2000，不在范围内设为默认值为2000，单位：px/s。  |
 
 ## On<sup>9+</sup>
 
@@ -309,7 +309,8 @@ id(id: string, pattern: MatchPattern): On
 
 ```ts
 import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控件的id属性值
+
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE); // 忽略大小写匹配控件的id属性值
 ```
 
 ### type<sup>9+</sup>
@@ -632,7 +633,7 @@ checked(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为false。 |
+| b      | boolean | 否   | 指定控件被勾选状态。true：被勾选。false：未被勾选。默认为true。 |
 
 **返回值：**
 
@@ -669,7 +670,7 @@ checkable(b?: boolean): On
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为false。 |
+| b      | boolean | 否   | 指定控件能否被勾选状态。true：能被勾选。false：不能被勾选。默认为true。 |
 
 **返回值：**
 
@@ -767,7 +768,7 @@ isAfter(on: On): On
 import { On, ON } from '@kit.TestKit';
 
 // 使用静态构造器ON创建On对象，指定目标控件位于给出的特征属性控件之后。
-let on:On = ON.type('Text').isAfter(ON.text('123'))  // 查找 text为123之后的第一个Text组件
+let on:On = ON.type('Text').isAfter(ON.text('123'));  // 查找 text为123之后的第一个Text组件
 ```
 
 ### within<sup>10+</sup>
@@ -904,7 +905,8 @@ hint(val: string, pattern?: MatchPattern): On
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | 指定提示文本控件的On对象。 |
+
+| [On](#on9) | 返回指定提示文本控件的On对象。 |
 
 **错误码：**
 
@@ -931,11 +933,17 @@ UiTest框架在API9中，Component类代表了UI界面上的一个控件，提�
 
 click(): Promise\<void>
 
-控件对象进行点击操作。
+控件对象进行点击操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -961,11 +969,17 @@ async function demo() {
 
 doubleClick(): Promise\<void>
 
-控件对象进行双击操作。
+控件对象进行双击操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -991,11 +1005,17 @@ async function demo() {
 
 longClick(): Promise\<void>
 
-控件对象进行长按操作。
+控件对象进行长按操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1021,7 +1041,7 @@ async function demo() {
 
 getId(): Promise\<string>
 
-获取控件对象的id值。
+获取控件对象的id值，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1031,7 +1051,7 @@ getId(): Promise\<string>
 
 | 类型             | 说明                            |
 | ---------------- | ------------------------------- |
-| Promise\<string> | 以Promise形式返回的控件的id值。 |
+| Promise\<string> | Promise对象，返回控件的id值。 |
 
 **错误码：**
 
@@ -1057,7 +1077,7 @@ async function demo() {
 
 getText(): Promise\<string>
 
-获取控件对象的文本信息。
+获取控件对象的文本信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1067,7 +1087,7 @@ getText(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回控件的文本信息。 |
+| Promise\<string> | Promise对象，返回控件的文本信息。 |
 
 **错误码：**
 
@@ -1093,7 +1113,7 @@ async function demo() {
 
 getType(): Promise\<string>
 
-获取控件对象的控件类型。
+获取控件对象的控件类型，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1103,7 +1123,7 @@ getType(): Promise\<string>
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
-| Promise\<string> | 以Promise形式返回控件的类型。 |
+| Promise\<string> | Promise对象，返回控件的类型。 |
 
 **错误码：**
 
@@ -1129,7 +1149,7 @@ async function demo() {
 
 getBounds(): Promise\<Rect>
 
-获取控件对象的边框信息。
+获取控件对象的边框信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1139,7 +1159,7 @@ getBounds(): Promise\<Rect>
 
 | 类型                     | 说明                                  |
 | ------------------------ | ------------------------------------- |
-| Promise\<[Rect](#rect9)> | 以Promise形式返回控件对象的边框信息。 |
+| Promise\<[Rect](#rect9)> | Promise对象，返回控件对象的边框信息。 |
 
 **错误码：**
 
@@ -1165,7 +1185,7 @@ async function demo() {
 
 getBoundsCenter(): Promise\<Point>
 
-获取控件对象所占区域的中心点信息。
+获取控件对象所占区域的中心点信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1175,7 +1195,7 @@ getBoundsCenter(): Promise\<Point>
 
 | 类型                       | 说明                                            |
 | -------------------------- | ----------------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise形式返回控件对象所占区域的中心点信息。 |
+| Promise\<[Point](#point9)> | Promise对象，返回控件对象所占区域的中心点信息。 |
 
 **错误码：**
 
@@ -1201,7 +1221,7 @@ async function demo() {
 
 isClickable(): Promise\<boolean>
 
-获取控件对象可点击属性。
+获取控件对象可点击属性，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1211,7 +1231,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可点击。true：可点击。false：不可点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可点击。true：可点击。false：不可点击。 |
 
 **错误码：**
 
@@ -1241,7 +1261,7 @@ async function demo() {
 
 isLongClickable(): Promise\<boolean>
 
-获取控件对象可长按点击属性。
+获取控件对象可长按点击属性，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1251,7 +1271,7 @@ isLongClickable(): Promise\<boolean>
 
 | 类型              | 说明                                               |
 | ----------------- |--------------------------------------------------|
-| Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击。true：可长按点击。false：不可长按点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可长按点击。true：可长按点击。false：不可长按点击。 |
 
 **错误码：**
 
@@ -1281,7 +1301,7 @@ async function demo() {
 
 isChecked(): Promise\<boolean>
 
-获取控件对象被勾选状态。
+获取控件对象被勾选状态，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1291,7 +1311,7 @@ isChecked(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象被勾选状态。true：被勾选。false：未被勾选。 |
+| Promise\<boolean> | Promise对象，返回控件对象被勾选状态。true：被勾选。false：未被勾选。 |
 
 **错误码：**
 
@@ -1321,7 +1341,7 @@ async function demo() {
 
 isCheckable(): Promise\<boolean>
 
-获取控件对象能否被勾选属性。
+获取控件对象能否被勾选属性，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1331,7 +1351,7 @@ isCheckable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性。true：可被勾选。false：不可被勾选。 |
+| Promise\<boolean> | Promise对象，返回控件对象能否可被勾选属性。true：可被勾选。false：不可被勾选。 |
 
 **错误码：**
 
@@ -1361,7 +1381,7 @@ async function demo() {
 
 isScrollable(): Promise\<boolean>
 
-获取控件对象可滑动属性。
+获取控件对象可滑动属性，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1371,7 +1391,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可滑动。true：可滑动。false：不可滑动。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否可滑动。true：可滑动。false：不可滑动。 |
 
 **错误码：**
 
@@ -1402,7 +1422,7 @@ async function demo() {
 
 isEnabled(): Promise\<boolean>
 
-获取控件使能状态。
+获取控件使能状态，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1412,7 +1432,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件使能状态。true：使能。false：未使能。 |
+| Promise\<boolean> | Promise对象，返回控件使能状态。true：使能。false：未使能。 |
 
 **错误码：**
 
@@ -1442,7 +1462,7 @@ async function demo() {
 
 isFocused(): Promise\<boolean>
 
-判断控件对象获焦状态。
+判断控件对象获焦状态，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1452,7 +1472,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象获焦状态。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回控件对象获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -1482,7 +1502,7 @@ async function demo() {
 
 isSelected(): Promise\<boolean>
 
-获取控件对象被选中状态。
+获取控件对象被选中状态，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1492,7 +1512,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象被选中状态。true：被选中。false：未被选中。 |
+| Promise\<boolean> | Promise对象，返回控件对象被选中状态。true：被选中。false：未被选中。 |
 
 **错误码：**
 
@@ -1522,11 +1542,17 @@ async function demo() {
 
 inputText(text: string): Promise\<void>
 
-向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入。
+向控件中输入文本（适用于文本框控件），清空组件内原有文本后输入，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **参数：**
 
@@ -1536,7 +1562,7 @@ inputText(text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1559,11 +1585,17 @@ async function demo() {
 
 clearText(): Promise\<void>
 
-清除控件的文本信息（适用于文本框控件）。
+清除控件的文本信息（适用于文本框控件），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
@@ -1604,11 +1636,11 @@ scrollSearch(on: On): Promise\<Component>
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回目标控件对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1644,13 +1676,13 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：px，取值大于等于0。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移，默认80，单位：px，取值范围：大于等于0的整数。    |
 
 **返回值：**
 
 | 类型                               | 说明                                  |
 | ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回目标控件对象。 |
 
 **错误码：**
 
@@ -1677,7 +1709,7 @@ async function demo() {
 
 scrollToTop(speed?: number): Promise\<void>
 
-在控件上滑动到顶部（适用支持滑动的控件）。
+在控件上滑动到顶部（适用支持滑动的控件），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1687,11 +1719,17 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                     |
 | ------ | ------ | ---- |--------------------------------------------------------|
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1714,7 +1752,7 @@ async function demo() {
 
 scrollToBottom(speed?: number): Promise\<void>
 
-在控件上滑动到底部（适用支持滑动的控件）。
+在控件上滑动到底部（适用支持滑动的控件），使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1724,11 +1762,17 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                     |
 | ------ | ------ | ---- |--------------------------------------------------------|
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1751,11 +1795,11 @@ async function demo() {
 
 dragTo(target: Component): Promise\<void>
 
-将控件拖拽至目标控件处。
+将控件拖拽至目标控件处，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1767,9 +1811,15 @@ dragTo(target: Component): Promise\<void>
 | ------ | ------------------------ | ---- | ---------- |
 | target | [Component](#component9) | 是   | 目标控件。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1793,7 +1843,7 @@ async function demo() {
 
 pinchOut(scale: number): Promise\<void>
 
-将控件按指定的比例进行捏合放大。
+将控件按指定的比例进行捏合放大，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1805,9 +1855,15 @@ pinchOut(scale: number): Promise\<void>
 | ------ | ------ | ---- | ------------------------------- |
 | scale  | number | 是   | 指定放大的比例。取值范围大于1。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1830,7 +1886,7 @@ async function demo() {
 
 pinchIn(scale: number): Promise\<void>
 
-将控件按指定的比例进行捏合缩小。
+将控件按指定的比例进行捏合缩小，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1842,9 +1898,15 @@ pinchIn(scale: number): Promise\<void>
 | ------ | ------ | ---- | ------------------------------- |
 | scale  | number | 是   | 指定缩小的比例。取值范围为0~1。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1881,7 +1943,7 @@ getDescription(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1912,7 +1974,7 @@ getHint(): Promise\<string>
 
 | 类型             | 说明                   |
 | ---------------- |----------------------|
-| Promise\<string> | 以Promise形式返回控件的提示文本。 |
+| Promise\<string> | Promise对象，返回控件的提示文本。 |
 
 **错误码：**
 
@@ -1976,7 +2038,7 @@ async function demo() {
 
 delayMs(duration: number): Promise\<void>
 
-Driver对象在给定的时间内延时。
+在给定的时间内延时，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1986,11 +2048,17 @@ Driver对象在给定的时间内延时。
 
 | 参数名   | 类型   | 必填 | 说明                            |
 | -------- | ------ | ---- | ------------------------------- |
-| duration | number | 是   | 给定的时间，单位：ms，取值大于等于0。 |
+| duration | number | 是   | 给定的时间，单位：ms，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2011,7 +2079,7 @@ async function demo() {
 
 findComponent(on: On): Promise\<Component>
 
-在Driver对象中，根据给出的目标控件属性要求查找目标控件。
+根据给出的目标控件属性要求查找目标控件，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2027,11 +2095,11 @@ findComponent(on: On): Promise\<Component>
 
 | 类型                               | 说明                              |
 | ---------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回控件对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2052,7 +2120,7 @@ async function demo() {
 
 findComponents(on: On): Promise\<Array\<Component>>
 
-在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
+根据给出的目标控件属性要求查找出所有匹配控件，以列表保存，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2068,11 +2136,11 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 类型                                       | 说明                                    |
 | ------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[Component](#component9)>> | 以Promise形式返回找到的控件对象的列表。 |
+| Promise\<Array\<[Component](#component9)>> | Promise对象，返回控件对象的列表。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2093,7 +2161,7 @@ async function demo() {
 
 findWindow(filter: WindowFilter): Promise\<UiWindow>
 
-通过指定窗口的属性来查找目标窗口。
+通过指定窗口的属性来查找目标窗口，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2109,11 +2177,11 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 类型                             | 说明                                  |
 | -------------------------------- | ------------------------------------- |
-| Promise\<[UiWindow](#uiwindow9)> | 以Promise形式返回找到的目标窗口对象。 |
+| Promise\<[UiWindow](#uiwindow9)> | Promise对象，返回目标窗口对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2134,7 +2202,7 @@ async function demo() {
 
 waitForComponent(on: On, time: number): Promise\<Component>
 
-在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
+在用户给定的时间内，持续查找满足控件属性要求的目标控件，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2145,17 +2213,17 @@ waitForComponent(on: On, time: number): Promise\<Component>
 | 参数名 | 类型       | 必填 | 说明                                      |
 | ------ | ---------- | ---- | ----------------------------------------- |
 | on    | [On](#on9) | 是   | 目标控件的属性要求。                      |
-| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值大于等于0。 |
+| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值范围：大于等于0的整数。 |
 
 **返回值：**
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[Component](#component9)> | Promise对象，返回控件对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2176,7 +2244,7 @@ async function demo() {
 
 assertComponentExist(on: On): Promise\<void>
 
-断言API，用于断言当前界面是否存在满足给出的目标属性的控件。
+断言API，用于断言当前界面是否存在满足给出的目标属性的控件，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2188,9 +2256,15 @@ assertComponentExist(on: On): Promise\<void>
 | ------ | ---------- | ---- | -------------------- |
 | on     | [On](#on9) | 是   | 目标控件的属性要求。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2212,11 +2286,17 @@ async function demo() {
 
 pressBack(): Promise\<void>
 
-Driver对象进行点击BACK键的操作。
+进行点击BACK键的操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2240,7 +2320,7 @@ async function demo() {
 
 triggerKey(keyCode: number): Promise\<void>
 
-Driver对象采取如下操作：传入key值实现模拟点击对应按键的效果。
+传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2250,11 +2330,17 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值大于等于0。 |
+| keyCode | number | 是   | 指定的key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2275,7 +2361,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
-Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+通过给定的key值，找到对应组合键并点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，找到key值对应的组合键并点击，如ctrl+c。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2285,13 +2371,19 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| key0   | number | 是   | 指定的第一个key值，取值大于等于0。            |
-| key1   | number | 是   | 指定的第二个key值，取值大于等于0。            |
-| key2   | number | 否   | 指定的第三个key值。默认值为0，取值大于等于0。 |
+| key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
+| key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
+| key2   | number | 否   | 指定的第三个key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2313,7 +2405,7 @@ async function demo() {
 
 click(x: number, y: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点单击。
+在目标坐标点单击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2323,12 +2415,18 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2349,7 +2447,7 @@ async function demo() {
 
 doubleClick(x: number, y: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点双击。
+在目标坐标点双击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2359,12 +2457,18 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2385,7 +2489,7 @@ async function demo() {
 
 longClick(x: number, y: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点长按。
+在目标坐标点长按，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2395,12 +2499,18 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2421,7 +2531,7 @@ async function demo() {
 
 swipe(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
+从起始坐标点滑向目的坐标点，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2431,15 +2541,21 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- |------------------------------------------------------|
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。                       |
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。                       |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。                       |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。                       |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。                       |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2460,11 +2576,11 @@ async function demo() {
 
 drag(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
+从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2472,17 +2588,23 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                     |
-| ------ | ------ | ---- |--------------------------------------------------------|
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。                         |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。                         |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。                         |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。                         |
-| speed  | number | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。              |
+| speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2493,9 +2615,10 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.drag(100,100,200,200,600);
+  await driver.drag(100, 100, 200, 200, 600);
 }
 ```
 
@@ -2503,7 +2626,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
+捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2513,17 +2636,17 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| savePath | string | 是   | 文件保存路径。路径需为当前应用的[沙箱路径](../../file-management/app-sandbox-directory.md)。 |
 
 **返回值：**
 
 | 类型              | 说明                                        |
 | ----------------- |-------------------------------------------|
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：完成，false：未完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：完成，false：未完成。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2544,11 +2667,11 @@ async function demo() {
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
-将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
+将当前场景的显示方向设置为指定的显示方向，使用Promise异步回调。适用于可旋转的应用场景。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2560,9 +2683,15 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 | -------- | ------------------------------------ | ---- | ---------------- |
 | rotation | [DisplayRotation](#displayrotation9) | 是   | 设备的显示方向。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2583,7 +2712,7 @@ async function demo() {
 
 getDisplayRotation(): Promise\<DisplayRotation>
 
-获取当前设备的屏幕显示方向。
+获取当前设备的屏幕显示方向，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2593,7 +2722,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 | 类型                                           | 说明                                    |
 | ---------------------------------------------- | --------------------------------------- |
-| Promise\<[DisplayRotation](#displayrotation9)> | 以Promise的形式返回当前设备的显示方向。 |
+| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，返回当前设备的显示方向。 |
 
 **错误码：**
 
@@ -2617,11 +2746,11 @@ async function demo() {
 
 setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
-启用/禁用设备旋转屏幕的功能。
+启用/禁用设备旋转屏幕的功能，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2633,9 +2762,15 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 | ------- | ------- | ---- | ------------------------------------------------------- |
 | enabled | boolean | 是   | 能否旋转屏幕的标识。true：可以旋转。false：不可以旋转。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2656,7 +2791,7 @@ async function demo() {
 
 getDisplaySize(): Promise\<Point>
 
-获取当前设备的屏幕大小。
+获取当前设备的屏幕大小，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2666,7 +2801,7 @@ getDisplaySize(): Promise\<Point>
 
 | 类型                       | 说明                                    |
 | -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备的屏幕大小。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备屏幕的大小为Point.x*Point.y。 |
 
 **错误码：**
 
@@ -2679,7 +2814,7 @@ getDisplaySize(): Promise\<Point>
 **示例：**
 
 ```ts
-import { Driver, } from '@kit.TestKit';
+import { Driver } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -2691,7 +2826,7 @@ async function demo() {
 
 getDisplayDensity(): Promise\<Point>
 
-获取当前设备屏幕的分辨率。
+获取当前设备屏幕的分辨率，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2701,7 +2836,7 @@ getDisplayDensity(): Promise\<Point>
 
 | 类型                       | 说明                                      |
 | -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备屏幕的分辨率。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备屏幕的分辨率为Point.x*Point.y。 |
 
 **错误码：**
 
@@ -2725,11 +2860,17 @@ async function demo() {
 
 wakeUpDisplay(): Promise\<void>
 
-唤醒当前设备即设备亮屏。
+唤醒当前设备即设备亮屏，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2753,15 +2894,21 @@ async function demo() {
 
 pressHome(): Promise\<void>
 
-设备返回到桌面。
+设备注入返回桌面操作，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2785,7 +2932,7 @@ async function demo() {
 
 waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
-判断当前界面的所有控件是否已经空闲。
+判断当前界面的所有控件是否已经空闲，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2795,18 +2942,18 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0。 |
-| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值大于等于0。                    |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值范围：大于等于0的整数。 |
+| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值范围：大于等于0的整数。                    |
 
 **返回值：**
 
 | 类型              | 说明                                                |
-| ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲，true：已经空闲，false：不空闲。 |
+| ----------------- |---------------------------------------------------|
+| Promise\<boolean> | Promise对象，返回当前界面的所有控件是否已经空闲。true：已经空闲，false：不空闲。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2827,7 +2974,7 @@ async function demo() {
 
 fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
-模拟手指滑动后脱离屏幕的快速滑动操作。
+模拟手指滑动后脱离屏幕的快速滑动操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2839,12 +2986,18 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | ------- | ---------------- | ---- |------------------------------------------------------|
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                        |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                         |
-| stepLen | number           | 是   | 间隔距离，单位：px。                                         |
-| speed   | number           | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| stepLen | number           | 是   | 间隔距离，取值大于等于0的整数，单位：px。                                         |
+| speed   | number           | 是   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2855,9 +3008,10 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
+  await driver.fling({x: 500, y: 480},{x: 450, y: 480}, 5, 600);
 }
 ```
 
@@ -2865,7 +3019,7 @@ async function demo() {
 
 injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
-向设备注入多指操作。
+向设备注入多指操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2876,17 +3030,17 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 | 参数名   | 类型                             | 必填 | 说明                                                     |
 | -------- | -------------------------------- | ---- |--------------------------------------------------------|
 | pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                                  |
-| speed    | number                           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed    | number                           | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **返回值：**
 
 | 类型              | 说明                                  |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回操作是否成功完成，true：完成，false：未完成。 |
+| Promise\<boolean> | Promise对象，返回操作是否成功完成。true：完成，false：未完成。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -2897,19 +3051,20 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 ```ts
 import { Driver, PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
   await driver.injectMultiPointerAction(pointers);
 }
 ```
@@ -2918,7 +3073,7 @@ async function demo() {
 
 fling(direction: UiDirection, speed: number): Promise\<void>;
 
-指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
+指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2929,11 +3084,17 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 | 参数名    | 类型                          | 必填 | 说明                                                     |
 | --------- | ----------------------------- | ---- |--------------------------------------------------------|
 | direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                               |
-| speed     | number                        | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed     | number                        | 是   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2954,7 +3115,7 @@ async function demo() {
 
 screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
-捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
+捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2964,18 +3125,18 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 参数名   | 类型           | 必填 | 说明                                       |
 | -------- | -------------- | ---- | ------------------------------------------ |
-| savePath | string         | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| savePath | string         | 是   | 文件保存路径。路径需为当前应用的[沙箱路径](../../file-management/app-sandbox-directory.md)。 |
 | rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。                     |
 
 **返回值：**
 
 | 类型              | 说明                                          |
 | ----------------- |---------------------------------------------|
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：成功完成，false：未成功完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2996,7 +3157,7 @@ async function demo() {
 
 mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
 
-在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
+在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3008,12 +3169,18 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标点击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3034,7 +3201,7 @@ async function demo() {
 
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
-在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
+在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3046,13 +3213,19 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | ------ | ---------------- | ---- | ----------------------------------------------------------- |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                            |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。 |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0。         |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0。                              |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                              |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，取值大于等于0的整数，每格对应目标点位移120px。         |
+| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                              |
+| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                              |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3063,9 +3236,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072);
 }
 ```
 
@@ -3073,7 +3247,7 @@ async function demo() {
 
 mouseMoveTo(p: Point): Promise\<void>;
 
-将鼠标光标移到目标点。
+将鼠标光标移到目标点，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3085,9 +3259,15 @@ mouseMoveTo(p: Point): Promise\<void>;
 | ------ | ---------------- | ---- | -------------- |
 | p      | [Point](#point9) | 是   | 目标点的坐标。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3098,9 +3278,10 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveTo({x:100, y:100})
+  await driver.mouseMoveTo({x:100, y:100});
 }
 ```
 
@@ -3132,9 +3313,10 @@ createUIEventObserver(): UIEventObserver;
 
 ```ts
 import { Driver, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
 }
 ```
 
@@ -3142,7 +3324,7 @@ async function demo() {
 
 mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, speed?: number): Promise\<void>
 
-在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
+在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3154,14 +3336,20 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                             |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。true表示向下滑动。false表示向上滚动。  |
-| d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120px，取值大于等于0。          |
-| key1   | number           | 否   | 指定的第一个key值。默认值为0，取值大于等于0。                               |
-| key2   | number           | 否   | 指定的第二个key值。默认值为0，取值大于等于0。                               |
-| speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500，不在范围内设为默认值为20，单位：格/秒。 |
+| d      | number           | 是   | 鼠标滚轮滚动的格数，取值大于等于0的整数，每格对应目标点位移120px。          |
+| key1   | number           | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                               |
+| key2   | number           | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。                               |
+| speed  | number           | 否   | 鼠标滚轮滚动的速度，范围：1-500的整数，不在范围内设为默认值为20，单位：格/秒。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3172,9 +3360,10 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20)
+  await driver.mouseScroll({x:360, y:640}, true, 30, 2072,20);
 }
 ```
 
@@ -3182,7 +3371,7 @@ async function demo() {
 
 mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
-在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
+在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3194,12 +3383,18 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标双击的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值0。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3220,7 +3415,7 @@ async function demo() {
 
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
-在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
+在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键，使用Promise异步回调。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3232,12 +3427,18 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 | ------ | ----------------------------- | ---- | ------------------------------ |
 | p      | [Point](#point9)              | 是   | 鼠标长按的坐标。               |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。               |
-| key1   | number                        | 否   | 指定的第一个key值。默认值为0，取值大于等于0。 |
-| key2   | number                        | 否   | 指定的第二个key值。默认值为0，取值大于等于0。 |
+| key1   | number                        | 否   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number                        | 否   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3258,7 +3459,7 @@ async function demo() {
 
 mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
-鼠标从起始坐标点滑向终点坐标点。
+鼠标从起始坐标点滑向终点坐标点，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3270,11 +3471,17 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                  |
-| speed  | number           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number           | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3285,9 +3492,10 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseMoveWithTrack({x:100, y:100}, {x:200, y:200}, 600);
 }
 ```
 
@@ -3295,11 +3503,11 @@ async function demo() {
 
 mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
-鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
+鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3311,11 +3519,17 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- |--------------------------------------------------------|
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                  |
-| speed  | number           | 否   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed  | number           | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3326,9 +3540,10 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 ```ts
 import { Driver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200}, 600);
 }
 ```
 
@@ -3336,7 +3551,7 @@ async function demo() {
 
 inputText(p: Point, text: string): Promise\<void>
 
-在指定坐标点输入文本，不清空组件内原有文本，直接在坐标处追加输入。
+在指定坐标点输入文本，不清空组件内原有文本，直接在坐标处追加输入，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3349,9 +3564,15 @@ inputText(p: Point, text: string): Promise\<void>
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
 | text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3378,7 +3599,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 > **说明**
 >
-> 该接口仅在2in1设备上生效。
+> 该接口仅在PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -3388,7 +3609,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 | 参数名 | 类型                                            | 必填 | 说明                    |
 | ------ |-----------------------------------------------|----|-----------------------|
-| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。取值范围为3~4。 |
+| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。取值为3或者4。 |
 | direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。           |
 | options      | [TouchPadSwipeOptions](#touchpadswipeoptions18) | 否  | 触摸板多指滑动手势附加选项。        |
 
@@ -3396,7 +3617,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3438,7 +3659,7 @@ penClick(point: Point): Promise\<void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3480,7 +3701,7 @@ penLongClick(point: Point, pressure?: number): Promise\<void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3522,7 +3743,7 @@ penDoubleClick(point: Point): Promise\<void>
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3559,14 +3780,14 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 | ------ |-----------------------------------------------|----|--------------------------------------------------------|
 | startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                              |
 | endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                              |
-| speed      | number | 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
+| speed      | number | 否  | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 | pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。                        |
 
 **返回值：**
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3602,7 +3823,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 | 参数名 | 类型                                            | 必填 | 说明                                                                |
 | ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
 | pointers | [PointerMatrix](#pointermatrix9) | 是  |滑动轨迹，包括操作手指个数和滑动坐标序列。当前仅支持单指操作，PointerMatrix中的操作手指个数fingers必须设置为1。 |
-| speed      | number| 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。            |
+| speed      | number| 否  | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。            |
 | pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                 |
 
 
@@ -3610,7 +3831,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 | 类型             | 说明              |
 |----------------|-----------------|
-| Promise\<void> | 无返回值的Promise对象。 |
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3627,7 +3848,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
-  let pointer = PointerMatrix.create(1,8);
+  let pointer = PointerMatrix.create(1, 8);
   for (let step = 0; step < 8; step++) {
     pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
   }
@@ -3653,8 +3874,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 | 参数名  | 类型   | 必填 | 说明                                       |
 | ------- | ------ | ---- | ------------------------------------------ |
-| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1,10]。 |
-| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1,1000]。 |
+| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1,10]的整数。 |
+| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1,1000]的整数。 |
 
 **返回值：**
 
@@ -3674,8 +3895,9 @@ static create(fingers: number, steps: number): PointerMatrix
 
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
-  let pointerMatrix: PointerMatrix = PointerMatrix.create(2,3);
+  let pointerMatrix: PointerMatrix = PointerMatrix.create(2, 3);
 }
 ```
 
@@ -3693,8 +3915,8 @@ setPoint(finger: number, step: number, point: Point): void
 
 | 参数名 | 类型             | 必填 | 说明                                                       |
 | ------ | ---------------- | ---- | ---------------------------------------------------------- |
-| finger | number           | 是   | 手指的序号。                                               |
-| step   | number           | 是   | 步骤的序号。                                               |
+| finger | number           | 是   | 手指的序号，取值大于等于0的整数，且不超过构造PointerMatrix对象时设置的手指数。                                              |
+| step   | number           | 是   | 步骤的序号，取值大于等于0的整数，且不超过构造PointerMatrix对象时设置的操作的步骤数。                                               |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10px至80px范围内。 |
 
 **错误码：**
@@ -3709,18 +3931,19 @@ setPoint(finger: number, step: number, point: Point): void
 
 ```ts
 import { PointerMatrix } from '@kit.TestKit';
+
 async function demo() {
-  let pointers: PointerMatrix = PointerMatrix.create(2,5);
-  pointers.setPoint(0,0,{x:250,y:480});
-  pointers.setPoint(0,1,{x:250,y:440});
-  pointers.setPoint(0,2,{x:250,y:400});
-  pointers.setPoint(0,3,{x:250,y:360});
-  pointers.setPoint(0,4,{x:250,y:320});
-  pointers.setPoint(1,0,{x:250,y:480});
-  pointers.setPoint(1,1,{x:250,y:440});
-  pointers.setPoint(1,2,{x:250,y:400});
-  pointers.setPoint(1,3,{x:250,y:360});
-  pointers.setPoint(1,4,{x:250,y:320});
+  let pointers: PointerMatrix = PointerMatrix.create(2, 5);
+  pointers.setPoint(0, 0, {x:250, y:480});
+  pointers.setPoint(0, 1, {x:250, y:440});
+  pointers.setPoint(0, 2, {x:250, y:400});
+  pointers.setPoint(0, 3, {x:250, y:360});
+  pointers.setPoint(0, 4, {x:250, y:320});
+  pointers.setPoint(1, 0, {x:250, y:480});
+  pointers.setPoint(1, 1, {x:250, y:440});
+  pointers.setPoint(1, 2, {x:250, y:400});
+  pointers.setPoint(1, 3, {x:250, y:360});
+  pointers.setPoint(1, 4, {x:250, y:320});
 }
 ```
 
@@ -3733,7 +3956,7 @@ UiWindow代表了UI界面上的一个窗口，提供窗口属性获取，窗口�
 
 getBundleName(): Promise\<string>
 
-获取窗口归属应用的包名信息。
+获取窗口归属应用的包名信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3743,7 +3966,7 @@ getBundleName(): Promise\<string>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> | 以Promise形式返回窗口归属应用的包名信息。 |
+| Promise\<string> | Promise对象，返回窗口归属应用的包名信息。 |
 
 **错误码：**
 
@@ -3770,7 +3993,7 @@ async function demo() {
 
 getBounds(): Promise\<Rect>
 
-获取窗口的边框信息。
+获取窗口的边框信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3780,7 +4003,7 @@ getBounds(): Promise\<Rect>
 
 | 类型                     | 说明                              |
 | ------------------------ | --------------------------------- |
-| Promise\<[Rect](#rect9)> | 以Promise形式返回窗口的边框信息。 |
+| Promise\<[Rect](#rect9)> | Promise对象，返回窗口的边框信息。 |
 
 **错误码：**
 
@@ -3806,7 +4029,7 @@ async function demo() {
 
 getTitle(): Promise\<string>
 
-获取窗口的标题信息。
+获取窗口的标题信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3816,7 +4039,7 @@ getTitle(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回窗口的标题信息。 |
+| Promise\<string> | Promise对象，返回窗口的标题信息。 |
 
 **错误码：**
 
@@ -3842,7 +4065,7 @@ async function demo() {
 
 getWindowMode(): Promise\<WindowMode>
 
-获取窗口的窗口模式信息。
+获取窗口的窗口模式信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3852,7 +4075,7 @@ getWindowMode(): Promise\<WindowMode>
 
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| Promise\<[WindowMode](#windowmode9)> | 以Promise形式返回窗口的窗口模式信息。 |
+| Promise\<[WindowMode](#windowmode9)> | Promise对象，返回窗口的窗口模式信息。 |
 
 **错误码：**
 
@@ -3878,7 +4101,7 @@ async function demo() {
 
 isFocused(): Promise\<boolean>
 
-判断窗口是否处于获焦状态。
+判断窗口是否处于获焦状态，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3888,7 +4111,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否获取获焦状态。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否获取获焦状态。true：获焦。false：未获焦。 |
 
 **错误码：**
 
@@ -3924,7 +4147,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否为用户正在交互窗口。true表示是交互窗口。false表示非交互窗口。 |
 
 **错误码：**
 
@@ -3950,11 +4173,17 @@ async function demo() {
 
 focus(): Promise\<void>
 
-让窗口获焦。
+让窗口获焦，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -3980,7 +4209,7 @@ async function demo() {
 
 moveTo(x: number, y: number): Promise\<void>
 
-将窗口移动到目标点。适用于支持移动的窗口。
+将窗口移动到目标点，使用Promise异步回调。适用于支持移动的窗口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3990,12 +4219,18 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4019,7 +4254,7 @@ async function demo() {
 
 resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
-根据传入的宽、高和调整方向来调整窗口的大小。适用于支持调整大小的窗口。
+根据传入的宽、高和调整方向来调整窗口的大小，使用Promise异步回调。适用于支持调整大小的窗口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4029,13 +4264,19 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 参数名    | 类型                                 | 必填 | 说明                                                         |
 | --------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值大于等于0。                         |
-| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值大于等于0。                         |
+| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值范围：大于等于0的整数。                         |
+| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值范围：大于等于0的整数。                         |
 | direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -4059,11 +4300,17 @@ async function demo() {
 
 split(): Promise\<void>
 
-将窗口模式切换成分屏模式。适用于支持切换分屏模式的窗口。
+将窗口模式切换成分屏模式，使用Promise异步回调。适用于支持切换分屏模式的窗口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4090,11 +4337,17 @@ async function demo() {
 
 maximize(): Promise\<void>
 
-将窗口最大化。适用于支持窗口最大化操作的窗口。
+将窗口最大化，使用Promise异步回调。适用于支持窗口最大化操作的窗口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4121,11 +4374,17 @@ async function demo() {
 
 minimize(): Promise\<void>
 
-将窗口最小化。适用于支持窗口最小化操作的窗口。
+将窗口最小化，使用Promise异步回调。适用于支持窗口最小化操作的窗口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象，返回无结果的Promise对象。 |
 
 **错误码：**
 
@@ -4152,11 +4411,17 @@ async function demo() {
 
 resume(): Promise\<void>
 
-将窗口恢复到之前的窗口模式。
+将窗口恢复到之前的窗口模式，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4183,11 +4448,17 @@ async function demo() {
 
 close(): Promise\<void>
 
-将窗口关闭。
+将窗口关闭，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4214,7 +4485,7 @@ async function demo() {
 
 isActive(): Promise\<boolean>
 
-判断窗口是否为用户正在交互窗口。
+判断窗口是否为用户正在交互窗口，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4224,7 +4495,7 @@ isActive(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口。true：交互窗口。false：非交互窗口。 |
+| Promise\<boolean> | Promise对象，返回窗口对象是否为用户正在交互窗口。true：交互窗口。false：非交互窗口。 |
 
 **错误码：**
 
@@ -4279,15 +4550,16 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 ```ts
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer:  UIEventObserver = await driver.createUIEventObserver()
+  let observer:  UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('toastShow', callback)
+  observer.once('toastShow', callback);
 }
 ```
 
@@ -4320,15 +4592,16 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 ```ts
 import { Driver, UIElementInfo, UIEventObserver } from '@kit.TestKit';
+
 async function demo() {
   let driver: Driver = Driver.create();
-  let observer: UIEventObserver = await driver.createUIEventObserver()
+  let observer: UIEventObserver = await driver.createUIEventObserver();
   let  callback = (UIElementInfo: UIElementInfo)=>{
-    console.info(UIElementInfo.bundleName)
-    console.info(UIElementInfo.text)
-    console.info(UIElementInfo.type)
+    console.info(UIElementInfo.bundleName);
+    console.info(UIElementInfo.text);
+    console.info(UIElementInfo.type);
   }
-  observer.once('dialogShow', callback)
+  observer.once('dialogShow', callback);
 }
 ```
 
@@ -4757,7 +5030,7 @@ getId(): Promise\<number>
 
 | 类型             | 说明                            |
 | ---------------- | ------------------------------- |
-| Promise\<number> | 以Promise形式返回的控件的id值。 |
+| Promise\<number> | Promise对象，返回控件的id值。 |
 
 **示例：**
 
@@ -4784,7 +5057,7 @@ getKey(): Promise\<string>
 
 | 类型             | 说明                           |
 | ---------------- | ------------------------------ |
-| Promise\<string> | 以Promise形式返回控件的key值。 |
+| Promise\<string> | Promise对象，返回控件的key值。 |
 
 **示例：**
 
@@ -4811,7 +5084,7 @@ getText(): Promise\<string>
 
 | 类型             | 说明                              |
 | ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回控件的文本信息。 |
+| Promise\<string> | Promise对象，返回控件的文本信息。 |
 
 **示例：**
 
@@ -4838,7 +5111,7 @@ getType(): Promise\<string>
 
 | 类型             | 说明                          |
 | ---------------- | ----------------------------- |
-| Promise\<string> | 以Promise形式返回控件的类型。 |
+| Promise\<string> | Promise对象，返回控件的类型。 |
 
 **示例：**
 
@@ -4865,7 +5138,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可点击状态。true：可点击。false：不可点击。 |
+| Promise\<boolean> | Promise对象，返回控件对象可点击状态。true：可点击。false：不可点击。 |
 
 **示例：**
 
@@ -4874,7 +5147,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isClickable()) {
+  if (await button.isClickable()) {
     console.info('This button can be Clicked');
   } else {
     console.info('This button can not be Clicked');
@@ -4896,7 +5169,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态。true：可滑动。false：不可滑动。 |
+| Promise\<boolean> | Promise对象，返回控件对象可滑动状态。true：可滑动。false：不可滑动。 |
 
 **示例：**
 
@@ -4905,7 +5178,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let scrollBar: UiComponent = await driver.findComponent(BY.scrollable(true));
-  if(await scrollBar.isScrollable()) {
+  if (await scrollBar.isScrollable()) {
     console.info('This scrollBar can be operated');
   } else {
     console.info('This scrollBar can not be operated');
@@ -4928,7 +5201,7 @@ isEnabled(): Promise\<boolean>
 
 | 类型              | 说明                                                       |
 | ----------------- | ---------------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件使能状态。true：使能。false：未使能。 |
+| Promise\<boolean> | Promise对象，返回控件使能状态。true：使能。false：未使能。 |
 
 **示例：**
 
@@ -4937,7 +5210,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isEnabled()) {
+  if (await button.isEnabled()) {
     console.info('This button can be operated');
   } else {
     console.info('This button can not be operated');
@@ -4960,7 +5233,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否获焦。true：获焦。false：未获焦。 |
+| Promise\<boolean> | Promise对象，返回控件对象是否获焦。true：获焦。false：未获焦。 |
 
 **示例：**
 
@@ -4969,7 +5242,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isFocused()) {
+  if (await button.isFocused()) {
     console.info('This button is focused');
   } else {
     console.info('This button is not focused');
@@ -4991,7 +5264,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态。true：被选中。false：未被选中。 |
+| Promise\<boolean> | Promise对象，返回控件对象被选中的状态。true：被选中。false：未被选中。 |
 
 **示例：**
 
@@ -5000,7 +5273,7 @@ import { UiDriver, BY, UiComponent } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
   let button: UiComponent = await driver.findComponent(BY.type('Button'));
-  if(await button.isSelected()) {
+  if (await button.isSelected()) {
     console.info('This button is selected');
   } else {
     console.info('This button is not selected');
@@ -5055,7 +5328,7 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 | 类型                                            | 说明                                  |
 | ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的目标控件对象。 |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，返回目标控件对象。 |
 
 **示例：**
 
@@ -5146,7 +5419,7 @@ findComponent(by: By): Promise\<UiComponent>
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise\<[UiComponent](#uicomponentdeprecated)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[UiComponent](#uicomponentdeprecated)> | Promise对象，返回控件对象。 |
 
 **示例：**
 
@@ -5178,7 +5451,7 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 | 类型                                                    | 说明                                    |
 | ------------------------------------------------------- | --------------------------------------- |
-| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | 以Promise形式返回找到的控件对象的列表。 |
+| Promise\<Array\<[UiComponent](#uicomponentdeprecated)>> | Promise对象，返回控件对象的列表。 |
 
 **示例：**
 
@@ -5260,7 +5533,7 @@ UiDriver对象采取如下操作：通过key值找到对应键并点击。
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值。 |
+| keyCode | number | 是   | 指定的key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 
 **示例：**
 
@@ -5287,16 +5560,17 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.click(100,100);
+  await driver.click(100, 100);
 }
 ```
 
@@ -5314,16 +5588,17 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.doubleClick(100,100);
+  await driver.doubleClick(100, 100);
 }
 ```
 
@@ -5341,8 +5616,8 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
@@ -5350,7 +5625,7 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 import { UiDriver } from '@kit.TestKit';
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.longClick(100,100);
+  await driver.longClick(100, 100);
 }
 ```
 
@@ -5368,18 +5643,19 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。 |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。 |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。 |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。 |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。 |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。 |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。 |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
 ```ts
 import { UiDriver } from '@kit.TestKit';
+
 async function demo() {
   let driver: UiDriver = UiDriver.create();
-  await driver.swipe(100,100,200,200);
+  await driver.swipe(100, 100, 200, 200);
 }
 ```
 
@@ -5403,7 +5679,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 | 类型              | 说明                                            |
 | ----------------- |-----------------------------------------------|
-| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成，true：成功完成，false：未成功完成。 |
+| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
 
 **示例：**
 

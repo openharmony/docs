@@ -326,11 +326,11 @@ struct Index {
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
-| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
-| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
-| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
-| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+| PX | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| VP | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| FP | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| PERCENT | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| LPX | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
 ## SizeT\<T><sup>12+</sup>
 
@@ -360,7 +360,7 @@ struct Index {
 
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
+用于设置长度属性，当长度单位为PERCENT时，值为1表示100%。
 
 ### 属性
 
@@ -460,7 +460,7 @@ static fp(value: number): LengthMetrics
 
 static percent(value: number): LengthMetrics
 
-用于生成单位为PERCENT的长度属性。
+用于生成单位为PERCENT的长度属性，值为1表示100%。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +470,7 @@ static percent(value: number): LengthMetrics
 
 | 参数名 | 类型          | 必填 | 说明         |
 | ------ | ------------- | ---- | ------------ |
-| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 100] |
+| value   | number | 是   | 长度属性的值。<br/>取值范围：[0, 1] |
 
 **返回值：**
 
@@ -738,7 +738,7 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
     //可能返回的arkui子系统错误码有401和180003
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
@@ -772,7 +772,7 @@ struct ColorMetricsSample {
 | 名称        | 类型 | 可读 | 可写 | 说明                   |
 | ----------- | ---- | ---- | ---- | ---------------------- |
 | topLeft     | T    | 是   | 是   | 左上边框的圆角属性。   |
-| topRight    | T    | 是   | 是   | 右上上边框的圆角属性。 |
+| topRight    | T    | 是   | 是   | 右上边框的圆角属性。 |
 | bottomLeft  | T    | 是   | 是   | 左下边框的圆角属性。   |
 | bottomRight | T    | 是   | 是   | 右下边框的圆角属性。   |
 
@@ -1906,7 +1906,7 @@ borderRadiuses(all: number): BorderRadiuses
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞)] |
+| all    | number | 是   | 边框圆角。<br/>单位：vp<br/>取值范围：[0, +∞) |
 
 **返回值：**
 

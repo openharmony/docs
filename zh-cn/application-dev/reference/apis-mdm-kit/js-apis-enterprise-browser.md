@@ -10,7 +10,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -52,6 +52,7 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -74,7 +75,7 @@ try {
 
 getPoliciesSync(admin: Want, appId: string): string
 
-指定管理员应用获取指定浏览器的策略。
+获取指定浏览器设置的策略。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -105,6 +106,7 @@ getPoliciesSync(admin: Want, appId: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -155,6 +157,7 @@ setManagedBrowserPolicy(admin: Want, bundleName: string, policyName: string, pol
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -207,6 +210,7 @@ getManagedBrowserPolicy(admin: Want, bundleName: string): ArrayBuffer
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

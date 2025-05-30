@@ -6,6 +6,10 @@ The distribution type of enterprise applications can be **enterprise_normal** (n
 
 For details about how to request the permissions for enterprise applications, see [declaring permissions](declare-permissions.md).
 
+> **NOTE**
+> 
+> The following permissions do not support automatic code signing. You must [manually sign the code](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233) during the debugging and release phases.
+
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 Allows an application to update the file guard policy.
@@ -99,6 +103,8 @@ Allows an application to obtain basic information and sensitive information abou
 ## ohos.permission.GET_WIFI_CONFIG
 
 Allows an application to obtain the Wi-Fi configuration.
+
+Currently, this permission is available only to applications running on PCs and 2-in-1 devices.
 
 **Permission level**: system_basic
 

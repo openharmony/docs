@@ -55,7 +55,7 @@ import { ArcScrollBar } from '@kit.ArkUI';
 @Entry
 @Component
 struct ArcScrollBarExample {
-  private scroller: Scroller = new Scroller()
+  private scroller: Scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {

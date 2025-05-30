@@ -31,12 +31,12 @@ import { drawing } from '@kit.ArkGraphics2D';
 // 1. 自定义RenderNode
 export class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
-    const canvas = context.canvas
+    const canvas = context.canvas;
     // 3. 自定义的绘制相关操作
-    const brush = new drawing.Brush()
-    brush.setColor({red: 255, blue: 0, green: 0, alpha: 255})
-    canvas.attachBrush(brush)
-    canvas.drawRect({left: 0, right: 300, top: 0, bottom: 300})
+    const brush = new drawing.Brush();
+    brush.setColor({red: 255, blue: 0, green: 0, alpha: 255});
+    canvas.attachBrush(brush);
+    canvas.drawRect({left: 0, right: 300, top: 0, bottom: 300});
   }
 }
 
@@ -48,15 +48,15 @@ export class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext);
     if (this.rootNode === null) {
-      return this.rootNode
+      return this.rootNode;
     }
 
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
       this.myRenderNode.backgroundColor = 0xffffffff;
       this.myRenderNode.frame = { x: 0, y: 0, width: 4800, height: 4800 };
-      this.myRenderNode.pivot = { x: 0.2, y: 0.8 }
-      this.myRenderNode.scale = { x: 1, y: 1 }
+      this.myRenderNode.pivot = { x: 0.2, y: 0.8 };
+      this.myRenderNode.scale = { x: 1, y: 1 };
       renderNode.appendChild(this.myRenderNode);
       renderNode.clipToFrame = true
     }
@@ -110,7 +110,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 export class MyRenderNode extends RenderNode {
   pixelMap: image.PixelMap | null = null;
   setPixelMap(pixelMap: image.PixelMap) {
-    this.pixelMap = pixelMap
+    this.pixelMap = pixelMap;
   }
 
   async draw(context: DrawContext) {
@@ -134,7 +134,7 @@ export class MyRenderNode extends RenderNode {
 @Concurrent
 async function CreatePixelMapAsync() {
   const color : ArrayBuffer = new ArrayBuffer(40000);  // 40000为需要创建的像素buffer大小，取值为：height * width *4
-  let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 100, width: 100 } }
+  let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 100, width: 100 } };
   const pixel = await image.createPixelMap(color, opts);
   return pixel;
 }
@@ -148,25 +148,25 @@ export class MyNodeController extends NodeController {
   aboutToAppear(): void {
     let task = new taskpool.Task(CreatePixelMapAsync);
     taskpool.execute(task).then((pixel:Object)=>{
-      this.myRenderNode.setPixelMap(pixel as image.PixelMap)
-      this.myRenderNode.invalidate()
+      this.myRenderNode.setPixelMap(pixel as image.PixelMap);
+      this.myRenderNode.invalidate();
     })
   }
 
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext);
     if (this.rootNode === null) {
-      return this.rootNode
+      return this.rootNode;
     }
 
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
       this.myRenderNode.backgroundColor = 0xffffffff;
       this.myRenderNode.frame = { x: 0, y: 0, width: 4800, height: 4800 };
-      this.myRenderNode.pivot = { x: 0.2, y: 0.8 }
-      this.myRenderNode.scale = { x: 1, y: 1 }
+      this.myRenderNode.pivot = { x: 0.2, y: 0.8 };
+      this.myRenderNode.scale = { x: 1, y: 1 };
       renderNode.appendChild(this.myRenderNode);
-      renderNode.clipToFrame = true
+      renderNode.clipToFrame = true;
     }
     return this.rootNode;
   }

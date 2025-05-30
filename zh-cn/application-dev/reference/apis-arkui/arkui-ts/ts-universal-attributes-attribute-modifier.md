@@ -2,9 +2,9 @@
 
 动态设置组件的属性，支持开发者在属性设置时使用if/else语法，且根据需要使用多态样式设置属性。
 
->  **说明：**
+> **说明：**
 >
->  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
 >
@@ -12,7 +12,7 @@
 
 ## attributeModifier
 
-attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
+attributeModifier(modifier: AttributeModifier\<T>)
 
 动态设置组件的属性方法。
 
@@ -85,7 +85,7 @@ applySelectedAttribute(instance: T) : void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数**：
+**参数：**
 
 | 参数     | 描述                                                                                                         |
 | -------- | ------------------------------------------------------------------------------------------------------------ |
@@ -132,13 +132,13 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-  isDark: boolean = false
+  public isDark: boolean = false;
 
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {
-      instance.backgroundColor(Color.Black)
+      instance.backgroundColor(Color.Black);
     } else {
-      instance.backgroundColor(Color.Red)
+      instance.backgroundColor(Color.Red);
     }
   }
 }
@@ -146,7 +146,7 @@ class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -154,7 +154,7 @@ struct attributeDemo {
         Button("Button")
           .attributeModifier(this.modifier)
           .onClick(() => {
-            this.modifier.isDark = !this.modifier.isDark
+            this.modifier.isDark = !this.modifier.isDark;
           })
       }
       .width('100%')
@@ -173,18 +173,18 @@ struct attributeDemo {
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Black)
+    instance.backgroundColor(Color.Black);
   }
 
   applyPressedAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Red)
+    instance.backgroundColor(Color.Red);
   }
 }
 
 @Entry
 @Component
 struct attributePressedDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
 
   build() {
     Row() {
@@ -205,7 +205,7 @@ struct attributePressedDemo {
 该示例通过状态数据设置自定义Modifier的宽度，自定义Modifier不支持感知@State装饰的状态数据变化，点击按钮后宽度不发生改变。
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG : string = "AttributeModifier";
 class MyModifier extends CommonModifier {
@@ -216,7 +216,7 @@ class MyModifier extends CommonModifier {
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -229,21 +229,21 @@ struct Index {
   index: number = 0;
   @State width1: number = 100;
   @State height1: number = 100;
-  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10);
 
   build() {
     Column() {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup1")
+            console.log(TEST_TAG, "setGroup1");
           } else {
             this.width1 = 10;
-            console.log(TEST_TAG, "setGroup2")
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })
@@ -259,7 +259,7 @@ struct Index {
 该示例通过自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
 
 ```ts
-import { CommonModifier } from "@kit.ArkUI"
+import { CommonModifier } from "@kit.ArkUI";
 
 const TEST_TAG: string = "AttributeModifier";
 
@@ -269,19 +269,19 @@ class MyModifier extends CommonModifier {
   }
 
   public setGroup1(): void {
-    this.borderStyle(BorderStyle.Dotted)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dotted);
+    this.borderWidth(8);
   }
 
   public setGroup2(): void {
-    this.borderStyle(BorderStyle.Dashed)
-    this.borderWidth(8)
+    this.borderStyle(BorderStyle.Dashed);
+    this.borderWidth(8);
   }
 }
 
 @Component
 struct MyImage1 {
-  @Link modifier: CommonModifier
+  @Link modifier: CommonModifier;
 
   build() {
     Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
@@ -291,7 +291,7 @@ struct MyImage1 {
 @Entry
 @Component
 struct Index {
-  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
+  @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10);
   index: number = 0;
 
   build() {
@@ -299,14 +299,14 @@ struct Index {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log(TEST_TAG, "onClick")
+          console.log(TEST_TAG, "onClick");
           this.index++;
           if (this.index % 2 === 1) {
-            (this.myModifier as MyModifier).setGroup1()
-            console.log(TEST_TAG, "setGroup1")
+            (this.myModifier as MyModifier).setGroup1();
+            console.log(TEST_TAG, "setGroup1");
           } else {
-            (this.myModifier as MyModifier).setGroup2()
-            console.log(TEST_TAG, "setGroup2")
+            (this.myModifier as MyModifier).setGroup2();
+            console.log(TEST_TAG, "setGroup2");
           }
         })
       MyImage1({ modifier: this.myModifier })
@@ -319,23 +319,23 @@ struct Index {
 
 ### 示例5（组件绑定Modifier获焦样式）
 
-该示例通过 Button 绑定 Modifier 实现了组件在获得焦点时的样式效果。点击 Button2 后，Button 会显示获得焦点后的样式。
+该示例通过Button绑定Modifier实现了组件在获得焦点时的样式效果。点击Button2后，Button会显示获得焦点后的样式。
 
 ```ts
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Blue)
+    instance.backgroundColor(Color.Blue);
   }
   applyFocusedAttribute(instance: ButtonAttribute): void {
-    instance.backgroundColor(Color.Green)
+    instance.backgroundColor(Color.Green);
   }
 }
 
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State modifier: MyButtonModifier = new MyButtonModifier();
   @State isDisable: boolean = true;
 
   build() {
@@ -348,8 +348,8 @@ struct attributeDemo {
         Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
         Button("Button2")
           .onClick(() => {
-            this.getUIContext().getFocusController().activate(true)
-            this.getUIContext().getFocusController().requestFocus("app")
+            this.getUIContext().getFocusController().activate(true);
+            this.getUIContext().getFocusController().requestFocus("app");
           })
       }
       .width('100%')
@@ -362,20 +362,20 @@ struct attributeDemo {
 
 ### 示例6（组件绑定Modifier禁用状态的样式）
 
-该示例通过 Button 绑定 Modifier 实现了组件禁用时的样式效果。点击 Button2 后，Button 会显示禁用状态的样式。
+该示例通过Button绑定Modifier实现了组件禁用时的样式效果。点击Button2后，Button会显示禁用状态的样式。
 
 ```ts
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyDisabledAttribute(instance: ButtonAttribute): void {
-    instance.width(200)
+    instance.width(200);
   }
 }
 
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyButtonModifier = new MyButtonModifier()
-  @State isDisable: boolean = true
+  @State modifier: MyButtonModifier = new MyButtonModifier();
+  @State isDisable: boolean = true;
 
   build() {
     Row() {
@@ -386,7 +386,7 @@ struct attributeDemo {
         Divider().vertical(false).strokeWidth(15).color(Color.Transparent)
         Button("Button2")
           .onClick(() => {
-            this.isDisable = !this.isDisable
+            this.isDisable = !this.isDisable;
           })
       }
       .width('100%')
@@ -404,20 +404,20 @@ struct attributeDemo {
 ```ts
 class MyRadioModifier implements AttributeModifier<RadioAttribute> {
   applyNormalAttribute(instance: RadioAttribute): void {
-    instance.backgroundColor(Color.Blue)
+    instance.backgroundColor(Color.Blue);
   }
   applySelectedAttribute(instance: RadioAttribute): void {
-    instance.backgroundColor(Color.Red)
-    instance.borderWidth(2)
+    instance.backgroundColor(Color.Red);
+    instance.borderWidth(2);
   }
 }
 
 @Entry
 @Component
 struct attributeDemo {
-  @State modifier: MyRadioModifier = new MyRadioModifier()
-  @State value: boolean = false
-  @State value2: boolean = false
+  @State modifier: MyRadioModifier = new MyRadioModifier();
+  @State value: boolean = false;
+  @State value2: boolean = false;
 
   build() {
     Row() {
@@ -429,7 +429,7 @@ struct attributeDemo {
           .borderWidth(0)
           .borderRadius(30)
           .onClick(() => {
-            this.value = !this.value
+            this.value = !this.value;
           })
           .attributeModifier(this.modifier)
       }

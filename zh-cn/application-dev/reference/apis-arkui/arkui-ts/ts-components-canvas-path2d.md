@@ -22,7 +22,7 @@ Path2D(unit?: LengthMetricsUnit)
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
 
 Path2D(description: string, unit?: LengthMetricsUnit)
 
@@ -39,9 +39,11 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
 | description | string | 是 | 符合 SVG 路径描述规范的路径字符串，格式参考[Path](ts-drawing-components-path.md#svg路径描述规范)中SVG路径描述规范说明。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT|
 
-## addPath
+## 方法
+
+### addPath
 
 addPath(path: Path2D, transform?: Matrix2D): void
 
@@ -58,7 +60,7 @@ addPath(path: Path2D, transform?: Matrix2D): void
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
 | path      | [Path2D](ts-components-canvas-path2d.md)   | 是 | 需要添加到当前路径的路径对象，路径单位：px。 |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 新增路径的变换矩阵对象。<br>默认值：null。 |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 新增路径的变换矩阵对象。<br>默认值：null |
 
 
 **示例：**
@@ -68,10 +70,10 @@ addPath(path: Path2D, transform?: Matrix2D): void
   @Entry
   @Component
   struct AddPath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z");
+    private path2Db: Path2D = new Path2D();
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -93,7 +95,7 @@ addPath(path: Path2D, transform?: Matrix2D): void
   ![zh-cn_image_0000001238712467](figures/zh-cn_image_0000001238712467.png)
 
 
-## closePath
+### closePath
 
 closePath(): void
 
@@ -112,9 +114,9 @@ closePath(): void
   @Entry
   @Component
   struct ClosePath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -139,7 +141,7 @@ closePath(): void
   ![zh-cn_image_0000001193872542](figures/zh-cn_image_0000001193872542.png)
 
 
-## moveTo
+### moveTo
 
 moveTo(x: number, y: number): void
 
@@ -155,8 +157,8 @@ moveTo(x: number, y: number): void
 
 | 参数   | 类型     | 必填 | 描述       |
 | ---- | ------ | ---- | -------- |
-| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp。 |
-| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp。 |
+| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp |
+| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp |
 
 **示例：**
 
@@ -165,9 +167,9 @@ moveTo(x: number, y: number): void
   @Entry
   @Component
   struct MoveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -192,7 +194,7 @@ moveTo(x: number, y: number): void
   ![zh-cn_image_0000001194032502](figures/zh-cn_image_0000001194032502.png)
 
 
-## lineTo
+### lineTo
 
 lineTo(x: number, y: number): void
 
@@ -208,8 +210,8 @@ lineTo(x: number, y: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp。 |
-| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp。 |
+| x    | number | 是 | 目标点X轴坐标。<br>默认单位：vp |
+| y    | number | 是 | 目标点Y轴坐标。<br>默认单位：vp |
 
 **示例：**
 
@@ -218,9 +220,9 @@ lineTo(x: number, y: number): void
   @Entry
   @Component
   struct LineTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -246,7 +248,7 @@ lineTo(x: number, y: number): void
   ![zh-cn_image_0000001238832437](figures/zh-cn_image_0000001238832437.png)
 
 
-## bezierCurveTo
+### bezierCurveTo
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
@@ -262,12 +264,12 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| cp1x | number | 是 | 第一个贝塞尔参数的x坐标值。<br>默认单位：vp。 |
-| cp1y | number | 是 | 第一个贝塞尔参数的y坐标值。<br>默认单位：vp。 |
-| cp2x | number | 是 | 第二个贝塞尔参数的x坐标值。<br>默认单位：vp。 |
-| cp2y | number | 是 | 第二个贝塞尔参数的y坐标值。<br>默认单位：vp。 |
-| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp。    |
-| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp。    |
+| cp1x | number | 是 | 第一个贝塞尔参数的x坐标值。<br>默认单位：vp |
+| cp1y | number | 是 | 第一个贝塞尔参数的y坐标值。<br>默认单位：vp |
+| cp2x | number | 是 | 第二个贝塞尔参数的x坐标值。<br>默认单位：vp |
+| cp2y | number | 是 | 第二个贝塞尔参数的y坐标值。<br>默认单位：vp |
+| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp    |
+| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp    |
 
 **示例：**
 
@@ -276,9 +278,9 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   @Entry
   @Component
   struct BezierCurveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -301,7 +303,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   ![zh-cn_image_0000001239032455](figures/zh-cn_image_0000001239032455.png)
 
 
-## quadraticCurveTo
+### quadraticCurveTo
 
 quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
@@ -317,10 +319,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| cpx  | number | 是 | 贝塞尔参数的x坐标值。<br>默认单位：vp。 |
-| cpy  | number | 是 | 贝塞尔参数的y坐标值。<br>默认单位：vp。 |
-| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp。 |
-| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp。 |
+| cpx  | number | 是 | 贝塞尔参数的x坐标值。<br>默认单位：vp |
+| cpy  | number | 是 | 贝塞尔参数的y坐标值。<br>默认单位：vp |
+| x    | number | 是 | 路径结束时的x坐标值。<br>默认单位：vp |
+| y    | number | 是 | 路径结束时的y坐标值。<br>默认单位：vp |
 
 **示例：**
 
@@ -329,9 +331,9 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   @Entry
   @Component
   struct QuadraticCurveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -354,7 +356,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   ![zh-cn_image_0000001238952419](figures/zh-cn_image_0000001238952419.png)
 
 
-## arc
+### arc
 
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
@@ -370,12 +372,12 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x                | number  | 是 | 弧线圆心的x坐标值。<br>默认单位：vp。 |
-| y                | number  | 是 | 弧线圆心的y坐标值。<br>默认单位：vp。 |
-| radius           | number  | 是 | 弧线的圆半径。<br>默认单位：vp。    |
+| x                | number  | 是 | 弧线圆心的x坐标值。<br>默认单位：vp |
+| y                | number  | 是 | 弧线圆心的y坐标值。<br>默认单位：vp |
+| radius           | number  | 是 | 弧线的圆半径。<br>默认单位：vp    |
 | startAngle       | number  | 是 | 弧线的起始弧度。<br>单位：弧度。   |
 | endAngle         | number  | 是 | 弧线的终止弧度。<br>单位：弧度。   |
-| counterclockwise | boolean | 否 | 是否逆时针绘制圆弧。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。<br>默认值：false。 |
+| counterclockwise | boolean | 否 | 是否逆时针绘制圆弧。<br>true：逆时针方向绘制圆弧。<br>false：顺时针方向绘制圆弧。<br>默认值：false |
 
 **示例：**
 
@@ -384,9 +386,9 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   @Entry
   @Component
   struct Arc {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -408,7 +410,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   ![zh-cn_image_0000001194192488](figures/zh-cn_image_0000001194192488.png)
 
 
-## arcTo
+### arcTo
 
 arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
@@ -424,11 +426,11 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x1     | number | 是 | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。 |
-| y1     | number | 是 | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。 |
-| x2     | number | 是 | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。 |
-| y2     | number | 是 | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。 |
-| radius | number | 是 | 圆弧的圆半径值。<br>默认单位：vp。 |
+| x1     | number | 是 | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp |
+| y1     | number | 是 | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp |
+| x2     | number | 是 | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp |
+| y2     | number | 是 | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp |
+| radius | number | 是 | 圆弧的圆半径值。<br>默认单位：vp |
 
 **示例：**
 
@@ -437,10 +439,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   @Entry
   @Component
   struct ArcTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
-  
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -448,6 +450,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() => {
+            this.path2Db.moveTo(0, 0)
             this.path2Db.arcTo(150, 20, 150, 70, 50)
             this.context.stroke(this.path2Db)
           })
@@ -461,7 +464,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ![zh-cn_image_0000001194352486](figures/zh-cn_image_0000001194352486.png)
 
 
-## ellipse
+### ellipse
 
 ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
@@ -477,14 +480,14 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x                | number  | 是  | 椭圆圆心的x轴坐标。<br>默认单位：vp。|
-| y                | number  | 是  | 椭圆圆心的y轴坐标。<br>默认单位：vp。|
-| radiusX          | number  | 是  | 椭圆x轴的半径长度。<br>默认单位：vp。|
-| radiusY          | number  | 是  | 椭圆y轴的半径长度。<br>默认单位：vp。|
-| rotation         | number  | 是  | 椭圆的旋转角度。<br>单位：弧度。                           |
-| startAngle       | number  | 是  | 椭圆绘制的起始点角度。<br>单位：弧度。                        |
-| endAngle         | number  | 是  | 椭圆绘制的结束点角度。<br>单位：弧度。                        |
-| counterclockwise | boolean | 否  | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。<br>默认值：false。 |
+| x                | number  | 是  | 椭圆圆心的x轴坐标。<br>默认单位：vp|
+| y                | number  | 是  | 椭圆圆心的y轴坐标。<br>默认单位：vp|
+| radiusX          | number  | 是  | 椭圆x轴的半径长度。<br>默认单位：vp|
+| radiusY          | number  | 是  | 椭圆y轴的半径长度。<br>默认单位：vp|
+| rotation         | number  | 是  | 椭圆的旋转角度。<br>单位：弧度                           |
+| startAngle       | number  | 是  | 椭圆绘制的起始点角度。<br>单位：弧度                        |
+| endAngle         | number  | 是  | 椭圆绘制的结束点角度。<br>单位：弧度                        |
+| counterclockwise | boolean | 否  | 是否以逆时针方向绘制椭圆。<br>true：逆时针方向绘制椭圆。<br>false：顺时针方向绘制椭圆。<br>默认值：false |
 
 **示例：**
 
@@ -493,9 +496,9 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -517,7 +520,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   ![zh-cn_image_0000001238712471](figures/zh-cn_image_0000001238712471.png)
 
 
-## rect
+### rect
 
 rect(x: number, y: number, w: number, h: number): void
 
@@ -533,10 +536,10 @@ rect(x: number, y: number, w: number, h: number): void
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| x    | number | 是 | 指定矩形的左上角x坐标值。<br>默认单位：vp。 |
-| y    | number | 是 | 指定矩形的左上角y坐标值。<br>默认单位：vp。 |
-| w    | number | 是 | 指定矩形的宽度。<br>默认单位：vp。 |
-| h    | number | 是 | 指定矩形的高度。<br>默认单位：vp。 |
+| x    | number | 是 | 指定矩形的左上角x坐标值。<br>默认单位：vp |
+| y    | number | 是 | 指定矩形的左上角y坐标值。<br>默认单位：vp |
+| w    | number | 是 | 指定矩形的宽度。<br>默认单位：vp |
+| h    | number | 是 | 指定矩形的高度。<br>默认单位：vp |
 
 **示例：**
 
@@ -545,9 +548,9 @@ rect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private path2Db: Path2D = new Path2D();
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

@@ -225,6 +225,13 @@ addPersistentDeviceId(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | deviceId     | string                                   | 是    | 表示远程设备的虚拟地址，例如："XX:XX:XX:XX:XX:XX"，该地址一般来源于蓝牙扫描结果。  |
 
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+
 **错误码**：
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
@@ -270,6 +277,12 @@ deletePersistentDeviceId(deviceId: string): Promise&lt;void&gt;
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | deviceId     | string                                   | 是    | 表示远程设备的虚拟地址，例如："XX:XX:XX:XX:XX:XX"，该地址一般来源于蓝牙扫描结果。           |
+
+**返回值：**
+
+| 类型                            | 说明         |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -397,7 +410,7 @@ try {
 
 枚举，蓝牙开关状态。
 
-**原子化服务API**: 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 

@@ -1,4 +1,4 @@
-# 通过键值型数据库实现数据持久化
+# 通过键值型数据库实现数据持久化（ArkTS）
 
 
 ## 场景介绍
@@ -258,3 +258,5 @@
       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
     }
     ```
+
+<!--RP1--><!--RP1End-->

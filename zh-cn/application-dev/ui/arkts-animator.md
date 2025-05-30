@@ -140,10 +140,10 @@ struct Index {
   @State animatorOptions: AnimatorResult | undefined = undefined;
   @State animatorStatus: string = '创建';
   begin: number = 0;
-  end: number = 300
+  end: number = 300;
   topWidth: number = 150;
   bottomHeight: number = 100;
-  g: number = 0.18
+  g: number = 0.18;
   animatorOption: AnimatorOptions = {
     duration: 4000,
     delay: 0,

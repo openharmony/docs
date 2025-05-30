@@ -279,9 +279,9 @@ struct Index {
 | 名称                      | 类型                                                  | 只读 | 可选 | 说明                                         |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
 | textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 是   | 装饰线类型，默认为NONE。                       |
-| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为透明。                       |
+| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为跟随文本颜色。                       |
 | decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 是   | 装饰线样式，默认为SOLID。                      |
-| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细系数，浮点数，默认为1.0。|
+| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细系数，浮点数，默认为1.0。如果设置的值小于等于0，则不会绘制装饰线。|
 
 ## TextDecorationType
 
@@ -369,7 +369,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行上升、最后一行下降。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行下降。                 |
-| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行上升、最后一行下降。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为禁止段落中第一行上升、最后一行下降。          |
 
 ## TextBaseline
 
@@ -481,7 +481,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
@@ -501,7 +501,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，跟随实际系统路径限制规则，默认为空字符串。 |
+| path | string | 否 | 是 | 字体绝对路径，可取遵循系统限制的任意字符串，默认为空字符串。 |
 | postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
 | fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |
@@ -826,11 +826,11 @@ let paragraphStyle: text.ParagraphStyle = {
   textStyle: textStyle,
 };
 let fontCollection: text.FontCollection = new text.FontCollection();
-let paragraphGraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
+let paragraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
 // 添加文本字符串
-paragraphGraphBuilder.addText("test");
+paragraphBuilder.addText("test");
 // 生成排版对象
-let paragraph = paragraphGraphBuilder.build();
+let paragraph = paragraphBuilder.build();
 
 function textFunc(pixelmap: PixelMap) {
   // 通过图片对象构造画布
@@ -1593,7 +1593,7 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
 }
 
 @Entry
@@ -1646,8 +1646,8 @@ function textFunc() {
     align: text.TextAlign.CENTER,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
 }
 
 @Entry
@@ -1690,9 +1690,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
-  ParagraphGraphBuilder.popStyle();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
+  paragraphBuilder.popStyle();
 }
 
 @Entry
@@ -1741,8 +1741,8 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123666");
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123666");
 }
 
 @Entry
@@ -1793,8 +1793,8 @@ function textFunc() {
     baselineOffset: 100000
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addPlaceholder(myPlaceholderSpan);
 }
 
 @Entry
@@ -1840,9 +1840,9 @@ function textFunc() {
     textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123456789");
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123456789");
+  let paragraph = paragraphBuilder.build();
   paragraph.layoutSync(200);
 }
 
@@ -1884,9 +1884,9 @@ function test() {
     align: text.TextAlign.JUSTIFY,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123456789");
-  let lineTypeset = ParagraphGraphBuilder.buildLineTypeset();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123456789");
+  let lineTypeset = paragraphBuilder.buildLineTypeset();
 }
 
 @Entry
@@ -1932,9 +1932,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addSymbol(0xF0000);
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addSymbol(0xF0000);
+  let paragraph = paragraphBuilder.build();
 }
 
 @Entry

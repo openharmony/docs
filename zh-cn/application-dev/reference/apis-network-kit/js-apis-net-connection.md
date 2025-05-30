@@ -1937,6 +1937,8 @@ register(callback: AsyncCallback\<void>): void
 
 订阅指定网络状态变化的通知。
 
+**注意：** 使用完register接口后需要及时调用unregister取消注册。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2729,15 +2731,16 @@ let config: wifiManager.WifiDeviceConfig = {
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 // 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
-let networkId: number = await wifiManager.addCandidateConfig(config);
-let netConnectionWlan = connection.createNetConnection({
-  netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI]
-  },
-  bearerPrivateIdentifier: `${networkId}`
-});
-netConnectionWlan.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+wifiManager.addCandidateConfig(config,(error,networkId) => {
+ let netConnectionWlan = connection.createNetConnection({
+   netCapabilities: {
+     bearerTypes: [connection.NetBearType.BEARER_WIFI]
+   },
+   bearerPrivateIdentifier: `${networkId}`
+ });
+ netConnectionWlan.register((error: BusinessError) => {
+   console.log(JSON.stringify(error));
+ });
 });
 ```
 
@@ -2867,8 +2870,6 @@ type TCPSocket = socket.TCPSocket
 
 获取一个TCPSocket对象。
 
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 |       类型       |            说明             |
@@ -2880,8 +2881,6 @@ type TCPSocket = socket.TCPSocket
 type UDPSocket = socket.UDPSocket
 
 获取一个UDPSocket对象。
-
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

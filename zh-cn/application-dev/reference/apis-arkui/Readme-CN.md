@@ -117,6 +117,7 @@
       - [悬浮态效果](arkui-ts/ts-universal-attributes-hover-effect.md)
       - [组件标识](arkui-ts/ts-universal-attributes-component-id.md)
       - [复用标识](arkui-ts/ts-universal-attributes-reuse-id.md)
+      - [复用选项](arkui-ts/ts-universal-attributes-reuse.md)
       - [多态样式](arkui-ts/ts-universal-attributes-polymorphic-style.md)
       - [分布式迁移标识](arkui-ts/ts-universal-attributes-restoreId.md)
       - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -391,6 +392,7 @@
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
+    - [状态变量变化监听](arkui-ts/ts-state-management-watch-monitor.md)
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
@@ -506,7 +508,6 @@
     - [动画错误码](errorcode-animator.md)
     - [弹窗错误码](errorcode-promptAction.md)
     - [页面路由错误码](errorcode-router.md)
-    - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
@@ -514,7 +515,13 @@
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
     - [截图错误码](errorcode-snapshot.md)
+    - [属性字符串错误码](errorcode-styled-string.md)
     - [UI上下文错误码](errorcode-uicontext.md)
+    - [交互事件错误码](errorcode-event.md)
+    <!--Del-->
+    - [用户界面外观服务错误码](errorcode-uiappearance.md)
+    - [UIExtension错误码](errorcode-uiextension.md)
+    <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

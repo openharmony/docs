@@ -1,7 +1,7 @@
 # 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，不支持apng和svga格式，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -16,7 +16,7 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 ## 加载图片资源
 
-Image支持加载存档图、多媒体像素图两种类型。
+Image支持加载存档图、多媒体像素图和可绘制描述符三种类型。
 
 
 ### 存档图类型数据源
@@ -46,7 +46,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   网络图片必须支持RFC 9113标准，否则会导致加载失败。如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](../network/http-request.md)工具提前预下载，提高图片加载性能，方便应用侧管理数据。
 
-  API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
+  在显示网络图片时，Image 组件会将下载与缓存功能剥离至[缓存下载模块](../reference/apis-basic-services-kit/js-apis-request-cacheDownload.md)进行统一管理。缓存下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向缓存下载模块请求数据，从而优化了Image组件的显示流程。网络缓存的位置位于应用根目录下的cache目录中。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
@@ -186,14 +186,14 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
 
    ```ts
-   let code: http.ResponseCode | number = OutData.responseCode
+   let code: http.ResponseCode | number = OutData.responseCode;
    if (http.ResponseCode.OK === code) {
      let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
      let imageSource: image.ImageSource = image.createImageSource(imageData);
 
      class tmp {
-       height: number = 100
-       width: number = 100
+       height: number = 100;
+       width: number = 100;
      }
 
      let si: tmp = new tmp()
@@ -206,15 +206,15 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
      } // 创建图片大小
 
      class imagetmp {
-       image: PixelMap | undefined = undefined
+       image: PixelMap | undefined = undefined;
        set(val: PixelMap) {
-         this.image = val
+         this.image = val;
        }
      }
 
      imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-       let im = new imagetmp()
-       im.set(pixelMap)
+       let im = new imagetmp();
+       im.set(pixelMap);
      })
    }
    ```
@@ -223,17 +223,17 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
    ```ts
    class htp{
-     httpRequest: Function | undefined = undefined
+     httpRequest: Function | undefined = undefined;
      set(){
        if(this.httpRequest){
-         this.httpRequest()
+         this.httpRequest();
        }
      }
    }
    Button("获取网络图片")
      .onClick(() => {
-       let sethtp = new htp()
-       sethtp.set()
+       let sethtp = new htp();
+       sethtp.set();
      })
    Image(this.image).height(100).width(100)
    ```
@@ -241,29 +241,131 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
 
    ```ts
-   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
    class htp{
-     httpRequest: Function | undefined = undefined
+     httpRequest: Function | undefined = undefined;
      set(){
        if(this.httpRequest){
-         this.httpRequest()
+         this.httpRequest();
        }
      }
    }
    Button("获取网络图片")
      .onClick(() => {
-       let sethtp = new htp()
-       sethtp.set()
-       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+       let sethtp = new htp();
+       sethtp.set();
+       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image);
      })
    Image(this.drawablePixelMap).height(100).width(100)
    ```
+
+### 可绘制描述符
+
+DrawableDescriptor是ArkUI提供的一种高级图片抽象机制，它通过将图片资源封装为可编程对象，实现了传统Image组件难以实现的动态组合与运行时控制功能。开发者可利用它实现图片的分层叠加（如徽章图标）、动态属性调整（如颜色滤镜）、复杂动画序列等高级效果，适用于需要灵活控制图片展现或实现复杂视觉交互的场景。详细使用方法，请参考[DrawableDescriptor说明](../../application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor.md)。
+
+1. 引入模块。
+
+   ```ts
+   import { DrawableDescriptor, PixelMapDrawableDescriptor, LayeredDrawableDescriptor, AnimatedDrawableDescriptor, AnimationOptions } from '@kit.ArkUI';
+   ```
+
+2. 创建DrawableDescriptor对象。
+
+   ```ts
+   // 声明DrawableDescriptor对象
+   @State pixmapDesc: DrawableDescriptor | null = null;
+   @State pixelMapDesc: PixelMapDrawableDescriptor | null = null;
+   @State layeredDesc: LayeredDrawableDescriptor | null = null;
+   @State animatedDesc: AnimatedDrawableDescriptor | null = null;
+   
+   // 动画配置
+   private animationOptions: AnimationOptions = {
+       duration: 1000, // 总时长1秒
+       iterations: -1  // 无限循环
+   };
+   
+   async aboutToAppear() {
+       const resManager = getContext().resourceManager;
+       // 创建普通DrawableDescriptor
+       this.pixmapDesc = (await resManager.getDrawableDescriptor($r('app.media.app_icon').id)) as DrawableDescriptor;
+       // 创建PixelMapDrawableDescriptor
+       const pixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
+       this.pixelMapDesc = new PixelMapDrawableDescriptor(pixelMap);
+       // 创建分层图标
+       const foreground = await this.getDrawableDescriptor($r('app.media.foreground'));
+       const background = await this.getDrawableDescriptor($r('app.media.background'));
+       this.layeredDesc = new LayeredDrawableDescriptor(foreground, background);
+       // 创建动画图片（需加载多张图片）
+       const frame1 = await this.getPixmapFromMedia($r('app.media.startIcon'));
+       const frame2 = await this.getPixmapFromMedia($r('app.media.app_icon'));
+       const frame3 = await this.getPixmapFromMedia($r('app.media.background'));
+       this.animatedDesc = new AnimatedDrawableDescriptor([frame1, frame2, frame3], this.animationOptions);
+   }
+   ```
+
+3. 封装辅助方法。
+
+   以下是为简化DrawableDescriptor创建过程而封装的辅助方法。
+
+   ```ts
+   // 辅助方法：从资源获取PixelMap
+   private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap> {
+     const unit8Array = await getContext().resourceManager.getMediaContent({
+       bundleName: resource.bundleName,
+       moduleName: resource.moduleName,
+       id: resource.id
+     });
+     const imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
+     const pixelMap = await imageSource.createPixelMap({
+       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+     });
+     await imageSource.release();
+     return pixelMap;
+   }
+   
+   // 辅助方法：获取DrawableDescriptor
+   private async getDrawableDescriptor(resource: Resource): Promise<DrawableDescriptor> {
+     const resManager = getContext().resourceManager;
+     return (await resManager.getDrawableDescriptor(resource.id)) as DrawableDescriptor;
+   }
+   ```
+
+4. 显示图片。
+
+   ```ts
+   // 显示普通图片
+   Image(this.pixmapDesc)
+     .width(100)
+     .height(100)
+     .border({ width: 1, color: Color.Black })
+   // 显示PixelMap图片
+   Image(this.pixelMapDesc)
+     .width(100)
+     .height(100)
+     .border({ width: 1, color: Color.Red })
+   // 显示分层图标
+   if (this.layeredDesc) {
+     Image(this.layeredDesc)
+       .width(100)
+       .height(100)
+       .border({ width: 1, color: Color.Blue })
+   }
+   // 显示动画图片
+   if (this.animatedDesc) {
+     Image(this.animatedDesc)
+       .width(200)
+       .height(200)
+       .margin({ top: 20 })
+   }
+   ```
+
+   
 
 ## 显示矢量图
 
 Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
-如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。
+如果SVG图片没有原始大小，需要给Image组件设置宽高，否则不显示。SVG图片不支持通过image标签引用svg格式和gif格式的本地其他图片。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
@@ -317,7 +419,7 @@ Svg图源通过`<image>`标签的`xlink:href`属性指定本地位图路径，�
 @Entry
 @Component
 struct MyComponent {
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
 
   build() {
     Scroll(this.scroller) {
@@ -612,10 +714,10 @@ Image($r('app.media.icon'))
 @Entry
 @Component
 struct MyComponent {
-  @State widthValue: number = 0
-  @State heightValue: number = 0
-  @State componentWidth: number = 0
-  @State componentHeight: number = 0
+  @State widthValue: number = 0;
+  @State heightValue: number = 0;
+  @State componentWidth: number = 0;
+  @State componentHeight: number = 0;
 
   build() {
     Column() {
@@ -626,10 +728,10 @@ struct MyComponent {
           .margin(15)
           .onComplete(msg => {
             if(msg){
-              this.widthValue = msg.width
-              this.heightValue = msg.height
-              this.componentWidth = msg.componentWidth
-              this.componentHeight = msg.componentHeight
+              this.widthValue = msg.width;
+              this.heightValue = msg.height;
+              this.componentWidth = msg.componentWidth;
+              this.componentHeight = msg.componentHeight;
             }
           })
             // 图片获取失败，打印结果

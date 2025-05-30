@@ -3,14 +3,14 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 ## 使用场景
 - 支持应用内共享，也可以发布后供其他应用使用。
-- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-ohpm-repo-V13)，供公司内部其他应用使用。
+- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-ohpm-repo)，供公司内部其他应用使用。
 - 作为三方库，发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
 - 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。
 
 ## 约束限制
 
-- HAR不支持在设备上单独安装/运行，只能作为应用模块的依赖项被引用。
-- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)组件。
+- HAR不支持在设备上单独安装或运行，只能作为应用模块的依赖项被引用。
+- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。从API version 14开始，支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件。
 > **说明：**
 >
 > 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
@@ -19,14 +19,14 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
+开发者可以通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har#section643521083015)。
 
 
 ## 开发
 
 介绍如何导出HAR的ArkUI组件、接口、资源，供其他应用或当前应用的其他模块引用。
 
-Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
+Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在Index.ets文件中导出。Index.ets文件是DevEco Studio默认自动生成的，开发者也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
 ```json
 {
   "main": "Index.ets"
@@ -122,7 +122,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照工程oh-package.json5中dependencies下的依赖顺序进行覆盖，依赖顺序在前的优先级较高。例如下方示例中dayjs和lottie中包含同名文件时，会优先使用dayjs中的资源。
 > **说明：**
 > 
-> 如果在AppScope/HAP模块/HAR模块的国际化目录中配置了资源，在相同的国际化限定词下，合并的优先级也遵循上述规则。同时，国际化限定词中配置的优先级高于在base中的配置。如：在AppScope的base中配置了资源字段，在HAR模块的en_US中配置了同样的资源字段，则在en_US的使用场景中，会更优先使用HAR模块中配置的资源字段。
+> 如果在AppScope、HAP模块或HAR模块的国际化目录中配置了资源，在相同的国际化限定词下，合并的优先级也遵循上述规则。同时，国际化限定词中配置的优先级高于在base中的配置。例如，在AppScope的base中配置了资源字段，在HAR模块的en_US中配置了同样的资源字段，则在en_US的使用场景中，会更优先使用HAR模块中配置的资源字段。
 ```
 // oh-package.json5
 {
@@ -137,7 +137,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13)。
+引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 
 ### 引用HAR的ArkUI组件
 
@@ -293,11 +293,11 @@ struct Index {
 ```
 ## 编译
 
-HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护时，建议[开启混淆能力](../arkts-utils/source-obfuscation-guide.md)。
+HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护，建议[开启混淆能力](../arkts-utils/source-obfuscation.md)。
 
 [混淆能力](../arkts-utils/source-obfuscation.md)开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 
-HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-build-obfuscation-V13)，配置如下所示：
+HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-build-obfuscation)，配置如下所示：
 
   ```json
   {
@@ -364,7 +364,7 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 发布
 
-详见[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-publish-V13)。
+详见[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-publish)。
 
 ## 相关实例
 

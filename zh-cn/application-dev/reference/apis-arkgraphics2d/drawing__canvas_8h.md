@@ -9,6 +9,9 @@
 
 非录制类型画布会将绘制指令直接绘制到绑定的位图中，录制类型画布会将绘制指令录制下来用于后续的回放。
 
+<!--RP1-->
+**相关示例：**[NDKAPIDrawing (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKAPIDrawing)<!--RP1End-->
+
 **引用文件：**&lt;native_drawing/drawing_canvas.h&gt;
 
 **库：** libnative_drawing.so

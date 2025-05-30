@@ -47,7 +47,7 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 
 ### onMove<sup>12+</sup>
 
-onMove(handler: Optional\<OnMoveHandler\>): T;
+onMove(handler: Optional\<OnMoveHandler\>): T
 
 拖拽排序数据移动回调。只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
 
@@ -75,8 +75,8 @@ type OnMoveHandler = (from: number, to: number) => void;
 
 | 参数名 | 类型      | 必填 | 说明       |
 | ------ | --------- | ---- | ---------- |
-| from  | number | 是   | 数据源移动起始索引号。 |
-| to  | number | 是   | 数据源移动目标索引号。 |
+| from  | number | 是   | 数据源拖拽起始索引号。取值范围是[0, 数据源长度-1]。 |
+| to  | number | 是   | 数据源拖拽目标索引号。取值范围是[0, 数据源长度-1]。 |
 
 ## 示例
 

@@ -171,7 +171,7 @@ barHeight(value: Length)
 
 设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。
 
-API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API Version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
+API version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API version 12开始，默认值变更为48vp。 |
 
 ### animationDuration
 
@@ -806,9 +806,9 @@ Tabs组件动画相关信息集合。
 
 | 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
-| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位vp/s，默认值为0。|
 
 ## TabContentAnimatedTransition<sup>11+</sup>
 
@@ -971,13 +971,13 @@ setTabBarOpacity(opacity: number): void
 @Entry
 @Component
 struct TabsExample {
-  @State text: string = "文本";
+  @State text: string = '文本';
   @State barMode: BarMode = BarMode.Fixed;
 
   build() {
     Column() {
       Row() {
-        Button("文本增加 ")
+        Button('文本增加 ')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -985,17 +985,17 @@ struct TabsExample {
           })
           .margin({ right: '6%', bottom: '12vp' })
 
-        Button("文本重置")
+        Button('文本重置')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text = "文本";
+            this.text = '文本';
           })
           .margin({ bottom: '12vp' })
       }
 
       Row() {
-        Button("BarMode.Fixed")
+        Button('BarMode.Fixed')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -1003,7 +1003,7 @@ struct TabsExample {
           })
           .margin({ right: '6%', bottom: '12vp' })
 
-        Button("BarMode.Scrollable")
+        Button('BarMode.Scrollable')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -1049,12 +1049,12 @@ struct TabsExample6 {
   private controller: TabsController = new TabsController();
   @State scrollMargin: number = 0;
   @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER;
-  @State text: string = "文本";
+  @State text: string = '文本';
 
   build() {
     Column() {
       Row() {
-        Button("scrollMargin+10 " + this.scrollMargin)
+        Button('scrollMargin+10 ' + this.scrollMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1062,7 +1062,7 @@ struct TabsExample6 {
             this.scrollMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("scrollMargin-10 " + this.scrollMargin)
+        Button('scrollMargin-10 ' + this.scrollMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1073,7 +1073,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("文本增加 ")
+        Button('文本增加 ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1081,18 +1081,18 @@ struct TabsExample6 {
             this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("文本重置")
+        Button('文本重置')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.text = "文本";
+            this.text = '文本';
           })
           .margin({ bottom: '12vp' })
       }
 
       Row() {
-        Button("layoutStyle.ALWAYS_CENTER")
+        Button('layoutStyle.ALWAYS_CENTER')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1104,7 +1104,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("layoutStyle.ALWAYS_AVERAGE_SPLIT")
+        Button('layoutStyle.ALWAYS_AVERAGE_SPLIT')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1116,7 +1116,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("layoutStyle.SPACE_BETWEEN_OR_CENTER")
+        Button('layoutStyle.SPACE_BETWEEN_OR_CENTER')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1471,7 +1471,7 @@ struct barHeightTest {
   build() {
     Column() {
       Text(`barOverlap ${this.barOverlap}`).fontSize(16)
-      Button("barOverlap变化").width('100%').margin({ bottom: '12vp' })
+      Button('barOverlap变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
             this.barOverlap = false;
@@ -1486,7 +1486,7 @@ struct barHeightTest {
             List({ space: 10 }) {
               ForEach(this.arr, (item: number) => {
                 ListItem() {
-                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                  Text('item' + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
                 }
               }, (item: string) => item)
             }.width('100%').height('100%')
@@ -1494,7 +1494,7 @@ struct barHeightTest {
           }.width('100%').height('100%')
           .backgroundColor(Color.Pink)
         }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试0"))
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), '测试0'))
       }
       .scrollable(false)
       .height('60%')
@@ -1521,12 +1521,12 @@ struct TabsExample5 {
   @State gridMargin: number = 10;
   @State gridGutter: number = 10;
   @State sm: number = -2;
-  @State clickedContent: string = "";
+  @State clickedContent: string = '';
 
   build() {
     Column() {
       Row() {
-        Button("gridMargin+10 " + this.gridMargin)
+        Button('gridMargin+10 ' + this.gridMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1534,7 +1534,7 @@ struct TabsExample5 {
             this.gridMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("gridMargin-10 " + this.gridMargin)
+        Button('gridMargin-10 ' + this.gridMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1545,7 +1545,7 @@ struct TabsExample5 {
       }
 
       Row() {
-        Button("gridGutter+10 " + this.gridGutter)
+        Button('gridGutter+10 ' + this.gridGutter)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1553,7 +1553,7 @@ struct TabsExample5 {
             this.gridGutter += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("gridGutter-10 " + this.gridGutter)
+        Button('gridGutter-10 ' + this.gridGutter)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1564,7 +1564,7 @@ struct TabsExample5 {
       }
 
       Row() {
-        Button("sm+2 " + this.sm)
+        Button('sm+2 ' + this.sm)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1572,27 +1572,27 @@ struct TabsExample5 {
             this.sm += 2;
           })
           .margin({ right: '6%' })
-        Button("sm-2 " + this.sm).width('47%').height(50).margin({ top: 5 })
+        Button('sm-2 ' + this.sm).width('47%').height(50).margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
             this.sm -= 2;
           })
       }
 
-      Text("点击内容:" + this.clickedContent).width('100%').height(200).margin({ top: 5 })
+      Text('点击内容:' + this.clickedContent).width('100%').height(200).margin({ top: 5 })
 
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "1"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '1'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "2"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '2'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '3'))
       }
       .width('350vp')
       .animationDuration(300)
@@ -1600,7 +1600,7 @@ struct TabsExample5 {
       .barGridAlign({ sm: this.sm, margin: this.gridMargin, gutter: this.gridGutter })
       .backgroundColor(0xf1f3f5)
       .onTabBarClick((index: number) => {
-        this.clickedContent += "now index " + index + " is clicked\n";
+        this.clickedContent += 'now index ' + index + ' is clicked\n';
       })
     }
     .width('100%')
@@ -2030,7 +2030,7 @@ struct TabsPreloadItems {
 
 @Component
 struct MyComponent {
-  private color: string = "";
+  private color: string = '';
 
   aboutToAppear(): void {
     console.info('aboutToAppear backgroundColor:' + this.color);
@@ -2307,7 +2307,7 @@ struct TabsBarModifierExample {
   @Builder
   tabBuilder(title: string, targetIndex: number) {
     Column() {
-      Image($r("app.media.startIcon")).width(30).height(30)
+      Image($r('app.media.startIcon')).width(30).height(30)
       Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
@@ -2360,7 +2360,7 @@ struct TabsBarModifierExample {
       .backgroundColor('#F1F3F5')
       .scrollable(true)
 
-      Button("isClip: " + this.isClip)
+      Button('isClip: ' + this.isClip)
         .margin({ top: 30 })
         .onClick(() => {
           this.isClip = !this.isClip;
@@ -2385,14 +2385,14 @@ import { CommonModifier } from '@kit.ArkUI';
 @Component
 struct TabsBarModifierExample {
   private controller: TabsController = new TabsController();
-  @State text: string = "文本";
+  @State text: string = '文本';
   @State isVertical: boolean = false;
   @State tabBarModifier: CommonModifier = new CommonModifier();
 
   build() {
     Column() {
       Row() {
-        Button("Alignment.Start ")
+        Button('Alignment.Start ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2400,7 +2400,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Start);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("Alignment.End")
+        Button('Alignment.End')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2411,7 +2411,7 @@ struct TabsBarModifierExample {
       }
 
       Row() {
-        Button("Alignment.Center")
+        Button('Alignment.Center')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2419,7 +2419,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Center);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("isVertical: " + this.isVertical)
+        Button('isVertical: ' + this.isVertical)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2430,7 +2430,7 @@ struct TabsBarModifierExample {
       }
 
       Row() {
-        Button("Alignment.Top")
+        Button('Alignment.Top')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2438,7 +2438,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Top);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("Alignment.Bottom")
+        Button('Alignment.Bottom')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2532,15 +2532,15 @@ struct TabsExample {
       .animationDuration(400)
       .animationMode(AnimationMode.CONTENT_FIRST)
       .onChange((index: number) => {
-        console.log("onChange index:" + index);
+        console.log('onChange index:' + index);
         this.currentIndex = index;
       })
       .onSelected((index: number) => {
-        console.log("onSelected index:" + index);
+        console.log('onSelected index:' + index);
         this.selectedIndex = index;
       })
       .onUnselected((index: number) => {
-        console.log("onUnselected index:" + index);
+        console.log('onUnselected index:' + index);
       })
       .width('100%')
       .height('100%')
