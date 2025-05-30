@@ -2326,7 +2326,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
     build() {
       Column() {
-        Web({ src: "", controller: this.webviewController1 })
+        Web({ src: "www.example.com", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
           .onWindowExit(() => {
@@ -2347,7 +2347,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("window.html"), controller: this.controller })
           .javaScriptAccess(true)
           // 需要使能multiWindowAccess
           .multiWindowAccess(true)
@@ -2369,6 +2369,27 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
       }
     }
   }
+  ```
+
+  ```html
+  <!-- window.html页面代码 -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ActivateContentEvent</title>
+  </head>
+  <body>
+  <a href="#" onclick="openNewWindow('https://www.example.com')">打开新页面</a>
+  <script type="text/javascript">
+      function openNewWindow(url) {
+        window.open(url, 'example');
+        return false;
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ## onWindowExit<sup>9+</sup>
