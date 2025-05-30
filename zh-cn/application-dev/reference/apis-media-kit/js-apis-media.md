@@ -8199,7 +8199,7 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 **参数：**
 
-| 名称  | 类型                                 | 必填 | 说明                                                  |
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
 | ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
 | streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
@@ -8227,7 +8227,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(stre
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
 | width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
