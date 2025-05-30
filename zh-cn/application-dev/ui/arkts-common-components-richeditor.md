@@ -218,6 +218,53 @@ RichEditor(this.options)
 
 ![alt text](figures/richeditor_image_placeholder.gif)
 
+### 设置最大行数
+通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)设置富文本可显示的最大行数。
+
+```ts
+RichEditor(this.options)
+  .onReady(() => {
+    this.controller.addTextSpan('组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
+    })
+  })
+  .maxLines(2)
+```
+
+![max lines](figures/RichEditor_maxLines.gif)
+
+### 设置最大长度
+通过[maxLength](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlength18)设置富文本的最大输入字符数。
+
+```ts
+RichEditor(this.options)
+  .placeholder('组件设置了最大字符数：7')
+  .onReady(() => {})
+  .maxLength(7)
+```
+
+![max Length](figures/RichEditor_maxLength.gif)
+
+### 默认选中菜单
+富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
+
+```ts
+RichEditor(this.options)
+  .onReady(() => {
+    this.controller.addTextSpan('这是一段文本,用来展示选中菜单', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
+    })
+  })
+```
+
+![RichEditor_select_menu](figures/RichEditor_select_menu.jpg)
+
 更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
 ## 添加事件
@@ -225,7 +272,7 @@ RichEditor(this.options)
 ### 添加组件初始化完成后可触发的回调
 通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
-该回调可以执行一些组件的初始化逻辑。例如在利用富文本组件展示新闻的场景，可以在该回调中从服务器获取图文数据再将数据添加至组件中，可以实现进入应用页面后即呈现完整的新闻内容。
+该回调可以用于执行一些组件的初始化逻辑。例如在使用富文本组件展示新闻的场景中，可以在该回调中从服务器获取图文数据，并将其添加到组件中，从而实现进入应用页面后即呈现完整新闻内容的功能。
 
 ```ts
 RichEditor(this.options)
@@ -373,31 +420,82 @@ RichEditor(this.options1)
 由于组件默认的粘贴行为仅限于纯文本，无法处理图片粘贴，开发者可利用此方法实现图文并茂的粘贴功能，从而替代组件原有的粘贴行为。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct on_cut_copy_paste {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  controller1: RichEditorController = new RichEditorController();
+  options1: RichEditorOptions = { controller: this.controller1 }
+
+  PopDataFromPasteboard() {
+    let selection = this.controller.getSelection();
+    let start = selection.selection[0];
+    let end = selection.selection[1];
+    if (start == end) {
+      start = this.controller.getCaretOffset();
+      end = this.controller.getCaretOffset();
+    }
+    let moveOffset = 0;
+    let sysBoard = pasteboard.getSystemPasteboard();
+    sysBoard.getData((err, data) => {
+      if (err) {
+        return;
       }
-    })
-  })
-  .onPaste(() => {
-    this.controller1.addTextSpan('触发onPaste回调\n', {
-      style: {
-        fontColor: Color.Gray,
-        fontSize: 10
+      if (start != end) {
+        this.controller.deleteSpans({ start: start, end: end })
       }
+      let count = data.getRecordCount();
+      for (let i = 0; i < count; i++) {
+        const element = data.getRecord(i);
+        if (element && element.plainText && element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN) {
+          this.controller.addTextSpan(element.plainText,
+            {
+              style: { fontSize: 26, fontColor: Color.Red },
+              offset: start + moveOffset
+            }
+          )
+          moveOffset += element.plainText.length;
+        }
+      }
+      this.controller.setCaretOffset(start + moveOffset)
     })
-  })
-  .width(300)
-  .height(70)
+  }
+
+  build() {
+    Column() {
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。',
+              { style: { fontColor: Color.Black, fontSize: 15 } })
+          })
+          .onPaste((event) => {
+            this.controller1.addTextSpan('触发onPaste回调\n', { style: { fontColor: Color.Gray, fontSize: 10 } })
+            if (event != undefined && event.preventDefault) {
+              event.preventDefault();
+            }
+            console.info('RichEditor onPaste')
+            this.PopDataFromPasteboard()
+          })
+          .width(300)
+          .height(70)
+        Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
+          .width(300)
+          .height(300)
+
+      }.width('100%').alignItems(HorizontalAlign.Start)
+    }.height('100%')
+  }
+}
 ```
 
 ### 添加完成剪切前可触发的回调
 通过[onCut](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncut12)回调，来添加剪切前要处理的流程。
 
-此回调功能适用于数据处理与存储，例如，当用户从富文本组件中剪切内容时，可在回调中执行将被剪切的内容进行临时存储的操作，确保后续的粘贴操作能够准确无误地还原内容。
+此回调功能适用于数据处理与存储。例如，当用户从富文本组件中剪切内容时，可在回调中执行将被剪切的内容进行临时存储的操作，确保后续的粘贴操作能够准确无误地还原内容。
 
 由于组件默认的剪切行为仅限于纯文本，无法处理图片剪切，开发者可利用此方法实现图文并茂的剪切功能，从而替代组件原有的剪切行为。
 
@@ -428,7 +526,7 @@ RichEditor(this.options)
 
 此回调适用于内容的备份与共享，例如在用户复制内容时，可在回调中执行以下操作：将复制的内容及其格式信息保存至本地备份文件夹，或自动生成一段包含复制内容及产品购买链接的分享文案，以方便用户进行粘贴和分享。
 
-由于组件默认的复制行为仅限于纯文本，无法处理图片复制，开发者可利用此方法实现图文并茂的复制功能，从而替代组件原有的复制行为。
+组件默认的复制行为仅限于纯文本，无法处理图。开发者可利用此方法实现图文并茂的复制功能，替代组建的默认行为。
 
 ```ts
 RichEditor(this.options)
@@ -534,25 +632,44 @@ Button('setSelection(0,2)', {
 如果组件是获焦状态，有光标在闪烁，那么通过addTextSpan添加文本内容后，光标位置会更新，在新添加文本内容的右侧闪烁。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('点击按钮在此处添加text。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
+@Entry
+@Component
+struct add_text_span {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+
+  build() {
+    Column() {
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('点击按钮在此处添加text。', {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
+            })
+          })
+          .layoutWeight(1)
+          .width(300)
+          .height(100)
+        Button('addTextSpan', {
+          buttonStyle: ButtonStyleMode.NORMAL
+        })
+          .height(30)
+          .fontSize(13)
+          .onClick(() => {
+            this.controller.addTextSpan('新添加一段文字。')
+          })
       }
-    })
-  })
-  .width(300)
-  .height(100)
-Button('addTextSpan', {
-  buttonStyle: ButtonStyleMode.NORMAL
-})
-  .height(30)
-  .fontSize(13)
-  .onClick(() => {
-    this.controller.addTextSpan('新添加一段文字。')
-  })
+      .width('100%')
+      .alignItems(HorizontalAlign.Start)
+      .constraintSize({
+        maxHeight: 100
+      })
+    }.height('100%')
+  }
+}
 ```
 
 ![alt text](figures/richeditor_image_add_text.gif)
@@ -632,7 +749,7 @@ Button('addBuilderSpan', {
 ## 添加SymbolSpan内容
 可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加Symbol内容。此接口可用于特殊符号添加与展示，例如在编辑学术论文时，此接口可用于添加各种数学符号。
 
-添加Symbol内容时，如果组件内有光标闪烁，则插入Symbol后光标位置更新为新插入Symbol的右侧。
+添加Symbol内容时，如果组件是获焦状态，有光标在闪烁，则插入Symbol后光标位置更新为新插入Symbol的右侧。
 Symbol内容暂不支持手势、复制、拖拽处理。
 
 ```ts
