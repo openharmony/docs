@@ -30,12 +30,8 @@ isActive(): boolean
 **示例：**
 
 ```js
-try {
-    let isActive = power.isActive();
-    console.info('power is active: ' + isActive);
-} catch(err) {
-    console.error('check active status failed, err: ' + err);
-}
+let isActive = power.isActive();
+console.info('power is active: ' + isActive);
 ```
 
 ## power.rebootDevice<sup>(deprecated)</sup>
@@ -80,12 +76,8 @@ getPowerMode(): DevicePowerMode
 **示例：**
 
 ```js
-try {
-    let mode = power.getPowerMode();
-    console.info('power mode: ' + mode);
-} catch(err) {
-    console.error('get power mode failed, err: ' + err);
-}
+let mode = power.getPowerMode();
+console.info('power mode: ' + mode);
 ```
 
 ## power.isStandby<sup>10+</sup>
