@@ -107,21 +107,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -188,21 +173,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -265,21 +235,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getBurstAssets');
@@ -524,21 +479,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
@@ -668,21 +608,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
@@ -740,21 +665,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('registerChangeDemo');
@@ -818,21 +728,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('offDemo');
@@ -902,21 +797,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createDeleteRequestDemo');
@@ -990,21 +870,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createDeleteRequestDemo');
@@ -1194,21 +1059,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('ShowAssetsCreationDialogDemo.');
 
@@ -1272,21 +1122,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1361,21 +1196,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('requestPhotoUrisReadPermissionDemo.');
@@ -1522,21 +1342,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetGetDemo');
   try {
@@ -1587,21 +1392,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetSetDemo');
@@ -1661,21 +1451,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('commitModifyDemo');
@@ -1741,21 +1516,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('commitModifyDemo');
@@ -1941,21 +1701,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('closeDemo');
   try {
@@ -2022,21 +1767,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('closeDemo');
   try {
@@ -2092,21 +1822,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
@@ -2165,21 +1880,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
@@ -2246,21 +1946,6 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2319,21 +2004,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { systemDateTime } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2605,21 +2275,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getCountDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2664,21 +2319,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2721,21 +2361,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('fetchResultCloseDemo');
@@ -2784,21 +2409,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getFirstObjectDemo');
@@ -2849,21 +2459,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2908,21 +2503,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getNextObjectDemo');
@@ -2977,21 +2557,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3038,21 +2603,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getLastObjectDemo');
@@ -3103,21 +2653,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3162,21 +2697,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getObjectByPositionDemo');
@@ -3233,21 +2753,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getObjectByPositionDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3291,21 +2796,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAllObjectDemo');
@@ -3355,21 +2845,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAllObjectDemo');
@@ -3440,21 +2915,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumGetAssetsDemoCallback');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3521,21 +2981,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumGetAssetsDemoPromise');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3593,21 +3038,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3664,21 +3094,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumCommitModifyDemo');
@@ -3738,21 +3153,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
@@ -3826,21 +3226,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('addAssetsDemoPromise');
@@ -3904,21 +3289,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
@@ -3992,21 +3362,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('removeAssetsDemoPromise');
@@ -4068,21 +3423,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAssetChangeRequest constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4136,21 +3476,6 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createImageAssetRequestDemo');
   try {
@@ -4203,21 +3528,6 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createVideoAssetRequestDemo');
   try {
@@ -4271,21 +3581,6 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAssetRequestDemo');
   try {
@@ -4346,21 +3641,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4420,21 +3700,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4488,21 +3753,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('getAssetDemo');
   try {
@@ -4555,21 +3805,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setTitleDemo');
@@ -4627,21 +3862,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('getWriteCacheHandlerDemo');
   try {
@@ -4697,21 +3917,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByFileUriDemo');
   try {
@@ -4765,21 +3970,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByArrayBufferDemo');
@@ -4944,21 +4134,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setOrientationDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -5013,21 +4188,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAlbumChangeRequest constructorDemo');
@@ -5168,21 +4328,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('addAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -5236,21 +4381,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeAssetsDemo');
@@ -5326,21 +4456,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource) {
@@ -5418,21 +4533,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -5509,21 +4609,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
@@ -5621,21 +4706,6 @@ struct Index {
   }
 }
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
     onDataPrepared(data: boolean) {
         console.info('on video request status prepared');
@@ -5701,20 +4771,6 @@ static cancelRequest(context: Context, requestId: string): Promise\<void>
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        example(context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(context: Context) {
   try {
     let requestId: string = 'xxx-xxx'; // 应用需使用requestImage等接口返回的有效requestId
@@ -5763,20 +4819,6 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 **示例：**
 
 ```ts
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        example(context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(context: Context) {
   try {
     let imageFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'; // 应用沙箱动态照片的图片uri。
@@ -5831,23 +4873,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        example(context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
   onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
@@ -6018,21 +5045,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
@@ -6212,21 +5224,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
     if (movingPhoto === undefined) {
@@ -6310,21 +5307,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
