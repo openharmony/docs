@@ -8842,3 +8842,63 @@ struct WebComponent {
   }
 }
 ```
+
+### setWebDebuggingAccess<sup>20+</sup>
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
+
+设置是否启用无线网页调试功能，默认不开启。
+
+* 当没有指定端口port时，该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口，ArkWeb会启动一个本地domain socket监听。
+* 当指定了端口port时，ArkWeb会启动一个tcp socket监听。这时可以无线调试网页。详情请参考[无线调试](../../web/web-debugging-with-devtools.md#无线调试)。
+
+由于小于1024的端口号作为熟知或系统端口，在操作系统上需要特权才能开启，因此port的取值必须大于1024，否则该接口会抛出异常。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。<br/>true表示开启网页调试功能，false表示关闭网页调试功能。 |
+| port               | number  | 否   | 指定devtools服务的tcp端口号。如果没有指定port，那么该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口。<br/>取值范围: (1024, 65535]<br/>如果port的值在区间[0, 1024]内，则会抛出BusinessError异常，错误码为17100023。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17100023 | The port number is not within the allowed range. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.setWebDebuggingAccess(true, 8888);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
