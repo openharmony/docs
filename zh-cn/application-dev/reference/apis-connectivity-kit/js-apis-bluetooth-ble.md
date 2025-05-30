@@ -1531,7 +1531,10 @@ try {
 
 notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic, callback: AsyncCallback&lt;void&gt;): void
 
-server端特征值发生变化时，主动通知已连接的client设备。使用Callback异步回调。
+server端发送特征值变化通知或者指示给client端。使用Callback异步回调。
+
+- 建议该特征值的Client Characteristic Configuration描述符（UUID：00002902-0000-1000-8000-00805f9b34fb）的通知或指示能力已被开启。
+- 该特征值数据内容变化时调用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1543,8 +1546,8 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 | 参数名                  | 类型                                       | 必填   | 说明                                      |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | 是    | 接收通知的client端设备地址。例如“XX:XX:XX:XX:XX:XX”。 |
-| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
+| deviceId             | string                                   | 是    | 接收通知的client设备地址。例如：“XX:XX:XX:XX:XX:XX”。 |
+| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知给client的特征值数据对象。                               |
 | callback | AsyncCallback&lt;void&gt;  | 是    | 回调函数。当通知成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -1590,7 +1593,10 @@ try {
 
 notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): Promise&lt;void&gt;
 
-server端特征值发生变化时，主动通知已连接的client设备。使用Promise异步回调。
+server端发送特征值变化通知或者指示给对端设备。使用Promise异步回调。
+
+- 建议该特征值的Client Characteristic Configuration描述符通知或指示能力已被使能。
+- 该特征值数据内容变化时调用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1602,14 +1608,14 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 | 参数名                  | 类型                                       | 必填   | 说明                                      |
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
-| deviceId             | string                                   | 是    | 接收通知的client端设备地址。例如“XX:XX:XX:XX:XX:XX”。 |
-| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知的特征值数据。                               |
+| deviceId             | string                                   | 是    | 接收通知的client设备地址。例如：“XX:XX:XX:XX:XX:XX”。 |
+| notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | 是    | 通知给client的特征值数据对象。                               |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | 返回promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -1650,7 +1656,14 @@ try {
 
 sendResponse(serverResponse: ServerResponse): void
 
-server端回复client端的读写请求。
+server端收到client的请求操作后，需要调用此接口回复client，否则可能导致链路异常，超时后断连。
+
+client请求是指通过下述接口订阅回调收到的请求消息：
+
+- [on('characteristicRead')](#oncharacteristicread)
+- [on('characteristicWrite')](#oncharacteristicwrite)，需根据[CharacteristicWriteRequest](#characteristicwriterequest)中的needRsp决定是否需要回复。
+- [on('descriptorRead')](#ondescriptorread)
+- [on('descriptorWrite')](#ondescriptorwrite)，需根据[DescriptorWriteRequest](#descriptorwriterequest)中的needRsp决定是否需要回复。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1662,7 +1675,7 @@ server端回复client端的读写请求。
 
 | 参数名            | 类型                                | 必填   | 说明              |
 | -------------- | --------------------------------- | ---- | --------------- |
-| serverResponse | [ServerResponse](#serverresponse) | 是    | server端回复的响应数据。 |
+| serverResponse | [ServerResponse](#serverresponse) | 是    | server端回复client的响应数据。 |
 
 **错误码**：
 
@@ -1705,7 +1718,7 @@ try {
 
 on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
-server端订阅特征值读请求事件。使用Callback异步回调。
+server端订阅client的特征值读请求事件，server端收到该事件后需要调用[sendResponse](#sendresponse)接口回复client。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1717,8 +1730,8 @@ server端订阅特征值读请求事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                    |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'characteristicRead'，表示特征值读请求事件。<br>当收到client端设备的读取特征值请求时，触发该事件。 |
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 是    | 指定订阅的回调函数，会携带client端发送的读请求数据。            |
 
 **错误码**：
 
@@ -1760,7 +1773,7 @@ gattServer.on('characteristicRead', ReadCharacteristicReq);
 
 off(type: 'characteristicRead', callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
-server端取消订阅特征值读请求事件。
+server端取消订阅client的特征值读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1772,8 +1785,8 @@ server端取消订阅特征值读请求事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。    |
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'characteristicRead'，表示特征值读请求事件。    |
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('characteristicRead')](#oncharacteristicread)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1802,7 +1815,7 @@ try {
 
 on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-server端订阅特征值写请求事件。使用Callback异步回调。
+server端订阅client的特征值写请求事件，server端收到该事件后需要根据[CharacteristicWriteRequest](#characteristicwriterequest)中的needRsp决定是否调用[sendResponse](#sendresponse)接口回复client。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1814,8 +1827,8 @@ server端订阅特征值写请求事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'characteristicWrite'，表示特征值写请求事件。<br>当收到client端设备的写特征值请求时，触发该事件。 |
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 是    | 指定订阅的回调函数，会携带client端发送的写请求数据。             |
 
 **错误码**：
 
@@ -1860,7 +1873,7 @@ gattServer.on('characteristicWrite', WriteCharacteristicReq);
 
 off(type: 'characteristicWrite', callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-server端取消订阅特征值写请求事件。
+server端取消订阅client的特征值写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1872,8 +1885,8 @@ server端取消订阅特征值写请求事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。   |
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'characteristicWrite'，表示特征值写请求事件。   |
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('characteristicWrite')](#oncharacteristicwrite)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1902,7 +1915,7 @@ try {
 
 on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadRequest&gt;): void
 
-server端订阅描述符读请求事件。使用Callback异步回调。
+server端订阅client的描述符读请求事件，server端收到该事件后需要调用[sendResponse](#sendresponse)接口回复client。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1914,8 +1927,8 @@ server端订阅描述符读请求事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
-| type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'descriptorRead'，表示描述符读请求事件。<br>当收到client端设备的读取描述符请求时，触发该事件。 |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 是    | 指定订阅的回调函数，会携带client端发送的读请求数据。        |
 
 **错误码**：
 
@@ -1957,7 +1970,7 @@ gattServer.on('descriptorRead', ReadDescriptorReq);
 
 off(type: 'descriptorRead', callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
-server端取消订阅描述符读请求事件。
+server端取消订阅client的描述符读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1969,8 +1982,8 @@ server端取消订阅描述符读请求事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。        |
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'descriptorRead'，表示描述符读请求事件。        |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('descriptorRead')](#ondescriptorread)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1999,7 +2012,7 @@ try {
 
 on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
-server端订阅描述符写请求事件。使用Callback异步回调。
+server端订阅client的描述符写请求事件，server端收到该事件后需要根据[DescriptorWriteRequest](#descriptorwriterequest)里的needRsp决定是否调用[sendResponse](#sendresponse)接口回复client。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2011,8 +2024,8 @@ server端订阅描述符写请求事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'descriptorWrite'，表示描述符写请求事件。<br>当收到client端设备的写描述符请求时，触发该事件。 |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 是    | 指定订阅的回调函数，会携带client端发送的写请求数据。         |
 
 **错误码**：
 
@@ -2057,7 +2070,7 @@ gattServer.on('descriptorWrite', WriteDescriptorReq);
 
 off(type: 'descriptorWrite', callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
-server端取消订阅描述符写请求事件。
+server端取消订阅client的描述符写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2069,8 +2082,8 @@ server端取消订阅描述符写请求事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。       |
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'descriptorWrite'，表示描述符写请求事件。       |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('descriptorWrite')](#ondescriptorwrite)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -2099,7 +2112,7 @@ gattServer.off('descriptorWrite');
 
 on(type: 'connectionStateChange', callback: Callback&lt;BLEConnectionChangeState&gt;): void
 
-server端订阅BLE连接状态变化事件。使用Callback异步回调。
+server端订阅GATT profile协议的连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2111,8 +2124,8 @@ server端订阅BLE连接状态变化事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 表示回调函数的入参，连接状态。                          |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。<br>当client和server端之间的连接状态发生变化时，触发该事件。<br>例如：收到连接请求或者断连请求时，可能引起连接状态生变化。 |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 指定订阅的回调函数，会携带连接状态。                          |
 
 **错误码**：
 
@@ -2146,7 +2159,7 @@ try {
 
 off(type: 'connectionStateChange', callback?: Callback&lt;BLEConnectionChangeState&gt;): void
 
-server端取消订阅BLE连接状态变化事件。
+server端取消订阅GATT profile协议的连接状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2158,8 +2171,8 @@ server端取消订阅BLE连接状态变化事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。 |
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 否    | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示GATT profile连接状态发生变化的事件。 |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('connectionStateChange')](#onconnectionstatechange)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -2188,7 +2201,7 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-server端订阅MTU状态变化事件。使用Callback异步回调。
+server端订阅MTU（最大传输单元）大小变更事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2198,8 +2211,8 @@ server端订阅MTU状态变化事件。使用Callback异步回调。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
-| callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEMtuChange'，表示MTU状态变化事件。<br>当收到了client端发起了MTU协商请求时，触发该事件。 |
+| callback | Callback&lt;number&gt; | 是    | 指定订阅的回调函数，会携带协商后的MTU大小。单位是字节。 |
 
 **错误码**：
 
@@ -2230,7 +2243,7 @@ try {
 
 off(type: 'BLEMtuChange', callback?: Callback&lt;number&gt;): void
 
-server端取消订阅MTU状态变化事件。
+server端取消订阅MTU（最大传输单元）大小变更事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2240,8 +2253,8 @@ server端取消订阅MTU状态变化事件。
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
-| callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为"BLEMtuChange"，表示MTU状态变化事件。 |
+| callback | Callback&lt;number&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[on('BLEMtuChange')](#onblemtuchange)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -2268,14 +2281,19 @@ try {
 
 ## GattClientDevice
 
-client端类，使用client端方法之前需要创建该类的实例进行操作，通过createGattClientDevice(deviceId: string)方法构造此实例。
+GATT客户端类，提供了和服务端进行连接和数据传输等操作方法。
 
+- 使用该类的方法前，需通过[createGattClientDevice](#blecreategattclientdevice)方法构造该类的实例。
+- 通过创建不同的该类实例，可以管理多路GATT连接。
 
 ### connect
 
 connect(): void
 
-client端发起连接远端蓝牙低功耗设备。
+client端主动发起和server蓝牙设备的GATT协议连接。
+
+- 远端设备地址已通过[createGattClientDevice](#blecreategattclientdevice)方法中的deviceId参数指定。
+- client可通过订阅[on('BLEConnectionStateChange')](#onbleconnectionstatechange)事件来感知连接是否成功。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2312,7 +2330,9 @@ try {
 
 disconnect(): void
 
-client端断开与远端蓝牙低功耗设备的连接。
+client断开与远端蓝牙低功耗设备的连接。
+
+- client可通过订阅[on('BLEConnectionStateChange')](#onbleconnectionstatechange)事件来感知连接是否成功。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2349,7 +2369,7 @@ try {
 
 close(): void
 
-关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
+销毁client端实例。销毁后，通过[GattClientDevice](#gattclientdevice)创建的实例将不可用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2386,7 +2406,7 @@ try {
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
-client获取远端蓝牙低功耗设备名。使用Callback异步回调。
+client获取server端设备名称。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2398,7 +2418,7 @@ client获取远端蓝牙低功耗设备名。使用Callback异步回调。
 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | 是    | client获取对端server设备名，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当读取成功，err为undefined，data为server端设备名称。 |
 
 **错误码**：
 
@@ -2434,7 +2454,7 @@ try {
 
 getDeviceName(): Promise&lt;string&gt;
 
-client获取远端蓝牙低功耗设备名。使用Promise异步回调。
+client获取远端蓝牙低功耗设备的名称。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2446,7 +2466,7 @@ client获取远端蓝牙低功耗设备名。使用Promise异步回调。
 
 | 类型                    | 说明                                 |
 | --------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | client获取对端server设备名，通过promise形式获取。 |
+| Promise&lt;string&gt; | Promise对象，携带server端设备名称。 |
 
 **错误码**：
 
@@ -2481,7 +2501,16 @@ try {
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
-client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Callback异步回调。
+client获取server端支持的所有服务能力，即服务发现流程。使用Callback异步回调。
+
+应用调用该方法后，才能调用其他读写特征值、描述符等其他方法，且需确保server支持的服务能力中包含需要操作的特征值或描述符。包含接口如下所示：
+
+- [readCharacteristicValue](#readcharacteristicvalue)
+- [readDescriptorValue](#readdescriptorvalue)
+- [writeCharacteristicValue](#writecharacteristicvalue)
+- [writeDescriptorValue](#writedescriptorvalue)
+- [setCharacteristicChangeNotification](#setcharacteristicchangenotification)
+- [setCharacteristicChangeIndication](#setcharacteristicchangeindication)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2493,7 +2522,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | client进行服务发现，通过注册回调函数获取。 |
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | 是    | 回调函数。当读取成功，err为undefined，data为server端的服务列表。 |
 
 **错误码**：
 
@@ -2550,7 +2579,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | client进行服务发现，通过promise形式获取。 |
+| Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Promise对象，返回获取到的server端服务列表。 |
 
 **错误码**：
 
