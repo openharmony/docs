@@ -1,6 +1,6 @@
 # @ohos.bluetooth.ble (蓝牙ble模块)
 
-ble模块提供了对蓝牙操作和管理的方法。
+提供了基于低功耗蓝牙（Bluetooth Low Energy）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，GATT）的连接和传输数据。
 
 > **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -19,7 +19,7 @@ import { ble } from '@kit.ConnectivityKit';
 
 type ProfileConnectionState = constant.ProfileConnectionState
 
-蓝牙设备的profile连接状态。
+蓝牙设备的Profile协议连接状态。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -34,7 +34,8 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 createGattServer(): GattServer
 
-创建GattServer实例。
+创建[GattServer](#gattserver)实例，表示GATT连接中的server端。
+- 通过该实例可以操作server端的行为，如添加服务[addService](#addservice)、通知特征值变化[notifyCharacteristicChanged](#notifycharacteristicchanged)等。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -58,7 +59,9 @@ console.info('gatt success');
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
-创建一个可使用的GattClientDevice实例。
+创建[GattClientDevice](#gattclientdevice)实例，表示GATT连接中的client端。
+- 通过该实例可以操作client端行为，如调用[connect](#connect)向对端设备发起连接，调用[getServices](#getservices)获取对端设备支持的所有服务能力。
+- 创建该实例所需要的设备地址表示server端设备。可以通过[ble.startBLEScan](#blestartblescan)或[BleScanner](#blescanner15)的[startScan](#startscan15)接口获取server端设备地址，且需保证server端设备的BLE广播是可连接的。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -101,7 +104,8 @@ try {
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
-获取和当前设备连接的BLE设备。
+获取和本机设备已连接GATT的BLE设备集合。
+- 建议给server端使用，client端使用返回的设备地址集合为空。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -111,7 +115,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| Array&lt;string&gt; | 返回和本机设备已建立GATT连接的BLE设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 取消配对该设备或蓝牙关闭后，若重新获取，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法 |
 
 **错误码**：
 
@@ -142,10 +146,9 @@ try {
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
-> **说明：**
-> - 该接口只能扫描BLE设备。
-> - 该接口只支持单路扫描，即应用同时只能调用一次，下一次调用前，需要先调用[ble.stopBLEScan](#blestopblescan)。
-> - 若需要使用多路扫描，可使用[BleScanner](#blescanner15)。
+- 扫描结果会通过[ble.on('BLEDeviceFind')](#bleonbledevicefind)的回调函数获取到。只能扫描BLE设备，调用[ble.stopBLEScan](#blestopblescan)可以停止该方法开启的扫描流程。
+- 该接口只支持单路扫描，即应用同时只能调用一次，下一次调用前，需要先调用[ble.stopBLEScan](#blestopblescan)停止上一次的扫描流程。
+- 若需要使用多路扫描，可使用[BleScanner](#blescanner15)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -158,7 +161,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
 | filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。如果不使用过滤的方式，该参数设置为null。 |
-| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置，可选参数。                     |
+| options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置。                     |
 
 **错误码**：
 
@@ -204,6 +207,9 @@ try {
 stopBLEScan(): void
 
 停止BLE扫描流程。
+- 停止的BLE扫描由[ble.startBLEScan](#blestartblescan)触发。
+- 当应用不再需要扫描BLE设备时，需主动调用该方法停止扫描。
+- 调用此接口后将不再收到扫描结果上报，重新开启BLE扫描即可再次扫到BLE设备。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -239,7 +245,10 @@ try {
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
-开始发送BLE广播。
+开始发送BLE广播报文。
+- 当应用不再需要发送BLE广播报文时，需主动调用[ble.stopAdvertising](#blestopadvertising)停止发送。
+- 同步接口，不要和API version 11的[ble.stopAdvertising](#blestopadvertising11)搭配使用。
+
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -252,8 +261,8 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 | 参数名         | 类型                                    | 必填   | 说明             |
 | ----------- | ------------------------------------- | ---- | -------------- |
 | setting     | [AdvertiseSetting](#advertisesetting) | 是    | BLE广播的相关参数。    |
-| advData     | [AdvertiseData](#advertisedata)       | 是    | BLE广播包内容。      |
-| advResponse | [AdvertiseData](#advertisedata)       | 否    | BLE回复扫描请求回复响应。 |
+| advData     | [AdvertiseData](#advertisedata)       | 是    | BLE广播报文内容。   |
+| advResponse | [AdvertiseData](#advertisedata)       | 否    | BLE扫描回复广播报文。 |
 
 **错误码**：
 
@@ -322,7 +331,10 @@ try {
 
 stopAdvertising(): void
 
-停止发送BLE广播。
+停止发送BLE广播报文。
+- 停止的BLE广播是由[ble.startAdvertising](#blestartadvertising)触发的。
+- 不可以和API version 11的[ble.startAdvertising](#blestartadvertising11)搭配使用。
+- 当应用不再需要发送BLE广播报文时，需主动调用该方法停止发送。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -358,8 +370,11 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
-- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取首次启动广播结果。
+首次启动发送BLE广播报文。使用Callback异步回调。
+- 启动成功后，蓝牙子系统会分配相关资源，并使用Callback异步返回该广播的标识。
+- 若携带了发送广播持续时间，则一定时间后，广播会停止发送，但分配的广播资源还存在，可以通过[ble.enableAdvertising](#bleenableadvertising11)重新启动发送该广播。
+- 从API version 15开始，应用可多次调用，支持发起多路广播，每一路广播通过不同的ID标识管理。
+- 当应用不再需要该广播时，需调用API version 11开始支持的[ble.stopAdvertising](#blestopadvertising11)完全停止该广播，不要与API version 10开始支持的[ble.stopAdvertising](#blestopadvertising)混用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -453,8 +468,11 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
-- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取首次启动广播结果。
+首次启动发送BLE广播报文。使用Promise异步回调。
+- 启动成功后，蓝牙子系统会分配相关资源，并使用Promise异步返回该广播的标识。
+- 若携带了发送广播持续时间，则一定时间后，广播会停止发送，但分配的广播资源还存在，可以通过[ble.enableAdvertising](#bleenableadvertising11)重新启动发送该广播。
+- 从API version 15开始，应用可多次调用，支持发起多路广播，每一路广播通过不同的ID标识管理。
+- 当应用不再需要该广播时，需调用API version 11开始支持的[ble.stopAdvertising](#blestopadvertising11-1)完全停止该广播，不要与API version 10开始支持的[ble.stopAdvertising](#blestopadvertising)混用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2616,7 +2634,7 @@ readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallba
 
 client端从指定的server端特征值读取数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2694,7 +2712,7 @@ readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharac
 
 client端从指定的server端特征值读取数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2768,7 +2786,7 @@ readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDes
 
 client端从指定的server端描述符读取数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2839,7 +2857,7 @@ readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
 client端从指定的server端描述符读取数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会读取失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2906,7 +2924,7 @@ writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWrite
 
 client端向指定的server端特征值写入数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2981,7 +2999,7 @@ writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWrite
 
 client端向指定的server端特征值写入数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参特征值UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3055,7 +3073,7 @@ writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;void&
 
 client端向指定的server端描述符写入数据。使用Callback异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3123,7 +3141,7 @@ writeDescriptorValue(descriptor: BLEDescriptor): Promise&lt;void&gt;
 
 client端向指定的server端描述符写入数据。使用Promise异步回调。<br>
 - 需要先调用[getServices](#getservices)，获取到server端所有支持的能力，且包含指定的入参描述符UUID；否则会写入失败。<br>
-- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)和[writeDescriptorValue](#writedescriptorvalue)。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3192,6 +3210,7 @@ getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
 client端获取GATT连接链路信号强度 (Received Signal Strength Indication, RSSI)。使用Callback异步回调。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3242,6 +3261,7 @@ getRssiValue(): Promise&lt;number&gt;
 
 client端获取GATT连接链路信号强度 (Received Signal Strength Indication, RSSI)。使用Promise异步回调。<br>
 - 需先调用[connect](#connect)方法，等GATT profile连接成功后才能使用。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3340,6 +3360,7 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 - 若禁用该能力，系统蓝牙服务会自动往server端写Client Characteristic Configuration描述符，禁用server端的通知能力。<br>
 - 通过[on('BLECharacteristicChange')](#onblecharacteristicchange)接收server端特征值内容变更通知。<br>
 - 若client端收到server端特征值内容变更通知后，无需回复确认。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3412,6 +3433,7 @@ client端启用或者禁用接收server端特征值内容变更通知的能力�
 - 若禁用该能力，系统蓝牙服务会自动往server端写Client Characteristic Configuration描述符，禁用server端的通知能力。<br>
 - 通过[on('BLECharacteristicChange')](#onblecharacteristicchange)接收server端特征值内容变更通知。<br>
 - 若client端收到server端特征值内容变更通知后，无需回复确认。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3483,6 +3505,7 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 - 若禁用该能力，系统蓝牙服务会自动往server端写Client Characteristic Configuration描述符，禁用server端的指示能力。<br>
 - 通过[on('BLECharacteristicChange')](#onblecharacteristicchange)接收server端特征值内容变更指示。<br>
 - 若client端收到server端特征值内容变更指示后，系统蓝牙服务会主动回复确认，应用无需关注。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3555,6 +3578,7 @@ client端启用或者禁用接收server端特征值内容变更指示的能力�
 - 若禁用该能力，系统蓝牙服务会自动往server端写Client Characteristic Configuration描述符，禁用server端的指示能力。<br>
 - 通过[on('BLECharacteristicChange')](#onblecharacteristicchange)接收server端特征值内容变更指示。<br>
 - 若client端收到server端特征值内容变更指示后，系统蓝牙服务会主动回复确认，应用无需关注。
+- 异步回调结果返回后，才能调用下一次读取或者写入操作，如[readCharacteristicValue](#readcharacteristicvalue)、[readDescriptorValue](#readdescriptorvalue)、[writeCharacteristicValue](#writecharacteristicvalue)、[writeDescriptorValue](#writedescriptorvalue)、[getRssiValue](#getrssivalue)、[setCharacteristicChangeNotification](#setcharacteristicchangenotification)和[setCharacteristicChangeIndication](#setcharacteristicchangeindication)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
