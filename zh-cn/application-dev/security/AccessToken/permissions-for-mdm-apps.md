@@ -424,7 +424,7 @@
 
 ## ohos.permission.ENTERPRISE_ADMIN_MANAGE
 
-允许设备管理应用管理设备管理器。
+允许应用管理设备管理应用。
 
 **权限级别**：system_basic
 
