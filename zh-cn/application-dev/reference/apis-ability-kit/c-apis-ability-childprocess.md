@@ -485,7 +485,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
 | configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
-| processName | 设置的进程名称字符串， 必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64，最终的进程名是{bundleName}:{processName}。|
+| processName | 设置的进程名称字符串，必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64，最终的进程名是{bundleName}:{processName}。|
 
 **返回**：  
 NCP_NO_ERROR - 执行成功。    
@@ -502,7 +502,7 @@ NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规�
 
 **描述**
 
-根据参数中子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
+根据参数中子进程配置信息创建子进程并加载参数中指定的动态链接库文件，子进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
 
 参数所指定的动态库必须实现并导出下列函数：
 
@@ -538,7 +538,7 @@ NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规�
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
 | libName                  | 子进程中加载的动态库文件名称，不能为nullptr。|
-| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
+| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义, 该参数中的进程独立模式设置在本接口不生效。 |
 | onProcessStarted |  通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
 
 **返回**：
