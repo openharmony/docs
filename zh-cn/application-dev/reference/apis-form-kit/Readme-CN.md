@@ -18,7 +18,7 @@
   - application<!--form-arkts-application-->
     - [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)
     - [FormEditExtensionContext](js-apis-inner-application-formEditExtensionContext.md)
-    - [LiveFormExtensionContext](js-apis-inner-application-LiveFormExtensionContext.md)
+    - [LiveFormExtensionContext](js-apis-application-LiveFormExtensionContext.md)
     <!--Del-->
     - [FormExtensionContext(系统接口)](js-apis-inner-application-formExtensionContext-sys.md)
    <!--DelEnd-->
