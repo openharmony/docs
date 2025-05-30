@@ -117,7 +117,7 @@ try {
   dragInteraction.on('drag', single_callback);
   dragInteraction.off("drag", single_callback);
 } catch (error) {
-  console.error`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
