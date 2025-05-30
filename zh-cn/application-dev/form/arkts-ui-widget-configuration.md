@@ -93,24 +93,9 @@
 | 名称                | 类型  | 必填 | 说明                                                                  |
 |-------------------|-----|----|---------------------------------------------------------------------|
 | abilityName       | 字符串 | 否 | 趣味交互场景 extensionAbility 名称，默认为空。                                  |
-| targetBundleName  | string | 是  |  趣味交互场景主包包名。|
-| subBundleName     | string | 是  |  趣味交互场景独立分包名称。|
+| targetBundleName  | string | 是  |  趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
+| subBundleName     | string | 是  |  趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。|
 | keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
-
-配置示例如下：
-
-   ```json
-   {
-     "forms": [
-       {
-          // ...
-         "funInteractionParams": {
-            "targetBundleName": "com.example.funInteraction"
-         }          
-       }
-     ]
-   }
-   ```
 
 ## sceneAnimationParams标签
 
@@ -120,21 +105,6 @@
 |----------------------------------------|--------|----|----------------------------|
 | abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称。|
 | <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
-
-   ```json
-   {
-     "forms": [
-       {
-          // ...
-         "sceneAnimationParams": {
-            "abilityName": "MyLiveFormExtensionAbility"
-         }          
-       }
-     ]
-   }
-   ```
-
-系统应用配置样例
 
 <!--RP2-->
    ```json
@@ -183,8 +153,8 @@
          "isDynamic": true,
          "transparencyEnabled": false,
          "metadata": [],
-         "sceneAnimationParams": {
-            "abilityName": "MyLiveFormExtensionAbility"
+         "funInteractionParams": {
+            "targetBundleName": "com.example.funInteraction"
          }
        }
      ]

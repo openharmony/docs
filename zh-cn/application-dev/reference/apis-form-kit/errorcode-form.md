@@ -201,7 +201,7 @@ The form can not support this operation, please check your fom_config's sceneAni
 
 **处理步骤**
 
-检查当前卡片对应[互动卡片配置项sceneanimationparams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
+检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
 
 ## 2293761 内部服务错误
 

@@ -183,11 +183,11 @@ import { formInfo } from '@kit.FormKit';
 
 **系统接口：** 此接口为系统接口。
 
-| 名称 | 类型 | 只读 | 可选 | 说明                                                                  |
-|-----|-----|----|-----|---------------------------------------------------------------------|
-| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为空                                     |
-| targetBundleName  | string | 是  | 否   | 趣味交互场景主包包名。                                                         |
-| subBundleName  | string | 是  | 否   | 趣味交互场景独立分包名称。                                                       |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                   |
+|-----|-----|----|-----|--------------------------------------------------------------------------------------------------------------------------------------|
+| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为空。 |
+| targetBundleName  | string | 是  | 否   | 趣味交互场景[主包包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。        |
+| subBundleName  | string | 是  | 否   | 趣味交互场景趣味交互场景[独立分包名](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-independent-subpackage-0000002076341729)。 |
 | keepStateDuration  | number | 是  | 是   | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
 
 ## SceneAnimationParams<sup>20+</sup>
@@ -198,7 +198,7 @@ import { formInfo } from '@kit.FormKit';
 
 **系统接口：** 此接口为系统接口。
 
-| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                               |
-|-----|-----|------|----|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                              |
+|-----|-----|------|----|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方LiveFormExtensionAbility名称。                                     |
-| disabledDesktopBehaviors | string | 是 | 是  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+| disabledDesktopBehaviors | string | 是 | 是  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
