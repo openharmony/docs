@@ -106,7 +106,7 @@ bm uninstall -n com.ohos.app -k
 ## 查询应用信息命令（dump）
 
 ```bash
-bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label]
 ```
 
   **查询命令参数列表**
@@ -119,6 +119,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
+| -l | 可选参数，查询指定Bundle名称的label值（应用的名称）。 |
 
 
 示例：
@@ -134,6 +135,10 @@ bm dump -n com.ohos.app
 bm dump -s -n com.ohos.app
 # 查询跨设备应用信息
 bm dump -n com.ohos.app -d xxxxx
+# 查询该应用的label值（应用的名称）
+bm dump -n com.ohos.app -l
+# 显示所有已安装应用的bundle名称和label值（应用的名称）
+bm dump -a -l
 ```
 
 ## 清理命令（clean）
@@ -962,7 +967,7 @@ error: signature verification failed due to not trusted app source.
       //UDID获取命令
       hdc shell bm get -u
     ```
-    
+
     2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
     ```
@@ -2510,7 +2515,7 @@ error: Install failed due to hap moduleName is empty.
 
 检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
 
-### 9568331 签名信息不一致 
+### 9568331 签名信息不一致
 **错误信息**
 
 error: Install incompatible signature info.

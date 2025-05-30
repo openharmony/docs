@@ -187,9 +187,9 @@ zh-cn/application-dev/ui/arkts-layout-development-flex-layout.md	@crazyracing072
 zh-cn/application-dev/ui/arkts-layout-development-relative-layout.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-grid-layout.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-layout-development-media-query.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-create-list.md	@yeyinglong_admin	@cc520bf	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-create-grid.md	@zcdqs	@cc520bf	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-layout-development-create-looping.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-create-list.md	@yeyinglong_admin	@rongshao-Z	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-create-grid.md	@zcdqs	@rongshao-Z	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-layout-development-create-looping.md	@yan-shuifeng	@rongshao-Z	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-button.md			@li-xinlei007	@HelloCrease @liyi0309
 zh-cn/application-dev/ui/arkts-common-components-radio-button.md	@houguobiao		@li-xinlei007	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-switch.md			@li-xinlei007	@HelloCrease @houguobiao
@@ -268,7 +268,7 @@ zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang18
 
 
 [开发-Arkweb]
-zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/web/ @yp99ustc @HelloCrease @patrickrubystar @GHiker
 
 [开发-Background Tasks Kit]
 zh-cn/application-dev/task-management/ @Brilliantry_Rui @zhouben25 @cooffee10 
@@ -686,7 +686,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.m
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md		@houguobiao @li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-rating.md		@liyi0309	@li-xinlei007	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md		@vviinnoo24	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md	@yp99ustc @HelloCrease @patrickrubystar @GHiker
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md	@rongshao-Z	@yeyinglong_admin	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-search.md		@jyj-0306 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md		@zhanghaibo0	@li-xinlei007	@HelloCrease
@@ -886,7 +886,7 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @acha
 
 
 [API参考-ArkWeb]
-zh-cn/application-dev/reference/apis-arkweb/  @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/  @yp99ustc @HelloCrease @patrickrubystar @GHiker
 
 
 [API参考-Background Tasks Kit]

@@ -44,6 +44,8 @@
 | [ArkUI_DismissReason](_ark_u_i___native_module.md#arkui_dismissreason) { DIALOG_DISMISS_BACK_PRESS = 0, DIALOG_DISMISS_TOUCH_OUTSIDE, DIALOG_DISMISS_CLOSE_BUTTON, DIALOG_DISMISS_SLIDE_DOWN } | 弹窗关闭的触发方式。  |
 | [ArkUI_LevelMode](_ark_u_i___native_module.md#arkui_levelmode) { ARKUI_LEVEL_MODE_OVERLAY = 0, ARKUI_LEVEL_MODE_EMBEDDED } | 设置弹窗显示层级。  |
 | [ArkUI_ImmersiveMode](_ark_u_i___native_module.md#arkui_immersivemode) { ARKUI_IMMERSIVE_MODE_DEFAULT = 0, ARKUI_IMMERSIVE_MODE_EXTEND } | 指定嵌入式弹窗的蒙层覆盖区域。  |
+| [ArkUI_DialogState](_ark_u_i___native_module.md#arkui_dialogstate) { 
+DIALOG_UNINITIALIZED = 0, DIALOG_INITIALIZED, DIALOG_APPEARING, DIALOG_APPEARED, DIALOG_DISAPPEARING, DIALOG_DISAPPEARED } | 枚举对话框的状态。<br />**起始版本：** 20  |
 
 
 ### 函数
@@ -84,5 +86,6 @@
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidAppearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registerondidappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗弹出时的监听事件。<br />**起始版本：** 19  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnWillDisappearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registeronwilldisappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗退出动效前的监听事件。<br />**起始版本：** 19  |
 | int32_t [OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback](_ark_u_i___native_module.md#oh_arkui_customdialog_registerondiddisappearcallback) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, void\* userData, void (\*callback)(void\* userData)) | 注册自定义弹窗消失时的监听事件。<br />**起始版本：** 19  |
+| int32_t [OH_ArkUI_CustomDialog_GetState](_ark_u_i___native_module.md#oh_arkui_customdialog_getstate) ([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) \handle, [ArkUI_DialogState](_ark_u_i___native_module.md#arkui_dialogstate) \*state) | 获取弹窗的状态。<br />**起始版本：** 20  |
 | int32_t [OH_ArkUI_CustomDialog_SetBackgroundBlurStyleOptions](_ark_u_i___native_module.md#oh_arkui_customdialog_setbackgroundblurstyleoptions) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundBlurStyleOptions) | 设置弹窗的背景模糊效果。  |
 | int32_t [OH_ArkUI_CustomDialog_SetBackgroundEffect](_ark_u_i___native_module.md#oh_arkui_customdialog_setbackgroundeffect) ([ArkUI_CustomDialogOptions](_ark_u_i___native_module.md#arkui_customdialogoptions) \*options, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md#arkui_attributeitem) \*backgroundEffect) | 设置弹窗的背景效果参数。  |

@@ -76,7 +76,8 @@ try {
 ```
 
 输出日志：
-Test Node-API napi_is_arraybuffer: true
+
+Test Node-API napi_is_arraybuffer: true<br>
 Test Node-API napi_is_arraybuffer: false
 
 ### napi_get_arraybuffer_info
@@ -116,7 +117,7 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value byteLengthValue = nullptr;
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
-    napi_value bufferData;
+    napi_value bufferData = nullptr;
     void *newData = nullptr;
     napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
     napi_set_named_property(env, result, "buffer", bufferData);
@@ -146,6 +147,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', 
 ```
 
 输出日志：
+
 Test Node-API get_arrayBuffer_info:{"byteLength":10,"buffer":{}}
 
 ### napi_detach_arraybuffer
@@ -212,7 +214,8 @@ try {
 ```
 
 输出日志：
-Test Node-API napi_is_detached_arraybuffer one: false
+
+Test Node-API napi_is_detached_arraybuffer one: false<br>
 Test Node-API napi_is_detached_arraybuffer two: true
 
 ### napi_create_arraybuffer
@@ -240,7 +243,7 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // 将ArkTS侧传递的参数转换为size_t类型，作为napi_create_arraybuffer的参数
     napi_get_value_int32(env, argv[0], &value);
     length = size_t(value);
-    void *data;
+    void *data = nullptr;
     // 创建一个新的ArrayBuffer
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
@@ -282,3 +285,4 @@ Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
 ## 注意事项
 
 - **生命周期和内存管理**：在使用Node-API处理ArrayBuffer时，需注意，void*类型的buffer数据段生命周期由引擎管理，[不允许用户自己delete，否则会double free](napi-guidelines.md#防止重复释放获取的buffer)。
+- **需注意申请buff大小**：当byte_length很大时，分配失败并不会抛异常，参数data指向的内存为nullptr。建议对*data == nullptr做严格判断，并对超大byte_length做限额检验，避免OOM。

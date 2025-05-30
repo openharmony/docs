@@ -1597,6 +1597,34 @@ selectAll(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+### undo<sup>20+</sup>
+
+undo(): void
+
+执行与此上下文菜单相关的撤销操作。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+### redo<sup>20+</sup>
+
+redo(): void
+
+执行与此上下文菜单相关的重做操作，即取消用户上一次的撤销操作。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+### pasteAndMatchStyle<sup>20+</sup>
+
+pasteAndMatchStyle(): void
+
+执行一个和上下文菜单相关的粘贴操作，粘贴的内容会匹配目标格式，以纯文本形式呈现。
+
+> **说明：**
+>
+> 需要配置权限：ohos.permission.READ_PASTEBOARD。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ## JsGeolocation
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolocationShow事件](./ts-basic-components-web-events.md#ongeolocationshow)。
