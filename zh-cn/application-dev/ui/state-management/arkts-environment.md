@@ -1,13 +1,10 @@
 # Environment：设备环境查询
 
+如果开发者需要获取应用程序运行设备的环境参数（如多语言、深浅色模式等）以进行不同的场景判断，可以使用Environment设备环境查询。
 
-开发者如果需要应用程序运行的设备的环境参数，以此来作出不同的场景判断，比如多语言，深浅色模式等，需要用到Environment设备环境查询。
+Environment是ArkUI框架在应用程序启动时创建的单例对象，为AppStorage提供应用程序运行状态的属性。所有属性都是不可变的简单类型。
 
-
-Environment是ArkUI框架在应用程序启动时创建的单例对象。它为AppStorage提供了一系列描述应用程序运行状态的属性。Environment的所有属性都是不可变的（即应用不可写入），所有的属性都是简单类型。
-
-
-Environment提供了读取系统某些环境变量的能力，具体见[Environment内置参数](#environment内置参数)，并将其值写入AppStorage里，所以开发者需要通过AppStorage才能获取环境变量的值。
+Environment提供了读取系统环境变量并将其值写入AppStorage的功能。开发者需要通过AppStorage获取环境变量的值。详细信息请参阅 [Environment 内置参数](#environment内置参数)。
 
 在阅读本文档前，建议提前阅读：[AppStorage](./arkts-appstorage.md)。
 
@@ -22,9 +19,7 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 | layoutDirection              | LayoutDirection                  | 布局方向类型：<br>- LayoutDirection.LTR：从左到右。<br>- LayoutDirection.RTL：从右到左。                 |
 | languageCode              | string                  | 当前系统语言值，取值必须为小写字母（例如：zh）。<br>默认值跟随系统默认参数。                 |
 
-
 ## 使用场景
-
 
 ### 从UI中访问Environment参数
 
@@ -47,7 +42,6 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 >
 > \@StorageProp关联的环境参数可以在本地更改，但不能同步回AppStorage中，因为应用对环境变量参数是不可写的，只能在Environment中查询。
 
-
 ```ts
 // 将设备languageCode存入AppStorage中
 Environment.envProp('languageCode', 'en');
@@ -68,9 +62,7 @@ struct Index {
 }
 ```
 
-
 ### 应用逻辑使用Environment
-
 
 ```ts
 // 使用Environment.envProp将设备运行languageCode存入AppStorage中；
@@ -85,12 +77,9 @@ if (lang.get() === 'zh') {
 }
 ```
 
-
 ## 限制条件
 
-
 Environment和UIContext相关联，需要在[UIContext](../../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用。可以通过在[runScopedTask](../../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法查询到设备环境数据。
-
 
 ```ts
 // EntryAbility.ets
