@@ -3019,3 +3019,9 @@ int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent * mouseEve
 | 参数项 | 描述 |
 | -- | -- |
 | const struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | 鼠标事件对象。 | 
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 若获取鼠标事件的屏幕Id成功，则返回鼠标事件的屏幕Id；若mouseEvent为NULL，则返回-1。 |
