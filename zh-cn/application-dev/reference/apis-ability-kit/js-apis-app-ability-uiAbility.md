@@ -49,12 +49,15 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 **示例：**
 
+
 ```ts
 import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onCreate, want: ${want.abilityName}`);
   }
 }
 ```
@@ -80,11 +83,19 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+export default class MyUIAbility extends UIAbility {
+  // 主窗口已创建，为该UIAbility设置主页面
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', `Failed to load the content. Cause: ${JSON.stringify(err)}`);
+        return;
+      }
+      hilog.info(0x0000, 'testTag', `Succeeded in loading the content. Data: ${JSON.stringify(data)}`);
+    });
   }
 }
 ```
@@ -110,11 +121,12 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
-    console.log('onWindowStageWillDestroy');
+    hilog.info(0x0000, 'testTag', `onWindowStageWillDestroy`);
   }
 }
 ```
@@ -134,10 +146,12 @@ onWindowStageDestroy(): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageDestroy() {
-    console.log('onWindowStageDestroy');
+    // 主窗口已销毁，释放UI相关资源
+    hilog.info(0x0000, 'testTag', `onWindowStageDestroy`);
   }
 }
 ```
@@ -163,11 +177,12 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onWindowStageRestore(windowStage: window.WindowStage) {
-    console.log('onWindowStageRestore');
+    hilog.info(0x0000, 'testTag', `onWindowStageRestore`);
   }
 }
 ```
@@ -193,10 +208,11 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onDestroy() {
-    console.log('onDestroy');
+    hilog.info(0x0000, 'testTag', `onDestroy`);
   }
 }
 ```
@@ -226,12 +242,15 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。同步�
 
 **示例：**
 
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onForeground() {
-    console.log('onForeground');
+    // 执行异步任务
+    hilog.info(0x0000, 'testTag', `onForeground`);
   }
 }
 ```
@@ -251,10 +270,12 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。同步�
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-class MyUIAbility extends UIAbility {
+export default class MyUIAbility extends UIAbility {
   onBackground() {
-    console.log('onBackground');
+    // UIAbility回到后台
+    hilog.info(0x0000, 'testTag', `onBackground`);
   }
 }
 ```
