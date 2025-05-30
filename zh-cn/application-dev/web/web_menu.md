@@ -99,7 +99,7 @@ Web组件的文本选中菜单是一种通过自定义元素实现的上下文�
 
 1. [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md#menu)组件作为弹出的菜单，包含所有菜单项行为与样式。
 2. 使用bindPopup方法将Menu组件与Web组件绑定。当上下文菜单弹出时，将显示创建的Menu组件。
-3. 在onContextMenuShow回调中获取上下文菜单事件信息[onContextMenuShowEvent](../reference/apis-arkweb/ts-basic-components-web-i.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../reference/apis-arkweb/ts-basic-components-web#webcontextmenuparam9)类型，包含点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)类型，提供常见的菜单能力。
+3. 在onContextMenuShow回调中获取上下文菜单事件信息[onContextMenuShowEvent](../reference/apis-arkweb/ts-basic-components-web-i.md#oncontextmenushowevent12)。其中param为[WebContextMenuParam](../reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuparam9)类型，包含点击位置对应HTML元素信息和位置信息，result为[WebContextMenuResult](../reference/apis-arkweb/ts-basic-components-web.md#webcontextmenuresult9)类型，提供常见的菜单能力。
 
 ```ts
 // xxx.ets
