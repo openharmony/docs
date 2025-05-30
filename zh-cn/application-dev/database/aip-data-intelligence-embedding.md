@@ -49,10 +49,7 @@
 | getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt; | 获取给定图像的嵌入向量。 | 
 | releaseModel(): Promise&lt;void&gt; | 释放图像嵌入模型。 | 
 
-
-## 开发步骤
-
-### 文本向量化开发步骤
+## 文本向量化开发步骤
 
 1. 导入模块。
 
@@ -153,7 +150,7 @@
      })
    ```
 
-### 图像向量化开发步骤
+## 图像向量化开发步骤
 
 1. 导入模块。
 
