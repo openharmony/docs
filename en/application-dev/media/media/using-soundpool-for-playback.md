@@ -29,8 +29,8 @@ During application development, you must subscribe to playback state changes and
     // If the value of usage in audioRenderInfo is STREAM_USAGE_UNKNOWN, STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE,
     // or STREAM_USAGE_AUDIOBOOK, SoundPool plays a short sound in audio mixing mode, without interrupting the playback of other audio streams.
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-      rendererFlags : 0
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+      rendererFlags: 0 // AudioRenderer flag.
     };
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
@@ -53,7 +53,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-3. Call **on('playFinished')** to listen for the completion of sound playing.
+3. Call **on('playFinished')** to listen for the completion of audio playback.
 
     ```ts
     soundPool.on('playFinished', () => {
@@ -228,8 +228,8 @@ let soundId: number = 0;
 // If the value of usage in audioRenderInfo is STREAM_USAGE_UNKNOWN, STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE,
 // or STREAM_USAGE_AUDIOBOOK, SoundPool plays a short sound in audio mixing mode, without interrupting the playback of other audio streams.
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+  rendererFlags: 1 // AudioRenderer flag.
 };
 let playParameters: media.PlayParameters = {
   loop: 3, // The sound is played four times (three loops).
@@ -261,7 +261,7 @@ function loadCallback() {
 }
 // Set the listener when the sound finishes playing.
 function finishPlayCallback() {
-  // Callback invoked when the sound finishes playing.
+  // Callback invoked when the audio playback is complete.
   soundPool.on('playFinished', () => {
     console.info("receive play finished message");
     // The sound can be played again.

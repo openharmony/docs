@@ -1,7 +1,6 @@
-# Using AVPlayer to Play Video (C/C++)
+# Using AVPlayer to Play Videos (C/C++)
 
 The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete video.
-
 
 The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), setting the playback window, controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
 
@@ -45,6 +44,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
 
 You can use C/C++ APIs related to video playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+
 Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
 1. Create an AVPlayer instance by calling [OH_AVPlayer_Create()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_create). The AVPlayer is initialized to the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
@@ -130,7 +130,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
         case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
 //            ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //        }
             break;
         case AV_INITIALIZED:
@@ -138,41 +138,41 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
             LOG("OH_AVPlayer_SetVideoSurface ret:%d", ret);
             ret = OH_AVPlayer_Prepare(player); // This state is reported when the AVPlayer sets the playback source.
             if (ret != AV_ERR_OK) {
-            // Handle the exception.
+            // Handle exceptions.
             }
             break;
         case AV_PREPARED:
 //            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // Set the audio effect mode.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.  
+//            // Handle exceptions.  
 //            }  
             ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() to start playback.
             if (ret != AV_ERR_OK) {
-            // Handle the exception.
+            // Handle exceptions.
             }
             break;
         case AV_PLAYING:
 //            ret = OH_AVPlayer_Pause(player); // Call OH_AVPlayer_Pause() to pause the playback.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //            }
             break;
         case AV_PAUSED:
 //            ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() again to start playback.
 //            if (ret != AV_ERR_OK) {
-//            // Handle the exception.
+//            // Handle exceptions.
 //            }
            break;
         case AV_STOPPED:
             ret = OH_AVPlayer_Release(player); // Call OH_AVPlayer_Reset() to reset the AVPlayer state.
             if (ret != AV_ERR_OK) {
-            // Handle the exception.
+            // Handle exceptions.
             }
             break;
         case AV_COMPLETED:
             ret = OH_AVPlayer_Stop(player);// Call OH_AVPlayer_Stop() to stop the playback.
             if (ret != AV_ERR_OK) {
-            // Handle the exception.
+            // Handle exceptions.
             }
             break;
         default:
@@ -324,26 +324,26 @@ static napi_value Play(napi_env env, napi_callback_info info)
     // Obtain the parameter type.
     napi_valuetype stringType;
     if (napi_ok != napi_typeof(env, args[0], &stringType)) {
-        // Handle the exception.
+        // Handle exceptions.
         return nullptr;
     }
     
     // Verify the parameter.
     if (napi_null == stringType) {
-        // Handle the exception.
+        // Handle exceptions.
         return nullptr;
     }
     
     // Obtain the length of the passed-in string.
     size_t length = 0;
     if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
-        // Handle the exception.
+        // Handle exceptions.
         return nullptr;
     }
     
     // If "" is passed in, the result is directly returned.
     if (length == 0) {
-        // Handle the exception.
+        // Handle exceptions.
         return nullptr;
     }
     
@@ -352,7 +352,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
     if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
         delete[] url;
         url = nullptr;
-        // Handle the exception.
+        // Handle exceptions.
         return nullptr;
     }
 
@@ -371,23 +371,23 @@ static napi_value Play(napi_env env, napi_callback_info info)
     LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%d", ret);
 
     if (ret != AV_ERR_OK) {
-    // Handle the exception.
+    // Handle exceptions.
     }
     ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
-    // Handle the exception.
+    // Handle exceptions.
     }
     // Set the audio stream type.
     OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
     ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
     if (ret != AV_ERR_OK) {
-    // Handle the exception.
+    // Handle exceptions.
     }
     // Set the audio interruption mode.
     OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
     ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
     if (ret != AV_ERR_OK) {
-    // Handle the exception. 
+    // Handle exceptions. 
     }
     napi_value value;
     napi_create_int32(env, 0, &value);
