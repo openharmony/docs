@@ -34,7 +34,7 @@
 
 ## 开发步骤
 
-1. 若要使用键值型数据库，首先要获取一个KVManager实例，用于管理数据库对象。示例代码如下所示：
+1. 若要使用键值型数据库，首先要使用createKVManager()方法获取一个KVManager实例，用于管理数据库对象。示例代码如下所示：
 
    Stage模型示例：
 
@@ -108,11 +108,29 @@
 
    ```
 
-2. 创建并获取键值数据库。示例代码如下所示：
+2. 使用getKVStore()方法创建并获取键值数据库。示例代码如下所示：
 
    ```js
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ['$.id', '$.name'];
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
+     schema.mode = 1;
+     // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
+     schema.skip = 0;
+
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
@@ -121,6 +139,8 @@
        // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       schema: schema,
+       // schema未定义可以不填，定义方法请参考上方schema示例。
        securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
@@ -143,12 +163,26 @@
    }
    ```
 
-3. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
+3. 使用on()方法订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange)关闭。示例代码如下所示：
+
+   ```ts
+   try {
+     kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+       console.info(`dataChange callback call data: ${data}`);
+     });
+   } catch (e) {
+     let error = e as BusinessError;
+     console.error(`An unexpected error occurred. code:${error.code},message:${error.message}`);
+   }
+   ```
+
+4. 调用put()方法向键值数据库中插入数据。示例代码如下所示：
 
    ```js
    kvStore = kvStore as distributedKVStore.SingleKVStore;
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // 如果未定义Schema则Value可以传其他符合要求的值。
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -167,7 +201,7 @@
    >
    > 当Key值存在时，put()方法会修改其值，否则新增一条数据。
 
-4. 调用get()方法获取指定键的值。示例代码如下所示：
+5. 调用get()方法获取指定键的值。示例代码如下所示：
 
    ```js
    try {
@@ -193,7 +227,7 @@
    }
    ```
 
-5. 调用delete()方法删除指定键值的数据。示例代码如下所示：
+6. 调用delete()方法删除指定键值的数据。示例代码如下所示：
 
    ```js
    try {
@@ -219,7 +253,7 @@
    }
    ```
 
-6. 通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
+7. 调用closeKVStore()方法通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
 
     ```js
     try {
@@ -239,7 +273,7 @@
     }
     ```
 
-7. 通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
+8. 调用deleteKVStore()方法通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
 
     ```js
     try {
