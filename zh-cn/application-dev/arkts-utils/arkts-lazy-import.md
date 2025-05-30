@@ -164,13 +164,13 @@
         }
     ```
 
-> **说明：**
->
-> - 针对以下场景，编译时是否进行拦截报错：使用lazy import导入的变量，在同文件中被再次导出。
-> - noCheck（缺省默认值）：不检查，不报错。
-> - compatible：兼容模式，报Warning。
-> - strict：严格模式，报Error。
-> - 该字段从DevEco Studio 5.0.13.200版本开始支持。
+    > **说明：**
+    >
+    > - 针对以下场景，编译时是否进行拦截报错：使用lazy import导入的变量，在同文件中被再次导出。
+    > - noCheck（缺省默认值）：不检查，不报错。
+    > - compatible：兼容模式，报Warning。
+    > - strict：严格模式，报Error。
+    > - 该字段从DevEco Studio 5.0.13.200版本开始支持。
 
     这种方式导出的变量c未在B.ets中使用，因此B.ets不触发执行。在A.ets中使用变量c时，该变量未初始化，会抛出JavaScript异常。
     ```typescript
