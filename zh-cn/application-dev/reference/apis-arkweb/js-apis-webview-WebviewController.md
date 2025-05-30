@@ -4487,7 +4487,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 >
 > prefetchPage对302重定向页面同样正常预取。
 >
-> 先prefetchPage再加载页面时，已预取的资源会直接从缓存中加载。
+> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
