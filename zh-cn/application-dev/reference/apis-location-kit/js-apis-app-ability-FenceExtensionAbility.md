@@ -13,7 +13,11 @@ FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承�
 import { FenceExtensionAbility } from '@kit.LocationKit';
 ```
 
-## 属性
+## FenceExtensionAbility
+
+为开发者提供地理围栏相关的能力，继承自ExtensionAbility。
+
+### 属性
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
@@ -21,7 +25,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | 是 | 否 | 围栏服务上下文。 |
 
-## FenceExtensionAbility.onFenceStatusChange
+### onFenceStatusChange
 
 onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void;
 
@@ -81,7 +85,7 @@ export class MyFenceExtensionAbility extends FenceExtensionAbility {
   }
 }
 ```
-## FenceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void;
 

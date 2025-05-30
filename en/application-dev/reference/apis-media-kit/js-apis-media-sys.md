@@ -37,6 +37,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **Example**
@@ -132,9 +133,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
 class JsonData {
-  public choice: string = 'true'
-  public displayId: number | null = -1
-  public missionId: number | null = -1
+  public choice: string = 'true';
+  public displayId: number | null = -1;
+  public missionId: number | null = -1;
 }
 let sessionId: number = 0; // Use the ID of the session that starts the process.
 
@@ -211,6 +212,7 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AVMetadataExtractor<sup>11+</sup>
+
 Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
 
 ### getTimeByFrameIndex<sup>12+</sup>
@@ -1258,7 +1260,7 @@ A class that provides APIs to query and monitor the system screen recorder statu
 
 | Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | bool | Yes  | No  | Whether the system screen recorder is working.|
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | Yes  | No  | Whether the system screen recorder is working.|
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 
@@ -1339,3 +1341,4 @@ Enumerates the states available for the system screen recorder.
 | ------------------------ | --------------- | ------------------------------------------------------------ |
 | SCREENCAPTURE_STARTED       | 0   | The system screen recorder starts screen capture.                      |
 | SCREENCAPTURE_STOPPED        | 1    | The system screen recorder stops screen capture.|
+

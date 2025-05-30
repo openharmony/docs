@@ -72,7 +72,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 8. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Sample Code
+## Development Example
 
 
 ```ts
@@ -197,7 +197,7 @@ export class AVPlayerDemo {
       let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
       let avFileDescriptor: media.AVFileDescriptor =
         { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-      this.isSeek = true; // The seek operation is supported.
+      this.isSeek = true; // Ö§³Öseek²Ù×÷¡£
       // Assign a value to fdSrc to trigger the reporting of the initialized state.
       avPlayer.fdSrc = avFileDescriptor;
     }

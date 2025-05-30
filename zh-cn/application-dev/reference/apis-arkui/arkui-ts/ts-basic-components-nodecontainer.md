@@ -12,6 +12,9 @@
 > 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)。
 >
 > 该组件下的节点树构建中会使用UI实例[UIContext](../js-apis-arkui-UIContext.md)，当实例切换时可能会因为实例不匹配而出现问题，因此该组件当前不支持跨实例的节点复用。
+>
+> 该组件未销毁时，不会主动触发挂载节点的下树。
+
 ## 子组件
 
 不支持子组件。

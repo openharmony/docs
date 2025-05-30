@@ -455,10 +455,10 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 值 | 类型  | 说明                    |
-| ------ | --- | --- | ------------------------ |
-| WINDOW_WILL_ROTATE| 0 | number | 窗口即将旋转。 |
-| WINDOW_DID_ROTATE | 1 | number | 窗口旋转结束。 |
+| 名称   |  值 | 说明                   |
+| ------ | ---- | --------------------- |
+| WINDOW_WILL_ROTATE| 0 | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | 1 | 窗口旋转结束。 |
 
 ## RectType<sup>19+</sup>
 
@@ -468,10 +468,10 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 值 | 类型  | 说明                    |
-| ------ | --- | --- | ------------------------ |
-| RELATIVE_TO_SCREEN | 0 | number | 窗口矩形区域相对于屏幕坐标系。 |
-| RELATIVE_TO_PARENT_WINDOW | 1 | number | 窗口矩形区域相对于父窗口坐标系。 |
+| 名称   | 值 | 说明                   |
+| ------ | ---- | --------------------- |
+| RELATIVE_TO_SCREEN | 0 | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | 窗口矩形区域相对于父窗口坐标系。 |
 
 ## RotationChangeInfo<sup>19+</sup>
 
@@ -481,7 +481,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
 | type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转事件类型。 |
 | orientation | number | 是 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
@@ -497,10 +497,36 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 只读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype19) | 否 | 是 | 窗口矩形区域坐标系类型。 |
-| windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+| rectType | [RectType](#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型。 |
+| windowRect | [Rect](#rect7) | 否 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+
+## RotationChangeCallback<sup>19+</sup>
+
+### (info: T)<sup>19+</sup>
+
+(info: T): U;
+
+旋转事件通知通用回调函数。
+
+开发者在使用时，回调函数参数类型为[RotationChangeInfo](#rotationchangeinfo19)，返回值类型为[RotationChangeResult](#rotationchangeresult19)\|void。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | -------------------------- |
+| info | T    | 是   | 回调函数调用时系统传入[RotationChangeInfo](#rotationchangeinfo19)类型的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------------------------- | ------------------------------------ |
+| U | 回调函数需要返回[RotationChangeResult](#rotationchangeresult19)\|void类型的返回值。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -5555,7 +5581,7 @@ try {
 
 ### on('rotationChange')<sup>19+</sup>
 
-on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
@@ -5600,7 +5626,7 @@ function calculateRect(info: window.RotationChangeInfo): window.Rect {
 
 const callback = (info: window.RotationChangeInfo): window.RotationChangeResult | void => {
   let result: window.RotationChangeResult = {
-    rectType: window.RectType.RELATIVE_TO_SCREEN;
+    rectType: window.RectType.RELATIVE_TO_SCREEN,
     windowRect: {
       left: 0,
       top: 0,
@@ -5627,7 +5653,7 @@ try {
 
 ### off('rotationChange')<sup>19+</sup>
 
-off(type: 'rotationChange', callback?: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
+off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeInfo, RotationChangeResult | void&gt;): void
 
 关闭窗口旋转变化的监听。
 
@@ -9585,7 +9611,7 @@ setSubWindowZLevel(zLevel: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed.|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 801     | Capability not supported. Function setSubWindowZLevel can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |

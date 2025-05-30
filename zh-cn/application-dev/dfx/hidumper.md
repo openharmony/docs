@@ -540,26 +540,26 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     -------------------------------[memory]-------------------------------
 
-                            Pss        Shared        Shared       Private       Private          Swap       SwapPss          Heap          Heap          Heap
-                        Total         Clean         Dirty         Clean         Dirty         Total         Total          Size         Alloc          Free
-                        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )
+                         Pss         Shared        Shared        Private       Private       Swap          SwapPss        Heap         Heap          Heap
+                         Total       Clean         Dirty         Clean         Dirty         Total         Total          Size         Alloc         Free
+                         ( kB )      ( kB )        ( kB )        ( kB )        ( kB )        ( kB )        ( kB )         ( kB )       ( kB )        ( kB )
                 --------------------------------------------------------------------------------------------------------------------------------------------
-                GL             0             0             0             0             0             0             0             0             0             0
-            Graph             0             0             0             0             0             0             0             0             0             0
-    native heap           924             0             0           924             0          1948          1948             0             0             0
-    AnonPage other            84            16             0            84             0            52            52             0             0             0
-            stack            28             0             0            28             0             0             0             0             0             0
-            .so           413          1548             0           248            56           216           216             0             0             0
-            dev           190             0           856             0             0             0             0             0             0             0
-    FilePage other           420             0             0           404            16             0             0             0             0             0
+                GL         0           0             0             0             0             0             0             0             0             0
+             Graph         0           0             0             0             0             0             0             0             0             0
+       native heap         924         0             0             924           0             1948          1948          0             0             0
+    AnonPage other         84          16            0             84            0             52            52            0             0             0
+             stack         28          0             0             28            0             0             0             0             0             0
+               .so         413         1548          0             248           56            216           216           0             0             0
+               dev         190         0             856           0             0             0             0             0             0             0
+    FilePage other         420         0             0            404            16            0             0             0             0             0
     ----------------------------------------------------------------------------------------------------------------------------------------------------------
-            Total          4275          1564           856          1688            72          2216          2216             0             0             0
+             Total         4275        1564          856          1688           72            2216          2216          0             0             0
 
     native heap:
-    jemalloc meta:           120             0             0           120             0            52            52             0             0             0
-    jemalloc heap:           776             0             0           776             0          1888          1888             0             0             0
-        brk heap:            20             0             0            20             0             8             8             0             0             0
-        musl heap:             8             0             0             8             0             0             0             0             0             0
+    jemalloc meta:         120          0             0            120           0             52            52            0             0             0
+    jemalloc heap:         776          0             0            776           0             1888          1888          0             0             0
+         brk heap:         20           0             0            20            0             8             8             0             0             0
+        musl heap:         8            0             0            8             0             0             0             0             0             0
 
     Purgeable:
             PurgSum:0 kB

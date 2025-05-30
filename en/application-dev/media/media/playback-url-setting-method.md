@@ -140,10 +140,9 @@ If an application needs to play an online streaming media asset by parsing an M3
 ```
 
 **Case 2: local file playback**
-
 > **NOTE**
+>
 > When the AVPlayer is used to play local resources, it exclusively occupies the file descriptor.
-
 ```ts
   import { common } from '@kit.AbilityKit';
   private context: Context | undefined;

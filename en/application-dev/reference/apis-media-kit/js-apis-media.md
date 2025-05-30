@@ -296,6 +296,12 @@ Creates an **AVMetadataExtractor** instance. This API uses a promise to return t
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise used to return the **AVMetadataExtractor** instance.|
+
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
@@ -1611,7 +1617,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 getPlaybackPosition(): number
 
-Obtains the current playback position. This API can be used in the prepared, playing, paused, or completed state.
+Obtains the current playback position. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1869,7 +1875,7 @@ avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 
 isSeekContinuousSupported() : boolean
 
-Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode ([SeekMode](#seekmode8)). The actual value is returned when this API is called in the prepared, playing, paused, or completed state. The value **false** is returned if it is called in other states. For devices that do not support the seek operation in SEEK_CONTINUOUS mode, **false** is returned.
+Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode (specified by [SeekMode](#seekmode8)). The actual value is returned when this API is called in the prepared, playing, paused, or completed state. The value **false** is returned if it is called in other states. For devices that do not support the seek operation in SEEK_CONTINUOUS mode, **false** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1877,9 +1883,9 @@ Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode 
 
 **Return value**
 
-| Type           | Description                                |
+| Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| boolean | whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode ([SeekMode](#seekmode8)).|
+| boolean | Check result. The value **true** means that the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode, and **false** means the opposite.|
 
 **Example**
 
@@ -3159,8 +3165,8 @@ Describes the callback invoked for the track change event.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | Yes| Index of a track.    |
-| isSelected | boolean | Yes| Status of the track, that is, whether the track is selected.|
+| index  | number | Yes| Index of the track that has changed.    |
+| isSelected | boolean | Yes| Whether the track at the current index is selected. The value **true** means that the track at the current index is selected, and **false** means the opposite.|
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -3350,9 +3356,9 @@ Enumerates the video scale modes.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
-| Name                     | Value  | Description                                            |
-| ------------------------- | ---- | ------------------------------------------------ |
-| VIDEO_SCALE_TYPE_FIT      | 0    | Default mode. The video will be stretched to fit the window.             |
+| Name                       | Value  | Description                                             |
+| ----------------------------| ---- | ------------------------------------------------ |
+| VIDEO_SCALE_TYPE_FIT        | 0    | Default mode. The video will be stretched to fit the window.               |
 | VIDEO_SCALE_TYPE_FIT_CROP | 1    | The video will be stretched to fit the window, without changing its aspect ratio. The content may be cropped.|
 
 ## MediaDescription<sup>8+</sup>
@@ -4883,7 +4889,7 @@ Describes the audio and video recording profile.
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.|
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [176 - 4096].        |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [144 - 4096].        |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 60].            |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The recommended value range is [1 - 60].            |
 | isHdr<sup>11+</sup>            | boolean                        | No  | HDR encoding. This parameter is optional for video recording. The default value is **false**, and there is no requirement on the encoding format. When **isHdr** is set to **true**, the encoding format must be **video/hevc**.|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether temporal layered encoding is supported. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, some frames in the video output streams can be skipped without being encoded.|
 
@@ -8069,6 +8075,52 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
+## media.createMediaSourceWithStreamData<sup>19+</sup>
+
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
+
+Creates a multi-bitrate media source for streaming media. Currently, only the HTTP-FLV multi-bitrate media source is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name | Type                                | Mandatory| Description                                                 |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | Yes| Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
+
+**Return value**
+
+| Type                         | Description               |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | **MediaSource** instance.|
+
+**Example 1**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>19+</sup>
+
+Defines the media stream data information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | No  | No  | URL of the media resource. Only HTTP and HTTPS are supported.                                                |
+| width   | number | No  | No  | Video width of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| height  | number | No  | No  | Video height of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| bitrate | number | No  | No  | Bit rate of media resources, in bit/s.                                       |
 
 ## MediaSource<sup>12+</sup>
 
@@ -8111,16 +8163,37 @@ Sets a **MediaSourceLoader** object, which is used to help the player request me
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+}
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // Clear resources related to the current UUID.
+  requests.remove(uuid);
+}
 
 // Implemented by applications as required.
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8280,8 +8353,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>
@@ -8296,8 +8372,8 @@ Defines a loading request object. Applications use this object to obtain the loc
 
 | Name  | Type   | Read-Only  | Optional  | Description               |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
-| header<sup>18+</sup>     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
+| url        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
+| header     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
 
 ### respondData<sup>18+</sup>
 
@@ -8497,6 +8573,7 @@ Enumerates the video fill modes during screen capture.
 | --------------------------------- | ---- | -------------------------------------------- |
 | PRESERVE_ASPECT_RATIO | 0    | Keeps the original aspect ratio, matching the aspect ratio of the physical screen.|
 | SCALE_TO_FILL | 1    | Stretches the image to fit the specified dimensions.|
+
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
