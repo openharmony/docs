@@ -14,15 +14,17 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 import { common } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContext.startAbilityForResultAsCaller
+## UIExtensionContext
+
+### startAbilityForResultAsCaller
 
 startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
 
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -80,7 +82,7 @@ export default class UIExtension extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbility<sup>18+</sup>
+### startServiceExtensionAbility<sup>18+</sup>
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -160,7 +162,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startServiceExtensionAbilityWithAccount<sup>18+</sup>
+### startServiceExtensionAbilityWithAccount<sup>18+</sup>
 
 startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>
 
@@ -250,7 +252,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setHostPageOverlayForbidden<sup>15+</sup>
+### setHostPageOverlayForbidden<sup>15+</sup>
 
 setHostPageOverlayForbidden(isForbidden: boolean) : void
 
@@ -260,7 +262,7 @@ setHostPageOverlayForbidden(isForbidden: boolean) : void
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
-> 该接口需要在窗口创建之前调用。建议在[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate)生命周期内调用。
+> 该接口需要在窗口创建之前调用。建议在[UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate)生命周期内调用。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

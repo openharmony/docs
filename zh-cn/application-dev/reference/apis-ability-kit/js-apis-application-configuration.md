@@ -13,7 +13,7 @@
 import Configuration from '@ohos.application.Configuration';
 ```
 
-## 属性
+## Configuration
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

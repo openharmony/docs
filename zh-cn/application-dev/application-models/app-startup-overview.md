@@ -41,7 +41,7 @@ scheme://host[:port]/path
 | 是否可用于分享或直接在网页中访问 | 可以 | 不可以，需在代码中调用。 |
 | 是否可以直接拉起目标应用 | 可以 | 可以，但不推荐使用，存在被仿冒风险。 |
 
-Deep Linking与App Linking均可以使用[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口实现，不同条件下的跳转效果如下。
+Deep Linking与App Linking均可以使用[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12)接口实现，不同条件下的跳转效果如下。
 
 > **说明：**
 > 
