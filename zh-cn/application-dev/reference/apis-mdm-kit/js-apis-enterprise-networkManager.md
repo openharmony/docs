@@ -795,11 +795,11 @@ let domainFilterRule: Array<networkManager.DomainFilterRule>;
 domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 ```
 
-## networkManager.addApn
+## networkManager.addApn<sup>20+</sup>
 
 addApn(admin: Want, apnInfo: Record\<string, string>): void
 
-待填内容。
+添加apn。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -811,7 +811,7 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
+| apnInfo  | Record\<string, string> | 是   | 需要添加的apn参数信息。 |
 
 **错误码**：
 
@@ -840,16 +840,17 @@ let apnInfo: Record<string, string> = {
 };
 try {
   networkManager.addApn(wantTemp，apnInfo);
+  console.info(`Succeeded in adding apn.`);
 } catch (err) {
   console.error(`Failed to add apn. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## networkManager.deleteApn
+## networkManager.deleteApn<sup>20+</sup>
 
 deleteApn(admin: Want, apnId: string): void
 
-待填内容。
+删除apn。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -861,7 +862,7 @@ deleteApn(admin: Want, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 待填内容。 |
+| apnId  | string | 是   | 需要删除的apn ID。 |
 
 **错误码**：
 
@@ -885,16 +886,17 @@ let wantTemp: Want = {
 let apnId: string = "1";
 try {
   networkManager.deleteApn(wantTemp，apnId);
+  console.info(`Succeeded in deleting apn.`);
 } catch (err) {
   console.error(`Failed to delete apn. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## networkManager.updateApn
+## networkManager.updateApn<sup>20+</sup>
 
 updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
-待填内容。
+更新apn。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -906,8 +908,8 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
-| apnId  | string | 是   | 待填内容。 |
+| apnInfo  | Record\<string, string> | 是   | 需要更新的apn参数信息。 |
+| apnId  | string | 是   | 需要更新的apn ID。 |
 
 **错误码**：
 
@@ -937,16 +939,17 @@ let apnInfo: Record<string, string> = {
 let apnId: string = "1";
 try {
   networkManager.updateApn(wantTemp，apnInfo, apnId);
+  console.info(`Succeeded in updating apn.`);
 } catch (err) {
   console.error(`Failed to update apn. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## networkManager.setPreferApn
+## networkManager.setPreferredApn<sup>20+</sup>
 
-setPreferApn(admin: Want, apnId: string): void
+setPreferredApn(admin: Want, apnId: string): void
 
-待填内容。
+设置优选apn。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -958,7 +961,7 @@ setPreferApn(admin: Want, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 待填内容。 |
+| apnId  | string | 是   | 需要设置成优选的apn ID。 |
 
 **错误码**：
 
@@ -981,17 +984,18 @@ let wantTemp: Want = {
 };
 let apnId: string = "1";
 try {
-  networkManager.setPreferApn(wantTemp，apnId);
+  networkManager.setPreferredApn(wantTemp，apnId);
+  console.info(`Succeeded in setting preferred apn.`);
 } catch (err) {
-  console.error(`Failed to set prefer apn. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to set preferred apn. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## networkManager.queryApn
+## networkManager.queryApn<sup>20+</sup>
 
 queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
-待填内容。
+查询符合特定apn信息的apn ID。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -1003,13 +1007,13 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | 待填内容。 |
+| apnInfo  | Record\<string, string> | 是   | apn的查询条件。 |
 
 **返回值：**
 
 | 类型                                          | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| Array\<string> | 待填内容。 |
+| Array\<string> | 满足要求的apn ID。 |
 
 **错误码**：
 
@@ -1038,16 +1042,17 @@ let apnInfo: Record<string, string> = {
 };
 try {
   let queryResult: Array<string> = networkManager.queryApn(wantTemp，apnInfo);
+  console.info(`Succeeded in querying apn, result : ${JSON.stringify(queryResult)}`);
 } catch (err) {
   console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
-## networkManager.queryApn
+## networkManager.queryApn<sup>20+</sup>
 
 queryApn(admin: Want, apnId: string): Record\<string, string>
 
-待填内容。
+查询特定apn ID的apn参数信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -1059,13 +1064,13 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 待填内容。 |
+| apnId  | string | 是   | 指定的apn ID。 |
 
 **返回值：**
 
 | 类型                                          | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| Record\<string, string> | 待填内容。 |
+| Record\<string, string> | 指定apn ID的apn参数信息。 |
 
 **错误码**：
 
@@ -1089,6 +1094,7 @@ let wantTemp: Want = {
 let apnId: string = "1";
 try {
   let queryResult: Record<string, string> = networkManager.queryApn(wantTemp，apnId);
+  console.info(`Succeeded in querying apn, result : ${JSON.stringify(queryResult)}`);
 } catch (err) {
   console.error(`Failed to query apn. Code: ${err.code}, message: ${err.message}`);
 }
