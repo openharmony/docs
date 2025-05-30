@@ -1250,21 +1250,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper, photoAccessHelper.PhotoType.IMAGE);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
@@ -2075,21 +2060,6 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example01() {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -2140,21 +2110,6 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example02() {
   try {
@@ -2207,21 +2162,6 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 async function example03() {
   try {
@@ -3750,9 +3690,6 @@ getAsset(): PhotoAsset
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('getAssetDemo');
   try {
@@ -3914,9 +3851,6 @@ addResource(type: ResourceType, fileUri: string): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByFileUriDemo');
   try {
@@ -3968,9 +3902,6 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByArrayBufferDemo');
   try {
@@ -4691,21 +4622,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
     onDataPrepared(data: boolean) {
         console.info('on video request status prepared');
@@ -5123,20 +5039,6 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
