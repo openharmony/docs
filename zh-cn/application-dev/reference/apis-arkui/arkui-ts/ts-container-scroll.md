@@ -584,7 +584,7 @@ Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 fling(velocity: number): void
 
 
-滚动类组件开启按传入的初始速度进行惯性滚动。
+滚动类组件根据传入的初始速度进行惯性滚动。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -787,7 +787,7 @@ getItemIndex(x: number, y: number): number
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| number | 返回子组件的索引，单位：vp。 |
+| number | 返回子组件的索引。 |
 
 **错误码**：
 
