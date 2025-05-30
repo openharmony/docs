@@ -88,7 +88,7 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 | checkboxTextColor               | string                                  | No  | Text color in the check box. The value is an 8-digit hexadecimal color code. (This capability is not supported currently.)                                       |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | No  | Background color of the photo browser page. The options are **AUTO**, **LIGHT**, and **DARK**. The default value is **AUTO**.                                       |
 | maxSelectedReminderMode         | [ReminderMode](#remindermode)           | No  | Mode of the reminder when the number of selected items reaches the maximum. The options are **NONE**, **TOAST**, and **MASK**. The default value **TOAST**.                        |
-| orientation                     | [PickerOrientation](#pickerorientation) | No  | Sliding preview direction of the grid page. The options are **HORIZONTAL** and **VERTICAL**. The default value is **VERTICAL**. (This capability is not supported currently.)                                |
+| orientation                     | [PickerOrientation](#pickerorientation) | No  | Sliding preview direction of the grid page. The options are **HORIZONTAL** and **VERTICAL**. The default value is **VERTICAL**.                                |
 | selectMode                      | [SelectMode](#selectmode)               | No  | Select mode, which can be **SINGLE_SELECT** or **MULTI_SELECT**. The default value is **MULTI_SELECT**.                                                     |
 | maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.                                          |
 | maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**. The default value is **500**.                                          |
@@ -96,6 +96,7 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 | photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component. The default value is [0, 0].|
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a grid page.|
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | No  | Margin of the component on a photo browser page.|
+| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | No  | Single-line display mode of the component on the grid page. In single-line mode, the component does not provide functions for viewing a larger image. The component does not support callbacks related to large images, and the PickerController does not support APIs related to large images, making API calls ineffective.    
 
 ## ItemsDeletedCallback<sup>13+</sup>
 
@@ -292,8 +293,7 @@ Represents basic image and video information.
 
 ## ItemInfo
 
-Represents image and video information. It inherits from **BaseItemInfo** and contains only the parameter **itemType**.
-
+Represents image and video information. It inherits from [BaseItemInfo](#baseiteminfo), adding the private parameter **itemType**.
  
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -340,6 +340,20 @@ Represents the maximum number of media assets that can be selected at a time.
 | Name    | Type   | Mandatory | Description    |
 |----------|--------|-----|---------|
 | data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | No            | Maximum number of media assets (images, videos, or both) that can be selected at a time.|
+
+## SingleLineConfig
+
+Represents the single-line display mode. In single-line mode, the component does not provide functions for viewing a larger image. The component does not support callbacks related to large images, and the PickerController does not support APIs related to large images, making API calls ineffective.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name| Type                                            | Mandatory| Description                                                                          |
+| ---- | ------------------------------------------------ | ---- | ------------------------------------------------------------------------------ |
+| itemDisplayRatio | [ItemDisplayRatio](#itemdisplayratio20) | No  | Aspect ratio for grid display. Both 1:1 and the original image aspect ratio are supported. The default value is 1:1.|
+| itemBorderRadius | [Length](../apis-arkui/arkui-ts/ts-types.md#length) &verbar; [BorderRadiuses](../apis-arkui/arkui-ts/ts-types.md#borderradiuses9) &verbar; [LocalizedBorderRadiuses](../apis-arkui/arkui-ts/ts-types.md#localizedborderradiuses12) | No  | Rounded corner radius for grid items.|
+| itemGap | [Length](../apis-arkui/arkui-ts/ts-types.md#length) | No  | Spacing between grid items.|
 
 ## DataType
 
@@ -502,6 +516,19 @@ Enumerates the video playback states.
 | STOPPED | 2   | Video playback is stopped.|
 | SEEK_START | 3   | Started dragging the progress bar.|
 | SEEK_FINSH | 4   | Finished dragging the progress bar.|
+
+## ItemDisplayRatio<sup>20+</sup>
+
+Enumerates the aspect ratios for grid display in single-line display mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name               | Value | Description          |
+| ------------------- | --- | -------------- |
+| SQUARE_RATIO        | 0   | 1:1 ratio.   |
+| ORIGINAL_SIZE_RATIO | 1   | Original image aspect ratio.|
 
 ## Example
 
