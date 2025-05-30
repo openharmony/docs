@@ -444,7 +444,7 @@ struct NavigationExample {
               .catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushPath]success.');
+              console.error(`[pushPath]success.`);
             }); // 将name指定的NavDestination页面信息入栈。
           })
       }
@@ -496,7 +496,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath]success.');
+              console.log(`[pushPath]success.`);
             });
           })
 
@@ -510,7 +510,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPath with NavigationOptions]success.');
+              console.log(`[pushPath with NavigationOptions]success.`);
             });
           })
 
@@ -525,7 +525,7 @@ export struct PageOne {
             }).catch((error: BusinessError) => {
               console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByName]success.');
+              console.log(`[pushPathByName]success.`);
             });
           })
 
@@ -539,7 +539,7 @@ export struct PageOne {
             .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[pushPathByNameWithoutOnPop]success.');
+              console.log(`[pushPathByNameWithoutOnPop]success.`);
             });
           })
 
@@ -554,7 +554,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination]success.');
+              console.error(`[pushDestination]success.`);
             });
           })
 
@@ -569,7 +569,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestination with NavigationOptions]success.');
+              console.error(`[pushDestination with NavigationOptions]success.`);
             });
           })
 
@@ -584,7 +584,7 @@ export struct PageOne {
             }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.error('[pushDestinationByName]success.');
+              console.error(`[pushDestinationByName]success.`);
             });
           })
 
@@ -598,7 +598,7 @@ export struct PageOne {
               .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
               }).then(() => {
-              console.error('[pushDestinationByNameWithoutOnPop]success.');
+              console.error(`[pushDestinationByNameWithoutOnPop]success.`);
             });
           })
 
@@ -612,7 +612,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath]success.');
+              console.log(`[replacePath]success.`);
             });
           })
 
@@ -626,7 +626,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePath with NavigationOptions]success.');
+              console.log(`[replacePath with NavigationOptions]success.`);
             });
           })
 
@@ -640,7 +640,7 @@ export struct PageOne {
               .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log('[replacePathByName]success.');
+              console.log(`[replacePathByName]success.`);
             });
           })
 
