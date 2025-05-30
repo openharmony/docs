@@ -463,9 +463,9 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
 
 | 名称        | 类型                    | 只读 | 可选 | 说明                                                         |
 | ----------- | ----------------------- | ---- | ---- | ------------------------------------------------------------ |
-| uri<sup>12+</sup>         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
-| photoType<sup>12+</sup>   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName<sup>12+</sup> | string                  | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                     |
+| uri         | string                  | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。 |
+| photoType   | [PhotoType](#phototype) | 是   | 否   | 媒体文件类型。                                               |
+| displayName | string                  | 是   | 否   | 显示文件名，包含后缀名。字符串长度为1~255。                                     |
 
 ### convertToPhotoAsset
 
