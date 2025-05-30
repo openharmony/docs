@@ -2827,7 +2827,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 **示例：**
 
 ```ts
-// 此处以不显示状态栏、<!--RP15-->三键导航栏<!--RP15End-->为例
+// 此处以状态栏等均不显示为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -9745,7 +9745,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 **示例：**
 
 ```ts
-// 此处以不显示状态栏、<!--RP15-->三键导航栏<!--RP15End-->为例
+// 此处以状态栏等均不显示为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -10534,7 +10534,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 **示例：**
 
 ```ts
-// 此处以不显示状态栏、<!--RP15-->三键导航栏<!--RP15End-->为例
+// 此处以状态栏等均不显示为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -10595,7 +10595,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// 此处以不显示状态栏、<!--RP15-->三键导航栏<!--RP15End-->为例
+// 此处以状态栏等均不显示为例
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
