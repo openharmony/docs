@@ -1823,6 +1823,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本按照数组本身顺序执行。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
