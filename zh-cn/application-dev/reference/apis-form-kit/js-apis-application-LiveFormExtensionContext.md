@@ -1,4 +1,4 @@
-## LiveFormExtensionContext
+# LiveFormExtensionContext
 
 LiveFormExtensionContext是[LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
