@@ -23,7 +23,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 > **说明：**
 >
-> - 网页中使用到DOM Storage API则需要设置为true后即可正常加载。
+> - 网页中使用到文档对象模型存储接口（DOM Storage API），需将其设置为true，才可正常加载网页。
 
 **示例：**
 
@@ -259,7 +259,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设定当安全源尝试从非安全源加载资源时的行为，默认值为 MixedMode.None，即不允许安全源从非安全源加载内容。
+设定当安全源尝试从非安全源加载资源时的行为，默认值为 MixedMode.None，即禁止安全源从非安全源加载内容。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1823,6 +1823,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本按照数组本身顺序执行。
+>
 > - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
