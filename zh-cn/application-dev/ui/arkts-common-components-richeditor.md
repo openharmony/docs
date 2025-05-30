@@ -640,34 +640,30 @@ struct add_text_span {
 
   build() {
     Column() {
-      Column({ space: 3 }) {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan('点击按钮在此处添加text。', {
-              style: {
-                fontColor: Color.Black,
-                fontSize: 15
-              }
-            })
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('点击按钮在此处添加text。', {
+            style: {
+              fontColor: Color.Black,
+              fontSize: 15
+            }
           })
-          .layoutWeight(1)
-          .width(300)
-          .height(100)
-        Button('addTextSpan', {
-          buttonStyle: ButtonStyleMode.NORMAL
         })
-          .height(30)
-          .fontSize(13)
-          .onClick(() => {
-            this.controller.addTextSpan('新添加一段文字。')
-          })
-      }
-      .width('100%')
-      .alignItems(HorizontalAlign.Start)
-      .constraintSize({
-        maxHeight: 100
+        .border({ width: 1, color: Color.Gray })
+        .constraintSize({
+          maxHeight: 100
+        })
+        .width(300)
+        .margin(10)
+      Button('addTextSpan', {
+        buttonStyle: ButtonStyleMode.NORMAL
       })
-    }.height('100%')
+        .height(30)
+        .fontSize(13)
+        .onClick(() => {
+          this.controller.addTextSpan('新添加一段文字。')
+        })
+    }
   }
 }
 ```
