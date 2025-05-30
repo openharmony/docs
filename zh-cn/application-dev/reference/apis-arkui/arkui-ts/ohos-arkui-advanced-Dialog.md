@@ -170,7 +170,6 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 > CustomContentDialog内容区的滚动需由开发者自定义，内容区自定义滚动必须配合属性nestedScroll。
 > nestedScroll({ scrollForward: NestedScrollMode.PARALLEL, scrollBackward: NestedScrollMode.PARALLEL })
 
-
 ## PopoverDialog<sup>14+</sup>
 
 PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
