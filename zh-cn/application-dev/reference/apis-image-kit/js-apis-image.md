@@ -3276,7 +3276,6 @@ toSdr(): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
@@ -3877,8 +3876,6 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 const context: Context = getContext(this);
 //此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
@@ -3912,7 +3909,6 @@ createImageSource(fd: number): ImageSource
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
 const context: Context = getContext(this);
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
@@ -3950,7 +3946,6 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 const context: Context = getContext();
@@ -4052,7 +4047,6 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
-import { common } from '@kit.AbilityKit';
 
 const context: Context = getContext(this);
 // 获取resourceManager资源管理器。
@@ -4299,7 +4293,6 @@ getImageInfoSync(index?: number): ImageInfo
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
 const context: Context = getContext();
@@ -4972,7 +4965,6 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { image } from '@kit.ImageKit';
 
 const context: Context = getContext();
@@ -5220,7 +5212,6 @@ createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: Allocato
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
 const context: Context = getContext(this);
@@ -5282,7 +5273,6 @@ createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: Allo
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import image from '@ohos.multimedia.image';
 
 const context: Context = getContext(this);
@@ -5653,7 +5643,6 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const context: Context = getContext();
@@ -5822,7 +5811,6 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const context: Context = getContext();
@@ -5870,7 +5858,6 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const context: Context = getContext();
@@ -6081,7 +6068,6 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6143,7 +6129,6 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6201,7 +6186,6 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
@@ -6267,7 +6251,6 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
