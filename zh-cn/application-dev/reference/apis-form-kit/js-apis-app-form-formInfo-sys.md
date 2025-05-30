@@ -164,7 +164,7 @@ import { formInfo } from '@kit.FormKit';
 
 ## ChangeSceneAnimationStateRequest<sup>20+</sup>
 
-互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md) 进程，加载应用自定义页面。
+互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md) 进程，实现互动卡片动效。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -183,11 +183,11 @@ import { formInfo } from '@kit.FormKit';
 
 **系统接口：** 此接口为系统接口。
 
-| 名称 | 类型 | 只读 | 可选 | 说明                                                                                      |
-|-----|-----|----|-----|-----------------------------------------------------------------------------------------|
-| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为鸿蒙快游戏引擎对应 ability                                     |
-| targetBundleName  | string | 是  | 否   | 趣味交互场景 RPK 资源 bundle 名称。                                                                |
-| subBundleName  | string | 是  | 否   | 趣味交互场景 RPK 资源子 bundle 名称。                                                               |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                  |
+|-----|-----|----|-----|---------------------------------------------------------------------|
+| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为空                                     |
+| targetBundleName  | string | 是  | 否   | 趣味交互场景主包包名。                                                         |
+| subBundleName  | string | 是  | 否   | 趣味交互场景独立分包名称。                                                       |
 | keepStateDuration  | number | 是  | 是   | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
 
 ## SceneAnimationParams<sup>20+</sup>

@@ -90,16 +90,15 @@
 
 此标签标识趣味交互类型互动卡片配置。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。
 
-| 名称    | 类型  | 必填 | 说明                                                   |
-|--------|-----|----|------------------------------------------------------|
-| abilityName | 字符串 | 否  | 趣味交互场景 extensionAbility 名称，默认为鸿蒙小游戏引擎对应 extensionAbility。|
-| targetBundleName  | 字符串 | 是  | 趣味交互场景资源 bundle 名称。|
-| subBundleName  | 字符串 | 否  | 趣味交互场景资源子 bundle 名称。 |
-| keepStateDuration  | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
+| 名称                | 类型  | 必填 | 说明                                                                  |
+|-------------------|-----|----|---------------------------------------------------------------------|
+| abilityName       | 字符串 | 否 | 趣味交互场景 extensionAbility 名称，默认为空。                                  |
+| targetBundleName  | string | 是  |  趣味交互场景主包包名。|
+| subBundleName     | string | 是  |  趣味交互场景独立分包名称。|
+| keepStateDuration | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
 
 配置示例如下：
 
-<!--RP1-->
    ```json
    {
      "forms": [
@@ -112,7 +111,6 @@
      ]
    }
    ```
-<!--RP1End-->
 
 ## sceneAnimationParams标签
 
@@ -120,10 +118,9 @@
 
 | 名称                                     | 类型     | 必填 | 说明 |
 |----------------------------------------|--------|----|----------------------------|
-| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
-| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
+| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称。|
+| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP\|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
 
-<!--RP1-->
    ```json
    {
      "forms": [
@@ -136,13 +133,10 @@
      ]
    }
    ```
-<!--RP1End-->
-
-<!--Del--> 
 
 系统应用配置样例
 
-<!--RP1-->
+<!--RP2-->
    ```json
    {
      "forms": [
@@ -156,9 +150,7 @@
      ]
    }
    ```
-<!--RP1End-->
-
-<!--DelEnd-->
+<!--RP2End-->
 
 配置示例如下：
 
