@@ -152,6 +152,9 @@
 | [Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)](#oh_input_getdevicevendor) | - | 获取输入设备的厂商信息。 |
 | [Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)](#oh_input_getdeviceaddress) | - | 获取输入设备的物理地址。 |
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | 获取功能键状态。 |
+| [int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)](#oh_input_injecttouchevent) | - | 注入触摸事件。 |
+| [int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)](#oh_input_injectmouseevent) | - | 注入鼠标事件。 |
+| [int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)](#oh_input_injectkeyevent) | - | 注入按键事件。 |
 
 ## 枚举类型说明
 
