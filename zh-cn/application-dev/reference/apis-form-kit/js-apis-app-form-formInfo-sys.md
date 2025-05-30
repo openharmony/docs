@@ -164,7 +164,7 @@ import { formInfo } from '@kit.FormKit';
 
 ## ChangeSceneAnimationStateRequest<sup>20+</sup>
 
-互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md) 进程，实现互动卡片动效。
+互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的LiveFormExtensionAbility进程，实现互动卡片动效。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -200,5 +200,5 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                               |
 |-----|-----|------|----|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md) 名称。                                     |
+| abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方LiveFormExtensionAbility名称。                                     |
 | disabledDesktopBehaviors | string | 是 | 是  | 支持的取值包括SWIPE_DESKTOP（滑动桌面）、PULL_DOWN_SEARCH（下拉全搜）、LONG_CLICK（长按）、DRAG（拖动）。可以取值一个或多个，不同行为通过 \| 拼接，例如SWIPE_DESKTOP \|PULL_DOWN_SEARCH。缺省表示不禁用任何行为。 |
