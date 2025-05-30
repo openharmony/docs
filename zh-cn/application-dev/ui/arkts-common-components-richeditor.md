@@ -632,29 +632,44 @@ Button('setSelection(0,2)', {
 如果组件是获焦状态，有光标在闪烁，那么通过addTextSpan添加文本内容后，光标位置会更新，在新添加文本内容的右侧闪烁。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('点击按钮在此处添加text。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
+@Entry
+@Component
+struct add_text_span {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+
+  build() {
+    Column() {
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('点击按钮在此处添加text。', {
+              style: {
+                fontColor: Color.Black,
+                fontSize: 15
+              }
+            })
+          })
+          .layoutWeight(1)
+          .width(300)
+          .height(100)
+        Button('addTextSpan', {
+          buttonStyle: ButtonStyleMode.NORMAL
+        })
+          .height(30)
+          .fontSize(13)
+          .onClick(() => {
+            this.controller.addTextSpan('新添加一段文字。')
+          })
       }
-    })
-  })
-  .constraintSize({
-    maxHeight: 100
-  })
-  .layoutWeight(1)
-  .width(300)
-  .height(100)
-Button('addTextSpan', {
-  buttonStyle: ButtonStyleMode.NORMAL
-})
-  .height(30)
-  .fontSize(13)
-  .onClick(() => {
-    this.controller.addTextSpan('新添加一段文字。')
-  })
+      .width('100%')
+      .alignItems(HorizontalAlign.Start)
+      .constraintSize({
+        maxHeight: 100
+      })
+    }.height('100%')
+  }
+}
 ```
 
 ![alt text](figures/richeditor_image_add_text.gif)
