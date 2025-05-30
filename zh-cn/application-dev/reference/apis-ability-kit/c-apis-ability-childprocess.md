@@ -441,7 +441,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 
 **返回**：  
 NCP_NO_ERROR - 对象销毁成功。  
-NCP_NO_ERR_INVALID_PARAM - 传入参数为nullptr  
+NCP_ERR_INVALID_PARAM - 传入参数为nullptr  
 错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 
@@ -466,7 +466,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
 
 **返回**：  
 NCP_NO_ERROR - 执行成功  
-NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr  
+NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr  
 错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 ### OH_Ability_ChildProcessConfigs_SetProcessName
@@ -489,7 +489,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 **返回**：  
 NCP_NO_ERROR - 执行成功。    
-NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规。  
+NCP_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规。  
 错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 
@@ -502,7 +502,7 @@ NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合�
 
 **描述**
 
-创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
+根据参数中子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
 
 参数所指定的动态库必须实现并导出下列函数：
 
