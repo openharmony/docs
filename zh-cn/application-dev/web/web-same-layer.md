@@ -91,7 +91,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 
 - 支持同层标签相对于视口的可见状态上报。
 
-- 默认不支持由于同层标签CSS样式或尺寸变化导致的可见状态变化上报，具体规格参考[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedvisibilitychange12)。
+- 不支持由于CSS样式或同层标签大小变化导致的同层标签可见状态变化上报，比如display、opacity或visibility属性等。
 
 **约束限制：**
 
