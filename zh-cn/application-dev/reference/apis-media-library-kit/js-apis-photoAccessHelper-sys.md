@@ -5041,27 +5041,27 @@ static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt
 import { dataSharePredicates } from '@kit.ArkData';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
-  console.info('deleteLocalAssetsPermanentlyWithUriDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions: photoAccessHelper.FetchOptions = {
+    console.info('deleteLocalAssetsPermanentlyWithUriDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
-  };
-  try {
-    let photoUris: Array<string> = [];
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-    for (const asset of assets) {
-      if (!asset?.uri) {
-        continue;
-      }
-      let uri: string = asset.uri.trim();
-      photoUris.push(uri);
-    }
-    await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
-  } catch (err) {
+    };
+    try {
+        let  photoUris: Array<string> = [];
+        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+        let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+        for (const asset of assets) {
+            if (!asset?.uri) {
+                continue; 
+            }
+            let uri:string = asset.uri.trim();
+            photoUris.push(uri);
+        }
+        await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
+    } catch (err) {
     console.error(`deleteLocalAssetsPermanentlyWithUriDemo failed with error: ${err.code}, ${err.message}`);
-  }
+}
 }
 ```
 
