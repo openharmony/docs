@@ -1736,7 +1736,6 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
@@ -4901,7 +4900,6 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -5496,8 +5494,6 @@ static deleteAlbumsWithUri(context: Context, albumUris: Array&lt;string&gt;): Pr
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
 async function example(context: Context, albumUri: string) {
   console.info('deleteAlbumsWithUriDemo');
   try {
@@ -7626,7 +7622,6 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -7680,7 +7675,6 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -7727,7 +7721,6 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -7774,7 +7767,6 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -7828,7 +7820,6 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
@@ -7875,7 +7866,6 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
