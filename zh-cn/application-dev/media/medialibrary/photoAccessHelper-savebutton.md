@@ -17,25 +17,30 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
-  try {
-    let outputText = '支持的类型为：\n';
-    //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
-    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
-    let result = "";
-    for (let i = 0; i < imageFormat.length; i++) {
-      result += imageFormat[i];
-      if (i !== imageFormat.length - 1) {
-        result += ', ';
+struct Index {
+  @State outputText: string = '支持的类型为：\n';
+
+  async function example(){
+    try {
+      this.outputText = '支持的类型为：\n';
+      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式。
+      let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
+      let result = "";
+      for (let i = 0; i < imageFormat.length; i++) {
+        result += imageFormat[i];
+        if (i !== imageFormat.length - 1) {
+          result += ', ';
+        }
       }
+      this.outputText += result;
+      console.info('getSupportedPhotoFormats success, data is ' + outputText);
+    } catch (error) {
+      console.error('getSupportedPhotoFormats failed, errCode is', error);
     }
-    outputText += result;
-    console.info('getSupportedPhotoFormats success, data is ' + outputText);
-  } catch (error) {
-    console.error('getSupportedPhotoFormats failed, errCode is', error);
   }
-}
 ```
 
 ## 使用安全控件保存媒体库资源
@@ -114,20 +119,7 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+async function example() {
   try {
     // 指定待保存到媒体库的位于应用沙箱的图片uri。
     let srcFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
