@@ -39,19 +39,6 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
@@ -101,19 +88,6 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
@@ -172,19 +146,6 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let onCallback = (changeData: photoAccessHelper.ChangeData) => {
     console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
@@ -232,19 +193,6 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Button("example").onClick(async () => {
-        example(phAccessHelper);
-      }).width('100%')
-    }
-    .height('90%')
-  }
-}
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
