@@ -75,6 +75,19 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper, context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -86,7 +99,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
   predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());

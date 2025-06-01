@@ -42,7 +42,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 async function example() {
   try {
     let albumName = 'albumName';
@@ -82,8 +95,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');
@@ -141,8 +166,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');
@@ -197,8 +234,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -260,8 +309,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -323,8 +384,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let albumPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   albumPredicates.equalTo(albumName, 'albumName');
@@ -385,8 +458,20 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        example(phAccessHelper);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
   predicates.equalTo(albumName, 'albumName');

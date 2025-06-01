@@ -61,7 +61,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
@@ -126,7 +126,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -186,7 +186,7 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let createOption: photoAccessHelper.PhotoCreateOptions = {
@@ -255,7 +255,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName:string = 'testFile' + Date.now() + '.jpg';
@@ -320,7 +320,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName, (err, album) => {
@@ -389,7 +389,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName).then((album) => {
@@ -446,7 +446,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -520,7 +520,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -579,7 +579,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -638,7 +638,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统预置的隐藏相册
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
     if (fetchResult === undefined) {
@@ -652,7 +652,7 @@ async function getSysHiddenAlbum() {
 }
 
 // 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
     if (fetchResult === undefined) {
@@ -723,7 +723,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取系统预置的隐藏相册
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
@@ -740,7 +740,7 @@ async function getSysHiddenAlbum() {
 }
 
 // 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
     if (fetchResult === undefined) {
@@ -815,7 +815,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -892,7 +892,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -956,7 +956,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1039,7 +1039,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1110,7 +1110,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1179,7 +1179,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1240,7 +1240,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
     //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
@@ -1300,7 +1300,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
     //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
@@ -1359,7 +1359,7 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppDemo.');
 
   try {
@@ -1425,7 +1425,7 @@ grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Photo
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('grantPhotoUriPermissionDemo');
 
   try {
@@ -1485,7 +1485,7 @@ grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPer
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('grantPhotoUrisPermissionDemo');
 
   try {
@@ -1547,7 +1547,7 @@ cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Phot
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('cancelPhotoUriPermissionDemo');
 
   try {
@@ -1608,7 +1608,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -1668,7 +1668,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppWithModeDemo.');
 
   try {
@@ -1743,7 +1743,7 @@ import { image } from '@kit.ImageKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   try{
     console.info('getKeyFrameThumbnail demo');
     let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -1810,7 +1810,7 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1883,7 +1883,7 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1957,7 +1957,7 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
   let info: photoAccessHelper.GalleryFormInfo = {
     // formId是一个由纯数字组成的字符串，移除卡片时assertUris不填。
@@ -2013,7 +2013,7 @@ getAlbumsByIds(albumIds: Array&lt;number&gt;): Promise&lt;Map&lt;number, Album&g
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('startGetAlbumsByIdsDemo');
 
   try {
@@ -2072,7 +2072,7 @@ createAssetsForAppWithAlbum(source: PhotoCreationSource, albumUri: string, isAut
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppWithAlbumDemo.');
 
   try {
@@ -2148,7 +2148,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('Open demo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
@@ -2212,7 +2212,7 @@ open(mode: string): Promise&lt;number&gt;
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('Open demo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2274,7 +2274,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2343,7 +2343,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2406,7 +2406,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2477,7 +2477,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源。
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2540,7 +2540,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2604,7 +2604,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2683,7 +2683,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2747,7 +2747,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2810,7 +2810,7 @@ setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2878,7 +2878,7 @@ setPending(pendingState: boolean): Promise&lt;void&gt;
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2928,7 +2928,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('isEditedCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2992,7 +2992,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('isEditedPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3052,7 +3052,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestEditDataCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3114,7 +3114,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestEditDataPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3170,7 +3170,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getEditDataDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3225,7 +3225,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requsetSourceCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3284,7 +3284,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requsetSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3344,7 +3344,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('commitEditedAssetCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3416,7 +3416,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('commitEditedAssetPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3474,7 +3474,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('revertToOriginalCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3535,7 +3535,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('revertToOriginalPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3598,7 +3598,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestPhotoDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3665,7 +3665,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestPhotoDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3731,7 +3731,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('cancelPhotoRequestDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3797,7 +3797,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getAnalysisDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -3860,14 +3860,13 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -3943,7 +3942,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('recoverAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4018,7 +4017,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('recoverAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4087,7 +4086,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('deleteAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4164,7 +4163,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('deleteAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4233,7 +4232,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setCoverUriDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4309,7 +4308,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4434,7 +4433,7 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAssetRequestDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -4484,7 +4483,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4537,7 +4536,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4590,7 +4589,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setUserCommentDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4644,7 +4643,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setEditDataDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4707,7 +4706,7 @@ class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -4758,7 +4757,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setLocationDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4808,7 +4807,7 @@ setCameraShotKey(cameraShotKey: string): void
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('setCameraShotKeyDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -4854,7 +4853,7 @@ setEffectMode(mode: MovingPhotoEffectMode): void
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('setEffectModeDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -4909,7 +4908,7 @@ import { common } from '@kit.AbilityKit';
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4979,7 +4978,7 @@ struct Index {
   public context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
 
-  async function example() {
+  async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('deleteAssetsPermanentlyDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5041,27 +5040,29 @@ static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
-    console.info('deleteLocalAssetsPermanentlyWithUriDemo');
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+  console.info('deleteLocalAssetsPermanentlyWithUriDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
-    };
-    try {
-        let  photoUris: Array<string> = [];
-        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-        let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-        for (const asset of assets) {
-            if (!asset?.uri) {
-                continue; 
-            }
-            let uri:string = asset.uri.trim();
-            photoUris.push(uri);
-        }
-        await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
-    } catch (err) {
+  };
+  try {
+    let photoUris: Array<string> = [];
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+      await phAccessHelper.getAssets(fetchOptions);
+    let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    for (const asset of assets) {
+      if (!asset?.uri) {
+        continue;
+      }
+      let uri: string = asset.uri.trim();
+      photoUris.push(uri);
+    }
+    await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
+  } catch (err) {
     console.error(`deleteLocalAssetsPermanentlyWithUriDemo failed with error: ${err.code}, ${err.message}`);
+  }
 }
 ```
 
@@ -5106,7 +5107,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAssetsChangeRequest constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5153,7 +5154,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5206,7 +5207,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5259,7 +5260,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setUserCommentDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5312,7 +5313,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setIsRecentShowDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5381,7 +5382,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAlbumRequestDemo');
   try {
     let albumName: string = 'newAlbumName' + new Date().getTime();
@@ -5439,7 +5440,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5498,7 +5499,7 @@ static deleteAlbumsWithUri(context: Context, albumUris: Array&lt;string&gt;): Pr
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example(albumUri: string) {
+async function example(context: Context, albumUri: string) {
   console.info('deleteAlbumsWithUriDemo');
   try {
     await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
@@ -5542,7 +5543,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setCoverUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5600,7 +5601,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('moveAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5662,7 +5663,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('moveAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5725,7 +5726,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('recoverAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5782,7 +5783,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('recoverAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5841,7 +5842,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetsPermanentlyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5901,7 +5902,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5957,7 +5958,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setDisplayLevel Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6004,7 +6005,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setIsMe Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6058,7 +6059,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('dismissAssets Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6121,7 +6122,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('mergeAlbum Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6179,7 +6180,7 @@ placeBefore(album: Album): void;
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('placeBeforeDemo');
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
@@ -6226,7 +6227,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('dismissDemo');
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.GROUP_PHOTO);
@@ -6281,7 +6282,7 @@ constructor(album: Album)
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('HighlightAlbum constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -6337,7 +6338,7 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getHighlightAlbumInfoDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -6401,7 +6402,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getHighlightResourceDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -6410,7 +6411,7 @@ async function example() {
     }
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
     photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
-    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();、
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
       let uri: string = 'file://media/highlight/cover/10/1_1/background.png?oper=highlight'
@@ -6464,7 +6465,7 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setHighlightUserActionDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -6529,7 +6530,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   try {
     console.info('setSubTitle');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6600,7 +6601,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   try {
     console.info('deleteHighlightAlbums');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6664,7 +6665,7 @@ import { common } from '@kit.AbilityKit';s
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
@@ -6723,7 +6724,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   try {
     console.info('setOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6802,7 +6803,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
@@ -6865,7 +6866,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   try {
     console.info('getOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6947,7 +6948,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7011,7 +7012,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('submitCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7076,7 +7077,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('submitCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7140,7 +7141,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('prioritizeCloudEnhancementTaskDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7205,7 +7206,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('cancelCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7260,7 +7261,7 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('cancelAllCloudEnhancementTasksDemo');
   try {
     let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
@@ -7314,7 +7315,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('queryCloudEnhancementTaskStateDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7396,7 +7397,7 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('syncCloudEnhancementTaskStatusDemo');
   try {
     let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
@@ -7450,7 +7451,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('getCloudEnhancementPairDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询已完成的云增强任务。
@@ -7514,7 +7515,7 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     let photoId = "202410011800";
@@ -7561,7 +7562,7 @@ phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模�
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getFaceIdDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -7632,7 +7633,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7686,7 +7687,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7733,7 +7734,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7780,7 +7781,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7834,7 +7835,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7881,7 +7882,7 @@ import { common } from '@kit.AbilityKit';
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-async function example() {
+async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
