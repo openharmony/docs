@@ -5049,8 +5049,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   };
   try {
     let photoUris: Array<string> = [];
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
-      await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let assets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
     for (const asset of assets) {
       if (!asset?.uri) {
