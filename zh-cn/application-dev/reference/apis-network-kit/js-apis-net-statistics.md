@@ -561,7 +561,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
