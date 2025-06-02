@@ -122,6 +122,10 @@ test(a2);
 | 合并依赖模块选项 | [`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options) |
 | 通过注释在源码中标记白名单 | [`-use-keep-in-source`](#-use-keep-in-source) |
 
+### 默认混淆
+
+开启混淆后默认生效，仅混淆局部变量名及参数名。
+
 ### -disable-obfuscation
 
 关闭所有混淆。
