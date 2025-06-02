@@ -2,11 +2,11 @@
 
 ## 简介
 
-函数调用允许开发者从JSVM模块中调用JavaScript函数，并传递参数进行调用，或者直接在JSVM模块中创建一个JavaScript方法。
+函数调用允许开发者从JSVM模块中调用JavaScript函数，并传参进行调用，或者直接在JSVM模块中创建一个JavaScript方法。
 
 ## 基本概念
 
-函数是一种非常重要的编程概念，可以执行特定的任务或操作、提高代码的可读性、把复杂任务简化、提高代码复用性以及支持代码的组织与管理。每个函数可以负责不同的功能，提供一种将代码模块化和组织结构化的方式，使其更易于理解、维护和重用。
+函数是一种非常重要的编程概念，可以执行特定的任务或操作、提高代码的可读性、把复杂任务简化、提高代码复用性以及支持代码的组织与管理。每个函数负责不同的功能，实现代码的模块化和结构化，便于理解、维护和重用。
 
 ## 接口说明
 
@@ -15,7 +15,7 @@
 | OH_JSVM_GetCbInfo          | 从给定的callback info中获取有关调用的详细信息，如参数和this指针。|
 | OH_JSVM_CallFunction       | 在C/C++侧调用JavaScript方法。|
 | OH_JSVM_IsFunction         | 判断对象是否为函数对象。 |
-| OH_JSVM_CreateFunction     | 用于创建JavaScript函数,用于从JavaScript环境中调用C/C++代码中的函数, 需要设置到一个js对象中才可以进行调用。 |
+| OH_JSVM_CreateFunction     | 用于创建JavaScript函数,用于从JavaScript环境中调用C/C++代码中的函数, 需要设置到一个JavaScript对象中才可以进行调用。 |
 
 ## 使用示例
 
@@ -125,7 +125,7 @@ static int32_t TEST_FUNC() {
     return 0;
 }
 ```
-<!-- @[jsvm_function_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_function_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
 
 预期的输出
 ```

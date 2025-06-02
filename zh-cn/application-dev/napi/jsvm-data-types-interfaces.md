@@ -53,7 +53,7 @@ typedef struct {
 
 ### JSVM_Value
 
-在C++代码中，表示一个JavaScript值。
+在C++代码中，用于表示一个JavaScript值。
 
 ### JSVM_Env
 
@@ -61,7 +61,7 @@ typedef struct {
 
 - 退出Native侧插件时，JSVM_Env将失效，该事件通过回调传递给OH_JSVM_SetInstanceData。
 
-- 禁止缓存JSVM_Env，禁止在不同Worker中传递JSVM_Env。
+- 禁止缓存JSVM_Env，并禁止在不同Worker中传递JSVM_Env。
 
 - 在不同线程间共享JSVM_Env时，要保证在线程切换时在前一个线程中关闭env scope并在新的线程中打开新的env scope，以保证threadlocal变量的线程隔离。
 
@@ -198,8 +198,8 @@ typedef enum {
 
 当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
 
-- cache : 指向 code cache 的指针。
-- length : code cache 的大小。
+- cache : 指向code cache的指针。
+- length : 代表code cache的大小。
 
 ```c
 typedef struct {
@@ -458,7 +458,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t logLength;
+    size_t logLength = 0;
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
@@ -471,7 +471,8 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
-    double num1, num2;
+    double num1 = 0;
+	double num2 = 0;
     env, OH_JSVM_GetValueDouble(env, args[0], &num1);
     OH_JSVM_GetValueDouble(env, args[1], &num2);
     JSVM_Value sum = nullptr;
@@ -641,7 +642,7 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
     OH_JSVM_RunScript(env, script, &result);
 
     char resultStr[128];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
 
     OH_JSVM_CloseHandleScope(env, handleScope);
@@ -683,7 +684,7 @@ static void RunScript(JSVM_Env env, string& src,
     OH_JSVM_RunScript(env, script, &result);
 
     char resultStr[128];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
 
     OH_JSVM_CloseHandleScope(env, handleScope);
@@ -1165,7 +1166,7 @@ OH_JSVM_CreateStringUtf8(env, testStringStr, strlen(testStringStr), &testString)
 
 char buffer[128];
 size_t bufferSize = 128;
-size_t copied;
+size_t copied = 0; 
 
 OH_JSVM_GetValueStringUtf8(env, testString, buffer, bufferSize, &copied);
 ```
@@ -1514,6 +1515,8 @@ OH_JSVM_CreateFunctionWithScript(env, "add", JSVM_AUTO_LENGTH, 2, argus, script,
 对象绑定操作。
 
 ```c++
+static int aa = 0; 
+
 static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 2;
@@ -1624,7 +1627,7 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由对象上的获取请求触发的
     char strValue[100];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
@@ -1646,7 +1649,7 @@ static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value th
 static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由对象上的设置请求触发的
     char strValue[100];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
@@ -1668,7 +1671,7 @@ static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value pr
 static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由对象上的删除请求触发的
     char strValue[100];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
     JSVM_Value newResult = nullptr;
     bool returnValue = false;
@@ -1716,7 +1719,7 @@ static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSV
 
 static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由获取实例对象的索引属性触发的
-    uint32_t value;
+    uint32_t value = 0;
     OH_JSVM_GetValueUint32(env, index, &value);
 
     JSVM_Value newResult = nullptr;
@@ -1738,10 +1741,10 @@ static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 
 static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由设置实例对象的索引属性触发的
-    uint32_t value;
+    uint32_t value = 0;
     OH_JSVM_GetValueUint32(env, index, &value);
     char str[100];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, property, str, 100, &size);
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
@@ -1762,7 +1765,7 @@ static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 
 static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
     // 该回调是由删除实例对象的索引属性触发的
-    uint32_t value;
+    uint32_t value = 0;
     OH_JSVM_GetValueUint32(env, index, &value);
     JSVM_Value newResult = nullptr;
     bool returnValue = false;
@@ -1901,7 +1904,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     JSVM_Value valueName = nullptr;
     OH_JSVM_GetNamedProperty(env, instanceValue, "str11", &valueName);
     char str[100];
-    size_t size;
+    size_t size = 0;
     OH_JSVM_GetValueStringUtf8(env, valueName, str, 100, &size);
 
     // 获取所有属性的名称
@@ -1915,7 +1918,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     for (uint32_t i = 0; i < nameSize; ++i) {
         OH_JSVM_GetElement(env, allPropertyNames, i, &propertyName);
         char str[100];
-        size_t size;
+        size_t size = 0;
         OH_JSVM_GetValueStringUtf8(env, propertyName, str, 100, &size);
     }
 
@@ -1941,7 +1944,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     JSVM_Value valueName1 = nullptr;
     OH_JSVM_GetProperty(env, instanceValue, jsIndex, &valueName1);
     char str1[100];
-    size_t size1;
+    size_t size1 = 0;
     OH_JSVM_GetValueStringUtf8(env, valueName1, str1, 100, &size1);
 
     // 获取所有属性的名称
@@ -1955,7 +1958,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     for (uint32_t i = 0; i < nameSize1; ++i) {
         OH_JSVM_GetElement(env, allPropertyNames1, i, &propertyName1);
         char str[100];
-        size_t size;
+        size_t size = 0;
         OH_JSVM_GetValueStringUtf8(env, propertyName1, str, 100, &size);
     }
 
@@ -2036,7 +2039,7 @@ OH_JSVM_GetVersion(env, &versionId);
 
 ```c++
 // 分别在调用OH_JSVM_AdjustExternalMemory前后来查看底层虚拟机视角下外部分配的内存大小
-int64_t result;
+int64_t result = 0;
 OH_JSVM_AdjustExternalMemory(env, 0, &result); // 假设外部分配内存的变化不变
 OH_LOG_INFO(LOG_APP, "Before AdjustExternalMemory: %{public}lld\n", result); // 得到调整前的数值
 // 调整外部分配的内存大小通知给底层虚拟机（此示例假设内存使用量增加）
@@ -2331,6 +2334,8 @@ class LockWrapper {
   bool isLocked;
 };
 
+static int aa = 0; 
+
 static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     static JSVM_VM vm;
     static JSVM_Env env;
@@ -2356,7 +2361,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
@@ -2372,7 +2377,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
         } else {
             OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
         }
-        int32_t num1;
+        int32_t num1 = 0;
         OH_JSVM_GetValueInt32(env, value, &num1);
         OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
         OH_JSVM_CloseHandleScope(env, handleScope);
