@@ -15,27 +15,6 @@ MDNS管理的典型场景有：
 
 以下分别介绍具体开发方式。
 
-## 接口说明
-
-完整的JS API说明以及实例代码请参考：[MDNS管理-API参考](../reference/apis-network-kit/js-apis-net-mdns.md)。
-
-| 接口名                  | 描述 |
-| ----------------------- | ---- |
-| addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | 添加一个MDNS服务，使用callback方式作为异步方法。 |
-| removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | 移除一个MDNS服务，使用callback方式作为异步方法。 |
-| createDiscoveryService(context: Context, serviceType: string): DiscoveryService | 返回一个DiscoveryService对象，该对象用于发现指定服务类型的MDNS服务。 |
-| resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void | 解析一个MDNS服务，使用callback方式作为异步方法。|
-| startSearchingMDNS(): void | 开始搜索局域网内的MDNS服务。 |
-| stopSearchingMDNS(): void | 停止搜索局域网内的MDNS服务。 |
-| on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅开启监听MDNS服务的通知。 |
-| off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | 取消开启监听MDNS服务的通知。 |
-| on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void | 订阅停止监听MDNS服务的通知。 |
-| off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void | 取消停止监听MDNS服务的通知。 |
-| on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void | 订阅发现MDNS服务的通知。 |
-| off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void | 取消发现MDNS服务的通知。 |
-| on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void | 订阅移除MDNS服务的通知。 |
-| off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void | 取消移除MDNS服务的通知。 |
-
 ## 管理本地服务
 
 1. 设备连接WiFi。

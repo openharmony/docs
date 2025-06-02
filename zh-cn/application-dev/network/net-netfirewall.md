@@ -34,21 +34,6 @@
 
 以下分别介绍具体开发方式。
 
-## 接口说明
-
-完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
-
-| 接口                                                                                               | 描述              |
-| -------------------------------------------------------------------------------------------------- | ----------------- |
-| setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>                    | 设置防火墙状态。    |
-| getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>                                  | 查询防火墙状态。    |
-| addNetFirewallRule(rule: NetFirewallRule): Promise\<number>                                        | 添加防火墙规则。    |
-| updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>                                       | 更新防火墙规则。   |
-| removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>                              | 删除防火墙规则。    |
-| getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<FirewallRulePage>        | 分页查询防火墙规则。 |
-| getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>                      | 查询单条防火墙规则。 |
-| <!--DelRow-->getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage> | 查询防火墙拦截记录。 |
-
 ## 针对特定IP联网访问控制
 
 1. 设备通过硬件接口，插入网线。

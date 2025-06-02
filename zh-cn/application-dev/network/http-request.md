@@ -486,7 +486,9 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
 });
 ```
 
-## 证书锁定
+## 证书配置
+
+### 证书锁定
 
 可以通过预置应用级证书，或者预置证书公钥哈希值的方式来进行证书锁定，即只有开发者特别指定的证书才能正常建立HTTPS连接。
 
@@ -658,7 +660,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |cleartextTrafficPermitted  | boolean          |明文HTTP是否允许。true表示允许，false表示不允许，默认为true。 |
 
 
-## 配置不信任用户安装的CA证书
+### 配置不信任用户安装的CA证书
 系统默认信任系统预置的CA证书和用户安装的CA证书，可配置不信任用户安装的CA证书提升安全性。配置不信任用安装的CA证书可以在src/main/resources/base/profile/network_config.json进行配置，更多网络连接安全相关的配置可以参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)。
 ```
 {
