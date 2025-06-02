@@ -4896,14 +4896,10 @@ getImagePropertySync(key:PropertyKey): string
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import fs from '@ohos.file.fs';
+import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext();
-if (context == undefined) {
-  return;
-}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let resoutceManager = context.resourceManager;
 if (resoutceManager == null) {
   return;
