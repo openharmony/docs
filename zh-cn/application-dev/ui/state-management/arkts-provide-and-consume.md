@@ -152,8 +152,8 @@ struct Parent {
 
 1. 初始渲染：
    1. \@Provide装饰的变量会以Map的形式，传递给当前\@Provide所属组件的所有子组件。
-   2. 子组件中如果使用\@Consume变量，则会在map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
-   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
+   2. 子组件中如果使用\@Consume变量，则会在Map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
+   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在Map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
 
 2. 当\@Provide装饰的数据变化时：
    1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
@@ -384,7 +384,7 @@ struct Child {
         Text(`${item[1]}`).fontSize(30)
         Divider()
       })
-      Button('Consume init map').onClick(() => {
+      Button('Consume init Map').onClick(() => {
         this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
       })
       Button('Consume set new one').onClick(() => {
@@ -412,7 +412,7 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init map').onClick(() => {
+        Button('Provide init Map').onClick(() => {
           this.message = new Map([[0, "a"], [1, "b"], [3, "c"], [4, "d"]])
         })
         Child()

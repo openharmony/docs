@@ -1,6 +1,6 @@
 # \@BuilderParam装饰器：引用\@Builder函数
 
-当开发者创建自定义组件并需要为其添加特定功能（例如：点击跳转操作）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为解决此问题，ArkUI引入了`@BuilderParam`装饰器。`@BuilderParam`用于装饰指向[\@Builder](./arkts-builder.md)方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（例如：参数修改、尾随闭包、借用箭头函数等）对`@BuilderParam`装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用`@BuilderParam`为组件增加特定功能。该装饰器用于声明任意UI描述的元素，类似于slot占位符。
+当开发者创建自定义组件并需要为其添加特定功能（例如：点击跳转操作）时，如果直接在组件内嵌入事件方法，会导致所有该自定义组件的实例都增加此功能。为了解决组件功能定制化的问题，ArkUI引入了@BuilderParam装饰器。@BuilderParam用于装饰指向@Builder方法的变量，开发者可以在初始化自定义组件时，使用不同的方式（例如：参数修改、尾随闭包、借用箭头函数等）对@BuilderParam装饰的自定义构建函数进行传参赋值。在自定义组件内部，通过调用@BuilderParam为组件增加特定功能。该装饰器用于声明任意UI描述的元素，类似于slot占位符。
 
 在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
 
@@ -293,7 +293,7 @@ struct ParentPage {
 
   build() {
     Column() {
-      ChildPage({ message: this.label}){
+      ChildPage({ message: this.label }) {
         Column() {  // 使用局部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
           this.componentBuilder();
         }
@@ -302,7 +302,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label}){  // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+      ChildPage({ message: this.label }) {  // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包初始化自定义组件@BuilderParam
         Column() {
           overBuilder();
         }
