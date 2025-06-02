@@ -4768,8 +4768,8 @@ try {
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
-| inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
+| enterKeyType | number   | 是   | 否   | 编辑框的功能属性，详见[常量中的功能键定义](#常量)。 |
+| inputPattern | number   | 是   | 否   | 编辑框的文本属性，详见[常量中的编译框定义](#常量)。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。<br/>- 值为true，表示支持。<br/>- 值为false，表示不支持。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 | immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。 |
