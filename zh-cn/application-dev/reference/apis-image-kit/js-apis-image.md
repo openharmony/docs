@@ -4899,8 +4899,9 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import fs from '@ohos.file.fs';
 
-let context = getContext();
-if (context == null) {
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext();
+if (context == undefined) {
   return;
 }
 let resoutceManager = context.resourceManager;
