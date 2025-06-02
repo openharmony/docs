@@ -115,7 +115,7 @@ function __internal_tostring(s: any): string {
 
 现在想象一下，如果函数`notify`是某些复杂的负载场景中的一部分，而不仅仅是打印日志，那么在运行时执行像`__internal_tostring`的类型检查将会是一个性能问题。
 
-如果可以保证在运行时，只有`string`类型的值（不会是其他值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。对于这个场景，这样的机制叫做“null-safety”，也就是说，保证`null`不是一个合法的`string`类型变量的值。如果ArkTS有了这个特性，类型不符合的代码将无法编译。
+如果可以保证在运行时，只有`string`类型的值（不会是其他值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。对于这个场景，这样的机制叫做“null-safety”，也就是说，保证`null`或`undefined`不是一个合法的`string`类型变量的值。如果ArkTS有了这个特性，类型不符合的代码将无法编译。
 
 ```typescript
 function notify(who: string, what: string) {
@@ -170,6 +170,20 @@ foo(c)  //  运行时异常：v is undefined
 2. 禁止使用`eval()`
 3. 禁止使用`with() {}`
 4. 禁止以字符串为代码创建函数
+5. 禁止循环依赖
+
+    循环依赖示例:
+    ```typescript
+    // bar.ets
+    import {v} from './foo' // bar.ets依赖foo.ets
+    export let u = 0;
+
+    // foo.ets
+    import {u} from './bar' // foo.ets同时又依赖bar.ets
+    export let v = 0;
+
+    //应用加载失败
+    ```
 
 **与标准TS/JS的差异**
 

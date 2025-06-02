@@ -154,6 +154,11 @@ let instance: Class <void>
 #### `Object`类型
 
 `Object`类型是所有引用类型的基类型。任何值，包括基本类型的值，都可以直接被赋给`Object`类型的变量（基本类型值会被自动装箱）。`Object`类型用于表示除基本类型外的类型。
+```typescript
+let o1: Object = 'Alice';
+let o2: Object = ['a','b'];
+let o3: Object = 1;
+```
 
 #### `array`类型
 
@@ -200,12 +205,14 @@ class Frog {
   name: string = 'frog';
   // ...
 }
-type Animal = Cat | Dog | Frog | number;
+type Animal = Cat | Dog | Frog | number | string | null | undefined;
 // Cat、Dog、Frog是一些类型（类或接口）
 
 let animal: Animal = new Cat();
 animal = new Frog();
 animal = 42;
+animal = 'dog';
+animal = undefined;
 // 可以将类型为联合类型的变量赋值为任何组成类型的有效值
 ```
 
@@ -244,7 +251,9 @@ type NullableObject = Object | null;
 
 赋值运算符`=`，使用方式如`x=y`。
 
-复合赋值运算符将赋值与运算符组合在一起，其中`x op = y`等于`x = x op y`。
+复合赋值运算符将赋值与运算符组合在一起，例如：`a += b` 等价于 `a = a + b`，
+
+其中的 `+=` 即为复合赋值运算符
 
 复合赋值运算符包括：`+=`、`-=`、`*=`、`/=`、`%=`、`<<=`、`>>=`、`>>>=`、`&=`、`|=`、`^=`。
 
@@ -252,8 +261,8 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
-| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的，如string和number），则返回true。 |
 | `==`     | 如果两个操作数相等，则返回true。 |
 | `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
@@ -409,11 +418,11 @@ for (let i = 0; i < 10; i += 2) {
 
 #### `For-of`语句
 
-使用`for-of`语句可遍历数组或字符串。示例如下：
+使用`for-of`语句可遍历数组、Set、Map、字符串等可迭代的类型。示例如下：
 
 ```typescript
-for (forVar of expression) {
-  statements
+for (forVar of IterableExpression) {
+  // process forVar
 }
 ```
 
@@ -421,7 +430,7 @@ for (forVar of expression) {
 
 ```typescript
 for (let ch of 'a string object') {
-  /* process ch */
+  console.log(ch);
 }
 ```
 
@@ -567,6 +576,7 @@ function processData(s: string) {
     // 异常处理
     // ...
   } finally {
+    // 无论是否发生异常都会执行的代码
     if (error != null) {
       console.log(`Error caught: input='${s}', message='${error.message}'`);
     }
@@ -621,7 +631,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，用于处理不定数量的参数输入。
+函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，类型为任意指定类型，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -662,6 +672,17 @@ function hi2(): void { console.log('hi'); }
 
 如果函数中定义的变量与外部作用域中已有实例同名，则函数内的局部变量定义将覆盖外部定义。
 
+```typescript
+let outerVar = 'I am outer ';
+
+function func() {
+    let outerVar = 'I am inside';
+    console.log(outerVar); // 输出: I am inside
+}
+
+func();
+```
+
 ### 函数调用
 
 调用函数以执行其函数体，实参值会赋值给函数的形参。
@@ -679,7 +700,7 @@ function join(x: string, y: string): string {
 
 ```typescript
 let x = join('hello', 'world');
-console.log(x);
+console.log(x); // 输出: hello world
 ```
 
 ### 函数类型
@@ -813,9 +834,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-p1.name;
+p1.name; // Alice
 let p2 = new Person('Bob', 28);
-p2.getName();
+p2.getName(); // Bob
 ```
 
 #### 静态字段
@@ -1266,7 +1287,7 @@ let map: Record<string, number> = {
 map['John']; // 25
 ```
 
-类型`K`可以是字符串类型或数值类型，而`V`可以是任何类型。
+类型`K`可以是字符串类型或数值类型(不包括bigint)，而`V`可以是任何类型。
 
 ```typescript
 interface PersonInfo {
@@ -1311,6 +1332,8 @@ class Derived extends Base {
     super(p); 
   }
 }
+
+let x = new Derived(666);
 ```
 
 #### 抽象方法
@@ -1433,9 +1456,50 @@ interface ExtendedStyle extends Style {
 抽象类与接口都无法实例化。抽象类是类的抽象，抽象类用来捕捉子类的通用特性，接口是行为的抽象。在ArkTS中抽象类与接口的区别如下：
 
 * 一个类只能继承一个抽象类，而一个类可以实现一个或多个接口；
+```typescript
+// Bird类继承Animal抽象类并实现多个接口CanFly、CanSwim
+class Bird extends Animal implements CanFly, CanSwim {
+  // ...  
+}
+```
 * 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+```typescript
+interface MyInterface {
+    // 错误：接口中不能包含静态成员
+    static staticMethod(): void; 
+
+    // 错误：接口中不能包含静态代码块
+    static { console.log("static") }; 
+} 
+
+abstract class MyAbstractClass {
+    // 正确：抽象类可以有静态方法
+    static staticMethod(): void { console.log("static");}
+
+    // 正确：抽象类可以有静态代码块
+    static { console.log("static initialization block");}
+}
+```
 * 抽象类里面可以有方法的实现，但是接口完全都是抽象的，不存在方法的实现；
+```typescript
+abstract class MyAbstractClass {
+   // 正确：抽象类里面可以有方法的实现
+   func(): void { console.log("func");}
+}
+interface MyInterface {
+   // 错误：接口完全都是抽象的，不存在方法的实现
+   func(): void { console.log("func");}
+}
+```
 * 抽象类可以有构造函数，而接口不能有构造函数。
+```typescript
+abstract class MyAbstractClass {
+  constructor(){}  // 正确：抽象类可以有构造函数
+}
+interface MyInterface {
+  constructor(); // 错误：接口中不能有构造函数
+}
+```
 
 ## 泛型类型和函数
 
@@ -1510,12 +1574,12 @@ function last<T>(x: T[]): T {
 
 ```typescript
 // 显式设置的类型实参
-last<string>(['aa', 'bb']);
-last<number>([1, 2, 3]);
+let res: string = last<string>(['aa', 'bb']);
+let res: number = last<number>([1, 2, 3]);
 
 // 隐式设置的类型实参
 // 编译器根据调用参数的类型来确定类型实参
-last([1, 2, 3]);
+let res: number = last([1, 2, 3]);
 ```
 
 ### 泛型默认值
