@@ -4904,7 +4904,7 @@ let resoutceManager = context.resourceManager;
 if (resoutceManager == null) {
   return;
 }
-let fd = resourceManager.getRawFdSync("example.jpg");
+let fd = resoutceManager.getRawFdSync("example.jpg");
 
 const imageSourceApi = image.createImageSource(fd);
 console.info("getImagePropertySync");
