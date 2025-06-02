@@ -422,14 +422,58 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 })
 ```
 
-## 使用对应网络解析域名，获取所有IP
+## 判断默认网络是否可用
+
+使用网络前，例如打开一个应用时，需要检查当前连接的网络是否可用。如果可用，则正常进行网络请求；如果不可用，则需要提示用户网络不可用。判断当前连接的网络是否可用的步骤如下：
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@kit.NetworkKit中导入connection命名空间。
 
-3. 调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
+3. 调用[getDefaultNetSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetdefaultnetsync9)方法，获取当前默认网络的netHandle。
+
+4. 调用[getNetCapabilitiesSync](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetnetcapabilitiessync10)方法，获取NetHandle对应网络的能力信息。
+   
+5. 根据返回结果，判断networkCap数组中的值是否存在，如果有，则表示网络可用。
+
+```ts
+// 引入包名。
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+judgeHasNet(): boolean {
+  try {
+    let netHandle = connection.getDefaultNetSync();
+    if (!netHandle || netHandle.netId === 0) {
+      return fasle;
+    }
+    let netCapabilities = connection.getNetCapabilitiesSync(netHandle);
+    let cap = netCapabilities.networkCap || [];
+    if (!cap.includes(connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY) && cap.includes(connection.NetCap.NET_CAPABILITY_VALIDATED)) {
+      // connection.NetCap.NET_CAPABILITY_CHECKING_CONNECTIVITY表示没有在进行连通性判断的过程，connection.NetCap.NET_CAPABILITY_VALIDATED表示网络连通性校验通过
+      return true;
+    } else {
+      return fasle;
+    }
+  } catch (e) {
+    let err = e as BusinessError;
+    console.error("judgeHasNet" + JSON.stringify(data));
+  }
+  return fasle;
+}
+
+
+```
+
+## 使用对应网络解析域名，获取所有IP
+
+1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO
+此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
+
+1. 从@kit.NetworkKit中导入connection命名空间。
+
+2. 调用[getAddressesByName](../reference/apis-network-kit/js-apis-net-connection.md#connectiongetaddressesbyname)方法，使用默认网络解析主机名以获取所有IP地址。
 
 ```ts
 // 引入包名。

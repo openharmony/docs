@@ -22,11 +22,10 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 用于手动启动和停止连接的控件。
 - 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
 
-## 接口说明
 
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+## 开发步骤
 
-## 创建VPN Extension Ability
+### 创建VPN Extension Ability
 
 如果想使您的应用支持VPN能力，首先您需要创建一个继承于VpnExtensionAbility的extensionAbilities。
 
@@ -55,7 +54,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 处理虚拟网卡的数据，如：读写操作。
 
 
-## 启动VPN Extension Ability
+### 启动VPN Extension Ability
 
 当VPN应用启动VPN连接时，需要调用startVpnExtensionAbility接口，携带需要启动的VpnExtensionAbility信息，其中bundleName需要与您的VPN应用bundleName一致，abilityName为您在前面创建的VpnExtensionAbility名。您可参考如下示例：
 
@@ -96,7 +95,7 @@ struct Index {
 
 
 
-## 停止VPN Extension Ability
+### 停止VPN Extension Ability
 
 当VPN应用需要停止VPN连接时，需要调用stopVpnExtensionAbility接口，携带需要停止的VpnExtensionAbility信息。系统会对调用方做权限校验，stopVpnExtensionAbility的调用方应用必须获取了用户的VPN信任授权，且只允许停止应用自己启动的VpnExtensionAbility，所以接口传入的参数中bundleName需要与您的VPN应用bundleName一致，abilityName为指定停止VPN的VpnExtensionAbility名。
 

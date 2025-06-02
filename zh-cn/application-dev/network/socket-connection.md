@@ -21,77 +21,13 @@ Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/Multicast/TL
 
 应用通过Socket进行数据传输，支持TCP/UDP/Multicast/TLS协议。主要场景有：
 
-- 应用通过TCP/UDP Socket进行数据传输
-- 应用通过TCP Socket Server进行数据传输
-- 应用通过Multicast Socket进行数据传输
-- 应用通过Local Socket进行数据传输
-- 应用通过Local Socket Server进行数据传输
-- 应用通过TLS Socket进行加密数据传输
-- 应用通过TLS Socket Server进行加密数据传输
-
-## 接口说明
-
-完整的API说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
-
-Socket连接主要由socket模块提供。具体接口说明如下表。
-
-| 接口名                             | 描述                                                                          |
-| ---------------------------------- | ------------------------------------------------------------------------------ |
-| constructUDPSocketInstance()       | 创建一个 UDPSocket 对象。                                                      |
-| constructTCPSocketInstance()       | 创建一个 TCPSocket 对象。                                                      |
-| constructTCPSocketServerInstance() | 创建一个 TCPSocketServer 对象。                                                |
-| constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                                                |
-| constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
-| constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
-| listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）。             |
-| bind()                             | 绑定 IP 地址和端口，或是绑定LocalSocket路径。                                        |
-| send()                             | 发送数据。                                                                     |
-| close()                            | 关闭连接。                                                                     |
-| getState()                         | 获取 Socket 状态。                                                             |
-| connect()                          | 连接到指定的 IP 地址和端口，或是连接到LocalSocket（仅 TCP/LocalSocket 支持）。          |
-| getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）。                   |
-| setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
-| getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
-| addMembership()                    | 加入到指定的多播组 IP 中 (仅 Multicast 支持)。                                 |
-| dropMembership()                   | 从指定的多播组 IP 中退出 (仅 Multicast 支持)。                                 |
-| setMulticastTTL()                  | 设置数据传输跳数 TTL (仅 Multicast 支持)。                                    |
-| getMulticastTTL()                  | 获取数据传输跳数 TTL (仅 Multicast 支持)。                                    |
-| setLoopbackMode()                  | 设置回环模式，允许主机在本地循环接收自己发送的多播数据包 (仅 Multicast 支持)。       |
-| getLoopbackMode()                  | 获取回环模式开启或关闭的状态 (仅 Multicast 支持)。                               |
-| on(type:&nbsp;'message')           | 订阅 Socket 连接的接收消息事件。                                               |
-| off(type:&nbsp;'message')          | 取消订阅 Socket 连接的接收消息事件。                                           |
-| on(type:&nbsp;'close')             | 订阅 Socket 连接的关闭事件。                                                   |
-| off(type:&nbsp;'close')            | 取消订阅 Socket 连接的关闭事件。                                               |
-| on(type:&nbsp;'error')             | 订阅 Socket 连接的 Error 事件。                                                |
-| off(type:&nbsp;'error')            | 取消订阅 Socket 连接的 Error 事件。                                            |
-| on(type:&nbsp;'listening')         | 订阅 UDPSocket 连接的数据包消息事件（仅 UDP 支持）。                           |
-| off(type:&nbsp;'listening')        | 取消订阅 UDPSocket 连接的数据包消息事件（仅 UDP 支持）。                       |
-| on(type:&nbsp;'connect')           | 订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                            |
-| off(type:&nbsp;'connect')          | 取消订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                         |
-
-TLS Socket连接主要由socket模块提供。具体接口说明如下表。
-
-| 接口名                       | 功能描述                                                   |
-| ---------------------------- | ---------------------------------------------------------- |
-| constructTLSSocketInstance() | 创建一个 TLSSocket 对象。                                  |
-| bind()                       | 绑定 IP 地址和端口号。                                     |
-| close(type:&nbsp;'error')    | 关闭连接。                                                 |
-| connect()                    | 连接到指定的 IP 地址和端口。                               |
-| getCertificate()             | 返回表示本地证书的对象。                                   |
-| getCipherSuite()             | 返回包含协商的密码套件信息的列表。                         |
-| getProtocol()                | 返回包含当前连接协商的 SSL/TLS 协议版本的字符串。          |
-| getRemoteAddress()           | 获取 TLSSocket 连接的对端地址。                            |
-| getRemoteCertificate()       | 返回表示对等证书的对象。                                   |
-| getSignatureAlgorithms()     | 在服务器和客户端之间共享的签名算法列表，按优先级降序排列。 |
-| getState()                   | 获取 TLSSocket 连接的状态。                                |
-| off(type:&nbsp;'close')      | 取消订阅 TLSSocket 连接的关闭事件。                        |
-| off(type:&nbsp;'error')      | 取消订阅 TLSSocket 连接的 Error 事件。                     |
-| off(type:&nbsp;'message')    | 取消订阅 TLSSocket 连接的接收消息事件。                    |
-| on(type:&nbsp;'close')       | 订阅 TLSSocket 连接的关闭事件。                            |
-| on(type:&nbsp;'error')       | 订阅 TLSSocket 连接的 Error 事件。                         |
-| on(type:&nbsp;'message')     | 订阅 TLSSocket 连接的接收消息事件。                        |
-| send()                       | 发送数据。                                                 |
-| setExtraOptions()            | 设置 TLSSocket 连接的其他属性。                            |
+- 在TCP/UDP传输的客户端（UDP本身并没有客户端和服务器端的明确区分，此处描述UDP传输的客户端是指主动向服务器发送数据的一方），应用通过TCP/UDP Socket进行数据传输
+- 在TCP传输的服务器端，应用通过TCP Socket Server进行数据传输
+- 多播通信场景，应用通过Multicast Socket进行数据传输
+- 同一台主机上不同进程之间传输的客户端，应用通过Local Socket进行数据传输
+- 同一台主机上不同进程之间传输的服务器端，应用通过Local Socket Server进行数据传输
+- 数据加密传输时，客户端侧通过TLS Socket进行加密数据传输
+- 数据加密传输时，服务器侧通过TLS Socket Server进行加密数据传输
 
 ## 应用TCP/UDP协议进行通信
 
