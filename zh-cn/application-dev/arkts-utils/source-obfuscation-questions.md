@@ -4,7 +4,7 @@
 
 ### 排查功能异常步骤
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
-2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)、[-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)、[-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)、[-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。  
+2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)、[-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)、[-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation)、[-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，想要了解这四项选项的具体细节，请阅读对应选项的完整描述。  
     1. [-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation)为顶层作用域名称混淆开关。
 
     2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation)为属性混淆开关，配置白名单的主要场景包括网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆的场景，需要使用[-keep-property-name](source-obfuscation.md#-keep-property-name)来保留指定的属性名称。
