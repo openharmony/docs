@@ -93,7 +93,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.info("connect success")
   } else {
-    console.error("connect fail, err:" + JSON.stringify(err))
+    console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -158,7 +158,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.info("connect success")
   } else {
-    console.error("connect fail, err:" + JSON.stringify(err))
+    console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -266,7 +266,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.info("connect success")
     } else {
-      console.error("connect fail, err:" + JSON.stringify(err))
+      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
@@ -275,7 +275,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.info("send success")
     } else {
-      console.error("send fail, err:" + JSON.stringify(err))
+      console.error(`send fail. Code: ${err.code}, message: ${err.message}`)
     }
   });
 });
@@ -334,7 +334,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.info("connect success")
     } else {
-      console.error("connect fail, err:" + JSON.stringify(err))
+      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 
@@ -344,7 +344,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.info("send success")
   }).catch((err:string) => {
-    console.error("send fail, error:" + JSON.stringify(err))
+    console.error(`send fail. Code: ${err.code}, message: ${err.message}`)
   });
 });
 ```
@@ -391,7 +391,7 @@ ws.close((err: BusinessError) => {
   if (!err) {
     console.info("close success")
   } else {
-    console.error("close fail, err is " + JSON.stringify(err))
+    console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -441,7 +441,7 @@ ws.close(options, (err: BusinessError) => {
     if (!err) {
         console.info("close success")
     } else {
-        console.error("close fail, err is " + JSON.stringify(err))
+        console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 ```
@@ -494,7 +494,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.info("close success")
 }).catch((err:string) => {
-    console.error("close fail, err is " + JSON.stringify(err))
+    console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
 });
 ```
 
@@ -715,7 +715,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.error("on error, error:" + JSON.stringify(err))
+  console.error(`on error. Code: ${err.code}, message: ${err.message}`)
 });
 ```
 
