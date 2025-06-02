@@ -627,10 +627,10 @@ netFirewall.addNetFirewallRule(dnsRule).then((result: number) => {
 | ----------- | -------|----|------------------------------------------------|
 | type        | number | 是 | 1：IP地址或子网，当使用单个IP时，掩码为32。 <br />2：IP段。  <br /> |
 | family      | number | 否 | 1：表示family设置为IPv4。<br />2：表示family设置为IPv6。  <br />默认IPv4，其他当前不支持。      |
-| address     | string | 否 | IP地址：当类型等于1时需要设置，并且仅在类型等于1时有效，否则将被忽略。                   |
-| mask        | number | 否 | IPv4：子网掩码。<br />IPv6：前缀。<br />当类型等于1时需要设置，并且仅在类型等于1时有效，否则将被忽略。       |
-| startIp     | string | 否 | 起始IP：当类型等于2时需要设置，并且仅在类型等于2时有效，否则将被忽略。                         |
-| endIp       | string | 否 | 结束IP：当类型等于2时需要设置，并且仅在类型等于2时有效，否则将被忽略。                        |
+| address     | string | 否 | IP地址。当type等于1时需要设置，并且仅在type等于1时有效，否则将被忽略。                   |
+| mask        | number | 否 | IPv4：子网掩码。<br />IPv6：前缀。<br />当type等于1时需要设置，并且仅在type等于1时有效，否则将被忽略。       |
+| startIp     | string | 否 | 起始IP。当type等于2时需要设置，并且仅在type等于2时有效，否则将被忽略。                         |
+| endIp       | string | 否 | 结束IP。当type等于2时需要设置，并且仅在type等于2时有效，否则将被忽略。                        |
 
 ## NetFirewallPortParams
 
