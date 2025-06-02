@@ -1,12 +1,13 @@
 # 方舟字节码文件格式
-方舟字节码文件是ArkTS/TS/JS编译后的二进制产物。本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入了解构成字节码的各个部分，从而指导开发者进行字节码的分析和修改工作。
+本文详细介绍了方舟字节码文件的格式，旨在帮助开发者深入了解构成字节码文件的各个部分，从而指导开发者进行字节码的分析和修改工作。
 
 
 ## 约束
-本文仅适用于版本号为12.0.6.0的方舟字节码（版本号为方舟编译器内部保留字段，开发者无需关注）。
+本文内容基于方舟字节码版本号12.0.6.0（版本号为方舟编译器内部保留字段，开发者无需关注，仅供准确对照之用）。
 
 
 ## 字节码文件数据类型
+方舟字节码使用了多种基础和复合数据类型，以下为常见类型的定义和说明。
 
 ### 整型
 
@@ -26,7 +27,7 @@
 
 | **名称** | **格式** | **说明**                                               |
 | -------------- | -------------- | ------------------------------------------------------------ |
-| `utf16_length`   | `uleb128`  | 值为`len << 1 \| is_ascii`，其中`len`是字符串在UTF-16编码中的大小，`is_ascii`标记该字符串是否仅包含ASCII字符，可能的值是0或1。 |
+| `utf16_length`   | `uleb128`  | 值为`len << 1 \| is_ascii`，其中`len`是字符串在UTF-16编码中的大小，`is_ascii`标记该字符串是否仅包含ASCII字符。 |
 | `data`           | `uint8_t[]` | 以'\0'结尾的MUTF-8编码字符序列。  |
 
 
@@ -46,7 +47,7 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 
 
 ## 字节码文件布局
-字节码文件起始于[Header](#header)结构。文件中的所有结构均可以从`Header`出发，直接或间接地访问到。字节码文件中结构的引用方式包括偏移量和索引。偏移量是一个32位长度的值，表示当前结构的起始位置在字节码文件中相对于文件头的距离，从0开始计算。索引是一个16位长度的值，表示当前结构在索引区域中的位置，此机制将在[IndexSection](#indexsection)章节描述。
+字节码文件起始于[Header](#header)结构。文件中的所有结构均可以从`Header`出发，直接或间接地访问到。字节码文件中结构的引用方式包括偏移量和索引。偏移量是一个32位长度的值，表示当前结构的起始位置在字节码文件中相对于文件头的偏移，从0开始计算。索引是一个16位长度的值，表示当前结构在索引区域中的位置，此机制将在[IndexSection](#indexsection)章节描述。
 
 字节码文件中所有的多字节值均采用小端字节序。
 
@@ -62,16 +63,16 @@ TypeDescriptor是类（[Class](#class)）名称的格式，由`'L'`、`'_'`、`C
 | `checksum`          | `uint32_t`       | 字节码文件除文件头魔数和本校验字段之外的内容的adler32校验和。 |
 | `version`           | `uint8_t[4]`     | 字节码文件的版本号（[Version](#version)）。 |
 | `file_size`         | `uint32_t`       | 字节码文件的大小，以字节为单位。                             |
-| `foreign_off`       | `uint32_t`       | 一个偏移量，指向外部区域。外部区域中仅包含类型为[ForeignClass](#foreignclass)或[ForeignMethod](#foreignmethod)的元素。`foreign_off`指向该区域的第一个元素。 |
+| `foreign_off`       | `uint32_t`       | 偏移量，指向外部区域。外部区域中仅包含类型为[ForeignClass](#foreignclass)或[ForeignMethod](#foreignmethod)的元素。`foreign_off`指向该区域的第一个元素。 |
 | `foreign_size`      | `uint32_t`       | 外部区域的大小，以字节为单位。                               |
 | `num_classes`       | `uint32_t`       | [ClassIndex](#classindex)结构中元素的数量，即文件中定义的[Class](#class)的数量。 |
-| `class_idx_off`     | `uint32_t`       | 一个偏移量，指向[ClassIndex](#classindex)。 |
+| `class_idx_off`     | `uint32_t`       | 偏移量，指向[ClassIndex](#classindex)。 |
 | `num_lnps`          | `uint32_t`       | [LineNumberProgramIndex](#linenumberprogramindex)结构中元素的数量，即文件中定义的[Line number program](#line-number-program)的数量。 |
-| `lnp_idx_off`       | `uint32_t`       | 一个偏移量，指向[LineNumberProgramIndex](#linenumberprogramindex)。 |
+| `lnp_idx_off`       | `uint32_t`       | 偏移量，指向[LineNumberProgramIndex](#linenumberprogramindex)。 |
 | `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
 | `reserved`          | `uint32_t`       | 方舟字节码文件内部使用的保留字段。                           |
 | `num_index_regions` | `uint32_t`       | [IndexSection](#indexsection)结构中元素的数量，即文件中[IndexHeader](#indexheader)的数量。 |
-| `index_section_off` | `uint32_t`       | 一个偏移量，指向[IndexSection](#indexsection)。 |
+| `index_section_off` | `uint32_t`       | 偏移量，指向[IndexSection](#indexsection)。 |
 
 
 ### Version
