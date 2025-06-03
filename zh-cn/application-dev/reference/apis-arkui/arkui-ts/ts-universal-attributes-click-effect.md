@@ -28,8 +28,8 @@ clickEffect(value: ClickEffect | null)
 
 | 名称  | 参数类型                                                    | 必填 | 描述                                                         |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | 是   | 设置当前组件的点击回弹效果。<br/>**说明：**<br/>level等于undefined或者null时， ClickEffect采用ClickEffectLevel.LIGHT对应的回弹效果，缩放比参照scale说明。 |
-| scale | number                                                      | 否   | 回弹缩放比例，支持在设置ClickEffectLevel的基础上微调回弹缩放比例。<br/>**说明：**<br/>当level等于ClickEffectLevel.LIGHT时，默认值：0.90 <br/>当level等于ClickEffectLevel.MIDDLE或者ClickEffectLevel.HEAVY时，默认值：0.95 <br/>当level等于undefined或者null时，level为ClickEffectLevel.LIGHT，默认值：0.90 <br/>当scale等于undefined或者null时，使用当前level对应的默认缩放比例。 |
+| level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | 是   | 设置当前组件的点击回弹效果。<br/>**说明：**<br/>当level为undefined或者null时， ClickEffect采用ClickEffectLevel.LIGHT对应的回弹效果，缩放比参照scale说明。 |
+| scale | number                                                      | 否   | 回弹缩放比例，支持在设置ClickEffectLevel的基础上微调。<br/>**说明：**<br/>当level为ClickEffectLevel.LIGHT时，默认值：0.90 <br/>当level为ClickEffectLevel.MIDDLE或者ClickEffectLevel.HEAVY时，默认值：0.95 <br/>当level为undefined或者null时，level为ClickEffectLevel.LIGHT，默认值：0.90 <br/>当scale为undefined或者null时，使用当前level对应的默认缩放比例。 |
 
 ## 示例
 

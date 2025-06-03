@@ -86,6 +86,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -148,6 +150,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -207,6 +211,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | Internal system error.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -273,6 +279,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -326,6 +334,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example() {
@@ -384,6 +394,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -435,6 +447,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -497,6 +511,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   // Obtain the system album VIDEO, which is preset by default.
@@ -556,6 +572,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -610,6 +628,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 13900020     | Invalid argument.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -669,6 +689,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 13900020     | Invalid argument.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -734,6 +756,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -803,6 +827,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -896,6 +922,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('releaseDemo');
@@ -935,6 +963,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example() {
@@ -985,6 +1015,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  Internal system error |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1048,6 +1080,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  Internal system error |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -1119,6 +1153,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  Internal system error |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1236,6 +1272,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1288,6 +1326,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1347,6 +1387,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1409,6 +1451,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
@@ -1466,6 +1510,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
@@ -1521,6 +1567,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1586,6 +1634,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -1637,6 +1687,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1690,6 +1742,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1751,6 +1805,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
@@ -1808,6 +1864,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error. It is recommended to retry and check the logs.Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2030,6 +2088,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2072,6 +2132,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2112,6 +2174,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2158,6 +2222,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2206,6 +2272,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2249,6 +2317,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2301,6 +2371,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2345,6 +2417,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2393,6 +2467,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2435,6 +2511,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2489,6 +2567,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2530,6 +2610,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2577,6 +2659,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2643,6 +2727,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2704,6 +2790,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2758,6 +2846,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -2809,6 +2899,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2865,6 +2957,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -2933,6 +3027,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2993,6 +3089,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3061,6 +3159,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -3121,6 +3221,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3174,6 +3276,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('createImageAssetRequestDemo');
@@ -3223,6 +3327,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011   | System inner fail.        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example() {
@@ -3274,6 +3380,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example() {
@@ -3330,6 +3438,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3388,6 +3498,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3438,6 +3550,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('getAssetDemo');
@@ -3485,6 +3599,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3541,6 +3657,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -3593,6 +3711,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('addResourceByFileUriDemo');
@@ -3642,6 +3762,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('addResourceByArrayBufferDemo');
@@ -3677,6 +3799,8 @@ For details about the error codes, see [File Management Error Codes](../apis-cor
 | 14000016 |  Operation Not Support.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3717,6 +3841,8 @@ For details about the error codes, see [File Management Error Codes](../apis-cor
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3754,6 +3880,8 @@ For details about the error codes, see [File Management Error Codes](../apis-cor
 | 14000016 |  Operation Not Support.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3793,6 +3921,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  Internal system error.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -3848,6 +3978,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -3890,6 +4022,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 async function example() {
@@ -3938,6 +4072,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 async function example() {
   console.info('setAlbumNameDemo');
@@ -3980,6 +4116,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016 |  Operation Not Support.     |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4032,6 +4170,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000016 |  Operation Not Support.     |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4104,6 +4244,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4180,6 +4322,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
@@ -4252,6 +4396,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4331,6 +4477,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011       | System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4498,6 +4646,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4606,7 +4756,6 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
 
 Called when the requested image is ready. If an error occurs, **data** returned by the callback is **undefined**.
-**T** supports the Picture data type.
 
 Information returned by **map**:
 | Map Key | **Description**|
@@ -4668,6 +4817,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail.         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4744,6 +4895,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -4829,6 +4982,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -4910,6 +5065,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 |  System inner fail         |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -5325,7 +5482,7 @@ Defines the basic options for selecting media assets from Gallery.
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType<sup>10+</sup>    | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected.<br>Maximum value: **500**<br>Default value: **50**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected. The maximum value is **500**, and the default value is **50**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.<br>The value **true** means photo taking is supported; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -5358,7 +5515,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image. The value **true** means that the selected media asset is the original image, and **false** means the opposite. The default value is **false**.|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image. |
 
 
 ## DeliveryMode<sup>11+</sup>

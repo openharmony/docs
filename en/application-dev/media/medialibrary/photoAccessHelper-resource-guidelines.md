@@ -6,7 +6,7 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 >
 > Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
 >
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [Before You Start](photoAccessHelper-preparation.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -14,7 +14,7 @@ To ensure application running efficiency, most PhotoAccessHelper APIs are asynch
 
 You can obtain media assets based on the specified conditions, such as the media type, date, or album name.
 
-Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) with the [FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions) object to specify the search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
+Use [PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1) with the [FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions) object to specify the search criteria. Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained, check whether the media assets exist in the database.
 
 To obtain the object at the specified position (for example, the first one, the last one, or the one with the specified index) in the result set, use [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult).
 
@@ -54,6 +54,8 @@ async function example() {
 
 ## Obtaining an Image or Video Thumbnail
 
+To display images and videos in Gallery or to preview edits, applications must obtain image and video thumbnails.
+
 The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2)  with the thumbnail size specified to obtain the image or video thumbnail.
 
 **Prerequisites**
@@ -61,10 +63,6 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO permission. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 - The [dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md) module is imported.
-
-### Obtaining the Thumbnail of an Image
-
-Your application may need to obtain the thumbnail of an image or video for preview purposes.
 
 For example, obtain the file descriptor (FD) of an image, and decode the image into a PixelMap for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
 

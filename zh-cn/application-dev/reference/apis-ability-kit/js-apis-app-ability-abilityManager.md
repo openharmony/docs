@@ -12,8 +12,7 @@ AbilityManager模块提供获取Ability相关信息和运行状态信息的能�
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-
-## AbilityState
+## AbilityState<sup>14+</sup>
 
 Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 

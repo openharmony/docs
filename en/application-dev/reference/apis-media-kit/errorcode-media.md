@@ -309,7 +309,7 @@ The SSL connection fails.
 
 **Error Message**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **Description**
 

@@ -19,7 +19,7 @@ FullScreenLaunchComponent允许开发者以全屏方式拉起原子化服务，�
 
 FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。需要拉起原子化服务时，拉起方向AMS查询拉起方是否授权使用方可以嵌入式运行原子化服务。已授权时，使用方全屏嵌入式运行原子化服务；未授权时，使用方跳出式拉起原子化服务。
 
-全屏嵌入式运行原子化服务是指，通过UIExtensionComponent的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容。能够实现组件式的交互体验。
+<!--Del-->全屏嵌入式运行原子化服务是指，通过[UIExtension](./arkts-ui-extension-components.md)封装的组件方式嵌入到使用方的组件树中，拉起EmbeddableUIAbility，展示提供方的应用内容，以实现组件式的交互体验。<!--DelEnd-->
 
 跳出式运行原子化服务是指，非组件化的方式拉起EmbeddableUIAbility，交互体验接近独立窗口。
 
@@ -30,8 +30,8 @@ FullScreenLaunchComponent提供的一种全屏启动原子化服务的能力。�
 
 ### 组件基本能力
 
-- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务EmbeddableUIAbility
-- 当被拉起方未授权使用方可以嵌入式运行原子化服务时，使用方跳出式拉起原子化服务EmbeddableUIAbility
+- 当被拉起方授权使用方可以嵌入式运行原子化服务时，使用方全屏嵌入式运行原子化服务
+- 当被拉起方未授权使用方可以嵌入式运行原子化服务时，使用方跳出式拉起原子化服务
 - 提供图标占位自定义组件功能，控件展示图标占位，点击图标后拉起原子化服务
 
 ### EmbeddableUIAbility进程应用可用能力范围
@@ -101,7 +101,7 @@ Native API接口提供能力，在FullScreenLaunchComponent场景下也需要考
 
 ### 安全能力约束
 
-FullScreenLaunchComponent组件（使用方）可以访问调用集成了EmbeddableUIAbility的应用（提供方），提供了一种通用应用共享能力。FullScreenLaunchComponent能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护。
+FullScreenLaunchComponent组件（使用方）可以访问调用集成了EmbeddableUIAbility的应用（提供方），提供了一种通用应用共享能力。FullScreenLaunchComponent能力无法独立提供安全保障机制，作为提供服务的应用（提供方）需要结合使用其他ArkUI的能力进行安全保护，以保护自己不被使用方应用攻击。
 
 由于FullScreenLaunchComponent能力（包含基于FullScreenLaunchComponent衍生的相关能力）机制的灵活性，如果提供方应用存在安全方面的诉求，无法在现有FullScreenLaunchComponent的场景下解决的，建议优先使用其他方案。如选择继续采用FullScreenLaunchComponent能力，提供方应用以及使用方应用都需要承担一定的安全风险。
 
@@ -137,7 +137,7 @@ FullScreenLaunchComponent不支持通用事件，会将事件经过坐标转换�
 | 通用事件 | 拖拽事件（onDragXXX）      | 支持     | 异步                      | —                                                            |
 | 通用事件 | 按键事件（KeyEvent）       | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 | 通用事件 | 焦点事件（onFocus/onBlur） | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
-| 通用事件 | 鼠标事件（onHove/onMouse） | 支持     | 异步                      | —                                                            |
+| 通用事件 | 鼠标事件（onHover/onMouse） | 支持     | 异步                      | —                                                            |
 | 手势处理 | —                          | 支持     | 异步                      | —                                                            |
 | 无障碍   | —                          | 支持     | 同步                      | 支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 

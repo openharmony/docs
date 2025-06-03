@@ -14,7 +14,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 
 ## ColorMode
 
-表示深浅色模式的枚举，用于[Configuration.colorMode](../apis-ability-kit/js-apis-app-ability-configuration.md#属性)字段。开发者可以使用这些预置枚举设置或获取系统/应用的深浅色模式。
+表示深浅色模式的枚举，用于[Configuration.colorMode](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)字段。开发者可以使用这些预置枚举设置或获取系统/应用的深浅色模式。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -29,7 +29,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 
 ## Direction
 
-表示屏幕方向的枚举，用于[Configuration.direction](../apis-ability-kit/js-apis-app-ability-configuration.md#属性)字段。开发者可以使用这些预置枚举设置或获取系统/应用的显示方向。
+表示屏幕方向的枚举，用于[Configuration.direction](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)字段。开发者可以使用这些预置枚举设置或获取系统/应用的显示方向。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -44,7 +44,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 
 ## ScreenDensity
 
-表示屏幕像素密度的枚举，用于[Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#属性)字段。开发者可以使用这些预置枚举设置或获取屏幕的像素密度。
+表示屏幕像素密度的枚举，用于[Configuration.screenDensity](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)字段。开发者可以使用这些预置枚举设置或获取屏幕的像素密度。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
