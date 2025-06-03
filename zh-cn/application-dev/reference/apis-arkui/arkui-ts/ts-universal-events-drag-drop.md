@@ -163,6 +163,23 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
 
+## onDragSpringLoading<sup>20+</sup>
+
+onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration)
+
+绑定此事件的组件可作为具有悬停检测功能的拖拽目标。当拖拽对象对象悬停在目标上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的优先级。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名        | 类型                                      | 必填 | 说明                                           |
+| :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
+| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时取消监听。 |
+| configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
+
 ## DragItemInfo说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -983,3 +1000,86 @@ struct Index {
 }
 ```
 ![dragSourceAndIsRemote](figures/dragSourceAndIsRemote.png)
+
+### 示例6（拖拽支持悬停检测）
+
+通过onDragSpringLoading接口注册回调，并调用SpringLoadingContext接口获取上下文（当前状态、通知序列）。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State targetText: string = 'Drag Text';
+  @State state: number = 0;
+  @State currentNotifySequence: number = 0;
+  @State config: DragSpringLoadingConfiguration = {
+    stillTimeLimit: 200,
+    updateInterval: 300,
+    updateNotifyCount: 4,
+    updateToFinishInterval: 300
+  };
+
+  build() {
+    Row() {
+      Column() {
+        Text('start Drag')
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image($r('app.media.startIcon'))
+          .id("ori_image")
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('当前状态是： ' + this.state)
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+        Text('当前通知序列是： ' + this.currentNotifySequence)
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+      }
+      .width('45%')
+      .height('100%')
+
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+          .id("text")
+        Image("")
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 2 })
+          .onDragSpringLoading((context: SpringLoadingContext) => {
+            this.state = context.state;
+            this.currentNotifySequence = context.currentNotifySequence;
+          }, this.config)
+      }
+      .width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+      .onDragSpringLoading((context: SpringLoadingContext) => {
+        this.state = context.state;
+        this.currentNotifySequence = context.currentNotifySequence;
+      }, this.config)
+      .id("column")
+      .backgroundColor(Color.Grey)
+    }
+    .height('100%')
+  }
+}
+```
+![DragEvent_getDisplayId](figures/DragSpringLoading.gif)
