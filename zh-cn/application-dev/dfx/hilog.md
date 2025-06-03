@@ -525,14 +525,17 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ## hilog超限机制介绍
 
-日志打印量过大时，会触发hilog超限管控机制，触发后日志会被丢弃，debug应用默认关闭此机制。超限机制介绍如下：
+日志打印量过大时，会触发hilog超限管控机制。触发后，超出部分的日志会被丢弃，并且打印超限提示日志。debug应用默认关闭此机制。
+
+超限机制介绍如下：
 
 ### 应用日志
 
-进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；<!--RP1-->
+进程维度管控，打印到LOG_APP buffer里面的应用日志适配了pid超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；
+<!--RP1-->
 
 ```
-    04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
+04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
 <!--RP1End-->
 
@@ -542,10 +545,11 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### 系统日志
 
-domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；<!--RP2-->
+domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了domain超限机制，超过阈值后会被丢弃，并且有超限提示日志打印；
+<!--RP2-->
 
 ```
-    04-19 17:02:34.219  5394  5394 W C02C02/LOGLIMIT: 108 line(s) dropped in a second!
+04-19 17:02:34.219  5394  5394 W C02C02/LOGLIMIT: 108 line(s) dropped in a second!
 ```
 <!--RP2End-->
 
@@ -556,40 +560,45 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 
 ## 日志丢失处理方法
 
-目前日志丢失场景都有相应的维测信息，可以在hilog日志里面搜索对应关键字：LOGLIMIT|Slow reader missed|write socket failed。
+目前日志丢失场景都有相应的维测信息，可以在hilog日志里面搜索对应关键字查看日志具体丢失的原因。
+
+可以使用正则表达式来搜索包含这些关键字的日志行：LOGLIMIT|Slow reader missed|write socket failed。
 
 LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局的日志丢失；write socket failed是进程对应的日志丢失。
 
 
-**LOGLIMIT**<!--RP3-->
+**LOGLIMIT**
+
+含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。提示日志示例如下：
+
+<!--RP3-->
 ```
 04-19 17:02:34.219  5394  5394 W A00032/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
 ```
 <!--RP3End-->
 
-1. 含义：日志打印超限，该进程或者domainID被管控。属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。
 
-2. 规避方法：
-
-   可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
+处理方式：可参考[hilog超限机制介绍](#hilog超限机制介绍)，关闭对应管控机制。
 
 
 **Slow reader missed**
+
+
+含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。提示日志示例如下：
+
 ```
 04-19 17:02:34.219     0     0 I C00000/HiLog: ========Slow reader missed log lines: 137
 ```
 
-1. 含义：打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。
+原因：以下任意一种情况，均有可能导致全局日志丢失。
 
-2. 原因：以下任意一种情况，均有可能导致全局日志丢失。
+   - 日志级别设置为D。
 
-     - 日志级别设置为D。
+   - 关闭了超限管控。
 
-     - 关闭了超限管控。
+   - 有模块在循环打印日志。
 
-     - 有模块在循环打印日志。
-
-3. 规避方法：
+处理方式：
 
    - 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256K）。
 
@@ -597,18 +606,21 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
              hilog -G 16M
 
-   - 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印；
+   - 同时查看是否后台有领域频繁打印日志。若发现某个领域日志频繁打印，影响正常日志读取，可参考“"write socket failed”的规避方式，通过命令关闭其领域的日志打印。
 
 
-**write socket failed**<!--RP4-->
+**write socket failed**
+
+
+含义：日志写入socket失败，出现丢包问题。提示日志示例如下：
+
+<!--RP4-->
 ```
 04-19 17:02:34.219  5394  5394 W A00032/HiLog: write socket failed, 8 line(s) dropped!
 ```
 <!--RP4-->
-
-1. 含义：日志写入socket失败，出现丢包问题。
     
-2. 原因：以下任意一种情况，均有可能导致进程日志丢失。
+原因：以下任意一种情况，均有可能导致进程日志丢失。
 
    - 日志级别设置为D。
 
@@ -618,7 +630,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
    - 存在高负载问题，如果出现CPU高负载或者低内存问题，会导致socket服务端处理日志过慢，socket通道中日志堆积严重，也会导致客户端写入socket数据失败。
 
-3. 规避方法：关闭其他领域的日志打印，只打印本模块的日志。
+处理方式：关闭其他领域的日志打印，只打印本模块的日志。
 
    - 关闭其他领域日志：
 
