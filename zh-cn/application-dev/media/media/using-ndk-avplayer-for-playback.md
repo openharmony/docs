@@ -105,6 +105,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ## 开发示例
 
 ```c++
+// 非播放直接相关的代码以...省略，完整代码运行请参照示例工程
 #include "napi/native_api.h"
 #include <js_native_api.h>
 #include <multimedia/player_framework/avplayer.h>

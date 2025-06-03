@@ -67,6 +67,7 @@
 ## 开发示例
 
 ```ts
+// 非播放直接相关的代码以...省略，完整代码运行请参照示例工程
 import display from '@ohos.display';
 import emitter from '@ohos.events.emitter';
 import { common } from '@kit.AbilityKit';
