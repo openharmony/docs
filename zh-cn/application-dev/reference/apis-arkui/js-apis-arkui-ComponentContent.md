@@ -375,7 +375,7 @@ updateConfiguration(): void
 
 > **说明：**
 >
-> updateConfiguration接口功能为通知对象更新，更新所使用的系统环境由当前的系统环境变化。
+> updateConfiguration接口用于通知对象更新当前的系统环境变化。
 
 **示例：**
 ```ts

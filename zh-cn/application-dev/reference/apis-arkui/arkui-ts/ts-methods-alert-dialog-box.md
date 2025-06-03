@@ -495,7 +495,7 @@ struct AlertDialogExample {
 ![zh-cn_image_alert_animation](figures/zh-cn_image_alert_animation.gif)
 
 ### 示例4（设置弹窗的样式）
-该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等。
+示例定义了AlertDialog的样式，包括宽度、高度、背景色、阴影等。
 
 > **说明：**
 > 
