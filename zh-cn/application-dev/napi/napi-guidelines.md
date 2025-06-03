@@ -150,7 +150,7 @@ if (status != napi_ok) {
 **正确示例**：
 
 ```cpp
-void callbackTest(CallbackContext* context)
+void CallbackTest(CallbackContext* context)
 {
     uv_loop_s* loop = nullptr;
     napi_get_uv_event_loop(context->env, &loop);

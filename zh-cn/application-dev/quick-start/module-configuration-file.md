@@ -150,8 +150,8 @@ module.json5配置文件包含以下标签。
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module启动框架配置路径，在Entry类型的HAP、HSP、HAR中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | deviceFeatures | 标识当前Module需要的特定的设备能力，应用市场可以根据此配置，将应用分发给支持该能力的设备。该字段支持配置0-3个枚举值，无顺序要求，枚举值取值如下：<br/>-&nbsp;multi_process：多进程能力，表示设备支持创建子进程的能力。<br/>-&nbsp;free_multi_window：自由多窗能力，表示设备支持窗口最大化、最小化、悬浮、矩形区域变化的能力。<br/>-&nbsp;directory_permission：公共目录授权能力，表示当前Module需要被设备授权，能够访问文档、图片等公共目录。<br/>**说明：**<br/>1.从API version 19开始，支持该字段。<br/>2.不支持插件应用配置。 | 字符串数组 | 该标签可缺省，缺省值为空。
  |
 
@@ -244,7 +244,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识了用户自定义数据，取值为长度不超过255字节的字符串，内容为该数据的资源索引，例如配置成$profile:shortcuts_config，表示指向了/resources/base/profile/shortcuts_config.json配置文件。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-下面给出两种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
+下面给出三种metadata标签的使用场景及示例，开发者也可以根据实际需求自定义设置。
 
 1. 使用metadata标签配置主窗口的默认大小和位置（单位为vp）。其中name取值及对应含义如下：
 
@@ -254,6 +254,16 @@ deviceTypes示例：
     * name取值为ohos.ability.window.top表示主窗口顶部的位置。value表示配置格式，取值：对齐方式 +/- 偏移量。对齐方式包括center、top和bottom，默认值为top。如果对齐方式和偏移量同时省略，则按照系统默认的层叠规格处理。
 
 2. 使用metadata标签配置是否移除启动页。配置项为：name取值为enable.remove.starting.window，value取值为true或false，取值为true表示移除启动页、取值为false表示不移除启动页，未配置时默认为false。
+
+3. 使用metadata标签配置主窗启动时是否以最大化状态显示。配置项为：name为ohos.ability.window.isMaximize，value取值为true或false，取值为true表示最大化启动、取值为false表示不以最大化状态启动，未配置时默认为false。主窗最大化显示配置存在如下约束与限制：
+
+    * 该配置项仅在PC/2in1设备上生效。
+    * 若使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性，需要配置FULL_SCREEN选项，此时使用metadata标签配置主窗最大化启动生效，否则不生效。
+    * 若使用[module.json5](#abilities标签)的supportWindowMode属性，需要配置fullscreen选项，此时使用metadata标签配置主窗最大化启动生效，否则不生效。
+    * 主窗显示设置优先级排序为：全屏显示 > 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)接口指定大小和位置 > 使用[setWindowRectAutoSave()](../reference/apis-arkui/js-apis-window.md#setwindowrectautosave14)方法开启窗口尺寸记忆 > 使用metadata标签配置最大化 > 使用metadata标签配置大小和位置。全屏显示配置方法包括如下三种：
+        1. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的windowMode属性设置为WINDOW_MODE_FULLSCREEN。
+        2. 使用[startOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)的supportWindowModes属性只配置FULL_SCREEN选项。
+        3. 使用[module.json5](#abilities标签)的supportWindowMode属性只配置fullscreen选项。
 
 ```json
 {
@@ -290,6 +300,10 @@ deviceTypes示例：
       {
         "name": "ohos.ability.window.top",
         "value": "center+50"
+      },
+      {
+        "name": "ohos.ability.window.isMaximize",
+        "value": "true"
       },
       {
         "name": "enable.remove.starting.window",

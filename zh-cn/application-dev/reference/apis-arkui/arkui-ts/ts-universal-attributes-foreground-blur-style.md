@@ -101,7 +101,7 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 
 ## 示例
 
-该示例主要演示通过foregroundBlurStyle为图片设置内容模糊。
+该示例主要演示通过foregroundBlurStyle为图片设置内容模糊效果。
 
 ```ts
 // xxx.ets

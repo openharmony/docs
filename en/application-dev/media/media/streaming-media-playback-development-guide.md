@@ -114,7 +114,7 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 ### DASH Audio and Video Track Switching
 
-DASH streaming media generally includes multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
+DASH streaming media includes multiple audio, video, and subtitle tracks, each with different resolutions, bit rates, sampling rates, and encoding formats. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
 
 1. Set the [trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12) event.
 
@@ -159,7 +159,7 @@ DASH streaming media generally includes multiple audio, video, and subtitle trac
 
 If the network is disconnected when the AVPlayer is playing streaming media, the AVPlayer module handles the fault based on the returned error code, response time of the server request failure, and number of requests. If the error code type does not require a retry, the module reports the corresponding error code to the application. If the error code type requires a retry, the module initiates a maximum of 10 retries within 30 seconds. If the number of retries exceeds 10 or the total retry duration exceeds 30 seconds, the module reports the corresponding error code to the application. If the retry is successful, the module continues the playback.
 
-## Sample Code
+## Development Example
 
 Refer to the following example to play a complete streaming video.
 

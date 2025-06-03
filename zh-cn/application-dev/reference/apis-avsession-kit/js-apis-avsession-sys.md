@@ -2360,7 +2360,7 @@ aVCastController.off('videoSizeChange');
 
 **系统接口：** 该接口为系统接口。
 
-| 名称          | 类型              | 可读 | 可写 | 说明  |
+| 名称          | 类型              | 只读 | 可选 | 说明  |
 | --------------| ---------------- | ---------------- | ---------------- |------|
 | sessionId    | string    | 是 | 是  | 会话ID      |
 | type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型。    |

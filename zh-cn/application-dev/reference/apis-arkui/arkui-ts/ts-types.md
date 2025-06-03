@@ -227,9 +227,9 @@
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
-| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从右至左显示语言模式下为组件左边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
-| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从右至左显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -483,8 +483,8 @@
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
-| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| size        | [Length](ts-types.md#length)               | 否   | -           | 内部图标大小，单位vp。默认大小与多选框组件宽度相同。<br />不支持百分比形式设置。设置为非法值时，按照默认值处理。 |
+| strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持设置百分比。设置为非法值时，按照默认值处理。 |
 
 ## ModalTransition<sup>10+</sup>
 
