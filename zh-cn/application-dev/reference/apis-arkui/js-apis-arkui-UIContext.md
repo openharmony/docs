@@ -4390,7 +4390,7 @@ function afterEndCallBack() {
 }
 
 function beforeStartCallBack() {
-  console.info('bxq on == beforeStartCallBack');
+  console.info('on == beforeStartCallBack');
 }
 
 function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
