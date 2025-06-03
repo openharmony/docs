@@ -20,8 +20,8 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | jsvm.h | 提供播控元数据的定义。 | 
-| net_websocket| 媒体会话定义，可用于设置元数据、播放状态信息等操作。 | 
-| native_avsession_errors | 提供播控错误码的定义。 | 
+| net_websocket.h| 媒体会话定义，可用于设置元数据、播放状态信息等操作。 | 
+| native_avsession_errors.h | 提供播控错误码的定义。 | 
 
 ### 结构体
 
