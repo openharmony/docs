@@ -58,6 +58,36 @@ setTextHighContrast(action: TextHighContrast): void
 text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 ```
 
+## text.setTextUndefinedDisplay<sup>20+</sup>
+
+setTextUndefinedDisplay(undefinedGlyphDisplay: TextUndefinedGlyphDisplay): void
+
+用于设置无法塑性字符的显示方式，只会影响调用此接口之后排版的文本。
+
+该接口设置后整个进程都会生效，进程内所有页面共用相同模式。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
+| undefinedGlyphDisplay | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑性字符的显示方式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+text.setTextUndefinedDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
+```
+
 ## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
@@ -264,6 +294,17 @@ struct Index {
 | TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | 跟随系统设置中的高对比度文字配置。                                            |
 | TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | 关闭APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
 | TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | 开启APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
+
+## TextUndefinedGlyphDisplay<sup>20+</sup>
+
+文本未定义字符显示方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称           | 值   | 说明                                 |
+| -------------- | ---- | ------------------------------------ |
+| USE_DEFAULT    | 0    | 使用系统默认.notdef字形或者指定字体文件的.notdef字形。|
+| USE_TOFU       | 1    | 强制使用豆腐块。|
 
 ## TextAlign
 
@@ -715,6 +756,124 @@ struct RenderTest {
   }
 
   build() {
+  }
+}
+```
+
+### unloadFontSync<sup>20+</sup>
+unloadFontSync(name: string): void
+
+使用指定的别名取消注册对应字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| void | 无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**示例：**
+
+``` ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontSyncTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(() => {
+          this.fc.loadFontSync("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(() => {
+          this.fc.unloadFontSync("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### unloadFont<sup>20+</sup>
+unloadFont(name: string): Promise\<void>
+
+使用指定的别名取消注册对应字体，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------- |
+|   name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(async () => {
+          await this.fc.loadFont("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(async () => {
+          await this.fc.unloadFont("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
