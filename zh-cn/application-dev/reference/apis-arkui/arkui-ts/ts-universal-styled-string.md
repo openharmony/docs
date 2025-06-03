@@ -84,7 +84,7 @@ equals(other: StyledString): boolean
 
 ### subStyledString
 
-subStyledString(start: number , length?: number): StyledString
+subStyledString(start: number, length?: number): StyledString
 
 获取属性字符串的子字符串。
 
@@ -964,7 +964,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
-### invalidate<sup>13+<sup>
+### invalidate<sup>13+</sup>
 
 invalidate(): void
 

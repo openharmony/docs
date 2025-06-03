@@ -65,7 +65,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 7. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to play a complete piece of music. In this example, 3 seconds after the playback starts, the playback is paused for 3 seconds and then resumed.
 
@@ -85,7 +85,7 @@ export class AVPlayerDemo {
   constructor(context: Context) {
     this.context = context; // this.getUIContext().getHostContext();
   }
-  // Set AVPlayer callback functions.
+  // Set the AVPlayer callback.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for the seek operation.
     avPlayer.on('seekDone', (seekDoneTime: number) => {
@@ -217,7 +217,7 @@ export class AVPlayerDemo {
       }
     };
     let context = getContext(this) as common.UIAbilityContext;
-    // // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
+    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {

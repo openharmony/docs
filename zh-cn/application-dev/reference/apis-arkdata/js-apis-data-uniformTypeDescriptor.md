@@ -208,7 +208,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                    | 可读 | 可写 | 说明                                                       |
+| 名称    | 类型                    | 只读 | 可选 | 说明                                                       |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
 | typeId<sup>11+</sup>     | string | 是   | 否   | 标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值）。 |
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typeId列表。                                   |

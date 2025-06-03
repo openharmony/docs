@@ -122,12 +122,11 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to implement captured file storage using AVScreenCapture.
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
@@ -159,7 +158,9 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
     (void)userData;
 }
 
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+struct OH_AVScreenCapture *capture;
+// Call StartScreenCapture to start screen capture.
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
         .audioSampleRate = 48000, 
@@ -208,7 +209,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .videoInfo = videoInfo,
     };
 
-    struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+    // Instantiate AVScreenCapture.
+    capture = OH_AVScreenCapture_Create();
 
     // Initialize the screen capture parameters and pass in an OH_AVScreenRecorderConfig struct.
     OH_RecorderInfo recorderInfo;
@@ -234,15 +236,25 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Start screen capture.
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
-    // Capture the screen for 10s.
-    sleep(10);
+    // Call StopScreenCapture to stop screen capture.
+    
+    // Return the call result. In the example, only a random number is returned.
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
 
-    // Stop screen capture.
-    int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
+    return sum;
+}
 
-    // Release the AVScreenCapture instance.
-    int32_t retRelease = OH_AVScreenCapture_Release(capture);
+// Call StopScreenCapture to stop screen capture.
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
+    if (capture != nullptr) {
+        // Stop screen capture.
+        int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
 
+        // Release the AVScreenCapture instance.
+        int32_t retRelease = OH_AVScreenCapture_Release(capture);
+        capture = nullptr;
+    }
     // Return the call result. In the example, only a random number is returned.
     napi_value sum;
     napi_create_double(env, 5, &sum);
@@ -253,7 +265,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"screencapture", nullptr, Screencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

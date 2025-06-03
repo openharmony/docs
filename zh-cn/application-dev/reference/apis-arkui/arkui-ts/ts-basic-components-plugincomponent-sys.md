@@ -50,11 +50,11 @@ PluginComponent(options: PluginComponentOptions)
 * 1.使用绝对路径进行资源提供：source字段填写模板绝对路径，bundleName不需要填写。仅适用于不需要加载资源的单独模板页面，不建议使用。
 * 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过“相对路径&模块名称”的方式进行hap包的确认。
 
-  例如：{source：'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}
+  例如：{source: 'pages/PluginProviderExample.ets&entry', bundleName: 'com.example.provider'}
 
   仅对FA模型支持source字段填写AbilityName、bundleName字段填写应用包名的方式进行资源提供。
 
-  例如：{source：'plugin', bundleName:'com.example.provider'}
+  例如：{source: 'plugin', bundleName: 'com.example.provider'}
 
 
 ## 事件
