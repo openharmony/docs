@@ -190,6 +190,8 @@ struct SystemWidgetCard {
 }
 ```
 
+为了卡片提供方更加精细控制卡片状态切换，卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方，卡片使用方在收到信息后开始加载卡片激活态 UI。
+
 **代码样例：entry/src/main/ets/mysystemliveformextensionability/MySystemLiveFormExtensionAbility.ets**
 
 ```ts
@@ -209,6 +211,9 @@ export default class MySystemLiveFormExtensionAbility extends LiveFormExtensionA
 
     // 加载提供方页面
     session.loadContent('mysystemliveformextensionability/pages/MySystemLiveFormPage', storage);
+
+    // 卡片提供方需在激活态页面准备就绪时，通过 session 发送信息告知卡片使用方
+    session.sendData({['isFormReady']: true});
     this.context.setBackgroundImage($r('app.media.background'));
   }
 
