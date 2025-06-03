@@ -7389,7 +7389,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
       console.info('openPopup success');
     })
     .catch((err: BusinessError) => {
-      console.info('openPopup error: ' + err.code + ' ' + err.message);
+      console.error('openPopup error: ' + err.code + ' ' + err.message);
     })
   popupParam.updateFunc = () => {
     promptAction.updatePopup(contentNode, {
@@ -7399,7 +7399,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('updatePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+        console.error('updatePopup error: ' + err.code + ' ' + err.message);
       })
   }
   popupParam.closeFunc = () => {
@@ -7408,7 +7408,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('closePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('closePopup error: ' + err.code + ' ' + err.message);
+        console.error('closePopup error: ' + err.code + ' ' + err.message);
       })
   }
 }
