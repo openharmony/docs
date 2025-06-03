@@ -13,7 +13,10 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
 ## PhotoEditorExtensionAbility
 
+### 属性
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+
 |  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 |  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
