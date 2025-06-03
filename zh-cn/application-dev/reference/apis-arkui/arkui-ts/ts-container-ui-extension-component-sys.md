@@ -87,8 +87,8 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| code                        | number | 收到来自对端Ability的处理結果code。                          |
-| want                        | Want | 收到来自对端Ability的处理結果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
+| code                        | number | 收到来自对端Ability的处理结果code。                          |
+| want                        | Want | 收到来自对端Ability的处理结果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
 ### onRelease<sup>(deprecated)</sup>
 
