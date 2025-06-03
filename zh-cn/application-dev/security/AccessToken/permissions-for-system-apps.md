@@ -4345,6 +4345,8 @@
 
 **ACL使能**：true
 
+**携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
+
 **起始版本**：18
 
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
