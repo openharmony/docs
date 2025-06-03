@@ -123,7 +123,7 @@ off(type: 'draw', callback?: () => void): void
 
 on(type: 'drawChildren',  callback: Callback): void
 
-通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。
+通过句柄向对应的查询条件注册回调，当组件绘制送显完成时会触发该回调。如果组件树包含多个[ComponentObserver](#componentobserver)句柄，只有在最顶层的句柄注册drawChildren事件，回调函数才能生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
